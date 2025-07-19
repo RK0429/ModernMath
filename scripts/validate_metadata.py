@@ -80,8 +80,11 @@ def main():
     all_errors: Dict[str, List[str]] = {}
     total_files = 0
 
-    # Find all .qmd files
+    # Find all .qmd files (excluding index.qmd files)
     for qmd_file in content_dir.rglob("*.qmd"):
+        # Skip index.qmd files as they are navigation pages, not content nodes
+        if qmd_file.name == "index.qmd":
+            continue
         total_files += 1
         errors = validate_metadata(qmd_file)
         if errors:
