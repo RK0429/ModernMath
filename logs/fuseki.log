@@ -1,0 +1,85 @@
+Starting Apache Jena Fuseki...
+Configuration: /Users/r-kobayashi/Documents/WritePapers/ModernMath/fuseki/scripts/../config/mathwiki.ttl
+Access the UI at: http://localhost:3030/
+SPARQL endpoint: http://localhost:3030/mathwiki/sparql
+21:30:41 INFO  Server          :: Apache Jena Fuseki 4.10.0
+21:30:41 INFO  Config          :: FUSEKI_HOME=/Users/r-kobayashi/Documents/WritePapers/ModernMath/fuseki/fuseki-server/apache-jena-fuseki-4.10.0/.
+21:30:41 INFO  Config          :: FUSEKI_BASE=/Users/r-kobayashi/Documents/WritePapers/ModernMath/fuseki/fuseki-server/current/run
+21:30:41 INFO  Config          :: Shiro file: file:///Users/r-kobayashi/Documents/WritePapers/ModernMath/fuseki/fuseki-server/current/run/shiro.ini
+21:30:41 INFO  Server          :: Path = /mathwiki
+21:30:41 INFO  Server          ::   Memory: 4.0 GiB
+21:30:41 INFO  Server          ::   Java:   24.0.1
+21:30:41 INFO  Server          ::   OS:     Mac OS X 15.5 aarch64
+21:30:41 INFO  Server          ::   PID:    74078
+21:30:41 INFO  Server          :: Started 2025/07/19 21:30:41 JST on port 3030
+21:31:00 INFO  Fuseki          :: [1] POST http://localhost:3030/mathwiki/upload
+21:31:00 INFO  Fuseki          :: [1] No Fuseki dispatch /mathwiki/upload
+21:31:07 INFO  Fuseki          :: [2] POST http://localhost:3030/mathwiki/data
+21:31:07 INFO  Fuseki          :: [2] Body: Content-Length=14241, Content-Type=text/turtle, Charset=null => Turtle : Count=276 Triples=276 Quads=0
+21:31:07 INFO  Fuseki          :: [2] 200 OK (115 ms)
+21:31:15 INFO  Fuseki          :: [3] POST http://localhost:3030/mathwiki/sparql
+21:31:15 INFO  Fuseki          :: [3] Query = SELECT (COUNT(*) as ?count) WHERE { ?s ?p ?o }
+21:31:15 INFO  Fuseki          :: [3] 200 OK (10 ms)
+21:37:41 INFO  Fuseki          :: [4] GET http://localhost:3030/mathwiki/sparql?query=%0A++++++++SELECT+%28COUNT%28%2A%29+as+%3Fcount%29%0A++++++++WHERE+%7B+%3Fs+%3Fp+%3Fo+%7D%0A++++&format=json&output=json&results=json
+21:37:41 INFO  Fuseki          :: [4] Query =          SELECT (COUNT(*) as ?count)         WHERE { ?s ?p ?o }     
+21:37:41 INFO  Fuseki          :: [4] 200 OK (3 ms)
+21:37:41 INFO  Fuseki          :: [5] GET http://localhost:3030/mathwiki/sparql?query=%0A++++++++SELECT+%3Fs+%3Fp+%3Fo%0A++++++++WHERE+%7B+%3Fs+%3Fp+%3Fo+%7D%0A++++++++LIMIT+10%0A++++&format=json&output=json&results=json
+21:37:41 INFO  Fuseki          :: [5] Query =          SELECT ?s ?p ?o         WHERE { ?s ?p ?o }         LIMIT 10     
+21:37:41 INFO  Fuseki          :: [5] 200 OK (1 ms)
+21:37:41 INFO  Fuseki          :: [6] GET http://localhost:3030/mathwiki/sparql?query=%0A++++++++SELECT+%28COUNT%28DISTINCT+%3Fs%29+as+%3Fcount%29%0A++++++++WHERE+%7B+%3Fs+a+%3Ftype+%7D%0A++++&format=json&output=json&results=json
+21:37:41 INFO  Fuseki          :: [6] Query =          SELECT (COUNT(DISTINCT ?s) as ?count)         WHERE { ?s a ?type }     
+21:37:41 INFO  Fuseki          :: [6] 200 OK (3 ms)
+21:37:41 INFO  Fuseki          :: [7] GET http://localhost:3030/mathwiki/sparql?query=%0A++++++++SELECT+DISTINCT+%3Ftype%0A++++++++WHERE+%7B+%3Fs+a+%3Ftype+%7D%0A++++++++LIMIT+20%0A++++&format=json&output=json&results=json
+21:37:41 INFO  Fuseki          :: [7] Query =          SELECT DISTINCT ?type         WHERE { ?s a ?type }         LIMIT 20     
+21:37:41 INFO  Fuseki          :: [7] 200 OK (1 ms)
+21:37:41 INFO  Fuseki          :: [8] GET http://localhost:3030/mathwiki/sparql?query=%0A++++++++SELECT+%3Fp+%3Fo%0A++++++++WHERE+%7B+%3Chttps%3A//mathwiki.org/resource/def-group%3E+%3Fp+%3Fo+%7D%0A++++&format=json&output=json&results=json
+21:37:41 INFO  Fuseki          :: [8] Query =          SELECT ?p ?o         WHERE { <https://mathwiki.org/resource/def-group> ?p ?o }     
+21:37:41 INFO  Fuseki          :: [8] 200 OK (1 ms)
+21:37:41 INFO  Fuseki          :: [9] GET http://localhost:3030/mathwiki/sparql?query=%0A++++++++PREFIX+mymath%3A+%3Chttps%3A//mathwiki.org/ontology%23%3E%0A++++++++SELECT+%28COUNT%28%3Fs%29+as+%3Fcount%29%0A++++++++WHERE+%7B+%3Fs+a+mymath%3ADefinition+%7D%0A++++&format=json&output=json&results=json
+21:37:41 INFO  Fuseki          :: [9] Query =          PREFIX mymath: <https://mathwiki.org/ontology#>         SELECT (COUNT(?s) as ?count)         WHERE { ?s a mymath:Definition }     
+21:37:41 INFO  Fuseki          :: [9] 200 OK (1 ms)
+21:37:48 INFO  Fuseki          :: [10] POST http://localhost:3030/mathwiki/data
+21:37:48 INFO  Fuseki          :: [10] Body: Content-Length=14241, Content-Type=text/turtle, Charset=null => Turtle : Count=276 Triples=276 Quads=0
+21:37:48 INFO  Fuseki          :: [10] 200 OK (85 ms)
+21:38:02 INFO  Fuseki          :: [11] GET http://localhost:3030/mathwiki/sparql?query=%0A++++++++SELECT+%28COUNT%28%2A%29+as+%3Fcount%29%0A++++++++WHERE+%7B+%3Fs+%3Fp+%3Fo+%7D%0A++++&format=json&output=json&results=json
+21:38:02 INFO  Fuseki          :: [11] Query =          SELECT (COUNT(*) as ?count)         WHERE { ?s ?p ?o }     
+21:38:02 INFO  Fuseki          :: [11] 200 OK (1 ms)
+21:38:02 INFO  Fuseki          :: [12] GET http://localhost:3030/mathwiki/sparql?query=%0A++++++++SELECT+%3Fs+%3Fp+%3Fo%0A++++++++WHERE+%7B+%3Fs+%3Fp+%3Fo+%7D%0A++++++++LIMIT+10%0A++++&format=json&output=json&results=json
+21:38:02 INFO  Fuseki          :: [12] Query =          SELECT ?s ?p ?o         WHERE { ?s ?p ?o }         LIMIT 10     
+21:38:02 INFO  Fuseki          :: [12] 200 OK (1 ms)
+21:38:02 INFO  Fuseki          :: [13] GET http://localhost:3030/mathwiki/sparql?query=%0A++++++++SELECT+%28COUNT%28DISTINCT+%3Fs%29+as+%3Fcount%29%0A++++++++WHERE+%7B+%3Fs+a+%3Ftype+%7D%0A++++&format=json&output=json&results=json
+21:38:02 INFO  Fuseki          :: [13] Query =          SELECT (COUNT(DISTINCT ?s) as ?count)         WHERE { ?s a ?type }     
+21:38:02 INFO  Fuseki          :: [13] 200 OK (1 ms)
+21:38:02 INFO  Fuseki          :: [14] GET http://localhost:3030/mathwiki/sparql?query=%0A++++++++SELECT+DISTINCT+%3Ftype%0A++++++++WHERE+%7B+%3Fs+a+%3Ftype+%7D%0A++++++++LIMIT+20%0A++++&format=json&output=json&results=json
+21:38:02 INFO  Fuseki          :: [14] Query =          SELECT DISTINCT ?type         WHERE { ?s a ?type }         LIMIT 20     
+21:38:02 INFO  Fuseki          :: [14] 200 OK (1 ms)
+21:38:02 INFO  Fuseki          :: [15] GET http://localhost:3030/mathwiki/sparql?query=%0A++++++++SELECT+%3Fp+%3Fo%0A++++++++WHERE+%7B+%3Chttps%3A//mathwiki.org/resource/def-group%3E+%3Fp+%3Fo+%7D%0A++++&format=json&output=json&results=json
+21:38:02 INFO  Fuseki          :: [15] Query =          SELECT ?p ?o         WHERE { <https://mathwiki.org/resource/def-group> ?p ?o }     
+21:38:02 INFO  Fuseki          :: [15] 200 OK (1 ms)
+21:38:02 INFO  Fuseki          :: [16] GET http://localhost:3030/mathwiki/sparql?query=%0A++++++++PREFIX+mymath%3A+%3Chttps%3A//mathwiki.org/ontology%23%3E%0A++++++++SELECT+%28COUNT%28%3Fs%29+as+%3Fcount%29%0A++++++++WHERE+%7B+%3Fs+a+mymath%3ADefinition+%7D%0A++++&format=json&output=json&results=json
+21:38:02 INFO  Fuseki          :: [16] Query =          PREFIX mymath: <https://mathwiki.org/ontology#>         SELECT (COUNT(?s) as ?count)         WHERE { ?s a mymath:Definition }     
+21:38:02 INFO  Fuseki          :: [16] 200 OK (1 ms)
+21:38:33 INFO  Fuseki          :: [17] GET http://localhost:3030/mathwiki/sparql?query=%0A++++++++SELECT+DISTINCT+%3Fg+%0A++++++++WHERE+%7B%0A++++++++++++GRAPH+%3Fg+%7B+%3Fs+%3Fp+%3Fo+%7D%0A++++++++%7D%0A++++&format=json&output=json&results=json
+21:38:33 INFO  Fuseki          :: [17] Query =          SELECT DISTINCT ?g          WHERE {             GRAPH ?g { ?s ?p ?o }         }     
+21:38:33 INFO  Fuseki          :: [17] 200 OK (1 ms)
+21:38:33 INFO  Fuseki          :: [18] GET http://localhost:3030/mathwiki/sparql?query=%0A++++++++SELECT+%3Fg+%28COUNT%28%2A%29+as+%3Fcount%29%0A++++++++WHERE+%7B%0A++++++++++++GRAPH+%3Fg+%7B+%3Fs+%3Fp+%3Fo+%7D%0A++++++++%7D%0A++++++++GROUP+BY+%3Fg%0A++++&format=json&output=json&results=json
+21:38:33 INFO  Fuseki          :: [18] Query =          SELECT ?g (COUNT(*) as ?count)         WHERE {             GRAPH ?g { ?s ?p ?o }         }         GROUP BY ?g     
+21:38:33 INFO  Fuseki          :: [18] 200 OK (1 ms)
+21:38:33 INFO  Fuseki          :: [19] GET http://localhost:3030/mathwiki/sparql?query=%0A++++++++SELECT+%28COUNT%28%2A%29+as+%3Fcount%29%0A++++++++WHERE+%7B+%0A++++++++++++%3Fs+%3Fp+%3Fo+%0A++++++++++++FILTER+NOT+EXISTS+%7B+GRAPH+%3Fg+%7B+%3Fs+%3Fp+%3Fo+%7D+%7D%0A++++++++%7D%0A++++&format=json&output=json&results=json
+21:38:33 INFO  Fuseki          :: [19] Query =          SELECT (COUNT(*) as ?count)         WHERE {              ?s ?p ?o              FILTER NOT EXISTS { GRAPH ?g { ?s ?p ?o } }         }     
+21:38:33 INFO  Fuseki          :: [19] 200 OK (3 ms)
+21:38:33 INFO  Fuseki          :: [20] GET http://localhost:3030/mathwiki/sparql?query=%0A++++++++SELECT+%28COUNT%28%2A%29+as+%3Fcount%29%0A++++++++WHERE+%7B%0A++++++++++++%7B+%3Fs+%3Fp+%3Fo+%7D%0A++++++++++++UNION%0A++++++++++++%7B+GRAPH+%3Fg+%7B+%3Fs+%3Fp+%3Fo+%7D+%7D%0A++++++++%7D%0A++++&format=json&output=json&results=json
+21:38:33 INFO  Fuseki          :: [20] Query =          SELECT (COUNT(*) as ?count)         WHERE {             { ?s ?p ?o }             UNION             { GRAPH ?g { ?s ?p ?o } }         }     
+21:38:33 INFO  Fuseki          :: [20] 200 OK (1 ms)
+21:38:43 INFO  Admin           :: [21] GET datasets
+21:38:49 INFO  Admin           :: [22] GET datasets
+21:39:11 INFO  Fuseki          :: [23] POST http://localhost:3030/mathwiki/update
+21:39:11 INFO  Fuseki          :: [23] Update
+21:39:11 INFO  Fuseki          :: [23] 204 No Content (102 ms)
+21:39:11 INFO  Fuseki          :: [24] POST http://localhost:3030/mathwiki/update
+21:39:11 INFO  Fuseki          :: [24] Update
+21:39:11 WARN  Fuseki          :: [24] Parse error: Parse error: Encountered " <LANGTAG> "@prefix "" at line 2, column 1.
+21:39:11 INFO  Fuseki          :: [24] 400 Bad Request (53 ms)
+21:39:11 INFO  Fuseki          :: [25] POST http://localhost:3030/mathwiki/sparql
+21:39:11 INFO  Fuseki          :: [25] Query = SELECT (COUNT(*) as ?count) WHERE { ?s ?p ?o }
+21:39:11 INFO  Fuseki          :: [25] 200 OK (2 ms)
