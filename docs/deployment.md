@@ -6,7 +6,7 @@ This guide explains how to deploy the Math Knowledge Graph Wiki to GitHub Pages 
 
 ### Automatic Deployment (Recommended)
 
-The project is configured to automatically deploy to GitHub Pages when you push to the `main` branch. 
+The project is configured to automatically deploy to GitHub Pages when you push to the `main` branch.
 
 1. **Enable GitHub Pages in your repository:**
    - Go to your repository on GitHub
@@ -16,6 +16,7 @@ The project is configured to automatically deploy to GitHub Pages when you push 
    - Click Save
 
 2. **Push to main branch:**
+
    ```bash
    git add .
    git commit -m "Update content"
@@ -33,6 +34,7 @@ The project is configured to automatically deploy to GitHub Pages when you push 
 If you need to deploy manually:
 
 1. **Build the site locally:**
+
    ```bash
    poetry run python scripts/build_graph.py
    poetry run python scripts/generate_mermaid.py
@@ -41,6 +43,7 @@ If you need to deploy manually:
    ```
 
 2. **Deploy using GitHub Pages action:**
+
    ```bash
    git add _site/
    git commit -m "Build site"
@@ -54,6 +57,7 @@ To use a custom domain:
 1. **Update the workflow:**
    - Edit `.github/workflows/build.yml`
    - Uncomment the `cname` line and set your domain:
+
      ```yaml
      cname: mathwiki.yourdomain.com
      ```
@@ -71,6 +75,7 @@ To use a custom domain:
 ### Netlify
 
 1. **Build the site:**
+
    ```bash
    poetry run python scripts/build_graph.py
    quarto render
@@ -78,16 +83,19 @@ To use a custom domain:
 
 2. **Deploy to Netlify:**
    - Create a `netlify.toml`:
+
      ```toml
      [build]
        publish = "_site"
      ```
+
    - Connect your GitHub repository to Netlify
    - Deploy automatically on push
 
 ### Vercel
 
 1. **Create `vercel.json`:**
+
    ```json
    {
      "buildCommand": "poetry install && poetry run python scripts/build_graph.py && quarto render",
@@ -97,6 +105,7 @@ To use a custom domain:
    ```
 
 2. **Deploy with Vercel CLI:**
+
    ```bash
    vercel --prod
    ```

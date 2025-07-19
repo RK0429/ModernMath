@@ -24,6 +24,7 @@ To add an interactive D3.js visualization to any Quarto content page, use the fo
 ```
 
 Parameters:
+
 - `data-id`: The ID of the node (e.g., "def-group", "thm-pythagorean")
 - `data-width`: Width of the visualization in pixels (default: 700)
 - `data-height`: Height of the visualization in pixels (default: 500)
@@ -97,6 +98,7 @@ The visualization is implemented as a Quarto extension located at `_extensions/g
 - `graph-viz.lua`: Lua filter that processes the graph-viz shortcode
 
 The extension:
+
 1. Detects `{.graph-viz}` blocks in content
 2. Generates HTML with embedded D3.js code
 3. Loads the appropriate JSON data file
@@ -129,6 +131,7 @@ When creating new mathematical content:
 ### Performance Issues
 
 For very large neighborhoods:
+
 - Consider reducing the depth parameter in `generate_d3_data.py`
 - Implement pagination or filtering for nodes with many connections
 
