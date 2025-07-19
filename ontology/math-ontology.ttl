@@ -5,6 +5,7 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix mymath: <https://mathwiki.org/ontology#> .
+@prefix ontomathpro: <http://ontomathpro.org/ontology#> .
 
 # Ontology Metadata
 mymath: a owl:Ontology ;
@@ -21,32 +22,39 @@ mymath: a owl:Ontology ;
 mymath:MathematicalStatement a rdfs:Class ;
     rdfs:label "Mathematical Statement"@en ;
     rdfs:comment "An abstract class representing any mathematical statement"@en ;
-    rdfs:subClassOf skos:Concept .
+    rdfs:subClassOf skos:Concept ;
+    rdfs:seeAlso ontomathpro:E1936 ;  # OntoMathPRO Statement concept
+    rdfs:comment "Mapped to OntoMathPRO E1936 Statement concept"@en .
 
 mymath:Axiom a rdfs:Class ;
     rdfs:subClassOf mymath:MathematicalStatement ;
     rdfs:label "Axiom"@en ;
-    rdfs:comment "A mathematical statement taken as true without proof"@en .
+    rdfs:comment "A mathematical statement taken as true without proof"@en ;
+    owl:equivalentClass ontomathpro:Axiom .
 
 mymath:Definition a rdfs:Class ;
     rdfs:subClassOf mymath:MathematicalStatement ;
     rdfs:label "Definition"@en ;
-    rdfs:comment "A statement defining the meaning of a mathematical concept"@en .
+    rdfs:comment "A statement defining the meaning of a mathematical concept"@en ;
+    owl:equivalentClass ontomathpro:Definition .
 
 mymath:Theorem a rdfs:Class ;
     rdfs:subClassOf mymath:MathematicalStatement ;
     rdfs:label "Theorem"@en ;
-    rdfs:comment "A mathematical statement that has been proved on the basis of previously established statements"@en .
+    rdfs:comment "A mathematical statement that has been proved on the basis of previously established statements"@en ;
+    owl:equivalentClass ontomathpro:Theorem .
 
 mymath:Lemma a rdfs:Class ;
     rdfs:subClassOf mymath:Theorem ;
     rdfs:label "Lemma"@en ;
-    rdfs:comment "A subsidiary or intermediate theorem used to prove a larger theorem"@en .
+    rdfs:comment "A subsidiary or intermediate theorem used to prove a larger theorem"@en ;
+    owl:equivalentClass ontomathpro:Lemma .
 
 mymath:Proposition a rdfs:Class ;
     rdfs:subClassOf mymath:Theorem ;
     rdfs:label "Proposition"@en ;
-    rdfs:comment "A theorem of lesser importance or a result that is not the main focus"@en .
+    rdfs:comment "A theorem of lesser importance or a result that is not the main focus"@en ;
+    owl:equivalentClass ontomathpro:Proposition .
 
 mymath:Corollary a rdfs:Class ;
     rdfs:subClassOf mymath:Theorem ;
@@ -56,12 +64,14 @@ mymath:Corollary a rdfs:Class ;
 mymath:Example a rdfs:Class ;
     rdfs:subClassOf mymath:MathematicalStatement ;
     rdfs:label "Example"@en ;
-    rdfs:comment "A concrete illustration of a mathematical concept or theorem"@en .
+    rdfs:comment "A concrete illustration of a mathematical concept or theorem"@en ;
+    owl:equivalentClass ontomathpro:Example .
 
 mymath:Proof a rdfs:Class ;
     rdfs:subClassOf skos:Concept ;
     rdfs:label "Proof"@en ;
-    rdfs:comment "A logical argument establishing the truth of a theorem"@en .
+    rdfs:comment "A logical argument establishing the truth of a theorem"@en ;
+    owl:equivalentClass ontomathpro:Proof .
 
 # ============================================
 # Core Properties (Relationships)
@@ -72,7 +82,9 @@ mymath:uses a rdf:Property ;
     rdfs:range mymath:MathematicalStatement ;
     rdfs:label "uses"@en ;
     rdfs:comment "Indicates that the subject depends on or utilizes the object in its proof or statement"@en ;
-    rdfs:subPropertyOf skos:related .
+    rdfs:subPropertyOf skos:related ;
+    rdfs:seeAlso ontomathpro:isDefinedBy ;  # OntoMathPRO has a related concept
+    rdfs:comment "Related to OntoMathPRO 'is defined by' relation"@en .
 
 mymath:dependsOn a rdf:Property ;
     owl:equivalentProperty mymath:uses ;

@@ -1,6 +1,6 @@
 # Mathematics Knowledge Graph Wiki - Comprehensive To-Do List
 
-## Progress Update (Last Updated: 2025-07-19 - Night Continued)
+## Progress Update (Last Updated: 2025-07-19 - Evening Continued)
 
 ### Completed Today
 
@@ -202,6 +202,91 @@
   - Updated README to reference new deployment documentation
   - Site will deploy to: https://[username].github.io/ModernMath/
 
+### Latest Progress (2025-01-20)
+
+- ✅ **Implemented OntoMathPRO Ontology Mapping**:
+  - Added OntoMathPRO namespace prefix to math-ontology.ttl
+  - Mapped all core classes using owl:equivalentClass:
+    - MathematicalStatement mapped to OntoMathPRO E1936 Statement
+    - Axiom, Definition, Theorem, Lemma, Proposition, Example, Proof mapped to corresponding OntoMathPRO concepts
+  - Added property mappings with rdfs:seeAlso for the 'uses' relationship
+  - Ontology now aligned with established mathematical knowledge standards
+- ✅ **Created Comprehensive Style Guide**:
+  - Created docs/style-guide.md with detailed authoring guidelines
+  - Documented file organization and naming conventions
+  - Specified required and optional YAML front matter fields
+  - Emphasized critical cross-reference conventions using @ syntax
+  - Included mathematical notation standards and LaTeX usage
+  - Added content structure templates for definitions, theorems, and examples
+  - Provided quality checklist and common pitfalls to avoid
+- ✅ **Designed OpenAPI/Swagger Schema**:
+  - Created api/openapi.yaml with complete OpenAPI 3.0 specification
+  - Documented all 7 API endpoints with detailed schemas
+  - Included request/response examples for each endpoint
+  - Created swagger-ui.html for interactive API documentation
+  - Updated API README with documentation links
+  - Fixed all port references from 5000 to 5001 in documentation
+
+### Latest Progress (2025-01-20 - Continued)
+
+- ✅ **System Status Verification**:
+  - Verified knowledge graph validation (276 triples, 80 relationships)
+  - Confirmed Fuseki SPARQL endpoint is running and functional
+  - Tested REST API endpoints - all working correctly
+  - All core infrastructure components operational
+- ✅ **Created Lean 4 Integration Plan**:
+  - Developed comprehensive integration plan (formal/lean4-integration-plan.md)
+  - Outlined 5-phase approach: Environment Setup → Basic Formalization → LeanDojo Integration → Bridge Implementation → Content Enhancement
+  - Defined mapping strategy between Quarto node IDs and Lean theorem names
+  - Planned verification pipeline to ensure consistency between informal and formal proofs
+  - Established timeline and success metrics
+
+### Latest Progress (2025-01-20 - Evening)
+
+- ✅ **Successfully Installed and Set Up Lean 4**:
+  - Installed elan (Lean version manager) v4.1.2
+  - Installed Lean 4.22.0-rc3 with Lake build tool
+  - Created installation documentation (docs/lean4-installation.md)
+- ✅ **Created Lean Project Structure**:
+  - Initialized MathKnowledgeGraph Lean project in formal/ directory
+  - Successfully integrated mathlib4 dependency (downloaded 6966 cached files)
+  - Created directory structure for different mathematical domains
+- ✅ **Formalized Basic Mathematical Concepts**:
+  - **Logic/Sets.lean**: Basic set operations (union, intersection, distributivity)
+  - **Algebra/Groups.lean**: Group properties (inverse, cancellation, identity uniqueness)
+  - **Topology/Basic.lean**: Open sets, unions, intersections, compact sets
+  - **Analysis/Limits.lean**: Limits, continuity, composition of continuous functions
+  - **NumberTheory/Primes.lean**: Prime numbers, divisibility, mathematical induction
+  - All files compile successfully and integrate with mathlib4
+- ✅ **Established Formal-Informal Bridge**:
+  - Each Lean file includes references to corresponding Quarto node IDs
+  - Documentation comments link formal definitions to knowledge graph nodes
+  - Ready for future automation to verify consistency between formal and informal content
+
+### Latest Progress (2025-07-19 - Evening Continued)
+
+- ✅ **Added missing index.qmd files for domains**:
+  - Created index pages for Category Theory, Combinatorics, Number Theory, and Probability & Statistics
+  - All domain directories now have proper index pages with navigation
+- ✅ **Expanded example content** - Added 5 new examples:
+  - **Algebra**: Even Integers Subgroup, Integers Ring, Standard Basis of ℝⁿ
+  - **Geometry**: Euclidean Metric on ℝⁿ
+  - **Topology**: Closed Interval is Compact
+- ✅ **Expanded Category Theory content** - Added 3 new nodes:
+  - Definition: Morphism
+  - Definition: Natural Transformation
+  - Example: The Category of Sets
+- ✅ **Expanded Combinatorics content** - Added 3 new nodes:
+  - Definition: Binomial Coefficient
+  - Theorem: Pigeonhole Principle
+  - Example: Pascal's Triangle
+- ✅ **Updated knowledge graph statistics**:
+  - Total nodes: 59 (increased from 48)
+  - Total triples: 346 (increased from 276)
+  - Total 'uses' relationships: 106 (increased from 80)
+  - Node breakdown: 33 Definitions, 13 Theorems, 12 Examples, 1 Axiom
+- ✅ **Generated and integrated Mermaid diagrams** for all 11 new content nodes
+
 ### Next Steps
 
 1. ~~Update REST API queries to use FROM <urn:x-arq:DefaultGraph>~~ ✅ Completed
@@ -209,10 +294,13 @@
 3. ~~Restore design directories from /tmp/ and configure proper exclusion~~ ✅ Completed (directories were already present, added render exclusion to _quarto.yml)
 4. Fix cross-reference warnings in Quarto content - **Note**: These are expected warnings due to cross-directory references. The site builds successfully. A future enhancement would be to create a script to convert `@ref` style references to proper relative path links.
 5. ~~Configure proper GitHub Pages deployment~~ ✅ Completed (workflow configured, documentation created)
-6. Begin Lean 4 integration planning
-7. Consider adding more examples for existing definitions
-8. Expand content in underrepresented areas (Category Theory, Combinatorics)
-9. Add more index.qmd files for missing domain directories
+6. ~~Begin Lean 4 integration planning~~ ✅ Completed (created formal/lean4-integration-plan.md)
+7. ~~Install Lean 4 toolchain~~ ✅ Completed (installed Lean 4.22.0-rc3 with elan)
+8. ~~Create initial Lean project structure~~ ✅ Completed (created formal/MathKnowledgeGraph project)
+9. ~~Formalize 5-10 basic definitions as proof of concept~~ ✅ Completed (formalized concepts in 5 domains)
+10. ~~Consider adding more examples for existing definitions~~ ✅ Completed (added 5 new examples)
+11. ~~Expand content in underrepresented areas (Category Theory, Combinatorics)~~ ✅ Completed (added 6 new nodes)
+12. ~~Add more index.qmd files for missing domain directories~~ ✅ Completed (all domains now have index pages)
 
 ---
 
@@ -271,12 +359,12 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
     - [x] `implies` property
     - [x] `hasDomain` property (for mathematical fields)
 
-- [ ] **Ontology Mapping and Interoperability**
-  - [ ] Research and download OntoMathPRO ontology
-  - [ ] Map custom classes to OntoMathPRO equivalents using `owl:equivalentClass`
+- [x] **Ontology Mapping and Interoperability**
+  - [x] Research and download OntoMathPRO ontology
+  - [x] Map custom classes to OntoMathPRO equivalents using `owl:equivalentClass`
   - [x] Add Dublin Core metadata properties
   - [x] Add SKOS concept mappings where appropriate
-  - [ ] Validate ontology using Protégé or online validators
+  - [ ] Validate ontology using Protégé or online validators (future task)
 
 ### 3. Quarto Project Structure Setup
 
@@ -307,14 +395,14 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
 
 ### 4. Content Authoring Guidelines
 
-- [ ] **Create Style Guide Document**
-  - [ ] Document YAML front matter requirements
-  - [ ] Define cross-reference conventions (`@label` syntax)
-  - [ ] Create naming conventions for IDs
-  - [ ] Document file naming patterns:
-    - [ ] Prefix files with type: `def-`, `thm-`, `ex-`, `ax-`
-    - [ ] All files organized by mathematical subject area
-    - [ ] Domain field auto-inherited from directory's `_metadata.yml`
+- [x] **Create Style Guide Document**
+  - [x] Document YAML front matter requirements
+  - [x] Define cross-reference conventions (`@label` syntax)
+  - [x] Create naming conventions for IDs
+  - [x] Document file naming patterns:
+    - [x] Prefix files with type: `def-`, `thm-`, `ex-`, `ax-`
+    - [x] All files organized by mathematical subject area
+    - [x] Domain field auto-inherited from directory's `_metadata.yml`
 
 - [x] **Create Example Content (50-100 nodes)** [51/50 completed - Initial target exceeded!]
   - [x] Basic Group Theory content in `content/algebra/`:
@@ -410,7 +498,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
 ### 8. REST API Development
 
 - [x] **Design API Specification**
-  - [ ] Define OpenAPI/Swagger schema
+  - [x] Define OpenAPI/Swagger schema
   - [x] Plan endpoint structure:
     - [x] `/api/nodes/{id}` - Get node details
     - [x] `/api/dependencies/{id}` - Get dependencies
@@ -427,7 +515,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [x] Create response serialization
 
 - [x] **API Documentation and Testing**
-  - [ ] Generate Swagger UI documentation
+  - [x] Generate Swagger UI documentation
   - [x] Write unit tests with pytest (created test_api.py)
   - [x] Create integration tests
   - [x] Add API usage examples

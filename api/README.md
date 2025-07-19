@@ -2,6 +2,25 @@
 
 A Flask-based REST API for querying the mathematical knowledge graph.
 
+## API Documentation
+
+### OpenAPI Specification
+
+The API is fully documented using OpenAPI 3.0 specification:
+- `openapi.yaml` - Complete OpenAPI 3.0 specification
+- `swagger-ui.html` - Interactive API documentation
+
+### Interactive Documentation
+
+To view the interactive API documentation:
+1. Open `swagger-ui.html` in a web browser while the API server is running
+2. Or serve the API directory with a local HTTP server:
+   ```bash
+   cd api
+   python -m http.server 8080
+   # Then visit http://localhost:8080/swagger-ui.html
+   ```
+
 ## Setup
 
 ### Prerequisites
@@ -35,7 +54,7 @@ A Flask-based REST API for querying the mathematical knowledge graph.
    python app.py
    ```
 
-The API will be available at `http://localhost:5000`
+The API will be available at `http://localhost:5001`
 
 ## API Endpoints
 
@@ -86,17 +105,17 @@ poetry run python api/test_api.py
 
 Get information about the group definition:
 ```bash
-curl http://localhost:5000/api/nodes/def-group
+curl http://localhost:5001/api/nodes/def-group
 ```
 
 Search for concepts containing "topology":
 ```bash
-curl "http://localhost:5000/api/search?q=topology"
+curl "http://localhost:5001/api/search?q=topology"
 ```
 
 Get dependencies of a theorem:
 ```bash
-curl http://localhost:5000/api/dependencies/thm-rank-nullity
+curl http://localhost:5001/api/dependencies/thm-rank-nullity
 ```
 
 ### Using Python
@@ -105,12 +124,12 @@ curl http://localhost:5000/api/dependencies/thm-rank-nullity
 import requests
 
 # Get node details
-response = requests.get("http://localhost:5000/api/nodes/def-group")
+response = requests.get("http://localhost:5001/api/nodes/def-group")
 data = response.json()
 print(data)
 
 # Search for concepts
-response = requests.get("http://localhost:5000/api/search", params={"q": "vector"})
+response = requests.get("http://localhost:5001/api/search", params={"q": "vector"})
 results = response.json()
 for result in results["results"]:
     print(f"{result['label']} ({result['type']})")
@@ -134,7 +153,7 @@ WHERE {
 """
 
 response = requests.post(
-    "http://localhost:5000/api/query",
+    "http://localhost:5001/api/query",
     json={"query": query}
 )
 results = response.json()
@@ -158,7 +177,7 @@ For production deployment:
 
 1. Use a production WSGI server like Gunicorn:
    ```bash
-   gunicorn -w 4 -b 0.0.0.0:5000 api.app:app
+   gunicorn -w 4 -b 0.0.0.0:5001 api.app:app
    ```
 
 2. Set up a reverse proxy with nginx
