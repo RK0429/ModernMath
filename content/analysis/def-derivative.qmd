@@ -1,0 +1,75 @@
+---
+title: "Definition: Derivative"
+id: "def-derivative"
+type: "Definition"
+status: "complete"
+requires:
+  - "def-limit"
+---
+
+# Definition: Derivative {#def-derivative}
+
+The **derivative** of a function at a point measures the instantaneous rate of change of the function at that point. It is defined as a [limit](def-limit.qmd) of difference quotients.
+
+## Definition
+
+Let $f: (a, b) \to \mathbb{R}$ and let $c \in (a, b)$. The derivative of $f$ at $c$, denoted $f'(c)$, is defined as:
+
+$$f'(c) = \lim_{h \to 0} \frac{f(c + h) - f(c)}{h}$$
+
+provided this limit exists.
+
+## Alternative Formulation
+
+Equivalently, using a different variable:
+
+$$f'(c) = \lim_{x \to c} \frac{f(x) - f(c)}{x - c}$$
+
+## Differentiability
+
+A function $f$ is **differentiable at $c$** if $f'(c)$ exists. A function is **differentiable on an interval** if it is differentiable at every point in the interval.
+
+## Notation
+
+Various notations for the derivative include:
+- $f'(x)$ (Lagrange notation)
+- $\frac{df}{dx}$ or $\frac{d}{dx}f(x)$ (Leibniz notation)
+- $Df(x)$ or $D_x f$ (Operator notation)
+- $\dot{f}$ (Newton notation, typically for time derivatives)
+
+## Geometric Interpretation
+
+The derivative $f'(c)$ represents:
+1. The slope of the tangent line to the graph of $f$ at the point $(c, f(c))$
+2. The instantaneous rate of change of $f$ at $x = c$
+
+## Properties
+
+If $f$ is differentiable at $c$, then:
+1. $f$ is continuous at $c$
+2. The tangent line at $(c, f(c))$ has equation: $y - f(c) = f'(c)(x - c)$
+
+## Examples
+
+1. **Constant function**: If $f(x) = k$, then $f'(x) = 0$
+2. **Power function**: If $f(x) = x^n$ (n ∈ ℕ), then $f'(x) = nx^{n-1}$
+3. **Exponential**: If $f(x) = e^x$, then $f'(x) = e^x$
+4. **Sine**: If $f(x) = \sin(x)$, then $f'(x) = \cos(x)$
+
+## Mermaid Diagram
+
+```mermaid
+graph TD
+    A[Derivative f'(c)] --> B[Limit of Difference Quotient]
+    B --> C[lim (f(c+h) - f(c))/h]
+    A --> D[Geometric Meaning]
+    D --> E[Slope of Tangent Line]
+    D --> F[Rate of Change]
+    A --> G[Properties]
+    G --> H[Differentiable ⟹ Continuous]
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bfb,stroke:#333,stroke-width:2px
+    style D fill:#bbf,stroke:#333,stroke-width:2px
+```

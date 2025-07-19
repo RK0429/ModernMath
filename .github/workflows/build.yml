@@ -98,7 +98,13 @@ jobs:
       run: |
         poetry run python scripts/generate_d3_data.py
     
-    # Step 6d: Insert diagrams into content
+    # Step 6d: Resolve cross-references
+    - name: Resolve cross-references
+      run: |
+        poetry run python scripts/resolve_cross_references.py
+        echo "Cross-references resolved successfully!"
+    
+    # Step 6e: Insert diagrams into content
     - name: Insert diagrams into content
       run: |
         poetry run python scripts/insert_diagrams.py

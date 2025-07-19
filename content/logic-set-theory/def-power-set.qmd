@@ -1,0 +1,60 @@
+---
+title: "Definition: Power Set"
+id: "def-power-set"
+type: "Definition"
+status: "complete"
+requires:
+  - "def-set"
+---
+
+# Definition: Power Set {#def-power-set}
+
+The **power set** of a [set](def-set.qmd) $A$, denoted $\mathcal{P}(A)$ or $2^A$, is the set of all subsets of $A$.
+
+## Formal Definition
+
+$$\mathcal{P}(A) = \{B : B \subseteq A\}$$
+
+In other words, $B \in \mathcal{P}(A)$ if and only if every element of $B$ is also an element of $A$.
+
+## Properties
+
+1. **Always contains the empty set**: $\emptyset \in \mathcal{P}(A)$ for any set $A$
+2. **Always contains the original set**: $A \in \mathcal{P}(A)$
+3. **Cardinality**: If $|A| = n$ (finite), then $|\mathcal{P}(A)| = 2^n$
+4. **Ordering**: $\mathcal{P}(A)$ forms a partially ordered set under inclusion
+
+## Examples
+
+1. If $A = \emptyset$, then $\mathcal{P}(A) = \{\emptyset\}$
+
+2. If $A = \{1\}$, then $\mathcal{P}(A) = \{\emptyset, \{1\}\}$
+
+3. If $A = \{1, 2\}$, then $\mathcal{P}(A) = \{\emptyset, \{1\}, \{2\}, \{1, 2\}\}$
+
+4. If $A = \{a, b, c\}$, then:
+   $$\mathcal{P}(A) = \{\emptyset, \{a\}, \{b\}, \{c\}, \{a,b\}, \{a,c\}, \{b,c\}, \{a,b,c\}\}$$
+
+## Set-Theoretic Properties
+
+- $A \subseteq B$ if and only if $\mathcal{P}(A) \subseteq \mathcal{P}(B)$
+- $\mathcal{P}(A \cap B) = \mathcal{P}(A) \cap \mathcal{P}(B)$
+- $\mathcal{P}(A) \cup \mathcal{P}(B) \subseteq \mathcal{P}(A \cup B)$ (but not always equal)
+
+## Mermaid Diagram
+
+```mermaid
+graph TD
+    A[Power Set P(A)] --> B[Contains ∅]
+    A --> C[Contains A]
+    A --> D[All Subsets of A]
+    D --> E[Cardinality: 2^|A|]
+    D --> F[Partial Order by ⊆]
+    
+    A --> G[Example: A = {1,2}]
+    G --> H[P(A) = {∅, {1}, {2}, {1,2}}]
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style D fill:#bbf,stroke:#333,stroke-width:2px
+    style E fill:#bfb,stroke:#333,stroke-width:2px
+```

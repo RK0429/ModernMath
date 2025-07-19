@@ -1,0 +1,63 @@
+---
+title: "Theorem: Cantor's Theorem"
+id: "thm-cantor"
+type: "Theorem"
+status: "complete"
+requires:
+  - "def-set"
+  - "def-power-set"
+---
+
+# Theorem: Cantor's Theorem {#thm-cantor}
+
+For any [set](def-set.qmd) $A$, there is no surjection from $A$ to its [power set](def-power-set.qmd) $\mathcal{P}(A)$. In particular, $|A| < |\mathcal{P}(A)|$.
+
+## Statement
+
+Let $A$ be any set. Then there exists no function $f: A \to \mathcal{P}(A)$ that is surjective (onto).
+
+## Proof
+
+We prove this by contradiction using Cantor's diagonal argument.
+
+Suppose $f: A \to \mathcal{P}(A)$ is surjective. Define the set:
+$$B = \{x \in A : x \notin f(x)\}$$
+
+Note that $B \subseteq A$, so $B \in \mathcal{P}(A)$.
+
+Since $f$ is assumed to be surjective, there must exist some $a \in A$ such that $f(a) = B$.
+
+Now we ask: Is $a \in B$?
+
+- If $a \in B$, then by definition of $B$, we have $a \notin f(a) = B$. Contradiction!
+- If $a \notin B$, then $a \notin f(a)$, which by definition of $B$ means $a \in B$. Contradiction!
+
+Both cases lead to a contradiction. Therefore, no such surjection $f$ can exist.
+
+## Consequences
+
+1. **Infinite hierarchy**: Starting with any infinite set, we can construct an infinite sequence of sets with strictly increasing cardinalities
+2. **No largest cardinal**: There is no set of all sets
+3. **Uncountability**: $\mathcal{P}(\mathbb{N})$ is uncountable (since $|\mathbb{N}| < |\mathcal{P}(\mathbb{N})|$)
+
+## Special Case
+
+For finite sets: If $|A| = n$, then $|\mathcal{P}(A)| = 2^n > n$ for all $n \geq 0$.
+
+## Mermaid Diagram
+
+```mermaid
+graph TD
+    A[Cantor's Theorem] --> B[No surjection A → P(A)]
+    B --> C[Diagonal Argument]
+    C --> D[Construct B = {x: x ∉ f(x)}]
+    D --> E[Contradiction]
+    A --> F[|A| < |P(A)|]
+    F --> G[Infinite Hierarchy]
+    F --> H[P(ℕ) Uncountable]
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style E fill:#fbb,stroke:#333,stroke-width:2px
+    style F fill:#bfb,stroke:#333,stroke-width:2px
+```
