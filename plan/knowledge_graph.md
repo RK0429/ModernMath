@@ -1,8 +1,31 @@
 # Mathematics Knowledge Graph Wiki - Comprehensive To-Do List
 
-## Progress Update (Last Updated: 2025-07-20 - Evening Session)
+## Progress Update (Last Updated: 2025-07-20 - Night Session)
 
-### Latest Progress (2025-07-20 - Evening Session)
+### Latest Progress (2025-07-20 - Night Session)
+
+- ✅ **Enhanced Search Functionality Implemented**:
+  - Created full-text search index using Whoosh library
+  - Built search indexing script (`scripts/build_search_index.py`) that indexes all 69 content nodes
+  - Enhanced REST API with combined RDF + full-text search
+  - Added search suggestions/autocomplete endpoint
+  - Added related nodes endpoint for discovering dependencies and examples
+  - Search now covers:
+    - Node titles (from RDF graph)
+    - Full content of mathematical definitions, theorems, and examples
+    - Keywords automatically extracted from content
+    - Fuzzy matching for handling typos
+  - Created interactive web search interface (`search.qmd`)
+  - Integrated search index building into CI/CD pipeline
+  - Created comprehensive documentation (`docs/enhanced-search.md`)
+
+- ✅ **API Enhancements**:
+  - `/api/search` - Now uses combined RDF + full-text search with relevance scoring
+  - `/api/search/suggest` - New endpoint for autocomplete suggestions
+  - `/api/nodes/<id>/related` - New endpoint for exploring node relationships
+  - All endpoints properly handle fallback to basic search if enhanced search unavailable
+
+### Previous Progress (2025-07-20 - Evening Session)
 
 - ✅ **Expanded Mathematical Content**:
   - Added 10 new mathematical nodes across underrepresented domains
