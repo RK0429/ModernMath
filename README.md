@@ -129,7 +129,7 @@ The project automatically deploys to GitHub Pages when you push to the `main` br
 3. Push changes to `main`
 4. Access at: `https://[username].github.io/ModernMath/`
 
-See [docs/deployment.md](docs/deployment.md) for detailed deployment instructions.
+See [docs/github-pages-deployment.md](docs/github-pages-deployment.md) for detailed deployment instructions.
 
 ## Development
 

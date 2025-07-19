@@ -35,6 +35,7 @@ QUERIES = {
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         
         SELECT ?type ?label ?domain
+        FROM <urn:x-arq:DefaultGraph>
         WHERE {
             <https://mathwiki.org/resource/%s> rdf:type ?type ;
                                               rdfs:label ?label .
@@ -45,8 +46,10 @@ QUERIES = {
     "get_dependencies": """
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         
         SELECT ?dependency ?label ?type
+        FROM <urn:x-arq:DefaultGraph>
         WHERE {
             <https://mathwiki.org/resource/%s> mymath:uses ?dependency .
             ?dependency rdfs:label ?label ;
@@ -57,8 +60,10 @@ QUERIES = {
     "get_dependents": """
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         
         SELECT ?dependent ?label ?type
+        FROM <urn:x-arq:DefaultGraph>
         WHERE {
             ?dependent mymath:uses <https://mathwiki.org/resource/%s> ;
                       rdfs:label ?label ;
@@ -72,6 +77,7 @@ QUERIES = {
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         
         SELECT DISTINCT ?node ?label ?type ?domain
+        FROM <urn:x-arq:DefaultGraph>
         WHERE {
             ?node rdfs:label ?label ;
                   rdf:type ?type .
@@ -87,6 +93,7 @@ QUERIES = {
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         
         SELECT ?node ?label ?type ?domain
+        FROM <urn:x-arq:DefaultGraph>
         WHERE {
             ?node rdfs:label ?label ;
                   rdf:type ?type .

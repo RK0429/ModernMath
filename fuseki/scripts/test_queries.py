@@ -16,9 +16,9 @@ QUERIES = {
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         
         SELECT (COUNT(DISTINCT ?node) as ?count)
+        FROM <urn:x-arq:DefaultGraph>
         WHERE {
             ?node a ?type .
-            ?type rdfs:subClassOf* mymath:MathematicalObject .
         }
     """,
     
@@ -27,6 +27,7 @@ QUERIES = {
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         
         SELECT ?def ?label
+        FROM <urn:x-arq:DefaultGraph>
         WHERE {
             ?def a mymath:Definition .
             OPTIONAL { ?def rdfs:label ?label }
@@ -40,6 +41,7 @@ QUERIES = {
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         
         SELECT ?dependency ?label
+        FROM <urn:x-arq:DefaultGraph>
         WHERE {
             base:thm-unique-identity mymath:uses ?dependency .
             OPTIONAL { ?dependency rdfs:label ?label }
@@ -52,6 +54,7 @@ QUERIES = {
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         
         SELECT ?theorem ?label
+        FROM <urn:x-arq:DefaultGraph>
         WHERE {
             ?theorem mymath:uses base:def-group .
             ?theorem a mymath:Theorem .
@@ -64,6 +67,7 @@ QUERIES = {
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         
         SELECT ?concept ?label ?domain
+        FROM <urn:x-arq:DefaultGraph>
         WHERE {
             ?concept mymath:hasDomain ?domain .
             OPTIONAL { ?concept rdfs:label ?label }

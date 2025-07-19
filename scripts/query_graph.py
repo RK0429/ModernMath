@@ -43,6 +43,7 @@ class MathKnowledgeGraphQuery:
         """Get information about a specific node"""
         query = f"""
         SELECT ?type ?label ?status ?domain
+        FROM <urn:x-arq:DefaultGraph>
         WHERE {{
             base:{node_id} a ?type .
             OPTIONAL {{ base:{node_id} rdfs:label ?label }}
@@ -59,6 +60,7 @@ class MathKnowledgeGraphQuery:
         """Get all dependencies of a node"""
         query = f"""
         SELECT ?dep ?label ?type
+        FROM <urn:x-arq:DefaultGraph>
         WHERE {{
             base:{node_id} mymath:uses ?dep .
             OPTIONAL {{ ?dep rdfs:label ?label }}
@@ -72,6 +74,7 @@ class MathKnowledgeGraphQuery:
         """Get all nodes that depend on this node"""
         query = f"""
         SELECT ?dependent ?label ?type
+        FROM <urn:x-arq:DefaultGraph>
         WHERE {{
             ?dependent mymath:uses base:{node_id} .
             OPTIONAL {{ ?dependent rdfs:label ?label }}
@@ -85,6 +88,7 @@ class MathKnowledgeGraphQuery:
         """Find all nodes of a specific type"""
         query = f"""
         SELECT ?node ?label ?domain
+        FROM <urn:x-arq:DefaultGraph>
         WHERE {{
             ?node a mymath:{node_type} .
             OPTIONAL {{ ?node rdfs:label ?label }}
@@ -98,6 +102,7 @@ class MathKnowledgeGraphQuery:
         """Find all nodes in a specific mathematical domain"""
         query = f"""
         SELECT ?node ?label ?type
+        FROM <urn:x-arq:DefaultGraph>
         WHERE {{
             ?node mymath:hasDomain "{domain}" .
             ?node a ?type .
@@ -112,7 +117,7 @@ class MathKnowledgeGraphQuery:
         stats = {}
         
         # Count total nodes
-        query = "SELECT (COUNT(DISTINCT ?s) as ?count) WHERE { ?s ?p ?o }"
+        query = "SELECT (COUNT(DISTINCT ?s) as ?count) FROM <urn:x-arq:DefaultGraph> WHERE { ?s ?p ?o }"
         results = self.execute_query(query)
         if results:
             stats['total_nodes'] = int(results[0]['count']['value'])
@@ -121,6 +126,7 @@ class MathKnowledgeGraphQuery:
         for node_type in ['Definition', 'Theorem', 'Example', 'Axiom']:
             query = f"""
             SELECT (COUNT(DISTINCT ?node) as ?count)
+            FROM <urn:x-arq:DefaultGraph>
             WHERE {{ ?node a mymath:{node_type} }}
             """
             results = self.execute_query(query)
@@ -130,6 +136,7 @@ class MathKnowledgeGraphQuery:
         # Count relationships
         query = """
         SELECT (COUNT(*) as ?count)
+        FROM <urn:x-arq:DefaultGraph>
         WHERE { ?s mymath:uses ?o }
         """
         results = self.execute_query(query)
