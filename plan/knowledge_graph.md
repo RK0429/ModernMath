@@ -163,7 +163,7 @@
 ### Identified Requirements
 
 - **Quarto**: ✅ Installed at /usr/local/bin/quarto - required for site rendering
-- **Java**: Not installed - required for Apache Jena Fuseki SPARQL endpoint
+- **Java**: ✅ Installed (OpenJDK 24.0.1) via Homebrew - required for Apache Jena Fuseki SPARQL endpoint
 - **Note**: All other components (Python, Poetry, dependencies) are properly configured
 
 ### Next Steps
@@ -260,8 +260,8 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
     - [x] `content/category-theory/`
   - [x] Add `_metadata.yml` to each subject directory with `domain` field
 
-- [ ] **Define Quarto Templates**
-  - [ ] Create `_extensions/` directory
+- [x] **Define Quarto Templates**
+  - [x] Create `_extensions/` directory
   - [ ] Design theorem environment template
   - [ ] Design definition environment template
   - [ ] Design proof environment template
@@ -359,7 +359,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
     - [x] Enable SPARQL update endpoint (admin only)
     - [x] Configure CORS headers for web access
   - [x] Create upload script for `knowledge_graph.ttl`
-  - [ ] Set up automatic data reload in CI/CD
+  - [x] Set up automatic data reload in CI/CD
 
 - [x] **Test SPARQL Queries**
   - [x] Write example queries:
