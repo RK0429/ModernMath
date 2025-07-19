@@ -27,35 +27,40 @@ This project creates an evolving, queryable wiki covering all fields of mathemat
 ### Installation
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/yourusername/ModernMath.git
    cd ModernMath
    ```
 
 2. **Install dependencies:**
+
    ```bash
    poetry install
    ```
 
 3. **Build the knowledge graph:**
+
    ```bash
    poetry run python scripts/build_graph.py
    ```
 
 4. **Generate visualizations:**
+
    ```bash
    poetry run python scripts/generate_mermaid.py
    poetry run python scripts/insert_diagrams.py
    ```
 
 5. **Preview the site:**
+
    ```bash
    quarto preview
    ```
 
 ## Project Structure
 
-```
+```text
 ModernMath/
 ├── content/              # Mathematical content organized by domain
 │   ├── algebra/         # Algebra concepts
@@ -75,6 +80,7 @@ ModernMath/
 
 1. Create a new `.qmd` file in the appropriate domain folder
 2. Include required YAML metadata:
+
    ```yaml
    ---
    title: "Definition: Your Concept"
@@ -83,30 +89,34 @@ ModernMath/
    status: "draft"
    ---
    ```
+
 3. Write content using Markdown and LaTeX
 4. Link to other concepts using `@id` syntax
 
 ### Querying the Knowledge Graph
 
 1. **Start Fuseki server:**
+
    ```bash
    cd fuseki/scripts
    ./start_fuseki.sh
    ```
 
 2. **Load data:**
+
    ```bash
    ./load_data.sh
    ```
 
 3. **Query via command line:**
+
    ```bash
    poetry run python scripts/query_graph.py find-type Definition
    ```
 
 4. **Or use SPARQL directly:**
-   - Web UI: http://localhost:3030/
-   - Endpoint: http://localhost:3030/mathwiki/sparql
+   - Web UI: <http://localhost:3030/>
+   - Endpoint: <http://localhost:3030/mathwiki/sparql>
 
 ## Deployment
 
