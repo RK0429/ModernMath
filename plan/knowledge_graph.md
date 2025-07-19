@@ -70,14 +70,16 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Set up website output format with navigation
   
 - [ ] **Create Directory Structure**
-  - [ ] Create content directories:
-    - [ ] `content/axioms/`
-    - [ ] `content/definitions/`
-    - [ ] `content/theorems/`
-    - [ ] `content/examples/`
-    - [ ] `content/algebra/` (subject-specific)
-    - [ ] `content/topology/` (subject-specific)
-    - [ ] `content/analysis/` (subject-specific)
+  - [ ] Create content directories (subject-specific only):
+    - [ ] `content/algebra/`
+    - [ ] `content/analysis/`
+    - [ ] `content/geometry/`
+    - [ ] `content/topology/`
+    - [ ] `content/number-theory/`
+    - [ ] `content/combinatorics/`
+    - [ ] `content/logic-set-theory/`
+    - [ ] `content/probability-statistics/`
+    - [ ] `content/category-theory/`
   - [ ] Add `_metadata.yml` to each subject directory with `domain` field
   
 - [ ] **Define Quarto Templates**
@@ -93,17 +95,24 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Document YAML front matter requirements
   - [ ] Define cross-reference conventions (`@label` syntax)
   - [ ] Create naming conventions for IDs
-  - [ ] Document file naming patterns
+  - [ ] Document file naming patterns:
+    - [ ] Prefix files with type: `def-`, `thm-`, `ex-`, `ax-`
+    - [ ] All files organized by mathematical subject area
+    - [ ] Domain field auto-inherited from directory's `_metadata.yml`
   
 - [ ] **Create Example Content (50-100 nodes)**
-  - [ ] Basic Group Theory content:
-    - [ ] Definition: Set (`def-set.qmd`)
-    - [ ] Definition: Binary Operation (`def-binary-operation.qmd`)
-    - [ ] Definition: Group (`def-group.qmd`)
-    - [ ] Theorem: Uniqueness of Identity (`thm-unique-identity.qmd`)
-    - [ ] Example: Integers under Addition (`ex-integers-addition.qmd`)
+  - [ ] Basic Group Theory content in `content/algebra/`:
+    - [ ] Definition: Set (`content/logic-set-theory/def-set.qmd`)
+    - [ ] Definition: Binary Operation (`content/algebra/def-binary-operation.qmd`)
+    - [ ] Definition: Group (`content/algebra/def-group.qmd`)
+    - [ ] Theorem: Uniqueness of Identity (`content/algebra/thm-unique-identity.qmd`)
+    - [ ] Example: Integers under Addition (`content/algebra/ex-integers-addition.qmd`)
+  - [ ] Basic Topology content in `content/topology/`:
+    - [ ] Definition: Topological Space (`content/topology/def-topological-space.qmd`)
+    - [ ] Definition: Open Set (`content/topology/def-open-set.qmd`)
+    - [ ] Theorem: Union of Open Sets (`content/topology/thm-union-open-sets.qmd`)
   - [ ] Ensure all content includes:
-    - [ ] Proper YAML metadata (title, id, type, status)
+    - [ ] Proper YAML metadata (title, id, type, status, domain)
     - [ ] Cross-references using `@` syntax
     - [ ] Mathematical notation in LaTeX
     - [ ] Human-readable explanations
