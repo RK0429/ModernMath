@@ -1,0 +1,66 @@
+---
+id: thm-field-characteristic
+requires:
+- def-field
+- def-prime
+- def-ring
+status: complete
+title: 'Theorem: Field Characteristic'
+type: Theorem
+---
+
+# Theorem: Field Characteristic {#thm-field-characteristic}
+
+Every @def-field has characteristic either 0 or a @def-prime number.
+
+## Definitions
+
+The **characteristic** of a field $F$, denoted $\text{char}(F)$, is the smallest positive integer $n$ such that:
+$$\underbrace{1 + 1 + ... + 1}_{n \text{ times}} = 0$$
+
+If no such $n$ exists, we say $\text{char}(F) = 0$.
+
+## Statement
+
+For any field $F$:
+1. If $\text{char}(F) \neq 0$, then $\text{char}(F) = p$ for some prime $p$
+2. If $\text{char}(F) = 0$, then $F$ contains a copy of $\mathbb{Q}$
+3. If $\text{char}(F) = p$, then $F$ contains a copy of $\mathbb{F}_p$
+
+## Proof Sketch
+
+Suppose $\text{char}(F) = n > 0$. If $n = ab$ with $1 < a, b < n$, then:
+$$(a \cdot 1)(b \cdot 1) = (ab) \cdot 1 = n \cdot 1 = 0$$
+
+Since fields have no zero divisors, either $a \cdot 1 = 0$ or $b \cdot 1 = 0$, contradicting the minimality of $n$. Therefore $n$ must be prime.
+
+## Examples
+
+- $\text{char}(\mathbb{Q}) = 0$, $\text{char}(\mathbb{R}) = 0$, $\text{char}(\mathbb{C}) = 0$
+- $\text{char}(\mathbb{F}_p) = p$ for any prime $p$
+- $\text{char}(GF(p^n)) = p$ for any prime power $p^n$
+
+## Consequences
+
+- In characteristic $p$: $(a + b)^p = a^p + b^p$ (Freshman's Dream)
+- The Frobenius map $x \mapsto x^p$ is a field homomorphism in characteristic $p$
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-field["Definition: Field"]:::definition
+    thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
+    def-ring["Definition: Ring"]:::definition
+    def-prime["Definition: Prime Number"]:::definition
+    thm-field-characteristic --> def-ring
+    thm-field-characteristic --> def-field
+    thm-field-characteristic --> def-prime
+    class thm-field-characteristic current
+```

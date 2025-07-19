@@ -1,0 +1,69 @@
+---
+id: def-ring
+requires:
+- def-set
+- def-binary-operation
+- def-group
+status: complete
+title: 'Definition: Ring'
+type: Definition
+---
+
+# Ring {#def-ring}
+
+A **ring** is a @def-set equipped with two @def-binary-operation operations that generalize the arithmetic of integers.
+
+## Formal Definition
+
+A ring $(R, +, \cdot)$ consists of a set $R$ together with two binary operations, addition $(+)$ and multiplication $(\cdot)$, such that:
+
+### Addition Axioms
+1. $(R, +)$ is an abelian @def-group:
+   - **Associativity**: $(a + b) + c = a + (b + c)$
+   - **Commutativity**: $a + b = b + a$
+   - **Identity**: There exists $0 \in R$ such that $a + 0 = a$
+   - **Inverses**: For each $a \in R$, there exists $-a \in R$ such that $a + (-a) = 0$
+
+### Multiplication Axioms
+2. Multiplication is associative: $(a \cdot b) \cdot c = a \cdot (b \cdot c)$
+
+### Distributive Laws
+3. Left distributivity: $a \cdot (b + c) = a \cdot b + a \cdot c$
+4. Right distributivity: $(a + b) \cdot c = a \cdot c + b \cdot c$
+
+## Types of Rings
+
+- **Commutative ring**: $a \cdot b = b \cdot a$ for all $a, b$
+- **Ring with unity**: There exists $1 \in R$ such that $1 \cdot a = a \cdot 1 = a$
+- **Integral domain**: Commutative ring with unity and no zero divisors
+- **Field**: Commutative ring where every non-zero element has a multiplicative inverse
+
+## Examples
+
+- $(\mathbb{Z}, +, \cdot)$ - integers under addition and multiplication
+- $M_n(\mathbb{R})$ - $n \times n$ matrices with real entries
+- $\mathbb{Z}[x]$ - polynomials with integer coefficients
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-ring["Definition: Ring"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-field["Definition: Field"]:::definition
+    thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-ring --> def-set
+    def-ring --> def-group
+    thm-field-characteristic --> def-ring
+    def-field --> def-ring
+    def-ring --> def-binary-operation
+    class def-ring current
+```

@@ -1,0 +1,72 @@
+---
+id: def-topological-space
+requires:
+- def-set
+status: complete
+title: 'Definition: Topological Space'
+type: Definition
+---
+
+# Definition: Topological Space {#def-topological-space}
+
+A **topological space** is a @def-set $X$ together with a collection $\tau$ of subsets of $X$ satisfying the following axioms:
+
+## Axioms for a Topology
+
+The collection $\tau$ must satisfy:
+
+1. **Empty set and whole space**: $\emptyset \in \tau$ and $X \in \tau$
+
+2. **Arbitrary unions**: If $\{U_i\}_{i \in I}$ is any collection of sets in $\tau$, then
+   $$\bigcup_{i \in I} U_i \in \tau$$
+
+3. **Finite intersections**: If $U_1, U_2, \ldots, U_n \in \tau$, then
+   $$\bigcap_{i=1}^{n} U_i \in \tau$$
+
+## Terminology
+
+- The collection $\tau$ is called a **topology** on $X$
+- The sets in $\tau$ are called **open sets**
+- The pair $(X, \tau)$ is called a **topological space**
+- When the topology is clear from context, we may simply refer to "the topological space $X$"
+
+## Examples
+
+1. **Discrete topology**: $\tau = \mathcal{P}(X)$ (all subsets are open)
+2. **Indiscrete topology**: $\tau = \{\emptyset, X\}$ (only the empty set and $X$ are open)
+3. **Standard topology on $\mathbb{R}$**: Open sets are unions of open intervals
+
+## Properties
+
+Key properties that follow from these axioms:
+
+- The union of any collection of open sets is open
+- The intersection of finitely many open sets is open
+- Complements of open sets are called **closed sets**
+
+## Related Concepts
+
+- Definition: Open Set
+- Definition: Continuous Function (coming soon)
+- Definition: Homeomorphism (coming soon)
+- Definition: Basis for a Topology (coming soon)
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["Definition: Set"]:::definition
+    def-open-set["Definition: Open Set"]:::definition
+    def-topological-space["Definition: Topological Space"]:::definition
+    thm-union-open-sets["Theorem: Union of Open Sets"]:::theorem
+    thm-union-open-sets --> def-topological-space
+    def-topological-space --> def-set
+    def-open-set --> def-topological-space
+    class def-topological-space current
+```

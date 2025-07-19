@@ -1,0 +1,60 @@
+---
+id: thm-linear-transformation-basis
+requires:
+- def-vector-space
+- def-linear-transformation
+- def-basis
+status: complete
+title: 'Theorem: Linear Transformation Determined by Basis'
+type: Theorem
+---
+
+# Theorem: Linear Transformation Determined by Basis {#thm-linear-transformation-basis}
+
+A @def-linear-transformation between finite-dimensional @def-vector-space[s] is uniquely determined by its action on a @def-basis.
+
+## Statement
+
+Let $V$ and $W$ be vector spaces over a field $F$, and let $B = \{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n\}$ be a basis for $V$. 
+
+For any choice of vectors $\mathbf{w}_1, \mathbf{w}_2, \ldots, \mathbf{w}_n \in W$, there exists a unique linear transformation $T: V \to W$ such that:
+$$T(\mathbf{v}_i) = \mathbf{w}_i \text{ for } i = 1, 2, \ldots, n$$
+
+## Proof Sketch
+
+**Existence**: Define $T$ on an arbitrary vector $\mathbf{v} \in V$ by:
+1. Express $\mathbf{v}$ uniquely as a linear combination: $\mathbf{v} = \sum_{i=1}^n a_i\mathbf{v}_i$
+2. Define $T(\mathbf{v}) = \sum_{i=1}^n a_i\mathbf{w}_i$
+3. Verify that $T$ is linear by checking additivity and homogeneity
+
+**Uniqueness**: If $S: V \to W$ is another linear transformation with $S(\mathbf{v}_i) = \mathbf{w}_i$, then by linearity:
+$$S(\mathbf{v}) = S\left(\sum_{i=1}^n a_i\mathbf{v}_i\right) = \sum_{i=1}^n a_i S(\mathbf{v}_i) = \sum_{i=1}^n a_i\mathbf{w}_i = T(\mathbf{v})$$
+
+Therefore, $S = T$.
+
+## Consequences
+
+This theorem shows that:
+- Linear transformations are completely determined by finitely many values
+- The space of linear transformations $\text{Hom}(V, W)$ has dimension $\dim(V) \times \dim(W)$
+- Matrix representations of linear transformations arise naturally from this principle
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-basis["Definition: Basis"]:::definition
+    thm-linear-transformation-basis --> def-linear-transformation
+    thm-linear-transformation-basis --> def-basis
+    thm-linear-transformation-basis --> def-vector-space
+    class thm-linear-transformation-basis current
+```

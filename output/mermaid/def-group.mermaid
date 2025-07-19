@@ -1,0 +1,35 @@
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    def-ring["Definition: Ring"]:::definition
+    thm-unique-identity["Theorem: Uniqueness of Identity"]:::theorem
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-group["Definition: Group"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-field["Definition: Field"]:::definition
+    ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    ex-integers-addition["Example: Integers under Addition"]:::example
+    ex-exponential-homomorphism --> def-group
+    def-group --> def-set
+    ex-integers-addition --> def-group
+    def-ring --> def-group
+    thm-unique-identity --> def-group
+    thm-euler --> def-group
+    def-homomorphism --> def-group
+    def-field --> def-group
+    thm-lagrange --> def-group
+    def-vector-space --> def-group
+    def-group --> def-binary-operation
+    def-subgroup --> def-group
+    class def-group current
+```

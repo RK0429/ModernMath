@@ -1,0 +1,59 @@
+---
+id: def-permutation
+requires:
+- def-set
+status: complete
+title: 'Definition: Permutation'
+type: Definition
+---
+
+# Permutation {#def-permutation}
+
+A **permutation** of a @def-set is a bijective function from the set to itself.
+
+## Formal Definition
+
+Let $S$ be a set. A permutation of $S$ is a bijection $\sigma: S \to S$.
+
+For a finite set $S = \{1, 2, ..., n\}$, a permutation can be represented as a rearrangement of the elements.
+
+## Notation
+
+Permutations can be written in several ways:
+
+1. **Two-line notation**:
+   $$\sigma = \begin{pmatrix} 1 & 2 & 3 & ... & n \\ \sigma(1) & \sigma(2) & \sigma(3) & ... & \sigma(n) \end{pmatrix}$$
+
+2. **One-line notation**: $\sigma = [\sigma(1), \sigma(2), ..., \sigma(n)]$
+
+3. **Cycle notation**: $(a_1\ a_2\ ...\ a_k)$ means $a_1 \mapsto a_2 \mapsto ... \mapsto a_k \mapsto a_1$
+
+## Properties
+
+- The set of all permutations of $n$ elements forms the symmetric group $S_n$
+- The number of permutations of $n$ distinct elements is $n!$
+- Every permutation can be decomposed into disjoint cycles
+- Every permutation can be expressed as a product of transpositions
+
+## Examples
+
+For $S = \{1, 2, 3\}$:
+- Identity: $(1)(2)(3)$
+- Transposition: $(1\ 2)(3)$
+- 3-cycle: $(1\ 2\ 3)$
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["Definition: Set"]:::definition
+    def-permutation["Definition: Permutation"]:::definition
+    def-permutation --> def-set
+    class def-permutation current
+```

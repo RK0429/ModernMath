@@ -1,0 +1,57 @@
+---
+id: def-homomorphism
+requires:
+- def-group
+- def-binary-operation
+status: complete
+title: 'Definition: Group Homomorphism'
+type: Definition
+---
+
+# Group Homomorphism {#def-homomorphism}
+
+A **group homomorphism** is a function between two @def-group structures that preserves the group @def-binary-operation.
+
+## Formal Definition
+
+Let $(G, \cdot)$ and $(H, *)$ be groups. A function $f: G \to H$ is a group homomorphism if:
+
+$$f(a \cdot b) = f(a) * f(b)$$
+
+for all $a, b \in G$.
+
+## Properties
+
+For any group homomorphism $f: G \to H$:
+
+1. **Identity preservation**: $f(e_G) = e_H$ where $e_G$ and $e_H$ are the identity elements
+2. **Inverse preservation**: $f(a^{-1}) = f(a)^{-1}$ for all $a \in G$
+3. **Subgroup preservation**: If $K \leq G$, then $f(K) \leq H$
+
+## Special Types
+
+- **Monomorphism**: An injective homomorphism
+- **Epimorphism**: A surjective homomorphism
+- **Isomorphism**: A bijective homomorphism
+- **Endomorphism**: A homomorphism from a group to itself
+- **Automorphism**: A bijective endomorphism
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
+    def-group["Definition: Group"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    ex-exponential-homomorphism --> def-homomorphism
+    def-homomorphism --> def-binary-operation
+    def-homomorphism --> def-group
+    class def-homomorphism current
+```

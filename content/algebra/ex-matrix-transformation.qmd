@@ -1,0 +1,63 @@
+---
+id: ex-matrix-transformation
+requires:
+- def-linear-transformation
+- def-matrix
+status: complete
+title: 'Example: Matrix Transformation'
+type: Example
+---
+
+# Example: Matrix Transformation {#ex-matrix-transformation}
+
+Every @def-matrix defines a @def-linear-transformation, providing the most concrete and computational example of linear maps.
+
+## Construction
+
+Let $A$ be an $m \times n$ matrix with entries in a field $F$. Define $T_A: F^n \to F^m$ by:
+$$T_A(\mathbf{x}) = A\mathbf{x}$$
+
+where $\mathbf{x}$ is viewed as a column vector and $A\mathbf{x}$ denotes matrix-vector multiplication.
+
+## Verification of Linearity
+
+For vectors $\mathbf{x}, \mathbf{y} \in F^n$ and scalars $a, b \in F$:
+
+$$T_A(a\mathbf{x} + b\mathbf{y}) = A(a\mathbf{x} + b\mathbf{y}) = aA\mathbf{x} + bA\mathbf{y} = aT_A(\mathbf{x}) + bT_A(\mathbf{y})$$
+
+This follows from the distributive and scalar multiplication properties of matrices.
+
+## Concrete Example
+
+Consider the $2 \times 3$ matrix:
+$$A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{pmatrix}$$
+
+The linear transformation $T_A: \mathbb{R}^3 \to \mathbb{R}^2$ maps:
+$$T_A\begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{pmatrix} \begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} x + 2y + 3z \\ 4x + 5y + 6z \end{pmatrix}$$
+
+## Important Facts
+
+- Every linear transformation between finite-dimensional vector spaces can be represented by a matrix
+- The columns of $A$ are the images of the standard basis vectors: $T_A(\mathbf{e}_i) = \mathbf{a}_i$ (the $i$-th column of $A$)
+- Composition of linear transformations corresponds to matrix multiplication
+- The rank of $A$ equals the dimension of the image of $T_A$
+
+Matrix transformations provide the computational foundation for linear algebra.
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-matrix-transformation["Example: Matrix Transformation"]:::example
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-matrix["Definition: Matrix"]:::definition
+    ex-matrix-transformation --> def-matrix
+    ex-matrix-transformation --> def-linear-transformation
+    class ex-matrix-transformation current
+```

@@ -1,0 +1,65 @@
+---
+id: def-set
+status: complete
+title: 'Definition: Set'
+type: Definition
+---
+
+# Definition: Set {#def-set}
+
+A **set** is a well-defined collection of distinct objects, called **elements** or **members** of the set.
+
+## Notation
+
+- If $a$ is an element of set $A$, we write $a \in A$
+- If $a$ is not an element of set $A$, we write $a \notin A$
+- Sets are typically denoted by capital letters: $A, B, C, \ldots$
+- Elements are typically denoted by lowercase letters: $a, b, c, \ldots$
+
+## Ways to Define Sets
+
+1. **Roster notation**: List all elements between braces
+   - Example: $A = \{1, 2, 3, 4, 5\}$
+
+2. **Set-builder notation**: Specify a property that elements must satisfy
+   - Example: $B = \{x \in \mathbb{N} : x < 6\}$
+
+## Fundamental Properties
+
+- **Distinctness**: Each element appears only once in a set
+- **Orderless**: The order of elements does not matter
+  - $\{1, 2, 3\} = \{3, 1, 2\}$
+- **Well-defined**: For any object, it must be clear whether it is an element of the set or not
+
+## Special Sets
+
+- **Empty set**: The set with no elements, denoted $\emptyset$ or $\{\}$
+- **Singleton**: A set with exactly one element
+
+## See Also
+
+- Definition: Subset (coming soon)
+- Definition: Power Set (coming soon)
+- Example: Integers under Addition (uses the concept of sets)
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-group["Definition: Group"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    ex-integers-addition["Example: Integers under Addition"]:::example
+    def-topological-space["Definition: Topological Space"]:::definition
+    def-group --> def-set
+    ex-integers-addition --> def-set
+    def-topological-space --> def-set
+    def-binary-operation --> def-set
+    class def-set current
+```

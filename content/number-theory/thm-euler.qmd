@@ -1,0 +1,60 @@
+---
+id: thm-euler
+requires:
+- def-prime
+- def-group
+status: complete
+title: 'Theorem: Euler''s Theorem'
+type: Theorem
+---
+
+# Euler's Theorem {#thm-euler}
+
+For any integer $a$ coprime to $n$, we have $a^{\phi(n)} \equiv 1 \pmod{n}$, where $\phi(n)$ is Euler's totient function.
+
+## Statement
+
+Let $n \geq 1$ be an integer and let $a$ be an integer with $\gcd(a, n) = 1$. Then:
+$$a^{\phi(n)} \equiv 1 \pmod{n}$$
+
+where $\phi(n)$ counts the number of integers $k$ with $1 \leq k \leq n$ and $\gcd(k, n) = 1$.
+
+## Euler's Totient Function
+
+For a positive integer $n$:
+- If $n = p$ is @def-prime, then $\phi(p) = p - 1$
+- If $n = p^k$, then $\phi(p^k) = p^k - p^{k-1} = p^{k-1}(p - 1)$
+- If $\gcd(m, n) = 1$, then $\phi(mn) = \phi(m)\phi(n)$ (multiplicative)
+
+## Proof Using Group Theory
+
+The integers coprime to $n$ form a @def-group under multiplication modulo $n$, denoted $(\mathbb{Z}/n\mathbb{Z})^*$. This group has order $\phi(n)$, so by Lagrange's theorem, any element raised to the group order equals the identity.
+
+## Special Cases
+
+- **Fermat's Little Theorem**: When $n = p$ is prime, $\phi(p) = p - 1$, giving $a^{p-1} \equiv 1 \pmod{p}$
+- **Carmichael's Theorem**: A refinement using the Carmichael function $\lambda(n)$
+
+## Applications
+
+- RSA cryptography
+- Primality testing
+- Computing modular inverses: $a^{\phi(n)-1} \equiv a^{-1} \pmod{n}$
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    def-prime["Definition: Prime Number"]:::definition
+    def-group["Definition: Group"]:::definition
+    thm-euler --> def-group
+    thm-euler --> def-prime
+    class thm-euler current
+```

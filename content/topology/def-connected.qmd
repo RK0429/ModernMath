@@ -1,0 +1,64 @@
+---
+id: def-connected
+requires:
+- def-topological-space
+- def-open-set
+- def-closed-set
+status: complete
+title: 'Definition: Connected Space'
+type: Definition
+---
+
+# Connected Space {#def-connected}
+
+A @def-topological-space is **connected** if it cannot be represented as the union of two disjoint non-empty @def-open-set sets.
+
+## Formal Definition
+
+A topological space $(X, \tau)$ is connected if the only subsets of $X$ that are both open and @def-closed-set are $\emptyset$ and $X$ itself.
+
+Equivalently, $X$ is connected if and only if:
+- $X$ cannot be written as $X = U \cup V$ where $U, V$ are non-empty, disjoint open sets
+- There does not exist a continuous surjection $f: X \to \{0, 1\}$ (with discrete topology)
+
+## Disconnected Spaces
+
+A space is disconnected if it can be written as $X = U \cup V$ where:
+- $U, V$ are non-empty
+- $U \cap V = \emptyset$
+- $U, V$ are both open (or equivalently, both closed)
+
+## Properties
+
+- The continuous image of a connected space is connected
+- The closure of a connected set is connected
+- If $\{A_i\}$ is a collection of connected sets with $\bigcap A_i \neq \emptyset$, then $\bigcup A_i$ is connected
+- A space is connected if and only if every continuous function to $\{0, 1\}$ is constant
+
+## Examples
+
+- The real line $\mathbb{R}$ is connected
+- Any interval $[a, b]$, $(a, b)$, $[a, b)$ in $\mathbb{R}$ is connected
+- The space $\mathbb{R} \setminus \{0\}$ is disconnected
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-connected["Definition: Connected Space"]:::definition
+    def-closed-set["Definition: Closed Set"]:::definition
+    def-open-set["Definition: Open Set"]:::definition
+    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
+    def-topological-space["Definition: Topological Space"]:::definition
+    def-connected --> def-closed-set
+    def-connected --> def-topological-space
+    thm-intermediate-value --> def-connected
+    def-connected --> def-open-set
+    class def-connected current
+```

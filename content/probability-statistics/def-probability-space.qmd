@@ -1,0 +1,57 @@
+---
+id: def-probability-space
+requires:
+- def-set
+status: complete
+title: 'Definition: Probability Space'
+type: Definition
+---
+
+# Probability Space {#def-probability-space}
+
+A **probability space** is a mathematical construct that provides a formal model for random phenomena.
+
+## Formal Definition
+
+A probability space is a triple $(\Omega, \mathcal{F}, P)$ where:
+
+1. **Sample space** $\Omega$: A @def-set of all possible outcomes
+2. **σ-algebra** $\mathcal{F}$: A collection of subsets of $\Omega$ (events) satisfying:
+   - $\Omega \in \mathcal{F}$
+   - If $A \in \mathcal{F}$, then $A^c \in \mathcal{F}$ (closed under complements)
+   - If $A_1, A_2, ... \in \mathcal{F}$, then $\bigcup_{i=1}^{\infty} A_i \in \mathcal{F}$ (closed under countable unions)
+3. **Probability measure** $P: \mathcal{F} \to [0,1]$ satisfying:
+   - $P(\Omega) = 1$ (normalization)
+   - $P(A) \geq 0$ for all $A \in \mathcal{F}$ (non-negativity)
+   - For disjoint events $A_1, A_2, ...$: $P(\bigcup_{i=1}^{\infty} A_i) = \sum_{i=1}^{\infty} P(A_i)$ (countable additivity)
+
+## Properties
+
+- $P(\emptyset) = 0$
+- $P(A^c) = 1 - P(A)$
+- If $A \subseteq B$, then $P(A) \leq P(B)$
+- $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+
+## Examples
+
+- Coin flip: $\Omega = \{H, T\}$, $\mathcal{F} = 2^{\Omega}$, $P(H) = P(T) = 1/2$
+- Die roll: $\Omega = \{1,2,3,4,5,6\}$, with uniform probability
+- Continuous: $\Omega = [0,1]$ with Lebesgue measure
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-random-variable["Definition: Random Variable"]:::definition
+    def-probability-space["Definition: Probability Space"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-random-variable --> def-probability-space
+    def-probability-space --> def-set
+    class def-probability-space current
+```

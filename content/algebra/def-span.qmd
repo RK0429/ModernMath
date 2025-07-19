@@ -1,0 +1,58 @@
+---
+id: def-span
+requires:
+- def-vector-space
+status: complete
+title: 'Definition: Span'
+type: Definition
+---
+
+# Definition: Span {#def-span}
+
+Let $V$ be a @def-vector-space over a field $F$, and let $S = \{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k\} \subseteq V$ be a set of vectors. The **span** of $S$, denoted $\text{span}(S)$, is the set of all linear combinations of vectors in $S$:
+
+$$\text{span}(S) = \left\{ \sum_{i=1}^k a_i\mathbf{v}_i : a_i \in F \right\}$$
+
+## Alternative Notation
+
+The span is also commonly denoted as:
+- $\langle S \rangle$ or $\langle \mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k \rangle$
+- $L(S)$ (for "linear span")
+- $\text{Lin}(S)$
+
+## Properties
+
+1. **Subspace**: $\text{span}(S)$ is always a subspace of $V$
+2. **Smallest containing subspace**: $\text{span}(S)$ is the smallest subspace of $V$ that contains $S$
+3. **Closure under linear combinations**: If $\mathbf{u}, \mathbf{w} \in \text{span}(S)$ and $a, b \in F$, then $a\mathbf{u} + b\mathbf{w} \in \text{span}(S)$
+
+## Special Cases
+
+- $\text{span}(\emptyset) = \{\mathbf{0}\}$ (the zero subspace)
+- $\text{span}(\{\mathbf{v}\}) = \{a\mathbf{v} : a \in F\}$ (the line through $\mathbf{v}$)
+- If $S$ spans $V$, we say $S$ is a **spanning set** or **generating set** for $V$
+
+## Infinite Sets
+
+For an infinite set $S \subseteq V$, the span consists of all *finite* linear combinations:
+$$\text{span}(S) = \left\{ \sum_{i=1}^n a_i\mathbf{v}_i : n \in \mathbb{N}, \mathbf{v}_i \in S, a_i \in F \right\}$$
+
+The concept of span connects individual vectors to the subspaces they generate.
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-span["Definition: Span"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-basis["Definition: Basis"]:::definition
+    def-span --> def-vector-space
+    def-basis --> def-span
+    class def-span current
+```

@@ -1,0 +1,73 @@
+---
+id: thm-fundamental-arithmetic
+requires:
+- def-prime
+status: complete
+title: 'Theorem: Fundamental Theorem of Arithmetic'
+type: Theorem
+---
+
+# Theorem: Fundamental Theorem of Arithmetic {#thm-fundamental-arithmetic}
+
+Every natural number greater than 1 can be represented uniquely as a product of @def-prime numbers, up to the order of factors.
+
+## Statement
+
+For every natural number $n > 1$, there exist unique prime numbers $p_1 < p_2 < \cdots < p_k$ and positive integers $a_1, a_2, \ldots, a_k$ such that:
+$$n = p_1^{a_1} \cdot p_2^{a_2} \cdot \ldots \cdot p_k^{a_k}$$
+
+This representation is called the **prime factorization** of $n$.
+
+## Two Parts
+
+The theorem consists of two claims:
+
+1. **Existence**: Every $n > 1$ has at least one prime factorization
+2. **Uniqueness**: The prime factorization is unique (up to ordering)
+
+## Proof Outline
+
+**Existence** (by strong induction):
+- Base case: $n = 2$ is prime, so $n = 2^1$
+- Inductive step: If $n$ is prime, we're done. Otherwise, $n = ab$ where $1 < a, b < n$
+- By induction hypothesis, both $a$ and $b$ have prime factorizations
+- Combining these gives a prime factorization of $n$
+
+**Uniqueness** (by contradiction):
+- Suppose $n$ has two different prime factorizations
+- Using the prime property (if $p \mid ab$, then $p \mid a$ or $p \mid b$)
+- Show that every prime in one factorization must appear in the other
+- The exponents must also match
+
+## Examples
+
+- $12 = 2^2 \cdot 3^1$
+- $30 = 2^1 \cdot 3^1 \cdot 5^1$
+- $100 = 2^2 \cdot 5^2$
+- $17 = 17^1$ (prime numbers have trivial factorization)
+
+## Applications
+
+The fundamental theorem enables:
+- Greatest common divisor (GCD) calculations
+- Least common multiple (LCM) calculations
+- Rational number arithmetic
+- Many results in algebraic number theory
+
+This theorem justifies calling primes the "building blocks" of the natural numbers.
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-prime["Definition: Prime Number"]:::definition
+    thm-fundamental-arithmetic["Theorem: Fundamental Theorem of Arithmetic"]:::theorem
+    thm-fundamental-arithmetic --> def-prime
+    class thm-fundamental-arithmetic current
+```

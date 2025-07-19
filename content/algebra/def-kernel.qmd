@@ -1,0 +1,59 @@
+---
+id: def-kernel
+requires:
+- def-linear-transformation
+- def-vector-space
+status: complete
+title: 'Definition: Kernel'
+type: Definition
+---
+
+# Definition: Kernel {#def-kernel}
+
+Let $T: V \to W$ be a @def-linear-transformation between @def-vector-space[s]. The **kernel** (or **null space**) of $T$ is the set of all vectors in $V$ that map to the zero vector in $W$:
+
+$$\ker(T) = \{\mathbf{v} \in V : T(\mathbf{v}) = \mathbf{0}_W\}$$
+
+## Alternative Names
+
+The kernel is also known as:
+- Null space (denoted $\text{null}(T)$ or $N(T)$)
+- The pre-image of zero: $T^{-1}(\{\mathbf{0}_W\})$
+
+## Properties
+
+1. **Subspace**: $\ker(T)$ is always a subspace of $V$
+   - Contains $\mathbf{0}_V$ since $T(\mathbf{0}_V) = \mathbf{0}_W$
+   - Closed under addition: if $\mathbf{u}, \mathbf{v} \in \ker(T)$, then $T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v}) = \mathbf{0} + \mathbf{0} = \mathbf{0}$
+   - Closed under scalar multiplication: if $\mathbf{v} \in \ker(T)$ and $a \in F$, then $T(a\mathbf{v}) = aT(\mathbf{v}) = a\mathbf{0} = \mathbf{0}$
+
+2. **Injectivity criterion**: $T$ is injective (one-to-one) if and only if $\ker(T) = \{\mathbf{0}_V\}$
+
+3. **Dimension**: The dimension of $\ker(T)$ is called the **nullity** of $T$
+
+## Example
+
+For a matrix transformation $T_A: \mathbb{R}^n \to \mathbb{R}^m$ defined by $T_A(\mathbf{x}) = A\mathbf{x}$:
+$$\ker(T_A) = \{\mathbf{x} \in \mathbb{R}^n : A\mathbf{x} = \mathbf{0}\}$$
+
+This is precisely the solution set of the homogeneous linear system $A\mathbf{x} = \mathbf{0}$.
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
+    thm-rank-nullity --> def-kernel
+    def-kernel --> def-linear-transformation
+    def-kernel --> def-vector-space
+    class def-kernel current
+```

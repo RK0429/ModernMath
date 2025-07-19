@@ -1,0 +1,79 @@
+---
+id: def-vector-space
+status: complete
+title: 'Definition: Vector Space'
+type: Definition
+---
+
+# Definition: Vector Space {#def-vector-space}
+
+A **vector space** (or linear space) over a field $F$ is a @def-set $V$ together with two @def-binary-operation[s]:
+
+1. **Vector addition**: $+ : V \times V \to V$
+2. **Scalar multiplication**: $\cdot : F \times V \to V$
+
+such that the following axioms are satisfied:
+
+## Addition Axioms
+
+For all $\mathbf{u}, \mathbf{v}, \mathbf{w} \in V$:
+
+1. **Associativity**: $(\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})$
+2. **Commutativity**: $\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$
+3. **Identity element**: There exists $\mathbf{0} \in V$ such that $\mathbf{v} + \mathbf{0} = \mathbf{v}$ for all $\mathbf{v} \in V$
+4. **Inverse elements**: For each $\mathbf{v} \in V$, there exists $-\mathbf{v} \in V$ such that $\mathbf{v} + (-\mathbf{v}) = \mathbf{0}$
+
+## Scalar Multiplication Axioms
+
+For all $a, b \in F$ and $\mathbf{u}, \mathbf{v} \in V$:
+
+5. **Associativity**: $a(b\mathbf{v}) = (ab)\mathbf{v}$
+6. **Identity**: $1\mathbf{v} = \mathbf{v}$, where $1$ is the multiplicative identity in $F$
+7. **Distributivity over vector addition**: $a(\mathbf{u} + \mathbf{v}) = a\mathbf{u} + a\mathbf{v}$
+8. **Distributivity over scalar addition**: $(a + b)\mathbf{v} = a\mathbf{v} + b\mathbf{v}$
+
+Elements of $V$ are called **vectors**, and elements of $F$ are called **scalars**.
+
+## Remarks
+
+- The vector space axioms ensure that $(V, +)$ forms an abelian @def-group
+- The field $F$ determines the "type" of vector space (e.g., real vector space when $F = \mathbb{R}$)
+- Vector spaces are fundamental structures in linear algebra and appear throughout mathematics
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-linear-independence["Definition: Linear Independence"]:::definition
+    def-span["Definition: Span"]:::definition
+    def-group["Definition: Group"]:::definition
+    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
+    def-basis["Definition: Basis"]:::definition
+    ex-euclidean-space["Example: Euclidean Space"]:::example
+    def-image["Definition: Image"]:::definition
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
+    def-set["Definition: Set"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
+    thm-linear-transformation-basis --> def-vector-space
+    def-basis --> def-vector-space
+    ex-euclidean-space --> def-vector-space
+    def-kernel --> def-vector-space
+    def-linear-independence --> def-vector-space
+    thm-rank-nullity --> def-vector-space
+    def-span --> def-vector-space
+    def-vector-space --> def-set
+    def-vector-space --> def-binary-operation
+    def-linear-transformation --> def-vector-space
+    def-image --> def-vector-space
+    def-vector-space --> def-group
+    class def-vector-space current
+```

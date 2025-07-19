@@ -1,0 +1,57 @@
+---
+id: def-functor
+requires:
+- def-category
+status: complete
+title: 'Definition: Functor'
+type: Definition
+---
+
+# Functor {#def-functor}
+
+A **functor** is a structure-preserving mapping between @def-category structures.
+
+## Formal Definition
+
+Let $\mathcal{C}$ and $\mathcal{D}$ be categories. A functor $F: \mathcal{C} \to \mathcal{D}$ consists of:
+
+1. An **object mapping**: For each object $A \in \text{Ob}(\mathcal{C})$, an object $F(A) \in \text{Ob}(\mathcal{D})$
+2. A **morphism mapping**: For each morphism $f: A \to B$ in $\mathcal{C}$, a morphism $F(f): F(A) \to F(B)$ in $\mathcal{D}$
+
+satisfying:
+
+### Functor Laws
+
+1. **Identity preservation**: $F(\text{id}_A) = \text{id}_{F(A)}$ for all objects $A$
+2. **Composition preservation**: $F(g \circ f) = F(g) \circ F(f)$ for all composable morphisms $f$ and $g$
+
+## Types of Functors
+
+- **Covariant functor**: As defined above
+- **Contravariant functor**: Reverses the direction of morphisms
+- **Faithful functor**: Injective on morphism sets
+- **Full functor**: Surjective on morphism sets
+- **Fully faithful functor**: Both faithful and full
+- **Essentially surjective**: Every object in $\mathcal{D}$ is isomorphic to $F(A)$ for some $A$
+
+## Examples
+
+- The forgetful functor from **Grp** to **Set**
+- The free group functor from **Set** to **Grp**
+- The fundamental group functor from **Top** to **Grp**
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-functor["Definition: Functor"]:::definition
+    def-category["Definition: Category"]:::definition
+    def-functor --> def-category
+    class def-functor current
+```

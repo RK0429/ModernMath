@@ -1,0 +1,70 @@
+---
+id: thm-rank-nullity
+requires:
+- def-linear-transformation
+- def-vector-space
+- def-kernel
+- def-image
+status: complete
+title: 'Theorem: Rank-Nullity Theorem'
+type: Theorem
+---
+
+# Theorem: Rank-Nullity Theorem {#thm-rank-nullity}
+
+For any @def-linear-transformation $T: V \to W$ between finite-dimensional @def-vector-space[s], the dimensions of the @def-kernel and @def-image satisfy a fundamental relationship.
+
+## Statement
+
+Let $T: V \to W$ be a linear transformation where $V$ is finite-dimensional. Then:
+$$\dim(V) = \dim(\ker(T)) + \dim(\text{im}(T))$$
+
+where:
+- $\ker(T) = \{\mathbf{v} \in V : T(\mathbf{v}) = \mathbf{0}\}$ is the kernel (null space) of $T$
+- $\text{im}(T) = \{T(\mathbf{v}) : \mathbf{v} \in V\}$ is the image (range) of $T$
+
+## Alternative Formulation
+
+Using standard terminology:
+$$\text{nullity}(T) + \text{rank}(T) = \dim(V)$$
+
+where:
+- $\text{nullity}(T) = \dim(\ker(T))$
+- $\text{rank}(T) = \dim(\text{im}(T))$
+
+## Proof Outline
+
+1. Let $\{\mathbf{u}_1, \ldots, \mathbf{u}_k\}$ be a basis for $\ker(T)$
+2. Extend to a basis $\{\mathbf{u}_1, \ldots, \mathbf{u}_k, \mathbf{v}_1, \ldots, \mathbf{v}_r\}$ for $V$
+3. Show that $\{T(\mathbf{v}_1), \ldots, T(\mathbf{v}_r)\}$ is a basis for $\text{im}(T)$
+4. Therefore: $k + r = \dim(V)$, where $k = \dim(\ker(T))$ and $r = \dim(\text{im}(T))$
+
+## Consequences
+
+- **Injectivity criterion**: $T$ is injective if and only if $\dim(\ker(T)) = 0$
+- **Surjectivity criterion**: $T$ is surjective if and only if $\dim(\text{im}(T)) = \dim(W)$
+- **Isomorphism criterion**: For $\dim(V) = \dim(W)$, $T$ is an isomorphism if and only if $T$ is injective (or surjective)
+
+This theorem is fundamental to understanding the structure of linear transformations and solving systems of linear equations.
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
+    def-image["Definition: Image"]:::definition
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
+    thm-rank-nullity --> def-vector-space
+    thm-rank-nullity --> def-image
+    thm-rank-nullity --> def-kernel
+    thm-rank-nullity --> def-linear-transformation
+    class thm-rank-nullity current
+```

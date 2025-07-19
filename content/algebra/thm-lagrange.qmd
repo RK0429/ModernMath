@@ -1,0 +1,51 @@
+---
+id: thm-lagrange
+requires:
+- def-group
+- def-subgroup
+status: complete
+title: 'Theorem: Lagrange''s Theorem'
+type: Theorem
+---
+
+# Lagrange's Theorem {#thm-lagrange}
+
+For a finite @def-group $G$ and a @def-subgroup $H$ of $G$, the order of $H$ divides the order of $G$.
+
+## Statement
+
+If $G$ is a finite group and $H \leq G$, then:
+$$|G| = |H| \cdot [G:H]$$
+
+where $|G|$ denotes the order (number of elements) of $G$, and $[G:H]$ is the index of $H$ in $G$ (the number of distinct left cosets of $H$ in $G$).
+
+## Corollaries
+
+1. The order of any element $a \in G$ divides the order of $G$
+2. If $|G|$ is prime, then $G$ is cyclic and has no proper non-trivial subgroups
+3. Any group of prime order is isomorphic to $\mathbb{Z}_p$ for some prime $p$
+
+## Applications
+
+Lagrange's theorem is fundamental in group theory and has numerous applications:
+- Determining possible subgroup structures
+- Proving Fermat's Little Theorem
+- Classifying groups of small order
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-subgroup["Definition: Subgroup"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-group["Definition: Group"]:::definition
+    thm-lagrange --> def-subgroup
+    thm-lagrange --> def-group
+    class thm-lagrange current
+```

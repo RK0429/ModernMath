@@ -1,0 +1,67 @@
+project:
+  type: website
+  title: "Mathematics Knowledge Graph Wiki"
+  output-dir: _site
+
+website:
+  title: "Math Knowledge Graph"
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Algebra"
+        href: content/algebra/index.qmd
+      - text: "Analysis"
+        href: content/analysis/index.qmd
+      - text: "Topology"
+        href: content/topology/index.qmd
+      - text: "Geometry"
+        href: content/geometry/index.qmd
+      - text: "Visualizations"
+        href: visualizations.qmd
+      - text: "About"
+        href: about.qmd
+    right:
+      - icon: github
+        href: https://github.com/yourusername/math-knowledge-graph
+  sidebar:
+    - id: algebra
+      title: "Algebra"
+      contents:
+        - content/algebra/*.qmd
+    - id: analysis
+      title: "Analysis"
+      contents:
+        - content/analysis/*.qmd
+    - id: topology
+      title: "Topology"
+      contents:
+        - content/topology/*.qmd
+  page-footer:
+    center: |
+      Mathematics Knowledge Graph Wiki - Built with Quarto and RDF
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    code-copy: true
+    code-overflow: wrap
+    html-math-method: mathjax
+
+filters:
+  - graph-viz
+    
+execute:
+  freeze: auto
+
+bibliography: references.bib
+
+resources:
+  - knowledge_graph.ttl
+  - .nojekyll
+  - output/interactive
+  - output/d3-data
