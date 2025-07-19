@@ -1,11 +1,11 @@
 ---
-title: "Theorem: Law of Large Numbers"
-id: "thm-law-of-large-numbers"
-type: "Theorem"
-status: "complete"
+id: thm-law-of-large-numbers
 requires:
-  - "def-random-variable"
-  - "def-expectation"
+- def-random-variable
+- def-expectation
+status: complete
+title: 'Theorem: Law of Large Numbers'
+type: Theorem
 ---
 
 # Theorem: Law of Large Numbers {#thm-law-of-large-numbers}
@@ -71,4 +71,22 @@ graph TD
     style E fill:#bbf,stroke:#333,stroke-width:2px
     style H fill:#bfb,stroke:#333,stroke-width:2px
     style I fill:#bfb,stroke:#333,stroke-width:2px
+```
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-random-variable["Definition: Random Variable"]:::definition
+    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
+    def-expectation["Definition: Expected Value"]:::definition
+    thm-law-of-large-numbers --> def-random-variable
+    thm-law-of-large-numbers --> def-expectation
+    class thm-law-of-large-numbers current
 ```

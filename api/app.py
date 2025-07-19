@@ -15,6 +15,9 @@ import logging
 # Add parent directory to path to import scripts
 sys.path.append(str(Path(__file__).parent.parent))
 
+# Import the enhanced search module
+from api.search import MathKnowledgeSearcher
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -26,6 +29,15 @@ CORS(app)  # Enable CORS for all routes
 # Configuration
 FUSEKI_ENDPOINT = "http://localhost:3030/mathwiki/sparql"
 GRAPH_FILE = Path(__file__).parent.parent / "knowledge_graph.ttl"
+SEARCH_INDEX_DIR = Path(__file__).parent.parent / "search_index"
+
+# Initialize the enhanced searcher
+try:
+    searcher = MathKnowledgeSearcher(FUSEKI_ENDPOINT, SEARCH_INDEX_DIR)
+    logger.info("Enhanced search initialized successfully")
+except Exception as e:
+    logger.error(f"Failed to initialize enhanced search: {e}")
+    searcher = None
 
 # SPARQL query templates
 QUERIES = {
@@ -215,20 +227,54 @@ def get_dependents(node_id: str):
 
 @app.route("/api/search", methods=["GET"])
 def search_nodes():
-    """Search for nodes by label text"""
+    """Enhanced search for nodes by label text and content"""
     search_term = request.args.get("q", "")
     if not search_term:
         return jsonify({"error": "Search term required"}), 400
     
-    query = QUERIES["search_nodes"] % search_term
-    results = execute_sparql_query(query)
+    # Check if enhanced search is available
+    if searcher is None:
+        # Fall back to basic SPARQL search
+        query = QUERIES["search_nodes"] % search_term
+        results = execute_sparql_query(query)
+        
+        if not results:
+            return jsonify({"error": "SPARQL endpoint unavailable"}), 503
+        
+        formatted = format_node_response(results)
+        formatted["search_term"] = search_term
+        formatted["search_type"] = "basic"
+        return jsonify(formatted)
     
-    if not results:
-        return jsonify({"error": "SPARQL endpoint unavailable"}), 503
-    
-    formatted = format_node_response(results)
-    formatted["search_term"] = search_term
-    return jsonify(formatted)
+    # Use enhanced search
+    try:
+        # Get limit parameter
+        limit = request.args.get("limit", default=50, type=int)
+        limit = min(limit, 100)  # Cap at 100 results
+        
+        # Perform combined search
+        results = searcher.search_combined(search_term, limit=limit)
+        
+        return jsonify({
+            "search_term": search_term,
+            "search_type": "enhanced",
+            "count": len(results),
+            "results": results
+        })
+        
+    except Exception as e:
+        logger.error(f"Enhanced search failed: {e}")
+        # Fall back to basic search
+        query = QUERIES["search_nodes"] % search_term
+        results = execute_sparql_query(query)
+        
+        if not results:
+            return jsonify({"error": "Search failed"}), 503
+        
+        formatted = format_node_response(results)
+        formatted["search_term"] = search_term
+        formatted["search_type"] = "basic_fallback"
+        return jsonify(formatted)
 
 
 @app.route("/api/nodes", methods=["GET"])
@@ -263,6 +309,51 @@ def custom_query():
         return jsonify({"error": "SPARQL endpoint unavailable"}), 503
     
     return jsonify(results)
+
+
+@app.route("/api/search/suggest", methods=["GET"])
+def search_suggestions():
+    """Get search suggestions for autocomplete"""
+    partial_query = request.args.get("q", "")
+    if not partial_query or len(partial_query) < 2:
+        return jsonify({"suggestions": []})
+    
+    if searcher is None:
+        return jsonify({"error": "Search suggestions unavailable"}), 503
+    
+    try:
+        limit = request.args.get("limit", default=10, type=int)
+        limit = min(limit, 20)  # Cap at 20 suggestions
+        
+        suggestions = searcher.suggest_search_terms(partial_query, limit=limit)
+        
+        return jsonify({
+            "query": partial_query,
+            "suggestions": suggestions
+        })
+        
+    except Exception as e:
+        logger.error(f"Search suggestions failed: {e}")
+        return jsonify({"suggestions": []})
+
+
+@app.route("/api/nodes/<node_id>/related", methods=["GET"])
+def get_related_nodes(node_id: str):
+    """Get all nodes related to the specified node"""
+    if searcher is None:
+        return jsonify({"error": "Related nodes search unavailable"}), 503
+    
+    try:
+        related = searcher.get_related_nodes(node_id)
+        
+        return jsonify({
+            "node_id": node_id,
+            "related": related
+        })
+        
+    except Exception as e:
+        logger.error(f"Related nodes search failed: {e}")
+        return jsonify({"error": "Failed to get related nodes"}), 500
 
 
 @app.errorhandler(404)

@@ -109,6 +109,12 @@ jobs:
       run: |
         poetry run python scripts/insert_diagrams.py
     
+    # Step 6f: Build search index
+    - name: Build search index
+      run: |
+        poetry run python scripts/build_search_index.py
+        echo "Search index built successfully!"
+    
     # Step 7: Run Quarto render
     - name: Render Quarto site
       run: |
