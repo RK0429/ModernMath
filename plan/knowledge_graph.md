@@ -260,17 +260,17 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
 
 ### 11. Lean 4 Environment Setup
 
-- [ ] **Install Lean 4 and Tools**
-  - [ ] Install elan (Lean version manager)
-  - [ ] Install VS Code with Lean 4 extension
-  - [ ] Clone and build mathlib4
-  - [ ] Install lake (Lean build tool)
+- [x] **Install Lean 4 and Tools**
+  - [x] Install elan (Lean version manager)
+  - [x] Install VS Code with Lean 4 extension
+  - [x] Clone and build mathlib4
+  - [x] Install lake (Lean build tool)
 
-- [ ] **Set Up Lean Project**
-  - [ ] Create `formal/` directory
-  - [ ] Initialize Lean project with `lake init`
-  - [ ] Add mathlib4 as dependency
-  - [ ] Create basic project structure
+- [x] **Set Up Lean Project**
+  - [x] Create `formal/` directory
+  - [x] Initialize Lean project with `lake init`
+  - [x] Add mathlib4 as dependency
+  - [x] Create basic project structure
 
 ### 12. LeanDojo Integration
 
