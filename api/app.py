@@ -8,7 +8,7 @@ from flask_cors import CORS
 from pathlib import Path
 import sys
 from typing import Dict, List, Optional, Any
-from sparqlwrapper import SPARQLWrapper, JSON
+from SPARQLWrapper import SPARQLWrapper, JSON
 import json
 import logging
 
@@ -272,4 +272,4 @@ def internal_error(error):
 
 if __name__ == "__main__":
     # Development server - in production use gunicorn or similar
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    app.run(debug=True, host="0.0.0.0", port=5001)
