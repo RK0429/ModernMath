@@ -16,15 +16,25 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Set up poetry or pip for Python dependency management
   
 - [ ] **Python Environment Setup**
-  - [ ] Create virtual environment: `python -m venv venv`
+  - [ ] Install poetry: `pip install poetry` (one-time global install)
+  - [ ] Initialize poetry project: `poetry init`
+  - [ ] Configure poetry to create virtual environments: `poetry config virtualenvs.in-project true`
   - [ ] Install essential Python packages:
-    - [ ] `pip install rdflib` (RDF graph construction)
-    - [ ] `pip install python-frontmatter` (YAML parsing from .qmd files)
-    - [ ] `pip install beautifulsoup4` (HTML parsing alternative)
-    - [ ] `pip install pyvis` (interactive network visualization)
-    - [ ] `pip install flask` or `pip install fastapi` (for API development)
-    - [ ] `pip install pytest` (for testing)
-    - [ ] `pip install black flake8 mypy` (code quality tools)
+    - [ ] `poetry add rdflib` (RDF graph construction)
+    - [ ] `poetry add python-frontmatter` (YAML parsing from .qmd files)
+    - [ ] `poetry add beautifulsoup4` (HTML parsing alternative)
+    - [ ] `poetry add pyvis` (interactive network visualization)
+    - [ ] `poetry add flask` or `poetry add fastapi` (for API development)
+    - [ ] `poetry add --group dev pytest` (for testing)
+    - [ ] `poetry add --group dev black flake8 mypy` (code quality tools)
+  
+- [ ] **Configure Poetry Project**
+  - [ ] Review and edit `pyproject.toml` file
+  - [ ] Set Python version requirement: `python = "^3.11"`
+  - [ ] Configure tool settings for black, mypy, and pytest
+  - [ ] Create `.gitignore` with `.venv/` and `dist/` entries
+  - [ ] Run `poetry install` to create lock file
+  - [ ] Activate virtual environment: `poetry shell`
 
 ### 2. Ontology Design and Creation
 
@@ -50,7 +60,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Map custom classes to OntoMathPRO equivalents using `owl:equivalentClass`
   - [ ] Add Dublin Core metadata properties
   - [ ] Add SKOS concept mappings where appropriate
-  - [ ] Validate ontology using Protégé or online validators
+  - [ ] Validate ontology using ProtÃ©gÃ© or online validators
 
 ### 3. Quarto Project Structure Setup
 
@@ -128,11 +138,13 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   
 - [ ] **Implement Build Pipeline**
   - [ ] Step 1: Checkout code
-  - [ ] Step 2: Set up Python environment
+  - [ ] Step 2: Set up Python environment with poetry
+    - [ ] Install poetry
+    - [ ] Run `poetry install` to install dependencies
   - [ ] Step 3: Install Quarto
-  - [ ] Step 4: Run linting (flake8, black)
-  - [ ] Step 5: Run validation scripts
-  - [ ] Step 6: Build knowledge graph
+  - [ ] Step 4: Run linting with poetry (`poetry run flake8`, `poetry run black .`)
+  - [ ] Step 5: Run validation scripts with poetry (`poetry run python scripts/validate.py`)
+  - [ ] Step 6: Build knowledge graph (`poetry run python scripts/build_graph.py`)
   - [ ] Step 7: Run Quarto render
   - [ ] Step 8: Upload artifacts (website, .ttl file)
 
@@ -247,7 +259,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
 ### 12. LeanDojo Integration
 
 - [ ] **Install and Configure LeanDojo**
-  - [ ] `pip install lean-dojo`
+  - [ ] `poetry add lean-dojo`
   - [ ] Configure for Lean 4 compatibility
   - [ ] Set up environment variables
   - [ ] Test on small Lean project
