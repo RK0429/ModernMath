@@ -14,7 +14,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Install Git and set up GitHub repository
   - [ ] Install Node.js (for JavaScript-based visualizations)
   - [ ] Set up poetry or pip for Python dependency management
-  
+
 - [ ] **Python Environment Setup**
   - [ ] Install poetry: `pip install poetry` (one-time global install)
   - [ ] Initialize poetry project: `poetry init`
@@ -27,7 +27,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
     - [ ] `poetry add flask` or `poetry add fastapi` (for API development)
     - [ ] `poetry add --group dev pytest` (for testing)
     - [ ] `poetry add --group dev black flake8 mypy` (code quality tools)
-  
+
 - [ ] **Configure Poetry Project**
   - [ ] Review and edit `pyproject.toml` file
   - [ ] Set Python version requirement: `python = "^3.11"`
@@ -54,7 +54,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
     - [ ] `generalizes` / `specializes` property
     - [ ] `implies` property
     - [ ] `hasDomain` property (for mathematical fields)
-  
+
 - [ ] **Ontology Mapping and Interoperability**
   - [ ] Research and download OntoMathPRO ontology
   - [ ] Map custom classes to OntoMathPRO equivalents using `owl:equivalentClass`
@@ -68,7 +68,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Run `quarto create project` in project root
   - [ ] Configure `_quarto.yml` with project metadata
   - [ ] Set up website output format with navigation
-  
+
 - [ ] **Create Directory Structure**
   - [ ] Create content directories (subject-specific only):
     - [ ] `content/algebra/`
@@ -81,7 +81,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
     - [ ] `content/probability-statistics/`
     - [ ] `content/category-theory/`
   - [ ] Add `_metadata.yml` to each subject directory with `domain` field
-  
+
 - [ ] **Define Quarto Templates**
   - [ ] Create `_extensions/` directory
   - [ ] Design theorem environment template
@@ -99,7 +99,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
     - [ ] Prefix files with type: `def-`, `thm-`, `ex-`, `ax-`
     - [ ] All files organized by mathematical subject area
     - [ ] Domain field auto-inherited from directory's `_metadata.yml`
-  
+
 - [ ] **Create Example Content (50-100 nodes)**
   - [ ] Basic Group Theory content in `content/algebra/`:
     - [ ] Definition: Set (`content/logic-set-theory/def-set.qmd`)
@@ -130,7 +130,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
     - [ ] Add dependency relationship triples
     - [ ] Add domain classification triples
   - [ ] Serialize to Turtle format: `knowledge_graph.ttl`
-  
+
 - [ ] **Implement Validation Scripts**
   - [ ] Check for missing cross-reference targets
   - [ ] Detect circular dependencies
@@ -144,7 +144,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Create `.github/workflows/build.yml`
   - [ ] Configure triggers (push, pull request)
   - [ ] Set up job matrix for Python versions
-  
+
 - [ ] **Implement Build Pipeline**
   - [ ] Step 1: Checkout code
   - [ ] Step 2: Set up Python environment with poetry
@@ -166,7 +166,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Extract and configure Fuseki server
   - [ ] Create systemd service (Linux) or startup script
   - [ ] Configure port settings (default: 3030)
-  
+
 - [ ] **Configure Fuseki Dataset**
   - [ ] Create persistent TDB2 dataset configuration
   - [ ] Set up dataset with configuration file:
@@ -175,7 +175,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
     - [ ] Configure CORS headers for web access
   - [ ] Create upload script for `knowledge_graph.ttl`
   - [ ] Set up automatic data reload in CI/CD
-  
+
 - [ ] **Test SPARQL Queries**
   - [ ] Write example queries:
     - [ ] Find all theorems using a specific definition
@@ -194,7 +194,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
     - [ ] `/api/dependents/{id}` - Get dependents
     - [ ] `/api/search` - Search nodes
     - [ ] `/api/query` - Custom SPARQL execution
-  
+
 - [ ] **Implement Flask/FastAPI Backend**
   - [ ] Create `api/` directory structure
   - [ ] Implement SPARQL query wrapper
@@ -202,7 +202,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Implement error handling
   - [ ] Add request validation
   - [ ] Create response serialization
-  
+
 - [ ] **API Documentation and Testing**
   - [ ] Generate Swagger UI documentation
   - [ ] Write unit tests with pytest
@@ -216,7 +216,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Convert graph data to Mermaid syntax
   - [ ] Handle node type styling (colors, shapes)
   - [ ] Limit graph size for readability
-  
+
 - [ ] **Integrate with Quarto Pipeline**
   - [ ] Create Quarto filter or preprocessor
   - [ ] Auto-insert Mermaid diagrams in pages
@@ -234,14 +234,14 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
     - [ ] `save_as_html(graph, filename)`
   - [ ] Generate standalone HTML files
   - [ ] Add to build pipeline
-  
+
 - [ ] **D3.js Integration for Web**
   - [ ] Create `assets/js/graph-viz.js`
   - [ ] Implement force-directed layout
   - [ ] Add zoom/pan controls
   - [ ] Implement node click handlers
   - [ ] Add search/filter functionality
-  
+
 - [ ] **Quarto Observable JS Integration**
   - [ ] Create reusable OJS components
   - [ ] Implement data loading from JSON
@@ -258,7 +258,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Install VS Code with Lean 4 extension
   - [ ] Clone and build mathlib4
   - [ ] Install lake (Lean build tool)
-  
+
 - [ ] **Set Up Lean Project**
   - [ ] Create `formal/` directory
   - [ ] Initialize Lean project with `lake init`
@@ -272,7 +272,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Configure for Lean 4 compatibility
   - [ ] Set up environment variables
   - [ ] Test on small Lean project
-  
+
 - [ ] **Extract Mathlib Dependencies**
   - [ ] Run LeanDojo trace on mathlib4
   - [ ] Parse `.dep_paths` files
@@ -287,7 +287,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Parse Lean theorem names
   - [ ] Match with Quarto content
   - [ ] Handle namespace differences
-  
+
 - [ ] **Verification Pipeline**
   - [ ] Create `scripts/verify_consistency.py`
   - [ ] Compare dependency sets
@@ -301,7 +301,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Evaluate options (OpenAI, Anthropic, local models)
   - [ ] Set up API keys and rate limits
   - [ ] Create abstraction layer for provider switching
-  
+
 - [ ] **Design LLM Workflows**
   - [ ] Relationship extraction from text
   - [ ] Content generation templates
@@ -316,13 +316,13 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Implement GitHub Action for PR reviews
   - [ ] Add suggestion formatting
   - [ ] Test on sample content
-  
+
 - [ ] **Content Generation Assistant**
   - [ ] Create templates for each node type
   - [ ] Implement draft generation workflow
   - [ ] Add human review queue system
   - [ ] Track LLM-generated content
-  
+
 - [ ] **Natural Language Query Interface**
   - [ ] Implement query translation service
   - [ ] Create chat interface prototype
@@ -338,7 +338,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Static site: GitHub Pages, Netlify, Vercel
   - [ ] SPARQL endpoint: Cloud VM or container service
   - [ ] API backend: Cloud functions or dedicated server
-  
+
 - [ ] **Configure Production Environment**
   - [ ] Set up domain name and SSL certificates
   - [ ] Configure reverse proxy (nginx/Apache)
@@ -354,7 +354,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Configure CORS policies
   - [ ] Set up input validation
   - [ ] Implement query complexity limits
-  
+
 - [ ] **Performance Optimization**
   - [ ] Add caching layers (Redis, CDN)
   - [ ] Optimize SPARQL queries
@@ -369,7 +369,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Create content authoring tutorial
   - [ ] Document query examples
   - [ ] Add troubleshooting guide
-  
+
 - [ ] **Developer Documentation**
   - [ ] API reference documentation
   - [ ] Architecture diagrams
@@ -383,7 +383,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Error tracking (Sentry or similar)
   - [ ] Usage analytics
   - [ ] Query performance tracking
-  
+
 - [ ] **Create Dashboards**
   - [ ] Content growth metrics
   - [ ] Popular queries analysis
@@ -399,7 +399,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Identify key theorems and concepts
   - [ ] Plan systematic coverage
   - [ ] Recruit domain experts
-  
+
 - [ ] **Community Building**
   - [ ] Create contribution guidelines
   - [ ] Set up review process
@@ -413,7 +413,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Timeline visualizations
   - [ ] Concept clustering
   - [ ] Proof tree visualization
-  
+
 - [ ] **Advanced Queries**
   - [ ] Path finding algorithms
   - [ ] Similarity detection
@@ -427,7 +427,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
   - [ ] Connect to arXiv papers
   - [ ] Integration with MathOverflow
   - [ ] CrossRef DOI linking
-  
+
 - [ ] **Educational Features**
   - [ ] Learning path generation
   - [ ] Prerequisite checking
