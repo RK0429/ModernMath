@@ -6,53 +6,67 @@ Validate YAML metadata in all .qmd files to ensure they comply with the schema.
 import sys
 from pathlib import Path
 import frontmatter
-from typing import List, Dict, Any
+from typing import List, Dict
 
 
-REQUIRED_FIELDS = {'title', 'id', 'type'}
-VALID_TYPES = {'Definition', 'Theorem', 'Lemma', 'Proposition', 'Corollary', 'Axiom', 'Example'}
-VALID_STATUS = {'stub', 'draft', 'complete', 'verified'}
+REQUIRED_FIELDS = {"title", "id", "type"}
+VALID_TYPES = {
+    "Definition",
+    "Theorem",
+    "Lemma",
+    "Proposition",
+    "Corollary",
+    "Axiom",
+    "Example",
+}
+VALID_STATUS = {"stub", "draft", "complete", "verified"}
 
 
 def validate_metadata(file_path: Path) -> List[str]:
     """Validate metadata for a single .qmd file."""
     errors = []
-    
+
     try:
-        with open(file_path, 'r', encoding='utf-8') as f:
+        with open(file_path, "r", encoding="utf-8") as f:
             post = frontmatter.load(f)
             metadata = post.metadata
     except Exception as e:
         return [f"Failed to parse frontmatter: {e}"]
-    
+
     # Check required fields
     missing_fields = REQUIRED_FIELDS - set(metadata.keys())
     if missing_fields:
         errors.append(f"Missing required fields: {', '.join(missing_fields)}")
-    
+
     # Validate 'type' field
-    if 'type' in metadata and metadata['type'] not in VALID_TYPES:
-        errors.append(f"Invalid type '{metadata['type']}'. Must be one of: {', '.join(VALID_TYPES)}")
-    
+    if "type" in metadata and metadata["type"] not in VALID_TYPES:
+        errors.append(
+            f"Invalid type '{metadata['type']}'. Must be one of: {', '.join(VALID_TYPES)}"
+        )
+
     # Validate 'status' field if present
-    if 'status' in metadata and metadata['status'] not in VALID_STATUS:
-        errors.append(f"Invalid status '{metadata['status']}'. Must be one of: {', '.join(VALID_STATUS)}")
-    
+    if "status" in metadata and metadata["status"] not in VALID_STATUS:
+        errors.append(
+            f"Invalid status '{metadata['status']}'. Must be one of: {', '.join(VALID_STATUS)}"
+        )
+
     # Validate 'id' field matches file naming convention
-    if 'id' in metadata:
+    if "id" in metadata:
         expected_id = file_path.stem
-        if metadata['id'] != expected_id:
-            errors.append(f"ID '{metadata['id']}' doesn't match filename '{expected_id}'")
-    
+        if metadata["id"] != expected_id:
+            errors.append(
+                f"ID '{metadata['id']}' doesn't match filename '{expected_id}'"
+            )
+
     # Validate 'requires' field if present
-    if 'requires' in metadata:
-        if not isinstance(metadata['requires'], list):
+    if "requires" in metadata:
+        if not isinstance(metadata["requires"], list):
             errors.append("'requires' field must be a list")
         else:
-            for req in metadata['requires']:
+            for req in metadata["requires"]:
                 if not isinstance(req, str):
                     errors.append(f"Invalid requirement '{req}' - must be a string")
-    
+
     return errors
 
 
@@ -62,20 +76,22 @@ def main():
     if not content_dir.exists():
         print("Error: content/ directory not found")
         sys.exit(1)
-    
+
     all_errors: Dict[str, List[str]] = {}
     total_files = 0
-    
+
     # Find all .qmd files
     for qmd_file in content_dir.rglob("*.qmd"):
         total_files += 1
         errors = validate_metadata(qmd_file)
         if errors:
             all_errors[str(qmd_file)] = errors
-    
+
     # Report results
     if all_errors:
-        print(f"❌ Metadata validation failed for {len(all_errors)} out of {total_files} files:\n")
+        print(
+            f"❌ Metadata validation failed for {len(all_errors)} out of {total_files} files:\n"
+        )
         for file_path, errors in all_errors.items():
             print(f"File: {file_path}")
             for error in errors:
