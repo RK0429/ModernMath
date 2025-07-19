@@ -3,7 +3,7 @@
 # Load knowledge graph data into Fuseki
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-GRAPH_FILE="$SCRIPT_DIR/../../output/knowledge_graph.ttl"
+GRAPH_FILE="$SCRIPT_DIR/../../knowledge_graph.ttl"
 ENDPOINT="http://localhost:3030/mathwiki/data"
 
 # Check if the graph file exists

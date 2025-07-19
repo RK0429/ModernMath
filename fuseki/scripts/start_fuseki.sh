@@ -3,7 +3,7 @@
 # Start Apache Jena Fuseki with our Math Wiki configuration
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-FUSEKI_DIR="$SCRIPT_DIR/../../fuseki-server/current"
+FUSEKI_DIR="$SCRIPT_DIR/../fuseki-server/current"
 CONFIG_FILE="$SCRIPT_DIR/../config/mathwiki.ttl"
 
 # Check if Fuseki is installed
