@@ -304,6 +304,10 @@ window.Quarto = {
     def-union --&gt; def-set
     def-event --&gt; def-union
     class def-union current
+
+    click def-event "def-event.html" "Go to 定義: 事象"
+    click def-set "def-set.html" "Go to 定義: 集合"
+    click thm-de-morgan "thm-de-morgan.html" "Go to 定理: ド・モルガンの法則"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -325,10 +329,10 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-set["Definition: Set"]:::definition
-    def-union["Definition: Union"]:::definition
     thm-de-morgan["Theorem: De Morgan's Laws"]:::theorem
-    thm-de-morgan --&gt; def-union
+    def-union["Definition: Union"]:::definition
     def-union --&gt; def-set
+    thm-de-morgan --&gt; def-union
     class def-union current
 </pre>
 </div>

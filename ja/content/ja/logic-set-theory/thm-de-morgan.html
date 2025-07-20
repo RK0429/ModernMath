@@ -319,6 +319,10 @@ window.Quarto = {
     def-intersection --&gt; thm-de-morgan
     thm-de-morgan --&gt; def-intersection
     class thm-de-morgan current
+
+    click def-intersection "def-intersection.html" "Go to 定義: 共通部分"
+    click def-union "def-union.html" "Go to 定義: 和集合"
+    click def-set "def-set.html" "Go to 定義: 集合"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -340,12 +344,12 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-set["Definition: Set"]:::definition
-    def-union["Definition: Union"]:::definition
-    def-intersection["Definition: Intersection"]:::definition
     thm-de-morgan["Theorem: De Morgan's Laws"]:::theorem
+    def-intersection["Definition: Intersection"]:::definition
+    def-union["Definition: Union"]:::definition
+    thm-de-morgan --&gt; def-set
     thm-de-morgan --&gt; def-intersection
     thm-de-morgan --&gt; def-union
-    thm-de-morgan --&gt; def-set
     class thm-de-morgan current
 </pre>
 </div>

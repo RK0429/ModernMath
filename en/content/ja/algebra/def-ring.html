@@ -321,6 +321,12 @@ window.Quarto = {
     def-field --&gt; def-ring
     def-ring --&gt; def-binary-operation
     class def-ring current
+
+    click def-group "def-group.html" "Go to 定義：群"
+    click def-set "def-set.html" "Go to 定義：集合"
+    click def-field "def-field.html" "Go to 定義：体"
+    click thm-field-characteristic "thm-field-characteristic.html" "Go to 定理：体の標数"
+    click def-binary-operation "def-binary-operation.html" "Go to 定義：二項演算"
 </pre>
 </div>
 <p></p><figcaption> 局所依存関係グラフ</figcaption> </figure><p></p>
@@ -341,19 +347,19 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
     def-group["Definition: Group"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-field["Definition: Field"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
     def-ring["Definition: Ring"]:::definition
+    def-field["Definition: Field"]:::definition
+    thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
+    def-set["Definition: Set"]:::definition
+    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-binary-operation["Definition: Binary Operation"]:::definition
     ex-integers-ring --&gt; def-ring
-    def-field --&gt; def-ring
-    def-ring --&gt; def-group
-    thm-field-characteristic --&gt; def-ring
-    def-ring --&gt; def-binary-operation
     def-ring --&gt; def-set
+    thm-field-characteristic --&gt; def-ring
+    def-ring --&gt; def-group
+    def-ring --&gt; def-binary-operation
+    def-field --&gt; def-ring
     class def-ring current
 </pre>
 </div>

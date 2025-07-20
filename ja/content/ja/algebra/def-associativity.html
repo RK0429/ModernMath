@@ -400,7 +400,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-associativity-1753027232" class="graph-visualization-container">
+<div id="graph-viz-def-associativity-1753029360" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -555,19 +555,36 @@ async function loadAndRenderGraph() {
   try {
     // Calculate relative path based on current location
     const currentPath = window.location.pathname;
-    const depth = (currentPath.match(/\//g) || []).length - 1;
-    const basePath = '../'.repeat(depth);
+
+    // Check if we're in a GitHub Pages subdirectory (e.g., /ModernMath/)
+    const pathParts = currentPath.split('/').filter(p => p);
+    let basePath = '';
+
+    // For GitHub Pages with project name subdirectory
+    if (window.location.hostname.includes('github.io') && pathParts.length > 0) {
+      // Find the index of the project name (first part of path)
+      const projectName = pathParts[0];
+      const currentDepth = pathParts.length - 1; // -1 for the HTML file
+
+      // Go up to the project root
+      basePath = '../'.repeat(currentDepth);
+    } else {
+      // For local development or root deployment
+      const depth = (currentPath.match(/\//g) || []).length - 1;
+      basePath = '../'.repeat(depth);
+    }
+
     const response = await fetch(basePath + 'output/d3-data/def-associativity.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-associativity-1753027232', {
+    createForceGraph(data, 'graph-viz-def-associativity-1753029360', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-associativity-1753027232').innerHTML =
+    document.getElementById('graph-viz-def-associativity-1753029360').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -645,12 +662,12 @@ if (document.readyState === 'loading') {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-group["Definition: Group"]:::definition
-    def-group-example["Definition: Group"]:::definition
     def-associativity["Definition: Associativity"]:::definition
     def-binary-operation["Definition: Binary Operation"]:::definition
+    def-group-example["Definition: Group"]:::definition
     def-group-example --&gt; def-associativity
-    def-group --&gt; def-associativity
     def-associativity --&gt; def-binary-operation
+    def-group --&gt; def-associativity
     class def-associativity current
 </pre>
 </div>
