@@ -174,7 +174,11 @@ function createForceGraph(data, containerId, options = {}) {
 // Load and render the graph
 async function loadAndRenderGraph() {
   try {
-    const response = await fetch('output/d3-data/%s.json');
+    // Calculate relative path based on current location
+    const currentPath = window.location.pathname;
+    const depth = (currentPath.match(/\//g) || []).length - 1;
+    const basePath = '../'.repeat(depth);
+    const response = await fetch(basePath + 'output/d3-data/%s.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
