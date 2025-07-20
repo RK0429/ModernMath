@@ -509,8 +509,8 @@ This comprehensive To-Do list provides a complete roadmap for building the Mathe
 
 ### 2025-07-20
 
-- **GitHub Pages Deployment**: Website successfully deployed and accessible at https://RK0429.github.io/ModernMath
-- **Visualization Integration**: 
+- **GitHub Pages Deployment**: Website successfully deployed and accessible at <https://RK0429.github.io/ModernMath>
+- **Visualization Integration**:
   - Generated all visualization data (D3.js, PyVis, Mermaid) locally
   - Created 80 interactive PyVis HTML files (70 nodes + 9 domains + index)
   - Generated 78 D3.js JSON data files
