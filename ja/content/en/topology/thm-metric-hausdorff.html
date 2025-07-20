@@ -217,9 +217,9 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#proof" id="toc-proof" class="nav-link" data-scroll-target="#proof">Proof</a></li>
   <li><a href="#consequences" id="toc-consequences" class="nav-link" data-scroll-target="#consequences">Consequences</a></li>
-  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
   <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
   <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
+  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -271,10 +271,46 @@ window.Quarto = {
 <li><strong>Nice separation properties</strong>: Metric spaces automatically satisfy all the lower separation axioms (<span class="math inline">\(T_0\)</span>, <span class="math inline">\(T_1\)</span>, <span class="math inline">\(T_2\)</span>)</li>
 </ol>
 </section>
+<section id="see-also" class="level2">
+<h2 class="anchored" data-anchor-id="see-also">See Also</h2>
+<ul>
+<li><a href="../../../content/en/geometry/def-metric-space.html">Metric Space</a> - The structure that guarantees the Hausdorff property</li>
+<li><a href="../../../content/en/topology/def-hausdorff.html">Hausdorff Space</a> - The separation property satisfied by all metric spaces</li>
+<li><a href="../../../content/en/analysis/ex-real-line-metric.html">Real Line with Standard Metric</a> - A concrete example of a metric space that is Hausdorff</li>
+</ul>
+</section>
+<section id="dependency-graph" class="level2">
+<h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-metric-space["Definition: Metric Space"]:::definition
+    def-topological-space["Definition: Topological Space"]:::definition
+    def-hausdorff["Definition: Hausdorff Space"]:::definition
+    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
+    thm-metric-hausdorff --&gt; def-hausdorff
+    thm-metric-hausdorff --&gt; def-topological-space
+    thm-metric-hausdorff --&gt; def-metric-space
+    class thm-metric-hausdorff current
+</pre>
+</div>
+<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-metric-hausdorff-1753034150" class="graph-visualization-container">
+<div id="graph-viz-thm-metric-hausdorff-1753035249" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -454,12 +490,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-metric-hausdorff-1753034150', {
+    createForceGraph(data, 'graph-viz-thm-metric-hausdorff-1753035249', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-metric-hausdorff-1753034150').innerHTML =
+    document.getElementById('graph-viz-thm-metric-hausdorff-1753035249').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -521,52 +557,7 @@ if (document.readyState === 'loading') {
 }
 </style>
 
-<p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/thm-metric-hausdorff.html" target="_blank">full interactive version</a> in a new window</p>
-</section>
-<section id="see-also" class="level2">
-<h2 class="anchored" data-anchor-id="see-also">See Also</h2>
-<ul>
-<li><a href="../../../content/en/geometry/def-metric-space.html">Metric Space</a> - The structure that guarantees the Hausdorff property</li>
-<li><a href="../../../content/en/topology/def-hausdorff.html">Hausdorff Space</a> - The separation property satisfied by all metric spaces</li>
-<li><a href="../../../content/en/analysis/ex-real-line-metric.html">Real Line with Standard Metric</a> - A concrete example of a metric space that is Hausdorff</li>
-</ul>
-</section>
-<section id="dependency-graph" class="level2">
-<h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-topological-space["Definition: Topological Space"]:::definition
-    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
-    ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
-    def-hausdorff["Definition: Hausdorff Space"]:::definition
-    def-metric-space["Definition: Metric Space"]:::definition
-    def-hausdorff --&gt; thm-metric-hausdorff
-    thm-metric-hausdorff --&gt; def-hausdorff
-    def-metric-space --&gt; thm-metric-hausdorff
-    thm-metric-hausdorff --&gt; def-topological-space
-    thm-metric-hausdorff --&gt; ex-real-line-metric
-    thm-metric-hausdorff --&gt; def-metric-space
-    class thm-metric-hausdorff current
-
-    click def-topological-space "def-topological-space.html" "Go to Topological Space definition"
-    click ex-real-line-metric "ex-real-line-metric.html" "Go to Real Line with Standard Metric example"
-    click def-hausdorff "def-hausdorff.html" "Go to Hausdorff Space definition"
-    click def-metric-space "def-metric-space.html" "Go to Metric Space definition"
-</pre>
-</div>
-<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
+<p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/thm-metric-hausdorff.html" target="_blank">full interactive version</a></p>
 
 
 </section>

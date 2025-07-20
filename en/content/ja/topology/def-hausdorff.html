@@ -214,9 +214,10 @@ window.Quarto = {
   <li><a href="#直観的理解" id="toc-直観的理解" class="nav-link" data-scroll-target="#直観的理解">直観的理解</a></li>
   <li><a href="#性質" id="toc-性質" class="nav-link" data-scroll-target="#性質">性質</a></li>
   <li><a href="#例と反例" id="toc-例と反例" class="nav-link" data-scroll-target="#例と反例">例と反例</a></li>
-  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   <li><a href="#関連項目" id="toc-関連項目" class="nav-link" data-scroll-target="#関連項目">関連項目</a></li>
   <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
+  <li><a href="#依存グラフ" id="toc-依存グラフ" class="nav-link" data-scroll-target="#依存グラフ">依存グラフ</a></li>
+  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -269,10 +270,79 @@ window.Quarto = {
 <p><strong>ハウスドルフ空間の例:</strong> - 任意の距離空間（<a href="../../../content/ja/topology/thm-metric-hausdorff.html">すべての距離空間はハウスドルフである</a>を参照） - 標準位相を持つ実数直線<span class="math inline">\(\mathbb{R}\)</span> - 任意の離散空間</p>
 <p><strong>反例:</strong> - 無限集合上の補有限位相 - 代数多様体上のザリスキー位相（一般には）</p>
 </section>
+<section id="関連項目" class="level2">
+<h2 class="anchored" data-anchor-id="関連項目">関連項目</h2>
+<ul>
+<li><a href="../../../content/ja/topology/def-topological-space.html">位相空間</a> - この性質が定義される基本構造</li>
+<li><a href="../../../content/ja/topology/thm-metric-hausdorff.html">すべての距離空間はハウスドルフである</a> - すべての距離空間はハウスドルフである</li>
+<li><strong>?@def-compact-space</strong> - コンパクト・ハウスドルフ空間は特に良い性質を持つ</li>
+</ul>
+</section>
+<section id="依存関係グラフ" class="level2">
+<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-open-set["定義: 開集合"]:::definition
+    thm-metric-hausdorff["定理: すべての距離空間はハウスドルフである"]:::theorem
+    def-topological-space["定義: 位相空間"]:::definition
+    def-hausdorff["定義: ハウスドルフ空間"]:::definition
+    def-hausdorff --&gt; def-topological-space
+    def-hausdorff --&gt; def-open-set
+    def-hausdorff --&gt; thm-metric-hausdorff
+    thm-metric-hausdorff --&gt; def-hausdorff
+    class def-hausdorff current
+
+    click def-open-set "def-open-set.html" "Go to 定義: 開集合"
+    click thm-metric-hausdorff "thm-metric-hausdorff.html" "Go to 定理: すべての距離空間はハウスドルフである"
+    click def-topological-space "def-topological-space.html" "Go to 定義: 位相空間"
+</pre>
+</div>
+<p></p><figcaption> 局所依存関係グラフ</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="依存グラフ" class="level2">
+<h2 class="anchored" data-anchor-id="依存グラフ">依存グラフ</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-topological-space["Definition: Topological Space"]:::definition
+    def-open-set["Definition: Open Set"]:::definition
+    def-hausdorff["Definition: Hausdorff Space"]:::definition
+    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
+    thm-metric-hausdorff --&gt; def-hausdorff
+    def-hausdorff --&gt; def-topological-space
+    def-hausdorff --&gt; def-open-set
+    class def-hausdorff current
+</pre>
+</div>
+<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-hausdorff-1753034041" class="graph-visualization-container">
+<div id="graph-viz-def-hausdorff-1753035136" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -452,12 +522,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-hausdorff-1753034041', {
+    createForceGraph(data, 'graph-viz-def-hausdorff-1753035136', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-hausdorff-1753034041').innerHTML =
+    document.getElementById('graph-viz-def-hausdorff-1753035136').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -520,47 +590,6 @@ if (document.readyState === 'loading') {
 </style>
 
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/def-hausdorff.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
-</section>
-<section id="関連項目" class="level2">
-<h2 class="anchored" data-anchor-id="関連項目">関連項目</h2>
-<ul>
-<li><a href="../../../content/ja/topology/def-topological-space.html">位相空間</a> - この性質が定義される基本構造</li>
-<li><a href="../../../content/ja/topology/thm-metric-hausdorff.html">すべての距離空間はハウスドルフである</a> - すべての距離空間はハウスドルフである</li>
-<li><strong>?@def-compact-space</strong> - コンパクト・ハウスドルフ空間は特に良い性質を持つ</li>
-</ul>
-</section>
-<section id="依存関係グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-open-set["定義: 開集合"]:::definition
-    thm-metric-hausdorff["定理: すべての距離空間はハウスドルフである"]:::theorem
-    def-topological-space["定義: 位相空間"]:::definition
-    def-hausdorff["定義: ハウスドルフ空間"]:::definition
-    def-hausdorff --&gt; def-topological-space
-    def-hausdorff --&gt; def-open-set
-    def-hausdorff --&gt; thm-metric-hausdorff
-    thm-metric-hausdorff --&gt; def-hausdorff
-    class def-hausdorff current
-
-    click def-open-set "def-open-set.html" "Go to 定義: 開集合"
-    click thm-metric-hausdorff "thm-metric-hausdorff.html" "Go to 定理: すべての距離空間はハウスドルフである"
-    click def-topological-space "def-topological-space.html" "Go to 定義: 位相空間"
-</pre>
-</div>
-<p></p><figcaption> 局所依存関係グラフ</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
 
 
 </section>

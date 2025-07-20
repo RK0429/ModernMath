@@ -219,9 +219,10 @@ window.Quarto = {
   <li><a href="#収束性との関係" id="toc-収束性との関係" class="nav-link" data-scroll-target="#収束性との関係">収束性との関係</a></li>
   <li><a href="#例" id="toc-例" class="nav-link" data-scroll-target="#例">例</a></li>
   <li><a href="#重要性" id="toc-重要性" class="nav-link" data-scroll-target="#重要性">重要性</a></li>
-  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   <li><a href="#関連項目" id="toc-関連項目" class="nav-link" data-scroll-target="#関連項目">関連項目</a></li>
   <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
+  <li><a href="#依存グラフ" id="toc-依存グラフ" class="nav-link" data-scroll-target="#依存グラフ">依存グラフ</a></li>
+  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -274,10 +275,79 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="重要性">重要性</h2>
 <p>完備性は以下にとって重要である： - <strong>不動点定理</strong>：バナッハの不動点定理は完備性を必要とする - <strong>存在定理</strong>：解析学における多くの存在結果は完備性に依存している - <strong><span class="math inline">\(\mathbb{R}\)</span> の構成</strong>：実数は <span class="math inline">\(\mathbb{Q}\)</span> の完備化として構成できる</p>
 </section>
+<section id="関連項目" class="level2">
+<h2 class="anchored" data-anchor-id="関連項目">関連項目</h2>
+<ul>
+<li><strong>?@thm-banach-fixed-point</strong> - 完備性を必要とする基本定理</li>
+<li><strong>?@def-banach-space</strong> - 完備ノルム空間</li>
+<li><strong>?@thm-baire-category</strong> - 完備距離空間に関する重要な定理</li>
+</ul>
+</section>
+<section id="依存関係グラフ" class="level2">
+<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-limit["定義: 数列の極限"]:::definition
+    ex-real-line-metric["例: 標準的な距離を持つ実数直線"]:::example
+    def-complete-metric-space["定義: 完備距離空間"]:::definition
+    def-metric-space["定義: 距離空間"]:::definition
+    def-convergence["定義: 収束"]:::definition
+    def-convergence --&gt; def-complete-metric-space
+    def-complete-metric-space --&gt; ex-real-line-metric
+    def-complete-metric-space --&gt; def-metric-space
+    def-complete-metric-space --&gt; def-limit
+    class def-complete-metric-space current
+
+    click def-limit "def-limit.html" "Go to 定義: 数列の極限"
+    click ex-real-line-metric "ex-real-line-metric.html" "Go to 例: 標準的な距離を持つ実数直線"
+    click def-metric-space "def-metric-space.html" "Go to 定義: 距離空間"
+    click def-convergence "def-convergence.html" "Go to 定義: 収束"
+</pre>
+</div>
+<p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="依存グラフ" class="level2">
+<h2 class="anchored" data-anchor-id="依存グラフ">依存グラフ</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-metric-space["Definition: Metric Space"]:::definition
+    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
+    def-limit["Definition: Limit of a Sequence"]:::definition
+    def-complete-metric-space --&gt; def-metric-space
+    def-complete-metric-space --&gt; def-limit
+    class def-complete-metric-space current
+</pre>
+</div>
+<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-complete-metric-space-1753034073" class="graph-visualization-container">
+<div id="graph-viz-def-complete-metric-space-1753035169" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -457,12 +527,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-complete-metric-space-1753034073', {
+    createForceGraph(data, 'graph-viz-def-complete-metric-space-1753035169', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-complete-metric-space-1753034073').innerHTML =
+    document.getElementById('graph-viz-def-complete-metric-space-1753035169').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -525,49 +595,6 @@ if (document.readyState === 'loading') {
 </style>
 
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/def-complete-metric-space.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
-</section>
-<section id="関連項目" class="level2">
-<h2 class="anchored" data-anchor-id="関連項目">関連項目</h2>
-<ul>
-<li><strong>?@thm-banach-fixed-point</strong> - 完備性を必要とする基本定理</li>
-<li><strong>?@def-banach-space</strong> - 完備ノルム空間</li>
-<li><strong>?@thm-baire-category</strong> - 完備距離空間に関する重要な定理</li>
-</ul>
-</section>
-<section id="依存関係グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-limit["定義: 数列の極限"]:::definition
-    ex-real-line-metric["例: 標準的な距離を持つ実数直線"]:::example
-    def-complete-metric-space["定義: 完備距離空間"]:::definition
-    def-metric-space["定義: 距離空間"]:::definition
-    def-convergence["定義: 収束"]:::definition
-    def-convergence --&gt; def-complete-metric-space
-    def-complete-metric-space --&gt; ex-real-line-metric
-    def-complete-metric-space --&gt; def-metric-space
-    def-complete-metric-space --&gt; def-limit
-    class def-complete-metric-space current
-
-    click def-limit "def-limit.html" "Go to 定義: 数列の極限"
-    click ex-real-line-metric "ex-real-line-metric.html" "Go to 例: 標準的な距離を持つ実数直線"
-    click def-metric-space "def-metric-space.html" "Go to 定義: 距離空間"
-    click def-convergence "def-convergence.html" "Go to 定義: 収束"
-</pre>
-</div>
-<p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
 
 
 </section>

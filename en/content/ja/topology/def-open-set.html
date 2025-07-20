@@ -219,9 +219,10 @@ window.Quarto = {
   <li><a href="#密着空間において" id="toc-密着空間において" class="nav-link" data-scroll-target="#密着空間において">密着空間において:</a></li>
   </ul></li>
   <li><a href="#直観的理解" id="toc-直観的理解" class="nav-link" data-scroll-target="#直観的理解">直観的理解</a></li>
-  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   <li><a href="#関連概念" id="toc-関連概念" class="nav-link" data-scroll-target="#関連概念">関連概念</a></li>
   <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
+  <li><a href="#依存グラフ" id="toc-依存グラフ" class="nav-link" data-scroll-target="#依存グラフ">依存グラフ</a></li>
+  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -289,10 +290,82 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="直観的理解">直観的理解</h2>
 <p>開集合は、各点の周りにその集合内に留まる「余裕」があるような集合と考えることができます。この直観は距離空間において形式化され、集合が開であるとは、各点の周りにその集合に含まれる開球が存在するときです。</p>
 </section>
+<section id="関連概念" class="level2">
+<h2 class="anchored" data-anchor-id="関連概念">関連概念</h2>
+<ul>
+<li>定義: 閉集合（開集合の補集合）</li>
+<li>定理: 開集合の和集合（基本的性質を証明）</li>
+<li>定義: 集合の内部（準備中）</li>
+<li>定義: 近傍（準備中）</li>
+</ul>
+</section>
+<section id="依存関係グラフ" class="level2">
+<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-open-set["定義: 開集合"]:::definition
+    def-topological-space["定義: 位相空間"]:::definition
+    thm-union-open-sets["定理: 開集合の和集合"]:::theorem
+    thm-union-open-sets --&gt; def-open-set
+    def-open-set --&gt; def-topological-space
+    class def-open-set current
+
+    click def-topological-space "def-topological-space.html" "Go to 定義: 位相空間"
+    click thm-union-open-sets "thm-union-open-sets.html" "Go to 定理: 開集合の和集合"
+</pre>
+</div>
+<p></p><figcaption> 局所依存関係グラフ</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="依存グラフ" class="level2">
+<h2 class="anchored" data-anchor-id="依存グラフ">依存グラフ</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-topological-space["Definition: Topological Space"]:::definition
+    def-open-set["Definition: Open Set"]:::definition
+    thm-union-open-sets["Theorem: Union of Open Sets"]:::theorem
+    def-compact["Definition: Compact Space"]:::definition
+    def-connected["Definition: Connected Space"]:::definition
+    def-closed-set["Definition: Closed Set"]:::definition
+    def-hausdorff["Definition: Hausdorff Space"]:::definition
+    def-hausdorff --&gt; def-open-set
+    def-compact --&gt; def-open-set
+    thm-union-open-sets --&gt; def-open-set
+    def-closed-set --&gt; def-open-set
+    def-connected --&gt; def-open-set
+    def-open-set --&gt; def-topological-space
+    class def-open-set current
+</pre>
+</div>
+<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-open-set-1753034039" class="graph-visualization-container">
+<div id="graph-viz-def-open-set-1753035133" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -472,12 +545,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-open-set-1753034039', {
+    createForceGraph(data, 'graph-viz-def-open-set-1753035133', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-open-set-1753034039').innerHTML =
+    document.getElementById('graph-viz-def-open-set-1753035133').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -540,44 +613,6 @@ if (document.readyState === 'loading') {
 </style>
 
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/def-open-set.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
-</section>
-<section id="関連概念" class="level2">
-<h2 class="anchored" data-anchor-id="関連概念">関連概念</h2>
-<ul>
-<li>定義: 閉集合（開集合の補集合）</li>
-<li>定理: 開集合の和集合（基本的性質を証明）</li>
-<li>定義: 集合の内部（準備中）</li>
-<li>定義: 近傍（準備中）</li>
-</ul>
-</section>
-<section id="依存関係グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-open-set["定義: 開集合"]:::definition
-    def-topological-space["定義: 位相空間"]:::definition
-    thm-union-open-sets["定理: 開集合の和集合"]:::theorem
-    thm-union-open-sets --&gt; def-open-set
-    def-open-set --&gt; def-topological-space
-    class def-open-set current
-
-    click def-topological-space "def-topological-space.html" "Go to 定義: 位相空間"
-    click thm-union-open-sets "thm-union-open-sets.html" "Go to 定理: 開集合の和集合"
-</pre>
-</div>
-<p></p><figcaption> 局所依存関係グラフ</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
 
 
 </section>

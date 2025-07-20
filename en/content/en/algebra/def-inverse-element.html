@@ -225,9 +225,9 @@ window.Quarto = {
   </ul></li>
   <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
   <li><a href="#non-examples" id="toc-non-examples" class="nav-link" data-scroll-target="#non-examples">Non-Examples</a></li>
-  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
   <li><a href="#related-concepts" id="toc-related-concepts" class="nav-link" data-scroll-target="#related-concepts">Related Concepts</a></li>
   <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
+  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
   </ul>
 </nav>
     </div>
@@ -332,10 +332,49 @@ window.Quarto = {
 <li>Zero has no multiplicative inverse in any ring</li>
 </ul>
 </section>
+<section id="related-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="related-concepts">Related Concepts</h2>
+<ul>
+<li><strong>Invertible element</strong>: An element that has an inverse</li>
+<li><strong>Unit</strong>: In ring theory, an element with multiplicative inverse</li>
+<li><a href="../../../content/en/algebra/def-group.html">Group</a>: A monoid where every element has an inverse</li>
+<li><strong>Quasi-inverse</strong>: Weaker notions in semigroup theory</li>
+</ul>
+</section>
+<section id="dependency-graph" class="level2">
+<h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-group-example["Definition: Group"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-identity-element["Definition: Identity Element"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-inverse-element["Definition: Inverse Element"]:::definition
+    def-group-example --&gt; def-inverse-element
+    def-inverse-element --&gt; def-binary-operation
+    def-inverse-element --&gt; def-identity-element
+    def-group --&gt; def-inverse-element
+    class def-inverse-element current
+</pre>
+</div>
+<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-inverse-element-1753033950" class="graph-visualization-container">
+<div id="graph-viz-def-inverse-element-1753035043" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -515,12 +554,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-inverse-element-1753033950', {
+    createForceGraph(data, 'graph-viz-def-inverse-element-1753035043', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-inverse-element-1753033950').innerHTML =
+    document.getElementById('graph-viz-def-inverse-element-1753035043').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -582,48 +621,7 @@ if (document.readyState === 'loading') {
 }
 </style>
 
-<p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/def-inverse-element.html" target="_blank">full interactive version</a> in a new window</p>
-</section>
-<section id="related-concepts" class="level2">
-<h2 class="anchored" data-anchor-id="related-concepts">Related Concepts</h2>
-<ul>
-<li><strong>Invertible element</strong>: An element that has an inverse</li>
-<li><strong>Unit</strong>: In ring theory, an element with multiplicative inverse</li>
-<li><a href="../../../content/en/algebra/def-group.html">Group</a>: A monoid where every element has an inverse</li>
-<li><strong>Quasi-inverse</strong>: Weaker notions in semigroup theory</li>
-</ul>
-</section>
-<section id="dependency-graph" class="level2">
-<h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group["Definition: Group"]:::definition
-    def-identity-element["Definition: Identity Element"]:::definition
-    def-inverse-element["Definition: Inverse Element"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-inverse-element --&gt; def-identity-element
-    def-inverse-element --&gt; def-binary-operation
-    def-inverse-element --&gt; def-group
-    class def-inverse-element current
-
-    click def-group "def-group.html" "Go to Group definition"
-    click def-identity-element "def-identity-element.html" "Go to Identity Element definition"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
-</pre>
-</div>
-<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
+<p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/def-inverse-element.html" target="_blank">full interactive version</a></p>
 
 
 </section>

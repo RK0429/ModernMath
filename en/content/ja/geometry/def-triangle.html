@@ -217,9 +217,10 @@ window.Quarto = {
   </ul></li>
   <li><a href="#基本的性質" id="toc-基本的性質" class="nav-link" data-scroll-target="#基本的性質">基本的性質</a></li>
   <li><a href="#重要な要素" id="toc-重要な要素" class="nav-link" data-scroll-target="#重要な要素">重要な要素</a></li>
-  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   <li><a href="#関連する概念" id="toc-関連する概念" class="nav-link" data-scroll-target="#関連する概念">関連する概念</a></li>
   <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
+  <li><a href="#依存グラフ" id="toc-依存グラフ" class="nav-link" data-scroll-target="#依存グラフ">依存グラフ</a></li>
+  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul>
 </nav>
     </div>
@@ -290,10 +291,87 @@ window.Quarto = {
 <li><strong>垂心</strong>：高さの交点</li>
 </ul>
 </section>
+<section id="関連する概念" class="level2">
+<h2 class="anchored" data-anchor-id="関連する概念">関連する概念</h2>
+<ul>
+<li><a href="../../../content/ja/geometry/thm-pythagorean.html">ピタゴラスの定理</a>は直角三角形に適用される</li>
+<li>三角形の合同と相似</li>
+<li>直角三角形を用いて定義される三角比</li>
+</ul>
+</section>
+<section id="依存関係グラフ" class="level2">
+<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-angle-sum-triangle["定理: 三角形の内角の和"]:::theorem
+    def-triangle["定義: 三角形"]:::definition
+    def-angle["定義: 角"]:::definition
+    thm-pythagorean["定理: ピタゴラスの定理"]:::theorem
+    def-point["定義: 点"]:::definition
+    def-line["定義: 直線"]:::definition
+    thm-angle-sum-triangle --&gt; def-triangle
+    def-triangle --&gt; thm-pythagorean
+    def-triangle --&gt; def-angle
+    def-triangle --&gt; def-line
+    def-triangle --&gt; def-point
+    def-triangle --&gt; thm-angle-sum-triangle
+    class def-triangle current
+
+    click thm-angle-sum-triangle "thm-angle-sum-triangle.html" "Go to 定理: 三角形の内角の和"
+    click def-angle "def-angle.html" "Go to 定義: 角"
+    click thm-pythagorean "thm-pythagorean.html" "Go to 定理: ピタゴラスの定理"
+    click def-point "def-point.html" "Go to 定義: 点"
+    click def-line "def-line.html" "Go to 定義: 直線"
+</pre>
+</div>
+<p></p><figcaption> 局所依存関係グラフ</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="依存グラフ" class="level2">
+<h2 class="anchored" data-anchor-id="依存グラフ">依存グラフ</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-line["Definition: Line"]:::definition
+    def-angle["Definition: Angle"]:::definition
+    def-triangle["Definition: Triangle"]:::definition
+    thm-angle-sum-triangle["Theorem: Angle Sum of a Triangle"]:::theorem
+    def-point["Definition: Point"]:::definition
+    def-triangle --&gt; def-point
+    thm-angle-sum-triangle --&gt; def-triangle
+    def-triangle --&gt; def-angle
+    def-triangle --&gt; def-line
+    class def-triangle current
+</pre>
+</div>
+<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-triangle-1753034027" class="graph-visualization-container">
+<div id="graph-viz-def-triangle-1753035121" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -473,12 +551,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-triangle-1753034027', {
+    createForceGraph(data, 'graph-viz-def-triangle-1753035121', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-triangle-1753034027').innerHTML =
+    document.getElementById('graph-viz-def-triangle-1753035121').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -541,53 +619,6 @@ if (document.readyState === 'loading') {
 </style>
 
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/def-triangle.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
-</section>
-<section id="関連する概念" class="level2">
-<h2 class="anchored" data-anchor-id="関連する概念">関連する概念</h2>
-<ul>
-<li><a href="../../../content/ja/geometry/thm-pythagorean.html">ピタゴラスの定理</a>は直角三角形に適用される</li>
-<li>三角形の合同と相似</li>
-<li>直角三角形を用いて定義される三角比</li>
-</ul>
-</section>
-<section id="依存関係グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-angle-sum-triangle["定理: 三角形の内角の和"]:::theorem
-    def-triangle["定義: 三角形"]:::definition
-    def-angle["定義: 角"]:::definition
-    thm-pythagorean["定理: ピタゴラスの定理"]:::theorem
-    def-point["定義: 点"]:::definition
-    def-line["定義: 直線"]:::definition
-    thm-angle-sum-triangle --&gt; def-triangle
-    def-triangle --&gt; thm-pythagorean
-    def-triangle --&gt; def-angle
-    def-triangle --&gt; def-line
-    def-triangle --&gt; def-point
-    def-triangle --&gt; thm-angle-sum-triangle
-    class def-triangle current
-
-    click thm-angle-sum-triangle "thm-angle-sum-triangle.html" "Go to 定理: 三角形の内角の和"
-    click def-angle "def-angle.html" "Go to 定義: 角"
-    click thm-pythagorean "thm-pythagorean.html" "Go to 定理: ピタゴラスの定理"
-    click def-point "def-point.html" "Go to 定義: 点"
-    click def-line "def-line.html" "Go to 定義: 直線"
-</pre>
-</div>
-<p></p><figcaption> 局所依存関係グラフ</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
 
 
 </section>

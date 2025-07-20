@@ -222,9 +222,10 @@ window.Quarto = {
   <li><a href="#恒等律" id="toc-恒等律" class="nav-link" data-scroll-target="#恒等律">2. 恒等律</a></li>
   </ul></li>
   <li><a href="#set-の性質" id="toc-set-の性質" class="nav-link" data-scroll-target="#set-の性質">Set の性質</a></li>
-  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   <li><a href="#関連する圏" id="toc-関連する圏" class="nav-link" data-scroll-target="#関連する圏">関連する圏</a></li>
   <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
+  <li><a href="#依存グラフ" id="toc-依存グラフ" class="nav-link" data-scroll-target="#依存グラフ">依存グラフ</a></li>
+  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -288,10 +289,88 @@ window.Quarto = {
 </ul></li>
 </ol>
 </section>
+<section id="関連する圏" class="level2">
+<h2 class="anchored" data-anchor-id="関連する圏">関連する圏</h2>
+<ul>
+<li><strong>FinSet</strong>：有限集合の圏</li>
+<li><strong>Set</strong>*：点付き集合（特別な要素を持つ集合）の圏</li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js"></pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="依存関係グラフ" class="level2">
+<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-set-category["例：集合の圏"]:::example
+    def-morphism["定義：射"]:::definition
+    def-set["定義：集合"]:::definition
+    def-category["定義：圏"]:::definition
+    ex-set-category --&gt; def-morphism
+    ex-set-category --&gt; def-category
+    ex-set-category --&gt; def-set
+    class ex-set-category current
+
+    click def-morphism "def-morphism.html" "Go to 定義：射"
+    click def-set "def-set.html" "Go to 定義：集合"
+    click def-category "def-category.html" "Go to 定義：圏"
+</pre>
+</div>
+<p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="依存グラフ" class="level2">
+<h2 class="anchored" data-anchor-id="依存グラフ">依存グラフ</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-morphism["Definition: Morphism"]:::definition
+    ex-set-category["Example: The Category of Sets"]:::example
+    def-set["Definition: Set"]:::definition
+    def-category["Definition: Category"]:::definition
+    ex-set-category --&gt; def-morphism
+    ex-set-category --&gt; def-category
+    ex-set-category --&gt; def-set
+    class ex-set-category current
+</pre>
+</div>
+<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-set-category-1753034082" class="graph-visualization-container">
+<div id="graph-viz-ex-set-category-1753035178" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -471,12 +550,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-set-category-1753034082', {
+    createForceGraph(data, 'graph-viz-ex-set-category-1753035178', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-set-category-1753034082').innerHTML =
+    document.getElementById('graph-viz-ex-set-category-1753035178').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -539,56 +618,6 @@ if (document.readyState === 'loading') {
 </style>
 
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/ex-set-category.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
-</section>
-<section id="関連する圏" class="level2">
-<h2 class="anchored" data-anchor-id="関連する圏">関連する圏</h2>
-<ul>
-<li><strong>FinSet</strong>：有限集合の圏</li>
-<li><strong>Set</strong>*：点付き集合（特別な要素を持つ集合）の圏</li>
-</ul>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js"></pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section>
-<section id="依存関係グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-set-category["例：集合の圏"]:::example
-    def-morphism["定義：射"]:::definition
-    def-set["定義：集合"]:::definition
-    def-category["定義：圏"]:::definition
-    ex-set-category --&gt; def-morphism
-    ex-set-category --&gt; def-category
-    ex-set-category --&gt; def-set
-    class ex-set-category current
-
-    click def-morphism "def-morphism.html" "Go to 定義：射"
-    click def-set "def-set.html" "Go to 定義：集合"
-    click def-category "def-category.html" "Go to 定義：圏"
-</pre>
-</div>
-<p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
 
 
 </section>

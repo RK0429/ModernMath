@@ -219,9 +219,10 @@ window.Quarto = {
   <li><a href="#乗法定理" id="toc-乗法定理" class="nav-link" data-scroll-target="#乗法定理">乗法定理</a></li>
   <li><a href="#独立性" id="toc-独立性" class="nav-link" data-scroll-target="#独立性">独立性</a></li>
   <li><a href="#例" id="toc-例" class="nav-link" data-scroll-target="#例">例</a></li>
-  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   <li><a href="#関連概念" id="toc-関連概念" class="nav-link" data-scroll-target="#関連概念">関連概念</a></li>
   <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
+  <li><a href="#依存グラフ" id="toc-依存グラフ" class="nav-link" data-scroll-target="#依存グラフ">依存グラフ</a></li>
+  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul>
 </nav>
     </div>
@@ -296,10 +297,82 @@ window.Quarto = {
 </ul></li>
 </ol>
 </section>
+<section id="関連概念" class="level2">
+<h2 class="anchored" data-anchor-id="関連概念">関連概念</h2>
+<ul>
+<li><a href="../../../content/ja/probability-statistics/thm-bayes.html">ベイズの定理</a>: <span class="math inline">\(P(A|B)\)</span> と <span class="math inline">\(P(B|A)\)</span> を関連付ける</li>
+<li>全確率の法則: 条件付き確率を使って計算する</li>
+<li>条件付き期待値は、この概念を<a href="../../../content/ja/probability-statistics/def-random-variable.html">確率変数</a>に拡張したもの</li>
+</ul>
+</section>
+<section id="依存関係グラフ" class="level2">
+<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-event["定義: 事象"]:::definition
+    def-random-variable["定義: 確率変数"]:::definition
+    thm-bayes["定理: ベイズの定理"]:::theorem
+    def-probability-space["定義: 確率空間"]:::definition
+    def-conditional-probability["定義: 条件付き確率"]:::definition
+    def-conditional-probability --&gt; def-probability-space
+    def-conditional-probability --&gt; def-random-variable
+    def-conditional-probability --&gt; def-event
+    def-conditional-probability --&gt; thm-bayes
+    thm-bayes --&gt; def-conditional-probability
+    class def-conditional-probability current
+
+    click def-event "def-event.html" "Go to 定義: 事象"
+    click def-random-variable "def-random-variable.html" "Go to 定義: 確率変数"
+    click thm-bayes "thm-bayes.html" "Go to 定理: ベイズの定理"
+    click def-probability-space "def-probability-space.html" "Go to 定義: 確率空間"
+</pre>
+</div>
+<p></p><figcaption> 局所依存関係グラフ</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="依存グラフ" class="level2">
+<h2 class="anchored" data-anchor-id="依存グラフ">依存グラフ</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-bayes["Theorem: Bayes' Theorem"]:::theorem
+    def-event["Definition: Event"]:::definition
+    def-conditional-probability["Definition: Conditional Probability"]:::definition
+    def-probability-space["Definition: Probability Space"]:::definition
+    thm-bayes --&gt; def-conditional-probability
+    def-conditional-probability --&gt; def-probability-space
+    def-conditional-probability --&gt; def-event
+    class def-conditional-probability current
+</pre>
+</div>
+<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-conditional-probability-1753034099" class="graph-visualization-container">
+<div id="graph-viz-def-conditional-probability-1753035196" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -479,12 +552,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-conditional-probability-1753034099', {
+    createForceGraph(data, 'graph-viz-def-conditional-probability-1753035196', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-conditional-probability-1753034099').innerHTML =
+    document.getElementById('graph-viz-def-conditional-probability-1753035196').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -547,50 +620,6 @@ if (document.readyState === 'loading') {
 </style>
 
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/def-conditional-probability.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
-</section>
-<section id="関連概念" class="level2">
-<h2 class="anchored" data-anchor-id="関連概念">関連概念</h2>
-<ul>
-<li><a href="../../../content/ja/probability-statistics/thm-bayes.html">ベイズの定理</a>: <span class="math inline">\(P(A|B)\)</span> と <span class="math inline">\(P(B|A)\)</span> を関連付ける</li>
-<li>全確率の法則: 条件付き確率を使って計算する</li>
-<li>条件付き期待値は、この概念を<a href="../../../content/ja/probability-statistics/def-random-variable.html">確率変数</a>に拡張したもの</li>
-</ul>
-</section>
-<section id="依存関係グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-event["定義: 事象"]:::definition
-    def-random-variable["定義: 確率変数"]:::definition
-    thm-bayes["定理: ベイズの定理"]:::theorem
-    def-probability-space["定義: 確率空間"]:::definition
-    def-conditional-probability["定義: 条件付き確率"]:::definition
-    def-conditional-probability --&gt; def-probability-space
-    def-conditional-probability --&gt; def-random-variable
-    def-conditional-probability --&gt; def-event
-    def-conditional-probability --&gt; thm-bayes
-    thm-bayes --&gt; def-conditional-probability
-    class def-conditional-probability current
-
-    click def-event "def-event.html" "Go to 定義: 事象"
-    click def-random-variable "def-random-variable.html" "Go to 定義: 確率変数"
-    click thm-bayes "thm-bayes.html" "Go to 定理: ベイズの定理"
-    click def-probability-space "def-probability-space.html" "Go to 定義: 確率空間"
-</pre>
-</div>
-<p></p><figcaption> 局所依存関係グラフ</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
 
 
 </section>

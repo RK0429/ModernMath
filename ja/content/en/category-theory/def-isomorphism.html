@@ -351,22 +351,14 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-isomorphism["Definition: Isomorphism"]:::definition
     def-composition["Definition: Composition"]:::definition
     def-morphism["Definition: Morphism"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
     def-category["Definition: Category"]:::definition
-    def-natural-transformation["Definition: Natural Transformation"]:::definition
-    def-isomorphism --&gt; def-composition
-    def-isomorphism --&gt; def-natural-transformation
-    def-isomorphism --&gt; def-morphism
-    def-composition --&gt; def-isomorphism
     def-isomorphism --&gt; def-category
+    def-isomorphism --&gt; def-composition
+    def-isomorphism --&gt; def-morphism
     class def-isomorphism current
-
-    click def-composition "def-composition.html" "Go to Composition definition"
-    click def-morphism "def-morphism.html" "Go to Morphism definition"
-    click def-category "def-category.html" "Go to Category definition"
-    click def-natural-transformation "def-natural-transformation.html" "Go to Natural Transformation definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -377,7 +369,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-isomorphism-1753034154" class="graph-visualization-container">
+<div id="graph-viz-def-isomorphism-1753035253" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -557,12 +549,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-isomorphism-1753034154', {
+    createForceGraph(data, 'graph-viz-def-isomorphism-1753035253', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-isomorphism-1753034154').innerHTML =
+    document.getElementById('graph-viz-def-isomorphism-1753035253').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -624,7 +616,7 @@ if (document.readyState === 'loading') {
 }
 </style>
 
-<p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/def-isomorphism.html" target="_blank">full interactive version</a> in a new window</p>
+<p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/def-isomorphism.html" target="_blank">full interactive version</a></p>
 
 
 </section>

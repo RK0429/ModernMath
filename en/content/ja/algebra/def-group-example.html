@@ -300,25 +300,25 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    thm-unique-identity["Theorem: Uniqueness of Identity"]:::theorem
-    def-identity-element["Definition: Identity Element"]:::definition
+    def-associativity["Definition: Associativity"]:::definition
     def-group-example["Definition: Group"]:::definition
     def-subgroup["Definition: Subgroup"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-associativity["Definition: Associativity"]:::definition
+    thm-unique-identity["Theorem: Uniqueness of Identity"]:::theorem
+    def-identity-element["Definition: Identity Element"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
     ex-integers-addition["Example: Integers under Addition"]:::example
     def-inverse-element["Definition: Inverse Element"]:::definition
+    def-group-example --&gt; def-homomorphism
+    def-group-example --&gt; def-associativity
     def-group-example --&gt; def-subgroup
-    def-group-example --&gt; def-inverse-element
-    def-group-example --&gt; def-binary-operation
+    def-group-example --&gt; def-identity-element
     def-group-example --&gt; thm-unique-identity
     def-group-example --&gt; ex-integers-addition
-    def-group-example --&gt; def-homomorphism
-    def-group-example --&gt; def-identity-element
+    def-group-example --&gt; def-binary-operation
     def-group-example --&gt; thm-lagrange
-    def-group-example --&gt; def-associativity
+    def-group-example --&gt; def-inverse-element
     class def-group-example current
 </pre>
 </div>
@@ -330,7 +330,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-group-example-1753034012" class="graph-visualization-container">
+<div id="graph-viz-def-group-example-1753035105" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -510,12 +510,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-group-example-1753034012', {
+    createForceGraph(data, 'graph-viz-def-group-example-1753035105', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-group-example-1753034012').innerHTML =
+    document.getElementById('graph-viz-def-group-example-1753035105').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

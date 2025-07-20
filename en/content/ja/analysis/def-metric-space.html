@@ -215,9 +215,9 @@ window.Quarto = {
   <li><a href="#記法" id="toc-記法" class="nav-link" data-scroll-target="#記法">記法</a></li>
   <li><a href="#重要な概念" id="toc-重要な概念" class="nav-link" data-scroll-target="#重要な概念">重要な概念</a></li>
   <li><a href="#位相との関係" id="toc-位相との関係" class="nav-link" data-scroll-target="#位相との関係">位相との関係</a></li>
-  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   <li><a href="#関連項目" id="toc-関連項目" class="nav-link" data-scroll-target="#関連項目">関連項目</a></li>
   <li><a href="#依存グラフ" id="toc-依存グラフ" class="nav-link" data-scroll-target="#依存グラフ">依存グラフ</a></li>
+  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -273,10 +273,54 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="位相との関係">位相との関係</h2>
 <p>すべての距離空間 <span class="math inline">\((X, d)\)</span> は <span class="math inline">\(X\)</span> 上に位相を誘導する。ここで開集合とは開球の和集合として表される集合である。これにより、すべての距離空間は<a href="../../../content/ja/topology/def-topological-space.html">位相空間</a>となる。</p>
 </section>
+<section id="関連項目" class="level2">
+<h2 class="anchored" data-anchor-id="関連項目">関連項目</h2>
+<ul>
+<li><a href="../../../content/ja/analysis/ex-real-line-metric.html">標準距離を持つ実数直線</a> - 標準距離を持つ実数直線</li>
+<li><a href="../../../content/ja/analysis/def-continuity.html">連続性</a> - 連続性は距離を用いて定義できる</li>
+<li><a href="../../../content/ja/topology/thm-metric-hausdorff.html">すべての距離空間はハウスドルフ</a> - すべての距離空間はハウスドルフ空間である</li>
+</ul>
+</section>
+<section id="依存グラフ" class="level2">
+<h2 class="anchored" data-anchor-id="依存グラフ">依存グラフ</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-metric-space["Definition: Metric Space"]:::definition
+    def-euclidean-space["Definition: Euclidean Space"]:::definition
+    def-set["Definition: Set"]:::definition
+    thm-heine-borel["Theorem: Heine-Borel Theorem"]:::theorem
+    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
+    ex-euclidean-metric["Example: Euclidean Metric on ℝⁿ"]:::example
+    ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
+    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
+    ex-euclidean-metric --&gt; def-metric-space
+    def-complete-metric-space --&gt; def-metric-space
+    def-euclidean-space --&gt; def-metric-space
+    ex-real-line-metric --&gt; def-metric-space
+    thm-heine-borel --&gt; def-metric-space
+    thm-metric-hausdorff --&gt; def-metric-space
+    def-metric-space --&gt; def-set
+    class def-metric-space current
+</pre>
+</div>
+<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-metric-space-1753034022" class="graph-visualization-container">
+<div id="graph-viz-def-metric-space-1753035116" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -456,12 +500,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-metric-space-1753034022', {
+    createForceGraph(data, 'graph-viz-def-metric-space-1753035116', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-metric-space-1753034022').innerHTML =
+    document.getElementById('graph-viz-def-metric-space-1753035116').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -524,69 +568,6 @@ if (document.readyState === 'loading') {
 </style>
 
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/def-metric-space.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
-</section>
-<section id="関連項目" class="level2">
-<h2 class="anchored" data-anchor-id="関連項目">関連項目</h2>
-<ul>
-<li><a href="../../../content/ja/analysis/ex-real-line-metric.html">標準距離を持つ実数直線</a> - 標準距離を持つ実数直線</li>
-<li><a href="../../../content/ja/analysis/def-continuity.html">連続性</a> - 連続性は距離を用いて定義できる</li>
-<li><a href="../../../content/ja/topology/thm-metric-hausdorff.html">すべての距離空間はハウスドルフ</a> - すべての距離空間はハウスドルフ空間である</li>
-</ul>
-</section>
-<section id="依存グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存グラフ">依存グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-continuity["定義：連続性"]:::definition
-    def-topological-space["定義：位相空間"]:::definition
-    def-set["定義：集合"]:::definition
-    ex-real-line-metric["例：標準距離を持つ実数直線"]:::example
-    thm-metric-hausdorff["定理：すべての距離空間はハウスドルフ"]:::theorem
-    def-complete-metric-space["定義：完備距離空間"]:::definition
-    def-metric-space["定義：距離空間"]:::definition
-    ex-euclidean-metric["例：ℝⁿ上のユークリッド距離"]:::example
-    def-euclidean-space["定義：ユークリッド空間"]:::definition
-    def-point["定義：点"]:::definition
-    thm-heine-borel["定理：ハイネ・ボレルの定理"]:::theorem
-    def-complete-metric-space --&gt; def-metric-space
-    def-metric-space --&gt; ex-real-line-metric
-    ex-euclidean-metric --&gt; def-metric-space
-    ex-real-line-metric --&gt; def-metric-space
-    def-point --&gt; def-metric-space
-    def-metric-space --&gt; thm-metric-hausdorff
-    thm-heine-borel --&gt; def-metric-space
-    thm-metric-hausdorff --&gt; def-metric-space
-    def-metric-space --&gt; def-topological-space
-    def-metric-space --&gt; def-set
-    def-metric-space --&gt; def-continuity
-    def-euclidean-space --&gt; def-metric-space
-    class def-metric-space current
-
-    click def-continuity "def-continuity.html" "Go to 定義：連続性"
-    click def-topological-space "def-topological-space.html" "Go to 定義：位相空間"
-    click def-set "def-set.html" "Go to 定義：集合"
-    click ex-real-line-metric "ex-real-line-metric.html" "Go to 例：標準距離を持つ実数直線"
-    click thm-metric-hausdorff "thm-metric-hausdorff.html" "Go to 定理：すべての距離空間はハウスドルフ"
-    click def-complete-metric-space "def-complete-metric-space.html" "Go to 定義：完備距離空間"
-    click ex-euclidean-metric "ex-euclidean-metric.html" "Go to 例：ℝⁿ上のユークリッド距離"
-    click def-euclidean-space "def-euclidean-space.html" "Go to 定義：ユークリッド空間"
-    click def-point "def-point.html" "Go to 定義：点"
-    click thm-heine-borel "thm-heine-borel.html" "Go to 定理：ハイネ・ボレルの定理"
-</pre>
-</div>
-<p></p><figcaption> ローカル依存グラフ</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
 
 
 </section>
