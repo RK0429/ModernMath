@@ -160,6 +160,38 @@ The ontology (`ontology/math-ontology.ttl`) defines:
 - **Fuseki**: SPARQL endpoint for graph queries
 - **Flask API**: REST interface for common queries
 
+### Visualization Troubleshooting
+
+#### Interactive Visualization Path Issues
+
+If interactive visualizations (D3/PyVis) fail to load due to path issues, the graph-viz extension needs to calculate relative paths dynamically:
+
+```javascript
+// In _extensions/graph-viz/graph-viz.lua
+// Calculate relative path based on current location
+const currentPath = window.location.pathname;
+const depth = (currentPath.match(/\//g) || []).length - 1;
+const basePath = "../".repeat(depth);
+const response = await fetch(basePath + "output/d3-data/%s.json");
+```
+
+This fix ensures visualizations load correctly from any nested directory level (e.g., `/content/ja/algebra/`).
+
+#### Making Mermaid Diagrams Clickable
+
+To enable navigation from Mermaid diagram nodes, add click directives:
+
+```mermaid
+graph TD
+    def-group["定義: 群"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-group --> def-binary-operation
+    click def-group "def-group.html" "群の定義へ"
+    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
+```
+
+Format: `click node-id "relative-path.html" "tooltip-text"`
+
 ## Multilingual Support
 
 The project supports multiple languages (currently English and Japanese) with automatic language detection and routing.
