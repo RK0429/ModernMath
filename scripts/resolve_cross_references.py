@@ -170,7 +170,8 @@ def pluralize_word(word: str) -> str:
         return word + 's'
 
 
-def resolve_references_in_file(file_path: Path, node_index: Dict[str, Path], dry_run: bool = False) -> int:
+def resolve_references_in_file(file_path: Path, node_index: Dict[str, Path],
+                               dry_run: bool = False) -> int:
     """
     Resolve cross-references in a single file.
     
@@ -238,7 +239,8 @@ def resolve_references_in_file(file_path: Path, node_index: Dict[str, Path], dry
             resolved_count += 1
             
             if not dry_run:
-                print(f"  Resolved: @{ref_id}{f'[{bracket_text}]' if bracket_text else ''} -> {link}")
+                bracket_part = f'[{bracket_text}]' if bracket_text else ''
+                print(f"  Resolved: @{ref_id}{bracket_part} -> {link}")
                 
     if content != original_content and not dry_run:
         with open(file_path, 'w', encoding='utf-8') as f:
@@ -248,7 +250,8 @@ def resolve_references_in_file(file_path: Path, node_index: Dict[str, Path], dry
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Resolve cross-references in Quarto markdown files')
+    parser = argparse.ArgumentParser(
+        description='Resolve cross-references in Quarto markdown files')
     parser.add_argument('--content-dir', type=Path, default=Path('content'),
                         help='Content directory (default: content)')
     parser.add_argument('--dry-run', action='store_true',
@@ -298,7 +301,8 @@ def main():
         else:
             print("  No cross-references to resolve")
             
-    print(f"\n{'Would resolve' if args.dry_run else 'Resolved'} {total_resolved} cross-references in {files_processed} files")
+    action = 'Would resolve' if args.dry_run else 'Resolved'
+    print(f"\n{action} {total_resolved} cross-references in {files_processed} files")
     
     if args.dry_run:
         print("\nRun without --dry-run to apply changes")

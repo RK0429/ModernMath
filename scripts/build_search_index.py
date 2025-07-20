@@ -4,10 +4,9 @@ Build a full-text search index from all content files.
 """
 
 import logging
-import os
 import re
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 import frontmatter
 from whoosh import index
@@ -17,6 +16,7 @@ from whoosh.analysis import StemmingAnalyzer
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
+
 
 # Define the search schema
 def create_schema() -> Schema:
@@ -190,8 +190,8 @@ def search_index(query_str: str, index_dir: Path, limit: int = 50) -> List[Dict]
     ix = index.open_dir(str(index_dir))
     
     # Create a multi-field parser that searches across title, content, and keywords
-    parser = MultifieldParser(["title", "content", "keywords", "description"], 
-                             ix.schema)
+    parser = MultifieldParser(["title", "content", "keywords", "description"],
+                              ix.schema)
     # Add fuzzy matching support
     parser.add_plugin(FuzzyTermPlugin())
     
