@@ -1,0 +1,94 @@
+---
+id: thm-law-of-large-numbers
+requires:
+- def-random-variable
+- def-expectation
+status: complete
+title: '定理: 大数の法則'
+type: Theorem
+translations:
+  en: ../en/probability-statistics/thm-law-of-large-numbers.qmd
+---
+
+# 定理: 大数の法則 {#thm-law-of-large-numbers}
+
+**大数の法則**は、独立同一分布に従う[確率変数](def-random-variable.qmd)の標本平均が、標本数が増加するにつれてそれらの[期待値](def-expectation.qmd)に収束することを述べています。
+
+## 大数の弱法則
+
+$X_1, X_2, \ldots$ を有限の期待値 $\mu = E[X_i]$ と有限の分散 $\sigma^2 = \text{Var}(X_i)$ を持つ独立同一分布の確率変数とします。
+
+標本平均を以下のように定義します：
+$$\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i$$
+
+このとき、任意の $\epsilon > 0$ に対して：
+$$\lim_{n \to \infty} P(|\bar{X}_n - \mu| > \epsilon) = 0$$
+
+これは確率収束です：$\bar{X}_n \xrightarrow{P} \mu$
+
+## 大数の強法則
+
+同じ条件の下で、概収束が成り立ちます：
+$$P\left(\lim_{n \to \infty} \bar{X}_n = \mu\right) = 1$$
+
+これは次のように書きます：$\bar{X}_n \xrightarrow{a.s.} \mu$
+
+## 証明の概要（弱法則）
+
+チェビシェフの不等式を用いて：
+$$P(|\bar{X}_n - \mu| > \epsilon) \leq \frac{\text{Var}(\bar{X}_n)}{\epsilon^2}$$
+
+$X_i$ が独立であることから：
+$$\text{Var}(\bar{X}_n) = \text{Var}\left(\frac{1}{n} \sum_{i=1}^n X_i\right) = \frac{1}{n^2} \sum_{i=1}^n \text{Var}(X_i) = \frac{\sigma^2}{n}$$
+
+したがって：
+$$P(|\bar{X}_n - \mu| > \epsilon) \leq \frac{\sigma^2}{n\epsilon^2} \to 0 \text{ （} n \to \infty \text{ のとき）}$$
+
+## 応用
+
+1. **経験的頻度は確率に収束する**
+2. **標本平均は母平均を近似する**
+3. **統計的推測の基礎**
+4. **モンテカルロ法**
+
+## 例
+
+公正なコイン投げ（ベルヌーイ(1/2)）では、投げる回数が増加するにつれて、表の割合は1/2に収束します。
+
+## Mermaidダイアグラム
+
+```mermaid
+graph TD
+    A[大数の法則] --> B[標本平均]
+    B --> C[X̄ₙ = (1/n)Σ Xᵢ]
+    A --> D[弱法則]
+    A --> E[強法則]
+    D --> F[確率収束]
+    E --> G[概収束]
+    F --> H[P(|X̄ₙ - μ| > ε) → 0]
+    G --> I[P(lim X̄ₙ = μ) = 1]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style D fill:#bbf,stroke:#333,stroke-width:2px
+    style E fill:#bbf,stroke:#333,stroke-width:2px
+    style H fill:#bfb,stroke:#333,stroke-width:2px
+    style I fill:#bfb,stroke:#333,stroke-width:2px
+```
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-random-variable["定義: 確率変数"]:::definition
+    thm-law-of-large-numbers["定理: 大数の法則"]:::theorem
+    def-expectation["定義: 期待値"]:::definition
+    thm-law-of-large-numbers --> def-random-variable
+    thm-law-of-large-numbers --> def-expectation
+    class thm-law-of-large-numbers current
+```

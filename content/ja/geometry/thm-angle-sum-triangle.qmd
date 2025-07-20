@@ -1,0 +1,74 @@
+---
+id: thm-angle-sum-triangle
+requires:
+- def-triangle
+- def-angle
+- def-line
+status: complete
+title: '定理: 三角形の内角の和'
+type: Theorem
+translations:
+  - lang: en
+    path: ../../en/geometry/thm-angle-sum-triangle.qmd
+---
+
+任意の[三角形](def-triangle.qmd)の内[角](def-angle.qmd)の和は $180°$（または $\pi$ ラジアン）に等しい。
+
+## 主張
+
+内角 $\alpha$、$\beta$、$\gamma$ を持つ任意の三角形 $\triangle ABC$ に対して：
+$$\alpha + \beta + \gamma = 180°$$
+
+## 証明（ユークリッド幾何学）
+
+三角形 $\triangle ABC$ が与えられたとき：
+
+1. 頂点 $A$ を通って、辺 $\overline{BC}$ に平行な[直線](def-line.qmd)を引く
+2. これにより $\angle BAC$ に隣接する2つの追加の角が作られる
+3. 平行線の公理と横断線の性質により：
+   - 1つの角は $\angle ABC$ に等しい（錯角）
+   - もう1つの角は $\angle BCA$ に等しい（錯角）
+4. 頂点 $A$ における3つの角は平角を形成し、その和は $180°$ である
+5. したがって：$\angle BAC + \angle ABC + \angle BCA = 180°$
+
+## 結果
+
+この定理にはいくつかの重要な含意がある：
+
+1. **三角形は2つの直角を持つことができない**：2つの角がそれぞれ $90°$ ならば、第3の角は $0°$ となるため
+2. **外角定理**：外角は隣接しない2つの内角の和に等しい
+3. **分類の制約**：任意の三角形において、高々1つの角が鈍角である
+
+## 一般化
+
+- 双曲幾何学では、角の和は $180°$ 未満
+- 球面幾何学では、角の和は $180°$ より大きい
+- $180°$ との差は空間の曲率に関係する
+
+## 応用
+
+- 航法と測量
+- 3つの角が三角形を形成できるかの判定
+- 幾何学問題における未知の角の解法
+- 三角法の基礎
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-angle-sum-triangle["定理: 三角形の内角の和"]:::theorem
+    def-angle["定義: 角"]:::definition
+    def-triangle["定義: 三角形"]:::definition
+    def-line["定義: 直線"]:::definition
+    thm-angle-sum-triangle --> def-line
+    thm-angle-sum-triangle --> def-angle
+    thm-angle-sum-triangle --> def-triangle
+    def-triangle --> thm-angle-sum-triangle
+    class thm-angle-sum-triangle current
+```

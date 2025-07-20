@@ -1,0 +1,72 @@
+---
+id: ex-finite-field
+requires:
+- def-field
+- def-prime
+status: complete
+title: '例: 有限体'
+type: Example
+translations:
+  en: "../../en/algebra/ex-finite-field.qmd"
+---
+
+# 例: 有限体 $\mathbb{F}_5$ {#ex-finite-field}
+
+5を法とする整数は[体](def-field.qmd)を形成し、$\mathbb{F}_5$ または $\mathbb{Z}/5\mathbb{Z}$ と表記されます。
+
+## 元と演算
+
+体 $\mathbb{F}_5 = \{0, 1, 2, 3, 4\}$ の演算：
+
+### 加法表（mod 5）
+```
++  | 0  1  2  3  4
+---|---------------
+0  | 0  1  2  3  4
+1  | 1  2  3  4  0
+2  | 2  3  4  0  1
+3  | 3  4  0  1  2
+4  | 4  0  1  2  3
+```
+
+### 乗法表（mod 5）
+```
+×  | 0  1  2  3  4
+---|---------------
+0  | 0  0  0  0  0
+1  | 0  1  2  3  4
+2  | 0  2  4  1  3
+3  | 0  3  1  4  2
+4  | 0  4  3  2  1
+```
+
+## 検証
+
+- **加法単位元**: 0
+- **乗法単位元**: 1
+- **加法逆元**: $-1 = 4$、$-2 = 3$、$-3 = 2$、$-4 = 1$
+- **乗法逆元**: $1^{-1} = 1$、$2^{-1} = 3$、$3^{-1} = 2$、$4^{-1} = 4$
+
+## 一般的な結果
+
+任意の[素数](../number-theory/def-prime.qmd) $p$ に対して、集合 $\mathbb{F}_p = \{0, 1, ..., p-1\}$ は $p$ を法とする算術演算で体を形成します。これは以下の理由によります：
+- すべての非零元は乗法逆元を持つ（フェルマーの小定理による）
+- $p$ が素数のとき、零因子は存在しない
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-finite-field["例: 有限体"]:::example
+    def-field["定義: 体"]:::definition
+    def-prime["定義: 素数"]:::definition
+    ex-finite-field --> def-field
+    ex-finite-field --> def-prime
+    class ex-finite-field current
+```

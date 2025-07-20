@@ -1,0 +1,59 @@
+---
+id: def-category
+requires:
+- def-set
+status: complete
+title: '定義: 圏'
+type: Definition
+translations:
+  en: ../../en/category-theory/def-category.qmd
+---
+
+# 圏 {#def-category}
+
+**圏**は、対象と射（矢印）から成る数学的構造であり、特定の公理を満たす合成操作を持ちます。
+
+## 形式的定義
+
+圏 $\mathcal{C}$ は以下から構成されます：
+
+1. **対象**の集まり、$\text{Ob}(\mathcal{C})$ と表記
+2. 各対象のペア $A, B$ に対して、$A$ から $B$ への**射**（または矢印）の[集合](../logic-set-theory/def-set.qmd)、$\text{Hom}_{\mathcal{C}}(A, B)$ と表記
+3. 各対象の三つ組 $A, B, C$ に対して、**合成操作**：
+   $$\circ: \text{Hom}(B, C) \times \text{Hom}(A, B) \to \text{Hom}(A, C)$$
+
+以下を満たす：
+
+### 公理
+
+1. **恒等射**: 各対象 $A$ に対して、恒等射 $\text{id}_A \in \text{Hom}(A, A)$ が存在し、以下を満たす：
+   - すべての $f: A \to B$ に対して $f \circ \text{id}_A = f$
+   - すべての $g: B \to A$ に対して $\text{id}_A \circ g = g$
+
+2. **結合律**: 射 $f: A \to B$、$g: B \to C$、$h: C \to D$ に対して：
+   $$h \circ (g \circ f) = (h \circ g) \circ f$$
+
+## 例
+
+- **Set**: 対象は集合、射は関数
+- **Grp**: 対象は群、射は群準同型
+- **Top**: 対象は位相空間、射は連続関数
+- **Vect**: 対象はベクトル空間、射は線形変換
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["定義: 集合"]:::definition
+    def-functor["定義: 関手"]:::definition
+    def-category["定義: 圏"]:::definition
+    def-category --> def-set
+    def-functor --> def-category
+    class def-category current
+```

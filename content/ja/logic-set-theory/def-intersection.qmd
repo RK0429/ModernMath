@@ -1,0 +1,78 @@
+---
+id: def-intersection
+requires:
+- def-set
+status: complete
+title: '定義: 共通部分'
+type: Definition
+translations:
+  en: ../../en/logic-set-theory/def-intersection.qmd
+---
+
+2つの[集合](def-set.qmd) $A$ と $B$ の**共通部分**（または**積集合**）は、$A \cap B$ と表記され、$A$ と $B$ の両方に属するすべての要素を含む集合です。
+
+## 形式的定義
+
+$$A \cap B = \{x : x \in A \text{ かつ } x \in B\}$$
+
+論理記号を使って同値に表現すると：
+$$x \in A \cap B \iff (x \in A) \land (x \in B)$$
+
+## 性質
+
+1. **可換性**: $A \cap B = B \cap A$
+2. **結合性**: $(A \cap B) \cap C = A \cap (B \cap C)$
+3. **単位元**: $A \cap U = A$（ここで $U$ は全体集合）
+4. **零元**: $A \cap \emptyset = \emptyset$
+5. **べき等性**: $A \cap A = A$
+6. **吸収**: $A \subseteq B$ ならば $A \cap B = A$
+
+## 一般化された共通部分
+
+空でない集合の族 $\{A_i : i \in I\}$ に対して：
+$$\bigcap_{i \in I} A_i = \{x : \forall i \in I, x \in A_i\}$$
+
+特殊な場合：
+- 有限個の共通部分: $\bigcap_{i=1}^n A_i = A_1 \cap A_2 \cap \cdots \cap A_n$
+- 無限個の共通部分: $\bigcap_{i=1}^{\infty} A_i$
+
+## 互いに素な集合
+
+2つの集合 $A$ と $B$ が**互いに素**（または**素**）であるとは、それらの共通部分が空である場合をいう：
+$$A \cap B = \emptyset$$
+
+## 例
+
+- $\{1, 2, 3\} \cap \{2, 3, 4\} = \{2, 3\}$
+- $\mathbb{Z} \cap \mathbb{N} = \mathbb{N}$（整数と自然数の共通部分は自然数）
+- 区間の場合: $[0, 2] \cap [1, 3] = [1, 2]$
+- 偶数と奇数は互いに素: $2\mathbb{Z} \cap (2\mathbb{Z} + 1) = \emptyset$
+
+## 他の演算との関係
+
+- ド・モルガンの法則: $(A \cap B)^c = A^c \cup B^c$（[ド・モルガンの法則](thm-de-morgan.qmd)を参照）
+- 分配律: $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+- [部分集合](def-subset.qmd)との関係: $A \cap B = A \iff A \subseteq B$
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所的な依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-event["定義: 事象"]:::definition
+    def-set["定義: 集合"]:::definition
+    thm-de-morgan["定理: ド・モルガンの法則"]:::theorem
+    def-subset["定義: 部分集合"]:::definition
+    def-intersection["定義: 共通部分"]:::definition
+    def-event --> def-intersection
+    def-intersection --> def-set
+    def-intersection --> def-subset
+    def-intersection --> thm-de-morgan
+    thm-de-morgan --> def-intersection
+    class def-intersection current
+```

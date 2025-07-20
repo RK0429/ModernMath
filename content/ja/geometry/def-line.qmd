@@ -1,0 +1,67 @@
+---
+id: def-line
+requires:
+- def-point
+status: complete
+title: '定義: 直線'
+type: Definition
+translations:
+  en: ../../en/geometry/def-line.qmd
+---
+
+**直線**は、両方向に無限に延びる1次元の幾何学的対象です。直線上にある任意の2つの異なる[点](def-point.qmd)によって完全に決定されます。
+
+## 形式的定義
+
+異なる数学的文脈において：
+
+1. **ユークリッド幾何学**: 直線はユークリッドの公理を満たす未定義の基本概念であり、特に：
+   - 任意の2つの異なる点を通って、ただ1つの直線が存在する
+   - 直線は無限に多くの点を含む
+
+2. **座標幾何学**: $\mathbb{R}^2$ において、直線は以下を満たすすべての点 $(x, y)$ の集合：
+   $$ax + by + c = 0$$
+   ここで $a$, $b$, $c \in \mathbb{R}$ かつ $(a, b) \neq (0, 0)$
+
+3. **ベクトル空間**: 点 $P$ を通り方向 $\vec{v}$ の直線は：
+   $$\ell = \{P + t\vec{v} : t \in \mathbb{R}\}$$
+
+## 性質
+
+- 直線は太さや幅を持たない
+- 平面内の任意の2つの異なる直線は、ちょうど1点で交わるか平行である
+- [ユークリッド空間](def-euclidean-space.qmd)において、2点間の最短経路はそれらを結ぶ直線上にある
+
+## 関連概念
+
+- **線分**: 2点間の直線の部分
+- **半直線（レイ）**: ある点から始まり一方向に無限に延びる半直線
+- **平行線**: 決して交わらない同一平面上の直線
+- **垂直線**: 90°の角で交わる直線
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-angle-sum-triangle["定理: 三角形の内角の和"]:::theorem
+    def-triangle["定義: 三角形"]:::definition
+    def-angle["定義: 角"]:::definition
+    def-parallel["定義: 平行線"]:::definition
+    def-euclidean-space["定義: ユークリッド空間"]:::definition
+    def-point["定義: 点"]:::definition
+    def-line["定義: 直線"]:::definition
+    def-parallel --> def-line
+    def-point --> def-line
+    thm-angle-sum-triangle --> def-line
+    def-line --> def-point
+    def-angle --> def-line
+    def-line --> def-euclidean-space
+    def-triangle --> def-line
+    class def-line current
+```

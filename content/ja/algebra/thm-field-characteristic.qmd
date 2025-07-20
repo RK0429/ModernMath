@@ -1,0 +1,68 @@
+---
+id: thm-field-characteristic
+requires:
+- def-field
+- def-prime
+- def-ring
+status: complete
+title: '定理: 体の標数'
+type: Theorem
+translations:
+  en: /content/en/algebra/thm-field-characteristic.qmd
+---
+
+# 定理: 体の標数 {#thm-field-characteristic}
+
+すべての[体](def-field.qmd)の標数は0または[素数](../number-theory/def-prime.qmd)である。
+
+## 定義
+
+体$F$の**標数**（characteristic）、記号$\text{char}(F)$で表される、は以下を満たす最小の正整数$n$である：
+$$\underbrace{1 + 1 + ... + 1}_{n \text{ 個}} = 0$$
+
+そのような$n$が存在しない場合、$\text{char}(F) = 0$と定義する。
+
+## 主張
+
+任意の体$F$に対して：
+1. $\text{char}(F) \neq 0$ならば、ある素数$p$に対して$\text{char}(F) = p$である
+2. $\text{char}(F) = 0$ならば、$F$は$\mathbb{Q}$のコピーを含む
+3. $\text{char}(F) = p$ならば、$F$は$\mathbb{F}_p$のコピーを含む
+
+## 証明の概略
+
+$\text{char}(F) = n > 0$とする。$n = ab$（ただし$1 < a, b < n$）とすると：
+$$(a \cdot 1)(b \cdot 1) = (ab) \cdot 1 = n \cdot 1 = 0$$
+
+体には零因子が存在しないため、$a \cdot 1 = 0$または$b \cdot 1 = 0$となり、$n$の最小性に矛盾する。したがって$n$は素数でなければならない。
+
+## 例
+
+- $\text{char}(\mathbb{Q}) = 0$、$\text{char}(\mathbb{R}) = 0$、$\text{char}(\mathbb{C}) = 0$
+- 任意の素数$p$に対して$\text{char}(\mathbb{F}_p) = p$
+- 任意の素数べき$p^n$に対して$\text{char}(GF(p^n)) = p$
+
+## 帰結
+
+- 標数$p$において：$(a + b)^p = a^p + b^p$（フレッシュマンの夢）
+- 標数$p$においてフロベニウス写像$x \mapsto x^p$は体準同型である
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所的な依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-field["定義: 体"]:::definition
+    thm-field-characteristic["定理: 体の標数"]:::theorem
+    def-ring["定義: 環"]:::definition
+    def-prime["定義: 素数"]:::definition
+    thm-field-characteristic --> def-ring
+    thm-field-characteristic --> def-field
+    thm-field-characteristic --> def-prime
+    class thm-field-characteristic current
+```

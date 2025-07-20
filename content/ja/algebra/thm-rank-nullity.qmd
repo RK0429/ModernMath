@@ -1,0 +1,72 @@
+---
+id: thm-rank-nullity
+requires:
+- def-linear-transformation
+- def-vector-space
+- def-kernel
+- def-image
+status: complete
+title: '定理: 階数・退化次数定理'
+type: Theorem
+translations:
+  en: /content/en/algebra/thm-rank-nullity.qmd
+---
+
+# 定理: 階数・退化次数定理 {#thm-rank-nullity}
+
+有限次元[ベクトル空間](def-vector-space.qmd)間の任意の[線形変換](def-linear-transformation.qmd)$T: V \to W$に対して、[核](def-kernel.qmd)と[像](def-image.qmd)の次元は基本的な関係を満たす。
+
+## 主張
+
+$T: V \to W$を線形変換とし、$V$が有限次元であるとする。このとき：
+$$\dim(V) = \dim(\ker(T)) + \dim(\text{im}(T))$$
+
+ここで：
+- $\ker(T) = \{\mathbf{v} \in V : T(\mathbf{v}) = \mathbf{0}\}$は$T$の核（零空間）
+- $\text{im}(T) = \{T(\mathbf{v}) : \mathbf{v} \in V\}$は$T$の像（値域）
+
+## 別の定式化
+
+標準的な用語を用いると：
+$$\text{nullity}(T) + \text{rank}(T) = \dim(V)$$
+
+ここで：
+- $\text{nullity}(T) = \dim(\ker(T))$（退化次数）
+- $\text{rank}(T) = \dim(\text{im}(T))$（階数）
+
+## 証明の概要
+
+1. $\{\mathbf{u}_1, \ldots, \mathbf{u}_k\}$を$\ker(T)$の基底とする
+2. これを$V$の基底$\{\mathbf{u}_1, \ldots, \mathbf{u}_k, \mathbf{v}_1, \ldots, \mathbf{v}_r\}$に拡張する
+3. $\{T(\mathbf{v}_1), \ldots, T(\mathbf{v}_r)\}$が$\text{im}(T)$の基底であることを示す
+4. したがって：$k + r = \dim(V)$、ただし$k = \dim(\ker(T))$、$r = \dim(\text{im}(T))$
+
+## 帰結
+
+- **単射性判定**：$T$が単射であることと$\dim(\ker(T)) = 0$は同値
+- **全射性判定**：$T$が全射であることと$\dim(\text{im}(T)) = \dim(W)$は同値
+- **同型性判定**：$\dim(V) = \dim(W)$のとき、$T$が同型であることと$T$が単射（または全射）であることは同値
+
+この定理は線形変換の構造を理解し、連立一次方程式を解く上で基本的である。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所的な依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-rank-nullity["定理: 階数・退化次数定理"]:::theorem
+    def-image["定義: 像"]:::definition
+    def-linear-transformation["定義: 線形変換"]:::definition
+    def-vector-space["定義: ベクトル空間"]:::definition
+    def-kernel["定義: 核"]:::definition
+    thm-rank-nullity --> def-vector-space
+    thm-rank-nullity --> def-image
+    thm-rank-nullity --> def-kernel
+    thm-rank-nullity --> def-linear-transformation
+    class thm-rank-nullity current
+```

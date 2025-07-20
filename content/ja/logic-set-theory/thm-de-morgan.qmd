@@ -1,0 +1,95 @@
+---
+id: thm-de-morgan
+requires:
+- def-set
+- def-union
+- def-intersection
+status: complete
+title: '定理: ド・モルガンの法則'
+type: Theorem
+translations:
+  en: ../../../en/logic-set-theory/thm-de-morgan.qmd
+---
+
+**ド・モルガンの法則**は、[和集合](def-union.qmd)、[共通部分](def-intersection.qmd)、および集合の補集合の間の関係を記述する。和集合の補集合は補集合の共通部分に等しく、共通部分の補集合は補集合の和集合に等しいことを主張する。
+
+## 主張
+
+全体集合 $U$ における任意の[集合](def-set.qmd) $A$ と $B$ に対して：
+
+1. $(A \cup B)^c = A^c \cap B^c$
+2. $(A \cap B)^c = A^c \cup B^c$
+
+ここで、$X^c$ は $U$ における集合 $X$ の補集合を表す。
+
+## 証明
+
+### 第一法則：$(A \cup B)^c = A^c \cap B^c$
+
+相互の部分集合関係を示すことで証明する。
+
+**パート1**：$(A \cup B)^c \subseteq A^c \cap B^c$
+
+$x \in (A \cup B)^c$ とする。このとき：
+- $x \notin A \cup B$
+- $x \notin A$ かつ $x \notin B$（和集合の定義より）
+- $x \in A^c$ かつ $x \in B^c$（補集合の定義より）
+- $x \in A^c \cap B^c$（共通部分の定義より）
+
+**パート2**：$A^c \cap B^c \subseteq (A \cup B)^c$
+
+$x \in A^c \cap B^c$ とする。このとき：
+- $x \in A^c$ かつ $x \in B^c$
+- $x \notin A$ かつ $x \notin B$
+- $x \notin A \cup B$
+- $x \in (A \cup B)^c$
+
+したがって、$(A \cup B)^c = A^c \cap B^c$ が成り立つ。
+
+### 第二法則：$(A \cap B)^c = A^c \cup B^c$
+
+証明は次の論理的同値性を用いて同様の構造に従う：
+$\neg(P \land Q) \equiv \neg P \lor \neg Q$
+
+## 一般化されたド・モルガンの法則
+
+集合の族 $\{A_i : i \in I\}$ に対して：
+
+1. $\left(\bigcup_{i \in I} A_i\right)^c = \bigcap_{i \in I} A_i^c$
+2. $\left(\bigcap_{i \in I} A_i\right)^c = \bigcup_{i \in I} A_i^c$
+
+## 応用
+
+1. **論理学**：ブール代数と命題論理における対応する法則
+2. **確率論**：$P(A^c \cap B^c) = P((A \cup B)^c) = 1 - P(A \cup B)$
+3. **計算機科学**：回路設計とブール関数の簡略化
+4. **集合論**：複雑な集合の式の簡略化
+
+## 例
+
+$U = \{1, 2, 3, 4, 5, 6\}$ において $A = \{1, 2, 3\}$、$B = \{3, 4, 5\}$ とすると：
+- $A \cup B = \{1, 2, 3, 4, 5\}$ より、$(A \cup B)^c = \{6\}$
+- $A^c = \{4, 5, 6\}$ かつ $B^c = \{1, 2, 6\}$
+- $A^c \cap B^c = \{6\}$ ✓
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-intersection["定義: 共通部分"]:::definition
+    def-union["定義: 和集合"]:::definition
+    def-set["定義: 集合"]:::definition
+    thm-de-morgan["定理: ド・モルガンの法則"]:::theorem
+    thm-de-morgan --> def-set
+    thm-de-morgan --> def-union
+    def-union --> thm-de-morgan
+    def-intersection --> thm-de-morgan
+    thm-de-morgan --> def-intersection
+    class thm-de-morgan current
+```

@@ -1,0 +1,63 @@
+---
+id: thm-intermediate-value
+requires:
+- def-connected
+- def-continuity
+status: complete
+title: '定理: 中間値の定理'
+type: Theorem
+translations:
+  en: ../en/topology/thm-intermediate-value.qmd
+---
+
+# 中間値の定理 {#thm-intermediate-value}
+
+[連結空間](def-connected.qmd)から実数への[連続](../analysis/def-continuity.qmd)関数は、すべての中間値を取る。
+
+## 主張
+
+$X$ を連結位相空間とし、$f: X \to \mathbb{R}$ を連続関数とする。$a < b$ を満たす $a, b \in f(X)$ に対して、すべての $c \in (a, b)$ について、$f(x) = c$ となる $x \in X$ が存在する。
+
+## 古典的な形
+
+$X = [a, b] \subseteq \mathbb{R}$ が閉区間の特別な場合：
+
+$f: [a, b] \to \mathbb{R}$ が連続で $f(a) < c < f(b)$（または $f(b) < c < f(a)$）ならば、$f(x_0) = c$ となる $x_0 \in (a, b)$ が存在する。
+
+## 証明の概要
+
+証明は以下の事実に基づく：
+1. 連結空間の連続像は連結である
+2. $\mathbb{R}$ の連結部分集合は区間である
+3. 区間はすべての中間値を含む
+
+## 応用
+
+- 連続関数の根の発見
+- 不動点の存在証明
+- 区間上の連続関数の性質の確立
+- 微分方程式の解析
+
+## 例
+
+任意の奇数次多項式は少なくとも1つの実根を持つ。なぜなら：
+- $\lim_{x \to \infty} P(x) = \infty$ かつ $\lim_{x \to -\infty} P(x) = -\infty$（またはその逆）
+- 中間値の定理により、ある $x$ に対して $P(x) = 0$
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-connected["定義: 連結空間"]:::definition
+    def-continuity["定義: 連続性"]:::definition
+    thm-intermediate-value["定理: 中間値の定理"]:::theorem
+    thm-intermediate-value --> def-continuity
+    thm-intermediate-value --> def-connected
+    class thm-intermediate-value current
+```

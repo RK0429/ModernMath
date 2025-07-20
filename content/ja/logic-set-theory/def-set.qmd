@@ -1,0 +1,67 @@
+---
+id: def-set
+status: complete
+title: '定義: 集合'
+type: Definition
+translations:
+  en: ../../en/logic-set-theory/def-set.qmd
+---
+
+# 定義: 集合 {#def-set}
+
+**集合**とは、**要素**または**元**と呼ばれる、明確に区別される対象の集まりです。
+
+## 記法
+
+- $a$ が集合 $A$ の要素であるとき、$a \in A$ と書く
+- $a$ が集合 $A$ の要素でないとき、$a \notin A$ と書く
+- 集合は通常大文字で表記される: $A, B, C, \ldots$
+- 要素は通常小文字で表記される: $a, b, c, \ldots$
+
+## 集合の定義方法
+
+1. **外延的記法**: すべての要素を波括弧内に列挙
+   - 例: $A = \{1, 2, 3, 4, 5\}$
+
+2. **内包的記法**: 要素が満たすべき性質を指定
+   - 例: $B = \{x \in \mathbb{N} : x < 6\}$
+
+## 基本的な性質
+
+- **一意性**: 各要素は集合内に1度だけ現れる
+- **順序不問**: 要素の順序は重要でない
+  - $\{1, 2, 3\} = \{3, 1, 2\}$
+- **明確性**: 任意の対象について、それが集合の要素であるか否かが明確でなければならない
+
+## 特殊な集合
+
+- **空集合**: 要素を持たない集合、$\emptyset$ または $\{\}$ で表記
+- **単元集合**: ちょうど1つの要素を持つ集合
+
+## 関連項目
+
+- 定義: 部分集合（準備中）
+- 定義: べき集合（準備中）
+- 例: 加法における整数（集合の概念を使用）
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所的な依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-group["定義: 群"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
+    ex-integers-addition["例: 加法における整数"]:::example
+    def-topological-space["定義: 位相空間"]:::definition
+    def-group --> def-set
+    ex-integers-addition --> def-set
+    def-topological-space --> def-set
+    def-binary-operation --> def-set
+    class def-set current
+```

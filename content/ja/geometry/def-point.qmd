@@ -1,0 +1,62 @@
+---
+id: def-point
+status: complete
+title: '定義: 点'
+type: Definition
+translations:
+  - lang: en
+    path: ../../en/geometry/def-point.qmd
+---
+
+**点**は、空間内の位置を表す幾何学の原始概念であり、次元を持たない（長さ、幅、高さがない）。ユークリッド幾何学において、点は他のすべての幾何学的対象が構成される基本的な構成要素である。
+
+## 形式的扱い
+
+数学的文脈によって、点は異なる方法で形式化される：
+
+1. **ユークリッド幾何学**：点はユークリッドの公理を満たす未定義の原始概念
+2. **座標幾何学**：$n$次元空間の点は順序付き$n$組 $(x_1, x_2, ..., x_n)$ として表される
+3. **集合論的**：[ユークリッド空間](def-euclidean-space.qmd)において、点は単に$\mathbb{R}^n$の要素
+
+## 記法
+
+点は通常大文字で表記される：$A$、$B$、$C$、$P$、$Q$ など。
+
+## 性質
+
+- 点は位置を持つが大きさを持たない
+- 2つの異なる点は一意の[直線](def-line.qmd)を決定する
+- 3つの非共線点は一意の平面を決定する
+
+## 例
+
+- デカルト平面における原点 $(0, 0)$
+- [距離空間](def-metric-space.qmd)の任意の要素
+- 三角形や多角形などの幾何学図形の頂点
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-triangle["定義: 三角形"]:::definition
+    def-angle["定義: 角"]:::definition
+    def-parallel["定義: 平行線"]:::definition
+    def-metric-space["定義: 距離空間"]:::definition
+    def-euclidean-space["定義: ユークリッド空間"]:::definition
+    def-point["定義: 点"]:::definition
+    def-line["定義: 直線"]:::definition
+    def-parallel --> def-point
+    def-point --> def-line
+    def-point --> def-metric-space
+    def-line --> def-point
+    def-point --> def-euclidean-space
+    def-angle --> def-point
+    def-triangle --> def-point
+    class def-point current
+```

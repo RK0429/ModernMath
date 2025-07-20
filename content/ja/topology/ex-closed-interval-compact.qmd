@@ -1,0 +1,69 @@
+---
+id: ex-closed-interval-compact
+requires:
+- def-compact
+- def-topological-space
+- thm-heine-borel
+status: complete
+title: '例: 閉区間はコンパクト'
+type: Example
+translations:
+  en: ../en/topology/ex-closed-interval-compact.qmd
+---
+
+# 例: 閉区間はコンパクト
+
+$\mathbb{R}$（標準位相）における閉区間 $[a, b]$ は[コンパクト空間](def-compact.qmd)である。
+
+## 主張
+
+$a \leq b$ を満たす任意の $a, b \in \mathbb{R}$ に対して、閉区間 $[a, b] = \{x \in \mathbb{R} : a \leq x \leq b\}$ はコンパクトである。
+
+## 直観的理解
+
+$[a, b]$ のコンパクト性は、$[a, b]$ を被覆する開集合の任意の集合族から、常に有限個の開集合を選んで $[a, b]$ を被覆できることを意味する。これは、$[a, b]$ が無限個の点を含むにもかかわらず「有限の広がり」を持つという考えを捉えている。
+
+## 証明の概要
+
+[ハイネ・ボレルの定理](thm-heine-borel.qmd)により、$\mathbb{R}^n$ の部分集合がコンパクトであることと、それが閉かつ有界であることは同値である。以下を確認する：
+
+1. **閉集合**: $[a, b]$ の補集合 $(-\infty, a) \cup (b, \infty)$ は開集合なので、$[a, b]$ は閉集合である。
+2. **有界**: $[a, b]$ のすべての元は $a$ と $b$ の間にあるので、$[a, b]$ は有界である。
+
+したがって、$[a, b]$ はコンパクトである。
+
+## 反例との対比
+
+- 開区間 $(a, b)$ は**コンパクトでない**（有界だが閉でない）
+- 半直線 $[a, \infty)$ は**コンパクトでない**（閉だが有界でない）
+- 実数直線全体 $\mathbb{R}$ は**コンパクトでない**（閉だが有界でない）
+
+## 応用
+
+閉区間のコンパクト性は解析学の基礎である：
+- $[a, b]$ 上の連続関数が最大値と最小値を取ることを保証する
+- $[a, b]$ 上の連続関数の一様連続性の証明に重要である
+- 連続関数のリーマン可積分性に不可欠である
+
+```{mermaid}
+```
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-topological-space["定義: 位相空間"]:::definition
+    ex-closed-interval-compact["例: 閉区間はコンパクト"]:::example
+    def-compact["定義: コンパクト空間"]:::definition
+    thm-heine-borel["定理: ハイネ・ボレルの定理"]:::theorem
+    ex-closed-interval-compact --> def-topological-space
+    ex-closed-interval-compact --> def-compact
+    ex-closed-interval-compact --> thm-heine-borel
+    class ex-closed-interval-compact current
+```

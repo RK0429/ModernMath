@@ -1,0 +1,67 @@
+---
+id: thm-unique-identity
+requires:
+- def-group
+status: complete
+title: '定理: 単位元の一意性'
+type: Theorem
+translations:
+  en: /content/en/algebra/thm-unique-identity.qmd
+---
+
+# 定理: 単位元の一意性 {#thm-unique-identity}
+
+$(G, \star)$を[群](def-group.qmd)とする。このとき、単位元は一意である。
+
+## 主張
+
+$e$と$e'$がともに$G$の単位元ならば、$e = e'$である。
+
+## 証明
+
+$e$と$e'$が群$(G, \star)$の単位元であるとする。
+
+$e$が単位元であることから、すべての$a \in G$に対して：
+$$a \star e = e \star a = a$$
+
+$e'$が単位元であることから、すべての$a \in G$に対して：
+$$a \star e' = e' \star a = a$$
+
+ここで、元$e \star e'$を考える：
+
+1. $e'$が単位元であることから：$e \star e' = e$
+2. $e$が単位元であることから：$e \star e' = e'$
+
+したがって、$e = e \star e' = e'$である。
+
+よって、単位元は一意である。$\square$
+
+## 帰結
+
+この定理により、群について議論するとき「ある」単位元ではなく「その」単位元という表現を使うことが正当化される。一意な単位元をしばしば次のように表記する：
+
+- 乗法的記法では$e$または$1$
+- 加法的記法では$0$
+
+## 関連する結果
+
+- 定理：逆元の一意性（近日公開）
+- [群](def-group.qmd)
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所的な依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-group["定義: 群"]:::definition
+    ex-integers-addition["例: 加法の下での整数"]:::example
+    thm-unique-identity["定理: 単位元の一意性"]:::theorem
+    ex-integers-addition --> thm-unique-identity
+    thm-unique-identity --> def-group
+    class thm-unique-identity current
+```

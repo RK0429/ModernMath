@@ -1,0 +1,74 @@
+---
+id: def-binary-operation
+lang: ja
+translations:
+  en: "../en/algebra/def-binary-operation.html"
+requires:
+- def-set
+status: complete
+title: '定義: 二項演算'
+type: Definition
+lean_id: MathKnowledgeGraph.Algebra.BinaryOp
+created: 2024-01-20
+updated: 2024-01-20
+tags:
+- 二項演算
+- 代数学
+- 演算
+---
+
+# 定義: 二項演算 {#def-binary-operation}
+
+$S$ を[集合](../logic-set-theory/def-set.qmd)とする。$S$ 上の**二項演算**とは、関数 $\star: S \times S \to S$ のことである。
+
+## 説明
+
+二項演算は集合から2つの要素を取り、同じ集合の別の要素を生成する。$\star(a, b)$ の代わりに $a \star b$ と書くことが多い。
+
+## 二項演算の性質
+
+集合 $S$ 上の二項演算 $\star$ は以下のような様々な性質を満たすことがある：
+
+1. **閉性**: 定義により、すべての $a, b \in S$ に対して $a \star b \in S$ である
+
+2. **結合性**: すべての $a, b, c \in S$ に対して $(a \star b) \star c = a \star (b \star c)$ である
+
+3. **可換性**: すべての $a, b \in S$ に対して $a \star b = b \star a$ である
+
+4. **単位元**: すべての $a \in S$ に対して $a \star e = e \star a = a$ となる $e \in S$ が存在する
+
+5. **逆元**: 各 $a \in S$ に対して、$a \star b = b \star a = e$ （ここで $e$ は単位元）となる $b \in S$ が存在する
+
+## 例
+
+一般的な二項演算には以下のものがある：
+
+- 整数 $\mathbb{Z}$ 上の加法（$+$）
+- 実数 $\mathbb{R}$ 上の乗法（$\cdot$）
+- $n \times n$ 行列上の行列積
+- 関数の合成
+
+## 関連項目
+
+- 定義: 群（この概念を使用）
+- 例: 加法における整数（この概念を説明）
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-binary-operation["定義: 二項演算"]:::definition
+    ex-integers-addition["例: 加法における整数"]:::example
+    def-set["定義: 集合"]:::definition
+    def-group["定義: 群"]:::definition
+    def-group --> def-binary-operation
+    ex-integers-addition --> def-binary-operation
+    def-binary-operation --> def-set
+    class def-binary-operation current
+```

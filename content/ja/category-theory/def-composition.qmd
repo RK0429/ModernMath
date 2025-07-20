@@ -1,0 +1,108 @@
+---
+id: def-composition
+requires:
+- def-category
+- def-morphism
+status: complete
+title: '定義: 合成'
+type: Definition
+translations:
+  en: ../../en/category-theory/def-composition.qmd
+---
+
+**合成**は[圏](def-category.qmd)における基本的な操作であり、互換性のある2つの[射](def-morphism.qmd)を結合して第3の射を生成します。
+
+## 形式的定義
+
+圏 $\mathcal{C}$ において、射が与えられたとき：
+- $f: A \to B$
+- $g: B \to C$
+
+これらの**合成**は射：
+$$g \circ f: A \to C$$
+
+合成は $f$ の余域が $g$ の域と等しいときに定義されます。
+
+## 公理
+
+合成は以下を満たさなければなりません：
+
+### 1. 結合律
+射 $f: A \to B$、$g: B \to C$、$h: C \to D$ に対して：
+$$(h \circ g) \circ f = h \circ (g \circ f)$$
+
+### 2. 恒等法則
+任意の射 $f: A \to B$ と恒等射 $\text{id}_A$、$\text{id}_B$ に対して：
+- **左恒等**: $\text{id}_B \circ f = f$
+- **右恒等**: $f \circ \text{id}_A = f$
+
+## 記法
+
+合成のさまざまな記法：
+- $g \circ f$（標準、「g after f」と読む）
+- $gf$（短縮形）
+- $f;g$（図式順序、「f then g」）
+- $fg$（時々使用されるが、混乱を招く可能性がある）
+
+## 例
+
+### 集合の圏
+**Set** において、射は関数：
+- $f: X \to Y$ と $g: Y \to Z$ のとき
+- すべての $x \in X$ に対して $(g \circ f)(x) = g(f(x))$
+
+### 線形変換
+ベクトル空間の圏において：
+- 射は線形写像
+- 合成は（有限次元では）行列の積
+
+### 群準同型
+**Grp**（群の圏）において：
+- $\phi: G \to H$ と $\psi: H \to K$ が準同型のとき
+- $(\psi \circ \phi)(g) = \psi(\phi(g))$ も準同型
+
+## 性質
+
+1. **非可換性**: 一般に $g \circ f \neq f \circ g$
+2. **部分演算**: すべての射のペアが合成可能なわけではない
+3. **構造の保存**: 合成は圏論的構造を保存する
+
+## 可換図式
+
+合成はしばしば可換図式を使って視覚化されます：
+```
+A ---f---> B
+|          |
+h          g
+|          |
+v          v
+C ---k---> D
+```
+この図式は $k \circ h = g \circ f$ のとき可換です
+
+## 関連概念
+
+- [同型射](def-isomorphism.qmd): 合成に関して両側逆射を持つ射
+- 自己射: 自分自身と合成可能な射
+- モノイド: すべての射が合成可能な単一対象圏
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-category["定義: 圏"]:::definition
+    def-isomorphism["定義: 同型射"]:::definition
+    def-composition["定義: 合成"]:::definition
+    def-morphism["定義: 射"]:::definition
+    def-isomorphism --> def-composition
+    def-composition --> def-morphism
+    def-composition --> def-category
+    def-composition --> def-isomorphism
+    class def-composition current
+```

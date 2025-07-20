@@ -1,0 +1,69 @@
+---
+id: def-hausdorff
+requires:
+- def-topological-space
+- def-open-set
+status: complete
+title: '定義: ハウスドルフ空間'
+type: Definition
+translations:
+  en: ../../en/topology/def-hausdorff.qmd
+---
+
+# 定義: ハウスドルフ空間 {#def-hausdorff}
+
+[位相空間](def-topological-space.qmd) $(X, \tau)$が**ハウスドルフ空間**（または**$T_2$空間**）であるとは、$x \neq y$なる任意の2つの異なる点$x, y \in X$に対して、[開集合](def-open-set.qmd) $U, V \in \tau$が存在して以下を満たすときをいいます：
+
+1. $x \in U$
+2. $y \in V$
+3. $U \cap V = \emptyset$
+
+言い換えれば、任意の2つの異なる点は交わらない開近傍によって「分離」できます。
+
+## 直観的理解
+
+ハウスドルフ性は、空間内の点が位相を使って互いに「区別可能」であることを保証します。これは位相空間論において最も重要な分離公理の一つです。
+
+## 性質
+
+- **極限の一意性**: ハウスドルフ空間では、点列やネットは高々1つの極限を持つ
+- **閉点**: ハウスドルフ空間では任意の一点集合$\{x\}$は閉集合である
+- **対角線性質**: 空間$X$がハウスドルフであることと、積位相を持つ$X \times X$において対角線$\Delta = \{(x,x) : x \in X\}$が閉集合であることは同値
+
+## 例と反例
+
+**ハウスドルフ空間の例:**
+- 任意の距離空間（[すべての距離空間はハウスドルフである](thm-metric-hausdorff.qmd)を参照）
+- 標準位相を持つ実数直線$\mathbb{R}$
+- 任意の離散空間
+
+**反例:**
+- 無限集合上の補有限位相
+- 代数多様体上のザリスキー位相（一般には）
+
+## 関連項目
+
+- [位相空間](def-topological-space.qmd) - この性質が定義される基本構造
+- [すべての距離空間はハウスドルフである](thm-metric-hausdorff.qmd) - すべての距離空間はハウスドルフである
+- @def-compact-space - コンパクト・ハウスドルフ空間は特に良い性質を持つ
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-open-set["定義: 開集合"]:::definition
+    thm-metric-hausdorff["定理: すべての距離空間はハウスドルフである"]:::theorem
+    def-topological-space["定義: 位相空間"]:::definition
+    def-hausdorff["定義: ハウスドルフ空間"]:::definition
+    def-hausdorff --> def-topological-space
+    def-hausdorff --> def-open-set
+    def-hausdorff --> thm-metric-hausdorff
+    thm-metric-hausdorff --> def-hausdorff
+    class def-hausdorff current
+```

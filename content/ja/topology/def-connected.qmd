@@ -1,0 +1,66 @@
+---
+id: def-connected
+requires:
+- def-topological-space
+- def-open-set
+- def-closed-set
+status: complete
+title: '定義: 連結空間'
+type: Definition
+translations:
+  en: ../../en/topology/def-connected.qmd
+---
+
+# 連結空間 {#def-connected}
+
+[位相空間](def-topological-space.qmd)が**連結**であるとは、それが2つの交わらない空でない[開集合](def-open-set.qmd)の和集合として表せないときをいいます。
+
+## 形式的定義
+
+位相空間$(X, \tau)$が連結であるとは、開かつ[閉](def-closed-set.qmd)である$X$の部分集合が$\emptyset$と$X$自身のみであるときをいいます。
+
+同値な表現として、$X$が連結であることは次と同値です：
+- $X$を$X = U \cup V$（ただし$U, V$は空でない交わらない開集合）と書けない
+- 連続全射$f: X \to \{0, 1\}$（離散位相）が存在しない
+
+## 非連結空間
+
+空間が非連結であるとは、$X = U \cup V$と書けるときをいいます。ここで：
+- $U, V$は空でない
+- $U \cap V = \emptyset$
+- $U, V$は両方とも開（または同値に、両方とも閉）
+
+## 性質
+
+- 連結空間の連続像は連結である
+- 連結集合の閉包は連結である
+- 連結集合の族$\{A_i\}$が$\bigcap A_i \neq \emptyset$を満たすなら、$\bigcup A_i$は連結である
+- 空間が連結であることと、$\{0, 1\}$への任意の連続関数が定数関数であることは同値
+
+## 例
+
+- 実数直線$\mathbb{R}$は連結である
+- $\mathbb{R}$の任意の区間$[a, b]$、$(a, b)$、$[a, b)$は連結である
+- 空間$\mathbb{R} \setminus \{0\}$は非連結である
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-connected["定義: 連結空間"]:::definition
+    def-closed-set["定義: 閉集合"]:::definition
+    def-open-set["定義: 開集合"]:::definition
+    thm-intermediate-value["定理: 中間値の定理"]:::theorem
+    def-topological-space["定義: 位相空間"]:::definition
+    def-connected --> def-closed-set
+    def-connected --> def-topological-space
+    thm-intermediate-value --> def-connected
+    def-connected --> def-open-set
+    class def-connected current
+```

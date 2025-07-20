@@ -1,0 +1,97 @@
+---
+id: def-identity-element
+lang: ja
+requires:
+- def-binary-operation
+status: complete
+title: '定義: 単位元'
+translations:
+  en: ../../en/algebra/def-identity-element.qmd
+type: Definition
+created: 2024-01-20
+updated: 2024-01-20
+---
+
+[二項演算](def-binary-operation.qmd)に対する**単位元**（たんいげん）とは、他の任意の元と結合したときにその元を変化させない元のことである。
+
+## 形式的定義
+
+$(S, *)$ を集合 $S$ と二項演算 $*$ の組とする。元 $e \in S$ は以下のように呼ばれる：
+
+### 左単位元
+すべての $a \in S$ に対して：
+$$e * a = a$$
+
+### 右単位元
+すべての $a \in S$ に対して：
+$$a * e = a$$
+
+### 両側単位元（または単に単位元）
+$e$ が左単位元かつ右単位元であるとき。
+
+## 一意性
+
+単位元が存在すれば、それは一意である：
+
+**証明**：$e$ と $e'$ がともに単位元であるとする。このとき：
+- $e = e * e'$（$e'$ は右単位元であるから）
+- $e * e' = e'$（$e$ は左単位元であるから）
+- したがって $e = e'$
+
+## 例
+
+### 算術演算
+- **$\mathbb{R}$ 上の加法**：単位元は 0、なぜなら $a + 0 = 0 + a = a$
+- **$\mathbb{R}$ 上の乗法**：単位元は 1、なぜなら $a \cdot 1 = 1 \cdot a = a$
+
+### 行列演算
+- **行列の加法**：零行列 $\mathbf{0}$
+- **行列の乗法**：対角成分が 1 の単位行列 $\mathbf{I}$
+
+### 集合演算
+- **和集合**：空集合 $\emptyset$、なぜなら $A \cup \emptyset = A$
+- **積集合**：全体集合 $U$、なぜなら $A \cap U = A$
+
+### 関数の合成
+- 関数 $f: X \to X$ の集合において、恒等関数 $\text{id}_X(x) = x$
+
+## 非例
+
+- **$\mathbb{R}$ 上の減法**：単位元は存在しない
+  - 右単位元が存在しない：$a - e = a$ は $e = 0$ を意味する
+  - しかし 0 は左単位元ではない：$0 - a = -a \neq a$
+
+## 関連概念
+
+- [群](def-group.qmd)：単位元を必要とする
+- **モノイド**：結合的演算と単位元を持つ集合
+- **逆元**：単位元に対して定義される
+- [単位元の一意性](thm-unique-identity.qmd)：群の文脈での一意性を証明
+
+## 性質
+
+1. [群](def-group.qmd)において、すべての元は単位元に関する逆元を持つ
+2. 単位元はそれ自身の逆元である：$e * e = e$
+3. 単位元は代数構造間の準同型写像によって保存される
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-group["定義: 群"]:::definition
+    def-identity-element["定義: 単位元"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-inverse-element["定義: 逆元"]:::definition
+    thm-unique-identity["定理: 単位元の一意性"]:::theorem
+    def-inverse-element --> def-identity-element
+    def-identity-element --> def-binary-operation
+    def-identity-element --> def-group
+    def-identity-element --> thm-unique-identity
+    class def-identity-element current
+```

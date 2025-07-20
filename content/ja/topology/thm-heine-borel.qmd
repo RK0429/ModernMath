@@ -1,0 +1,63 @@
+---
+id: thm-heine-borel
+requires:
+- def-compact
+- def-closed-set
+- def-metric-space
+status: complete
+title: '定理: ハイネ・ボレルの定理'
+type: Theorem
+translations:
+  en: ../en/topology/thm-heine-borel.qmd
+---
+
+# ハイネ・ボレルの定理 {#thm-heine-borel}
+
+ユークリッド空間 $\mathbb{R}^n$ の部分集合が[コンパクト空間](def-compact.qmd)であることと、それが[閉集合](def-closed-set.qmd)かつ有界であることは同値である。
+
+## 主張
+
+部分集合 $K \subseteq \mathbb{R}^n$（標準的な[距離空間](../geometry/def-metric-space.qmd)位相を持つ）に対して、以下は同値である：
+
+1. $K$ はコンパクトである
+2. $K$ は閉かつ有界である
+
+ここで、有界とは、すべての $x \in K$ に対して $\|x\| \leq M$ となる $M > 0$ が存在することを意味する。
+
+## 含意
+
+### 順方向
+
+$K$ が $\mathbb{R}^n$ でコンパクトならば：
+- $K$ は閉である（$\mathbb{R}^n$ はハウスドルフ空間だから）
+- $K$ は有界である（開被覆 $\{B(0, n)\}_{n=1}^{\infty}$ を考えることにより）
+
+### 逆方向
+
+$K$ が $\mathbb{R}^n$ で閉かつ有界ならば、$K$ はコンパクトである。
+
+## 応用
+
+- 有限次元ノルム空間におけるコンパクト集合の特徴付け
+- 連続関数の極値の存在証明
+- $\mathbb{R}^n$ における数列の収束性の確立
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-compact["定義: コンパクト空間"]:::definition
+    def-closed-set["定義: 閉集合"]:::definition
+    def-metric-space["定義: 距離空間"]:::definition
+    thm-heine-borel["定理: ハイネ・ボレルの定理"]:::theorem
+    thm-heine-borel --> def-metric-space
+    thm-heine-borel --> def-closed-set
+    thm-heine-borel --> def-compact
+    class thm-heine-borel current
+```

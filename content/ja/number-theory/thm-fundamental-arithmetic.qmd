@@ -1,0 +1,75 @@
+---
+id: thm-fundamental-arithmetic
+requires:
+- def-prime
+status: complete
+title: '定理：算術の基本定理'
+type: Theorem
+translations:
+  en: ../../../en/number-theory/thm-fundamental-arithmetic.qmd
+---
+
+# 定理：算術の基本定理 {#thm-fundamental-arithmetic}
+
+1より大きいすべての自然数は、因子の順序を除いて、[素数](def-prime.qmd)の積として一意的に表すことができます。
+
+## 主張
+
+すべての自然数 $n > 1$ に対して、一意的な素数 $p_1 < p_2 < \cdots < p_k$ と正の整数 $a_1, a_2, \ldots, a_k$ が存在して：
+$$n = p_1^{a_1} \cdot p_2^{a_2} \cdot \ldots \cdot p_k^{a_k}$$
+
+この表現を $n$ の**素因数分解**と呼びます。
+
+## 2つの部分
+
+この定理は2つの主張から成ります：
+
+1. **存在性**：すべての $n > 1$ は少なくとも1つの素因数分解を持つ
+2. **一意性**：素因数分解は（順序を除いて）一意的である
+
+## 証明の概要
+
+**存在性**（強帰納法による）：
+- 基底：$n = 2$ は素数なので、$n = 2^1$
+- 帰納的ステップ：$n$ が素数なら完了。そうでなければ、$n = ab$ （ただし $1 < a, b < n$）
+- 帰納法の仮定により、$a$ と $b$ の両方が素因数分解を持つ
+- これらを組み合わせることで $n$ の素因数分解が得られる
+
+**一意性**（背理法による）：
+- $n$ が2つの異なる素因数分解を持つと仮定
+- 素数の性質（$p \mid ab$ ならば $p \mid a$ または $p \mid b$）を用いて
+- 一方の分解に現れるすべての素数が他方にも現れることを示す
+- 指数も一致しなければならない
+
+## 例
+
+- $12 = 2^2 \cdot 3^1$
+- $30 = 2^1 \cdot 3^1 \cdot 5^1$
+- $100 = 2^2 \cdot 5^2$
+- $17 = 17^1$（素数は自明な因数分解を持つ）
+
+## 応用
+
+基本定理により以下が可能になります：
+- 最大公約数（GCD）の計算
+- 最小公倍数（LCM）の計算
+- 有理数の算術
+- 代数的数論における多くの結果
+
+この定理は素数を自然数の「構成要素」と呼ぶことを正当化します。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-prime["定義：素数"]:::definition
+    thm-fundamental-arithmetic["定理：算術の基本定理"]:::theorem
+    thm-fundamental-arithmetic --> def-prime
+    class thm-fundamental-arithmetic current
+```

@@ -1,0 +1,66 @@
+---
+id: def-linear-transformation
+requires:
+- def-vector-space
+status: complete
+title: '定義: 線形変換'
+type: Definition
+translations:
+  en: ../../en/algebra/def-linear-transformation.qmd
+---
+
+# 定義: 線形変換 {#def-linear-transformation}
+
+$V$ と $W$ を同じ体 $F$ 上の[ベクトル空間](def-vector-space.qmd)とします。関数 $T: V \to W$ が**線形変換**（または**線形写像**）であるとは、次の2つの性質を満たすことです：
+
+## 線形性の条件
+
+すべてのベクトル $\mathbf{u}, \mathbf{v} \in V$ とすべてのスカラー $a, b \in F$ に対して：
+
+1. **加法性**：$T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v})$
+2. **斉次性**：$T(a\mathbf{u}) = aT(\mathbf{u})$
+
+これら2つの条件は次の1つの条件にまとめることができます：
+$$T(a\mathbf{u} + b\mathbf{v}) = aT(\mathbf{u}) + bT(\mathbf{v})$$
+
+## 重要な性質
+
+$T: V \to W$ が線形変換ならば：
+
+- $T(\mathbf{0}_V) = \mathbf{0}_W$（ゼロをゼロに写す）
+- すべての $\mathbf{v} \in V$ に対して $T(-\mathbf{v}) = -T(\mathbf{v})$
+- 任意の線形結合に対して $T\left(\sum_{i=1}^n a_i\mathbf{v}_i\right) = \sum_{i=1}^n a_i T(\mathbf{v}_i)$
+
+## 特別な種類
+
+- **線形汎関数**：$W = F$（スカラー体）の場合
+- **線形作用素**：$V = W$（空間から自分自身への変換）の場合
+- **同型写像**：$T$ が全単射（一対一かつ上への写像）の場合
+
+線形変換はベクトル空間の構造を保存し、ベクトル空間の圏における射です。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-rank-nullity["定理: 階数・退化次数定理"]:::theorem
+    def-image["定義: 像"]:::definition
+    ex-matrix-transformation["例: 行列変換"]:::example
+    def-linear-transformation["定義: 線形変換"]:::definition
+    thm-linear-transformation-basis["定理: 基底による線形変換の決定"]:::theorem
+    def-vector-space["定義: ベクトル空間"]:::definition
+    def-kernel["定義: 核"]:::definition
+    def-image --> def-linear-transformation
+    thm-linear-transformation-basis --> def-linear-transformation
+    def-linear-transformation --> def-vector-space
+    def-kernel --> def-linear-transformation
+    ex-matrix-transformation --> def-linear-transformation
+    thm-rank-nullity --> def-linear-transformation
+    class def-linear-transformation current
+```

@@ -1,0 +1,58 @@
+---
+id: def-linear-independence
+requires:
+- def-vector-space
+status: complete
+title: '定義: 線形独立'
+type: Definition
+translations:
+  en: ../../en/algebra/def-linear-independence.qmd
+---
+
+# 定義: 線形独立 {#def-linear-independence}
+
+$V$ を体 $F$ 上の[ベクトル空間](def-vector-space.qmd)とします。ベクトルの集合 $\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k\} \subseteq V$ が**線形独立**であるとは、次の方程式：
+
+$$a_1\mathbf{v}_1 + a_2\mathbf{v}_2 + \cdots + a_k\mathbf{v}_k = \mathbf{0}$$
+
+の唯一の解が $a_1 = a_2 = \cdots = a_k = 0$ であることです。ここで $a_i \in F$ はスカラーです。
+
+## 同値条件
+
+以下は同値です：
+
+1. $\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k\}$ が線形独立である
+2. 集合内のどのベクトルも他のベクトルの線形結合として表すことができない
+3. $\sum_{i=1}^k a_i\mathbf{v}_i = \sum_{i=1}^k b_i\mathbf{v}_i$ ならば、すべての $i$ に対して $a_i = b_i$ である
+
+## 線形従属
+
+線形独立でないベクトルの集合を**線形従属**といいます。これは、すべてがゼロではないスカラー $a_1, a_2, \ldots, a_k$ が存在して、次を満たすことを意味します：
+$$a_1\mathbf{v}_1 + a_2\mathbf{v}_2 + \cdots + a_k\mathbf{v}_k = \mathbf{0}$$
+
+## 重要な性質
+
+- 空集合 $\emptyset$ は慣習により線形独立である
+- 零ベクトルを含む集合は常に線形従属である
+- 線形独立な集合の任意の部分集合は線形独立である
+- 集合が線形従属ならば、その任意の上集合も線形従属である
+
+線形独立は、ベクトルがベクトル空間内で「独立な方向」を提供するかを決定する基本的な概念です。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-linear-independence["定義: 線形独立"]:::definition
+    def-vector-space["定義: ベクトル空間"]:::definition
+    def-basis["定義: 基底"]:::definition
+    def-linear-independence --> def-vector-space
+    def-basis --> def-linear-independence
+    class def-linear-independence current
+```

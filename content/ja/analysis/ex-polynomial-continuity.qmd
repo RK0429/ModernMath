@@ -1,0 +1,67 @@
+---
+id: ex-polynomial-continuity
+requires:
+- def-continuity
+status: complete
+title: '例：多項式の連続性'
+type: Example
+translations:
+  en: ../../../en/analysis/ex-polynomial-continuity.qmd
+---
+
+# 例：多項式の連続性 {#ex-polynomial-continuity}
+
+多項式関数は $\mathbb{R}$ 上のすべての点で[連続](def-continuity.qmd)であり、連続関数の基本的な例を提供する。
+
+## 命題
+
+次のように定義される多項式関数 $p: \mathbb{R} \to \mathbb{R}$：
+$$p(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0$$
+ここで $a_i \in \mathbb{R}$ は、すべての点 $c \in \mathbb{R}$ で連続である。
+
+## 証明の方針
+
+単純な場合から構築していく：
+
+1. **定数関数**：$f(x) = a_0$ は連続
+   - 任意の $\varepsilon > 0$ に対して、任意の $\delta > 0$ を選ぶ
+   - すると $|f(x) - f(c)| = |a_0 - a_0| = 0 < \varepsilon$
+
+2. **恒等関数**：$f(x) = x$ は連続
+   - 任意の $\varepsilon > 0$ に対して、$\delta = \varepsilon$ と選ぶ
+   - $|x - c| < \delta$ ならば、$|f(x) - f(c)| = |x - c| < \delta = \varepsilon$
+
+3. **積と和**：連続関数の算術的性質を用いる：
+   - $f$ と $g$ が $c$ で連続ならば、$f + g$ と $f \cdot g$ も $c$ で連続
+   - 帰納法により、すべての $n \in \mathbb{N}$ に対して $x^n$ は連続
+   - したがって、各項 $a_i x^i$ は連続
+   - 和 $p(x) = \sum_{i=0}^n a_i x^i$ は連続
+
+## 具体例
+
+$p(x) = x^3 - 2x + 1$ を考える。$c = 1$ での連続性を確認：
+- $p(1) = 1 - 2 + 1 = 0$
+- 数列 $x_n \to 1$ に対して：$p(x_n) = x_n^3 - 2x_n + 1 \to 1^3 - 2(1) + 1 = 0 = p(1)$
+
+## 重要性
+
+多項式の連続性が重要な理由：
+- 多項式は他の関数を近似する（テイラー級数）
+- 連続関数の稠密な部分集合を形成する（ワイエルシュトラスの近似定理）
+- 連続性に関する定理を検証するための具体例を提供する
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-continuity["定義：連続性"]:::definition
+    ex-polynomial-continuity["例：多項式の連続性"]:::example
+    ex-polynomial-continuity --> def-continuity
+    class ex-polynomial-continuity current
+```

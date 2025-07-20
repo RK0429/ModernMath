@@ -1,0 +1,59 @@
+---
+id: def-permutation
+requires:
+- def-set
+status: complete
+title: '定義：順列'
+type: Definition
+---
+
+# 順列 {#def-permutation}
+
+[集合](../logic-set-theory/def-set.qmd)の**順列**は、その集合から自分自身への全単射関数です。
+
+## 形式的定義
+
+$S$ を集合とします。$S$ の順列は全単射 $\sigma: S \to S$ です。
+
+有限集合 $S = \{1, 2, ..., n\}$ に対して、順列は要素の並べ替えとして表現できます。
+
+## 記法
+
+順列はいくつかの方法で書くことができます：
+
+1. **2行記法**：
+   $$\sigma = \begin{pmatrix} 1 & 2 & 3 & ... & n \\ \sigma(1) & \sigma(2) & \sigma(3) & ... & \sigma(n) \end{pmatrix}$$
+
+2. **1行記法**：$\sigma = [\sigma(1), \sigma(2), ..., \sigma(n)]$
+
+3. **巡回記法**：$(a_1\ a_2\ ...\ a_k)$ は $a_1 \mapsto a_2 \mapsto ... \mapsto a_k \mapsto a_1$ を意味します
+
+## 性質
+
+- n個の要素のすべての順列の集合は対称群 $S_n$ を形成します
+- n個の異なる要素の順列の数は $n!$ です
+- すべての順列は互いに素な巡回置換に分解できます
+- すべての順列は互換の積として表現できます
+
+## 例
+
+$S = \{1, 2, 3\}$ に対して：
+- 恒等置換：$(1)(2)(3)$
+- 互換：$(1\ 2)(3)$
+- 3-巡回置換：$(1\ 2\ 3)$
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["定義：集合"]:::definition
+    def-permutation["定義：順列"]:::definition
+    def-permutation --> def-set
+    class def-permutation current
+```

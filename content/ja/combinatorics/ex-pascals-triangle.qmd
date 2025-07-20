@@ -1,0 +1,80 @@
+---
+id: ex-pascals-triangle
+requires:
+- def-binomial-coefficient
+status: complete
+title: '例：パスカルの三角形'
+type: Example
+---
+
+# 例：パスカルの三角形
+
+パスカルの三角形は、多くの組合せ論的性質の視覚的表現を提供する[二項係数](def-binomial-coefficient.qmd)の三角形配列です。
+
+## 構成
+
+三角形は以下の規則で構成されます：
+1. 最上段（第0行）には数字1のみが含まれます
+2. 各後続の行は1で始まり1で終わります
+3. 各内部の数字は、その上の2つの数字の和です
+
+```
+第0行：           1
+第1行：         1   1
+第2行：       1   2   1
+第3行：     1   3   3   1
+第4行：   1   4   6   4   1
+第5行： 1   5  10  10   5   1
+```
+
+## 二項係数との関係
+
+第n行の位置k（0から数える）のエントリは、まさに $\binom{n}{k}$ です：
+
+- 第0行：$\binom{0}{0} = 1$
+- 第1行：$\binom{1}{0} = 1$、$\binom{1}{1} = 1$
+- 第2行：$\binom{2}{0} = 1$、$\binom{2}{1} = 2$、$\binom{2}{2} = 1$
+- 第3行：$\binom{3}{0} = 1$、$\binom{3}{1} = 3$、$\binom{3}{2} = 3$、$\binom{3}{3} = 1$
+
+## 主要な性質
+
+1. **対称性**：各行は対称であり、$\binom{n}{k} = \binom{n}{n-k}$ を反映しています
+
+2. **行の和**：第n行の和は $2^n$ です：
+   $$\sum_{k=0}^{n} \binom{n}{k} = 2^n$$
+
+3. **ホッケースティックパターン**：任意の対角線に沿った和は、下と横のエントリに等しい：
+   $$\sum_{i=r}^{n} \binom{i}{r} = \binom{n+1}{r+1}$$
+
+4. **フィボナッチ数**：浅い対角線の和はフィボナッチ数を与えます
+
+## 応用
+
+1. **二項展開**：第n行は $(x+y)^n$ の係数を与えます
+2. **確率**：二項確率の計算に使用されます
+3. **組合せ恒等式**：多くの恒等式の視覚的証明
+4. **数論**：整除性の性質との関連
+
+## 母関数
+
+パスカルの三角形のエントリは以下を使用して生成できます：
+$$\frac{1}{(1-x)^{n+1}} = \sum_{k=0}^{\infty} \binom{n+k}{k} x^k$$
+
+```{mermaid}
+```
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-binomial-coefficient["定義：二項係数"]:::definition
+    ex-pascals-triangle["例：パスカルの三角形"]:::example
+    ex-pascals-triangle --> def-binomial-coefficient
+    class ex-pascals-triangle current
+```

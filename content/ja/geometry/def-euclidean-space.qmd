@@ -1,0 +1,82 @@
+---
+id: def-euclidean-space
+requires:
+- def-vector-space
+- def-metric-space
+status: complete
+title: '定義: ユークリッド空間'
+type: Definition
+translations:
+  en: ../../en/geometry/def-euclidean-space.qmd
+---
+
+# 定義: ユークリッド空間 {#def-euclidean-space}
+
+**$n$次元ユークリッド空間** $\mathbb{E}^n$ は、標準内積とそれから誘導される[計量](def-metric-space.qmd)を備えた[ベクトル空間](../algebra/def-vector-space.qmd) $\mathbb{R}^n$ です。
+
+## 形式的定義
+
+$n$次元ユークリッド空間は以下で構成されます：
+
+1. **基礎となる集合**: $\mathbb{R}^n = \{(x_1, x_2, \ldots, x_n) : x_i \in \mathbb{R}\}$
+
+2. **標準内積**: $\mathbf{x} = (x_1, \ldots, x_n)$ と $\mathbf{y} = (y_1, \ldots, y_n)$ に対して、
+   $$\langle \mathbf{x}, \mathbf{y} \rangle = \sum_{i=1}^n x_i y_i$$
+
+3. **ユークリッドノルム**:
+   $$\|\mathbf{x}\| = \sqrt{\langle \mathbf{x}, \mathbf{x} \rangle} = \sqrt{\sum_{i=1}^n x_i^2}$$
+
+4. **ユークリッド計量**:
+   $$d(\mathbf{x}, \mathbf{y}) = \|\mathbf{x} - \mathbf{y}\| = \sqrt{\sum_{i=1}^n (x_i - y_i)^2}$$
+
+## 性質
+
+- **完備距離空間**: すべてのコーシー列が収束する
+- **有限次元**: ベクトル空間として次元 $n$ を持つ
+- **局所コンパクト**: すべての点がコンパクトな近傍を持つ
+- **単連結**: $n \geq 2$ の場合
+- **等質**: どの点でも同じに見える
+
+## 特殊な場合
+
+- $\mathbb{E}^1$: 実数直線
+- $\mathbb{E}^2$: ユークリッド平面
+- $\mathbb{E}^3$: 3次元ユークリッド空間
+
+## Mermaidダイアグラム
+
+```mermaid
+graph TD
+    A[ユークリッド空間] --> B[ベクトル空間 ℝⁿ]
+    A --> C[内積]
+    A --> D[ユークリッド計量]
+    C --> E[ノルム]
+    E --> D
+    B --> F[線形構造]
+    D --> G[計量構造]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+    style D fill:#bbf,stroke:#333,stroke-width:2px
+```
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-pythagorean["定理: ピタゴラスの定理"]:::theorem
+    def-vector-space["定義: ベクトル空間"]:::definition
+    def-euclidean-space["定義: ユークリッド空間"]:::definition
+    def-metric-space["定義: 距離空間"]:::definition
+    def-euclidean-space --> def-metric-space
+    def-euclidean-space --> def-vector-space
+    thm-pythagorean --> def-euclidean-space
+    class def-euclidean-space current
+```

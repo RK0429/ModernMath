@@ -1,0 +1,87 @@
+---
+id: def-conditional-probability
+requires:
+- def-probability-space
+- def-event
+status: complete
+title: '定義: 条件付き確率'
+type: Definition
+translations:
+  en: ../../en/probability-statistics/def-conditional-probability.qmd
+---
+
+**条件付き確率**とは、[事象](def-event.qmd) $B$ が起こったという条件の下で、[事象](def-event.qmd) $A$ が起こる確率である。これは $P(A|B)$ と表記される。
+
+## 形式的定義
+
+[確率空間](def-probability-space.qmd)における2つの事象 $A$ と $B$ に対して、$P(B) > 0$ のとき、$B$ が与えられたときの $A$ の条件付き確率は次のように定義される：
+
+$$P(A|B) = \frac{P(A \cap B)}{P(B)}$$
+
+## 直感的理解
+
+- $P(A|B)$ は、$B$ が起こったことを知った後の $A$ の「更新された」確率を表す
+- $B$ が起こる結果の部分集合に注意を限定する
+- $P(B|B) = 1$ となるように確率を再スケールする
+
+## 性質
+
+1. **値域**: $0 \leq P(A|B) \leq 1$
+2. **確実性**: $P(B) > 0$ のとき $P(B|B) = 1$
+3. **不可能性**: $P(\emptyset|B) = 0$
+4. **部分集合**: $A \subseteq B$ ならば、$P(A|B) = \frac{P(A)}{P(B)}$
+
+## 乗法定理
+
+定義を変形すると次の式が得られる：
+$$P(A \cap B) = P(A|B) \cdot P(B) = P(B|A) \cdot P(A)$$
+
+複数の事象に対しては：
+$$P(A_1 \cap A_2 \cap \cdots \cap A_n) = P(A_1)P(A_2|A_1)P(A_3|A_1 \cap A_2)\cdots P(A_n|A_1 \cap \cdots \cap A_{n-1})$$
+
+## 独立性
+
+事象 $A$ と $B$ が**独立**であるとは、次が成り立つときである：
+$$P(A|B) = P(A)$$
+
+これは、$B$ が起こったことを知っても $A$ の確率が変わらないことを意味する。
+
+## 例
+
+1. **カードを引く**: 標準的なトランプからエースを引く
+   - $P(\text{エース}) = \frac{4}{52} = \frac{1}{13}$
+   - $P(\text{エース}|\text{赤いカード}) = \frac{2}{26} = \frac{1}{13}$ （独立）
+   - $P(\text{エース}|\text{絵札}) = 0$ （互いに排反）
+
+2. **医学検査**: 病気の有病率と検査の精度
+   - $P(\text{病気}) = 0.01$ で検査の精度が95%の場合
+   - $P(\text{陽性}|\text{病気})$ は感度を表す
+
+## 関連概念
+
+- [ベイズの定理](thm-bayes.qmd): $P(A|B)$ と $P(B|A)$ を関連付ける
+- 全確率の法則: 条件付き確率を使って計算する
+- 条件付き期待値は、この概念を[確率変数](def-random-variable.qmd)に拡張したもの
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-event["定義: 事象"]:::definition
+    def-random-variable["定義: 確率変数"]:::definition
+    thm-bayes["定理: ベイズの定理"]:::theorem
+    def-probability-space["定義: 確率空間"]:::definition
+    def-conditional-probability["定義: 条件付き確率"]:::definition
+    def-conditional-probability --> def-probability-space
+    def-conditional-probability --> def-random-variable
+    def-conditional-probability --> def-event
+    def-conditional-probability --> thm-bayes
+    thm-bayes --> def-conditional-probability
+    class def-conditional-probability current
+```

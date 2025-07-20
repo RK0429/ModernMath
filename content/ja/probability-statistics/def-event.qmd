@@ -1,0 +1,93 @@
+---
+id: def-event
+requires:
+- def-sample-space
+- def-subset
+status: complete
+title: '定義: 事象'
+type: Definition
+translations:
+  en: ../../en/probability-statistics/def-event.qmd
+---
+
+確率論における**事象**とは、[標本空間](def-sample-space.qmd) $\Omega$ の[部分集合](../logic-set-theory/def-subset.qmd)である。これは確率を割り当てることができる結果の集まりを表す。
+
+## 形式的定義
+
+標本空間 $\Omega$ が与えられたとき、事象 $A$ は $\Omega$ の任意の部分集合である：
+$$A \subseteq \Omega$$
+
+すべての事象の集まりは $\Omega$ 上のσ加法族（シグマ加法族）$\mathcal{F}$ を形成する。
+
+## 事象の種類
+
+1. **基本事象**: ちょうど1つの結果を含む
+   - 例: サイコロを振るときの $\{3\}$
+
+2. **複合事象**: 複数の結果を含む
+   - 例: サイコロを振るときの「偶数」= $\{2, 4, 6\}$
+
+3. **全事象**: 標本空間全体 $\Omega$
+   - 常に確率1で起こる
+
+4. **不可能事象**: 空集合 $\emptyset$
+   - 決して起こらず、確率は0
+
+## 事象の演算
+
+[和集合](../logic-set-theory/def-union.qmd)と[積集合](../logic-set-theory/def-intersection.qmd)の集合演算を使って：
+
+- **和集合** $A \cup B$: 「AまたはBが起こる」
+- **積集合** $A \cap B$: 「AとBの両方が起こる」
+- **補集合** $A^c$: 「Aが起こらない」
+- **差集合** $A \setminus B$: 「Aは起こるがBは起こらない」
+
+## 例
+
+$\Omega = \{1, 2, 3, 4, 5, 6\}$ のサイコロの場合：
+- 事象「偶数の目が出る」: $A = \{2, 4, 6\}$
+- 事象「4以上の目が出る」: $B = \{4, 5, 6\}$
+- $A \cap B = \{4, 6\}$ （偶数かつ4以上）
+- $A \cup B = \{2, 4, 5, 6\}$ （偶数または4以上）
+
+## 事象の確率
+
+[確率空間](def-probability-space.qmd)において、各事象 $A$ には次を満たす確率 $P(A)$ が割り当てられる：
+- $0 \leq P(A) \leq 1$
+- $P(\Omega) = 1$
+- $P(\emptyset) = 0$
+
+## 特別な関係
+
+- **互いに排反**: $A \cap B = \emptyset$ となる事象 $A$ と $B$
+- **網羅的**: 和集合が $\Omega$ に等しい事象
+- **独立**: $P(A \cap B) = P(A)P(B)$ となる事象
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-event["定義: 事象"]:::definition
+    def-sample-space["定義: 標本空間"]:::definition
+    thm-bayes["定理: ベイズの定理"]:::theorem
+    def-probability-space["定義: 確率空間"]:::definition
+    def-conditional-probability["定義: 条件付き確率"]:::definition
+    def-union["定義: 和集合"]:::definition
+    def-subset["定義: 部分集合"]:::definition
+    def-intersection["定義: 積集合"]:::definition
+    def-event --> def-sample-space
+    def-event --> def-intersection
+    def-event --> def-union
+    thm-bayes --> def-event
+    def-event --> def-probability-space
+    def-event --> def-subset
+    def-conditional-probability --> def-event
+    def-sample-space --> def-event
+    class def-event current
+```

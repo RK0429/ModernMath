@@ -1,0 +1,80 @@
+---
+id: def-power-set
+requires:
+- def-set
+status: complete
+title: '定義: べき集合'
+type: Definition
+translations:
+  en: ../../en/logic-set-theory/def-power-set.qmd
+---
+
+# 定義: べき集合 {#def-power-set}
+
+[集合](def-set.qmd) $A$ の**べき集合**は、$\mathcal{P}(A)$ または $2^A$ と表記され、$A$ のすべての部分集合からなる集合です。
+
+## 形式的定義
+
+$$\mathcal{P}(A) = \{B : B \subseteq A\}$$
+
+言い換えると、$B \in \mathcal{P}(A)$ であることと、$B$ のすべての要素が $A$ の要素でもあることは同値です。
+
+## 性質
+
+1. **常に空集合を含む**: 任意の集合 $A$ に対して $\emptyset \in \mathcal{P}(A)$
+2. **常に元の集合を含む**: $A \in \mathcal{P}(A)$
+3. **濃度**: $|A| = n$（有限）ならば $|\mathcal{P}(A)| = 2^n$
+4. **順序**: $\mathcal{P}(A)$ は包含関係の下で半順序集合をなす
+
+## 例
+
+1. $A = \emptyset$ ならば $\mathcal{P}(A) = \{\emptyset\}$
+
+2. $A = \{1\}$ ならば $\mathcal{P}(A) = \{\emptyset, \{1\}\}$
+
+3. $A = \{1, 2\}$ ならば $\mathcal{P}(A) = \{\emptyset, \{1\}, \{2\}, \{1, 2\}\}$
+
+4. $A = \{a, b, c\}$ ならば：
+   $$\mathcal{P}(A) = \{\emptyset, \{a\}, \{b\}, \{c\}, \{a,b\}, \{a,c\}, \{b,c\}, \{a,b,c\}\}$$
+
+## 集合論的性質
+
+- $A \subseteq B$ であることと $\mathcal{P}(A) \subseteq \mathcal{P}(B)$ は同値
+- $\mathcal{P}(A \cap B) = \mathcal{P}(A) \cap \mathcal{P}(B)$
+- $\mathcal{P}(A) \cup \mathcal{P}(B) \subseteq \mathcal{P}(A \cup B)$（ただし必ずしも等しくない）
+
+## Mermaid図
+
+```mermaid
+graph TD
+    A[べき集合 P(A)] --> B[∅ を含む]
+    A --> C[A を含む]
+    A --> D[A のすべての部分集合]
+    D --> E[濃度: 2^|A|]
+    D --> F[⊆ による半順序]
+
+    A --> G[例: A = {1,2}]
+    G --> H[P(A) = {∅, {1}, {2}, {1,2}}]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style D fill:#bbf,stroke:#333,stroke-width:2px
+    style E fill:#bfb,stroke:#333,stroke-width:2px
+```
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所的な依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["定義: 集合"]:::definition
+    thm-cantor["定理: カントールの定理"]:::theorem
+    def-power-set["定義: べき集合"]:::definition
+    thm-cantor --> def-power-set
+    def-power-set --> def-set
+    class def-power-set current
+```

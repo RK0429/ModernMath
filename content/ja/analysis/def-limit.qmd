@@ -1,0 +1,61 @@
+---
+id: def-limit
+status: complete
+title: '定義：数列の極限'
+type: Definition
+translations:
+  en: ../../../en/analysis/def-limit.qmd
+---
+
+# 定義：数列の極限 {#def-limit}
+
+$(a_n)_{n=1}^{\infty}$ を実数の数列とする。この数列が極限 $L \in \mathbb{R}$ に**収束する**とは：
+
+任意の $\varepsilon > 0$ に対して、ある $N \in \mathbb{N}$ が存在し、すべての $n > N$ に対して：
+$$|a_n - L| < \varepsilon$$
+
+## 記法
+
+これを次のように表記する：
+- $\lim_{n \to \infty} a_n = L$
+- $n \to \infty$ のとき $a_n \to L$
+- $(a_n) \to L$
+
+## 形式的定義
+
+論理記号を用いると：
+$$\lim_{n \to \infty} a_n = L \iff \forall \varepsilon > 0, \exists N \in \mathbb{N}, \forall n > N : |a_n - L| < \varepsilon$$
+
+## 幾何学的解釈
+
+この定義は、数列のすべての項が最終的に $L$ から任意の距離 $\varepsilon$ 以内に入ることを意味する。$\varepsilon$ をどんなに小さくしても、ある番号以降のすべての項が $L$ からこの距離以内に収まる点を数列中に見つけることができる。
+
+## 一意性
+
+数列が収束する場合、その極限は一意である。$a_n \to L_1$ かつ $a_n \to L_2$ ならば、$L_1 = L_2$ である。
+
+## 発散
+
+どの極限にも収束しない数列は**発散する**という。これには以下が含まれる：
+- 振動する数列（例：$(-1)^n$）
+- 限りなく大きくなる数列（例：$n$）
+
+極限の概念は解析学の基礎であり、連続性、導関数、積分の基盤を形成する。
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-limit-arithmetic["定理：極限の算術"]:::theorem
+    def-continuity["定義：連続性"]:::definition
+    def-limit["定義：数列の極限"]:::definition
+    thm-limit-arithmetic --> def-limit
+    def-continuity --> def-limit
+    class def-limit current
+```

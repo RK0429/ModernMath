@@ -1,0 +1,73 @@
+---
+id: thm-union-open-sets
+requires:
+- def-topological-space
+- def-open-set
+status: complete
+title: '定理: 開集合の和集合'
+type: Theorem
+translations:
+  en: ../en/topology/thm-union-open-sets.qmd
+---
+
+# 定理: 開集合の和集合 {#thm-union-open-sets}
+
+$(X, \tau)$ を[位相空間](def-topological-space.qmd)とする。このとき、[開集合](def-open-set.qmd)の任意の集合族の和集合は開集合である。
+
+## 主張
+
+$\{U_i\}_{i \in I}$ を開集合の任意の集合族とする（$I$ は任意の添字集合）。このとき
+$$\bigcup_{i \in I} U_i \in \tau$$
+
+## 証明
+
+これは位相の定義から直接従う。
+
+$\{U_i\}_{i \in I}$ を各 $U_i \in \tau$ となる集合の任意の族とする。
+
+[位相空間](def-topological-space.qmd)の定義の第2公理により、$\tau$ の元の任意の和集合も $\tau$ に属さなければならない。
+
+したがって、$\bigcup_{i \in I} U_i \in \tau$ であり、これは $\bigcup_{i \in I} U_i$ が開集合であることを意味する。$\square$
+
+## 重要な注意
+
+この定理は**任意の**和集合に対して成立し、以下を含む：
+- 有限個の和集合
+- 可算無限個の和集合
+- 非可算無限個の和集合
+
+しかし、積集合に対する類似の主張は一般には**成立しない**。開集合の**有限個**の積集合のみが開集合であることが保証される。
+
+## 例
+
+1. 標準位相を持つ $\mathbb{R}$ において：
+   - $\bigcup_{n=1}^{\infty} (-\frac{1}{n}, \frac{1}{n}) = (-1, 1)$ は開集合
+   - $\bigcup_{x \in (0,1)} (x - \frac{1}{2}, x + \frac{1}{2}) = (-\frac{1}{2}, \frac{3}{2})$ は開集合
+
+2. 無限個の積集合に対する反例：
+   - $\bigcap_{n=1}^{\infty} (-\frac{1}{n}, \frac{1}{n}) = \{0\}$ は $\mathbb{R}$ で開集合ではない
+
+## 応用
+
+この性質は以下において基本的である：
+- 位相の基底と準基底の定義
+- 新しい位相空間の構成
+- 関数の連続性の証明
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-open-set["定義: 開集合"]:::definition
+    def-topological-space["定義: 位相空間"]:::definition
+    thm-union-open-sets["定理: 開集合の和集合"]:::theorem
+    thm-union-open-sets --> def-open-set
+    thm-union-open-sets --> def-topological-space
+    class thm-union-open-sets current
+```

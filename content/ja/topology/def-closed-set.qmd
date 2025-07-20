@@ -1,0 +1,63 @@
+---
+id: def-closed-set
+requires:
+- def-topological-space
+- def-open-set
+- def-set
+status: complete
+title: '定義: 閉集合'
+type: Definition
+translations:
+  en: ../../en/topology/def-closed-set.qmd
+---
+
+# 閉集合 {#def-closed-set}
+
+[位相空間](def-topological-space.qmd)において、**閉集合**とは、その補集合が[開集合](def-open-set.qmd)である[集合](../logic-set-theory/def-set.qmd)のことです。
+
+## 形式的定義
+
+$(X, \tau)$を位相空間とします。部分集合$C \subseteq X$が閉集合であるとは、その補集合$X \setminus C$が開集合である（すなわち、$X \setminus C \in \tau$）ときをいいます。
+
+## 閉集合の性質
+
+位相空間$(X, \tau)$における閉集合の族は以下を満たします：
+
+1. **空集合と全体集合**: $\emptyset$と$X$は閉集合である
+2. **任意の交叉**: 閉集合の任意の族の交叉は閉集合である
+3. **有限和集合**: 有限個の閉集合の和集合は閉集合である
+
+## 開集合との関係
+
+- 集合は開かつ閉（開閉集合）であることができる
+- 集合は開でも閉でもないことがある
+- 閉集合は開集合の双対概念を形成する
+
+## 閉包作用素
+
+任意の部分集合$A \subseteq X$に対して、閉包$\overline{A}$は$A$を含む最小の閉集合です：
+$$\overline{A} = \bigcap \{C : A \subseteq C \text{ かつ } C \text{ は閉集合}\}$$
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-heine-borel["定理: ハイネ・ボレルの定理"]:::theorem
+    def-connected["定義: 連結空間"]:::definition
+    def-closed-set["定義: 閉集合"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-open-set["定義: 開集合"]:::definition
+    def-topological-space["定義: 位相空間"]:::definition
+    def-closed-set --> def-set
+    def-connected --> def-closed-set
+    def-closed-set --> def-topological-space
+    thm-heine-borel --> def-closed-set
+    def-closed-set --> def-open-set
+    class def-closed-set current
+```

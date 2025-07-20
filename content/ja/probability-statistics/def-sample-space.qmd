@@ -1,0 +1,73 @@
+---
+id: def-sample-space
+requires:
+- def-set
+status: complete
+title: '定義: 標本空間'
+type: Definition
+translations:
+  en: ../en/probability-statistics/def-sample-space.qmd
+---
+
+**標本空間**は、確率的実験やシナリオのすべての可能な結果の[集合](../logic-set-theory/def-set.qmd)です。通常 $\Omega$（オメガ）または $S$ で表されます。
+
+## 形式的定義
+
+標本空間 $\Omega$ は以下を満たす空でない集合です：
+1. 実験のすべての可能な結果を含む
+2. 結果は互いに排反である（一つだけが起こる）
+3. 結果は網羅的である（必ず一つは起こる）
+
+## 標本空間の種類
+
+### 離散標本空間
+- **有限**：有限個の結果を含む
+  - 例：サイコロを振る：$\Omega = \{1, 2, 3, 4, 5, 6\}$
+- **可算無限**：可算個の結果を含む
+  - 例：初めて表が出るまでのコイン投げ回数：$\Omega = \{1, 2, 3, ...\}$
+
+### 連続標本空間
+- 非可算個の結果を含む
+- 例：反応時間の測定：$\Omega = [0, \infty)$
+
+## 例
+
+1. **コイン投げ**：$\Omega = \{H, T\}$（表、裏）
+2. **2つのサイコロ**：$\Omega = \{(i,j) : i,j \in \{1,2,3,4,5,6\}\}$（36個の結果）
+3. **単位正方形内のランダムな点**：$\Omega = [0,1] \times [0,1]$
+4. **電球の寿命**：$\Omega = [0, \infty)$
+
+## 確率との関係
+
+- $\Omega$ の各要素 $\omega$ を**根元事象**と呼ぶ
+- $\Omega$ の部分集合を**事象**と呼ぶ（[事象](def-event.qmd)を参照）
+- [確率空間](def-probability-space.qmd)は標本空間の上に構築される
+- 標本空間全体 $\Omega$ の確率は1：$P(\Omega) = 1$
+
+## 性質
+
+- 空集合 $\emptyset$ は不可能な事象を表す
+- 標本空間 $\Omega$ は確実な事象を表す
+- 標本空間は関連するすべての結果を捉えるよう慎重に定義する必要がある
+- 標本空間の選択は確率の計算方法に影響を与える
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-event["定義: 事象"]:::definition
+    def-sample-space["定義: 標本空間"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-probability-space["定義: 確率空間"]:::definition
+    def-sample-space --> def-set
+    def-sample-space --> def-event
+    def-event --> def-sample-space
+    def-sample-space --> def-probability-space
+    class def-sample-space current
+```

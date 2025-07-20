@@ -1,0 +1,70 @@
+---
+id: def-morphism
+requires:
+- def-category
+status: complete
+title: '定義: 射'
+type: Definition
+translations:
+  en: ../../en/category-theory/def-morphism.qmd
+---
+
+# 定義: 射
+
+**射**（矢印とも呼ばれる）は、[圏](def-category.qmd)論における基本概念で、対象間の構造を保存する写像を表します。
+
+## 形式的定義
+
+[圏](def-category.qmd) $\mathcal{C}$ において、射 $f: A \to B$ は以下から構成されます：
+- **域**（または始域）となる対象 $A$
+- **余域**（または終域）となる対象 $B$
+- $A$ から $B$ への抽象的な「矢印」$f$
+
+## 主要な性質
+
+圏における射に対して、以下が成り立ちます：
+
+1. **合成**: $f: A \to B$ と $g: B \to C$ のとき、合成射 $g \circ f: A \to C$ が存在する
+
+2. **恒等射**: 各対象 $A$ に対して、恒等射 $\text{id}_A: A \to A$ が存在する
+
+3. **結合律**: 合成が定義されるとき $(h \circ g) \circ f = h \circ (g \circ f)$
+
+4. **恒等法則**: $f: A \to B$ に対して $f \circ \text{id}_A = f$ かつ $\text{id}_B \circ f = f$
+
+## 記法
+
+圏 $\mathcal{C}$ において $A$ から $B$ へのすべての射の集まりは以下のように表記されます：
+- $\text{Hom}_{\mathcal{C}}(A, B)$ または
+- $\mathcal{C}(A, B)$ または
+- $\text{Mor}_{\mathcal{C}}(A, B)$
+
+## 射の種類
+
+特殊な射には以下が含まれます：
+- **単射**: 単射関数の圏論的一般化
+- **全射**: 全射関数の圏論的一般化
+- **同型射**: 両側逆射を持つ射
+
+```{mermaid}
+```
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-set-category["例: 集合の圏"]:::example
+    def-morphism["定義: 射"]:::definition
+    def-natural-transformation["定義: 自然変換"]:::definition
+    def-category["定義: 圏"]:::definition
+    ex-set-category --> def-morphism
+    def-natural-transformation --> def-morphism
+    def-morphism --> def-category
+    class def-morphism current
+```

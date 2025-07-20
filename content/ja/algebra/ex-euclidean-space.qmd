@@ -1,0 +1,62 @@
+---
+id: ex-euclidean-space
+status: complete
+title: '例: ユークリッド空間'
+type: Example
+translations:
+  en: ../en/algebra/ex-euclidean-space.qmd
+---
+
+# 例: ユークリッド空間 {#ex-euclidean-space}
+
+**$n$ 次元ユークリッド空間** $\mathbb{R}^n$ は、実数体 $\mathbb{R}$ 上の[ベクトル空間](def-vector-space.qmd)の基本的な例である。
+
+## 構成
+
+$\mathbb{R}^n$ は実数の順序付けられた $n$ 個組すべてから成る：
+$$\mathbb{R}^n = \{(x_1, x_2, \ldots, x_n) : x_i \in \mathbb{R} \text{ for all } i = 1, 2, \ldots, n\}$$
+
+## 演算
+
+$\mathbb{R}^n$ のベクトル $\mathbf{u} = (u_1, u_2, \ldots, u_n)$ と $\mathbf{v} = (v_1, v_2, \ldots, v_n)$、およびスカラー $a \in \mathbb{R}$ に対して：
+
+1. **ベクトル加法**:
+   $$\mathbf{u} + \mathbf{v} = (u_1 + v_1, u_2 + v_2, \ldots, u_n + v_n)$$
+
+2. **スカラー乗法**:
+   $$a\mathbf{u} = (au_1, au_2, \ldots, au_n)$$
+
+## 特殊な場合
+
+- $\mathbb{R}^1 = \mathbb{R}$：実数直線
+- $\mathbb{R}^2$：ユークリッド平面
+- $\mathbb{R}^3$：3次元ユークリッド空間
+
+## 検証
+
+零ベクトルは $\mathbf{0} = (0, 0, \ldots, 0)$ であり、$\mathbf{u}$ の加法逆元は $-\mathbf{u} = (-u_1, -u_2, \ldots, -u_n)$ である。
+
+すべてのベクトル空間の公理は、$\mathbb{R}$ の体の性質を用いて成分ごとに検証できる。
+
+## 幾何学的解釈
+
+$\mathbb{R}^n$ は馴染みのある幾何学的空間を表す：
+- ベクトルは原点からの矢印として視覚化できる
+- 加法は平行四辺形則に対応する
+- スカラー乗法はベクトルを伸縮させる
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-euclidean-space["例: ユークリッド空間"]:::example
+    def-vector-space["定義: ベクトル空間"]:::definition
+    ex-euclidean-space --> def-vector-space
+    class ex-euclidean-space current
+```

@@ -1,0 +1,62 @@
+---
+id: thm-linear-transformation-basis
+requires:
+- def-vector-space
+- def-linear-transformation
+- def-basis
+status: complete
+title: '定理: 基底による線形変換の決定'
+type: Theorem
+translations:
+  en: /content/en/algebra/thm-linear-transformation-basis.qmd
+---
+
+# 定理: 基底による線形変換の決定 {#thm-linear-transformation-basis}
+
+有限次元[ベクトル空間](def-vector-space.qmd)間の[線形変換](def-linear-transformation.qmd)は、[基底](def-basis.qmd)への作用によって一意に決定される。
+
+## 主張
+
+$V$と$W$を体$F$上のベクトル空間とし、$B = \{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n\}$を$V$の基底とする。
+
+$W$の任意のベクトル$\mathbf{w}_1, \mathbf{w}_2, \ldots, \mathbf{w}_n \in W$の選択に対して、以下を満たす線形変換$T: V \to W$が唯一存在する：
+$$T(\mathbf{v}_i) = \mathbf{w}_i \text{ （} i = 1, 2, \ldots, n\text{）}$$
+
+## 証明の概略
+
+**存在性**：$V$の任意のベクトル$\mathbf{v} \in V$に対して$T$を以下のように定義する：
+1. $\mathbf{v}$を一意的に線形結合として表す：$\mathbf{v} = \sum_{i=1}^n a_i\mathbf{v}_i$
+2. $T(\mathbf{v}) = \sum_{i=1}^n a_i\mathbf{w}_i$と定義する
+3. 加法性と斉次性を確認して$T$が線形であることを検証する
+
+**一意性**：$S: V \to W$が$S(\mathbf{v}_i) = \mathbf{w}_i$を満たす別の線形変換とすると、線形性により：
+$$S(\mathbf{v}) = S\left(\sum_{i=1}^n a_i\mathbf{v}_i\right) = \sum_{i=1}^n a_i S(\mathbf{v}_i) = \sum_{i=1}^n a_i\mathbf{w}_i = T(\mathbf{v})$$
+
+したがって、$S = T$である。
+
+## 帰結
+
+この定理は以下を示している：
+- 線形変換は有限個の値によって完全に決定される
+- 線形変換の空間$\text{Hom}(V, W)$の次元は$\dim(V) \times \dim(W)$である
+- 線形変換の行列表現は、この原理から自然に生じる
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所的な依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-linear-transformation-basis["定理: 基底による線形変換の決定"]:::theorem
+    def-linear-transformation["定義: 線形変換"]:::definition
+    def-vector-space["定義: ベクトル空間"]:::definition
+    def-basis["定義: 基底"]:::definition
+    thm-linear-transformation-basis --> def-linear-transformation
+    thm-linear-transformation-basis --> def-basis
+    thm-linear-transformation-basis --> def-vector-space
+    class thm-linear-transformation-basis current
+```

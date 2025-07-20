@@ -1,0 +1,60 @@
+---
+id: def-span
+requires:
+- def-vector-space
+status: complete
+title: '定義：生成'
+type: Definition
+translations:
+  en: ../../../en/algebra/def-span.qmd
+---
+
+# 定義：生成 {#def-span}
+
+$V$ を体 $F$ 上の[ベクトル空間](def-vector-space.qmd)とし、$S = \{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k\} \subseteq V$ をベクトルの集合とする。$S$ の**生成**（せいせい）または**張る部分空間**（はる ぶぶんくうかん）は $\text{span}(S)$ と表記され、$S$ 内のベクトルのすべての線形結合の集合である：
+
+$$\text{span}(S) = \left\{ \sum_{i=1}^k a_i\mathbf{v}_i : a_i \in F \right\}$$
+
+## その他の記法
+
+生成は以下のようにも表記される：
+- $\langle S \rangle$ または $\langle \mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k \rangle$
+- $L(S)$（線形生成の意）
+- $\text{Lin}(S)$
+
+## 性質
+
+1. **部分空間**：$\text{span}(S)$ は常に $V$ の部分空間である
+2. **最小包含部分空間**：$\text{span}(S)$ は $S$ を含む $V$ の最小の部分空間である
+3. **線形結合での閉性**：$\mathbf{u}, \mathbf{w} \in \text{span}(S)$ かつ $a, b \in F$ ならば、$a\mathbf{u} + b\mathbf{w} \in \text{span}(S)$
+
+## 特殊な場合
+
+- $\text{span}(\emptyset) = \{\mathbf{0}\}$（零部分空間）
+- $\text{span}(\{\mathbf{v}\}) = \{a\mathbf{v} : a \in F\}$（$\mathbf{v}$ を通る直線）
+- $S$ が $V$ を生成するとき、$S$ を $V$ の**生成系**または**生成集合**という
+
+## 無限集合
+
+無限集合 $S \subseteq V$ に対して、生成はすべての*有限*線形結合からなる：
+$$\text{span}(S) = \left\{ \sum_{i=1}^n a_i\mathbf{v}_i : n \in \mathbb{N}, \mathbf{v}_i \in S, a_i \in F \right\}$$
+
+生成の概念は、個々のベクトルとそれらが生成する部分空間を結びつける。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-span["定義：生成"]:::definition
+    def-vector-space["定義：ベクトル空間"]:::definition
+    def-basis["定義：基底"]:::definition
+    def-span --> def-vector-space
+    def-basis --> def-span
+    class def-span current
+```

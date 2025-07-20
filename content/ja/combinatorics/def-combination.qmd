@@ -1,0 +1,61 @@
+---
+id: def-combination
+requires:
+- def-set
+status: complete
+title: '定義：組合せ'
+type: Definition
+---
+
+# 組合せ {#def-combination}
+
+**組合せ**は、順序が重要でない[集合](../logic-set-theory/def-set.qmd)からの項目の選択です。
+
+## 形式的定義
+
+$S$ をn個の要素を持つ集合とします。$S$ のk-組合せは、ちょうどk個の要素を持つ $S$ の部分集合であり、ここで $0 \leq k \leq n$ です。
+
+## 記法と公式
+
+n個の要素の集合からのk-組合せの数は以下のように表記されます：
+- $\binom{n}{k}$（二項係数）
+- $C(n,k)$ または $_nC_k$
+- $C_n^k$
+
+公式は：
+$$\binom{n}{k} = \frac{n!}{k!(n-k)!}$$
+
+## 性質
+
+1. **対称性**：$\binom{n}{k} = \binom{n}{n-k}$
+2. **パスカルの恒等式**：$\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$
+3. **境界条件**：$\binom{n}{0} = \binom{n}{n} = 1$
+4. **和**：$\sum_{k=0}^n \binom{n}{k} = 2^n$
+
+## 順列との関係
+
+k-順列の数をk!で割ると、k-組合せの数が得られます：
+$$\binom{n}{k} = \frac{P(n,k)}{k!}$$
+
+## 応用
+
+- 与えられたサイズの部分集合の数え上げ
+- 二項定理の係数
+- 確率計算
+- 組合せ最適化
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-combination["定義：組合せ"]:::definition
+    def-set["定義：集合"]:::definition
+    def-combination --> def-set
+    class def-combination current
+```

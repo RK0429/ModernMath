@@ -1,0 +1,81 @@
+---
+id: thm-metric-hausdorff
+requires:
+- def-metric-space
+- def-hausdorff
+- def-topological-space
+status: complete
+title: '定理: すべての距離空間はハウスドルフ空間'
+type: Theorem
+translations:
+  en: ../en/topology/thm-metric-hausdorff.qmd
+---
+
+# 定理: すべての距離空間はハウスドルフ空間 {#thm-metric-hausdorff}
+
+**主張**: 距離位相を持つすべての[距離空間](../geometry/def-metric-space.qmd) $(X, d)$ は[ハウスドルフ空間](def-hausdorff.qmd)である。
+
+## 証明
+
+$(X, d)$ を距離空間とし、$x, y \in X$ を $x \neq y$ となる2つの異なる点とする。
+
+$x \neq y$ なので、距離の非退化性により $d(x, y) > 0$ である。
+
+$r = \frac{d(x, y)}{2} > 0$ とする。
+
+以下の開球を考える：
+- $U = B(x, r) = \{z \in X : d(x, z) < r\}$
+- $V = B(y, r) = \{z \in X : d(y, z) < r\}$
+
+$U \cap V = \emptyset$ であることを示す。
+
+**背理法による証明**: $z \in U \cap V$ となる $z$ が存在すると仮定する。すると：
+- $z \in U$ より $d(x, z) < r = \frac{d(x, y)}{2}$
+- $z \in V$ より $d(y, z) < r = \frac{d(x, y)}{2}$
+
+三角不等式により：
+$$d(x, y) \leq d(x, z) + d(z, y) = d(x, z) + d(y, z) < \frac{d(x, y)}{2} + \frac{d(x, y)}{2} = d(x, y)$$
+
+これは $d(x, y) < d(x, y)$ を意味し、矛盾である。
+
+したがって $U \cap V = \emptyset$ であり、$x$ と $y$ を分離する互いに素な開近傍を見つけた。
+
+$x$ と $y$ は任意の異なる点だったので、$(X, d)$ はハウスドルフ空間である。$\square$
+
+## 帰結
+
+この定理にはいくつかの重要な含意がある：
+
+1. **極限の一意性**: 任意の距離空間において、収束列の極限は一意である
+2. **閉じた一点集合**: 距離空間の任意の点 $\{x\}$ は閉集合を成す
+3. **良い分離性**: 距離空間は自動的にすべての低次の分離公理（$T_0$、$T_1$、$T_2$）を満たす
+
+## 関連項目
+
+- [距離空間](../geometry/def-metric-space.qmd) - ハウスドルフ性を保証する構造
+- [ハウスドルフ空間](def-hausdorff.qmd) - すべての距離空間が満たす分離性
+- [標準距離を持つ実数直線](../analysis/ex-real-line-metric.qmd) - ハウスドルフである距離空間の具体例
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-topological-space["定義: 位相空間"]:::definition
+    thm-metric-hausdorff["定理: すべての距離空間はハウスドルフ空間"]:::theorem
+    ex-real-line-metric["例: 標準距離を持つ実数直線"]:::example
+    def-hausdorff["定義: ハウスドルフ空間"]:::definition
+    def-metric-space["定義: 距離空間"]:::definition
+    def-hausdorff --> thm-metric-hausdorff
+    thm-metric-hausdorff --> def-hausdorff
+    def-metric-space --> thm-metric-hausdorff
+    thm-metric-hausdorff --> def-topological-space
+    thm-metric-hausdorff --> ex-real-line-metric
+    thm-metric-hausdorff --> def-metric-space
+    class thm-metric-hausdorff current
+```

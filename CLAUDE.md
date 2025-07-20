@@ -136,6 +136,35 @@ The project supports multiple languages (currently English and Japanese) with au
 - **Language Directories**: `content/en/` for English, `content/ja/` for Japanese
 - **Language Profiles**: `_quarto-en.yml` and `_quarto-ja.yml` define language-specific configurations
 - **Translation Links**: Each page includes `translations` field in YAML front matter linking to its translations
+- **Domain Metadata**: Each domain requires `_metadata.yml` with translated domain name (e.g., `domain: "代数学"` for algebra)
+
+### Translation Implementation Details
+
+When creating translations:
+
+- **Translation Links Format**: Always point to HTML files, not QMD files
+
+  ```yaml
+  translations:
+    en: "../en/algebra/def-group.html" # Correct
+    # NOT: "../en/algebra/def-group.qmd"
+  ```
+
+- **Cross-References**: Keep internal references as `.qmd` extensions
+
+  ```markdown
+  See [群の定義](def-group.qmd) for details # Correct
+  ```
+
+- **Standard Japanese Mathematical Terms**:
+  - Group → 群 (gun)
+  - Ring → 環 (kan)
+  - Field → 体 (tai)
+  - Vector Space → ベクトル空間
+  - Topology → 位相幾何学
+  - Category → 圏 (ken)
+  - Morphism → 射 (sha)
+  - Functor → 関手 (kanshu)
 
 ### Building Multilingual Sites
 
@@ -196,6 +225,21 @@ When implementing Japanese support, create these navigation pages with `-ja.qmd`
 - `contributing-ja.qmd` - Japanese contributing guide
 
 Update `_quarto-ja.yml` navbar to reference these files and ensure all domain links use Japanese paths (e.g., `../../search-ja.qmd` instead of `../../search.qmd`).
+
+### Translation Management System
+
+The project uses a hash-based change detection system to track translation status:
+
+- **Status Tracking**: `translations-status.yml` maintains translation status for all content files
+- **Change Detection**: MD5 hashes of content (excluding front matter) detect when source files change
+- **Status Categories**: `not_started`, `in_progress`, `completed`, `needs_update`
+- **Management Script**: `scripts/manage_translations.py` provides commands:
+  - `update`: Scan files and update translation status
+  - `report`: Generate translation progress reports
+  - `list --status=X`: List files with specific status
+  - `validate`: Check front matter consistency
+  - `stats`: Show domain-by-domain statistics
+- **Integration**: Translation edges are added to the RDF graph as `hasTranslation` relationships
 
 ## Critical Implementation Details
 

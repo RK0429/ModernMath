@@ -1,0 +1,65 @@
+---
+id: ex-euclidean-metric
+requires:
+- def-metric-space
+- def-set
+status: complete
+title: '例: ℝⁿ上のユークリッド距離'
+type: Example
+translations:
+  - lang: en
+    path: ../../en/geometry/ex-euclidean-metric.qmd
+---
+
+# 例: ℝⁿ上のユークリッド距離
+
+ユークリッド距離を持つn次元ユークリッド空間 $\mathbb{R}^n$ は[距離空間](def-metric-space.qmd)を形成する。
+
+## ユークリッド距離の定義
+
+$\mathbb{R}^n$ の点 $x = (x_1, x_2, ..., x_n)$ と $y = (y_1, y_2, ..., y_n)$ に対して、ユークリッド距離は：
+
+$$d(x, y) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}$$
+
+## 距離空間の公理の検証
+
+$d$ が距離のすべての性質を満たすことを検証する：
+
+1. **非負性**：$d(x, y) \geq 0$ これは平方和の平方根であるため。
+
+2. **同一性**：
+   - $x = y$ ならば、すべての $i$ に対して $x_i = y_i$ なので、$d(x, y) = 0$。
+   - $d(x, y) = 0$ ならば、$\sum_{i=1}^{n} (x_i - y_i)^2 = 0$ となり、これはすべての $i$ に対して $x_i = y_i$ を意味し、したがって $x = y$。
+
+3. **対称性**：$(x_i - y_i)^2 = (y_i - x_i)^2$ なので $d(x, y) = d(y, x)$。
+
+4. **三角不等式**：任意の $x, y, z \in \mathbb{R}^n$ に対して：
+   $$d(x, z) \leq d(x, y) + d(y, z)$$
+   これはコーシー・シュワルツの不等式から従う。
+
+## 特殊な場合
+
+- **$n = 1$**：$\mathbb{R}$ 上の通常の絶対値距離：$d(x, y) = |x - y|$
+- **$n = 2$**：平面における馴染みのある距離：$d((x_1, y_1), (x_2, y_2)) = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$
+- **$n = 3$**：物理学や工学で使用される3次元空間の距離
+
+```{mermaid}
+```
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["定義: 集合"]:::definition
+    ex-euclidean-metric["例: ℝⁿ上のユークリッド距離"]:::example
+    def-metric-space["定義: 距離空間"]:::definition
+    ex-euclidean-metric --> def-metric-space
+    ex-euclidean-metric --> def-set
+    class ex-euclidean-metric current
+```

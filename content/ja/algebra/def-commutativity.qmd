@@ -1,0 +1,115 @@
+---
+id: def-commutativity
+lang: ja
+translations:
+  en: "../en/algebra/def-commutativity.html"
+requires:
+- def-binary-operation
+status: complete
+title: '定義: 可換性'
+type: Definition
+created: 2024-01-20
+updated: 2024-01-20
+tags:
+- 可換性
+- 二項演算
+- アーベル
+---
+
+**可換性**は、演算子の順序が結果に影響しない[二項演算](def-binary-operation.qmd)の性質である。
+
+## 形式的定義
+
+集合 $S$ 上の二項演算 $*$ が**可換**（または**アーベル的**）であるとは、すべての $a, b \in S$ に対して：
+$$a * b = b * a$$
+が成り立つことをいう。
+
+## 可換演算の例
+
+### 算術
+- **加法**: $a + b = b + a$
+- **乗法**: $a \cdot b = b \cdot a$
+
+### 集合論
+- **和集合**: $A \cup B = B \cup A$
+- **積集合**: $A \cap B = B \cap A$
+- **対称差**: $A \triangle B = B \triangle A$
+
+### 論理
+- **論理積**: $p \land q = q \land p$
+- **論理和**: $p \lor q = q \lor p$
+- **排他的論理和**: $p \oplus q = q \oplus p$
+
+### 数論
+- **最大公約数**: $\gcd(a, b) = \gcd(b, a)$
+- **最小公倍数**: $\text{lcm}(a, b) = \text{lcm}(b, a)$
+
+## 非可換演算
+
+### 算術
+- **減法**: $a - b \neq b - a$ （$a = b$ の場合を除く）
+  - 例: $5 - 3 = 2$ だが $3 - 5 = -2$
+- **除法**: $a \div b \neq b \div a$ （$a = b$ または両方が 1 の場合を除く）
+  - 例: $6 \div 2 = 3$ だが $2 \div 6 = \frac{1}{3}$
+
+### 線形代数
+- **行列積**: 一般に $\mathbf{AB} \neq \mathbf{BA}$
+- **外積**: $\vec{a} \times \vec{b} = -\vec{b} \times \vec{a}$ （反可換）
+
+### その他
+- **関数の合成**: 一般に $f \circ g \neq g \circ f$
+- **文字列の連結**: $"ab" \neq "ba"$
+
+## 重要性
+
+1. **アーベル群**: 可換演算を持つ[群](def-group.qmd)
+   - 例: $(\mathbb{Z}, +)$、$(\mathbb{R}^*, \cdot)$
+
+2. **簡素化**: 項の並べ替えが可能
+   - $a + b + c + d$ のような式では、自由に並べ替えができる
+
+3. **並列計算**: 可換演算はより容易に並列化できる
+
+## 他の性質との関係
+
+- **[結合性](def-associativity.qmd)から独立**: 演算は以下のいずれかである：
+  - 可換だが結合的でない
+  - 結合的だが可換でない
+  - 両方（例：加法）
+  - どちらでもない（例：減法）
+
+## 特殊な場合
+
+### 交換子
+非可換演算に対して、**交換子**は可換性の失敗を測る：
+- 群において: $[a, b] = a * b * a^{-1} * b^{-1}$
+- 環において: $[a, b] = ab - ba$
+
+### 次数付き可換性
+次数付き代数において: $ab = (-1)^{|a||b|}ba$ ここで $|a|$ は $a$ の次数
+
+## 応用
+
+- **暗号**: 可換暗号は柔軟な順序を可能にする
+- **データベースクエリ**: 可換演算によりクエリ最適化が可能
+- **物理学**: 可換な観測量は同時に測定可能
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-group["定義: 群"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-associativity["定義: 結合性"]:::definition
+    def-commutativity["定義: 可換性"]:::definition
+    def-commutativity --> def-associativity
+    def-commutativity --> def-binary-operation
+    def-commutativity --> def-group
+    class def-commutativity current
+```

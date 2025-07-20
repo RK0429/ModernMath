@@ -1,0 +1,69 @@
+---
+id: ex-integers-ring
+requires:
+- def-ring
+- def-group
+- def-binary-operation
+status: complete
+title: '例: 整数は環を形成する'
+type: Example
+translations:
+  en: "../../en/algebra/ex-integers-ring.qmd"
+---
+
+# 例: 整数は環を形成する
+
+整数の集合 $\mathbb{Z}$ は通常の加法と乗法により[環](def-ring.qmd)を形成し、$(\mathbb{Z}, +, \cdot)$ と表記されます。
+
+## 環の公理の検証
+
+### 加法群構造
+
+整数は加法の下でアーベル[群](def-group.qmd)を形成します：
+- **結合性**：すべての $a, b, c \in \mathbb{Z}$ に対して $(a + b) + c = a + (b + c)$
+- **単位元**：$0$ が加法単位元
+- **逆元**：各 $a \in \mathbb{Z}$ に対して、逆元は $-a$
+- **可換性**：すべての $a, b \in \mathbb{Z}$ に対して $a + b = b + a$
+
+### 乗法構造
+
+乗法は以下を満たします：
+- **結合性**：すべての $a, b, c \in \mathbb{Z}$ に対して $(a \cdot b) \cdot c = a \cdot (b \cdot c)$
+- **単位元**：$1$ が乗法単位元
+
+### 分配法則
+
+すべての $a, b, c \in \mathbb{Z}$ に対して：
+- **左分配法則**：$a \cdot (b + c) = a \cdot b + a \cdot c$
+- **右分配法則**：$(a + b) \cdot c = a \cdot c + b \cdot c$
+
+## 特別な性質
+
+$\mathbb{Z}$ は実際には**単位元を持つ可換環**です：
+- **可換性**：すべての $a, b \in \mathbb{Z}$ に対して $a \cdot b = b \cdot a$
+- **単位元**：乗法単位元 $1$ が存在する
+
+さらに、$\mathbb{Z}$ は零因子を持たないため**整域**です：$a \cdot b = 0$ ならば、$a = 0$ または $b = 0$ です。
+
+```{mermaid}
+```
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-ring["定義: 環"]:::definition
+    ex-integers-ring["例: 整数は環を形成する"]:::example
+    def-group["定義: 群"]:::definition
+    ex-integers-ring --> def-ring
+    ex-integers-ring --> def-group
+    ex-integers-ring --> def-binary-operation
+    class ex-integers-ring current
+```

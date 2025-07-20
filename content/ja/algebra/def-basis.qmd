@@ -1,0 +1,80 @@
+---
+title: "基底"
+id: "def-basis"
+type: "Definition"
+status: "complete"
+created: "2024-01-20"
+updated: "2024-01-20"
+domain: "algebra"
+tags: ["linear-algebra", "vector-spaces"]
+requires: ["def-vector-space", "def-linear-independence", "def-span"]
+lang: ja
+translations:
+  en: "../en/algebra/def-basis.html"
+---
+
+# 基底 {#def-basis}
+
+$V$ を体 $F$ 上の[ベクトル空間](def-vector-space.qmd)とする。部分集合 $B \subseteq V$ が $V$ の**基底**であるとは、以下を満たすときである：
+
+1. $B$ は[線形独立](def-linear-independence.qmd)である
+2. $B$ は $V$ を[張る](def-span.qmd)（すなわち、$\text{span}(B) = V$）
+
+## 同値な特徴付け
+
+ベクトル空間 $V$ の部分集合 $B$ について、以下は同値である：
+
+1. $B$ は $V$ の基底である
+2. $B$ は $V$ における極大線形独立集合である
+3. $B$ は $V$ の極小生成集合である
+4. $V$ のすべてのベクトルは $B$ のベクトルの線形結合として一意に表される
+
+## 基底の種類
+
+- **標準基底**：$\mathbb{R}^n$ に対して、標準基底は $\{\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n\}$ であり、$\mathbf{e}_i$ は第 $i$ 成分が 1 で他が 0
+- **順序付き基底**：要素に特定の順序を指定した基底
+- **正規直交基底**：内積空間において、すべてのベクトルが単位長で互いに直交する基底
+
+## 次元
+
+$V$ が $n$ 個の要素を持つ有限基底を持つなら：
+- $V$ のすべての基底はちょうど $n$ 個の要素を持つ
+- $V$ は**次元** $n$ を持つといい、$\dim(V) = n$ と書く
+- 有限基底が存在しないなら、$V$ は**無限次元**である
+
+基底の概念は線形代数の基本であり、ベクトル空間に座標系を提供する。
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-linear-independence["定義: 線形独立"]:::definition
+    def-span["定義: 張る"]:::definition
+    def-basis["定義: 基底"]:::definition
+    thm-linear-transformation-basis["定理: 基底による線形変換の決定"]:::theorem
+    def-vector-space["定義: ベクトル空間"]:::definition
+    def-basis --> def-vector-space
+    thm-linear-transformation-basis --> def-basis
+    def-basis --> def-span
+    def-basis --> def-linear-independence
+    class def-basis current
+```
+
+## インタラクティブ可視化
+
+ローカル知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-basis" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/def-basis.html){target="_blank"}で完全なインタラクティブ版を表示

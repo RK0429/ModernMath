@@ -1,0 +1,59 @@
+---
+id: def-functor
+requires:
+- def-category
+status: complete
+title: '定義: 関手'
+type: Definition
+translations:
+  en: ../../en/category-theory/def-functor.qmd
+---
+
+# 関手 {#def-functor}
+
+**関手**は[圏](def-category.qmd)構造間の構造を保存する写像です。
+
+## 形式的定義
+
+$\mathcal{C}$ と $\mathcal{D}$ を圏とします。関手 $F: \mathcal{C} \to \mathcal{D}$ は以下から構成されます：
+
+1. **対象写像**: 各対象 $A \in \text{Ob}(\mathcal{C})$ に対して、対象 $F(A) \in \text{Ob}(\mathcal{D})$
+2. **射写像**: $\mathcal{C}$ の各射 $f: A \to B$ に対して、$\mathcal{D}$ の射 $F(f): F(A) \to F(B)$
+
+以下を満たす：
+
+### 関手法則
+
+1. **恒等射の保存**: すべての対象 $A$ に対して $F(\text{id}_A) = \text{id}_{F(A)}$
+2. **合成の保存**: すべての合成可能な射 $f$ と $g$ に対して $F(g \circ f) = F(g) \circ F(f)$
+
+## 関手の種類
+
+- **共変関手**: 上記で定義したもの
+- **反変関手**: 射の向きを逆にする
+- **忠実関手**: 射集合上で単射
+- **充満関手**: 射集合上で全射
+- **充満忠実関手**: 忠実かつ充満
+- **本質的全射**: $\mathcal{D}$ のすべての対象が、ある $A$ に対する $F(A)$ と同型
+
+## 例
+
+- **Grp** から **Set** への忘却関手
+- **Set** から **Grp** への自由群関手
+- **Top** から **Grp** への基本群関手
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-functor["定義: 関手"]:::definition
+    def-category["定義: 圏"]:::definition
+    def-functor --> def-category
+    class def-functor current
+```

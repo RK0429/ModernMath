@@ -1,0 +1,59 @@
+---
+id: def-probability-space
+requires:
+- def-set
+status: complete
+title: '定義: 確率空間'
+type: Definition
+translations:
+  en: ../../en/probability-statistics/def-probability-space.qmd
+---
+
+# 確率空間 {#def-probability-space}
+
+**確率空間**は、ランダムな現象に対する形式的なモデルを提供する数学的構造である。
+
+## 形式的定義
+
+確率空間は次の3つ組 $(\Omega, \mathcal{F}, P)$ である：
+
+1. **標本空間** $\Omega$: すべての可能な結果の[集合](../logic-set-theory/def-set.qmd)
+2. **σ加法族** $\mathcal{F}$: 次を満たす $\Omega$ の部分集合（事象）の集まり：
+   - $\Omega \in \mathcal{F}$
+   - $A \in \mathcal{F}$ ならば、$A^c \in \mathcal{F}$ （補集合で閉じている）
+   - $A_1, A_2, ... \in \mathcal{F}$ ならば、$\bigcup_{i=1}^{\infty} A_i \in \mathcal{F}$ （可算和で閉じている）
+3. **確率測度** $P: \mathcal{F} \to [0,1]$ で次を満たすもの：
+   - $P(\Omega) = 1$ （正規化）
+   - すべての $A \in \mathcal{F}$ に対して $P(A) \geq 0$ （非負性）
+   - 互いに素な事象 $A_1, A_2, ...$ に対して： $P(\bigcup_{i=1}^{\infty} A_i) = \sum_{i=1}^{\infty} P(A_i)$ （可算加法性）
+
+## 性質
+
+- $P(\emptyset) = 0$
+- $P(A^c) = 1 - P(A)$
+- $A \subseteq B$ ならば、$P(A) \leq P(B)$
+- $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+
+## 例
+
+- コイン投げ: $\Omega = \{H, T\}$、$\mathcal{F} = 2^{\Omega}$、$P(H) = P(T) = 1/2$
+- サイコロ投げ: $\Omega = \{1,2,3,4,5,6\}$、一様確率
+- 連続的な場合: $\Omega = [0,1]$ でルベーグ測度
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-random-variable["定義: 確率変数"]:::definition
+    def-probability-space["定義: 確率空間"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-random-variable --> def-probability-space
+    def-probability-space --> def-set
+    class def-probability-space current
+```

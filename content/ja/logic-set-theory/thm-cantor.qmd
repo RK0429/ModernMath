@@ -1,0 +1,83 @@
+---
+id: thm-cantor
+requires:
+- def-set
+- def-power-set
+status: complete
+title: '定理: カントールの定理'
+type: Theorem
+translations:
+  en: ../../../en/logic-set-theory/thm-cantor.qmd
+---
+
+# 定理: カントールの定理 {#thm-cantor}
+
+任意の[集合](def-set.qmd) $A$ に対して、$A$ からその[べき集合](def-power-set.qmd) $\mathcal{P}(A)$ への全射は存在しない。特に、$|A| < |\mathcal{P}(A)|$ が成り立つ。
+
+## 主張
+
+$A$ を任意の集合とする。このとき、全射となる関数 $f: A \to \mathcal{P}(A)$ は存在しない。
+
+## 証明
+
+カントールの対角線論法を用いて背理法で証明する。
+
+$f: A \to \mathcal{P}(A)$ が全射であると仮定する。次の集合を定義する：
+$$B = \{x \in A : x \notin f(x)\}$$
+
+$B \subseteq A$ であるから、$B \in \mathcal{P}(A)$ である。
+
+$f$ が全射であると仮定したので、ある $a \in A$ が存在して $f(a) = B$ となる。
+
+ここで問う：$a \in B$ か？
+
+- もし $a \in B$ ならば、$B$ の定義より $a \notin f(a) = B$ となる。矛盾！
+- もし $a \notin B$ ならば、$a \notin f(a)$ であり、$B$ の定義より $a \in B$ となる。矛盾！
+
+どちらの場合も矛盾が生じる。したがって、そのような全射 $f$ は存在しない。
+
+## 帰結
+
+1. **無限階層**：任意の無限集合から始めて、真に増大する濃度を持つ集合の無限列を構成できる
+2. **最大基数の不存在**：すべての集合の集合は存在しない
+3. **非可算性**：$\mathcal{P}(\mathbb{N})$ は非可算である（$|\mathbb{N}| < |\mathcal{P}(\mathbb{N})|$ より）
+
+## 特殊な場合
+
+有限集合の場合：$|A| = n$ ならば、すべての $n \geq 0$ に対して $|\mathcal{P}(A)| = 2^n > n$ が成り立つ。
+
+## Mermaidダイアグラム
+
+```mermaid
+graph TD
+    A[カントールの定理] --> B[全射 A → P(A) は存在しない]
+    B --> C[対角線論法]
+    C --> D[B = {x: x ∉ f(x)} を構成]
+    D --> E[矛盾]
+    A --> F[|A| < |P(A)|]
+    F --> G[無限階層]
+    F --> H[P(ℕ) は非可算]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style E fill:#fbb,stroke:#333,stroke-width:2px
+    style F fill:#bfb,stroke:#333,stroke-width:2px
+```
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["定義: 集合"]:::definition
+    thm-cantor["定理: カントールの定理"]:::theorem
+    def-power-set["定義: べき集合"]:::definition
+    thm-cantor --> def-power-set
+    thm-cantor --> def-set
+    class thm-cantor current
+```

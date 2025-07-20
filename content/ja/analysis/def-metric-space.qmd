@@ -1,0 +1,81 @@
+---
+id: def-metric-space
+requires:
+- def-set
+status: complete
+title: '定義：距離空間'
+type: Definition
+translations:
+  en: ../../../en/analysis/def-metric-space.qmd
+---
+
+# 定義：距離空間 {#def-metric-space}
+
+**距離空間**とは、[集合](../logic-set-theory/def-set.qmd) $X$ と関数 $d: X \times X \to \mathbb{R}$（**距離**または**距離関数**と呼ばれる）の組であり、すべての $x, y, z \in X$ に対して以下の公理を満たすものである：
+
+## 距離の公理
+
+1. **非負性**：$d(x, y) \geq 0$
+2. **同一性**：$d(x, y) = 0$ となるのは $x = y$ のときかつそのときに限る
+3. **対称性**：$d(x, y) = d(y, x)$
+4. **三角不等式**：$d(x, z) \leq d(x, y) + d(y, z)$
+
+## 記法
+
+距離空間は順序対 $(X, d)$ として表記される：
+- $X$ は基礎となる集合
+- $d$ は $X$ 上の距離
+
+## 重要な概念
+
+距離空間 $(X, d)$ が与えられたとき：
+
+- **開球**：$x \in X$ と $r > 0$ に対して、$x$ を中心とする半径 $r$ の開球は $B(x, r) = \{y \in X : d(x, y) < r\}$
+- **閉球**：$\overline{B}(x, r) = \{y \in X : d(x, y) \leq r\}$
+- **有界集合**：部分集合 $A \subseteq X$ が有界であるとは、ある $x \in X$ と $r > 0$ が存在して $A \subseteq B(x, r)$ となることをいう
+
+## 位相との関係
+
+すべての距離空間 $(X, d)$ は $X$ 上に位相を誘導する。ここで開集合とは開球の和集合として表される集合である。これにより、すべての距離空間は[位相空間](../topology/def-topological-space.qmd)となる。
+
+## 関連項目
+
+- [標準距離を持つ実数直線](ex-real-line-metric.qmd) - 標準距離を持つ実数直線
+- [連続性](def-continuity.qmd) - 連続性は距離を用いて定義できる
+- [すべての距離空間はハウスドルフ](../topology/thm-metric-hausdorff.qmd) - すべての距離空間はハウスドルフ空間である
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-continuity["定義：連続性"]:::definition
+    def-topological-space["定義：位相空間"]:::definition
+    def-set["定義：集合"]:::definition
+    ex-real-line-metric["例：標準距離を持つ実数直線"]:::example
+    thm-metric-hausdorff["定理：すべての距離空間はハウスドルフ"]:::theorem
+    def-complete-metric-space["定義：完備距離空間"]:::definition
+    def-metric-space["定義：距離空間"]:::definition
+    ex-euclidean-metric["例：ℝⁿ上のユークリッド距離"]:::example
+    def-euclidean-space["定義：ユークリッド空間"]:::definition
+    def-point["定義：点"]:::definition
+    thm-heine-borel["定理：ハイネ・ボレルの定理"]:::theorem
+    def-complete-metric-space --> def-metric-space
+    def-metric-space --> ex-real-line-metric
+    ex-euclidean-metric --> def-metric-space
+    ex-real-line-metric --> def-metric-space
+    def-point --> def-metric-space
+    def-metric-space --> thm-metric-hausdorff
+    thm-heine-borel --> def-metric-space
+    thm-metric-hausdorff --> def-metric-space
+    def-metric-space --> def-topological-space
+    def-metric-space --> def-set
+    def-metric-space --> def-continuity
+    def-euclidean-space --> def-metric-space
+    class def-metric-space current
+```

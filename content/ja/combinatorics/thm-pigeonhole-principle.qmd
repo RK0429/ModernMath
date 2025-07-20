@@ -1,0 +1,66 @@
+---
+id: thm-pigeonhole-principle
+requires:
+- def-set
+status: complete
+title: '定理：鳩の巣原理'
+type: Theorem
+---
+
+# 定理：鳩の巣原理
+
+**鳩の巣原理**は、容器よりも多くのアイテムを配分する場合、少なくとも1つの容器に複数のアイテムが含まれることを述べる基本的な数え上げ原理です。
+
+## 命題
+
+**基本形**：n個のアイテムをk個の容器に配置する場合、$n > k$ ならば、少なくとも1つの容器に複数のアイテムが含まれます。
+
+**一般形**：n個のアイテムをk個の容器に配置する場合、少なくとも1つの容器に少なくとも $\lceil n/k \rceil$ 個のアイテムが含まれます。
+
+## 形式的命題
+
+$f: A \to B$ を関数とし、$A$ と $B$ は $|A| > |B|$ となる有限[集合](../logic-set-theory/def-set.qmd)とします。このとき $f$ は単射ではありません。つまり、$f(a_1) = f(a_2)$ となる異なる要素 $a_1, a_2 \in A$ が存在します。
+
+## 証明
+
+背理法による。$f$ が単射であると仮定します。すると $A$ の各要素は $B$ の異なる要素に写像されるため、$|A| \leq |B|$ が成り立ちます。これは $|A| > |B|$ という仮定に矛盾します。
+
+## 一般化
+
+1. **無限版**：無限集合は有限集合に単射的に写像できません。
+
+2. **確率的版**：アイテムがランダムに配分される場合、各容器内のアイテムの期待数は最大負荷の境界を提供します。
+
+3. **多次元版**：高次元空間の分割に拡張されます。
+
+## 応用
+
+1. **存在証明**：特定の構成が存在することを証明するためによく使用されます
+2. **計算機科学**：ハッシュテーブルの衝突解析、負荷分散
+3. **数論**：整数列の性質の証明
+4. **グラフ理論**：大きなグラフに特定の部分構造が存在することの証明
+
+## 古典的な例
+
+- 13人のグループでは、少なくとも2人が同じ月に誕生日を持ちます
+- 任意の6人の中で、3人が互いに友人であるか、3人が互いに他人です
+- $n^2 + 1$ 個の異なる実数の列には、長さ $n + 1$ の増加部分列または減少部分列が存在します
+
+```{mermaid}
+```
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-pigeonhole-principle["定理：鳩の巣原理"]:::theorem
+    def-set["定義：集合"]:::definition
+    thm-pigeonhole-principle --> def-set
+    class thm-pigeonhole-principle current
+```

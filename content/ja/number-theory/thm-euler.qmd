@@ -1,0 +1,62 @@
+---
+id: thm-euler
+requires:
+- def-prime
+- def-group
+status: complete
+title: '定理：オイラーの定理'
+type: Theorem
+translations:
+  en: ../../../en/number-theory/thm-euler.qmd
+---
+
+# オイラーの定理 {#thm-euler}
+
+$n$ と互いに素な任意の整数 $a$ に対して、$a^{\phi(n)} \equiv 1 \pmod{n}$ が成り立ちます。ここで、$\phi(n)$ はオイラーのトーシェント関数です。
+
+## 主張
+
+$n \geq 1$ を整数とし、$a$ を $\gcd(a, n) = 1$ なる整数とします。このとき：
+$$a^{\phi(n)} \equiv 1 \pmod{n}$$
+
+ここで、$\phi(n)$ は $1 \leq k \leq n$ かつ $\gcd(k, n) = 1$ を満たす整数 $k$ の個数です。
+
+## オイラーのトーシェント関数
+
+正の整数 $n$ に対して：
+- $n = p$ が[素数](def-prime.qmd)ならば、$\phi(p) = p - 1$
+- $n = p^k$ ならば、$\phi(p^k) = p^k - p^{k-1} = p^{k-1}(p - 1)$
+- $\gcd(m, n) = 1$ ならば、$\phi(mn) = \phi(m)\phi(n)$（乗法的）
+
+## 群論を用いた証明
+
+$n$ と互いに素な整数は、法 $n$ での乗法に関して[群](../algebra/def-group.qmd)を成し、$(\mathbb{Z}/n\mathbb{Z})^*$ と表されます。この群の位数は $\phi(n)$ であり、ラグランジュの定理により、任意の元を群の位数でべき乗すると単位元になります。
+
+## 特殊な場合
+
+- **フェルマーの小定理**：$n = p$ が素数のとき、$\phi(p) = p - 1$ より $a^{p-1} \equiv 1 \pmod{p}$
+- **カーマイケルの定理**：カーマイケル関数 $\lambda(n)$ を用いた精密化
+
+## 応用
+
+- RSA暗号
+- 素数判定
+- 法逆元の計算：$a^{\phi(n)-1} \equiv a^{-1} \pmod{n}$
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-euler["定理：オイラーの定理"]:::theorem
+    def-prime["定義：素数"]:::definition
+    def-group["定義：群"]:::definition
+    thm-euler --> def-group
+    thm-euler --> def-prime
+    class thm-euler current
+```

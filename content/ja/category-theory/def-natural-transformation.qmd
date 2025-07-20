@@ -1,0 +1,74 @@
+---
+id: def-natural-transformation
+requires:
+- def-functor
+- def-category
+- def-morphism
+status: complete
+title: '定義：自然変換'
+type: Definition
+translations:
+  en: ../../en/category-theory/def-natural-transformation.qmd
+---
+
+# 定義：自然変換
+
+**自然変換**は、関係する圏の内部構造を尊重しながら、ある[関手](def-functor.qmd)を別の関手に変換する方法を提供します。
+
+## 形式的定義
+
+$F, G: \mathcal{C} \to \mathcal{D}$ を圏 $\mathcal{C}$ から圏 $\mathcal{D}$ への2つの関手とします。自然変換 $\eta: F \Rightarrow G$ は以下から構成されます：
+
+- $\mathcal{C}$ の各対象 $X$ に対して、$\mathcal{D}$ における[射](def-morphism.qmd) $\eta_X: F(X) \to G(X)$
+
+ただし、$\mathcal{C}$ のすべての射 $f: X \to Y$ に対して、以下の図式が可換となることが条件です：
+
+```
+F(X) --F(f)--> F(Y)
+ |              |
+η_X            η_Y
+ ↓              ↓
+G(X) --G(f)--> G(Y)
+```
+
+すなわち、$\eta_Y \circ F(f) = G(f) \circ \eta_X$ が成り立ちます。
+
+## 成分と自然性
+
+- 各射 $\eta_X$ は自然変換の**成分**と呼ばれます
+- 可換性条件は**自然性条件**と呼ばれます
+- この条件が成り立つとき、$\eta$ は **X に関して自然**であると言います
+
+## 特殊な場合
+
+1. **自然同型**：すべての成分 $\eta_X$ が同型射である自然変換
+2. **恒等自然変換**：任意の関手 $F$ に対して、恒等変換 $\text{id}_F$ は成分 $(\text{id}_F)_X = \text{id}_{F(X)}$ を持ちます
+
+## 合成
+
+自然変換は合成可能です：
+- **垂直合成**：$\eta: F \Rightarrow G$ かつ $\mu: G \Rightarrow H$ ならば、$\mu \circ \eta: F \Rightarrow H$
+- **水平合成**：自然変換は関手とも合成できます
+
+```{mermaid}
+```
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-functor["定義：関手"]:::definition
+    def-morphism["定義：射"]:::definition
+    def-natural-transformation["定義：自然変換"]:::definition
+    def-category["定義：圏"]:::definition
+    def-natural-transformation --> def-functor
+    def-natural-transformation --> def-category
+    def-natural-transformation --> def-morphism
+    class def-natural-transformation current
+```

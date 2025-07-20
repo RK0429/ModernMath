@@ -1,0 +1,110 @@
+---
+id: thm-yoneda
+requires:
+- def-category
+- def-functor
+- def-natural-transformation
+status: complete
+title: '定理：米田の補題'
+type: Theorem
+translations:
+  en: ../../en/category-theory/thm-yoneda.qmd
+---
+
+**米田の補題**は[圏](def-category.qmd)論における基本的な結果で、[関手](def-functor.qmd)と表現可能関手を関係付けます。これは、対象が他のすべての対象との関係によって完全に決定されることを述べています。
+
+## 主張
+
+$\mathcal{C}$ を圏とし、$F: \mathcal{C} \to \mathbf{Set}$ を関手とします。任意の対象 $A \in \mathcal{C}$ に対して、次の自然な全単射が存在します：
+
+$$\text{Nat}(\text{Hom}(A, -), F) \cong F(A)$$
+
+ここで：
+- $\text{Hom}(A, -): \mathcal{C} \to \mathbf{Set}$ は表現可能関手
+- $\text{Nat}(\text{Hom}(A, -), F)$ は[自然変換](def-natural-transformation.qmd)の集合
+
+## 全単射
+
+### 順方向
+
+自然変換 $\alpha: \text{Hom}(A, -) \Rightarrow F$ が与えられたとき、$F(A)$ の要素を次のように得ます：
+$$\alpha \mapsto \alpha_A(\text{id}_A) \in F(A)$$
+
+### 逆方向
+
+要素 $x \in F(A)$ が与えられたとき、自然変換 $\alpha$ を次のように定義します：
+$$\alpha_B(f) = F(f)(x) \text{ （ただし } f: A \to B\text{）}$$
+
+## 米田埋め込み
+
+米田の補題から**米田埋め込み**が得られます：
+$$\mathcal{Y}: \mathcal{C} \to [\mathcal{C}^{\text{op}}, \mathbf{Set}]$$
+$$A \mapsto \text{Hom}(-, A)$$
+
+この埋め込みは：
+- **充満**：表現可能関手間のすべての自然変換は射から来る
+- **忠実**：異なる射は異なる自然変換を与える
+
+## 系
+
+### 1. 米田の原理
+
+対象 $A$ と $B$ が同型であることと、関手として $\text{Hom}(-, A) \cong \text{Hom}(-, B)$ であることは同値。
+
+### 2. 表現可能性
+
+関手 $F$ が表現可能であることと、ある $\text{Hom}(A, -)$ と自然同型であることは同値。
+
+## 証明の概略
+
+1. 対応 $\alpha \mapsto \alpha_A(\text{id}_A)$ が well-defined であることを示す
+2. 逆構成が自然変換を与えることを確認する
+3. これらの構成が互いに逆であることを確認する
+4. $A$ と $F$ の両方に関する自然性を証明する
+
+## 例と応用
+
+### 普遍性
+
+米田の補題は普遍性を理解する体系的な方法を提供します：普遍性を持つ対象は特定の関手を表現します。
+
+### 極限と余極限
+
+関手 $F$ の極限は関手 $\text{Hom}(-, \lim F)$ を表現します。
+
+### 代数的位相幾何学
+
+位相空間の圏において、関手 $\pi_n(-)$（第n次ホモトピー群）は n次元球面 $S^n$ によって表現されます。
+
+## 哲学的意義
+
+米田の補題は次の考え方を体現しています：
+> 「対象は他のすべての対象との関係によって完全に決定される」
+
+この観点は、内部構造から外部関係へと焦点を移すもので、圏論の重要な洞察です。
+
+## 変種
+
+- **反変米田**：反変関手 $F: \mathcal{C}^{\text{op}} \to \mathbf{Set}$ に対する版
+- **豊穣米田**：豊穣圏への一般化
+- **2-米田**：2-圏に対する版
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-category["定義：圏"]:::definition
+    thm-yoneda["定理：米田の補題"]:::theorem
+    def-natural-transformation["定義：自然変換"]:::definition
+    def-functor["定義：関手"]:::definition
+    thm-yoneda --> def-category
+    thm-yoneda --> def-functor
+    thm-yoneda --> def-natural-transformation
+    class thm-yoneda current
+```

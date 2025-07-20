@@ -1,0 +1,104 @@
+---
+id: thm-euclidean-algorithm
+requires:
+- def-gcd
+status: complete
+title: '定理：ユークリッドのアルゴリズム'
+type: Theorem
+translations:
+  en: ../../../en/number-theory/thm-euclidean-algorithm.qmd
+---
+
+# 定理：ユークリッドのアルゴリズム {#thm-euclidean-algorithm}
+
+ユークリッドのアルゴリズムは、2つの整数の[最大公約数](def-gcd.qmd)を計算する効率的な方法を提供します。
+
+## 主張
+
+$a, b \in \mathbb{Z}$ で $b \neq 0$ とします。このとき：
+$$\gcd(a, b) = \gcd(b, a \bmod b)$$
+
+ここで、$a \bmod b$ は $a$ を $b$ で割った余りです。
+
+## アルゴリズム
+
+$a \geq b > 0$ なる整数 $a$ と $b$ が与えられたとき：
+
+1. $b = 0$ ならば、$\gcd(a, b) = a$
+2. そうでなければ、$r = a \bmod b$ を計算
+3. $(a, b)$ を $(b, r)$ で置き換えて繰り返す
+
+アルゴリズムは余りが0になったときに終了します。
+
+## 正当性の証明
+
+$\gcd(a, b) = \gcd(b, a \bmod b)$ を示す必要があります。
+
+$r = a \bmod b$ とします。このとき、ある整数 $q$ に対して $a = qb + r$ です。
+
+**ステップ1**：$a$ と $b$ の任意の公約数が、$b$ と $r$ の公約数でもあることを示す。
+
+$d \mid a$ かつ $d \mid b$ ならば、$d \mid (a - qb) = r$ です。したがって $d$ は $b$ と $r$ の両方を割り切ります。
+
+**ステップ2**：$b$ と $r$ の任意の公約数が、$a$ と $b$ の公約数でもあることを示す。
+
+$d \mid b$ かつ $d \mid r$ ならば、$d \mid (qb + r) = a$ です。したがって $d$ は $a$ と $b$ の両方を割り切ります。
+
+よって、$(a, b)$ の公約数の集合と $(b, r)$ の公約数の集合は等しく、それらの最大元も等しいです。
+
+## 例
+
+$\gcd(48, 18)$ を求める：
+
+1. $48 = 2 \cdot 18 + 12$ より、$\gcd(48, 18) = \gcd(18, 12)$
+2. $18 = 1 \cdot 12 + 6$ より、$\gcd(18, 12) = \gcd(12, 6)$
+3. $12 = 2 \cdot 6 + 0$ より、$\gcd(12, 6) = 6$
+
+したがって、$\gcd(48, 18) = 6$ です。
+
+## 拡張ユークリッドのアルゴリズム
+
+このアルゴリズムは次を満たす整数 $x, y$ を見つけるように拡張できます：
+$$\gcd(a, b) = ax + by$$
+
+これはベズーの等式を構成的に証明します。
+
+## 時間計算量
+
+ステップ数は高々 $O(\log \min(a, b))$ であり、大きな数に対しても非常に効率的です。
+
+## Mermaidダイアグラム
+
+```mermaid
+graph TD
+    A[ユークリッドのアルゴリズム] --> B[gcd(a,b) = gcd(b, a mod b)]
+    B --> C[余りが0になるまで繰り返す]
+    A --> D[例: gcd(48,18)]
+    D --> E[48 = 2·18 + 12]
+    E --> F[18 = 1·12 + 6]
+    F --> G[12 = 2·6 + 0]
+    G --> H[gcd = 6]
+    A --> I[拡張アルゴリズム]
+    I --> J[x,yを見つける: gcd = ax + by]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bfb,stroke:#333,stroke-width:2px
+    style H fill:#bfb,stroke:#333,stroke-width:2px
+    style J fill:#bbf,stroke:#333,stroke-width:2px
+```
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-euclidean-algorithm["定理：ユークリッドのアルゴリズム"]:::theorem
+    def-gcd["定義：最大公約数"]:::definition
+    thm-euclidean-algorithm --> def-gcd
+    class thm-euclidean-algorithm current
+```

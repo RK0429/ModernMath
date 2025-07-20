@@ -1,0 +1,95 @@
+---
+id: def-derivative
+requires:
+- def-limit
+status: complete
+title: '定義: 導関数'
+type: Definition
+translations:
+  en: /content/en/analysis/def-derivative.html
+---
+
+# 定義: 導関数 {#def-derivative}
+
+関数の**導関数**は、ある点における関数の瞬間変化率を測るものである。これは差分商の[極限](def-limit.qmd)として定義される。
+
+## 定義
+
+$f: (a, b) \to \mathbb{R}$ とし、$c \in (a, b)$ とする。$c$ における $f$ の導関数は $f'(c)$ と表記され、次のように定義される：
+
+$$f'(c) = \lim_{h \to 0} \frac{f(c + h) - f(c)}{h}$$
+
+ただし、この極限が存在する場合に限る。
+
+## 別の定式化
+
+異なる変数を用いて同値な表現をすると：
+
+$$f'(c) = \lim_{x \to c} \frac{f(x) - f(c)}{x - c}$$
+
+## 微分可能性
+
+$f'(c)$ が存在するとき、関数 $f$ は **$c$ で微分可能**であるという。関数が区間のすべての点で微分可能であるとき、その**区間で微分可能**であるという。
+
+## 記法
+
+導関数の様々な記法：
+- $f'(x)$（ラグランジュ記法）
+- $\frac{df}{dx}$ または $\frac{d}{dx}f(x)$（ライプニッツ記法）
+- $Df(x)$ または $D_x f$（作用素記法）
+- $\dot{f}$（ニュートン記法、通常は時間微分に使用）
+
+## 幾何学的解釈
+
+導関数 $f'(c)$ は以下を表す：
+1. 点 $(c, f(c))$ における $f$ のグラフの接線の傾き
+2. $x = c$ における $f$ の瞬間変化率
+
+## 性質
+
+$f$ が $c$ で微分可能ならば：
+1. $f$ は $c$ で連続である
+2. $(c, f(c))$ における接線の方程式は：$y - f(c) = f'(c)(x - c)$
+
+## 例
+
+1. **定数関数**：$f(x) = k$ ならば $f'(x) = 0$
+2. **べき関数**：$f(x) = x^n$ (n ∈ ℕ) ならば $f'(x) = nx^{n-1}$
+3. **指数関数**：$f(x) = e^x$ ならば $f'(x) = e^x$
+4. **正弦関数**：$f(x) = \sin(x)$ ならば $f'(x) = \cos(x)$
+
+## Mermaid図
+
+```mermaid
+graph TD
+    A[導関数 f'(c)] --> B[差分商の極限]
+    B --> C[lim (f(c+h) - f(c))/h]
+    A --> D[幾何学的意味]
+    D --> E[接線の傾き]
+    D --> F[変化率]
+    A --> G[性質]
+    G --> H[微分可能 ⟹ 連続]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bfb,stroke:#333,stroke-width:2px
+    style D fill:#bbf,stroke:#333,stroke-width:2px
+```
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-derivative["定義: 導関数"]:::definition
+    def-limit["定義: 数列の極限"]:::definition
+    thm-chain-rule["定理: 連鎖律"]:::theorem
+    thm-chain-rule --> def-derivative
+    def-derivative --> def-limit
+    class def-derivative current
+```

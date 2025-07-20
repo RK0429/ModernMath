@@ -1,0 +1,90 @@
+---
+id: thm-mean-value
+requires:
+- def-continuity
+- def-derivative
+status: complete
+title: '定理：平均値の定理'
+type: Theorem
+---
+
+**平均値の定理（MVT）**は、区間上で微分可能な関数に対して、瞬間変化率が区間全体の平均変化率に等しくなる点が少なくとも1つ存在することを主張する。
+
+## 定理の主張
+
+$f: [a,b] \to \mathbb{R}$ が以下を満たすとする：
+1. $f$ は閉区間 $[a,b]$ 上で[連続](def-continuity.qmd)
+2. $f$ は開区間 $(a,b)$ 上で微分可能
+
+このとき、少なくとも1つの $c \in (a,b)$ が存在して：
+$$f'(c) = \frac{f(b) - f(a)}{b - a}$$
+
+## 幾何学的解釈
+
+この定理は、$a$ と $b$ の間のどこかで、曲線への接線が点 $(a, f(a))$ と $(b, f(b))$ を結ぶ割線に平行になることを保証する。
+
+## 特殊な場合
+
+### ロルの定理
+さらに $f(a) = f(b)$ ならば、$f'(c) = 0$ となる $c \in (a,b)$ が存在する。
+
+これは割線が水平な場合の平均値の定理である。
+
+### コーシーの平均値定理
+関数 $f, g$ がともに $[a,b]$ 上で連続、$(a,b)$ 上で微分可能で、$(a,b)$ 上で $g'(x) \neq 0$ のとき：
+
+ある $c \in (a,b)$ が存在して：
+$$\frac{f'(c)}{g'(c)} = \frac{f(b) - f(a)}{g(b) - g(a)}$$
+
+## 証明の概略
+
+1. 補助関数を定義：$h(x) = f(x) - f(a) - \frac{f(b) - f(a)}{b - a}(x - a)$
+2. $h(a) = h(b) = 0$ に注意
+3. $h$ にロルの定理を適用
+4. $h'(c) = 0$ となる $c$ を見つけると、結果が得られる
+
+## 帰結
+
+1. **単調性**：$(a,b)$ 上で $f' > 0$ ならば、$f$ は狭義単調増加
+2. **定数関数**：$(a,b)$ 上で $f' = 0$ ならば、$f$ は定数
+3. **リプシッツ連続性**：$(a,b)$ 上で $|f'| \leq M$ ならば、$|f(x) - f(y)| \leq M|x - y|$
+
+## 応用
+
+### ロピタルの定理
+不定形の極限を評価する際の証明に使用される
+
+### テイラーの定理
+平均値の定理は高階導関数に一般化され、テイラー近似につながる
+
+### 数値解析
+- 数値微分の誤差限界
+- 反復法の収束解析
+
+## 例
+
+1. **平均値の定理の検証**：$[0,2]$ 上の $f(x) = x^2$ に対して：
+   - 平均傾き：$\frac{4-0}{2-0} = 2$
+   - $f'(x) = 2x$ なので、$f'(c) = 2$ より $c = 1 \in (0,2)$ ✓
+
+2. **応用**：$|\sin x - \sin y| \leq |x - y|$ を証明：
+   - 平均値の定理より：ある $c$ に対して $\sin x - \sin y = \cos c \cdot (x - y)$
+   - $|\cos c| \leq 1$ なので、結果が従う
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所的な依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-mean-value["定理：平均値の定理"]:::theorem
+    def-derivative["定義：導関数"]:::definition
+    def-continuity["定義：連続性"]:::definition
+    thm-mean-value --> def-derivative
+    thm-mean-value --> def-continuity
+    class thm-mean-value current
+```

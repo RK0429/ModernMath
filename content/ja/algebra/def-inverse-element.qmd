@@ -1,0 +1,98 @@
+---
+id: def-inverse-element
+requires:
+- def-binary-operation
+- def-identity-element
+status: complete
+title: '定義: 逆元'
+type: Definition
+translations:
+  en: ../../en/algebra/def-inverse-element.qmd
+---
+
+**逆元**とは、[二項演算](def-binary-operation.qmd)において、ある元と結合したときに[単位元](def-identity-element.qmd)を生じるような元のことです。
+
+## 形式的定義
+
+$(S, *)$ を二項演算 $*$ と単位元 $e$ を持つ集合とします。元 $a \in S$ に対して：
+
+### 左逆元
+元 $b \in S$ が $a$ の**左逆元**であるとは、次を満たすことです：
+$$b * a = e$$
+
+### 右逆元
+元 $b \in S$ が $a$ の**右逆元**であるとは、次を満たすことです：
+$$a * b = e$$
+
+### 両側逆元（または単に逆元）
+元 $b$ が $a$ の**逆元**であるとは、左逆元かつ右逆元であることです：
+$$b * a = a * b = e$$
+
+$a$ の逆元を $a^{-1}$ と表記します。
+
+## 群における一意性
+
+[群](def-group.qmd)（演算が結合的である場合）において、ある元が左逆元と右逆元の両方を持つならば、それらは等しく、かつ一意です。
+
+**証明**：$l$ を $a$ の左逆元、$r$ を右逆元とすると：
+- $l = l * e = l * (a * r) = (l * a) * r = e * r = r$
+
+## 例
+
+### 算術演算
+- **$\mathbb{R}$ 上の加法**：$a$ の逆元は $-a$
+  - $a + (-a) = (-a) + a = 0$
+- **$\mathbb{R} \setminus \{0\}$ 上の乗法**：$a$ の逆元は $\frac{1}{a}$
+  - $a \cdot \frac{1}{a} = \frac{1}{a} \cdot a = 1$
+
+### 行列
+- **加法**：行列 $\mathbf{A}$ の逆元は $-\mathbf{A}$
+- **乗法**：可逆行列 $\mathbf{A}$ に対して、逆元は $\mathbf{A}^{-1}$
+  - $\mathbf{A}\mathbf{A}^{-1} = \mathbf{A}^{-1}\mathbf{A} = \mathbf{I}$
+
+### 関数
+- 全単射 $f: X \to Y$ に対して、逆元は $f^{-1}: Y \to X$
+- $(f \circ f^{-1})(y) = y$ かつ $(f^{-1} \circ f)(x) = x$
+
+### 剰余算術
+- 加法における $\mathbb{Z}_n$：$a$ の逆元は $n - a$
+- 乗法における $\mathbb{Z}_n^*$：$\gcd(a, n) = 1$ のとき、かつそのときに限り逆元が存在
+
+## 性質
+
+1. **対合性**：$(a^{-1})^{-1} = a$
+2. **反準同型性**：$(a * b)^{-1} = b^{-1} * a^{-1}$（順序の逆転に注意）
+3. **単位元は自己逆元**：$e^{-1} = e$
+
+## 反例
+
+- $(\mathbb{Z}, \cdot)$ において：1 と -1 のみが乗法逆元を持つ
+- $(\mathbb{N}, +)$ において：0 以外の元は加法逆元を持たない
+- 任意の環においてゼロは乗法逆元を持たない
+
+## 関連概念
+
+- **可逆元**：逆元を持つ元
+- **単元**：環論において、乗法逆元を持つ元
+- [群](def-group.qmd)：すべての元が逆元を持つモノイド
+- **準逆元**：半群論におけるより弱い概念
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-group["定義: 群"]:::definition
+    def-identity-element["定義: 単位元"]:::definition
+    def-inverse-element["定義: 逆元"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-inverse-element --> def-identity-element
+    def-inverse-element --> def-binary-operation
+    def-inverse-element --> def-group
+    class def-inverse-element current
+```

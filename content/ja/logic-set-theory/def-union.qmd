@@ -1,0 +1,69 @@
+---
+id: def-union
+requires:
+- def-set
+status: complete
+title: '定義: 和集合'
+type: Definition
+translations:
+  en: ../../../en/logic-set-theory/def-union.qmd
+---
+
+2つの[集合](def-set.qmd) $A$ と $B$ の**和集合**（$A \cup B$ で表記）は、$A$ または $B$（またはその両方）に属するすべての要素を含む集合である。
+
+## 形式的定義
+
+$$A \cup B = \{x : x \in A \text{ または } x \in B\}$$
+
+論理記号を用いた同値な表現：
+$$x \in A \cup B \iff (x \in A) \lor (x \in B)$$
+
+## 性質
+
+1. **可換性**：$A \cup B = B \cup A$
+2. **結合性**：$(A \cup B) \cup C = A \cup (B \cup C)$
+3. **単位元**：$A \cup \emptyset = A$
+4. **べき等性**：$A \cup A = A$
+5. **吸収**：$A \subseteq B$ ならば、$A \cup B = B$
+
+## 一般化された和集合
+
+集合の族 $\{A_i : i \in I\}$ に対して：
+$$\bigcup_{i \in I} A_i = \{x : \exists i \in I, x \in A_i\}$$
+
+特殊な場合：
+- 有限和集合：$\bigcup_{i=1}^n A_i = A_1 \cup A_2 \cup \cdots \cup A_n$
+- 無限和集合：$\bigcup_{i=1}^{\infty} A_i$
+
+## 例
+
+- $\{1, 2, 3\} \cup \{3, 4, 5\} = \{1, 2, 3, 4, 5\}$
+- $\mathbb{Q} \cup \mathbb{I} = \mathbb{R}$（有理数と無理数の和集合は実数）
+- 区間の場合：$[0, 2] \cup [1, 3] = [0, 3]$
+
+## 他の演算との関係
+
+- ド・モルガンの法則：$(A \cup B)^c = A^c \cap B^c$（[ド・モルガンの法則](thm-de-morgan.qmd)を参照）
+- 分配法則：$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+- 濃度：$|A \cup B| = |A| + |B| - |A \cap B|$（包含排除の原理）
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-event["定義: 事象"]:::definition
+    def-union["定義: 和集合"]:::definition
+    def-set["定義: 集合"]:::definition
+    thm-de-morgan["定理: ド・モルガンの法則"]:::theorem
+    def-union --> thm-de-morgan
+    thm-de-morgan --> def-union
+    def-union --> def-set
+    def-event --> def-union
+    class def-union current
+```

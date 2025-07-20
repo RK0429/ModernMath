@@ -1,0 +1,68 @@
+---
+id: def-matrix
+status: complete
+title: '定義：行列'
+type: Definition
+translations:
+  en: ../../../en/algebra/def-matrix.qmd
+---
+
+# 定義：行列 {#def-matrix}
+
+体 $F$ 上の**行列**（ぎょうれつ）とは、$F$ の要素を行と列に配列した長方形の配列である。
+
+## 記法
+
+$m \times n$ 行列 $A$ は $m$ 行 $n$ 列を持ち、次のように書かれる：
+
+$$A = \begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{pmatrix}$$
+
+ここで、$a_{ij} \in F$ は第 $i$ 行第 $j$ 列の成分である。
+
+## その他の記法
+
+- 簡潔な形式：$A = (a_{ij})_{m \times n}$ または $A = [a_{ij}]$
+- $F$ 上のすべての $m \times n$ 行列の集合は $M_{m \times n}(F)$ または $F^{m \times n}$ と表記される
+
+## 特殊な行列
+
+- **正方行列**：$m = n$ のとき
+- **行ベクトル**：$1 \times n$ 行列
+- **列ベクトル**：$m \times 1$ 行列
+- **零行列**：すべての成分が 0 で、$O$ または $0_{m \times n}$ と表記される
+- **単位行列**：対角成分が 1 で他が 0 の正方行列、$I_n$ と表記される
+
+## 行列の演算
+
+1. **加法**：$(A + B)_{ij} = a_{ij} + b_{ij}$（同じサイズの行列に対して）
+2. **スカラー倍**：$(cA)_{ij} = c \cdot a_{ij}$、ただし $c \in F$
+3. **行列の積**：$A \in M_{m \times n}(F)$ と $B \in M_{n \times p}(F)$ に対して：
+   $$(AB)_{ij} = \sum_{k=1}^n a_{ik}b_{kj}$$
+
+## 転置
+
+$m \times n$ 行列 $A$ の**転置**は $n \times m$ 行列 $A^T$ であり、次を満たす：
+$$(A^T)_{ij} = a_{ji}$$
+
+行列は線形代数における基本的な対象であり、線形変換、連立方程式、双線形形式などを表現する。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-matrix-transformation["例：行列変換"]:::example
+    def-matrix["定義：行列"]:::definition
+    ex-matrix-transformation --> def-matrix
+    class def-matrix current
+```

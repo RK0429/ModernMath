@@ -1,0 +1,125 @@
+---
+title: "結合性"
+id: "def-associativity"
+type: "Definition"
+status: "complete"
+created: "2024-01-20"
+updated: "2024-01-20"
+domain: "algebra"
+tags: ["abstract-algebra", "binary-operations"]
+requires: ["def-binary-operation"]
+lang: ja
+translations:
+  en: "../en/algebra/def-associativity.html"
+---
+
+# 結合性
+
+## 定義
+
+**結合性**（associativity）は、[二項演算](def-binary-operation.qmd)の基本的な性質で、括弧を使って評価順序を指定する必要なく複数の演算を実行できるようにする。
+
+## 形式的定義
+
+集合 $S$ 上の二項演算 $*$ が**結合的**であるとは、すべての $a, b, c \in S$ に対して：
+$$(a * b) * c = a * (b * c)$$
+が成り立つことである。
+
+この性質が成り立つとき、$a * b * c$ を曖昧さなく書くことができる。
+
+## 拡張結合性
+
+帰納法により、$*$ が結合的なら、任意の要素 $a_1, a_2, \ldots, a_n$ に対して：
+- $a_1 * a_2 * \cdots * a_n$ に括弧をつけるすべての可能な方法が同じ結果を生む
+- 括弧なしで式を書くことができる
+
+## 結合的な演算の例
+
+### 算術
+- **加法**：$(a + b) + c = a + (b + c)$
+- **乗法**：$(a \cdot b) \cdot c = a \cdot (b \cdot c)$
+
+### 集合論
+- **和集合**：$(A \cup B) \cup C = A \cup (B \cup C)$
+- **共通部分**：$(A \cap B) \cap C = A \cap (B \cap C)$
+
+### 論理
+- **AND**：$(p \land q) \land r = p \land (q \land r)$
+- **OR**：$(p \lor q) \lor r = p \lor (q \lor r)$
+
+### 関数
+- **合成**：$(f \circ g) \circ h = f \circ (g \circ h)$
+
+### 文字列
+- **連結**：文字列 $A$, $B$, $C$ に対して $(AB)C = A(BC)$
+
+## 非結合的な演算
+
+### 算術
+- **減法**：$(a - b) - c \neq a - (b - c)$
+  - 例：$(5 - 3) - 1 = 1$ だが $5 - (3 - 1) = 3$
+- **除法**：$(a \div b) \div c \neq a \div (b \div c)$
+  - 例：$(8 \div 4) \div 2 = 1$ だが $8 \div (4 \div 2) = 4$
+- **冪乗**：$(a^b)^c \neq a^{(b^c)}$
+  - 例：$(2^3)^2 = 64$ だが $2^{(3^2)} = 512$
+
+### ベクトル演算
+- **外積**：$(\vec{a} \times \vec{b}) \times \vec{c} \neq \vec{a} \times (\vec{b} \times \vec{c})$
+
+## 重要性
+
+1. **代数構造**：結合性は以下に必要：
+   - 半群
+   - モノイド
+   - [群](def-group.qmd)
+   - 環（両演算に対して）
+
+2. **計算**：最適化のための柔軟な評価順序を可能にする
+
+3. **一般化**：任意の指数集合上の積・和の定義を可能にする
+
+## 関連する性質
+
+- **可換性**：$a * b = b * a$（結合性とは独立）
+- **冪結合性**：$(x^m)^n = x^{mn}$（完全結合性より弱い）
+- **交代性**：$(aa)b = a(ab)$ かつ $a(bb) = (ab)b$（より弱い）
+
+## 帰結
+
+結合性を持つ構造では：
+- 冪を定義できる：$a^n = a * a * \cdots * a$（n回）
+- 無限積に拡張できる（適切な収束性のもとで）
+- 行列の乗法は結合的で、効率的な計算を可能にする
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-group["定義: 群"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-associativity["定義: 結合性"]:::definition
+    def-commutativity["定義: 可換性"]:::definition
+    def-commutativity --> def-associativity
+    def-associativity --> def-group
+    def-associativity --> def-binary-operation
+    class def-associativity current
+```
+
+## インタラクティブ可視化
+
+ローカル知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-associativity" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/def-associativity.html){target="_blank"}で完全なインタラクティブ版を表示

@@ -1,0 +1,100 @@
+---
+id: def-parallel
+requires:
+- def-line
+- def-point
+status: complete
+title: '定義: 平行線'
+type: Definition
+translations:
+  en: ../../en/geometry/def-parallel.qmd
+---
+
+2つの[直線](def-line.qmd)は、同一平面上にあり、どれだけ延長しても交わらないとき**平行**であるといいます。
+
+## 形式的定義
+
+ユークリッド幾何学において、直線 $\ell$ と $m$ が平行（$\ell \parallel m$ と表記）であるとは：
+1. 同一平面上にある（共平面）
+2. 共通の[点](def-point.qmd)を持たない: $\ell \cap m = \emptyset$
+
+## 特徴付け
+
+### 座標幾何学において
+$\mathbb{R}^2$ の2つの直線は、同じ傾きを持つときかつそのときに限り平行である：
+- 直線1: $y = m_1x + b_1$
+- 直線2: $y = m_2x + b_2$
+- 平行 ⟺ $m_1 = m_2$ かつ $b_1 \neq b_2$
+
+### 方向ベクトルを使用して
+方向ベクトル $\vec{v}_1$ と $\vec{v}_2$ を持つ直線が平行 ⟺
+$$\vec{v}_1 = k\vec{v}_2 \text{ （ある } k \neq 0 \text{ に対して）}$$
+
+## ユークリッドの平行線公理
+
+有名な第5公理は次のように述べている：
+> 与えられた直線上にない点を通って、与えられた直線に平行な直線がただ1つ存在する。
+
+この公理は：
+- 他の公理から証明できない
+- ユークリッド幾何学と非ユークリッド幾何学を区別する
+
+## 性質
+
+1. **反射律**: すべての直線はそれ自身に平行である（慣例により）
+2. **対称律**: $\ell \parallel m$ ならば $m \parallel \ell$
+3. **推移律**: $\ell \parallel m$ かつ $m \parallel n$ ならば $\ell \parallel n$
+4. **等距離**: 平行線は一定の垂直距離を保つ
+
+## 平行線と横断線
+
+横断線が2つの平行線と交わるとき：
+- **同位角**は等しい
+- **錯角**は等しい
+- **同側内角**は補角である（和が180°）
+
+## 例
+
+1. **鉄道の線路**: 平行線の古典的な実世界の例
+2. **座標軸の平行移動**: $y = 2$ と $y = 5$ は平行
+3. **長方形の対辺**: 定義により常に平行
+
+## 非ユークリッド的変形
+
+### 双曲幾何学
+直線上にない点を通って、与えられた直線に平行な直線が無限に多く存在する。
+
+### 球面幾何学
+平行線は存在しない - すべての大円は交わる。
+
+## 関連概念
+
+- **垂直線**: 90°で交わる
+- **ねじれの位置の直線**: 3次元で交わらない非平行線
+- **平行平面**: より高次元への拡張
+- **平行四辺形**: 対辺が平行な四辺形
+
+## 応用
+
+- **建築**: 構造的安定性の確保
+- **コンピュータグラフィックス**: レイトレーシングと衝突検出
+- **航法**: 緯度線は平行
+- **線形代数**: 平行ベクトルと部分空間
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-line["定義: 直線"]:::definition
+    def-point["定義: 点"]:::definition
+    def-parallel["定義: 平行線"]:::definition
+    def-parallel --> def-line
+    def-parallel --> def-point
+    class def-parallel current
+```

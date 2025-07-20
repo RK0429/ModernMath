@@ -1,0 +1,74 @@
+---
+id: def-topological-space
+requires:
+- def-set
+status: complete
+title: '定義: 位相空間'
+type: Definition
+translations:
+  en: ../en/topology/def-topological-space.qmd
+---
+
+# 定義: 位相空間 {#def-topological-space}
+
+**位相空間**とは、[集合](../logic-set-theory/def-set.qmd) $X$ と、以下の公理を満たす $X$ の部分集合の集合族 $\tau$ の組である：
+
+## 位相の公理
+
+集合族 $\tau$ は以下を満たさなければならない：
+
+1. **空集合と全体集合**: $\emptyset \in \tau$ かつ $X \in \tau$
+
+2. **任意の和集合**: $\{U_i\}_{i \in I}$ が $\tau$ の元の任意の集合族であるとき
+   $$\bigcup_{i \in I} U_i \in \tau$$
+
+3. **有限個の積集合**: $U_1, U_2, \ldots, U_n \in \tau$ のとき
+   $$\bigcap_{i=1}^{n} U_i \in \tau$$
+
+## 用語
+
+- 集合族 $\tau$ を $X$ 上の**位相**と呼ぶ
+- $\tau$ の元を**開集合**と呼ぶ
+- 組 $(X, \tau)$ を**位相空間**と呼ぶ
+- 文脈から位相が明らかな場合、単に「位相空間 $X$」と呼ぶことがある
+
+## 例
+
+1. **離散位相**: $\tau = \mathcal{P}(X)$（すべての部分集合が開集合）
+2. **密着位相**: $\tau = \{\emptyset, X\}$（空集合と $X$ のみが開集合）
+3. **$\mathbb{R}$ の標準位相**: 開集合は開区間の和集合
+
+## 性質
+
+これらの公理から導かれる重要な性質：
+
+- 開集合の任意の和集合は開集合である
+- 開集合の有限個の積集合は開集合である
+- 開集合の補集合を**閉集合**と呼ぶ
+
+## 関連概念
+
+- 定義: 開集合
+- 定義: 連続関数（近日公開）
+- 定義: 同相写像（近日公開）
+- 定義: 位相の基底（近日公開）
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["定義: 集合"]:::definition
+    def-open-set["定義: 開集合"]:::definition
+    def-topological-space["定義: 位相空間"]:::definition
+    thm-union-open-sets["定理: 開集合の和集合"]:::theorem
+    thm-union-open-sets --> def-topological-space
+    def-topological-space --> def-set
+    def-open-set --> def-topological-space
+    class def-topological-space current
+```

@@ -1,0 +1,89 @@
+---
+id: def-sequence
+requires:
+- def-set
+status: complete
+title: '定義：数列'
+type: Definition
+translations:
+  en: ../../../en/analysis/def-sequence.qmd
+---
+
+**数列**とは、要素（通常は数）の順序付けられたリストであり、自然数で添字付けられている。形式的には、数列は自然数から集合への関数である。
+
+## 形式的定義
+
+集合 $S$ における数列とは、次のような関数である：
+$$a: \mathbb{N} \to S$$
+
+次のように表記する：
+- 数列を $(a_n)_{n=1}^{\infty}$ または単に $(a_n)$
+- 第 $n$ 項を $a_n = a(n)$
+
+## 記法
+
+数列の一般的な記法：
+- $(a_n)_{n=1}^{\infty} = (a_1, a_2, a_3, ...)$
+- $(a_n)_{n \in \mathbb{N}}$
+- $\{a_n\}_{n=1}^{\infty}$（ただし、集合記法と混同される可能性がある）
+
+## 数列の種類
+
+### 定義域による分類
+- **無限数列**：定義域がすべての $\mathbb{N}$
+- **有限数列**：定義域がある $N$ に対して $\{1, 2, ..., N\}$
+
+### 値域による分類
+- **実数列**：$a_n \in \mathbb{R}$
+- **複素数列**：$a_n \in \mathbb{C}$
+- **ベクトル数列**：$a_n \in \mathbb{R}^d$ または他のベクトル空間
+- **関数列**：$a_n$ が関数
+
+## 例
+
+1. **等差数列**：$a_n = a_1 + (n-1)d$
+   - 例：$(2, 5, 8, 11, ...)$、ここで $a_1 = 2$、$d = 3$
+
+2. **等比数列**：$a_n = a_1 \cdot r^{n-1}$
+   - 例：$(3, 6, 12, 24, ...)$、ここで $a_1 = 3$、$r = 2$
+
+3. **調和数列**：$a_n = \frac{1}{n}$
+   - $(1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, ...)$
+
+4. **フィボナッチ数列**：$a_1 = 1, a_2 = 1, a_n = a_{n-1} + a_{n-2}$
+   - $(1, 1, 2, 3, 5, 8, 13, ...)$
+
+## 性質
+
+- **有界**：すべての $n$ に対して $|a_n| \leq M$ となる $M > 0$ が存在する
+- **単調**：増加列（$a_n \leq a_{n+1}$）または減少列
+- **周期的**：すべての $n$ に対して $a_{n+p} = a_n$ となる $p$ が存在する
+- **コーシー列**：$\forall \varepsilon > 0, \exists N$ に対して、すべての $m,n > N$ で $|a_m - a_n| < \varepsilon$
+
+## 関連概念
+
+- [収束](def-convergence.qmd)：数列が極限に近づくとき
+- [数列の極限](def-limit.qmd)：収束数列が近づく値
+- 級数：数列の項の和
+- 部分列：数列から抽出された数列
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["定義：集合"]:::definition
+    def-convergence["定義：収束"]:::definition
+    def-limit["定義：数列の極限"]:::definition
+    def-sequence["定義：数列"]:::definition
+    def-sequence --> def-set
+    def-sequence --> def-limit
+    def-sequence --> def-convergence
+    def-convergence --> def-sequence
+    class def-sequence current
+```

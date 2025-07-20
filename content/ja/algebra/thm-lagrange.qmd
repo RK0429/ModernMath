@@ -1,0 +1,53 @@
+---
+id: thm-lagrange
+requires:
+- def-group
+- def-subgroup
+status: complete
+title: '定理: ラグランジュの定理'
+type: Theorem
+translations:
+  en: /content/en/algebra/thm-lagrange.qmd
+---
+
+# ラグランジュの定理 {#thm-lagrange}
+
+有限[群](def-group.qmd)$G$とその[部分群](def-subgroup.qmd)$H$に対して、$H$の位数は$G$の位数を割り切る。
+
+## 主張
+
+$G$が有限群で$H \leq G$ならば：
+$$|G| = |H| \cdot [G:H]$$
+
+ここで、$|G|$は$G$の位数（元の個数）を表し、$[G:H]$は$H$の$G$における指数（$H$の$G$における異なる左剰余類の個数）を表す。
+
+## 系
+
+1. $G$の任意の元$a \in G$の位数は$G$の位数を割り切る
+2. $|G|$が素数ならば、$G$は巡回群であり、自明でない真部分群を持たない
+3. 素数位数の群はすべて、ある素数$p$に対して$\mathbb{Z}_p$と同型である
+
+## 応用
+
+ラグランジュの定理は群論において基本的であり、多くの応用がある：
+- 可能な部分群構造の決定
+- フェルマーの小定理の証明
+- 小さい位数の群の分類
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所的な依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-subgroup["定義: 部分群"]:::definition
+    thm-lagrange["定理: ラグランジュの定理"]:::theorem
+    def-group["定義: 群"]:::definition
+    thm-lagrange --> def-subgroup
+    thm-lagrange --> def-group
+    class thm-lagrange current
+```

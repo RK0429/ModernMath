@@ -1,0 +1,83 @@
+---
+id: ex-set-category
+requires:
+- def-category
+- def-morphism
+- def-set
+status: complete
+title: '例：集合の圏'
+type: Example
+translations:
+  en: ../../en/category-theory/ex-set-category.qmd
+---
+
+# 例：集合の圏
+
+圏 **Set** は[圏](def-category.qmd)論における最も基本的な例の一つで、集合を対象とし、関数を射とします。
+
+## 定義
+
+圏 **Set** は以下から構成されます：
+- **対象**：すべての[集合](../logic-set-theory/def-set.qmd)
+- **射**：集合間の関数
+- **合成**：関数の合成
+- **恒等射**：各集合上の恒等関数
+
+## 圏の公理の検証
+
+**Set** が圏の公理を満たすことを検証します：
+
+### 1. 合成の結合律
+
+関数 $f: A \to B$、$g: B \to C$、$h: C \to D$ に対して：
+$$(h \circ g) \circ f = h \circ (g \circ f)$$
+
+これは関数の合成が結合的であることから成り立ちます：任意の $x \in A$ に対して、
+$$((h \circ g) \circ f)(x) = h(g(f(x))) = (h \circ (g \circ f))(x)$$
+
+### 2. 恒等律
+
+各集合 $A$ に対して、$\text{id}_A(x) = x$ で定義される恒等関数 $\text{id}_A: A \to A$ は以下を満たします：
+- 任意の $f: A \to B$ に対して：$f \circ \text{id}_A = f$
+- 任意の $g: B \to A$ に対して：$\text{id}_A \circ g = g$
+
+## Set の性質
+
+1. **サイズ**：Set は**大きな圏**です - その対象の集まりは集合ではなく真クラスを形成します
+
+2. **特殊な射**：
+   - Set における単射は単射関数と正確に一致します
+   - Set における全射は全射関数と正確に一致します
+   - Set における同型射は全単射関数と正確に一致します
+
+3. **始対象と終対象**：
+   - 空集合 $\emptyset$ は始対象です（$\emptyset$ から任意の集合への一意な関数が存在）
+   - 任意の単元集合 $\{*\}$ は終対象です（任意の集合から $\{*\}$ への一意な関数が存在）
+
+## 関連する圏
+
+- **FinSet**：有限集合の圏
+- **Set***：点付き集合（特別な要素を持つ集合）の圏
+
+```{mermaid}
+```
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-set-category["例：集合の圏"]:::example
+    def-morphism["定義：射"]:::definition
+    def-set["定義：集合"]:::definition
+    def-category["定義：圏"]:::definition
+    ex-set-category --> def-morphism
+    ex-set-category --> def-category
+    ex-set-category --> def-set
+    class ex-set-category current
+```

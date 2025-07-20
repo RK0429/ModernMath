@@ -1,0 +1,58 @@
+---
+id: def-subgroup
+requires:
+- def-group
+- def-set
+status: complete
+title: '定義：部分群'
+type: Definition
+lean_id: Mathlib.Algebra.Group.Subgroup.Basic.Subgroup
+translations:
+  en: ../../../en/algebra/def-subgroup.qmd
+---
+
+# 部分群 {#def-subgroup}
+
+[群](def-group.qmd) $G$ の**部分群**（ぶぶんぐん）とは、$G$ と同じ演算のもとでそれ自身が群となる[集合](../logic-set-theory/def-set.qmd) $H \subseteq G$ である。
+
+## 形式的定義
+
+$(G, \cdot)$ を群とする。空でない部分集合 $H \subseteq G$ が $G$ の部分群であるとは、次を満たすときである：
+
+1. **閉性**：すべての $a, b \in H$ に対して、$a \cdot b \in H$
+2. **単位元**：$G$ の単位元 $e$ が $H$ に属する
+3. **逆元**：すべての $a \in H$ に対して、逆元 $a^{-1} \in H$
+
+これを $H \leq G$ と表記する。
+
+## 部分群の判定法
+
+群 $G$ の部分集合 $H$ が部分群であるための必要十分条件は：
+- $H$ が空でない
+- すべての $a, b \in H$ に対して、$a \cdot b^{-1} \in H$
+
+## 性質
+
+- すべての群 $G$ は少なくとも2つの部分群を持つ：自明な部分群 $\{e\}$ と $G$ 自身
+- 部分群の任意の共通部分は部分群である
+- 部分群は親の群から結合律を継承する
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-subgroup["定義：部分群"]:::definition
+    thm-lagrange["定理：ラグランジュの定理"]:::theorem
+    def-group["定義：群"]:::definition
+    def-set["定義：集合"]:::definition
+    thm-lagrange --> def-subgroup
+    def-subgroup --> def-set
+    def-subgroup --> def-group
+    class def-subgroup current
+```

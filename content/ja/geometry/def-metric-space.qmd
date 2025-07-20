@@ -1,0 +1,66 @@
+---
+id: def-metric-space
+requires:
+- def-set
+status: complete
+title: '定義: 距離空間'
+type: Definition
+translations:
+  en: ../../en/geometry/def-metric-space.qmd
+---
+
+# 定義: 距離空間 {#def-metric-space}
+
+**距離空間**は、[集合](../logic-set-theory/def-set.qmd) $X$ と、距離の直感的な性質を捉える特定の公理を満たす関数 $d: X \times X \to \mathbb{R}$（**距離関数**または**計量**と呼ばれる）の組です。
+
+## 距離の公理
+
+すべての $x, y, z \in X$ に対して、計量 $d$ は以下を満たさなければならない：
+
+1. **非負性**: $d(x, y) \geq 0$
+2. **同一律**: $d(x, y) = 0$ ⟺ $x = y$
+3. **対称性**: $d(x, y) = d(y, x)$
+4. **三角不等式**: $d(x, z) \leq d(x, y) + d(y, z)$
+
+組 $(X, d)$ を距離空間と呼びます。
+
+## 例
+
+1. $\mathbb{R}^n$ 上の**ユークリッド計量**:
+   $$d(x, y) = \sqrt{\sum_{i=1}^n (x_i - y_i)^2}$$
+
+2. 任意の集合 $X$ 上の**離散計量**:
+   $$d(x, y) = \begin{cases} 0 & \text{if } x = y \\ 1 & \text{if } x \neq y \end{cases}$$
+
+3. $\mathbb{R}^n$ 上の**マンハッタン計量**:
+   $$d(x, y) = \sum_{i=1}^n |x_i - y_i|$$
+
+## 重要な概念
+
+- **開球**: $B(x, r) = \{y \in X : d(x, y) < r\}$
+- **閉球**: $\bar{B}(x, r) = \{y \in X : d(x, y) \leq r\}$
+- **有界集合**: $A \subseteq X$ が有界 ⟺ $\exists M > 0, x_0 \in X$ で $A \subseteq B(x_0, M)$
+
+## 重要性
+
+距離空間は：
+- ユークリッド空間を超えて距離の概念を一般化する
+- 連続性と収束を研究するための枠組みを提供する
+- 解析学と位相数学の基礎を形成する
+- 幾何学と解析学を結びつける
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-metric-space["定義: 距離空間"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-metric-space --> def-set
+    class def-metric-space current
+```

@@ -1,0 +1,68 @@
+---
+id: def-angle
+requires:
+- def-point
+- def-line
+status: complete
+title: '定義: 角'
+type: Definition
+translations:
+  en: ../../en/geometry/def-angle.qmd
+---
+
+**角**とは、共通の端点を持つ2つの半直線（レイ）によって形成される図形です。共通の端点は角の**頂点**と呼ばれ、2つの半直線は角の**辺**と呼ばれます。
+
+## 形式的定義
+
+角は以下のように定義できます：
+
+1. **幾何学的定義**: 3つの[点](def-point.qmd) $A$, $B$, $C$ が与えられ、$A \neq B$ かつ $C \neq B$ のとき、角 $\angle ABC$ は半直線 $\overrightarrow{BA}$ と $\overrightarrow{BC}$ の和集合です。
+
+2. **測度の定義**: 角は**測度**と呼ばれる実数と関連付けられ、通常以下で表現されます：
+   - **度数法**: 一回転は $360°$
+   - **弧度法**: 一回転は $2\pi$ ラジアン
+   - **グラード**: 一回転は $400$ グラード
+
+3. **ベクトルによる定義**: 2つの非零ベクトル $\vec{u}$ と $\vec{v}$ の間の角 $\theta$ は以下で定義されます：
+   $$\cos \theta = \frac{\vec{u} \cdot \vec{v}}{|\vec{u}||\vec{v}|}$$
+
+## 分類
+
+角はその測度により分類されます：
+- **鋭角**: $0° < \theta < 90°$
+- **直角**: $\theta = 90°$
+- **鈍角**: $90° < \theta < 180°$
+- **平角**: $\theta = 180°$
+- **優角**: $180° < \theta < 360°$
+
+## 性質
+
+- 角の測度は回転と平行移動に対して不変である
+- [ユークリッド空間](def-euclidean-space.qmd)において、角は角の加法公理を満たす
+- 2つの角は同じ測度を持つとき**合同**である
+- **余角**の和は $90°$ となる
+- **補角**の和は $180°$ となる
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-angle-sum-triangle["定理: 三角形の内角の和"]:::theorem
+    def-triangle["定義: 三角形"]:::definition
+    def-angle["定義: 角"]:::definition
+    def-euclidean-space["定義: ユークリッド空間"]:::definition
+    def-point["定義: 点"]:::definition
+    def-line["定義: 直線"]:::definition
+    def-angle --> def-line
+    def-triangle --> def-angle
+    def-angle --> def-point
+    def-angle --> def-euclidean-space
+    thm-angle-sum-triangle --> def-angle
+    class def-angle current
+```

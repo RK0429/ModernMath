@@ -1,0 +1,70 @@
+---
+id: def-continuity
+requires:
+- def-limit
+status: complete
+title: '定義: 連続性'
+type: Definition
+translations:
+  en: /content/en/analysis/def-continuity.html
+---
+
+# 定義: 連続性 {#def-continuity}
+
+関数 $f: A \to \mathbb{R}$（ただし $A \subseteq \mathbb{R}$）が点 $c \in A$ において**連続**であるとは、その点における関数値が極限値に等しいことをいう。
+
+## イプシロン・デルタ定義
+
+$f$ が $c$ で連続であるとは：
+
+任意の $\varepsilon > 0$ に対して、ある $\delta > 0$ が存在して、すべての $x \in A$ に対して：
+$$|x - c| < \delta \implies |f(x) - f(c)| < \varepsilon$$
+
+## 数列による定義
+
+同値な定義として、$f$ が $c$ で連続であるとは：
+
+$A$ における任意の数列 $(x_n)$ に対して、$x_n \to c$ ならば $f(x_n) \to f(c)$ が成り立つ。
+
+## 極限による定義
+
+$c$ が $A$ の集積点である場合、$f$ が $c$ で連続であることの必要十分条件は：
+$$\lim_{x \to c} f(x) = f(c)$$
+
+これには以下の3つの条件が必要である：
+1. $f(c)$ が定義されている
+2. $\lim_{x \to c} f(x)$ が存在する
+3. 極限値が関数値に等しい
+
+## 連続性の種類
+
+- **集合上で連続**：$f$ が $A$ 上で連続であるとは、$A$ のすべての点で連続であることをいう
+- **一様連続**：$\delta$ が点に依存せず $\varepsilon$ のみに依存するという、より強い条件
+- **リプシッツ連続**：変化率に線形の上界を持つという、さらに強い条件
+
+## 不連続性
+
+$f$ が $c$ で連続でないとき、$f$ は $c$ で**不連続**であるという。不連続性の種類には以下がある：
+- **除去可能不連続**：極限は存在するが $f(c)$ に等しくない
+- **跳躍不連続**：左極限と右極限は存在するが異なる
+- **本質的不連続**：極限が存在しない
+
+連続性は、関数が「切れ目や跳躍がない」という直感的な概念を数学的に捉えたものである。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-continuity["定義: 連続性"]:::definition
+    ex-polynomial-continuity["例: 多項式の連続性"]:::example
+    def-limit["定義: 数列の極限"]:::definition
+    def-continuity --> def-limit
+    ex-polynomial-continuity --> def-continuity
+    class def-continuity current
+```

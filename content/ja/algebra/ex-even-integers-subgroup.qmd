@@ -1,0 +1,59 @@
+---
+id: ex-even-integers-subgroup
+requires:
+- def-subgroup
+- def-group
+- ex-integers-addition
+status: complete
+title: '例: 偶数整数は部分群を成す'
+type: Example
+translations:
+  en: ../en/algebra/ex-even-integers-subgroup.qmd
+---
+
+# 例: 偶数整数は部分群を成す
+
+偶数整数の集合 $2\mathbb{Z} = \{..., -4, -2, 0, 2, 4, ...\}$ は[加法に関する整数](ex-integers-addition.qmd)の[部分群](def-subgroup.qmd)を成す。
+
+## 検証
+
+$2\mathbb{Z}$ が $(\mathbb{Z}, +)$ の部分群であることを示すために、以下を検証する：
+
+1. **空でない**: $0 = 2 \cdot 0$ なので $0 \in 2\mathbb{Z}$。
+
+2. **閉性**: $a, b \in 2\mathbb{Z}$ ならば、ある $m, n \in \mathbb{Z}$ に対して $a = 2m$、$b = 2n$ である。したがって：
+   $$a + b = 2m + 2n = 2(m + n) \in 2\mathbb{Z}$$
+
+3. **逆元**: $a \in 2\mathbb{Z}$ ならば、ある $m \in \mathbb{Z}$ に対して $a = 2m$ である。逆元は：
+   $$-a = -(2m) = 2(-m) \in 2\mathbb{Z}$$
+
+したがって、$2\mathbb{Z}$ は加法に関する $\mathbb{Z}$ の部分群である。
+
+## 性質
+
+- $1 \in \mathbb{Z}$ だが $1 \notin 2\mathbb{Z}$ なので、これは真部分群である。
+- この部分群の $\mathbb{Z}$ における指数は 2 であり、ちょうど 2 個の剰余類が存在する。
+- 剰余類は $2\mathbb{Z}$（偶数整数）と $1 + 2\mathbb{Z}$（奇数整数）である。
+
+```{mermaid}
+```
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-even-integers-subgroup["例: 偶数整数は部分群を成す"]:::example
+    ex-integers-addition["例: 加法に関する整数"]:::example
+    def-group["定義: 群"]:::definition
+    def-subgroup["定義: 部分群"]:::definition
+    ex-even-integers-subgroup --> def-group
+    ex-even-integers-subgroup --> def-subgroup
+    ex-even-integers-subgroup --> ex-integers-addition
+    class ex-even-integers-subgroup current
+```

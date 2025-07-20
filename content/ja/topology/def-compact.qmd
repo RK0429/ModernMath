@@ -1,0 +1,64 @@
+---
+id: def-compact
+requires:
+- def-topological-space
+- def-open-set
+- def-set
+status: complete
+title: '定義: コンパクト空間'
+type: Definition
+translations:
+  en: ../../en/topology/def-compact.qmd
+---
+
+# コンパクト空間 {#def-compact}
+
+[位相空間](def-topological-space.qmd)が**コンパクト**であるとは、その任意の開被覆が有限部分被覆を持つときをいいます。
+
+## 形式的定義
+
+位相空間$(X, \tau)$がコンパクトであるとは、[開集合](def-open-set.qmd)の族$\{U_i\}_{i \in I}$が$X = \bigcup_{i \in I} U_i$を満たすとき、有限部分集合$J \subseteq I$が存在して$X = \bigcup_{j \in J} U_j$となることをいいます。
+
+## 同値な特徴付け
+
+位相空間$X$に対して、以下は同値です：
+
+1. $X$はコンパクトである
+2. 有限交叉性を持つ閉集合の任意の族は空でない交叉を持つ
+3. $X$内の任意のネットは収束する部分ネットを持つ
+4. $X$上の任意のフィルターは集積点を持つ
+
+## 性質
+
+- コンパクト空間の閉部分集合はコンパクトである
+- ハウスドルフ空間のコンパクト部分集合は閉集合である
+- コンパクト空間の連続像はコンパクトである
+- コンパクト空間の積はコンパクトである（チコノフの定理）
+
+## 例
+
+- 任意の有限位相空間はコンパクトである
+- $\mathbb{R}$の閉区間$[a, b]$はコンパクトである（ハイネ・ボレルの定理）
+- $\mathbb{R}^{n+1}$内の単位球面$S^n$はコンパクトである
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-heine-borel["定理: ハイネ・ボレルの定理"]:::theorem
+    def-set["定義: 集合"]:::definition
+    def-compact["定義: コンパクト空間"]:::definition
+    def-open-set["定義: 開集合"]:::definition
+    def-topological-space["定義: 位相空間"]:::definition
+    def-compact --> def-open-set
+    def-compact --> def-set
+    def-compact --> def-topological-space
+    thm-heine-borel --> def-compact
+    class def-compact current
+```

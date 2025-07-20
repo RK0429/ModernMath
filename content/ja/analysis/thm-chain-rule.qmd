@@ -1,0 +1,95 @@
+---
+id: thm-chain-rule
+requires:
+- def-derivative
+- def-continuity
+status: complete
+title: '定理：連鎖律'
+type: Theorem
+translations:
+  en: ../../../en/analysis/thm-chain-rule.qmd
+---
+
+# 定理：連鎖律 {#thm-chain-rule}
+
+連鎖律は、合成関数の[導関数](def-derivative.qmd)を計算するための公式を与える。
+
+## 命題
+
+$f: (a, b) \to \mathbb{R}$ と $g: (c, d) \to \mathbb{R}$ で、$f((a, b)) \subseteq (c, d)$ とする。
+
+$f$ が $x_0 \in (a, b)$ で微分可能で、$g$ が $f(x_0)$ で微分可能ならば、合成関数 $g \circ f$ は $x_0$ で微分可能であり：
+
+$$(g \circ f)'(x_0) = g'(f(x_0)) \cdot f'(x_0)$$
+
+## ライプニッツ記法
+
+$y = f(x)$ かつ $z = g(y)$ ならば：
+
+$$\frac{dz}{dx} = \frac{dz}{dy} \cdot \frac{dy}{dx}$$
+
+## 証明の概要
+
+$h = g \circ f$ とする。次を示す必要がある：
+$$\lim_{x \to x_0} \frac{h(x) - h(x_0)}{x - x_0} = g'(f(x_0)) \cdot f'(x_0)$$
+
+$y = f(x)$ および $y_0 = f(x_0)$ と定義する。$x \neq x_0$ のとき：
+
+$$\frac{h(x) - h(x_0)}{x - x_0} = \frac{g(f(x)) - g(f(x_0))}{x - x_0}$$
+
+$f(x) \neq f(x_0)$ のとき：
+$$= \frac{g(f(x)) - g(f(x_0))}{f(x) - f(x_0)} \cdot \frac{f(x) - f(x_0)}{x - x_0}$$
+
+$f$ は $x_0$ で微分可能なので、そこで[連続](def-continuity.qmd)である。したがって、$x \to x_0$ のとき $f(x) \to f(x_0)$ となる。
+
+$x \to x_0$ の極限をとると、求める結果が得られる。
+
+## 拡張連鎖律
+
+$n$ 個の関数の合成 $f_1 \circ f_2 \circ \cdots \circ f_n$ に対して：
+
+$$(f_1 \circ f_2 \circ \cdots \circ f_n)' = f_1'(f_2 \circ \cdots \circ f_n) \cdot f_2'(f_3 \circ \cdots \circ f_n) \cdots f_n'$$
+
+## 例
+
+1. $h(x) = \sin(x^2)$ ならば、$h'(x) = \cos(x^2) \cdot 2x$
+
+2. $h(x) = e^{\sqrt{x}}$ ならば、$h'(x) = e^{\sqrt{x}} \cdot \frac{1}{2\sqrt{x}}$
+
+3. $h(x) = \ln(\sin(x))$ ならば、$h'(x) = \frac{1}{\sin(x)} \cdot \cos(x) = \cot(x)$
+
+## マーメイド図
+
+```mermaid
+graph TD
+    A[連鎖律] --> B[(g∘f)' = g'(f(x))·f'(x)]
+    A --> C[関数の合成]
+    C --> D[f: x → y]
+    C --> E[g: y → z]
+    B --> F[ライプニッツ: dz/dx = dz/dy · dy/dx]
+    A --> G[必要条件]
+    G --> H[f が x₀ で微分可能]
+    G --> I[g が f(x₀) で微分可能]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bfb,stroke:#333,stroke-width:2px
+    style F fill:#bfb,stroke:#333,stroke-width:2px
+```
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-chain-rule["定理：連鎖律"]:::theorem
+    def-continuity["定義：連続性"]:::definition
+    def-derivative["定義：導関数"]:::definition
+    thm-chain-rule --> def-continuity
+    thm-chain-rule --> def-derivative
+    class thm-chain-rule current
+```

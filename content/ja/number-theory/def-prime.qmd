@@ -1,0 +1,64 @@
+---
+id: def-prime
+status: complete
+title: '定義：素数'
+type: Definition
+translations:
+  en: ../../../en/number-theory/def-prime.qmd
+---
+
+# 定義：素数 {#def-prime}
+
+$p > 1$ なる自然数が、その正の約数が1と $p$ 自身のみであるとき、$p$ を**素数**と呼びます。
+
+## 形式的定義
+
+自然数 $p > 1$ が素数であるとは、次が成り立つことと同値です：
+$$\forall a \in \mathbb{N}, \quad a \mid p \implies a = 1 \text{ または } a = p$$
+
+ここで、$a \mid p$ は「$a$ が $p$ を割り切る」ことを意味します（すなわち、$p = ak$ となる $k \in \mathbb{N}$ が存在する）。
+
+## 同値な特徴付け
+
+1. $p$ がちょうど2つの正の約数を持つ
+2. $p$ を、両方とも1より大きい2つの自然数の積として表すことができない
+3. 整数 $a, b$ に対して $p \mid ab$ ならば、$p \mid a$ または $p \mid b$ （素数の性質）
+
+## 例と反例
+
+**素数**：2, 3, 5, 7, 11, 13, 17, 19, 23, 29, ...
+
+**合成数**（1より大きい非素数）：4, 6, 8, 9, 10, 12, 14, 15, ...
+
+注意：
+- 2は唯一の偶数の素数です
+- 1は（現代の慣習では）素数とは見なされません
+
+## 重要性
+
+素数は数論の「原子」です：
+- 1より大きいすべての自然数は素数の積に一意的に分解できます（算術の基本定理）
+- 数学やその応用（暗号理論、符号理論）の多くの分野に現れます
+- その分布は中心的な謎のままです（リーマン予想）
+
+## 関連概念
+
+- **合成数**：1より大きい素数でない自然数
+- **互いに素**：2つの整数の最大公約数が1であること
+- **素因数分解**：数を素数のべきの積として表すこと
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-prime["定義：素数"]:::definition
+    thm-fundamental-arithmetic["定理：算術の基本定理"]:::theorem
+    thm-fundamental-arithmetic --> def-prime
+    class def-prime current
+```

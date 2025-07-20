@@ -1,0 +1,76 @@
+---
+id: def-binomial-coefficient
+requires:
+- def-combination
+- def-permutation
+status: complete
+title: '定義：二項係数'
+type: Definition
+---
+
+# 定義：二項係数
+
+**二項係数** $\binom{n}{k}$（「n個からk個を選ぶ」と読む）は、順序を考慮せずにn個の対象からk個の対象を選ぶ方法の数を数えます。
+
+## 形式的定義
+
+非負整数 $n$ と $k$（$k \leq n$）に対して、二項係数は次のように定義されます：
+
+$$\binom{n}{k} = \frac{n!}{k!(n-k)!}$$
+
+ここで $n!$ は $n$ の階乗を表します。
+
+## 代替的な定式化
+
+1. **[組合せ](def-combination.qmd)による表現**：$\binom{n}{k} = C(n,k)$ - n個の要素からのk-組合せの数
+
+2. **[順列](def-permutation.qmd)による表現**：$\binom{n}{k} = \frac{P(n,k)}{k!}$ ここで $P(n,k)$ はk-順列の数
+
+3. **再帰的定義**：
+   $$\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$$
+   基底条件：$\binom{n}{0} = \binom{n}{n} = 1$
+
+## 特殊な値
+
+- $\binom{n}{0} = 1$（何も選ばない方法は1つ）
+- $\binom{n}{1} = n$（1つを選ぶ方法はn通り）
+- $\binom{n}{n} = 1$（全てを選ぶ方法は1つ）
+- $\binom{n}{k} = 0$（$k > n$ の場合、利用可能な数より多くは選べない）
+
+## 性質
+
+1. **対称性**：$\binom{n}{k} = \binom{n}{n-k}$
+
+2. **パスカルの恒等式**：$\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$
+
+3. **二項定理**：$(x + y)^n = \sum_{k=0}^{n} \binom{n}{k} x^k y^{n-k}$
+
+## 応用
+
+- 与えられたサイズの部分集合の数え上げ
+- 二項式の展開
+- 離散分布における確率計算
+- パスカルの三角形の構成
+
+```{mermaid}
+```
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-combination["定義：組合せ"]:::definition
+    def-binomial-coefficient["定義：二項係数"]:::definition
+    ex-pascals-triangle["例：パスカルの三角形"]:::example
+    def-permutation["定義：順列"]:::definition
+    ex-pascals-triangle --> def-binomial-coefficient
+    def-binomial-coefficient --> def-combination
+    def-binomial-coefficient --> def-permutation
+    class def-binomial-coefficient current
+```

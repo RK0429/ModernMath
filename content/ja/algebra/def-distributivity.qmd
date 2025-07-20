@@ -1,0 +1,115 @@
+---
+id: def-distributivity
+lang: ja
+translations:
+  en: "../en/algebra/def-distributivity.html"
+requires:
+- def-binary-operation
+status: complete
+title: '定義: 分配性'
+type: Definition
+created: 2024-01-20
+updated: 2024-01-20
+tags:
+- 分配性
+- 二項演算
+- 代数的構造
+---
+
+**分配性**は、2つの[二項演算](def-binary-operation.qmd)を関連付ける性質で、一方の演算が他方に対してどのように「分配」されるかを記述する。
+
+## 形式的定義
+
+集合 $S$ 上に2つの二項演算 $*$ と $+$ があるとき：
+
+### 左分配性
+演算 $*$ が $+$ に対して**左分配的**であるとは、すべての $a, b, c \in S$ に対して：
+$$a * (b + c) = (a * b) + (a * c)$$
+が成り立つことをいう。
+
+### 右分配性
+演算 $*$ が $+$ に対して**右分配的**であるとは、すべての $a, b, c \in S$ に対して：
+$$(a + b) * c = (a * c) + (b * c)$$
+が成り立つことをいう。
+
+### 完全分配性
+演算 $*$ が $+$ に対して**分配的**であるとは、左分配的かつ右分配的であることをいう。
+
+## 典型的な例
+
+### 算術
+- **加法に対する乗法**:
+  - $a(b + c) = ab + ac$ （左分配的）
+  - $(a + b)c = ac + bc$ （右分配的）
+- **減法に対する乗法**: $a(b - c) = ab - ac$
+
+### 集合論
+- **和集合に対する積集合**: $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+- **積集合に対する和集合**: $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+
+### 論理
+- **論理和に対する論理積**: $p \land (q \lor r) = (p \land q) \lor (p \land r)$
+- **論理積に対する論理和**: $p \lor (q \land r) = (p \lor q) \land (p \lor r)$
+
+### 線形代数
+- **加法に対する行列積**: $\mathbf{A}(\mathbf{B} + \mathbf{C}) = \mathbf{AB} + \mathbf{AC}$
+- **ベクトル加法に対するスカラー倍**: $c(\vec{v} + \vec{w}) = c\vec{v} + c\vec{w}$
+
+## 非分配的な演算
+
+### 算術
+- **加法に対する除法**: $\frac{a}{b + c} \neq \frac{a}{b} + \frac{a}{c}$
+- **乗法に対する冪**: $a^{bc} \neq a^b \cdot a^c$ （ただし $a^{b+c} = a^b \cdot a^c$）
+
+### その他の演算
+- **加法に対する平方根**: $\sqrt{a + b} \neq \sqrt{a} + \sqrt{b}$
+- **加法に対する合成**（定義される場合）: 一般に $(f + g) \circ h \neq (f \circ h) + (g \circ h)$
+
+## 代数的構造
+
+分配性は以下の構造の重要な要件である：
+
+1. **環**: 乗法は加法に対して分配的でなければならない
+2. **体**: 追加の性質を持つ環の拡張
+3. **ベクトル空間**: スカラー倍はベクトル加法に対して分配的
+4. **束**: 結びと交わりの演算は互いに分配的
+
+## 特殊な形式
+
+### 無限分配性
+無限演算に対して：
+$$a \cdot \left(\sum_{i \in I} b_i\right) = \sum_{i \in I} (a \cdot b_i)$$
+
+### 条件付き分配性
+ある演算は特定の条件下でのみ分配的：
+- **最小公倍数に対する最大公約数**: 時には分配的だが常にではない
+- **最小/最大演算**: 互いに分配的
+
+## 応用
+
+1. **代数**: $(x + 2)(x + 3) = x^2 + 5x + 6$ のような式の展開
+2. **計算機科学**: コンパイラでの式の最適化
+3. **回路設計**: 論理ゲートのためのブール代数
+4. **圏論**: 分配圏とモノイダル構造
+
+## 関連概念
+
+- **FOIL法**: 二項式の積に対する分配性の応用
+- **モジュラー分配性**: 束論における弱い形式
+- **準環**: 片側分配性を持つ構造
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-distributivity["定義: 分配性"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-distributivity --> def-binary-operation
+    class def-distributivity current
+```

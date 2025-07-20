@@ -1,0 +1,82 @@
+---
+id: ex-real-line-metric
+requires:
+- def-metric-space
+status: complete
+title: '例：標準距離を持つ実数直線'
+type: Example
+translations:
+  en: ../../../en/analysis/ex-real-line-metric.qmd
+---
+
+# 例：標準距離を持つ実数直線 {#ex-real-line-metric}
+
+標準距離を持つ実数 $\mathbb{R}$ は、[距離空間](../geometry/def-metric-space.qmd)の最も基本的な例の一つである。
+
+## 定義
+
+$\mathbb{R}$ 上の**標準距離**は次のように定義される：
+
+$$d(x, y) = |x - y|$$
+
+すべての $x, y \in \mathbb{R}$ に対して、ここで $|x - y|$ は $x - y$ の絶対値を表す。
+
+## 距離の公理の検証
+
+$d$ が4つの距離の公理をすべて満たすことを検証する：
+
+1. **非負性**：絶対値は常に非負なので、すべての $x, y \in \mathbb{R}$ に対して $d(x, y) = |x - y| \geq 0$。
+
+2. **同一性**：
+   - $x = y$ ならば、$d(x, y) = |x - y| = |0| = 0$
+   - $d(x, y) = 0$ ならば、$|x - y| = 0$ となり、これは $x - y = 0$ を意味するので $x = y$
+
+3. **対称性**：$d(x, y) = |x - y| = |-(y - x)| = |y - x| = d(y, x)$
+
+4. **三角不等式**：任意の $x, y, z \in \mathbb{R}$ に対して：
+   $$d(x, z) = |x - z| = |(x - y) + (y - z)| \leq |x - y| + |y - z| = d(x, y) + d(y, z)$$
+
+## 開球
+
+この距離空間において、$a$ を中心とする半径 $r > 0$ の開球 $B(a, r)$ は：
+
+$$B(a, r) = \{x \in \mathbb{R} : |x - a| < r\} = (a - r, a + r)$$
+
+これは単に $a$ を中心とする長さ $2r$ の開区間である。
+
+## 性質
+
+- $d$ により誘導される距離位相は $\mathbb{R}$ 上の標準位相である
+- $(\mathbb{R}, d)$ は**完備距離空間**である：すべてのコーシー列が収束する
+- この空間は**可分**である：有理数 $\mathbb{Q}$ が可算稠密部分集合を成す
+- **連結**であるが**コンパクト**ではない
+
+## 関連項目
+
+- [数列の極限](def-limit.qmd) - 微積分の極限はこの距離を用いて定義される
+- [連続性](def-continuity.qmd) - 連続関数はこの距離構造を保つ
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-continuity["定義：連続性"]:::definition
+    def-limit["定義：数列の極限"]:::definition
+    thm-metric-hausdorff["定理：すべての距離空間はハウスドルフ"]:::theorem
+    def-complete-metric-space["定義：完備距離空間"]:::definition
+    ex-real-line-metric["例：標準距離を持つ実数直線"]:::example
+    def-metric-space["定義：距離空間"]:::definition
+    def-complete-metric-space --> ex-real-line-metric
+    ex-real-line-metric --> def-limit
+    ex-real-line-metric --> def-continuity
+    def-metric-space --> ex-real-line-metric
+    ex-real-line-metric --> def-metric-space
+    thm-metric-hausdorff --> ex-real-line-metric
+    class ex-real-line-metric current
+```

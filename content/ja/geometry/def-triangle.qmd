@@ -1,0 +1,80 @@
+---
+id: def-triangle
+requires:
+- def-point
+- def-line
+- def-angle
+status: complete
+title: '定義: 三角形'
+type: Definition
+translations:
+  - lang: en
+    path: ../../en/geometry/def-triangle.qmd
+---
+
+**三角形**は、3つの頂点と3つの辺を持つ多角形である。これは幾何学における基本的な図形の一つであり、非共線の3つの[点](def-point.qmd)を結んで形成される。
+
+## 形式的定義
+
+三角形 $\triangle ABC$ は以下から構成される：
+- 共線でない3つの異なる点 $A$、$B$、$C$（頂点）
+- 3つの線分 $\overline{AB}$、$\overline{BC}$、$\overline{CA}$（辺）
+- 3つの[角](def-angle.qmd) $\angle BAC$、$\angle ABC$、$\angle BCA$（内角）
+
+## 分類
+
+### 辺の長さによる分類
+- **正三角形**：3つの辺すべてが等しい長さ
+- **二等辺三角形**：少なくとも2つの辺が等しい長さ
+- **不等辺三角形**：3つの辺すべてが異なる長さ
+
+### 角による分類
+- **鋭角三角形**：すべての内角が $90°$ 未満
+- **直角三角形**：1つの内角が $90°$ に等しい
+- **鈍角三角形**：1つの内角が $90°$ より大きい
+
+## 基本的性質
+
+- 内角の和は $180°$ に等しい（[三角形の内角の和](thm-angle-sum-triangle.qmd)を参照）
+- 任意の2辺の和は第3の辺より大きい（三角不等式）
+- 面積は様々な公式で計算できる：
+  - ヘロンの公式：$A = \sqrt{s(s-a)(s-b)(s-c)}$ ただし $s = \frac{a+b+c}{2}$
+  - 底辺と高さの公式：$A = \frac{1}{2}bh$
+
+## 重要な要素
+
+- **重心**：中線の交点
+- **外心**：外接円の中心
+- **内心**：内接円の中心
+- **垂心**：高さの交点
+
+## 関連する概念
+
+- [ピタゴラスの定理](thm-pythagorean.qmd)は直角三角形に適用される
+- 三角形の合同と相似
+- 直角三角形を用いて定義される三角比
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-angle-sum-triangle["定理: 三角形の内角の和"]:::theorem
+    def-triangle["定義: 三角形"]:::definition
+    def-angle["定義: 角"]:::definition
+    thm-pythagorean["定理: ピタゴラスの定理"]:::theorem
+    def-point["定義: 点"]:::definition
+    def-line["定義: 直線"]:::definition
+    thm-angle-sum-triangle --> def-triangle
+    def-triangle --> thm-pythagorean
+    def-triangle --> def-angle
+    def-triangle --> def-line
+    def-triangle --> def-point
+    def-triangle --> thm-angle-sum-triangle
+    class def-triangle current
+```

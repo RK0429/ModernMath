@@ -1,0 +1,102 @@
+---
+id: thm-bayes
+requires:
+- def-conditional-probability
+- def-event
+status: complete
+title: '定理: ベイズの定理'
+type: Theorem
+translations:
+  en: ../en/probability-statistics/thm-bayes.qmd
+---
+
+**ベイズの定理**は、[条件付き確率](def-conditional-probability.qmd)を「逆方向」で計算する方法を提供します。$P(A|B)$ を $P(B|A)$ と関連付け、新しい証拠に基づいて信念を更新することができます。
+
+## 命題
+
+[事象](def-event.qmd) $A$ と $B$ について、$P(A) > 0$ かつ $P(B) > 0$ のとき：
+
+$$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$$
+
+## 別の形式
+
+### 全確率の法則を用いた形式
+
+$\{A_1, A_2, ..., A_n\}$ が標本空間の分割を形成する場合：
+
+$$P(A_i|B) = \frac{P(B|A_i) \cdot P(A_i)}{\sum_{j=1}^n P(B|A_j) \cdot P(A_j)}$$
+
+### 二値の場合
+
+事象 $A$ とその補事象 $A^c$ について：
+
+$$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B|A) \cdot P(A) + P(B|A^c) \cdot P(A^c)}$$
+
+## 証明
+
+条件付き確率の定義から：
+1. $P(A|B) = \frac{P(A \cap B)}{P(B)}$
+2. $P(B|A) = \frac{P(A \cap B)}{P(A)}$
+
+(2) より：$P(A \cap B) = P(B|A) \cdot P(A)$
+
+これを (1) に代入すると：
+$$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$$
+
+## 用語
+
+- $P(A)$：$A$ の**事前確率**
+- $P(A|B)$：証拠 $B$ が与えられたときの $A$ の**事後確率**
+- $P(B|A)$：$A$ が真のときに $B$ を観測する**尤度**
+- $P(B)$：**周辺確率**または正規化定数
+
+## 応用
+
+### 医学診断
+- $A$：患者が病気である
+- $B$：検査が陽性である
+- 既知の検査精度から $P(\text{病気}|\text{陽性検査})$ を計算
+
+### 機械学習
+- ナイーブベイズ分類器
+- ベイズ推論とパラメータ推定
+- 新しいデータによるモデルの信念更新
+
+### 例：医学検査
+
+与えられた条件：
+- 病気の有病率：$P(D) = 0.001$（0.1%）
+- 検査の感度：$P(+|D) = 0.99$（99%）
+- 検査の特異度：$P(-|D^c) = 0.95$、したがって $P(+|D^c) = 0.05$
+
+$P(D|+)$ を求める：
+$$P(D|+) = \frac{0.99 \times 0.001}{0.99 \times 0.001 + 0.05 \times 0.999} = \frac{0.00099}{0.05094} \approx 0.0194$$
+
+検査が陽性でも、実際に病気である確率は約1.94%しかありません！
+
+## ベイズ更新
+
+ベイズの定理により、反復的な信念の更新が可能になります：
+1. 事前確率 $P(A)$ から始める
+2. 証拠 $B$ を観測する
+3. 事後確率 $P(A|B)$ に更新する
+4. 事後確率を次の観測の新しい事前確率として使用する
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-event["定義: 事象"]:::definition
+    thm-bayes["定理: ベイズの定理"]:::theorem
+    def-conditional-probability["定義: 条件付き確率"]:::definition
+    def-conditional-probability --> thm-bayes
+    thm-bayes --> def-conditional-probability
+    thm-bayes --> def-event
+    class thm-bayes current
+```

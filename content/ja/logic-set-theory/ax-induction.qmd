@@ -1,0 +1,67 @@
+---
+id: ax-induction
+status: complete
+title: '公理: 数学的帰納法'
+type: Axiom
+translations:
+  en: ../../en/logic-set-theory/ax-induction.qmd
+---
+
+# 公理: 数学的帰納法 {#ax-induction}
+
+数学的帰納法の原理は、自然数に関する基本的な公理であり、基底の場合と帰納的ステップを検証することで、すべての自然数に関する命題を証明することを可能にします。
+
+## 命題
+
+$P(n)$ を自然数に対して定義された性質とする。以下が成立するとき：
+1. **基底の場合**: $P(1)$ が真である
+2. **帰納的ステップ**: すべての $k \in \mathbb{N}$ に対して、$P(k)$ が真ならば $P(k+1)$ も真である
+
+このとき、すべての $n \in \mathbb{N}$ に対して $P(n)$ が真である。
+
+## 形式的記述
+
+$$\left[P(1) \land \forall k \in \mathbb{N}(P(k) \implies P(k+1))\right] \implies \forall n \in \mathbb{N} \, P(n)$$
+
+## 変形
+
+### 強い帰納法
+
+以下が成立するとき：
+1. $P(1)$ が真である
+2. すべての $k \in \mathbb{N}$ に対して、$P(1), P(2), \ldots, P(k)$ がすべて真ならば $P(k+1)$ も真である
+
+このとき、すべての $n \in \mathbb{N}$ に対して $P(n)$ が真である。
+
+### 整列原理
+
+$\mathbb{N}$ の空でない部分集合はすべて最小元を持つ。これは帰納法の公理と同値である。
+
+## 直観的理解
+
+帰納法は無限の梯子を登ることに似ています：
+- 最初の段に到達できる（基底の場合）
+- どの段からも次の段に到達できる（帰納的ステップ）
+- したがって、どの段にも到達できる
+
+## 数学における役割
+
+数学的帰納法は：
+- 自然数を定義するペアノの公理の一部である
+- 無限集合に関する命題を証明するために不可欠である
+- 再帰的定義とアルゴリズムの基礎である
+- 他の整列集合に一般化可能である（超限帰納法）
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所的な依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ax-induction["公理: 数学的帰納法"]:::axiom
+    class ax-induction current
+```

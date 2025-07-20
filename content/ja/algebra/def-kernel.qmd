@@ -1,0 +1,61 @@
+---
+id: def-kernel
+requires:
+- def-linear-transformation
+- def-vector-space
+status: complete
+title: '定義: 核'
+type: Definition
+translations:
+  en: ../../en/algebra/def-kernel.qmd
+---
+
+# 定義: 核 {#def-kernel}
+
+$T: V \to W$ を[ベクトル空間](def-vector-space.qmd)の間の[線形変換](def-linear-transformation.qmd)とします。$T$ の**核**（または**零空間**）とは、$V$ の中で $W$ の零ベクトルに写されるすべてのベクトルの集合です：
+
+$$\ker(T) = \{\mathbf{v} \in V : T(\mathbf{v}) = \mathbf{0}_W\}$$
+
+## 別名
+
+核は以下の名前でも呼ばれます：
+- 零空間（$\text{null}(T)$ または $N(T)$ と表記）
+- ゼロの逆像：$T^{-1}(\{\mathbf{0}_W\})$
+
+## 性質
+
+1. **部分空間**：$\ker(T)$ は常に $V$ の部分空間である
+   - $T(\mathbf{0}_V) = \mathbf{0}_W$ なので $\mathbf{0}_V$ を含む
+   - 加法について閉じている：$\mathbf{u}, \mathbf{v} \in \ker(T)$ ならば、$T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v}) = \mathbf{0} + \mathbf{0} = \mathbf{0}$
+   - スカラー倍について閉じている：$\mathbf{v} \in \ker(T)$ かつ $a \in F$ ならば、$T(a\mathbf{v}) = aT(\mathbf{v}) = a\mathbf{0} = \mathbf{0}$
+
+2. **単射性の判定条件**：$T$ が単射（一対一）であることと $\ker(T) = \{\mathbf{0}_V\}$ は同値
+
+3. **次元**：$\ker(T)$ の次元を $T$ の**退化次数**という
+
+## 例
+
+行列変換 $T_A: \mathbb{R}^n \to \mathbb{R}^m$ を $T_A(\mathbf{x}) = A\mathbf{x}$ で定義するとき：
+$$\ker(T_A) = \{\mathbf{x} \in \mathbb{R}^n : A\mathbf{x} = \mathbf{0}\}$$
+
+これは同次線形方程式系 $A\mathbf{x} = \mathbf{0}$ の解集合にほかなりません。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-linear-transformation["定義: 線形変換"]:::definition
+    thm-rank-nullity["定理: 階数・退化次数定理"]:::theorem
+    def-vector-space["定義: ベクトル空間"]:::definition
+    def-kernel["定義: 核"]:::definition
+    thm-rank-nullity --> def-kernel
+    def-kernel --> def-linear-transformation
+    def-kernel --> def-vector-space
+    class def-kernel current
+```

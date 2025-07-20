@@ -1,0 +1,95 @@
+---
+id: def-expectation
+requires:
+- def-probability-space
+- def-random-variable
+status: complete
+title: '定義: 期待値'
+type: Definition
+translations:
+  en: ../../en/probability-statistics/def-expectation.qmd
+---
+
+# 定義: 期待値 {#def-expectation}
+
+[確率変数](def-random-variable.qmd)の**期待値**（または**期待**）は、その分布の中心傾向の尺度であり、確率変数が多数の試行にわたって取る平均値を表す。
+
+## 離散的な場合
+
+確率質量関数 $p(x)$ を持つ離散確率変数 $X$ に対して：
+
+$$E[X] = \sum_{x} x \cdot p(x)$$
+
+ここで、和は $X$ のすべての可能な値にわたって取られる。
+
+## 連続的な場合
+
+確率密度関数 $f(x)$ を持つ連続確率変数 $X$ に対して：
+
+$$E[X] = \int_{-\infty}^{\infty} x \cdot f(x) \, dx$$
+
+## 一般的な定義
+
+[確率空間](def-probability-space.qmd) $(\Omega, \mathcal{F}, P)$ 上の確率変数 $X$ に対して：
+
+$$E[X] = \int_{\Omega} X(\omega) \, dP(\omega)$$
+
+これは確率測度 $P$ に関する $X$ のルベーグ積分である。
+
+## 性質
+
+1. **線形性**: 定数 $a, b$ に対して $E[aX + bY] = aE[X] + bE[Y]$
+2. **単調性**: $X \leq Y$ （ほとんど確実に）ならば、$E[X] \leq E[Y]$
+3. **定数**: 任意の定数 $c$ に対して $E[c] = c$
+4. **非負性**: $X \geq 0$ （ほとんど確実に）ならば、$E[X] \geq 0$
+
+## 存在条件
+
+期待値が存在するのは、$E[|X|] < \infty$ のとき、すなわち：
+$$\int_{\Omega} |X(\omega)| \, dP(\omega) < \infty$$
+のときかつそのときに限る。
+
+## 例
+
+1. **ベルヌーイ分布**: $X \sim \text{Bernoulli}(p)$ のとき、$E[X] = p$
+2. **二項分布**: $X \sim \text{Binomial}(n, p)$ のとき、$E[X] = np$
+3. **正規分布**: $X \sim \mathcal{N}(\mu, \sigma^2)$ のとき、$E[X] = \mu$
+4. **指数分布**: $X \sim \text{Exp}(\lambda)$ のとき、$E[X] = 1/\lambda$
+
+## Mermaidダイアグラム
+
+```mermaid
+graph TD
+    A[期待値] --> B[離散: Σ x·p(x)]
+    A --> C[連続: ∫ x·f(x) dx]
+    A --> D[一般: ∫ X dP]
+    A --> E[性質]
+    E --> F[線形性]
+    E --> G[単調性]
+    A --> H[存在条件: E[|X|] < ∞]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+    style D fill:#bbf,stroke:#333,stroke-width:2px
+```
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-law-of-large-numbers["定理: 大数の法則"]:::theorem
+    def-probability-space["定義: 確率空間"]:::definition
+    def-random-variable["定義: 確率変数"]:::definition
+    def-expectation["定義: 期待値"]:::definition
+    thm-law-of-large-numbers --> def-expectation
+    def-expectation --> def-probability-space
+    def-expectation --> def-random-variable
+    class def-expectation current
+```

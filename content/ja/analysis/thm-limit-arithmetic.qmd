@@ -1,0 +1,66 @@
+---
+id: thm-limit-arithmetic
+requires:
+- def-limit
+status: complete
+title: '定理：極限の演算'
+type: Theorem
+---
+
+# 定理：極限の演算 {#thm-limit-arithmetic}
+
+数列 $(a_n)$ と $(b_n)$ が収束するとき、それらの和、差、積、そして（条件付きで）商も収束し、極限は対応する演算によって与えられる。
+
+## 定理の主張
+
+$(a_n)$ と $(b_n)$ を実数列とし、[極限](def-limit.qmd)が以下のように存在するとする：
+- $\lim_{n \to \infty} a_n = A$
+- $\lim_{n \to \infty} b_n = B$
+
+このとき：
+
+1. **和の法則**：$\lim_{n \to \infty} (a_n + b_n) = A + B$
+
+2. **差の法則**：$\lim_{n \to \infty} (a_n - b_n) = A - B$
+
+3. **積の法則**：$\lim_{n \to \infty} (a_n \cdot b_n) = A \cdot B$
+
+4. **定数倍の法則**：任意の $c \in \mathbb{R}$ に対して、$\lim_{n \to \infty} (c \cdot a_n) = c \cdot A$
+
+5. **商の法則**：$B \neq 0$ かつすべての $n$ に対して $b_n \neq 0$ ならば：
+   $$\lim_{n \to \infty} \frac{a_n}{b_n} = \frac{A}{B}$$
+
+## 証明の概略（和の法則）
+
+$\varepsilon > 0$ を任意に与える：
+- $a_n \to A$ より、ある $N_1$ が存在して、$n > N_1$ のとき $|a_n - A| < \varepsilon/2$
+- $b_n \to B$ より、ある $N_2$ が存在して、$n > N_2$ のとき $|b_n - B| < \varepsilon/2$
+- $N = \max(N_1, N_2)$ とする
+
+$n > N$ のとき：
+$$|(a_n + b_n) - (A + B)| = |(a_n - A) + (b_n - B)| \leq |a_n - A| + |b_n - B| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$$
+
+## 応用
+
+これらの法則により以下が可能になる：
+- 多項式数列の極限の計算
+- 有理数列の解析
+- 単純な極限から複雑な極限の構成
+
+この定理は、極限操作が代数的構造を保存することを示している。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所的な依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-limit-arithmetic["定理：極限の演算"]:::theorem
+    def-limit["定義：数列の極限"]:::definition
+    thm-limit-arithmetic --> def-limit
+    class thm-limit-arithmetic current
+```

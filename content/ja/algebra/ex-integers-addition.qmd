@@ -1,0 +1,88 @@
+---
+id: ex-integers-addition
+requires:
+- def-set
+- def-binary-operation
+- def-group
+status: complete
+title: '例: 加法における整数'
+type: Example
+translations:
+  en: "../../en/algebra/ex-integers-addition.qmd"
+---
+
+# 例: 加法における整数 {#ex-integers-addition}
+
+整数 $\mathbb{Z} = \{\ldots, -2, -1, 0, 1, 2, \ldots\}$ は、加法という[二項演算](def-binary-operation.qmd)の下で[群](def-group.qmd)を形成します。
+
+## 群の公理の検証
+
+この群を $(\mathbb{Z}, +)$ と表記し、各群の公理を検証します：
+
+### 1. 閉性
+
+任意の $a, b \in \mathbb{Z}$ に対して、和 $a + b$ もまた整数です。これは整数の加法の定義から従います。
+
+### 2. 結合性
+
+すべての $a, b, c \in \mathbb{Z}$ に対して：
+$$(a + b) + c = a + (b + c)$$
+
+これは整数の加法の基本的な性質です。
+
+### 3. 単位元
+
+整数 $0$ が単位元として機能します：
+- 任意の $a \in \mathbb{Z}$ に対して：$a + 0 = 0 + a = a$
+
+[単位元の一意性](thm-unique-identity.qmd)により、この単位元は一意です。
+
+### 4. 逆元
+
+各 $a \in \mathbb{Z}$ に対して、整数 $-a$ がその逆元です：
+- $a + (-a) = (-a) + a = 0$
+
+## 追加の性質
+
+群 $(\mathbb{Z}, +)$ はいくつかの重要な追加の性質を持ちます：
+
+1. **可換性**：すべての $a, b \in \mathbb{Z}$ に対して $a + b = b + a$
+   - これにより $(\mathbb{Z}, +)$ は**アーベル群**となります
+
+2. **無限位数**：群は無限個の元を持ちます
+
+3. **巡回性**：群は単一の元 $1$ によって生成されます：
+   - すべての整数は適当な $n \in \mathbb{Z}$ に対して $n \cdot 1$ と書けます
+
+## 部分群
+
+$(\mathbb{Z}, +)$ の注目すべき部分群には以下があります：
+- 任意の $n \in \mathbb{N}$ に対する $n\mathbb{Z} = \{nk : k \in \mathbb{Z}\}$
+- 例えば、$2\mathbb{Z}$ は偶数の部分群です
+
+## 関連する例
+
+- 有理数 $(\mathbb{Q}, +)$ は $(\mathbb{Z}, +)$ を部分群として含む群を形成します
+- $n$ を法とする整数 $\mathbb{Z}/n\mathbb{Z}$ は有限群を形成します
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-group["定義: 群"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-set["定義: 集合"]:::definition
+    thm-unique-identity["定理: 単位元の一意性"]:::theorem
+    ex-integers-addition["例: 加法における整数"]:::example
+    ex-integers-addition --> thm-unique-identity
+    ex-integers-addition --> def-set
+    ex-integers-addition --> def-group
+    ex-integers-addition --> def-binary-operation
+    class ex-integers-addition current
+```

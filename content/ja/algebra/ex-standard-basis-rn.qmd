@@ -1,0 +1,79 @@
+---
+id: ex-standard-basis-rn
+requires:
+- def-basis
+- def-vector-space
+- def-linear-independence
+- def-span
+status: complete
+title: '例: ℝⁿの標準基底'
+type: Example
+translations:
+  en: "../../en/algebra/ex-standard-basis-rn.qmd"
+---
+
+# 例: ℝⁿの標準基底
+
+$\mathbb{R}^n$ の標準基底は、[ベクトル空間](def-vector-space.qmd)の[基底](def-basis.qmd)の最も基本的な例です。
+
+## 定義
+
+$\mathbb{R}^n$ の標準基底は以下のベクトルから構成されます：
+- $e_1 = (1, 0, 0, ..., 0)$
+- $e_2 = (0, 1, 0, ..., 0)$
+- $e_3 = (0, 0, 1, ..., 0)$
+- $\vdots$
+- $e_n = (0, 0, 0, ..., 1)$
+
+ここで $e_i$ は第 $i$ 成分が 1 で、他はすべて 0 です。
+
+## 基底としての検証
+
+$\{e_1, e_2, ..., e_n\}$ が基底であることを示すために、以下を検証します：
+
+### 1. 線形独立性
+
+これらのベクトルは[線形独立](def-linear-independence.qmd)です。$c_1e_1 + c_2e_2 + ... + c_ne_n = 0$ ならば：
+$$(c_1, c_2, ..., c_n) = (0, 0, ..., 0)$$
+これは $c_1 = c_2 = ... = c_n = 0$ を意味します。
+
+### 2. 張る空間
+
+これらのベクトルは $\mathbb{R}^n$ 全体を[張ります](def-span.qmd)。任意のベクトル $(x_1, x_2, ..., x_n) \in \mathbb{R}^n$ は次のように書けます：
+$$(x_1, x_2, ..., x_n) = x_1e_1 + x_2e_2 + ... + x_ne_n$$
+
+## 特別な場合
+
+- **$n = 2$**：$\mathbb{R}^2$ の標準基底は $\{(1,0), (0,1)\}$ - x軸とy軸に沿った馴染み深い単位ベクトル
+- **$n = 3$**：$\mathbb{R}^3$ の標準基底は $\{(1,0,0), (0,1,0), (0,0,1)\}$ - 物理学では $\{\mathbf{i}, \mathbf{j}, \mathbf{k}\}$ とよく表記される
+
+## 性質
+
+- 標準基底は標準内積に関して**正規直交**である
+- 任意のベクトルの標準基底における座標は単にその成分である
+- 任意の線形変換の標準基底における行列は特に計算しやすい
+
+```{mermaid}
+```
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-span["定義: 張る空間"]:::definition
+    def-basis["定義: 基底"]:::definition
+    ex-standard-basis-rn["例: ℝⁿの標準基底"]:::example
+    def-linear-independence["定義: 線形独立"]:::definition
+    def-vector-space["定義: ベクトル空間"]:::definition
+    ex-standard-basis-rn --> def-linear-independence
+    ex-standard-basis-rn --> def-vector-space
+    ex-standard-basis-rn --> def-basis
+    ex-standard-basis-rn --> def-span
+    class ex-standard-basis-rn current
+```

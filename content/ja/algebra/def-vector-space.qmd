@@ -1,0 +1,81 @@
+---
+id: def-vector-space
+status: complete
+title: '定義: ベクトル空間'
+type: Definition
+translations:
+  en: ../en/algebra/def-vector-space.qmd
+---
+
+# 定義: ベクトル空間 {#def-vector-space}
+
+体 $F$ 上の**ベクトル空間**（または線形空間）とは、[集合](../logic-set-theory/def-set.qmd) $V$ と以下の2つの[二項演算](def-binary-operation.qmd)の組である：
+
+1. **ベクトル加法**: $+ : V \times V \to V$
+2. **スカラー乗法**: $\cdot : F \times V \to V$
+
+ただし、以下の公理を満たすものとする：
+
+## 加法に関する公理
+
+すべての $\mathbf{u}, \mathbf{v}, \mathbf{w} \in V$ に対して：
+
+1. **結合律**: $(\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})$
+2. **可換律**: $\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$
+3. **単位元の存在**: すべての $\mathbf{v} \in V$ に対して $\mathbf{v} + \mathbf{0} = \mathbf{v}$ となる $\mathbf{0} \in V$ が存在する
+4. **逆元の存在**: 各 $\mathbf{v} \in V$ に対して、$\mathbf{v} + (-\mathbf{v}) = \mathbf{0}$ となる $-\mathbf{v} \in V$ が存在する
+
+## スカラー乗法に関する公理
+
+すべての $a, b \in F$ と $\mathbf{u}, \mathbf{v} \in V$ に対して：
+
+5. **結合律**: $a(b\mathbf{v}) = (ab)\mathbf{v}$
+6. **単位元**: $1\mathbf{v} = \mathbf{v}$、ただし $1$ は $F$ の乗法単位元
+7. **ベクトル加法に関する分配律**: $a(\mathbf{u} + \mathbf{v}) = a\mathbf{u} + a\mathbf{v}$
+8. **スカラー加法に関する分配律**: $(a + b)\mathbf{v} = a\mathbf{v} + b\mathbf{v}$
+
+$V$ の元を**ベクトル**と呼び、$F$ の元を**スカラー**と呼ぶ。
+
+## 注意
+
+- ベクトル空間の公理により、$(V, +)$ はアーベル[群](def-group.qmd)を成す
+- 体 $F$ はベクトル空間の「型」を決定する（例：$F = \mathbb{R}$ のとき実ベクトル空間）
+- ベクトル空間は線形代数の基本構造であり、数学全体を通じて現れる
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-linear-independence["定義: 線形独立性"]:::definition
+    def-span["定義: 張る空間"]:::definition
+    def-group["定義: 群"]:::definition
+    thm-rank-nullity["定理: 階数・退化次数定理"]:::theorem
+    def-basis["定義: 基底"]:::definition
+    ex-euclidean-space["例: ユークリッド空間"]:::example
+    def-image["定義: 像"]:::definition
+    def-linear-transformation["定義: 線形変換"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
+    thm-linear-transformation-basis["定理: 基底による線形変換の決定"]:::theorem
+    def-set["定義: 集合"]:::definition
+    def-vector-space["定義: ベクトル空間"]:::definition
+    def-kernel["定義: 核"]:::definition
+    thm-linear-transformation-basis --> def-vector-space
+    def-basis --> def-vector-space
+    ex-euclidean-space --> def-vector-space
+    def-kernel --> def-vector-space
+    def-linear-independence --> def-vector-space
+    thm-rank-nullity --> def-vector-space
+    def-span --> def-vector-space
+    def-vector-space --> def-set
+    def-vector-space --> def-binary-operation
+    def-linear-transformation --> def-vector-space
+    def-image --> def-vector-space
+    def-vector-space --> def-group
+    class def-vector-space current
+```
