@@ -339,7 +339,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-group-1753029430" class="graph-visualization-container">
+<div id="graph-viz-def-group-1753029915" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -501,12 +501,13 @@ async function loadAndRenderGraph() {
 
     // For GitHub Pages with project name subdirectory
     if (window.location.hostname.includes('github.io') && pathParts.length > 0) {
-      // Find the index of the project name (first part of path)
+      // The first part is the project name (e.g., 'ModernMath')
       const projectName = pathParts[0];
-      const currentDepth = pathParts.length - 1; // -1 for the HTML file
+      // Remove project name and count remaining directories (excluding the HTML file)
+      const depthFromProjectRoot = pathParts.slice(1).length - 1;
 
       // Go up to the project root
-      basePath = '../'.repeat(currentDepth);
+      basePath = '../'.repeat(depthFromProjectRoot);
     } else {
       // For local development or root deployment
       const depth = (currentPath.match(/\//g) || []).length - 1;
@@ -518,12 +519,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-group-1753029430', {
+    createForceGraph(data, 'graph-viz-def-group-1753029915', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-group-1753029430').innerHTML =
+    document.getElementById('graph-viz-def-group-1753029915').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -311,7 +311,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-basis-1753029316" class="graph-visualization-container">
+<div id="graph-viz-def-basis-1753029801" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -473,12 +473,13 @@ async function loadAndRenderGraph() {
 
     // For GitHub Pages with project name subdirectory
     if (window.location.hostname.includes('github.io') && pathParts.length > 0) {
-      // Find the index of the project name (first part of path)
+      // The first part is the project name (e.g., 'ModernMath')
       const projectName = pathParts[0];
-      const currentDepth = pathParts.length - 1; // -1 for the HTML file
+      // Remove project name and count remaining directories (excluding the HTML file)
+      const depthFromProjectRoot = pathParts.slice(1).length - 1;
 
       // Go up to the project root
-      basePath = '../'.repeat(currentDepth);
+      basePath = '../'.repeat(depthFromProjectRoot);
     } else {
       // For local development or root deployment
       const depth = (currentPath.match(/\//g) || []).length - 1;
@@ -490,12 +491,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-basis-1753029316', {
+    createForceGraph(data, 'graph-viz-def-basis-1753029801', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-basis-1753029316').innerHTML =
+    document.getElementById('graph-viz-def-basis-1753029801').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -572,17 +573,17 @@ if (document.readyState === 'loading') {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-standard-basis-rn["Example: Standard Basis of ℝⁿ"]:::example
     def-vector-space["Definition: Vector Space"]:::definition
     thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
+    def-linear-independence["Definition: Linear Independence"]:::definition
     def-basis["Definition: Basis"]:::definition
     def-span["Definition: Span"]:::definition
-    def-linear-independence["Definition: Linear Independence"]:::definition
-    def-basis --&gt; def-span
+    ex-standard-basis-rn["Example: Standard Basis of ℝⁿ"]:::example
     def-basis --&gt; def-vector-space
-    ex-standard-basis-rn --&gt; def-basis
-    def-basis --&gt; def-linear-independence
     thm-linear-transformation-basis --&gt; def-basis
+    def-basis --&gt; def-linear-independence
+    ex-standard-basis-rn --&gt; def-basis
+    def-basis --&gt; def-span
     class def-basis current
 </pre>
 </div>
