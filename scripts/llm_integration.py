@@ -403,4 +403,3 @@ if __name__ == "__main__":
             print(json.dumps(result, indent=2))
         else:
             print("Error: --input and --graph required for validate command")
-

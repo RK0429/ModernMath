@@ -1,0 +1,62 @@
+---
+title: "Definition: Event"
+id: "def-event"
+type: "Definition"
+status: "complete"
+requires:
+  - "def-sample-space"
+  - "def-subset"
+---
+
+An **event** in probability theory is a @def-subset of the @def-sample-space $\Omega$. It represents a collection of outcomes to which a probability can be assigned.
+
+## Formal Definition
+
+Given a sample space $\Omega$, an event $A$ is any subset of $\Omega$:
+$$A \subseteq \Omega$$
+
+The collection of all events forms a σ-algebra (sigma-algebra) $\mathcal{F}$ on $\Omega$.
+
+## Types of Events
+
+1. **Elementary Event**: Contains exactly one outcome
+   - Example: $\{3\}$ when rolling a die
+
+2. **Compound Event**: Contains multiple outcomes
+   - Example: "Even number" = $\{2, 4, 6\}$ when rolling a die
+
+3. **Certain Event**: The entire sample space $\Omega$
+   - Always occurs with probability 1
+
+4. **Impossible Event**: The empty set $\emptyset$
+   - Never occurs, has probability 0
+
+## Event Operations
+
+Using set operations from @def-union and @def-intersection:
+
+- **Union** $A \cup B$: "A or B occurs"
+- **Intersection** $A \cap B$: "Both A and B occur"
+- **Complement** $A^c$: "A does not occur"
+- **Difference** $A \setminus B$: "A occurs but not B"
+
+## Examples
+
+For a die roll with $\Omega = \{1, 2, 3, 4, 5, 6\}$:
+- Event "rolling an even number": $A = \{2, 4, 6\}$
+- Event "rolling at least 4": $B = \{4, 5, 6\}$
+- $A \cap B = \{4, 6\}$ (even and at least 4)
+- $A \cup B = \{2, 4, 5, 6\}$ (even or at least 4)
+
+## Probability of Events
+
+In a @def-probability-space, each event $A$ is assigned a probability $P(A)$ such that:
+- $0 \leq P(A) \leq 1$
+- $P(\Omega) = 1$
+- $P(\emptyset) = 0$
+
+## Special Relationships
+
+- **Mutually Exclusive**: Events $A$ and $B$ where $A \cap B = \emptyset$
+- **Exhaustive**: Events whose union equals $\Omega$
+- **Independent**: Events where $P(A \cap B) = P(A)P(B)$

@@ -1,0 +1,53 @@
+---
+title: "Definition: Intersection"
+id: "def-intersection"
+type: "Definition"
+status: "complete"
+requires:
+  - "def-set"
+---
+
+The **intersection** of two @def-set[s] $A$ and $B$, denoted $A \cap B$, is the set containing all elements that belong to both $A$ and $B$.
+
+## Formal Definition
+
+$$A \cap B = \{x : x \in A \text{ and } x \in B\}$$
+
+Equivalently, using logical notation:
+$$x \in A \cap B \iff (x \in A) \land (x \in B)$$
+
+## Properties
+
+1. **Commutativity**: $A \cap B = B \cap A$
+2. **Associativity**: $(A \cap B) \cap C = A \cap (B \cap C)$
+3. **Identity**: $A \cap U = A$ (where $U$ is the universal set)
+4. **Annihilator**: $A \cap \emptyset = \emptyset$
+5. **Idempotence**: $A \cap A = A$
+6. **Absorption**: If $A \subseteq B$, then $A \cap B = A$
+
+## Generalized Intersection
+
+For a non-empty collection of sets $\{A_i : i \in I\}$:
+$$\bigcap_{i \in I} A_i = \{x : \forall i \in I, x \in A_i\}$$
+
+Special cases:
+- Finite intersection: $\bigcap_{i=1}^n A_i = A_1 \cap A_2 \cap \cdots \cap A_n$
+- Infinite intersection: $\bigcap_{i=1}^{\infty} A_i$
+
+## Disjoint Sets
+
+Two sets $A$ and $B$ are **disjoint** if their intersection is empty:
+$$A \cap B = \emptyset$$
+
+## Examples
+
+- $\{1, 2, 3\} \cap \{2, 3, 4\} = \{2, 3\}$
+- $\mathbb{Z} \cap \mathbb{N} = \mathbb{N}$ (integers intersect naturals equals naturals)
+- For intervals: $[0, 2] \cap [1, 3] = [1, 2]$
+- Even and odd integers are disjoint: $2\mathbb{Z} \cap (2\mathbb{Z} + 1) = \emptyset$
+
+## Relationship with Other Operations
+
+- De Morgan's Laws: $(A \cap B)^c = A^c \cup B^c$ (see @thm-de-morgan)
+- Distributivity: $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+- With @def-subset: $A \cap B = A \iff A \subseteq B$

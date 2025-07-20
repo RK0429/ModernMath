@@ -1,0 +1,62 @@
+---
+title: "Definition: Conditional Probability"
+id: "def-conditional-probability"
+type: "Definition"
+status: "complete"
+requires:
+  - "def-probability-space"
+  - "def-event"
+---
+
+The **conditional probability** of an @def-event $A$ given event $B$ is the probability that $A$ occurs, given that $B$ has occurred. It is denoted $P(A|B)$.
+
+## Formal Definition
+
+Given two events $A$ and $B$ in a @def-probability-space, with $P(B) > 0$, the conditional probability of $A$ given $B$ is:
+
+$$P(A|B) = \frac{P(A \cap B)}{P(B)}$$
+
+## Intuition
+
+- $P(A|B)$ represents the "updated" probability of $A$ after learning that $B$ occurred
+- We restrict our attention to the subset of outcomes where $B$ occurs
+- We rescale probabilities so that $P(B|B) = 1$
+
+## Properties
+
+1. **Range**: $0 \leq P(A|B) \leq 1$
+2. **Certainty**: $P(B|B) = 1$ when $P(B) > 0$
+3. **Impossibility**: $P(\emptyset|B) = 0$
+4. **Subset**: If $A \subseteq B$, then $P(A|B) = \frac{P(A)}{P(B)}$
+
+## Multiplication Rule
+
+Rearranging the definition gives:
+$$P(A \cap B) = P(A|B) \cdot P(B) = P(B|A) \cdot P(A)$$
+
+For multiple events:
+$$P(A_1 \cap A_2 \cap \cdots \cap A_n) = P(A_1)P(A_2|A_1)P(A_3|A_1 \cap A_2)\cdots P(A_n|A_1 \cap \cdots \cap A_{n-1})$$
+
+## Independence
+
+Events $A$ and $B$ are **independent** if and only if:
+$$P(A|B) = P(A)$$
+
+This means knowing $B$ occurred doesn't change the probability of $A$.
+
+## Examples
+
+1. **Card Drawing**: Drawing an ace from a standard deck
+   - $P(\text{Ace}) = \frac{4}{52} = \frac{1}{13}$
+   - $P(\text{Ace}|\text{Red card}) = \frac{2}{26} = \frac{1}{13}$ (independent)
+   - $P(\text{Ace}|\text{Face card}) = 0$ (mutually exclusive)
+
+2. **Medical Testing**: Disease prevalence and test accuracy
+   - If $P(\text{Disease}) = 0.01$ and test is 95% accurate
+   - $P(\text{Positive}|\text{Disease})$ represents sensitivity
+
+## Related Concepts
+
+- @thm-bayes: Relates $P(A|B)$ and $P(B|A)$
+- Law of Total Probability: Uses conditional probabilities for calculation
+- Conditional expectation extends this concept to @def-random-variable[s]

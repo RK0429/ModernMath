@@ -201,4 +201,3 @@ def sanitize_output(data: Any) -> Any:
         return [sanitize_output(item) for item in data]
     else:
         return data
-

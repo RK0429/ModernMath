@@ -271,4 +271,3 @@ class MathKnowledgeSearcher:
             logger.error(f"Failed to get suggestions from RDF: {e}")
 
         return sorted(list(suggestions))[:limit]
-

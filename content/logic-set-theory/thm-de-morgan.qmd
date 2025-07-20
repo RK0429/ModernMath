@@ -1,0 +1,71 @@
+---
+title: "Theorem: De Morgan's Laws"
+id: "thm-de-morgan"
+type: "Theorem"
+status: "complete"
+requires:
+  - "def-set"
+  - "def-union"
+  - "def-intersection"
+---
+
+**De Morgan's Laws** describe the relationship between @def-union, @def-intersection, and set complement. They state that the complement of a union equals the intersection of complements, and the complement of an intersection equals the union of complements.
+
+## Statement
+
+For any @def-set[s] $A$ and $B$ in a universal set $U$:
+
+1. $(A \cup B)^c = A^c \cap B^c$
+2. $(A \cap B)^c = A^c \cup B^c$
+
+Where $X^c$ denotes the complement of set $X$ in $U$.
+
+## Proof
+
+### First Law: $(A \cup B)^c = A^c \cap B^c$
+
+We prove by showing mutual subset inclusion.
+
+**Part 1**: $(A \cup B)^c \subseteq A^c \cap B^c$
+
+Let $x \in (A \cup B)^c$. Then:
+- $x \notin A \cup B$
+- $x \notin A$ and $x \notin B$ (by definition of union)
+- $x \in A^c$ and $x \in B^c$ (by definition of complement)
+- $x \in A^c \cap B^c$ (by definition of intersection)
+
+**Part 2**: $A^c \cap B^c \subseteq (A \cup B)^c$
+
+Let $x \in A^c \cap B^c$. Then:
+- $x \in A^c$ and $x \in B^c$
+- $x \notin A$ and $x \notin B$
+- $x \notin A \cup B$
+- $x \in (A \cup B)^c$
+
+Therefore, $(A \cup B)^c = A^c \cap B^c$.
+
+### Second Law: $(A \cap B)^c = A^c \cup B^c$
+
+The proof follows a similar structure using the logical equivalence:
+$\neg(P \land Q) \equiv \neg P \lor \neg Q$
+
+## Generalized De Morgan's Laws
+
+For any collection of sets $\{A_i : i \in I\}$:
+
+1. $\left(\bigcup_{i \in I} A_i\right)^c = \bigcap_{i \in I} A_i^c$
+2. $\left(\bigcap_{i \in I} A_i\right)^c = \bigcup_{i \in I} A_i^c$
+
+## Applications
+
+1. **Logic**: Corresponding laws in Boolean algebra and propositional logic
+2. **Probability**: $P(A^c \cap B^c) = P((A \cup B)^c) = 1 - P(A \cup B)$
+3. **Computer Science**: Circuit design and Boolean function simplification
+4. **Set Theory**: Simplifying complex set expressions
+
+## Examples
+
+- If $A = \{1, 2, 3\}$ and $B = \{3, 4, 5\}$ in $U = \{1, 2, 3, 4, 5, 6\}$:
+  - $A \cup B = \{1, 2, 3, 4, 5\}$, so $(A \cup B)^c = \{6\}$
+  - $A^c = \{4, 5, 6\}$ and $B^c = \{1, 2, 6\}$
+  - $A^c \cap B^c = \{6\}$ ✓
