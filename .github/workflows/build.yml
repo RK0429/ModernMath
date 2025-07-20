@@ -53,6 +53,7 @@ jobs:
 
     # Step 2d: Install Google Chrome
     - name: Install Google Chrome
+      id: setup-chrome
       uses: browser-actions/setup-chrome@v2
       with:
         install-dependencies: true
@@ -162,7 +163,7 @@ jobs:
     # Step 7: Run Quarto render
     - name: Render Quarto site
       env:
-        QUARTO_CHROMIUM: "/usr/bin/google-chrome-stable"
+        QUARTO_CHROMIUM: ${{ steps.setup-chrome.outputs.chrome-path }}
       run: |
         quarto render
 
