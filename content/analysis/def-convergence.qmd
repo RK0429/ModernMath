@@ -1,11 +1,11 @@
 ---
-title: "Definition: Convergence"
-id: "def-convergence"
-type: "Definition"
-status: "complete"
+id: def-convergence
 requires:
-  - "def-sequence"
-  - "def-limit"
+- def-sequence
+- def-limit
+status: complete
+title: 'Definition: Convergence'
+type: Definition
 ---
 
 **Convergence** describes the behavior of a @def-sequence whose terms approach a specific value as the index increases. A convergent sequence gets arbitrarily close to its limit.
@@ -67,3 +67,24 @@ $$\forall \varepsilon > 0, \exists N : \forall m,n > N, \quad d(a_m, a_n) < \var
 - Numerical methods and approximation
 - Probability (law of large numbers)
 - Functional analysis (operator convergence)
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
+    def-limit["Definition: Limit of a Sequence"]:::definition
+    def-convergence["Definition: Convergence"]:::definition
+    def-sequence["Definition: Sequence"]:::definition
+    def-convergence --> def-complete-metric-space
+    def-convergence --> def-limit
+    def-sequence --> def-convergence
+    def-convergence --> def-sequence
+    class def-convergence current
+```

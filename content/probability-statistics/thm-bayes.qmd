@@ -1,11 +1,11 @@
 ---
-title: "Theorem: Bayes' Theorem"
-id: "thm-bayes"
-type: "Theorem"
-status: "complete"
+id: thm-bayes
 requires:
-  - "def-conditional-probability"
-  - "def-event"
+- def-conditional-probability
+- def-event
+status: complete
+title: 'Theorem: Bayes'' Theorem'
+type: Theorem
 ---
 
 **Bayes' Theorem** provides a way to calculate @def-conditional-probability in the "reverse" direction. It relates $P(A|B)$ to $P(B|A)$, allowing us to update beliefs based on new evidence.
@@ -79,3 +79,22 @@ Bayes' theorem enables iterative belief updating:
 2. Observe evidence $B$
 3. Update to posterior $P(A|B)$
 4. Use posterior as new prior for next observation
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-event["Definition: Event"]:::definition
+    thm-bayes["Theorem: Bayes' Theorem"]:::theorem
+    def-conditional-probability["Definition: Conditional Probability"]:::definition
+    def-conditional-probability --> thm-bayes
+    thm-bayes --> def-conditional-probability
+    thm-bayes --> def-event
+    class thm-bayes current
+```

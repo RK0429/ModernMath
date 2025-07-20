@@ -1,11 +1,11 @@
 ---
-title: "Definition: Hausdorff Space"
-id: "def-hausdorff"
-type: "Definition"
-status: "complete"
+id: def-hausdorff
 requires:
-  - "def-topological-space"
-  - "def-open-set"
+- def-topological-space
+- def-open-set
+status: complete
+title: 'Definition: Hausdorff Space'
+type: Definition
 ---
 
 # Definition: Hausdorff Space {#def-hausdorff}
@@ -44,3 +44,24 @@ The Hausdorff property ensures that points in the space are "distinguishable" fr
 - @def-topological-space - The basic structure on which this property is defined
 - @thm-metric-hausdorff - Every metric space is Hausdorff
 - @def-compact-space - Compact Hausdorff spaces have especially nice properties
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-open-set["Definition: Open Set"]:::definition
+    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
+    def-topological-space["Definition: Topological Space"]:::definition
+    def-hausdorff["Definition: Hausdorff Space"]:::definition
+    def-hausdorff --> def-topological-space
+    def-hausdorff --> def-open-set
+    def-hausdorff --> thm-metric-hausdorff
+    thm-metric-hausdorff --> def-hausdorff
+    class def-hausdorff current
+```

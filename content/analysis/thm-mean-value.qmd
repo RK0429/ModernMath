@@ -1,11 +1,11 @@
 ---
-title: "Theorem: Mean Value Theorem"
-id: "thm-mean-value"
-type: "Theorem"
-status: "complete"
+id: thm-mean-value
 requires:
-  - "def-continuity"
-  - "def-derivative"
+- def-continuity
+- def-derivative
+status: complete
+title: 'Theorem: Mean Value Theorem'
+type: Theorem
 ---
 
 The **Mean Value Theorem (MVT)** states that for a differentiable function on an interval, there exists at least one point where the instantaneous rate of change equals the average rate of change over the interval.
@@ -70,3 +70,21 @@ MVT generalizes to higher derivatives, leading to Taylor approximations
 2. **Application**: Prove that $|\sin x - \sin y| \leq |x - y|$:
    - By MVT: $\sin x - \sin y = \cos c \cdot (x - y)$ for some $c$
    - Since $|\cos c| \leq 1$, the result follows
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
+    def-derivative["Definition: Derivative"]:::definition
+    def-continuity["Definition: Continuity"]:::definition
+    thm-mean-value --> def-derivative
+    thm-mean-value --> def-continuity
+    class thm-mean-value current
+```

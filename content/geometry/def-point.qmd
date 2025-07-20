@@ -1,8 +1,8 @@
 ---
-title: "Definition: Point"
-id: "def-point"
-type: "Definition"
-status: "complete"
+id: def-point
+status: complete
+title: 'Definition: Point'
+type: Definition
 ---
 
 A **point** is a primitive notion in geometry that represents a location in space with no dimension (no length, width, or height). In Euclidean geometry, points are the fundamental building blocks from which all other geometric objects are constructed.
@@ -30,3 +30,30 @@ Points are typically denoted by capital letters: $A$, $B$, $C$, $P$, $Q$, etc.
 - The origin $(0, 0)$ in the Cartesian plane
 - Any element of a @def-metric-space
 - Vertices of geometric figures like triangles and polygons
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-triangle["Definition: Triangle"]:::definition
+    def-angle["Definition: Angle"]:::definition
+    def-parallel["Definition: Parallel Lines"]:::definition
+    def-metric-space["Definition: Metric Space"]:::definition
+    def-euclidean-space["Definition: Euclidean Space"]:::definition
+    def-point["Definition: Point"]:::definition
+    def-line["Definition: Line"]:::definition
+    def-parallel --> def-point
+    def-point --> def-line
+    def-point --> def-metric-space
+    def-line --> def-point
+    def-point --> def-euclidean-space
+    def-angle --> def-point
+    def-triangle --> def-point
+    class def-point current
+```

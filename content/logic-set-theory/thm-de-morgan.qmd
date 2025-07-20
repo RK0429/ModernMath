@@ -1,12 +1,12 @@
 ---
-title: "Theorem: De Morgan's Laws"
-id: "thm-de-morgan"
-type: "Theorem"
-status: "complete"
+id: thm-de-morgan
 requires:
-  - "def-set"
-  - "def-union"
-  - "def-intersection"
+- def-set
+- def-union
+- def-intersection
+status: complete
+title: 'Theorem: De Morgan''s Laws'
+type: Theorem
 ---
 
 **De Morgan's Laws** describe the relationship between @def-union, @def-intersection, and set complement. They state that the complement of a union equals the intersection of complements, and the complement of an intersection equals the union of complements.
@@ -69,3 +69,25 @@ For any collection of sets $\{A_i : i \in I\}$:
   - $A \cup B = \{1, 2, 3, 4, 5\}$, so $(A \cup B)^c = \{6\}$
   - $A^c = \{4, 5, 6\}$ and $B^c = \{1, 2, 6\}$
   - $A^c \cap B^c = \{6\}$ ✓
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-intersection["Definition: Intersection"]:::definition
+    def-union["Definition: Union"]:::definition
+    def-set["Definition: Set"]:::definition
+    thm-de-morgan["Theorem: De Morgan's Laws"]:::theorem
+    thm-de-morgan --> def-set
+    thm-de-morgan --> def-union
+    def-union --> thm-de-morgan
+    def-intersection --> thm-de-morgan
+    thm-de-morgan --> def-intersection
+    class thm-de-morgan current
+```

@@ -1,10 +1,10 @@
 ---
-title: "Definition: Commutativity"
-id: "def-commutativity"
-type: "Definition"
-status: "complete"
+id: def-commutativity
 requires:
-  - "def-binary-operation"
+- def-binary-operation
+status: complete
+title: 'Definition: Commutativity'
+type: Definition
 ---
 
 **Commutativity** is a property of a @def-binary-operation where the order of the operands does not affect the result.
@@ -83,3 +83,23 @@ In graded algebras: $ab = (-1)^{|a||b|}ba$ where $|a|$ is the degree of $a$
 - **Cryptography**: Commutative encryption allows flexible ordering
 - **Database queries**: Commutative operations enable query optimization
 - **Physics**: Commuting observables can be measured simultaneously
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-group["Definition: Group"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-associativity["Definition: Associativity"]:::definition
+    def-commutativity["Definition: Commutativity"]:::definition
+    def-commutativity --> def-associativity
+    def-commutativity --> def-binary-operation
+    def-commutativity --> def-group
+    class def-commutativity current
+```

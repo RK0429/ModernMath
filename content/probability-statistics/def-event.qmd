@@ -1,11 +1,11 @@
 ---
-title: "Definition: Event"
-id: "def-event"
-type: "Definition"
-status: "complete"
+id: def-event
 requires:
-  - "def-sample-space"
-  - "def-subset"
+- def-sample-space
+- def-subset
+status: complete
+title: 'Definition: Event'
+type: Definition
 ---
 
 An **event** in probability theory is a @def-subset of the @def-sample-space $\Omega$. It represents a collection of outcomes to which a probability can be assigned.
@@ -60,3 +60,32 @@ In a @def-probability-space, each event $A$ is assigned a probability $P(A)$ suc
 - **Mutually Exclusive**: Events $A$ and $B$ where $A \cap B = \emptyset$
 - **Exhaustive**: Events whose union equals $\Omega$
 - **Independent**: Events where $P(A \cap B) = P(A)P(B)$
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-event["Definition: Event"]:::definition
+    def-sample-space["Definition: Sample Space"]:::definition
+    thm-bayes["Theorem: Bayes' Theorem"]:::theorem
+    def-probability-space["Definition: Probability Space"]:::definition
+    def-conditional-probability["Definition: Conditional Probability"]:::definition
+    def-union["Definition: Union"]:::definition
+    def-subset["Definition: Subset"]:::definition
+    def-intersection["Definition: Intersection"]:::definition
+    def-event --> def-sample-space
+    def-event --> def-intersection
+    def-event --> def-union
+    thm-bayes --> def-event
+    def-event --> def-probability-space
+    def-event --> def-subset
+    def-conditional-probability --> def-event
+    def-sample-space --> def-event
+    class def-event current
+```

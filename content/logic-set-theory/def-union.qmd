@@ -1,10 +1,10 @@
 ---
-title: "Definition: Union"
-id: "def-union"
-type: "Definition"
-status: "complete"
+id: def-union
 requires:
-  - "def-set"
+- def-set
+status: complete
+title: 'Definition: Union'
+type: Definition
 ---
 
 The **union** of two @def-set[s] $A$ and $B$, denoted $A \cup B$, is the set containing all elements that belong to either $A$ or $B$ (or both).
@@ -44,3 +44,24 @@ Special cases:
 - De Morgan's Laws: $(A \cup B)^c = A^c \cap B^c$ (see @thm-de-morgan)
 - Distributivity: $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
 - Cardinality: $|A \cup B| = |A| + |B| - |A \cap B|$ (inclusion-exclusion)
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-event["Definition: Event"]:::definition
+    def-union["Definition: Union"]:::definition
+    def-set["Definition: Set"]:::definition
+    thm-de-morgan["Theorem: De Morgan's Laws"]:::theorem
+    def-union --> thm-de-morgan
+    thm-de-morgan --> def-union
+    def-union --> def-set
+    def-event --> def-union
+    class def-union current
+```

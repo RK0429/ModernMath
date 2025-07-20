@@ -1,12 +1,12 @@
 ---
-title: "Definition: Isomorphism"
-id: "def-isomorphism"
-type: "Definition"
-status: "complete"
+id: def-isomorphism
 requires:
-  - "def-morphism"
-  - "def-composition"
-  - "def-category"
+- def-morphism
+- def-composition
+- def-category
+status: complete
+title: 'Definition: Isomorphism'
+type: Definition
 ---
 
 An **isomorphism** in a @def-category is a @def-morphism that has a two-sided inverse. Isomorphic objects are considered "the same" from the categorical perspective.
@@ -73,3 +73,26 @@ An isomorphism in the functor category (see @def-natural-transformation)
 - In **Set**: Injective but non-surjective functions
 - In **Group**: Non-bijective homomorphisms
 - Continuous functions that aren't homeomorphisms
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    def-composition["Definition: Composition"]:::definition
+    def-morphism["Definition: Morphism"]:::definition
+    def-category["Definition: Category"]:::definition
+    def-natural-transformation["Definition: Natural Transformation"]:::definition
+    def-isomorphism --> def-composition
+    def-isomorphism --> def-natural-transformation
+    def-isomorphism --> def-morphism
+    def-composition --> def-isomorphism
+    def-isomorphism --> def-category
+    class def-isomorphism current
+```
