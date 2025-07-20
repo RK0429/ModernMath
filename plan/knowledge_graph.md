@@ -398,18 +398,31 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
 
 ### 17. Security and Performance
 
-**Progress Update (2025-07-20):** Implemented rate limiting for the REST API using Flask-Limiter with per-endpoint limits and proper error handling.
+**Progress Update (2025-07-20):** Implemented comprehensive security enhancements for the REST API including authentication, input validation, query complexity limits, and improved CORS configuration.
 
-- [x] **Security Hardening** (Partially complete)
+- [x] **Security Hardening** (Completed 2025-07-20)
   - [x] Implement rate limiting (Completed 2025-07-20 - Flask-Limiter with per-endpoint limits)
     - Global limits: 200/day, 50/hour per IP
     - Endpoint-specific limits ranging from 5-100 requests/minute
     - Custom 429 error handler with retry-after headers
     - Test scripts and documentation included
-  - [ ] Add authentication for write operations
-  - [ ] Configure CORS policies (basic CORS already enabled)
-  - [ ] Set up input validation
-  - [ ] Implement query complexity limits
+  - [x] Add authentication for write operations (Completed 2025-07-20)
+    - JWT-based authentication implemented
+    - Protected endpoints for admin operations
+    - Token generation and verification utilities
+  - [x] Configure CORS policies (Completed 2025-07-20)
+    - Restricted to specific origins (localhost, GitHub Pages)
+    - Limited methods and headers
+    - Proper preflight handling
+  - [x] Set up input validation (Completed 2025-07-20)
+    - Node ID validation with regex patterns
+    - Search term validation with length and character restrictions
+    - Output sanitization to prevent XSS
+  - [x] Implement query complexity limits (Completed 2025-07-20)
+    - SPARQL query validation and complexity scoring
+    - Limits on variables, UNION/OPTIONAL clauses
+    - Query timeout enforcement
+    - Protection against dangerous keywords
 
 - [ ] **Performance Optimization**
   - [ ] Add caching layers (Redis, CDN)
