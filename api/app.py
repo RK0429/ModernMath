@@ -3,25 +3,21 @@ Flask REST API for Math Knowledge Graph
 Provides endpoints to query and explore the mathematical knowledge graph
 """
 
-from flask import Flask, jsonify, request, abort
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_limiter.errors import RateLimitExceeded
 from pathlib import Path
 import sys
-from typing import Dict, List, Optional, Any
+from typing import Dict, Optional, Any
 from SPARQLWrapper import SPARQLWrapper, JSON
-import json
 import logging
+from api.search import MathKnowledgeSearcher
+from api.cache import api_cache, cleanup_cache
 
 # Add parent directory to path to import scripts
 sys.path.append(str(Path(__file__).parent.parent))
-
-# Import the enhanced search module
-from api.search import MathKnowledgeSearcher
-# Import caching module
-from api.cache import api_cache, cleanup_cache
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -68,7 +64,6 @@ QUERIES = {
             OPTIONAL { <https://mathwiki.org/resource/%s> mymath:hasDomain ?domain }
         }
     """,
-    
     "get_dependencies": """
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -82,7 +77,6 @@ QUERIES = {
                        rdf:type ?type .
         }
     """,
-    
     "get_dependents": """
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -96,7 +90,6 @@ QUERIES = {
                       rdf:type ?type .
         }
     """,
-    
     "search_nodes": """
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -112,7 +105,6 @@ QUERIES = {
         }
         LIMIT 50
     """,
-    
     "get_all_nodes": """
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -127,7 +119,7 @@ QUERIES = {
             FILTER(?type IN (mymath:Definition, mymath:Theorem, mymath:Axiom, mymath:Example))
         }
         ORDER BY ?label
-    """
+    """,
 }
 
 
@@ -161,11 +153,11 @@ def format_node_response(results: Dict[str, Any]) -> Dict[str, Any]:
     """Format SPARQL results into a clean JSON response"""
     if not results or "results" not in results:
         return {"error": "No results found"}
-    
+
     bindings = results["results"]["bindings"]
     if not bindings:
         return {"error": "Node not found"}
-    
+
     # Process results
     formatted = []
     for binding in bindings:
@@ -173,11 +165,13 @@ def format_node_response(results: Dict[str, Any]) -> Dict[str, Any]:
         for key, value in binding.items():
             if value["type"] == "uri":
                 # Extract local part of URI for cleaner output
-                item[key] = value["value"].split("#")[-1] if "#" in value["value"] else value["value"]
+                item[key] = (
+                    value["value"].split("#")[-1] if "#" in value["value"] else value["value"]
+                )
             else:
                 item[key] = value["value"]
         formatted.append(item)
-    
+
     return {"results": formatted, "count": len(formatted)}
 
 
@@ -185,11 +179,7 @@ def format_node_response(results: Dict[str, Any]) -> Dict[str, Any]:
 @limiter.limit("100 per minute")
 def health_check():
     """Health check endpoint"""
-    return jsonify({
-        "status": "healthy",
-        "service": "Math Knowledge Graph API",
-        "version": "0.1.0"
-    })
+    return jsonify({"status": "healthy", "service": "Math Knowledge Graph API", "version": "0.1.0"})
 
 
 @app.route("/api/nodes/<node_id>", methods=["GET"])
@@ -199,14 +189,14 @@ def get_node(node_id: str):
     """Get details about a specific node"""
     query = QUERIES["get_node"] % (node_id, node_id)
     results = execute_sparql_query(query)
-    
+
     if not results:
         return jsonify({"error": "SPARQL endpoint unavailable"}), 503
-    
+
     formatted = format_node_response(results)
     if "error" in formatted:
         return jsonify(formatted), 404
-    
+
     # Add the node ID to the response
     formatted["node_id"] = node_id
     return jsonify(formatted)
@@ -219,10 +209,10 @@ def get_dependencies(node_id: str):
     """Get all nodes that this node depends on (uses)"""
     query = QUERIES["get_dependencies"] % node_id
     results = execute_sparql_query(query)
-    
+
     if not results:
         return jsonify({"error": "SPARQL endpoint unavailable"}), 503
-    
+
     formatted = format_node_response(results)
     formatted["node_id"] = node_id
     formatted["relationship"] = "uses"
@@ -236,10 +226,10 @@ def get_dependents(node_id: str):
     """Get all nodes that depend on (use) this node"""
     query = QUERIES["get_dependents"] % node_id
     results = execute_sparql_query(query)
-    
+
     if not results:
         return jsonify({"error": "SPARQL endpoint unavailable"}), 503
-    
+
     formatted = format_node_response(results)
     formatted["node_id"] = node_id
     formatted["relationship"] = "used_by"
@@ -254,46 +244,48 @@ def search_nodes():
     search_term = request.args.get("q", "")
     if not search_term:
         return jsonify({"error": "Search term required"}), 400
-    
+
     # Check if enhanced search is available
     if searcher is None:
         # Fall back to basic SPARQL search
         query = QUERIES["search_nodes"] % search_term
         results = execute_sparql_query(query)
-        
+
         if not results:
             return jsonify({"error": "SPARQL endpoint unavailable"}), 503
-        
+
         formatted = format_node_response(results)
         formatted["search_term"] = search_term
         formatted["search_type"] = "basic"
         return jsonify(formatted)
-    
+
     # Use enhanced search
     try:
         # Get limit parameter
         limit = request.args.get("limit", default=50, type=int)
         limit = min(limit, 100)  # Cap at 100 results
-        
+
         # Perform combined search
         results = searcher.search_combined(search_term, limit=limit)
-        
-        return jsonify({
-            "search_term": search_term,
-            "search_type": "enhanced",
-            "count": len(results),
-            "results": results
-        })
-        
+
+        return jsonify(
+            {
+                "search_term": search_term,
+                "search_type": "enhanced",
+                "count": len(results),
+                "results": results,
+            }
+        )
+
     except Exception as e:
         logger.error(f"Enhanced search failed: {e}")
         # Fall back to basic search
         query = QUERIES["search_nodes"] % search_term
         results = execute_sparql_query(query)
-        
+
         if not results:
             return jsonify({"error": "Search failed"}), 503
-        
+
         formatted = format_node_response(results)
         formatted["search_term"] = search_term
         formatted["search_type"] = "basic_fallback"
@@ -307,10 +299,10 @@ def get_all_nodes():
     """Get all nodes in the graph"""
     query = QUERIES["get_all_nodes"]
     results = execute_sparql_query(query)
-    
+
     if not results:
         return jsonify({"error": "SPARQL endpoint unavailable"}), 503
-    
+
     return jsonify(format_node_response(results))
 
 
@@ -321,19 +313,19 @@ def custom_query():
     data = request.get_json()
     if not data or "query" not in data:
         return jsonify({"error": "Query required in request body"}), 400
-    
+
     query = data["query"]
-    
+
     # Basic safety check - only allow SELECT queries
     if not query.strip().upper().startswith("SELECT"):
         return jsonify({"error": "Only SELECT queries are allowed"}), 400
-    
+
     # Additional safety checks could be added here
-    
+
     results = execute_sparql_query(query)
     if not results:
         return jsonify({"error": "SPARQL endpoint unavailable"}), 503
-    
+
     return jsonify(results)
 
 
@@ -345,21 +337,18 @@ def search_suggestions():
     partial_query = request.args.get("q", "")
     if not partial_query or len(partial_query) < 2:
         return jsonify({"suggestions": []})
-    
+
     if searcher is None:
         return jsonify({"error": "Search suggestions unavailable"}), 503
-    
+
     try:
         limit = request.args.get("limit", default=10, type=int)
         limit = min(limit, 20)  # Cap at 20 suggestions
-        
+
         suggestions = searcher.suggest_search_terms(partial_query, limit=limit)
-        
-        return jsonify({
-            "query": partial_query,
-            "suggestions": suggestions
-        })
-        
+
+        return jsonify({"query": partial_query, "suggestions": suggestions})
+
     except Exception as e:
         logger.error(f"Search suggestions failed: {e}")
         return jsonify({"suggestions": []})
@@ -372,15 +361,12 @@ def get_related_nodes(node_id: str):
     """Get all nodes related to the specified node"""
     if searcher is None:
         return jsonify({"error": "Related nodes search unavailable"}), 503
-    
+
     try:
         related = searcher.get_related_nodes(node_id)
-        
-        return jsonify({
-            "node_id": node_id,
-            "related": related
-        })
-        
+
+        return jsonify({"node_id": node_id, "related": related})
+
     except Exception as e:
         logger.error(f"Related nodes search failed: {e}")
         return jsonify({"error": "Failed to get related nodes"}), 500
@@ -392,6 +378,7 @@ def clear_cache():
     """Clear all cached responses (requires admin access in production)"""
     try:
         from api.cache import _cache
+
         _cache.clear()
         logger.info("Cache cleared successfully")
         return jsonify({"message": "Cache cleared successfully"})
@@ -406,13 +393,11 @@ def cache_stats():
     """Get cache statistics"""
     try:
         from api.cache import _cache
+
         # Count non-expired entries
         _cache.cleanup_expired()
         cache_size = len(_cache._cache)
-        return jsonify({
-            "cache_entries": cache_size,
-            "status": "operational"
-        })
+        return jsonify({"cache_entries": cache_size, "status": "operational"})
     except Exception as e:
         logger.error(f"Failed to get cache stats: {e}")
         return jsonify({"error": "Failed to get cache stats"}), 500
@@ -423,7 +408,7 @@ def start_cache_cleanup():
     """Start background thread for periodic cache cleanup"""
     import threading
     import time
-    
+
     def cleanup_loop():
         while True:
             time.sleep(300)  # Run every 5 minutes
@@ -432,7 +417,7 @@ def start_cache_cleanup():
                 logger.debug("Cache cleanup completed")
             except Exception as e:
                 logger.error(f"Cache cleanup failed: {e}")
-    
+
     cleanup_thread = threading.Thread(target=cleanup_loop, daemon=True)
     cleanup_thread.start()
     logger.info("Cache cleanup thread started")
@@ -453,12 +438,17 @@ def rate_limit_exceeded(error):
         if header == "Retry-After":
             retry_after = value
             break
-    
-    return jsonify({
-        "error": "Rate limit exceeded",
-        "message": error.description,
-        "retry_after": retry_after
-    }), 429
+
+    return (
+        jsonify(
+            {
+                "error": "Rate limit exceeded",
+                "message": error.description,
+                "retry_after": retry_after,
+            }
+        ),
+        429,
+    )
 
 
 @app.errorhandler(500)
@@ -470,6 +460,6 @@ def internal_error(error):
 if __name__ == "__main__":
     # Start cache cleanup thread
     start_cache_cleanup()
-    
+
     # Development server - in production use gunicorn or similar
     app.run(debug=True, host="0.0.0.0", port=5001)

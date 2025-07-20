@@ -21,9 +21,7 @@ from viz.pyvis_graphs import (  # noqa: E402
 )
 
 # Configure logging
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
-)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
 
@@ -161,9 +159,7 @@ def create_visualization_index(output_dir: Path, html_files: list) -> None:
     # Add individual node links
     node_files = sorted([f for f in html_files if not f.name.startswith("domain-")])
     for file in node_files:
-        index_content += (
-            f'            <a href="{file.name}" class="viz-link">{file.stem}</a>\n'
-        )
+        index_content += f'            <a href="{file.name}" class="viz-link">{file.stem}</a>\n'
 
     index_content += (
         """        </div>

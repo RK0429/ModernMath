@@ -4,7 +4,6 @@ Test SPARQL queries for the Math Knowledge Graph
 """
 
 from SPARQLWrapper import SPARQLWrapper, JSON
-import json
 
 # SPARQL endpoint URL
 ENDPOINT = "http://localhost:3030/mathwiki/sparql"
@@ -21,7 +20,6 @@ QUERIES = {
             ?node a ?type .
         }
     """,
-    
     "list_definitions": """
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -34,7 +32,6 @@ QUERIES = {
         }
         ORDER BY ?label
     """,
-    
     "find_dependencies": """
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX base: <https://mathwiki.org/resource/>
@@ -47,7 +44,6 @@ QUERIES = {
             OPTIONAL { ?dependency rdfs:label ?label }
         }
     """,
-    
     "find_theorems_using_definition": """
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX base: <https://mathwiki.org/resource/>
@@ -61,7 +57,6 @@ QUERIES = {
             OPTIONAL { ?theorem rdfs:label ?label }
         }
     """,
-    
     "get_domain_concepts": """
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -74,27 +69,28 @@ QUERIES = {
             FILTER(?domain = "Algebra")
         }
         ORDER BY ?label
-    """
+    """,
 }
+
 
 def run_query(name, query):
     """Run a SPARQL query and print results"""
     print(f"\n{'='*60}")
     print(f"Query: {name}")
     print(f"{'='*60}")
-    
+
     sparql = SPARQLWrapper(ENDPOINT)
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
-    
+
     try:
         results = sparql.query().convert()
-        
+
         # Print results
         if "results" in results and "bindings" in results["results"]:
             bindings = results["results"]["bindings"]
             print(f"Found {len(bindings)} results:")
-            
+
             for binding in bindings:
                 row = []
                 for var in results["head"]["vars"]:
@@ -109,27 +105,23 @@ def run_query(name, query):
                 print("  - " + ", ".join(row))
         else:
             print("No results found.")
-            
+
     except Exception as e:
         print(f"Error executing query: {e}")
         print("Make sure Fuseki is running and data is loaded.")
+
 
 def main():
     """Run all test queries"""
     print("Testing SPARQL queries on Math Knowledge Graph")
     print(f"Endpoint: {ENDPOINT}")
-    
-    # Check if SPARQLWrapper is installed
-    try:
-        import SPARQLWrapper
-    except ImportError:
-        print("\nError: SPARQLWrapper not installed.")
-        print("Install it with: poetry add sparqlwrapper")
-        return
-    
+
+    # SPARQLWrapper is already imported at the top
+
     # Run each query
     for name, query in QUERIES.items():
         run_query(name, query)
+
 
 if __name__ == "__main__":
     main()

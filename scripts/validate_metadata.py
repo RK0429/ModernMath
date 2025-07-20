@@ -54,9 +54,7 @@ def validate_metadata(file_path: Path) -> List[str]:
     if "id" in metadata:
         expected_id = file_path.stem
         if metadata["id"] != expected_id:
-            errors.append(
-                f"ID '{metadata['id']}' doesn't match filename '{expected_id}'"
-            )
+            errors.append(f"ID '{metadata['id']}' doesn't match filename '{expected_id}'")
 
     # Validate 'requires' field if present
     if "requires" in metadata:
@@ -92,9 +90,7 @@ def main():
 
     # Report results
     if all_errors:
-        print(
-            f"❌ Metadata validation failed for {len(all_errors)} out of {total_files} files:\n"
-        )
+        print(f"❌ Metadata validation failed for {len(all_errors)} out of {total_files} files:\n")
         for file_path, errors in all_errors.items():
             print(f"File: {file_path}")
             for error in errors:

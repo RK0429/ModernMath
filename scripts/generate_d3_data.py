@@ -221,9 +221,7 @@ def main():
 
     # Create an index file
     index_data = {
-        "nodes": [
-            str(n).replace(BASE_URI, "") for n in nodes if not str(n).endswith("index")
-        ],
+        "nodes": [str(n).replace(BASE_URI, "") for n in nodes if not str(n).endswith("index")],
         "domains": [d.lower().replace(" ", "-") for d in domains],
     }
 

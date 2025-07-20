@@ -57,9 +57,7 @@ def insert_diagrams():
             )
         else:
             # Add at the end
-            new_content = (
-                post.content.rstrip() + "\n\n## Dependency Graph\n\n" + diagram_content
-            )
+            new_content = post.content.rstrip() + "\n\n## Dependency Graph\n\n" + diagram_content
 
         # Write back
         post.content = new_content

@@ -17,9 +17,7 @@ import frontmatter
 from rdflib import Graph, Literal, Namespace, RDF, RDFS, OWL, URIRef
 
 # Configure logging
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
-)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
 # Define namespaces
@@ -93,9 +91,7 @@ class KnowledgeGraphBuilder:
 
             # Skip files without required metadata
             if "id" not in metadata or "type" not in metadata:
-                logger.warning(
-                    f"Skipping {qmd_path}: missing required metadata (id or type)"
-                )
+                logger.warning(f"Skipping {qmd_path}: missing required metadata (id or type)")
                 return
 
             node_id = metadata["id"]
@@ -108,9 +104,7 @@ class KnowledgeGraphBuilder:
 
             # Add label
             if "title" in metadata:
-                self.graph.add(
-                    (node_uri, RDFS.label, Literal(metadata["title"], lang="en"))
-                )
+                self.graph.add((node_uri, RDFS.label, Literal(metadata["title"], lang="en")))
 
             # Add description from content (first paragraph)
             content_lines = post.content.strip().split("\n\n")
@@ -121,9 +115,7 @@ class KnowledgeGraphBuilder:
                     r"^#+\s+.*$", "", first_paragraph, flags=re.MULTILINE
                 ).strip()
                 if first_paragraph:
-                    self.graph.add(
-                        (node_uri, RDFS.comment, Literal(first_paragraph, lang="en"))
-                    )
+                    self.graph.add((node_uri, RDFS.comment, Literal(first_paragraph, lang="en")))
 
             # Add domain if available (from directory metadata)
             domain = self._get_domain_from_path(qmd_path)
@@ -132,15 +124,11 @@ class KnowledgeGraphBuilder:
 
             # Add status
             if "status" in metadata:
-                self.graph.add(
-                    (node_uri, MYMATH.hasStatus, Literal(metadata["status"]))
-                )
+                self.graph.add((node_uri, MYMATH.hasStatus, Literal(metadata["status"])))
 
             # Add Lean ID if available
             if "lean_id" in metadata:
-                self.graph.add(
-                    (node_uri, MYMATH.hasLeanId, Literal(metadata["lean_id"]))
-                )
+                self.graph.add((node_uri, MYMATH.hasLeanId, Literal(metadata["lean_id"])))
 
             logger.info(f"Registered node: {node_id} ({node_type})")
 
@@ -184,9 +172,7 @@ class KnowledgeGraphBuilder:
                     self.graph.add((node_uri, MYMATH.uses, dep_uri))
                     logger.debug(f"Added relationship: {node_id} uses {dep_id}")
                 else:
-                    logger.warning(
-                        f"Unresolved reference: {dep_id} referenced by {node_id}"
-                    )
+                    logger.warning(f"Unresolved reference: {dep_id} referenced by {node_id}")
 
         except Exception as e:
             logger.error(f"Error processing {qmd_path} in second pass: {e}")
@@ -223,46 +209,52 @@ class KnowledgeGraphBuilder:
         """Add isVerifiedBy triples for nodes that have formal Lean verification."""
         # Path to the Lean mappings file
         mappings_file = self.output_file.parent / "lean_mappings.json"
-        
+
         if not mappings_file.exists():
             logger.info("No lean_mappings.json found, skipping Lean verification triples")
             return
-            
+
         try:
             with open(mappings_file, "r", encoding="utf-8") as f:
                 mappings_data = json.load(f)
-            
+
             # Process node_to_lean mappings
             node_to_lean = mappings_data.get("node_to_lean", {})
-            
+
             for node_id, lean_data in node_to_lean.items():
                 if node_id in self.node_registry:
                     node_uri = self.node_registry[node_id]
                     lean_id = lean_data.get("lean_id")
-                    
+
                     if lean_id:
                         # Create a URI for the Lean proof
                         lean_proof_uri = URIRef(f"https://mathlib.org/proof/{lean_id}")
-                        
+
                         # Add the isVerifiedBy triple
                         self.graph.add((node_uri, MYMATH.isVerifiedBy, lean_proof_uri))
-                        
+
                         # Add metadata about the Lean proof
                         self.graph.add((lean_proof_uri, RDF.type, MYMATH.FormalProof))
-                        self.graph.add((lean_proof_uri, RDFS.label, 
-                                      Literal(f"Lean proof: {lean_id}", lang="en")))
-                        
+                        self.graph.add(
+                            (
+                                lean_proof_uri,
+                                RDFS.label,
+                                Literal(f"Lean proof: {lean_id}", lang="en"),
+                            )
+                        )
+
                         # Add the module information
                         if "module_name" in lean_data:
-                            self.graph.add((lean_proof_uri, MYMATH.inModule, 
-                                          Literal(lean_data["module_name"])))
-                        
+                            self.graph.add(
+                                (lean_proof_uri, MYMATH.inModule, Literal(lean_data["module_name"]))
+                            )
+
                         logger.info(f"Added Lean verification for {node_id} -> {lean_id}")
-            
+
             # Count how many nodes have verification
             verified_count = len(list(self.graph.triples((None, MYMATH.isVerifiedBy, None))))
             logger.info(f"Added {verified_count} Lean verification triples")
-            
+
         except Exception as e:
             logger.error(f"Error adding Lean verification triples: {e}")
 

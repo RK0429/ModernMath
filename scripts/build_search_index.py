@@ -14,9 +14,7 @@ from whoosh.fields import ID, TEXT, KEYWORD, Schema
 from whoosh.qparser import MultifieldParser, FuzzyTermPlugin
 from whoosh.analysis import StemmingAnalyzer
 
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
-)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
 
@@ -198,9 +196,7 @@ def search_index(query_str: str, index_dir: Path, limit: int = 50) -> List[Dict]
     ix = index.open_dir(str(index_dir))
 
     # Create a multi-field parser that searches across title, content, and keywords
-    parser = MultifieldParser(
-        ["title", "content", "keywords", "description"], ix.schema
-    )
+    parser = MultifieldParser(["title", "content", "keywords", "description"], ix.schema)
     # Add fuzzy matching support
     parser.add_plugin(FuzzyTermPlugin())
 

@@ -17,9 +17,7 @@ from collections import defaultdict
 from rdflib import Graph, Namespace, RDF
 
 # Configure logging
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
-)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
 # Define namespaces
@@ -80,9 +78,7 @@ class GraphValidator:
             if not types:
                 self.issues.append(f"ERROR: Node {subject} has no type")
             elif not any(t in valid_types for t in types):
-                self.issues.append(
-                    f"WARNING: Node {subject} has non-standard type: {types}"
-                )
+                self.issues.append(f"WARNING: Node {subject} has non-standard type: {types}")
 
     def _check_broken_references(self):
         """Check for references to non-existent nodes."""
@@ -112,9 +108,7 @@ class GraphValidator:
             nodes.add(str(o))
 
         # Check for cycles using DFS
-        def has_cycle_from(
-            node: str, visited: Set[str], rec_stack: Set[str]
-        ) -> List[str]:
+        def has_cycle_from(node: str, visited: Set[str], rec_stack: Set[str]) -> List[str]:
             visited.add(node)
             rec_stack.add(node)
 
@@ -135,9 +129,7 @@ class GraphValidator:
                 cycle = has_cycle_from(node, visited, set())
                 if cycle:
                     cycle_str = " -> ".join(n.replace(BASE_URI, "") for n in cycle)
-                    self.issues.append(
-                        f"WARNING: Circular dependency detected: {cycle_str}"
-                    )
+                    self.issues.append(f"WARNING: Circular dependency detected: {cycle_str}")
 
     def _check_orphaned_nodes(self):
         """Check for nodes with no incoming or outgoing relationships."""
@@ -155,9 +147,7 @@ class GraphValidator:
                 node_type = list(self.graph.objects(subject, RDF.type))[0]
                 if node_type not in [MYMATH.Example, MYMATH.Axiom]:
                     node_id = str(subject).replace(BASE_URI, "")
-                    self.issues.append(
-                        f"INFO: Orphaned node (no relationships): {node_id}"
-                    )
+                    self.issues.append(f"INFO: Orphaned node (no relationships): {node_id}")
 
     def _check_bidirectional_references(self):
         """Check for inconsistent bidirectional references."""
@@ -173,9 +163,7 @@ class GraphValidator:
                 if node in uses_map.get(dep, []):
                     node_id = node.replace(BASE_URI, "")
                     dep_id = dep.replace(BASE_URI, "")
-                    self.issues.append(
-                        f"INFO: Bidirectional dependency: {node_id} <-> {dep_id}"
-                    )
+                    self.issues.append(f"INFO: Bidirectional dependency: {node_id} <-> {dep_id}")
 
     def print_statistics(self):
         """Print statistics about the graph."""

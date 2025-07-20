@@ -102,9 +102,7 @@ def calculate_relative_path(from_file: Path, to_file: Path) -> str:
 
     except ValueError:
         # If files are in completely different trees, use absolute path from content
-        return str(to_file.relative_to(to_file.parent.parent / "content")).replace(
-            "\\", "/"
-        )
+        return str(to_file.relative_to(to_file.parent.parent / "content")).replace("\\", "/")
 
 
 def get_node_title(file_path: Path) -> Optional[str]:
@@ -275,9 +273,7 @@ def main():
     content_dir = args.content_dir.resolve()
 
     if not content_dir.exists():
-        print(
-            f"Error: Content directory '{content_dir}' does not exist", file=sys.stderr
-        )
+        print(f"Error: Content directory '{content_dir}' does not exist", file=sys.stderr)
         sys.exit(1)
 
     print(f"Building node index from {content_dir}...")

@@ -4,7 +4,6 @@ Test script for the Math Knowledge Graph REST API
 
 import requests
 import json
-from typing import Dict, Any
 
 BASE_URL = "http://localhost:5000/api"
 
@@ -18,7 +17,7 @@ def print_response(response: requests.Response, title: str):
     try:
         data = response.json()
         print(json.dumps(data, indent=2))
-    except:
+    except json.JSONDecodeError:
         print(response.text)
 
 
@@ -84,11 +83,9 @@ def test_custom_query():
     }
     LIMIT 5
     """
-    
+
     response = requests.post(
-        f"{BASE_URL}/query",
-        json={"query": query},
-        headers={"Content-Type": "application/json"}
+        f"{BASE_URL}/query", json={"query": query}, headers={"Content-Type": "application/json"}
     )
     print_response(response, "Custom Query: Get 5 Theorems")
     return response.status_code == 200
@@ -99,7 +96,7 @@ def run_all_tests():
     print("Math Knowledge Graph API Test Suite")
     print("Make sure the API server is running on http://localhost:5000")
     print("And Fuseki is running on http://localhost:3030")
-    
+
     tests = [
         ("Health Check", test_health_check),
         ("Get Node", test_get_node),
@@ -107,9 +104,9 @@ def run_all_tests():
         ("Get Dependents", test_get_dependents),
         ("Search Nodes", test_search),
         ("Get All Nodes", test_get_all_nodes),
-        ("Custom Query", test_custom_query)
+        ("Custom Query", test_custom_query),
     ]
-    
+
     results = []
     for test_name, test_func in tests:
         try:
@@ -118,13 +115,14 @@ def run_all_tests():
         except Exception as e:
             print(f"\nError in {test_name}: {str(e)}")
             results.append((test_name, "ERROR"))
-    
-    print("\n" + "="*50)
+
+    print("\n" + "=" * 50)
     print("TEST SUMMARY")
-    print("="*50)
+    print("=" * 50)
     for test_name, result in results:
         print(f"{test_name}: {result}")
 
 
 if __name__ == "__main__":
     run_all_tests()
+
