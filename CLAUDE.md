@@ -179,13 +179,23 @@ The project uses a unified `build.yml` workflow:
 
 ### Language Detection
 
-Root index.html redirects based on browser language:
+Root index.html provides both automatic detection and manual selection:
 
-```javascript
-const userLang = navigator.language || navigator.userLanguage;
-const lang = userLang.startsWith("ja") ? "ja" : "en";
-window.location.href = "./" + lang + "/index.html";
-```
+- Automatic redirect based on browser language preference
+- Manual language selection with flag buttons (🇬🇧/🇯🇵)
+- Saves user preference in localStorage for future visits
+- Provides visual loading feedback during auto-detection
+
+### Japanese Navigation Pages
+
+When implementing Japanese support, create these navigation pages with `-ja.qmd` suffix:
+
+- `search-ja.qmd` - Japanese search interface
+- `visualizations-ja.qmd` - Japanese visualizations page
+- `about-ja.qmd` - Japanese about page
+- `contributing-ja.qmd` - Japanese contributing guide
+
+Update `_quarto-ja.yml` navbar to reference these files and ensure all domain links use Japanese paths (e.g., `../../search-ja.qmd` instead of `../../search.qmd`).
 
 ## Critical Implementation Details
 
