@@ -11,6 +11,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  packages: read
 
 jobs:
   build:
@@ -61,6 +62,8 @@ jobs:
     # Step 3: Install Quarto
     - name: Set up Quarto
       uses: quarto-dev/quarto-actions/setup@v2
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tinytex: true
 
