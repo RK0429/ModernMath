@@ -1,0 +1,606 @@
+---
+title: "System Architecture Documentation"
+description: "Technical architecture diagrams and component descriptions for the ModernMath Knowledge Graph"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+---
+
+# System Overview
+
+The ModernMath Knowledge Graph is a complex system that integrates multiple technologies to create, manage, and serve mathematical knowledge. This document provides architectural diagrams and technical descriptions of the system components.
+
+## High-Level Architecture
+
+```{mermaid}
+graph TB
+    subgraph "Content Layer"
+        QMD[Quarto .qmd Files]
+        META[YAML Metadata]
+    end
+    
+    subgraph "Processing Layer"
+        PARSER[Python Parser<br/>build_graph.py]
+        VAL[Validation Scripts]
+        VIZ[Visualization Scripts]
+    end
+    
+    subgraph "Data Layer"
+        RDF[RDF Triple Store<br/>knowledge_graph.ttl]
+        ONTO[Ontology<br/>math-ontology.ttl]
+        JSON[JSON Data Files]
+    end
+    
+    subgraph "Service Layer"
+        FUSEKI[Apache Jena Fuseki<br/>SPARQL Endpoint]
+        API[Flask REST API]
+        CACHE[In-Memory Cache]
+    end
+    
+    subgraph "Presentation Layer"
+        WEB[Quarto Website]
+        VIS[Interactive Visualizations]
+        SEARCH[Search Interface]
+    end
+    
+    QMD --> PARSER
+    META --> PARSER
+    PARSER --> RDF
+    ONTO --> RDF
+    VAL --> QMD
+    
+    RDF --> FUSEKI
+    FUSEKI --> API
+    API --> CACHE
+    
+    PARSER --> VIZ
+    VIZ --> JSON
+    JSON --> VIS
+    
+    API --> WEB
+    VIS --> WEB
+    SEARCH --> WEB
+    
+    style QMD fill:#e1f5fe
+    style RDF fill:#fff3e0
+    style FUSEKI fill:#f3e5f5
+    style WEB fill:#e8f5e9
+```
+
+# Component Architecture
+
+## Content Management System
+
+```{mermaid}
+graph LR
+    subgraph "Content Structure"
+        ROOT[content/]
+        ALG[algebra/]
+        TOP[topology/]
+        ANA[analysis/]
+        
+        ROOT --> ALG
+        ROOT --> TOP
+        ROOT --> ANA
+        
+        subgraph "Algebra Domain"
+            ALGMETA[_metadata.yml]
+            DEFG[def-group.qmd]
+            THML[thm-lagrange.qmd]
+            EXG[ex-integers.qmd]
+            
+            ALG --> ALGMETA
+            ALG --> DEFG
+            ALG --> THML
+            ALG --> EXG
+        end
+    end
+    
+    subgraph "File Components"
+        YAML[YAML Front Matter<br/>- id<br/>- type<br/>- requires]
+        CONTENT[Markdown Content<br/>- Definitions<br/>- Cross-refs @<br/>- LaTeX math]
+        
+        DEFG --> YAML
+        DEFG --> CONTENT
+    end
+```
+
+## Data Processing Pipeline
+
+```{mermaid}
+sequenceDiagram
+    participant U as User
+    participant Q as Quarto Files
+    participant P as Parser
+    participant V as Validator
+    participant G as Graph Builder
+    participant S as Serializer
+    participant F as File System
+    
+    U->>Q: Create/Edit .qmd
+    U->>P: Run build_graph.py
+    P->>Q: Read all .qmd files
+    P->>V: Validate metadata
+    V-->>P: Validation results
+    P->>G: Extract nodes & edges
+    G->>G: Build RDF triples
+    G->>S: Serialize graph
+    S->>F: Write knowledge_graph.ttl
+    S-->>U: Build complete
+```
+
+## RDF Knowledge Graph Structure
+
+```{mermaid}
+graph TD
+    subgraph "RDF Triple Structure"
+        S[Subject URI]
+        P[Predicate]
+        O[Object URI/Literal]
+        
+        S -->|has| P
+        P -->|points to| O
+    end
+    
+    subgraph "Example Triples"
+        G[math:def-group]
+        T[rdf:type]
+        D[mymath:Definition]
+        
+        G2[math:thm-lagrange]
+        U[mymath:uses]
+        G3[math:def-group]
+        
+        G -->|rdf:type| D
+        G2 -->|mymath:uses| G3
+    end
+```
+
+# Service Architecture
+
+## API Service Design
+
+```{mermaid}
+graph TB
+    subgraph "Flask API Architecture"
+        REQ[HTTP Request]
+        ROUTE[Route Handler]
+        SPAR[SPARQL Query Builder]
+        FUS[Fuseki Client]
+        CACHE[Cache Layer]
+        RESP[JSON Response]
+        
+        REQ --> ROUTE
+        ROUTE --> CACHE
+        CACHE -->|miss| SPAR
+        SPAR --> FUS
+        FUS --> CACHE
+        CACHE --> RESP
+        ROUTE --> RESP
+    end
+    
+    subgraph "API Endpoints"
+        E1[/api/nodes/{id}]
+        E2[/api/dependencies/{id}]
+        E3[/api/search]
+        E4[/api/query]
+        
+        E1 --> ROUTE
+        E2 --> ROUTE
+        E3 --> ROUTE
+        E4 --> ROUTE
+    end
+```
+
+## Caching Strategy
+
+```{mermaid}
+graph LR
+    subgraph "Cache Implementation"
+        REQ[API Request]
+        KEY[Cache Key Generator]
+        MEM[In-Memory Store<br/>TTL: 5-15 min]
+        
+        REQ --> KEY
+        KEY --> MEM
+        
+        MEM -->|Hit| RESP1[Cached Response]
+        MEM -->|Miss| DB[Database Query]
+        DB --> MEM
+        DB --> RESP2[Fresh Response]
+    end
+    
+    subgraph "Cache Management"
+        CLEAN[Cleanup Thread<br/>Every 5 min]
+        STATS[/api/cache/stats]
+        CLEAR[/api/cache/clear]
+        
+        CLEAN --> MEM
+        STATS --> MEM
+        CLEAR --> MEM
+    end
+```
+
+# Visualization Architecture
+
+## Visualization Generation Pipeline
+
+```{mermaid}
+flowchart TD
+    subgraph "Data Sources"
+        KG[Knowledge Graph<br/>RDF Triples]
+        SPARQL[SPARQL Queries]
+    end
+    
+    subgraph "Visualization Scripts"
+        MERM[generate_mermaid.py]
+        PYVIS[generate_pyvis.py]
+        D3[generate_d3_data.py]
+    end
+    
+    subgraph "Output Formats"
+        MERMF[Mermaid .mermaid files]
+        PYVISF[PyVis HTML files]
+        D3F[D3.js JSON files]
+    end
+    
+    subgraph "Integration"
+        QMD[Quarto Pages]
+        WEB[Web Interface]
+    end
+    
+    KG --> SPARQL
+    SPARQL --> MERM
+    SPARQL --> PYVIS
+    SPARQL --> D3
+    
+    MERM --> MERMF
+    PYVIS --> PYVISF
+    D3 --> D3F
+    
+    MERMF --> QMD
+    PYVISF --> WEB
+    D3F --> WEB
+```
+
+## Interactive Visualization Architecture
+
+```{mermaid}
+graph TB
+    subgraph "Client-Side"
+        HTML[HTML Page]
+        JS[JavaScript]
+        D3LIB[D3.js Library]
+        VIS[Vis.js Library]
+    end
+    
+    subgraph "Data Loading"
+        AJAX[AJAX Request]
+        JSON[JSON Data File]
+    end
+    
+    subgraph "Rendering"
+        SVG[SVG Elements]
+        INTER[Interactive Controls]
+        ZOOM[Zoom/Pan]
+    end
+    
+    HTML --> JS
+    JS --> D3LIB
+    JS --> VIS
+    JS --> AJAX
+    AJAX --> JSON
+    JSON --> JS
+    JS --> SVG
+    JS --> INTER
+    INTER --> ZOOM
+```
+
+# Deployment Architecture
+
+## CI/CD Pipeline
+
+```{mermaid}
+flowchart LR
+    subgraph "Development"
+        DEV[Developer]
+        LOCAL[Local Environment]
+        GIT[Git Repository]
+    end
+    
+    subgraph "GitHub Actions"
+        TRIGGER[Push/PR Trigger]
+        BUILD[Build Job]
+        TEST[Test Job]
+        DEPLOY[Deploy Job]
+    end
+    
+    subgraph "Build Steps"
+        INSTALL[Install Dependencies]
+        VALIDATE[Validate Content]
+        GRAPH[Build Graph]
+        RENDER[Render Site]
+    end
+    
+    subgraph "Deployment"
+        PAGES[GitHub Pages]
+        ASSETS[Static Assets]
+    end
+    
+    DEV --> LOCAL
+    LOCAL --> GIT
+    GIT --> TRIGGER
+    TRIGGER --> BUILD
+    BUILD --> INSTALL
+    INSTALL --> VALIDATE
+    VALIDATE --> GRAPH
+    GRAPH --> RENDER
+    RENDER --> TEST
+    TEST --> DEPLOY
+    DEPLOY --> PAGES
+    DEPLOY --> ASSETS
+```
+
+## Production Infrastructure
+
+```{mermaid}
+graph TB
+    subgraph "Frontend Hosting"
+        CDN[CDN/GitHub Pages]
+        STATIC[Static Files<br/>HTML/CSS/JS]
+        VIZ[Visualization Files]
+    end
+    
+    subgraph "Backend Services"
+        VM[Cloud VM/Container]
+        FUSEKI[Fuseki Server<br/>Port 3030]
+        API[Flask API<br/>Port 5001]
+        NGINX[Nginx Reverse Proxy]
+    end
+    
+    subgraph "Data Storage"
+        RDF[RDF Triple Store]
+        LOGS[Log Files]
+        BACKUP[Backup Storage]
+    end
+    
+    CDN --> STATIC
+    CDN --> VIZ
+    
+    NGINX --> FUSEKI
+    NGINX --> API
+    
+    FUSEKI --> RDF
+    API --> FUSEKI
+    API --> LOGS
+    RDF --> BACKUP
+```
+
+# Data Flow Diagrams
+
+## Content Creation Flow
+
+```{mermaid}
+stateDiagram-v2
+    [*] --> Draft: Create .qmd file
+    Draft --> Validation: Run validators
+    Validation --> Draft: Errors found
+    Validation --> Building: Valid
+    Building --> GraphGen: Extract triples
+    GraphGen --> Visualization: Generate viz
+    Visualization --> Deployment: CI/CD
+    Deployment --> Published: Live on web
+    Published --> [*]
+```
+
+## Query Processing Flow
+
+```{mermaid}
+sequenceDiagram
+    participant Client
+    participant API
+    participant Cache
+    participant SPARQL
+    participant RDF
+    
+    Client->>API: GET /api/dependencies/def-group
+    API->>Cache: Check cache
+    Cache-->>API: Cache miss
+    API->>SPARQL: Build query
+    SPARQL->>RDF: Execute query
+    RDF-->>SPARQL: Results
+    SPARQL-->>API: Process results
+    API->>Cache: Store in cache
+    API-->>Client: JSON response
+```
+
+# Technology Stack
+
+## Component Technologies
+
+```{mermaid}
+mindmap
+  root((ModernMath))
+    Content
+      Quarto
+      Markdown
+      LaTeX
+      YAML
+    Backend
+      Python 3.11+
+        rdflib
+        Flask
+        frontmatter
+      Apache Jena
+        Fuseki
+        SPARQL
+    Frontend
+      HTML5
+      JavaScript
+        D3.js
+        Vis.js
+      CSS3
+    Infrastructure
+      GitHub
+        Actions
+        Pages
+      Docker
+      Poetry
+```
+
+# Security Architecture
+
+## Security Layers
+
+```{mermaid}
+graph TB
+    subgraph "Access Control"
+        PUBLIC[Public Read Access]
+        AUTH[Authenticated Write]
+        ADMIN[Admin Only]
+    end
+    
+    subgraph "API Security"
+        CORS[CORS Headers]
+        RATE[Rate Limiting]
+        VAL[Input Validation]
+    end
+    
+    subgraph "Data Security"
+        BACKUP[Regular Backups]
+        LOG[Audit Logging]
+        VALID[Content Validation]
+    end
+    
+    PUBLIC --> CORS
+    AUTH --> RATE
+    ADMIN --> VAL
+    
+    CORS --> API[API Layer]
+    RATE --> API
+    VAL --> API
+    
+    API --> BACKUP
+    API --> LOG
+    API --> VALID
+```
+
+# Performance Architecture
+
+## Optimization Points
+
+```{mermaid}
+graph LR
+    subgraph "Build Time"
+        INCR[Incremental Builds]
+        PARALLEL[Parallel Processing]
+        CACHE_B[Build Cache]
+    end
+    
+    subgraph "Runtime"
+        CDN[CDN Distribution]
+        CACHE_R[Response Cache]
+        INDEX[Query Indexes]
+    end
+    
+    subgraph "Client"
+        LAZY[Lazy Loading]
+        COMPRESS[Compression]
+        BUNDLE[Code Bundling]
+    end
+    
+    INCR --> PERF[Performance]
+    PARALLEL --> PERF
+    CACHE_B --> PERF
+    
+    CDN --> PERF
+    CACHE_R --> PERF
+    INDEX --> PERF
+    
+    LAZY --> PERF
+    COMPRESS --> PERF
+    BUNDLE --> PERF
+```
+
+# Monitoring Architecture
+
+## System Monitoring
+
+```{mermaid}
+graph TD
+    subgraph "Metrics Collection"
+        APP[Application Metrics]
+        SYS[System Metrics]
+        USER[User Analytics]
+    end
+    
+    subgraph "Monitoring Tools"
+        LOGS[Log Aggregation]
+        METRICS[Metrics Dashboard]
+        ALERTS[Alert System]
+    end
+    
+    subgraph "Outputs"
+        DASH[Dashboard]
+        EMAIL[Email Alerts]
+        SLACK[Slack Notifications]
+    end
+    
+    APP --> LOGS
+    SYS --> METRICS
+    USER --> METRICS
+    
+    LOGS --> ALERTS
+    METRICS --> ALERTS
+    
+    ALERTS --> DASH
+    ALERTS --> EMAIL
+    ALERTS --> SLACK
+```
+
+# Future Architecture Considerations
+
+## Scalability Path
+
+```{mermaid}
+graph TB
+    subgraph "Current State"
+        SINGLE[Single Fuseki Instance]
+        STATIC[Static Site]
+        SIMPLE[Simple API]
+    end
+    
+    subgraph "Growth Phase"
+        CLUSTER[Fuseki Cluster]
+        DYNAMIC[Dynamic Features]
+        SCALED[Scaled API]
+    end
+    
+    subgraph "Enterprise Scale"
+        DIST[Distributed Graph]
+        MICRO[Microservices]
+        ML[ML Integration]
+    end
+    
+    SINGLE --> CLUSTER
+    STATIC --> DYNAMIC
+    SIMPLE --> SCALED
+    
+    CLUSTER --> DIST
+    DYNAMIC --> MICRO
+    SCALED --> ML
+```
+
+# Summary
+
+The ModernMath Knowledge Graph architecture is designed to be:
+
+1. **Modular**: Each component has a specific responsibility
+2. **Scalable**: Can grow from hundreds to millions of nodes
+3. **Maintainable**: Clear separation of concerns
+4. **Extensible**: Easy to add new features and integrations
+5. **Reliable**: Built-in validation and error handling
+
+The architecture supports the project's goals of creating a comprehensive, queryable, and interactive mathematical knowledge repository while maintaining flexibility for future enhancements.
