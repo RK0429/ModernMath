@@ -60,8 +60,30 @@ format:
     code-copy: true
     code-overflow: wrap
     html-math-method: mathjax
+    mathjax:
+      tags: ams
+      macros:
+        R: '\mathbb{R}'
+        Z: '\mathbb{Z}'
+        N: '\mathbb{N}'
+        C: '\mathbb{C}'
+        Q: '\mathbb{Q}'
+        implies: '\Rightarrow'
+        iff: '\Leftrightarrow'
+  pdf:
+    documentclass: article
+    papersize: a4
+    fontsize: 11pt
+    geometry:
+      - margin=1in
+    include-in-header:
+      - text: |
+          \usepackage{amsmath,amssymb,amsthm}
+          \usepackage{mathtools}
+          \usepackage{unicode-math}
 
 filters:
+  - math-environments
   - graph-viz
     
 execute:

@@ -6,6 +6,8 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
 
 ## Phase 1: Foundation Setup and MVP (Estimated: 4-6 weeks)
 
+**Progress Update (2025-07-20):** Completed Quarto mathematical environment templates, including theorem, definition, lemma, proposition, corollary, example, and proof environments with Lua filter, CSS styling, and LaTeX support. Enhanced MathJax configuration with common mathematical macros.
+
 ### 1. Environment and Development Setup
 
 - [x] **Install Core Dependencies**
@@ -84,10 +86,10 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
 
 - [x] **Define Quarto Templates**
   - [x] Create `_extensions/` directory
-  - [ ] Design theorem environment template
-  - [ ] Design definition environment template
-  - [ ] Design proof environment template
-  - [ ] Configure LaTeX math rendering settings
+  - [x] Design theorem environment template
+  - [x] Design definition environment template
+  - [x] Design proof environment template
+  - [x] Configure LaTeX math rendering settings
 
 ### 4. Content Authoring Guidelines
 
