@@ -61,6 +61,26 @@ quarto render --profile ja  # Uses _quarto-ja.yml automatically
 poetry run python scripts/build_search_index.py
 ```
 
+### Managing Translations
+
+```bash
+# Update translation status for all files
+poetry run python scripts/manage_translations.py update
+
+# Generate translation progress report
+poetry run python scripts/manage_translations.py report
+
+# List files by translation status
+poetry run python scripts/manage_translations.py list --status=not_started
+poetry run python scripts/manage_translations.py list --status=needs_update
+
+# Validate translation metadata consistency
+poetry run python scripts/manage_translations.py validate
+
+# Show domain-by-domain statistics
+poetry run python scripts/manage_translations.py stats
+```
+
 ### Code Quality
 
 ```bash
@@ -186,6 +206,7 @@ quarto render --profile ja
 - Keep the base `_quarto.yml` minimal (only shared configuration like favicon, GitHub links)
 - Define complete navbar configurations in each language profile (`_quarto-en.yml`, `_quarto-ja.yml`)
 - Do not include language-specific navigation items in the base configuration
+- Ensure all 9 mathematical domains are included in both language navbar configurations
 
 ### Python Script Compatibility
 
@@ -194,6 +215,10 @@ All Python scripts handle multilingual paths automatically:
 - Scripts detect `content/lang/domain/` structure
 - Domain extraction logic accounts for language directories
 - Falls back to flat structure for backward compatibility
+- `generate_index_pages.py` generates language-specific content:
+  - Uses Japanese domain names and descriptions when `lang="ja"`
+  - Translates section headers (定義, 定理, 例) for Japanese
+  - Adjusts navigation links to language-specific pages
 
 ### CI/CD Pipeline
 
@@ -219,6 +244,7 @@ Root index.html provides both automatic detection and manual selection:
 
 When implementing Japanese support, create these navigation pages with `-ja.qmd` suffix:
 
+- `index-ja.qmd` - Japanese home page (referenced in `_quarto-ja.yml` navbar)
 - `search-ja.qmd` - Japanese search interface
 - `visualizations-ja.qmd` - Japanese visualizations page
 - `about-ja.qmd` - Japanese about page
@@ -263,17 +289,19 @@ PyVis graphs include:
 
 1. First: `build_graph.py` (creates knowledge_graph.ttl)
 2. Then: Visualization scripts (read the .ttl file)
-3. Then: `generate_index_pages.py` (creates comprehensive index pages)
+3. Then: `generate_index_pages.py` (creates comprehensive index pages with language support)
 4. Then: `resolve_cross_references.py` (needs content to exist)
 5. Finally: `quarto render` (uses all generated assets)
 
 ## Current Status
 
-- **Content**: 70 nodes across 9 mathematical domains
+- **Content**: 101 nodes across 9 mathematical domains
+- **Translations**: 101/101 (100%) Japanese translations exist, but most lack `translation_of` metadata
 - **Graph**: 276+ RDF triples with full dependency tracking
 - **Visualizations**: 80 interactive graphs deployed
 - **API**: RESTful endpoints for node queries and dependencies
 - **CI/CD**: Full automation via GitHub Actions
+- **Translation Management**: Fully implemented with MD5 hash-based change detection
 
 ## Next Phase: Lean Integration
 
