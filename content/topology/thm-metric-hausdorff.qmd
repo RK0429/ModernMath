@@ -1,0 +1,55 @@
+---
+title: "Theorem: Every Metric Space is Hausdorff"
+id: "thm-metric-hausdorff"
+type: "Theorem"
+status: "complete"
+requires:
+  - "def-metric-space"
+  - "def-hausdorff"
+  - "def-topological-space"
+---
+
+# Theorem: Every Metric Space is Hausdorff {#thm-metric-hausdorff}
+
+**Statement**: Every @def-metric-space $(X, d)$ with the metric topology is a @def-hausdorff space.
+
+## Proof
+
+Let $(X, d)$ be a metric space and let $x, y \in X$ be two distinct points with $x \neq y$.
+
+Since $x \neq y$, by the identity of indiscernibles property of metrics, we have $d(x, y) > 0$.
+
+Let $r = \frac{d(x, y)}{2} > 0$.
+
+Consider the open balls:
+- $U = B(x, r) = \{z \in X : d(x, z) < r\}$
+- $V = B(y, r) = \{z \in X : d(y, z) < r\}$
+
+We claim that $U \cap V = \emptyset$.
+
+**Proof by contradiction**: Suppose there exists $z \in U \cap V$. Then:
+- $z \in U$ implies $d(x, z) < r = \frac{d(x, y)}{2}$
+- $z \in V$ implies $d(y, z) < r = \frac{d(x, y)}{2}$
+
+By the triangle inequality:
+$$d(x, y) \leq d(x, z) + d(z, y) = d(x, z) + d(y, z) < \frac{d(x, y)}{2} + \frac{d(x, y)}{2} = d(x, y)$$
+
+This gives us $d(x, y) < d(x, y)$, which is a contradiction.
+
+Therefore $U \cap V = \emptyset$, and we have found disjoint open neighborhoods separating $x$ and $y$.
+
+Since $x$ and $y$ were arbitrary distinct points, $(X, d)$ is Hausdorff. $\square$
+
+## Consequences
+
+This theorem has several important implications:
+
+1. **Uniqueness of limits**: In any metric space, convergent sequences have unique limits
+2. **Closed singletons**: Every point $\{x\}$ in a metric space forms a closed set
+3. **Nice separation properties**: Metric spaces automatically satisfy all the lower separation axioms ($T_0$, $T_1$, $T_2$)
+
+## See Also
+
+- @def-metric-space - The structure that guarantees the Hausdorff property
+- @def-hausdorff - The separation property satisfied by all metric spaces
+- @ex-real-line-metric - A concrete example of a metric space that is Hausdorff

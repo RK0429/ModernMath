@@ -1,0 +1,46 @@
+---
+title: "Definition: Hausdorff Space"
+id: "def-hausdorff"
+type: "Definition"
+status: "complete"
+requires:
+  - "def-topological-space"
+  - "def-open-set"
+---
+
+# Definition: Hausdorff Space {#def-hausdorff}
+
+A @def-topological-space $(X, \tau)$ is called a **Hausdorff space** (or **$T_2$ space**) if for any two distinct points $x, y \in X$ with $x \neq y$, there exist @def-open-set[open sets] $U, V \in \tau$ such that:
+
+1. $x \in U$
+2. $y \in V$  
+3. $U \cap V = \emptyset$
+
+In other words, any two distinct points can be "separated" by disjoint open neighborhoods.
+
+## Intuition
+
+The Hausdorff property ensures that points in the space are "distinguishable" from each other using the topology. This is one of the most important separation axioms in topology.
+
+## Properties
+
+- **Uniqueness of limits**: In a Hausdorff space, sequences and nets have at most one limit
+- **Closed points**: Every singleton set $\{x\}$ is closed in a Hausdorff space
+- **Diagonal property**: A space $X$ is Hausdorff if and only if the diagonal $\Delta = \{(x,x) : x \in X\}$ is closed in $X \times X$ with the product topology
+
+## Examples and Non-Examples
+
+**Examples of Hausdorff spaces:**
+- Any metric space (see @thm-metric-hausdorff)
+- The real line $\mathbb{R}$ with the standard topology
+- Any discrete space
+
+**Non-examples:**
+- The cofinite topology on an infinite set
+- The Zariski topology on algebraic varieties (in general)
+
+## See Also
+
+- @def-topological-space - The basic structure on which this property is defined
+- @thm-metric-hausdorff - Every metric space is Hausdorff
+- @def-compact-space - Compact Hausdorff spaces have especially nice properties

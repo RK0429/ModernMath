@@ -1,0 +1,53 @@
+---
+title: "Definition: Complete Metric Space"
+id: "def-complete-metric-space"
+type: "Definition"
+status: "complete"
+requires:
+  - "def-metric-space"
+  - "def-limit"
+---
+
+# Definition: Complete Metric Space {#def-complete-metric-space}
+
+A @def-metric-space $(X, d)$ is called **complete** if every Cauchy sequence in $X$ converges to a @def-limit in $X$.
+
+## Cauchy Sequences
+
+A sequence $(x_n)_{n=1}^{\infty}$ in a metric space $(X, d)$ is called a **Cauchy sequence** if for every $\varepsilon > 0$, there exists $N \in \mathbb{N}$ such that for all $m, n \geq N$:
+
+$$d(x_m, x_n) < \varepsilon$$
+
+Intuitively, the terms of a Cauchy sequence get arbitrarily close to each other as the sequence progresses.
+
+## Relationship to Convergence
+
+- Every convergent sequence is Cauchy
+- In a complete metric space, every Cauchy sequence converges
+- A metric space is complete if and only if the converse holds: every Cauchy sequence converges
+
+## Examples
+
+**Complete metric spaces:**
+- $\mathbb{R}$ with the standard metric (see @ex-real-line-metric)
+- $\mathbb{C}$ with the standard metric
+- Any closed subset of a complete metric space
+- $C[a,b]$ (continuous functions on $[a,b]$) with the supremum metric
+
+**Incomplete metric spaces:**
+- $\mathbb{Q}$ with the standard metric (e.g., the sequence $(x_n)$ where $x_n$ is the $n$-th decimal approximation of $\sqrt{2}$ is Cauchy but doesn't converge in $\mathbb{Q}$)
+- $(0, 1)$ with the standard metric
+- $C[a,b]$ with the $L^1$ metric
+
+## Importance
+
+Completeness is crucial for:
+- **Fixed point theorems**: The Banach fixed-point theorem requires completeness
+- **Existence theorems**: Many existence results in analysis rely on completeness
+- **Construction of $\mathbb{R}$**: The real numbers can be constructed as the completion of $\mathbb{Q}$
+
+## See Also
+
+- @thm-banach-fixed-point - A fundamental theorem requiring completeness
+- @def-banach-space - A complete normed vector space
+- @thm-baire-category - An important theorem about complete metric spaces

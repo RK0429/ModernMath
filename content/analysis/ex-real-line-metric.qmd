@@ -1,0 +1,55 @@
+---
+title: "Example: Real Line with Standard Metric"
+id: "ex-real-line-metric"
+type: "Example"
+status: "complete"
+requires:
+  - "def-metric-space"
+---
+
+# Example: Real Line with Standard Metric {#ex-real-line-metric}
+
+The real numbers $\mathbb{R}$ with the standard metric form one of the most fundamental examples of a @def-metric-space.
+
+## Definition
+
+The **standard metric** on $\mathbb{R}$ is defined by:
+
+$$d(x, y) = |x - y|$$
+
+for all $x, y \in \mathbb{R}$, where $|x - y|$ denotes the absolute value of $x - y$.
+
+## Verification of Metric Axioms
+
+We verify that $d$ satisfies all four metric axioms:
+
+1. **Non-negativity**: Since absolute value is always non-negative, $d(x, y) = |x - y| \geq 0$ for all $x, y \in \mathbb{R}$.
+
+2. **Identity of indiscernibles**: 
+   - If $x = y$, then $d(x, y) = |x - y| = |0| = 0$
+   - If $d(x, y) = 0$, then $|x - y| = 0$, which implies $x - y = 0$, so $x = y$
+
+3. **Symmetry**: $d(x, y) = |x - y| = |-(y - x)| = |y - x| = d(y, x)$
+
+4. **Triangle inequality**: For any $x, y, z \in \mathbb{R}$:
+   $$d(x, z) = |x - z| = |(x - y) + (y - z)| \leq |x - y| + |y - z| = d(x, y) + d(y, z)$$
+
+## Open Balls
+
+In this metric space, the open ball $B(a, r)$ centered at $a$ with radius $r > 0$ is:
+
+$$B(a, r) = \{x \in \mathbb{R} : |x - a| < r\} = (a - r, a + r)$$
+
+This is simply the open interval of length $2r$ centered at $a$.
+
+## Properties
+
+- The metric topology induced by $d$ is the standard topology on $\mathbb{R}$
+- $(\mathbb{R}, d)$ is a **complete metric space**: every Cauchy sequence converges
+- The space is **separable**: the rationals $\mathbb{Q}$ form a countable dense subset
+- It is **connected** but not **compact**
+
+## See Also
+
+- @def-limit - Limits in calculus are defined using this metric
+- @def-continuity - Continuous functions preserve this metric structure
