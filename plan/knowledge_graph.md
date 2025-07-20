@@ -30,10 +30,46 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
 
 ### Next Priorities
 
-1. **Test REST API** - The Flask API is built but needs deployment and testing
-2. **Deploy SPARQL Endpoint** - Set up Fuseki for live graph queries
+1. ~~**Test REST API**~~ - **COMPLETED** - Flask API tested successfully on port 5001
+   - All endpoints working: health, nodes, dependencies, dependents, search
+   - Enhanced search with full-text capabilities functioning well
+2. **Fix SPARQL Endpoint** - Fuseki running but queries returning empty results
+   - Data shows as loaded (396 triples) but SPARQL queries don't work
+   - Need to investigate configuration issue
 3. **Complete Lean Integration** - Add `isVerifiedBy` triples to knowledge graph
 4. **Documentation** - Create contributor guide and content authoring tutorial
+
+### Current Issues
+
+1. **PyVis Visualizations** - Interactive graphs appear blank on deployed site
+   - May need to investigate CDN resource loading
+2. **Fuseki SPARQL** - Requires Java Runtime Environment
+   - Java not installed on the system
+   - Need to install Java (JDK 11 or later) for Fuseki to run
+   - API works independently because it reads directly from TTL file
+
+### Progress Update (2025-07-20 11:45 AM)
+
+- **Website Deployment**: ✅ Successfully deployed to GitHub Pages
+- **REST API**: ✅ Working locally on port 5001 with all endpoints functional
+- **SPARQL Endpoint**: ❌ Blocked by missing Java installation
+  - I think I've already installed Java:
+
+    ```bash
+    r-kobayashi@kobayashiryoutanoMac-mini ~ % brew install java
+    ==> Downloading https://formulae.brew.sh/api/formula.jws.json
+    ==> Downloading https://formulae.brew.sh/api/cask.jws.json
+    Warning: openjdk 24.0.1 is already installed and up-to-date.
+    To reinstall 24.0.1, run:
+      brew reinstall openjdk
+    ```
+
+- **Lean Integration**: ✅ isVerifiedBy triples successfully added to knowledge graph
+  - Updated ontology with FormalProof class and isVerifiedBy property
+  - Modified build_graph.py to add verification triples
+  - Successfully generated graph with 400 triples (up from 396)
+  - 1 node (def-group) now has formal verification linked
+- **Current State**: API provides full functionality without SPARQL endpoint
 
 ## Phase 1: Foundation Setup and MVP (Estimated: 4-6 weeks)
 

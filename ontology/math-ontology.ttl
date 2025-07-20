@@ -127,6 +127,24 @@ mymath:implies a rdf:Property ;
     rdfs:comment "The subject logically implies the object"@en ;
     rdfs:subPropertyOf skos:related .
 
+mymath:isVerifiedBy a rdf:Property ;
+    rdfs:domain mymath:MathematicalStatement ;
+    rdfs:range mymath:FormalProof ;
+    rdfs:label "is verified by"@en ;
+    rdfs:comment "The subject has been formally verified by the object (a formal proof)"@en ;
+    rdfs:subPropertyOf skos:related .
+
+mymath:FormalProof a rdfs:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "Formal Proof"@en ;
+    rdfs:comment "A formal mathematical proof verified by a proof assistant like Lean, Coq, or Isabelle"@en .
+
+mymath:inModule a rdf:Property ;
+    rdfs:domain mymath:FormalProof ;
+    rdfs:range xsd:string ;
+    rdfs:label "in module"@en ;
+    rdfs:comment "The module or library where the formal proof is defined"@en .
+
 mymath:hasDomain a rdf:Property ;
     rdfs:domain mymath:MathematicalStatement ;
     rdfs:range rdfs:Literal ;

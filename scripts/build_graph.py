@@ -8,6 +8,7 @@ representing the mathematical knowledge structure.
 
 import re
 import yaml
+import json
 from pathlib import Path
 from typing import Dict, Optional
 import logging
@@ -70,6 +71,9 @@ class KnowledgeGraphBuilder:
         # Second pass: add relationships
         for qmd_path in qmd_files:
             self._process_file_second_pass(qmd_path)
+
+        # Third pass: add Lean verification triples
+        self._add_lean_verification_triples()
 
         # Save the graph
         self._save_graph()
@@ -214,6 +218,53 @@ class KnowledgeGraphBuilder:
             return relative_path.parts[0]
 
         return None
+
+    def _add_lean_verification_triples(self):
+        """Add isVerifiedBy triples for nodes that have formal Lean verification."""
+        # Path to the Lean mappings file
+        mappings_file = self.output_file.parent / "lean_mappings.json"
+        
+        if not mappings_file.exists():
+            logger.info("No lean_mappings.json found, skipping Lean verification triples")
+            return
+            
+        try:
+            with open(mappings_file, "r", encoding="utf-8") as f:
+                mappings_data = json.load(f)
+            
+            # Process node_to_lean mappings
+            node_to_lean = mappings_data.get("node_to_lean", {})
+            
+            for node_id, lean_data in node_to_lean.items():
+                if node_id in self.node_registry:
+                    node_uri = self.node_registry[node_id]
+                    lean_id = lean_data.get("lean_id")
+                    
+                    if lean_id:
+                        # Create a URI for the Lean proof
+                        lean_proof_uri = URIRef(f"https://mathlib.org/proof/{lean_id}")
+                        
+                        # Add the isVerifiedBy triple
+                        self.graph.add((node_uri, MYMATH.isVerifiedBy, lean_proof_uri))
+                        
+                        # Add metadata about the Lean proof
+                        self.graph.add((lean_proof_uri, RDF.type, MYMATH.FormalProof))
+                        self.graph.add((lean_proof_uri, RDFS.label, 
+                                      Literal(f"Lean proof: {lean_id}", lang="en")))
+                        
+                        # Add the module information
+                        if "module_name" in lean_data:
+                            self.graph.add((lean_proof_uri, MYMATH.inModule, 
+                                          Literal(lean_data["module_name"])))
+                        
+                        logger.info(f"Added Lean verification for {node_id} -> {lean_id}")
+            
+            # Count how many nodes have verification
+            verified_count = len(list(self.graph.triples((None, MYMATH.isVerifiedBy, None))))
+            logger.info(f"Added {verified_count} Lean verification triples")
+            
+        except Exception as e:
+            logger.error(f"Error adding Lean verification triples: {e}")
 
     def _save_graph(self):
         """Save the graph to a Turtle file."""
