@@ -1,0 +1,81 @@
+---
+title: "Theorem: Yoneda Lemma"
+id: "thm-yoneda"
+type: "Theorem"
+status: "complete"
+requires:
+  - "def-category"
+  - "def-functor"
+  - "def-natural-transformation"
+---
+
+The **Yoneda Lemma** is a fundamental result in @def-category theory that relates @def-functor[s] to representable functors. It states that an object is completely determined by its relationships to all other objects.
+
+## Statement
+
+Let $\mathcal{C}$ be a category and $F: \mathcal{C} \to \mathbf{Set}$ be a functor. For any object $A \in \mathcal{C}$, there is a natural bijection:
+
+$$\text{Nat}(\text{Hom}(A, -), F) \cong F(A)$$
+
+where:
+- $\text{Hom}(A, -): \mathcal{C} \to \mathbf{Set}$ is the representable functor
+- $\text{Nat}(\text{Hom}(A, -), F)$ is the set of @def-natural-transformation[s]
+
+## The Bijection
+
+### Forward Direction
+Given a natural transformation $\alpha: \text{Hom}(A, -) \Rightarrow F$, we get an element of $F(A)$ by:
+$$\alpha \mapsto \alpha_A(\text{id}_A) \in F(A)$$
+
+### Reverse Direction
+Given an element $x \in F(A)$, we define a natural transformation $\alpha$ by:
+$$\alpha_B(f) = F(f)(x) \text{ for } f: A \to B$$
+
+## Yoneda Embedding
+
+The Yoneda Lemma gives rise to the **Yoneda embedding**:
+$$\mathcal{Y}: \mathcal{C} \to [\mathcal{C}^{\text{op}}, \mathbf{Set}]$$
+$$A \mapsto \text{Hom}(-, A)$$
+
+This embedding is:
+- **Full**: Every natural transformation between representables comes from a morphism
+- **Faithful**: Different morphisms give different natural transformations
+
+## Corollaries
+
+### 1. Yoneda Principle
+Objects $A$ and $B$ are isomorphic if and only if $\text{Hom}(-, A) \cong \text{Hom}(-, B)$ as functors.
+
+### 2. Representability
+A functor $F$ is representable if and only if it is naturally isomorphic to some $\text{Hom}(A, -)$.
+
+## Proof Sketch
+
+1. Show that the assignment $\alpha \mapsto \alpha_A(\text{id}_A)$ is well-defined
+2. Verify that the reverse construction gives a natural transformation
+3. Check that these constructions are mutual inverses
+4. Prove naturality in both $A$ and $F$
+
+## Examples and Applications
+
+### Universal Properties
+The Yoneda Lemma provides a systematic way to understand universal properties: an object with a universal property represents a particular functor.
+
+### Limits and Colimits
+The limit of a functor $F$ represents the functor $\text{Hom}(-, \lim F)$.
+
+### Algebraic Topology
+In the category of topological spaces, the functor $\pi_n(-)$ (n-th homotopy group) is represented by the n-sphere $S^n$.
+
+## Philosophical Significance
+
+The Yoneda Lemma embodies the idea that:
+> "An object is completely determined by its relationships to all other objects"
+
+This perspective shifts focus from internal structure to external relationships, a key insight of category theory.
+
+## Variations
+
+- **Contravariant Yoneda**: For contravariant functors $F: \mathcal{C}^{\text{op}} \to \mathbf{Set}$
+- **Enriched Yoneda**: Generalizes to enriched categories
+- **2-Yoneda**: Version for 2-categories

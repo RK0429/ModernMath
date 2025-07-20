@@ -1,0 +1,72 @@
+---
+title: "Definition: Integral"
+id: "def-integral"
+type: "Definition"
+status: "complete"
+requires:
+  - "def-limit"
+  - "def-continuity"
+---
+
+The **integral** of a function represents the signed area under its curve, accumulation of quantities, or the inverse operation to differentiation. We focus on the Riemann integral for real-valued functions.
+
+## Riemann Integral
+
+### Partition and Riemann Sum
+
+Given $f: [a,b] \to \mathbb{R}$ and a partition $P = \{a = x_0 < x_1 < ... < x_n = b\}$:
+
+A **Riemann sum** is:
+$$S(f, P) = \sum_{i=1}^{n} f(c_i)(x_i - x_{i-1})$$
+
+where $c_i \in [x_{i-1}, x_i]$ is a sample point.
+
+### Definition of the Integral
+
+The function $f$ is **Riemann integrable** on $[a,b]$ if the @def-limit:
+
+$$\int_a^b f(x) \, dx = \lim_{||P|| \to 0} S(f, P)$$
+
+exists and is independent of the choice of sample points, where $||P|| = \max_i (x_i - x_{i-1})$.
+
+## Fundamental Theorem of Calculus
+
+### Part I
+If $f$ is continuous on $[a,b]$ and $F(x) = \int_a^x f(t) \, dt$, then:
+$$F'(x) = f(x)$$
+
+### Part II
+If $f$ is continuous on $[a,b]$ and $F$ is an antiderivative of $f$:
+$$\int_a^b f(x) \, dx = F(b) - F(a)$$
+
+## Properties
+
+1. **Linearity**: 
+   - $\int_a^b [f(x) + g(x)] \, dx = \int_a^b f(x) \, dx + \int_a^b g(x) \, dx$
+   - $\int_a^b cf(x) \, dx = c\int_a^b f(x) \, dx$
+
+2. **Additivity**: $\int_a^b f(x) \, dx + \int_b^c f(x) \, dx = \int_a^c f(x) \, dx$
+
+3. **Monotonicity**: If $f(x) \leq g(x)$ on $[a,b]$, then $\int_a^b f(x) \, dx \leq \int_a^b g(x) \, dx$
+
+4. **Reverse limits**: $\int_a^b f(x) \, dx = -\int_b^a f(x) \, dx$
+
+## Classes of Integrable Functions
+
+- All @def-continuity[continuous] functions on $[a,b]$
+- All monotonic functions on $[a,b]$
+- All piecewise continuous functions with finitely many discontinuities
+
+## Examples
+
+1. **Power functions**: $\int x^n \, dx = \frac{x^{n+1}}{n+1} + C$ (for $n \neq -1$)
+2. **Exponential**: $\int e^x \, dx = e^x + C$
+3. **Trigonometric**: $\int \sin x \, dx = -\cos x + C$
+4. **Definite integral**: $\int_0^1 x^2 \, dx = \frac{1}{3}$
+
+## Applications
+
+- Area and volume calculations
+- Physics: work, center of mass, moments
+- Probability: expected values, distributions
+- Differential equations: solution methods

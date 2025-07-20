@@ -11,21 +11,46 @@
     mymath:hasDomain "Logic Set Theory" ;
     mymath:hasStatus "complete" .
 
-<https://mathwiki.org/resource/def-complete-metric-space> a mymath:Definition ;
-    rdfs:label "Definition: Complete Metric Space"@en ;
+<https://mathwiki.org/resource/def-commutativity> a mymath:Definition ;
+    rdfs:label "Definition: Commutativity"@en ;
+    rdfs:comment "**Commutativity** is a property of a @def-binary-operation where the order of the operands does not affect the result."@en ;
+    mymath:hasDomain "Algebra" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-associativity>,
+        <https://mathwiki.org/resource/def-binary-operation>,
+        <https://mathwiki.org/resource/def-group> .
+
+<https://mathwiki.org/resource/def-distributivity> a mymath:Definition ;
+    rdfs:label "Definition: Distributivity"@en ;
+    rdfs:comment "**Distributivity** is a property that relates two @def-binary-operation[s], describing how one operation \"distributes\" over the other."@en ;
+    mymath:hasDomain "Algebra" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-binary-operation> .
+
+<https://mathwiki.org/resource/def-integral> a mymath:Definition ;
+    rdfs:label "Definition: Integral"@en ;
+    rdfs:comment "The **integral** of a function represents the signed area under its curve, accumulation of quantities, or the inverse operation to differentiation. We focus on the Riemann integral for real-valued functions."@en ;
     mymath:hasDomain "Analysis" ;
     mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-limit>,
-        <https://mathwiki.org/resource/def-metric-space>,
-        <https://mathwiki.org/resource/ex-real-line-metric> .
+    mymath:uses <https://mathwiki.org/resource/def-continuity>,
+        <https://mathwiki.org/resource/def-limit> .
 
-<https://mathwiki.org/resource/def-natural-transformation> a mymath:Definition ;
-    rdfs:label "Definition: Natural Transformation"@en ;
-    mymath:hasDomain "Category Theory" ;
+<https://mathwiki.org/resource/def-inverse-element> a mymath:Definition ;
+    rdfs:label "Definition: Inverse Element"@en ;
+    rdfs:comment "An **inverse element** of an element under a @def-binary-operation is another element that, when combined with the original, yields the @def-identity-element."@en ;
+    mymath:hasDomain "Algebra" ;
     mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-category>,
-        <https://mathwiki.org/resource/def-functor>,
-        <https://mathwiki.org/resource/def-morphism> .
+    mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
+        <https://mathwiki.org/resource/def-group>,
+        <https://mathwiki.org/resource/def-identity-element> .
+
+<https://mathwiki.org/resource/def-parallel> a mymath:Definition ;
+    rdfs:label "Definition: Parallel Lines"@en ;
+    rdfs:comment "Two @def-line[s] are **parallel** if they lie in the same plane and do not intersect, no matter how far they are extended."@en ;
+    mymath:hasDomain "Geometry" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-line>,
+        <https://mathwiki.org/resource/def-point> .
 
 <https://mathwiki.org/resource/ex-closed-interval-compact> a mymath:Example ;
     rdfs:label "Example: Closed Interval is Compact"@en ;
@@ -189,17 +214,19 @@
         <https://mathwiki.org/resource/def-linear-transformation>,
         <https://mathwiki.org/resource/def-vector-space> .
 
+<https://mathwiki.org/resource/thm-mean-value> a mymath:Theorem ;
+    rdfs:label "Theorem: Mean Value Theorem"@en ;
+    rdfs:comment "The **Mean Value Theorem (MVT)** states that for a differentiable function on an interval, there exists at least one point where the instantaneous rate of change equals the average rate of change over the interval."@en ;
+    mymath:hasDomain "Analysis" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-continuity>,
+        <https://mathwiki.org/resource/def-derivative> .
+
 <https://mathwiki.org/resource/thm-pigeonhole-principle> a mymath:Theorem ;
     rdfs:label "Theorem: Pigeonhole Principle"@en ;
     mymath:hasDomain "Combinatorics" ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
-
-<https://mathwiki.org/resource/thm-pythagorean> a mymath:Theorem ;
-    rdfs:label "Theorem: Pythagorean Theorem"@en ;
-    mymath:hasDomain "Geometry" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-euclidean-space> .
 
 <https://mathwiki.org/resource/thm-rank-nullity> a mymath:Theorem ;
     rdfs:label "Theorem: Rank-Nullity Theorem"@en ;
@@ -217,15 +244,26 @@
     mymath:uses <https://mathwiki.org/resource/def-open-set>,
         <https://mathwiki.org/resource/def-topological-space> .
 
-<https://mathwiki.org/resource/thm-unique-identity> a mymath:Theorem ;
-    rdfs:label "Theorem: Uniqueness of Identity"@en ;
-    mymath:hasDomain "Algebra" ;
+<https://mathwiki.org/resource/thm-yoneda> a mymath:Theorem ;
+    rdfs:label "Theorem: Yoneda Lemma"@en ;
+    rdfs:comment "The **Yoneda Lemma** is a fundamental result in @def-category theory that relates @def-functor[s] to representable functors. It states that an object is completely determined by its relationships to all other objects."@en ;
+    mymath:hasDomain "Category Theory" ;
     mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-group> .
+    mymath:uses <https://mathwiki.org/resource/def-category>,
+        <https://mathwiki.org/resource/def-functor>,
+        <https://mathwiki.org/resource/def-natural-transformation> .
 
 <https://mathlib.org/proof/Mathlib.Algebra.Group.Defs.Group> a mymath:FormalProof ;
     rdfs:label "Lean proof: Mathlib.Algebra.Group.Defs.Group"@en ;
     mymath:inModule "MathKnowledgeGraph.Algebra.Groups" .
+
+<https://mathwiki.org/resource/def-associativity> a mymath:Definition ;
+    rdfs:label "Definition: Associativity"@en ;
+    rdfs:comment "**Associativity** is a fundamental property of a @def-binary-operation that allows us to perform multiple operations without needing to specify the order of evaluation using parentheses."@en ;
+    mymath:hasDomain "Algebra" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
+        <https://mathwiki.org/resource/def-group> .
 
 <https://mathwiki.org/resource/def-binomial-coefficient> a mymath:Definition ;
     rdfs:label "Definition: Binomial Coefficient"@en ;
@@ -240,6 +278,33 @@
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
 
+<https://mathwiki.org/resource/def-complete-metric-space> a mymath:Definition ;
+    rdfs:label "Definition: Complete Metric Space"@en ;
+    mymath:hasDomain "Analysis" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-limit>,
+        <https://mathwiki.org/resource/def-metric-space>,
+        <https://mathwiki.org/resource/ex-real-line-metric> .
+
+<https://mathwiki.org/resource/def-composition> a mymath:Definition ;
+    rdfs:label "Definition: Composition"@en ;
+    rdfs:comment "**Composition** is the fundamental operation in a @def-category that combines two compatible @def-morphism[s] to produce a third morphism."@en ;
+    mymath:hasDomain "Category Theory" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-category>,
+        <https://mathwiki.org/resource/def-isomorphism>,
+        <https://mathwiki.org/resource/def-morphism> .
+
+<https://mathwiki.org/resource/def-conditional-probability> a mymath:Definition ;
+    rdfs:label "Definition: Conditional Probability"@en ;
+    rdfs:comment "The **conditional probability** of an @def-event $A$ given event $B$ is the probability that $A$ occurs, given that $B$ has occurred. It is denoted $P(A|B)$."@en ;
+    mymath:hasDomain "Probability Statistics" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-event>,
+        <https://mathwiki.org/resource/def-probability-space>,
+        <https://mathwiki.org/resource/def-random-variable>,
+        <https://mathwiki.org/resource/thm-bayes> .
+
 <https://mathwiki.org/resource/def-connected> a mymath:Definition ;
     rdfs:label "Definition: Connected Space"@en ;
     mymath:hasDomain "Topology" ;
@@ -248,18 +313,14 @@
         <https://mathwiki.org/resource/def-open-set>,
         <https://mathwiki.org/resource/def-topological-space> .
 
-<https://mathwiki.org/resource/def-derivative> a mymath:Definition ;
-    rdfs:label "Definition: Derivative"@en ;
+<https://mathwiki.org/resource/def-convergence> a mymath:Definition ;
+    rdfs:label "Definition: Convergence"@en ;
+    rdfs:comment "**Convergence** describes the behavior of a @def-sequence whose terms approach a specific value as the index increases. A convergent sequence gets arbitrarily close to its limit."@en ;
     mymath:hasDomain "Analysis" ;
     mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-limit> .
-
-<https://mathwiki.org/resource/def-euclidean-space> a mymath:Definition ;
-    rdfs:label "Definition: Euclidean Space"@en ;
-    mymath:hasDomain "Geometry" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-metric-space>,
-        <https://mathwiki.org/resource/def-vector-space> .
+    mymath:uses <https://mathwiki.org/resource/def-complete-metric-space>,
+        <https://mathwiki.org/resource/def-limit>,
+        <https://mathwiki.org/resource/def-sequence> .
 
 <https://mathwiki.org/resource/def-expectation> a mymath:Definition ;
     rdfs:label "Definition: Expected Value"@en ;
@@ -267,12 +328,6 @@
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-probability-space>,
         <https://mathwiki.org/resource/def-random-variable> .
-
-<https://mathwiki.org/resource/def-functor> a mymath:Definition ;
-    rdfs:label "Definition: Functor"@en ;
-    mymath:hasDomain "Category Theory" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-category> .
 
 <https://mathwiki.org/resource/def-gcd> a mymath:Definition ;
     rdfs:label "Definition: Greatest Common Divisor"@en ;
@@ -295,12 +350,31 @@
     mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
         <https://mathwiki.org/resource/def-group> .
 
+<https://mathwiki.org/resource/def-identity-element> a mymath:Definition ;
+    rdfs:label "Definition: Identity Element"@en ;
+    rdfs:comment "An **identity element** for a @def-binary-operation is an element that leaves any other element unchanged when combined with it."@en ;
+    mymath:hasDomain "Algebra" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
+        <https://mathwiki.org/resource/def-group>,
+        <https://mathwiki.org/resource/thm-unique-identity> .
+
 <https://mathwiki.org/resource/def-image> a mymath:Definition ;
     rdfs:label "Definition: Image"@en ;
     mymath:hasDomain "Algebra" ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-linear-transformation>,
         <https://mathwiki.org/resource/def-vector-space> .
+
+<https://mathwiki.org/resource/def-isomorphism> a mymath:Definition ;
+    rdfs:label "Definition: Isomorphism"@en ;
+    rdfs:comment "An **isomorphism** in a @def-category is a @def-morphism that has a two-sided inverse. Isomorphic objects are considered \"the same\" from the categorical perspective."@en ;
+    mymath:hasDomain "Category Theory" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-category>,
+        <https://mathwiki.org/resource/def-composition>,
+        <https://mathwiki.org/resource/def-morphism>,
+        <https://mathwiki.org/resource/def-natural-transformation> .
 
 <https://mathwiki.org/resource/def-kernel> a mymath:Definition ;
     rdfs:label "Definition: Kernel"@en ;
@@ -320,11 +394,34 @@
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
 
-<https://mathwiki.org/resource/def-power-set> a mymath:Definition ;
-    rdfs:label "Definition: Power Set"@en ;
-    mymath:hasDomain "Logic Set Theory" ;
+<https://mathwiki.org/resource/def-sample-space> a mymath:Definition ;
+    rdfs:label "Definition: Sample Space"@en ;
+    rdfs:comment "A **sample space** is the @def-set of all possible outcomes of a random experiment or probabilistic scenario. It is typically denoted by $\\Omega$ (omega) or $S$."@en ;
+    mymath:hasDomain "Probability Statistics" ;
     mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-set> .
+    mymath:uses <https://mathwiki.org/resource/def-event>,
+        <https://mathwiki.org/resource/def-probability-space>,
+        <https://mathwiki.org/resource/def-set> .
+
+<https://mathwiki.org/resource/def-sequence> a mymath:Definition ;
+    rdfs:label "Definition: Sequence"@en ;
+    rdfs:comment "A **sequence** is an ordered list of elements, typically numbers, indexed by the natural numbers. Formally, a sequence is a function from the natural numbers to a set."@en ;
+    mymath:hasDomain "Analysis" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-convergence>,
+        <https://mathwiki.org/resource/def-limit>,
+        <https://mathwiki.org/resource/def-set> .
+
+<https://mathwiki.org/resource/def-triangle> a mymath:Definition ;
+    rdfs:label "Definition: Triangle"@en ;
+    rdfs:comment "A **triangle** is a polygon with three vertices and three sides. It is one of the fundamental shapes in geometry, formed by connecting three non-collinear @def-point[s]."@en ;
+    mymath:hasDomain "Geometry" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-angle>,
+        <https://mathwiki.org/resource/def-line>,
+        <https://mathwiki.org/resource/def-point>,
+        <https://mathwiki.org/resource/thm-angle-sum-triangle>,
+        <https://mathwiki.org/resource/thm-pythagorean> .
 
 <https://mathwiki.org/resource/ex-integers-addition> a mymath:Example ;
     rdfs:label "Example: Integers under Addition"@en ;
@@ -334,6 +431,23 @@
         <https://mathwiki.org/resource/def-group>,
         <https://mathwiki.org/resource/def-set> .
 
+<https://mathwiki.org/resource/thm-angle-sum-triangle> a mymath:Theorem ;
+    rdfs:label "Theorem: Angle Sum of a Triangle"@en ;
+    rdfs:comment "The sum of the interior @def-angle[s] of any @def-triangle equals $180°$ (or $\\pi$ radians)."@en ;
+    mymath:hasDomain "Geometry" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-angle>,
+        <https://mathwiki.org/resource/def-line>,
+        <https://mathwiki.org/resource/def-triangle> .
+
+<https://mathwiki.org/resource/thm-bayes> a mymath:Theorem ;
+    rdfs:label "Theorem: Bayes' Theorem"@en ;
+    rdfs:comment "**Bayes' Theorem** provides a way to calculate @def-conditional-probability in the \"reverse\" direction. It relates $P(A|B)$ to $P(B|A)$, allowing us to update beliefs based on new evidence."@en ;
+    mymath:hasDomain "Probability Statistics" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-conditional-probability>,
+        <https://mathwiki.org/resource/def-event> .
+
 <https://mathwiki.org/resource/thm-heine-borel> a mymath:Theorem ;
     rdfs:label "Theorem: Heine-Borel Theorem"@en ;
     mymath:hasDomain "Topology" ;
@@ -341,6 +455,27 @@
     mymath:uses <https://mathwiki.org/resource/def-closed-set>,
         <https://mathwiki.org/resource/def-compact>,
         <https://mathwiki.org/resource/def-metric-space> .
+
+<https://mathwiki.org/resource/thm-pythagorean> a mymath:Theorem ;
+    rdfs:label "Theorem: Pythagorean Theorem"@en ;
+    mymath:hasDomain "Geometry" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-euclidean-space> .
+
+<https://mathwiki.org/resource/thm-unique-identity> a mymath:Theorem ;
+    rdfs:label "Theorem: Uniqueness of Identity"@en ;
+    mymath:hasDomain "Algebra" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-group> .
+
+<https://mathwiki.org/resource/def-angle> a mymath:Definition ;
+    rdfs:label "Definition: Angle"@en ;
+    rdfs:comment "An **angle** is the figure formed by two rays (half-lines) that share a common endpoint. The common endpoint is called the **vertex** of the angle, and the two rays are called the **sides** of the angle."@en ;
+    mymath:hasDomain "Geometry" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-euclidean-space>,
+        <https://mathwiki.org/resource/def-line>,
+        <https://mathwiki.org/resource/def-point> .
 
 <https://mathwiki.org/resource/def-basis> a mymath:Definition ;
     rdfs:label "Definition: Basis"@en ;
@@ -366,6 +501,12 @@
         <https://mathwiki.org/resource/def-set>,
         <https://mathwiki.org/resource/def-topological-space> .
 
+<https://mathwiki.org/resource/def-derivative> a mymath:Definition ;
+    rdfs:label "Definition: Derivative"@en ;
+    mymath:hasDomain "Analysis" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-limit> .
+
 <https://mathwiki.org/resource/def-field> a mymath:Definition ;
     rdfs:label "Definition: Field"@en ;
     mymath:hasDomain "Algebra" ;
@@ -373,29 +514,40 @@
     mymath:uses <https://mathwiki.org/resource/def-group>,
         <https://mathwiki.org/resource/def-ring> .
 
+<https://mathwiki.org/resource/def-functor> a mymath:Definition ;
+    rdfs:label "Definition: Functor"@en ;
+    mymath:hasDomain "Category Theory" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-category> .
+
+<https://mathwiki.org/resource/def-intersection> a mymath:Definition ;
+    rdfs:label "Definition: Intersection"@en ;
+    rdfs:comment "The **intersection** of two @def-set[s] $A$ and $B$, denoted $A \\cap B$, is the set containing all elements that belong to both $A$ and $B$."@en ;
+    mymath:hasDomain "Logic Set Theory" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-set>,
+        <https://mathwiki.org/resource/def-subset>,
+        <https://mathwiki.org/resource/thm-de-morgan> .
+
 <https://mathwiki.org/resource/def-linear-independence> a mymath:Definition ;
     rdfs:label "Definition: Linear Independence"@en ;
     mymath:hasDomain "Algebra" ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-vector-space> .
 
-<https://mathwiki.org/resource/def-morphism> a mymath:Definition ;
-    rdfs:label "Definition: Morphism"@en ;
+<https://mathwiki.org/resource/def-natural-transformation> a mymath:Definition ;
+    rdfs:label "Definition: Natural Transformation"@en ;
     mymath:hasDomain "Category Theory" ;
     mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-category> .
+    mymath:uses <https://mathwiki.org/resource/def-category>,
+        <https://mathwiki.org/resource/def-functor>,
+        <https://mathwiki.org/resource/def-morphism> .
 
-<https://mathwiki.org/resource/def-probability-space> a mymath:Definition ;
-    rdfs:label "Definition: Probability Space"@en ;
-    mymath:hasDomain "Probability Statistics" ;
+<https://mathwiki.org/resource/def-power-set> a mymath:Definition ;
+    rdfs:label "Definition: Power Set"@en ;
+    mymath:hasDomain "Logic Set Theory" ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
-
-<https://mathwiki.org/resource/def-random-variable> a mymath:Definition ;
-    rdfs:label "Definition: Random Variable"@en ;
-    mymath:hasDomain "Probability Statistics" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-probability-space> .
 
 <https://mathwiki.org/resource/def-span> a mymath:Definition ;
     rdfs:label "Definition: Span"@en ;
@@ -410,6 +562,31 @@
     mymath:uses <https://mathwiki.org/resource/def-group>,
         <https://mathwiki.org/resource/def-set> .
 
+<https://mathwiki.org/resource/def-subset> a mymath:Definition ;
+    rdfs:label "Definition: Subset"@en ;
+    rdfs:comment "A @def-set $A$ is a **subset** of a set $B$, denoted $A \\subseteq B$, if every element of $A$ is also an element of $B$."@en ;
+    mymath:hasDomain "Logic Set Theory" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-power-set>,
+        <https://mathwiki.org/resource/def-set> .
+
+<https://mathwiki.org/resource/def-union> a mymath:Definition ;
+    rdfs:label "Definition: Union"@en ;
+    rdfs:comment "The **union** of two @def-set[s] $A$ and $B$, denoted $A \\cup B$, is the set containing all elements that belong to either $A$ or $B$ (or both)."@en ;
+    mymath:hasDomain "Logic Set Theory" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-set>,
+        <https://mathwiki.org/resource/thm-de-morgan> .
+
+<https://mathwiki.org/resource/thm-de-morgan> a mymath:Theorem ;
+    rdfs:label "Theorem: De Morgan's Laws"@en ;
+    rdfs:comment "**De Morgan's Laws** describe the relationship between @def-union, @def-intersection, and set complement. They state that the complement of a union equals the intersection of complements, and the complement of an intersection equals the union of complements."@en ;
+    mymath:hasDomain "Logic Set Theory" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-intersection>,
+        <https://mathwiki.org/resource/def-set>,
+        <https://mathwiki.org/resource/def-union> .
+
 <https://mathwiki.org/resource/thm-metric-hausdorff> a mymath:Theorem ;
     rdfs:label "Theorem: Every Metric Space is Hausdorff"@en ;
     mymath:hasDomain "Topology" ;
@@ -418,6 +595,23 @@
         <https://mathwiki.org/resource/def-metric-space>,
         <https://mathwiki.org/resource/def-topological-space>,
         <https://mathwiki.org/resource/ex-real-line-metric> .
+
+<https://mathwiki.org/resource/def-event> a mymath:Definition ;
+    rdfs:label "Definition: Event"@en ;
+    rdfs:comment "An **event** in probability theory is a @def-subset of the @def-sample-space $\\Omega$. It represents a collection of outcomes to which a probability can be assigned."@en ;
+    mymath:hasDomain "Probability Statistics" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-intersection>,
+        <https://mathwiki.org/resource/def-probability-space>,
+        <https://mathwiki.org/resource/def-sample-space>,
+        <https://mathwiki.org/resource/def-subset>,
+        <https://mathwiki.org/resource/def-union> .
+
+<https://mathwiki.org/resource/def-random-variable> a mymath:Definition ;
+    rdfs:label "Definition: Random Variable"@en ;
+    mymath:hasDomain "Probability Statistics" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-probability-space> .
 
 <https://mathwiki.org/resource/def-ring> a mymath:Definition ;
     rdfs:label "Definition: Ring"@en ;
@@ -435,33 +629,40 @@
         <https://mathwiki.org/resource/def-limit>,
         <https://mathwiki.org/resource/def-metric-space> .
 
-<https://mathwiki.org/resource/def-category> a mymath:Definition ;
-    rdfs:label "Definition: Category"@en ;
+<https://mathwiki.org/resource/def-euclidean-space> a mymath:Definition ;
+    rdfs:label "Definition: Euclidean Space"@en ;
+    mymath:hasDomain "Geometry" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-metric-space>,
+        <https://mathwiki.org/resource/def-vector-space> .
+
+<https://mathwiki.org/resource/def-morphism> a mymath:Definition ;
+    rdfs:label "Definition: Morphism"@en ;
     mymath:hasDomain "Category Theory" ;
     mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-set> .
+    mymath:uses <https://mathwiki.org/resource/def-category> .
+
+<https://mathwiki.org/resource/def-point> a mymath:Definition ;
+    rdfs:label "Definition: Point"@en ;
+    rdfs:comment "A **point** is a primitive notion in geometry that represents a location in space with no dimension (no length, width, or height). In Euclidean geometry, points are the fundamental building blocks from which all other geometric objects are constructed."@en ;
+    mymath:hasDomain "Geometry" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-euclidean-space>,
+        <https://mathwiki.org/resource/def-line>,
+        <https://mathwiki.org/resource/def-metric-space> .
 
 <https://mathwiki.org/resource/def-prime> a mymath:Definition ;
     rdfs:label "Definition: Prime Number"@en ;
     mymath:hasDomain "Number Theory" ;
     mymath:hasStatus "complete" .
 
-<https://mathwiki.org/resource/def-binary-operation> a mymath:Definition ;
-    rdfs:label "Definition: Binary Operation"@en ;
-    mymath:hasDomain "Algebra" ;
+<https://mathwiki.org/resource/def-line> a mymath:Definition ;
+    rdfs:label "Definition: Line"@en ;
+    rdfs:comment "A **line** is a one-dimensional geometric object that extends infinitely in both directions. It is completely determined by any two distinct @def-point[s] that lie on it."@en ;
+    mymath:hasDomain "Geometry" ;
     mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-set> .
-
-<https://mathwiki.org/resource/def-continuity> a mymath:Definition ;
-    rdfs:label "Definition: Continuity"@en ;
-    mymath:hasDomain "Analysis" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-limit> .
-
-<https://mathwiki.org/resource/def-limit> a mymath:Definition ;
-    rdfs:label "Definition: Limit of a Sequence"@en ;
-    mymath:hasDomain "Analysis" ;
-    mymath:hasStatus "complete" .
+    mymath:uses <https://mathwiki.org/resource/def-euclidean-space>,
+        <https://mathwiki.org/resource/def-point> .
 
 <https://mathwiki.org/resource/def-linear-transformation> a mymath:Definition ;
     rdfs:label "Definition: Linear Transformation"@en ;
@@ -475,6 +676,24 @@
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-topological-space> .
 
+<https://mathwiki.org/resource/def-probability-space> a mymath:Definition ;
+    rdfs:label "Definition: Probability Space"@en ;
+    mymath:hasDomain "Probability Statistics" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-set> .
+
+<https://mathwiki.org/resource/def-category> a mymath:Definition ;
+    rdfs:label "Definition: Category"@en ;
+    mymath:hasDomain "Category Theory" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-set> .
+
+<https://mathwiki.org/resource/def-continuity> a mymath:Definition ;
+    rdfs:label "Definition: Continuity"@en ;
+    mymath:hasDomain "Analysis" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-limit> .
+
 <https://mathwiki.org/resource/def-metric-space> a mymath:Definition ;
     rdfs:label "Definition: Metric Space"@en ;
     mymath:hasDomain "Analysis",
@@ -486,9 +705,20 @@
         <https://mathwiki.org/resource/ex-real-line-metric>,
         <https://mathwiki.org/resource/thm-metric-hausdorff> .
 
+<https://mathwiki.org/resource/def-limit> a mymath:Definition ;
+    rdfs:label "Definition: Limit of a Sequence"@en ;
+    mymath:hasDomain "Analysis" ;
+    mymath:hasStatus "complete" .
+
 <https://mathwiki.org/resource/def-topological-space> a mymath:Definition ;
     rdfs:label "Definition: Topological Space"@en ;
     mymath:hasDomain "Topology" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-set> .
+
+<https://mathwiki.org/resource/def-binary-operation> a mymath:Definition ;
+    rdfs:label "Definition: Binary Operation"@en ;
+    mymath:hasDomain "Algebra" ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
 

@@ -1,0 +1,69 @@
+---
+title: "Definition: Convergence"
+id: "def-convergence"
+type: "Definition"
+status: "complete"
+requires:
+  - "def-sequence"
+  - "def-limit"
+---
+
+**Convergence** describes the behavior of a @def-sequence whose terms approach a specific value as the index increases. A convergent sequence gets arbitrarily close to its limit.
+
+## Formal Definition
+
+A sequence $(a_n)$ in a metric space $(X, d)$ **converges** to a @def-limit $L \in X$ if:
+
+$$\forall \varepsilon > 0, \exists N \in \mathbb{N} : \forall n > N, \quad d(a_n, L) < \varepsilon$$
+
+We write:
+- $\lim_{n \to \infty} a_n = L$
+- $a_n \to L$ as $n \to \infty$
+- $(a_n)$ converges to $L$
+
+## In Real Numbers
+
+For a real sequence $(a_n)$ converging to $L \in \mathbb{R}$:
+
+$$\forall \varepsilon > 0, \exists N \in \mathbb{N} : \forall n > N, \quad |a_n - L| < \varepsilon$$
+
+## Properties of Convergent Sequences
+
+1. **Uniqueness**: A sequence can have at most one limit
+2. **Boundedness**: Every convergent sequence is bounded
+3. **Preservation under arithmetic**:
+   - If $a_n \to A$ and $b_n \to B$, then:
+     - $a_n + b_n \to A + B$
+     - $a_n \cdot b_n \to A \cdot B$
+     - $a_n / b_n \to A / B$ (if $B \neq 0$ and $b_n \neq 0$)
+
+## Types of Convergence
+
+### Pointwise Convergence
+For function sequences $f_n: X \to Y$:
+$$f_n \to f \text{ pointwise if } \forall x \in X, f_n(x) \to f(x)$$
+
+### Uniform Convergence
+$$f_n \to f \text{ uniformly if } \sup_{x \in X} |f_n(x) - f(x)| \to 0$$
+
+### Absolute Convergence
+For series: $\sum_{n=1}^{\infty} a_n$ converges absolutely if $\sum_{n=1}^{\infty} |a_n|$ converges
+
+## Examples
+
+1. **Convergent**: $a_n = \frac{1}{n} \to 0$
+2. **Convergent**: $a_n = \frac{n+1}{n} = 1 + \frac{1}{n} \to 1$
+3. **Divergent**: $a_n = (-1)^n$ oscillates between -1 and 1
+4. **Divergent**: $a_n = n$ grows without bound
+
+## Cauchy Criterion
+
+In @def-complete-metric-space[s], a sequence converges if and only if it is a Cauchy sequence:
+$$\forall \varepsilon > 0, \exists N : \forall m,n > N, \quad d(a_m, a_n) < \varepsilon$$
+
+## Applications
+
+- Foundation of calculus and analysis
+- Numerical methods and approximation
+- Probability (law of large numbers)
+- Functional analysis (operator convergence)

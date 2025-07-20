@@ -1,0 +1,85 @@
+---
+title: "Definition: Composition"
+id: "def-composition"
+type: "Definition"
+status: "complete"
+requires:
+  - "def-category"
+  - "def-morphism"
+---
+
+**Composition** is the fundamental operation in a @def-category that combines two compatible @def-morphism[s] to produce a third morphism.
+
+## Formal Definition
+
+In a category $\mathcal{C}$, given morphisms:
+- $f: A \to B$
+- $g: B \to C$
+
+Their **composition** is a morphism:
+$$g \circ f: A \to C$$
+
+The composition is defined whenever the codomain of $f$ equals the domain of $g$.
+
+## Axioms
+
+Composition must satisfy:
+
+### 1. Associativity
+For morphisms $f: A \to B$, $g: B \to C$, $h: C \to D$:
+$$(h \circ g) \circ f = h \circ (g \circ f)$$
+
+### 2. Identity Laws
+For any morphism $f: A \to B$ and identity morphisms $\text{id}_A$, $\text{id}_B$:
+- **Left identity**: $\text{id}_B \circ f = f$
+- **Right identity**: $f \circ \text{id}_A = f$
+
+## Notation
+
+Various notations for composition:
+- $g \circ f$ (standard, read "g after f")
+- $gf$ (shortened form)
+- $f;g$ (diagrammatic order, "f then g")
+- $fg$ (sometimes used, but can be confusing)
+
+## Examples
+
+### Set Category
+In **Set**, morphisms are functions:
+- If $f: X \to Y$ and $g: Y \to Z$
+- Then $(g \circ f)(x) = g(f(x))$ for all $x \in X$
+
+### Linear Transformations
+In the category of vector spaces:
+- Morphisms are linear maps
+- Composition is matrix multiplication (in finite dimensions)
+
+### Group Homomorphisms
+In **Grp** (category of groups):
+- If $\phi: G \to H$ and $\psi: H \to K$ are homomorphisms
+- $(\psi \circ \phi)(g) = \psi(\phi(g))$ is also a homomorphism
+
+## Properties
+
+1. **Non-commutativity**: Generally $g \circ f \neq f \circ g$
+2. **Partial operation**: Not all pairs of morphisms can be composed
+3. **Preservation of structure**: Composition preserves the categorical structure
+
+## Commutative Diagrams
+
+Composition is often visualized using commutative diagrams:
+```
+A ---f---> B
+|          |
+h          g
+|          |
+v          v
+C ---k---> D
+```
+This diagram commutes if $k \circ h = g \circ f$
+
+## Related Concepts
+
+- @def-isomorphism: Morphisms with two-sided inverses under composition
+- Endomorphisms: Morphisms that can be composed with themselves
+- Monoids: Single-object categories where all morphisms compose

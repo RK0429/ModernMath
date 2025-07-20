@@ -1,0 +1,85 @@
+---
+title: "Definition: Commutativity"
+id: "def-commutativity"
+type: "Definition"
+status: "complete"
+requires:
+  - "def-binary-operation"
+---
+
+**Commutativity** is a property of a @def-binary-operation where the order of the operands does not affect the result.
+
+## Formal Definition
+
+A binary operation $*$ on a set $S$ is **commutative** (or **abelian**) if for all $a, b \in S$:
+$$a * b = b * a$$
+
+## Examples of Commutative Operations
+
+### Arithmetic
+- **Addition**: $a + b = b + a$
+- **Multiplication**: $a \cdot b = b \cdot a$
+
+### Set Theory
+- **Union**: $A \cup B = B \cup A$
+- **Intersection**: $A \cap B = B \cap A$
+- **Symmetric difference**: $A \triangle B = B \triangle A$
+
+### Logic
+- **AND**: $p \land q = q \land p$
+- **OR**: $p \lor q = q \lor p$
+- **XOR**: $p \oplus q = q \oplus p$
+
+### Number Theory
+- **GCD**: $\gcd(a, b) = \gcd(b, a)$
+- **LCM**: $\text{lcm}(a, b) = \text{lcm}(b, a)$
+
+## Non-Commutative Operations
+
+### Arithmetic
+- **Subtraction**: $a - b \neq b - a$ (unless $a = b$)
+  - Example: $5 - 3 = 2$ but $3 - 5 = -2$
+- **Division**: $a \div b \neq b \div a$ (unless $a = b$ or both equal 1)
+  - Example: $6 \div 2 = 3$ but $2 \div 6 = \frac{1}{3}$
+
+### Linear Algebra
+- **Matrix multiplication**: $\mathbf{AB} \neq \mathbf{BA}$ in general
+- **Cross product**: $\vec{a} \times \vec{b} = -\vec{b} \times \vec{a}$ (anti-commutative)
+
+### Other
+- **Function composition**: $f \circ g \neq g \circ f$ in general
+- **String concatenation**: $"ab" \neq "ba"$
+
+## Importance
+
+1. **Abelian Groups**: @def-group[s] with commutative operation
+   - Examples: $(\mathbb{Z}, +)$, $(\mathbb{R}^*, \cdot)$
+
+2. **Simplification**: Allows reordering of terms
+   - In expressions like $a + b + c + d$, can rearrange freely
+
+3. **Parallel Computation**: Commutative operations can be parallelized more easily
+
+## Relationship with Other Properties
+
+- **Independent of @def-associativity**: An operation can be:
+  - Commutative but not associative
+  - Associative but not commutative
+  - Both (e.g., addition)
+  - Neither (e.g., subtraction)
+
+## Special Cases
+
+### Commutators
+For non-commutative operations, the **commutator** measures failure of commutativity:
+- In groups: $[a, b] = a * b * a^{-1} * b^{-1}$
+- In rings: $[a, b] = ab - ba$
+
+### Graded Commutativity
+In graded algebras: $ab = (-1)^{|a||b|}ba$ where $|a|$ is the degree of $a$
+
+## Applications
+
+- **Cryptography**: Commutative encryption allows flexible ordering
+- **Database queries**: Commutative operations enable query optimization
+- **Physics**: Commuting observables can be measured simultaneously

@@ -1,0 +1,75 @@
+---
+title: "Definition: Isomorphism"
+id: "def-isomorphism"
+type: "Definition"
+status: "complete"
+requires:
+  - "def-morphism"
+  - "def-composition"
+  - "def-category"
+---
+
+An **isomorphism** in a @def-category is a @def-morphism that has a two-sided inverse. Isomorphic objects are considered "the same" from the categorical perspective.
+
+## Formal Definition
+
+A morphism $f: A \to B$ in a category $\mathcal{C}$ is an **isomorphism** if there exists a morphism $g: B \to A$ such that:
+1. $g \circ f = \text{id}_A$
+2. $f \circ g = \text{id}_B$
+
+The morphism $g$ is called the **inverse** of $f$, denoted $f^{-1}$.
+
+## Properties
+
+1. **Uniqueness of Inverse**: If $f$ has an inverse, it is unique
+2. **Symmetry**: If $f: A \to B$ is an isomorphism, then $f^{-1}: B \to A$ is also an isomorphism
+3. **Composition**: The @def-composition of isomorphisms is an isomorphism:
+   - If $f: A \to B$ and $g: B \to C$ are isomorphisms
+   - Then $g \circ f: A \to C$ is an isomorphism with $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$
+
+## Isomorphic Objects
+
+Objects $A$ and $B$ are **isomorphic**, written $A \cong B$, if there exists an isomorphism $f: A \to B$.
+
+Isomorphism is an equivalence relation:
+- **Reflexive**: $A \cong A$ via $\text{id}_A$
+- **Symmetric**: $A \cong B$ implies $B \cong A$
+- **Transitive**: $A \cong B$ and $B \cong C$ implies $A \cong C$
+
+## Examples in Different Categories
+
+### Set
+- Isomorphisms are bijective functions
+- Two sets are isomorphic iff they have the same cardinality
+
+### Group
+- Isomorphisms are bijective group homomorphisms
+- Example: $(\mathbb{Z}, +) \cong (2\mathbb{Z}, +)$ via $n \mapsto 2n$
+
+### Top (Topological Spaces)
+- Isomorphisms are homeomorphisms (continuous bijections with continuous inverse)
+- Example: Open interval $(0,1)$ is homeomorphic to $\mathbb{R}$
+
+### Vect (Vector Spaces)
+- Isomorphisms are invertible linear transformations
+- Finite-dimensional spaces are isomorphic iff they have the same dimension
+
+## Special Types
+
+### Automorphism
+An isomorphism from an object to itself: $f: A \to A$
+
+### Natural Isomorphism
+An isomorphism in the functor category (see @def-natural-transformation)
+
+## Categorical Perspective
+
+- Isomorphism captures the idea of "sameness" in a category
+- Category theory studies properties invariant under isomorphism
+- The principle of equivalence: isomorphic objects are indistinguishable within the category
+
+## Non-Examples
+
+- In **Set**: Injective but non-surjective functions
+- In **Group**: Non-bijective homomorphisms
+- Continuous functions that aren't homeomorphisms

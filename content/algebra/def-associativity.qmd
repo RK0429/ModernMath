@@ -1,0 +1,81 @@
+---
+title: "Definition: Associativity"
+id: "def-associativity"
+type: "Definition"
+status: "complete"
+requires:
+  - "def-binary-operation"
+---
+
+**Associativity** is a fundamental property of a @def-binary-operation that allows us to perform multiple operations without needing to specify the order of evaluation using parentheses.
+
+## Formal Definition
+
+A binary operation $*$ on a set $S$ is **associative** if for all $a, b, c \in S$:
+$$(a * b) * c = a * (b * c)$$
+
+When this property holds, we can write $a * b * c$ without ambiguity.
+
+## Extended Associativity
+
+By induction, if $*$ is associative, then for any elements $a_1, a_2, \ldots, a_n$:
+- All possible ways of parenthesizing $a_1 * a_2 * \cdots * a_n$ yield the same result
+- We can write the expression without parentheses
+
+## Examples of Associative Operations
+
+### Arithmetic
+- **Addition**: $(a + b) + c = a + (b + c)$
+- **Multiplication**: $(a \cdot b) \cdot c = a \cdot (b \cdot c)$
+
+### Set Theory
+- **Union**: $(A \cup B) \cup C = A \cup (B \cup C)$
+- **Intersection**: $(A \cap B) \cap C = A \cap (B \cap C)$
+
+### Logic
+- **AND**: $(p \land q) \land r = p \land (q \land r)$
+- **OR**: $(p \lor q) \lor r = p \lor (q \lor r)$
+
+### Functions
+- **Composition**: $(f \circ g) \circ h = f \circ (g \circ h)$
+
+### Strings
+- **Concatenation**: $(AB)C = A(BC)$ for strings $A$, $B$, $C$
+
+## Non-Associative Operations
+
+### Arithmetic
+- **Subtraction**: $(a - b) - c \neq a - (b - c)$
+  - Example: $(5 - 3) - 1 = 1$ but $5 - (3 - 1) = 3$
+- **Division**: $(a \div b) \div c \neq a \div (b \div c)$
+  - Example: $(8 \div 4) \div 2 = 1$ but $8 \div (4 \div 2) = 4$
+- **Exponentiation**: $(a^b)^c \neq a^{(b^c)}$
+  - Example: $(2^3)^2 = 64$ but $2^{(3^2)} = 512$
+
+### Vector Operations
+- **Cross product**: $(\vec{a} \times \vec{b}) \times \vec{c} \neq \vec{a} \times (\vec{b} \times \vec{c})$
+
+## Importance
+
+1. **Algebraic Structures**: Associativity is required for:
+   - Semigroups
+   - Monoids
+   - @def-group[s]
+   - Rings (for both operations)
+
+2. **Computation**: Allows flexible evaluation order for optimization
+
+3. **Generalization**: Enables definition of products/sums over arbitrary index sets
+
+## Related Properties
+
+- **Commutativity**: $a * b = b * a$ (independent of associativity)
+- **Power associativity**: $(x^m)^n = x^{mn}$ (weaker than full associativity)
+- **Alternative property**: $(aa)b = a(ab)$ and $a(bb) = (ab)b$ (weaker)
+
+## Consequences
+
+In structures with associativity:
+- Can define powers: $a^n = a * a * \cdots * a$ (n times)
+- Can extend to infinite products (with appropriate convergence)
+- Matrix multiplication is associative, enabling efficient computation

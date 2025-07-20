@@ -1,0 +1,88 @@
+---
+title: "Definition: Distributivity"
+id: "def-distributivity"
+type: "Definition"
+status: "complete"
+requires:
+  - "def-binary-operation"
+---
+
+**Distributivity** is a property that relates two @def-binary-operation[s], describing how one operation "distributes" over the other.
+
+## Formal Definition
+
+Given a set $S$ with two binary operations $*$ and $+$:
+
+### Left Distributivity
+Operation $*$ is **left distributive** over $+$ if for all $a, b, c \in S$:
+$$a * (b + c) = (a * b) + (a * c)$$
+
+### Right Distributivity
+Operation $*$ is **right distributive** over $+$ if for all $a, b, c \in S$:
+$$(a + b) * c = (a * c) + (b * c)$$
+
+### Full Distributivity
+Operation $*$ is **distributive** over $+$ if it is both left and right distributive.
+
+## Classic Examples
+
+### Arithmetic
+- **Multiplication over addition**: 
+  - $a(b + c) = ab + ac$ (left distributive)
+  - $(a + b)c = ac + bc$ (right distributive)
+- **Multiplication over subtraction**: $a(b - c) = ab - ac$
+
+### Set Theory
+- **Intersection over union**: $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+- **Union over intersection**: $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+
+### Logic
+- **AND over OR**: $p \land (q \lor r) = (p \land q) \lor (p \land r)$
+- **OR over AND**: $p \lor (q \land r) = (p \lor q) \land (p \lor r)$
+
+### Linear Algebra
+- **Matrix multiplication over addition**: $\mathbf{A}(\mathbf{B} + \mathbf{C}) = \mathbf{AB} + \mathbf{AC}$
+- **Scalar multiplication over vector addition**: $c(\vec{v} + \vec{w}) = c\vec{v} + c\vec{w}$
+
+## Non-Distributive Operations
+
+### Arithmetic
+- **Division over addition**: $\frac{a}{b + c} \neq \frac{a}{b} + \frac{a}{c}$
+- **Exponentiation over multiplication**: $a^{bc} \neq a^b \cdot a^c$ (but $a^{b+c} = a^b \cdot a^c$)
+
+### Other Operations
+- **Square root over addition**: $\sqrt{a + b} \neq \sqrt{a} + \sqrt{b}$
+- **Composition over addition** (when defined): $(f + g) \circ h \neq (f \circ h) + (g \circ h)$ in general
+
+## Algebraic Structures
+
+Distributivity is a key requirement for:
+
+1. **Rings**: Multiplication must distribute over addition
+2. **Fields**: Extension of rings with additional properties
+3. **Vector spaces**: Scalar multiplication distributes over vector addition
+4. **Lattices**: Meet and join operations distribute over each other
+
+## Special Forms
+
+### Infinite Distributivity
+For infinite operations:
+$$a \cdot \left(\sum_{i \in I} b_i\right) = \sum_{i \in I} (a \cdot b_i)$$
+
+### Conditional Distributivity
+Some operations distribute only under certain conditions:
+- **GCD over LCM**: Sometimes but not always distributive
+- **Min/Max operations**: Distribute over each other
+
+## Applications
+
+1. **Algebra**: Expanding expressions like $(x + 2)(x + 3) = x^2 + 5x + 6$
+2. **Computer Science**: Optimizing expressions in compilers
+3. **Circuit Design**: Boolean algebra for logic gates
+4. **Category Theory**: Distributive categories and monoidal structures
+
+## Related Concepts
+
+- **FOIL method**: Application of distributivity for binomial multiplication
+- **Modular distributivity**: Weaker form in lattice theory
+- **Near-rings**: Structures with one-sided distributivity

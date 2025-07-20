@@ -1,0 +1,70 @@
+---
+title: "Definition: Identity Element"
+id: "def-identity-element"
+type: "Definition"
+status: "complete"
+requires:
+  - "def-binary-operation"
+---
+
+An **identity element** for a @def-binary-operation is an element that leaves any other element unchanged when combined with it.
+
+## Formal Definition
+
+Let $(S, *)$ be a set $S$ with a binary operation $*$. An element $e \in S$ is called:
+
+### Left Identity
+If for all $a \in S$:
+$$e * a = a$$
+
+### Right Identity
+If for all $a \in S$:
+$$a * e = a$$
+
+### Two-Sided Identity (or simply Identity)
+If $e$ is both a left identity and a right identity.
+
+## Uniqueness
+
+If an identity element exists, it is unique:
+
+**Proof**: Suppose $e$ and $e'$ are both identities. Then:
+- $e = e * e'$ (since $e'$ is a right identity)
+- $e * e' = e'$ (since $e$ is a left identity)
+- Therefore $e = e'$
+
+## Examples
+
+### Arithmetic Operations
+- **Addition on $\mathbb{R}$**: Identity is 0, since $a + 0 = 0 + a = a$
+- **Multiplication on $\mathbb{R}$**: Identity is 1, since $a \cdot 1 = 1 \cdot a = a$
+
+### Matrix Operations
+- **Matrix addition**: The zero matrix $\mathbf{0}$
+- **Matrix multiplication**: The identity matrix $\mathbf{I}$ with 1s on diagonal
+
+### Set Operations
+- **Union**: The empty set $\emptyset$, since $A \cup \emptyset = A$
+- **Intersection**: The universal set $U$, since $A \cap U = A$
+
+### Function Composition
+- In the set of functions $f: X \to X$, the identity function $\text{id}_X(x) = x$
+
+## Non-Examples
+
+- **Subtraction on $\mathbb{R}$**: No identity element exists
+  - No right identity: $a - e = a$ implies $e = 0$
+  - But 0 is not a left identity: $0 - a = -a \neq a$
+
+## Related Concepts
+
+- @def-group: Requires an identity element
+- **Monoid**: A set with an associative operation and identity
+- **Inverse elements**: Defined relative to an identity element
+- @thm-unique-identity: Proves uniqueness in group context
+
+## Properties
+
+1. In a @def-group, every element has an inverse with respect to the identity
+2. The identity element is its own inverse: $e * e = e$
+3. Identity elements are preserved by homomorphisms between algebraic structures

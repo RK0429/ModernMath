@@ -1,0 +1,72 @@
+---
+title: "Theorem: Mean Value Theorem"
+id: "thm-mean-value"
+type: "Theorem"
+status: "complete"
+requires:
+  - "def-continuity"
+  - "def-derivative"
+---
+
+The **Mean Value Theorem (MVT)** states that for a differentiable function on an interval, there exists at least one point where the instantaneous rate of change equals the average rate of change over the interval.
+
+## Statement
+
+If $f: [a,b] \to \mathbb{R}$ satisfies:
+1. $f$ is @def-continuity[continuous] on the closed interval $[a,b]$
+2. $f$ is differentiable on the open interval $(a,b)$
+
+Then there exists at least one $c \in (a,b)$ such that:
+$$f'(c) = \frac{f(b) - f(a)}{b - a}$$
+
+## Geometric Interpretation
+
+The theorem guarantees that somewhere between $a$ and $b$, the tangent line to the curve is parallel to the secant line connecting $(a, f(a))$ and $(b, f(b))$.
+
+## Special Cases
+
+### Rolle's Theorem
+If additionally $f(a) = f(b)$, then there exists $c \in (a,b)$ such that $f'(c) = 0$.
+
+This is MVT with horizontal secant line.
+
+### Cauchy Mean Value Theorem
+For functions $f, g$ both continuous on $[a,b]$ and differentiable on $(a,b)$, with $g'(x) \neq 0$ on $(a,b)$:
+
+There exists $c \in (a,b)$ such that:
+$$\frac{f'(c)}{g'(c)} = \frac{f(b) - f(a)}{g(b) - g(a)}$$
+
+## Proof Sketch
+
+1. Define auxiliary function: $h(x) = f(x) - f(a) - \frac{f(b) - f(a)}{b - a}(x - a)$
+2. Note that $h(a) = h(b) = 0$
+3. Apply Rolle's theorem to $h$
+4. Find $c$ where $h'(c) = 0$, which gives the result
+
+## Consequences
+
+1. **Monotonicity**: If $f' > 0$ on $(a,b)$, then $f$ is strictly increasing
+2. **Constant functions**: If $f' = 0$ on $(a,b)$, then $f$ is constant
+3. **Lipschitz continuity**: If $|f'| \leq M$ on $(a,b)$, then $|f(x) - f(y)| \leq M|x - y|$
+
+## Applications
+
+### L'Hôpital's Rule
+Used in the proof for evaluating limits of indeterminate forms
+
+### Taylor's Theorem
+MVT generalizes to higher derivatives, leading to Taylor approximations
+
+### Numerical Analysis
+- Error bounds for numerical differentiation
+- Convergence analysis of iterative methods
+
+## Examples
+
+1. **Verify MVT**: For $f(x) = x^2$ on $[0,2]$:
+   - Average slope: $\frac{4-0}{2-0} = 2$
+   - $f'(x) = 2x$, so $f'(c) = 2$ gives $c = 1 \in (0,2)$ ✓
+
+2. **Application**: Prove that $|\sin x - \sin y| \leq |x - y|$:
+   - By MVT: $\sin x - \sin y = \cos c \cdot (x - y)$ for some $c$
+   - Since $|\cos c| \leq 1$, the result follows

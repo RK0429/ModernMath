@@ -1,0 +1,66 @@
+---
+title: "Definition: Sequence"
+id: "def-sequence"
+type: "Definition"
+status: "complete"
+requires:
+  - "def-set"
+---
+
+A **sequence** is an ordered list of elements, typically numbers, indexed by the natural numbers. Formally, a sequence is a function from the natural numbers to a set.
+
+## Formal Definition
+
+A sequence in a set $S$ is a function:
+$$a: \mathbb{N} \to S$$
+
+We denote:
+- The sequence as $(a_n)_{n=1}^{\infty}$ or simply $(a_n)$
+- The $n$-th term as $a_n = a(n)$
+
+## Notation
+
+Common notations for sequences:
+- $(a_n)_{n=1}^{\infty} = (a_1, a_2, a_3, ...)$
+- $(a_n)_{n \in \mathbb{N}}$
+- $\{a_n\}_{n=1}^{\infty}$ (though this can be confused with set notation)
+
+## Types of Sequences
+
+### By Domain
+- **Infinite sequences**: Domain is all of $\mathbb{N}$
+- **Finite sequences**: Domain is $\{1, 2, ..., N\}$ for some $N$
+
+### By Codomain
+- **Real sequences**: $a_n \in \mathbb{R}$
+- **Complex sequences**: $a_n \in \mathbb{C}$
+- **Vector sequences**: $a_n \in \mathbb{R}^d$ or other vector spaces
+- **Function sequences**: $a_n$ are functions
+
+## Examples
+
+1. **Arithmetic sequence**: $a_n = a_1 + (n-1)d$
+   - Example: $(2, 5, 8, 11, ...)$ with $a_1 = 2$, $d = 3$
+
+2. **Geometric sequence**: $a_n = a_1 \cdot r^{n-1}$
+   - Example: $(3, 6, 12, 24, ...)$ with $a_1 = 3$, $r = 2$
+
+3. **Harmonic sequence**: $a_n = \frac{1}{n}$
+   - $(1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, ...)$
+
+4. **Fibonacci sequence**: $a_1 = 1, a_2 = 1, a_n = a_{n-1} + a_{n-2}$
+   - $(1, 1, 2, 3, 5, 8, 13, ...)$
+
+## Properties
+
+- **Bounded**: $\exists M > 0$ such that $|a_n| \leq M$ for all $n$
+- **Monotonic**: Either increasing ($a_n \leq a_{n+1}$) or decreasing
+- **Periodic**: $\exists p$ such that $a_{n+p} = a_n$ for all $n$
+- **Cauchy**: $\forall \varepsilon > 0, \exists N$ such that $|a_m - a_n| < \varepsilon$ for all $m,n > N$
+
+## Related Concepts
+
+- @def-convergence: When sequences approach a limit
+- @def-limit: The value a convergent sequence approaches
+- Series: Sum of sequence terms
+- Subsequences: Sequences extracted from a sequence
