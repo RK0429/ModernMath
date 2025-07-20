@@ -118,30 +118,15 @@ poetry run flake8 scripts/ --max-line-length=100 --extend-ignore=E203,W503,W293
 poetry run mypy scripts/
 ```
 
-#### Python Type Annotation Requirements
+#### Code Quality Requirements
 
-All Python scripts in the project must include proper type annotations:
+All Python scripts must pass pre-commit checks with proper type annotations:
 
-- Import types from `typing` module (e.g., `from typing import Tuple, Optional, Any, List`)
-- Add type hints to all function parameters and return types
-- Use explicit type casts when mypy cannot infer types (e.g., `str()`, `int()`)
-- For frontmatter posts, use `Any` type annotation: `post: Any`
-- Helper functions should be extracted to reduce complexity warnings
-
-#### Pre-commit Hook Compliance
-
-Scripts must pass all pre-commit checks including:
-
-- **flake8**: Line length limit is 100 characters
+- **Type hints**: Import from `typing`, annotate all functions, use `Any` for frontmatter posts
+- **flake8**: 100-character line limit, ignore E203,W503,W293
 - **pylint**: Avoid too-many-locals (>20), too-many-branches (>12), too-many-statements (>50)
-- **mypy**: All functions must have type annotations, no untyped calls in typed contexts
-- **pyright**: Strict type checking enabled
-
-When refactoring for compliance:
-
-- Extract helper functions to reduce complexity
-- Split long lines at appropriate breakpoints
-- Add explicit type casts for return values when needed
+- **mypy/pyright**: Strict type checking, explicit casts when needed
+- **Refactoring**: Extract helper functions to reduce complexity
 
 ### SPARQL and API
 
@@ -200,63 +185,13 @@ The ontology (`ontology/math-ontology.ttl`) defines:
 
 #### Interactive Visualization Path Issues
 
-If interactive visualizations (D3/PyVis) fail to load due to path issues, the graph-viz extension needs to calculate relative paths dynamically. For GitHub Pages deployments with project subdirectories:
+For GitHub Pages deployments with project subdirectories, the graph-viz extension calculates relative paths dynamically to ensure visualizations load correctly from any nested directory level.
 
-```javascript
-// In _extensions/graph-viz/graph-viz.lua
-// Calculate relative path based on current location
-const currentPath = window.location.pathname;
-const pathParts = currentPath.split("/").filter((p) => p);
+#### Mermaid Diagram Navigation
 
-// For GitHub Pages with project name subdirectory
-if (window.location.hostname.includes("github.io") && pathParts.length > 0) {
-  // Remove project name from depth calculation
-  const depthFromProjectRoot = pathParts.slice(1).length - 1;
-  basePath = "../".repeat(depthFromProjectRoot);
-} else {
-  // For local development or root deployment
-  const depth = (currentPath.match(/\//g) || []).length - 1;
-  basePath = "../".repeat(depth);
-}
+Add click directives to enable navigation: `click node-id "relative-path.html" "tooltip-text"`
 
-const response = await fetch(basePath + "output/d3-data/%s.json");
-```
-
-This ensures visualizations load correctly from any nested directory level, accounting for GitHub Pages project subdirectories (e.g., `/ModernMath/ja/content/ja/algebra/`).
-
-#### Making Mermaid Diagrams Clickable
-
-To enable navigation from Mermaid diagram nodes, add click directives:
-
-```mermaid
-graph TD
-    def-group["定義: 群"]:::definition
-    def-binary-operation["定義: 二項演算"]:::definition
-    def-group --> def-binary-operation
-    click def-group "def-group.html" "群の定義へ"
-    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
-```
-
-Format: `click node-id "relative-path.html" "tooltip-text"`
-
-#### Automating Mermaid Clickable Links
-
-The `scripts/add_mermaid_links.py` script automatically adds click directives to all Mermaid diagrams:
-
-```bash
-# Add click directives to all Mermaid diagrams
-poetry run python scripts/add_mermaid_links.py
-```
-
-Features:
-
-- Detects all node references in Mermaid diagrams (def-_, thm-_, ex-_, ax-_)
-- Adds appropriate click directives with language-aware tooltips
-- Skips nodes that already have click directives
-- Skips the current node (marked with 'current' class)
-- Handles both English and Japanese tooltips automatically
-
-This script is integrated into the build pipeline and runs before Mermaid diagram generation.
+The `scripts/add_mermaid_links.py` script automatically adds click directives with language-aware tooltips.
 
 #### Content Visualization Standards
 
@@ -303,44 +238,20 @@ The project supports multiple languages (currently English and Japanese) with au
 
 ### Translation Implementation Details
 
-When creating translations:
+**Required Metadata Fields**:
 
-- **Translation Metadata Fields**: Japanese translation files require two metadata fields:
+```yaml
+translation_of: ../../en/algebra/def-group.qmd # Japanese files only (points to .qmd)
+translations: # Both languages (points to .html)
+  en: "../en/algebra/def-group.html"
+  ja: "../ja/algebra/def-group.html"
+```
 
-  ```yaml
-  # Required in Japanese files (points to .qmd)
-  translation_of: ../../en/algebra/def-group.qmd
+**Key Requirements**:
 
-  # Required in both English and Japanese files (point to .html)
-  translations:
-    en: "../en/algebra/def-group.html"
-    ja: "../ja/algebra/def-group.html"
-  ```
-
-- **Path Format Distinction**:
-  - `translation_of`: Points to source .qmd file (used for tracking)
-  - `translations`: Points to output .html files (used for navigation)
-
-- **Translation Field Requirements**:
-  - All translation files must have both `en` and `ja` entries in the `translations` field
-  - The `translations` field must be a dictionary, not a string or list
-  - Some geometry files may have non-dictionary translation fields that need correction
-
-- **Cross-References**: Keep internal references as `.qmd` extensions
-
-  ```markdown
-  See [群の定義](def-group.qmd) for details # Correct
-  ```
-
-- **Standard Japanese Mathematical Terms**:
-  - Group → 群 (gun)
-  - Ring → 環 (kan)
-  - Field → 体 (tai)
-  - Vector Space → ベクトル空間
-  - Topology → 位相幾何学
-  - Category → 圏 (ken)
-  - Morphism → 射 (sha)
-  - Functor → 関手 (kanshu)
+- `translations` must be a dictionary with both `en` and `ja` entries
+- Keep cross-references as `.qmd` extensions: `[群の定義](def-group.qmd)`
+- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間
 
 ### Building Multilingual Sites
 
@@ -402,6 +313,53 @@ Root index.html provides both automatic detection and manual selection:
 - Saves user preference in localStorage for future visits
 - Provides visual loading feedback during auto-detection
 
+### Dynamic Language Switching
+
+The project implements a page-level language switcher that redirects to the translated version of the current page:
+
+**Implementation Components:**
+
+1. **JavaScript Language Switcher** (`js/language-switcher.js`):
+   - Detects current language from URL path or HTML lang attribute
+   - Reads translation metadata from HTML meta tags
+   - Falls back to path construction with existence checking
+   - Updates navbar language links dynamically
+   - Provides visual feedback for unavailable translations
+
+2. **Quarto Filter** (`_extensions/translation-metadata/`):
+   - Extracts `translations` field from YAML front matter
+   - Converts translation links to HTML meta tags
+   - Makes metadata accessible to JavaScript
+
+3. **Visual Feedback for Unavailable Translations**:
+   - Disabled state with reduced opacity (0.5)
+   - Strikethrough text (e.g., "🌐 <s>日本語</s>")
+   - Tooltip explaining unavailability
+   - `cursor: not-allowed` styling
+
+**Configuration Requirements:**
+
+```yaml
+# In _quarto-en.yml and _quarto-ja.yml
+format:
+  html:
+    include-in-header:
+      - text: |
+          <script src="../../js/language-switcher.js" defer></script>
+
+filters:
+  - translation-metadata # Must come after other filters
+
+resources:
+  - js # Include JavaScript directory
+```
+
+**Usage Notes:**
+
+- The switcher activates on DOMContentLoaded and Quarto's after-render event
+- Async translation checking prevents UI blocking
+- Debug functions available via `window.ModernMathLanguageSwitcher`
+
 ### Japanese Navigation Pages
 
 When implementing Japanese support, create these navigation pages with `-ja.qmd` suffix:
@@ -416,37 +374,13 @@ Update `_quarto-ja.yml` navbar to reference these files and ensure all domain li
 
 ### Translation Management System
 
-The project uses a hash-based change detection system to track translation status:
+Uses hash-based change detection to track translation status in `translations-status.yml`:
 
-- **Status Tracking**: `translations-status.yml` maintains translation status for all content files
-- **Change Detection**: MD5 hashes of content (excluding front matter) detect when source files change
 - **Status Categories**: `not_started`, `in_progress`, `completed`, `needs_update`
-- **Management Script**: `scripts/manage_translations.py` provides commands:
-  - `update`: Scan files and update translation status
-  - `report`: Generate translation progress reports
-  - `list --status=X`: List files with specific status
-  - `validate`: Check front matter consistency
-  - `stats`: Show domain-by-domain statistics
-- **Integration**: Translation edges are added to the RDF graph as `hasTranslation` relationships
-
-#### Implementation Details
-
-- **RDF Integration**: The `translation_graph.py` module is imported in `build_graph.py` and `add_translation_edges()` is called in the `_save_graph()` method when `translations-status.yml` exists
-- **Pre-commit Behavior**: The `update-translation-status` hook shows as "failed" when it modifies files - this is expected behavior and ensures the status file stays current
-- **Quarto Extension**: Translation status badges use the `_extensions/translation-status/` extension with Lua shortcodes (e.g., `{{< translation-status completed >}}`)
-- **Testing Pattern**: Dynamic imports in tests use `# pylint: disable=import-error,wrong-import-position` to handle script imports
-
-#### Pre-commit Hook Timestamp Updates
-
-The translation management system avoids unnecessary file modifications:
-
-- **Issue**: Pre-commit hooks can't commit `translations-status.yml` if it's always updated with new timestamps
-- **Solution**: `manage_translations.py` compares data structures (excluding timestamps) before saving
-- **Implementation**:
-  - `save_status_file()` accepts optional `update_timestamp` parameter
-  - Only updates `last_updated` and `translated_at` when content actually changes
-  - Uses deep copy comparison excluding timestamp fields
-- **Result**: Pre-commit hooks only modify files when there are real translation status changes
+- **MD5 Hashing**: Detects content changes (excluding front matter)
+- **Management Commands**: `update`, `report`, `list --status=X`, `validate`, `stats`
+- **RDF Integration**: Adds `hasTranslation` relationships to the knowledge graph
+- **Pre-commit Hook**: Only updates timestamps when content actually changes
 
 ## Critical Implementation Details
 
