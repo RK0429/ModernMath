@@ -12,18 +12,38 @@ base:ax-induction a mymath:Axiom ;
     mymath:hasDomain "Logic Set Theory" ;
     mymath:hasStatus "complete" .
 
-base:def-commutativity a mymath:Definition ;
-    rdfs:label "Definition: Commutativity"@en ;
-    rdfs:comment "**Commutativity** is a property of a @def-binary-operation where the order of the operands does not affect the result."@en ;
+base:def-associativity a mymath:Definition ;
+    rdfs:label "Definition: Associativity"@en ;
+    rdfs:comment "**Associativity** is a fundamental property of a [Binary Operation](def-binary-operation.qmd) that allows us to perform multiple operations without needing to specify the order of evaluation using parentheses."@en ;
     mymath:hasDomain "Algebra" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-associativity,
-        base:def-binary-operation,
-        base:def-group .
+    mymath:uses base:def-binary-operation .
+
+base:def-commutativity a mymath:Definition ;
+    rdfs:label "Definition: Commutativity"@en ;
+    rdfs:comment "**Commutativity** is a property of a [Binary Operation](def-binary-operation.qmd) where the order of the operands does not affect the result."@en ;
+    mymath:hasDomain "Algebra" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-binary-operation .
+
+base:def-complete-metric-space a mymath:Definition ;
+    rdfs:label "Definition: Complete Metric Space"@en ;
+    mymath:hasDomain "Analysis" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-limit,
+        base:def-metric-space .
+
+base:def-convergence a mymath:Definition ;
+    rdfs:label "Definition: Convergence"@en ;
+    rdfs:comment "**Convergence** describes the behavior of a [Sequence](def-sequence.qmd) whose terms approach a specific value as the index increases. A convergent sequence gets arbitrarily close to its limit."@en ;
+    mymath:hasDomain "Analysis" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-limit,
+        base:def-sequence .
 
 base:def-distributivity a mymath:Definition ;
     rdfs:label "Definition: Distributivity"@en ;
-    rdfs:comment "**Distributivity** is a property that relates two @def-binary-operation[s], describing how one operation \"distributes\" over the other."@en ;
+    rdfs:comment "**Distributivity** is a property that relates two [Binary Operations](def-binary-operation.qmd), describing how one operation \"distributes\" over the other."@en ;
     mymath:hasDomain "Algebra" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-binary-operation .
@@ -38,16 +58,24 @@ base:def-integral a mymath:Definition ;
 
 base:def-inverse-element a mymath:Definition ;
     rdfs:label "Definition: Inverse Element"@en ;
-    rdfs:comment "An **inverse element** of an element under a @def-binary-operation is another element that, when combined with the original, yields the @def-identity-element."@en ;
+    rdfs:comment "An **inverse element** of an element under a [Binary Operation](def-binary-operation.qmd) is another element that, when combined with the original, yields the [Identity Element](def-identity-element.qmd)."@en ;
     mymath:hasDomain "Algebra" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-binary-operation,
-        base:def-group,
         base:def-identity-element .
+
+base:def-isomorphism a mymath:Definition ;
+    rdfs:label "Definition: Isomorphism"@en ;
+    rdfs:comment "An **isomorphism** in a [Category](def-category.qmd) is a [Morphism](def-morphism.qmd) that has a two-sided inverse. Isomorphic objects are considered \"the same\" from the categorical perspective."@en ;
+    mymath:hasDomain "Category Theory" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-category,
+        base:def-composition,
+        base:def-morphism .
 
 base:def-parallel a mymath:Definition ;
     rdfs:label "Definition: Parallel Lines"@en ;
-    rdfs:comment "Two @def-line[s] are **parallel** if they lie in the same plane and do not intersect, no matter how far they are extended."@en ;
+    rdfs:comment "Two [Lines](def-line.qmd) are **parallel** if they lie in the same plane and do not intersect, no matter how far they are extended."@en ;
     mymath:hasDomain "Geometry" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-line,
@@ -122,6 +150,12 @@ base:ex-polynomial-continuity a mymath:Example ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-continuity .
 
+base:ex-real-line-metric a mymath:Example ;
+    rdfs:label "Example: Real Line with Standard Metric"@en ;
+    mymath:hasDomain "Analysis" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-metric-space .
+
 base:ex-set-category a mymath:Example ;
     rdfs:label "Example: The Category of Sets"@en ;
     mymath:hasDomain "Category Theory" ;
@@ -139,6 +173,23 @@ base:ex-standard-basis-rn a mymath:Example ;
         base:def-span,
         base:def-vector-space .
 
+base:thm-angle-sum-triangle a mymath:Theorem ;
+    rdfs:label "Theorem: Angle Sum of a Triangle"@en ;
+    rdfs:comment "The sum of the interior [Angles](def-angle.qmd) of any [Triangle](def-triangle.qmd) equals $180°$ (or $\\pi$ radians)."@en ;
+    mymath:hasDomain "Geometry" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-angle,
+        base:def-line,
+        base:def-triangle .
+
+base:thm-bayes a mymath:Theorem ;
+    rdfs:label "Theorem: Bayes' Theorem"@en ;
+    rdfs:comment "**Bayes' Theorem** provides a way to calculate [Conditional Probability](def-conditional-probability.qmd) in the \"reverse\" direction. It relates $P(A|B)$ to $P(B|A)$, allowing us to update beliefs based on new evidence."@en ;
+    mymath:hasDomain "Probability Statistics" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-conditional-probability,
+        base:def-event .
+
 base:thm-cantor a mymath:Theorem ;
     rdfs:label "Theorem: Cantor's Theorem"@en ;
     mymath:hasDomain "Logic Set Theory" ;
@@ -152,6 +203,15 @@ base:thm-chain-rule a mymath:Theorem ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-continuity,
         base:def-derivative .
+
+base:thm-de-morgan a mymath:Theorem ;
+    rdfs:label "Theorem: De Morgan's Laws"@en ;
+    rdfs:comment "**De Morgan's Laws** describe the relationship between [Union](def-union.qmd), [Intersection](def-intersection.qmd), and set complement. They state that the complement of a union equals the intersection of complements, and the complement of an intersection equals the union of complements."@en ;
+    mymath:hasDomain "Logic Set Theory" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-intersection,
+        base:def-set,
+        base:def-union .
 
 base:thm-euclidean-algorithm a mymath:Theorem ;
     rdfs:label "Theorem: Euclidean Algorithm"@en ;
@@ -223,11 +283,25 @@ base:thm-mean-value a mymath:Theorem ;
     mymath:uses base:def-continuity,
         base:def-derivative .
 
+base:thm-metric-hausdorff a mymath:Theorem ;
+    rdfs:label "Theorem: Every Metric Space is Hausdorff"@en ;
+    mymath:hasDomain "Topology" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-hausdorff,
+        base:def-metric-space,
+        base:def-topological-space .
+
 base:thm-pigeonhole-principle a mymath:Theorem ;
     rdfs:label "Theorem: Pigeonhole Principle"@en ;
     mymath:hasDomain "Combinatorics" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
+
+base:thm-pythagorean a mymath:Theorem ;
+    rdfs:label "Theorem: Pythagorean Theorem"@en ;
+    mymath:hasDomain "Geometry" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-euclidean-space .
 
 base:thm-rank-nullity a mymath:Theorem ;
     rdfs:label "Theorem: Rank-Nullity Theorem"@en ;
@@ -245,9 +319,15 @@ base:thm-union-open-sets a mymath:Theorem ;
     mymath:uses base:def-open-set,
         base:def-topological-space .
 
+base:thm-unique-identity a mymath:Theorem ;
+    rdfs:label "Theorem: Uniqueness of Identity"@en ;
+    mymath:hasDomain "Algebra" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-group .
+
 base:thm-yoneda a mymath:Theorem ;
     rdfs:label "Theorem: Yoneda Lemma"@en ;
-    rdfs:comment "The **Yoneda Lemma** is a fundamental result in @def-category theory that relates @def-functor[s] to representable functors. It states that an object is completely determined by its relationships to all other objects."@en ;
+    rdfs:comment "The **Yoneda Lemma** is a fundamental result in [Category](def-category.qmd) theory that relates [Functors](def-functor.qmd) to representable functors. It states that an object is completely determined by its relationships to all other objects."@en ;
     mymath:hasDomain "Category Theory" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-category,
@@ -326,14 +406,6 @@ base:thm-yoneda a mymath:Theorem ;
     rdfs:label "Lean proof: Mathlib.Topology.Separation.T2Space"@en ;
     mymath:inModule "MathKnowledgeGraph.Topology.Basic" .
 
-base:def-associativity a mymath:Definition ;
-    rdfs:label "Definition: Associativity"@en ;
-    rdfs:comment "**Associativity** is a fundamental property of a @def-binary-operation that allows us to perform multiple operations without needing to specify the order of evaluation using parentheses."@en ;
-    mymath:hasDomain "Algebra" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation,
-        base:def-group .
-
 base:def-binomial-coefficient a mymath:Definition ;
     rdfs:label "Definition: Binomial Coefficient"@en ;
     mymath:hasDomain "Combinatorics" ;
@@ -347,32 +419,21 @@ base:def-combination a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
-base:def-complete-metric-space a mymath:Definition ;
-    rdfs:label "Definition: Complete Metric Space"@en ;
-    mymath:hasDomain "Analysis" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-limit,
-        base:def-metric-space,
-        base:ex-real-line-metric .
-
 base:def-composition a mymath:Definition ;
     rdfs:label "Definition: Composition"@en ;
-    rdfs:comment "**Composition** is the fundamental operation in a @def-category that combines two compatible @def-morphism[s] to produce a third morphism."@en ;
+    rdfs:comment "**Composition** is the fundamental operation in a [Category](def-category.qmd) that combines two compatible [Morphisms](def-morphism.qmd) to produce a third morphism."@en ;
     mymath:hasDomain "Category Theory" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-category,
-        base:def-isomorphism,
         base:def-morphism .
 
 base:def-conditional-probability a mymath:Definition ;
     rdfs:label "Definition: Conditional Probability"@en ;
-    rdfs:comment "The **conditional probability** of an @def-event $A$ given event $B$ is the probability that $A$ occurs, given that $B$ has occurred. It is denoted $P(A|B)$."@en ;
+    rdfs:comment "The **conditional probability** of an [Event](def-event.qmd) $A$ given event $B$ is the probability that $A$ occurs, given that $B$ has occurred. It is denoted $P(A|B)$."@en ;
     mymath:hasDomain "Probability Statistics" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-event,
-        base:def-probability-space,
-        base:def-random-variable,
-        base:thm-bayes .
+        base:def-probability-space .
 
 base:def-connected a mymath:Definition ;
     rdfs:label "Definition: Connected Space"@en ;
@@ -383,14 +444,12 @@ base:def-connected a mymath:Definition ;
         base:def-open-set,
         base:def-topological-space .
 
-base:def-convergence a mymath:Definition ;
-    rdfs:label "Definition: Convergence"@en ;
-    rdfs:comment "**Convergence** describes the behavior of a @def-sequence whose terms approach a specific value as the index increases. A convergent sequence gets arbitrarily close to its limit."@en ;
-    mymath:hasDomain "Analysis" ;
+base:def-euclidean-space a mymath:Definition ;
+    rdfs:label "Definition: Euclidean Space"@en ;
+    mymath:hasDomain "Geometry" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-complete-metric-space,
-        base:def-limit,
-        base:def-sequence .
+    mymath:uses base:def-metric-space,
+        base:def-vector-space .
 
 base:def-expectation a mymath:Definition ;
     rdfs:label "Definition: Expected Value"@en ;
@@ -411,8 +470,7 @@ base:def-hausdorff a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Separation.T2Space> ;
     mymath:uses base:def-open-set,
-        base:def-topological-space,
-        base:thm-metric-hausdorff .
+        base:def-topological-space .
 
 base:def-homomorphism a mymath:Definition ;
     rdfs:label "Definition: Group Homomorphism"@en ;
@@ -423,12 +481,10 @@ base:def-homomorphism a mymath:Definition ;
 
 base:def-identity-element a mymath:Definition ;
     rdfs:label "Definition: Identity Element"@en ;
-    rdfs:comment "An **identity element** for a @def-binary-operation is an element that leaves any other element unchanged when combined with it."@en ;
+    rdfs:comment "An **identity element** for a [Binary Operation](def-binary-operation.qmd) is an element that leaves any other element unchanged when combined with it."@en ;
     mymath:hasDomain "Algebra" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation,
-        base:def-group,
-        base:thm-unique-identity .
+    mymath:uses base:def-binary-operation .
 
 base:def-image a mymath:Definition ;
     rdfs:label "Definition: Image"@en ;
@@ -438,15 +494,12 @@ base:def-image a mymath:Definition ;
     mymath:uses base:def-linear-transformation,
         base:def-vector-space .
 
-base:def-isomorphism a mymath:Definition ;
-    rdfs:label "Definition: Isomorphism"@en ;
-    rdfs:comment "An **isomorphism** in a @def-category is a @def-morphism that has a two-sided inverse. Isomorphic objects are considered \"the same\" from the categorical perspective."@en ;
-    mymath:hasDomain "Category Theory" ;
+base:def-intersection a mymath:Definition ;
+    rdfs:label "Definition: Intersection"@en ;
+    rdfs:comment "The **intersection** of two [Sets](def-set.qmd) $A$ and $B$, denoted $A \\cap B$, is the set containing all elements that belong to both $A$ and $B$."@en ;
+    mymath:hasDomain "Logic Set Theory" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-category,
-        base:def-composition,
-        base:def-morphism,
-        base:def-natural-transformation .
+    mymath:uses base:def-set .
 
 base:def-kernel a mymath:Definition ;
     rdfs:label "Definition: Kernel"@en ;
@@ -461,40 +514,62 @@ base:def-matrix a mymath:Definition ;
     mymath:hasDomain "Algebra" ;
     mymath:hasStatus "complete" .
 
+base:def-natural-transformation a mymath:Definition ;
+    rdfs:label "Definition: Natural Transformation"@en ;
+    mymath:hasDomain "Category Theory" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-category,
+        base:def-functor,
+        base:def-morphism .
+
 base:def-permutation a mymath:Definition ;
     rdfs:label "Definition: Permutation"@en ;
     mymath:hasDomain "Combinatorics" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
+base:def-power-set a mymath:Definition ;
+    rdfs:label "Definition: Power Set"@en ;
+    mymath:hasDomain "Logic Set Theory" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-set .
+
 base:def-sample-space a mymath:Definition ;
     rdfs:label "Definition: Sample Space"@en ;
-    rdfs:comment "A **sample space** is the @def-set of all possible outcomes of a random experiment or probabilistic scenario. It is typically denoted by $\\Omega$ (omega) or $S$."@en ;
+    rdfs:comment "A **sample space** is the [Set](../logic-set-theory/def-set.qmd) of all possible outcomes of a random experiment or probabilistic scenario. It is typically denoted by $\\Omega$ (omega) or $S$."@en ;
     mymath:hasDomain "Probability Statistics" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-event,
-        base:def-probability-space,
-        base:def-set .
+    mymath:uses base:def-set .
 
 base:def-sequence a mymath:Definition ;
     rdfs:label "Definition: Sequence"@en ;
     rdfs:comment "A **sequence** is an ordered list of elements, typically numbers, indexed by the natural numbers. Formally, a sequence is a function from the natural numbers to a set."@en ;
     mymath:hasDomain "Analysis" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-convergence,
-        base:def-limit,
-        base:def-set .
+    mymath:uses base:def-set .
+
+base:def-subset a mymath:Definition ;
+    rdfs:label "Definition: Subset"@en ;
+    rdfs:comment "A [Set](def-set.qmd) $A$ is a **subset** of a set $B$, denoted $A \\subseteq B$, if every element of $A$ is also an element of $B$."@en ;
+    mymath:hasDomain "Logic Set Theory" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-set .
 
 base:def-triangle a mymath:Definition ;
     rdfs:label "Definition: Triangle"@en ;
-    rdfs:comment "A **triangle** is a polygon with three vertices and three sides. It is one of the fundamental shapes in geometry, formed by connecting three non-collinear @def-point[s]."@en ;
+    rdfs:comment "A **triangle** is a polygon with three vertices and three sides. It is one of the fundamental shapes in geometry, formed by connecting three non-collinear [Points](def-point.qmd)."@en ;
     mymath:hasDomain "Geometry" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-angle,
         base:def-line,
-        base:def-point,
-        base:thm-angle-sum-triangle,
-        base:thm-pythagorean .
+        base:def-point .
+
+base:def-union a mymath:Definition ;
+    rdfs:label "Definition: Union"@en ;
+    rdfs:comment "The **union** of two [Sets](def-set.qmd) $A$ and $B$, denoted $A \\cup B$, is the set containing all elements that belong to either $A$ or $B$ (or both)."@en ;
+    mymath:hasDomain "Logic Set Theory" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-set .
 
 base:ex-integers-addition a mymath:Example ;
     rdfs:label "Example: Integers under Addition"@en ;
@@ -514,23 +589,6 @@ base:formal-proof-def-ring a mymath:FormalProof ;
     rdfs:comment "Implemented in MathKnowledgeGraph.Algebra.Rings"@en ;
     mymath:inModule "Mathlib.Algebra.Ring.Defs.Ring" .
 
-base:thm-angle-sum-triangle a mymath:Theorem ;
-    rdfs:label "Theorem: Angle Sum of a Triangle"@en ;
-    rdfs:comment "The sum of the interior @def-angle[s] of any @def-triangle equals $180°$ (or $\\pi$ radians)."@en ;
-    mymath:hasDomain "Geometry" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-angle,
-        base:def-line,
-        base:def-triangle .
-
-base:thm-bayes a mymath:Theorem ;
-    rdfs:label "Theorem: Bayes' Theorem"@en ;
-    rdfs:comment "**Bayes' Theorem** provides a way to calculate @def-conditional-probability in the \"reverse\" direction. It relates $P(A|B)$ to $P(B|A)$, allowing us to update beliefs based on new evidence."@en ;
-    mymath:hasDomain "Probability Statistics" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-conditional-probability,
-        base:def-event .
-
 base:thm-heine-borel a mymath:Theorem ;
     rdfs:label "Theorem: Heine-Borel Theorem"@en ;
     mymath:hasDomain "Topology" ;
@@ -539,25 +597,12 @@ base:thm-heine-borel a mymath:Theorem ;
         base:def-compact,
         base:def-metric-space .
 
-base:thm-pythagorean a mymath:Theorem ;
-    rdfs:label "Theorem: Pythagorean Theorem"@en ;
-    mymath:hasDomain "Geometry" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-euclidean-space .
-
-base:thm-unique-identity a mymath:Theorem ;
-    rdfs:label "Theorem: Uniqueness of Identity"@en ;
-    mymath:hasDomain "Algebra" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-group .
-
 base:def-angle a mymath:Definition ;
     rdfs:label "Definition: Angle"@en ;
     rdfs:comment "An **angle** is the figure formed by two rays (half-lines) that share a common endpoint. The common endpoint is called the **vertex** of the angle, and the two rays are called the **sides** of the angle."@en ;
     mymath:hasDomain "Geometry" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-euclidean-space,
-        base:def-line,
+    mymath:uses base:def-line,
         base:def-point .
 
 base:def-basis a mymath:Definition ;
@@ -593,6 +638,14 @@ base:def-derivative a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-limit .
 
+base:def-event a mymath:Definition ;
+    rdfs:label "Definition: Event"@en ;
+    rdfs:comment "An **event** in probability theory is a [Subset](../logic-set-theory/def-subset.qmd) of the [Sample Space](def-sample-space.qmd) $\\Omega$. It represents a collection of outcomes to which a probability can be assigned."@en ;
+    mymath:hasDomain "Probability Statistics" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-sample-space,
+        base:def-subset .
+
 base:def-field a mymath:Definition ;
     rdfs:label "Definition: Field"@en ;
     mymath:hasDomain "Algebra" ;
@@ -607,15 +660,6 @@ base:def-functor a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-category .
 
-base:def-intersection a mymath:Definition ;
-    rdfs:label "Definition: Intersection"@en ;
-    rdfs:comment "The **intersection** of two @def-set[s] $A$ and $B$, denoted $A \\cap B$, is the set containing all elements that belong to both $A$ and $B$."@en ;
-    mymath:hasDomain "Logic Set Theory" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-set,
-        base:def-subset,
-        base:thm-de-morgan .
-
 base:def-linear-independence a mymath:Definition ;
     rdfs:label "Definition: Linear Independence"@en ;
     mymath:hasDomain "Algebra" ;
@@ -623,19 +667,11 @@ base:def-linear-independence a mymath:Definition ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearIndependent.LinearIndependent> ;
     mymath:uses base:def-vector-space .
 
-base:def-natural-transformation a mymath:Definition ;
-    rdfs:label "Definition: Natural Transformation"@en ;
-    mymath:hasDomain "Category Theory" ;
+base:def-random-variable a mymath:Definition ;
+    rdfs:label "Definition: Random Variable"@en ;
+    mymath:hasDomain "Probability Statistics" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-category,
-        base:def-functor,
-        base:def-morphism .
-
-base:def-power-set a mymath:Definition ;
-    rdfs:label "Definition: Power Set"@en ;
-    mymath:hasDomain "Logic Set Theory" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-set .
+    mymath:uses base:def-probability-space .
 
 base:def-span a mymath:Definition ;
     rdfs:label "Definition: Span"@en ;
@@ -653,56 +689,11 @@ base:def-subgroup a mymath:Definition ;
     mymath:uses base:def-group,
         base:def-set .
 
-base:def-subset a mymath:Definition ;
-    rdfs:label "Definition: Subset"@en ;
-    rdfs:comment "A @def-set $A$ is a **subset** of a set $B$, denoted $A \\subseteq B$, if every element of $A$ is also an element of $B$."@en ;
-    mymath:hasDomain "Logic Set Theory" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-power-set,
-        base:def-set .
-
-base:def-union a mymath:Definition ;
-    rdfs:label "Definition: Union"@en ;
-    rdfs:comment "The **union** of two @def-set[s] $A$ and $B$, denoted $A \\cup B$, is the set containing all elements that belong to either $A$ or $B$ (or both)."@en ;
-    mymath:hasDomain "Logic Set Theory" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-set,
-        base:thm-de-morgan .
-
-base:thm-de-morgan a mymath:Theorem ;
-    rdfs:label "Theorem: De Morgan's Laws"@en ;
-    rdfs:comment "**De Morgan's Laws** describe the relationship between @def-union, @def-intersection, and set complement. They state that the complement of a union equals the intersection of complements, and the complement of an intersection equals the union of complements."@en ;
-    mymath:hasDomain "Logic Set Theory" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-intersection,
-        base:def-set,
-        base:def-union .
-
-base:thm-metric-hausdorff a mymath:Theorem ;
-    rdfs:label "Theorem: Every Metric Space is Hausdorff"@en ;
-    mymath:hasDomain "Topology" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-hausdorff,
-        base:def-metric-space,
-        base:def-topological-space,
-        base:ex-real-line-metric .
-
-base:def-event a mymath:Definition ;
-    rdfs:label "Definition: Event"@en ;
-    rdfs:comment "An **event** in probability theory is a @def-subset of the @def-sample-space $\\Omega$. It represents a collection of outcomes to which a probability can be assigned."@en ;
+base:def-probability-space a mymath:Definition ;
+    rdfs:label "Definition: Probability Space"@en ;
     mymath:hasDomain "Probability Statistics" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-intersection,
-        base:def-probability-space,
-        base:def-sample-space,
-        base:def-subset,
-        base:def-union .
-
-base:def-random-variable a mymath:Definition ;
-    rdfs:label "Definition: Random Variable"@en ;
-    mymath:hasDomain "Probability Statistics" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-probability-space .
+    mymath:uses base:def-set .
 
 base:def-ring a mymath:Definition ;
     rdfs:label "Definition: Ring"@en ;
@@ -714,20 +705,12 @@ base:def-ring a mymath:Definition ;
         base:def-group,
         base:def-set .
 
-base:ex-real-line-metric a mymath:Example ;
-    rdfs:label "Example: Real Line with Standard Metric"@en ;
-    mymath:hasDomain "Analysis" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-continuity,
-        base:def-limit,
-        base:def-metric-space .
-
-base:def-euclidean-space a mymath:Definition ;
-    rdfs:label "Definition: Euclidean Space"@en ;
+base:def-line a mymath:Definition ;
+    rdfs:label "Definition: Line"@en ;
+    rdfs:comment "A **line** is a one-dimensional geometric object that extends infinitely in both directions. It is completely determined by any two distinct [Points](def-point.qmd) that lie on it."@en ;
     mymath:hasDomain "Geometry" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-metric-space,
-        base:def-vector-space .
+    mymath:uses base:def-point .
 
 base:def-morphism a mymath:Definition ;
     rdfs:label "Definition: Morphism"@en ;
@@ -739,23 +722,18 @@ base:def-point a mymath:Definition ;
     rdfs:label "Definition: Point"@en ;
     rdfs:comment "A **point** is a primitive notion in geometry that represents a location in space with no dimension (no length, width, or height). In Euclidean geometry, points are the fundamental building blocks from which all other geometric objects are constructed."@en ;
     mymath:hasDomain "Geometry" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-euclidean-space,
-        base:def-line,
-        base:def-metric-space .
+    mymath:hasStatus "complete" .
 
 base:def-prime a mymath:Definition ;
     rdfs:label "Definition: Prime Number"@en ;
     mymath:hasDomain "Number Theory" ;
     mymath:hasStatus "complete" .
 
-base:def-line a mymath:Definition ;
-    rdfs:label "Definition: Line"@en ;
-    rdfs:comment "A **line** is a one-dimensional geometric object that extends infinitely in both directions. It is completely determined by any two distinct @def-point[s] that lie on it."@en ;
-    mymath:hasDomain "Geometry" ;
+base:def-continuity a mymath:Definition ;
+    rdfs:label "Definition: Continuity"@en ;
+    mymath:hasDomain "Analysis" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-euclidean-space,
-        base:def-point .
+    mymath:uses base:def-limit .
 
 base:def-linear-transformation a mymath:Definition ;
     rdfs:label "Definition: Linear Transformation"@en ;
@@ -771,9 +749,15 @@ base:def-open-set a mymath:Definition ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Basic.IsOpen> ;
     mymath:uses base:def-topological-space .
 
-base:def-probability-space a mymath:Definition ;
-    rdfs:label "Definition: Probability Space"@en ;
-    mymath:hasDomain "Probability Statistics" ;
+base:def-limit a mymath:Definition ;
+    rdfs:label "Definition: Limit of a Sequence"@en ;
+    mymath:hasDomain "Analysis" ;
+    mymath:hasStatus "complete" .
+
+base:def-metric-space a mymath:Definition ;
+    rdfs:label "Definition: Metric Space"@en ;
+    mymath:hasDomain "Analysis",
+        "Geometry" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
@@ -782,28 +766,6 @@ base:def-category a mymath:Definition ;
     mymath:hasDomain "Category Theory" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
-
-base:def-continuity a mymath:Definition ;
-    rdfs:label "Definition: Continuity"@en ;
-    mymath:hasDomain "Analysis" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-limit .
-
-base:def-metric-space a mymath:Definition ;
-    rdfs:label "Definition: Metric Space"@en ;
-    mymath:hasDomain "Analysis",
-        "Geometry" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-continuity,
-        base:def-set,
-        base:def-topological-space,
-        base:ex-real-line-metric,
-        base:thm-metric-hausdorff .
-
-base:def-limit a mymath:Definition ;
-    rdfs:label "Definition: Limit of a Sequence"@en ;
-    mymath:hasDomain "Analysis" ;
-    mymath:hasStatus "complete" .
 
 base:def-topological-space a mymath:Definition ;
     rdfs:label "Definition: Topological Space"@en ;
