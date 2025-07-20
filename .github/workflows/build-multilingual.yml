@@ -178,14 +178,14 @@ jobs:
         QUARTO_CHROMIUM: ${{ steps.setup-chrome.outputs.chrome-path }}
       run: |
         echo "Building English version..."
-        quarto render --profile en --config _quarto-en.yml
+        quarto render --profile en
 
     - name: Render Japanese site
       env:
         QUARTO_CHROMIUM: ${{ steps.setup-chrome.outputs.chrome-path }}
       run: |
         echo "Building Japanese version..."
-        quarto render --profile ja --config _quarto-ja.yml
+        quarto render --profile ja
 
     # Step 7a: Create root index.html for language detection
     - name: Create language redirect page

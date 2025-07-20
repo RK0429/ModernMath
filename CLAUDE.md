@@ -53,6 +53,10 @@ quarto preview
 # Build the complete site
 quarto render
 
+# Build with language profiles (for multilingual support)
+quarto render --profile en  # Uses _quarto-en.yml automatically
+quarto render --profile ja  # Uses _quarto-ja.yml automatically
+
 # Build search index
 poetry run python scripts/build_search_index.py
 ```
