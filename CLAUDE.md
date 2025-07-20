@@ -150,6 +150,14 @@ quarto render --profile ja
 # Note: The CI/CD uses the unified build.yml workflow
 ```
 
+### Quarto Configuration Merging
+
+**Important**: Quarto merges profile configurations with the base `_quarto.yml` rather than replacing them. To avoid duplicate navigation items in multilingual setups:
+
+- Keep the base `_quarto.yml` minimal (only shared configuration like favicon, GitHub links)
+- Define complete navbar configurations in each language profile (`_quarto-en.yml`, `_quarto-ja.yml`)
+- Do not include language-specific navigation items in the base configuration
+
 ### Python Script Compatibility
 
 All Python scripts handle multilingual paths automatically:
