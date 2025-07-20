@@ -19,7 +19,7 @@ The Math Knowledge Graph API implements multiple layers of security to protect a
 
 ### 2. CORS Configuration
 
-- **Allowed origins**: 
+- **Allowed origins**:
   - `http://localhost:*` (development)
   - `https://rk0429.github.io` (production)
   - `https://*.github.io` (GitHub Pages)
@@ -141,7 +141,7 @@ SELECT * WHERE {
   # ... repeat 11 times
 }
 """
-response = requests.post("http://localhost:5001/api/query", 
+response = requests.post("http://localhost:5001/api/query",
                         json={"query": complex_query})
 assert response.status_code == 400
 ```

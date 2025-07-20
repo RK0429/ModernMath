@@ -13,7 +13,7 @@ QUERIES = {
     "count_nodes": """
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-        
+
         SELECT (COUNT(DISTINCT ?node) as ?count)
         FROM <urn:x-arq:DefaultGraph>
         WHERE {
@@ -23,7 +23,7 @@ QUERIES = {
     "list_definitions": """
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-        
+
         SELECT ?def ?label
         FROM <urn:x-arq:DefaultGraph>
         WHERE {
@@ -36,7 +36,7 @@ QUERIES = {
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX base: <https://mathwiki.org/resource/>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-        
+
         SELECT ?dependency ?label
         FROM <urn:x-arq:DefaultGraph>
         WHERE {
@@ -48,7 +48,7 @@ QUERIES = {
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX base: <https://mathwiki.org/resource/>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-        
+
         SELECT ?theorem ?label
         FROM <urn:x-arq:DefaultGraph>
         WHERE {
@@ -60,7 +60,7 @@ QUERIES = {
     "get_domain_concepts": """
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-        
+
         SELECT ?concept ?label ?domain
         FROM <urn:x-arq:DefaultGraph>
         WHERE {

@@ -37,7 +37,7 @@ graphData = loadGraphData(nodeId)
 {
   if (graphData) {
     const container = html`<div class="d3-graph-container"></div>`;
-    
+
     // Create the force-directed graph
     const graph = graphViz.createForceGraph(graphData, {
       width: 700,
@@ -46,14 +46,14 @@ graphData = loadGraphData(nodeId)
       linkDistance: 120,
       chargeStrength: -400
     });
-    
+
     // Add the graph to the container
     container.appendChild(graph);
-    
+
     // Add statistics display
     const stats = graphViz.createStatsDisplay(graphData);
     container.appendChild(stats);
-    
+
     // Display the container
     return container;
   } else {

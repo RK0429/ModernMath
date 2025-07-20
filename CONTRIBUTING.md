@@ -149,10 +149,10 @@ Example:
 ```python
 def extract_cross_references(content: str) -> List[str]:
     """Extract all @label cross-references from Markdown content.
-    
+
     Args:
         content: The Markdown content to parse
-        
+
     Returns:
         List of cross-reference labels found
     """

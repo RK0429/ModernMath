@@ -74,7 +74,7 @@ def get_node_info(g: Graph, node_uri: str) -> Dict[str, str]:
         domain = str(domain_obj)
         break
 
-    return {"id": node_uri, "label": label, "type": node_type or "Unknown", "domain": domain}
+    return {"id": node_uri, "label": label, "type": node_type or "Unknown", "domain": domain or ""}
 
 
 def get_neighbors(

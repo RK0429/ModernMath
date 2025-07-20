@@ -68,7 +68,7 @@ import Mathlib.Algebra.Group.Defs
 
 namespace MathWiki
 
-theorem unique_identity (G : Type*) [Group G] : 
+theorem unique_identity (G : Type*) [Group G] :
   ∃! e : G, ∀ a : G, e * a = a ∧ a * e = a := by
   sorry -- TODO: Add proof
 
@@ -112,10 +112,10 @@ def verify_dependencies(quarto_node, lean_theorem):
     """Compare dependencies between Quarto and Lean"""
     quarto_deps = get_quarto_dependencies(quarto_node)
     lean_deps = get_lean_dependencies(lean_theorem)
-    
+
     missing_in_quarto = lean_deps - quarto_deps
     missing_in_lean = quarto_deps - lean_deps
-    
+
     return {
         'consistent': len(missing_in_quarto) == 0 and len(missing_in_lean) == 0,
         'missing_in_quarto': list(missing_in_quarto),

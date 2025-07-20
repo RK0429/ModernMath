@@ -15,7 +15,7 @@ The Math Knowledge Graph Wiki project has successfully completed Phase 1 (Founda
 
 ### ✅ Content Coverage
 - **Domains**: Algebra, Analysis, Topology, Number Theory, Logic/Set Theory, Geometry, Category Theory, Combinatorics, Probability/Statistics
-- **Node Types**: 
+- **Node Types**:
   - 30 Definitions
   - 11 Theorems
   - 6 Examples
@@ -63,7 +63,7 @@ Begin with formalizing these core definitions:
 
 ## Recommendations
 
-1. **Content Expansion**: 
+1. **Content Expansion**:
    - Add more examples for existing definitions
    - Expand underrepresented domains (Category Theory has only 2 nodes)
    - Create index pages for all domain directories

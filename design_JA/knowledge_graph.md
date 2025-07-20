@@ -30,9 +30,9 @@ Quartoは、**コンテンツ作成のフロントエンド**、つまり、公�
 * **YAMLでのメタデータ:** 各QuartoファイルのYAMLフロントマターに、ノードに関するメタデータを含めることができます。例えば：
 
     ```yaml
-    title: "Definition: Group"  
-    type: "Definition"  
-    id: "def-group"  
+    title: "Definition: Group"
+    type: "Definition"
+    id: "def-group"
     requires: ["axiom-choice", "def-set"]  # 任意: 前提条件のIDリスト
     ```
 
@@ -88,7 +88,7 @@ Quartoは、**コンテンツ作成のフロントエンド**、つまり、公�
       A[Definition X] --> B(Theorem Y);
       A --> C(Theorem Z);
       C --> D[Example Q];
-    ```  
+    ```
     ````
 
     小さな有向グラフをレンダリングします。Pythonスクリプトでこれらのスニペットを自動生成し、Quartoページに含めることができます（おそらくQuartoフィルターを介して、またはレンダリング中に挿入することで）。Mermaidはかなり柔軟で、Quartoはそれを正しくレンダリングできます（以前のQuartoバージョンにはHTMLエスケープの問題がありましたが、v1.4以降では解決されています）。

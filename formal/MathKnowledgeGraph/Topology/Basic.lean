@@ -57,8 +57,8 @@ theorem univ_is_open : IsOpen (Set.univ : Set X) := by
   exact isOpen_univ
 
 /-- Proof that topological spaces satisfy the axioms from def-topological-space -/
-theorem topology_axioms : 
-    (IsOpen (∅ : Set X)) ∧ 
+theorem topology_axioms :
+    (IsOpen (∅ : Set X)) ∧
     (IsOpen (Set.univ : Set X)) ∧
     (∀ {ι : Type*} {U : ι → Set X}, (∀ i, IsOpen (U i)) → IsOpen (⋃ i, U i)) ∧
     (∀ {A B : Set X}, IsOpen A → IsOpen B → IsOpen (A ∩ B)) := by
@@ -86,7 +86,7 @@ section OpenSets
 variable {X : Type*} [TopologicalSpace X]
 
 /-- The union of any collection of open sets is open (thm-union-open-sets) -/
-theorem union_of_open_is_open {ι : Type*} {U : ι → Set X} 
+theorem union_of_open_is_open {ι : Type*} {U : ι → Set X}
     (hU : ∀ i, IsOpen (U i)) : IsOpen (⋃ i, U i) := by
   exact isOpen_iUnion hU
 
@@ -159,7 +159,7 @@ theorem closed_interval_compact (a b : ℝ) : IsCompact {x : ℝ | a ≤ x ∧ x
   exact isCompact_Icc
 
 /-- In a compact space, every closed subset is compact -/
-theorem closed_subset_of_compact_is_compact {K : Set X} [CompactSpace X] 
+theorem closed_subset_of_compact_is_compact {K : Set X} [CompactSpace X]
     (hK : IsClosed K) : IsCompact K := by
   exact hK.isCompact
 
@@ -205,8 +205,8 @@ theorem real_line_connected : IsConnected (Set.univ : Set ℝ) := by
   exact isConnected_univ
 
 /-- The continuous image of a connected set is connected -/
-theorem continuous_image_of_connected {Y : Type*} [TopologicalSpace Y] 
-    {f : X → Y} (hf : Continuous f) {A : Set X} (hA : IsConnected A) : 
+theorem continuous_image_of_connected {Y : Type*} [TopologicalSpace Y]
+    {f : X → Y} (hf : Continuous f) {A : Set X} (hA : IsConnected A) :
     IsConnected (f '' A) := by
   exact IsConnected.image hA f hf.continuousOn
 

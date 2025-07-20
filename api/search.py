@@ -40,7 +40,7 @@ class MathKnowledgeSearcher:
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        
+
         SELECT DISTINCT ?node ?label ?type ?domain
         FROM <urn:x-arq:DefaultGraph>
         WHERE {{
@@ -162,7 +162,7 @@ class MathKnowledgeSearcher:
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         PREFIX base: <https://mathwiki.org/resource/>
-        
+
         SELECT ?dep ?label ?type
         FROM <urn:x-arq:DefaultGraph>
         WHERE {{
@@ -178,7 +178,7 @@ class MathKnowledgeSearcher:
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         PREFIX base: <https://mathwiki.org/resource/>
-        
+
         SELECT ?dependent ?label ?type
         FROM <urn:x-arq:DefaultGraph>
         WHERE {{
@@ -248,7 +248,7 @@ class MathKnowledgeSearcher:
         # Also check RDF labels
         sparql_query = f"""
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-        
+
         SELECT DISTINCT ?label
         FROM <urn:x-arq:DefaultGraph>
         WHERE {{

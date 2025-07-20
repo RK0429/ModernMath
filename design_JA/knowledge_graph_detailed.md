@@ -13,9 +13,9 @@
 
 提案するアーキテクチャは、以下の4つのフェーズからなる好循環（virtuous cycle）を基本理念として設計されています。
 
-1. **オーサリング（Quarto）:** 人間が構造化され、可読性の高いコンテンツを作成します。  
-2. **抽出（Python）:** 自動化されたスクリプトがこのコンテンツを解析し、形式的なグラフ構造に変換します。  
-3. **クエリ（SPARQL/API）:** 生成されたグラフは、探索と分析のために公開されます。  
+1. **オーサリング（Quarto）:** 人間が構造化され、可読性の高いコンテンツを作成します。
+2. **抽出（Python）:** 自動化されたスクリプトがこのコンテンツを解析し、形式的なグラフ構造に変換します。
+3. **クエリ（SPARQL/API）:** 生成されたグラフは、探索と分析のために公開されます。
 4. **エンリッチメント（可視化 & LLM）:** グラフから得られた知見がオーサリング環境にフィードバックされ、インテリジェントなアシスタント機能の動力源となります。
 
 このアーキテクチャは、初期段階からスケーラビリティ、メンテナンス性、拡張性を確保するように設計されており、数学という広大な領域を段階的に取り込んでいく長期的なプロジェクトの基盤として機能します。
@@ -34,15 +34,15 @@
 
 数学的知識ドメインのために、以下の主要なノード（クラス）と関係（プロパティ）を定義します。
 
-* **ノード型（クラス）:**  
-  * Axiom（公理）  
-  * Definition（定義）  
-  * Theorem（定理）: Lemma（補題）、Proposition（命題）、Corollary（系）を含む。  
-  * Example（例）  
-* **関係型（プロパティ）:**  
-  * uses / dependsOn: 最も重要な関係であり、依存関係グラフを形成します（例：定理が定義をusesする）。  
-  * hasExample / isExampleOf: 概念と具体的な実例を結びつけます。  
-  * generalizes / specializes: 概念間の階層関係を捉えます。  
+* **ノード型（クラス）:**
+  * Axiom（公理）
+  * Definition（定義）
+  * Theorem（定理）: Lemma（補題）、Proposition（命題）、Corollary（系）を含む。
+  * Example（例）
+* **関係型（プロパティ）:**
+  * uses / dependsOn: 最も重要な関係であり、依存関係グラフを形成します（例：定理が定義をusesする）。
+  * hasExample / isExampleOf: 概念と具体的な実例を結びつけます。
+  * generalizes / specializes: 概念間の階層関係を捉えます。
   * implies: 定理に内在する、より具体的な論理的含意関係を示します。
 
 ### **C. アーキテクチャ決定：RDF対プロパティグラフ**
@@ -74,25 +74,25 @@ rdflib-neo4j 16 のようなブリッジは存在しますが、これらは追�
 
 コード スニペット
 
-@prefix rdf: \<<http://www.w3.org/1999/02/22-rdf-syntax-ns\#\>>.  
-@prefix rdfs: \<<http://www.w3.org/2000/01/rdf-schema\#\>>.  
-@prefix owl: \<<http://www.w3.org/2002/07/owl\#\>>.  
-@prefix skos: \<<http://www.w3.org/2004/02/skos/core\#\>>.  
+@prefix rdf: \<<http://www.w3.org/1999/02/22-rdf-syntax-ns\#\>>.
+@prefix rdfs: \<<http://www.w3.org/2000/01/rdf-schema\#\>>.
+@prefix owl: \<<http://www.w3.org/2002/07/owl\#\>>.
+@prefix skos: \<<http://www.w3.org/2004/02/skos/core\#\>>.
 @prefix mymath: \<<https://mathwiki.org/ontology\#\>>.
 
-mymath:Theorem a rdfs:Class ;  
-    rdfs:subClassOf skos:Concept ;  
-    rdfs:label "Theorem"@en ;  
+mymath:Theorem a rdfs:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "Theorem"@en ;
     rdfs:comment "A mathematical statement that has been proved on the basis of previously established statements, such as other theorems, and generally accepted statements, such as axioms."@en.
 
-mymath:Definition a rdfs:Class ;  
-    rdfs:subClassOf skos:Concept ;  
+mymath:Definition a rdfs:Class ;
+    rdfs:subClassOf skos:Concept ;
     rdfs:label "Definition"@en.
 
-mymath:uses a rdf:Property ;  
-    rdfs:domain mymath:Theorem ;  
-    rdfs:range skos:Concept ;  
-    rdfs:label "uses"@en ;  
+mymath:uses a rdf:Property ;
+    rdfs:domain mymath:Theorem ;
+    rdfs:range skos:Concept ;
+    rdfs:label "uses"@en ;
     rdfs:comment "Indicates that the subject (e.g., a theorem) depends on or utilizes the object (e.g., a definition or another theorem) in its proof or statement."@en.
 
 さらに、車輪の再発明を避け、相互運用性を劇的に向上させるために、カスタムオントロジーを既存の確立されたオントロジーにマッピングすることが不可欠です。OntoMathPRO 6 やOMV (Ontology Metadata Vocabulary) 17 のようなプロジェクトは、数学的知識のモデリングに関して広範な研究を行っています。これらの外部スキーマのクラスやプロパティに対して
@@ -155,18 +155,18 @@ python-frontmatter 23 のようなライブラリを使えば、このカスタ�
 
 YAML
 
-\---  
-title: "Definition: Group"  
-id: "def-group"  
-type: "Definition"  
-status: "complete"  
-lean\_id: "Mathlib.GroupTheory.Group.group"  
-requires:  
-  \- "def-set"  
-  \- "def-binary-operation"  
+\---
+title: "Definition: Group"
+id: "def-group"
+type: "Definition"
+status: "complete"
+lean\_id: "Mathlib.GroupTheory.Group.group"
+requires:
+  \- "def-set"
+  \- "def-binary-operation"
 \---
 
-A group is a set equipped with a binary operation that combines any two elements to form a third element in such a way that four conditions called group axioms are satisfied, namely closure, associativity, identity and invertibility.  
+A group is a set equipped with a binary operation that combines any two elements to form a third element in such a way that four conditions called group axioms are satisfied, namely closure, associativity, identity and invertibility.
 ...
 
 ## **IV. バックエンドパイプライン：Quartoドキュメントからクエリ可能なグラフへ**
@@ -175,23 +175,23 @@ A group is a set equipped with a binary operation that combines any two elements
 
 バックエンドの処理パイプラインは、以下のステップで構成されます。
 
-1. プロジェクト内の .qmd ファイルをスキャンする。  
-2. 各ファイルについて、YAMLフロントマターとMarkdownコンテンツを解析する。  
-3. ノード情報（ID、型、タイトルなど）と関係（@リンクやrequiresリスト）を抽出する。  
-4. 抽出された情報に基づいてRDFトリプルを構築する。  
+1. プロジェクト内の .qmd ファイルをスキャンする。
+2. 各ファイルについて、YAMLフロントマターとMarkdownコンテンツを解析する。
+3. ノード情報（ID、型、タイトルなど）と関係（@リンクやrequiresリスト）を抽出する。
+4. 抽出された情報に基づいてRDFトリプルを構築する。
 5. 構築されたグラフ全体を標準的なグラフ形式（例：Turtle）でシリアライズ（ファイルに出力）する。
 
 ### **B. 解析戦略：生Markdown対レンダリング済みHTML**
 
 コンテンツからグラフ構造を抽出するには、主に2つのアプローチが考えられます。
 
-* **アプローチ1（推奨）：生.qmdファイルの解析**  
-  * **ツール:** Pythonライブラリ python-frontmatter 23 を使用して、YAMLメタデータとMarkdownコンテンツを簡単に分離します。  
-  * **利点:** 完全なQuartoレンダリングを回避できるため高速です。メタデータや @label リンクといった「真実のソース」に直接アクセスできます。  
-  * **欠点:** Markdown本文中のすべての @label 参照を見つけるために、堅牢な正規表現またはAST（抽象構文木）パーサーが必要になります。  
-* **アプローチ2：レンダリング済みHTMLの解析**  
-  * **ツール:** Leanナレッジグラフプロジェクトで見られるように、Pythonの BeautifulSoup ライブラリを使用します 14。  
-  * **利点:** Quartoがすべてのクロスリファレンスを href 属性を持つ標準的な \<a\> タグに解決してくれるため、リンクの抽出が単純化されます。  
+* **アプローチ1（推奨）：生.qmdファイルの解析**
+  * **ツール:** Pythonライブラリ python-frontmatter 23 を使用して、YAMLメタデータとMarkdownコンテンツを簡単に分離します。
+  * **利点:** 完全なQuartoレンダリングを回避できるため高速です。メタデータや @label リンクといった「真実のソース」に直接アクセスできます。
+  * **欠点:** Markdown本文中のすべての @label 参照を見つけるために、堅牢な正規表現またはAST（抽象構文木）パーサーが必要になります。
+* **アプローチ2：レンダリング済みHTMLの解析**
+  * **ツール:** Leanナレッジグラフプロジェクトで見られるように、Pythonの BeautifulSoup ライブラリを使用します 14。
+  * **利点:** Quartoがすべてのクロスリファレンスを href 属性を持つ標準的な \<a\> タグに解決してくれるため、リンクの抽出が単純化されます。
   * **欠点:** quarto render の実行が必要なため低速です。また、HTMLの解析はMarkdownの解析よりも変更に弱い（brittle）可能性があります。
 
 **推奨:** 速度と直接性の観点から、生 .qmd ファイルの解析から始めることを推奨します。python-frontmatter ライブラリはメタデータの扱いに理想的であり、@label の抽出は対象を絞った正規表現で十分に処理可能です。
@@ -202,54 +202,54 @@ A group is a set equipped with a binary operation that combines any two elements
 
 Python
 
-import frontmatter  
-import re  
-from pathlib import Path  
+import frontmatter
+import re
+from pathlib import Path
 from rdflib import Graph, Literal, Namespace, RDF, RDFS
 
-\# 名前空間の定義  
-MYMATH \= Namespace("<https://mathwiki.org/ontology\#>")  
+\# 名前空間の定義
+MYMATH \= Namespace("<https://mathwiki.org/ontology\#>")
 BASE\_URI \= "<https://mathwiki.org/resource/>"
 
-\# グラフの初期化  
-g \= Graph()  
-g.bind("mymath", MYMATH)  
+\# グラフの初期化
+g \= Graph()
+g.bind("mymath", MYMATH)
 g.bind("rdfs", RDFS)
 
-\# クロスリファレンスを抽出する正規表現  
+\# クロスリファレンスを抽出する正規表現
 crossref\_pattern \= re.compile(r'@(\[a-zA-Z0-9\_-\]+)')
 
-\# qmdファイルのスキャンと処理  
-for qmd\_path in Path("content/").rglob("\*.qmd"):  
-    with open(qmd\_path, 'r', encoding='utf-8') as f:  
-        post \= frontmatter.load(f)  
-        metadata \= post.metadata  
+\# qmdファイルのスキャンと処理
+for qmd\_path in Path("content/").rglob("\*.qmd"):
+    with open(qmd\_path, 'r', encoding='utf-8') as f:
+        post \= frontmatter.load(f)
+        metadata \= post.metadata
         content \= post.content
 
-    if 'id' not in metadata or 'type' not in metadata:  
+    if 'id' not in metadata or 'type' not in metadata:
         continue \# 必須メタデータがないファイルはスキップ
 
-    node\_id \= metadata\['id'\]  
+    node\_id \= metadata\['id'\]
     node\_uri \= Namespace(BASE\_URI)\[node\_id\]
 
-    \# 1\. ノードの型とラベルのトリプルを追加  
-    g.add((node\_uri, RDF.type, MYMATH\[metadata\['type'\]\]))  
-    if 'title' in metadata:  
+    \# 1\. ノードの型とラベルのトリプルを追加
+    g.add((node\_uri, RDF.type, MYMATH\[metadata\['type'\]\]))
+    if 'title' in metadata:
         g.add((node\_uri, RDFS.label, Literal(metadata\['title'\], lang='en')))
 
-    \# 2\. 本文中の@リンクから依存関係を抽出  
+    \# 2\. 本文中の@リンクから依存関係を抽出
     dependencies \= set(crossref\_pattern.findall(content))
 
-    \# 3\. YAMLのrequiresからも依存関係を追加  
-    if 'requires' in metadata and isinstance(metadata\['requires'\], list):  
+    \# 3\. YAMLのrequiresからも依存関係を追加
+    if 'requires' in metadata and isinstance(metadata\['requires'\], list):
         dependencies.update(metadata\['requires'\])
 
-    \# 4\. 依存関係のトリプルを追加  
-    for dep\_id in dependencies:  
-        dep\_uri \= Namespace(BASE\_URI)\[dep\_id\]  
+    \# 4\. 依存関係のトリプルを追加
+    for dep\_id in dependencies:
+        dep\_uri \= Namespace(BASE\_URI)\[dep\_id\]
         g.add((node\_uri, MYMATH.uses, dep\_uri))
 
-\# グラフのシリアライズ  
+\# グラフのシリアライズ
 g.serialize(destination='knowledge\_graph.ttl', format\='turtle')
 
 print("Knowledge graph generated successfully.")
@@ -280,7 +280,7 @@ mathlib のようなLeanプロジェクトに対して trace コマンドを実�
 
 この比較プロセスにより、以下のような高度な検証が可能になります。
 
-1. **不整合の検出:** Leanの証明で使用されている依存関係が、Quartoのテキストでリンクされていない場合（またはその逆）、スクリプトはこれを「不整合」としてフラグを立て、人間のレビューを促します。これにより、ドキュメントの論理的な欠陥や記述漏れを体系的に発見できます。  
+1. **不整合の検出:** Leanの証明で使用されている依存関係が、Quartoのテキストでリンクされていない場合（またはその逆）、スクリプトはこれを「不整合」としてフラグを立て、人間のレビューを促します。これにより、ドキュメントの論理的な欠陥や記述漏れを体系的に発見できます。
 2. **検証済みトリプルの追加:** 依存関係が一致した場合、スクリプトはQuartoグラフに mymath:isVerifiedBy という新しいトリプルを追加します。このトリプルは、Quartoの定理ノードを、形式的なLeanの証明を表す新しいノードにリンクします。これにより、グラフ内に「形式的に検証済み」のサブグラフが形成され、知識の信頼性が格段に向上します。
 
 このワークフローを通じて、人間が作成した知識と機械が検証した知識が融合し、ナレッジグラフは単なる情報の集合から、信頼性の高い論理体系へと昇華します。
@@ -291,8 +291,8 @@ mathlib のようなLeanプロジェクトに対して trace コマンドを実�
 
 構築したナレッジグラフを世界中のアプリケーションやユーザーが利用できるようにするため、SPARQLエンドポイントを公開します。Apache Jena Fusekiは、この目的のための堅牢で標準的なトリプルストアサーバーです。Fusekiのクイックスタートガイドに基づき、以下の手順でセットアップします 13。
 
-1. Fusekiサーバーをダウンロードし、起動します。  
-2. Webベースの管理UI（通常は <http://localhost:3030/）にアクセスし、新しいデータセット（インメモリまたは永続的なTDB）を作成します。>  
+1. Fusekiサーバーをダウンロードし、起動します。
+2. Webベースの管理UI（通常は <http://localhost:3030/）にアクセスし、新しいデータセット（インメモリまたは永続的なTDB）を作成します。>
 3. バックエンドパイプラインで生成された knowledge\_graph.ttl ファイルを、作成したデータセットにアップロードします。
 
 これにより、データセットごとに専用のSPARQLクエリUIが利用可能になり、グラフに対するライブクエリの準備が整います。
@@ -301,26 +301,26 @@ mathlib のようなLeanプロジェクトに対して trace コマンドを実�
 
 SPARQLエンドポイントは、HTTPを介してグラフに問い合わせるための標準的なインターフェースを提供します。これにより、プロジェクトの目標に沿った様々な質問に答えることができます。
 
-* **例1：選択公理に依存する全ての定理を検索**  
-  コード スニペット  
-  PREFIX mymath: \<<https://mathwiki.org/ontology\#\>>  
+* **例1：選択公理に依存する全ての定理を検索**
+  コード スニペット
+  PREFIX mymath: \<<https://mathwiki.org/ontology\#\>>
   PREFIX base: \<<https://mathwiki.org/resource/\>>
 
-  SELECT?theorem\_label  
-  WHERE {  
-   ?theorem mymath:uses base:axiom-of-choice.  
-   ?theorem rdfs:label?theorem\_label.  
+  SELECT?theorem\_label
+  WHERE {
+   ?theorem mymath:uses base:axiom-of-choice.
+   ?theorem rdfs:label?theorem\_label.
   }
 
-* **例2：特定の定理の完全な依存関係チェーンを検索（推移的クエリ）**  
-  コード スニペット  
-  PREFIX mymath: \<<https://mathwiki.org/ontology\#\>>  
+* **例2：特定の定理の完全な依存関係チェーンを検索（推移的クエリ）**
+  コード スニペット
+  PREFIX mymath: \<<https://mathwiki.org/ontology\#\>>
   PREFIX base: \<<https://mathwiki.org/resource/\>>
 
-  SELECT DISTINCT?dependency\_label  
-  WHERE {  
-    base:thm-pythagorean mymath:uses+?dependency.  
-   ?dependency rdfs:label?dependency\_label.  
+  SELECT DISTINCT?dependency\_label
+  WHERE {
+    base:thm-pythagorean mymath:uses+?dependency.
+   ?dependency rdfs:label?dependency\_label.
   }
 
   (uses+ は1回以上の uses 関係の連鎖を意味します)
@@ -329,7 +329,7 @@ SPARQLエンドポイントは、HTTPを介してグラフに問い合わせる�
 
 SPARQLは強力ですが、多くのエンドユーザーにとっては複雑すぎる場合があります。より広範な利用を促進するために、SPARQLエンドポイントの上にシンプルなAPIラッパーを構築することが有効です。
 
-* **REST API:** Pythonのフレームワーク（FlaskやFastAPI）を使用して、/api/dependencies?id=thm-pythagorean のような直感的なエンドポイントを作成します 29。このエンドポイントは、内部で事前に定義されたSPARQLクエリを実行し、結果を整形されたJSONとして返します。  
+* **REST API:** Pythonのフレームワーク（FlaskやFastAPI）を使用して、/api/dependencies?id=thm-pythagorean のような直感的なエンドポイントを作成します 29。このエンドポイントは、内部で事前に定義されたSPARQLクエリを実行し、結果を整形されたJSONとして返します。
 * **GraphQL API:** より複雑なクライアントサイドの要求に応えるためには、GraphQLが適しています。GraphQLは、クライアントが必要なデータを正確に指定できる、強く型付けされたクエリ言語です。neo4j-graphql 31（Neo4j使用時）や、汎用のGraphQL-to-SPARQLライブラリを利用して、オントロジーをGraphQLスキーマとして公開することができます。これにより、特にフロントエンド開発者にとって、データへのアクセスが大幅に簡素化されます。
 
 ## **VII. インタラクティブな探索：ナレッジグラフの可視化**
@@ -352,8 +352,8 @@ def-group）に対してSPARQLクエリを実行し、そのノードから1ホ�
 
 具体的な実装戦略は以下の通りです。
 
-1. **データ生成:** バックエンドパイプラインまたはCI/CDパイプラインにおいて、各ノードページ（例：def-group.qmd）に対応する小さなJSONファイル（例：def-group.json）を生成します。このJSONファイルには、そのノードのローカルなグラフ近傍（例：2ホップ以内のノードとエッジ）のデータが含まれます。  
-2. **可視化コンポーネントの作成:** 再利用可能なOJSコードチャンクを作成します。このチャンクは、D3.jsライブラリを require し、ページに対応するJSONファイルを非同期で読み込み、インタラクティブな力学モデル（force-directed layout）のグラフとしてレンダリングします。  
+1. **データ生成:** バックエンドパイプラインまたはCI/CDパイプラインにおいて、各ノードページ（例：def-group.qmd）に対応する小さなJSONファイル（例：def-group.json）を生成します。このJSONファイルには、そのノードのローカルなグラフ近傍（例：2ホップ以内のノードとエッジ）のデータが含まれます。
+2. **可視化コンポーネントの作成:** 再利用可能なOJSコードチャンクを作成します。このチャンクは、D3.jsライブラリを require し、ページに対応するJSONファイルを非同期で読み込み、インタラクティブな力学モデル（force-directed layout）のグラフとしてレンダリングします。
 3. **埋め込み:** このOJSチャンクを、関連する情報を表示したいQuartoページに含めます。
 
 この方法により、可視化ロジックは再利用可能になり、データ読み込みは各ページで必要な分だけ行われるため効率的です。また、RやPythonを主に使用する開発者向けには、pyvis（Python）やvisNetwork（R）のようなライブラリが、自己完結型のインタラクティブなHTMLウィジェットを生成し、これをQuartoがコードチャンクから直接埋め込むことも可能です 36。
@@ -382,8 +382,8 @@ def-group）に対してSPARQLクエリを実行し、そのノードから1ホ�
 
 提案するLLM統合戦略は以下の通りです。
 
-1. **関係抽出アシスタント（CI連携）:** プルリクエストがオープンされると、GitHub Actionが変更されたテキストをLLM APIに送信します。その際のプロンプトは、「以下の数学的テキストを読み、言及されている全ての数学的概念（例：'群', '準同型', 'コンパクト空間'）を特定してください。このリストを、テキスト中の明示的な@リンクと比較し、言及されているにもかかわらずリンクされていない概念を報告してください。」といったものになります。LLMからの応答は、自動的にプルリクエストにコメントとして投稿され、著者にリンクの追加を促します。これにより、リンク規約の遵守が徹底され、グラフの網羅性が向上します。  
-2. **コンテンツ生成:** LLMを用いて、定義や例のページの初稿を生成させます。その後、人間の専門家がその内容をレビューし、修正・改良します。これにより、コンテンツ作成の速度が大幅に向上します。  
+1. **関係抽出アシスタント（CI連携）:** プルリクエストがオープンされると、GitHub Actionが変更されたテキストをLLM APIに送信します。その際のプロンプトは、「以下の数学的テキストを読み、言及されている全ての数学的概念（例：'群', '準同型', 'コンパクト空間'）を特定してください。このリストを、テキスト中の明示的な@リンクと比較し、言及されているにもかかわらずリンクされていない概念を報告してください。」といったものになります。LLMからの応答は、自動的にプルリクエストにコメントとして投稿され、著者にリンクの追加を促します。これにより、リンク規約の遵守が徹底され、グラフの網羅性が向上します。
+2. **コンテンツ生成:** LLMを用いて、定義や例のページの初稿を生成させます。その後、人間の専門家がその内容をレビューし、修正・改良します。これにより、コンテンツ作成の速度が大幅に向上します。
 3. **自然言語クエリインターフェース:** 検索拡張生成（Retrieval-Augmented Generation, RAG）パターンを用いたLLM搭載のチャットボットをデプロイします 40。ユーザーが「群の定義に依存する定理は何ですか？」のような自然言語で質問すると、LLMはそれをSPARQLクエリに変換し、ナレッジグラフに対して実行します。そして、得られた結果を統合し、関連するウィキページへの引用付きで自然言語の回答を生成します 41。これにより、専門家でないユーザーでもグラフの持つ知識を容易に引き出すことが可能になります。
 
 ## **IX. 統合と戦略的ロードマップ**
@@ -396,18 +396,18 @@ def-group）に対してSPARQLクエリを実行し、そのノードから1ホ�
 
 この壮大なプロジェクトを現実的に進めるため、以下の段階的な実装計画を提案します。
 
-* **フェーズ1（MVP：Minimum Viable Product）:** コアループの確立に集中します。  
-  * 限定的な数学分野（例：基本的な群論）のための最小限のオントロジーを定義します。  
-  * 厳密なリンク規約のもと、50〜100程度のノードをQuartoで作成します。  
-  * Pythonパーサーを実装し、静的な knowledge\_graph.ttl ファイルを生成します。  
-  * 基本的なQuarto Webサイトと、それをレンダリング・デプロイするCI/CDパイプラインをセットアップします。  
-* **フェーズ2（クエリと可視化）:**  
-  * 生成された knowledge\_graph.ttl をJena Fusekiサーバーにデプロイし、SPARQLエンドポイントを公開します。  
-  * 各ノードのローカルなグラフ近傍を示す静的なMermaid図を埋め込みます。  
-  * インタラクティブなD3.js/OJS可視化コンポーネントを開発し、主要なページに統合します。  
-* **フェーズ3（スケーリングとインテリジェンス）:**  
-  * Leanによる形式的検証ワークフローを統合し、検証済みサブグラフを構築します。  
-  * CIパイプラインにLLM支援による関係抽出機能を実装します。  
+* **フェーズ1（MVP：Minimum Viable Product）:** コアループの確立に集中します。
+  * 限定的な数学分野（例：基本的な群論）のための最小限のオントロジーを定義します。
+  * 厳密なリンク規約のもと、50〜100程度のノードをQuartoで作成します。
+  * Pythonパーサーを実装し、静的な knowledge\_graph.ttl ファイルを生成します。
+  * 基本的なQuarto Webサイトと、それをレンダリング・デプロイするCI/CDパイプラインをセットアップします。
+* **フェーズ2（クエリと可視化）:**
+  * 生成された knowledge\_graph.ttl をJena Fusekiサーバーにデプロイし、SPARQLエンドポイントを公開します。
+  * 各ノードのローカルなグラフ近傍を示す静的なMermaid図を埋め込みます。
+  * インタラクティブなD3.js/OJS可視化コンポーネントを開発し、主要なページに統合します。
+* **フェーズ3（スケーリングとインテリジェンス）:**
+  * Leanによる形式的検証ワークフローを統合し、検証済みサブグラフを構築します。
+  * CIパイプラインにLLM支援による関係抽出機能を実装します。
   * RAGベースの自然言語Q\&Aインターフェースの開発に着手します。
 
 ### **C. 長期的ビジョンに関する結びの言葉**
@@ -416,44 +416,44 @@ def-group）に対してSPARQLクエリを実行し、そのノードから1ホ�
 
 #### **引用文献**
 
-1. Knowledge Graphs \- arXiv, 7月 19, 2025にアクセス、 [http://arxiv.org/pdf/2003.02320](http://arxiv.org/pdf/2003.02320)  
-2. MaRDI portal \- Mathematical Research Data Initiative, 7月 19, 2025にアクセス、 [https://portal.mardi4nfdi.de/](https://portal.mardi4nfdi.de/)  
-3. Bravo MaRDI: A Wikibase Powered Knowledge Graph on ... \- dblp, 7月 19, 2025にアクセス、 [https://dblp.org/rec/journals/corr/abs-2309-11484](https://dblp.org/rec/journals/corr/abs-2309-11484)  
-4. Bravo MaRDI: A Wikibase Knowledge Graph on Mathematics \- Wikidata Workshop, 7月 19, 2025にアクセス、 [https://wikidataworkshop.github.io/2023/papers/15\_\_novel\_bravo\_mardi\_a\_wikibase\_%5B1%5D.pdf](https://wikidataworkshop.github.io/2023/papers/15__novel_bravo_mardi_a_wikibase_%5B1%5D.pdf)  
-5. Wikibase, Wikidata, and Knowledge Graphs \- Professional Wiki, 7月 19, 2025にアクセス、 [https://professional.wiki/en/wikibase-wikidata-and-knowledge-graphs](https://professional.wiki/en/wikibase-wikidata-and-knowledge-graphs)  
-6. OntoMathPRO: An Ontology of Mathematical Knowledge, 7月 19, 2025にアクセス、 [https://kpfu.ru/staff\_files/F2070552642/S1064562422700016.pdf](https://kpfu.ru/staff_files/F2070552642/S1064562422700016.pdf)  
-7. New components of the OntoMathPRO ontology for representing math knowledge, 7月 19, 2025にアクセス、 [https://www.researchgate.net/publication/374853589\_New\_components\_of\_the\_OntoMathPRO\_ontology\_for\_representing\_math\_knowledge](https://www.researchgate.net/publication/374853589_New_components_of_the_OntoMathPRO_ontology_for_representing_math_knowledge)  
-8. MaRDI Model Ontology classes and their relations. Visualisation done with Web-VOWL., 7月 19, 2025にアクセス、 [https://www.researchgate.net/figure/MaRDI-Model-Ontology-classes-and-their-relations-Visualisation-done-with-Web-VOWL\_fig3\_373794021](https://www.researchgate.net/figure/MaRDI-Model-Ontology-classes-and-their-relations-Visualisation-done-with-Web-VOWL_fig3_373794021)  
-9. Algorithm Knowledge Graph Ontology, 7月 19, 2025にアクセス、 [https://algodata.mardi4nfdi.de/static/widoco/v1/index-en.html](https://algodata.mardi4nfdi.de/static/widoco/v1/index-en.html)  
-10. Web Ontology Language \- Wikipedia, 7月 19, 2025にアクセス、 [https://en.wikipedia.org/wiki/Web\_Ontology\_Language](https://en.wikipedia.org/wiki/Web_Ontology_Language)  
-11. The Mathematical Semantic Web \- CiteSeerX, 7月 19, 2025にアクセス、 [https://citeseerx.ist.psu.edu/document?repid=rep1\&type=pdf\&doi=8de81efaac59426eda2c9311c0db64d2c3e2120c](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=8de81efaac59426eda2c9311c0db64d2c3e2120c)  
-12. Getting started with Apache Jena, 7月 19, 2025にアクセス、 [https://jena.apache.org/getting\_started/](https://jena.apache.org/getting_started/)  
-13. Fuseki Quickstart \- Apache Jena, 7月 19, 2025にアクセス、 [https://jena.apache.org/documentation/fuseki2/fuseki-quick-start.html](https://jena.apache.org/documentation/fuseki2/fuseki-quick-start.html)  
-14. Creating a Mathematical Knowledge Graph Using Lean 4's Mathlib ..., 7月 19, 2025にアクセス、 [https://epikprotocol.medium.com/creating-a-mathematical-knowledge-graph-using-lean-4s-mathlib-library-b187d1af663c](https://epikprotocol.medium.com/creating-a-mathematical-knowledge-graph-using-lean-4s-mathlib-library-b187d1af663c)  
-15. RDF Triple Stores vs. Property Graphs: What's the Difference? \- Neo4j, 7月 19, 2025にアクセス、 [https://neo4j.com/blog/knowledge-graph/rdf-vs-property-graphs-knowledge-graphs/](https://neo4j.com/blog/knowledge-graph/rdf-vs-property-graphs-knowledge-graphs/)  
-16. RDFLib and Neo4j \- Google Groups, 7月 19, 2025にアクセス、 [https://groups.google.com/g/rdflib-dev/c/y5CweAwtHGE](https://groups.google.com/g/rdflib-dev/c/y5CweAwtHGE)  
-17. OMV \- Ontology Metadata Vocabulary, 7月 19, 2025にアクセス、 [https://oeg.fi.upm.es/index.php/en/downloads/75-omv/index.html](https://oeg.fi.upm.es/index.php/en/downloads/75-omv/index.html)  
-18. Ontology Metadata Vocabulary \- NCBO BioPortal, 7月 19, 2025にアクセス、 [https://bioportal.bioontology.org/ontologies/OMV](https://bioportal.bioontology.org/ontologies/OMV)  
-19. Project Basics – Quarto, 7月 19, 2025にアクセス、 [https://quarto.org/docs/projects/quarto-projects.html](https://quarto.org/docs/projects/quarto-projects.html)  
-20. Cross References – Quarto, 7月 19, 2025にアクセス、 [https://quarto.org/docs/authoring/cross-references.html](https://quarto.org/docs/authoring/cross-references.html)  
-21. Front Matter \- Quarto, 7月 19, 2025にアクセス、 [https://quarto.org/docs/authoring/front-matter.html](https://quarto.org/docs/authoring/front-matter.html)  
-22. 8 Setting options with YAML \- Quarto: The Definitive Guide, 7月 19, 2025にアクセス、 [https://quarto-tdg.org/yaml.html](https://quarto-tdg.org/yaml.html)  
-23. Python Frontmatter — Python Frontmatter 1.0.0 documentation, 7月 19, 2025にアクセス、 [https://python-frontmatter.readthedocs.io/](https://python-frontmatter.readthedocs.io/)  
-24. python-frontmatter \- PyPI, 7月 19, 2025にアクセス、 [https://pypi.org/project/python-frontmatter/](https://pypi.org/project/python-frontmatter/)  
-25. Generating Millions Of Lean Theorems With Proofs By Exploring State Transition Graphs, 7月 19, 2025にアクセス、 [https://arxiv.org/html/2503.04772v1](https://arxiv.org/html/2503.04772v1)  
-26. Topic: Dependency Graph \- Zulip Chat Archive, 7月 19, 2025にアクセス、 [https://leanprover-community.github.io/archive/stream/113488-general/topic/Dependency.20Graph.html](https://leanprover-community.github.io/archive/stream/113488-general/topic/Dependency.20Graph.html)  
-27. Getting Started — LeanDojo 4.20.0 documentation, 7月 19, 2025にアクセス、 [https://leandojo.readthedocs.io/en/latest/getting-started.html](https://leandojo.readthedocs.io/en/latest/getting-started.html)  
-28. Apache Jena Fuseki, 7月 19, 2025にアクセス、 [https://jena.apache.org/documentation/fuseki2/](https://jena.apache.org/documentation/fuseki2/)  
-29. Creating RESTful APIs Using SPARQL A Detailed and In-Depth Step-by-Step Tutorial for Developers \- MoldStud, 7月 19, 2025にアクセス、 [https://moldstud.com/articles/p-creating-restful-apis-using-sparql-a-detailed-and-in-depth-step-by-step-tutorial-for-developers](https://moldstud.com/articles/p-creating-restful-apis-using-sparql-a-detailed-and-in-depth-step-by-step-tutorial-for-developers)  
-30. How to Use the SPARQL Endpoint \- PoolParty Semantic Suite Documentation, 7月 19, 2025にアクセス、 [https://help.poolparty.biz/en/developer-guide/basic---advanced-server-apis/poolparty-s-sparql-endpoint/how-to-use-the-sparql-endpoint.html](https://help.poolparty.biz/en/developer-guide/basic---advanced-server-apis/poolparty-s-sparql-endpoint/how-to-use-the-sparql-endpoint.html)  
-31. Introduction to Neo4j & GraphQL | Development | Free Neo4j Courses from GraphAcademy, 7月 19, 2025にアクセス、 [https://graphacademy.neo4j.com/courses/graphql-basics/](https://graphacademy.neo4j.com/courses/graphql-basics/)  
-32. Introduction \- Neo4j GraphQL Library, 7月 19, 2025にアクセス、 [https://neo4j.com/docs/graphql/current/](https://neo4j.com/docs/graphql/current/)  
-33. Interactivity \- Quarto, 7月 19, 2025にアクセス、 [https://quarto.org/docs/interactive/](https://quarto.org/docs/interactive/)  
-34. Observable JS \- Quarto, 7月 19, 2025にアクセス、 [https://quarto.org/docs/interactive/ojs/](https://quarto.org/docs/interactive/ojs/)  
-35. D3 by Observable | The JavaScript library for bespoke data ..., 7月 19, 2025にアクセス、 [https://d3js.org/](https://d3js.org/)  
-36. htmlwidgets for R \- Quarto, 7月 19, 2025にアクセス、 [https://quarto.org/docs/interactive/widgets/htmlwidgets.html](https://quarto.org/docs/interactive/widgets/htmlwidgets.html)  
-37. Quarto Render · Actions · GitHub Marketplace · GitHub, 7月 19, 2025にアクセス、 [https://github.com/marketplace/actions/quarto-render](https://github.com/marketplace/actions/quarto-render)  
-38. Publishing with Continuous Integration (CI) \- Quarto, 7月 19, 2025にアクセス、 [https://quarto.org/docs/publishing/ci.html](https://quarto.org/docs/publishing/ci.html)  
-39. SKG-LLM: Developing a Mathematical Model for Stroke ... \- arXiv, 7月 19, 2025にアクセス、 [https://arxiv.org/abs/2503.06475](https://arxiv.org/abs/2503.06475)  
-40. AI Semantic Credibility and Wikibase Knowledge Graph Self-Veriﬁcation \- iPRES 2024, 7月 19, 2025にアクセス、 [https://ipres2024.pubpub.org/pub/93xgtzp9](https://ipres2024.pubpub.org/pub/93xgtzp9)  
+1. Knowledge Graphs \- arXiv, 7月 19, 2025にアクセス、 [http://arxiv.org/pdf/2003.02320](http://arxiv.org/pdf/2003.02320)
+2. MaRDI portal \- Mathematical Research Data Initiative, 7月 19, 2025にアクセス、 [https://portal.mardi4nfdi.de/](https://portal.mardi4nfdi.de/)
+3. Bravo MaRDI: A Wikibase Powered Knowledge Graph on ... \- dblp, 7月 19, 2025にアクセス、 [https://dblp.org/rec/journals/corr/abs-2309-11484](https://dblp.org/rec/journals/corr/abs-2309-11484)
+4. Bravo MaRDI: A Wikibase Knowledge Graph on Mathematics \- Wikidata Workshop, 7月 19, 2025にアクセス、 [https://wikidataworkshop.github.io/2023/papers/15\_\_novel\_bravo\_mardi\_a\_wikibase\_%5B1%5D.pdf](https://wikidataworkshop.github.io/2023/papers/15__novel_bravo_mardi_a_wikibase_%5B1%5D.pdf)
+5. Wikibase, Wikidata, and Knowledge Graphs \- Professional Wiki, 7月 19, 2025にアクセス、 [https://professional.wiki/en/wikibase-wikidata-and-knowledge-graphs](https://professional.wiki/en/wikibase-wikidata-and-knowledge-graphs)
+6. OntoMathPRO: An Ontology of Mathematical Knowledge, 7月 19, 2025にアクセス、 [https://kpfu.ru/staff\_files/F2070552642/S1064562422700016.pdf](https://kpfu.ru/staff_files/F2070552642/S1064562422700016.pdf)
+7. New components of the OntoMathPRO ontology for representing math knowledge, 7月 19, 2025にアクセス、 [https://www.researchgate.net/publication/374853589\_New\_components\_of\_the\_OntoMathPRO\_ontology\_for\_representing\_math\_knowledge](https://www.researchgate.net/publication/374853589_New_components_of_the_OntoMathPRO_ontology_for_representing_math_knowledge)
+8. MaRDI Model Ontology classes and their relations. Visualisation done with Web-VOWL., 7月 19, 2025にアクセス、 [https://www.researchgate.net/figure/MaRDI-Model-Ontology-classes-and-their-relations-Visualisation-done-with-Web-VOWL\_fig3\_373794021](https://www.researchgate.net/figure/MaRDI-Model-Ontology-classes-and-their-relations-Visualisation-done-with-Web-VOWL_fig3_373794021)
+9. Algorithm Knowledge Graph Ontology, 7月 19, 2025にアクセス、 [https://algodata.mardi4nfdi.de/static/widoco/v1/index-en.html](https://algodata.mardi4nfdi.de/static/widoco/v1/index-en.html)
+10. Web Ontology Language \- Wikipedia, 7月 19, 2025にアクセス、 [https://en.wikipedia.org/wiki/Web\_Ontology\_Language](https://en.wikipedia.org/wiki/Web_Ontology_Language)
+11. The Mathematical Semantic Web \- CiteSeerX, 7月 19, 2025にアクセス、 [https://citeseerx.ist.psu.edu/document?repid=rep1\&type=pdf\&doi=8de81efaac59426eda2c9311c0db64d2c3e2120c](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=8de81efaac59426eda2c9311c0db64d2c3e2120c)
+12. Getting started with Apache Jena, 7月 19, 2025にアクセス、 [https://jena.apache.org/getting\_started/](https://jena.apache.org/getting_started/)
+13. Fuseki Quickstart \- Apache Jena, 7月 19, 2025にアクセス、 [https://jena.apache.org/documentation/fuseki2/fuseki-quick-start.html](https://jena.apache.org/documentation/fuseki2/fuseki-quick-start.html)
+14. Creating a Mathematical Knowledge Graph Using Lean 4's Mathlib ..., 7月 19, 2025にアクセス、 [https://epikprotocol.medium.com/creating-a-mathematical-knowledge-graph-using-lean-4s-mathlib-library-b187d1af663c](https://epikprotocol.medium.com/creating-a-mathematical-knowledge-graph-using-lean-4s-mathlib-library-b187d1af663c)
+15. RDF Triple Stores vs. Property Graphs: What's the Difference? \- Neo4j, 7月 19, 2025にアクセス、 [https://neo4j.com/blog/knowledge-graph/rdf-vs-property-graphs-knowledge-graphs/](https://neo4j.com/blog/knowledge-graph/rdf-vs-property-graphs-knowledge-graphs/)
+16. RDFLib and Neo4j \- Google Groups, 7月 19, 2025にアクセス、 [https://groups.google.com/g/rdflib-dev/c/y5CweAwtHGE](https://groups.google.com/g/rdflib-dev/c/y5CweAwtHGE)
+17. OMV \- Ontology Metadata Vocabulary, 7月 19, 2025にアクセス、 [https://oeg.fi.upm.es/index.php/en/downloads/75-omv/index.html](https://oeg.fi.upm.es/index.php/en/downloads/75-omv/index.html)
+18. Ontology Metadata Vocabulary \- NCBO BioPortal, 7月 19, 2025にアクセス、 [https://bioportal.bioontology.org/ontologies/OMV](https://bioportal.bioontology.org/ontologies/OMV)
+19. Project Basics – Quarto, 7月 19, 2025にアクセス、 [https://quarto.org/docs/projects/quarto-projects.html](https://quarto.org/docs/projects/quarto-projects.html)
+20. Cross References – Quarto, 7月 19, 2025にアクセス、 [https://quarto.org/docs/authoring/cross-references.html](https://quarto.org/docs/authoring/cross-references.html)
+21. Front Matter \- Quarto, 7月 19, 2025にアクセス、 [https://quarto.org/docs/authoring/front-matter.html](https://quarto.org/docs/authoring/front-matter.html)
+22. 8 Setting options with YAML \- Quarto: The Definitive Guide, 7月 19, 2025にアクセス、 [https://quarto-tdg.org/yaml.html](https://quarto-tdg.org/yaml.html)
+23. Python Frontmatter — Python Frontmatter 1.0.0 documentation, 7月 19, 2025にアクセス、 [https://python-frontmatter.readthedocs.io/](https://python-frontmatter.readthedocs.io/)
+24. python-frontmatter \- PyPI, 7月 19, 2025にアクセス、 [https://pypi.org/project/python-frontmatter/](https://pypi.org/project/python-frontmatter/)
+25. Generating Millions Of Lean Theorems With Proofs By Exploring State Transition Graphs, 7月 19, 2025にアクセス、 [https://arxiv.org/html/2503.04772v1](https://arxiv.org/html/2503.04772v1)
+26. Topic: Dependency Graph \- Zulip Chat Archive, 7月 19, 2025にアクセス、 [https://leanprover-community.github.io/archive/stream/113488-general/topic/Dependency.20Graph.html](https://leanprover-community.github.io/archive/stream/113488-general/topic/Dependency.20Graph.html)
+27. Getting Started — LeanDojo 4.20.0 documentation, 7月 19, 2025にアクセス、 [https://leandojo.readthedocs.io/en/latest/getting-started.html](https://leandojo.readthedocs.io/en/latest/getting-started.html)
+28. Apache Jena Fuseki, 7月 19, 2025にアクセス、 [https://jena.apache.org/documentation/fuseki2/](https://jena.apache.org/documentation/fuseki2/)
+29. Creating RESTful APIs Using SPARQL A Detailed and In-Depth Step-by-Step Tutorial for Developers \- MoldStud, 7月 19, 2025にアクセス、 [https://moldstud.com/articles/p-creating-restful-apis-using-sparql-a-detailed-and-in-depth-step-by-step-tutorial-for-developers](https://moldstud.com/articles/p-creating-restful-apis-using-sparql-a-detailed-and-in-depth-step-by-step-tutorial-for-developers)
+30. How to Use the SPARQL Endpoint \- PoolParty Semantic Suite Documentation, 7月 19, 2025にアクセス、 [https://help.poolparty.biz/en/developer-guide/basic---advanced-server-apis/poolparty-s-sparql-endpoint/how-to-use-the-sparql-endpoint.html](https://help.poolparty.biz/en/developer-guide/basic---advanced-server-apis/poolparty-s-sparql-endpoint/how-to-use-the-sparql-endpoint.html)
+31. Introduction to Neo4j & GraphQL | Development | Free Neo4j Courses from GraphAcademy, 7月 19, 2025にアクセス、 [https://graphacademy.neo4j.com/courses/graphql-basics/](https://graphacademy.neo4j.com/courses/graphql-basics/)
+32. Introduction \- Neo4j GraphQL Library, 7月 19, 2025にアクセス、 [https://neo4j.com/docs/graphql/current/](https://neo4j.com/docs/graphql/current/)
+33. Interactivity \- Quarto, 7月 19, 2025にアクセス、 [https://quarto.org/docs/interactive/](https://quarto.org/docs/interactive/)
+34. Observable JS \- Quarto, 7月 19, 2025にアクセス、 [https://quarto.org/docs/interactive/ojs/](https://quarto.org/docs/interactive/ojs/)
+35. D3 by Observable | The JavaScript library for bespoke data ..., 7月 19, 2025にアクセス、 [https://d3js.org/](https://d3js.org/)
+36. htmlwidgets for R \- Quarto, 7月 19, 2025にアクセス、 [https://quarto.org/docs/interactive/widgets/htmlwidgets.html](https://quarto.org/docs/interactive/widgets/htmlwidgets.html)
+37. Quarto Render · Actions · GitHub Marketplace · GitHub, 7月 19, 2025にアクセス、 [https://github.com/marketplace/actions/quarto-render](https://github.com/marketplace/actions/quarto-render)
+38. Publishing with Continuous Integration (CI) \- Quarto, 7月 19, 2025にアクセス、 [https://quarto.org/docs/publishing/ci.html](https://quarto.org/docs/publishing/ci.html)
+39. SKG-LLM: Developing a Mathematical Model for Stroke ... \- arXiv, 7月 19, 2025にアクセス、 [https://arxiv.org/abs/2503.06475](https://arxiv.org/abs/2503.06475)
+40. AI Semantic Credibility and Wikibase Knowledge Graph Self-Veriﬁcation \- iPRES 2024, 7月 19, 2025にアクセス、 [https://ipres2024.pubpub.org/pub/93xgtzp9](https://ipres2024.pubpub.org/pub/93xgtzp9)
 41. Graph-Augmented Reasoning: Evolving Step-by-Step ... \- arXiv, 7月 19, 2025にアクセス、 [https://arxiv.org/abs/2503.01642](https://arxiv.org/abs/2503.01642)

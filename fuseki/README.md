@@ -37,7 +37,7 @@ fuseki/
    cd ../..
    poetry run python scripts/build_graph.py
    ```
-   
+
    Then load the data:
    ```bash
    cd fuseki/scripts

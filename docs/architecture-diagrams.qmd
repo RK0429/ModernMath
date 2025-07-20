@@ -20,49 +20,49 @@ graph TB
         QMD[Quarto .qmd Files]
         META[YAML Metadata]
     end
-    
+
     subgraph "Processing Layer"
         PARSER[Python Parser<br/>build_graph.py]
         VAL[Validation Scripts]
         VIZ[Visualization Scripts]
     end
-    
+
     subgraph "Data Layer"
         RDF[RDF Triple Store<br/>knowledge_graph.ttl]
         ONTO[Ontology<br/>math-ontology.ttl]
         JSON[JSON Data Files]
     end
-    
+
     subgraph "Service Layer"
         FUSEKI[Apache Jena Fuseki<br/>SPARQL Endpoint]
         API[Flask REST API]
         CACHE[In-Memory Cache]
     end
-    
+
     subgraph "Presentation Layer"
         WEB[Quarto Website]
         VIS[Interactive Visualizations]
         SEARCH[Search Interface]
     end
-    
+
     QMD --> PARSER
     META --> PARSER
     PARSER --> RDF
     ONTO --> RDF
     VAL --> QMD
-    
+
     RDF --> FUSEKI
     FUSEKI --> API
     API --> CACHE
-    
+
     PARSER --> VIZ
     VIZ --> JSON
     JSON --> VIS
-    
+
     API --> WEB
     VIS --> WEB
     SEARCH --> WEB
-    
+
     style QMD fill:#e1f5fe
     style RDF fill:#fff3e0
     style FUSEKI fill:#f3e5f5
@@ -80,28 +80,28 @@ graph LR
         ALG[algebra/]
         TOP[topology/]
         ANA[analysis/]
-        
+
         ROOT --> ALG
         ROOT --> TOP
         ROOT --> ANA
-        
+
         subgraph "Algebra Domain"
             ALGMETA[_metadata.yml]
             DEFG[def-group.qmd]
             THML[thm-lagrange.qmd]
             EXG[ex-integers.qmd]
-            
+
             ALG --> ALGMETA
             ALG --> DEFG
             ALG --> THML
             ALG --> EXG
         end
     end
-    
+
     subgraph "File Components"
         YAML[YAML Front Matter<br/>- id<br/>- type<br/>- requires]
         CONTENT[Markdown Content<br/>- Definitions<br/>- Cross-refs @<br/>- LaTeX math]
-        
+
         DEFG --> YAML
         DEFG --> CONTENT
     end
@@ -118,7 +118,7 @@ sequenceDiagram
     participant G as Graph Builder
     participant S as Serializer
     participant F as File System
-    
+
     U->>Q: Create/Edit .qmd
     U->>P: Run build_graph.py
     P->>Q: Read all .qmd files
@@ -139,20 +139,20 @@ graph TD
         S[Subject URI]
         P[Predicate]
         O[Object URI/Literal]
-        
+
         S -->|has| P
         P -->|points to| O
     end
-    
+
     subgraph "Example Triples"
         G[math:def-group]
         T[rdf:type]
         D[mymath:Definition]
-        
+
         G2[math:thm-lagrange]
         U[mymath:uses]
         G3[math:def-group]
-        
+
         G -->|rdf:type| D
         G2 -->|mymath:uses| G3
     end
@@ -171,7 +171,7 @@ graph TB
         FUS[Fuseki Client]
         CACHE[Cache Layer]
         RESP[JSON Response]
-        
+
         REQ --> ROUTE
         ROUTE --> CACHE
         CACHE -->|miss| SPAR
@@ -180,13 +180,13 @@ graph TB
         CACHE --> RESP
         ROUTE --> RESP
     end
-    
+
     subgraph "API Endpoints"
         E1[/api/nodes/{id}]
         E2[/api/dependencies/{id}]
         E3[/api/search]
         E4[/api/query]
-        
+
         E1 --> ROUTE
         E2 --> ROUTE
         E3 --> ROUTE
@@ -202,21 +202,21 @@ graph LR
         REQ[API Request]
         KEY[Cache Key Generator]
         MEM[In-Memory Store<br/>TTL: 5-15 min]
-        
+
         REQ --> KEY
         KEY --> MEM
-        
+
         MEM -->|Hit| RESP1[Cached Response]
         MEM -->|Miss| DB[Database Query]
         DB --> MEM
         DB --> RESP2[Fresh Response]
     end
-    
+
     subgraph "Cache Management"
         CLEAN[Cleanup Thread<br/>Every 5 min]
         STATS[/api/cache/stats]
         CLEAR[/api/cache/clear]
-        
+
         CLEAN --> MEM
         STATS --> MEM
         CLEAR --> MEM
@@ -233,33 +233,33 @@ flowchart TD
         KG[Knowledge Graph<br/>RDF Triples]
         SPARQL[SPARQL Queries]
     end
-    
+
     subgraph "Visualization Scripts"
         MERM[generate_mermaid.py]
         PYVIS[generate_pyvis.py]
         D3[generate_d3_data.py]
     end
-    
+
     subgraph "Output Formats"
         MERMF[Mermaid .mermaid files]
         PYVISF[PyVis HTML files]
         D3F[D3.js JSON files]
     end
-    
+
     subgraph "Integration"
         QMD[Quarto Pages]
         WEB[Web Interface]
     end
-    
+
     KG --> SPARQL
     SPARQL --> MERM
     SPARQL --> PYVIS
     SPARQL --> D3
-    
+
     MERM --> MERMF
     PYVIS --> PYVISF
     D3 --> D3F
-    
+
     MERMF --> QMD
     PYVISF --> WEB
     D3F --> WEB
@@ -275,18 +275,18 @@ graph TB
         D3LIB[D3.js Library]
         VIS[Vis.js Library]
     end
-    
+
     subgraph "Data Loading"
         AJAX[AJAX Request]
         JSON[JSON Data File]
     end
-    
+
     subgraph "Rendering"
         SVG[SVG Elements]
         INTER[Interactive Controls]
         ZOOM[Zoom/Pan]
     end
-    
+
     HTML --> JS
     JS --> D3LIB
     JS --> VIS
@@ -309,26 +309,26 @@ flowchart LR
         LOCAL[Local Environment]
         GIT[Git Repository]
     end
-    
+
     subgraph "GitHub Actions"
         TRIGGER[Push/PR Trigger]
         BUILD[Build Job]
         TEST[Test Job]
         DEPLOY[Deploy Job]
     end
-    
+
     subgraph "Build Steps"
         INSTALL[Install Dependencies]
         VALIDATE[Validate Content]
         GRAPH[Build Graph]
         RENDER[Render Site]
     end
-    
+
     subgraph "Deployment"
         PAGES[GitHub Pages]
         ASSETS[Static Assets]
     end
-    
+
     DEV --> LOCAL
     LOCAL --> GIT
     GIT --> TRIGGER
@@ -352,26 +352,26 @@ graph TB
         STATIC[Static Files<br/>HTML/CSS/JS]
         VIZ[Visualization Files]
     end
-    
+
     subgraph "Backend Services"
         VM[Cloud VM/Container]
         FUSEKI[Fuseki Server<br/>Port 3030]
         API[Flask API<br/>Port 5001]
         NGINX[Nginx Reverse Proxy]
     end
-    
+
     subgraph "Data Storage"
         RDF[RDF Triple Store]
         LOGS[Log Files]
         BACKUP[Backup Storage]
     end
-    
+
     CDN --> STATIC
     CDN --> VIZ
-    
+
     NGINX --> FUSEKI
     NGINX --> API
-    
+
     FUSEKI --> RDF
     API --> FUSEKI
     API --> LOGS
@@ -404,7 +404,7 @@ sequenceDiagram
     participant Cache
     participant SPARQL
     participant RDF
-    
+
     Client->>API: GET /api/dependencies/def-group
     API->>Cache: Check cache
     Cache-->>API: Cache miss
@@ -461,27 +461,27 @@ graph TB
         AUTH[Authenticated Write]
         ADMIN[Admin Only]
     end
-    
+
     subgraph "API Security"
         CORS[CORS Headers]
         RATE[Rate Limiting]
         VAL[Input Validation]
     end
-    
+
     subgraph "Data Security"
         BACKUP[Regular Backups]
         LOG[Audit Logging]
         VALID[Content Validation]
     end
-    
+
     PUBLIC --> CORS
     AUTH --> RATE
     ADMIN --> VAL
-    
+
     CORS --> API[API Layer]
     RATE --> API
     VAL --> API
-    
+
     API --> BACKUP
     API --> LOG
     API --> VALID
@@ -498,27 +498,27 @@ graph LR
         PARALLEL[Parallel Processing]
         CACHE_B[Build Cache]
     end
-    
+
     subgraph "Runtime"
         CDN[CDN Distribution]
         CACHE_R[Response Cache]
         INDEX[Query Indexes]
     end
-    
+
     subgraph "Client"
         LAZY[Lazy Loading]
         COMPRESS[Compression]
         BUNDLE[Code Bundling]
     end
-    
+
     INCR --> PERF[Performance]
     PARALLEL --> PERF
     CACHE_B --> PERF
-    
+
     CDN --> PERF
     CACHE_R --> PERF
     INDEX --> PERF
-    
+
     LAZY --> PERF
     COMPRESS --> PERF
     BUNDLE --> PERF
@@ -535,26 +535,26 @@ graph TD
         SYS[System Metrics]
         USER[User Analytics]
     end
-    
+
     subgraph "Monitoring Tools"
         LOGS[Log Aggregation]
         METRICS[Metrics Dashboard]
         ALERTS[Alert System]
     end
-    
+
     subgraph "Outputs"
         DASH[Dashboard]
         EMAIL[Email Alerts]
         SLACK[Slack Notifications]
     end
-    
+
     APP --> LOGS
     SYS --> METRICS
     USER --> METRICS
-    
+
     LOGS --> ALERTS
     METRICS --> ALERTS
-    
+
     ALERTS --> DASH
     ALERTS --> EMAIL
     ALERTS --> SLACK
@@ -571,23 +571,23 @@ graph TB
         STATIC[Static Site]
         SIMPLE[Simple API]
     end
-    
+
     subgraph "Growth Phase"
         CLUSTER[Fuseki Cluster]
         DYNAMIC[Dynamic Features]
         SCALED[Scaled API]
     end
-    
+
     subgraph "Enterprise Scale"
         DIST[Distributed Graph]
         MICRO[Microservices]
         ML[ML Integration]
     end
-    
+
     SINGLE --> CLUSTER
     STATIC --> DYNAMIC
     SIMPLE --> SCALED
-    
+
     CLUSTER --> DIST
     DYNAMIC --> MICRO
     SCALED --> ML

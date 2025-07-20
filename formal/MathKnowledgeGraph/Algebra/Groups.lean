@@ -40,7 +40,7 @@ namespace Algebra
 
 section BinaryOperations
 
-/-- 
+/--
 A binary operation on a type α is a function α → α → α.
 This corresponds to def-binary-operation in our knowledge graph.
 
@@ -72,7 +72,7 @@ end BinaryOperations
 
 section Subgroups
 
-/-- 
+/--
 A subgroup of a group G is a subset that is closed under the group operation,
 contains the identity, and contains inverses.
 
@@ -97,7 +97,7 @@ theorem subgroup_inter {G : Type*} [Group G] (H K : Subgroup G) :
 
 /-- Subgroup test: A subset H is a subgroup iff it's nonempty and closed under multiplication by inverses -/
 theorem subgroup_test {G : Type*} [Group G] (H : Set G) :
-  (∃ (S : Subgroup G), S.carrier = H) ↔ 
+  (∃ (S : Subgroup G), S.carrier = H) ↔
   (H.Nonempty ∧ ∀ a b ∈ H, a * b⁻¹ ∈ H) := by
   sorry -- This is a standard result in group theory
 
@@ -121,7 +121,7 @@ theorem left_cancel {G : Type*} [Group G] (a b c : G) (h : a * b = a * c) : b = 
   exact h'
 
 /-- Example: Identity element is unique -/
-theorem unique_identity {G : Type*} [Group G] (e : G) 
+theorem unique_identity {G : Type*} [Group G] (e : G)
     (h : ∀ g : G, e * g = g ∧ g * e = g) : e = 1 := by
   have h1 := (h 1).1
   rw [mul_one] at h1

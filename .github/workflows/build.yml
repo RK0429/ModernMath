@@ -78,6 +78,11 @@ jobs:
       run: |
         poetry run python scripts/validate_metadata.py
 
+    - name: Check cross-references
+      run: |
+        poetry run python scripts/check_cross_references.py
+        echo "Cross-reference validation completed successfully!"
+
     - name: Validate existing graph
       run: |
         if [ -f "knowledge_graph.ttl" ]; then

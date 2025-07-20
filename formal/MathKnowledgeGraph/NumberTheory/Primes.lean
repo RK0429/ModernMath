@@ -40,7 +40,7 @@ example : Nat.Prime 3 := by
   exact Nat.prime_three
 
 /-- Example: If p is prime and p divides a product, then p divides one of the factors -/
-theorem prime_divides_product {p a b : ℕ} (hp : Nat.Prime p) 
+theorem prime_divides_product {p a b : ℕ} (hp : Nat.Prime p)
     (h : p ∣ a * b) : p ∣ a ∨ p ∣ b := by
   exact hp.dvd_mul.mp h
 
@@ -60,9 +60,9 @@ end PrimeNumbers
 section Induction
 
 /-- Mathematical induction principle (already in Lean's foundation) -/
-theorem math_induction (P : ℕ → Prop) 
-    (base : P 0) 
-    (step : ∀ n, P n → P (n + 1)) : 
+theorem math_induction (P : ℕ → Prop)
+    (base : P 0)
+    (step : ∀ n, P n → P (n + 1)) :
     ∀ n, P n := by
   exact Nat.rec base step
 

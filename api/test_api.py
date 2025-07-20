@@ -75,7 +75,7 @@ def test_custom_query():
     query = """
     PREFIX mymath: <https://mathwiki.org/ontology#>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    
+
     SELECT ?theorem ?label
     WHERE {
         ?theorem a mymath:Theorem ;

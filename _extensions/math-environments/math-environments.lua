@@ -12,7 +12,7 @@ local exampleCounter = 0
 local function createTheoremEnvironment(el, envType, label, title)
     local counter = 0
     local prefix = ""
-    
+
     if envType == "theorem" then
         theoremCounter = theoremCounter + 1
         counter = theoremCounter
@@ -38,13 +38,13 @@ local function createTheoremEnvironment(el, envType, label, title)
         counter = exampleCounter
         prefix = "Example"
     end
-    
+
     -- Create the header
     local headerContent = pandoc.Strong(pandoc.Str(prefix .. " " .. counter))
     if title and title ~= "" then
         headerContent = pandoc.Span({headerContent, pandoc.Str(" "), pandoc.Str("(" .. title .. ")")})
     end
-    
+
     -- Create header with label if provided
     local header
     if label and label ~= "" then
@@ -52,13 +52,13 @@ local function createTheoremEnvironment(el, envType, label, title)
         headerContent = pandoc.Span(headerContent, pandoc.Attr(label, {}, {}))
     end
     header = pandoc.Para(headerContent)
-    
+
     -- Combine header and content
     local content = {header}
     for _, block in ipairs(el.content) do
         table.insert(content, block)
     end
-    
+
     -- Wrap in a div with appropriate class
     return pandoc.Div(content, pandoc.Attr("", {"math-" .. envType}, {}))
 end
@@ -67,13 +67,13 @@ end
 local function createProofEnvironment(el, label)
     -- Create the proof header
     local headerContent = pandoc.Emph(pandoc.Str("Proof."))
-    
+
     -- Add label anchor if provided
     if label and label ~= "" then
         headerContent = pandoc.Span(headerContent, pandoc.Attr(label, {}, {}))
     end
     local header = pandoc.Para(headerContent)
-    
+
     -- Add QED symbol at the end
     local lastBlock = el.content[#el.content]
     if lastBlock and lastBlock.t == "Para" then
@@ -82,13 +82,13 @@ local function createProofEnvironment(el, label)
     else
         table.insert(el.content, pandoc.Para(pandoc.Str("□")))
     end
-    
+
     -- Combine header and content
     local content = {header}
     for _, block in ipairs(el.content) do
         table.insert(content, block)
     end
-    
+
     -- Wrap in a div with proof class
     return pandoc.Div(content, pandoc.Attr("", {"math-proof"}, {}))
 end
@@ -111,7 +111,7 @@ function Div(el)
     elseif el.classes:includes("proof") then
         return createProofEnvironment(el, el.attr.identifier)
     end
-    
+
     return el
 end
 

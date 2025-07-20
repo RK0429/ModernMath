@@ -5,7 +5,7 @@
 ### Content Status
 - **51 mathematical nodes created** across 9 domains:
   - Algebra (14 nodes)
-  - Topology (7 nodes)  
+  - Topology (7 nodes)
   - Analysis (4 nodes)
   - Category Theory (3 nodes)
   - Logic & Set Theory (7 nodes)

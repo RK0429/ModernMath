@@ -55,7 +55,7 @@ QUERIES = {
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        
+
         SELECT ?type ?label ?domain
         FROM <urn:x-arq:DefaultGraph>
         WHERE {
@@ -68,7 +68,7 @@ QUERIES = {
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        
+
         SELECT ?dependency ?label ?type
         FROM <urn:x-arq:DefaultGraph>
         WHERE {
@@ -81,7 +81,7 @@ QUERIES = {
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        
+
         SELECT ?dependent ?label ?type
         FROM <urn:x-arq:DefaultGraph>
         WHERE {
@@ -94,7 +94,7 @@ QUERIES = {
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        
+
         SELECT DISTINCT ?node ?label ?type ?domain
         FROM <urn:x-arq:DefaultGraph>
         WHERE {
@@ -109,7 +109,7 @@ QUERIES = {
         PREFIX mymath: <https://mathwiki.org/ontology#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        
+
         SELECT ?node ?label ?type ?domain
         FROM <urn:x-arq:DefaultGraph>
         WHERE {
@@ -265,23 +265,23 @@ def search_nodes():
         page = request.args.get("page", default=1, type=int)
         per_page = request.args.get("per_page", default=20, type=int)
         per_page = min(per_page, 100)  # Cap at 100 results per page
-        
+
         # For backward compatibility, also support limit parameter
         limit = request.args.get("limit", type=int)
         if limit:
             per_page = min(limit, 100)
             page = 1
-        
+
         # Calculate offset
         offset = (page - 1) * per_page
-        
+
         # Perform combined search with a higher limit to get total count
         all_results = searcher.search_combined(search_term, limit=1000)
         total_count = len(all_results)
-        
+
         # Apply pagination
         paginated_results = all_results[offset:offset + per_page]
-        
+
         # Calculate pagination metadata
         total_pages = (total_count + per_page - 1) // per_page
         has_next = page < total_pages

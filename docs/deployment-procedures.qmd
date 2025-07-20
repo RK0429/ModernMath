@@ -167,22 +167,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      
+
       - name: Install Poetry
         uses: snok/install-poetry@v1
         with:
           version: latest
           virtualenvs-create: true
           virtualenvs-in-project: true
-      
+
       - name: Install dependencies
         run: poetry install
-      
+
       - name: Build knowledge graph
         run: |
           poetry run python scripts/validate_metadata.py
@@ -190,18 +190,18 @@ jobs:
           poetry run python scripts/generate_mermaid.py
           poetry run python scripts/generate_pyvis.py
           poetry run python scripts/generate_d3_data.py
-      
+
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
-        
+
       - name: Render Quarto site
         run: quarto render
-      
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
           path: _site
-      
+
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
         uses: actions/deploy-pages@v2
@@ -359,7 +359,7 @@ sudo nano /etc/nginx/sites-available/modernmath
 server {
     listen 80;
     server_name your-domain.com;
-    
+
     # Redirect to HTTPS
     return 301 https://$server_name$request_uri;
 }
@@ -367,19 +367,19 @@ server {
 server {
     listen 443 ssl http2;
     server_name your-domain.com;
-    
+
     # SSL configuration (update paths)
     ssl_certificate /etc/letsencrypt/live/your-domain.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/your-domain.com/privkey.pem;
-    
+
     # Static website
     root /opt/modernmath/_site;
     index index.html;
-    
+
     location / {
         try_files $uri $uri/ =404;
     }
-    
+
     # API proxy
     location /api/ {
         proxy_pass http://localhost:5001;
@@ -388,7 +388,7 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
     }
-    
+
     # SPARQL endpoint proxy
     location /sparql/ {
         proxy_pass http://localhost:3030/;

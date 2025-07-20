@@ -57,12 +57,12 @@ Every non-constant polynomial with complex coefficients has at least one complex
 #### Definition
 ```markdown
 ::: {.definition #def-group}
-A **group** is a set $G$ together with a binary operation $\cdot: G \times G \to G$ 
+A **group** is a set $G$ together with a binary operation $\cdot: G \times G \to G$
 satisfying:
 
 1. **Associativity**: $(a \cdot b) \cdot c = a \cdot (b \cdot c)$
 2. **Identity**: There exists $e \in G$ such that $e \cdot a = a \cdot e = a$
-3. **Inverse**: For each $a \in G$, there exists $a^{-1} \in G$ such that 
+3. **Inverse**: For each $a \in G$, there exists $a^{-1} \in G$ such that
    $a \cdot a^{-1} = a^{-1} \cdot a = e$
 :::
 ```
@@ -74,7 +74,7 @@ We proceed by induction on $n$.
 
 **Base case**: For $n = 1$, the statement is trivially true.
 
-**Inductive step**: Assume the statement holds for $n = k$. 
+**Inductive step**: Assume the statement holds for $n = k$.
 We need to show it holds for $n = k + 1$.
 [... proof continues ...]
 

@@ -153,14 +153,64 @@ poetry run mypy scripts/
 quarto render
 ```
 
+### Validation Tools
+
+#### Local Cross-Reference Validation
+
+Check for broken cross-references without full rendering:
+
+```bash
+# Quick check all files
+./check-refs.sh
+
+# Check specific file
+poetry run python scripts/check_cross_references.py --file content/algebra/def-group.qmd
+
+# Verbose output
+poetry run python scripts/check_cross_references.py --verbose
+```
+
+#### Pre-commit Hooks
+
+This project uses pre-commit hooks to ensure code quality:
+
+```bash
+# Install pre-commit hooks (one-time setup)
+poetry run pre-commit install
+
+# Run all hooks manually
+poetry run pre-commit run --all-files
+
+# Run specific hook
+poetry run pre-commit run check-cross-references --all-files
+```
+
+The hooks include:
+- Cross-reference validation
+- YAML metadata validation
+- Python code formatting (Black)
+- Python linting (Flake8)
+- Python type checking (MyPy)
+- Trailing whitespace removal
+- End-of-file fixing
+
+#### CI/CD Integration
+
+The GitHub Actions workflow automatically validates cross-references:
+
+1. **Pre-build validation**: Runs before building the knowledge graph
+2. **Early failure detection**: Stops the build if invalid references are found
+3. **Clear error messages**: Shows exact file and line numbers of issues
+
 ## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-theorem`)
 3. Add your content following the style guide
-4. Ensure all links are properly connected
+4. Ensure all links are properly connected by running `./check-refs.sh`
 5. Run validation scripts
-6. Submit a pull request
+6. Commit changes (pre-commit hooks will run automatically)
+7. Submit a pull request
 
 ## Current Status
 

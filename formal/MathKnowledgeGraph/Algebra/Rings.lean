@@ -31,7 +31,7 @@ corresponding to the content in our knowledge graph.
 * Quarto file: content/algebra/def-ring.qmd
 * Lean ID: Mathlib.Algebra.Ring.Defs.Ring
 
-* Node ID: def-field  
+* Node ID: def-field
 * Quarto file: content/algebra/def-field.qmd
 * Lean ID: Mathlib.Algebra.Field.Defs.Field
 -/
@@ -41,7 +41,7 @@ namespace Algebra
 
 section RingDefinitions
 
-/-- 
+/--
 A ring is a set with two binary operations (+ and *) satisfying:
 1. (R, +) is an abelian group
 2. Multiplication is associative
@@ -96,7 +96,7 @@ end RingExamples
 
 section FieldDefinitions
 
-/-- 
+/--
 A field is a commutative ring where every non-zero element has a multiplicative inverse.
 Equivalently, (F, +) is an abelian group and (F \ {0}, *) is an abelian group.
 
@@ -110,13 +110,13 @@ Node ID: def-field
 theorem field_is_comm_ring {F : Type*} [Field F] : CommRing F := inferInstance
 
 /-- In a field, every non-zero element has an inverse -/
-theorem field_inv_exists {F : Type*} [Field F] (a : F) (ha : a ≠ 0) : 
+theorem field_inv_exists {F : Type*} [Field F] (a : F) (ha : a ≠ 0) :
   ∃ b : F, a * b = 1 := by
   use a⁻¹
   exact mul_inv_cancel ha
 
 /-- In a field, there are no zero divisors -/
-theorem field_no_zero_divisors {F : Type*} [Field F] (a b : F) (h : a * b = 0) : 
+theorem field_no_zero_divisors {F : Type*} [Field F] (a b : F) (h : a * b = 0) :
   a = 0 ∨ b = 0 := by
   by_cases ha : a = 0
   · left

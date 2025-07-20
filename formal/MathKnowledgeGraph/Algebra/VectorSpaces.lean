@@ -91,12 +91,12 @@ section LinearTransformations
 variable {F V W : Type*} [Field F] [AddCommGroup V] [Module F V] [AddCommGroup W] [Module F W]
 
 /-- A linear transformation preserves addition -/
-theorem linear_map_add (f : V →ₗ[F] W) (u v : V) : 
+theorem linear_map_add (f : V →ₗ[F] W) (u v : V) :
     f (u + v) = f u + f v := by
   exact f.map_add u v
 
 /-- A linear transformation preserves scalar multiplication -/
-theorem linear_map_smul (f : V →ₗ[F] W) (a : F) (v : V) : 
+theorem linear_map_smul (f : V →ₗ[F] W) (a : F) (v : V) :
     f (a • v) = a • f v := by
   exact f.map_smul a v
 
@@ -105,13 +105,13 @@ theorem linear_map_zero (f : V →ₗ[F] W) : f 0 = 0 := by
   exact f.map_zero
 
 /-- Linear transformations preserve linear combinations -/
-theorem linear_map_linear_combination (f : V →ₗ[F] W) {n : ℕ} 
-    (a : Fin n → F) (v : Fin n → V) : 
+theorem linear_map_linear_combination (f : V →ₗ[F] W) {n : ℕ}
+    (a : Fin n → F) (v : Fin n → V) :
     f (∑ i : Fin n, a i • v i) = ∑ i : Fin n, a i • f (v i) := by
   simp only [map_sum, linear_map_smul]
 
 /-- Example: Matrix multiplication defines a linear transformation -/
-example {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ) : 
+example {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ) :
     (Fin n → ℝ) →ₗ[ℝ] (Fin m → ℝ) := by
   exact A.toLin'
 
@@ -134,8 +134,8 @@ variable {F V : Type*} [Field F] [AddCommGroup V] [Module F V]
 
 /-- A set is linearly independent if the only linear combination that equals zero
     has all coefficients equal to zero -/
-theorem linear_independent_iff {ι : Type*} (v : ι → V) : 
-    LinearIndependent F v ↔ 
+theorem linear_independent_iff {ι : Type*} (v : ι → V) :
+    LinearIndependent F v ↔
     ∀ (a : ι →₀ F), (∑ i in a.support, a i • v i) = 0 → a = 0 := by
   rfl
 
@@ -162,12 +162,12 @@ section Span
 variable {F V : Type*} [Field F] [AddCommGroup V] [Module F V]
 
 /-- The span contains all the original vectors -/
-theorem mem_span_self {s : Set V} (v : V) (hv : v ∈ s) : 
+theorem mem_span_self {s : Set V} (v : V) (hv : v ∈ s) :
     v ∈ Submodule.span F s := by
   exact Submodule.subset_span hv
 
 /-- The span is closed under addition -/
-theorem span_add_closed {s : Set V} (u v : V) 
+theorem span_add_closed {s : Set V} (u v : V)
     (hu : u ∈ Submodule.span F s) (hv : v ∈ Submodule.span F s) :
     u + v ∈ Submodule.span F s := by
   exact Submodule.add_mem _ hu hv
@@ -219,7 +219,7 @@ example (n : ℕ) : Basis (Fin n) ℝ (Fin n → ℝ) := by
   exact Pi.basisFun ℝ (Fin n)
 
 /-- Two finite-dimensional vector spaces over the same field with the same dimension are isomorphic -/
-theorem finite_dim_isomorphic {ι : Type*} [Fintype ι] 
+theorem finite_dim_isomorphic {ι : Type*} [Fintype ι]
     (bV : Basis ι F V) (bW : Basis ι F W) :
     Nonempty (V ≃ₗ[F] W) := by
   exact bV.equiv bW
@@ -237,7 +237,7 @@ section KernelImage
 variable {F V W : Type*} [Field F] [AddCommGroup V] [Module F V] [AddCommGroup W] [Module F W]
 
 /-- The kernel of a linear map is a subspace -/
-theorem ker_is_subspace (f : V →ₗ[F] W) : 
+theorem ker_is_subspace (f : V →ₗ[F] W) :
     LinearMap.ker f ≤ ⊤ := by
   exact le_top
 
@@ -258,7 +258,7 @@ theorem mem_range_iff (f : V →ₗ[F] W) (w : W) :
 
 /-- Rank-Nullity Theorem (thm-rank-nullity) -/
 theorem rank_nullity [FiniteDimensional F V] (f : V →ₗ[F] W) :
-    Module.finrank F (LinearMap.ker f) + Module.finrank F (LinearMap.range f) = 
+    Module.finrank F (LinearMap.ker f) + Module.finrank F (LinearMap.range f) =
     Module.finrank F V := by
   exact LinearMap.finrank_range_add_finrank_ker f
 

@@ -15,10 +15,10 @@ function Shortcode(args, kwargs, meta)
     local node_id = kwargs["id"] or meta["id"] or "unknown"
     local width = kwargs["width"] or "100%"
     local height = kwargs["height"] or "500"
-    
+
     -- Generate unique container ID
     local container_id = "graph-viz-" .. node_id .. "-" .. os.time()
-    
+
     -- Create the HTML with embedded Observable JS
     local html = string.format([[
 <div id="%s" class="graph-visualization-container">
@@ -32,7 +32,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 function createForceGraph(data, containerId, options = {}) {
   const container = document.getElementById(containerId);
   container.innerHTML = ''; // Clear loading message
-  
+
   const {
     width = 700,
     height = 500,
@@ -40,7 +40,7 @@ function createForceGraph(data, containerId, options = {}) {
     linkDistance = 100,
     chargeStrength = -300
   } = options;
-  
+
   // Node colors by type
   const nodeColors = {
     'Definition': '#4CAF50',
@@ -48,7 +48,7 @@ function createForceGraph(data, containerId, options = {}) {
     'Axiom': '#FF9800',
     'Example': '#9C27B0'
   };
-  
+
   // Create SVG
   const svg = d3.create("svg")
     .attr("viewBox", [0, 0, width, height])
@@ -56,18 +56,18 @@ function createForceGraph(data, containerId, options = {}) {
     .attr("height", height)
     .style("max-width", "100%%")
     .style("height", "auto");
-  
+
   // Add zoom
   const g = svg.append("g");
-  
+
   const zoom = d3.zoom()
     .scaleExtent([0.1, 4])
     .on("zoom", (event) => {
       g.attr("transform", event.transform);
     });
-  
+
   svg.call(zoom);
-  
+
   // Arrow markers
   svg.append("defs").append("marker")
     .attr("id", "arrow-" + containerId)
@@ -80,14 +80,14 @@ function createForceGraph(data, containerId, options = {}) {
     .append("path")
     .attr("fill", "#999")
     .attr("d", "M0,-5L10,0L0,5");
-  
+
   // Force simulation
   const simulation = d3.forceSimulation(data.nodes)
     .force("link", d3.forceLink(data.links).id(d => d.index).distance(linkDistance))
     .force("charge", d3.forceManyBody().strength(chargeStrength))
     .force("center", d3.forceCenter(width / 2, height / 2))
     .force("collision", d3.forceCollide().radius(nodeRadius * 1.5));
-  
+
   // Links
   const link = g.append("g")
     .selectAll("line")
@@ -97,7 +97,7 @@ function createForceGraph(data, containerId, options = {}) {
     .attr("stroke-opacity", 0.6)
     .attr("stroke-width", 1.5)
     .attr("marker-end", `url(#arrow-${containerId})`);
-  
+
   // Nodes
   const node = g.append("g")
     .selectAll("g")
@@ -107,13 +107,13 @@ function createForceGraph(data, containerId, options = {}) {
       .on("start", dragstarted)
       .on("drag", dragged)
       .on("end", dragended));
-  
+
   node.append("circle")
     .attr("r", d => d.is_focus ? nodeRadius * 1.5 : nodeRadius)
     .attr("fill", d => nodeColors[d.type] || "#888")
     .attr("stroke", d => d.is_focus ? "#333" : "#fff")
     .attr("stroke-width", d => d.is_focus ? 3 : 1.5);
-  
+
   node.append("text")
     .text(d => d.label || d.id)
     .attr("x", 0)
@@ -121,10 +121,10 @@ function createForceGraph(data, containerId, options = {}) {
     .attr("text-anchor", "middle")
     .attr("font-size", "11px")
     .attr("font-family", "system-ui, sans-serif");
-  
+
   node.append("title")
     .text(d => `${d.type}: ${d.label || d.id}`);
-  
+
   // Tick function
   simulation.on("tick", () => {
     link
@@ -132,31 +132,31 @@ function createForceGraph(data, containerId, options = {}) {
       .attr("y1", d => d.source.y)
       .attr("x2", d => d.target.x)
       .attr("y2", d => d.target.y);
-    
+
     node.attr("transform", d => `translate(${d.x},${d.y})`);
   });
-  
+
   // Drag functions
   function dragstarted(event) {
     if (!event.active) simulation.alphaTarget(0.3).restart();
     event.subject.fx = event.subject.x;
     event.subject.fy = event.subject.y;
   }
-  
+
   function dragged(event) {
     event.subject.fx = event.x;
     event.subject.fy = event.y;
   }
-  
+
   function dragended(event) {
     if (!event.active) simulation.alphaTarget(0);
     event.subject.fx = null;
     event.subject.fy = null;
   }
-  
+
   // Add to container
   container.appendChild(svg.node());
-  
+
   // Add stats
   const stats = document.createElement("div");
   stats.className = "graph-stats";
@@ -184,7 +184,7 @@ async function loadAndRenderGraph() {
       height: %s
     });
   } catch (error) {
-    document.getElementById('%s').innerHTML = 
+    document.getElementById('%s').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -245,14 +245,14 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
-]], container_id, node_id, container_id, 
-    tonumber(width) or 700, 
-    tonumber(height) or 500, 
+]], container_id, node_id, container_id,
+    tonumber(width) or 700,
+    tonumber(height) or 500,
     container_id)
-    
+
     return pandoc.RawBlock("html", html)
   end
-  
+
   -- Return empty if not our shortcode
   return pandoc.Null()
 end
@@ -263,10 +263,10 @@ function Div(el)
     local node_id = el.attributes["data-id"] or "unknown"
     local width = el.attributes["data-width"] or "700"
     local height = el.attributes["data-height"] or "500"
-    
+
     -- Create shortcode args
     local kwargs = {id = node_id, width = width, height = height}
-    
+
     -- Return the visualization
     return Shortcode({"graph-viz"}, kwargs, {id = node_id})
   end
