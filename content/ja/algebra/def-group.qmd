@@ -1,0 +1,47 @@
+---
+title: "群"
+id: "def-group"
+type: "Definition"
+status: "complete"
+created: "2024-01-15"
+updated: "2024-01-15"
+domain: "algebra"
+tags: ["abstract-algebra", "group-theory"]
+requires: ["def-binary-operation", "def-associativity", "def-identity-element", "def-inverse-element"]
+lean_id: "Mathlib.Algebra.Group.Defs.Group"
+lang: ja
+translations:
+  en: "../en/algebra/def-group.html"
+---
+
+# 群
+
+## 定義
+
+**群** (group) は、以下の性質を満たす二項演算 $\cdot$ を持つ集合 $G$ の組 $(G, \cdot)$ である：
+
+1. **結合性**: すべての $a, b, c \in G$ に対して、$(a \cdot b) \cdot c = a \cdot (b \cdot c)$
+2. **単位元の存在**: ある元 $e \in G$ が存在し、すべての $a \in G$ に対して $e \cdot a = a \cdot e = a$ となる
+3. **逆元の存在**: すべての $a \in G$ に対して、ある元 $a^{-1} \in G$ が存在し、$a \cdot a^{-1} = a^{-1} \cdot a = e$ となる
+
+## 記法
+
+群 $(G, \cdot)$ はしばしば単に $G$ と表記される。演算は文脈から明らかな場合は省略される。
+
+## 性質
+
+- 単位元は一意である（@thm-unique-identity を参照）
+- 各元の逆元は一意である
+- 群が可換性 @def-commutativity を満たす場合、**可換群**または**アーベル群**と呼ばれる
+
+## 例
+
+- 整数の加法群 $(\mathbb{Z}, +)$ - @ex-integers-addition を参照
+- 偶数の整数は加法に関して部分群を形成する - @ex-even-integers-subgroup を参照
+- 有限体 $\mathbb{F}_p^*$ は乗法に関して群である - @ex-finite-field を参照
+
+## 関連概念
+
+- @def-subgroup - 群の部分集合で群構造を持つもの
+- @def-homomorphism - 群構造を保存する写像
+- @thm-lagrange - 有限群における部分群の位数に関する定理

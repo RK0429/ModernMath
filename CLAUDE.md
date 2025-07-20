@@ -91,6 +91,8 @@ cd api && ./start_api.sh  # Runs on http://localhost:5001/
 All mathematical content is in `content/` organized by domain. Each `.qmd` file represents a node in the knowledge graph with:
 
 - **YAML Front Matter**: Contains metadata (id, type, status, requires)
+  - **type**: Must be one of: `Corollary`, `Definition`, `Theorem`, `Example`, `Axiom`, `Proposition`, `Lemma` (capitalized)
+  - **status**: Must be one of: `verified`, `stub`, `complete`, `draft`
 - **Cross-References**: Use `@label` syntax to create graph edges
 - **File Naming**: `def-*.qmd`, `thm-*.qmd`, `ex-*.qmd`, `ax-*.qmd`
 
@@ -124,6 +126,58 @@ The ontology (`ontology/math-ontology.ttl`) defines:
 - **GitHub Actions**: Automated build/test/deploy pipeline
 - **Fuseki**: SPARQL endpoint for graph queries
 - **Flask API**: REST interface for common queries
+
+## Multilingual Support
+
+The project supports multiple languages (currently English and Japanese) with automatic language detection and routing.
+
+### Content Structure
+
+- **Language Directories**: `content/en/` for English, `content/ja/` for Japanese
+- **Language Profiles**: `_quarto-en.yml` and `_quarto-ja.yml` define language-specific configurations
+- **Translation Links**: Each page includes `translations` field in YAML front matter linking to its translations
+
+### Building Multilingual Sites
+
+```bash
+# Build both language versions
+quarto render --profile en
+quarto render --profile ja
+
+# Or use the convenience script
+./build-multilingual.sh
+
+# Note: The CI/CD uses the unified build.yml workflow
+```
+
+### Python Script Compatibility
+
+All Python scripts handle multilingual paths automatically:
+
+- Scripts detect `content/lang/domain/` structure
+- Domain extraction logic accounts for language directories
+- Falls back to flat structure for backward compatibility
+
+### CI/CD Pipeline
+
+The project uses a unified `build.yml` workflow:
+
+1. Builds both language versions sequentially
+2. Creates a root `index.html` with automatic language detection
+3. Deploys both versions to `_site/en/` and `_site/ja/`
+4. Includes .nojekyll file for GitHub Pages compatibility
+
+**Important**: Maintain a single workflow file to avoid redundancy. The build.yml workflow handles all multilingual builds - there's no need for separate language-specific workflows.
+
+### Language Detection
+
+Root index.html redirects based on browser language:
+
+```javascript
+const userLang = navigator.language || navigator.userLanguage;
+const lang = userLang.startsWith("ja") ? "ja" : "en";
+window.location.href = "./" + lang + "/index.html";
+```
 
 ## Critical Implementation Details
 

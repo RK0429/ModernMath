@@ -152,22 +152,45 @@ def main() -> None:
         print(f"Error: {content_dir} directory not found!")
         return
 
-    # Get all domain directories
-    domains = [d for d in content_dir.iterdir() if d.is_dir() and not d.name.startswith("_")]
+    # Check if we have multilingual structure (en/ja directories)
+    lang_dirs = [d for d in content_dir.iterdir() if d.is_dir() and d.name in ["en", "ja"]]
 
-    for domain_path in domains:
-        domain = domain_path.name
-        print(f"Generating index for {domain}...")
+    if lang_dirs:
+        # Process multilingual structure
+        for lang_dir in lang_dirs:
+            print(f"\nProcessing {lang_dir.name} language content...")
+            domains = [d for d in lang_dir.iterdir() if d.is_dir() and not d.name.startswith("_")]
 
-        # Generate the index content
-        content = generate_index_content(domain, domain_path)
+            for domain_path in domains:
+                domain = domain_path.name
+                print(f"  Generating index for {lang_dir.name}/{domain}...")
 
-        # Write to index.qmd
-        index_path = domain_path / "index.qmd"
-        with open(index_path, "w", encoding="utf-8") as f:
-            f.write(content)
+                # Generate the index content
+                content = generate_index_content(domain, domain_path)
 
-        print(f"  Created {index_path}")
+                # Write to index.qmd
+                index_path = domain_path / "index.qmd"
+                with open(index_path, "w", encoding="utf-8") as f:
+                    f.write(content)
+
+                print(f"    Created {index_path}")
+    else:
+        # Process flat structure (backward compatibility)
+        domains = [d for d in content_dir.iterdir() if d.is_dir() and not d.name.startswith("_")]
+
+        for domain_path in domains:
+            domain = domain_path.name
+            print(f"Generating index for {domain}...")
+
+            # Generate the index content
+            content = generate_index_content(domain, domain_path)
+
+            # Write to index.qmd
+            index_path = domain_path / "index.qmd"
+            with open(index_path, "w", encoding="utf-8") as f:
+                f.write(content)
+
+            print(f"  Created {index_path}")
 
     print("\nAll index files generated successfully!")
 

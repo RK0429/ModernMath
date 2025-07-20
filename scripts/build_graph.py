@@ -6,14 +6,14 @@ This script parses .qmd files in the content directory and builds an RDF graph
 representing the mathematical knowledge structure.
 """
 
-import re
-import yaml
 import json
+import logging
+import re
 from pathlib import Path
 from typing import Dict, Optional
-import logging
 
 import frontmatter
+import yaml
 from rdflib import Graph, Literal, Namespace, RDF, RDFS, OWL, URIRef
 
 # Configure logging
@@ -30,7 +30,7 @@ SKOS = Namespace("http://www.w3.org/2004/02/skos/core#")
 CROSSREF_PATTERN = re.compile(r"@([a-zA-Z0-9_-]+)")
 
 
-class KnowledgeGraphBuilder:
+class KnowledgeGraphBuilder:  # pylint: disable=too-few-public-methods
     """Build RDF knowledge graph from Quarto content files."""
 
     def __init__(self, content_dir: Path, output_file: Path):
@@ -57,11 +57,11 @@ class KnowledgeGraphBuilder:
 
     def build(self) -> None:
         """Main method to build the knowledge graph."""
-        logger.info(f"Starting knowledge graph construction from {self.content_dir}")
+        logger.info("Starting knowledge graph construction from %s", self.content_dir)
 
         # First pass: collect all nodes
         qmd_files = list(self.content_dir.rglob("*.qmd"))
-        logger.info(f"Found {len(qmd_files)} .qmd files")
+        logger.info("Found %d .qmd files", len(qmd_files))
 
         for qmd_path in qmd_files:
             self._process_file_first_pass(qmd_path)
@@ -91,11 +91,11 @@ class KnowledgeGraphBuilder:
 
             # Skip files without required metadata
             if "id" not in metadata or "type" not in metadata:
-                logger.warning(f"Skipping {qmd_path}: missing required metadata (id or type)")
+                logger.warning("Skipping %s: missing required metadata (id or type)", qmd_path)
                 return
 
             node_id = metadata["id"]
-            node_uri = URIRef(BASE_URI + node_id)
+            node_uri = URIRef(BASE_URI + str(node_id))
             self.node_registry[node_id] = node_uri
 
             # Add node type
@@ -130,10 +130,10 @@ class KnowledgeGraphBuilder:
             if "lean_id" in metadata:
                 self.graph.add((node_uri, MYMATH.hasLeanId, Literal(metadata["lean_id"])))
 
-            logger.info(f"Registered node: {node_id} ({node_type})")
+            logger.info("Registered node: %s (%s)", node_id, node_type)
 
-        except Exception as e:
-            logger.error(f"Error processing {qmd_path} in first pass: {e}")
+        except (KeyError, ValueError, TypeError) as e:
+            logger.error("Error processing %s in first pass: %s", qmd_path, e)
 
     def _process_file_second_pass(self, qmd_path: Path) -> None:
         """
@@ -170,12 +170,12 @@ class KnowledgeGraphBuilder:
                 if dep_id in self.node_registry:
                     dep_uri = self.node_registry[dep_id]
                     self.graph.add((node_uri, MYMATH.uses, dep_uri))
-                    logger.debug(f"Added relationship: {node_id} uses {dep_id}")
+                    logger.debug("Added relationship: %s uses %s", node_id, dep_id)
                 else:
-                    logger.warning(f"Unresolved reference: {dep_id} referenced by {node_id}")
+                    logger.warning("Unresolved reference: %s referenced by %s", dep_id, node_id)
 
-        except Exception as e:
-            logger.error(f"Error processing {qmd_path} in second pass: {e}")
+        except (KeyError, ValueError, TypeError) as e:
+            logger.error("Error processing %s in second pass: %s", qmd_path, e)
 
     def _get_domain_from_path(self, qmd_path: Path) -> Optional[str]:
         """
@@ -195,11 +195,15 @@ class KnowledgeGraphBuilder:
                     dir_metadata = yaml.safe_load(f)
                     if dir_metadata and "domain" in dir_metadata:
                         return str(dir_metadata["domain"])
-            except Exception as e:
-                logger.warning(f"Error reading {metadata_path}: {e}")
+            except (IOError, yaml.YAMLError) as e:
+                logger.warning("Error reading %s: %s", metadata_path, e)
 
         # Fallback: use directory name as domain
         relative_path = qmd_path.relative_to(self.content_dir)
+
+        # Handle multilingual structure: content/lang/domain/file.qmd
+        if len(relative_path.parts) > 2 and relative_path.parts[0] in ["en", "ja"]:
+            return str(relative_path.parts[1])
         if len(relative_path.parts) > 1:
             return str(relative_path.parts[0])
 
@@ -249,14 +253,14 @@ class KnowledgeGraphBuilder:
                                 (lean_proof_uri, MYMATH.inModule, Literal(lean_data["module_name"]))
                             )
 
-                        logger.info(f"Added Lean verification for {node_id} -> {lean_id}")
+                        logger.info("Added Lean verification for %s -> %s", node_id, lean_id)
 
             # Count how many nodes have verification
             verified_count = len(list(self.graph.triples((None, MYMATH.isVerifiedBy, None))))
-            logger.info(f"Added {verified_count} Lean verification triples")
+            logger.info("Added %d Lean verification triples", verified_count)
 
-        except Exception as e:
-            logger.error(f"Error adding Lean verification triples: {e}")
+        except (IOError, json.JSONDecodeError, KeyError) as e:
+            logger.error("Error adding Lean verification triples: %s", e)
 
     def _save_graph(self) -> None:
         """Save the graph to a Turtle file."""
@@ -289,11 +293,11 @@ class KnowledgeGraphBuilder:
         num_nodes = len(self.node_registry)
         num_relationships = len(list(self.graph.triples((None, MYMATH.uses, None))))
 
-        logger.info(f"Knowledge graph saved to {self.output_file}")
+        logger.info("Knowledge graph saved to %s", self.output_file)
         logger.info("Statistics:")
-        logger.info(f"  - Total triples: {num_triples}")
-        logger.info(f"  - Total nodes: {num_nodes}")
-        logger.info(f"  - Uses relationships: {num_relationships}")
+        logger.info("  - Total triples: %d", num_triples)
+        logger.info("  - Total nodes: %d", num_nodes)
+        logger.info("  - Uses relationships: %d", num_relationships)
 
 
 def main() -> None:
