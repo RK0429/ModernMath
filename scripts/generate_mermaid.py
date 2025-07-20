@@ -5,7 +5,7 @@ Generate Mermaid diagrams for each node in the knowledge graph showing its local
 
 import json
 from pathlib import Path
-from typing import Dict, Set, Tuple
+from typing import Dict, Set, Tuple, Any
 import frontmatter
 from rdflib import Graph, Namespace, RDF, RDFS
 
@@ -23,7 +23,7 @@ def load_knowledge_graph(ttl_file: Path) -> Graph:
     return g
 
 
-def get_node_info(g: Graph, node_uri) -> Dict:
+def get_node_info(g: Graph, node_uri: Any) -> Dict[str, Any]:
     """Get information about a node."""
     info = {"id": str(node_uri).replace(BASE_URI, ""), "label": None, "type": None}
 
@@ -34,14 +34,16 @@ def get_node_info(g: Graph, node_uri) -> Dict:
 
     # Get type
     for node_type in g.objects(node_uri, RDF.type):
-        if node_type.startswith(MYMATH):
+        if str(node_type).startswith(str(MYMATH)):
             info["type"] = str(node_type).replace(str(MYMATH), "")
             break
 
     return info
 
 
-def get_local_neighborhood(g: Graph, node_id: str, depth: int = 1) -> Tuple[Set, Set]:
+def get_local_neighborhood(
+    g: Graph, node_id: str, depth: int = 1
+) -> Tuple[Set[str], Set[Tuple[str, str, str]]]:
     """
     Get the local neighborhood of a node (dependencies and dependents).
     Returns (nodes, edges) where edges are tuples of (source_id, target_id, relation).
@@ -158,7 +160,7 @@ def generate_mermaid_diagram(g: Graph, node_id: str, max_nodes: int = 20) -> str
     return "\n".join(lines)
 
 
-def generate_all_diagrams(ttl_file: Path, output_dir: Path):
+def generate_all_diagrams(ttl_file: Path, output_dir: Path) -> None:
     """Generate Mermaid diagrams for all nodes."""
     g = load_knowledge_graph(ttl_file)
     output_dir.mkdir(exist_ok=True)
@@ -189,7 +191,7 @@ def generate_all_diagrams(ttl_file: Path, output_dir: Path):
         json.dump(index, f, indent=2)
 
 
-def insert_diagrams_in_content():
+def insert_diagrams_in_content() -> None:
     """Insert Mermaid diagrams into Quarto content files."""
     content_dir = Path("content")
     diagrams_dir = Path("output/mermaid")
@@ -232,7 +234,7 @@ def insert_diagrams_in_content():
         print(f"Added diagram to {qmd_file}")
 
 
-def main():
+def main() -> None:
     """Main function."""
     ttl_file = Path("knowledge_graph.ttl")
     output_dir = Path("output/mermaid")

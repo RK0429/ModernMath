@@ -4,9 +4,9 @@ Validate YAML metadata in all .qmd files to ensure they comply with the schema.
 """
 
 import sys
+from typing import List, Dict
 from pathlib import Path
 import frontmatter
-from typing import List, Dict
 
 
 REQUIRED_FIELDS = {"title", "id", "type"}
@@ -30,7 +30,7 @@ def validate_metadata(file_path: Path) -> List[str]:
         with open(file_path, "r", encoding="utf-8") as f:
             post = frontmatter.load(f)
             metadata = post.metadata
-    except Exception as e:
+    except (IOError, OSError, ValueError) as e:
         return [f"Failed to parse frontmatter: {e}"]
 
     # Check required fields
@@ -68,7 +68,7 @@ def validate_metadata(file_path: Path) -> List[str]:
     return errors
 
 
-def main():
+def main() -> None:
     """Main validation function."""
     content_dir = Path("content")
     if not content_dir.exists():

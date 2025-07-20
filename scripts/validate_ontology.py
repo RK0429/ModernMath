@@ -123,7 +123,7 @@ def validate_ontology(ontology_path: Path) -> bool:
         return False
 
 
-def main():
+def main() -> None:
     """Main function."""
     ontology_path = Path("ontology/math-ontology.ttl")
 

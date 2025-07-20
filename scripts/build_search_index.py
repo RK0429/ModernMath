@@ -6,7 +6,7 @@ Build a full-text search index from all content files.
 import logging
 import re
 from pathlib import Path
-from typing import Dict, List
+from typing import Any, Dict, List
 
 import frontmatter
 from whoosh import index
@@ -117,22 +117,22 @@ def get_domain_from_path(file_path: Path) -> str:
     return domain_map.get(parent, parent.title())
 
 
-def index_content_files(content_dir: Path, index_dir: Path):
+def index_content_files(content_dir: Path, index_dir: Path) -> None:
     """Build the search index from all content files"""
     # Create or open the index
     if not index_dir.exists():
         index_dir.mkdir(parents=True)
         ix = index.create_in(str(index_dir), create_schema())
-        logger.info(f"Created new index in {index_dir}")
+        logger.info("Created new index in %s", index_dir)
     else:
         # Check if a valid index exists in the directory
         try:
             ix = index.open_dir(str(index_dir))
-            logger.info(f"Opened existing index in {index_dir}")
+            logger.info("Opened existing index in %s", index_dir)
         except (index.EmptyIndexError, FileNotFoundError):
             # Directory exists but no valid index, create new one
             ix = index.create_in(str(index_dir), create_schema())
-            logger.info(f"Created new index in existing directory {index_dir}")
+            logger.info("Created new index in existing directory %s", index_dir)
 
     writer = ix.writer()
     indexed_count = 0
@@ -178,19 +178,19 @@ def index_content_files(content_dir: Path, index_dir: Path):
             )
 
             indexed_count += 1
-            logger.info(f"Indexed: {doc_id} ({title})")
+            logger.info("Indexed: %s (%s)", doc_id, title)
 
-        except Exception as e:
-            logger.error(f"Error indexing {qmd_file}: {e}")
+        except (IOError, OSError, ValueError) as e:
+            logger.error("Error indexing %s: %s", qmd_file, e)
 
     writer.commit()
-    logger.info(f"Successfully indexed {indexed_count} documents")
+    logger.info("Successfully indexed %d documents", indexed_count)
 
 
-def search_index(query_str: str, index_dir: Path, limit: int = 50) -> List[Dict]:
+def search_index(query_str: str, index_dir: Path, limit: int = 50) -> List[Dict[str, Any]]:
     """Search the index for a query string"""
     if not index_dir.exists():
-        logger.error(f"Index directory {index_dir} does not exist")
+        logger.error("Index directory %s does not exist", index_dir)
         return []
 
     ix = index.open_dir(str(index_dir))
@@ -222,7 +222,7 @@ def search_index(query_str: str, index_dir: Path, limit: int = 50) -> List[Dict]
     return results
 
 
-def main():
+def main() -> None:
     """Main function to build the search index"""
     # Get project root
     project_root = Path(__file__).parent.parent
@@ -230,7 +230,7 @@ def main():
     index_dir = project_root / "search_index"
 
     if not content_dir.exists():
-        logger.error(f"Content directory {content_dir} does not exist")
+        logger.error("Content directory %s does not exist", content_dir)
         return
 
     logger.info("Building search index...")
@@ -241,10 +241,10 @@ def main():
     test_queries = ["group", "topology", "continuous", "theorem"]
 
     for query in test_queries:
-        logger.info(f"\nSearching for: '{query}'")
+        logger.info("\nSearching for: '%s'", query)
         results = search_index(query, index_dir, limit=5)
         for i, result in enumerate(results, 1):
-            logger.info(f"  {i}. {result['title']} (Score: {result['score']:.2f})")
+            logger.info("  %d. %s (Score: %.2f)", i, result["title"], result["score"])
 
 
 if __name__ == "__main__":

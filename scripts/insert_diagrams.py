@@ -7,7 +7,7 @@ from pathlib import Path
 import frontmatter
 
 
-def insert_diagrams():
+def insert_diagrams() -> None:
     """Insert Mermaid diagrams into Quarto content files."""
     content_dir = Path("content")
     diagrams_dir = Path("output/mermaid")
@@ -68,18 +68,18 @@ def insert_diagrams():
 
     # Report results
     print(f"✅ Updated {len(updated_files)} files with Mermaid diagrams:")
-    for f in updated_files:
-        print(f"   - {f}")
+    for file_path in updated_files:
+        print(f"   - {file_path}")
 
     if skipped_files:
         print(f"\n⏭️  Skipped {len(skipped_files)} files (already have diagrams):")
-        for f in skipped_files:
-            print(f"   - {f}")
+        for file_path in skipped_files:
+            print(f"   - {file_path}")
 
     print(f"\n📊 Total: {len(updated_files)} updated, {len(skipped_files)} skipped")
 
 
-def main():
+def main() -> None:
     """Main function."""
     insert_diagrams()
 

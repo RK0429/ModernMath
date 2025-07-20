@@ -7,7 +7,7 @@ These files will be used by Observable JS in Quarto pages.
 import json
 from pathlib import Path
 from rdflib import Graph, Namespace, RDF, RDFS
-from typing import Dict, Set, Tuple
+from typing import Dict, Set, Tuple, Any
 
 # Define namespaces
 MYMATH = Namespace("https://mathwiki.org/ontology#")
@@ -15,7 +15,7 @@ BASE_URI = "https://mathwiki.org/resource/"
 BASE_NS = Namespace(BASE_URI)
 
 
-def get_node_info(g: Graph, node_uri) -> Dict:
+def get_node_info(g: Graph, node_uri: Any) -> Dict[str, Any]:
     """Get basic information about a node."""
     info = {
         "id": str(node_uri).replace(BASE_URI, ""),
@@ -38,7 +38,9 @@ def get_node_info(g: Graph, node_uri) -> Dict:
     return info
 
 
-def get_node_neighbors(g: Graph, node_uri, depth: int = 2) -> Tuple[Set, Set]:
+def get_node_neighbors(
+    g: Graph, node_uri: Any, depth: int = 2
+) -> Tuple[Set[Any], Set[Tuple[str, str]]]:
     """Get neighbors of a node up to specified depth."""
     nodes = {node_uri}
     edges = set()
@@ -66,7 +68,7 @@ def get_node_neighbors(g: Graph, node_uri, depth: int = 2) -> Tuple[Set, Set]:
     return nodes, edges
 
 
-def create_d3_json(g: Graph, node_id: str, output_dir: Path):
+def create_d3_json(g: Graph, node_id: str, output_dir: Path) -> Path:
     """Create D3.js-compatible JSON for a specific node."""
     node_uri = BASE_NS[node_id]
 
@@ -116,7 +118,7 @@ def create_d3_json(g: Graph, node_id: str, output_dir: Path):
     return output_file
 
 
-def create_domain_json(g: Graph, domain: str, output_dir: Path):
+def create_domain_json(g: Graph, domain: str, output_dir: Path) -> Path:
     """Create D3.js-compatible JSON for an entire domain."""
     # Query for all nodes in this domain
     domain_nodes = set()
@@ -174,7 +176,7 @@ def create_domain_json(g: Graph, domain: str, output_dir: Path):
     return output_file
 
 
-def main():
+def main() -> None:
     """Main function to generate all D3.js data files."""
     # Load the knowledge graph
     print("Loading knowledge graph...")

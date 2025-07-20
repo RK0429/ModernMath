@@ -47,7 +47,7 @@ class KnowledgeGraphBuilder:
         self._bind_namespaces()
         self.node_registry: Dict[str, URIRef] = {}
 
-    def _bind_namespaces(self):
+    def _bind_namespaces(self) -> None:
         """Bind namespaces to the graph for cleaner serialization."""
         self.graph.bind("mymath", MYMATH)
         self.graph.bind("rdfs", RDFS)
@@ -55,7 +55,7 @@ class KnowledgeGraphBuilder:
         self.graph.bind("dcterms", DCTERMS)
         self.graph.bind("skos", SKOS)
 
-    def build(self):
+    def build(self) -> None:
         """Main method to build the knowledge graph."""
         logger.info(f"Starting knowledge graph construction from {self.content_dir}")
 
@@ -76,7 +76,7 @@ class KnowledgeGraphBuilder:
         # Save the graph
         self._save_graph()
 
-    def _process_file_first_pass(self, qmd_path: Path):
+    def _process_file_first_pass(self, qmd_path: Path) -> None:
         """
         First pass: Extract node information and register in the graph.
 
@@ -135,7 +135,7 @@ class KnowledgeGraphBuilder:
         except Exception as e:
             logger.error(f"Error processing {qmd_path} in first pass: {e}")
 
-    def _process_file_second_pass(self, qmd_path: Path):
+    def _process_file_second_pass(self, qmd_path: Path) -> None:
         """
         Second pass: Extract and add relationships between nodes.
 
@@ -194,18 +194,18 @@ class KnowledgeGraphBuilder:
                 with open(metadata_path, "r", encoding="utf-8") as f:
                     dir_metadata = yaml.safe_load(f)
                     if dir_metadata and "domain" in dir_metadata:
-                        return dir_metadata["domain"]
+                        return str(dir_metadata["domain"])
             except Exception as e:
                 logger.warning(f"Error reading {metadata_path}: {e}")
 
         # Fallback: use directory name as domain
         relative_path = qmd_path.relative_to(self.content_dir)
         if len(relative_path.parts) > 1:
-            return relative_path.parts[0]
+            return str(relative_path.parts[0])
 
         return None
 
-    def _add_lean_verification_triples(self):
+    def _add_lean_verification_triples(self) -> None:
         """Add isVerifiedBy triples for nodes that have formal Lean verification."""
         # Path to the Lean mappings file
         mappings_file = self.output_file.parent / "lean_mappings.json"
@@ -258,7 +258,7 @@ class KnowledgeGraphBuilder:
         except Exception as e:
             logger.error(f"Error adding Lean verification triples: {e}")
 
-    def _save_graph(self):
+    def _save_graph(self) -> None:
         """Save the graph to a Turtle file."""
         # Add ontology metadata
         ontology_uri = URIRef("https://mathwiki.org/ontology")
@@ -296,7 +296,7 @@ class KnowledgeGraphBuilder:
         logger.info(f"  - Uses relationships: {num_relationships}")
 
 
-def main():
+def main() -> None:
     """Main entry point."""
     # Set up paths
     project_root = Path(__file__).parent.parent

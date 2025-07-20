@@ -293,11 +293,16 @@ class NaturalLanguageQueryProcessor:
 
             # Convert results to simpler format
             simplified_results = []
-            for result in results["results"]["bindings"]:
-                simplified = {}
-                for key, value in result.items():
-                    simplified[key] = value["value"]
-                simplified_results.append(simplified)
+            if (
+                isinstance(results, dict)
+                and "results" in results
+                and "bindings" in results["results"]
+            ):
+                for result in results["results"]["bindings"]:
+                    simplified = {}
+                    for key, value in result.items():
+                        simplified[key] = value["value"]
+                    simplified_results.append(simplified)
 
             return simplified_results
 
@@ -349,7 +354,7 @@ class NaturalLanguageQueryProcessor:
                 return f"No connection found between {intent.subject} and {intent.target}."
 
         elif intent.query_type == "domain":
-            by_type = {}
+            by_type: Dict[str, List[str]] = {}
             for r in results:
                 type_name = r["nodeType"].split("#")[-1]
                 if type_name not in by_type:

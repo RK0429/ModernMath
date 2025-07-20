@@ -3,10 +3,11 @@
 Test the LLM PR review functionality without creating an actual PR.
 """
 
+from typing import Any
 from llm_integration import MathKnowledgeGraphLLM
 
 
-def test_llm_pr_review():
+def test_llm_pr_review() -> bool:
     """Test the LLM PR review functionality with sample content."""
 
     # Create test content that should trigger suggestions
@@ -101,12 +102,11 @@ This result has applications in:
     print(f"- Files with suggestions: {result['files_with_suggestions']}")
     print(f"- Total suggestions: {len(result['suggestions'])}")
 
+    # Group suggestions by file
+    by_file: dict[str, list[dict[str, Any]]] = {}
     if result["suggestions"]:
         print("\nDetailed Suggestions:")
         print("-" * 60)
-
-        # Group by file
-        by_file = {}
         for suggestion in result["suggestions"]:
             file = suggestion["file"]
             if file not in by_file:
@@ -156,7 +156,7 @@ This result has applications in:
     return len(result["suggestions"]) > 0
 
 
-def main():
+def main() -> None:
     """Main function."""
     print("LLM PR Review Test")
     print("==================\n")

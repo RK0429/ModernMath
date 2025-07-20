@@ -57,7 +57,7 @@ def parse_lean_files_directly(lean_dir: Path) -> Dict[str, List[str]]:
     Returns:
         Dictionary mapping file names to their imports
     """
-    dependencies = {}
+    dependencies: Dict[str, List[str]] = {}
 
     # Find all .lean files
     lean_files = list(lean_dir.rglob("*.lean"))
@@ -105,7 +105,7 @@ def parse_trace_output(trace_dir: Path) -> Dict[str, List[str]]:
     Returns:
         Dictionary mapping theorem names to their dependencies
     """
-    dependencies = {}
+    dependencies: Dict[str, List[str]] = {}
 
     # Look for dependency files
     dep_files = list(trace_dir.glob("*.dep_paths"))
@@ -213,7 +213,7 @@ def generate_formal_graph_ttl(dependencies: Dict[str, List[str]], output_file: P
     logger.info(f"Formal graph saved to {output_file}")
 
 
-def main():
+def main() -> None:
     """Main function to extract Lean dependencies."""
     # Define paths
     project_root = Path(__file__).parent.parent

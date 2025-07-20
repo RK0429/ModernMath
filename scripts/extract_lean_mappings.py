@@ -8,7 +8,7 @@ import json
 import logging
 import re
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -58,8 +58,8 @@ def extract_metadata_from_lean_file(file_path: Path) -> Optional[Dict[str, str]]
 
         return metadata if metadata else None
 
-    except Exception as e:
-        logger.warning(f"Error reading {file_path}: {e}")
+    except (IOError, OSError) as e:
+        logger.warning("Error reading %s: %s", file_path, e)
         return None
 
 
@@ -77,7 +77,7 @@ def extract_all_mappings(lean_dir: Path) -> List[Dict[str, str]]:
 
     # Find all .lean files
     lean_files = list(lean_dir.rglob("*.lean"))
-    logger.info(f"Scanning {len(lean_files)} Lean files for mappings...")
+    logger.info("Scanning %d Lean files for mappings...", len(lean_files))
 
     for lean_file in lean_files:
         # Skip build files
@@ -85,14 +85,17 @@ def extract_all_mappings(lean_dir: Path) -> List[Dict[str, str]]:
             continue
 
         metadata = extract_metadata_from_lean_file(lean_file)
-        if metadata and "node_id" in metadata:
-            mappings.append(metadata)
-            logger.info(f"Found mapping: {metadata['node_id']} -> {metadata.get('lean_id', 'N/A')}")
+        if metadata is not None:
+            if "node_id" in metadata:
+                mappings.append(metadata)
+                logger.info(
+                    "Found mapping: %s -> %s", metadata["node_id"], metadata.get("lean_id", "N/A")
+                )
 
     return mappings
 
 
-def create_bidirectional_mapping(mappings: List[Dict[str, str]]) -> Dict[str, Dict]:
+def create_bidirectional_mapping(mappings: List[Dict[str, str]]) -> Dict[str, Any]:
     """
     Create bidirectional mapping dictionaries.
 
@@ -140,12 +143,12 @@ def verify_quarto_files_exist(mappings: List[Dict[str, str]], project_root: Path
         if quarto_file:
             full_path = project_root / quarto_file
             if full_path.exists():
-                logger.debug(f"✓ Found: {quarto_file}")
+                logger.debug("✓ Found: %s", quarto_file)
             else:
-                logger.warning(f"✗ Missing: {quarto_file}")
+                logger.warning("✗ Missing: %s", quarto_file)
 
 
-def main():
+def main() -> None:
     """Main function to extract Lean-Quarto mappings."""
     # Define paths
     project_root = Path(__file__).parent.parent
@@ -156,7 +159,7 @@ def main():
 
     # Extract mappings
     mappings = extract_all_mappings(lean_dir)
-    logger.info(f"Found {len(mappings)} mappings")
+    logger.info("Found %d mappings", len(mappings))
 
     if mappings:
         # Create bidirectional mapping
@@ -166,15 +169,15 @@ def main():
         verify_quarto_files_exist(mappings, project_root)
 
         # Save to JSON
-        with open(output_file, "w") as f:
+        with open(output_file, "w", encoding="utf-8") as f:
             json.dump(mapping_data, f, indent=2)
-        logger.info(f"Mappings saved to {output_file}")
+        logger.info("Mappings saved to %s", output_file)
 
         # Print summary
         logger.info("\nSummary:")
-        logger.info(f"  Total mappings: {len(mappings)}")
-        logger.info(f"  Node to Lean mappings: {len(mapping_data['node_to_lean'])}")
-        logger.info(f"  Lean to Node mappings: {len(mapping_data['lean_to_node'])}")
+        logger.info("  Total mappings: %d", len(mappings))
+        logger.info("  Node to Lean mappings: %d", len(mapping_data["node_to_lean"]))
+        logger.info("  Lean to Node mappings: %d", len(mapping_data["lean_to_node"]))
     else:
         logger.warning("No mappings found!")
 

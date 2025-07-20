@@ -32,8 +32,12 @@ class MathKnowledgeGraphQuery:
 
         try:
             results = self.sparql.query().convert()
-            if "results" in results and "bindings" in results["results"]:
-                return results["results"]["bindings"]
+            if (
+                isinstance(results, dict)
+                and "results" in results
+                and "bindings" in results["results"]
+            ):
+                return results["results"]["bindings"]  # type: ignore
             return []
         except Exception as e:
             print(f"Error executing query: {e}")
@@ -170,7 +174,7 @@ def format_results(results: List[Dict[str, Any]]) -> None:
         print(", ".join(items))
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description="Query the Math Knowledge Graph")
     parser.add_argument(
         "--endpoint",

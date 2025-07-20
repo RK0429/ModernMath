@@ -8,7 +8,7 @@ from pathlib import Path
 from rdflib import Graph, Namespace, RDF, RDFS, Literal
 
 
-def add_verification_triples():
+def add_verification_triples() -> bool:
     """Add formal verification triples to the knowledge graph."""
     # Load the lean mappings
     mappings_path = Path("lean_mappings.json")
@@ -78,7 +78,7 @@ def add_verification_triples():
     return True
 
 
-def main():
+def main() -> None:
     """Main function."""
     print("Adding formal verification triples to knowledge graph...")
 

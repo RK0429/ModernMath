@@ -11,7 +11,7 @@ This script validates the generated knowledge graph for:
 
 import logging
 from pathlib import Path
-from typing import Set, List
+from typing import Set, List, Dict
 from collections import defaultdict
 
 from rdflib import Graph, Namespace, RDF
@@ -37,7 +37,7 @@ class GraphValidator:
         """
         self.graph_file = graph_file
         self.graph = Graph()
-        self.issues = []
+        self.issues: List[str] = []
 
     def validate(self) -> bool:
         """
@@ -68,7 +68,7 @@ class GraphValidator:
 
         return len([i for i in self.issues if i.startswith("ERROR")]) == 0
 
-    def _check_node_types(self):
+    def _check_node_types(self) -> None:
         """Check that all nodes have valid types."""
         valid_types = {MYMATH.Definition, MYMATH.Theorem, MYMATH.Axiom, MYMATH.Example}
 
@@ -80,7 +80,7 @@ class GraphValidator:
             elif not any(t in valid_types for t in types):
                 self.issues.append(f"WARNING: Node {subject} has non-standard type: {types}")
 
-    def _check_broken_references(self):
+    def _check_broken_references(self) -> None:
         """Check for references to non-existent nodes."""
         # Get all node URIs
         all_nodes = set()
@@ -96,7 +96,7 @@ class GraphValidator:
                     f"ERROR: Broken reference: {node_id} references non-existent {ref_id}"
                 )
 
-    def _check_circular_dependencies(self):
+    def _check_circular_dependencies(self) -> None:
         """Check for circular dependencies in the graph."""
         # Build adjacency list
         adjacency = defaultdict(set)
@@ -123,7 +123,7 @@ class GraphValidator:
             rec_stack.remove(node)
             return []
 
-        visited = set()
+        visited: Set[str] = set()
         for node in nodes:
             if node not in visited:
                 cycle = has_cycle_from(node, visited, set())
@@ -131,7 +131,7 @@ class GraphValidator:
                     cycle_str = " -> ".join(n.replace(BASE_URI, "") for n in cycle)
                     self.issues.append(f"WARNING: Circular dependency detected: {cycle_str}")
 
-    def _check_orphaned_nodes(self):
+    def _check_orphaned_nodes(self) -> None:
         """Check for nodes with no incoming or outgoing relationships."""
         nodes_with_relationships = set()
 
@@ -149,7 +149,7 @@ class GraphValidator:
                     node_id = str(subject).replace(BASE_URI, "")
                     self.issues.append(f"INFO: Orphaned node (no relationships): {node_id}")
 
-    def _check_bidirectional_references(self):
+    def _check_bidirectional_references(self) -> None:
         """Check for inconsistent bidirectional references."""
         # This is more of a warning - if A uses B in its proof,
         # but B also uses A, it might indicate a logical issue
@@ -165,10 +165,10 @@ class GraphValidator:
                     dep_id = dep.replace(BASE_URI, "")
                     self.issues.append(f"INFO: Bidirectional dependency: {node_id} <-> {dep_id}")
 
-    def print_statistics(self):
+    def print_statistics(self) -> None:
         """Print statistics about the graph."""
         # Count nodes by type
-        type_counts = defaultdict(int)
+        type_counts: Dict[str, int] = defaultdict(int)
         for s, p, o in self.graph.triples((None, RDF.type, None)):
             type_name = str(o).replace(str(MYMATH), "")
             type_counts[type_name] += 1
@@ -184,7 +184,7 @@ class GraphValidator:
         logger.info(f"  Total 'uses' relationships: {uses_count}")
 
 
-def main():
+def main() -> int:
     """Main entry point."""
     project_root = Path(__file__).parent.parent
     graph_file = project_root / "knowledge_graph.ttl"

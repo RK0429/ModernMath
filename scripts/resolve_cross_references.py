@@ -7,6 +7,7 @@ relative markdown links to eliminate Quarto cross-reference warnings.
 """
 
 import argparse
+import os
 import re
 import sys
 from pathlib import Path
@@ -48,13 +49,13 @@ def load_node_index(content_dir: Path) -> Dict[str, Path]:
                         node_id = metadata["id"]
                         node_index[node_id] = qmd_file
 
-        except Exception as e:
+        except (IOError, OSError, yaml.YAMLError) as e:
             print(f"Warning: Error reading {qmd_file}: {e}", file=sys.stderr)
 
     return node_index
 
 
-def find_cross_references(content: str) -> List[Tuple[str, str, int, int]]:
+def find_cross_references(content: str) -> List[Tuple[str, Optional[str], int, int]]:
     """
     Find all @-style cross-references in content.
 
@@ -91,10 +92,10 @@ def calculate_relative_path(from_file: Path, to_file: Path) -> str:
     Returns:
         Relative path string
     """
-    try:
-        # Get the directory of the source file
-        from_dir = from_file.parent
+    # Get the directory of the source file
+    from_dir = from_file.parent
 
+    try:
         # Calculate relative path from source directory to target file
         # This handles both same-directory and cross-directory references
         rel_path = Path("..") / to_file.parent.name / to_file.name
@@ -108,10 +109,8 @@ def calculate_relative_path(from_file: Path, to_file: Path) -> str:
 
     except ValueError:
         # Fallback: calculate relative path using os.path.relpath
-        import os
-
-        rel_path = os.path.relpath(to_file, from_dir)
-        return rel_path.replace("\\", "/")
+        rel_path_str = os.path.relpath(str(to_file), str(from_dir))
+        return rel_path_str.replace("\\", "/")
 
 
 def get_node_title(file_path: Path) -> Optional[str]:
@@ -135,9 +134,9 @@ def get_node_title(file_path: Path) -> Optional[str]:
                 metadata = yaml.safe_load(yaml_content)
 
                 if metadata and "title" in metadata:
-                    return metadata["title"]
+                    return str(metadata["title"])
 
-    except Exception:
+    except (IOError, OSError, yaml.YAMLError):
         pass
 
     return None
@@ -173,10 +172,9 @@ def pluralize_word(word: str) -> str:
     # Regular pluralization rules
     if word.endswith("y") and len(word) > 1 and word[-2] not in "aeiou":
         return word[:-1] + "ies"
-    elif word.endswith(("s", "x", "z", "ch", "sh")):
+    if word.endswith(("s", "x", "z", "ch", "sh")):
         return word + "es"
-    else:
-        return word + "s"
+    return word + "s"
 
 
 def resolve_references_in_file(
@@ -259,7 +257,8 @@ def resolve_references_in_file(
     return resolved_count
 
 
-def main():
+def main() -> None:
+    """Main function to resolve cross-references in Quarto markdown files."""
     parser = argparse.ArgumentParser(
         description="Resolve cross-references in Quarto markdown files"
     )
