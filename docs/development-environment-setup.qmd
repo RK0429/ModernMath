@@ -1,0 +1,282 @@
+---
+title: "Development Environment Setup Guide"
+author: "Math Knowledge Graph Team"
+date: "2025-07-20"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+---
+
+# Development Environment Setup Guide
+
+This guide will walk you through setting up your local development environment for the Mathematics Knowledge Graph Wiki project.
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed on your system:
+
+- **Operating System**: macOS, Linux, or Windows with WSL2
+- **Git**: Version control system
+- **Python**: 3.11 or higher
+- **Node.js**: 16.x or higher (for JavaScript tools)
+- **Java**: OpenJDK 11 or higher (for Apache Jena Fuseki)
+
+## Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/RK0429/ModernMath.git
+cd ModernMath
+```
+
+## Step 2: Python Environment Setup
+
+### Install Poetry
+
+Poetry is our dependency management tool. Install it globally:
+
+```bash
+# On macOS/Linux
+curl -sSL https://install.python-poetry.org | python3 -
+
+# Or using pip
+pip install poetry
+```
+
+### Configure Poetry
+
+```bash
+# Configure poetry to create virtual environments in the project directory
+poetry config virtualenvs.in-project true
+```
+
+### Install Python Dependencies
+
+```bash
+# Install all dependencies
+poetry install
+
+# Activate the virtual environment
+poetry shell
+```
+
+## Step 3: Install Quarto
+
+Quarto is used for content authoring and site generation.
+
+### macOS
+
+```bash
+brew install quarto
+```
+
+### Linux/Windows
+
+Download from [https://quarto.org/docs/get-started/](https://quarto.org/docs/get-started/)
+
+### Verify Installation
+
+```bash
+quarto --version
+```
+
+## Step 4: Apache Jena Fuseki Setup
+
+Fuseki provides our SPARQL endpoint for querying the knowledge graph.
+
+### Download and Install
+
+```bash
+# Navigate to fuseki directory
+cd fuseki/scripts
+
+# Download Fuseki (if not already present)
+./download_fuseki.sh
+
+# Start Fuseki
+./start_fuseki.sh
+```
+
+Fuseki will be available at http://localhost:3030
+
+### Load Initial Data
+
+```bash
+# Load the knowledge graph data
+./load_data.sh
+```
+
+## Step 5: Start the REST API
+
+The REST API provides a convenient interface to the knowledge graph.
+
+```bash
+# From the project root
+cd api
+./start_api.sh
+```
+
+The API will be available at http://localhost:5001
+
+### API Endpoints
+
+- Health check: `GET http://localhost:5001/`
+- Get node: `GET http://localhost:5001/api/nodes/{nodeId}`
+- Search: `GET http://localhost:5001/api/search?q={query}`
+- API docs: Available at http://localhost:5001/api/docs
+
+## Step 6: Build the Knowledge Graph
+
+```bash
+# From the project root
+poetry run python scripts/build_graph.py
+```
+
+This will:
+- Parse all `.qmd` files in the `content/` directory
+- Extract metadata and cross-references
+- Generate `knowledge_graph.ttl`
+
+## Step 7: Generate Visualizations
+
+```bash
+# Generate Mermaid diagrams
+poetry run python scripts/generate_mermaid.py
+
+# Generate PyVis interactive graphs
+poetry run python scripts/generate_pyvis.py
+
+# Generate D3.js data
+poetry run python scripts/generate_d3_data.py
+
+# Insert diagrams into content files
+poetry run python scripts/insert_diagrams.py
+```
+
+## Step 8: Preview the Site Locally
+
+```bash
+# From the project root
+quarto preview
+```
+
+The site will be available at http://localhost:4000 (or similar port)
+
+## Optional: Lean 4 Setup
+
+If you want to work with formal verification:
+
+### Install Lean 4
+
+```bash
+# Install elan (Lean version manager)
+curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh
+
+# Navigate to formal directory
+cd formal
+
+# Build the Lean project
+lake build
+```
+
+## Development Workflow
+
+### 1. Adding New Content
+
+1. Create a new `.qmd` file in the appropriate `content/` subdirectory
+2. Follow the metadata schema (see `docs/content-authoring-tutorial.qmd`)
+3. Use cross-references with `@` syntax
+4. Run the build pipeline to update the graph
+
+### 2. Testing Changes
+
+```bash
+# Run Python tests
+poetry run pytest
+
+# Validate metadata
+poetry run python scripts/validate_metadata.py
+
+# Validate the graph
+poetry run python scripts/validate_graph.py
+```
+
+### 3. Code Quality
+
+```bash
+# Format code
+poetry run black scripts/
+
+# Run linting
+poetry run flake8 scripts/ --max-line-length=100
+
+# Type checking
+poetry run mypy scripts/
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Poetry not found**: Ensure Poetry is in your PATH after installation
+2. **Fuseki won't start**: Check if Java is installed and port 3030 is free
+3. **API import errors**: Ensure you're running from the correct directory
+4. **Quarto rendering errors**: Check for syntax errors in `.qmd` files
+
+### Checking Services
+
+```bash
+# Check if Fuseki is running
+curl http://localhost:3030/$/ping
+
+# Check if API is running
+curl http://localhost:5001/
+
+# Check Python environment
+poetry env info
+```
+
+## Environment Variables
+
+Create a `.env` file in the project root for any configuration:
+
+```bash
+# Example .env file
+FUSEKI_ENDPOINT=http://localhost:3030/mathwiki/query
+API_PORT=5001
+DEBUG=True
+```
+
+## IDE Setup
+
+### VS Code
+
+Recommended extensions:
+- Python
+- Quarto
+- Markdown All in One
+- YAML
+
+### Settings
+
+```json
+{
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.formatting.provider": "black",
+  "python.defaultInterpreterPath": ".venv/bin/python"
+}
+```
+
+## Next Steps
+
+- Read the [Content Authoring Tutorial](content-authoring-tutorial.qmd)
+- Review the [Architecture Diagrams](architecture-diagrams.qmd)
+- Check the [Troubleshooting Guide](troubleshooting-guide.qmd)
+- Join the development discussion on GitHub
+
+## Getting Help
+
+- GitHub Issues: [https://github.com/RK0429/ModernMath/issues](https://github.com/RK0429/ModernMath/issues)
+- Documentation: Available in the `docs/` directory
+- API Documentation: http://localhost:5001/api/docs when running locally
