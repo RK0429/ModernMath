@@ -129,44 +129,49 @@ jobs:
           echo "Verification triples added to knowledge graph"
         fi
 
-    # Step 6b: Generate Mermaid diagrams
+    # Step 6b: Add click directives to Mermaid diagrams
+    - name: Add click directives to Mermaid diagrams
+      run: |
+        poetry run python scripts/add_mermaid_links.py
+
+    # Step 6c: Generate Mermaid diagrams
     - name: Generate Mermaid diagrams
       run: |
         poetry run python scripts/generate_mermaid.py
 
-    # Step 6c: Generate PyVis interactive visualizations
+    # Step 6d: Generate PyVis interactive visualizations
     - name: Generate PyVis interactive visualizations
       run: |
         poetry run python scripts/generate_pyvis.py
 
-    # Step 6c1: Fix PyVis CSS paths
+    # Step 6e: Fix PyVis CSS paths
     - name: Fix PyVis CSS paths
       run: |
         poetry run python scripts/fix_pyvis_css.py
 
-    # Step 6d: Generate D3.js data files
+    # Step 6f: Generate D3.js data files
     - name: Generate D3.js data files
       run: |
         poetry run python scripts/generate_d3_data.py
 
-    # Step 6e: Generate comprehensive index pages
+    # Step 6g: Generate comprehensive index pages
     - name: Generate index pages for all domains
       run: |
         poetry run python scripts/generate_index_pages.py
         echo "Index pages generated successfully!"
 
-    # Step 6f: Resolve cross-references
+    # Step 6h: Resolve cross-references
     - name: Resolve cross-references
       run: |
         poetry run python scripts/resolve_cross_references.py
         echo "Cross-references resolved successfully!"
 
-    # Step 6g: Insert diagrams into content
+    # Step 6i: Insert diagrams into content
     - name: Insert diagrams into content
       run: |
         poetry run python scripts/insert_diagrams.py
 
-    # Step 6h: Build search index
+    # Step 6j: Build search index
     - name: Build search index
       run: |
         poetry run python scripts/build_search_index.py

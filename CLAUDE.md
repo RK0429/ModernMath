@@ -41,6 +41,9 @@ poetry run python scripts/generate_index_pages.py
 ### Generating Visualizations
 
 ```bash
+# Add click directives to Mermaid diagrams (run before generating)
+poetry run python scripts/add_mermaid_links.py
+
 # Generate all visualizations in sequence
 poetry run python scripts/generate_mermaid.py
 poetry run python scripts/generate_pyvis.py
@@ -191,6 +194,25 @@ graph TD
 ```
 
 Format: `click node-id "relative-path.html" "tooltip-text"`
+
+#### Automating Mermaid Clickable Links
+
+The `scripts/add_mermaid_links.py` script automatically adds click directives to all Mermaid diagrams:
+
+```bash
+# Add click directives to all Mermaid diagrams
+poetry run python scripts/add_mermaid_links.py
+```
+
+Features:
+
+- Detects all node references in Mermaid diagrams (def-_, thm-_, ex-_, ax-_)
+- Adds appropriate click directives with language-aware tooltips
+- Skips nodes that already have click directives
+- Skips the current node (marked with 'current' class)
+- Handles both English and Japanese tooltips automatically
+
+This script is integrated into the build pipeline and runs before Mermaid diagram generation.
 
 ## Multilingual Support
 
@@ -359,10 +381,11 @@ PyVis graphs include:
 ### Build Order Dependencies
 
 1. First: `build_graph.py` (creates knowledge_graph.ttl)
-2. Then: Visualization scripts (read the .ttl file)
-3. Then: `generate_index_pages.py` (creates comprehensive index pages with language support)
-4. Then: `resolve_cross_references.py` (needs content to exist)
-5. Finally: `quarto render` (uses all generated assets)
+2. Then: `add_mermaid_links.py` (adds click directives to Mermaid diagrams)
+3. Then: Visualization scripts (read the .ttl file)
+4. Then: `generate_index_pages.py` (creates comprehensive index pages with language support)
+5. Then: `resolve_cross_references.py` (needs content to exist)
+6. Finally: `quarto render` (uses all generated assets)
 
 ## Current Status
 
