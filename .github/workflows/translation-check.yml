@@ -25,7 +25,7 @@ jobs:
         uses: snok/install-poetry@v1
 
       - name: Install dependencies
-        run: poetry install
+        run: poetry install --no-root
 
       - name: Update translation status
         run: poetry run python scripts/manage_translations.py update
