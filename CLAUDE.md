@@ -167,18 +167,29 @@ The ontology (`ontology/math-ontology.ttl`) defines:
 
 #### Interactive Visualization Path Issues
 
-If interactive visualizations (D3/PyVis) fail to load due to path issues, the graph-viz extension needs to calculate relative paths dynamically:
+If interactive visualizations (D3/PyVis) fail to load due to path issues, the graph-viz extension needs to calculate relative paths dynamically. For GitHub Pages deployments with project subdirectories:
 
 ```javascript
 // In _extensions/graph-viz/graph-viz.lua
 // Calculate relative path based on current location
 const currentPath = window.location.pathname;
-const depth = (currentPath.match(/\//g) || []).length - 1;
-const basePath = "../".repeat(depth);
+const pathParts = currentPath.split("/").filter((p) => p);
+
+// For GitHub Pages with project name subdirectory
+if (window.location.hostname.includes("github.io") && pathParts.length > 0) {
+  // Remove project name from depth calculation
+  const depthFromProjectRoot = pathParts.slice(1).length - 1;
+  basePath = "../".repeat(depthFromProjectRoot);
+} else {
+  // For local development or root deployment
+  const depth = (currentPath.match(/\//g) || []).length - 1;
+  basePath = "../".repeat(depth);
+}
+
 const response = await fetch(basePath + "output/d3-data/%s.json");
 ```
 
-This fix ensures visualizations load correctly from any nested directory level (e.g., `/content/ja/algebra/`).
+This ensures visualizations load correctly from any nested directory level, accounting for GitHub Pages project subdirectories (e.g., `/ModernMath/ja/content/ja/algebra/`).
 
 #### Making Mermaid Diagrams Clickable
 
@@ -213,6 +224,20 @@ Features:
 - Handles both English and Japanese tooltips automatically
 
 This script is integrated into the build pipeline and runs before Mermaid diagram generation.
+
+#### Preventing Duplicate Graph Visualizations
+
+The graph-viz extension can automatically insert D3-based visualizations on pages with node IDs. To prevent duplicate graphs on pages that already have Mermaid diagrams:
+
+- **Issue**: Pages with existing Japanese Mermaid diagrams were getting additional English D3 graphs auto-inserted
+- **Cause**: The graph-viz extension's `Pandoc` function was automatically adding visualizations based on page metadata
+- **Solution**: Remove or disable automatic insertion logic in `_extensions/graph-viz/graph-viz.lua`
+- **Prevention**: The `insert_diagrams.py` script checks for existing graphs including:
+  - English headers: "Dependency Graph", "Local Graph"
+  - Japanese headers: "依存関係グラフ", "局所依存関係グラフ"
+  - Any existing Mermaid code blocks
+
+**Important**: When creating multilingual sites, ensure visualization generation scripts respect the language context and don't insert duplicate content.
 
 ## Multilingual Support
 
