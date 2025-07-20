@@ -183,12 +183,13 @@ async function loadAndRenderGraph() {
 
     // For GitHub Pages with project name subdirectory
     if (window.location.hostname.includes('github.io') && pathParts.length > 0) {
-      // Find the index of the project name (first part of path)
+      // The first part is the project name (e.g., 'ModernMath')
       const projectName = pathParts[0];
-      const currentDepth = pathParts.length - 1; // -1 for the HTML file
+      // Remove project name and count remaining directories (excluding the HTML file)
+      const depthFromProjectRoot = pathParts.slice(1).length - 1;
 
       // Go up to the project root
-      basePath = '../'.repeat(currentDepth);
+      basePath = '../'.repeat(depthFromProjectRoot);
     } else {
       // For local development or root deployment
       const depth = (currentPath.match(/\//g) || []).length - 1;
