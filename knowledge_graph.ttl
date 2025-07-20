@@ -12,13 +12,6 @@ base:ax-induction a mymath:Axiom ;
     mymath:hasDomain "Logic Set Theory" ;
     mymath:hasStatus "complete" .
 
-base:def-associativity a mymath:Definition ;
-    rdfs:label "Definition: Associativity"@en ;
-    rdfs:comment "**Associativity** is a fundamental property of a [Binary Operation](def-binary-operation.qmd) that allows us to perform multiple operations without needing to specify the order of evaluation using parentheses."@en ;
-    mymath:hasDomain "Algebra" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation .
-
 base:def-commutativity a mymath:Definition ;
     rdfs:label "Definition: Commutativity"@en ;
     rdfs:comment "**Commutativity** is a property of a [Binary Operation](def-binary-operation.qmd) where the order of the operands does not affect the result."@en ;
@@ -48,6 +41,22 @@ base:def-distributivity a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-binary-operation .
 
+base:def-group-example a mymath:Definition ;
+    rdfs:label "Definition: Group"@en,
+        "定義：群"@en ;
+    mymath:hasDomain "en",
+        "ja" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-associativity,
+        base:def-binary-operation,
+        base:def-homomorphism,
+        base:def-identity-element,
+        base:def-inverse-element,
+        base:def-subgroup,
+        base:ex-integers-addition,
+        base:thm-lagrange,
+        base:thm-unique-identity .
+
 base:def-integral a mymath:Definition ;
     rdfs:label "Definition: Integral"@en ;
     rdfs:comment "The **integral** of a function represents the signed area under its curve, accumulation of quantities, or the inverse operation to differentiation. We focus on the Riemann integral for real-valued functions."@en ;
@@ -55,14 +64,6 @@ base:def-integral a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-continuity,
         base:def-limit .
-
-base:def-inverse-element a mymath:Definition ;
-    rdfs:label "Definition: Inverse Element"@en ;
-    rdfs:comment "An **inverse element** of an element under a [Binary Operation](def-binary-operation.qmd) is another element that, when combined with the original, yields the [Identity Element](def-identity-element.qmd)."@en ;
-    mymath:hasDomain "Algebra" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation,
-        base:def-identity-element .
 
 base:def-isomorphism a mymath:Definition ;
     rdfs:label "Definition: Isomorphism"@en ;
@@ -247,13 +248,6 @@ base:thm-intermediate-value a mymath:Theorem ;
     mymath:uses base:def-connected,
         base:def-continuity .
 
-base:thm-lagrange a mymath:Theorem ;
-    rdfs:label "Theorem: Lagrange's Theorem"@en ;
-    mymath:hasDomain "Algebra" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-group,
-        base:def-subgroup .
-
 base:thm-law-of-large-numbers a mymath:Theorem ;
     rdfs:label "Theorem: Law of Large Numbers"@en ;
     mymath:hasDomain "Probability Statistics" ;
@@ -318,12 +312,6 @@ base:thm-union-open-sets a mymath:Theorem ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-open-set,
         base:def-topological-space .
-
-base:thm-unique-identity a mymath:Theorem ;
-    rdfs:label "Theorem: Uniqueness of Identity"@en ;
-    mymath:hasDomain "Algebra" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-group .
 
 base:thm-yoneda a mymath:Theorem ;
     rdfs:label "Theorem: Yoneda Lemma"@en ;
@@ -406,6 +394,13 @@ base:thm-yoneda a mymath:Theorem ;
     rdfs:label "Lean proof: Mathlib.Topology.Separation.T2Space"@en ;
     mymath:inModule "MathKnowledgeGraph.Topology.Basic" .
 
+base:def-associativity a mymath:Definition ;
+    rdfs:label "Definition: Associativity"@en ;
+    rdfs:comment "**Associativity** is a fundamental property of a [Binary Operation](def-binary-operation.qmd) that allows us to perform multiple operations without needing to specify the order of evaluation using parentheses."@en ;
+    mymath:hasDomain "Algebra" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-binary-operation .
+
 base:def-binomial-coefficient a mymath:Definition ;
     rdfs:label "Definition: Binomial Coefficient"@en ;
     mymath:hasDomain "Combinatorics" ;
@@ -472,20 +467,6 @@ base:def-hausdorff a mymath:Definition ;
     mymath:uses base:def-open-set,
         base:def-topological-space .
 
-base:def-homomorphism a mymath:Definition ;
-    rdfs:label "Definition: Group Homomorphism"@en ;
-    mymath:hasDomain "Algebra" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation,
-        base:def-group .
-
-base:def-identity-element a mymath:Definition ;
-    rdfs:label "Definition: Identity Element"@en ;
-    rdfs:comment "An **identity element** for a [Binary Operation](def-binary-operation.qmd) is an element that leaves any other element unchanged when combined with it."@en ;
-    mymath:hasDomain "Algebra" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation .
-
 base:def-image a mymath:Definition ;
     rdfs:label "Definition: Image"@en ;
     mymath:hasDomain "Algebra" ;
@@ -500,6 +481,14 @@ base:def-intersection a mymath:Definition ;
     mymath:hasDomain "Logic Set Theory" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
+
+base:def-inverse-element a mymath:Definition ;
+    rdfs:label "Definition: Inverse Element"@en ;
+    rdfs:comment "An **inverse element** of an element under a [Binary Operation](def-binary-operation.qmd) is another element that, when combined with the original, yields the [Identity Element](def-identity-element.qmd)."@en ;
+    mymath:hasDomain "Algebra" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-binary-operation,
+        base:def-identity-element .
 
 base:def-kernel a mymath:Definition ;
     rdfs:label "Definition: Kernel"@en ;
@@ -571,14 +560,6 @@ base:def-union a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
-base:ex-integers-addition a mymath:Example ;
-    rdfs:label "Example: Integers under Addition"@en ;
-    mymath:hasDomain "Algebra" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation,
-        base:def-group,
-        base:def-set .
-
 base:formal-proof-def-group a mymath:FormalProof ;
     rdfs:label "Formal proof of def-group"@en ;
     rdfs:comment "Implemented in MathKnowledgeGraph.Algebra.Groups"@en ;
@@ -596,6 +577,19 @@ base:thm-heine-borel a mymath:Theorem ;
     mymath:uses base:def-closed-set,
         base:def-compact,
         base:def-metric-space .
+
+base:thm-lagrange a mymath:Theorem ;
+    rdfs:label "Theorem: Lagrange's Theorem"@en ;
+    mymath:hasDomain "Algebra" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-group,
+        base:def-subgroup .
+
+base:thm-unique-identity a mymath:Theorem ;
+    rdfs:label "Theorem: Uniqueness of Identity"@en ;
+    mymath:hasDomain "Algebra" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-group .
 
 base:def-angle a mymath:Definition ;
     rdfs:label "Definition: Angle"@en ;
@@ -660,6 +654,20 @@ base:def-functor a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-category .
 
+base:def-homomorphism a mymath:Definition ;
+    rdfs:label "Definition: Group Homomorphism"@en ;
+    mymath:hasDomain "Algebra" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-binary-operation,
+        base:def-group .
+
+base:def-identity-element a mymath:Definition ;
+    rdfs:label "Definition: Identity Element"@en ;
+    rdfs:comment "An **identity element** for a [Binary Operation](def-binary-operation.qmd) is an element that leaves any other element unchanged when combined with it."@en ;
+    mymath:hasDomain "Algebra" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-binary-operation .
+
 base:def-linear-independence a mymath:Definition ;
     rdfs:label "Definition: Linear Independence"@en ;
     mymath:hasDomain "Algebra" ;
@@ -680,13 +688,12 @@ base:def-span a mymath:Definition ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.Span.Submodule.span> ;
     mymath:uses base:def-vector-space .
 
-base:def-subgroup a mymath:Definition ;
-    rdfs:label "Definition: Subgroup"@en ;
+base:ex-integers-addition a mymath:Example ;
+    rdfs:label "Example: Integers under Addition"@en ;
     mymath:hasDomain "Algebra" ;
-    mymath:hasLeanId "Mathlib.Algebra.Group.Subgroup.Basic.Subgroup" ;
     mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Group.Subgroup.Basic.Subgroup> ;
-    mymath:uses base:def-group,
+    mymath:uses base:def-binary-operation,
+        base:def-group,
         base:def-set .
 
 base:def-probability-space a mymath:Definition ;
@@ -703,6 +710,15 @@ base:def-ring a mymath:Definition ;
         base:formal-proof-def-ring ;
     mymath:uses base:def-binary-operation,
         base:def-group,
+        base:def-set .
+
+base:def-subgroup a mymath:Definition ;
+    rdfs:label "Definition: Subgroup"@en ;
+    mymath:hasDomain "Algebra" ;
+    mymath:hasLeanId "Mathlib.Algebra.Group.Subgroup.Basic.Subgroup" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Group.Subgroup.Basic.Subgroup> ;
+    mymath:uses base:def-group,
         base:def-set .
 
 base:def-line a mymath:Definition ;
@@ -774,6 +790,12 @@ base:def-topological-space a mymath:Definition ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Basic.TopologicalSpace> ;
     mymath:uses base:def-set .
 
+base:def-vector-space a mymath:Definition ;
+    rdfs:label "Definition: Vector Space"@en ;
+    mymath:hasDomain "Algebra" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.Basic.Module> .
+
 base:def-binary-operation a mymath:Definition ;
     rdfs:label "Definition: Binary Operation"@en ;
     mymath:hasDomain "Algebra" ;
@@ -781,12 +803,6 @@ base:def-binary-operation a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/MathKnowledgeGraph.Algebra.BinaryOp> ;
     mymath:uses base:def-set .
-
-base:def-vector-space a mymath:Definition ;
-    rdfs:label "Definition: Vector Space"@en ;
-    mymath:hasDomain "Algebra" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.Basic.Module> .
 
 base:def-group a mymath:Definition ;
     rdfs:label "Definition: Group"@en ;
