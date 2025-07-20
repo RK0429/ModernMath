@@ -1,0 +1,44 @@
+---
+title: "定義：群"
+id: "def-group-example"
+type: "Definition"
+status: "complete"
+lang: "ja"
+requires: ["def-binary-operation", "def-associativity", "def-identity-element", "def-inverse-element"]
+translations:
+  en: "../../en/algebra/def-group-example.qmd"
+---
+
+# 群 {#def-group-example}
+
+## 定義
+
+**群**とは、以下の公理を満たす二項演算 $\cdot: G \times G \to G$ を備えた集合 $G$ のことである：
+
+1. **結合律**: すべての $a, b, c \in G$ に対して、$(a \cdot b) \cdot c = a \cdot (b \cdot c)$ が成り立つ
+2. **単位元の存在**: ある元 $e \in G$ が存在して、すべての $a \in G$ に対して $e \cdot a = a \cdot e = a$ が成り立つ
+3. **逆元の存在**: 各 $a \in G$ に対して、$a \cdot a^{-1} = a^{-1} \cdot a = e$ を満たす元 $a^{-1} \in G$ が存在する
+
+## 記法
+
+- 群の演算はしばしば $a \cdot b$ の代わりに $ab$ と乗法的に書かれる
+- 演算が加法の場合、$a + b$ と書き、単位元を $0$、逆元を $-a$ と表す
+- 群を $(G, \cdot)$ または演算が文脈から明らかな場合は単に $G$ と表記する
+
+## 性質
+
+- 単位元は一意である (@thm-unique-identity)
+- 各元に対して、逆元は一意である
+- 簡約法則が成り立つ：$ab = ac$ ならば $b = c$
+
+## 例
+
+- 加法に関する整数 $\mathbb{Z}$ は群をなす (@ex-integers-addition)
+- 乗法に関する非零実数 $\mathbb{R}^*$ は群をなす
+- 体上の $n \times n$ 可逆行列の集合は行列の積に関して群をなす
+
+## 関連概念
+
+- @def-subgroup
+- @def-homomorphism
+- @thm-lagrange

@@ -1,0 +1,111 @@
+/* Multilingual Support Styles */
+
+/* Language Switcher Styling */
+.navbar-nav .nav-link[href*="../en/"],
+.navbar-nav .nav-link[href*="../ja/"] {
+  background-color: rgba(0, 123, 255, 0.1);
+  border-radius: 5px;
+  padding: 0.5rem 1rem !important;
+  margin-left: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-nav .nav-link[href*="../en/"]:hover,
+.navbar-nav .nav-link[href*="../ja/"]:hover {
+  background-color: rgba(0, 123, 255, 0.2);
+}
+
+/* Language indicator */
+.language-indicator {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  z-index: 1000;
+}
+
+/* Bilingual content support */
+.bilingual-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 1rem 0;
+}
+
+.content-en, .content-ja {
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+}
+
+.content-en h3:first-child::before {
+  content: "🇬🇧 ";
+}
+
+.content-ja h3:first-child::before {
+  content: "🇯🇵 ";
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .bilingual-content {
+    grid-template-columns: 1fr;
+  }
+
+  .navbar-nav .nav-link[href*="../en/"],
+  .navbar-nav .nav-link[href*="../ja/"] {
+    margin-top: 0.5rem;
+    margin-left: 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* RTL support for potential future languages */
+[lang="ar"], [lang="he"] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Language-specific font adjustments */
+[lang="ja"] {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+               "Hiragino Sans", Meiryo, sans-serif;
+  line-height: 1.7;
+}
+
+[lang="ja"] .quarto-title h1.title {
+  font-size: 2rem;
+}
+
+/* Translation status indicators */
+.translation-pending {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+}
+
+.translation-pending::before {
+  content: "⚠️ ";
+  font-weight: bold;
+}
+
+.machine-translated {
+  background-color: #d1ecf1;
+  border: 1px solid #bee5eb;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+}
+
+.machine-translated::before {
+  content: "🤖 ";
+  font-weight: bold;
+}

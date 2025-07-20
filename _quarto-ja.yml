@@ -1,0 +1,101 @@
+project:
+  type: website
+  title: "数学ナレッジグラフWiki"
+  output-dir: _site/ja
+  render:
+    - "*.qmd"
+    - "content/ja/"
+    - "!content/en/"
+    - "!design_EN/"
+    - "!design_JA/"
+    - "!docs/design_EN/"
+
+website:
+  title: "数学ナレッジグラフ"
+  favicon: favicon.ico
+  navbar:
+    left:
+      - text: "ホーム"
+        href: index.qmd
+      - text: "代数学"
+        href: content/ja/algebra/index.qmd
+      - text: "解析学"
+        href: content/ja/analysis/index.qmd
+      - text: "位相幾何学"
+        href: content/ja/topology/index.qmd
+      - text: "幾何学"
+        href: content/ja/geometry/index.qmd
+      - text: "検索"
+        href: search.qmd
+      - text: "可視化"
+        href: visualizations.qmd
+      - text: "概要"
+        href: about.qmd
+    right:
+      - text: "🌐 English"
+        href: ../en/index.html
+      - icon: github
+        href: https://github.com/RK0429/ModernMath
+        aria-label: github
+  sidebar:
+    - id: algebra
+      title: "代数学"
+      contents:
+        - content/ja/algebra/*.qmd
+    - id: analysis
+      title: "解析学"
+      contents:
+        - content/ja/analysis/*.qmd
+    - id: topology
+      title: "位相幾何学"
+      contents:
+        - content/ja/topology/*.qmd
+  page-footer:
+    center: |
+      数学ナレッジグラフWiki - Quarto と RDF で構築
+
+format:
+  html:
+    theme: cosmo
+    css:
+      - ../../styles.css
+      - ../../styles-multilingual.css
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    code-copy: true
+    code-overflow: wrap
+    html-math-method: mathjax
+    lang: ja
+    include-in-header:
+      - text: |
+          <script>
+            window.siteLanguage = 'ja';
+            window.alternateLanguage = 'en';
+            window.alternateLanguageUrl = '../en/';
+          </script>
+    mathjax:
+      tags: ams
+      macros:
+        R: '\mathbb{R}'
+        Z: '\mathbb{Z}'
+        N: '\mathbb{N}'
+        C: '\mathbb{C}'
+        Q: '\mathbb{Q}'
+        implies: '\Rightarrow'
+        iff: '\Leftrightarrow'
+
+filters:
+  - math-environments
+  - graph-viz
+
+execute:
+  freeze: auto
+
+bibliography: references.bib
+
+resources:
+  - knowledge_graph.ttl
+  - .nojekyll
+  - output/interactive
+  - output/d3-data

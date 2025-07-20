@@ -1,0 +1,101 @@
+project:
+  type: website
+  title: "Mathematics Knowledge Graph Wiki"
+  output-dir: _site/en
+  render:
+    - "*.qmd"
+    - "content/en/"
+    - "!content/ja/"
+    - "!design_EN/"
+    - "!design_JA/"
+    - "!docs/design_EN/"
+
+website:
+  title: "Math Knowledge Graph"
+  favicon: favicon.ico
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Algebra"
+        href: content/en/algebra/index.qmd
+      - text: "Analysis"
+        href: content/en/analysis/index.qmd
+      - text: "Topology"
+        href: content/en/topology/index.qmd
+      - text: "Geometry"
+        href: content/en/geometry/index.qmd
+      - text: "Search"
+        href: search.qmd
+      - text: "Visualizations"
+        href: visualizations.qmd
+      - text: "About"
+        href: about.qmd
+    right:
+      - text: "🌐 日本語"
+        href: ../ja/index.html
+      - icon: github
+        href: https://github.com/RK0429/ModernMath
+        aria-label: github
+  sidebar:
+    - id: algebra
+      title: "Algebra"
+      contents:
+        - content/en/algebra/*.qmd
+    - id: analysis
+      title: "Analysis"
+      contents:
+        - content/en/analysis/*.qmd
+    - id: topology
+      title: "Topology"
+      contents:
+        - content/en/topology/*.qmd
+  page-footer:
+    center: |
+      Mathematics Knowledge Graph Wiki - Built with Quarto and RDF
+
+format:
+  html:
+    theme: cosmo
+    css:
+      - ../../styles.css
+      - ../../styles-multilingual.css
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    code-copy: true
+    code-overflow: wrap
+    html-math-method: mathjax
+    lang: en
+    include-in-header:
+      - text: |
+          <script>
+            window.siteLanguage = 'en';
+            window.alternateLanguage = 'ja';
+            window.alternateLanguageUrl = '../ja/';
+          </script>
+    mathjax:
+      tags: ams
+      macros:
+        R: '\mathbb{R}'
+        Z: '\mathbb{Z}'
+        N: '\mathbb{N}'
+        C: '\mathbb{C}'
+        Q: '\mathbb{Q}'
+        implies: '\Rightarrow'
+        iff: '\Leftrightarrow'
+
+filters:
+  - math-environments
+  - graph-viz
+
+execute:
+  freeze: auto
+
+bibliography: references.bib
+
+resources:
+  - knowledge_graph.ttl
+  - .nojekyll
+  - output/interactive
+  - output/d3-data
