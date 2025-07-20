@@ -241,6 +241,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
     - [x] `save_as_html(graph, filename)`
   - [x] Generate standalone HTML files (80 generated: 70 nodes + 9 domains + index)
   - [x] Add to build pipeline
+  - [x] Deploy to GitHub Pages (2025-07-20)
 
 - [x] **D3.js Integration for Web**
   - [x] Create `assets/js/graph-viz.js`
@@ -518,6 +519,12 @@ This comprehensive To-Do list provides a complete roadmap for building the Mathe
 - Rebuilt site with all visualization files properly included in _site directory
 
 ### Next Steps
-- Deploy updated site with visualizations via GitHub Actions
-- Verify all interactive visualizations are accessible online
+- ✅ Deploy updated site with visualizations via GitHub Actions (completed)
+- ⏳ Wait for GitHub Pages CDN to propagate changes (visualizations files deployed but may take a few minutes to be accessible)
 - Continue with Phase 3: Formal Verification and Intelligence
+
+### Technical Notes
+- All 80 visualization files successfully generated and deployed to gh-pages branch
+- GitHub Actions workflow completed successfully
+- Files confirmed present in repository via GitHub API
+- GitHub Pages CDN may take 5-10 minutes to serve new files
