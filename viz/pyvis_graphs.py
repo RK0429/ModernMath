@@ -244,6 +244,8 @@ def save_as_html(net: Network, filename: str, output_dir: Path = Path("output/in
     output_dir.mkdir(parents=True, exist_ok=True)
     output_path = output_dir / f"{filename}.html"
     
+    # Configure PyVis to use CDN resources instead of local files
+    net.cdn_resources = 'remote'
     net.save_graph(str(output_path))
     logger.info(f"Saved interactive graph to {output_path}")
     
