@@ -77,6 +77,7 @@ ul.task-list li input[type="checkbox"] {
   window.alternateLanguage = 'ja';
   window.alternateLanguageUrl = '../ja/';
 </script>
+<script src="../../js/language-switcher.js" defer=""></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -326,16 +327,16 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-topological-space["Definition: Topological Space"]:::definition
-    def-open-set["Definition: Open Set"]:::definition
-    ex-closed-interval-compact["Example: Closed Interval is Compact"]:::example
     def-compact["Definition: Compact Space"]:::definition
     def-set["Definition: Set"]:::definition
     thm-heine-borel["Theorem: Heine-Borel Theorem"]:::theorem
-    def-compact --&gt; def-open-set
+    def-open-set["Definition: Open Set"]:::definition
+    ex-closed-interval-compact["Example: Closed Interval is Compact"]:::example
+    def-topological-space["Definition: Topological Space"]:::definition
     def-compact --&gt; def-topological-space
-    def-compact --&gt; def-set
     ex-closed-interval-compact --&gt; def-compact
+    def-compact --&gt; def-open-set
+    def-compact --&gt; def-set
     thm-heine-borel --&gt; def-compact
     class def-compact current
 </pre>
@@ -348,7 +349,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-compact-1753035135" class="graph-visualization-container">
+<div id="graph-viz-def-compact-1753036037" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -528,12 +529,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-compact-1753035135', {
+    createForceGraph(data, 'graph-viz-def-compact-1753036037', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-compact-1753035135').innerHTML =
+    document.getElementById('graph-viz-def-compact-1753036037').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

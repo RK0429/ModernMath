@@ -77,6 +77,7 @@ ul.task-list li input[type="checkbox"] {
   window.alternateLanguage = 'en';
   window.alternateLanguageUrl = '../en/';
 </script>
+<script src="../../js/language-switcher.js" defer=""></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -310,10 +311,10 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-basis["Definition: Basis"]:::definition
     def-vector-space["Definition: Vector Space"]:::definition
     thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
     def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-basis["Definition: Basis"]:::definition
     thm-linear-transformation-basis --&gt; def-basis
     thm-linear-transformation-basis --&gt; def-vector-space
     thm-linear-transformation-basis --&gt; def-linear-transformation
@@ -328,7 +329,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-linear-transformation-basis-1753035168" class="graph-visualization-container">
+<div id="graph-viz-thm-linear-transformation-basis-1753036070" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -508,12 +509,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-linear-transformation-basis-1753035168', {
+    createForceGraph(data, 'graph-viz-thm-linear-transformation-basis-1753036070', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-linear-transformation-basis-1753035168').innerHTML =
+    document.getElementById('graph-viz-thm-linear-transformation-basis-1753036070').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -77,6 +77,7 @@ ul.task-list li input[type="checkbox"] {
   window.alternateLanguage = 'en';
   window.alternateLanguageUrl = '../en/';
 </script>
+<script src="../../js/language-switcher.js" defer=""></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -315,19 +316,19 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-topological-space["Definition: Topological Space"]:::definition
-    def-open-set["Definition: Open Set"]:::definition
-    thm-union-open-sets["Theorem: Union of Open Sets"]:::theorem
-    def-compact["Definition: Compact Space"]:::definition
-    def-connected["Definition: Connected Space"]:::definition
-    def-closed-set["Definition: Closed Set"]:::definition
     def-hausdorff["Definition: Hausdorff Space"]:::definition
-    def-hausdorff --&gt; def-open-set
-    def-compact --&gt; def-open-set
+    def-compact["Definition: Compact Space"]:::definition
+    thm-union-open-sets["Theorem: Union of Open Sets"]:::theorem
+    def-open-set["Definition: Open Set"]:::definition
+    def-closed-set["Definition: Closed Set"]:::definition
+    def-topological-space["Definition: Topological Space"]:::definition
+    def-connected["Definition: Connected Space"]:::definition
     thm-union-open-sets --&gt; def-open-set
+    def-hausdorff --&gt; def-open-set
+    def-open-set --&gt; def-topological-space
+    def-compact --&gt; def-open-set
     def-closed-set --&gt; def-open-set
     def-connected --&gt; def-open-set
-    def-open-set --&gt; def-topological-space
     class def-open-set current
 </pre>
 </div>
@@ -339,7 +340,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-open-set-1753035248" class="graph-visualization-container">
+<div id="graph-viz-def-open-set-1753036148" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -519,12 +520,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-open-set-1753035248', {
+    createForceGraph(data, 'graph-viz-def-open-set-1753036148', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-open-set-1753035248').innerHTML =
+    document.getElementById('graph-viz-def-open-set-1753036148').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
