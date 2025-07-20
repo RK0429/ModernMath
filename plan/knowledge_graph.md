@@ -566,6 +566,7 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
 
 ### Technical Metrics
 
+- [x] Initial milestone: 100 nodes achieved (2025-07-20)
 - [ ] Number of nodes (target: 10,000+ within first year)
 - [ ] Number of relationships (target: 50,000+)
 - [ ] Query response time (< 100ms for common queries)
