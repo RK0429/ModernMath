@@ -398,10 +398,16 @@ Build a full-scale mathematical knowledge graph from scratch using Quarto for co
 
 ### 17. Security and Performance
 
-- [ ] **Security Hardening**
-  - [ ] Implement rate limiting
+**Progress Update (2025-07-20):** Implemented rate limiting for the REST API using Flask-Limiter with per-endpoint limits and proper error handling.
+
+- [x] **Security Hardening** (Partially complete)
+  - [x] Implement rate limiting (Completed 2025-07-20 - Flask-Limiter with per-endpoint limits)
+    - Global limits: 200/day, 50/hour per IP
+    - Endpoint-specific limits ranging from 5-100 requests/minute
+    - Custom 429 error handler with retry-after headers
+    - Test scripts and documentation included
   - [ ] Add authentication for write operations
-  - [ ] Configure CORS policies
+  - [ ] Configure CORS policies (basic CORS already enabled)
   - [ ] Set up input validation
   - [ ] Implement query complexity limits
 

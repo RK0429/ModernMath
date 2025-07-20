@@ -7,6 +7,7 @@ from flask import Flask, jsonify, request, abort
 from flask_cors import CORS
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from flask_limiter.errors import RateLimitExceeded
 from pathlib import Path
 import sys
 from typing import Dict, List, Optional, Any
@@ -443,13 +444,20 @@ def not_found(error):
     return jsonify({"error": "Endpoint not found"}), 404
 
 
-@app.errorhandler(429)
+@app.errorhandler(RateLimitExceeded)
 def rate_limit_exceeded(error):
     """Custom handler for rate limit exceeded"""
+    # Extract retry-after from headers list
+    retry_after = "60"
+    for header, value in error.get_headers():
+        if header == "Retry-After":
+            retry_after = value
+            break
+    
     return jsonify({
         "error": "Rate limit exceeded",
-        "message": str(error.description),
-        "retry_after": error.description.get_headers().get("Retry-After", "60")
+        "message": error.description,
+        "retry_after": retry_after
     }), 429
 
 
