@@ -6,6 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ModernMath is a Mathematics Knowledge Graph Wiki that represents mathematical concepts (axioms, definitions, theorems, examples) as interconnected nodes in a semantic knowledge graph. It uses Quarto for content authoring, RDF/OWL for graph representation, Python for processing, and provides SPARQL querying capabilities.
 
+## Web Interaction Guidelines
+
+- Use MCP tools such as Playwright or Puppeteer when viewing web content.
+
 ## Essential Commands
 
 ### Development Setup
