@@ -81,6 +81,15 @@ poetry run python scripts/manage_translations.py validate
 poetry run python scripts/manage_translations.py stats
 ```
 
+**Translation Status Categories:**
+
+- `not_started`: No translation file exists
+- `in_progress`: Translation file exists but marked incomplete
+- `completed`: Translation finished and verified
+- `needs_update`: Source changed after translation
+
+The system uses MD5 hashes to detect content changes and automatically updates status in `translations-status.yml`. Translation edges are added to the RDF graph as `hasTranslation` relationships.
+
 ### Code Quality
 
 ```bash
@@ -193,11 +202,16 @@ When creating translations:
 quarto render --profile en
 quarto render --profile ja
 
-# Or use the convenience script
+# Fix Japanese index page (copies index-ja.html to index.html)
+poetry run python scripts/fix_japanese_index.py
+
+# Or use the convenience script that includes all steps
 ./build-multilingual.sh
 
 # Note: The CI/CD uses the unified build.yml workflow
 ```
+
+**Important**: The Japanese site requires a post-build fix because Quarto generates `index.html` from `index.qmd` (English content) by default. The `fix_japanese_index.py` script copies `index-ja.html` to `index.html` in the Japanese output directory to ensure the correct content is displayed.
 
 ### Quarto Configuration Merging
 
@@ -225,9 +239,10 @@ All Python scripts handle multilingual paths automatically:
 The project uses a unified `build.yml` workflow:
 
 1. Builds both language versions sequentially
-2. Creates a root `index.html` with automatic language detection
-3. Deploys both versions to `_site/en/` and `_site/ja/`
-4. Includes .nojekyll file for GitHub Pages compatibility
+2. Fixes Japanese index page using `scripts/fix_japanese_index.py`
+3. Creates a root `index.html` with automatic language detection
+4. Deploys both versions to `_site/en/` and `_site/ja/`
+5. Includes .nojekyll file for GitHub Pages compatibility
 
 **Important**: Maintain a single workflow file to avoid redundancy. The build.yml workflow handles all multilingual builds - there's no need for separate language-specific workflows.
 
@@ -267,6 +282,13 @@ The project uses a hash-based change detection system to track translation statu
   - `stats`: Show domain-by-domain statistics
 - **Integration**: Translation edges are added to the RDF graph as `hasTranslation` relationships
 
+#### Implementation Details
+
+- **RDF Integration**: The `translation_graph.py` module is imported in `build_graph.py` and `add_translation_edges()` is called in the `_save_graph()` method when `translations-status.yml` exists
+- **Pre-commit Behavior**: The `update-translation-status` hook shows as "failed" when it modifies files - this is expected behavior and ensures the status file stays current
+- **Quarto Extension**: Translation status badges use the `_extensions/translation-status/` extension with Lua shortcodes (e.g., `{{< translation-status completed >}}`)
+- **Testing Pattern**: Dynamic imports in tests use `# pylint: disable=import-error,wrong-import-position` to handle script imports
+
 ## Critical Implementation Details
 
 ### Cross-Reference Format
@@ -296,12 +318,12 @@ PyVis graphs include:
 ## Current Status
 
 - **Content**: 101 nodes across 9 mathematical domains
-- **Translations**: 101/101 (100%) Japanese translations exist, but most lack `translation_of` metadata
-- **Graph**: 276+ RDF triples with full dependency tracking
+- **Translations**: 101/101 (100%) Japanese translations with automated status tracking
+- **Graph**: 276+ RDF triples with full dependency tracking and translation edges
 - **Visualizations**: 80 interactive graphs deployed
 - **API**: RESTful endpoints for node queries and dependencies
-- **CI/CD**: Full automation via GitHub Actions
-- **Translation Management**: Fully implemented with MD5 hash-based change detection
+- **CI/CD**: Full automation via GitHub Actions with translation validation
+- **Translation Management**: Fully implemented with MD5 hash-based change detection and pre-commit hooks
 
 ## Next Phase: Lean Integration
 

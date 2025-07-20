@@ -16,6 +16,8 @@ import frontmatter
 import yaml
 from rdflib import Graph, Literal, Namespace, RDF, RDFS, OWL, URIRef
 
+from translation_graph import add_translation_edges
+
 # Configure logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
@@ -284,6 +286,12 @@ class KnowledgeGraphBuilder:  # pylint: disable=too-few-public-methods
                 ),
             )
         )
+
+        # Add translation edges if translation status file exists
+        translation_status_file = self.content_dir.parent / "translations-status.yml"
+        if translation_status_file.exists():
+            add_translation_edges(self.graph, translation_status_file)
+            logger.info("Added translation edges to the knowledge graph")
 
         # Serialize to Turtle format
         self.graph.serialize(destination=self.output_file, format="turtle")

@@ -1,0 +1,71 @@
+name: Translation Status Report
+
+on:
+  schedule:
+    # Run every Monday at 9 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Update translation status
+        run: poetry run python scripts/manage_translations.py update
+
+      - name: Generate translation reports
+        run: |
+          mkdir -p reports
+          poetry run python scripts/manage_translations.py report > reports/translation-summary.txt
+          poetry run python scripts/manage_translations.py stats > reports/translation-stats.txt
+          poetry run python scripts/manage_translations.py list --status=not_started > reports/not-translated.txt
+          poetry run python scripts/manage_translations.py list --status=needs_update > reports/needs-update.txt
+
+      - name: Upload reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: translation-reports
+          path: reports/
+
+      - name: Create issue if translations need attention
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const notStarted = fs.readFileSync('reports/not-translated.txt', 'utf8');
+            const needsUpdate = fs.readFileSync('reports/needs-update.txt', 'utf8');
+
+            const notStartedCount = (notStarted.match(/\.qmd/g) || []).length;
+            const needsUpdateCount = (needsUpdate.match(/\.qmd/g) || []).length;
+
+            if (notStartedCount > 0 || needsUpdateCount > 0) {
+              const issueBody = `## Translation Status Report
+
+              **Files needing translation:** ${notStartedCount}
+              **Files needing update:** ${needsUpdateCount}
+
+              See the [workflow artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for detailed reports.
+              `;
+
+              github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `Translation Status: ${notStartedCount + needsUpdateCount} files need attention`,
+                body: issueBody,
+                labels: ['translations', 'documentation']
+              });
+            }

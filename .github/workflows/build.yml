@@ -187,7 +187,13 @@ jobs:
         echo "Building Japanese version..."
         quarto render --profile ja
 
-    # Step 7a: Create root index.html for language detection
+    # Step 7a: Fix Japanese index page
+    - name: Fix Japanese index page
+      run: |
+        echo "Fixing Japanese index page..."
+        poetry run python scripts/fix_japanese_index.py
+
+    # Step 7b: Create root index.html for language detection
     - name: Create language redirect page
       run: |
         cat > _site/index.html << 'EOF'
@@ -214,7 +220,7 @@ jobs:
         </html>
         EOF
 
-    # Step 7b: Create .nojekyll file for GitHub Pages
+    # Step 7c: Create .nojekyll file for GitHub Pages
     - name: Create .nojekyll file
       run: |
         touch _site/.nojekyll

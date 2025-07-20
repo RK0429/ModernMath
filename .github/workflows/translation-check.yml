@@ -1,0 +1,45 @@
+name: Translation Status Check
+
+on:
+  push:
+    paths:
+      - "content/**/*.qmd"
+      - "translations-status.yml"
+  pull_request:
+    paths:
+      - "content/**/*.qmd"
+
+jobs:
+  check-translations:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Update translation status
+        run: poetry run python scripts/manage_translations.py update
+
+      - name: Validate translations
+        run: poetry run python scripts/manage_translations.py validate
+
+      - name: Generate report
+        run: poetry run python scripts/manage_translations.py report
+
+      - name: Check for uncommitted changes
+        run: |
+          if [[ -n $(git status -s translations-status.yml) ]]; then
+            echo "Translation status file needs to be updated!"
+            echo "Run 'poetry run python scripts/manage_translations.py update' locally"
+            exit 1
+          fi

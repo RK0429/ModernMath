@@ -62,6 +62,23 @@ repos:
         pass_filenames: false
         description: "Validate YAML front matter in content files"
 
+      # Translation status management
+      - id: update-translation-status
+        name: Update translation status
+        entry: poetry run python scripts/manage_translations.py update
+        language: system
+        files: 'content/.*\.qmd$'
+        pass_filenames: false
+        description: "Update translation status based on file changes"
+
+      - id: check-translation-metadata
+        name: Check translation metadata
+        entry: poetry run python scripts/manage_translations.py validate
+        language: system
+        files: 'content/.*\.qmd$'
+        pass_filenames: false
+        description: "Validate translation metadata consistency"
+
 # Configuration
 default_language_version:
   python: python3.11
