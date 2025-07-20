@@ -29,6 +29,9 @@ poetry run python scripts/validate_metadata.py
 
 # Validate the generated graph
 poetry run python scripts/validate_graph.py
+
+# Generate comprehensive index pages for all domains
+poetry run python scripts/generate_index_pages.py
 ```
 
 ### Generating Visualizations
@@ -140,8 +143,9 @@ PyVis graphs include:
 
 1. First: `build_graph.py` (creates knowledge_graph.ttl)
 2. Then: Visualization scripts (read the .ttl file)
-3. Then: `resolve_cross_references.py` (needs content to exist)
-4. Finally: `quarto render` (uses all generated assets)
+3. Then: `generate_index_pages.py` (creates comprehensive index pages)
+4. Then: `resolve_cross_references.py` (needs content to exist)
+5. Finally: `quarto render` (uses all generated assets)
 
 ## Current Status
 

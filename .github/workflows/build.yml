@@ -64,8 +64,9 @@ jobs:
       uses: quarto-dev/quarto-actions/setup@v2
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tinytex: true
+      # PDF generation disabled - no need for TinyTeX
+      # with:
+      #   tinytex: true
 
     # Step 4: Run linting
     - name: Run flake8
@@ -151,18 +152,24 @@ jobs:
       run: |
         poetry run python scripts/generate_d3_data.py
 
-    # Step 6e: Resolve cross-references
+    # Step 6e: Generate comprehensive index pages
+    - name: Generate index pages for all domains
+      run: |
+        poetry run python scripts/generate_index_pages.py
+        echo "Index pages generated successfully!"
+
+    # Step 6f: Resolve cross-references
     - name: Resolve cross-references
       run: |
         poetry run python scripts/resolve_cross_references.py
         echo "Cross-references resolved successfully!"
 
-    # Step 6f: Insert diagrams into content
+    # Step 6g: Insert diagrams into content
     - name: Insert diagrams into content
       run: |
         poetry run python scripts/insert_diagrams.py
 
-    # Step 6g: Build search index
+    # Step 6h: Build search index
     - name: Build search index
       run: |
         poetry run python scripts/build_search_index.py
