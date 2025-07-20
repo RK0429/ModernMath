@@ -1,0 +1,518 @@
+---
+title: "Content Authoring Tutorial"
+description: "A comprehensive guide for creating and contributing mathematical content to the ModernMath Knowledge Graph"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+---
+
+# Introduction
+
+Welcome to the ModernMath Content Authoring Tutorial! This guide will walk you through the process of creating mathematical content for our knowledge graph wiki. Whether you're documenting a new theorem, adding a definition, or providing an illustrative example, this tutorial will help you contribute effectively.
+
+## What is the ModernMath Knowledge Graph?
+
+The ModernMath project represents mathematical concepts as interconnected nodes in a semantic knowledge graph. Each piece of mathematical knowledge (axioms, definitions, theorems, examples) is a node that can be linked to other nodes, creating a rich web of mathematical relationships.
+
+## Overview of the Content Creation Process
+
+1. **Choose the appropriate content type** (Definition, Theorem, Example, or Axiom)
+2. **Create a new `.qmd` file** in the correct subject directory
+3. **Add required metadata** in the YAML front matter
+4. **Write the content** using Quarto Markdown
+5. **Create cross-references** to other nodes
+6. **Validate and test** your content
+7. **Submit your contribution** via pull request
+
+# Content Types and Structure
+
+## Node Types
+
+Our knowledge graph supports four primary node types:
+
+### Definitions
+- **Purpose**: Define mathematical concepts and objects
+- **File prefix**: `def-`
+- **Example**: `def-group.qmd` for the definition of a group
+
+### Theorems
+- **Purpose**: State proven mathematical results
+- **File prefix**: `thm-`
+- **Includes**: Lemmas, propositions, and corollaries
+- **Example**: `thm-lagrange.qmd` for Lagrange's theorem
+
+### Examples
+- **Purpose**: Provide concrete instances or applications
+- **File prefix**: `ex-`
+- **Example**: `ex-integers-addition.qmd` showing integers under addition form a group
+
+### Axioms
+- **Purpose**: State fundamental assumptions
+- **File prefix**: `ax-`
+- **Example**: `ax-induction.qmd` for the axiom of mathematical induction
+
+## Directory Structure
+
+Content is organized by mathematical subject area:
+
+```
+content/
+├── algebra/
+├── analysis/
+├── category-theory/
+├── combinatorics/
+├── geometry/
+├── logic-set-theory/
+├── number-theory/
+├── probability-statistics/
+└── topology/
+```
+
+Each directory contains:
+- A `_metadata.yml` file that sets the domain for all files in that directory
+- Individual `.qmd` files for each mathematical concept
+- An `index.qmd` file listing all content in that domain
+
+# Creating Your First Node
+
+Let's walk through creating a new definition for a "Normal Subgroup" in algebra.
+
+## Step 1: Choose the Correct Directory
+
+Navigate to the appropriate subject directory. For our example:
+```
+content/algebra/
+```
+
+## Step 2: Create the File
+
+Create a new file with the appropriate prefix:
+```
+def-normal-subgroup.qmd
+```
+
+## Step 3: Add the YAML Front Matter
+
+Every `.qmd` file must start with YAML metadata:
+
+```yaml
+---
+title: "Definition: Normal Subgroup"
+id: "def-normal-subgroup"
+type: "Definition"
+status: "draft"
+requires:
+  - "def-group"
+  - "def-subgroup"
+---
+```
+
+### Required YAML Fields
+
+| Field | Description | Example |
+|-------|-------------|---------|
+| `title` | Human-readable title | `"Definition: Normal Subgroup"` |
+| `id` | Unique identifier (must match filename without `.qmd`) | `"def-normal-subgroup"` |
+| `type` | Node type | `"Definition"`, `"Theorem"`, `"Example"`, `"Axiom"` |
+| `status` | Content maturity | `"stub"`, `"draft"`, `"complete"`, `"verified"` |
+
+### Optional YAML Fields
+
+| Field | Description | Example |
+|-------|-------------|---------|
+| `requires` | List of dependency IDs | `["def-group", "def-subgroup"]` |
+| `lean_id` | Corresponding Lean 4 identifier | `"Mathlib.GroupTheory.Subgroup.Normal"` |
+| `tags` | Additional categorization | `["group-theory", "abstract-algebra"]` |
+
+## Step 4: Write the Content
+
+After the YAML front matter, write your content using Quarto Markdown:
+
+```markdown
+A **normal subgroup** is a @def-subgroup $N$ of a @def-group $G$ that is invariant under conjugation by elements of $G$.
+
+::: {.definition}
+Let $(G, \cdot)$ be a @def-group and $N \subseteq G$ be a @def-subgroup. We say that $N$ is a **normal subgroup** of $G$, denoted $N \triangleleft G$, if for all $g \in G$ and $n \in N$:
+
+$$gng^{-1} \in N$$
+
+Equivalently, $N$ is normal if and only if $gN = Ng$ for all $g \in G$.
+:::
+
+## Properties
+
+A subgroup $N$ of $G$ is normal if and only if any of the following equivalent conditions hold:
+
+1. $gNg^{-1} = N$ for all $g \in G$
+2. $gNg^{-1} \subseteq N$ for all $g \in G$
+3. The left and right cosets coincide: $gN = Ng$ for all $g \in G$
+4. $N$ is the kernel of some @def-homomorphism
+
+## Related Concepts
+
+- Every @def-subgroup of an abelian @def-group is normal
+- The @def-kernel of a @def-homomorphism is always a normal subgroup
+- Normal subgroups are precisely the kernels of homomorphisms (see @thm-first-isomorphism)
+```
+
+# Cross-References and Linking
+
+## The Power of Cross-References
+
+Cross-references are the edges in our knowledge graph. They create the connections between mathematical concepts and enable powerful queries like "What theorems depend on this definition?"
+
+## Creating Cross-References
+
+Use the `@` syntax to reference other nodes:
+
+```markdown
+- Reference a definition: @def-group
+- Reference a theorem: @thm-lagrange
+- Reference an example: @ex-integers-addition
+- Reference an axiom: @ax-induction
+```
+
+### Best Practices for Cross-References
+
+1. **Always link mentioned concepts**: If you mention a group, link to @def-group
+2. **Link at first mention**: Don't repeatedly link the same concept
+3. **Use the exact ID**: The reference must match the target's `id` field exactly
+4. **Check your links**: Ensure all referenced nodes exist
+
+### Cross-Domain References
+
+To reference content in another domain, use the relative path:
+
+```markdown
+For a topological perspective, see @topology/def-topological-space
+```
+
+# Mathematical Notation and Formatting
+
+## LaTeX Mathematics
+
+Use standard LaTeX syntax for mathematical expressions:
+
+### Inline Math
+```markdown
+The group operation $\cdot: G \times G \to G$ is associative.
+```
+
+### Display Math
+```markdown
+$$
+\forall a, b, c \in G: (a \cdot b) \cdot c = a \cdot (b \cdot c)
+$$
+```
+
+## Theorem Environments
+
+Quarto provides special environments for mathematical content:
+
+### Definition Environment
+```markdown
+::: {.definition}
+A **group** is a set $G$ together with a binary operation...
+:::
+```
+
+### Theorem Environment
+```markdown
+::: {.theorem #thm-unique-identity}
+Every group has a unique identity element.
+:::
+```
+
+### Proof Environment
+```markdown
+::: {.proof}
+Let $e$ and $e'$ be two identity elements...
+:::
+```
+
+### Example Environment
+```markdown
+::: {.example}
+The integers $\mathbb{Z}$ under addition form a group.
+:::
+```
+
+## Available Mathematical Macros
+
+The project includes common LaTeX macros:
+
+- `\N` - Natural numbers ℕ
+- `\Z` - Integers ℤ
+- `\Q` - Rational numbers ℚ
+- `\R` - Real numbers ℝ
+- `\C` - Complex numbers ℂ
+- `\defeq` - Definition equality ≔
+- `\inv` - Inverse notation
+
+# Validation and Quality Assurance
+
+## Running Local Validation
+
+Before submitting your content, validate it locally:
+
+### 1. Check Metadata
+```bash
+poetry run python scripts/validate_metadata.py
+```
+
+This verifies:
+- All required YAML fields are present
+- IDs are unique and match filenames
+- Cross-references point to existing nodes
+
+### 2. Build the Graph
+```bash
+poetry run python scripts/build_graph.py
+```
+
+This:
+- Parses all content files
+- Extracts cross-references
+- Builds the RDF knowledge graph
+- Reports any errors
+
+### 3. Preview Your Content
+```bash
+quarto preview content/algebra/def-normal-subgroup.qmd
+```
+
+## Common Validation Errors
+
+### Missing Cross-Reference Target
+```
+Error: Cross-reference @def-quotient-group not found
+```
+**Solution**: Either create the missing node or correct the reference
+
+### Duplicate ID
+```
+Error: Duplicate ID 'def-group' found
+```
+**Solution**: Ensure your ID is unique across the project
+
+### Invalid YAML
+```
+Error: Invalid YAML front matter in def-normal-subgroup.qmd
+```
+**Solution**: Check YAML syntax, especially indentation
+
+# Style Guidelines
+
+## Writing Style
+
+1. **Be precise**: Use correct mathematical terminology
+2. **Be concise**: State definitions and theorems clearly
+3. **Be complete**: Include all necessary conditions
+4. **Be accessible**: Provide intuition where helpful
+
+## Content Guidelines
+
+### For Definitions
+- Start with an informal description
+- Provide the formal definition in a definition environment
+- Include important properties
+- Link to related concepts
+
+### For Theorems
+- State the theorem precisely
+- List all hypotheses clearly
+- Include a proof (or reference to one)
+- Mention important applications
+
+### For Examples
+- Explain why it's an example
+- Show verification of key properties
+- Highlight what makes it interesting
+- Link to the concepts it exemplifies
+
+# Advanced Topics
+
+## Working with Dependencies
+
+The `requires` field in YAML helps track logical dependencies:
+
+```yaml
+requires:
+  - "def-group"
+  - "def-homomorphism"
+  - "ax-choice"  # If using axiom of choice
+```
+
+## Status Progression
+
+Content typically progresses through these stages:
+
+1. **stub**: Minimal placeholder content
+2. **draft**: Work in progress, may have errors
+3. **complete**: Finished and reviewed
+4. **verified**: Formally verified (if applicable)
+
+## Lean Integration
+
+If your content has a formal counterpart in Lean 4:
+
+```yaml
+lean_id: "Mathlib.GroupTheory.Subgroup.Normal"
+```
+
+This enables:
+- Formal verification of dependencies
+- Consistency checking
+- Automated proof assistance
+
+# Contributing Your Content
+
+## Using Git and GitHub
+
+1. **Fork the repository** on GitHub
+2. **Clone your fork** locally
+3. **Create a feature branch**:
+   ```bash
+   git checkout -b add-normal-subgroup
+   ```
+4. **Add your content** following this guide
+5. **Commit with a clear message**:
+   ```bash
+   git add content/algebra/def-normal-subgroup.qmd
+   git commit -m "Add definition of normal subgroup"
+   ```
+6. **Push to your fork**:
+   ```bash
+   git push origin add-normal-subgroup
+   ```
+7. **Open a pull request** on GitHub
+
+## Pull Request Checklist
+
+- [ ] File follows naming convention (`type-concept.qmd`)
+- [ ] YAML metadata is complete and valid
+- [ ] All cross-references are valid
+- [ ] Mathematical notation renders correctly
+- [ ] Content is accurate and well-written
+- [ ] Validation scripts pass
+- [ ] Commit message is descriptive
+
+# Troubleshooting
+
+## Common Issues and Solutions
+
+### LaTeX Not Rendering
+**Problem**: Mathematical expressions show raw LaTeX code
+**Solution**: Ensure you're using `$...$` for inline and `$$...$$` for display math
+
+### Cross-Reference Not Working
+**Problem**: `@def-something` appears as plain text
+**Solution**: 
+1. Check the target file exists
+2. Verify the ID matches exactly
+3. Run validation scripts
+
+### YAML Parsing Error
+**Problem**: Quarto fails with YAML error
+**Solution**: 
+1. Check indentation (use spaces, not tabs)
+2. Quote strings containing special characters
+3. Ensure lists use proper syntax
+
+### Build Failures
+**Problem**: CI/CD pipeline fails on your PR
+**Solution**:
+1. Run validation scripts locally
+2. Check the CI logs for specific errors
+3. Ensure all dependencies are declared
+
+# Examples and Templates
+
+## Definition Template
+
+```markdown
+---
+title: "Definition: [Concept Name]"
+id: "def-[concept-name]"
+type: "Definition"
+status: "draft"
+requires:
+  - "def-prerequisite1"
+  - "def-prerequisite2"
+---
+
+A **[concept name]** is [informal description linking to prerequisites].
+
+::: {.definition}
+[Formal mathematical definition]
+:::
+
+## Properties
+
+[List important properties]
+
+## Related Concepts
+
+- [Links to related definitions]
+- [Links to theorems using this definition]
+- [Links to examples]
+```
+
+## Theorem Template
+
+```markdown
+---
+title: "Theorem: [Theorem Name]"
+id: "thm-[theorem-name]"
+type: "Theorem"
+status: "draft"
+requires:
+  - "def-concept1"
+  - "thm-prerequisite"
+---
+
+::: {.theorem}
+[Statement of the theorem]
+:::
+
+::: {.proof}
+[Proof of the theorem]
+:::
+
+## Applications
+
+[Where this theorem is used]
+
+## Related Results
+
+[Links to similar or generalizing theorems]
+```
+
+# Getting Help
+
+## Resources
+
+- **Contributing Guide**: See `/contributing.qmd` for general contribution guidelines
+- **Style Guide**: Detailed writing conventions in `/docs/style-guide.md`
+- **GitHub Issues**: Report bugs or ask questions
+- **Pull Request Reviews**: Get feedback on your contributions
+
+## Community Support
+
+- Open an issue for questions about content
+- Tag maintainers for technical help
+- Join discussions on mathematical accuracy
+
+# Next Steps
+
+Now that you understand how to create content:
+
+1. **Explore existing content** to see examples
+2. **Identify missing concepts** in your area of expertise
+3. **Start with a simple definition** for your first contribution
+4. **Build up to more complex theorems** as you gain experience
+5. **Help review others' contributions** to learn more
+
+Thank you for contributing to the ModernMath Knowledge Graph! Your efforts help build a comprehensive, interconnected resource for mathematics education and research.
