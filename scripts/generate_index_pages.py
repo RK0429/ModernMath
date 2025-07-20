@@ -2,7 +2,8 @@
 """Generate comprehensive index.qmd files for each mathematical domain."""
 
 from pathlib import Path
-from typing import List, Dict, Tuple
+from typing import Dict, List, Tuple
+
 import frontmatter
 
 
@@ -92,8 +93,8 @@ title: "{domain.replace('-', ' ').title()}"
 # {domain.replace('-', ' ').title()}
 
 {descriptions.get(domain,
-    f"Welcome to the {domain.replace('-', ' ').title()} section of the "
-    f"Mathematics Knowledge Graph Wiki.")}
+                  f"Welcome to the {domain.replace('-', ' ').title()} section of the "
+                  f"Mathematics Knowledge Graph Wiki.")}
 
 ## Contents
 
