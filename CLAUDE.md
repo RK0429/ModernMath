@@ -258,39 +258,37 @@ Features:
 
 This script is integrated into the build pipeline and runs before Mermaid diagram generation.
 
-#### Content Visualization Insertion
+#### Content Visualization Standards
 
-The `insert_diagrams.py` script handles inserting both Mermaid dependency graphs and interactive D3.js visualizations into content files:
+The project enforces strict placement rules for visualization sections to ensure consistency:
 
-**Key Features**:
+**Visualization Placement Rules**:
 
-- Inserts both static Mermaid diagrams and interactive D3.js visualization sections
-- Language-aware: Uses appropriate headers ("Dependency Graph" vs "依存グラフ") and descriptions
-- Smart insertion: Handles three scenarios:
-  1. Files with neither diagram type: Adds both sections
-  2. Files with only Mermaid: Adds just the interactive visualization section
-  3. Files with both: Skips to avoid duplication
-- Respects existing content structure by inserting before "References" sections
+- Dependency Graph and Interactive Visualization sections must ALWAYS appear at the end of articles
+- These sections must come after all content sections (Examples, Properties, Related Concepts, etc.)
+- The order is: 1) Dependency Graph, 2) Interactive Visualization
 
-**Interactive Visualization Format**:
+**Key Scripts**:
 
-```markdown
-## Interactive Visualization
+1. **`fix_visualization_placement.py`** - Enforces visualization placement standards:
 
-Explore the local knowledge graph neighborhood interactively:
+   ```bash
+   # Check for misplaced sections
+   poetry run python scripts/fix_visualization_placement.py --check
 
-::: {.graph-viz data-id="node-id" data-width="700" data-height="500"}
-:::
+   # Fix placement without updating content
+   poetry run python scripts/fix_visualization_placement.py --fix-only
 
-You can:
+   # Full update with new diagram content
+   poetry run python scripts/fix_visualization_placement.py
+   ```
 
-- **Drag** nodes to rearrange the layout
-- **Zoom** in/out with your mouse wheel
-- **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/node-id.html){target="\_blank"} in a new window
-```
+2. **`insert_diagrams.py`** - Automatically uses placement fix logic:
+   - Inserts both Mermaid dependency graphs and interactive visualizations
+   - Ensures proper placement at end of articles
+   - Language-aware headers ("Dependency Graph" vs "依存グラフ")
 
-**Important**: Always run `insert_diagrams.py` after generating visualizations to ensure all content pages have consistent visualization sections.
+**Important**: The build pipeline automatically enforces correct placement via `insert_diagrams.py`.
 
 ## Multilingual Support
 
