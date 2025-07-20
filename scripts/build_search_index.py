@@ -127,8 +127,14 @@ def index_content_files(content_dir: Path, index_dir: Path):
         ix = index.create_in(str(index_dir), create_schema())
         logger.info(f"Created new index in {index_dir}")
     else:
-        ix = index.open_dir(str(index_dir))
-        logger.info(f"Opened existing index in {index_dir}")
+        # Check if a valid index exists in the directory
+        try:
+            ix = index.open_dir(str(index_dir))
+            logger.info(f"Opened existing index in {index_dir}")
+        except:
+            # Directory exists but no valid index, create new one
+            ix = index.create_in(str(index_dir), create_schema())
+            logger.info(f"Created new index in existing directory {index_dir}")
 
     writer = ix.writer()
     indexed_count = 0
