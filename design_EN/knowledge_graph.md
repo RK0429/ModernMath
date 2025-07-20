@@ -30,9 +30,9 @@ Quarto serves as the **frontend for content creation**—the "wiki" where we wri
 * **Metadata in YAML:** We can include metadata about the node in the YAML front matter of each Quarto file. For example:
 
     ```yaml
-    title: "Definition: Group"  
-    type: "Definition"  
-    id: "def-group"  
+    title: "Definition: Group"
+    type: "Definition"
+    id: "def-group"
     requires: ["axiom-choice", "def-set"]  # Optional: list of prerequisite IDs
     ```
 
@@ -87,7 +87,7 @@ There are several ways to do this.
       A[Definition X] --> B(Theorem Y);
       A --> C(Theorem Z);
       C --> D[Example Q];
-    ```  
+    ```
 
     will render a small directed graph. We could have a Python script auto-generate these snippets and include them in the Quarto pages (perhaps via a Quarto filter or by inserting them during rendering). Mermaid is quite flexible, and Quarto can render it correctly (older Quarto versions had issues with HTML escaping, but this is resolved in v1.4+).
 * **Dynamic Graph Visualization:** For a richer experience, an interactive graph is ideal. While using **D3.js** or similar directly in Quarto can be tricky, we can embed custom HTML/JS. One approach is to create a small HTML + JavaScript widget that fetches data (perhaps in JSON format) and renders a graph (with force-directed layout, zoom/pan, etc.). We could embed this in a Quarto page using an `<iframe>` or a raw HTML chunk. Another approach is to generate interactive plots using Python. Libraries like **Plotly** or **Bokeh** might be able to handle network graphs. For example, **pyvis** (a Python interface to vis.js) can generate an interactive network graph and save it as an HTML snippet. In a Quarto document (that supports embedded Jupyter output), we could have a code cell that uses pyvis to display the graph for the current topic. The result would be an interactive frame in the page where you can click and hover over nodes.

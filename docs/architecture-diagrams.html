@@ -245,49 +245,49 @@ ul.task-list li input[type="checkbox"] {
         QMD[Quarto .qmd Files]
         META[YAML Metadata]
     end
-    
+
     subgraph "Processing Layer"
         PARSER[Python Parser&lt;br/&gt;build_graph.py]
         VAL[Validation Scripts]
         VIZ[Visualization Scripts]
     end
-    
+
     subgraph "Data Layer"
         RDF[RDF Triple Store&lt;br/&gt;knowledge_graph.ttl]
         ONTO[Ontology&lt;br/&gt;math-ontology.ttl]
         JSON[JSON Data Files]
     end
-    
+
     subgraph "Service Layer"
         FUSEKI[Apache Jena Fuseki&lt;br/&gt;SPARQL Endpoint]
         API[Flask REST API]
         CACHE[In-Memory Cache]
     end
-    
+
     subgraph "Presentation Layer"
         WEB[Quarto Website]
         VIS[Interactive Visualizations]
         SEARCH[Search Interface]
     end
-    
+
     QMD --&gt; PARSER
     META --&gt; PARSER
     PARSER --&gt; RDF
     ONTO --&gt; RDF
     VAL --&gt; QMD
-    
+
     RDF --&gt; FUSEKI
     FUSEKI --&gt; API
     API --&gt; CACHE
-    
+
     PARSER --&gt; VIZ
     VIZ --&gt; JSON
     JSON --&gt; VIS
-    
+
     API --&gt; WEB
     VIS --&gt; WEB
     SEARCH --&gt; WEB
-    
+
     style QMD fill:#e1f5fe
     style RDF fill:#fff3e0
     style FUSEKI fill:#f3e5f5
@@ -315,28 +315,28 @@ ul.task-list li input[type="checkbox"] {
         ALG[algebra/]
         TOP[topology/]
         ANA[analysis/]
-        
+
         ROOT --&gt; ALG
         ROOT --&gt; TOP
         ROOT --&gt; ANA
-        
+
         subgraph "Algebra Domain"
             ALGMETA[_metadata.yml]
             DEFG[def-group.qmd]
             THML[thm-lagrange.qmd]
             EXG[ex-integers.qmd]
-            
+
             ALG --&gt; ALGMETA
             ALG --&gt; DEFG
             ALG --&gt; THML
             ALG --&gt; EXG
         end
     end
-    
+
     subgraph "File Components"
         YAML[YAML Front Matter&lt;br/&gt;- id&lt;br/&gt;- type&lt;br/&gt;- requires]
         CONTENT[Markdown Content&lt;br/&gt;- Definitions&lt;br/&gt;- Cross-refs @&lt;br/&gt;- LaTeX math]
-        
+
         DEFG --&gt; YAML
         DEFG --&gt; CONTENT
     end
@@ -362,7 +362,7 @@ ul.task-list li input[type="checkbox"] {
     participant G as Graph Builder
     participant S as Serializer
     participant F as File System
-    
+
     U-&gt;&gt;Q: Create/Edit .qmd
     U-&gt;&gt;P: Run build_graph.py
     P-&gt;&gt;Q: Read all .qmd files
@@ -392,20 +392,20 @@ ul.task-list li input[type="checkbox"] {
         S[Subject URI]
         P[Predicate]
         O[Object URI/Literal]
-        
+
         S --&gt;|has| P
         P --&gt;|points to| O
     end
-    
+
     subgraph "Example Triples"
         G[math:def-group]
         T[rdf:type]
         D[mymath:Definition]
-        
+
         G2[math:thm-lagrange]
         U[mymath:uses]
         G3[math:def-group]
-        
+
         G --&gt;|rdf:type| D
         G2 --&gt;|mymath:uses| G3
     end
@@ -434,7 +434,7 @@ ul.task-list li input[type="checkbox"] {
         FUS[Fuseki Client]
         CACHE[Cache Layer]
         RESP[JSON Response]
-        
+
         REQ --&gt; ROUTE
         ROUTE --&gt; CACHE
         CACHE --&gt;|miss| SPAR
@@ -443,13 +443,13 @@ ul.task-list li input[type="checkbox"] {
         CACHE --&gt; RESP
         ROUTE --&gt; RESP
     end
-    
+
     subgraph "API Endpoints"
         E1[/api/nodes/{id}]
         E2[/api/dependencies/{id}]
         E3[/api/search]
         E4[/api/query]
-        
+
         E1 --&gt; ROUTE
         E2 --&gt; ROUTE
         E3 --&gt; ROUTE
@@ -474,21 +474,21 @@ ul.task-list li input[type="checkbox"] {
         REQ[API Request]
         KEY[Cache Key Generator]
         MEM[In-Memory Store&lt;br/&gt;TTL: 5-15 min]
-        
+
         REQ --&gt; KEY
         KEY --&gt; MEM
-        
+
         MEM --&gt;|Hit| RESP1[Cached Response]
         MEM --&gt;|Miss| DB[Database Query]
         DB --&gt; MEM
         DB --&gt; RESP2[Fresh Response]
     end
-    
+
     subgraph "Cache Management"
         CLEAN[Cleanup Thread&lt;br/&gt;Every 5 min]
         STATS[/api/cache/stats]
         CLEAR[/api/cache/clear]
-        
+
         CLEAN --&gt; MEM
         STATS --&gt; MEM
         CLEAR --&gt; MEM
@@ -515,33 +515,33 @@ ul.task-list li input[type="checkbox"] {
         KG[Knowledge Graph&lt;br/&gt;RDF Triples]
         SPARQL[SPARQL Queries]
     end
-    
+
     subgraph "Visualization Scripts"
         MERM[generate_mermaid.py]
         PYVIS[generate_pyvis.py]
         D3[generate_d3_data.py]
     end
-    
+
     subgraph "Output Formats"
         MERMF[Mermaid .mermaid files]
         PYVISF[PyVis HTML files]
         D3F[D3.js JSON files]
     end
-    
+
     subgraph "Integration"
         QMD[Quarto Pages]
         WEB[Web Interface]
     end
-    
+
     KG --&gt; SPARQL
     SPARQL --&gt; MERM
     SPARQL --&gt; PYVIS
     SPARQL --&gt; D3
-    
+
     MERM --&gt; MERMF
     PYVIS --&gt; PYVISF
     D3 --&gt; D3F
-    
+
     MERMF --&gt; QMD
     PYVISF --&gt; WEB
     D3F --&gt; WEB
@@ -566,18 +566,18 @@ ul.task-list li input[type="checkbox"] {
         D3LIB[D3.js Library]
         VIS[Vis.js Library]
     end
-    
+
     subgraph "Data Loading"
         AJAX[AJAX Request]
         JSON[JSON Data File]
     end
-    
+
     subgraph "Rendering"
         SVG[SVG Elements]
         INTER[Interactive Controls]
         ZOOM[Zoom/Pan]
     end
-    
+
     HTML --&gt; JS
     JS --&gt; D3LIB
     JS --&gt; VIS
@@ -610,26 +610,26 @@ ul.task-list li input[type="checkbox"] {
         LOCAL[Local Environment]
         GIT[Git Repository]
     end
-    
+
     subgraph "GitHub Actions"
         TRIGGER[Push/PR Trigger]
         BUILD[Build Job]
         TEST[Test Job]
         DEPLOY[Deploy Job]
     end
-    
+
     subgraph "Build Steps"
         INSTALL[Install Dependencies]
         VALIDATE[Validate Content]
         GRAPH[Build Graph]
         RENDER[Render Site]
     end
-    
+
     subgraph "Deployment"
         PAGES[GitHub Pages]
         ASSETS[Static Assets]
     end
-    
+
     DEV --&gt; LOCAL
     LOCAL --&gt; GIT
     GIT --&gt; TRIGGER
@@ -662,26 +662,26 @@ ul.task-list li input[type="checkbox"] {
         STATIC[Static Files&lt;br/&gt;HTML/CSS/JS]
         VIZ[Visualization Files]
     end
-    
+
     subgraph "Backend Services"
         VM[Cloud VM/Container]
         FUSEKI[Fuseki Server&lt;br/&gt;Port 3030]
         API[Flask API&lt;br/&gt;Port 5001]
         NGINX[Nginx Reverse Proxy]
     end
-    
+
     subgraph "Data Storage"
         RDF[RDF Triple Store]
         LOGS[Log Files]
         BACKUP[Backup Storage]
     end
-    
+
     CDN --&gt; STATIC
     CDN --&gt; VIZ
-    
+
     NGINX --&gt; FUSEKI
     NGINX --&gt; API
-    
+
     FUSEKI --&gt; RDF
     API --&gt; FUSEKI
     API --&gt; LOGS
@@ -733,7 +733,7 @@ ul.task-list li input[type="checkbox"] {
     participant Cache
     participant SPARQL
     participant RDF
-    
+
     Client-&gt;&gt;API: GET /api/dependencies/def-group
     API-&gt;&gt;Cache: Check cache
     Cache--&gt;&gt;API: Cache miss
@@ -810,27 +810,27 @@ ul.task-list li input[type="checkbox"] {
         AUTH[Authenticated Write]
         ADMIN[Admin Only]
     end
-    
+
     subgraph "API Security"
         CORS[CORS Headers]
         RATE[Rate Limiting]
         VAL[Input Validation]
     end
-    
+
     subgraph "Data Security"
         BACKUP[Regular Backups]
         LOG[Audit Logging]
         VALID[Content Validation]
     end
-    
+
     PUBLIC --&gt; CORS
     AUTH --&gt; RATE
     ADMIN --&gt; VAL
-    
+
     CORS --&gt; API[API Layer]
     RATE --&gt; API
     VAL --&gt; API
-    
+
     API --&gt; BACKUP
     API --&gt; LOG
     API --&gt; VALID
@@ -857,27 +857,27 @@ ul.task-list li input[type="checkbox"] {
         PARALLEL[Parallel Processing]
         CACHE_B[Build Cache]
     end
-    
+
     subgraph "Runtime"
         CDN[CDN Distribution]
         CACHE_R[Response Cache]
         INDEX[Query Indexes]
     end
-    
+
     subgraph "Client"
         LAZY[Lazy Loading]
         COMPRESS[Compression]
         BUNDLE[Code Bundling]
     end
-    
+
     INCR --&gt; PERF[Performance]
     PARALLEL --&gt; PERF
     CACHE_B --&gt; PERF
-    
+
     CDN --&gt; PERF
     CACHE_R --&gt; PERF
     INDEX --&gt; PERF
-    
+
     LAZY --&gt; PERF
     COMPRESS --&gt; PERF
     BUNDLE --&gt; PERF
@@ -904,26 +904,26 @@ ul.task-list li input[type="checkbox"] {
         SYS[System Metrics]
         USER[User Analytics]
     end
-    
+
     subgraph "Monitoring Tools"
         LOGS[Log Aggregation]
         METRICS[Metrics Dashboard]
         ALERTS[Alert System]
     end
-    
+
     subgraph "Outputs"
         DASH[Dashboard]
         EMAIL[Email Alerts]
         SLACK[Slack Notifications]
     end
-    
+
     APP --&gt; LOGS
     SYS --&gt; METRICS
     USER --&gt; METRICS
-    
+
     LOGS --&gt; ALERTS
     METRICS --&gt; ALERTS
-    
+
     ALERTS --&gt; DASH
     ALERTS --&gt; EMAIL
     ALERTS --&gt; SLACK
@@ -950,23 +950,23 @@ ul.task-list li input[type="checkbox"] {
         STATIC[Static Site]
         SIMPLE[Simple API]
     end
-    
+
     subgraph "Growth Phase"
         CLUSTER[Fuseki Cluster]
         DYNAMIC[Dynamic Features]
         SCALED[Scaled API]
     end
-    
+
     subgraph "Enterprise Scale"
         DIST[Distributed Graph]
         MICRO[Microservices]
         ML[ML Integration]
     end
-    
+
     SINGLE --&gt; CLUSTER
     STATIC --&gt; DYNAMIC
     SIMPLE --&gt; SCALED
-    
+
     CLUSTER --&gt; DIST
     DYNAMIC --&gt; MICRO
     SCALED --&gt; ML
