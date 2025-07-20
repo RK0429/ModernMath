@@ -8,29 +8,39 @@
     rdfs:comment "An ontology for representing mathematical knowledge as a graph"@en .
 
 base:ax-induction a mymath:Axiom ;
-    rdfs:label "Axiom: Mathematical Induction"@en ;
-    mymath:hasDomain "Logic Set Theory" ;
+    rdfs:label "Axiom: Mathematical Induction"@en,
+        "公理: 数学的帰納法"@en ;
+    mymath:hasDomain "Logic Set Theory",
+        "論理・集合論" ;
     mymath:hasStatus "complete" .
 
 base:def-complete-metric-space a mymath:Definition ;
-    rdfs:label "Definition: Complete Metric Space"@en ;
-    mymath:hasDomain "Analysis" ;
+    rdfs:label "Definition: Complete Metric Space"@en,
+        "定義: 完備距離空間"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-limit,
         base:def-metric-space .
 
 base:def-convergence a mymath:Definition ;
-    rdfs:label "Definition: Convergence"@en ;
-    rdfs:comment "**Convergence** describes the behavior of a [Sequence](def-sequence.qmd) whose terms approach a specific value as the index increases. A convergent sequence gets arbitrarily close to its limit."@en ;
-    mymath:hasDomain "Analysis" ;
+    rdfs:label "Definition: Convergence"@en,
+        "定義: 収束"@en ;
+    rdfs:comment "**Convergence** describes the behavior of a [Sequence](def-sequence.qmd) whose terms approach a specific value as the index increases. A convergent sequence gets arbitrarily close to its limit."@en,
+        "**収束**とは、[数列](def-sequence.qmd)の項が、添字が増加するにつれて特定の値に近づく挙動を表す。収束する数列は、その極限に任意に近づく。"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-limit,
         base:def-sequence .
 
 base:def-distributivity a mymath:Definition ;
-    rdfs:label "Definition: Distributivity"@en ;
-    rdfs:comment "**Distributivity** is a property that relates two [Binary Operations](def-binary-operation.qmd), describing how one operation \"distributes\" over the other."@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Definition: Distributivity"@en,
+        "定義: 分配性"@en ;
+    rdfs:comment "**Distributivity** is a property that relates two [Binary Operations](def-binary-operation.qmd), describing how one operation \"distributes\" over the other."@en,
+        "**分配性**は、2つの[二項演算](def-binary-operation.qmd)を関連付ける性質で、一方の演算が他方に対してどのように「分配」されるかを記述する。"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-binary-operation .
 
@@ -38,7 +48,7 @@ base:def-group-example a mymath:Definition ;
     rdfs:label "Definition: Group"@en,
         "定義：群"@en ;
     mymath:hasDomain "Algebra",
-        "algebra" ;
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-associativity,
         base:def-binary-operation,
@@ -51,106 +61,137 @@ base:def-group-example a mymath:Definition ;
         base:thm-unique-identity .
 
 base:def-integral a mymath:Definition ;
-    rdfs:label "Definition: Integral"@en ;
-    rdfs:comment "The **integral** of a function represents the signed area under its curve, accumulation of quantities, or the inverse operation to differentiation. We focus on the Riemann integral for real-valued functions."@en ;
-    mymath:hasDomain "Analysis" ;
+    rdfs:label "Definition: Integral"@en,
+        "定義: 積分"@en ;
+    rdfs:comment "The **integral** of a function represents the signed area under its curve, accumulation of quantities, or the inverse operation to differentiation. We focus on the Riemann integral for real-valued functions."@en,
+        "関数の**積分**は、その曲線の下の符号付き面積、量の累積、または微分の逆演算を表す。ここでは実数値関数のリーマン積分に焦点を当てる。"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-continuity,
         base:def-limit .
 
 base:def-isomorphism a mymath:Definition ;
-    rdfs:label "Definition: Isomorphism"@en ;
-    rdfs:comment "An **isomorphism** in a [Category](def-category.qmd) is a [Morphism](def-morphism.qmd) that has a two-sided inverse. Isomorphic objects are considered \"the same\" from the categorical perspective."@en ;
-    mymath:hasDomain "Category Theory" ;
+    rdfs:label "Definition: Isomorphism"@en,
+        "定義: 同型射"@en ;
+    rdfs:comment "An **isomorphism** in a [Category](def-category.qmd) is a [Morphism](def-morphism.qmd) that has a two-sided inverse. Isomorphic objects are considered \"the same\" from the categorical perspective."@en,
+        "[圏](def-category.qmd)における**同型射**は、両側逆射を持つ[射](def-morphism.qmd)です。同型な対象は圏論的観点から「同じ」と見なされます。"@en ;
+    mymath:hasDomain "Category Theory",
+        "圏論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-category,
         base:def-composition,
         base:def-morphism .
 
 base:def-parallel a mymath:Definition ;
-    rdfs:label "Definition: Parallel Lines"@en ;
-    rdfs:comment "Two [Lines](def-line.qmd) are **parallel** if they lie in the same plane and do not intersect, no matter how far they are extended."@en ;
-    mymath:hasDomain "Geometry" ;
+    rdfs:label "Definition: Parallel Lines"@en,
+        "定義: 平行線"@en ;
+    rdfs:comment "2つの[直線](def-line.qmd)は、同一平面上にあり、どれだけ延長しても交わらないとき**平行**であるといいます。"@en,
+        "Two [Lines](def-line.qmd) are **parallel** if they lie in the same plane and do not intersect, no matter how far they are extended."@en ;
+    mymath:hasDomain "Geometry",
+        "幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-line,
         base:def-point .
 
 base:domain-algebra a mymath:domain ;
     rdfs:label "代数学"@en ;
-    mymath:hasDomain "algebra" ;
+    mymath:hasDomain "代数学" ;
     mymath:hasStatus "active" .
 
 base:ex-closed-interval-compact a mymath:Example ;
-    rdfs:label "Example: Closed Interval is Compact"@en ;
-    mymath:hasDomain "Topology" ;
+    rdfs:label "Example: Closed Interval is Compact"@en,
+        "例: 閉区間はコンパクト"@en ;
+    mymath:hasDomain "Topology",
+        "位相幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-compact,
         base:def-topological-space,
         base:thm-heine-borel .
 
 base:ex-euclidean-metric a mymath:Example ;
-    rdfs:label "Example: Euclidean Metric on ℝⁿ"@en ;
-    mymath:hasDomain "Geometry" ;
+    rdfs:label "Example: Euclidean Metric on ℝⁿ"@en,
+        "例: ℝⁿ上のユークリッド距離"@en ;
+    mymath:hasDomain "Geometry",
+        "幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-metric-space,
         base:def-set .
 
 base:ex-euclidean-space a mymath:Example ;
-    rdfs:label "Example: Euclidean Space"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Example: Euclidean Space"@en,
+        "例: ユークリッド空間"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" .
 
 base:ex-exponential-homomorphism a mymath:Example ;
-    rdfs:label "Example: Exponential Homomorphism"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Example: Exponential Homomorphism"@en,
+        "例: 指数準同型"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-group,
         base:def-homomorphism .
 
 base:ex-integers-ring a mymath:Example ;
-    rdfs:label "Example: Integers Form a Ring"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Example: Integers Form a Ring"@en,
+        "例: 整数は環を形成する"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-binary-operation,
         base:def-group,
         base:def-ring .
 
 base:ex-matrix-transformation a mymath:Example ;
-    rdfs:label "Example: Matrix Transformation"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Example: Matrix Transformation"@en,
+        "例: 行列変換"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-linear-transformation,
         base:def-matrix .
 
 base:ex-pascals-triangle a mymath:Example ;
-    rdfs:label "Example: Pascal's Triangle"@en ;
-    mymath:hasDomain "Combinatorics" ;
+    rdfs:label "Example: Pascal's Triangle"@en,
+        "例：パスカルの三角形"@en ;
+    mymath:hasDomain "Combinatorics",
+        "組合せ論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-binomial-coefficient .
 
 base:ex-polynomial-continuity a mymath:Example ;
-    rdfs:label "Example: Polynomial Continuity"@en ;
-    mymath:hasDomain "Analysis" ;
+    rdfs:label "Example: Polynomial Continuity"@en,
+        "例：多項式の連続性"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-continuity .
 
 base:ex-real-line-metric a mymath:Example ;
-    rdfs:label "Example: Real Line with Standard Metric"@en ;
-    mymath:hasDomain "Analysis" ;
+    rdfs:label "Example: Real Line with Standard Metric"@en,
+        "例：標準距離を持つ実数直線"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-metric-space .
 
 base:ex-set-category a mymath:Example ;
-    rdfs:label "Example: The Category of Sets"@en ;
-    mymath:hasDomain "Category Theory" ;
+    rdfs:label "Example: The Category of Sets"@en,
+        "例：集合の圏"@en ;
+    mymath:hasDomain "Category Theory",
+        "圏論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-category,
         base:def-morphism,
         base:def-set .
 
 base:ex-standard-basis-rn a mymath:Example ;
-    rdfs:label "Example: Standard Basis of ℝⁿ"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Example: Standard Basis of ℝⁿ"@en,
+        "例: ℝⁿの標準基底"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-basis,
         base:def-linear-independence,
@@ -158,131 +199,171 @@ base:ex-standard-basis-rn a mymath:Example ;
         base:def-vector-space .
 
 base:thm-angle-sum-triangle a mymath:Theorem ;
-    rdfs:label "Theorem: Angle Sum of a Triangle"@en ;
-    rdfs:comment "The sum of the interior [Angles](def-angle.qmd) of any [Triangle](def-triangle.qmd) equals $180°$ (or $\\pi$ radians)."@en ;
-    mymath:hasDomain "Geometry" ;
+    rdfs:label "Theorem: Angle Sum of a Triangle"@en,
+        "定理: 三角形の内角の和"@en ;
+    rdfs:comment "The sum of the interior [Angles](def-angle.qmd) of any [Triangle](def-triangle.qmd) equals $180°$ (or $\\pi$ radians)."@en,
+        "任意の[三角形](def-triangle.qmd)の内[角](def-angle.qmd)の和は $180°$（または $\\pi$ ラジアン）に等しい。"@en ;
+    mymath:hasDomain "Geometry",
+        "幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-angle,
         base:def-line,
         base:def-triangle .
 
 base:thm-bayes a mymath:Theorem ;
-    rdfs:label "Theorem: Bayes' Theorem"@en ;
-    rdfs:comment "**Bayes' Theorem** provides a way to calculate [Conditional Probability](def-conditional-probability.qmd) in the \"reverse\" direction. It relates $P(A|B)$ to $P(B|A)$, allowing us to update beliefs based on new evidence."@en ;
-    mymath:hasDomain "Probability Statistics" ;
+    rdfs:label "Theorem: Bayes' Theorem"@en,
+        "定理: ベイズの定理"@en ;
+    rdfs:comment "**Bayes' Theorem** provides a way to calculate [Conditional Probability](def-conditional-probability.qmd) in the \"reverse\" direction. It relates $P(A|B)$ to $P(B|A)$, allowing us to update beliefs based on new evidence."@en,
+        "**ベイズの定理**は、[条件付き確率](def-conditional-probability.qmd)を「逆方向」で計算する方法を提供します。$P(A|B)$ を $P(B|A)$ と関連付け、新しい証拠に基づいて信念を更新することができます。"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-conditional-probability,
         base:def-event .
 
 base:thm-cantor a mymath:Theorem ;
-    rdfs:label "Theorem: Cantor's Theorem"@en ;
-    mymath:hasDomain "Logic Set Theory" ;
+    rdfs:label "Theorem: Cantor's Theorem"@en,
+        "定理: カントールの定理"@en ;
+    mymath:hasDomain "Logic Set Theory",
+        "論理・集合論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-power-set,
         base:def-set .
 
 base:thm-chain-rule a mymath:Theorem ;
-    rdfs:label "Theorem: Chain Rule"@en ;
-    mymath:hasDomain "Analysis" ;
+    rdfs:label "Theorem: Chain Rule"@en,
+        "定理：連鎖律"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-continuity,
         base:def-derivative .
 
 base:thm-de-morgan a mymath:Theorem ;
-    rdfs:label "Theorem: De Morgan's Laws"@en ;
-    rdfs:comment "**De Morgan's Laws** describe the relationship between [Union](def-union.qmd), [Intersection](def-intersection.qmd), and set complement. They state that the complement of a union equals the intersection of complements, and the complement of an intersection equals the union of complements."@en ;
-    mymath:hasDomain "Logic Set Theory" ;
+    rdfs:label "Theorem: De Morgan's Laws"@en,
+        "定理: ド・モルガンの法則"@en ;
+    rdfs:comment "**De Morgan's Laws** describe the relationship between [Union](def-union.qmd), [Intersection](def-intersection.qmd), and set complement. They state that the complement of a union equals the intersection of complements, and the complement of an intersection equals the union of complements."@en,
+        "**ド・モルガンの法則**は、[和集合](def-union.qmd)、[共通部分](def-intersection.qmd)、および集合の補集合の間の関係を記述する。和集合の補集合は補集合の共通部分に等しく、共通部分の補集合は補集合の和集合に等しいことを主張する。"@en ;
+    mymath:hasDomain "Logic Set Theory",
+        "論理・集合論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-intersection,
         base:def-set,
         base:def-union .
 
 base:thm-euclidean-algorithm a mymath:Theorem ;
-    rdfs:label "Theorem: Euclidean Algorithm"@en ;
-    mymath:hasDomain "Number Theory" ;
+    rdfs:label "Theorem: Euclidean Algorithm"@en,
+        "定理：ユークリッドのアルゴリズム"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-gcd .
 
 base:thm-euler a mymath:Theorem ;
-    rdfs:label "Theorem: Euler's Theorem"@en ;
-    mymath:hasDomain "Number Theory" ;
+    rdfs:label "Theorem: Euler's Theorem"@en,
+        "定理：オイラーの定理"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-group,
         base:def-prime .
 
 base:thm-field-characteristic a mymath:Theorem ;
-    rdfs:label "Theorem: Field Characteristic"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Theorem: Field Characteristic"@en,
+        "定理: 体の標数"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-field,
         base:def-prime,
         base:def-ring .
 
 base:thm-fundamental-arithmetic a mymath:Theorem ;
-    rdfs:label "Theorem: Fundamental Theorem of Arithmetic"@en ;
-    mymath:hasDomain "Number Theory" ;
+    rdfs:label "Theorem: Fundamental Theorem of Arithmetic"@en,
+        "定理：算術の基本定理"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-prime .
 
 base:thm-intermediate-value a mymath:Theorem ;
-    rdfs:label "Theorem: Intermediate Value Theorem"@en ;
-    mymath:hasDomain "Topology" ;
+    rdfs:label "Theorem: Intermediate Value Theorem"@en,
+        "定理: 中間値の定理"@en ;
+    mymath:hasDomain "Topology",
+        "位相幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-connected,
         base:def-continuity .
 
 base:thm-law-of-large-numbers a mymath:Theorem ;
-    rdfs:label "Theorem: Law of Large Numbers"@en ;
-    mymath:hasDomain "Probability Statistics" ;
+    rdfs:label "Theorem: Law of Large Numbers"@en,
+        "定理: 大数の法則"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-expectation,
         base:def-random-variable .
 
 base:thm-limit-arithmetic a mymath:Theorem ;
-    rdfs:label "Theorem: Arithmetic of Limits"@en ;
-    mymath:hasDomain "Analysis" ;
+    rdfs:label "Theorem: Arithmetic of Limits"@en,
+        "定理：極限の演算"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-limit .
 
 base:thm-linear-transformation-basis a mymath:Theorem ;
-    rdfs:label "Theorem: Linear Transformation Determined by Basis"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Theorem: Linear Transformation Determined by Basis"@en,
+        "定理: 基底による線形変換の決定"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-basis,
         base:def-linear-transformation,
         base:def-vector-space .
 
 base:thm-mean-value a mymath:Theorem ;
-    rdfs:label "Theorem: Mean Value Theorem"@en ;
-    rdfs:comment "The **Mean Value Theorem (MVT)** states that for a differentiable function on an interval, there exists at least one point where the instantaneous rate of change equals the average rate of change over the interval."@en ;
-    mymath:hasDomain "Analysis" ;
+    rdfs:label "Theorem: Mean Value Theorem"@en,
+        "定理：平均値の定理"@en ;
+    rdfs:comment "**平均値の定理（MVT）**は、区間上で微分可能な関数に対して、瞬間変化率が区間全体の平均変化率に等しくなる点が少なくとも1つ存在することを主張する。"@en,
+        "The **Mean Value Theorem (MVT)** states that for a differentiable function on an interval, there exists at least one point where the instantaneous rate of change equals the average rate of change over the interval."@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-continuity,
         base:def-derivative .
 
 base:thm-metric-hausdorff a mymath:Theorem ;
-    rdfs:label "Theorem: Every Metric Space is Hausdorff"@en ;
-    mymath:hasDomain "Topology" ;
+    rdfs:label "Theorem: Every Metric Space is Hausdorff"@en,
+        "定理: すべての距離空間はハウスドルフ空間"@en ;
+    mymath:hasDomain "Topology",
+        "位相幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-hausdorff,
         base:def-metric-space,
         base:def-topological-space .
 
 base:thm-pigeonhole-principle a mymath:Theorem ;
-    rdfs:label "Theorem: Pigeonhole Principle"@en ;
-    mymath:hasDomain "Combinatorics" ;
+    rdfs:label "Theorem: Pigeonhole Principle"@en,
+        "定理：鳩の巣原理"@en ;
+    mymath:hasDomain "Combinatorics",
+        "組合せ論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
 base:thm-pythagorean a mymath:Theorem ;
-    rdfs:label "Theorem: Pythagorean Theorem"@en ;
-    mymath:hasDomain "Geometry" ;
+    rdfs:label "Theorem: Pythagorean Theorem"@en,
+        "定理: ピタゴラスの定理"@en ;
+    mymath:hasDomain "Geometry",
+        "幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-euclidean-space .
 
 base:thm-rank-nullity a mymath:Theorem ;
-    rdfs:label "Theorem: Rank-Nullity Theorem"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Theorem: Rank-Nullity Theorem"@en,
+        "定理: 階数・退化次数定理"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-image,
         base:def-kernel,
@@ -290,16 +371,21 @@ base:thm-rank-nullity a mymath:Theorem ;
         base:def-vector-space .
 
 base:thm-union-open-sets a mymath:Theorem ;
-    rdfs:label "Theorem: Union of Open Sets"@en ;
-    mymath:hasDomain "Topology" ;
+    rdfs:label "Theorem: Union of Open Sets"@en,
+        "定理: 開集合の和集合"@en ;
+    mymath:hasDomain "Topology",
+        "位相幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-open-set,
         base:def-topological-space .
 
 base:thm-yoneda a mymath:Theorem ;
-    rdfs:label "Theorem: Yoneda Lemma"@en ;
-    rdfs:comment "The **Yoneda Lemma** is a fundamental result in [Category](def-category.qmd) theory that relates [Functors](def-functor.qmd) to representable functors. It states that an object is completely determined by its relationships to all other objects."@en ;
-    mymath:hasDomain "Category Theory" ;
+    rdfs:label "Theorem: Yoneda Lemma"@en,
+        "定理：米田の補題"@en ;
+    rdfs:comment "**米田の補題**は[圏](def-category.qmd)論における基本的な結果で、[関手](def-functor.qmd)と表現可能関手を関係付けます。これは、対象が他のすべての対象との関係によって完全に決定されることを述べています。"@en,
+        "The **Yoneda Lemma** is a fundamental result in [Category](def-category.qmd) theory that relates [Functors](def-functor.qmd) to representable functors. It states that an object is completely determined by its relationships to all other objects."@en ;
+    mymath:hasDomain "Category Theory",
+        "圏論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-category,
         base:def-functor,
@@ -378,44 +464,59 @@ base:thm-yoneda a mymath:Theorem ;
     mymath:inModule "MathKnowledgeGraph.Topology.Basic" .
 
 base:def-binomial-coefficient a mymath:Definition ;
-    rdfs:label "Definition: Binomial Coefficient"@en ;
-    mymath:hasDomain "Combinatorics" ;
+    rdfs:label "Definition: Binomial Coefficient"@en,
+        "定義：二項係数"@en ;
+    mymath:hasDomain "Combinatorics",
+        "組合せ論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-combination,
         base:def-permutation .
 
 base:def-combination a mymath:Definition ;
-    rdfs:label "Definition: Combination"@en ;
-    mymath:hasDomain "Combinatorics" ;
+    rdfs:label "Definition: Combination"@en,
+        "定義：組合せ"@en ;
+    mymath:hasDomain "Combinatorics",
+        "組合せ論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
 base:def-commutativity a mymath:Definition ;
-    rdfs:label "Definition: Commutativity"@en ;
-    rdfs:comment "**Commutativity** is a property of a [Binary Operation](def-binary-operation.qmd) where the order of the operands does not affect the result."@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Definition: Commutativity"@en,
+        "定義: 可換性"@en ;
+    rdfs:comment "**Commutativity** is a property of a [Binary Operation](def-binary-operation.qmd) where the order of the operands does not affect the result."@en,
+        "**可換性**は、演算子の順序が結果に影響しない[二項演算](def-binary-operation.qmd)の性質である。"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-binary-operation .
 
 base:def-composition a mymath:Definition ;
-    rdfs:label "Definition: Composition"@en ;
-    rdfs:comment "**Composition** is the fundamental operation in a [Category](def-category.qmd) that combines two compatible [Morphisms](def-morphism.qmd) to produce a third morphism."@en ;
-    mymath:hasDomain "Category Theory" ;
+    rdfs:label "Definition: Composition"@en,
+        "定義: 合成"@en ;
+    rdfs:comment "**Composition** is the fundamental operation in a [Category](def-category.qmd) that combines two compatible [Morphisms](def-morphism.qmd) to produce a third morphism."@en,
+        "**合成**は[圏](def-category.qmd)における基本的な操作であり、互換性のある2つの[射](def-morphism.qmd)を結合して第3の射を生成します。"@en ;
+    mymath:hasDomain "Category Theory",
+        "圏論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-category,
         base:def-morphism .
 
 base:def-conditional-probability a mymath:Definition ;
-    rdfs:label "Definition: Conditional Probability"@en ;
-    rdfs:comment "The **conditional probability** of an [Event](def-event.qmd) $A$ given event $B$ is the probability that $A$ occurs, given that $B$ has occurred. It is denoted $P(A|B)$."@en ;
-    mymath:hasDomain "Probability Statistics" ;
+    rdfs:label "Definition: Conditional Probability"@en,
+        "定義: 条件付き確率"@en ;
+    rdfs:comment "**条件付き確率**とは、[事象](def-event.qmd) $B$ が起こったという条件の下で、[事象](def-event.qmd) $A$ が起こる確率である。これは $P(A|B)$ と表記される。"@en,
+        "The **conditional probability** of an [Event](def-event.qmd) $A$ given event $B$ is the probability that $A$ occurs, given that $B$ has occurred. It is denoted $P(A|B)$."@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-event,
         base:def-probability-space .
 
 base:def-connected a mymath:Definition ;
-    rdfs:label "Definition: Connected Space"@en ;
-    mymath:hasDomain "Topology" ;
+    rdfs:label "Definition: Connected Space"@en,
+        "定義: 連結空間"@en ;
+    mymath:hasDomain "Topology",
+        "位相幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Connected.IsConnected> ;
     mymath:uses base:def-closed-set,
@@ -423,129 +524,171 @@ base:def-connected a mymath:Definition ;
         base:def-topological-space .
 
 base:def-euclidean-space a mymath:Definition ;
-    rdfs:label "Definition: Euclidean Space"@en ;
-    mymath:hasDomain "Geometry" ;
+    rdfs:label "Definition: Euclidean Space"@en,
+        "定義: ユークリッド空間"@en ;
+    mymath:hasDomain "Geometry",
+        "幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-metric-space,
         base:def-vector-space .
 
 base:def-expectation a mymath:Definition ;
-    rdfs:label "Definition: Expected Value"@en ;
-    mymath:hasDomain "Probability Statistics" ;
+    rdfs:label "Definition: Expected Value"@en,
+        "定義: 期待値"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-probability-space,
         base:def-random-variable .
 
 base:def-gcd a mymath:Definition ;
-    rdfs:label "Definition: Greatest Common Divisor"@en ;
-    mymath:hasDomain "Number Theory" ;
+    rdfs:label "Definition: Greatest Common Divisor"@en,
+        "定義：最大公約数"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
 base:def-hausdorff a mymath:Definition ;
-    rdfs:label "Definition: Hausdorff Space"@en ;
-    mymath:hasDomain "Topology" ;
+    rdfs:label "Definition: Hausdorff Space"@en,
+        "定義: ハウスドルフ空間"@en ;
+    mymath:hasDomain "Topology",
+        "位相幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Separation.T2Space> ;
     mymath:uses base:def-open-set,
         base:def-topological-space .
 
 base:def-image a mymath:Definition ;
-    rdfs:label "Definition: Image"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Definition: Image"@en,
+        "定義: 像"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearMap.range> ;
     mymath:uses base:def-linear-transformation,
         base:def-vector-space .
 
 base:def-intersection a mymath:Definition ;
-    rdfs:label "Definition: Intersection"@en ;
-    rdfs:comment "The **intersection** of two [Sets](def-set.qmd) $A$ and $B$, denoted $A \\cap B$, is the set containing all elements that belong to both $A$ and $B$."@en ;
-    mymath:hasDomain "Logic Set Theory" ;
+    rdfs:label "Definition: Intersection"@en,
+        "定義: 共通部分"@en ;
+    rdfs:comment "2つの[集合](def-set.qmd) $A$ と $B$ の**共通部分**（または**積集合**）は、$A \\cap B$ と表記され、$A$ と $B$ の両方に属するすべての要素を含む集合です。"@en,
+        "The **intersection** of two [Sets](def-set.qmd) $A$ and $B$, denoted $A \\cap B$, is the set containing all elements that belong to both $A$ and $B$."@en ;
+    mymath:hasDomain "Logic Set Theory",
+        "論理・集合論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
 base:def-kernel a mymath:Definition ;
-    rdfs:label "Definition: Kernel"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Definition: Kernel"@en,
+        "定義: 核"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearMap.ker> ;
     mymath:uses base:def-linear-transformation,
         base:def-vector-space .
 
 base:def-matrix a mymath:Definition ;
-    rdfs:label "Definition: Matrix"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Definition: Matrix"@en,
+        "定義：行列"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" .
 
 base:def-natural-transformation a mymath:Definition ;
-    rdfs:label "Definition: Natural Transformation"@en ;
-    mymath:hasDomain "Category Theory" ;
+    rdfs:label "Definition: Natural Transformation"@en,
+        "定義：自然変換"@en ;
+    mymath:hasDomain "Category Theory",
+        "圏論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-category,
         base:def-functor,
         base:def-morphism .
 
 base:def-permutation a mymath:Definition ;
-    rdfs:label "Definition: Permutation"@en ;
-    mymath:hasDomain "Combinatorics" ;
+    rdfs:label "Definition: Permutation"@en,
+        "定義：順列"@en ;
+    mymath:hasDomain "Combinatorics",
+        "組合せ論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
 base:def-power-set a mymath:Definition ;
-    rdfs:label "Definition: Power Set"@en ;
-    mymath:hasDomain "Logic Set Theory" ;
+    rdfs:label "Definition: Power Set"@en,
+        "定義: べき集合"@en ;
+    mymath:hasDomain "Logic Set Theory",
+        "論理・集合論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
 base:def-sample-space a mymath:Definition ;
-    rdfs:label "Definition: Sample Space"@en ;
-    rdfs:comment "A **sample space** is the [Set](../logic-set-theory/def-set.qmd) of all possible outcomes of a random experiment or probabilistic scenario. It is typically denoted by $\\Omega$ (omega) or $S$."@en ;
-    mymath:hasDomain "Probability Statistics" ;
+    rdfs:label "Definition: Sample Space"@en,
+        "定義: 標本空間"@en ;
+    rdfs:comment "**標本空間**は、確率的実験やシナリオのすべての可能な結果の[集合](../logic-set-theory/def-set.qmd)です。通常 $\\Omega$（オメガ）または $S$ で表されます。"@en,
+        "A **sample space** is the [Set](../logic-set-theory/def-set.qmd) of all possible outcomes of a random experiment or probabilistic scenario. It is typically denoted by $\\Omega$ (omega) or $S$."@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
 base:def-sequence a mymath:Definition ;
-    rdfs:label "Definition: Sequence"@en ;
-    rdfs:comment "A **sequence** is an ordered list of elements, typically numbers, indexed by the natural numbers. Formally, a sequence is a function from the natural numbers to a set."@en ;
-    mymath:hasDomain "Analysis" ;
+    rdfs:label "Definition: Sequence"@en,
+        "定義：数列"@en ;
+    rdfs:comment "**数列**とは、要素（通常は数）の順序付けられたリストであり、自然数で添字付けられている。形式的には、数列は自然数から集合への関数である。"@en,
+        "A **sequence** is an ordered list of elements, typically numbers, indexed by the natural numbers. Formally, a sequence is a function from the natural numbers to a set."@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
 base:def-subset a mymath:Definition ;
-    rdfs:label "Definition: Subset"@en ;
-    rdfs:comment "A [Set](def-set.qmd) $A$ is a **subset** of a set $B$, denoted $A \\subseteq B$, if every element of $A$ is also an element of $B$."@en ;
-    mymath:hasDomain "Logic Set Theory" ;
+    rdfs:label "Definition: Subset"@en,
+        "定義: 部分集合"@en ;
+    rdfs:comment "A [Set](def-set.qmd) $A$ is a **subset** of a set $B$, denoted $A \\subseteq B$, if every element of $A$ is also an element of $B$."@en,
+        "[集合](def-set.qmd) $A$ が集合 $B$ の**部分集合**であるとは、$A$ のすべての要素が $B$ の要素でもあることをいい、$A \\subseteq B$ と表記する。"@en ;
+    mymath:hasDomain "Logic Set Theory",
+        "論理・集合論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
 base:def-triangle a mymath:Definition ;
-    rdfs:label "Definition: Triangle"@en ;
-    rdfs:comment "A **triangle** is a polygon with three vertices and three sides. It is one of the fundamental shapes in geometry, formed by connecting three non-collinear [Points](def-point.qmd)."@en ;
-    mymath:hasDomain "Geometry" ;
+    rdfs:label "Definition: Triangle"@en,
+        "定義: 三角形"@en ;
+    rdfs:comment "**三角形**は、3つの頂点と3つの辺を持つ多角形である。これは幾何学における基本的な図形の一つであり、非共線の3つの[点](def-point.qmd)を結んで形成される。"@en,
+        "A **triangle** is a polygon with three vertices and three sides. It is one of the fundamental shapes in geometry, formed by connecting three non-collinear [Points](def-point.qmd)."@en ;
+    mymath:hasDomain "Geometry",
+        "幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-angle,
         base:def-line,
         base:def-point .
 
 base:def-union a mymath:Definition ;
-    rdfs:label "Definition: Union"@en ;
-    rdfs:comment "The **union** of two [Sets](def-set.qmd) $A$ and $B$, denoted $A \\cup B$, is the set containing all elements that belong to either $A$ or $B$ (or both)."@en ;
-    mymath:hasDomain "Logic Set Theory" ;
+    rdfs:label "Definition: Union"@en,
+        "定義: 和集合"@en ;
+    rdfs:comment "2つの[集合](def-set.qmd) $A$ と $B$ の**和集合**（$A \\cup B$ で表記）は、$A$ または $B$（またはその両方）に属するすべての要素を含む集合である。"@en,
+        "The **union** of two [Sets](def-set.qmd) $A$ and $B$, denoted $A \\cup B$, is the set containing all elements that belong to either $A$ or $B$ (or both)."@en ;
+    mymath:hasDomain "Logic Set Theory",
+        "論理・集合論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
 base:ex-even-integers-subgroup a mymath:Example ;
-    rdfs:label "Example: Even Integers Form a Subgroup"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Example: Even Integers Form a Subgroup"@en,
+        "例: 偶数整数は部分群を成す"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-group,
         base:def-subgroup,
         base:ex-integers-addition .
 
 base:ex-finite-field a mymath:Example ;
-    rdfs:label "Example: Finite Field"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Example: Finite Field"@en,
+        "例: 有限体"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-field,
         base:def-prime .
@@ -561,31 +704,40 @@ base:formal-proof-def-ring a mymath:FormalProof ;
     mymath:inModule "Mathlib.Algebra.Ring.Defs.Ring" .
 
 base:thm-heine-borel a mymath:Theorem ;
-    rdfs:label "Theorem: Heine-Borel Theorem"@en ;
-    mymath:hasDomain "Topology" ;
+    rdfs:label "Theorem: Heine-Borel Theorem"@en,
+        "定理: ハイネ・ボレルの定理"@en ;
+    mymath:hasDomain "Topology",
+        "位相幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-closed-set,
         base:def-compact,
         base:def-metric-space .
 
 base:def-angle a mymath:Definition ;
-    rdfs:label "Definition: Angle"@en ;
-    rdfs:comment "An **angle** is the figure formed by two rays (half-lines) that share a common endpoint. The common endpoint is called the **vertex** of the angle, and the two rays are called the **sides** of the angle."@en ;
-    mymath:hasDomain "Geometry" ;
+    rdfs:label "Definition: Angle"@en,
+        "定義: 角"@en ;
+    rdfs:comment "**角**とは、共通の端点を持つ2つの半直線（レイ）によって形成される図形です。共通の端点は角の**頂点**と呼ばれ、2つの半直線は角の**辺**と呼ばれます。"@en,
+        "An **angle** is the figure formed by two rays (half-lines) that share a common endpoint. The common endpoint is called the **vertex** of the angle, and the two rays are called the **sides** of the angle."@en ;
+    mymath:hasDomain "Geometry",
+        "幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-line,
         base:def-point .
 
 base:def-associativity a mymath:Definition ;
-    rdfs:label "Definition: Associativity"@en ;
+    rdfs:label "Definition: Associativity"@en,
+        "結合性"@en ;
     rdfs:comment "**Associativity** is a fundamental property of a [Binary Operation](def-binary-operation.qmd) that allows us to perform multiple operations without needing to specify the order of evaluation using parentheses."@en ;
-    mymath:hasDomain "Algebra" ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-binary-operation .
 
 base:def-basis a mymath:Definition ;
-    rdfs:label "Definition: Basis"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Definition: Basis"@en,
+        "基底"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.Basis.Basis> ;
     mymath:uses base:def-linear-independence,
@@ -593,8 +745,10 @@ base:def-basis a mymath:Definition ;
         base:def-vector-space .
 
 base:def-closed-set a mymath:Definition ;
-    rdfs:label "Definition: Closed Set"@en ;
-    mymath:hasDomain "Topology" ;
+    rdfs:label "Definition: Closed Set"@en,
+        "定義: 閉集合"@en ;
+    mymath:hasDomain "Topology",
+        "位相幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Basic.IsClosed> ;
     mymath:uses base:def-open-set,
@@ -602,8 +756,10 @@ base:def-closed-set a mymath:Definition ;
         base:def-topological-space .
 
 base:def-compact a mymath:Definition ;
-    rdfs:label "Definition: Compact Space"@en ;
-    mymath:hasDomain "Topology" ;
+    rdfs:label "Definition: Compact Space"@en,
+        "定義: コンパクト空間"@en ;
+    mymath:hasDomain "Topology",
+        "位相幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Compactness.Compact.IsCompact> ;
     mymath:uses base:def-open-set,
@@ -611,97 +767,128 @@ base:def-compact a mymath:Definition ;
         base:def-topological-space .
 
 base:def-derivative a mymath:Definition ;
-    rdfs:label "Definition: Derivative"@en ;
-    mymath:hasDomain "Analysis" ;
+    rdfs:label "Definition: Derivative"@en,
+        "定義: 導関数"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-limit .
 
 base:def-event a mymath:Definition ;
-    rdfs:label "Definition: Event"@en ;
-    rdfs:comment "An **event** in probability theory is a [Subset](../logic-set-theory/def-subset.qmd) of the [Sample Space](def-sample-space.qmd) $\\Omega$. It represents a collection of outcomes to which a probability can be assigned."@en ;
-    mymath:hasDomain "Probability Statistics" ;
+    rdfs:label "Definition: Event"@en,
+        "定義: 事象"@en ;
+    rdfs:comment "An **event** in probability theory is a [Subset](../logic-set-theory/def-subset.qmd) of the [Sample Space](def-sample-space.qmd) $\\Omega$. It represents a collection of outcomes to which a probability can be assigned."@en,
+        "確率論における**事象**とは、[標本空間](def-sample-space.qmd) $\\Omega$ の[部分集合](../logic-set-theory/def-subset.qmd)である。これは確率を割り当てることができる結果の集まりを表す。"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-sample-space,
         base:def-subset .
 
 base:def-field a mymath:Definition ;
-    rdfs:label "Definition: Field"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Definition: Field"@en,
+        "定義: 体"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Field.Defs.Field> ;
     mymath:uses base:def-group,
         base:def-ring .
 
 base:def-functor a mymath:Definition ;
-    rdfs:label "Definition: Functor"@en ;
-    mymath:hasDomain "Category Theory" ;
+    rdfs:label "Definition: Functor"@en,
+        "定義: 関手"@en ;
+    mymath:hasDomain "Category Theory",
+        "圏論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-category .
 
 base:def-inverse-element a mymath:Definition ;
-    rdfs:label "Definition: Inverse Element"@en ;
-    rdfs:comment "An **inverse element** of an element under a [Binary Operation](def-binary-operation.qmd) is another element that, when combined with the original, yields the [Identity Element](def-identity-element.qmd)."@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Definition: Inverse Element"@en,
+        "定義: 逆元"@en ;
+    rdfs:comment "**逆元**とは、[二項演算](def-binary-operation.qmd)において、ある元と結合したときに[単位元](def-identity-element.qmd)を生じるような元のことです。"@en,
+        "An **inverse element** of an element under a [Binary Operation](def-binary-operation.qmd) is another element that, when combined with the original, yields the [Identity Element](def-identity-element.qmd)."@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-binary-operation,
         base:def-identity-element .
 
 base:def-linear-independence a mymath:Definition ;
-    rdfs:label "Definition: Linear Independence"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Definition: Linear Independence"@en,
+        "定義: 線形独立"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearIndependent.LinearIndependent> ;
     mymath:uses base:def-vector-space .
 
 base:def-random-variable a mymath:Definition ;
-    rdfs:label "Definition: Random Variable"@en ;
-    mymath:hasDomain "Probability Statistics" ;
+    rdfs:label "Definition: Random Variable"@en,
+        "定義: 確率変数"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-probability-space .
 
 base:def-span a mymath:Definition ;
-    rdfs:label "Definition: Span"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Definition: Span"@en,
+        "定義：生成"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.Span.Submodule.span> ;
     mymath:uses base:def-vector-space .
 
 base:thm-lagrange a mymath:Theorem ;
-    rdfs:label "Theorem: Lagrange's Theorem"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Theorem: Lagrange's Theorem"@en,
+        "定理: ラグランジュの定理"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-group,
         base:def-subgroup .
 
 base:thm-unique-identity a mymath:Theorem ;
-    rdfs:label "Theorem: Uniqueness of Identity"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Theorem: Uniqueness of Identity"@en,
+        "定理: 単位元の一意性"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-group .
 
 base:def-homomorphism a mymath:Definition ;
-    rdfs:label "Definition: Group Homomorphism"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Definition: Group Homomorphism"@en,
+        "定義: 群準同型"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-binary-operation,
         base:def-group .
 
 base:def-identity-element a mymath:Definition ;
-    rdfs:label "Definition: Identity Element"@en ;
-    rdfs:comment "An **identity element** for a [Binary Operation](def-binary-operation.qmd) is an element that leaves any other element unchanged when combined with it."@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Definition: Identity Element"@en,
+        "定義: 単位元"@en ;
+    rdfs:comment "An **identity element** for a [Binary Operation](def-binary-operation.qmd) is an element that leaves any other element unchanged when combined with it."@en,
+        "[二項演算](def-binary-operation.qmd)に対する**単位元**（たんいげん）とは、他の任意の元と結合したときにその元を変化させない元のことである。"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-binary-operation .
 
 base:def-probability-space a mymath:Definition ;
-    rdfs:label "Definition: Probability Space"@en ;
-    mymath:hasDomain "Probability Statistics" ;
+    rdfs:label "Definition: Probability Space"@en,
+        "定義: 確率空間"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
 base:def-ring a mymath:Definition ;
-    rdfs:label "Definition: Ring"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Definition: Ring"@en,
+        "定義：環"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Ring.Defs.Ring>,
         base:formal-proof-def-ring ;
@@ -710,40 +897,54 @@ base:def-ring a mymath:Definition ;
         base:def-set .
 
 base:ex-integers-addition a mymath:Example ;
-    rdfs:label "Example: Integers under Addition"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Example: Integers under Addition"@en,
+        "例: 加法における整数"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-binary-operation,
         base:def-group,
         base:def-set .
 
 base:def-line a mymath:Definition ;
-    rdfs:label "Definition: Line"@en ;
-    rdfs:comment "A **line** is a one-dimensional geometric object that extends infinitely in both directions. It is completely determined by any two distinct [Points](def-point.qmd) that lie on it."@en ;
-    mymath:hasDomain "Geometry" ;
+    rdfs:label "Definition: Line"@en,
+        "定義: 直線"@en ;
+    rdfs:comment "**直線**は、両方向に無限に延びる1次元の幾何学的対象です。直線上にある任意の2つの異なる[点](def-point.qmd)によって完全に決定されます。"@en,
+        "A **line** is a one-dimensional geometric object that extends infinitely in both directions. It is completely determined by any two distinct [Points](def-point.qmd) that lie on it."@en ;
+    mymath:hasDomain "Geometry",
+        "幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-point .
 
 base:def-morphism a mymath:Definition ;
-    rdfs:label "Definition: Morphism"@en ;
-    mymath:hasDomain "Category Theory" ;
+    rdfs:label "Definition: Morphism"@en,
+        "定義: 射"@en ;
+    mymath:hasDomain "Category Theory",
+        "圏論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-category .
 
 base:def-point a mymath:Definition ;
-    rdfs:label "Definition: Point"@en ;
-    rdfs:comment "A **point** is a primitive notion in geometry that represents a location in space with no dimension (no length, width, or height). In Euclidean geometry, points are the fundamental building blocks from which all other geometric objects are constructed."@en ;
-    mymath:hasDomain "Geometry" ;
+    rdfs:label "Definition: Point"@en,
+        "定義: 点"@en ;
+    rdfs:comment "**点**は、空間内の位置を表す幾何学の原始概念であり、次元を持たない（長さ、幅、高さがない）。ユークリッド幾何学において、点は他のすべての幾何学的対象が構成される基本的な構成要素である。"@en,
+        "A **point** is a primitive notion in geometry that represents a location in space with no dimension (no length, width, or height). In Euclidean geometry, points are the fundamental building blocks from which all other geometric objects are constructed."@en ;
+    mymath:hasDomain "Geometry",
+        "幾何学" ;
     mymath:hasStatus "complete" .
 
 base:def-prime a mymath:Definition ;
-    rdfs:label "Definition: Prime Number"@en ;
-    mymath:hasDomain "Number Theory" ;
+    rdfs:label "Definition: Prime Number"@en,
+        "定義：素数"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
     mymath:hasStatus "complete" .
 
 base:def-subgroup a mymath:Definition ;
-    rdfs:label "Definition: Subgroup"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Definition: Subgroup"@en,
+        "定義：部分群"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasLeanId "Mathlib.Algebra.Group.Subgroup.Basic.Subgroup" ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Group.Subgroup.Basic.Subgroup> ;
@@ -751,59 +952,79 @@ base:def-subgroup a mymath:Definition ;
         base:def-set .
 
 base:def-continuity a mymath:Definition ;
-    rdfs:label "Definition: Continuity"@en ;
-    mymath:hasDomain "Analysis" ;
+    rdfs:label "Definition: Continuity"@en,
+        "定義: 連続性"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-limit .
 
 base:def-linear-transformation a mymath:Definition ;
-    rdfs:label "Definition: Linear Transformation"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Definition: Linear Transformation"@en,
+        "定義: 線形変換"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearMap.LinearMap> ;
     mymath:uses base:def-vector-space .
 
 base:def-open-set a mymath:Definition ;
-    rdfs:label "Definition: Open Set"@en ;
-    mymath:hasDomain "Topology" ;
+    rdfs:label "Definition: Open Set"@en,
+        "定義: 開集合"@en ;
+    mymath:hasDomain "Topology",
+        "位相幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Basic.IsOpen> ;
     mymath:uses base:def-topological-space .
 
 base:def-limit a mymath:Definition ;
-    rdfs:label "Definition: Limit of a Sequence"@en ;
-    mymath:hasDomain "Analysis" ;
+    rdfs:label "Definition: Limit of a Sequence"@en,
+        "定義：数列の極限"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
     mymath:hasStatus "complete" .
 
 base:def-metric-space a mymath:Definition ;
-    rdfs:label "Definition: Metric Space"@en ;
+    rdfs:label "Definition: Metric Space"@en,
+        "定義: 距離空間"@en,
+        "定義：距離空間"@en ;
     mymath:hasDomain "Analysis",
-        "Geometry" ;
+        "Geometry",
+        "幾何学",
+        "解析学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
 base:def-category a mymath:Definition ;
-    rdfs:label "Definition: Category"@en ;
-    mymath:hasDomain "Category Theory" ;
+    rdfs:label "Definition: Category"@en,
+        "定義: 圏"@en ;
+    mymath:hasDomain "Category Theory",
+        "圏論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
 base:def-topological-space a mymath:Definition ;
-    rdfs:label "Definition: Topological Space"@en ;
-    mymath:hasDomain "Topology" ;
+    rdfs:label "Definition: Topological Space"@en,
+        "定義: 位相空間"@en ;
+    mymath:hasDomain "Topology",
+        "位相幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Basic.TopologicalSpace> ;
     mymath:uses base:def-set .
 
 base:def-vector-space a mymath:Definition ;
-    rdfs:label "Definition: Vector Space"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Definition: Vector Space"@en,
+        "定義: ベクトル空間"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.Basic.Module> .
 
 base:def-binary-operation a mymath:Definition ;
-    rdfs:label "Definition: Binary Operation"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Definition: Binary Operation"@en,
+        "定義: 二項演算"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasLeanId "MathKnowledgeGraph.Algebra.BinaryOp" ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/MathKnowledgeGraph.Algebra.BinaryOp> ;
@@ -813,7 +1034,7 @@ base:def-group a mymath:Definition ;
     rdfs:label "Definition: Group"@en,
         "群"@en ;
     mymath:hasDomain "Algebra",
-        "algebra" ;
+        "代数学" ;
     mymath:hasLeanId "Mathlib.Algebra.Group.Defs",
         "Mathlib.Algebra.Group.Defs.Group" ;
     mymath:hasStatus "complete" ;
@@ -834,7 +1055,9 @@ base:def-group a mymath:Definition ;
         base:thm-unique-identity .
 
 base:def-set a mymath:Definition ;
-    rdfs:label "Definition: Set"@en ;
-    mymath:hasDomain "Logic Set Theory" ;
+    rdfs:label "Definition: Set"@en,
+        "定義: 集合"@en ;
+    mymath:hasDomain "Logic Set Theory",
+        "論理・集合論" ;
     mymath:hasStatus "complete" .
 
