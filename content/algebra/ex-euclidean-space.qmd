@@ -1,0 +1,60 @@
+---
+id: ex-euclidean-space
+status: complete
+title: 'Example: Euclidean Space'
+type: Example
+---
+
+# Example: Euclidean Space {#ex-euclidean-space}
+
+The **$n$-dimensional Euclidean space** $\mathbb{R}^n$ is a fundamental example of a [Vector Space](algebra/def-vector-space.qmd) over the field $\mathbb{R}$ of real numbers.
+
+## Construction
+
+$\mathbb{R}^n$ consists of all ordered $n$-tuples of real numbers:
+$$\mathbb{R}^n = \{(x_1, x_2, \ldots, x_n) : x_i \in \mathbb{R} \text{ for all } i = 1, 2, \ldots, n\}$$
+
+## Operations
+
+For vectors $\mathbf{u} = (u_1, u_2, \ldots, u_n)$ and $\mathbf{v} = (v_1, v_2, \ldots, v_n)$ in $\mathbb{R}^n$, and scalar $a \in \mathbb{R}$:
+
+1. **Vector addition**: 
+   $$\mathbf{u} + \mathbf{v} = (u_1 + v_1, u_2 + v_2, \ldots, u_n + v_n)$$
+
+2. **Scalar multiplication**: 
+   $$a\mathbf{u} = (au_1, au_2, \ldots, au_n)$$
+
+## Special Cases
+
+- $\mathbb{R}^1 = \mathbb{R}$: The real line
+- $\mathbb{R}^2$: The Euclidean plane
+- $\mathbb{R}^3$: Three-dimensional Euclidean space
+
+## Verification
+
+The zero vector is $\mathbf{0} = (0, 0, \ldots, 0)$, and the additive inverse of $\mathbf{u}$ is $-\mathbf{u} = (-u_1, -u_2, \ldots, -u_n)$.
+
+All vector space axioms can be verified component-wise using the field properties of $\mathbb{R}$.
+
+## Geometric Interpretation
+
+$\mathbb{R}^n$ represents the familiar geometric spaces:
+- Vectors can be visualized as arrows from the origin
+- Addition corresponds to the parallelogram rule
+- Scalar multiplication stretches or shrinks vectors
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-euclidean-space["Example: Euclidean Space"]:::example
+    def-vector-space["Definition: Vector Space"]:::definition
+    ex-euclidean-space --> def-vector-space
+    class ex-euclidean-space current
+```

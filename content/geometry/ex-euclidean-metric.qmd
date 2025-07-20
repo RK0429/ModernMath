@@ -1,0 +1,62 @@
+---
+id: ex-euclidean-metric
+requires:
+- def-metric-space
+- def-set
+status: complete
+title: 'Example: Euclidean Metric on ℝⁿ'
+type: Example
+---
+
+# Example: Euclidean Metric on ℝⁿ
+
+The n-dimensional Euclidean space $\mathbb{R}^n$ with the Euclidean distance forms a [Metric Space](geometry/def-metric-space.qmd).
+
+## Definition of the Euclidean Metric
+
+For points $x = (x_1, x_2, ..., x_n)$ and $y = (y_1, y_2, ..., y_n)$ in $\mathbb{R}^n$, the Euclidean distance is:
+
+$$d(x, y) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}$$
+
+## Verification of Metric Space Axioms
+
+We verify that $d$ satisfies all properties of a metric:
+
+1. **Non-negativity**: $d(x, y) \geq 0$ since it's a square root of a sum of squares.
+
+2. **Identity of indiscernibles**: 
+   - If $x = y$, then $x_i = y_i$ for all $i$, so $d(x, y) = 0$.
+   - If $d(x, y) = 0$, then $\sum_{i=1}^{n} (x_i - y_i)^2 = 0$, which implies $x_i = y_i$ for all $i$, so $x = y$.
+
+3. **Symmetry**: $d(x, y) = d(y, x)$ since $(x_i - y_i)^2 = (y_i - x_i)^2$.
+
+4. **Triangle inequality**: For any $x, y, z \in \mathbb{R}^n$:
+   $$d(x, z) \leq d(x, y) + d(y, z)$$
+   This follows from the Cauchy-Schwarz inequality.
+
+## Special Cases
+
+- **$n = 1$**: The usual absolute value metric on $\mathbb{R}$: $d(x, y) = |x - y|$
+- **$n = 2$**: The familiar distance in the plane: $d((x_1, y_1), (x_2, y_2)) = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$
+- **$n = 3$**: The distance in 3D space used in physics and engineering
+
+```{mermaid}
+```
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["Definition: Set"]:::definition
+    ex-euclidean-metric["Example: Euclidean Metric on ℝⁿ"]:::example
+    def-metric-space["Definition: Metric Space"]:::definition
+    ex-euclidean-metric --> def-metric-space
+    ex-euclidean-metric --> def-set
+    class ex-euclidean-metric current
+```

@@ -1,0 +1,64 @@
+---
+id: def-open-set
+requires:
+- def-topological-space
+status: complete
+title: 'Definition: Open Set'
+type: Definition
+---
+
+# Definition: Open Set {#def-open-set}
+
+Let $(X, \tau)$ be a [Topological Space](topology/def-topological-space.qmd). A subset $U \subseteq X$ is called an **open set** if and only if $U \in \tau$.
+
+## Characterization
+
+By the definition of a topology, open sets have the following properties:
+
+1. The empty set $\emptyset$ and the entire space $X$ are open
+2. Any union of open sets is open
+3. Any finite intersection of open sets is open
+
+## Examples in Common Spaces
+
+### In $\mathbb{R}$ with the standard topology:
+- Open intervals $(a, b) = \{x \in \mathbb{R} : a < x < b\}$ are open sets
+- Closed intervals $[a, b]$ are not open sets
+- Half-open intervals $[a, b)$ and $(a, b]$ are not open sets
+- The entire real line $\mathbb{R}$ is open
+- Any union of open intervals is open
+
+### In a discrete space:
+- Every subset is an open set
+
+### In an indiscrete space:
+- Only $\emptyset$ and $X$ are open sets
+
+## Intuition
+
+Open sets can be thought of as sets where every point has some "wiggle room" around it that stays within the set. This intuition is formalized in metric spaces, where a set is open if every point has an open ball around it contained in the set.
+
+## Related Concepts
+
+- Definition: Closed Set (complement of an open set)
+- Theorem: Union of Open Sets (proves a fundamental property)
+- Definition: Interior of a Set (coming soon)
+- Definition: Neighborhood (coming soon)
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-open-set["Definition: Open Set"]:::definition
+    def-topological-space["Definition: Topological Space"]:::definition
+    thm-union-open-sets["Theorem: Union of Open Sets"]:::theorem
+    thm-union-open-sets --> def-open-set
+    def-open-set --> def-topological-space
+    class def-open-set current
+```

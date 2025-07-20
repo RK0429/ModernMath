@@ -1,0 +1,65 @@
+---
+id: ax-induction
+status: complete
+title: 'Axiom: Mathematical Induction'
+type: Axiom
+---
+
+# Axiom: Mathematical Induction {#ax-induction}
+
+The principle of mathematical induction is a fundamental axiom for the natural numbers that allows us to prove statements about all natural numbers by verifying a base case and an inductive step.
+
+## Statement
+
+Let $P(n)$ be a property defined for natural numbers. If:
+1. **Base case**: $P(1)$ is true
+2. **Inductive step**: For all $k \in \mathbb{N}$, if $P(k)$ is true, then $P(k+1)$ is true
+
+Then $P(n)$ is true for all $n \in \mathbb{N}$.
+
+## Formal Statement
+
+$$\left[P(1) \land \forall k \in \mathbb{N}(P(k) \implies P(k+1))\right] \implies \forall n \in \mathbb{N} \, P(n)$$
+
+## Variants
+
+### Strong Induction
+
+If:
+1. $P(1)$ is true
+2. For all $k \in \mathbb{N}$, if $P(1), P(2), \ldots, P(k)$ are all true, then $P(k+1)$ is true
+
+Then $P(n)$ is true for all $n \in \mathbb{N}$.
+
+### Well-Ordering Principle
+
+Every non-empty subset of $\mathbb{N}$ has a least element. This is equivalent to the induction axiom.
+
+## Intuition
+
+Induction works like climbing an infinite ladder:
+- We can reach the first rung (base case)
+- From any rung, we can reach the next rung (inductive step)
+- Therefore, we can reach any rung
+
+## Role in Mathematics
+
+Mathematical induction is:
+- Part of the Peano axioms that define natural numbers
+- Essential for proving statements about infinite sets
+- The foundation for recursive definitions and algorithms
+- Generalizable to other well-ordered sets (transfinite induction)
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ax-induction["Axiom: Mathematical Induction"]:::axiom
+    class ax-induction current
+```

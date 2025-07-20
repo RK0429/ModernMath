@@ -1,0 +1,76 @@
+---
+id: def-binomial-coefficient
+requires:
+- def-combination
+- def-permutation
+status: complete
+title: 'Definition: Binomial Coefficient'
+type: Definition
+---
+
+# Definition: Binomial Coefficient
+
+The **binomial coefficient** $\binom{n}{k}$ (read "n choose k") counts the number of ways to choose $k$ objects from $n$ objects without regard to order.
+
+## Formal Definition
+
+For non-negative integers $n$ and $k$ with $k \leq n$, the binomial coefficient is defined as:
+
+$$\binom{n}{k} = \frac{n!}{k!(n-k)!}$$
+
+where $n!$ denotes the factorial of $n$.
+
+## Alternative Formulations
+
+1. **In terms of [Combination](combinatorics/def-combination.qmd)**: $\binom{n}{k} = C(n,k)$ - the number of k-combinations from n elements
+
+2. **In terms of [Permutation](combinatorics/def-permutation.qmd)**: $\binom{n}{k} = \frac{P(n,k)}{k!}$ where $P(n,k)$ is the number of k-permutations
+
+3. **Recursive definition**: 
+   $$\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$$
+   with base cases $\binom{n}{0} = \binom{n}{n} = 1$
+
+## Special Values
+
+- $\binom{n}{0} = 1$ (one way to choose nothing)
+- $\binom{n}{1} = n$ (n ways to choose one item)
+- $\binom{n}{n} = 1$ (one way to choose everything)
+- $\binom{n}{k} = 0$ if $k > n$ (cannot choose more items than available)
+
+## Properties
+
+1. **Symmetry**: $\binom{n}{k} = \binom{n}{n-k}$
+
+2. **Pascal's Identity**: $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$
+
+3. **Binomial Theorem**: $(x + y)^n = \sum_{k=0}^{n} \binom{n}{k} x^k y^{n-k}$
+
+## Applications
+
+- Counting subsets of a given size
+- Expansion of binomial expressions
+- Probability calculations in discrete distributions
+- Pascal's triangle construction
+
+```{mermaid}
+```
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-combination["Definition: Combination"]:::definition
+    def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
+    ex-pascals-triangle["Example: Pascal's Triangle"]:::example
+    def-permutation["Definition: Permutation"]:::definition
+    ex-pascals-triangle --> def-binomial-coefficient
+    def-binomial-coefficient --> def-combination
+    def-binomial-coefficient --> def-permutation
+    class def-binomial-coefficient current
+```

@@ -1,0 +1,95 @@
+---
+title: "Interactive Visualizations"
+---
+
+# Interactive Knowledge Graph Visualizations
+
+This page demonstrates how to explore the mathematical knowledge graph through interactive visualizations.
+
+## PyVis Interactive Graphs
+
+We've generated interactive visualizations for all nodes in the knowledge graph using PyVis. These visualizations allow you to:
+
+- **Explore local neighborhoods**: Each node visualization shows its immediate dependencies and dependents
+- **Interact with the graph**: Zoom, pan, and hover over nodes to see details
+- **Understand relationships**: Directed edges show how concepts depend on each other
+
+### Individual Node Visualizations
+
+Each mathematical concept has its own interactive graph showing its local neighborhood. Here are some examples:
+
+- [Group Definition Interactive Graph](output/interactive/def-group.html){target="_blank"}
+- [Vector Space Interactive Graph](output/interactive/def-vector-space.html){target="_blank"}
+- [Topological Space Interactive Graph](output/interactive/def-topological-space.html){target="_blank"}
+
+### Domain Overview Visualizations
+
+We also provide domain-level visualizations showing all concepts within a mathematical field:
+
+- [Algebra Domain Overview](output/interactive/domain-algebra.html){target="_blank"}
+- [Topology Domain Overview](output/interactive/domain-topology.html){target="_blank"}
+- [Analysis Domain Overview](output/interactive/domain-analysis.html){target="_blank"}
+
+### Complete Visualization Index
+
+For a complete list of all available visualizations, visit the [Interactive Visualization Index](output/interactive/index.html){target="_blank"}.
+
+## Embedding Visualizations in Quarto
+
+### Method 1: Direct Links
+
+The simplest way is to link to the standalone HTML files as shown above.
+
+### Method 2: IFrame Embedding
+
+You can embed visualizations directly in your Quarto pages using iframes:
+
+```{=html}
+<iframe src="output/interactive/def-group.html" width="100%" height="600px" frameborder="0"></iframe>
+```
+
+### Method 3: Observable JS Integration (Coming Soon)
+
+We're working on integrating D3.js visualizations directly into Quarto pages using Observable JS, which will allow for:
+
+- Dynamic data loading
+- Custom filtering and search
+- Integration with other page content
+- Responsive design
+
+## Understanding the Visualizations
+
+### Node Types and Colors
+
+- **Definitions** (Green boxes): Fundamental concepts
+- **Theorems** (Blue ellipses): Proven statements
+- **Axioms** (Orange diamonds): Foundational assumptions
+- **Examples** (Purple squares): Concrete instances
+
+### Graph Layout
+
+The graphs use a force-directed layout that:
+- Places closely related concepts near each other
+- Shows the flow of dependencies with directed arrows
+- Allows interactive exploration through physics simulation
+
+### Navigation Tips
+
+- **Click and drag** nodes to rearrange the layout
+- **Scroll** to zoom in/out
+- **Hover** over nodes to see detailed information
+- Use the **navigation buttons** for better control
+
+## Technical Details
+
+These visualizations are generated automatically as part of our build pipeline:
+
+1. The knowledge graph is built from Quarto content
+2. PyVis creates interactive HTML files for each node
+3. Domain overviews aggregate related concepts
+4. All visualizations are updated when content changes
+
+For developers interested in the implementation, see:
+- Visualization module: `viz/pyvis_graphs.py`
+- Build script: `scripts/generate_pyvis.py`
+- CI/CD integration: `.github/workflows/build.yml`

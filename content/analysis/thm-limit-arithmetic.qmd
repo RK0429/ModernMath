@@ -1,0 +1,66 @@
+---
+id: thm-limit-arithmetic
+requires:
+- def-limit
+status: complete
+title: 'Theorem: Arithmetic of Limits'
+type: Theorem
+---
+
+# Theorem: Arithmetic of Limits {#thm-limit-arithmetic}
+
+If sequences $(a_n)$ and $(b_n)$ converge, then their sum, difference, product, and (under conditions) quotient also converge, with limits given by the corresponding arithmetic operations.
+
+## Statement
+
+Let $(a_n)$ and $(b_n)$ be sequences of real numbers with [s](analysis/def-limit.qmd):
+- $\lim_{n \to \infty} a_n = A$
+- $\lim_{n \to \infty} b_n = B$
+
+Then:
+
+1. **Sum Rule**: $\lim_{n \to \infty} (a_n + b_n) = A + B$
+
+2. **Difference Rule**: $\lim_{n \to \infty} (a_n - b_n) = A - B$
+
+3. **Product Rule**: $\lim_{n \to \infty} (a_n \cdot b_n) = A \cdot B$
+
+4. **Constant Multiple Rule**: For any $c \in \mathbb{R}$, $\lim_{n \to \infty} (c \cdot a_n) = c \cdot A$
+
+5. **Quotient Rule**: If $B \neq 0$ and $b_n \neq 0$ for all $n$, then:
+   $$\lim_{n \to \infty} \frac{a_n}{b_n} = \frac{A}{B}$$
+
+## Proof Sketch (Sum Rule)
+
+Given $\varepsilon > 0$:
+- Since $a_n \to A$, there exists $N_1$ such that $|a_n - A| < \varepsilon/2$ for all $n > N_1$
+- Since $b_n \to B$, there exists $N_2$ such that $|b_n - B| < \varepsilon/2$ for all $n > N_2$
+- Let $N = \max(N_1, N_2)$
+
+For $n > N$:
+$$|(a_n + b_n) - (A + B)| = |(a_n - A) + (b_n - B)| \leq |a_n - A| + |b_n - B| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$$
+
+## Applications
+
+These rules allow us to:
+- Compute limits of polynomial sequences
+- Analyze rational sequences
+- Build complex limits from simpler ones
+
+The theorem shows that the limit operation preserves algebraic structure.
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-limit-arithmetic["Theorem: Arithmetic of Limits"]:::theorem
+    def-limit["Definition: Limit of a Sequence"]:::definition
+    thm-limit-arithmetic --> def-limit
+    class thm-limit-arithmetic current
+```

@@ -1,0 +1,55 @@
+---
+id: def-subgroup
+requires:
+- def-group
+- def-set
+status: complete
+title: 'Definition: Subgroup'
+type: Definition
+---
+
+# Subgroup {#def-subgroup}
+
+A **subgroup** of a [Group](algebra/def-group.qmd) $G$ is a [Set](logic-set-theory/def-set.qmd) $H \subseteq G$ that is itself a group under the same operation as $G$.
+
+## Formal Definition
+
+Let $(G, \cdot)$ be a group. A non-empty subset $H \subseteq G$ is a subgroup of $G$ if:
+
+1. **Closure**: For all $a, b \in H$, we have $a \cdot b \in H$
+2. **Identity**: The identity element $e$ of $G$ is in $H$
+3. **Inverses**: For all $a \in H$, the inverse $a^{-1} \in H$
+
+We denote this as $H \leq G$.
+
+## Subgroup Test
+
+A subset $H$ of a group $G$ is a subgroup if and only if:
+- $H$ is non-empty
+- For all $a, b \in H$, we have $a \cdot b^{-1} \in H$
+
+## Properties
+
+- Every group $G$ has at least two subgroups: the trivial subgroup $\{e\}$ and $G$ itself
+- The intersection of any collection of subgroups is a subgroup
+- Subgroups inherit associativity from the parent group
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-subgroup["Definition: Subgroup"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-group["Definition: Group"]:::definition
+    def-set["Definition: Set"]:::definition
+    thm-lagrange --> def-subgroup
+    def-subgroup --> def-set
+    def-subgroup --> def-group
+    class def-subgroup current
+```

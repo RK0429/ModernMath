@@ -1,0 +1,68 @@
+---
+id: def-morphism
+requires:
+- def-category
+status: complete
+title: 'Definition: Morphism'
+type: Definition
+---
+
+# Definition: Morphism
+
+A **morphism** (also called an arrow) is a fundamental concept in [Category](category-theory/def-category.qmd) theory representing a structure-preserving map between objects.
+
+## Formal Definition
+
+In a [Category](category-theory/def-category.qmd) $\mathcal{C}$, a morphism $f: A \to B$ consists of:
+- A **domain** (or source) object $A$
+- A **codomain** (or target) object $B$
+- An abstract "arrow" $f$ from $A$ to $B$
+
+## Key Properties
+
+For morphisms in a category, we have:
+
+1. **Composition**: If $f: A \to B$ and $g: B \to C$, then there exists a composite morphism $g \circ f: A \to C$
+
+2. **Identity**: For each object $A$, there exists an identity morphism $\text{id}_A: A \to A$
+
+3. **Associativity**: $(h \circ g) \circ f = h \circ (g \circ f)$ whenever the compositions are defined
+
+4. **Identity laws**: $f \circ \text{id}_A = f$ and $\text{id}_B \circ f = f$ for $f: A \to B$
+
+## Notation
+
+The collection of all morphisms from $A$ to $B$ in category $\mathcal{C}$ is denoted:
+- $\text{Hom}_{\mathcal{C}}(A, B)$ or
+- $\mathcal{C}(A, B)$ or
+- $\text{Mor}_{\mathcal{C}}(A, B)$
+
+## Types of Morphisms
+
+Special types of morphisms include:
+- **Monomorphism**: A categorical generalization of injective functions
+- **Epimorphism**: A categorical generalization of surjective functions
+- **Isomorphism**: A morphism with a two-sided inverse
+
+```{mermaid}
+```
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-set-category["Example: The Category of Sets"]:::example
+    def-morphism["Definition: Morphism"]:::definition
+    def-natural-transformation["Definition: Natural Transformation"]:::definition
+    def-category["Definition: Category"]:::definition
+    ex-set-category --> def-morphism
+    def-natural-transformation --> def-morphism
+    def-morphism --> def-category
+    class def-morphism current
+```

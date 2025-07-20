@@ -1,0 +1,134 @@
+% math-environments.tex
+% LaTeX definitions for mathematical environments in PDF output
+
+% Required packages
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{mdframed}
+\usepackage{xcolor}
+
+% Define colors for different environments
+\definecolor{theoremblue}{RGB}{0, 102, 204}
+\definecolor{definitiongray}{RGB}{102, 102, 102}
+\definecolor{lemmaorange}{RGB}{255, 153, 0}
+\definecolor{propositionpurple}{RGB}{153, 0, 204}
+\definecolor{corollarygreen}{RGB}{0, 204, 102}
+\definecolor{exampleyellow}{RGB}{204, 204, 0}
+
+% Define theorem styles
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{theoremblue},
+    bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false,
+        topline=false,
+        bottomline=false,
+        linecolor=theoremblue,
+        backgroundcolor=theoremblue!5
+    }
+]{theoremstyle}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{definitiongray},
+    bodyfont=\normalfont,
+    mdframed={
+        linewidth=1pt,
+        linecolor=definitiongray,
+        backgroundcolor=gray!5
+    }
+]{definitionstyle}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{lemmaorange},
+    bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false,
+        topline=false,
+        bottomline=false,
+        linecolor=lemmaorange,
+        backgroundcolor=lemmaorange!5
+    }
+]{lemmastyle}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{propositionpurple},
+    bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false,
+        topline=false,
+        bottomline=false,
+        linecolor=propositionpurple,
+        backgroundcolor=propositionpurple!5
+    }
+]{propositionstyle}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{corollarygreen},
+    bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false,
+        topline=false,
+        bottomline=false,
+        linecolor=corollarygreen,
+        backgroundcolor=corollarygreen!5
+    }
+]{corollarystyle}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{exampleyellow},
+    bodyfont=\itshape,
+    mdframed={
+        linewidth=2pt,
+        rightline=false,
+        topline=false,
+        bottomline=false,
+        linecolor=exampleyellow,
+        backgroundcolor=exampleyellow!5
+    }
+]{examplestyle}
+
+% Declare theorem environments
+\declaretheorem[style=theoremstyle,numberwithin=section]{theorem}
+\declaretheorem[style=definitionstyle,numberwithin=section]{definition}
+\declaretheorem[style=lemmastyle,numberwithin=section]{lemma}
+\declaretheorem[style=propositionstyle,numberwithin=section]{proposition}
+\declaretheorem[style=corollarystyle,numberwithin=section]{corollary}
+\declaretheorem[style=examplestyle,numberwithin=section]{example}
+
+% Custom proof environment with QED symbol
+\renewenvironment{proof}[1][\proofname]{%
+  \par
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  \item[\hskip\labelsep
+        \itshape
+    #1\@addpunct{.}]\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+
+% Define QED symbol
+\renewcommand{\qedsymbol}{$\square$}
+
+% Hyperref support for cross-references
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Cleveref support for automatic reference formatting
+\usepackage{cleveref}
+\crefname{theorem}{Theorem}{Theorems}
+\crefname{definition}{Definition}{Definitions}
+\crefname{lemma}{Lemma}{Lemmas}
+\crefname{proposition}{Proposition}{Propositions}
+\crefname{corollary}{Corollary}{Corollaries}
+\crefname{example}{Example}{Examples}

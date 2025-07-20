@@ -1,0 +1,92 @@
+---
+id: thm-law-of-large-numbers
+requires:
+- def-random-variable
+- def-expectation
+status: complete
+title: 'Theorem: Law of Large Numbers'
+type: Theorem
+---
+
+# Theorem: Law of Large Numbers {#thm-law-of-large-numbers}
+
+The **Law of Large Numbers** states that the sample average of independent and identically distributed [random variables](def-random-variable.qmd) converges to their [expected value](def-expectation.qmd) as the sample size increases.
+
+## Weak Law of Large Numbers
+
+Let $X_1, X_2, \ldots$ be independent and identically distributed random variables with finite expected value $\mu = E[X_i]$ and finite variance $\sigma^2 = \text{Var}(X_i)$.
+
+Define the sample average:
+$$\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i$$
+
+Then for any $\epsilon > 0$:
+$$\lim_{n \to \infty} P(|\bar{X}_n - \mu| > \epsilon) = 0$$
+
+This is convergence in probability: $\bar{X}_n \xrightarrow{P} \mu$.
+
+## Strong Law of Large Numbers
+
+Under the same conditions, we have almost sure convergence:
+$$P\left(\lim_{n \to \infty} \bar{X}_n = \mu\right) = 1$$
+
+This is written as: $\bar{X}_n \xrightarrow{a.s.} \mu$.
+
+## Proof Sketch (Weak Law)
+
+Using Chebyshev's inequality:
+$$P(|\bar{X}_n - \mu| > \epsilon) \leq \frac{\text{Var}(\bar{X}_n)}{\epsilon^2}$$
+
+Since the $X_i$ are independent:
+$$\text{Var}(\bar{X}_n) = \text{Var}\left(\frac{1}{n} \sum_{i=1}^n X_i\right) = \frac{1}{n^2} \sum_{i=1}^n \text{Var}(X_i) = \frac{\sigma^2}{n}$$
+
+Therefore:
+$$P(|\bar{X}_n - \mu| > \epsilon) \leq \frac{\sigma^2}{n\epsilon^2} \to 0 \text{ as } n \to \infty$$
+
+## Applications
+
+1. **Empirical frequencies converge to probabilities**
+2. **Sample means approximate population means**
+3. **Foundation for statistical inference**
+4. **Monte Carlo methods**
+
+## Example
+
+For fair coin flips (Bernoulli(1/2)), the proportion of heads converges to 1/2 as the number of flips increases.
+
+## Mermaid Diagram
+
+```mermaid
+graph TD
+    A[Law of Large Numbers] --> B[Sample Average]
+    B --> C[X̄ₙ = (1/n)Σ Xᵢ]
+    A --> D[Weak Law]
+    A --> E[Strong Law]
+    D --> F[Convergence in Probability]
+    E --> G[Almost Sure Convergence]
+    F --> H[P(|X̄ₙ - μ| > ε) → 0]
+    G --> I[P(lim X̄ₙ = μ) = 1]
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style D fill:#bbf,stroke:#333,stroke-width:2px
+    style E fill:#bbf,stroke:#333,stroke-width:2px
+    style H fill:#bfb,stroke:#333,stroke-width:2px
+    style I fill:#bfb,stroke:#333,stroke-width:2px
+```
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-random-variable["Definition: Random Variable"]:::definition
+    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
+    def-expectation["Definition: Expected Value"]:::definition
+    thm-law-of-large-numbers --> def-random-variable
+    thm-law-of-large-numbers --> def-expectation
+    class thm-law-of-large-numbers current
+```

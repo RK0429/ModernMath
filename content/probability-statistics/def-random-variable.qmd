@@ -1,0 +1,56 @@
+---
+id: def-random-variable
+requires:
+- def-probability-space
+status: complete
+title: 'Definition: Random Variable'
+type: Definition
+---
+
+# Random Variable {#def-random-variable}
+
+A **random variable** is a measurable function from a [Probability Space](probability-statistics/def-probability-space.qmd) to a measurable space.
+
+## Formal Definition
+
+Given a probability space $(\Omega, \mathcal{F}, P)$, a random variable is a function $X: \Omega \to \mathbb{R}$ such that for every Borel set $B \subseteq \mathbb{R}$:
+
+$$X^{-1}(B) = \{\omega \in \Omega : X(\omega) \in B\} \in \mathcal{F}$$
+
+This condition ensures that we can assign probabilities to events of the form $\{X \in B\}$.
+
+## Types of Random Variables
+
+1. **Discrete Random Variable**: Takes countably many values
+   - Characterized by probability mass function (PMF): $p_X(x) = P(X = x)$
+
+2. **Continuous Random Variable**: Takes uncountably many values
+   - Characterized by probability density function (PDF): $f_X(x)$ where $P(a \leq X \leq b) = \int_a^b f_X(x) dx$
+
+## Properties
+
+- **Cumulative Distribution Function (CDF)**: $F_X(x) = P(X \leq x)$
+- **Expected Value**: $E[X] = \int_{\Omega} X(\omega) dP(\omega)$
+- **Variance**: $\text{Var}(X) = E[(X - E[X])^2]$
+
+## Examples
+
+- Bernoulli: $X \in \{0, 1\}$ with $P(X = 1) = p$
+- Normal: $X \sim N(\mu, \sigma^2)$
+- Poisson: $P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}$
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-random-variable["Definition: Random Variable"]:::definition
+    def-probability-space["Definition: Probability Space"]:::definition
+    def-random-variable --> def-probability-space
+    class def-random-variable current
+```

@@ -1,0 +1,67 @@
+---
+id: ex-integers-ring
+requires:
+- def-ring
+- def-group
+- def-binary-operation
+status: complete
+title: 'Example: Integers Form a Ring'
+type: Example
+---
+
+# Example: Integers Form a Ring
+
+The set of integers $\mathbb{Z}$ with usual addition and multiplication forms a [Ring](algebra/def-ring.qmd), denoted $(\mathbb{Z}, +, \cdot)$.
+
+## Ring Axioms Verification
+
+### Additive Group Structure
+
+The integers form an abelian [Group](algebra/def-group.qmd) under addition:
+- **Associativity**: $(a + b) + c = a + (b + c)$ for all $a, b, c \in \mathbb{Z}$
+- **Identity**: $0$ is the additive identity
+- **Inverses**: For each $a \in \mathbb{Z}$, the inverse is $-a$
+- **Commutativity**: $a + b = b + a$ for all $a, b \in \mathbb{Z}$
+
+### Multiplication Structure
+
+Multiplication satisfies:
+- **Associativity**: $(a \cdot b) \cdot c = a \cdot (b \cdot c)$ for all $a, b, c \in \mathbb{Z}$
+- **Identity**: $1$ is the multiplicative identity
+
+### Distributive Laws
+
+For all $a, b, c \in \mathbb{Z}$:
+- **Left distributivity**: $a \cdot (b + c) = a \cdot b + a \cdot c$
+- **Right distributivity**: $(a + b) \cdot c = a \cdot c + b \cdot c$
+
+## Special Properties
+
+$\mathbb{Z}$ is actually a **commutative ring with unity**:
+- **Commutativity**: $a \cdot b = b \cdot a$ for all $a, b \in \mathbb{Z}$
+- **Unity**: The multiplicative identity $1$ exists
+
+Furthermore, $\mathbb{Z}$ is an **integral domain** since it has no zero divisors: if $a \cdot b = 0$, then either $a = 0$ or $b = 0$.
+
+```{mermaid}
+```
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-group["Definition: Group"]:::definition
+    ex-integers-ring --> def-ring
+    ex-integers-ring --> def-group
+    ex-integers-ring --> def-binary-operation
+    class ex-integers-ring current
+```

@@ -1,0 +1,68 @@
+---
+id: def-continuity
+requires:
+- def-limit
+status: complete
+title: 'Definition: Continuity'
+type: Definition
+---
+
+# Definition: Continuity {#def-continuity}
+
+A function $f: A \to \mathbb{R}$ (where $A \subseteq \mathbb{R}$) is **continuous** at a point $c \in A$ if the function value equals the limit at that point.
+
+## Epsilon-Delta Definition
+
+$f$ is continuous at $c$ if:
+
+For every $\varepsilon > 0$, there exists $\delta > 0$ such that for all $x \in A$:
+$$|x - c| < \delta \implies |f(x) - f(c)| < \varepsilon$$
+
+## Sequential Definition
+
+Equivalently, $f$ is continuous at $c$ if:
+
+For every sequence $(x_n)$ in $A$ with $x_n \to c$, we have $f(x_n) \to f(c)$.
+
+## Limit Definition
+
+When $c$ is a limit point of $A$, $f$ is continuous at $c$ if and only if:
+$$\lim_{x \to c} f(x) = f(c)$$
+
+This requires three conditions:
+1. $f(c)$ is defined
+2. $\lim_{x \to c} f(x)$ exists
+3. The limit equals the function value
+
+## Types of Continuity
+
+- **Continuous on a set**: $f$ is continuous on $A$ if it is continuous at every point in $A$
+- **Uniformly continuous**: A stronger condition where $\delta$ depends only on $\varepsilon$, not on the point
+- **Lipschitz continuous**: An even stronger condition with a linear bound on the rate of change
+
+## Discontinuities
+
+If $f$ is not continuous at $c$, we say $f$ has a **discontinuity** at $c$. Types include:
+- **Removable**: The limit exists but doesn't equal $f(c)$
+- **Jump**: Left and right limits exist but are different
+- **Essential**: The limit doesn't exist
+
+Continuity captures the intuitive notion of a function having "no breaks or jumps."
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-continuity["Definition: Continuity"]:::definition
+    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
+    def-limit["Definition: Limit of a Sequence"]:::definition
+    def-continuity --> def-limit
+    ex-polynomial-continuity --> def-continuity
+    class def-continuity current
+```

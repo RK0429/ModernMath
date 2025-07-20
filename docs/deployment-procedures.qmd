@@ -1,0 +1,746 @@
+---
+title: "Deployment Procedures"
+description: "Step-by-step guide for deploying the ModernMath Knowledge Graph system"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+---
+
+# Overview
+
+This guide provides detailed procedures for deploying the ModernMath Knowledge Graph system, including both development and production deployments. The system consists of several components that need to be deployed in the correct order.
+
+## Deployment Components
+
+1. **Static Website** (GitHub Pages)
+2. **SPARQL Endpoint** (Apache Jena Fuseki)
+3. **REST API** (Flask Application)
+4. **Knowledge Graph Data** (RDF Triple Store)
+
+# Prerequisites
+
+## System Requirements
+
+### Development Environment
+- **OS**: macOS, Linux, or Windows with WSL
+- **Python**: 3.11 or higher
+- **Node.js**: 16.x or higher
+- **Java**: JDK 11+ (for Fuseki)
+- **Git**: 2.x or higher
+- **Poetry**: 1.4 or higher
+- **Quarto**: 1.4 or higher
+
+### Production Environment
+- **Server**: Ubuntu 20.04+ or similar
+- **RAM**: Minimum 4GB, recommended 8GB+
+- **Storage**: 20GB+ depending on graph size
+- **Ports**: 80/443 (web), 3030 (Fuseki), 5001 (API)
+
+## Required Accounts
+- GitHub account with repository access
+- Domain name (optional for custom domain)
+- Cloud provider account (if not self-hosting)
+
+# Local Development Deployment
+
+## Step 1: Clone and Setup Repository
+
+```bash
+# Clone the repository
+git clone https://github.com/YOUR_USERNAME/ModernMath.git
+cd ModernMath
+
+# Install Poetry if not already installed
+curl -sSL https://install.python-poetry.org | python3 -
+
+# Install Python dependencies
+poetry install
+
+# Activate the virtual environment
+poetry shell
+```
+
+## Step 2: Build the Knowledge Graph
+
+```bash
+# Validate all content
+poetry run python scripts/validate_metadata.py
+
+# Build the RDF knowledge graph
+poetry run python scripts/build_graph.py
+
+# Validate the generated graph
+poetry run python scripts/validate_graph.py
+
+# Generate visualizations
+poetry run python scripts/generate_mermaid.py
+poetry run python scripts/generate_pyvis.py
+poetry run python scripts/generate_d3_data.py
+```
+
+## Step 3: Start Backend Services
+
+### Start Fuseki SPARQL Endpoint
+
+```bash
+# Navigate to Fuseki directory
+cd fuseki/scripts
+
+# Start Fuseki server
+./start_fuseki.sh
+
+# Or start with memory-only storage (for testing)
+./start_fuseki_memory.sh
+
+# Verify Fuseki is running
+curl http://localhost:3030/$/ping
+```
+
+### Load Data into Fuseki
+
+```bash
+# Load the knowledge graph
+./load_data.sh
+
+# Verify data is loaded
+cd ../../
+poetry run python scripts/test_queries.py
+```
+
+### Start Flask API
+
+```bash
+# In a new terminal, navigate to API directory
+cd api
+
+# Start the API server
+./start_api.sh
+
+# Or run directly with Poetry
+poetry run python app.py
+
+# Verify API is running
+curl http://localhost:5001/api/health
+```
+
+## Step 4: Build and Preview Website
+
+```bash
+# Return to project root
+cd ..
+
+# Build the Quarto website
+quarto render
+
+# Preview locally
+quarto preview
+
+# Website will be available at http://localhost:4000
+```
+
+# GitHub Pages Deployment
+
+## Step 1: Configure Repository
+
+1. Go to repository Settings → Pages
+2. Set Source to "GitHub Actions"
+3. Ensure repository visibility allows GitHub Pages
+
+## Step 2: Setup GitHub Actions
+
+The repository includes `.github/workflows/deploy.yml`:
+
+```yaml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: latest
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+      
+      - name: Install dependencies
+        run: poetry install
+      
+      - name: Build knowledge graph
+        run: |
+          poetry run python scripts/validate_metadata.py
+          poetry run python scripts/build_graph.py
+          poetry run python scripts/generate_mermaid.py
+          poetry run python scripts/generate_pyvis.py
+          poetry run python scripts/generate_d3_data.py
+      
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        
+      - name: Render Quarto site
+        run: quarto render
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: _site
+      
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: actions/deploy-pages@v2
+```
+
+## Step 3: Trigger Deployment
+
+```bash
+# Commit and push changes
+git add .
+git commit -m "Deploy to GitHub Pages"
+git push origin main
+
+# Monitor deployment
+# Go to Actions tab in GitHub repository
+```
+
+## Step 4: Verify Deployment
+
+1. Wait for GitHub Actions to complete
+2. Visit `https://YOUR_USERNAME.github.io/ModernMath`
+3. Check visualizations are loading
+4. Verify all pages render correctly
+
+# Production Server Deployment
+
+## Step 1: Server Preparation
+
+```bash
+# Update system
+sudo apt update && sudo apt upgrade -y
+
+# Install required packages
+sudo apt install -y python3.11 python3.11-venv python3-pip
+sudo apt install -y nodejs npm
+sudo apt install -y nginx
+sudo apt install -y default-jdk
+
+# Install Poetry
+curl -sSL https://install.python-poetry.org | python3 -
+
+# Install Quarto
+wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.0/quarto-1.4.0-linux-amd64.deb
+sudo dpkg -i quarto-1.4.0-linux-amd64.deb
+```
+
+## Step 2: Clone and Setup Application
+
+```bash
+# Create application directory
+sudo mkdir -p /opt/modernmath
+sudo chown $USER:$USER /opt/modernmath
+cd /opt/modernmath
+
+# Clone repository
+git clone https://github.com/YOUR_USERNAME/ModernMath.git .
+
+# Install dependencies
+poetry install --no-dev
+```
+
+## Step 3: Configure Fuseki Service
+
+### Create Systemd Service
+
+```bash
+sudo nano /etc/systemd/system/fuseki.service
+```
+
+```ini
+[Unit]
+Description=Apache Jena Fuseki
+After=network.target
+
+[Service]
+Type=simple
+User=fuseki
+Group=fuseki
+WorkingDirectory=/opt/modernmath/fuseki/fuseki-server/apache-jena-fuseki-4.10.0
+ExecStart=/opt/modernmath/fuseki/fuseki-server/apache-jena-fuseki-4.10.0/fuseki-server --port=3030 --tdb2 --loc=/opt/modernmath/fuseki/data /mathwiki
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### Start Fuseki
+
+```bash
+# Create fuseki user
+sudo useradd -r -s /bin/false fuseki
+
+# Set permissions
+sudo chown -R fuseki:fuseki /opt/modernmath/fuseki
+
+# Enable and start service
+sudo systemctl enable fuseki
+sudo systemctl start fuseki
+
+# Check status
+sudo systemctl status fuseki
+```
+
+## Step 4: Configure Flask API Service
+
+### Create Systemd Service
+
+```bash
+sudo nano /etc/systemd/system/mathwiki-api.service
+```
+
+```ini
+[Unit]
+Description=MathWiki REST API
+After=network.target fuseki.service
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/modernmath/api
+Environment="PATH=/opt/modernmath/.venv/bin"
+ExecStart=/opt/modernmath/.venv/bin/python app.py
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### Start API Service
+
+```bash
+# Set permissions
+sudo chown -R www-data:www-data /opt/modernmath/api
+
+# Enable and start service
+sudo systemctl enable mathwiki-api
+sudo systemctl start mathwiki-api
+
+# Check status
+sudo systemctl status mathwiki-api
+```
+
+## Step 5: Configure Nginx
+
+### Create Nginx Configuration
+
+```bash
+sudo nano /etc/nginx/sites-available/modernmath
+```
+
+```nginx
+server {
+    listen 80;
+    server_name your-domain.com;
+    
+    # Redirect to HTTPS
+    return 301 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name your-domain.com;
+    
+    # SSL configuration (update paths)
+    ssl_certificate /etc/letsencrypt/live/your-domain.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/your-domain.com/privkey.pem;
+    
+    # Static website
+    root /opt/modernmath/_site;
+    index index.html;
+    
+    location / {
+        try_files $uri $uri/ =404;
+    }
+    
+    # API proxy
+    location /api/ {
+        proxy_pass http://localhost:5001;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+    
+    # SPARQL endpoint proxy
+    location /sparql/ {
+        proxy_pass http://localhost:3030/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+```
+
+### Enable Site
+
+```bash
+# Enable site
+sudo ln -s /etc/nginx/sites-available/modernmath /etc/nginx/sites-enabled/
+
+# Test configuration
+sudo nginx -t
+
+# Reload Nginx
+sudo systemctl reload nginx
+```
+
+## Step 6: Setup SSL with Let's Encrypt
+
+```bash
+# Install Certbot
+sudo apt install certbot python3-certbot-nginx
+
+# Obtain certificate
+sudo certbot --nginx -d your-domain.com
+
+# Test auto-renewal
+sudo certbot renew --dry-run
+```
+
+## Step 7: Deploy Website Content
+
+```bash
+cd /opt/modernmath
+
+# Build knowledge graph
+poetry run python scripts/build_graph.py
+
+# Generate all visualizations
+poetry run python scripts/generate_mermaid.py
+poetry run python scripts/generate_pyvis.py
+poetry run python scripts/generate_d3_data.py
+
+# Build website
+quarto render
+
+# Load data into Fuseki
+cd fuseki/scripts
+./load_data.sh
+```
+
+# Continuous Deployment Setup
+
+## GitHub Actions for Auto-Deploy
+
+### Create Deploy Script
+
+```bash
+nano /opt/modernmath/deploy.sh
+```
+
+```bash
+#!/bin/bash
+set -e
+
+cd /opt/modernmath
+
+# Pull latest changes
+git pull origin main
+
+# Install/update dependencies
+poetry install --no-dev
+
+# Build knowledge graph
+poetry run python scripts/validate_metadata.py
+poetry run python scripts/build_graph.py
+
+# Generate visualizations
+poetry run python scripts/generate_mermaid.py
+poetry run python scripts/generate_pyvis.py
+poetry run python scripts/generate_d3_data.py
+
+# Build website
+quarto render
+
+# Reload data into Fuseki
+cd fuseki/scripts
+./load_data.sh
+
+# Restart API to pick up changes
+sudo systemctl restart mathwiki-api
+
+echo "Deployment completed successfully"
+```
+
+```bash
+chmod +x /opt/modernmath/deploy.sh
+```
+
+### Setup Webhook
+
+Use GitHub Webhooks or a CI/CD service to trigger deployment on push to main branch.
+
+# Monitoring and Maintenance
+
+## Health Checks
+
+### Create Monitoring Script
+
+```bash
+nano /opt/modernmath/health_check.sh
+```
+
+```bash
+#!/bin/bash
+
+# Check Fuseki
+if ! curl -s http://localhost:3030/$/ping > /dev/null; then
+    echo "ERROR: Fuseki is not responding"
+    exit 1
+fi
+
+# Check API
+if ! curl -s http://localhost:5001/api/health > /dev/null; then
+    echo "ERROR: API is not responding"
+    exit 1
+fi
+
+# Check website
+if ! curl -s http://localhost > /dev/null; then
+    echo "ERROR: Website is not responding"
+    exit 1
+fi
+
+echo "All services are healthy"
+```
+
+### Setup Cron Job
+
+```bash
+# Add to crontab
+crontab -e
+
+# Add health check every 5 minutes
+*/5 * * * * /opt/modernmath/health_check.sh || systemctl restart fuseki mathwiki-api
+```
+
+## Backup Procedures
+
+### Daily Backup Script
+
+```bash
+nano /opt/modernmath/backup.sh
+```
+
+```bash
+#!/bin/bash
+
+BACKUP_DIR="/backup/modernmath"
+DATE=$(date +%Y%m%d_%H%M%S)
+
+# Create backup directory
+mkdir -p $BACKUP_DIR
+
+# Backup RDF data
+cp /opt/modernmath/knowledge_graph.ttl $BACKUP_DIR/knowledge_graph_$DATE.ttl
+
+# Backup Fuseki data
+tar -czf $BACKUP_DIR/fuseki_data_$DATE.tar.gz /opt/modernmath/fuseki/data/
+
+# Backup API logs
+tar -czf $BACKUP_DIR/api_logs_$DATE.tar.gz /opt/modernmath/api/logs/
+
+# Keep only last 7 days
+find $BACKUP_DIR -mtime +7 -delete
+
+echo "Backup completed: $DATE"
+```
+
+### Schedule Backup
+
+```bash
+# Add to crontab
+0 2 * * * /opt/modernmath/backup.sh
+```
+
+## Log Management
+
+### Configure Log Rotation
+
+```bash
+sudo nano /etc/logrotate.d/modernmath
+```
+
+```
+/opt/modernmath/api/logs/*.log {
+    daily
+    rotate 14
+    compress
+    delaycompress
+    notifempty
+    create 0640 www-data www-data
+    sharedscripts
+    postrotate
+        systemctl reload mathwiki-api
+    endscript
+}
+
+/opt/modernmath/fuseki/*.log {
+    daily
+    rotate 14
+    compress
+    delaycompress
+    notifempty
+    create 0640 fuseki fuseki
+}
+```
+
+# Rollback Procedures
+
+## Quick Rollback
+
+```bash
+# Stop services
+sudo systemctl stop mathwiki-api fuseki
+
+# Restore from backup
+cd /opt/modernmath
+git checkout <previous-commit-hash>
+
+# Rebuild
+poetry install --no-dev
+poetry run python scripts/build_graph.py
+quarto render
+
+# Restart services
+sudo systemctl start fuseki mathwiki-api
+
+# Reload data
+cd fuseki/scripts
+./load_data.sh
+```
+
+## Database Rollback
+
+```bash
+# Stop Fuseki
+sudo systemctl stop fuseki
+
+# Restore data backup
+rm -rf /opt/modernmath/fuseki/data/mathwiki
+tar -xzf /backup/modernmath/fuseki_data_<date>.tar.gz -C /
+
+# Restart Fuseki
+sudo systemctl start fuseki
+```
+
+# Performance Optimization
+
+## Enable Caching
+
+### Nginx Caching
+
+Add to Nginx configuration:
+
+```nginx
+location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
+    expires 1y;
+    add_header Cache-Control "public, immutable";
+}
+
+location ~* \.(html)$ {
+    expires 1h;
+    add_header Cache-Control "public, must-revalidate";
+}
+```
+
+### API Response Caching
+
+Already implemented in the Flask API with in-memory caching.
+
+## CDN Setup (Optional)
+
+For high-traffic deployments, consider using a CDN:
+
+1. CloudFlare
+2. AWS CloudFront
+3. Fastly
+
+# Troubleshooting Deployment
+
+## Common Issues
+
+### Port Already in Use
+
+```bash
+# Find process using port
+sudo lsof -i :3030
+sudo lsof -i :5001
+
+# Kill process if needed
+sudo kill -9 <PID>
+```
+
+### Permission Errors
+
+```bash
+# Fix ownership
+sudo chown -R www-data:www-data /opt/modernmath/api
+sudo chown -R fuseki:fuseki /opt/modernmath/fuseki
+```
+
+### Service Won't Start
+
+```bash
+# Check logs
+sudo journalctl -u fuseki -f
+sudo journalctl -u mathwiki-api -f
+
+# Check syntax
+sudo nginx -t
+```
+
+# Security Checklist
+
+- [ ] SSL/TLS certificates installed and auto-renewing
+- [ ] Firewall configured (only required ports open)
+- [ ] Regular security updates scheduled
+- [ ] API rate limiting enabled
+- [ ] CORS properly configured
+- [ ] Input validation in place
+- [ ] Regular backups scheduled
+- [ ] Monitoring and alerting configured
+- [ ] Access logs reviewed regularly
+- [ ] Fail2ban or similar intrusion prevention
+
+# Post-Deployment Verification
+
+1. **Website Access**: Visit all major pages
+2. **Search Functionality**: Test search feature
+3. **Visualizations**: Verify interactive graphs load
+4. **API Endpoints**: Test all API endpoints
+5. **SPARQL Queries**: Run test queries
+6. **Cross-References**: Click through several links
+7. **Performance**: Check page load times
+8. **Mobile View**: Test responsive design
+9. **SSL Certificate**: Verify HTTPS works
+10. **Monitoring**: Confirm health checks pass
+
+Congratulations! Your ModernMath Knowledge Graph is now deployed and operational.

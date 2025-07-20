@@ -1,0 +1,66 @@
+---
+id: thm-pigeonhole-principle
+requires:
+- def-set
+status: complete
+title: 'Theorem: Pigeonhole Principle'
+type: Theorem
+---
+
+# Theorem: Pigeonhole Principle
+
+The **Pigeonhole Principle** is a fundamental counting principle stating that if you distribute more items than containers, at least one container must contain more than one item.
+
+## Statement
+
+**Basic Form**: If $n$ items are placed into $k$ containers where $n > k$, then at least one container must contain more than one item.
+
+**General Form**: If $n$ items are placed into $k$ containers, then at least one container must contain at least $\lceil n/k \rceil$ items.
+
+## Formal Statement
+
+Let $f: A \to B$ be a function where $A$ and $B$ are finite [Set](logic-set-theory/def-set.qmd) s with $|A| > |B|$. Then $f$ is not injective; that is, there exist distinct elements $a_1, a_2 \in A$ such that $f(a_1) = f(a_2)$.
+
+## Proof
+
+By contradiction. Suppose $f$ is injective. Then each element of $A$ maps to a distinct element of $B$, implying $|A| \leq |B|$. This contradicts our assumption that $|A| > |B|$.
+
+## Generalizations
+
+1. **Infinite Version**: An infinite set cannot be mapped injectively into a finite set.
+
+2. **Probabilistic Version**: If items are distributed randomly, the expected number of items in each container provides bounds on the maximum load.
+
+3. **Multidimensional Version**: Extends to partitioning higher-dimensional spaces.
+
+## Applications
+
+1. **Existence Proofs**: Often used to prove that certain configurations must exist
+2. **Computer Science**: Hash table collision analysis, load balancing
+3. **Number Theory**: Proving properties about integer sequences
+4. **Graph Theory**: Showing certain substructures must exist in large graphs
+
+## Classic Examples
+
+- In any group of 13 people, at least two must have birthdays in the same month
+- Among any 6 people, either 3 are mutual friends or 3 are mutual strangers
+- In any sequence of $n^2 + 1$ distinct real numbers, there is either an increasing subsequence or a decreasing subsequence of length $n + 1$
+
+```{mermaid}
+```
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-pigeonhole-principle["Theorem: Pigeonhole Principle"]:::theorem
+    def-set["Definition: Set"]:::definition
+    thm-pigeonhole-principle --> def-set
+    class thm-pigeonhole-principle current
+```

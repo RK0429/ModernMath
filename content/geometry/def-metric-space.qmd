@@ -1,0 +1,64 @@
+---
+id: def-metric-space
+requires:
+- def-set
+status: complete
+title: 'Definition: Metric Space'
+type: Definition
+---
+
+# Definition: Metric Space {#def-metric-space}
+
+A **metric space** is a [Set](logic-set-theory/def-set.qmd) $X$ together with a function $d: X \times X \to \mathbb{R}$ called a **metric** (or **distance function**) that satisfies certain axioms capturing the intuitive properties of distance.
+
+## Metric Axioms
+
+For all $x, y, z \in X$, the metric $d$ must satisfy:
+
+1. **Non-negativity**: $d(x, y) \geq 0$
+2. **Identity of indiscernibles**: $d(x, y) = 0$ if and only if $x = y$
+3. **Symmetry**: $d(x, y) = d(y, x)$
+4. **Triangle inequality**: $d(x, z) \leq d(x, y) + d(y, z)$
+
+The pair $(X, d)$ is called a metric space.
+
+## Examples
+
+1. **Euclidean metric** on $\mathbb{R}^n$:
+   $$d(x, y) = \sqrt{\sum_{i=1}^n (x_i - y_i)^2}$$
+
+2. **Discrete metric** on any set $X$:
+   $$d(x, y) = \begin{cases} 0 & \text{if } x = y \\ 1 & \text{if } x \neq y \end{cases}$$
+
+3. **Manhattan metric** on $\mathbb{R}^n$:
+   $$d(x, y) = \sum_{i=1}^n |x_i - y_i|$$
+
+## Key Concepts
+
+- **Open ball**: $B(x, r) = \{y \in X : d(x, y) < r\}$
+- **Closed ball**: $\bar{B}(x, r) = \{y \in X : d(x, y) \leq r\}$
+- **Bounded set**: $A \subseteq X$ is bounded if $\exists M > 0, x_0 \in X$ such that $A \subseteq B(x_0, M)$
+
+## Importance
+
+Metric spaces:
+- Generalize the notion of distance beyond Euclidean space
+- Provide a framework for studying continuity and convergence
+- Form the foundation for analysis and topology
+- Connect geometry with analysis
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-metric-space["Definition: Metric Space"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-metric-space --> def-set
+    class def-metric-space current
+```
