@@ -207,13 +207,26 @@ The project supports multiple languages (currently English and Japanese) with au
 
 When creating translations:
 
-- **Translation Links Format**: Always point to HTML files, not QMD files
+- **Translation Metadata Fields**: Japanese translation files require two metadata fields:
 
   ```yaml
+  # Required in Japanese files (points to .qmd)
+  translation_of: ../../en/algebra/def-group.qmd
+
+  # Required in both English and Japanese files (point to .html)
   translations:
-    en: "../en/algebra/def-group.html" # Correct
-    # NOT: "../en/algebra/def-group.qmd"
+    en: "../en/algebra/def-group.html"
+    ja: "../ja/algebra/def-group.html"
   ```
+
+- **Path Format Distinction**:
+  - `translation_of`: Points to source .qmd file (used for tracking)
+  - `translations`: Points to output .html files (used for navigation)
+
+- **Translation Field Requirements**:
+  - All translation files must have both `en` and `ja` entries in the `translations` field
+  - The `translations` field must be a dictionary, not a string or list
+  - Some geometry files may have non-dictionary translation fields that need correction
 
 - **Cross-References**: Keep internal references as `.qmd` extensions
 
