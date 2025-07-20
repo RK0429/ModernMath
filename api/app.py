@@ -13,8 +13,8 @@ import sys
 from typing import Dict, Optional, Any
 from SPARQLWrapper import SPARQLWrapper, JSON
 import logging
-from api.search import MathKnowledgeSearcher
-from api.cache import api_cache, cleanup_cache
+from search import MathKnowledgeSearcher
+from cache import api_cache, cleanup_cache
 
 # Add parent directory to path to import scripts
 sys.path.append(str(Path(__file__).parent.parent))
@@ -261,19 +261,44 @@ def search_nodes():
 
     # Use enhanced search
     try:
-        # Get limit parameter
-        limit = request.args.get("limit", default=50, type=int)
-        limit = min(limit, 100)  # Cap at 100 results
-
-        # Perform combined search
-        results = searcher.search_combined(search_term, limit=limit)
+        # Get pagination parameters
+        page = request.args.get("page", default=1, type=int)
+        per_page = request.args.get("per_page", default=20, type=int)
+        per_page = min(per_page, 100)  # Cap at 100 results per page
+        
+        # For backward compatibility, also support limit parameter
+        limit = request.args.get("limit", type=int)
+        if limit:
+            per_page = min(limit, 100)
+            page = 1
+        
+        # Calculate offset
+        offset = (page - 1) * per_page
+        
+        # Perform combined search with a higher limit to get total count
+        all_results = searcher.search_combined(search_term, limit=1000)
+        total_count = len(all_results)
+        
+        # Apply pagination
+        paginated_results = all_results[offset:offset + per_page]
+        
+        # Calculate pagination metadata
+        total_pages = (total_count + per_page - 1) // per_page
+        has_next = page < total_pages
+        has_prev = page > 1
 
         return jsonify(
             {
                 "search_term": search_term,
                 "search_type": "enhanced",
-                "count": len(results),
-                "results": results,
+                "count": len(paginated_results),
+                "total_count": total_count,
+                "page": page,
+                "per_page": per_page,
+                "total_pages": total_pages,
+                "has_next": has_next,
+                "has_prev": has_prev,
+                "results": paginated_results,
             }
         )
 

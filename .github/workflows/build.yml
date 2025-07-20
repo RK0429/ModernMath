@@ -18,18 +18,18 @@ jobs:
     strategy:
       matrix:
         python-version: ['3.11', '3.12']
-    
+
     steps:
     # Step 1: Checkout code
     - name: Checkout repository
       uses: actions/checkout@v4
-    
+
     # Step 2: Set up Python environment
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
-    
+
     # Step 2a: Install Poetry
     - name: Install Poetry
       uses: snok/install-poetry@v1
@@ -37,7 +37,7 @@ jobs:
         virtualenvs-create: true
         virtualenvs-in-project: true
         installer-parallel: true
-    
+
     # Step 2b: Load cached dependencies
     - name: Load cached venv
       id: cached-poetry-dependencies
@@ -45,119 +45,119 @@ jobs:
       with:
         path: .venv
         key: venv-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
-    
+
     # Step 2c: Install dependencies
     - name: Install dependencies
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
-    
+
     # Step 3: Install Quarto
     - name: Set up Quarto
       uses: quarto-dev/quarto-actions/setup@v2
       with:
         version: 1.4.553
-    
+
     # Step 4: Run linting
     - name: Run flake8
       run: |
-        poetry run flake8 scripts/ --max-line-length=100 --extend-ignore=E203,W503,W293
-    
+        poetry run flake8 scripts/ --max-line-length=100 --extend-ignore=E203,E226,W503,W293
+
     - name: Run black check
       run: |
         poetry run black --check scripts/
-    
+
     # Step 5: Run validation scripts
     - name: Validate YAML metadata
       run: |
         poetry run python scripts/validate_metadata.py
-    
+
     - name: Validate existing graph
       run: |
         if [ -f "knowledge_graph.ttl" ]; then
           poetry run python scripts/validate_graph.py
         fi
-    
+
     # Step 6: Build knowledge graph
     - name: Build knowledge graph
       run: |
         poetry run python scripts/build_graph.py
-    
+
     - name: Display graph statistics
       run: |
         if [ -f "knowledge_graph.ttl" ]; then
           echo "Knowledge graph built successfully!"
           wc -l knowledge_graph.ttl
         fi
-    
+
     # Step 6a: Formal verification integration
     - name: Extract Lean dependencies (if available)
       run: |
         if [ -d "formal/" ]; then
           poetry run python scripts/extract_lean_deps.py || echo "Lean dependency extraction skipped"
         fi
-    
+
     - name: Extract Lean mappings
       run: |
         if [ -d "formal/" ]; then
           poetry run python scripts/extract_lean_mappings.py || echo "Lean mapping extraction skipped"
         fi
-    
+
     - name: Verify consistency with formal proofs
       run: |
         if [ -f "lean_mappings.json" ]; then
           poetry run python scripts/verify_consistency.py
           echo "Formal verification report generated"
         fi
-    
+
     - name: Add verification triples to graph
       run: |
         if [ -f "lean_mappings.json" ]; then
           poetry run python scripts/add_verification_triples.py
           echo "Verification triples added to knowledge graph"
         fi
-    
+
     # Step 6b: Generate Mermaid diagrams
     - name: Generate Mermaid diagrams
       run: |
         poetry run python scripts/generate_mermaid.py
-    
+
     # Step 6c: Generate PyVis interactive visualizations
     - name: Generate PyVis interactive visualizations
       run: |
         poetry run python scripts/generate_pyvis.py
-    
+
     # Step 6c1: Fix PyVis CSS paths
     - name: Fix PyVis CSS paths
       run: |
         poetry run python scripts/fix_pyvis_css.py
-    
+
     # Step 6d: Generate D3.js data files
     - name: Generate D3.js data files
       run: |
         poetry run python scripts/generate_d3_data.py
-    
+
     # Step 6e: Resolve cross-references
     - name: Resolve cross-references
       run: |
         poetry run python scripts/resolve_cross_references.py
         echo "Cross-references resolved successfully!"
-    
+
     # Step 6f: Insert diagrams into content
     - name: Insert diagrams into content
       run: |
         poetry run python scripts/insert_diagrams.py
-    
+
     # Step 6g: Build search index
     - name: Build search index
       run: |
         poetry run python scripts/build_search_index.py
         echo "Search index built successfully!"
-    
+
     # Step 7: Run Quarto render
     - name: Render Quarto site
       run: |
         quarto render
-    
+
     # Step 8: Upload artifacts
     - name: Upload knowledge graph
       uses: actions/upload-artifact@v4
@@ -165,28 +165,28 @@ jobs:
         name: knowledge-graph-${{ matrix.python-version }}
         path: knowledge_graph.ttl
         retention-days: 30
-    
+
     - name: Upload interactive visualizations
       uses: actions/upload-artifact@v4
       with:
         name: interactive-viz-${{ matrix.python-version }}
         path: output/interactive/
         retention-days: 30
-    
+
     - name: Upload D3.js data files
       uses: actions/upload-artifact@v4
       with:
         name: d3-data-${{ matrix.python-version }}
         path: output/d3-data/
         retention-days: 30
-    
+
     - name: Upload rendered site
       uses: actions/upload-artifact@v4
       with:
         name: rendered-site-${{ matrix.python-version }}
         path: _site/
         retention-days: 30
-    
+
     # Optional: Deploy to GitHub Pages (only on main branch, Python 3.11)
     - name: Deploy to GitHub Pages
       if: github.ref == 'refs/heads/main' && matrix.python-version == '3.11' && github.event_name == 'push'
