@@ -53,3 +53,64 @@ updated: '2024-01-15'
 - @def-subgroup - 群の部分集合で群構造を持つもの
 - @def-homomorphism - 群構造を保存する写像
 - @thm-lagrange - 有限群における部分群の位数に関する定理
+
+## 依存グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-group["Definition: Group"]:::definition
+    def-identity-element["Definition: Identity Element"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-commutativity["Definition: Commutativity"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-inverse-element["Definition: Inverse Element"]:::definition
+    def-set["Definition: Set"]:::definition
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    def-field["Definition: Field"]:::definition
+    ex-integers-addition["Example: Integers under Addition"]:::example
+    def-subgroup["Definition: Subgroup"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-associativity["Definition: Associativity"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    thm-unique-identity["Theorem: Uniqueness of Identity"]:::theorem
+    ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
+    def-field --> def-group
+    thm-euler --> def-group
+    def-subgroup --> def-group
+    def-group --> def-set
+    def-associativity --> def-group
+    ex-exponential-homomorphism --> def-group
+    def-ring --> def-group
+    def-homomorphism --> def-group
+    def-group --> def-binary-operation
+    ex-integers-addition --> def-group
+    thm-unique-identity --> def-group
+    ex-integers-ring --> def-group
+    thm-lagrange --> def-group
+    def-inverse-element --> def-group
+    def-identity-element --> def-group
+    def-commutativity --> def-group
+    ex-even-integers-subgroup --> def-group
+    class def-group current
+```
+
+## インタラクティブ可視化
+
+ローカル知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-group" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/def-group.html){target="_blank"}で完全なインタラクティブ版を表示

@@ -48,8 +48,16 @@ poetry run python scripts/add_mermaid_links.py
 poetry run python scripts/generate_mermaid.py
 poetry run python scripts/generate_pyvis.py
 poetry run python scripts/generate_d3_data.py
+
+# Insert both Mermaid diagrams and interactive visualizations into content files
 poetry run python scripts/insert_diagrams.py
 ```
+
+**Note**: The `insert_diagrams.py` script now:
+
+- Inserts both Mermaid dependency graphs and interactive D3.js visualizations
+- Handles files that already have Mermaid diagrams but are missing interactive visualizations
+- Respects language context (Japanese vs English) for headers and descriptions
 
 ### Site Development
 
@@ -109,6 +117,31 @@ poetry run flake8 scripts/ --max-line-length=100 --extend-ignore=E203,W503,W293
 # Type checking
 poetry run mypy scripts/
 ```
+
+#### Python Type Annotation Requirements
+
+All Python scripts in the project must include proper type annotations:
+
+- Import types from `typing` module (e.g., `from typing import Tuple, Optional, Any, List`)
+- Add type hints to all function parameters and return types
+- Use explicit type casts when mypy cannot infer types (e.g., `str()`, `int()`)
+- For frontmatter posts, use `Any` type annotation: `post: Any`
+- Helper functions should be extracted to reduce complexity warnings
+
+#### Pre-commit Hook Compliance
+
+Scripts must pass all pre-commit checks including:
+
+- **flake8**: Line length limit is 100 characters
+- **pylint**: Avoid too-many-locals (>20), too-many-branches (>12), too-many-statements (>50)
+- **mypy**: All functions must have type annotations, no untyped calls in typed contexts
+- **pyright**: Strict type checking enabled
+
+When refactoring for compliance:
+
+- Extract helper functions to reduce complexity
+- Split long lines at appropriate breakpoints
+- Add explicit type casts for return values when needed
 
 ### SPARQL and API
 
@@ -225,19 +258,39 @@ Features:
 
 This script is integrated into the build pipeline and runs before Mermaid diagram generation.
 
-#### Preventing Duplicate Graph Visualizations
+#### Content Visualization Insertion
 
-The graph-viz extension can automatically insert D3-based visualizations on pages with node IDs. To prevent duplicate graphs on pages that already have Mermaid diagrams:
+The `insert_diagrams.py` script handles inserting both Mermaid dependency graphs and interactive D3.js visualizations into content files:
 
-- **Issue**: Pages with existing Japanese Mermaid diagrams were getting additional English D3 graphs auto-inserted
-- **Cause**: The graph-viz extension's `Pandoc` function was automatically adding visualizations based on page metadata
-- **Solution**: Remove or disable automatic insertion logic in `_extensions/graph-viz/graph-viz.lua`
-- **Prevention**: The `insert_diagrams.py` script checks for existing graphs including:
-  - English headers: "Dependency Graph", "Local Graph"
-  - Japanese headers: "依存関係グラフ", "局所依存関係グラフ"
-  - Any existing Mermaid code blocks
+**Key Features**:
 
-**Important**: When creating multilingual sites, ensure visualization generation scripts respect the language context and don't insert duplicate content.
+- Inserts both static Mermaid diagrams and interactive D3.js visualization sections
+- Language-aware: Uses appropriate headers ("Dependency Graph" vs "依存グラフ") and descriptions
+- Smart insertion: Handles three scenarios:
+  1. Files with neither diagram type: Adds both sections
+  2. Files with only Mermaid: Adds just the interactive visualization section
+  3. Files with both: Skips to avoid duplication
+- Respects existing content structure by inserting before "References" sections
+
+**Interactive Visualization Format**:
+
+```markdown
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="node-id" data-width="700" data-height="500"}
+:::
+
+You can:
+
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/node-id.html){target="\_blank"} in a new window
+```
+
+**Important**: Always run `insert_diagrams.py` after generating visualizations to ensure all content pages have consistent visualization sections.
 
 ## Multilingual Support
 
