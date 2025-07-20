@@ -1,0 +1,22 @@
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-group-example["Definition: Group"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    ex-integers-addition["Example: Integers under Addition"]:::example
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    def-set["Definition: Set"]:::definition
+    ex-integers-addition --> def-binary-operation
+    ex-integers-addition --> def-group
+    def-group-example --> ex-integers-addition
+    def-group --> ex-integers-addition
+    ex-even-integers-subgroup --> ex-integers-addition
+    ex-integers-addition --> def-set
+    class ex-integers-addition current
+```
