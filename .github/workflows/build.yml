@@ -192,6 +192,24 @@ jobs:
         echo "Building Japanese version..."
         quarto render --profile ja
 
+    # Step 7: Copy shared resources to root
+    - name: Copy shared resources to root
+      run: |
+        echo "Copying shared resources to root..."
+        # Copy output directories to the root _site directory
+        if [ -d "output" ]; then
+          cp -r output _site/
+          echo "Copied output directory to _site/"
+        fi
+        # Copy knowledge graph and other shared resources
+        if [ -f "knowledge_graph.ttl" ]; then
+          cp knowledge_graph.ttl _site/
+          echo "Copied knowledge_graph.ttl to _site/"
+        fi
+        # List the contents to verify
+        echo "Contents of _site/output/:"
+        ls -la _site/output/ || echo "No output directory in _site"
+
     # Step 7a: Fix Japanese index page
     - name: Fix Japanese index page
       run: |
@@ -225,7 +243,7 @@ jobs:
         </html>
         EOF
 
-    # Step 7c: Create .nojekyll file for GitHub Pages
+    # Step 7d: Create .nojekyll file for GitHub Pages
     - name: Create .nojekyll file
       run: |
         touch _site/.nojekyll

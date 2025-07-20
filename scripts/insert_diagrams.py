@@ -35,7 +35,13 @@ def insert_diagrams() -> None:
             continue
 
         # Check if diagram section already exists
-        if "## Dependency Graph" in post.content or "## Local Graph" in post.content:
+        if (
+            "## Dependency Graph" in post.content
+            or "## Local Graph" in post.content
+            or "## 依存関係グラフ" in post.content
+            or "## 局所依存関係グラフ" in post.content
+            or "```{mermaid}" in post.content
+        ):
             skipped_files.append(qmd_file)
             continue
 
