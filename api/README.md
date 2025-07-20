@@ -91,6 +91,12 @@ The API will be available at `http://localhost:5001`
 - Body: `{"query": "SELECT ... WHERE { ... }"}`
 - Executes a custom SPARQL query (SELECT queries only)
 
+### Cache Management
+- **GET** `/api/cache/stats`
+- Returns cache statistics (number of entries, status)
+- **POST** `/api/cache/clear`
+- Clears all cached responses
+
 ## Testing
 
 Run the test suite to verify the API is working:
@@ -162,6 +168,25 @@ results = response.json()
 ## CORS Support
 
 The API includes CORS headers to allow cross-origin requests from web applications.
+
+## Caching
+
+The API implements an in-memory cache to improve performance:
+
+- **Cache TTL (Time To Live)**:
+  - Node details, dependencies, dependents: 10 minutes
+  - Search results and suggestions: 5 minutes  
+  - All nodes listing: 15 minutes
+  
+- **Cache Management**:
+  - Automatic cleanup of expired entries every 5 minutes
+  - Manual cache clearing via `/api/cache/clear` endpoint
+  - Cache statistics available at `/api/cache/stats`
+
+- **Testing Cache**:
+  ```bash
+  poetry run python api/test_cache.py
+  ```
 
 ## Error Handling
 

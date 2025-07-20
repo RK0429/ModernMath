@@ -17,6 +17,8 @@ sys.path.append(str(Path(__file__).parent.parent))
 
 # Import the enhanced search module
 from api.search import MathKnowledgeSearcher
+# Import caching module
+from api.cache import api_cache, cleanup_cache
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -178,6 +180,7 @@ def health_check():
 
 
 @app.route("/api/nodes/<node_id>", methods=["GET"])
+@api_cache(ttl=600)  # Cache for 10 minutes
 def get_node(node_id: str):
     """Get details about a specific node"""
     query = QUERIES["get_node"] % (node_id, node_id)
@@ -196,6 +199,7 @@ def get_node(node_id: str):
 
 
 @app.route("/api/dependencies/<node_id>", methods=["GET"])
+@api_cache(ttl=600)  # Cache for 10 minutes
 def get_dependencies(node_id: str):
     """Get all nodes that this node depends on (uses)"""
     query = QUERIES["get_dependencies"] % node_id
@@ -211,6 +215,7 @@ def get_dependencies(node_id: str):
 
 
 @app.route("/api/dependents/<node_id>", methods=["GET"])
+@api_cache(ttl=600)  # Cache for 10 minutes
 def get_dependents(node_id: str):
     """Get all nodes that depend on (use) this node"""
     query = QUERIES["get_dependents"] % node_id
@@ -226,6 +231,7 @@ def get_dependents(node_id: str):
 
 
 @app.route("/api/search", methods=["GET"])
+@api_cache(ttl=300)  # Cache for 5 minutes
 def search_nodes():
     """Enhanced search for nodes by label text and content"""
     search_term = request.args.get("q", "")
@@ -278,6 +284,7 @@ def search_nodes():
 
 
 @app.route("/api/nodes", methods=["GET"])
+@api_cache(ttl=900)  # Cache for 15 minutes
 def get_all_nodes():
     """Get all nodes in the graph"""
     query = QUERIES["get_all_nodes"]
@@ -312,6 +319,7 @@ def custom_query():
 
 
 @app.route("/api/search/suggest", methods=["GET"])
+@api_cache(ttl=300)  # Cache for 5 minutes
 def search_suggestions():
     """Get search suggestions for autocomplete"""
     partial_query = request.args.get("q", "")
@@ -338,6 +346,7 @@ def search_suggestions():
 
 
 @app.route("/api/nodes/<node_id>/related", methods=["GET"])
+@api_cache(ttl=600)  # Cache for 10 minutes
 def get_related_nodes(node_id: str):
     """Get all nodes related to the specified node"""
     if searcher is None:
@@ -356,6 +365,56 @@ def get_related_nodes(node_id: str):
         return jsonify({"error": "Failed to get related nodes"}), 500
 
 
+@app.route("/api/cache/clear", methods=["POST"])
+def clear_cache():
+    """Clear all cached responses (requires admin access in production)"""
+    try:
+        from api.cache import _cache
+        _cache.clear()
+        logger.info("Cache cleared successfully")
+        return jsonify({"message": "Cache cleared successfully"})
+    except Exception as e:
+        logger.error(f"Failed to clear cache: {e}")
+        return jsonify({"error": "Failed to clear cache"}), 500
+
+
+@app.route("/api/cache/stats", methods=["GET"])
+def cache_stats():
+    """Get cache statistics"""
+    try:
+        from api.cache import _cache
+        # Count non-expired entries
+        _cache.cleanup_expired()
+        cache_size = len(_cache._cache)
+        return jsonify({
+            "cache_entries": cache_size,
+            "status": "operational"
+        })
+    except Exception as e:
+        logger.error(f"Failed to get cache stats: {e}")
+        return jsonify({"error": "Failed to get cache stats"}), 500
+
+
+# Background thread for periodic cache cleanup
+def start_cache_cleanup():
+    """Start background thread for periodic cache cleanup"""
+    import threading
+    import time
+    
+    def cleanup_loop():
+        while True:
+            time.sleep(300)  # Run every 5 minutes
+            try:
+                cleanup_cache()
+                logger.debug("Cache cleanup completed")
+            except Exception as e:
+                logger.error(f"Cache cleanup failed: {e}")
+    
+    cleanup_thread = threading.Thread(target=cleanup_loop, daemon=True)
+    cleanup_thread.start()
+    logger.info("Cache cleanup thread started")
+
+
 @app.errorhandler(404)
 def not_found(error):
     """Custom 404 handler"""
@@ -369,5 +428,8 @@ def internal_error(error):
 
 
 if __name__ == "__main__":
+    # Start cache cleanup thread
+    start_cache_cleanup()
+    
     # Development server - in production use gunicorn or similar
     app.run(debug=True, host="0.0.0.0", port=5001)
