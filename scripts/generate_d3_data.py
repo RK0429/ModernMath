@@ -203,7 +203,7 @@ def main():
         else:
             # For external URIs (like Lean), skip them for D3 generation
             continue
-            
+
         if node_id and not node_id.startswith("index"):  # Skip index pages
             create_d3_json(g, node_id, output_dir)
             print(f"  Generated data for {node_id}")
@@ -232,7 +232,7 @@ def main():
         uri_str = str(n)
         if uri_str.startswith(BASE_URI) and not uri_str.endswith("index"):
             valid_nodes.append(uri_str.replace(BASE_URI, ""))
-    
+
     index_data = {
         "nodes": valid_nodes,
         "domains": [d.lower().replace(" ", "-") for d in domains],

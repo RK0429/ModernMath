@@ -308,8 +308,10 @@ class NaturalLanguageQueryProcessor:
     def format_response(self, intent: QueryIntent, results: List[Dict[str, Any]]) -> str:
         """Format query results as natural language response"""
         if not results:
-            return ("I couldn't find any information about that. "
-                    "Please check if the concept exists in the knowledge graph.")
+            return (
+                "I couldn't find any information about that. "
+                "Please check if the concept exists in the knowledge graph."
+            )
 
         if intent.query_type == "dependencies":
             deps = [r["depLabel"] for r in results]
