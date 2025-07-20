@@ -2,10 +2,204 @@
     <head>
         <meta charset="utf-8">
         
-            <script src="lib/bindings/utils.js"></script>
+            <script>function neighbourhoodHighlight(params) {
+  // console.log("in nieghbourhoodhighlight");
+  allNodes = nodes.get({ returnType: "Object" });
+  // originalNodes = JSON.parse(JSON.stringify(allNodes));
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    highlightActive = true;
+    var i, j;
+    var selectedNode = params.nodes[0];
+    var degrees = 2;
+
+    // mark all nodes as hard to read.
+    for (let nodeId in allNodes) {
+      // nodeColors[nodeId] = allNodes[nodeId].color;
+      allNodes[nodeId].color = "rgba(200,200,200,0.5)";
+      if (allNodes[nodeId].hiddenLabel === undefined) {
+        allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+    var connectedNodes = network.getConnectedNodes(selectedNode);
+    var allConnectedNodes = [];
+
+    // get the second degree nodes
+    for (i = 1; i < degrees; i++) {
+      for (j = 0; j < connectedNodes.length; j++) {
+        allConnectedNodes = allConnectedNodes.concat(
+          network.getConnectedNodes(connectedNodes[j])
+        );
+      }
+    }
+
+    // all second degree nodes get a different color and their label back
+    for (i = 0; i < allConnectedNodes.length; i++) {
+      // allNodes[allConnectedNodes[i]].color = "pink";
+      allNodes[allConnectedNodes[i]].color = "rgba(150,150,150,0.75)";
+      if (allNodes[allConnectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[allConnectedNodes[i]].label =
+          allNodes[allConnectedNodes[i]].hiddenLabel;
+        allNodes[allConnectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // all first degree nodes get their own color and their label back
+    for (i = 0; i < connectedNodes.length; i++) {
+      // allNodes[connectedNodes[i]].color = undefined;
+      allNodes[connectedNodes[i]].color = nodeColors[connectedNodes[i]];
+      if (allNodes[connectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[connectedNodes[i]].label =
+          allNodes[connectedNodes[i]].hiddenLabel;
+        allNodes[connectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // the main node gets its own color and its label back.
+    // allNodes[selectedNode].color = undefined;
+    allNodes[selectedNode].color = nodeColors[selectedNode];
+    if (allNodes[selectedNode].hiddenLabel !== undefined) {
+      allNodes[selectedNode].label = allNodes[selectedNode].hiddenLabel;
+      allNodes[selectedNode].hiddenLabel = undefined;
+    }
+  } else if (highlightActive === true) {
+    // console.log("highlightActive was true");
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      // allNodes[nodeId].color = "purple";
+      allNodes[nodeId].color = nodeColors[nodeId];
+      // delete allNodes[nodeId].color;
+      if (allNodes[nodeId].hiddenLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
+        allNodes[nodeId].hiddenLabel = undefined;
+      }
+    }
+    highlightActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    // console.log("Nothing was selected");
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        // allNodes[nodeId].color = {};
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function filterHighlight(params) {
+  allNodes = nodes.get({ returnType: "Object" });
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    filterActive = true;
+    let selectedNodes = params.nodes;
+
+    // hiding all nodes and saving the label
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = true;
+      if (allNodes[nodeId].savedLabel === undefined) {
+        allNodes[nodeId].savedLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+
+    for (let i=0; i < selectedNodes.length; i++) {
+      allNodes[selectedNodes[i]].hidden = false;
+      if (allNodes[selectedNodes[i]].savedLabel !== undefined) {
+        allNodes[selectedNodes[i]].label = allNodes[selectedNodes[i]].savedLabel;
+        allNodes[selectedNodes[i]].savedLabel = undefined;
+      }
+    }
+
+  } else if (filterActive === true) {
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = false;
+      if (allNodes[nodeId].savedLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].savedLabel;
+        allNodes[nodeId].savedLabel = undefined;
+      }
+    }
+    filterActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function selectNode(nodes) {
+  network.selectNodes(nodes);
+  neighbourhoodHighlight({ nodes: nodes });
+  return nodes;
+}
+
+function selectNodes(nodes) {
+  network.selectNodes(nodes);
+  filterHighlight({nodes: nodes});
+  return nodes;
+}
+
+function highlightFilter(filter) {
+  let selectedNodes = []
+  let selectedProp = filter['property']
+  if (filter['item'] === 'node') {
+    let allNodes = nodes.get({ returnType: "Object" });
+    for (let nodeId in allNodes) {
+      if (allNodes[nodeId][selectedProp] && filter['value'].includes((allNodes[nodeId][selectedProp]).toString())) {
+        selectedNodes.push(nodeId)
+      }
+    }
+  }
+  else if (filter['item'] === 'edge'){
+    let allEdges = edges.get({returnType: 'object'});
+    // check if the selected property exists for selected edge and select the nodes connected to the edge
+    for (let edge in allEdges) {
+      if (allEdges[edge][selectedProp] && filter['value'].includes((allEdges[edge][selectedProp]).toString())) {
+        selectedNodes.push(allEdges[edge]['from'])
+        selectedNodes.push(allEdges[edge]['to'])
+      }
+    }
+  }
+  selectNodes(selectedNodes)
+}</script>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
             <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             
+            
+            
+            
+            
+            
+
         
 <center>
 <h1></h1>
@@ -88,7 +282,7 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-closed-set", "label": "Definition: Closed Set", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Closed Set\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Topology\u003cbr\u003eID: def-closed-set"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-subgroup", "label": "Definition: Subgroup", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Subgroup\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-subgroup"}, {"borderWidth": 3, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-metric-space", "label": "Definition: Metric Space", "shape": "box", "size": 30, "title": "\u003cb\u003eDefinition: Metric Space\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: def-metric-space"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#9C27B0", "font": {"color": "black"}, "id": "ex-euclidean-metric", "label": "Example: Euclidean Metric on \u211d\u207f", "shape": "square", "size": 20, "title": "\u003cb\u003eExample: Euclidean Metric on \u211d\u207f\u003c/b\u003e\u003cbr\u003eType: Example\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: ex-euclidean-metric"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-euclidean-space", "label": "Definition: Euclidean Space", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Euclidean Space\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: def-euclidean-space"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-gcd", "label": "Definition: Greatest Common Divisor", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Greatest Common Divisor\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Number Theory\u003cbr\u003eID: def-gcd"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-combination", "label": "Definition: Combination", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Combination\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Combinatorics\u003cbr\u003eID: def-combination"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-cantor", "label": "Theorem: Cantor\u0027s Theorem", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Cantor\u0027s Theorem\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Logic Set Theory\u003cbr\u003eID: thm-cantor"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-category", "label": "Definition: Category", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Category\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: def-category"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#9C27B0", "font": {"color": "black"}, "id": "ex-integers-addition", "label": "Example: Integers under Addition", "shape": "square", "size": 20, "title": "\u003cb\u003eExample: Integers under Addition\u003c/b\u003e\u003cbr\u003eType: Example\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: ex-integers-addition"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-vector-space", "label": "Definition: Vector Space", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Vector Space\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-vector-space"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#9C27B0", "font": {"color": "black"}, "id": "ex-closed-interval-compact", "label": "Example: Closed Interval is Compact", "shape": "square", "size": 20, "title": "\u003cb\u003eExample: Closed Interval is Compact\u003c/b\u003e\u003cbr\u003eType: Example\u003cbr\u003eDomain: Topology\u003cbr\u003eID: ex-closed-interval-compact"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-power-set", "label": "Definition: Power Set", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Power Set\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Logic Set Theory\u003cbr\u003eID: def-power-set"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-heine-borel", "label": "Theorem: Heine-Borel Theorem", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Heine-Borel Theorem\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Topology\u003cbr\u003eID: thm-heine-borel"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-set", "label": "Definition: Set", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Set\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Logic Set Theory\u003cbr\u003eID: def-set"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-pigeonhole-principle", "label": "Theorem: Pigeonhole Principle", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Pigeonhole Principle\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Combinatorics\u003cbr\u003eID: thm-pigeonhole-principle"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#9C27B0", "font": {"color": "black"}, "id": "ex-set-category", "label": "Example: The Category of Sets", "shape": "square", "size": 20, "title": "\u003cb\u003eExample: The Category of Sets\u003c/b\u003e\u003cbr\u003eType: Example\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: ex-set-category"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-topological-space", "label": "Definition: Topological Space", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Topological Space\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Topology\u003cbr\u003eID: def-topological-space"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-probability-space", "label": "Definition: Probability Space", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Probability Space\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Probability Statistics\u003cbr\u003eID: def-probability-space"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-compact", "label": "Definition: Compact Space", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Compact Space\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Topology\u003cbr\u003eID: def-compact"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-binary-operation", "label": "Definition: Binary Operation", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Binary Operation\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-binary-operation"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-permutation", "label": "Definition: Permutation", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Permutation\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Combinatorics\u003cbr\u003eID: def-permutation"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-pythagorean", "label": "Theorem: Pythagorean Theorem", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Pythagorean Theorem\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: thm-pythagorean"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-ring", "label": "Definition: Ring", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Ring\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-ring"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-group", "label": "Definition: Group", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Group\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-group"}]);
+                  nodes = new vis.DataSet([{"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-set", "label": "Definition: Set", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Set\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Logic Set Theory\u003cbr\u003eID: def-set"}, {"borderWidth": 3, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-metric-space", "label": "Definition: Metric Space", "shape": "box", "size": 30, "title": "\u003cb\u003eDefinition: Metric Space\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: def-metric-space"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-subgroup", "label": "Definition: Subgroup", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Subgroup\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-subgroup"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-euclidean-space", "label": "Definition: Euclidean Space", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Euclidean Space\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: def-euclidean-space"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-closed-set", "label": "Definition: Closed Set", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Closed Set\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Topology\u003cbr\u003eID: def-closed-set"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-power-set", "label": "Definition: Power Set", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Power Set\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Logic Set Theory\u003cbr\u003eID: def-power-set"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-compact", "label": "Definition: Compact Space", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Compact Space\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Topology\u003cbr\u003eID: def-compact"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#9C27B0", "font": {"color": "black"}, "id": "ex-integers-addition", "label": "Example: Integers under Addition", "shape": "square", "size": 20, "title": "\u003cb\u003eExample: Integers under Addition\u003c/b\u003e\u003cbr\u003eType: Example\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: ex-integers-addition"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-group", "label": "Definition: Group", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Group\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-group"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-ring", "label": "Definition: Ring", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Ring\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-ring"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-heine-borel", "label": "Theorem: Heine-Borel Theorem", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Heine-Borel Theorem\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Topology\u003cbr\u003eID: thm-heine-borel"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#9C27B0", "font": {"color": "black"}, "id": "ex-closed-interval-compact", "label": "Example: Closed Interval is Compact", "shape": "square", "size": 20, "title": "\u003cb\u003eExample: Closed Interval is Compact\u003c/b\u003e\u003cbr\u003eType: Example\u003cbr\u003eDomain: Topology\u003cbr\u003eID: ex-closed-interval-compact"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#9C27B0", "font": {"color": "black"}, "id": "ex-set-category", "label": "Example: The Category of Sets", "shape": "square", "size": 20, "title": "\u003cb\u003eExample: The Category of Sets\u003c/b\u003e\u003cbr\u003eType: Example\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: ex-set-category"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-permutation", "label": "Definition: Permutation", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Permutation\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Combinatorics\u003cbr\u003eID: def-permutation"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-category", "label": "Definition: Category", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Category\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: def-category"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-topological-space", "label": "Definition: Topological Space", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Topological Space\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Topology\u003cbr\u003eID: def-topological-space"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-vector-space", "label": "Definition: Vector Space", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Vector Space\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-vector-space"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-pythagorean", "label": "Theorem: Pythagorean Theorem", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Pythagorean Theorem\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: thm-pythagorean"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-binary-operation", "label": "Definition: Binary Operation", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Binary Operation\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-binary-operation"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-pigeonhole-principle", "label": "Theorem: Pigeonhole Principle", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Pigeonhole Principle\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Combinatorics\u003cbr\u003eID: thm-pigeonhole-principle"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-combination", "label": "Definition: Combination", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Combination\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Combinatorics\u003cbr\u003eID: def-combination"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-cantor", "label": "Theorem: Cantor\u0027s Theorem", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Cantor\u0027s Theorem\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Logic Set Theory\u003cbr\u003eID: thm-cantor"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-probability-space", "label": "Definition: Probability Space", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Probability Space\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Probability Statistics\u003cbr\u003eID: def-probability-space"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-gcd", "label": "Definition: Greatest Common Divisor", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Greatest Common Divisor\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Number Theory\u003cbr\u003eID: def-gcd"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#9C27B0", "font": {"color": "black"}, "id": "ex-euclidean-metric", "label": "Example: Euclidean Metric on \u211d\u207f", "shape": "square", "size": 20, "title": "\u003cb\u003eExample: Euclidean Metric on \u211d\u207f\u003c/b\u003e\u003cbr\u003eType: Example\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: ex-euclidean-metric"}]);
                   edges = new vis.DataSet([{"arrows": "to", "color": "#999999", "from": "def-metric-space", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-euclidean-metric", "title": "uses", "to": "def-metric-space", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-euclidean-space", "title": "uses", "to": "def-metric-space", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-heine-borel", "title": "uses", "to": "def-metric-space", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-euclidean-metric", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-set-category", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-cantor", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-pigeonhole-principle", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-combination", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-gcd", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-permutation", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-power-set", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-integers-addition", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-closed-set", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-compact", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-probability-space", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-subgroup", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-metric-space", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-ring", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-category", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-binary-operation", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-topological-space", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-group", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-euclidean-metric", "title": "uses", "to": "def-metric-space", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-euclidean-metric", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-euclidean-space", "title": "uses", "to": "def-metric-space", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-euclidean-space", "title": "uses", "to": "def-vector-space", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-pythagorean", "title": "uses", "to": "def-euclidean-space", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-heine-borel", "title": "uses", "to": "def-closed-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-heine-borel", "title": "uses", "to": "def-compact", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-heine-borel", "title": "uses", "to": "def-metric-space", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-closed-interval-compact", "title": "uses", "to": "thm-heine-borel", "width": 2}]);
 
                   nodeColors = {};
