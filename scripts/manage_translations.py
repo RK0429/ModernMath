@@ -5,6 +5,7 @@ Tracks and manages translation status between languages.
 """
 
 import argparse
+import copy
 import hashlib
 import sys
 from datetime import datetime, timezone
@@ -99,9 +100,12 @@ def load_status_file(status_file: Path) -> Dict[str, Any]:
         return yaml.safe_load(f) or {}
 
 
-def save_status_file(status_file: Path, data: Dict[str, Any]) -> None:
+def save_status_file(
+    status_file: Path, data: Dict[str, Any], update_timestamp: bool = True
+) -> None:
     """Save the translation status YAML file."""
-    data["metadata"]["last_updated"] = datetime.now(timezone.utc).isoformat()
+    if update_timestamp:
+        data["metadata"]["last_updated"] = datetime.now(timezone.utc).isoformat()
 
     with open(status_file, "w", encoding="utf-8") as f:
         yaml.dump(data, f, default_flow_style=False, sort_keys=False)
@@ -119,6 +123,9 @@ def update_translation_status(base_path: Path, status_file: Path) -> None:
 
     # Load current status
     status_data = load_status_file(status_file)
+    # Create a deep copy to compare later
+    original_data = copy.deepcopy(status_data)
+
     source_lang = status_data["metadata"]["source_language"]
     target_langs = status_data["metadata"]["target_languages"]
 
@@ -160,16 +167,35 @@ def update_translation_status(base_path: Path, status_file: Path) -> None:
                         trans_info["status"] = "needs_update"
                 elif trans_info.get("status") != "in_progress":
                     # Assume completed if file exists and not marked otherwise
-                    trans_info["status"] = "completed"
-                    trans_info["translated_hash"] = source_file["hash"]
-                    trans_info["translated_at"] = datetime.now(timezone.utc).isoformat()
+                    # Only update if status is actually changing
+                    if trans_info.get("status") != "completed":
+                        trans_info["status"] = "completed"
+                        trans_info["translated_hash"] = source_file["hash"]
+                        trans_info["translated_at"] = datetime.now(timezone.utc).isoformat()
             else:
                 # Translation doesn't exist
-                trans_info["status"] = "not_started"
+                if trans_info.get("status") != "not_started":
+                    trans_info["status"] = "not_started"
 
-    # Save updated status
-    save_status_file(status_file, status_data)
-    console.print("[green]Translation status updated successfully![/green]")
+    # Only save if there are actual changes (excluding the timestamp)
+    # Remove timestamps for comparison
+    def remove_timestamps(data: Dict[str, Any]) -> Dict[str, Any]:
+        data_copy = copy.deepcopy(data)
+        if "metadata" in data_copy and "last_updated" in data_copy["metadata"]:
+            del data_copy["metadata"]["last_updated"]
+        return data_copy
+
+    # Check if there are any actual changes
+    original_without_timestamp = remove_timestamps(original_data)
+    current_without_timestamp = remove_timestamps(status_data)
+
+    if original_without_timestamp != current_without_timestamp:
+        # There are actual changes, save with updated timestamp
+        save_status_file(status_file, status_data, update_timestamp=True)
+        console.print("[green]Translation status updated successfully![/green]")
+    else:
+        # No changes, skip saving to avoid timestamp update
+        console.print("[yellow]No changes detected in translation status.[/yellow]")
 
 
 def generate_report(status_file: Path, report_format: str = "summary") -> None:
