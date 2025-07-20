@@ -3,37 +3,48 @@
 ## Summary
 
 - Total nodes: 97
-- Formally verified: 3
-- Coverage: 3.1%
+- Formally verified: 18
+- Coverage: 18.6%
 
 ## Coverage by Type
 
-- Definition: 3/61 verified
+- Definition: 18/61 verified
 - Theorem: 0/23 verified
 - Example: 0/13 verified
 - Axiom: 0/0 verified
 
 ## Nodes with Formal Proofs
 
+- def-basis
 - def-binary-operation
+- def-closed-set
+- def-compact
+- def-connected
+- def-field
 - def-group
+- def-hausdorff
+- def-image
+- def-kernel
+- def-linear-independence
+- def-linear-transformation
+- def-open-set
+- def-ring
+- def-span
 - def-subgroup
+- def-topological-space
+- def-vector-space
 
 ## Nodes without Formal Proofs
 
 - def-angle
 - def-associativity
-- def-basis
 - def-binomial-coefficient
 - def-category
-- def-closed-set
 - def-combination
 - def-commutativity
-- def-compact
 - def-complete-metric-space
 - def-composition
 - def-conditional-probability
-- def-connected
 - def-continuity
 - def-convergence
 - def-derivative
@@ -41,27 +52,20 @@
 - def-euclidean-space
 - def-event
 - def-expectation
-- def-field
 - def-functor
 - def-gcd
-- def-hausdorff
 - def-homomorphism
 - def-identity-element
-- def-image
 - def-integral
 - def-intersection
 - def-inverse-element
 - def-isomorphism
-- def-kernel
 - def-limit
 - def-line
-- def-linear-independence
-- def-linear-transformation
 - def-matrix
 - def-metric-space
 - def-morphism
 - def-natural-transformation
-- def-open-set
 - def-parallel
 - def-permutation
 - def-point
@@ -69,16 +73,12 @@
 - def-prime
 - def-probability-space
 - def-random-variable
-- def-ring
 - def-sample-space
 - def-sequence
 - def-set
-- def-span
 - def-subset
-- def-topological-space
 - def-triangle
 - def-union
-- def-vector-space
 - ex-closed-interval-compact
 - ex-euclidean-metric
 - ex-even-integers-subgroup

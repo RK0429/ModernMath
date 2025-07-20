@@ -51,6 +51,12 @@ jobs:
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
 
+    # Step 2d: Install Google Chrome
+    - name: Install Google Chrome
+      uses: browser-actions/setup-chrome@v2
+      with:
+        install-dependencies: true
+
     # Step 3: Install Quarto
     - name: Set up Quarto
       uses: quarto-dev/quarto-actions/setup@v2
@@ -156,6 +162,8 @@ jobs:
 
     # Step 7: Run Quarto render
     - name: Render Quarto site
+      env:
+        QUARTO_CHROMIUM: "/usr/bin/google-chrome-stable"
       run: |
         quarto render
 
