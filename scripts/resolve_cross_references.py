@@ -6,12 +6,13 @@ This script converts @-style cross-references (e.g., @def-group) to proper
 relative markdown links to eliminate Quarto cross-reference warnings.
 """
 
-import re
-from pathlib import Path
-from typing import Dict, List, Tuple, Optional
-import yaml
 import argparse
+import re
 import sys
+from pathlib import Path
+from typing import Dict, List, Optional, Tuple
+
+import yaml
 
 
 def load_node_index(content_dir: Path) -> Dict[str, Path]:
@@ -94,15 +95,23 @@ def calculate_relative_path(from_file: Path, to_file: Path) -> str:
         # Get the directory of the source file
         from_dir = from_file.parent
 
-        # Calculate relative path
-        rel_path = to_file.relative_to(from_dir.parent.parent / "content")
+        # Calculate relative path from source directory to target file
+        # This handles both same-directory and cross-directory references
+        rel_path = Path("..") / to_file.parent.name / to_file.name
+
+        # For files in the same directory, simplify the path
+        if from_dir == to_file.parent:
+            rel_path = Path(to_file.name)
 
         # Convert to string with forward slashes
         return str(rel_path).replace("\\", "/")
 
     except ValueError:
-        # If files are in completely different trees, use absolute path from content
-        return str(to_file.relative_to(to_file.parent.parent / "content")).replace("\\", "/")
+        # Fallback: calculate relative path using os.path.relpath
+        import os
+
+        rel_path = os.path.relpath(to_file, from_dir)
+        return rel_path.replace("\\", "/")
 
 
 def get_node_title(file_path: Path) -> Optional[str]:
