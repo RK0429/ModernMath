@@ -519,3 +519,8 @@ This comprehensive To-Do list provides a complete roadmap for building the Mathe
   - Fixed incorrect GitHub repository links in navbar and about page
   - Resolved cross-reference warnings during Quarto build
 - **Outstanding**: Need to commit and push changes to trigger new deployment with visualization files
+
+### 2025-07-20 (Update)
+
+- **Deployment Status**: Triggering new deployment to include visualization files
+- **Verification**: Website is accessible but visualization files need to be deployed via GitHub Actions workflow
