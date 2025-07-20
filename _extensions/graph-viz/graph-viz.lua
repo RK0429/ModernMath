@@ -176,8 +176,25 @@ async function loadAndRenderGraph() {
   try {
     // Calculate relative path based on current location
     const currentPath = window.location.pathname;
-    const depth = (currentPath.match(/\//g) || []).length - 1;
-    const basePath = '../'.repeat(depth);
+
+    // Check if we're in a GitHub Pages subdirectory (e.g., /ModernMath/)
+    const pathParts = currentPath.split('/').filter(p => p);
+    let basePath = '';
+
+    // For GitHub Pages with project name subdirectory
+    if (window.location.hostname.includes('github.io') && pathParts.length > 0) {
+      // Find the index of the project name (first part of path)
+      const projectName = pathParts[0];
+      const currentDepth = pathParts.length - 1; // -1 for the HTML file
+
+      // Go up to the project root
+      basePath = '../'.repeat(currentDepth);
+    } else {
+      // For local development or root deployment
+      const depth = (currentPath.match(/\//g) || []).length - 1;
+      basePath = '../'.repeat(depth);
+    }
+
     const response = await fetch(basePath + 'output/d3-data/%s.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');

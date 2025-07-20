@@ -221,7 +221,8 @@ def main() -> int:
     print("=" * 50)
     print(f"Summary: Modified {modified_count} out of {len(qmd_files)} files")
 
-    return 0 if modified_count > 0 else 1
+    # Always return success - having no changes is not an error
+    return 0
 
 
 if __name__ == "__main__":

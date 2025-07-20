@@ -360,7 +360,23 @@ The project uses a hash-based change detection system to track translation statu
 - **Quarto Extension**: Translation status badges use the `_extensions/translation-status/` extension with Lua shortcodes (e.g., `{{< translation-status completed >}}`)
 - **Testing Pattern**: Dynamic imports in tests use `# pylint: disable=import-error,wrong-import-position` to handle script imports
 
+#### Pre-commit Hook Timestamp Updates
+
+The translation management system avoids unnecessary file modifications:
+
+- **Issue**: Pre-commit hooks can't commit `translations-status.yml` if it's always updated with new timestamps
+- **Solution**: `manage_translations.py` compares data structures (excluding timestamps) before saving
+- **Implementation**:
+  - `save_status_file()` accepts optional `update_timestamp` parameter
+  - Only updates `last_updated` and `translated_at` when content actually changes
+  - Uses deep copy comparison excluding timestamp fields
+- **Result**: Pre-commit hooks only modify files when there are real translation status changes
+
 ## Critical Implementation Details
+
+### CI/CD Script Exit Codes
+
+**Important**: Scripts in the CI/CD pipeline should return exit code 0 when no changes are needed. In CI/CD contexts, "no changes required" is a normal success case, not an error. For example, `add_mermaid_links.py` correctly returns 0 whether files were modified or not.
 
 ### Cross-Reference Format
 
