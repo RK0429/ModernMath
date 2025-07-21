@@ -46,11 +46,17 @@
 
 <http://modernmath.org/concepts/convergence> ns1:hasTranslation <http://modernmath.org/concepts/convergence_ja> .
 
+<http://modernmath.org/concepts/coset> ns1:hasTranslation <http://modernmath.org/concepts/coset_ja> .
+
+<http://modernmath.org/concepts/cyclic-group> ns1:hasTranslation <http://modernmath.org/concepts/cyclic-group_ja> .
+
 <http://modernmath.org/concepts/de-morgan> ns1:hasTranslation <http://modernmath.org/concepts/de-morgan_ja> .
 
 <http://modernmath.org/concepts/derivative> ns1:hasTranslation <http://modernmath.org/concepts/derivative_ja> .
 
 <http://modernmath.org/concepts/distributivity> ns1:hasTranslation <http://modernmath.org/concepts/distributivity_ja> .
+
+<http://modernmath.org/concepts/eigenvalue-eigenvector> ns1:hasTranslation <http://modernmath.org/concepts/eigenvalue-eigenvector_ja> .
 
 <http://modernmath.org/concepts/euclidean-algorithm> ns1:hasTranslation <http://modernmath.org/concepts/euclidean-algorithm_ja> .
 
@@ -639,11 +645,17 @@ ns1:hasTranslation a rdf:Property ;
 
 <http://modernmath.org/concepts/convergence_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/coset_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/cyclic-group_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/de-morgan_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/derivative_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/distributivity_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/eigenvalue-eigenvector_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/euclidean-algorithm_ja> ns1:language "ja" .
 
@@ -1087,17 +1099,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
 
-<https://mathwiki.org/resource/ex-even-integers-subgroup> a mymath:Example ;
-    rdfs:label "Example: Even Integers Form a Subgroup"@en,
-        "例: 偶数整数は部分群を成す"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-group>,
-        <https://mathwiki.org/resource/def-normal-subgroup>,
-        <https://mathwiki.org/resource/def-subgroup>,
-        <https://mathwiki.org/resource/ex-integers-addition> .
-
 <https://mathwiki.org/resource/ex-finite-field> a mymath:Example ;
     rdfs:label "Example: Finite Field"@en,
         "例: 有限体"@en ;
@@ -1228,16 +1229,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
 
-<https://mathwiki.org/resource/def-identity-element> a mymath:Definition ;
-    rdfs:label "Definition: Identity Element"@en,
-        "定義: 単位元"@en ;
-    rdfs:comment "An **identity element** for a [Binary Operation](def-binary-operation.qmd) is an element that leaves any other element unchanged when combined with it."@en,
-        "[二項演算](def-binary-operation.qmd)に対する**単位元**（たんいげん）とは、他の任意の元と結合したときにその元を変化させない元のことである。"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-binary-operation> .
-
 <https://mathwiki.org/resource/def-linear-independence> a mymath:Definition ;
     rdfs:label "Definition: Linear Independence"@en,
         "定義: 線形独立"@en ;
@@ -1281,15 +1272,27 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
 
-<https://mathwiki.org/resource/thm-lagrange> a mymath:Theorem ;
-    rdfs:label "Theorem: Lagrange's Theorem"@en,
-        "定理: ラグランジュの定理"@en ;
+<https://mathwiki.org/resource/ex-even-integers-subgroup> a mymath:Example ;
+    rdfs:label "Example: Even Integers Form a Subgroup"@en,
+        "例: 偶数整数は部分群を成す"@en ;
     mymath:hasDomain "Algebra",
         "代数学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-group>,
-        <https://mathwiki.org/resource/def-quotient-group>,
-        <https://mathwiki.org/resource/def-subgroup> .
+    mymath:uses <https://mathwiki.org/resource/def-coset>,
+        <https://mathwiki.org/resource/def-group>,
+        <https://mathwiki.org/resource/def-normal-subgroup>,
+        <https://mathwiki.org/resource/def-subgroup>,
+        <https://mathwiki.org/resource/ex-integers-addition> .
+
+<https://mathwiki.org/resource/def-identity-element> a mymath:Definition ;
+    rdfs:label "Definition: Identity Element"@en,
+        "定義: 単位元"@en ;
+    rdfs:comment "An **identity element** for a [Binary Operation](def-binary-operation.qmd) is an element that leaves any other element unchanged when combined with it."@en,
+        "[二項演算](def-binary-operation.qmd)に対する**単位元**（たんいげん）とは、他の任意の元と結合したときにその元を変化させない元のことである。"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-binary-operation> .
 
 <https://mathwiki.org/resource/def-probability-space> a mymath:Definition ;
     rdfs:label "Definition: Probability Space"@en,
@@ -1298,27 +1301,6 @@ ns1:hasTranslation a rdf:Property ;
         "確率・統計学" ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
-
-<https://mathwiki.org/resource/ex-integers-addition> a mymath:Example ;
-    rdfs:label "Example: Integers under Addition"@en,
-        "例: 加法における整数"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
-        <https://mathwiki.org/resource/def-group>,
-        <https://mathwiki.org/resource/def-set> .
-
-<https://mathwiki.org/resource/ex-quotient-integers-mod-n> a mymath:Example ;
-    rdfs:label "Example: Integers Modulo n"@en,
-        "例: 整数の n による剰余"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-group>,
-        <https://mathwiki.org/resource/def-normal-subgroup>,
-        <https://mathwiki.org/resource/def-quotient-group>,
-        <https://mathwiki.org/resource/ex-integers-addition> .
 
 <https://mathwiki.org/resource/def-homomorphism> a mymath:Definition ;
     rdfs:label "Definition: Group Homomorphism"@en,
@@ -1364,6 +1346,29 @@ ns1:hasTranslation a rdf:Property ;
         "数論" ;
     mymath:hasStatus "complete" .
 
+<https://mathwiki.org/resource/ex-integers-addition> a mymath:Example ;
+    rdfs:label "Example: Integers under Addition"@en,
+        "例: 加法における整数"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
+        <https://mathwiki.org/resource/def-cyclic-group>,
+        <https://mathwiki.org/resource/def-group>,
+        <https://mathwiki.org/resource/def-set> .
+
+<https://mathwiki.org/resource/thm-lagrange> a mymath:Theorem ;
+    rdfs:label "Theorem: Lagrange's Theorem"@en,
+        "定理: ラグランジュの定理"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-coset>,
+        <https://mathwiki.org/resource/def-cyclic-group>,
+        <https://mathwiki.org/resource/def-group>,
+        <https://mathwiki.org/resource/def-quotient-group>,
+        <https://mathwiki.org/resource/def-subgroup> .
+
 <https://mathwiki.org/resource/def-continuity> a mymath:Definition ;
     rdfs:label "Definition: Continuity"@en,
         "定義: 連続性"@en ;
@@ -1371,6 +1376,22 @@ ns1:hasTranslation a rdf:Property ;
         "解析学" ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-limit> .
+
+<https://mathwiki.org/resource/def-coset> a mymath:Definition ;
+    rdfs:label "Definition: Coset"@en,
+        "定義: 剰余類"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasLeanId "Mathlib.GroupTheory.Coset" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
+        <https://mathwiki.org/resource/def-group>,
+        <https://mathwiki.org/resource/def-normal-subgroup>,
+        <https://mathwiki.org/resource/def-quotient-group>,
+        <https://mathwiki.org/resource/def-subgroup>,
+        <https://mathwiki.org/resource/ex-even-integers-subgroup>,
+        <https://mathwiki.org/resource/ex-quotient-integers-mod-n>,
+        <https://mathwiki.org/resource/thm-lagrange> .
 
 <https://mathwiki.org/resource/def-open-set> a mymath:Definition ;
     rdfs:label "Definition: Open Set"@en,
@@ -1392,18 +1413,30 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-group>,
         <https://mathwiki.org/resource/def-set> .
 
-<https://mathwiki.org/resource/def-subgroup> a mymath:Definition ;
-    rdfs:label "Definition: Subgroup"@en,
-        "定義：部分群"@en ;
+<https://mathwiki.org/resource/ex-quotient-integers-mod-n> a mymath:Example ;
+    rdfs:label "Example: Integers Modulo n"@en,
+        "例: 整数の n による剰余"@en ;
     mymath:hasDomain "Algebra",
         "代数学" ;
-    mymath:hasLeanId "Mathlib.Algebra.Group.Subgroup.Basic.Subgroup" ;
     mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Group.Subgroup.Basic.Subgroup> ;
-    mymath:uses <https://mathwiki.org/resource/def-group>,
+    mymath:uses <https://mathwiki.org/resource/def-coset>,
+        <https://mathwiki.org/resource/def-cyclic-group>,
+        <https://mathwiki.org/resource/def-group>,
         <https://mathwiki.org/resource/def-normal-subgroup>,
         <https://mathwiki.org/resource/def-quotient-group>,
-        <https://mathwiki.org/resource/def-set>,
+        <https://mathwiki.org/resource/ex-integers-addition> .
+
+<https://mathwiki.org/resource/def-cyclic-group> a mymath:Definition ;
+    rdfs:label "Definition: Cyclic Group"@en,
+        "定義: 巡回群"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-group>,
+        <https://mathwiki.org/resource/def-identity-element>,
+        <https://mathwiki.org/resource/def-subgroup>,
+        <https://mathwiki.org/resource/ex-integers-addition>,
+        <https://mathwiki.org/resource/ex-quotient-integers-mod-n>,
         <https://mathwiki.org/resource/thm-lagrange> .
 
 <https://mathwiki.org/resource/def-ideal> a mymath:Definition ;
@@ -1443,19 +1476,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
 
-<https://mathwiki.org/resource/def-normal-subgroup> a mymath:Definition ;
-    rdfs:label "Definition: Normal Subgroup"@en,
-        "定義: 正規部分群"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasLeanId "None" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-group>,
-        <https://mathwiki.org/resource/def-homomorphism>,
-        <https://mathwiki.org/resource/def-quotient-group>,
-        <https://mathwiki.org/resource/def-subgroup>,
-        <https://mathwiki.org/resource/thm-lagrange> .
-
 <https://mathwiki.org/resource/def-category> a mymath:Definition ;
     rdfs:label "Definition: Category"@en,
         "定義: 圏"@en ;
@@ -1463,6 +1483,35 @@ ns1:hasTranslation a rdf:Property ;
         "圏論" ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
+
+<https://mathwiki.org/resource/def-normal-subgroup> a mymath:Definition ;
+    rdfs:label "Definition: Normal Subgroup"@en,
+        "定義: 正規部分群"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasLeanId "None" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-coset>,
+        <https://mathwiki.org/resource/def-group>,
+        <https://mathwiki.org/resource/def-homomorphism>,
+        <https://mathwiki.org/resource/def-quotient-group>,
+        <https://mathwiki.org/resource/def-subgroup>,
+        <https://mathwiki.org/resource/thm-lagrange> .
+
+<https://mathwiki.org/resource/def-subgroup> a mymath:Definition ;
+    rdfs:label "Definition: Subgroup"@en,
+        "定義：部分群"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasLeanId "Mathlib.Algebra.Group.Subgroup.Basic.Subgroup" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Group.Subgroup.Basic.Subgroup> ;
+    mymath:uses <https://mathwiki.org/resource/def-cyclic-group>,
+        <https://mathwiki.org/resource/def-group>,
+        <https://mathwiki.org/resource/def-normal-subgroup>,
+        <https://mathwiki.org/resource/def-quotient-group>,
+        <https://mathwiki.org/resource/def-set>,
+        <https://mathwiki.org/resource/thm-lagrange> .
 
 <https://mathwiki.org/resource/def-topological-space> a mymath:Definition ;
     rdfs:label "Definition: Topological Space"@en,
@@ -1480,10 +1529,20 @@ ns1:hasTranslation a rdf:Property ;
         "代数学" ;
     mymath:hasLeanId "Mathlib.GroupTheory.QuotientGroup" ;
     mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-group>,
+    mymath:uses <https://mathwiki.org/resource/def-coset>,
+        <https://mathwiki.org/resource/def-cyclic-group>,
+        <https://mathwiki.org/resource/def-group>,
         <https://mathwiki.org/resource/def-ideal>,
         <https://mathwiki.org/resource/def-normal-subgroup>,
         <https://mathwiki.org/resource/def-subgroup> .
+
+<https://mathwiki.org/resource/def-vector-space> a mymath:Definition ;
+    rdfs:label "Definition: Vector Space"@en,
+        "定義: ベクトル空間"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.Basic.Module> .
 
 <https://mathwiki.org/resource/def-binary-operation> a mymath:Definition ;
     rdfs:label "Definition: Binary Operation"@en,
@@ -1494,14 +1553,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/MathKnowledgeGraph.Algebra.BinaryOp> ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
-
-<https://mathwiki.org/resource/def-vector-space> a mymath:Definition ;
-    rdfs:label "Definition: Vector Space"@en,
-        "定義: ベクトル空間"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.Basic.Module> .
 
 <https://mathwiki.org/resource/def-group> a mymath:Definition ;
     rdfs:label "Definition: Group"@en,
@@ -1515,6 +1566,7 @@ ns1:hasTranslation a rdf:Property ;
     mymath:uses <https://mathwiki.org/resource/def-associativity>,
         <https://mathwiki.org/resource/def-binary-operation>,
         <https://mathwiki.org/resource/def-commutativity>,
+        <https://mathwiki.org/resource/def-cyclic-group>,
         <https://mathwiki.org/resource/def-homomorphism>,
         <https://mathwiki.org/resource/def-identity-element>,
         <https://mathwiki.org/resource/def-inverse-element>,

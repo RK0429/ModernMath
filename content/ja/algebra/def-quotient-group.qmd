@@ -7,6 +7,7 @@ requires:
 - def-subgroup
 - def-ideal
 - def-cyclic-group
+- def-coset
 status: complete
 title: '定義: 商群'
 translation_of: ../../en/algebra/def-quotient-group.qmd
@@ -18,15 +19,15 @@ type: Definition
 
 # 定義: 商群 {#def-quotient-group}
 
-**商群**（**剰余群**とも呼ばれる）は、[群](def-group.qmd)を[正規部分群](def-normal-subgroup.qmd)の剰余類に分割することによって形成される[群](def-group.qmd)です。
+**商群**（**剰余群**とも呼ばれる）は、[群](def-group.qmd)を[正規部分群](def-normal-subgroup.qmd)の[剰余類](def-coset.qmd)に分割することによって形成される[群](def-group.qmd)です。
 
 ## 形式的定義
 
-$G$ を群、$N \triangleleft G$ を正規部分群とします。$G$ の $N$ による**商群**（「$G$ を $N$ で割ったもの」と読む）$G/N$ は、$G$ における $N$ のすべての左剰余類の集合です：
+$G$ を群、$N \triangleleft G$ を正規部分群とします。$G$ の $N$ による**商群**（「$G$ を $N$ で割ったもの」と読む）$G/N$ は、$G$ における $N$ のすべての左[剰余類](def-coset.qmd)の集合です：
 
 $$G/N = \{gN : g \in G\}$$
 
-ここで $gN = \{gn : n \in N\}$ は $g$ を含む $N$ の左剰余類です。
+ここで $gN = \{gn : n \in N\}$ は $g$ を含む $N$ の左[剰余類](def-coset.qmd)です。
 
 ## 群構造
 
@@ -43,7 +44,7 @@ $$(gN) \cdot (hN) = (gh)N$$
 2. **結合律**: $G$ の結合律から継承されます：
    $$((gN)(hN))(kN) = (gh)N \cdot kN = ((gh)k)N = (g(hk))N = gN \cdot (hk)N = (gN)((hN)(kN))$$
 
-3. **単位元**: 剰余類 $eN = N$ が単位元として機能します：
+3. **単位元**: [剰余類](def-coset.qmd) $eN = N$ が単位元として機能します：
    $$(gN) \cdot N = (gN) \cdot (eN) = (ge)N = gN$$
 
 4. **逆元**: 各 $gN \in G/N$ に対して、逆元は $(g^{-1})N$ です：
@@ -73,7 +74,7 @@ $$\ker(\pi) = N$$
 
 ### 1. 整数の n による剰余
 
-商群 $\mathbb{Z}/n\mathbb{Z}$ は $n$ を法とする剰余類から構成されます：
+商群 $\mathbb{Z}/n\mathbb{Z}$ は $n$ を法とする[剰余類](def-coset.qmd)から構成されます：
 $$\mathbb{Z}/n\mathbb{Z} = \{0 + n\mathbb{Z}, 1 + n\mathbb{Z}, ..., (n-1) + n\mathbb{Z}\}$$
 
 これは位数 $n$ の[巡回群](def-cyclic-group.qmd)で、しばしば $\mathbb{Z}_n$ または $C_n$ と表記されます。
@@ -81,8 +82,8 @@ $$\mathbb{Z}/n\mathbb{Z} = \{0 + n\mathbb{Z}, 1 + n\mathbb{Z}, ..., (n-1) + n\ma
 ### 2. 円周群
 
 商 $\mathbb{R}/\mathbb{Z}$ は円周群 $S^1$ と同一視できます：
-- 要素は $x \in \mathbb{R}$ に対する剰余類 $x + \mathbb{Z}$
-- 二つの実数 $x, y$ が同じ剰余類に属する ⟺ $x - y \in \mathbb{Z}$
+- 要素は $x \in \mathbb{R}$ に対する[剰余類](def-coset.qmd) $x + \mathbb{Z}$
+- 二つの実数 $x, y$ が同じ[剰余類](def-coset.qmd)に属する ⟺ $x - y \in \mathbb{Z}$
 
 ### 3. 中心による商
 
