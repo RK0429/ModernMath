@@ -22,6 +22,7 @@ translations:
 
 ## インタラクティブ検索
 
+```{=html}
 <div id="search-container" style="margin: 2em 0;">
   <div style="display: flex; gap: 1em; margin-bottom: 1em;">
     <input type="text" id="search-input" placeholder="数学的概念を検索..."
@@ -40,8 +41,18 @@ translations:
 const API_BASE = 'http://localhost:5001/api';
 let searchTimeout = null;
 
-// デバウンシング付き検索入力
-document.getElementById('search-input').addEventListener('input', function(e) {
+// DOMの準備を待つ
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('search-input');
+  const searchButton = document.getElementById('search-button');
+
+  if (!searchInput || !searchButton) {
+    console.error('検索要素が見つかりません');
+    return;
+  }
+
+  // デバウンシング付き検索入力
+  searchInput.addEventListener('input', function(e) {
   clearTimeout(searchTimeout);
   const query = e.target.value.trim();
 
@@ -52,14 +63,15 @@ document.getElementById('search-input').addEventListener('input', function(e) {
   } else {
     document.getElementById('suggestions').style.display = 'none';
   }
-});
+  });
 
-// エンターキーで検索
-document.getElementById('search-input').addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') {
-    performSearch();
-  }
-});
+  // エンターキーで検索
+  searchInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      performSearch();
+    }
+  });
+}); // DOMContentLoadedの終了
 
 // 検索サジェストを取得
 async function fetchSuggestions(query) {
@@ -114,7 +126,17 @@ async function performSearch() {
     }
   } catch (error) {
     console.error('検索に失敗しました:', error);
-    resultsDiv.innerHTML = '<p style="color: red;">検索に失敗しました。APIが実行されているか確認してください。</p>';
+    resultsDiv.innerHTML = `
+      <div style="border: 1px solid #f0ad4e; background: #fcf8e3; padding: 1em; border-radius: 4px;">
+        <h4 style="margin-top: 0; color: #8a6d3b;">検索サービスが利用できません</h4>
+        <p style="margin-bottom: 0.5em; color: #8a6d3b;">検索APIは現在利用できません。これは通常、次の場合に発生します：</p>
+        <ul style="margin: 0.5em 0; padding-left: 1.5em; color: #8a6d3b;">
+          <li>APIサーバーが実行されていない（ローカルセットアップが必要）</li>
+          <li>GitHub Pagesでこのページを表示している（APIはローカルでのみ実行）</li>
+        </ul>
+        <p style="margin-bottom: 0; color: #8a6d3b;">検索機能を使用するには、APIをローカルで実行するか、ナビゲーションメニューを使用してコンテンツを閲覧してください。</p>
+      </div>
+    `;
   }
 }
 
@@ -209,6 +231,7 @@ async function loadRelated(nodeId) {
   }
 }
 </script>
+```
 
 ## 検索例
 

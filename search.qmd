@@ -19,6 +19,7 @@ Explore our comprehensive mathematical knowledge base with enhanced search capab
 
 ## Interactive Search
 
+```{=html}
 <div id="search-container" style="margin: 2em 0;">
   <div style="display: flex; gap: 1em; margin-bottom: 1em;">
     <input type="text" id="search-input" placeholder="Search for mathematical concepts..."
@@ -37,8 +38,18 @@ Explore our comprehensive mathematical knowledge base with enhanced search capab
 const API_BASE = 'http://localhost:5001/api';
 let searchTimeout = null;
 
-// Search input with debouncing
-document.getElementById('search-input').addEventListener('input', function(e) {
+// Wait for DOM to be ready
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('search-input');
+  const searchButton = document.getElementById('search-button');
+
+  if (!searchInput || !searchButton) {
+    console.error('Search elements not found');
+    return;
+  }
+
+  // Search input with debouncing
+  searchInput.addEventListener('input', function(e) {
   clearTimeout(searchTimeout);
   const query = e.target.value.trim();
 
@@ -49,14 +60,15 @@ document.getElementById('search-input').addEventListener('input', function(e) {
   } else {
     document.getElementById('suggestions').style.display = 'none';
   }
-});
+  });
 
-// Enter key to search
-document.getElementById('search-input').addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') {
-    performSearch();
-  }
-});
+  // Enter key to search
+  searchInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      performSearch();
+    }
+  });
+}); // End of DOMContentLoaded
 
 // Fetch search suggestions
 async function fetchSuggestions(query) {
@@ -111,7 +123,17 @@ async function performSearch() {
     }
   } catch (error) {
     console.error('Search failed:', error);
-    resultsDiv.innerHTML = '<p style="color: red;">Search failed. Please check if the API is running.</p>';
+    resultsDiv.innerHTML = `
+      <div style="border: 1px solid #f0ad4e; background: #fcf8e3; padding: 1em; border-radius: 4px;">
+        <h4 style="margin-top: 0; color: #8a6d3b;">Search Service Unavailable</h4>
+        <p style="margin-bottom: 0.5em; color: #8a6d3b;">The search API is not currently available. This typically happens when:</p>
+        <ul style="margin: 0.5em 0; padding-left: 1.5em; color: #8a6d3b;">
+          <li>The API server is not running (requires local setup)</li>
+          <li>You're viewing this page on GitHub Pages (API runs locally only)</li>
+        </ul>
+        <p style="margin-bottom: 0; color: #8a6d3b;">To use search functionality, please run the API locally or browse content using the navigation menu.</p>
+      </div>
+    `;
   }
 }
 
@@ -199,6 +221,7 @@ async function loadRelated(nodeId) {
   }
 }
 </script>
+```
 
 ## Example Searches
 

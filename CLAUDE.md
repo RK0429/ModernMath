@@ -335,6 +335,14 @@ Uses hash-based change detection to track translation status in `translations-st
 
 **Important**: Scripts in the CI/CD pipeline should return exit code 0 when no changes are needed. In CI/CD contexts, "no changes required" is a normal success case, not an error. For example, `visualization/add_mermaid_links.py` correctly returns 0 whether files were modified or not.
 
+### Quarto HTML Rendering
+
+When including raw HTML in Quarto documents:
+
+- **HTML Blocks**: Use triple backticks with `{=html}` syntax to render raw HTML content. Without this, HTML will be displayed as code blocks.
+- **JavaScript Timing**: Always wrap DOM element access in `DOMContentLoaded` event listeners to avoid null reference errors.
+- **Error Handling**: Provide user-friendly error messages for missing dependencies (e.g., local API services) when deploying to GitHub Pages.
+
 ### Cross-Reference Format
 
 When referencing concepts across domains, the resolver transforms paths:
