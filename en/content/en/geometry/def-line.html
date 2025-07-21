@@ -217,6 +217,10 @@ window.Quarto = {
     <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../contributing.html"> 
+<span class="menu-text">Contributing</span></a>
+  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -318,23 +322,23 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-triangle["Definition: Triangle"]:::definition
-    def-angle["Definition: Angle"]:::definition
-    def-line["Definition: Line"]:::definition
     thm-angle-sum-triangle["Theorem: Angle Sum of a Triangle"]:::theorem
-    def-parallel["Definition: Parallel Lines"]:::definition
+    def-angle["Definition: Angle"]:::definition
+    def-triangle["Definition: Triangle"]:::definition
     def-point["Definition: Point"]:::definition
-    def-angle --&gt; def-line
-    def-parallel --&gt; def-line
-    def-triangle --&gt; def-line
+    def-line["Definition: Line"]:::definition
+    def-parallel["Definition: Parallel Lines"]:::definition
     def-line --&gt; def-point
     thm-angle-sum-triangle --&gt; def-line
+    def-triangle --&gt; def-line
+    def-angle --&gt; def-line
+    def-parallel --&gt; def-line
     class def-line current
-    click def-triangle "def-triangle.html" "Go to Triangle definition"
-    click def-angle "def-angle.html" "Go to Angle definition"
     click thm-angle-sum-triangle "thm-angle-sum-triangle.html" "Go to Angle Sum of a Triangle theorem"
-    click def-parallel "def-parallel.html" "Go to Parallel Lines definition"
+    click def-angle "def-angle.html" "Go to Angle definition"
+    click def-triangle "def-triangle.html" "Go to Triangle definition"
     click def-point "def-point.html" "Go to Point definition"
+    click def-parallel "def-parallel.html" "Go to Parallel Lines definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -345,7 +349,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-line-1753111910" class="graph-visualization-container">
+<div id="graph-viz-def-line-1753112527" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -525,12 +529,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-line-1753111910', {
+    createForceGraph(data, 'graph-viz-def-line-1753112527', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-line-1753111910').innerHTML =
+    document.getElementById('graph-viz-def-line-1753112527').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

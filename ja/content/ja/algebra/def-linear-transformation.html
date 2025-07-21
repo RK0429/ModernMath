@@ -324,26 +324,26 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-image["Definition: Image"]:::definition
     def-linear-transformation["Definition: Linear Transformation"]:::definition
-    ex-matrix-transformation["Example: Matrix Transformation"]:::example
     def-kernel["Definition: Kernel"]:::definition
-    thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
     def-vector-space["Definition: Vector Space"]:::definition
     thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
-    def-image["Definition: Image"]:::definition
-    def-kernel --&gt; def-linear-transformation
-    thm-linear-transformation-basis --&gt; def-linear-transformation
+    thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
+    ex-matrix-transformation["Example: Matrix Transformation"]:::example
     def-image --&gt; def-linear-transformation
-    thm-rank-nullity --&gt; def-linear-transformation
-    def-linear-transformation --&gt; def-vector-space
     ex-matrix-transformation --&gt; def-linear-transformation
+    def-kernel --&gt; def-linear-transformation
+    thm-rank-nullity --&gt; def-linear-transformation
+    thm-linear-transformation-basis --&gt; def-linear-transformation
+    def-linear-transformation --&gt; def-vector-space
     class def-linear-transformation current
-    click ex-matrix-transformation "ex-matrix-transformation.html" "Example: Matrix Transformationへ"
+    click def-image "def-image.html" "Definition: Imageへ"
     click def-kernel "def-kernel.html" "Definition: Kernelへ"
-    click thm-linear-transformation-basis "thm-linear-transformation-basis.html" "Theorem: Linear Transformation Determined by Basisへ"
     click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
     click thm-rank-nullity "thm-rank-nullity.html" "Theorem: Rank-Nullity Theoremへ"
-    click def-image "def-image.html" "Definition: Imageへ"
+    click thm-linear-transformation-basis "thm-linear-transformation-basis.html" "Theorem: Linear Transformation Determined by Basisへ"
+    click ex-matrix-transformation "ex-matrix-transformation.html" "Example: Matrix Transformationへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -354,7 +354,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-linear-transformation-1753112003" class="graph-visualization-container">
+<div id="graph-viz-def-linear-transformation-1753112620" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -534,12 +534,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-linear-transformation-1753112003', {
+    createForceGraph(data, 'graph-viz-def-linear-transformation-1753112620', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-linear-transformation-1753112003').innerHTML =
+    document.getElementById('graph-viz-def-linear-transformation-1753112620').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

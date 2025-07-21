@@ -217,6 +217,10 @@ window.Quarto = {
     <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../contributing.html"> 
+<span class="menu-text">Contributing</span></a>
+  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -323,26 +327,26 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-limit["Definition: Limit of a Sequence"]:::definition
-    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
-    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
+    thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
     def-continuity["Definition: Continuity"]:::definition
+    def-limit["Definition: Limit of a Sequence"]:::definition
     def-integral["Definition: Integral"]:::definition
     thm-chain-rule["Theorem: Chain Rule"]:::theorem
-    thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
-    thm-chain-rule --&gt; def-continuity
-    ex-polynomial-continuity --&gt; def-continuity
-    def-integral --&gt; def-continuity
+    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
+    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
     thm-mean-value --&gt; def-continuity
-    def-continuity --&gt; def-limit
     thm-intermediate-value --&gt; def-continuity
+    ex-polynomial-continuity --&gt; def-continuity
+    def-continuity --&gt; def-limit
+    thm-chain-rule --&gt; def-continuity
+    def-integral --&gt; def-continuity
     class def-continuity current
+    click thm-mean-value "thm-mean-value.html" "Go to Mean Value Theorem theorem"
     click def-limit "def-limit.html" "Go to Limit of a Sequence definition"
-    click ex-polynomial-continuity "ex-polynomial-continuity.html" "Go to Polynomial Continuity example"
-    click thm-intermediate-value "thm-intermediate-value.html" "Go to Intermediate Value Theorem theorem"
     click def-integral "def-integral.html" "Go to Integral definition"
     click thm-chain-rule "thm-chain-rule.html" "Go to Chain Rule theorem"
-    click thm-mean-value "thm-mean-value.html" "Go to Mean Value Theorem theorem"
+    click ex-polynomial-continuity "ex-polynomial-continuity.html" "Go to Polynomial Continuity example"
+    click thm-intermediate-value "thm-intermediate-value.html" "Go to Intermediate Value Theorem theorem"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -353,7 +357,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-continuity-1753111896" class="graph-visualization-container">
+<div id="graph-viz-def-continuity-1753112513" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -533,12 +537,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-continuity-1753111896', {
+    createForceGraph(data, 'graph-viz-def-continuity-1753112513', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-continuity-1753111896').innerHTML =
+    document.getElementById('graph-viz-def-continuity-1753112513').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
