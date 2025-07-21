@@ -37,9 +37,9 @@ def check_visualization_order(file_path: Path) -> Optional[str]:
     # Visualization section titles in both languages
     viz_titles = {
         "Dependency Graph",
-        "依存グラフ",
+        "依存関係グラフ",
         "Interactive Visualization",
-        "インタラクティブな可視化",
+        "インタラクティブ可視化",
     }
 
     # Content section titles that should come before visualizations

@@ -58,25 +58,37 @@ $S$ を[集合](../logic-set-theory/def-set.qmd)とする。$S$ 上の**二項�
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "局所依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-binary-operation["定義: 二項演算"]:::definition
-    ex-integers-addition["例: 加法における整数"]:::example
-    def-set["定義: 集合"]:::definition
-    def-group["定義: 群"]:::definition
-    def-group --> def-binary-operation
+    def-group["Definition: Group"]:::definition
+    def-identity-element["Definition: Identity Element"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-commutativity["Definition: Commutativity"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-inverse-element["Definition: Inverse Element"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    ex-integers-addition["Example: Integers under Addition"]:::example
+    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-distributivity["Definition: Distributivity"]:::definition
+    def-associativity["Definition: Associativity"]:::definition
+    ex-integers-ring --> def-binary-operation
+    def-associativity --> def-binary-operation
+    def-commutativity --> def-binary-operation
+    def-ring --> def-binary-operation
     ex-integers-addition --> def-binary-operation
+    def-group --> def-binary-operation
     def-binary-operation --> def-set
+    def-inverse-element --> def-binary-operation
+    def-distributivity --> def-binary-operation
+    def-identity-element --> def-binary-operation
+    def-homomorphism --> def-binary-operation
     class def-binary-operation current
-
-    click ex-integers-addition "ex-integers-addition.html" "加法における整数の例へ"
-    click def-set "def-set.html" "集合の定義へ"
-    click def-group "def-group.html" "群の定義へ"
 ```
 
 ## インタラクティブ可視化

@@ -428,8 +428,12 @@ Update `_quarto-ja.yml` navbar to reference these files and ensure all domain li
 To maintain consistency across all Japanese content:
 
 - **Dependency Graph Header**: Always use "依存関係グラフ" (not "依存グラフ")
-- **Interactive Visualization Header**: Always use "インタラクティブ可視化"
+- **Interactive Visualization Header**: Always use "インタラクティブ可視化" (not "インタラクティブな可視化")
 - **Standardization Script**: Use `scripts/translation/standardize_dependency_headers.py` to fix any inconsistent headers
+- **Visualization Scripts**: The following scripts must use correct Japanese headers:
+  - `fix_visualization_placement.py` - Only includes "依存関係グラフ" in detection keywords
+  - `check_visualization_order.py` - Uses correct headers for validation
+  - `insert_diagrams.py` - Generates sections with standardized headers
 
 ### Translation Management System
 

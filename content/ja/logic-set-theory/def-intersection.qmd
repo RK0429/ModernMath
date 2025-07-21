@@ -59,29 +59,24 @@ $$A \cap B = \emptyset$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "局所的な依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-event["定義: 事象"]:::definition
-    def-set["定義: 集合"]:::definition
-    thm-de-morgan["定理: ド・モルガンの法則"]:::theorem
-    def-subset["定義: 部分集合"]:::definition
-    def-intersection["定義: 共通部分"]:::definition
+    def-event["Definition: Event"]:::definition
+    def-set["Definition: Set"]:::definition
+    thm-de-morgan["Theorem: De Morgan's Laws"]:::theorem
+    def-subset["Definition: Subset"]:::definition
+    def-intersection["Definition: Intersection"]:::definition
     def-event --> def-intersection
     def-intersection --> def-set
     def-intersection --> def-subset
     def-intersection --> thm-de-morgan
     thm-de-morgan --> def-intersection
     class def-intersection current
-
-    click def-event "def-event.html" "Go to 定義: 事象"
-    click def-set "def-set.html" "Go to 定義: 集合"
-    click thm-de-morgan "thm-de-morgan.html" "Go to 定理: ド・モルガンの法則"
-    click def-subset "def-subset.html" "Go to 定義: 部分集合"
 ```
 
 ## インタラクティブ可視化

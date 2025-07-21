@@ -59,28 +59,23 @@ $$d(x_m, x_n) < \varepsilon$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "ローカル依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-limit["定義: 数列の極限"]:::definition
-    ex-real-line-metric["例: 標準的な距離を持つ実数直線"]:::example
-    def-complete-metric-space["定義: 完備距離空間"]:::definition
-    def-metric-space["定義: 距離空間"]:::definition
-    def-convergence["定義: 収束"]:::definition
+    def-limit["Definition: Limit of a Sequence"]:::definition
+    ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
+    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
+    def-metric-space["Definition: Metric Space"]:::definition
+    def-convergence["Definition: Convergence"]:::definition
     def-convergence --> def-complete-metric-space
     def-complete-metric-space --> ex-real-line-metric
     def-complete-metric-space --> def-metric-space
     def-complete-metric-space --> def-limit
     class def-complete-metric-space current
-
-    click def-limit "def-limit.html" "Go to 定義: 数列の極限"
-    click ex-real-line-metric "ex-real-line-metric.html" "Go to 例: 標準的な距離を持つ実数直線"
-    click def-metric-space "def-metric-space.html" "Go to 定義: 距離空間"
-    click def-convergence "def-convergence.html" "Go to 定義: 収束"
 ```
 
 ## インタラクティブ可視化

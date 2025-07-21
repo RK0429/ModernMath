@@ -64,18 +64,18 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-functor["Definition: Functor"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
     def-morphism["Definition: Morphism"]:::definition
-    def-natural-transformation["Definition: Natural Transformation"]:::definition
+    def-functor["Definition: Functor"]:::definition
     def-category["Definition: Category"]:::definition
+    thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
+    def-natural-transformation["Definition: Natural Transformation"]:::definition
+    def-natural-transformation --> def-morphism
+    def-isomorphism --> def-natural-transformation
     def-natural-transformation --> def-functor
     def-natural-transformation --> def-category
-    def-natural-transformation --> def-morphism
+    thm-yoneda --> def-natural-transformation
     class def-natural-transformation current
-
-    click def-functor "def-functor.html" "Go to Functor definition"
-    click def-morphism "def-morphism.html" "Go to Morphism definition"
-    click def-category "def-category.html" "Go to Category definition"
 ```
 
 ## Interactive Visualization
@@ -89,4 +89,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-natural-transformation.html){target="_blank"} in a new window
+- View the [full interactive version](../../output/interactive/def-natural-transformation.html){target="_blank"}

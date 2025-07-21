@@ -43,25 +43,21 @@ $2\mathbb{Z}$ が $(\mathbb{Z}, +)$ の部分群であることを示すため�
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "局所依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-even-integers-subgroup["例: 偶数整数は部分群を成す"]:::example
-    ex-integers-addition["例: 加法に関する整数"]:::example
-    def-group["定義: 群"]:::definition
-    def-subgroup["定義: 部分群"]:::definition
-    ex-even-integers-subgroup --> def-group
+    def-group["Definition: Group"]:::definition
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    def-subgroup["Definition: Subgroup"]:::definition
+    ex-integers-addition["Example: Integers under Addition"]:::example
     ex-even-integers-subgroup --> def-subgroup
+    ex-even-integers-subgroup --> def-group
     ex-even-integers-subgroup --> ex-integers-addition
     class ex-even-integers-subgroup current
-
-    click ex-integers-addition "ex-integers-addition.html" "Go to 例: 加法に関する整数"
-    click def-group "def-group.html" "Go to 定義: 群"
-    click def-subgroup "def-subgroup.html" "Go to 定義: 部分群"
 ```
 
 ## インタラクティブ可視化

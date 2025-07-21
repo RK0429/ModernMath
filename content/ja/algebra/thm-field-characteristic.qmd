@@ -52,25 +52,21 @@ $$(a \cdot 1)(b \cdot 1) = (ab) \cdot 1 = n \cdot 1 = 0$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "局所的な依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-field["定義: 体"]:::definition
-    thm-field-characteristic["定理: 体の標数"]:::theorem
-    def-ring["定義: 環"]:::definition
-    def-prime["定義: 素数"]:::definition
+    def-prime["Definition: Prime Number"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-field["Definition: Field"]:::definition
+    thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
     thm-field-characteristic --> def-ring
     thm-field-characteristic --> def-field
     thm-field-characteristic --> def-prime
     class thm-field-characteristic current
-
-    click def-field "def-field.html" "Go to 定義: 体"
-    click def-ring "def-ring.html" "Go to 定義: 環"
-    click def-prime "def-prime.html" "Go to 定義: 素数"
 ```
 
 ## インタラクティブ可視化

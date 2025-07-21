@@ -51,15 +51,24 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Definition: Set"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    def-composition["Definition: Composition"]:::definition
+    ex-set-category["Example: The Category of Sets"]:::example
     def-functor["Definition: Functor"]:::definition
+    def-morphism["Definition: Morphism"]:::definition
+    def-set["Definition: Set"]:::definition
     def-category["Definition: Category"]:::definition
-    def-category --> def-set
+    thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
+    def-natural-transformation["Definition: Natural Transformation"]:::definition
+    ex-set-category --> def-category
+    thm-yoneda --> def-category
     def-functor --> def-category
+    def-category --> def-set
+    def-composition --> def-category
+    def-morphism --> def-category
+    def-natural-transformation --> def-category
+    def-isomorphism --> def-category
     class def-category current
-
-    click def-set "def-set.html" "Go to Set definition"
-    click def-functor "def-functor.html" "Go to Functor definition"
 ```
 
 ## Interactive Visualization
@@ -73,4 +82,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-category.html){target="_blank"} in a new window
+- View the [full interactive version](../../output/interactive/def-category.html){target="_blank"}

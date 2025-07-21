@@ -52,26 +52,22 @@ type: Definition
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "局所依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-open-set["定義: 開集合"]:::definition
-    thm-metric-hausdorff["定理: すべての距離空間はハウスドルフである"]:::theorem
-    def-topological-space["定義: 位相空間"]:::definition
-    def-hausdorff["定義: ハウスドルフ空間"]:::definition
+    def-open-set["Definition: Open Set"]:::definition
+    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
+    def-topological-space["Definition: Topological Space"]:::definition
+    def-hausdorff["Definition: Hausdorff Space"]:::definition
     def-hausdorff --> def-topological-space
     def-hausdorff --> def-open-set
     def-hausdorff --> thm-metric-hausdorff
     thm-metric-hausdorff --> def-hausdorff
     class def-hausdorff current
-
-    click def-open-set "def-open-set.html" "Go to 定義: 開集合"
-    click thm-metric-hausdorff "thm-metric-hausdorff.html" "Go to 定理: すべての距離空間はハウスドルフである"
-    click def-topological-space "def-topological-space.html" "Go to 定義: 位相空間"
 ```
 
 ## インタラクティブ可視化

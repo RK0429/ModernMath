@@ -68,29 +68,24 @@ $$P(A|B) = P(A)$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "局所依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-event["定義: 事象"]:::definition
-    def-random-variable["定義: 確率変数"]:::definition
-    thm-bayes["定理: ベイズの定理"]:::theorem
-    def-probability-space["定義: 確率空間"]:::definition
-    def-conditional-probability["定義: 条件付き確率"]:::definition
+    def-event["Definition: Event"]:::definition
+    def-random-variable["Definition: Random Variable"]:::definition
+    thm-bayes["Theorem: Bayes' Theorem"]:::theorem
+    def-probability-space["Definition: Probability Space"]:::definition
+    def-conditional-probability["Definition: Conditional Probability"]:::definition
     def-conditional-probability --> def-probability-space
     def-conditional-probability --> def-random-variable
     def-conditional-probability --> def-event
     def-conditional-probability --> thm-bayes
     thm-bayes --> def-conditional-probability
     class def-conditional-probability current
-
-    click def-event "def-event.html" "Go to 定義: 事象"
-    click def-random-variable "def-random-variable.html" "Go to 定義: 確率変数"
-    click thm-bayes "thm-bayes.html" "Go to 定理: ベイズの定理"
-    click def-probability-space "def-probability-space.html" "Go to 定義: 確率空間"
 ```
 
 ## インタラクティブ可視化

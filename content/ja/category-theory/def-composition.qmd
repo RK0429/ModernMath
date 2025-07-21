@@ -91,26 +91,22 @@ C ---k---> D
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "局所依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-category["定義: 圏"]:::definition
-    def-isomorphism["定義: 同型射"]:::definition
-    def-composition["定義: 合成"]:::definition
-    def-morphism["定義: 射"]:::definition
+    def-category["Definition: Category"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    def-composition["Definition: Composition"]:::definition
+    def-morphism["Definition: Morphism"]:::definition
     def-isomorphism --> def-composition
     def-composition --> def-morphism
     def-composition --> def-category
     def-composition --> def-isomorphism
     class def-composition current
-
-    click def-category "def-category.html" "Go to 定義: 圏"
-    click def-isomorphism "def-isomorphism.html" "Go to 定義: 同型射"
-    click def-morphism "def-morphism.html" "Go to 定義: 射"
 ```
 
 ## インタラクティブ可視化

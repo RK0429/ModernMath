@@ -33,7 +33,6 @@ def identify_sections(content: str) -> List[Dict[str, Any]]:
                 keyword in title
                 for keyword in [
                     "Dependency Graph",
-                    "依存グラフ",
                     "依存関係グラフ",
                     "Local Graph",
                     "局所依存関係グラフ",

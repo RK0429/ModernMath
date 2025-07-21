@@ -44,22 +44,21 @@ $$a_1\mathbf{v}_1 + a_2\mathbf{v}_2 + \cdots + a_k\mathbf{v}_k = \mathbf{0}$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "ローカル依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-linear-independence["定義: 線形独立"]:::definition
-    def-vector-space["定義: ベクトル空間"]:::definition
-    def-basis["定義: 基底"]:::definition
+    def-linear-independence["Definition: Linear Independence"]:::definition
+    ex-standard-basis-rn["Example: Standard Basis of ℝⁿ"]:::example
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-basis["Definition: Basis"]:::definition
     def-linear-independence --> def-vector-space
     def-basis --> def-linear-independence
+    ex-standard-basis-rn --> def-linear-independence
     class def-linear-independence current
-
-    click def-vector-space "def-vector-space.html" "Go to 定義: ベクトル空間"
-    click def-basis "def-basis.html" "Go to 定義: 基底"
 ```
 
 ## インタラクティブ可視化

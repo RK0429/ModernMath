@@ -99,24 +99,21 @@ $$(a * b) * c = a * (b * c)$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "ローカル依存グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group["定義: 群"]:::definition
-    def-binary-operation["定義: 二項演算"]:::definition
-    def-associativity["定義: 結合性"]:::definition
-    def-commutativity["定義: 可換性"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-associativity["Definition: Associativity"]:::definition
+    def-commutativity["Definition: Commutativity"]:::definition
     def-commutativity --> def-associativity
     def-associativity --> def-group
     def-associativity --> def-binary-operation
     class def-associativity current
-    click def-group "def-group.html" "群の定義へ"
-    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
-    click def-commutativity "def-commutativity.html" "可換性の定義へ"
 ```
 
 ## インタラクティブ可視化

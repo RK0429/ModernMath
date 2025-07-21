@@ -62,25 +62,21 @@ $$\binom{n}{k} = \frac{n!}{k!(n-k)!}$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "ローカル依存グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-combination["定義：組合せ"]:::definition
-    def-binomial-coefficient["定義：二項係数"]:::definition
-    ex-pascals-triangle["例：パスカルの三角形"]:::example
-    def-permutation["定義：順列"]:::definition
-    ex-pascals-triangle --> def-binomial-coefficient
+    ex-pascals-triangle["Example: Pascal's Triangle"]:::example
+    def-permutation["Definition: Permutation"]:::definition
+    def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
+    def-combination["Definition: Combination"]:::definition
     def-binomial-coefficient --> def-combination
     def-binomial-coefficient --> def-permutation
+    ex-pascals-triangle --> def-binomial-coefficient
     class def-binomial-coefficient current
-
-    click def-combination "def-combination.html" "Go to 定義：組合せ"
-    click ex-pascals-triangle "ex-pascals-triangle.html" "Go to 例：パスカルの三角形"
-    click def-permutation "def-permutation.html" "Go to 定義：順列"
 ```
 
 ## インタラクティブ可視化

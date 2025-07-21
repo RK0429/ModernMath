@@ -42,25 +42,23 @@ $(G, \cdot)$ を群とする。空でない部分集合 $H \subseteq G$ が $G$ 
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "局所依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-subgroup["定義：部分群"]:::definition
-    thm-lagrange["定理：ラグランジュの定理"]:::theorem
-    def-group["定義：群"]:::definition
-    def-set["定義：集合"]:::definition
-    thm-lagrange --> def-subgroup
+    def-group["Definition: Group"]:::definition
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    def-set["Definition: Set"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     def-subgroup --> def-set
     def-subgroup --> def-group
+    ex-even-integers-subgroup --> def-subgroup
+    thm-lagrange --> def-subgroup
     class def-subgroup current
-
-    click thm-lagrange "thm-lagrange.html" "Go to 定理：ラグランジュの定理"
-    click def-group "def-group.html" "Go to 定義：群"
-    click def-set "def-set.html" "Go to 定義：集合"
 ```
 
 ## インタラクティブ可視化

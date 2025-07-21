@@ -62,15 +62,24 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-chain-rule["Theorem: Chain Rule"]:::theorem
     def-continuity["Definition: Continuity"]:::definition
     ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
     def-limit["Definition: Limit of a Sequence"]:::definition
+    thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
+    ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
+    def-metric-space["Definition: Metric Space"]:::definition
+    def-integral["Definition: Integral"]:::definition
+    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
     def-continuity --> def-limit
+    ex-real-line-metric --> def-continuity
+    thm-intermediate-value --> def-continuity
+    def-integral --> def-continuity
+    thm-mean-value --> def-continuity
+    thm-chain-rule --> def-continuity
+    def-metric-space --> def-continuity
     ex-polynomial-continuity --> def-continuity
     class def-continuity current
-
-    click ex-polynomial-continuity "ex-polynomial-continuity.html" "Go to Polynomial Continuity example"
-    click def-limit "def-limit.html" "Go to Limit of a Sequence definition"
 ```
 
 ## Interactive Visualization
@@ -84,4 +93,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-continuity.html){target="_blank"} in a new window
+- View the [full interactive version](../../output/interactive/def-continuity.html){target="_blank"}

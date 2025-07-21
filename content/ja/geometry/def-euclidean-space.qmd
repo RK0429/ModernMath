@@ -66,25 +66,27 @@ graph TD
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "局所依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-pythagorean["定理: ピタゴラスの定理"]:::theorem
-    def-vector-space["定義: ベクトル空間"]:::definition
-    def-euclidean-space["定義: ユークリッド空間"]:::definition
-    def-metric-space["定義: 距離空間"]:::definition
-    def-euclidean-space --> def-metric-space
+    def-angle["Definition: Angle"]:::definition
+    thm-pythagorean["Theorem: Pythagorean Theorem"]:::theorem
+    def-metric-space["Definition: Metric Space"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-euclidean-space["Definition: Euclidean Space"]:::definition
+    def-point["Definition: Point"]:::definition
+    def-line["Definition: Line"]:::definition
     def-euclidean-space --> def-vector-space
+    def-point --> def-euclidean-space
     thm-pythagorean --> def-euclidean-space
+    def-angle --> def-euclidean-space
+    def-line --> def-euclidean-space
+    def-euclidean-space --> def-metric-space
     class def-euclidean-space current
-
-    click thm-pythagorean "thm-pythagorean.html" "Go to 定理: ピタゴラスの定理"
-    click def-vector-space "def-vector-space.html" "Go to 定義: ベクトル空間"
-    click def-metric-space "def-metric-space.html" "Go to 定義: 距離空間"
 ```
 
 ## インタラクティブ可視化
