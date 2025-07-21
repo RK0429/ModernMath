@@ -3,6 +3,7 @@ id: thm-intermediate-value
 requires:
 - def-connected
 - def-continuity
+- def-polynomial-ring
 status: complete
 title: 'Theorem: Intermediate Value Theorem'
 translations:
@@ -41,7 +42,7 @@ The proof relies on the fact that:
 
 ## Example
 
-Any polynomial of odd degree has at least one real root, since:
+Any [polynomial](../algebra/def-polynomial-ring.qmd) of odd degree has at least one real root, since:
 - $\lim_{x \to \infty} P(x) = \infty$ and $\lim_{x \to -\infty} P(x) = -\infty$ (or vice versa)
 - By IVT, $P(x) = 0$ for some $x$
 
@@ -55,12 +56,15 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-continuity["Definition: Continuity"]:::definition
     thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
+    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
+    def-continuity["Definition: Continuity"]:::definition
     def-connected["Definition: Connected Space"]:::definition
-    thm-intermediate-value --> def-continuity
     thm-intermediate-value --> def-connected
+    thm-intermediate-value --> def-polynomial-ring
+    thm-intermediate-value --> def-continuity
     class thm-intermediate-value current
+    click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring definition"
     click def-continuity "def-continuity.html" "Go to Continuity definition"
     click def-connected "def-connected.html" "Go to Connected Space definition"
 ```

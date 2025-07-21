@@ -1,0 +1,134 @@
+---
+id: def-polynomial-ring
+requires:
+- def-ring
+- def-field
+- def-binary-operation
+status: complete
+title: 'Definition: Polynomial Ring'
+translations:
+  en: ../en/algebra/def-polynomial-ring.html
+  ja: ../ja/algebra/def-polynomial-ring.html
+type: Definition
+---
+
+# Polynomial Ring {#def-polynomial-ring}
+
+A **polynomial ring** is a [Ring](def-ring.qmd) formed from the set of polynomials in one or more indeterminates with coefficients in another ring.
+
+## Formal Definition
+
+Let $R$ be a ring. The polynomial ring in one indeterminate $x$ over $R$, denoted $R[x]$, consists of all formal expressions:
+
+$$p(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n$$
+
+where:
+- $a_i \in R$ for all $i$
+- Only finitely many $a_i$ are non-zero
+- The largest $n$ with $a_n \neq 0$ is called the **degree** of $p(x)$
+
+### Ring Operations
+
+Two polynomials are equal if and only if all corresponding coefficients are equal.
+
+**Addition**: $(a_0 + a_1x + \cdots) + (b_0 + b_1x + \cdots) = (a_0 + b_0) + (a_1 + b_1)x + \cdots$
+
+**Multiplication**: $(a_0 + a_1x + \cdots)(b_0 + b_1x + \cdots) = c_0 + c_1x + \cdots$ where:
+$$c_k = \sum_{i+j=k} a_ib_j$$
+
+## Key Properties
+
+### Algebraic Structure
+
+1. If $R$ has unity $1_R$, then $R[x]$ has unity (the constant polynomial $1_R$)
+2. If $R$ is commutative, then $R[x]$ is commutative
+3. If $R$ is an integral domain, then $R[x]$ is an integral domain
+
+### Degree Properties
+
+For non-zero polynomials $f, g \in R[x]$:
+- $\deg(f + g) \leq \max(\deg(f), \deg(g))$
+- If $R$ is an integral domain: $\deg(fg) = \deg(f) + \deg(g)$
+
+### Division Algorithm
+
+When $R$ is a [Field](def-field.qmd), for any $f, g \in R[x]$ with $g \neq 0$, there exist unique polynomials $q, r \in R[x]$ such that:
+$$f = gq + r$$
+where either $r = 0$ or $\deg(r) < \deg(g)$.
+
+## Multiple Indeterminates
+
+The polynomial ring in $n$ indeterminates $x_1, \ldots, x_n$ over $R$ is denoted $R[x_1, \ldots, x_n]$ and can be constructed recursively:
+$$R[x_1, \ldots, x_n] = (R[x_1, \ldots, x_{n-1}])[x_n]$$
+
+## Important Results
+
+### Unique Factorization
+
+If $R$ is a unique factorization domain (UFD), then $R[x]$ is also a UFD. In particular:
+- If $F$ is a field, then $F[x]$ is a UFD
+- Every non-zero polynomial in $F[x]$ factors uniquely into irreducible polynomials
+
+### Root Theorem
+
+For a field $F$ and $f \in F[x]$: $c \in F$ is a root of $f$ if and only if $(x - c)$ divides $f(x)$.
+
+## Examples
+
+- $\mathbb{Z}[x]$ - polynomials with integer coefficients
+- $\mathbb{R}[x]$ - polynomials with real coefficients
+- $\mathbb{C}[x, y]$ - polynomials in two variables over complex numbers
+- $\mathbb{Z}_p[x]$ - polynomials over the finite field of $p$ elements
+
+## Applications
+
+Polynomial rings are fundamental in:
+- **Algebraic geometry**: Coordinate rings of algebraic varieties
+- **Number theory**: Algebraic integers and field extensions
+- **Coding theory**: Reed-Solomon codes and cyclic codes
+- **Computer algebra**: Symbolic computation and algebraic algorithms
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-ring["Definition: Ring"]:::definition
+    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
+    def-field["Definition: Field"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
+    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
+    def-polynomial-ring --> def-field
+    ex-polynomial-continuity --> def-polynomial-ring
+    def-eigenvalue-eigenvector --> def-polynomial-ring
+    thm-intermediate-value --> def-polynomial-ring
+    def-polynomial-ring --> def-ring
+    def-polynomial-ring --> def-binary-operation
+    class def-polynomial-ring current
+    click def-ring "def-ring.html" "Go to Ring definition"
+    click thm-intermediate-value "thm-intermediate-value.html" "Go to Intermediate Value Theorem theorem"
+    click def-field "def-field.html" "Go to Field definition"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click ex-polynomial-continuity "ex-polynomial-continuity.html" "Go to Polynomial Continuity example"
+    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-polynomial-ring" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-polynomial-ring.html){target="_blank"}

@@ -5,10 +5,10 @@ requires:
 - def-set
 status: complete
 title: '定義: 木'
+translation_of: ../../en/combinatorics/def-tree.qmd
 translations:
   en: ../en/combinatorics/def-tree.html
   ja: ../ja/combinatorics/def-tree.html
-translation_of: ../../en/combinatorics/def-tree.qmd
 type: Definition
 ---
 
@@ -141,17 +141,28 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-tree["Definition: Tree"]:::definition
+    def-graph["Definition: Graph"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
+    def-tree --> def-graph
+    def-tree --> def-set
+    def-tree --> def-binomial-coefficient
+    class def-tree current
+    click def-graph "def-graph.html" "Definition: Graphへ"
+    click def-set "def-set.html" "Definition: Setへ"
+    click def-binomial-coefficient "def-binomial-coefficient.html" "Definition: Binomial Coefficientへ"
 ```
 
 ## インタラクティブ可視化
 
-ローカルな知識グラフの近傍をインタラクティブに探索：
+ローカルナレッジグラフの近傍をインタラクティブに探索：
 
 ::: {.graph-viz data-id="def-tree" data-width="700" data-height="500"}
 :::
 
 次のことができます：
 - ノードを**ドラッグ**してレイアウトを再配置
-- マウスホイールで**ズームイン/アウト**
+- マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [完全なインタラクティブ版](../../output/interactive/def-tree.html){target="_blank"}を表示
+- [別ウィンドウ](../../output/interactive/def-tree.html){target="_blank"}で完全なインタラクティブ版を表示

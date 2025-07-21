@@ -2,6 +2,7 @@
 id: ex-polynomial-continuity
 requires:
 - def-continuity
+- def-polynomial-ring
 status: complete
 title: 'Example: Polynomial Continuity'
 translations:
@@ -12,7 +13,7 @@ type: Example
 
 # Example: Polynomial Continuity {#ex-polynomial-continuity}
 
-Polynomial functions are [continuous](def-continuity.qmd) everywhere on $\mathbb{R}$, providing fundamental examples of continuous functions.
+Polynomial functions from the [polynomial ring](../algebra/def-polynomial-ring.qmd) $\mathbb{R}[x]$ are [continuous](def-continuity.qmd) everywhere on $\mathbb{R}$, providing fundamental examples of continuous functions.
 
 ## Statement
 
@@ -61,10 +62,13 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-continuity["Definition: Continuity"]:::definition
+    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
     ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
+    def-continuity["Definition: Continuity"]:::definition
+    ex-polynomial-continuity --> def-polynomial-ring
     ex-polynomial-continuity --> def-continuity
     class ex-polynomial-continuity current
+    click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring definition"
     click def-continuity "def-continuity.html" "Go to Continuity definition"
 ```
 

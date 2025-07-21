@@ -129,8 +129,16 @@ When adding new mathematical content:
 1. **Verify Accuracy**: Use web search to verify mathematical definitions, theorems, and properties before writing
 2. **Follow Existing Format**: Examine similar articles in the same domain for consistent structure and style
 3. **Add Cross-References**: Link to required concepts using `@domain/concept-id` syntax
-4. **Build and Validate**: Run `validate_metadata.py` after creating new content
-5. **Generate Assets**: The visualization pipeline automatically handles diagram generation and insertion
+4. **Update Existing References**: Search for mentions of your new concept and add cross-references from existing articles
+5. **Update Index**: Add the new article to the domain's index.qmd file in alphabetical order
+6. **Build and Validate**: Run `validate_metadata.py` after creating new content
+7. **Generate Assets**: Run the full visualization pipeline in order:
+   ```bash
+   poetry run python scripts/graph/build_graph.py
+   poetry run python scripts/visualization/generate_mermaid.py
+   poetry run python scripts/visualization/generate_pyvis.py
+   poetry run python scripts/visualization/insert_diagrams.py
+   ```
 
 ### Cross-Reference Management
 
@@ -219,7 +227,7 @@ The project supports multiple languages (currently English and Japanese) with au
 
 - Japanese files need `translation_of: ../../en/path.qmd`
 - All files need `translations: {en: "path.html", ja: "path.html"}`
-- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Ideal→イデアル, Cyclic Group→巡回群
+- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Ideal→イデアル, Cyclic Group→巡回群, Polynomial Ring→多項式環
 
 ### Building Multilingual Sites
 
@@ -443,10 +451,10 @@ PyVis graphs include:
 
 ## Current Status
 
-- **Content**: 106 nodes across 9 mathematical domains
-- **Translations**: 103/106 (97%) Japanese translations with automated status tracking
-- **Graph**: 1171 RDF triples with full dependency tracking and translation edges
-- **Visualizations**: 105 interactive graphs deployed
+- **Content**: 111 nodes across 9 mathematical domains
+- **Translations**: 103/111 (93%) Japanese translations with automated status tracking
+- **Graph**: 1294 RDF triples with full dependency tracking and translation edges
+- **Visualizations**: 111 interactive graphs deployed
 - **API**: RESTful endpoints for node queries and dependencies
 - **CI/CD**: Full automation via GitHub Actions with translation validation
 - **Translation Management**: Fully implemented with MD5 hash-based change detection and pre-commit hooks

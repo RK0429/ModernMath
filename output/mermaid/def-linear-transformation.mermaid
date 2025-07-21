@@ -5,19 +5,19 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-kernel["Definition: Kernel"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
-    ex-matrix-transformation["Example: Matrix Transformation"]:::example
-    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
-    def-image["Definition: Image"]:::definition
     def-linear-transformation["Definition: Linear Transformation"]:::definition
-    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
     thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
+    ex-matrix-transformation["Example: Matrix Transformation"]:::example
+    def-kernel["Definition: Kernel"]:::definition
+    def-image["Definition: Image"]:::definition
+    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
+    def-vector-space["Definition: Vector Space"]:::definition
+    ex-matrix-transformation --> def-linear-transformation
     def-linear-transformation --> def-vector-space
     thm-linear-transformation-basis --> def-linear-transformation
-    def-image --> def-linear-transformation
-    def-kernel --> def-linear-transformation
-    thm-rank-nullity --> def-linear-transformation
-    ex-matrix-transformation --> def-linear-transformation
     def-eigenvalue-eigenvector --> def-linear-transformation
+    def-image --> def-linear-transformation
+    thm-rank-nullity --> def-linear-transformation
+    def-kernel --> def-linear-transformation
     class def-linear-transformation current

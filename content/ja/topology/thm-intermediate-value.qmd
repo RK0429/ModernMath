@@ -3,6 +3,7 @@ id: thm-intermediate-value
 requires:
 - def-connected
 - def-continuity
+- def-polynomial-ring
 status: complete
 title: '定理: 中間値の定理'
 translation_of: ../../en/topology/thm-intermediate-value.qmd
@@ -42,7 +43,7 @@ $f: [a, b] \to \mathbb{R}$ が連続で $f(a) < c < f(b)$（または $f(b) < c 
 
 ## 例
 
-任意の奇数次多項式は少なくとも1つの実根を持つ。なぜなら：
+任意の奇数次[多項式](../algebra/def-polynomial-ring.qmd)は少なくとも1つの実根を持つ。なぜなら：
 - $\lim_{x \to \infty} P(x) = \infty$ かつ $\lim_{x \to -\infty} P(x) = -\infty$（またはその逆）
 - 中間値の定理により、ある $x$ に対して $P(x) = 0$
 
@@ -56,12 +57,15 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-continuity["Definition: Continuity"]:::definition
     thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
+    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
+    def-continuity["Definition: Continuity"]:::definition
     def-connected["Definition: Connected Space"]:::definition
-    thm-intermediate-value --> def-continuity
     thm-intermediate-value --> def-connected
+    thm-intermediate-value --> def-polynomial-ring
+    thm-intermediate-value --> def-continuity
     class thm-intermediate-value current
+    click def-polynomial-ring "def-polynomial-ring.html" "Definition: Polynomial Ringへ"
     click def-continuity "def-continuity.html" "Definition: Continuityへ"
     click def-connected "def-connected.html" "Definition: Connected Spaceへ"
 ```

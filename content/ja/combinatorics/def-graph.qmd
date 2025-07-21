@@ -96,16 +96,31 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-graph["定義: グラフ"]:::definition
-    def-set["定義: 集合"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-morphism["Definition: Morphism"]:::definition
+    def-category["Definition: Category"]:::definition
+    def-graph["Definition: Graph"]:::definition
+    def-permutation["Definition: Permutation"]:::definition
+    def-functor["Definition: Functor"]:::definition
+    def-tree["Definition: Tree"]:::definition
+    def-tree --> def-graph
+    def-morphism --> def-graph
     def-graph --> def-set
+    def-permutation --> def-graph
+    def-category --> def-graph
+    def-functor --> def-graph
     class def-graph current
-    click def-set "def-set.html" "集合の定義へ"
+    click def-set "def-set.html" "Definition: Setへ"
+    click def-morphism "def-morphism.html" "Definition: Morphismへ"
+    click def-category "def-category.html" "Definition: Categoryへ"
+    click def-permutation "def-permutation.html" "Definition: Permutationへ"
+    click def-functor "def-functor.html" "Definition: Functorへ"
+    click def-tree "def-tree.html" "Definition: Treeへ"
 ```
 
 ## インタラクティブ可視化
 
-ローカルな知識グラフの近傍をインタラクティブに探索：
+ローカルナレッジグラフの近傍をインタラクティブに探索：
 
 ::: {.graph-viz data-id="def-graph" data-width="700" data-height="500"}
 :::
@@ -114,4 +129,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [フルインタラクティブ版](../../output/interactive/def-graph.html){target="_blank"}を表示
+- [別ウィンドウ](../../output/interactive/def-graph.html){target="_blank"}で完全なインタラクティブ版を表示

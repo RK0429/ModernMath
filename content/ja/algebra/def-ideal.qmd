@@ -56,7 +56,7 @@ $(R, +, \cdot)$ を環とする。部分集合 $I \subseteq R$ は以下の場�
 ## 例
 
 - $\mathbb{Z}$ において：偶数の整数 $2\mathbb{Z} = \{..., -4, -2, 0, 2, 4, ...\}$
-- 多項式環 $K[x]$ において：定数項がゼロの多項式の集合
+- [多項式環](def-polynomial-ring.qmd) $K[x]$ において：定数項がゼロの多項式の集合
 - 行列環 $M_n(K)$ において：第一行がすべてゼロの行列の集合
 
 ## 依存関係グラフ
@@ -69,34 +69,34 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-kernel["Definition: Kernel"]:::definition
     ex-finite-field["Example: Finite Field"]:::example
-    def-field["Definition: Field"]:::definition
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
     def-ring["Definition: Ring"]:::definition
+    def-field["Definition: Field"]:::definition
     def-binary-operation["Definition: Binary Operation"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
     def-quotient-group["Definition: Quotient Group"]:::definition
-    def-ideal["Definition: Ideal"]:::definition
     ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
+    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-ideal["Definition: Ideal"]:::definition
     def-subset["Definition: Subset"]:::definition
-    def-ideal --> def-subset
-    ex-principal-ideal --> def-ideal
-    def-ideal --> def-ring
-    def-quotient-group --> def-ideal
-    ex-finite-field --> def-ideal
-    def-ideal --> def-binary-operation
     ex-integers-ring --> def-ideal
+    def-ideal --> def-subset
     def-field --> def-ideal
     def-kernel --> def-ideal
+    ex-finite-field --> def-ideal
+    ex-principal-ideal --> def-ideal
+    def-ideal --> def-binary-operation
+    def-ideal --> def-ring
+    def-quotient-group --> def-ideal
     class def-ideal current
-    click def-kernel "def-kernel.html" "Definition: Kernelへ"
     click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
-    click def-field "def-field.html" "Definition: Fieldへ"
-    click ex-integers-ring "ex-integers-ring.html" "Example: Integers Form a Ringへ"
     click def-ring "def-ring.html" "Definition: Ringへ"
+    click def-field "def-field.html" "Definition: Fieldへ"
     click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
+    click def-kernel "def-kernel.html" "Definition: Kernelへ"
     click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
     click ex-principal-ideal "ex-principal-ideal.html" "Example: Principal Ideals in Integersへ"
+    click ex-integers-ring "ex-integers-ring.html" "Example: Integers Form a Ringへ"
     click def-subset "def-subset.html" "Definition: Subsetへ"
 ```
 
