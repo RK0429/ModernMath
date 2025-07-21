@@ -186,6 +186,7 @@ poetry run pre-commit run check-cross-references --all-files
 ```
 
 The hooks include:
+
 - Cross-reference validation
 - YAML metadata validation
 - Python code formatting (Black)

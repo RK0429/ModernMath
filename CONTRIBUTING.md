@@ -56,17 +56,20 @@ Before contributing, please:
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/RK0429/ModernMath.git
    cd ModernMath
    ```
 
 2. Install Python dependencies:
+
    ```bash
    poetry install
    ```
 
 3. Activate the virtual environment:
+
    ```bash
    poetry shell
    ```
@@ -264,6 +267,7 @@ footer (optional)
 ```
 
 Types:
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
@@ -273,6 +277,7 @@ Types:
 - `chore`: Build process or auxiliary tool changes
 
 Example:
+
 ```
 feat(algebra): add definition of normal subgroup
 

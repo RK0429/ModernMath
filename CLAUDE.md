@@ -161,6 +161,8 @@ Python scripts are organized into functional subdirectories:
 - **site/**: Site building, index pages, and cross-reference resolution
 - **experimental/**: Experimental features (LLM integration, Lean support)
 
+**Path Navigation**: Scripts in subdirectories must navigate correctly to project root. For example, scripts in `scripts/visualization/` need `Path(__file__).parent.parent.parent` to reach project root.
+
 ### Processing Pipeline
 
 1. **Content Parsing** (`scripts/graph/build_graph.py`):
