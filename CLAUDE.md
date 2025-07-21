@@ -244,6 +244,13 @@ The project uses a unified `build.yml` workflow:
 
 **Important**: Maintain a single workflow file to avoid redundancy. The build.yml workflow handles all multilingual builds - there's no need for separate language-specific workflows.
 
+**Workflow Timeouts**: All GitHub workflows have explicit timeout limits to prevent runaway builds:
+
+- `build.yml`: 30 minutes (comprehensive build and deploy)
+- `llm-review.yml`: 10 minutes (PR content analysis)
+- `translation-check.yml`: 10 minutes (translation validation)
+- `translation-report.yml`: 10 minutes (scheduled reports)
+
 ### Language Detection
 
 Root index.html provides both automatic detection and manual selection:
