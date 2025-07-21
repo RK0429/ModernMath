@@ -329,23 +329,23 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
-    ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
     thm-limit-arithmetic["Theorem: Arithmetic of Limits"]:::theorem
     def-sequence["Definition: Sequence"]:::definition
-    def-integral["Definition: Integral"]:::definition
-    def-derivative["Definition: Derivative"]:::definition
-    def-continuity["Definition: Continuity"]:::definition
+    ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
     def-convergence["Definition: Convergence"]:::definition
+    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
+    def-continuity["Definition: Continuity"]:::definition
     def-limit["Definition: Limit of a Sequence"]:::definition
-    def-integral --&gt; def-limit
-    def-derivative --&gt; def-limit
+    def-derivative["Definition: Derivative"]:::definition
+    def-integral["Definition: Integral"]:::definition
+    thm-limit-arithmetic --&gt; def-limit
     def-sequence --&gt; def-limit
+    def-derivative --&gt; def-limit
+    def-integral --&gt; def-limit
+    ex-real-line-metric --&gt; def-limit
+    def-continuity --&gt; def-limit
     def-complete-metric-space --&gt; def-limit
     def-convergence --&gt; def-limit
-    def-continuity --&gt; def-limit
-    ex-real-line-metric --&gt; def-limit
-    thm-limit-arithmetic --&gt; def-limit
     class def-limit current
 </pre>
 </div>
@@ -357,7 +357,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-limit-1753084462" class="graph-visualization-container">
+<div id="graph-viz-def-limit-1753085164" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -537,12 +537,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-limit-1753084462', {
+    createForceGraph(data, 'graph-viz-def-limit-1753085164', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-limit-1753084462').innerHTML =
+    document.getElementById('graph-viz-def-limit-1753085164').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
