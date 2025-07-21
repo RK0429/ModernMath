@@ -340,8 +340,8 @@ window.Quarto = {
     def-intersection["Definition: Intersection"]:::definition
     thm-de-morgan["Theorem: De Morgan's Laws"]:::theorem
     def-set["Definition: Set"]:::definition
-    def-intersection --&gt; def-set
     thm-de-morgan --&gt; def-intersection
+    def-intersection --&gt; def-set
     class def-intersection current
     click thm-de-morgan "thm-de-morgan.html" "Theorem: De Morgan's Lawsへ"
     click def-set "def-set.html" "Definition: Setへ"
@@ -354,8 +354,8 @@ window.Quarto = {
 </section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
-<p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-intersection-1753114798" class="graph-visualization-container">
+<p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
+<div id="graph-viz-def-intersection-1753116592" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -535,12 +535,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-intersection-1753114798', {
+    createForceGraph(data, 'graph-viz-def-intersection-1753116592', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-intersection-1753114798').innerHTML =
+    document.getElementById('graph-viz-def-intersection-1753116592').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -306,7 +306,7 @@ window.Quarto = {
 
 <section id="def-quotient-group" class="level1">
 <h1>Definition: Quotient Group</h1>
-<p>A <strong>quotient group</strong> (also called a <strong>factor group</strong>) is a <a href="../../../content/en/algebra/def-group.html">group</a> formed by partitioning a group into cosets of a <a href="../../../content/en/algebra/def-normal-subgroup.html">normal subgroup</a>.</p>
+<p>A <strong>quotient group</strong> (also called a <strong>factor group</strong>) is a <a href="../../../content/en/algebra/def-group.html">group</a> formed by partitioning a group into <a href="../../../content/en/algebra/def-coset.html">cosets</a> of a <a href="../../../content/en/algebra/def-normal-subgroup.html">normal subgroup</a>.</p>
 <section id="formal-definition" class="level2">
 <h2 class="anchored" data-anchor-id="formal-definition">Formal Definition</h2>
 <p>Let <span class="math inline">\(G\)</span> be a group and <span class="math inline">\(N \triangleleft G\)</span> be a normal subgroup. The <strong>quotient group</strong> of <span class="math inline">\(G\)</span> by <span class="math inline">\(N\)</span>, denoted <span class="math inline">\(G/N\)</span> (read “<span class="math inline">\(G\)</span> modulo <span class="math inline">\(N\)</span>”), is the set of all left cosets of <span class="math inline">\(N\)</span> in <span class="math inline">\(G\)</span>:</p>
@@ -343,7 +343,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="inheritance-of-properties">Inheritance of Properties</h3>
 <ol type="1">
 <li>If <span class="math inline">\(G\)</span> is abelian, then <span class="math inline">\(G/N\)</span> is abelian</li>
-<li>If <span class="math inline">\(G\)</span> is cyclic, then <span class="math inline">\(G/N\)</span> is cyclic</li>
+<li>If <span class="math inline">\(G\)</span> is <a href="../../../content/en/algebra/def-cyclic-group.html">cyclic</a>, then <span class="math inline">\(G/N\)</span> is <a href="../../../content/en/algebra/def-cyclic-group.html">cyclic</a></li>
 <li>If <span class="math inline">\(G\)</span> is finitely generated, then <span class="math inline">\(G/N\)</span> is finitely generated</li>
 </ol>
 </section>
@@ -353,7 +353,7 @@ window.Quarto = {
 <section id="integers-modulo-n" class="level3">
 <h3 class="anchored" data-anchor-id="integers-modulo-n">1. Integers Modulo n</h3>
 <p>The quotient group <span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> consists of the residue classes modulo <span class="math inline">\(n\)</span>: <span class="math display">\[\mathbb{Z}/n\mathbb{Z} = \{0 + n\mathbb{Z}, 1 + n\mathbb{Z}, ..., (n-1) + n\mathbb{Z}\}\]</span></p>
-<p>This is the cyclic group of order <span class="math inline">\(n\)</span>, often denoted <span class="math inline">\(\mathbb{Z}_n\)</span> or <span class="math inline">\(C_n\)</span>.</p>
+<p>This is the <a href="../../../content/en/algebra/def-cyclic-group.html">cyclic group</a> of order <span class="math inline">\(n\)</span>, often denoted <span class="math inline">\(\mathbb{Z}_n\)</span> or <span class="math inline">\(C_n\)</span>.</p>
 </section>
 <section id="the-circle-group" class="level3">
 <h3 class="anchored" data-anchor-id="the-circle-group">2. The Circle Group</h3>
@@ -361,7 +361,7 @@ window.Quarto = {
 </section>
 <section id="quotient-by-the-center" class="level3">
 <h3 class="anchored" data-anchor-id="quotient-by-the-center">3. Quotient by the Center</h3>
-<p>For any group <span class="math inline">\(G\)</span>, the quotient <span class="math inline">\(G/Z(G)\)</span> by its center measures how “non-abelian” the group is: - If <span class="math inline">\(G/Z(G)\)</span> is cyclic, then <span class="math inline">\(G\)</span> is abelian - If <span class="math inline">\(|G/Z(G)| = 1\)</span>, then <span class="math inline">\(G = Z(G)\)</span>, so <span class="math inline">\(G\)</span> is abelian</p>
+<p>For any group <span class="math inline">\(G\)</span>, the quotient <span class="math inline">\(G/Z(G)\)</span> by its center measures how “non-abelian” the group is: - If <span class="math inline">\(G/Z(G)\)</span> is <a href="../../../content/en/algebra/def-cyclic-group.html">cyclic</a>, then <span class="math inline">\(G\)</span> is abelian - If <span class="math inline">\(|G/Z(G)| = 1\)</span>, then <span class="math inline">\(G = Z(G)\)</span>, so <span class="math inline">\(G\)</span> is abelian</p>
 </section>
 <section id="simple-groups" class="level3">
 <h3 class="anchored" data-anchor-id="simple-groups">4. Simple Groups</h3>
@@ -412,40 +412,47 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-ideal["Definition: Ideal"]:::definition
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
-    def-kernel["Definition: Kernel"]:::definition
-    def-group["Definition: Group"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-subgroup["Definition: Subgroup"]:::definition
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    def-ideal["Definition: Ideal"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-coset["Definition: Coset"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-quotient-group["Definition: Quotient Group"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
     ex-finite-field["Example: Finite Field"]:::example
-    def-quotient-group --&gt; def-subgroup
-    def-kernel --&gt; def-quotient-group
-    def-quotient-group --&gt; def-group
-    def-quotient-group --&gt; def-normal-subgroup
-    thm-lagrange --&gt; def-quotient-group
-    ex-quotient-integers-mod-n --&gt; def-quotient-group
-    thm-euler --&gt; def-quotient-group
     def-subgroup --&gt; def-quotient-group
-    def-quotient-group --&gt; def-ideal
-    def-homomorphism --&gt; def-quotient-group
-    def-group --&gt; def-quotient-group
+    def-quotient-group --&gt; def-cyclic-group
+    def-quotient-group --&gt; def-coset
+    def-quotient-group --&gt; def-normal-subgroup
     ex-finite-field --&gt; def-quotient-group
+    def-quotient-group --&gt; def-subgroup
+    def-homomorphism --&gt; def-quotient-group
+    ex-quotient-integers-mod-n --&gt; def-quotient-group
     def-normal-subgroup --&gt; def-quotient-group
+    def-group --&gt; def-quotient-group
+    def-quotient-group --&gt; def-ideal
+    def-quotient-group --&gt; def-group
+    thm-euler --&gt; def-quotient-group
+    thm-lagrange --&gt; def-quotient-group
+    def-kernel --&gt; def-quotient-group
+    def-coset --&gt; def-quotient-group
     class def-quotient-group current
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
     click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
-    click def-ideal "def-ideal.html" "Go to Ideal definition"
-    click thm-euler "thm-euler.html" "Go to Euler's Theorem theorem"
-    click def-kernel "def-kernel.html" "Go to Kernel definition"
-    click def-group "def-group.html" "Go to Group definition"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
     click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
+    click thm-euler "thm-euler.html" "Go to Euler's Theorem theorem"
+    click def-ideal "def-ideal.html" "Go to Ideal definition"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click def-coset "def-coset.html" "Go to Coset definition"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
+    click def-kernel "def-kernel.html" "Go to Kernel definition"
     click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
 </pre>
 </div>
@@ -457,7 +464,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-quotient-group-1753114708" class="graph-visualization-container">
+<div id="graph-viz-def-quotient-group-1753116501" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -637,12 +644,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-quotient-group-1753114708', {
+    createForceGraph(data, 'graph-viz-def-quotient-group-1753116501', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-quotient-group-1753114708').innerHTML =
+    document.getElementById('graph-viz-def-quotient-group-1753116501').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

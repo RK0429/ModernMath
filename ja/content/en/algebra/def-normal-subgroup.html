@@ -305,7 +305,7 @@ window.Quarto = {
 <ol type="1">
 <li><span class="math inline">\(H\)</span> is a normal subgroup of <span class="math inline">\(G\)</span></li>
 <li><span class="math inline">\(gHg^{-1} \subseteq H\)</span> for all <span class="math inline">\(g \in G\)</span></li>
-<li><span class="math inline">\(gH = Hg\)</span> for all <span class="math inline">\(g \in G\)</span> (left and right cosets coincide)</li>
+<li><span class="math inline">\(gH = Hg\)</span> for all <span class="math inline">\(g \in G\)</span> (left and right <a href="../../../content/en/algebra/def-coset.html">cosets</a> coincide)</li>
 <li>The conjugacy class of each element of <span class="math inline">\(H\)</span> is contained in <span class="math inline">\(H\)</span></li>
 <li><span class="math inline">\(H\)</span> is the kernel of some <a href="../../../content/en/algebra/def-homomorphism.html">群準同型</a> from <span class="math inline">\(G\)</span></li>
 </ol>
@@ -322,7 +322,7 @@ window.Quarto = {
 </section>
 <section id="index-2-subgroups" class="level3">
 <h3 class="anchored" data-anchor-id="index-2-subgroups">Index 2 Subgroups</h3>
-<p>If <span class="math inline">\(H\)</span> is a subgroup of <span class="math inline">\(G\)</span> with index <span class="math inline">\([G:H] = 2\)</span>, then <span class="math inline">\(H\)</span> is normal in <span class="math inline">\(G\)</span>. This is because there are only two cosets: <span class="math inline">\(H\)</span> and <span class="math inline">\(G \setminus H\)</span>.</p>
+<p>If <span class="math inline">\(H\)</span> is a subgroup of <span class="math inline">\(G\)</span> with index <span class="math inline">\([G:H] = 2\)</span>, then <span class="math inline">\(H\)</span> is normal in <span class="math inline">\(G\)</span>. This is because there are only two <a href="../../../content/en/algebra/def-coset.html">cosets</a>: <span class="math inline">\(H\)</span> and <span class="math inline">\(G \setminus H\)</span>.</p>
 </section>
 <section id="non-transitivity" class="level3">
 <h3 class="anchored" data-anchor-id="non-transitivity">Non-transitivity</h3>
@@ -366,34 +366,38 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-kernel["Definition: Kernel"]:::definition
-    def-group["Definition: Group"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-subgroup["Definition: Subgroup"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-coset["Definition: Coset"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-quotient-group["Definition: Quotient Group"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
     ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    ex-even-integers-subgroup --&gt; def-normal-subgroup
-    def-group --&gt; def-normal-subgroup
     def-quotient-group --&gt; def-normal-subgroup
-    def-normal-subgroup --&gt; def-subgroup
-    def-subgroup --&gt; def-normal-subgroup
-    def-normal-subgroup --&gt; def-group
-    def-kernel --&gt; def-normal-subgroup
-    ex-quotient-integers-mod-n --&gt; def-normal-subgroup
-    def-normal-subgroup --&gt; def-homomorphism
-    def-normal-subgroup --&gt; thm-lagrange
     def-normal-subgroup --&gt; def-quotient-group
+    def-kernel --&gt; def-normal-subgroup
+    ex-even-integers-subgroup --&gt; def-normal-subgroup
+    def-normal-subgroup --&gt; thm-lagrange
+    def-group --&gt; def-normal-subgroup
+    def-normal-subgroup --&gt; def-group
+    def-subgroup --&gt; def-normal-subgroup
+    def-normal-subgroup --&gt; def-homomorphism
+    def-normal-subgroup --&gt; def-coset
+    ex-quotient-integers-mod-n --&gt; def-normal-subgroup
+    def-normal-subgroup --&gt; def-subgroup
+    def-coset --&gt; def-normal-subgroup
     class def-normal-subgroup current
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
     click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
-    click def-kernel "def-kernel.html" "Go to Kernel definition"
-    click def-group "def-group.html" "Go to Group definition"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
     click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click def-coset "def-coset.html" "Go to Coset definition"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
     click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click def-kernel "def-kernel.html" "Go to Kernel definition"
     click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Go to Even Integers Form a Subgroup example"
 </pre>
 </div>
@@ -405,7 +409,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-normal-subgroup-1753114893" class="graph-visualization-container">
+<div id="graph-viz-def-normal-subgroup-1753116691" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -585,12 +589,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-normal-subgroup-1753114893', {
+    createForceGraph(data, 'graph-viz-def-normal-subgroup-1753116691', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-normal-subgroup-1753114893').innerHTML =
+    document.getElementById('graph-viz-def-normal-subgroup-1753116691').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

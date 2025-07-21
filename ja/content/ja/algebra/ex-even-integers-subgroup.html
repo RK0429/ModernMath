@@ -297,8 +297,8 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="性質">性質</h2>
 <ul>
 <li><span class="math inline">\(1 \in \mathbb{Z}\)</span> だが <span class="math inline">\(1 \notin 2\mathbb{Z}\)</span> なので、これは真部分群である。</li>
-<li>この部分群の <span class="math inline">\(\mathbb{Z}\)</span> における指数は 2 であり、ちょうど 2 個の剰余類が存在する。</li>
-<li>剰余類は <span class="math inline">\(2\mathbb{Z}\)</span>（偶数整数）と <span class="math inline">\(1 + 2\mathbb{Z}\)</span>（奇数整数）である。</li>
+<li>この部分群の <span class="math inline">\(\mathbb{Z}\)</span> における指数は 2 であり、ちょうど 2 個の<a href="../../../content/ja/algebra/def-coset.html">剰余類</a>が存在する。</li>
+<li><a href="../../../content/ja/algebra/def-coset.html">剰余類</a>は <span class="math inline">\(2\mathbb{Z}\)</span>（偶数整数）と <span class="math inline">\(1 + 2\mathbb{Z}\)</span>（奇数整数）である。</li>
 <li><strong>重要</strong>：<span class="math inline">\(2\mathbb{Z}\)</span> は実際には <span class="math inline">\(\mathbb{Z}\)</span> の<a href="../../../content/ja/algebra/def-normal-subgroup.html">正規部分群</a>である。これは以下の理由による：
 <ul>
 <li><span class="math inline">\(\mathbb{Z}\)</span> はアーベル群である（加法は可換）</li>
@@ -331,21 +331,25 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-coset["Definition: Coset"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     ex-integers-addition["Example: Integers under Addition"]:::example
-    def-group["Definition: Group"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
     ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    ex-even-integers-subgroup --&gt; def-normal-subgroup
-    ex-even-integers-subgroup --&gt; def-subgroup
-    ex-even-integers-subgroup --&gt; def-group
     def-group --&gt; ex-even-integers-subgroup
+    ex-even-integers-subgroup --&gt; def-normal-subgroup
+    def-coset --&gt; ex-even-integers-subgroup
     ex-even-integers-subgroup --&gt; ex-integers-addition
+    ex-even-integers-subgroup --&gt; def-group
+    ex-even-integers-subgroup --&gt; def-coset
+    ex-even-integers-subgroup --&gt; def-subgroup
     class ex-even-integers-subgroup current
+    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click def-coset "def-coset.html" "Definition: Cosetへ"
     click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
     click ex-integers-addition "ex-integers-addition.html" "Example: Integers under Additionへ"
-    click def-group "def-group.html" "Definition: Groupへ"
-    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -355,8 +359,8 @@ window.Quarto = {
 </section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
-<p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-even-integers-subgroup-1753114830" class="graph-visualization-container">
+<p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
+<div id="graph-viz-ex-even-integers-subgroup-1753116625" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -536,12 +540,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-even-integers-subgroup-1753114830', {
+    createForceGraph(data, 'graph-viz-ex-even-integers-subgroup-1753116625', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-even-integers-subgroup-1753114830').innerHTML =
+    document.getElementById('graph-viz-ex-even-integers-subgroup-1753116625').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -306,12 +306,12 @@ window.Quarto = {
 
 <section id="def-quotient-group" class="level1">
 <h1>定義: 商群</h1>
-<p><strong>商群</strong>（<strong>剰余群</strong>とも呼ばれる）は、<a href="../../../content/ja/algebra/def-group.html">群</a>を<a href="../../../content/ja/algebra/def-normal-subgroup.html">正規部分群</a>の剰余類に分割することによって形成される<a href="../../../content/ja/algebra/def-group.html">群</a>です。</p>
+<p><strong>商群</strong>（<strong>剰余群</strong>とも呼ばれる）は、<a href="../../../content/ja/algebra/def-group.html">群</a>を<a href="../../../content/ja/algebra/def-normal-subgroup.html">正規部分群</a>の<a href="../../../content/ja/algebra/def-coset.html">剰余類</a>に分割することによって形成される<a href="../../../content/ja/algebra/def-group.html">群</a>です。</p>
 <section id="形式的定義" class="level2">
 <h2 class="anchored" data-anchor-id="形式的定義">形式的定義</h2>
-<p><span class="math inline">\(G\)</span> を群、<span class="math inline">\(N \triangleleft G\)</span> を正規部分群とします。<span class="math inline">\(G\)</span> の <span class="math inline">\(N\)</span> による<strong>商群</strong>（「<span class="math inline">\(G\)</span> を <span class="math inline">\(N\)</span> で割ったもの」と読む）<span class="math inline">\(G/N\)</span> は、<span class="math inline">\(G\)</span> における <span class="math inline">\(N\)</span> のすべての左剰余類の集合です：</p>
+<p><span class="math inline">\(G\)</span> を群、<span class="math inline">\(N \triangleleft G\)</span> を正規部分群とします。<span class="math inline">\(G\)</span> の <span class="math inline">\(N\)</span> による<strong>商群</strong>（「<span class="math inline">\(G\)</span> を <span class="math inline">\(N\)</span> で割ったもの」と読む）<span class="math inline">\(G/N\)</span> は、<span class="math inline">\(G\)</span> における <span class="math inline">\(N\)</span> のすべての左<a href="../../../content/ja/algebra/def-coset.html">剰余類</a>の集合です：</p>
 <p><span class="math display">\[G/N = \{gN : g \in G\}\]</span></p>
-<p>ここで <span class="math inline">\(gN = \{gn : n \in N\}\)</span> は <span class="math inline">\(g\)</span> を含む <span class="math inline">\(N\)</span> の左剰余類です。</p>
+<p>ここで <span class="math inline">\(gN = \{gn : n \in N\}\)</span> は <span class="math inline">\(g\)</span> を含む <span class="math inline">\(N\)</span> の左<a href="../../../content/ja/algebra/def-coset.html">剰余類</a>です。</p>
 </section>
 <section id="群構造" class="level2">
 <h2 class="anchored" data-anchor-id="群構造">群構造</h2>
@@ -323,7 +323,7 @@ window.Quarto = {
 <ol type="1">
 <li><p><strong>閉性</strong>: 任意の <span class="math inline">\(gN, hN \in G/N\)</span> に対して、<span class="math inline">\((gN)(hN) = (gh)N \in G/N\)</span></p></li>
 <li><p><strong>結合律</strong>: <span class="math inline">\(G\)</span> の結合律から継承されます： <span class="math display">\[((gN)(hN))(kN) = (gh)N \cdot kN = ((gh)k)N = (g(hk))N = gN \cdot (hk)N = (gN)((hN)(kN))\]</span></p></li>
-<li><p><strong>単位元</strong>: 剰余類 <span class="math inline">\(eN = N\)</span> が単位元として機能します： <span class="math display">\[(gN) \cdot N = (gN) \cdot (eN) = (ge)N = gN\]</span></p></li>
+<li><p><strong>単位元</strong>: <a href="../../../content/ja/algebra/def-coset.html">剰余類</a> <span class="math inline">\(eN = N\)</span> が単位元として機能します： <span class="math display">\[(gN) \cdot N = (gN) \cdot (eN) = (ge)N = gN\]</span></p></li>
 <li><p><strong>逆元</strong>: 各 <span class="math inline">\(gN \in G/N\)</span> に対して、逆元は <span class="math inline">\((g^{-1})N\)</span> です： <span class="math display">\[(gN) \cdot (g^{-1}N) = (gg^{-1})N = eN = N\]</span></p></li>
 </ol>
 </section>
@@ -343,7 +343,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="性質の継承">性質の継承</h3>
 <ol type="1">
 <li><span class="math inline">\(G\)</span> がアーベル群なら、<span class="math inline">\(G/N\)</span> もアーベル群</li>
-<li><span class="math inline">\(G\)</span> が巡回群なら、<span class="math inline">\(G/N\)</span> も巡回群</li>
+<li><span class="math inline">\(G\)</span> が<a href="../../../content/ja/algebra/def-cyclic-group.html">巡回群</a>なら、<span class="math inline">\(G/N\)</span> も<a href="../../../content/ja/algebra/def-cyclic-group.html">巡回群</a></li>
 <li><span class="math inline">\(G\)</span> が有限生成なら、<span class="math inline">\(G/N\)</span> も有限生成</li>
 </ol>
 </section>
@@ -352,16 +352,16 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="例">例</h2>
 <section id="整数の-n-による剰余" class="level3">
 <h3 class="anchored" data-anchor-id="整数の-n-による剰余">1. 整数の n による剰余</h3>
-<p>商群 <span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> は <span class="math inline">\(n\)</span> を法とする剰余類から構成されます： <span class="math display">\[\mathbb{Z}/n\mathbb{Z} = \{0 + n\mathbb{Z}, 1 + n\mathbb{Z}, ..., (n-1) + n\mathbb{Z}\}\]</span></p>
-<p>これは位数 <span class="math inline">\(n\)</span> の巡回群で、しばしば <span class="math inline">\(\mathbb{Z}_n\)</span> または <span class="math inline">\(C_n\)</span> と表記されます。</p>
+<p>商群 <span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> は <span class="math inline">\(n\)</span> を法とする<a href="../../../content/ja/algebra/def-coset.html">剰余類</a>から構成されます： <span class="math display">\[\mathbb{Z}/n\mathbb{Z} = \{0 + n\mathbb{Z}, 1 + n\mathbb{Z}, ..., (n-1) + n\mathbb{Z}\}\]</span></p>
+<p>これは位数 <span class="math inline">\(n\)</span> の<a href="../../../content/ja/algebra/def-cyclic-group.html">巡回群</a>で、しばしば <span class="math inline">\(\mathbb{Z}_n\)</span> または <span class="math inline">\(C_n\)</span> と表記されます。</p>
 </section>
 <section id="円周群" class="level3">
 <h3 class="anchored" data-anchor-id="円周群">2. 円周群</h3>
-<p>商 <span class="math inline">\(\mathbb{R}/\mathbb{Z}\)</span> は円周群 <span class="math inline">\(S^1\)</span> と同一視できます： - 要素は <span class="math inline">\(x \in \mathbb{R}\)</span> に対する剰余類 <span class="math inline">\(x + \mathbb{Z}\)</span> - 二つの実数 <span class="math inline">\(x, y\)</span> が同じ剰余類に属する ⟺ <span class="math inline">\(x - y \in \mathbb{Z}\)</span></p>
+<p>商 <span class="math inline">\(\mathbb{R}/\mathbb{Z}\)</span> は円周群 <span class="math inline">\(S^1\)</span> と同一視できます： - 要素は <span class="math inline">\(x \in \mathbb{R}\)</span> に対する<a href="../../../content/ja/algebra/def-coset.html">剰余類</a> <span class="math inline">\(x + \mathbb{Z}\)</span> - 二つの実数 <span class="math inline">\(x, y\)</span> が同じ<a href="../../../content/ja/algebra/def-coset.html">剰余類</a>に属する ⟺ <span class="math inline">\(x - y \in \mathbb{Z}\)</span></p>
 </section>
 <section id="中心による商" class="level3">
 <h3 class="anchored" data-anchor-id="中心による商">3. 中心による商</h3>
-<p>任意の群 <span class="math inline">\(G\)</span> に対して、その中心による商 <span class="math inline">\(G/Z(G)\)</span> は群がどれだけ「非アーベル的」かを測ります： - <span class="math inline">\(G/Z(G)\)</span> が巡回群なら、<span class="math inline">\(G\)</span> はアーベル群 - <span class="math inline">\(|G/Z(G)| = 1\)</span> なら、<span class="math inline">\(G = Z(G)\)</span> となり、<span class="math inline">\(G\)</span> はアーベル群</p>
+<p>任意の群 <span class="math inline">\(G\)</span> に対して、その中心による商 <span class="math inline">\(G/Z(G)\)</span> は群がどれだけ「非アーベル的」かを測ります： - <span class="math inline">\(G/Z(G)\)</span> が<a href="../../../content/ja/algebra/def-cyclic-group.html">巡回群</a>なら、<span class="math inline">\(G\)</span> はアーベル群 - <span class="math inline">\(|G/Z(G)| = 1\)</span> なら、<span class="math inline">\(G = Z(G)\)</span> となり、<span class="math inline">\(G\)</span> はアーベル群</p>
 </section>
 <section id="単純群" class="level3">
 <h3 class="anchored" data-anchor-id="単純群">4. 単純群</h3>
@@ -412,40 +412,47 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-ideal["Definition: Ideal"]:::definition
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
-    def-kernel["Definition: Kernel"]:::definition
-    def-group["Definition: Group"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-subgroup["Definition: Subgroup"]:::definition
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    def-ideal["Definition: Ideal"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-coset["Definition: Coset"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-quotient-group["Definition: Quotient Group"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
     ex-finite-field["Example: Finite Field"]:::example
-    def-quotient-group --&gt; def-subgroup
-    def-kernel --&gt; def-quotient-group
-    def-quotient-group --&gt; def-group
-    def-quotient-group --&gt; def-normal-subgroup
-    thm-lagrange --&gt; def-quotient-group
-    ex-quotient-integers-mod-n --&gt; def-quotient-group
-    thm-euler --&gt; def-quotient-group
     def-subgroup --&gt; def-quotient-group
-    def-quotient-group --&gt; def-ideal
-    def-homomorphism --&gt; def-quotient-group
-    def-group --&gt; def-quotient-group
+    def-quotient-group --&gt; def-cyclic-group
+    def-quotient-group --&gt; def-coset
+    def-quotient-group --&gt; def-normal-subgroup
     ex-finite-field --&gt; def-quotient-group
+    def-quotient-group --&gt; def-subgroup
+    def-homomorphism --&gt; def-quotient-group
+    ex-quotient-integers-mod-n --&gt; def-quotient-group
     def-normal-subgroup --&gt; def-quotient-group
+    def-group --&gt; def-quotient-group
+    def-quotient-group --&gt; def-ideal
+    def-quotient-group --&gt; def-group
+    thm-euler --&gt; def-quotient-group
+    thm-lagrange --&gt; def-quotient-group
+    def-kernel --&gt; def-quotient-group
+    def-coset --&gt; def-quotient-group
     class def-quotient-group current
-    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
-    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
     click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
-    click def-ideal "def-ideal.html" "Definition: Idealへ"
-    click thm-euler "thm-euler.html" "Theorem: Euler's Theoremへ"
-    click def-kernel "def-kernel.html" "Definition: Kernelへ"
-    click def-group "def-group.html" "Definition: Groupへ"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
     click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
+    click thm-euler "thm-euler.html" "Theorem: Euler's Theoremへ"
+    click def-ideal "def-ideal.html" "Definition: Idealへ"
+    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click def-coset "def-coset.html" "Definition: Cosetへ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
+    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
+    click def-cyclic-group "def-cyclic-group.html" "Definition: Cyclic Groupへ"
+    click def-kernel "def-kernel.html" "Definition: Kernelへ"
     click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
 </pre>
 </div>
@@ -456,8 +463,8 @@ window.Quarto = {
 </section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
-<p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-quotient-group-1753114761" class="graph-visualization-container">
+<p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
+<div id="graph-viz-def-quotient-group-1753116555" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -637,12 +644,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-quotient-group-1753114761', {
+    createForceGraph(data, 'graph-viz-def-quotient-group-1753116555', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-quotient-group-1753114761').innerHTML =
+    document.getElementById('graph-viz-def-quotient-group-1753116555').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

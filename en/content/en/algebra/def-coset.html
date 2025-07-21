@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Definition: Coset – Math Knowledge Graph</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<script>
+  window.siteLanguage = 'en';
+  window.alternateLanguage = 'ja';
+  window.alternateLanguageUrl = '../ja/';
+  // Calculate the correct path to js directory based on current location
+  (function() {
+    var path = window.location.pathname;
+
+    // Find the base path for the English site
+    // Look for where '/en/' appears in the path
+    var enIndex = path.indexOf('/en/');
+    var basePath = '';
+
+    if (enIndex !== -1) {
+      // Extract everything up to and including '/en/'
+      var siteRoot = path.substring(0, enIndex + 4); // +4 to include '/en/'
+      basePath = siteRoot;
+    } else {
+      // Fallback: calculate relative path
+      var pathParts = path.split('/').filter(function(part) {
+        return part && !part.endsWith('.html');
+      });
+
+      // Count depth and build relative path
+      var depth = pathParts.length;
+      for (var i = 0; i < depth; i++) {
+        basePath += '../';
+      }
+    }
+
+    // Ensure basePath ends with /
+    if (basePath && !basePath.endsWith('/')) {
+      basePath += '/';
+    }
+
+    // Load language switcher
+    var script = document.createElement('script');
+    script.src = basePath + 'js/language-switcher.js';
+    script.defer = true;
+    document.head.appendChild(script);
+
+    // Load issue button
+    var issueScript = document.createElement('script');
+    issueScript.src = basePath + 'js/issue-button.js';
+    issueScript.defer = true;
+    document.head.appendChild(issueScript);
+  })();
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Math Knowledge Graph</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/algebra/index.html"> 
+<span class="menu-text">Algebra</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/analysis/index.html"> 
+<span class="menu-text">Analysis</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/topology/index.html"> 
+<span class="menu-text">Topology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/geometry/index.html"> 
+<span class="menu-text">Geometry</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/category-theory/index.html"> 
+<span class="menu-text">Category Theory</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/combinatorics/index.html"> 
+<span class="menu-text">Combinatorics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/logic-set-theory/index.html"> 
+<span class="menu-text">Logic &amp; Set Theory</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/number-theory/index.html"> 
+<span class="menu-text">Number Theory</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/probability-statistics/index.html"> 
+<span class="menu-text">Probability &amp; Statistics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/en/about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/en/contributing.html"> 
+<span class="menu-text">Contributing</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../ja/index.html"> 
+<span class="menu-text">🌐 日本語</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#def-coset" id="toc-def-coset" class="nav-link active" data-scroll-target="#def-coset">Definition: Coset</a>
+  <ul class="collapse">
+  <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link" data-scroll-target="#formal-definition">Formal Definition</a>
+  <ul class="collapse">
+  <li><a href="#left-coset" id="toc-left-coset" class="nav-link" data-scroll-target="#left-coset">Left Coset</a></li>
+  <li><a href="#right-coset" id="toc-right-coset" class="nav-link" data-scroll-target="#right-coset">Right Coset</a></li>
+  </ul></li>
+  <li><a href="#notation-and-terminology" id="toc-notation-and-terminology" class="nav-link" data-scroll-target="#notation-and-terminology">Notation and Terminology</a></li>
+  <li><a href="#fundamental-properties" id="toc-fundamental-properties" class="nav-link" data-scroll-target="#fundamental-properties">Fundamental Properties</a>
+  <ul class="collapse">
+  <li><a href="#equal-cardinality" id="toc-equal-cardinality" class="nav-link" data-scroll-target="#equal-cardinality">1. Equal Cardinality</a></li>
+  <li><a href="#partition-property" id="toc-partition-property" class="nav-link" data-scroll-target="#partition-property">2. Partition Property</a></li>
+  <li><a href="#coset-equality-criterion" id="toc-coset-equality-criterion" class="nav-link" data-scroll-target="#coset-equality-criterion">3. Coset Equality Criterion</a></li>
+  <li><a href="#the-identity-coset" id="toc-the-identity-coset" class="nav-link" data-scroll-target="#the-identity-coset">4. The Identity Coset</a></li>
+  <li><a href="#index" id="toc-index" class="nav-link" data-scroll-target="#index">5. Index</a></li>
+  </ul></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
+  <ul class="collapse">
+  <li><a href="#example-1-integers-modulo-n" id="toc-example-1-integers-modulo-n" class="nav-link" data-scroll-target="#example-1-integers-modulo-n">Example 1: Integers Modulo n</a></li>
+  <li><a href="#example-2-even-integers-in-z" id="toc-example-2-even-integers-in-z" class="nav-link" data-scroll-target="#example-2-even-integers-in-z">Example 2: Even Integers in Z</a></li>
+  <li><a href="#example-3-cosets-in-a-finite-group" id="toc-example-3-cosets-in-a-finite-group" class="nav-link" data-scroll-target="#example-3-cosets-in-a-finite-group">Example 3: Cosets in a Finite Group</a></li>
+  </ul></li>
+  <li><a href="#geometric-interpretation" id="toc-geometric-interpretation" class="nav-link" data-scroll-target="#geometric-interpretation">Geometric Interpretation</a></li>
+  <li><a href="#when-left-and-right-cosets-coincide" id="toc-when-left-and-right-cosets-coincide" class="nav-link" data-scroll-target="#when-left-and-right-cosets-coincide">When Left and Right Cosets Coincide</a></li>
+  <li><a href="#connection-to-quotient-groups" id="toc-connection-to-quotient-groups" class="nav-link" data-scroll-target="#connection-to-quotient-groups">Connection to Quotient Groups</a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a>
+  <ul class="collapse">
+  <li><a href="#lagranges-theorem" id="toc-lagranges-theorem" class="nav-link" data-scroll-target="#lagranges-theorem">Lagrange’s Theorem</a></li>
+  <li><a href="#group-actions" id="toc-group-actions" class="nav-link" data-scroll-target="#group-actions">Group Actions</a></li>
+  <li><a href="#counting-arguments" id="toc-counting-arguments" class="nav-link" data-scroll-target="#counting-arguments">Counting Arguments</a></li>
+  </ul></li>
+  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
+  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
+  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Definition: Coset</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="def-coset" class="level1">
+<h1>Definition: Coset</h1>
+<p>A <strong>coset</strong> is a fundamental concept in group theory that arises when we translate a <a href="../../../content/en/algebra/def-subgroup.html">subgroup</a> by a fixed element of the parent <a href="../../../content/en/algebra/def-group.html">group</a>. Cosets partition a group into equal-sized disjoint subsets.</p>
+<section id="formal-definition" class="level2">
+<h2 class="anchored" data-anchor-id="formal-definition">Formal Definition</h2>
+<p>Let <span class="math inline">\((G, \star)\)</span> be a group and <span class="math inline">\(H \leq G\)</span> be a subgroup. For any element <span class="math inline">\(g \in G\)</span>:</p>
+<section id="left-coset" class="level3">
+<h3 class="anchored" data-anchor-id="left-coset">Left Coset</h3>
+<p>The <strong>left coset</strong> of <span class="math inline">\(H\)</span> by <span class="math inline">\(g\)</span> is the set: <span class="math display">\[gH = \{g \star h : h \in H\}\]</span></p>
+</section>
+<section id="right-coset" class="level3">
+<h3 class="anchored" data-anchor-id="right-coset">Right Coset</h3>
+<p>The <strong>right coset</strong> of <span class="math inline">\(H\)</span> by <span class="math inline">\(g\)</span> is the set: <span class="math display">\[Hg = \{h \star g : h \in H\}\]</span></p>
+</section>
+</section>
+<section id="notation-and-terminology" class="level2">
+<h2 class="anchored" data-anchor-id="notation-and-terminology">Notation and Terminology</h2>
+<ul>
+<li>The element <span class="math inline">\(g\)</span> is called a <strong>representative</strong> of the coset</li>
+<li>When the operation is addition, we write <span class="math inline">\(g + H\)</span> and <span class="math inline">\(H + g\)</span></li>
+<li>When the operation is multiplication, we often omit the symbol: <span class="math inline">\(gH\)</span> and <span class="math inline">\(Hg\)</span></li>
+<li>The set of all left cosets of <span class="math inline">\(H\)</span> in <span class="math inline">\(G\)</span> is denoted <span class="math inline">\(G/H\)</span> (read “<span class="math inline">\(G\)</span> modulo <span class="math inline">\(H\)</span>”)</li>
+<li>The set of all right cosets of <span class="math inline">\(H\)</span> in <span class="math inline">\(G\)</span> is denoted <span class="math inline">\(H\backslash G\)</span></li>
+</ul>
+</section>
+<section id="fundamental-properties" class="level2">
+<h2 class="anchored" data-anchor-id="fundamental-properties">Fundamental Properties</h2>
+<section id="equal-cardinality" class="level3">
+<h3 class="anchored" data-anchor-id="equal-cardinality">1. Equal Cardinality</h3>
+<p>Every coset of <span class="math inline">\(H\)</span> has the same number of elements as <span class="math inline">\(H\)</span>: <span class="math display">\[|gH| = |H| = |Hg|\]</span></p>
+<p>This follows from the fact that the map <span class="math inline">\(h \mapsto gh\)</span> is a bijection from <span class="math inline">\(H\)</span> to <span class="math inline">\(gH\)</span>.</p>
+</section>
+<section id="partition-property" class="level3">
+<h3 class="anchored" data-anchor-id="partition-property">2. Partition Property</h3>
+<p>The left cosets (and separately, the right cosets) of <span class="math inline">\(H\)</span> partition <span class="math inline">\(G\)</span>: - Every element of <span class="math inline">\(G\)</span> belongs to exactly one left coset - Two left cosets are either identical or disjoint: <span class="math inline">\(g_1H = g_2H\)</span> or <span class="math inline">\(g_1H \cap g_2H = \emptyset\)</span></p>
+</section>
+<section id="coset-equality-criterion" class="level3">
+<h3 class="anchored" data-anchor-id="coset-equality-criterion">3. Coset Equality Criterion</h3>
+<p>For any <span class="math inline">\(g_1, g_2 \in G\)</span>: - <span class="math inline">\(g_1H = g_2H\)</span> if and only if <span class="math inline">\(g_1^{-1}g_2 \in H\)</span> - <span class="math inline">\(Hg_1 = Hg_2\)</span> if and only if <span class="math inline">\(g_1g_2^{-1} \in H\)</span></p>
+</section>
+<section id="the-identity-coset" class="level3">
+<h3 class="anchored" data-anchor-id="the-identity-coset">4. The Identity Coset</h3>
+<p>The subgroup <span class="math inline">\(H\)</span> itself is always a coset: - <span class="math inline">\(eH = H = He\)</span> where <span class="math inline">\(e\)</span> is the identity element</p>
+</section>
+<section id="index" class="level3">
+<h3 class="anchored" data-anchor-id="index">5. Index</h3>
+<p>The number of distinct left cosets equals the number of distinct right cosets. This common value is called the <strong>index</strong> of <span class="math inline">\(H\)</span> in <span class="math inline">\(G\)</span>, denoted <span class="math inline">\([G:H]\)</span>.</p>
+</section>
+</section>
+<section id="examples" class="level2">
+<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<section id="example-1-integers-modulo-n" class="level3">
+<h3 class="anchored" data-anchor-id="example-1-integers-modulo-n">Example 1: Integers Modulo n</h3>
+<p>Consider <span class="math inline">\(G = (\mathbb{Z}, +)\)</span> and <span class="math inline">\(H = n\mathbb{Z} = \{..., -2n, -n, 0, n, 2n, ...\}\)</span>.</p>
+<p>The left cosets are: - <span class="math inline">\(0 + n\mathbb{Z} = n\mathbb{Z} = \{..., -2n, -n, 0, n, 2n, ...\}\)</span> - <span class="math inline">\(1 + n\mathbb{Z} = \{..., -2n+1, -n+1, 1, n+1, 2n+1, ...\}\)</span> - <span class="math inline">\(2 + n\mathbb{Z} = \{..., -2n+2, -n+2, 2, n+2, 2n+2, ...\}\)</span> - … - <span class="math inline">\((n-1) + n\mathbb{Z} = \{..., -n-1, -1, n-1, 2n-1, 3n-1, ...\}\)</span></p>
+<p>There are exactly <span class="math inline">\(n\)</span> distinct cosets, so <span class="math inline">\([\mathbb{Z} : n\mathbb{Z}] = n\)</span>.</p>
+</section>
+<section id="example-2-even-integers-in-z" class="level3">
+<h3 class="anchored" data-anchor-id="example-2-even-integers-in-z">Example 2: Even Integers in Z</h3>
+<p>Let <span class="math inline">\(H = 2\mathbb{Z}\)</span> (even integers) in <span class="math inline">\(G = \mathbb{Z}\)</span>.</p>
+<p>The cosets are: - <span class="math inline">\(0 + 2\mathbb{Z} = 2\mathbb{Z}\)</span> (all even integers) - <span class="math inline">\(1 + 2\mathbb{Z} = \{..., -3, -1, 1, 3, 5, ...\}\)</span> (all odd integers)</p>
+<p>Thus <span class="math inline">\([\mathbb{Z} : 2\mathbb{Z}] = 2\)</span>.</p>
+</section>
+<section id="example-3-cosets-in-a-finite-group" class="level3">
+<h3 class="anchored" data-anchor-id="example-3-cosets-in-a-finite-group">Example 3: Cosets in a Finite Group</h3>
+<p>In the dihedral group <span class="math inline">\(D_3\)</span> (symmetries of an equilateral triangle) with subgroup <span class="math inline">\(H = \{e, r\}\)</span> (where <span class="math inline">\(r\)</span> is a 120° rotation):</p>
+<p>The left cosets are: - <span class="math inline">\(eH = \{e, r\} = H\)</span> - <span class="math inline">\(r^2H = \{r^2, r^2r\} = \{r^2, e\} = H\)</span> - <span class="math inline">\(sH = \{s, sr\}\)</span> (where <span class="math inline">\(s\)</span> is a reflection)</p>
+</section>
+</section>
+<section id="geometric-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="geometric-interpretation">Geometric Interpretation</h2>
+<p>Cosets can be visualized as: - <strong>Translations</strong>: Each coset <span class="math inline">\(gH\)</span> is a “translate” of <span class="math inline">\(H\)</span> by the element <span class="math inline">\(g\)</span> - <strong>Parallel subsets</strong>: In abelian groups, cosets are like parallel lines or planes - <strong>Orbits</strong>: Cosets represent the orbits of a natural group action</p>
+</section>
+<section id="when-left-and-right-cosets-coincide" class="level2">
+<h2 class="anchored" data-anchor-id="when-left-and-right-cosets-coincide">When Left and Right Cosets Coincide</h2>
+<p>In general, <span class="math inline">\(gH \neq Hg\)</span>. However, they coincide in two important cases:</p>
+<ol type="1">
+<li><p><strong>Abelian Groups</strong>: If <span class="math inline">\(G\)</span> is abelian, then <span class="math inline">\(gH = Hg\)</span> for all <span class="math inline">\(g \in G\)</span></p></li>
+<li><p><strong>Normal Subgroups</strong>: A subgroup <span class="math inline">\(N\)</span> is normal if and only if <span class="math inline">\(gN = Ng\)</span> for all <span class="math inline">\(g \in G\)</span></p></li>
+</ol>
+</section>
+<section id="connection-to-quotient-groups" class="level2">
+<h2 class="anchored" data-anchor-id="connection-to-quotient-groups">Connection to Quotient Groups</h2>
+<p>When <span class="math inline">\(N\)</span> is a <a href="../../../content/en/algebra/def-normal-subgroup.html">normal subgroup</a>, the set of cosets <span class="math inline">\(G/N\)</span> can be given a group structure, forming the <a href="../../../content/en/algebra/def-quotient-group.html">quotient group</a>. The group operation is: <span class="math display">\[(gN) \star (hN) = (g \star h)N\]</span></p>
+<p>This operation is well-defined precisely because left and right cosets coincide for normal subgroups.</p>
+</section>
+<section id="applications" class="level2">
+<h2 class="anchored" data-anchor-id="applications">Applications</h2>
+<section id="lagranges-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="lagranges-theorem">Lagrange’s Theorem</h3>
+<p>The concept of cosets is central to <a href="../../../content/en/algebra/thm-lagrange.html">Lagrange’s theorem</a>, which states that for a finite group <span class="math inline">\(G\)</span>: <span class="math display">\[|G| = |H| \cdot [G:H]\]</span></p>
+</section>
+<section id="group-actions" class="level3">
+<h3 class="anchored" data-anchor-id="group-actions">Group Actions</h3>
+<p>Cosets naturally arise in the study of group actions: - The left cosets of <span class="math inline">\(H\)</span> are the orbits of <span class="math inline">\(H\)</span> acting on <span class="math inline">\(G\)</span> by right multiplication - The right cosets of <span class="math inline">\(H\)</span> are the orbits of <span class="math inline">\(H\)</span> acting on <span class="math inline">\(G\)</span> by left multiplication</p>
+</section>
+<section id="counting-arguments" class="level3">
+<h3 class="anchored" data-anchor-id="counting-arguments">Counting Arguments</h3>
+<p>Cosets provide a powerful tool for counting in finite groups and proving divisibility results.</p>
+</section>
+</section>
+<section id="see-also" class="level2">
+<h2 class="anchored" data-anchor-id="see-also">See Also</h2>
+<ul>
+<li><a href="../../../content/en/algebra/def-subgroup.html">定義：部分群</a></li>
+<li><a href="../../../content/en/algebra/def-normal-subgroup.html">正規部分群</a></li>
+<li><a href="../../../content/en/algebra/def-quotient-group.html">商群</a></li>
+<li><a href="../../../content/en/algebra/thm-lagrange.html">ラグランジュの定理</a></li>
+<li><a href="../../../content/en/algebra/ex-even-integers-subgroup.html">偶数整数は部分群を成す</a></li>
+<li><a href="../../../content/en/algebra/ex-quotient-integers-mod-n.html">整数の n による剰余</a></li>
+</ul>
+</section>
+<section id="dependency-graph" class="level2">
+<h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-coset["Definition: Coset"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    def-coset --&gt; ex-quotient-integers-mod-n
+    def-coset --&gt; thm-lagrange
+    thm-lagrange --&gt; def-coset
+    def-quotient-group --&gt; def-coset
+    def-coset --&gt; ex-even-integers-subgroup
+    def-normal-subgroup --&gt; def-coset
+    def-coset --&gt; def-group
+    ex-quotient-integers-mod-n --&gt; def-coset
+    ex-even-integers-subgroup --&gt; def-coset
+    def-coset --&gt; def-normal-subgroup
+    def-coset --&gt; def-binary-operation
+    def-coset --&gt; def-subgroup
+    def-coset --&gt; def-quotient-group
+    class def-coset current
+    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
+    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Go to Even Integers Form a Subgroup example"
+</pre>
+</div>
+<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="interactive-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
+<p>Explore the local knowledge graph neighborhood interactively:</p>
+<div id="graph-viz-def-coset-1753116492" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
+</div>
+
+<script type="module">
+import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+// Function to create force-directed graph
+function createForceGraph(data, containerId, options = {}) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = ''; // Clear loading message
+
+  const {
+    width = 700,
+    height = 500,
+    nodeRadius = 8,
+    linkDistance = 100,
+    chargeStrength = -300
+  } = options;
+
+  // Node colors by type
+  const nodeColors = {
+    'Definition': '#4CAF50',
+    'Theorem': '#2196F3',
+    'Axiom': '#FF9800',
+    'Example': '#9C27B0'
+  };
+
+  // Create SVG
+  const svg = d3.create("svg")
+    .attr("viewBox", [0, 0, width, height])
+    .attr("width", width)
+    .attr("height", height)
+    .style("max-width", "100%")
+    .style("height", "auto");
+
+  // Add zoom
+  const g = svg.append("g");
+
+  const zoom = d3.zoom()
+    .scaleExtent([0.1, 4])
+    .on("zoom", (event) => {
+      g.attr("transform", event.transform);
+    });
+
+  svg.call(zoom);
+
+  // Arrow markers
+  svg.append("defs").append("marker")
+    .attr("id", "arrow-" + containerId)
+    .attr("viewBox", "0 -5 10 10")
+    .attr("refX", 20)
+    .attr("refY", 0)
+    .attr("markerWidth", 6)
+    .attr("markerHeight", 6)
+    .attr("orient", "auto")
+    .append("path")
+    .attr("fill", "#999")
+    .attr("d", "M0,-5L10,0L0,5");
+
+  // Force simulation
+  const simulation = d3.forceSimulation(data.nodes)
+    .force("link", d3.forceLink(data.links).id(d => d.index).distance(linkDistance))
+    .force("charge", d3.forceManyBody().strength(chargeStrength))
+    .force("center", d3.forceCenter(width / 2, height / 2))
+    .force("collision", d3.forceCollide().radius(nodeRadius * 1.5));
+
+  // Links
+  const link = g.append("g")
+    .selectAll("line")
+    .data(data.links)
+    .join("line")
+    .attr("stroke", "#999")
+    .attr("stroke-opacity", 0.6)
+    .attr("stroke-width", 1.5)
+    .attr("marker-end", `url(#arrow-${containerId})`);
+
+  // Nodes
+  const node = g.append("g")
+    .selectAll("g")
+    .data(data.nodes)
+    .join("g")
+    .call(d3.drag()
+      .on("start", dragstarted)
+      .on("drag", dragged)
+      .on("end", dragended));
+
+  node.append("circle")
+    .attr("r", d => d.is_focus ? nodeRadius * 1.5 : nodeRadius)
+    .attr("fill", d => nodeColors[d.type] || "#888")
+    .attr("stroke", d => d.is_focus ? "#333" : "#fff")
+    .attr("stroke-width", d => d.is_focus ? 3 : 1.5);
+
+  node.append("text")
+    .text(d => d.label || d.id)
+    .attr("x", 0)
+    .attr("y", -nodeRadius - 5)
+    .attr("text-anchor", "middle")
+    .attr("font-size", "11px")
+    .attr("font-family", "system-ui, sans-serif");
+
+  node.append("title")
+    .text(d => `${d.type}: ${d.label || d.id}`);
+
+  // Tick function
+  simulation.on("tick", () => {
+    link
+      .attr("x1", d => d.source.x)
+      .attr("y1", d => d.source.y)
+      .attr("x2", d => d.target.x)
+      .attr("y2", d => d.target.y);
+
+    node.attr("transform", d => `translate(${d.x},${d.y})`);
+  });
+
+  // Drag functions
+  function dragstarted(event) {
+    if (!event.active) simulation.alphaTarget(0.3).restart();
+    event.subject.fx = event.subject.x;
+    event.subject.fy = event.subject.y;
+  }
+
+  function dragged(event) {
+    event.subject.fx = event.x;
+    event.subject.fy = event.y;
+  }
+
+  function dragended(event) {
+    if (!event.active) simulation.alphaTarget(0);
+    event.subject.fx = null;
+    event.subject.fy = null;
+  }
+
+  // Add to container
+  container.appendChild(svg.node());
+
+  // Add stats
+  const stats = document.createElement("div");
+  stats.className = "graph-stats";
+  stats.innerHTML = `
+    <p><strong>Graph Statistics:</strong></p>
+    <ul>
+      <li>Nodes: ${data.metadata.total_nodes}</li>
+      <li>Links: ${data.metadata.total_links}</li>
+      <li>Neighborhood depth: ${data.metadata.depth || 2}</li>
+    </ul>
+  `;
+  container.appendChild(stats);
+}
+
+// Load and render the graph
+async function loadAndRenderGraph() {
+  try {
+    // Calculate relative path based on current location
+    const currentPath = window.location.pathname;
+
+    // Check if we're in a GitHub Pages subdirectory (e.g., /ModernMath/)
+    const pathParts = currentPath.split('/').filter(p => p);
+    let basePath = '';
+
+    // For GitHub Pages with project name subdirectory
+    if (window.location.hostname.includes('github.io') && pathParts.length > 0) {
+      // The first part is the project name (e.g., 'ModernMath')
+      const projectName = pathParts[0];
+      // Remove project name and count remaining directories (excluding the HTML file)
+      const depthFromProjectRoot = pathParts.slice(1).length - 1;
+
+      // Go up to the project root
+      basePath = '../'.repeat(depthFromProjectRoot);
+    } else {
+      // For local development or root deployment
+      const depth = (currentPath.match(/\//g) || []).length - 1;
+      basePath = '../'.repeat(depth);
+    }
+
+    const response = await fetch(basePath + 'output/d3-data/def-coset.json');
+    if (!response.ok) {
+      throw new Error('Failed to load graph data');
+    }
+    const data = await response.json();
+    createForceGraph(data, 'graph-viz-def-coset-1753116492', {
+      width: 700,
+      height: 500
+    });
+  } catch (error) {
+    document.getElementById('graph-viz-def-coset-1753116492').innerHTML =
+      '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
+  }
+}
+
+// Load when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', loadAndRenderGraph);
+} else {
+  loadAndRenderGraph();
+}
+</script>
+
+<style>
+.graph-visualization-container {
+  margin: 2em 0;
+  padding: 1em;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.graph-visualization-container svg {
+  display: block;
+  margin: 0 auto;
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+}
+
+.graph-stats {
+  margin-top: 1em;
+  padding: 0.5em 1em;
+  background: white;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.graph-stats ul {
+  margin: 0.5em 0 0 1em;
+  padding: 0;
+}
+
+.graph-loading {
+  text-align: center;
+  padding: 2em;
+  color: #6c757d;
+}
+
+.alert {
+  padding: 12px 20px;
+  border-radius: 4px;
+  margin: 1em 0;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeaa7;
+  color: #856404;
+}
+</style>
+
+<p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/def-coset.html" target="_blank">full interactive version</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Mathematics Knowledge Graph Wiki - Built with Quarto and RDF</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

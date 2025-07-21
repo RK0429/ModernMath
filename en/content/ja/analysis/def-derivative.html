@@ -354,13 +354,13 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-derivative["Definition: Derivative"]:::definition
     def-limit["Definition: Limit of a Sequence"]:::definition
     thm-chain-rule["Theorem: Chain Rule"]:::theorem
+    def-derivative["Definition: Derivative"]:::definition
     thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
-    thm-chain-rule --&gt; def-derivative
-    def-derivative --&gt; def-limit
     thm-mean-value --&gt; def-derivative
+    def-derivative --&gt; def-limit
+    thm-chain-rule --&gt; def-derivative
     class def-derivative current
     click def-limit "def-limit.html" "Definition: Limit of a Sequenceへ"
     click thm-chain-rule "thm-chain-rule.html" "Theorem: Chain Ruleへ"
@@ -374,8 +374,8 @@ window.Quarto = {
 </section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
-<p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-derivative-1753114782" class="graph-visualization-container">
+<p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
+<div id="graph-viz-def-derivative-1753116576" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -555,12 +555,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-derivative-1753114782', {
+    createForceGraph(data, 'graph-viz-def-derivative-1753116576', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-derivative-1753114782').innerHTML =
+    document.getElementById('graph-viz-def-derivative-1753116576').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

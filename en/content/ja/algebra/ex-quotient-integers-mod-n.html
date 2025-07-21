@@ -312,7 +312,8 @@ window.Quarto = {
 <p><span class="math inline">\(n = 6\)</span> の場合を考えてみましょう。部分群は <span class="math inline">\(6\mathbb{Z} = \{..., -12, -6, 0, 6, 12, ...\}\)</span> です。</p>
 <section id="剰余類" class="level3">
 <h3 class="anchored" data-anchor-id="剰余類">剰余類</h3>
-<p>異なる剰余類は： - <span class="math inline">\(0 + 6\mathbb{Z} = \{..., -12, -6, 0, 6, 12, ...\}\)</span> - <span class="math inline">\(1 + 6\mathbb{Z} = \{..., -11, -5, 1, 7, 13, ...\}\)</span> - <span class="math inline">\(2 + 6\mathbb{Z} = \{..., -10, -4, 2, 8, 14, ...\}\)</span> - <span class="math inline">\(3 + 6\mathbb{Z} = \{..., -9, -3, 3, 9, 15, ...\}\)</span> - <span class="math inline">\(4 + 6\mathbb{Z} = \{..., -8, -2, 4, 10, 16, ...\}\)</span> - <span class="math inline">\(5 + 6\mathbb{Z} = \{..., -7, -1, 5, 11, 17, ...\}\)</span></p>
+<p><a href="../../../content/ja/algebra/def-coset.html">剰余類</a>の詳細については <a href="../../../content/ja/algebra/def-coset.html">剰余類</a> を参照してください。</p>
+<p>異なる<a href="../../../content/ja/algebra/def-coset.html">剰余類</a>は： - <span class="math inline">\(0 + 6\mathbb{Z} = \{..., -12, -6, 0, 6, 12, ...\}\)</span> - <span class="math inline">\(1 + 6\mathbb{Z} = \{..., -11, -5, 1, 7, 13, ...\}\)</span> - <span class="math inline">\(2 + 6\mathbb{Z} = \{..., -10, -4, 2, 8, 14, ...\}\)</span> - <span class="math inline">\(3 + 6\mathbb{Z} = \{..., -9, -3, 3, 9, 15, ...\}\)</span> - <span class="math inline">\(4 + 6\mathbb{Z} = \{..., -8, -2, 4, 10, 16, ...\}\)</span> - <span class="math inline">\(5 + 6\mathbb{Z} = \{..., -7, -1, 5, 11, 17, ...\}\)</span></p>
 <p><span class="math inline">\(6 + 6\mathbb{Z} = 0 + 6\mathbb{Z}\)</span>、<span class="math inline">\(7 + 6\mathbb{Z} = 1 + 6\mathbb{Z}\)</span> などとなることに注意してください。</p>
 </section>
 <section id="群演算" class="level3">
@@ -407,11 +408,11 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="性質">性質</h2>
 <section id="巡回構造" class="level3">
 <h3 class="anchored" data-anchor-id="巡回構造">巡回構造</h3>
-<p><span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> は位数 <span class="math inline">\(n\)</span> の巡回群です： - <span class="math inline">\(\bar{1} = 1 + n\mathbb{Z}\)</span> によって生成されます - すべての要素はある <span class="math inline">\(k\)</span> に対して <span class="math inline">\(k \cdot \bar{1}\)</span> と書けます</p>
+<p><span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> は位数 <span class="math inline">\(n\)</span> の<a href="../../../content/ja/algebra/def-cyclic-group.html">巡回群</a>です： - <span class="math inline">\(\bar{1} = 1 + n\mathbb{Z}\)</span> によって生成されます - すべての要素はある <span class="math inline">\(k\)</span> に対して <span class="math inline">\(k \cdot \bar{1}\)</span> と書けます</p>
 </section>
 <section id="同型" class="level3">
 <h3 class="anchored" data-anchor-id="同型">同型</h3>
-<p><span class="math inline">\(\mathbb{Z}/n\mathbb{Z} \cong C_n\)</span>、位数 <span class="math inline">\(n\)</span> の巡回群。</p>
+<p><span class="math inline">\(\mathbb{Z}/n\mathbb{Z} \cong C_n\)</span>、位数 <span class="math inline">\(n\)</span> の<a href="../../../content/ja/algebra/def-cyclic-group.html">巡回群</a>。</p>
 </section>
 <section id="部分群" class="level3">
 <h3 class="anchored" data-anchor-id="部分群">部分群</h3>
@@ -457,29 +458,41 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    ex-integers-addition["Example: Integers under Addition"]:::example
     thm-euler["Theorem: Euler's Theorem"]:::theorem
-    thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
-    def-group["Definition: Group"]:::definition
     ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-coset["Definition: Coset"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-quotient-group["Definition: Quotient Group"]:::definition
+    ex-integers-addition["Example: Integers under Addition"]:::example
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
     ex-finite-field["Example: Finite Field"]:::example
-    ex-quotient-integers-mod-n --&gt; def-quotient-group
-    thm-euler --&gt; ex-quotient-integers-mod-n
+    thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
+    def-coset --&gt; ex-quotient-integers-mod-n
     ex-quotient-integers-mod-n --&gt; ex-integers-addition
     ex-quotient-integers-mod-n --&gt; def-group
-    ex-quotient-integers-mod-n --&gt; def-normal-subgroup
     thm-euclidean-algorithm --&gt; ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --&gt; def-quotient-group
+    def-congruence --&gt; ex-quotient-integers-mod-n
+    def-cyclic-group --&gt; ex-quotient-integers-mod-n
+    thm-euler --&gt; ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --&gt; def-coset
+    ex-quotient-integers-mod-n --&gt; def-normal-subgroup
     ex-finite-field --&gt; ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --&gt; def-congruence
+    ex-quotient-integers-mod-n --&gt; def-cyclic-group
     class ex-quotient-integers-mod-n current
-    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
-    click ex-integers-addition "ex-integers-addition.html" "Example: Integers under Additionへ"
     click thm-euler "thm-euler.html" "Theorem: Euler's Theoremへ"
-    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Theorem: Euclidean Algorithmへ"
+    click def-congruence "def-congruence.html" "Definition: Congruence (Modular Arithmetic)へ"
     click def-group "def-group.html" "Definition: Groupへ"
+    click def-coset "def-coset.html" "Definition: Cosetへ"
+    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
     click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
+    click ex-integers-addition "ex-integers-addition.html" "Example: Integers under Additionへ"
+    click def-cyclic-group "def-cyclic-group.html" "Definition: Cyclic Groupへ"
     click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
+    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Theorem: Euclidean Algorithmへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -489,8 +502,8 @@ window.Quarto = {
 </section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
-<p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-quotient-integers-mod-n-1753114760" class="graph-visualization-container">
+<p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
+<div id="graph-viz-ex-quotient-integers-mod-n-1753116554" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -670,12 +683,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-quotient-integers-mod-n-1753114760', {
+    createForceGraph(data, 'graph-viz-ex-quotient-integers-mod-n-1753116554', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-quotient-integers-mod-n-1753114760').innerHTML =
+    document.getElementById('graph-viz-ex-quotient-integers-mod-n-1753116554').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

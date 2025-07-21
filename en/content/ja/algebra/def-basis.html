@@ -324,22 +324,22 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-linear-independence["Definition: Linear Independence"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
     def-span["Definition: Span"]:::definition
     ex-standard-basis-rn["Example: Standard Basis of ℝⁿ"]:::example
-    def-linear-independence["Definition: Linear Independence"]:::definition
     def-basis["Definition: Basis"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
     thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
-    thm-linear-transformation-basis --&gt; def-basis
-    def-basis --&gt; def-vector-space
     def-basis --&gt; def-linear-independence
     ex-standard-basis-rn --&gt; def-basis
+    def-basis --&gt; def-vector-space
     def-basis --&gt; def-span
+    thm-linear-transformation-basis --&gt; def-basis
     class def-basis current
-    click def-span "def-span.html" "Definition: Spanへ"
-    click ex-standard-basis-rn "ex-standard-basis-rn.html" "Example: Standard Basis of ℝⁿへ"
     click def-linear-independence "def-linear-independence.html" "Definition: Linear Independenceへ"
     click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
+    click def-span "def-span.html" "Definition: Spanへ"
+    click ex-standard-basis-rn "ex-standard-basis-rn.html" "Example: Standard Basis of ℝⁿへ"
     click thm-linear-transformation-basis "thm-linear-transformation-basis.html" "Theorem: Linear Transformation Determined by Basisへ"
 </pre>
 </div>
@@ -350,8 +350,8 @@ window.Quarto = {
 </section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
-<p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-basis-1753114773" class="graph-visualization-container">
+<p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
+<div id="graph-viz-def-basis-1753116567" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -531,12 +531,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-basis-1753114773', {
+    createForceGraph(data, 'graph-viz-def-basis-1753116567', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-basis-1753114773').innerHTML =
+    document.getElementById('graph-viz-def-basis-1753116567').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
