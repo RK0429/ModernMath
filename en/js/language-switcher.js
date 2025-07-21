@@ -16,13 +16,23 @@
 
     function updateLanguageSwitcher() {
         // Find the language switch link in the navbar
-        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+        // Look for links with language emoji or language text
+        const allLinks = document.querySelectorAll('.navbar a');
         let langSwitchLink = null;
 
-        // Find the link that contains language switch (looking for ../en/ or ../ja/)
-        navLinks.forEach(link => {
+        // Find the link that contains language switch
+        allLinks.forEach(link => {
+            const text = link.textContent;
             const href = link.getAttribute('href');
-            if (href && (href.includes('../en/') || href.includes('../ja/'))) {
+
+            // Look for language switch patterns
+            if (text && href && (
+                text.includes('🌐') ||
+                text.includes('English') ||
+                text.includes('日本語') ||
+                (href.includes('/en/') || href.includes('/ja/')) &&
+                (text.includes('English') || text.includes('日本語'))
+            )) {
                 langSwitchLink = link;
             }
         });
@@ -32,27 +42,16 @@
             return;
         }
 
+        console.log('Found language switch link:', langSwitchLink.href, langSwitchLink.textContent);
+
         // Show loading state
         langSwitchLink.style.opacity = '0.7';
 
         // Try to get translation metadata from the page
         const translationMeta = getTranslationMetadata();
 
-        // Handle both sync and async results
-        if (translationMeta && translationMeta.then) {
-            // It's a promise - handle async
-            translationMeta.then(translations => {
-                if (translations) {
-                    updateLanguageLink(langSwitchLink, translations);
-                } else {
-                    disableLanguageSwitch(langSwitchLink);
-                }
-            }).catch(error => {
-                console.error('Error checking translation:', error);
-                disableLanguageSwitch(langSwitchLink);
-            });
-        } else if (translationMeta) {
-            // Sync result
+        // Handle results
+        if (translationMeta) {
             updateLanguageLink(langSwitchLink, translationMeta);
         } else {
             // No translation metadata found - disable the link
@@ -100,28 +99,31 @@
         // If we can't find metadata, try to construct the translation path
         const currentPath = window.location.pathname;
 
-        // Match language code in path, accounting for possible GitHub Pages subdirectory
-        const pathMatch = currentPath.match(/\/(en|ja)\/(.*)/);
+        // Match language code in path, accounting for GitHub Pages subdirectory
+        // Pattern matches /ModernMath/en/... or /ModernMath/ja/... or just /en/... or /ja/...
+        const pathMatch = currentPath.match(/^(.*?)\/(en|ja)\/(.*?)$/);
 
         if (pathMatch) {
-            const currentLang = pathMatch[1];
-            const pagePath = pathMatch[2];
+            const basePath = pathMatch[1]; // e.g., "/ModernMath" or ""
+            const currentLang = pathMatch[2]; // "en" or "ja"
+            const pagePath = pathMatch[3]; // rest of the path
+
+            console.log('Detected language path:', { basePath, currentLang, pagePath });
 
             // Determine target language
             const targetLang = currentLang === 'en' ? 'ja' : 'en';
 
             // Construct the translation path
             // This assumes the same file structure in both languages
-            const translationPath = currentPath.replace(`/${currentLang}/`, `/${targetLang}/`);
+            const translationPath = `${basePath}/${targetLang}/${pagePath}`;
 
-            // Check if the translation file exists by attempting to fetch it
-            return checkTranslationExists(translationPath).then(exists => {
-                if (exists) {
-                    translations[targetLang] = translationPath;
-                    return translations;
-                }
-                return null;
-            });
+            console.log('Checking translation path:', translationPath);
+
+            // For GitHub Pages, we might not be able to check if file exists
+            // So let's just assume the translation exists if we have a valid path structure
+            // The worst case is a 404 which is acceptable
+            translations[targetLang] = translationPath;
+            return translations;
         }
 
         return Object.keys(translations).length > 0 ? translations : null;
@@ -138,6 +140,8 @@
         const currentLang = detectCurrentLanguage();
         const targetLang = currentLang === 'en' ? 'ja' : 'en';
 
+        console.log('Updating language link:', { currentLang, targetLang, translations });
+
         if (translations[targetLang]) {
             // Update the href to point to the translated version
             linkElement.setAttribute('href', translations[targetLang]);
@@ -153,6 +157,11 @@
             } else {
                 linkElement.innerHTML = '🌐 English';
             }
+
+            // Remove any click handlers that might interfere
+            linkElement.onclick = null;
+
+            console.log('Language link updated to:', linkElement.href);
         } else {
             disableLanguageSwitch(linkElement);
         }

@@ -335,27 +335,27 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-linear-transformation["Definition: Linear Transformation"]:::definition
-    ex-standard-basis-rn["Example: Standard Basis of ℝⁿ"]:::example
+    def-linear-independence["Definition: Linear Independence"]:::definition
     thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
-    def-kernel["Definition: Kernel"]:::definition
     def-span["Definition: Span"]:::definition
+    def-euclidean-space["Definition: Euclidean Space"]:::definition
     def-image["Definition: Image"]:::definition
     def-basis["Definition: Basis"]:::definition
-    thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
     def-vector-space["Definition: Vector Space"]:::definition
-    def-linear-independence["Definition: Linear Independence"]:::definition
-    def-euclidean-space["Definition: Euclidean Space"]:::definition
-    def-basis --&gt; def-vector-space
-    def-linear-transformation --&gt; def-vector-space
-    ex-standard-basis-rn --&gt; def-vector-space
-    def-span --&gt; def-vector-space
-    def-linear-independence --&gt; def-vector-space
+    ex-standard-basis-rn["Example: Standard Basis of ℝⁿ"]:::example
+    def-kernel["Definition: Kernel"]:::definition
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
     thm-linear-transformation-basis --&gt; def-vector-space
     thm-rank-nullity --&gt; def-vector-space
-    def-image --&gt; def-vector-space
-    def-kernel --&gt; def-vector-space
+    ex-standard-basis-rn --&gt; def-vector-space
     def-euclidean-space --&gt; def-vector-space
+    def-basis --&gt; def-vector-space
+    def-linear-transformation --&gt; def-vector-space
+    def-span --&gt; def-vector-space
+    def-linear-independence --&gt; def-vector-space
+    def-kernel --&gt; def-vector-space
+    def-image --&gt; def-vector-space
     class def-vector-space current
 </pre>
 </div>
@@ -367,7 +367,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-vector-space-1753078295" class="graph-visualization-container">
+<div id="graph-viz-def-vector-space-1753079529" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -547,12 +547,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-vector-space-1753078295', {
+    createForceGraph(data, 'graph-viz-def-vector-space-1753079529', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-vector-space-1753078295').innerHTML =
+    document.getElementById('graph-viz-def-vector-space-1753079529').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

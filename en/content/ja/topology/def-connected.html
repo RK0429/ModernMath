@@ -328,14 +328,14 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-closed-set["Definition: Closed Set"]:::definition
-    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
     def-connected["Definition: Connected Space"]:::definition
-    def-open-set["Definition: Open Set"]:::definition
+    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
     def-topological-space["Definition: Topological Space"]:::definition
-    def-connected --&gt; def-open-set
-    thm-intermediate-value --&gt; def-connected
+    def-closed-set["Definition: Closed Set"]:::definition
+    def-open-set["Definition: Open Set"]:::definition
     def-connected --&gt; def-topological-space
+    thm-intermediate-value --&gt; def-connected
+    def-connected --&gt; def-open-set
     def-connected --&gt; def-closed-set
     class def-connected current
 </pre>
@@ -348,7 +348,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-connected-1753078382" class="graph-visualization-container">
+<div id="graph-viz-def-connected-1753079619" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -528,12 +528,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-connected-1753078382', {
+    createForceGraph(data, 'graph-viz-def-connected-1753079619', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-connected-1753078382').innerHTML =
+    document.getElementById('graph-viz-def-connected-1753079619').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
