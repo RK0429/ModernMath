@@ -247,6 +247,8 @@ The project uses a unified `build.yml` workflow:
 **Workflow Timeouts**: All GitHub workflows have explicit timeout limits to prevent runaway builds:
 
 - `build.yml`: 30 minutes (comprehensive build and deploy)
+- `claude.yml`: 20 minutes (Claude Code assistant for issues/PRs)
+- `claude-code-review.yml`: 20 minutes (automated PR reviews)
 - `llm-review.yml`: 10 minutes (PR content analysis)
 - `translation-check.yml`: 10 minutes (translation validation)
 - `translation-report.yml`: 10 minutes (scheduled reports)
