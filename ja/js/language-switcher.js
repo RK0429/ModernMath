@@ -99,6 +99,8 @@
         // Method 3: Parse from the current URL structure
         // If we can't find metadata, try to construct the translation path
         const currentPath = window.location.pathname;
+
+        // Match language code in path, accounting for possible GitHub Pages subdirectory
         const pathMatch = currentPath.match(/\/(en|ja)\/(.*)/);
 
         if (pathMatch) {

@@ -113,23 +113,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   // Calculate the correct path to js directory based on current location
   (function() {
     var path = window.location.pathname;
-    var pathParts = path.split('/');
+
+    // Find the base path for the English site
+    // Look for where '/en/' appears in the path
+    var enIndex = path.indexOf('/en/');
     var basePath = '';
 
-    // Remove empty parts and the HTML filename
-    pathParts = pathParts.filter(function(part) { return part && !part.endsWith('.html'); });
+    if (enIndex !== -1) {
+      // Extract everything up to and including '/en/'
+      var siteRoot = path.substring(0, enIndex + 4); // +4 to include '/en/'
+      basePath = siteRoot;
+    } else {
+      // Fallback: calculate relative path
+      var pathParts = path.split('/').filter(function(part) {
+        return part && !part.endsWith('.html');
+      });
 
-    // For English site, js files are at the root of the English site
-    // Count how many directories deep we are from the root
-    var depth = pathParts.length;
-
-    // If we're in a content/en/* structure, we need to go back to the site root
-    // where the js directory is located
-    for (var i = 0; i < depth; i++) {
-      basePath += '../';
+      // Count depth and build relative path
+      var depth = pathParts.length;
+      for (var i = 0; i < depth; i++) {
+        basePath += '../';
+      }
     }
 
-    basePath = basePath || './';
+    // Ensure basePath ends with /
+    if (basePath && !basePath.endsWith('/')) {
+      basePath += '/';
+    }
 
     // Load language switcher
     var script = document.createElement('script');
@@ -147,8 +157,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../styles.css">
-<link rel="stylesheet" href="../../styles.css">
-<link rel="stylesheet" href="../../styles-multilingual.css">
+<link rel="stylesheet" href="../styles-multilingual.css">
 </head>
 
 <body class="nav-fixed quarto-light">

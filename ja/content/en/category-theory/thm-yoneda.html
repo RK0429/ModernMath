@@ -80,23 +80,33 @@ ul.task-list li input[type="checkbox"] {
   // Calculate the correct path to js directory based on current location
   (function() {
     var path = window.location.pathname;
-    var pathParts = path.split('/');
+
+    // Find the base path for the Japanese site
+    // Look for where '/ja/' appears in the path
+    var jaIndex = path.indexOf('/ja/');
     var basePath = '';
 
-    // Remove empty parts and the HTML filename
-    pathParts = pathParts.filter(function(part) { return part && !part.endsWith('.html'); });
+    if (jaIndex !== -1) {
+      // Extract everything up to and including '/ja/'
+      var siteRoot = path.substring(0, jaIndex + 4); // +4 to include '/ja/'
+      basePath = siteRoot;
+    } else {
+      // Fallback: calculate relative path
+      var pathParts = path.split('/').filter(function(part) {
+        return part && !part.endsWith('.html');
+      });
 
-    // For Japanese site, js files are at the root of the Japanese site
-    // Count how many directories deep we are from the root
-    var depth = pathParts.length;
-
-    // If we're in a content/ja/* structure, we need to go back to the site root
-    // where the js directory is located
-    for (var i = 0; i < depth; i++) {
-      basePath += '../';
+      // Count depth and build relative path
+      var depth = pathParts.length;
+      for (var i = 0; i < depth; i++) {
+        basePath += '../';
+      }
     }
 
-    basePath = basePath || './';
+    // Ensure basePath ends with /
+    if (basePath && !basePath.endsWith('/')) {
+      basePath += '/';
+    }
 
     // Load language switcher
     var script = document.createElement('script');
@@ -143,8 +153,7 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../styles.css">
-<link rel="stylesheet" href="../../styles-multilingual.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -383,9 +392,9 @@ window.Quarto = {
     def-functor["Definition: Functor"]:::definition
     def-natural-transformation["Definition: Natural Transformation"]:::definition
     def-category["Definition: Category"]:::definition
+    thm-yoneda --&gt; def-functor
     thm-yoneda --&gt; def-category
     thm-yoneda --&gt; def-natural-transformation
-    thm-yoneda --&gt; def-functor
     class thm-yoneda current
 </pre>
 </div>
@@ -397,7 +406,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-yoneda-1753077282" class="graph-visualization-container">
+<div id="graph-viz-thm-yoneda-1753078496" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -577,12 +586,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-yoneda-1753077282', {
+    createForceGraph(data, 'graph-viz-thm-yoneda-1753078496', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-yoneda-1753077282').innerHTML =
+    document.getElementById('graph-viz-thm-yoneda-1753078496').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

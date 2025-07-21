@@ -80,23 +80,33 @@ ul.task-list li input[type="checkbox"] {
   // Calculate the correct path to js directory based on current location
   (function() {
     var path = window.location.pathname;
-    var pathParts = path.split('/');
+
+    // Find the base path for the English site
+    // Look for where '/en/' appears in the path
+    var enIndex = path.indexOf('/en/');
     var basePath = '';
 
-    // Remove empty parts and the HTML filename
-    pathParts = pathParts.filter(function(part) { return part && !part.endsWith('.html'); });
+    if (enIndex !== -1) {
+      // Extract everything up to and including '/en/'
+      var siteRoot = path.substring(0, enIndex + 4); // +4 to include '/en/'
+      basePath = siteRoot;
+    } else {
+      // Fallback: calculate relative path
+      var pathParts = path.split('/').filter(function(part) {
+        return part && !part.endsWith('.html');
+      });
 
-    // For English site, js files are at the root of the English site
-    // Count how many directories deep we are from the root
-    var depth = pathParts.length;
-
-    // If we're in a content/en/* structure, we need to go back to the site root
-    // where the js directory is located
-    for (var i = 0; i < depth; i++) {
-      basePath += '../';
+      // Count depth and build relative path
+      var depth = pathParts.length;
+      for (var i = 0; i < depth; i++) {
+        basePath += '../';
+      }
     }
 
-    basePath = basePath || './';
+    // Ensure basePath ends with /
+    if (basePath && !basePath.endsWith('/')) {
+      basePath += '/';
+    }
 
     // Load language switcher
     var script = document.createElement('script');
@@ -143,8 +153,7 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../styles.css">
-<link rel="stylesheet" href="../../styles-multilingual.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -326,14 +335,14 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-convergence["Definition: Convergence"]:::definition
-    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
     def-metric-space["Definition: Metric Space"]:::definition
-    ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
+    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
     def-limit["Definition: Limit of a Sequence"]:::definition
+    ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
     def-convergence --&gt; def-complete-metric-space
+    def-complete-metric-space --&gt; def-limit
     def-complete-metric-space --&gt; ex-real-line-metric
     def-complete-metric-space --&gt; def-metric-space
-    def-complete-metric-space --&gt; def-limit
     class def-complete-metric-space current
 </pre>
 </div>
@@ -345,7 +354,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-complete-metric-space-1753077143" class="graph-visualization-container">
+<div id="graph-viz-def-complete-metric-space-1753078363" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -525,12 +534,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-complete-metric-space-1753077143', {
+    createForceGraph(data, 'graph-viz-def-complete-metric-space-1753078363', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-complete-metric-space-1753077143').innerHTML =
+    document.getElementById('graph-viz-def-complete-metric-space-1753078363').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

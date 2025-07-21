@@ -80,23 +80,33 @@ ul.task-list li input[type="checkbox"] {
   // Calculate the correct path to js directory based on current location
   (function() {
     var path = window.location.pathname;
-    var pathParts = path.split('/');
+
+    // Find the base path for the English site
+    // Look for where '/en/' appears in the path
+    var enIndex = path.indexOf('/en/');
     var basePath = '';
 
-    // Remove empty parts and the HTML filename
-    pathParts = pathParts.filter(function(part) { return part && !part.endsWith('.html'); });
+    if (enIndex !== -1) {
+      // Extract everything up to and including '/en/'
+      var siteRoot = path.substring(0, enIndex + 4); // +4 to include '/en/'
+      basePath = siteRoot;
+    } else {
+      // Fallback: calculate relative path
+      var pathParts = path.split('/').filter(function(part) {
+        return part && !part.endsWith('.html');
+      });
 
-    // For English site, js files are at the root of the English site
-    // Count how many directories deep we are from the root
-    var depth = pathParts.length;
-
-    // If we're in a content/en/* structure, we need to go back to the site root
-    // where the js directory is located
-    for (var i = 0; i < depth; i++) {
-      basePath += '../';
+      // Count depth and build relative path
+      var depth = pathParts.length;
+      for (var i = 0; i < depth; i++) {
+        basePath += '../';
+      }
     }
 
-    basePath = basePath || './';
+    // Ensure basePath ends with /
+    if (basePath && !basePath.endsWith('/')) {
+      basePath += '/';
+    }
 
     // Load language switcher
     var script = document.createElement('script');
@@ -143,8 +153,7 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../styles.css">
-<link rel="stylesheet" href="../../styles-multilingual.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -381,16 +390,16 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-natural-transformation["Definition: Natural Transformation"]:::definition
+    def-composition["Definition: Composition"]:::definition
+    def-category["Definition: Category"]:::definition
     def-isomorphism["Definition: Isomorphism"]:::definition
     def-morphism["Definition: Morphism"]:::definition
-    def-category["Definition: Category"]:::definition
-    def-composition["Definition: Composition"]:::definition
-    def-natural-transformation["Definition: Natural Transformation"]:::definition
-    def-isomorphism --&gt; def-composition
-    def-composition --&gt; def-isomorphism
     def-isomorphism --&gt; def-category
-    def-isomorphism --&gt; def-natural-transformation
+    def-composition --&gt; def-isomorphism
     def-isomorphism --&gt; def-morphism
+    def-isomorphism --&gt; def-natural-transformation
+    def-isomorphism --&gt; def-composition
     class def-isomorphism current
 </pre>
 </div>
@@ -402,7 +411,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-isomorphism-1753077085" class="graph-visualization-container">
+<div id="graph-viz-def-isomorphism-1753078309" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -582,12 +591,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-isomorphism-1753077085', {
+    createForceGraph(data, 'graph-viz-def-isomorphism-1753078309', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-isomorphism-1753077085').innerHTML =
+    document.getElementById('graph-viz-def-isomorphism-1753078309').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

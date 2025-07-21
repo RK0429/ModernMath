@@ -80,23 +80,33 @@ ul.task-list li input[type="checkbox"] {
   // Calculate the correct path to js directory based on current location
   (function() {
     var path = window.location.pathname;
-    var pathParts = path.split('/');
+
+    // Find the base path for the Japanese site
+    // Look for where '/ja/' appears in the path
+    var jaIndex = path.indexOf('/ja/');
     var basePath = '';
 
-    // Remove empty parts and the HTML filename
-    pathParts = pathParts.filter(function(part) { return part && !part.endsWith('.html'); });
+    if (jaIndex !== -1) {
+      // Extract everything up to and including '/ja/'
+      var siteRoot = path.substring(0, jaIndex + 4); // +4 to include '/ja/'
+      basePath = siteRoot;
+    } else {
+      // Fallback: calculate relative path
+      var pathParts = path.split('/').filter(function(part) {
+        return part && !part.endsWith('.html');
+      });
 
-    // For Japanese site, js files are at the root of the Japanese site
-    // Count how many directories deep we are from the root
-    var depth = pathParts.length;
-
-    // If we're in a content/ja/* structure, we need to go back to the site root
-    // where the js directory is located
-    for (var i = 0; i < depth; i++) {
-      basePath += '../';
+      // Count depth and build relative path
+      var depth = pathParts.length;
+      for (var i = 0; i < depth; i++) {
+        basePath += '../';
+      }
     }
 
-    basePath = basePath || './';
+    // Ensure basePath ends with /
+    if (basePath && !basePath.endsWith('/')) {
+      basePath += '/';
+    }
 
     // Load language switcher
     var script = document.createElement('script');
@@ -143,8 +153,7 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../styles.css">
-<link rel="stylesheet" href="../../styles-multilingual.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -334,40 +343,40 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-set["Definition: Set"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-inverse-element["Definition: Inverse Element"]:::definition
+    def-identity-element["Definition: Identity Element"]:::definition
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
     ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-commutativity["Definition: Commutativity"]:::definition
+    def-associativity["Definition: Associativity"]:::definition
+    ex-integers-addition["Example: Integers under Addition"]:::example
     def-field["Definition: Field"]:::definition
+    ex-integers-ring["Example: Integers Form a Ring"]:::example
     thm-unique-identity["Theorem: Uniqueness of Identity"]:::theorem
     def-group["Definition: Group"]:::definition
-    ex-integers-addition["Example: Integers under Addition"]:::example
-    def-subgroup["Definition: Subgroup"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
-    def-associativity["Definition: Associativity"]:::definition
-    def-identity-element["Definition: Identity Element"]:::definition
-    def-set["Definition: Set"]:::definition
-    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-commutativity["Definition: Commutativity"]:::definition
-    def-inverse-element["Definition: Inverse Element"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-subgroup --&gt; def-group
-    def-group --&gt; def-binary-operation
-    def-inverse-element --&gt; def-group
-    thm-euler --&gt; def-group
-    def-homomorphism --&gt; def-group
-    ex-integers-ring --&gt; def-group
-    ex-even-integers-subgroup --&gt; def-group
-    thm-lagrange --&gt; def-group
-    thm-unique-identity --&gt; def-group
-    ex-exponential-homomorphism --&gt; def-group
-    def-commutativity --&gt; def-group
-    def-field --&gt; def-group
-    def-ring --&gt; def-group
-    def-identity-element --&gt; def-group
     def-associativity --&gt; def-group
     def-group --&gt; def-set
+    thm-lagrange --&gt; def-group
+    ex-exponential-homomorphism --&gt; def-group
+    def-group --&gt; def-binary-operation
+    def-inverse-element --&gt; def-group
+    def-field --&gt; def-group
+    def-commutativity --&gt; def-group
+    ex-integers-ring --&gt; def-group
+    ex-even-integers-subgroup --&gt; def-group
+    def-identity-element --&gt; def-group
+    thm-unique-identity --&gt; def-group
+    def-homomorphism --&gt; def-group
+    def-subgroup --&gt; def-group
+    thm-euler --&gt; def-group
+    def-ring --&gt; def-group
     ex-integers-addition --&gt; def-group
     class def-group current
 </pre>
@@ -380,7 +389,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-group-1753077184" class="graph-visualization-container">
+<div id="graph-viz-def-group-1753078402" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -560,12 +569,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-group-1753077184', {
+    createForceGraph(data, 'graph-viz-def-group-1753078402', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-group-1753077184').innerHTML =
+    document.getElementById('graph-viz-def-group-1753078402').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
