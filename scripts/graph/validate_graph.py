@@ -10,6 +10,7 @@ This script validates the generated knowledge graph for:
 """
 
 import logging
+import sys
 from pathlib import Path
 from typing import Set, List, Dict
 from collections import defaultdict
@@ -46,7 +47,7 @@ class GraphValidator:
         Returns:
             True if no critical issues found, False otherwise
         """
-        logger.info(f"Loading graph from {self.graph_file}")
+        logger.info("Loading graph from %s", self.graph_file)
         self.graph.parse(self.graph_file, format="turtle")
 
         logger.info("Running validation checks...")
@@ -60,9 +61,9 @@ class GraphValidator:
 
         # Report results
         if self.issues:
-            logger.warning(f"Found {len(self.issues)} issues:")
+            logger.warning("Found %d issues:", len(self.issues))
             for issue in self.issues:
-                logger.warning(f"  - {issue}")
+                logger.warning("  - %s", issue)
         else:
             logger.info("No issues found!")
 
@@ -88,7 +89,7 @@ class GraphValidator:
             all_nodes.add(str(subject))
 
         # Check all 'uses' relationships
-        for s, p, o in self.graph.triples((None, MYMATH.uses, None)):
+        for s, _, o in self.graph.triples((None, MYMATH.uses, None)):
             if str(o) not in all_nodes:
                 node_id = str(s).replace(BASE_URI, "")
                 ref_id = str(o).replace(BASE_URI, "")
@@ -102,7 +103,7 @@ class GraphValidator:
         adjacency = defaultdict(set)
         nodes = set()
 
-        for s, p, o in self.graph.triples((None, MYMATH.uses, None)):
+        for s, _, o in self.graph.triples((None, MYMATH.uses, None)):
             adjacency[str(s)].add(str(o))
             nodes.add(str(s))
             nodes.add(str(o))
@@ -136,7 +137,7 @@ class GraphValidator:
         nodes_with_relationships = set()
 
         # Collect nodes with uses relationships
-        for s, p, o in self.graph.triples((None, MYMATH.uses, None)):
+        for s, _, o in self.graph.triples((None, MYMATH.uses, None)):
             nodes_with_relationships.add(str(s))
             nodes_with_relationships.add(str(o))
 
@@ -155,7 +156,7 @@ class GraphValidator:
         # but B also uses A, it might indicate a logical issue
         uses_map = defaultdict(set)
 
-        for s, p, o in self.graph.triples((None, MYMATH.uses, None)):
+        for s, _, o in self.graph.triples((None, MYMATH.uses, None)):
             uses_map[str(s)].add(str(o))
 
         for node, dependencies in uses_map.items():
@@ -169,7 +170,7 @@ class GraphValidator:
         """Print statistics about the graph."""
         # Count nodes by type
         type_counts: Dict[str, int] = defaultdict(int)
-        for s, p, o in self.graph.triples((None, RDF.type, None)):
+        for _, _, o in self.graph.triples((None, RDF.type, None)):
             type_name = str(o).replace(str(MYMATH), "")
             type_counts[type_name] += 1
 
@@ -177,20 +178,20 @@ class GraphValidator:
         uses_count = len(list(self.graph.triples((None, MYMATH.uses, None))))
 
         logger.info("\nGraph Statistics:")
-        logger.info(f"  Total triples: {len(self.graph)}")
+        logger.info("  Total triples: %d", len(self.graph))
         logger.info("  Node counts by type:")
         for node_type, count in sorted(type_counts.items()):
-            logger.info(f"    - {node_type}: {count}")
-        logger.info(f"  Total 'uses' relationships: {uses_count}")
+            logger.info("    - %s: %d", node_type, count)
+        logger.info("  Total 'uses' relationships: %d", uses_count)
 
 
 def main() -> int:
     """Main entry point."""
-    project_root = Path(__file__).parent.parent
+    project_root = Path(__file__).parent.parent.parent
     graph_file = project_root / "knowledge_graph.ttl"
 
     if not graph_file.exists():
-        logger.error(f"Graph file not found: {graph_file}")
+        logger.error("Graph file not found: %s", graph_file)
         logger.error("Please run build_graph.py first")
         return 1
 
@@ -202,4 +203,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    exit(main())
+    sys.exit(main())
