@@ -214,14 +214,6 @@ window.Quarto = {
 <span class="menu-text">確率統計</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../search-ja.html"> 
-<span class="menu-text">検索</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../visualizations-ja.html"> 
-<span class="menu-text">可視化</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../../../about-ja.html"> 
 <span class="menu-text">概要</span></a>
   </li>  
@@ -348,8 +340,8 @@ window.Quarto = {
     thm-de-morgan["Theorem: De Morgan's Laws"]:::theorem
     def-set["Definition: Set"]:::definition
     def-intersection["Definition: Intersection"]:::definition
-    def-intersection --&gt; def-set
     thm-de-morgan --&gt; def-intersection
+    def-intersection --&gt; def-set
     class def-intersection current
     click thm-de-morgan "thm-de-morgan.html" "Theorem: De Morgan's Lawsへ"
     click def-set "def-set.html" "Definition: Setへ"
@@ -363,7 +355,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-intersection-1753111086" class="graph-visualization-container">
+<div id="graph-viz-def-intersection-1753112033" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -543,12 +535,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-intersection-1753111086', {
+    createForceGraph(data, 'graph-viz-def-intersection-1753112033', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-intersection-1753111086').innerHTML =
+    document.getElementById('graph-viz-def-intersection-1753112033').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -214,14 +214,6 @@ window.Quarto = {
 <span class="menu-text">確率統計</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../search-ja.html"> 
-<span class="menu-text">検索</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../visualizations-ja.html"> 
-<span class="menu-text">可視化</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../../../about-ja.html"> 
 <span class="menu-text">概要</span></a>
   </li>  
@@ -339,8 +331,8 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-fundamental-arithmetic["Theorem: Fundamental Theorem of Arithmetic"]:::theorem
     def-prime["Definition: Prime Number"]:::definition
+    thm-fundamental-arithmetic["Theorem: Fundamental Theorem of Arithmetic"]:::theorem
     thm-fundamental-arithmetic --&gt; def-prime
     class thm-fundamental-arithmetic current
     click def-prime "def-prime.html" "Go to Prime Number definition"
@@ -354,7 +346,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-fundamental-arithmetic-1753111158" class="graph-visualization-container">
+<div id="graph-viz-thm-fundamental-arithmetic-1753112106" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -534,12 +526,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-fundamental-arithmetic-1753111158', {
+    createForceGraph(data, 'graph-viz-thm-fundamental-arithmetic-1753112106', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-fundamental-arithmetic-1753111158').innerHTML =
+    document.getElementById('graph-viz-thm-fundamental-arithmetic-1753112106').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

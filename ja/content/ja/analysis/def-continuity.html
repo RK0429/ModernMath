@@ -214,14 +214,6 @@ window.Quarto = {
 <span class="menu-text">確率統計</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../search-ja.html"> 
-<span class="menu-text">検索</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../visualizations-ja.html"> 
-<span class="menu-text">可視化</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../../../about-ja.html"> 
 <span class="menu-text">概要</span></a>
   </li>  
@@ -335,25 +327,25 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-chain-rule["Theorem: Chain Rule"]:::theorem
     def-limit["Definition: Limit of a Sequence"]:::definition
-    def-integral["Definition: Integral"]:::definition
-    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
     ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
-    thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
+    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
     def-continuity["Definition: Continuity"]:::definition
+    def-integral["Definition: Integral"]:::definition
+    thm-chain-rule["Theorem: Chain Rule"]:::theorem
+    thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
     thm-chain-rule --&gt; def-continuity
-    thm-mean-value --&gt; def-continuity
     ex-polynomial-continuity --&gt; def-continuity
+    def-integral --&gt; def-continuity
+    thm-mean-value --&gt; def-continuity
     def-continuity --&gt; def-limit
     thm-intermediate-value --&gt; def-continuity
-    def-integral --&gt; def-continuity
     class def-continuity current
-    click thm-chain-rule "thm-chain-rule.html" "Theorem: Chain Ruleへ"
     click def-limit "def-limit.html" "Definition: Limit of a Sequenceへ"
-    click def-integral "def-integral.html" "Definition: Integralへ"
-    click thm-intermediate-value "thm-intermediate-value.html" "Theorem: Intermediate Value Theoremへ"
     click ex-polynomial-continuity "ex-polynomial-continuity.html" "Example: Polynomial Continuityへ"
+    click thm-intermediate-value "thm-intermediate-value.html" "Theorem: Intermediate Value Theoremへ"
+    click def-integral "def-integral.html" "Definition: Integralへ"
+    click thm-chain-rule "thm-chain-rule.html" "Theorem: Chain Ruleへ"
     click thm-mean-value "thm-mean-value.html" "Theorem: Mean Value Theoremへ"
 </pre>
 </div>
@@ -365,7 +357,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-continuity-1753111067" class="graph-visualization-container">
+<div id="graph-viz-def-continuity-1753112014" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -545,12 +537,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-continuity-1753111067', {
+    createForceGraph(data, 'graph-viz-def-continuity-1753112014', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-continuity-1753111067').innerHTML =
+    document.getElementById('graph-viz-def-continuity-1753112014').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

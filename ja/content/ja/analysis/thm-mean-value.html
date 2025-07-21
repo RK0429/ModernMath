@@ -214,14 +214,6 @@ window.Quarto = {
 <span class="menu-text">確率統計</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../search-ja.html"> 
-<span class="menu-text">検索</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../visualizations-ja.html"> 
-<span class="menu-text">可視化</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../../../about-ja.html"> 
 <span class="menu-text">概要</span></a>
   </li>  
@@ -385,14 +377,14 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-derivative["Definition: Derivative"]:::definition
-    def-continuity["Definition: Continuity"]:::definition
     thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
+    def-continuity["Definition: Continuity"]:::definition
+    def-derivative["Definition: Derivative"]:::definition
     thm-mean-value --&gt; def-continuity
     thm-mean-value --&gt; def-derivative
     class thm-mean-value current
-    click def-derivative "def-derivative.html" "Definition: Derivativeへ"
     click def-continuity "def-continuity.html" "Definition: Continuityへ"
+    click def-derivative "def-derivative.html" "Definition: Derivativeへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -403,7 +395,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-mean-value-1753111073" class="graph-visualization-container">
+<div id="graph-viz-thm-mean-value-1753112019" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -583,12 +575,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-mean-value-1753111073', {
+    createForceGraph(data, 'graph-viz-thm-mean-value-1753112019', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-mean-value-1753111073').innerHTML =
+    document.getElementById('graph-viz-thm-mean-value-1753112019').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

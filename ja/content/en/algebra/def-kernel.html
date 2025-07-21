@@ -214,14 +214,6 @@ window.Quarto = {
 <span class="menu-text">確率統計</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../search-ja.html"> 
-<span class="menu-text">検索</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../visualizations-ja.html"> 
-<span class="menu-text">可視化</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../../../about-ja.html"> 
 <span class="menu-text">概要</span></a>
   </li>  
@@ -354,29 +346,29 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
-    def-kernel["Definition: Kernel"]:::definition
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    def-linear-transformation["Definition: Linear Transformation"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
     def-ideal["Definition: Ideal"]:::definition
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
+    def-kernel --&gt; def-quotient-group
+    def-kernel --&gt; def-linear-transformation
+    def-kernel --&gt; def-normal-subgroup
     def-kernel --&gt; def-vector-space
     def-kernel --&gt; def-ideal
-    def-kernel --&gt; def-quotient-group
-    def-kernel --&gt; def-normal-subgroup
     thm-rank-nullity --&gt; def-kernel
     def-kernel --&gt; def-homomorphism
-    def-kernel --&gt; def-linear-transformation
     class def-kernel current
-    click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem theorem"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
-    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation definition"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
     click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
     click def-ideal "def-ideal.html" "Go to Ideal definition"
+    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation definition"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
+    click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem theorem"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -387,7 +379,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-kernel-1753111114" class="graph-visualization-container">
+<div id="graph-viz-def-kernel-1753112061" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -567,12 +559,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-kernel-1753111114', {
+    createForceGraph(data, 'graph-viz-def-kernel-1753112061', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-kernel-1753111114').innerHTML =
+    document.getElementById('graph-viz-def-kernel-1753112061').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
