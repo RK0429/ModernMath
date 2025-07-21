@@ -253,22 +253,6 @@ base:def-distributivity a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-binary-operation .
 
-base:def-group-example a mymath:Definition ;
-    rdfs:label "Definition: Group"@en,
-        "定義：群"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-associativity,
-        base:def-binary-operation,
-        base:def-homomorphism,
-        base:def-identity-element,
-        base:def-inverse-element,
-        base:def-subgroup,
-        base:ex-integers-addition,
-        base:thm-lagrange,
-        base:thm-unique-identity .
-
 base:def-integral a mymath:Definition ;
     rdfs:label "Definition: Integral"@en,
         "定義: 積分"@en ;
@@ -874,6 +858,15 @@ base:thm-yoneda a mymath:Theorem ;
     rdfs:label "Lean proof: Mathlib.Topology.Separation.T2Space"@en ;
     mymath:inModule "MathKnowledgeGraph.Topology.Basic" .
 
+base:def-associativity a mymath:Definition ;
+    rdfs:label "Definition: Associativity"@en,
+        "結合性"@en ;
+    rdfs:comment "**Associativity** is a fundamental property of a [Binary Operation](def-binary-operation.qmd) that allows us to perform multiple operations without needing to specify the order of evaluation using parentheses."@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-binary-operation .
+
 base:def-binomial-coefficient a mymath:Definition ;
     rdfs:label "Definition: Binomial Coefficient"@en,
         "定義：二項係数"@en ;
@@ -992,6 +985,17 @@ base:def-intersection a mymath:Definition ;
         "論理・集合論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
+
+base:def-inverse-element a mymath:Definition ;
+    rdfs:label "Definition: Inverse Element"@en,
+        "定義: 逆元"@en ;
+    rdfs:comment "**逆元**とは、[二項演算](def-binary-operation.qmd)において、ある元と結合したときに[単位元](def-identity-element.qmd)を生じるような元のことです。"@en,
+        "An **inverse element** of an element under a [Binary Operation](def-binary-operation.qmd) is another element that, when combined with the original, yields the [Identity Element](def-identity-element.qmd)."@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-binary-operation,
+        base:def-identity-element .
 
 base:def-kernel a mymath:Definition ;
     rdfs:label "Definition: Kernel"@en,
@@ -1214,6 +1218,14 @@ base:thm-heine-borel a mymath:Theorem ;
         base:def-compact,
         base:def-metric-space .
 
+base:thm-unique-identity a mymath:Theorem ;
+    rdfs:label "Theorem: Uniqueness of Identity"@en,
+        "定理: 単位元の一意性"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-group .
+
 base:def-angle a mymath:Definition ;
     rdfs:label "Definition: Angle"@en,
         "定義: 角"@en ;
@@ -1224,15 +1236,6 @@ base:def-angle a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-line,
         base:def-point .
-
-base:def-associativity a mymath:Definition ;
-    rdfs:label "Definition: Associativity"@en,
-        "結合性"@en ;
-    rdfs:comment "**Associativity** is a fundamental property of a [Binary Operation](def-binary-operation.qmd) that allows us to perform multiple operations without needing to specify the order of evaluation using parentheses."@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation .
 
 base:def-basis a mymath:Definition ;
     rdfs:label "Definition: Basis"@en,
@@ -1308,16 +1311,15 @@ base:def-functor a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-category .
 
-base:def-inverse-element a mymath:Definition ;
-    rdfs:label "Definition: Inverse Element"@en,
-        "定義: 逆元"@en ;
-    rdfs:comment "**逆元**とは、[二項演算](def-binary-operation.qmd)において、ある元と結合したときに[単位元](def-identity-element.qmd)を生じるような元のことです。"@en,
-        "An **inverse element** of an element under a [Binary Operation](def-binary-operation.qmd) is another element that, when combined with the original, yields the [Identity Element](def-identity-element.qmd)."@en ;
+base:def-identity-element a mymath:Definition ;
+    rdfs:label "Definition: Identity Element"@en,
+        "定義: 単位元"@en ;
+    rdfs:comment "An **identity element** for a [Binary Operation](def-binary-operation.qmd) is an element that leaves any other element unchanged when combined with it."@en,
+        "[二項演算](def-binary-operation.qmd)に対する**単位元**（たんいげん）とは、他の任意の元と結合したときにその元を変化させない元のことである。"@en ;
     mymath:hasDomain "Algebra",
         "代数学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation,
-        base:def-identity-element .
+    mymath:uses base:def-binary-operation .
 
 base:def-linear-independence a mymath:Definition ;
     rdfs:label "Definition: Linear Independence"@en,
@@ -1347,23 +1349,15 @@ base:def-span a mymath:Definition ;
         base:formal-proof-def-span ;
     mymath:uses base:def-vector-space .
 
-base:thm-unique-identity a mymath:Theorem ;
-    rdfs:label "Theorem: Uniqueness of Identity"@en,
-        "定理: 単位元の一意性"@en ;
+base:thm-lagrange a mymath:Theorem ;
+    rdfs:label "Theorem: Lagrange's Theorem"@en,
+        "定理: ラグランジュの定理"@en ;
     mymath:hasDomain "Algebra",
         "代数学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-group .
-
-base:def-identity-element a mymath:Definition ;
-    rdfs:label "Definition: Identity Element"@en,
-        "定義: 単位元"@en ;
-    rdfs:comment "An **identity element** for a [Binary Operation](def-binary-operation.qmd) is an element that leaves any other element unchanged when combined with it."@en,
-        "[二項演算](def-binary-operation.qmd)に対する**単位元**（たんいげん）とは、他の任意の元と結合したときにその元を変化させない元のことである。"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation .
+    mymath:uses base:def-group,
+        base:def-quotient-group,
+        base:def-subgroup .
 
 base:def-probability-space a mymath:Definition ;
     rdfs:label "Definition: Probability Space"@en,
@@ -1385,6 +1379,16 @@ base:def-ring a mymath:Definition ;
         base:def-group,
         base:def-set .
 
+base:ex-integers-addition a mymath:Example ;
+    rdfs:label "Example: Integers under Addition"@en,
+        "例: 加法における整数"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-binary-operation,
+        base:def-group,
+        base:def-set .
+
 base:ex-quotient-integers-mod-n a mymath:Example ;
     rdfs:label "Example: Integers Modulo n"@en,
         "例: 整数の n による剰余"@en ;
@@ -1396,15 +1400,15 @@ base:ex-quotient-integers-mod-n a mymath:Example ;
         base:def-quotient-group,
         base:ex-integers-addition .
 
-base:thm-lagrange a mymath:Theorem ;
-    rdfs:label "Theorem: Lagrange's Theorem"@en,
-        "定理: ラグランジュの定理"@en ;
+base:def-homomorphism a mymath:Definition ;
+    rdfs:label "Definition: Group Homomorphism"@en,
+        "定義: 群準同型"@en ;
     mymath:hasDomain "Algebra",
         "代数学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-group,
-        base:def-quotient-group,
-        base:def-subgroup .
+    mymath:uses base:def-binary-operation,
+        base:def-group,
+        base:def-quotient-group .
 
 base:def-line a mymath:Definition ;
     rdfs:label "Definition: Line"@en,
@@ -1440,16 +1444,6 @@ base:def-prime a mymath:Definition ;
         "数論" ;
     mymath:hasStatus "complete" .
 
-base:ex-integers-addition a mymath:Example ;
-    rdfs:label "Example: Integers under Addition"@en,
-        "例: 加法における整数"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation,
-        base:def-group,
-        base:def-set .
-
 base:def-continuity a mymath:Definition ;
     rdfs:label "Definition: Continuity"@en,
         "定義: 連続性"@en ;
@@ -1457,16 +1451,6 @@ base:def-continuity a mymath:Definition ;
         "解析学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-limit .
-
-base:def-homomorphism a mymath:Definition ;
-    rdfs:label "Definition: Group Homomorphism"@en,
-        "定義: 群準同型"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation,
-        base:def-group,
-        base:def-quotient-group .
 
 base:def-linear-transformation a mymath:Definition ;
     rdfs:label "Definition: Linear Transformation"@en,
@@ -1487,6 +1471,21 @@ base:def-open-set a mymath:Definition ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Basic.IsOpen>,
         base:formal-proof-def-open-set ;
     mymath:uses base:def-topological-space .
+
+base:def-subgroup a mymath:Definition ;
+    rdfs:label "Definition: Subgroup"@en,
+        "定義：部分群"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasLeanId "Mathlib.Algebra.Group.Subgroup.Basic.Subgroup" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Group.Subgroup.Basic.Subgroup>,
+        base:formal-proof-def-subgroup ;
+    mymath:uses base:def-group,
+        base:def-normal-subgroup,
+        base:def-quotient-group,
+        base:def-set,
+        base:thm-lagrange .
 
 base:def-limit a mymath:Definition ;
     rdfs:label "Definition: Limit of a Sequence"@en,
@@ -1519,21 +1518,6 @@ base:def-normal-subgroup a mymath:Definition ;
         base:def-subgroup,
         base:thm-lagrange .
 
-base:def-subgroup a mymath:Definition ;
-    rdfs:label "Definition: Subgroup"@en,
-        "定義：部分群"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasLeanId "Mathlib.Algebra.Group.Subgroup.Basic.Subgroup" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Group.Subgroup.Basic.Subgroup>,
-        base:formal-proof-def-subgroup ;
-    mymath:uses base:def-group,
-        base:def-normal-subgroup,
-        base:def-quotient-group,
-        base:def-set,
-        base:thm-lagrange .
-
 base:def-category a mymath:Definition ;
     rdfs:label "Definition: Category"@en,
         "定義: 圏"@en ;
@@ -1563,15 +1547,6 @@ base:def-quotient-group a mymath:Definition ;
         base:def-normal-subgroup,
         base:def-subgroup .
 
-base:def-vector-space a mymath:Definition ;
-    rdfs:label "Definition: Vector Space"@en,
-        "定義: ベクトル空間"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.Basic.Module>,
-        base:formal-proof-def-vector-space .
-
 base:def-binary-operation a mymath:Definition ;
     rdfs:label "Definition: Binary Operation"@en,
         "定義: 二項演算"@en ;
@@ -1582,6 +1557,15 @@ base:def-binary-operation a mymath:Definition ;
     mymath:isVerifiedBy <https://mathlib.org/proof/MathKnowledgeGraph.Algebra.BinaryOp>,
         base:formal-proof-def-binary-operation ;
     mymath:uses base:def-set .
+
+base:def-vector-space a mymath:Definition ;
+    rdfs:label "Definition: Vector Space"@en,
+        "定義: ベクトル空間"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.Basic.Module>,
+        base:formal-proof-def-vector-space .
 
 base:def-group a mymath:Definition ;
     rdfs:label "Definition: Group"@en,

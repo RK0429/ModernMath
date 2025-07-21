@@ -5,24 +5,24 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-kernel["Definition: Kernel"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    def-subgroup["Definition: Subgroup"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-quotient-group["Definition: Quotient Group"]:::definition
     def-group["Definition: Group"]:::definition
-    def-normal-subgroup --> def-quotient-group
-    def-normal-subgroup --> def-subgroup
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-kernel["Definition: Kernel"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-normal-subgroup --> thm-lagrange
+    def-kernel --> def-normal-subgroup
+    ex-even-integers-subgroup --> def-normal-subgroup
     def-group --> def-normal-subgroup
     def-normal-subgroup --> def-group
-    def-normal-subgroup --> thm-lagrange
     def-subgroup --> def-normal-subgroup
-    def-quotient-group --> def-normal-subgroup
-    ex-even-integers-subgroup --> def-normal-subgroup
     ex-quotient-integers-mod-n --> def-normal-subgroup
+    def-normal-subgroup --> def-quotient-group
     def-normal-subgroup --> def-homomorphism
-    def-kernel --> def-normal-subgroup
+    def-quotient-group --> def-normal-subgroup
+    def-normal-subgroup --> def-subgroup
     class def-normal-subgroup current

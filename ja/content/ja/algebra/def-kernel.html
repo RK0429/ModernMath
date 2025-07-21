@@ -348,25 +348,25 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-kernel["Definition: Kernel"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
-    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
     def-quotient-group["Definition: Quotient Group"]:::definition
-    def-kernel --&gt; def-linear-transformation
-    def-kernel --&gt; def-homomorphism
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
     def-kernel --&gt; def-vector-space
-    thm-rank-nullity --&gt; def-kernel
-    def-kernel --&gt; def-quotient-group
     def-kernel --&gt; def-normal-subgroup
+    def-kernel --&gt; def-linear-transformation
+    def-kernel --&gt; def-quotient-group
+    thm-rank-nullity --&gt; def-kernel
+    def-kernel --&gt; def-homomorphism
     class def-kernel current
-    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
-    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
     click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
-    click thm-rank-nullity "thm-rank-nullity.html" "Theorem: Rank-Nullity Theoremへ"
-    click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
+    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
     click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
+    click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
+    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
+    click thm-rank-nullity "thm-rank-nullity.html" "Theorem: Rank-Nullity Theoremへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -377,7 +377,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-kernel-1753107584" class="graph-visualization-container">
+<div id="graph-viz-def-kernel-1753109380" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -557,12 +557,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-kernel-1753107584', {
+    createForceGraph(data, 'graph-viz-def-kernel-1753109380', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-kernel-1753107584').innerHTML =
+    document.getElementById('graph-viz-def-kernel-1753109380').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
