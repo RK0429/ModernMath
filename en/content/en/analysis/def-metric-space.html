@@ -69,9 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'en';
@@ -326,52 +323,12 @@ window.Quarto = {
 </section>
 <section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-metric-space["Definition: Metric Space"]:::definition
-    ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
-    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
-    def-point["Definition: Point"]:::definition
-    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
-    thm-heine-borel["Theorem: Heine-Borel Theorem"]:::theorem
-    def-set["Definition: Set"]:::definition
-    ex-euclidean-metric["Example: Euclidean Metric on ℝⁿ"]:::example
-    def-continuity["Definition: Continuity"]:::definition
-    def-euclidean-space["Definition: Euclidean Space"]:::definition
-    def-topological-space["Definition: Topological Space"]:::definition
-    def-metric-space --&gt; thm-metric-hausdorff
-    def-metric-space --&gt; def-topological-space
-    ex-euclidean-metric --&gt; def-metric-space
-    thm-metric-hausdorff --&gt; def-metric-space
-    def-metric-space --&gt; def-set
-    def-point --&gt; def-metric-space
-    def-metric-space --&gt; ex-real-line-metric
-    def-complete-metric-space --&gt; def-metric-space
-    def-metric-space --&gt; def-continuity
-    thm-heine-borel --&gt; def-metric-space
-    ex-real-line-metric --&gt; def-metric-space
-    def-euclidean-space --&gt; def-metric-space
-    class def-metric-space current
-</pre>
-</div>
-<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
+<p>%%| fig-cap: “Local dependency graph” graph TD classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px ex-real-line-metric[“Example: Real Line with Standard Metric”]:::example def-metric-space[“Definition: Metric Space”]:::definition def-euclidean-space[“Definition: Euclidean Space”]:::definition def-set[“Definition: Set”]:::definition ex-euclidean-metric[“Example: Euclidean Metric on ℝⁿ”]:::example thm-heine-borel[“Theorem: Heine-Borel Theorem”]:::theorem thm-metric-hausdorff[“Theorem: Every Metric Space is Hausdorff”]:::theorem def-complete-metric-space[“Definition: Complete Metric Space”]:::definition ex-real-line-metric –&gt; def-metric-space thm-heine-borel –&gt; def-metric-space thm-metric-hausdorff –&gt; def-metric-space def-euclidean-space –&gt; def-metric-space ex-euclidean-metric –&gt; def-metric-space def-metric-space –&gt; def-set def-complete-metric-space –&gt; def-metric-space class def-metric-space current ``` click ex-real-line-metric “ex-real-line-metric.html” “Go to Real Line with Standard Metric example” click def-euclidean-space “def-euclidean-space.html” “Go to Euclidean Space definition” click def-set “def-set.html” “Go to Set definition” click ex-euclidean-metric “ex-euclidean-metric.html” “Go to Euclidean Metric on ℝⁿ example” click thm-heine-borel “thm-heine-borel.html” “Go to Heine-Borel Theorem theorem” click thm-metric-hausdorff “thm-metric-hausdorff.html” “Go to Every Metric Space is Hausdorff theorem” click def-complete-metric-space “def-complete-metric-space.html” “Go to Complete Metric Space definition”</p>
 </section>
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-metric-space-1753093339" class="graph-visualization-container">
+<div id="graph-viz-def-metric-space-1753100915" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -551,12 +508,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-metric-space-1753093339', {
+    createForceGraph(data, 'graph-viz-def-metric-space-1753100915', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-metric-space-1753093339').innerHTML =
+    document.getElementById('graph-viz-def-metric-space-1753100915').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

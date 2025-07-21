@@ -307,6 +307,12 @@ window.Quarto = {
 <li><span class="math inline">\(1 \in \mathbb{Z}\)</span> だが <span class="math inline">\(1 \notin 2\mathbb{Z}\)</span> なので、これは真部分群である。</li>
 <li>この部分群の <span class="math inline">\(\mathbb{Z}\)</span> における指数は 2 であり、ちょうど 2 個の剰余類が存在する。</li>
 <li>剰余類は <span class="math inline">\(2\mathbb{Z}\)</span>（偶数整数）と <span class="math inline">\(1 + 2\mathbb{Z}\)</span>（奇数整数）である。</li>
+<li><strong>重要</strong>：<span class="math inline">\(2\mathbb{Z}\)</span> は実際には <span class="math inline">\(\mathbb{Z}\)</span> の<a href="../../../content/ja/algebra/def-normal-subgroup.html">正規部分群</a>である。これは以下の理由による：
+<ul>
+<li><span class="math inline">\(\mathbb{Z}\)</span> はアーベル群である（加法は可換）</li>
+<li>アーベル群のすべての部分群は正規部分群である</li>
+<li>また、<span class="math inline">\([{\mathbb{Z} : 2\mathbb{Z}}] = 2\)</span> なので、指数 2 の部分群は正規である</li>
+</ul></li>
 </ul>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -322,36 +328,12 @@ window.Quarto = {
 </section>
 <section id="依存関係グラフ" class="level2">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-integers-addition["Example: Integers under Addition"]:::example
-    def-group["Definition: Group"]:::definition
-    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    def-subgroup["Definition: Subgroup"]:::definition
-    ex-even-integers-subgroup --&gt; def-group
-    ex-even-integers-subgroup --&gt; def-subgroup
-    ex-even-integers-subgroup --&gt; ex-integers-addition
-    class ex-even-integers-subgroup current
-</pre>
-</div>
-<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
+<p>%%| fig-cap: “Local dependency graph” graph TD classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px def-subgroup[“Definition: Subgroup”]:::definition ex-even-integers-subgroup[“Example: Even Integers Form a Subgroup”]:::example ex-integers-addition[“Example: Integers under Addition”]:::example def-group[“Definition: Group”]:::definition def-normal-subgroup[“Definition: Normal Subgroup”]:::definition ex-even-integers-subgroup –&gt; ex-integers-addition ex-even-integers-subgroup –&gt; def-group ex-even-integers-subgroup –&gt; def-normal-subgroup def-group –&gt; ex-even-integers-subgroup ex-even-integers-subgroup –&gt; def-subgroup class ex-even-integers-subgroup current ``` click def-subgroup “def-subgroup.html” “Definition: Subgroupへ” click ex-integers-addition “ex-integers-addition.html” “Example: Integers under Additionへ” click def-group “def-group.html” “Definition: Groupへ” click def-normal-subgroup “def-normal-subgroup.html” “Definition: Normal Subgroupへ”</p>
 </section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-even-integers-subgroup-1753093444" class="graph-visualization-container">
+<div id="graph-viz-ex-even-integers-subgroup-1753101023" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -531,12 +513,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-even-integers-subgroup-1753093444', {
+    createForceGraph(data, 'graph-viz-ex-even-integers-subgroup-1753101023', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-even-integers-subgroup-1753093444').innerHTML =
+    document.getElementById('graph-viz-ex-even-integers-subgroup-1753101023').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

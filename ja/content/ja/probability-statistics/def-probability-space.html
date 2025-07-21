@@ -69,9 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "サーチ"
   }
 }</script>
-<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
@@ -330,42 +327,12 @@ window.Quarto = {
 </section>
 <section id="依存関係グラフ" class="level2">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-probability-space["Definition: Probability Space"]:::definition
-    def-expectation["Definition: Expected Value"]:::definition
-    def-event["Definition: Event"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-conditional-probability["Definition: Conditional Probability"]:::definition
-    def-random-variable["Definition: Random Variable"]:::definition
-    def-sample-space["Definition: Sample Space"]:::definition
-    def-event --&gt; def-probability-space
-    def-probability-space --&gt; def-set
-    def-conditional-probability --&gt; def-probability-space
-    def-random-variable --&gt; def-probability-space
-    def-expectation --&gt; def-probability-space
-    def-sample-space --&gt; def-probability-space
-    class def-probability-space current
-</pre>
-</div>
-<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
+<p>%%| fig-cap: “Local dependency graph” graph TD classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px def-random-variable[“Definition: Random Variable”]:::definition def-set[“Definition: Set”]:::definition def-conditional-probability[“Definition: Conditional Probability”]:::definition def-expectation[“Definition: Expected Value”]:::definition def-probability-space[“Definition: Probability Space”]:::definition def-random-variable –&gt; def-probability-space def-probability-space –&gt; def-set def-conditional-probability –&gt; def-probability-space def-expectation –&gt; def-probability-space class def-probability-space current ``` click def-random-variable “def-random-variable.html” “Definition: Random Variableへ” click def-set “def-set.html” “Definition: Setへ” click def-conditional-probability “def-conditional-probability.html” “Definition: Conditional Probabilityへ” click def-expectation “def-expectation.html” “Definition: Expected Valueへ”</p>
 </section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-probability-space-1753093477" class="graph-visualization-container">
+<div id="graph-viz-def-probability-space-1753101056" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -545,12 +512,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-probability-space-1753093477', {
+    createForceGraph(data, 'graph-viz-def-probability-space-1753101056', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-probability-space-1753093477').innerHTML =
+    document.getElementById('graph-viz-def-probability-space-1753101056').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

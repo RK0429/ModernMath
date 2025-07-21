@@ -69,9 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'en';
@@ -313,40 +310,12 @@ window.Quarto = {
 </section>
 <section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-angle-sum-triangle["Theorem: Angle Sum of a Triangle"]:::theorem
-    def-line["Definition: Line"]:::definition
-    def-point["Definition: Point"]:::definition
-    def-triangle["Definition: Triangle"]:::definition
-    def-angle["Definition: Angle"]:::definition
-    def-euclidean-space["Definition: Euclidean Space"]:::definition
-    def-angle --&gt; def-euclidean-space
-    def-triangle --&gt; def-angle
-    def-angle --&gt; def-line
-    def-angle --&gt; def-point
-    thm-angle-sum-triangle --&gt; def-angle
-    class def-angle current
-</pre>
-</div>
-<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
+<p>%%| fig-cap: “Local dependency graph” graph TD classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px def-triangle[“Definition: Triangle”]:::definition thm-angle-sum-triangle[“Theorem: Angle Sum of a Triangle”]:::theorem def-point[“Definition: Point”]:::definition def-line[“Definition: Line”]:::definition def-angle[“Definition: Angle”]:::definition thm-angle-sum-triangle –&gt; def-angle def-angle –&gt; def-line def-angle –&gt; def-point def-triangle –&gt; def-angle class def-angle current ``` click def-triangle “def-triangle.html” “Go to Triangle definition” click thm-angle-sum-triangle “thm-angle-sum-triangle.html” “Go to Angle Sum of a Triangle theorem” click def-point “def-point.html” “Go to Point definition” click def-line “def-line.html” “Go to Line definition”</p>
 </section>
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-angle-1753093349" class="graph-visualization-container">
+<div id="graph-viz-def-angle-1753100925" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -526,12 +495,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-angle-1753093349', {
+    createForceGraph(data, 'graph-viz-def-angle-1753100925', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-angle-1753093349').innerHTML =
+    document.getElementById('graph-viz-def-angle-1753100925').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

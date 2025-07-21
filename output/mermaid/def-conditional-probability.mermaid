@@ -1,4 +1,3 @@
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -6,15 +5,12 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-probability-space["Definition: Probability Space"]:::definition
-    def-event["Definition: Event"]:::definition
     def-conditional-probability["Definition: Conditional Probability"]:::definition
-    def-random-variable["Definition: Random Variable"]:::definition
+    def-event["Definition: Event"]:::definition
     thm-bayes["Theorem: Bayes' Theorem"]:::theorem
-    def-conditional-probability --> def-random-variable
-    def-conditional-probability --> thm-bayes
+    def-probability-space["Definition: Probability Space"]:::definition
     def-conditional-probability --> def-probability-space
-    thm-bayes --> def-conditional-probability
     def-conditional-probability --> def-event
+    thm-bayes --> def-conditional-probability
     class def-conditional-probability current
 ```

@@ -69,9 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'en';
@@ -319,38 +316,12 @@ window.Quarto = {
 </section>
 <section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
-    def-linear-transformation["Definition: Linear Transformation"]:::definition
-    def-kernel["Definition: Kernel"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
-    def-image["Definition: Image"]:::definition
-    thm-rank-nullity --&gt; def-image
-    thm-rank-nullity --&gt; def-vector-space
-    thm-rank-nullity --&gt; def-kernel
-    thm-rank-nullity --&gt; def-linear-transformation
-    class thm-rank-nullity current
-</pre>
-</div>
-<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
+<p>%%| fig-cap: “Local dependency graph” graph TD classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px def-kernel[“Definition: Kernel”]:::definition def-vector-space[“Definition: Vector Space”]:::definition def-linear-transformation[“Definition: Linear Transformation”]:::definition thm-rank-nullity[“Theorem: Rank-Nullity Theorem”]:::theorem def-image[“Definition: Image”]:::definition thm-rank-nullity –&gt; def-linear-transformation thm-rank-nullity –&gt; def-image thm-rank-nullity –&gt; def-vector-space thm-rank-nullity –&gt; def-kernel class thm-rank-nullity current ``` click def-kernel “def-kernel.html” “Go to Kernel definition” click def-vector-space “def-vector-space.html” “Go to Vector Space definition” click def-linear-transformation “def-linear-transformation.html” “Go to Linear Transformation definition” click def-image “def-image.html” “Go to Image definition”</p>
 </section>
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-rank-nullity-1753093336" class="graph-visualization-container">
+<div id="graph-viz-thm-rank-nullity-1753100911" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -530,12 +501,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-rank-nullity-1753093336', {
+    createForceGraph(data, 'graph-viz-thm-rank-nullity-1753100911', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-rank-nullity-1753093336').innerHTML =
+    document.getElementById('graph-viz-thm-rank-nullity-1753100911').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
