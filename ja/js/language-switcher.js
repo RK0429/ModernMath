@@ -113,9 +113,16 @@
             // Determine target language
             const targetLang = currentLang === 'en' ? 'ja' : 'en';
 
+            // Replace language indicators in the page path as well
+            // This handles cases like content/ja/algebra/ -> content/en/algebra/
+            const translatedPagePath = pagePath.replace(
+                new RegExp(`content/${currentLang}/`, 'g'),
+                `content/${targetLang}/`
+            );
+
             // Construct the translation path
             // This assumes the same file structure in both languages
-            const translationPath = `${basePath}/${targetLang}/${pagePath}`;
+            const translationPath = `${basePath}/${targetLang}/${translatedPagePath}`;
 
             console.log('Checking translation path:', translationPath);
 

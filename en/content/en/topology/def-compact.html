@@ -334,13 +334,13 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     ex-closed-interval-compact["Example: Closed Interval is Compact"]:::example
-    thm-heine-borel["Theorem: Heine-Borel Theorem"]:::theorem
-    def-compact["Definition: Compact Space"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-topological-space["Definition: Topological Space"]:::definition
     def-open-set["Definition: Open Set"]:::definition
-    ex-closed-interval-compact --&gt; def-compact
+    def-set["Definition: Set"]:::definition
+    def-compact["Definition: Compact Space"]:::definition
+    def-topological-space["Definition: Topological Space"]:::definition
+    thm-heine-borel["Theorem: Heine-Borel Theorem"]:::theorem
     def-compact --&gt; def-topological-space
+    ex-closed-interval-compact --&gt; def-compact
     def-compact --&gt; def-set
     thm-heine-borel --&gt; def-compact
     def-compact --&gt; def-open-set
@@ -355,7 +355,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-compact-1753080564" class="graph-visualization-container">
+<div id="graph-viz-def-compact-1753083744" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -535,12 +535,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-compact-1753080564', {
+    createForceGraph(data, 'graph-viz-def-compact-1753083744', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-compact-1753080564').innerHTML =
+    document.getElementById('graph-viz-def-compact-1753083744').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

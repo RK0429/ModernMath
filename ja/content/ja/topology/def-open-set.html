@@ -358,18 +358,18 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-union-open-sets["Theorem: Union of Open Sets"]:::theorem
-    def-compact["Definition: Compact Space"]:::definition
-    def-hausdorff["Definition: Hausdorff Space"]:::definition
     def-closed-set["Definition: Closed Set"]:::definition
-    def-topological-space["Definition: Topological Space"]:::definition
-    def-connected["Definition: Connected Space"]:::definition
     def-open-set["Definition: Open Set"]:::definition
-    def-connected --&gt; def-open-set
-    def-hausdorff --&gt; def-open-set
+    def-connected["Definition: Connected Space"]:::definition
+    def-compact["Definition: Compact Space"]:::definition
+    def-topological-space["Definition: Topological Space"]:::definition
+    thm-union-open-sets["Theorem: Union of Open Sets"]:::theorem
+    def-hausdorff["Definition: Hausdorff Space"]:::definition
     def-closed-set --&gt; def-open-set
-    thm-union-open-sets --&gt; def-open-set
+    def-hausdorff --&gt; def-open-set
     def-open-set --&gt; def-topological-space
+    thm-union-open-sets --&gt; def-open-set
+    def-connected --&gt; def-open-set
     def-compact --&gt; def-open-set
     class def-open-set current
 </pre>
@@ -382,7 +382,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-open-set-1753080679" class="graph-visualization-container">
+<div id="graph-viz-def-open-set-1753083858" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -562,12 +562,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-open-set-1753080679', {
+    createForceGraph(data, 'graph-viz-def-open-set-1753083858', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-open-set-1753080679').innerHTML =
+    document.getElementById('graph-viz-def-open-set-1753083858').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -325,13 +325,13 @@ window.Quarto = {
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-group["Definition: Group"]:::definition
     def-set["Definition: Set"]:::definition
+    def-group["Definition: Group"]:::definition
     def-subgroup["Definition: Subgroup"]:::definition
     ex-even-integers-subgroup --&gt; def-subgroup
-    def-subgroup --&gt; def-set
     def-subgroup --&gt; def-group
     thm-lagrange --&gt; def-subgroup
+    def-subgroup --&gt; def-set
     class def-subgroup current
 </pre>
 </div>
@@ -343,7 +343,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-subgroup-1753080576" class="graph-visualization-container">
+<div id="graph-viz-def-subgroup-1753083755" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -523,12 +523,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-subgroup-1753080576', {
+    createForceGraph(data, 'graph-viz-def-subgroup-1753083755', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-subgroup-1753080576').innerHTML =
+    document.getElementById('graph-viz-def-subgroup-1753083755').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

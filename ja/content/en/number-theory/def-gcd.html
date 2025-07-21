@@ -379,8 +379,8 @@ window.Quarto = {
     def-set["Definition: Set"]:::definition
     thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
     def-gcd["Definition: Greatest Common Divisor"]:::definition
-    def-gcd --&gt; def-set
     thm-euclidean-algorithm --&gt; def-gcd
+    def-gcd --&gt; def-set
     class def-gcd current
 </pre>
 </div>
@@ -392,7 +392,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-gcd-1753080734" class="graph-visualization-container">
+<div id="graph-viz-def-gcd-1753083915" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -572,12 +572,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-gcd-1753080734', {
+    createForceGraph(data, 'graph-viz-def-gcd-1753083915', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-gcd-1753080734').innerHTML =
+    document.getElementById('graph-viz-def-gcd-1753083915').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
