@@ -65,26 +65,32 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-ring["Definition: Ring"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
     def-set["Definition: Set"]:::definition
-    def-field["Definition: Field"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
     def-group["Definition: Group"]:::definition
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-field["Definition: Field"]:::definition
     thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
-    def-ring --> def-group
+    def-ring["Definition: Ring"]:::definition
+    ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
+    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-binary-operation["Definition: Binary Operation"]:::definition
     def-ring --> def-set
-    def-ring --> def-binary-operation
     def-field --> def-ring
+    def-ideal --> def-ring
+    ex-principal-ideal --> def-ring
     ex-integers-ring --> def-ring
     thm-field-characteristic --> def-ring
+    def-ring --> def-binary-operation
+    def-ring --> def-group
     class def-ring current
+    click def-ideal "def-ideal.html" "Definition: Idealへ"
     click def-set "def-set.html" "Definition: Setへ"
-    click def-field "def-field.html" "Definition: Fieldへ"
-    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
     click def-group "def-group.html" "Definition: Groupへ"
-    click ex-integers-ring "ex-integers-ring.html" "Example: Integers Form a Ringへ"
+    click def-field "def-field.html" "Definition: Fieldへ"
     click thm-field-characteristic "thm-field-characteristic.html" "Theorem: Field Characteristicへ"
+    click ex-principal-ideal "ex-principal-ideal.html" "Example: Principal Ideals in Integersへ"
+    click ex-integers-ring "ex-integers-ring.html" "Example: Integers Form a Ringへ"
+    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
 ```
 
 ## インタラクティブ可視化

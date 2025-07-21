@@ -1,0 +1,104 @@
+---
+id: def-eigenvalue-eigenvector
+requires:
+- def-matrix
+- def-linear-transformation
+- def-vector-space
+status: complete
+title: 'Definition: Eigenvalue and Eigenvector'
+translations:
+  en: ../en/algebra/def-eigenvalue-eigenvector.html
+  ja: ../ja/algebra/def-eigenvalue-eigenvector.html
+type: Definition
+---
+
+# Definition: Eigenvalue and Eigenvector {#def-eigenvalue-eigenvector}
+
+Let $A$ be an $n \times n$ square [matrix](def-matrix.qmd) over a field $F$, and let $T: V \to V$ be the corresponding [linear transformation](def-linear-transformation.qmd) on an $n$-dimensional [vector space](def-vector-space.qmd) $V$ over $F$.
+
+## Definition
+
+A non-zero vector $\mathbf{v} \in V$ is called an **eigenvector** of $A$ (or of $T$) if there exists a scalar $\lambda \in F$ such that:
+
+$$A\mathbf{v} = \lambda\mathbf{v}$$
+
+or equivalently:
+
+$$T(\mathbf{v}) = \lambda\mathbf{v}$$
+
+The scalar $\lambda$ is called the **eigenvalue** corresponding to the eigenvector $\mathbf{v}$.
+
+## Characteristic Equation
+
+To find eigenvalues of a matrix $A$, we solve the **characteristic equation**:
+
+$$\det(A - \lambda I) = 0$$
+
+where $I$ is the $n \times n$ identity matrix. The polynomial $p(\lambda) = \det(A - \lambda I)$ is called the **characteristic polynomial** of $A$.
+
+## Eigenspace
+
+For each eigenvalue $\lambda$, the set of all eigenvectors corresponding to $\lambda$, together with the zero vector, forms a subspace called the **eigenspace** of $\lambda$:
+
+$$E_\lambda = \{\mathbf{v} \in V : A\mathbf{v} = \lambda\mathbf{v}\} = \ker(A - \lambda I)$$
+
+## Important Properties
+
+1. **Non-zero requirement**: By definition, eigenvectors must be non-zero vectors
+2. **Scalar multiples**: If $\mathbf{v}$ is an eigenvector with eigenvalue $\lambda$, then $c\mathbf{v}$ is also an eigenvector with the same eigenvalue for any non-zero scalar $c \in F$
+3. **Linear independence**: Eigenvectors corresponding to distinct eigenvalues are linearly independent
+4. **Multiplicity**:
+   - **Algebraic multiplicity**: The multiplicity of $\lambda$ as a root of the characteristic polynomial
+   - **Geometric multiplicity**: The dimension of the eigenspace $E_\lambda$
+5. **Spectrum**: The set of all eigenvalues is called the **spectrum** of the matrix
+
+## Special Cases
+
+- **Real matrices**: An $n \times n$ real matrix may have complex eigenvalues, which occur in conjugate pairs
+- **Symmetric matrices**: Real symmetric matrices always have real eigenvalues and orthogonal eigenvectors
+- **Diagonal matrices**: The eigenvalues are the diagonal entries
+- **Triangular matrices**: The eigenvalues are the diagonal entries
+
+## Connection to Diagonalization
+
+A matrix $A$ is **diagonalizable** if and only if it has $n$ linearly independent eigenvectors. In this case:
+
+$$A = PDP^{-1}$$
+
+where $D$ is a diagonal matrix containing the eigenvalues, and $P$ is a matrix whose columns are the corresponding eigenvectors.
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-matrix["Definition: Matrix"]:::definition
+    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-eigenvalue-eigenvector --> def-matrix
+    def-eigenvalue-eigenvector --> def-vector-space
+    def-eigenvalue-eigenvector --> def-linear-transformation
+    class def-eigenvalue-eigenvector current
+    click def-matrix "def-matrix.html" "Go to Matrix definition"
+    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation definition"
+    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-eigenvalue-eigenvector" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-eigenvalue-eigenvector.html){target="_blank"}

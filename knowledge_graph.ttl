@@ -90,6 +90,8 @@
 
 <http://modernmath.org/concepts/homomorphism> ns1:hasTranslation <http://modernmath.org/concepts/homomorphism_ja> .
 
+<http://modernmath.org/concepts/ideal> ns1:hasTranslation <http://modernmath.org/concepts/ideal_ja> .
+
 <http://modernmath.org/concepts/identity-element> ns1:hasTranslation <http://modernmath.org/concepts/identity-element_ja> .
 
 <http://modernmath.org/concepts/image> ns1:hasTranslation <http://modernmath.org/concepts/image_ja> .
@@ -161,6 +163,8 @@
 <http://modernmath.org/concepts/power-set> ns1:hasTranslation <http://modernmath.org/concepts/power-set_ja> .
 
 <http://modernmath.org/concepts/prime> ns1:hasTranslation <http://modernmath.org/concepts/prime_ja> .
+
+<http://modernmath.org/concepts/principal-ideal> ns1:hasTranslation <http://modernmath.org/concepts/principal-ideal_ja> .
 
 <http://modernmath.org/concepts/probability-space> ns1:hasTranslation <http://modernmath.org/concepts/probability-space_ja> .
 
@@ -251,6 +255,16 @@ ns1:hasTranslation a rdf:Property ;
         "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-binary-operation> .
+
+<https://mathwiki.org/resource/def-eigenvalue-eigenvector> a mymath:Definition ;
+    rdfs:label "Definition: Eigenvalue and Eigenvector"@en,
+        "定義: 固有値と固有ベクトル"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-linear-transformation>,
+        <https://mathwiki.org/resource/def-matrix>,
+        <https://mathwiki.org/resource/def-vector-space> .
 
 <https://mathwiki.org/resource/def-integral> a mymath:Definition ;
     rdfs:label "Definition: Integral"@en,
@@ -669,6 +683,8 @@ ns1:hasTranslation a rdf:Property ;
 
 <http://modernmath.org/concepts/homomorphism_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/ideal_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/identity-element_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/image_ja> ns1:language "ja" .
@@ -740,6 +756,8 @@ ns1:hasTranslation a rdf:Property ;
 <http://modernmath.org/concepts/power-set_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/prime_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/principal-ideal_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/probability-space_ja> ns1:language "ja" .
 
@@ -1001,13 +1019,6 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-quotient-group>,
         <https://mathwiki.org/resource/def-vector-space> .
 
-<https://mathwiki.org/resource/def-matrix> a mymath:Definition ;
-    rdfs:label "Definition: Matrix"@en,
-        "定義：行列"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" .
-
 <https://mathwiki.org/resource/def-natural-transformation> a mymath:Definition ;
     rdfs:label "Definition: Natural Transformation"@en,
         "定義：自然変換"@en ;
@@ -1100,8 +1111,10 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/ex-quotient-integers-mod-n> .
 
 <https://mathwiki.org/resource/ex-principal-ideal> a mymath:Example ;
-    rdfs:label "Example: Principal Ideals in Integers"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Example: Principal Ideals in Integers"@en,
+        "例: 整数における単項イデアル"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-gcd>,
         <https://mathwiki.org/resource/def-ideal>,
@@ -1234,6 +1247,13 @@ ns1:hasTranslation a rdf:Property ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearIndependent.LinearIndependent> ;
     mymath:uses <https://mathwiki.org/resource/def-vector-space> .
 
+<https://mathwiki.org/resource/def-matrix> a mymath:Definition ;
+    rdfs:label "Definition: Matrix"@en,
+        "定義：行列"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" .
+
 <https://mathwiki.org/resource/def-random-variable> a mymath:Definition ;
     rdfs:label "Definition: Random Variable"@en,
         "定義: 確率変数"@en ;
@@ -1352,15 +1372,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-limit> .
 
-<https://mathwiki.org/resource/def-linear-transformation> a mymath:Definition ;
-    rdfs:label "Definition: Linear Transformation"@en,
-        "定義: 線形変換"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearMap.LinearMap> ;
-    mymath:uses <https://mathwiki.org/resource/def-vector-space> .
-
 <https://mathwiki.org/resource/def-open-set> a mymath:Definition ;
     rdfs:label "Definition: Open Set"@en,
         "定義: 開集合"@en ;
@@ -1396,8 +1407,10 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/thm-lagrange> .
 
 <https://mathwiki.org/resource/def-ideal> a mymath:Definition ;
-    rdfs:label "Definition: Ideal"@en ;
-    mymath:hasDomain "Algebra" ;
+    rdfs:label "Definition: Ideal"@en,
+        "定義: イデアル"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
         <https://mathwiki.org/resource/def-ring>,
@@ -1409,6 +1422,15 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasDomain "Analysis",
         "解析学" ;
     mymath:hasStatus "complete" .
+
+<https://mathwiki.org/resource/def-linear-transformation> a mymath:Definition ;
+    rdfs:label "Definition: Linear Transformation"@en,
+        "定義: 線形変換"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearMap.LinearMap> ;
+    mymath:uses <https://mathwiki.org/resource/def-vector-space> .
 
 <https://mathwiki.org/resource/def-metric-space> a mymath:Definition ;
     rdfs:label "Definition: Metric Space"@en,
@@ -1463,14 +1485,6 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-normal-subgroup>,
         <https://mathwiki.org/resource/def-subgroup> .
 
-<https://mathwiki.org/resource/def-vector-space> a mymath:Definition ;
-    rdfs:label "Definition: Vector Space"@en,
-        "定義: ベクトル空間"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.Basic.Module> .
-
 <https://mathwiki.org/resource/def-binary-operation> a mymath:Definition ;
     rdfs:label "Definition: Binary Operation"@en,
         "定義: 二項演算"@en ;
@@ -1480,6 +1494,14 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/MathKnowledgeGraph.Algebra.BinaryOp> ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
+
+<https://mathwiki.org/resource/def-vector-space> a mymath:Definition ;
+    rdfs:label "Definition: Vector Space"@en,
+        "定義: ベクトル空間"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.Basic.Module> .
 
 <https://mathwiki.org/resource/def-group> a mymath:Definition ;
     rdfs:label "Definition: Group"@en,

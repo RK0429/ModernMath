@@ -240,6 +240,7 @@ poetry run python scripts/translation/fix_japanese_index.py
 - Define complete navbar configurations in each language profile (`_quarto-en.yml`, `_quarto-ja.yml`)
 - Do not include language-specific navigation items in the base configuration
 - Ensure all 9 mathematical domains are included in both language navbar configurations
+- Include `nav/en/` and `nav/ja/` in render patterns, while excluding the opposite language's nav directory
 
 ### Python Script Compatibility
 
@@ -316,15 +317,17 @@ The project implements a page-level language switcher that redirects to the tran
 - Resources section must explicitly list JS files for proper deployment
 - The language switcher updates navbar links dynamically based on available translations
 
-### Japanese Navigation Pages
+### Navigation Page Structure
 
-When implementing Japanese support, create these navigation pages with `-ja.qmd` suffix:
+To enable proper language switching, organize language-specific navigation pages in separate directories:
 
-- `index-ja.qmd` - Japanese home page (referenced in `_quarto-ja.yml` navbar)
-- `about-ja.qmd` - Japanese about page
-- `contributing-ja.qmd` - Japanese contributing guide
+- **English pages**: Place in `nav/en/` (e.g., `nav/en/about.qmd`, `nav/en/contributing.qmd`)
+- **Japanese pages**: Place in `nav/ja/` with same filenames (e.g., `nav/ja/about.qmd`, `nav/ja/contributing.qmd`)
+- **Exception**: `index-ja.qmd` remains in root due to Quarto's index page handling
 
-Update `_quarto-ja.yml` navbar to reference these files and ensure all domain links use Japanese paths.
+This structure allows the language switcher to work with simple path replacement (`/en/` ↔ `/ja/`).
+
+Update navbar references in `_quarto-en.yml` and `_quarto-ja.yml` to point to these directories.
 
 ### Japanese Terminology Consistency
 

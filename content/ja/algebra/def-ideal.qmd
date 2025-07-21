@@ -62,35 +62,53 @@ $(R, +, \cdot)$ を環とする。部分集合 $I \subseteq R$ は以下の場�
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "局所依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-ideal["定義: イデアル"]:::definition
-    def-ring["定義: 環"]:::definition
-    def-subset["定義: 部分集合"]:::definition
-    def-binary-operation["定義: 二項演算"]:::definition
-    def-ideal --> def-ring
-    def-ideal --> def-subset
+    def-ideal["Definition: Ideal"]:::definition
+    ex-finite-field["Example: Finite Field"]:::example
+    def-kernel["Definition: Kernel"]:::definition
+    def-field["Definition: Field"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-subset["Definition: Subset"]:::definition
+    ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
+    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-quotient-group --> def-ideal
     def-ideal --> def-binary-operation
+    def-kernel --> def-ideal
+    ex-finite-field --> def-ideal
+    ex-integers-ring --> def-ideal
+    def-ideal --> def-subset
+    def-ideal --> def-ring
+    def-field --> def-ideal
+    ex-principal-ideal --> def-ideal
     class def-ideal current
-    click def-ring "def-ring.html" "環の定義へ"
-    click def-subset "../logic-set-theory/def-subset.html" "部分集合の定義へ"
-    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
+    click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
+    click def-kernel "def-kernel.html" "Definition: Kernelへ"
+    click def-field "def-field.html" "Definition: Fieldへ"
+    click def-ring "def-ring.html" "Definition: Ringへ"
+    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
+    click def-subset "def-subset.html" "Definition: Subsetへ"
+    click ex-principal-ideal "ex-principal-ideal.html" "Example: Principal Ideals in Integersへ"
+    click ex-integers-ring "ex-integers-ring.html" "Example: Integers Form a Ringへ"
+    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
 ```
 
 ## インタラクティブ可視化
 
-局所知識グラフをインタラクティブに探索する：
+ローカル知識グラフの近傍をインタラクティブに探索：
 
 ::: {.graph-viz data-id="def-ideal" data-width="700" data-height="500"}
 :::
 
 次のことができます：
-- ノードを**ドラッグ**してレイアウトを変更
+- ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
-- ノードに**カーソルを合わせる**と詳細を表示
-- [完全なインタラクティブバージョン](../../output/interactive/def-ideal.html){target="_blank"}を表示
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/def-ideal.html){target="_blank"}で完全なインタラクティブ版を表示
