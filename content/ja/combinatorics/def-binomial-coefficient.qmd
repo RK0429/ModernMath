@@ -61,6 +61,7 @@ $$\binom{n}{k} = \frac{n!}{k!(n-k)!}$$
 
 ## 依存関係グラフ
 
+```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -73,13 +74,13 @@ graph TD
     def-combination["Definition: Combination"]:::definition
     def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
     def-binomial-coefficient --> def-combination
-    def-binomial-coefficient --> def-permutation
     ex-pascals-triangle --> def-binomial-coefficient
+    def-binomial-coefficient --> def-permutation
     class def-binomial-coefficient current
-```
     click def-permutation "def-permutation.html" "Definition: Permutationへ"
     click ex-pascals-triangle "ex-pascals-triangle.html" "Example: Pascal's Triangleへ"
     click def-combination "def-combination.html" "Definition: Combinationへ"
+```
 
 ## インタラクティブ可視化
 

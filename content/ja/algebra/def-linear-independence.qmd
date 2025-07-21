@@ -43,6 +43,7 @@ $$a_1\mathbf{v}_1 + a_2\mathbf{v}_2 + \cdots + a_k\mathbf{v}_k = \mathbf{0}$$
 
 ## 依存関係グラフ
 
+```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -50,18 +51,18 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-vector-space["Definition: Vector Space"]:::definition
+    def-basis["Definition: Basis"]:::definition
     def-linear-independence["Definition: Linear Independence"]:::definition
     ex-standard-basis-rn["Example: Standard Basis of ℝⁿ"]:::example
-    def-basis["Definition: Basis"]:::definition
-    def-basis --> def-linear-independence
+    def-vector-space["Definition: Vector Space"]:::definition
     def-linear-independence --> def-vector-space
     ex-standard-basis-rn --> def-linear-independence
+    def-basis --> def-linear-independence
     class def-linear-independence current
-```
-    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
-    click ex-standard-basis-rn "ex-standard-basis-rn.html" "Example: Standard Basis of ℝⁿへ"
     click def-basis "def-basis.html" "Definition: Basisへ"
+    click ex-standard-basis-rn "ex-standard-basis-rn.html" "Example: Standard Basis of ℝⁿへ"
+    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
+```
 
 ## インタラクティブ可視化
 

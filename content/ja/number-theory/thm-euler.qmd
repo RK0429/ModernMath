@@ -49,6 +49,7 @@ $n$ と互いに素な整数は、法 $n$ での乗法に関して[群](../algeb
 
 ## 依存関係グラフ
 
+```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -57,20 +58,20 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-quotient-group["Definition: Quotient Group"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-prime["Definition: Prime Number"]:::definition
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
     ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    thm-euler --> def-group
-    thm-euler --> ex-quotient-integers-mod-n
-    thm-euler --> def-quotient-group
+    def-prime["Definition: Prime Number"]:::definition
+    def-group["Definition: Group"]:::definition
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
     thm-euler --> def-prime
+    thm-euler --> ex-quotient-integers-mod-n
+    thm-euler --> def-group
+    thm-euler --> def-quotient-group
     class thm-euler current
-```
     click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
-    click def-group "def-group.html" "Definition: Groupへ"
-    click def-prime "def-prime.html" "Definition: Prime Numberへ"
     click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
+    click def-prime "def-prime.html" "Definition: Prime Numberへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+```
 
 ## インタラクティブ可視化
 

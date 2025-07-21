@@ -46,6 +46,7 @@ $$\lim_{n \to \infty} a_n = L \iff \forall \varepsilon > 0, \exists N \in \mathb
 
 ## 依存関係グラフ
 
+```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -53,27 +54,27 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-convergence["Definition: Convergence"]:::definition
-    def-limit["Definition: Limit of a Sequence"]:::definition
-    def-derivative["Definition: Derivative"]:::definition
-    thm-limit-arithmetic["Theorem: Arithmetic of Limits"]:::theorem
-    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
-    def-continuity["Definition: Continuity"]:::definition
     def-integral["Definition: Integral"]:::definition
-    def-convergence --> def-limit
-    def-integral --> def-limit
+    def-derivative["Definition: Derivative"]:::definition
+    def-continuity["Definition: Continuity"]:::definition
+    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
+    thm-limit-arithmetic["Theorem: Arithmetic of Limits"]:::theorem
+    def-limit["Definition: Limit of a Sequence"]:::definition
+    def-convergence["Definition: Convergence"]:::definition
     def-continuity --> def-limit
-    thm-limit-arithmetic --> def-limit
     def-derivative --> def-limit
     def-complete-metric-space --> def-limit
+    def-convergence --> def-limit
+    def-integral --> def-limit
+    thm-limit-arithmetic --> def-limit
     class def-limit current
-```
-    click def-convergence "def-convergence.html" "Definition: Convergenceへ"
-    click def-derivative "def-derivative.html" "Definition: Derivativeへ"
-    click thm-limit-arithmetic "thm-limit-arithmetic.html" "Theorem: Arithmetic of Limitsへ"
-    click def-complete-metric-space "def-complete-metric-space.html" "Definition: Complete Metric Spaceへ"
-    click def-continuity "def-continuity.html" "Definition: Continuityへ"
     click def-integral "def-integral.html" "Definition: Integralへ"
+    click def-derivative "def-derivative.html" "Definition: Derivativeへ"
+    click def-continuity "def-continuity.html" "Definition: Continuityへ"
+    click def-complete-metric-space "def-complete-metric-space.html" "Definition: Complete Metric Spaceへ"
+    click thm-limit-arithmetic "thm-limit-arithmetic.html" "Theorem: Arithmetic of Limitsへ"
+    click def-convergence "def-convergence.html" "Definition: Convergenceへ"
+```
 
 ## インタラクティブ可視化
 

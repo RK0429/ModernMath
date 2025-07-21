@@ -43,6 +43,7 @@ If $K$ is closed and bounded in $\mathbb{R}^n$, then $K$ is compact.
 
 ## Dependency Graph
 
+```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -50,21 +51,21 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-closed-set["Definition: Closed Set"]:::definition
     thm-heine-borel["Theorem: Heine-Borel Theorem"]:::theorem
-    def-compact["Definition: Compact Space"]:::definition
     def-metric-space["Definition: Metric Space"]:::definition
+    def-compact["Definition: Compact Space"]:::definition
+    def-closed-set["Definition: Closed Set"]:::definition
     ex-closed-interval-compact["Example: Closed Interval is Compact"]:::example
-    thm-heine-borel --> def-metric-space
-    thm-heine-borel --> def-closed-set
     ex-closed-interval-compact --> thm-heine-borel
     thm-heine-borel --> def-compact
+    thm-heine-borel --> def-metric-space
+    thm-heine-borel --> def-closed-set
     class thm-heine-borel current
-```
-    click def-closed-set "def-closed-set.html" "Go to Closed Set definition"
-    click def-compact "def-compact.html" "Go to Compact Space definition"
     click def-metric-space "def-metric-space.html" "Go to Metric Space definition"
+    click def-compact "def-compact.html" "Go to Compact Space definition"
+    click def-closed-set "def-closed-set.html" "Go to Closed Set definition"
     click ex-closed-interval-compact "ex-closed-interval-compact.html" "Go to Closed Interval is Compact example"
+```
 
 ## Interactive Visualization
 

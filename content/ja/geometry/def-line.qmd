@@ -43,6 +43,7 @@ type: Definition
 
 ## 依存関係グラフ
 
+```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -51,23 +52,23 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-line["Definition: Line"]:::definition
-    def-triangle["Definition: Triangle"]:::definition
     def-parallel["Definition: Parallel Lines"]:::definition
     def-angle["Definition: Angle"]:::definition
-    def-point["Definition: Point"]:::definition
+    def-triangle["Definition: Triangle"]:::definition
     thm-angle-sum-triangle["Theorem: Angle Sum of a Triangle"]:::theorem
-    def-angle --> def-line
+    def-point["Definition: Point"]:::definition
     def-parallel --> def-line
+    def-line --> def-point
     def-triangle --> def-line
     thm-angle-sum-triangle --> def-line
-    def-line --> def-point
+    def-angle --> def-line
     class def-line current
-```
-    click def-triangle "def-triangle.html" "Definition: Triangleへ"
     click def-parallel "def-parallel.html" "Definition: Parallel Linesへ"
     click def-angle "def-angle.html" "Definition: Angleへ"
-    click def-point "def-point.html" "Definition: Pointへ"
+    click def-triangle "def-triangle.html" "Definition: Triangleへ"
     click thm-angle-sum-triangle "thm-angle-sum-triangle.html" "Theorem: Angle Sum of a Triangleへ"
+    click def-point "def-point.html" "Definition: Pointへ"
+```
 
 ## インタラクティブ可視化
 

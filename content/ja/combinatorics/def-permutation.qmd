@@ -48,6 +48,7 @@ $S = \{1, 2, 3\}$ に対して：
 
 ## 依存関係グラフ
 
+```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -55,15 +56,15 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-permutation["Definition: Permutation"]:::definition
     def-set["Definition: Set"]:::definition
+    def-permutation["Definition: Permutation"]:::definition
     def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
-    def-binomial-coefficient --> def-permutation
     def-permutation --> def-set
+    def-binomial-coefficient --> def-permutation
     class def-permutation current
-```
     click def-set "def-set.html" "Definition: Setへ"
     click def-binomial-coefficient "def-binomial-coefficient.html" "Definition: Binomial Coefficientへ"
+```
 
 ## インタラクティブ可視化
 

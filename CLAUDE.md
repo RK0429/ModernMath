@@ -193,9 +193,9 @@ The ontology (`ontology/math-ontology.ttl`) defines:
 - **Mermaid Navigation**: Click directives (`click node-id "path.html" "tooltip"`) are automatically added by `fix_visualization_placement.py`
 - **Placement Rules**: Visualizations must appear at end of articles (Dependency Graph, then Interactive)
 - **Key Scripts**:
-  - `fix_visualization_placement.py`: Enforces placement standards AND adds click directives to Mermaid diagrams
+  - `fix_visualization_placement.py`: Enforces placement standards, adds click directives, AND wraps diagrams in proper Mermaid code blocks
   - `insert_diagrams.py`: Auto-placement of visualizations (uses fix_visualization_placement.py internally)
-  - `generate_mermaid.py`: Creates base Mermaid diagrams without click directives
+  - `generate_mermaid.py`: Creates base Mermaid diagram content WITHOUT closing backticks (important: never include ``` in diagram content)
 
 ## Multilingual Support
 
@@ -401,7 +401,7 @@ Mermaid diagrams in Quarto require specific syntax:
   ````
 
 - **Common Error**: Using `%%|` without code block wrapper will display as raw text
-- **Fix Script**: Use `scripts/fix_mermaid_blocks.py` to correct syntax issues across all content files
+- **Integration Note**: `fix_visualization_placement.py` automatically wraps Mermaid content in proper code blocks when inserting diagrams
 
 ### Cross-Reference Format
 

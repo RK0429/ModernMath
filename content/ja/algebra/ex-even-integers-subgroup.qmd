@@ -47,6 +47,7 @@ $2\mathbb{Z}$ が $(\mathbb{Z}, +)$ の部分群であることを示すため�
 
 ## 依存関係グラフ
 
+```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -54,22 +55,22 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-subgroup["Definition: Subgroup"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-group["Definition: Group"]:::definition
     ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-group["Definition: Group"]:::definition
     ex-integers-addition["Example: Integers under Addition"]:::example
-    ex-even-integers-subgroup --> def-subgroup
-    ex-even-integers-subgroup --> def-group
-    def-group --> ex-even-integers-subgroup
     ex-even-integers-subgroup --> ex-integers-addition
     ex-even-integers-subgroup --> def-normal-subgroup
+    ex-even-integers-subgroup --> def-group
+    def-group --> ex-even-integers-subgroup
+    ex-even-integers-subgroup --> def-subgroup
     class ex-even-integers-subgroup current
-```
-    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
     click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
+    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
     click def-group "def-group.html" "Definition: Groupへ"
     click ex-integers-addition "ex-integers-addition.html" "Example: Integers under Additionへ"
+```
 
 ## インタラクティブ可視化
 

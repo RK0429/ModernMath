@@ -50,6 +50,7 @@ $$T_A\begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} 1 & 2 & 3 \\ 4 
 
 ## 依存関係グラフ
 
+```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -57,15 +58,15 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-matrix["Definition: Matrix"]:::definition
-    def-linear-transformation["Definition: Linear Transformation"]:::definition
     ex-matrix-transformation["Example: Matrix Transformation"]:::example
-    ex-matrix-transformation --> def-linear-transformation
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-matrix["Definition: Matrix"]:::definition
     ex-matrix-transformation --> def-matrix
+    ex-matrix-transformation --> def-linear-transformation
     class ex-matrix-transformation current
-```
-    click def-matrix "def-matrix.html" "Definition: Matrixへ"
     click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
+    click def-matrix "def-matrix.html" "Definition: Matrixへ"
+```
 
 ## インタラクティブ可視化
 

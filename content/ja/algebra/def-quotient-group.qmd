@@ -127,27 +127,45 @@ $$1 \to N \to G \to G/N \to 1$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "局所依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-quotient-group["定義: 商群"]:::definition
-    def-group["定義: 群"]:::definition
-    def-normal-subgroup["定義: 正規部分群"]:::definition
-    def-subgroup["定義: 部分群"]:::definition
-    def-homomorphism["定義: 群準同型"]:::definition
-    def-kernel["定義: 核"]:::definition
-    thm-lagrange["定理: ラグランジュの定理"]:::theorem
-    def-quotient-group --> def-group
-    def-quotient-group --> def-normal-subgroup
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-subgroup["Definition: Subgroup"]:::definition
+    ex-finite-field["Example: Finite Field"]:::example
+    def-group["Definition: Group"]:::definition
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
     def-quotient-group --> def-subgroup
-    def-homomorphism --> def-quotient-group
+    ex-finite-field --> def-quotient-group
     def-kernel --> def-quotient-group
+    def-normal-subgroup --> def-quotient-group
+    def-subgroup --> def-quotient-group
     thm-lagrange --> def-quotient-group
+    def-quotient-group --> def-normal-subgroup
+    def-homomorphism --> def-quotient-group
+    def-group --> def-quotient-group
+    ex-quotient-integers-mod-n --> def-quotient-group
+    def-quotient-group --> def-group
+    thm-euler --> def-quotient-group
     class def-quotient-group current
+    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
+    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
+    click def-kernel "def-kernel.html" "Definition: Kernelへ"
+    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
+    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
+    click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click thm-euler "thm-euler.html" "Theorem: Euler's Theoremへ"
 ```
 
 ## インタラクティブ可視化
@@ -158,7 +176,7 @@ graph TD
 :::
 
 次のことができます：
-- **ドラッグ**してノードを並べ替える
-- マウスホイールで**ズームイン/アウト**
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [完全なインタラクティブ版](../../output/interactive/def-quotient-group.html){target="_blank"}を表示
+- [別ウィンドウ](../../output/interactive/def-quotient-group.html){target="_blank"}で完全なインタラクティブ版を表示

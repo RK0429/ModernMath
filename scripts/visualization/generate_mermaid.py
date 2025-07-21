@@ -153,8 +153,6 @@ def generate_mermaid_diagram(g: Graph, node_id: str, max_nodes: int = 20) -> str
     # Highlight the current node
     lines.append(f"    class {node_id} current")
 
-    lines.append("```")
-
     return "\n".join(lines)
 
 
