@@ -353,41 +353,41 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-identity-element["Definition: Identity Element"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
-    def-field["Definition: Field"]:::definition
-    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
     ex-integers-ring["Example: Integers Form a Ring"]:::example
     thm-unique-identity["Theorem: Uniqueness of Identity"]:::theorem
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
     def-binary-operation["Definition: Binary Operation"]:::definition
-    def-set["Definition: Set"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-associativity["Definition: Associativity"]:::definition
     ex-integers-addition["Example: Integers under Addition"]:::example
-    def-group["Definition: Group"]:::definition
-    def-inverse-element["Definition: Inverse Element"]:::definition
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    def-field["Definition: Field"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-set["Definition: Set"]:::definition
     def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-commutativity["Definition: Commutativity"]:::definition
     def-subgroup["Definition: Subgroup"]:::definition
-    def-inverse-element --&gt; def-group
-    ex-even-integers-subgroup --&gt; def-group
-    def-associativity --&gt; def-group
-    ex-integers-addition --&gt; def-group
-    def-subgroup --&gt; def-group
-    def-ring --&gt; def-group
-    def-homomorphism --&gt; def-group
-    ex-exponential-homomorphism --&gt; def-group
-    thm-lagrange --&gt; def-group
-    def-commutativity --&gt; def-group
-    ex-integers-ring --&gt; def-group
-    thm-euler --&gt; def-group
-    def-group --&gt; def-set
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    def-associativity["Definition: Associativity"]:::definition
+    def-identity-element["Definition: Identity Element"]:::definition
+    ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
+    def-group["Definition: Group"]:::definition
+    def-commutativity["Definition: Commutativity"]:::definition
+    def-inverse-element["Definition: Inverse Element"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     thm-unique-identity --&gt; def-group
+    def-group --&gt; def-set
+    ex-exponential-homomorphism --&gt; def-group
+    def-commutativity --&gt; def-group
+    ex-integers-addition --&gt; def-group
+    def-ring --&gt; def-group
+    ex-even-integers-subgroup --&gt; def-group
     def-identity-element --&gt; def-group
+    def-associativity --&gt; def-group
     def-group --&gt; def-binary-operation
+    thm-euler --&gt; def-group
+    def-inverse-element --&gt; def-group
     def-field --&gt; def-group
+    def-subgroup --&gt; def-group
+    ex-integers-ring --&gt; def-group
+    thm-lagrange --&gt; def-group
+    def-homomorphism --&gt; def-group
     class def-group current
 </pre>
 </div>
@@ -399,7 +399,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-group-1753083700" class="graph-visualization-container">
+<div id="graph-viz-def-group-1753084334" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -579,12 +579,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-group-1753083700', {
+    createForceGraph(data, 'graph-viz-def-group-1753084334', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-group-1753083700').innerHTML =
+    document.getElementById('graph-viz-def-group-1753084334').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
