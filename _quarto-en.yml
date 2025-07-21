@@ -115,27 +115,17 @@ format:
               var pathParts = path.split('/');
               var basePath = '';
 
-              // Remove empty parts
-              pathParts = pathParts.filter(function(part) { return part; });
+              // Remove empty parts and the HTML filename
+              pathParts = pathParts.filter(function(part) { return part && !part.endsWith('.html'); });
 
-              // Find the FIRST occurrence of the language directory ('en' or 'ja')
-              var langIndex = -1;
-              for (var i = 0; i < pathParts.length; i++) {
-                if (pathParts[i] === 'en' || pathParts[i] === 'ja') {
-                  langIndex = i;
-                  break;
-                }
-              }
+              // For English site, js files are at the root of the English site
+              // Count how many directories deep we are from the root
+              var depth = pathParts.length;
 
-              if (langIndex >= 0) {
-                // Calculate how many directories deep we are from the language root
-                // Don't count the HTML file itself
-                var dirsAfterLang = pathParts.length - langIndex - 2;
-
-                // Build the path with the correct number of '../'
-                for (var k = 0; k < dirsAfterLang; k++) {
-                  basePath += '../';
-                }
+              // If we're in a content/en/* structure, we need to go back to the site root
+              // where the js directory is located
+              for (var i = 0; i < depth; i++) {
+                basePath += '../';
               }
 
               basePath = basePath || './';
@@ -179,4 +169,5 @@ resources:
   - .nojekyll
   - output/interactive
   - output/d3-data
-  - js
+  - js/language-switcher.js
+  - js/issue-button.js
