@@ -355,12 +355,12 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
-    def-permutation["Definition: Permutation"]:::definition
-    def-combination["Definition: Combination"]:::definition
     ex-pascals-triangle["Example: Pascal's Triangle"]:::example
+    def-combination["Definition: Combination"]:::definition
+    def-permutation["Definition: Permutation"]:::definition
     ex-pascals-triangle --&gt; def-binomial-coefficient
-    def-binomial-coefficient --&gt; def-combination
     def-binomial-coefficient --&gt; def-permutation
+    def-binomial-coefficient --&gt; def-combination
     class def-binomial-coefficient current
 </pre>
 </div>
@@ -372,7 +372,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-binomial-coefficient-1753091647" class="graph-visualization-container">
+<div id="graph-viz-def-binomial-coefficient-1753091729" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -552,12 +552,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-binomial-coefficient-1753091647', {
+    createForceGraph(data, 'graph-viz-def-binomial-coefficient-1753091729', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-binomial-coefficient-1753091647').innerHTML =
+    document.getElementById('graph-viz-def-binomial-coefficient-1753091729').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

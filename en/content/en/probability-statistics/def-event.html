@@ -351,22 +351,22 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-event["Definition: Event"]:::definition
+    def-union["Definition: Union"]:::definition
+    def-subset["Definition: Subset"]:::definition
+    def-conditional-probability["Definition: Conditional Probability"]:::definition
+    def-probability-space["Definition: Probability Space"]:::definition
     def-sample-space["Definition: Sample Space"]:::definition
     thm-bayes["Theorem: Bayes' Theorem"]:::theorem
-    def-union["Definition: Union"]:::definition
     def-intersection["Definition: Intersection"]:::definition
-    def-probability-space["Definition: Probability Space"]:::definition
-    def-event["Definition: Event"]:::definition
-    def-conditional-probability["Definition: Conditional Probability"]:::definition
-    def-subset["Definition: Subset"]:::definition
     def-event --&gt; def-union
-    def-event --&gt; def-subset
-    def-event --&gt; def-intersection
-    thm-bayes --&gt; def-event
-    def-conditional-probability --&gt; def-event
-    def-event --&gt; def-sample-space
     def-sample-space --&gt; def-event
+    def-conditional-probability --&gt; def-event
+    def-event --&gt; def-intersection
     def-event --&gt; def-probability-space
+    def-event --&gt; def-sample-space
+    thm-bayes --&gt; def-event
+    def-event --&gt; def-subset
     class def-event current
 </pre>
 </div>
@@ -378,7 +378,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-event-1753091581" class="graph-visualization-container">
+<div id="graph-viz-def-event-1753091662" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -558,12 +558,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-event-1753091581', {
+    createForceGraph(data, 'graph-viz-def-event-1753091662', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-event-1753091581').innerHTML =
+    document.getElementById('graph-viz-def-event-1753091662').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
