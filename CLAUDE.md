@@ -212,7 +212,7 @@ The project supports multiple languages (currently English and Japanese) with au
 
 - Japanese files need `translation_of: ../../en/path.qmd`
 - All files need `translations: {en: "path.html", ja: "path.html"}`
-- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間
+- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Ideal→イデアル
 
 ### Building Multilingual Sites
 

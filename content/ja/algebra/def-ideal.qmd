@@ -1,0 +1,96 @@
+---
+id: def-ideal
+requires:
+- def-ring
+- def-subset
+- def-binary-operation
+status: complete
+title: '定義: イデアル'
+translation_of: ../../en/algebra/def-ideal.qmd
+translations:
+  en: ../en/algebra/def-ideal.html
+  ja: ../ja/algebra/def-ideal.html
+type: Definition
+---
+
+# イデアル {#def-ideal}
+
+**イデアル**は[環](def-ring.qmd)の特別な[部分集合](../logic-set-theory/def-subset.qmd)であり、環の加法について閉じており、環の元による乗法を吸収する。
+
+## 形式的定義
+
+$(R, +, \cdot)$ を環とする。部分集合 $I \subseteq R$ は以下の場合に：
+
+### 左イデアル
+
+**左イデアル**と呼ばれる：
+1. $(I, +)$ は $(R, +)$ の部分群
+2. すべての $r \in R$ と $a \in I$ に対して：$r \cdot a \in I$（左吸収性）
+
+### 右イデアル
+
+**右イデアル**と呼ばれる：
+1. $(I, +)$ は $(R, +)$ の部分群
+2. すべての $r \in R$ と $a \in I$ に対して：$a \cdot r \in I$（右吸収性）
+
+### 両側イデアル
+
+**両側イデアル**（または単に**イデアル**）と呼ばれる場合、それは左イデアルかつ右イデアルである：
+1. $(I, +)$ は $(R, +)$ の部分群
+2. すべての $r \in R$ と $a \in I$ に対して：$r \cdot a \in I$ かつ $a \cdot r \in I$
+
+## 性質
+
+- 可換環では、3つの定義はすべて一致する
+- 自明なイデアルは $\{0\}$ と $R$ 自身
+- イデアルは有限和と差について閉じている
+- イデアルの任意の族の共通部分はイデアル
+- 単位元を持つ環では、$I = R$ と $1 \in I$ は同値
+
+## イデアルの種類
+
+- **単項イデアル**：単一の元 $a$ によって生成される、$(a)$ と表記
+- **素イデアル**：$P$ で $ab \in P$ ならば $a \in P$ または $b \in P$
+- **極大イデアル**：他の真のイデアルに含まれない真のイデアル
+
+## 例
+
+- $\mathbb{Z}$ において：偶数の整数 $2\mathbb{Z} = \{..., -4, -2, 0, 2, 4, ...\}$
+- 多項式環 $K[x]$ において：定数項がゼロの多項式の集合
+- 行列環 $M_n(K)$ において：第一行がすべてゼロの行列の集合
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-ideal["定義: イデアル"]:::definition
+    def-ring["定義: 環"]:::definition
+    def-subset["定義: 部分集合"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-ideal --> def-ring
+    def-ideal --> def-subset
+    def-ideal --> def-binary-operation
+    class def-ideal current
+    click def-ring "def-ring.html" "環の定義へ"
+    click def-subset "../logic-set-theory/def-subset.html" "部分集合の定義へ"
+    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
+```
+
+## インタラクティブ可視化
+
+局所知識グラフをインタラクティブに探索する：
+
+::: {.graph-viz data-id="def-ideal" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを変更
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**カーソルを合わせる**と詳細を表示
+- [完全なインタラクティブバージョン](../../output/interactive/def-ideal.html){target="_blank"}を表示

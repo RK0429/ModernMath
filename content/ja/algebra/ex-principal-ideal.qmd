@@ -1,0 +1,96 @@
+---
+id: ex-principal-ideal
+requires:
+- def-ideal
+- def-ring
+- def-gcd
+status: complete
+title: '例: 整数における単項イデアル'
+translation_of: ../../en/algebra/ex-principal-ideal.qmd
+translations:
+  en: ../en/algebra/ex-principal-ideal.html
+  ja: ../ja/algebra/ex-principal-ideal.html
+type: Example
+---
+
+# 例: 整数における単項イデアル
+
+整数の[環](def-ring.qmd) $\mathbb{Z}$ におけるすべての[イデアル](def-ideal.qmd)は単項であり、単一の元によって生成される。
+
+## n によって生成される単項イデアル
+
+任意の整数 $n \in \mathbb{Z}$ に対して、$n$ によって生成される単項イデアルは：
+$$(n) = n\mathbb{Z} = \{na : a \in \mathbb{Z}\}$$
+
+### 具体例
+
+1. **2によって生成されるイデアル**：$(2) = 2\mathbb{Z} = \{..., -6, -4, -2, 0, 2, 4, 6, ...\}$
+   - これらはすべて偶数
+
+2. **5によって生成されるイデアル**：$(5) = 5\mathbb{Z} = \{..., -15, -10, -5, 0, 5, 10, 15, ...\}$
+   - これらは5の倍数すべて
+
+3. **0によって生成されるイデアル**：$(0) = \{0\}$
+   - ゼロイデアルはゼロのみを含む
+
+4. **1によって生成されるイデアル**：$(1) = \mathbb{Z}$
+   - すべての $a \in \mathbb{Z}$ に対して $1 \cdot a = a$ であるため
+
+## イデアルの性質の検証
+
+$(n)$ が実際にイデアルであることを検証しよう：
+
+### 加法部分群
+- **ゼロを含む**：$0 = n \cdot 0 \in (n)$
+- **加法について閉じている**：$na, nb \in (n)$ ならば、$na + nb = n(a + b) \in (n)$
+- **加法逆元を含む**：$na \in (n)$ ならば、$-na = n(-a) \in (n)$
+
+### 吸収性
+任意の $r \in \mathbb{Z}$ と $na \in (n)$ に対して：
+- $r \cdot (na) = (rn)a = n(ra) \in (n)$
+
+$\mathbb{Z}$ は可換なので、右吸収性を別途確認する必要はない。
+
+## 最大公約数との関係
+
+$\mathbb{Z}$ における2つのイデアル $(a)$ と $(b)$ に対して：
+- それらの和は $(a) + (b) = (\gcd(a,b))$
+- それらの共通部分は $(a) \cap (b) = (\text{lcm}(a,b))$
+
+ここで $\gcd$ は[最大公約数](../number-theory/def-gcd.qmd)を表す。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-principal-ideal["例: 整数における単項イデアル"]:::example
+    def-ideal["定義: イデアル"]:::definition
+    def-ring["定義: 環"]:::definition
+    def-gcd["定義: 最大公約数"]:::definition
+    ex-principal-ideal --> def-ideal
+    ex-principal-ideal --> def-ring
+    ex-principal-ideal --> def-gcd
+    class ex-principal-ideal current
+    click def-ideal "def-ideal.html" "イデアルの定義へ"
+    click def-ring "def-ring.html" "環の定義へ"
+    click def-gcd "../number-theory/def-gcd.html" "最大公約数の定義へ"
+```
+
+## インタラクティブ可視化
+
+局所知識グラフをインタラクティブに探索する：
+
+::: {.graph-viz data-id="ex-principal-ideal" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを変更
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**カーソルを合わせる**と詳細を表示
+- [完全なインタラクティブバージョン](../../output/interactive/ex-principal-ideal.html){target="_blank"}を表示

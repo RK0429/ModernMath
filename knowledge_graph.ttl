@@ -166,6 +166,10 @@
 
 <http://modernmath.org/concepts/pythagorean> ns1:hasTranslation <http://modernmath.org/concepts/pythagorean_ja> .
 
+<http://modernmath.org/concepts/quotient-group> ns1:hasTranslation <http://modernmath.org/concepts/quotient-group_ja> .
+
+<http://modernmath.org/concepts/quotient-integers-mod-n> ns1:hasTranslation <http://modernmath.org/concepts/quotient-integers-mod-n_ja> .
+
 <http://modernmath.org/concepts/random-variable> ns1:hasTranslation <http://modernmath.org/concepts/random-variable_ja> .
 
 <http://modernmath.org/concepts/rank-nullity> ns1:hasTranslation <http://modernmath.org/concepts/rank-nullity_ja> .
@@ -248,22 +252,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-binary-operation> .
 
-<https://mathwiki.org/resource/def-group-example> a mymath:Definition ;
-    rdfs:label "Definition: Group"@en,
-        "定義：群"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-associativity>,
-        <https://mathwiki.org/resource/def-binary-operation>,
-        <https://mathwiki.org/resource/def-homomorphism>,
-        <https://mathwiki.org/resource/def-identity-element>,
-        <https://mathwiki.org/resource/def-inverse-element>,
-        <https://mathwiki.org/resource/def-subgroup>,
-        <https://mathwiki.org/resource/ex-integers-addition>,
-        <https://mathwiki.org/resource/thm-lagrange>,
-        <https://mathwiki.org/resource/thm-unique-identity> .
-
 <https://mathwiki.org/resource/def-integral> a mymath:Definition ;
     rdfs:label "Definition: Integral"@en,
         "定義: 積分"@en ;
@@ -341,7 +329,9 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
         <https://mathwiki.org/resource/def-group>,
-        <https://mathwiki.org/resource/def-ring> .
+        <https://mathwiki.org/resource/def-ideal>,
+        <https://mathwiki.org/resource/def-ring>,
+        <https://mathwiki.org/resource/ex-principal-ideal> .
 
 <https://mathwiki.org/resource/ex-matrix-transformation> a mymath:Example ;
     rdfs:label "Example: Matrix Transformation"@en,
@@ -755,6 +745,10 @@ ns1:hasTranslation a rdf:Property ;
 
 <http://modernmath.org/concepts/pythagorean_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/quotient-group_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/quotient-integers-mod-n_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/random-variable_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/rank-nullity_ja> ns1:language "ja" .
@@ -865,6 +859,15 @@ ns1:hasTranslation a rdf:Property ;
     rdfs:label "Lean proof: Mathlib.Topology.Separation.T2Space"@en ;
     mymath:inModule "MathKnowledgeGraph.Topology.Basic" .
 
+<https://mathwiki.org/resource/def-associativity> a mymath:Definition ;
+    rdfs:label "Definition: Associativity"@en,
+        "結合性"@en ;
+    rdfs:comment "**Associativity** is a fundamental property of a [Binary Operation](def-binary-operation.qmd) that allows us to perform multiple operations without needing to specify the order of evaluation using parentheses."@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-binary-operation> .
+
 <https://mathwiki.org/resource/def-binomial-coefficient> a mymath:Definition ;
     rdfs:label "Definition: Binomial Coefficient"@en,
         "定義：二項係数"@en ;
@@ -943,14 +946,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:uses <https://mathwiki.org/resource/def-probability-space>,
         <https://mathwiki.org/resource/def-random-variable> .
 
-<https://mathwiki.org/resource/def-gcd> a mymath:Definition ;
-    rdfs:label "Definition: Greatest Common Divisor"@en,
-        "定義：最大公約数"@en ;
-    mymath:hasDomain "Number Theory",
-        "数論" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-set> .
-
 <https://mathwiki.org/resource/def-hausdorff> a mymath:Definition ;
     rdfs:label "Definition: Hausdorff Space"@en,
         "定義: ハウスドルフ空間"@en ;
@@ -981,6 +976,17 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
 
+<https://mathwiki.org/resource/def-inverse-element> a mymath:Definition ;
+    rdfs:label "Definition: Inverse Element"@en,
+        "定義: 逆元"@en ;
+    rdfs:comment "**逆元**とは、[二項演算](def-binary-operation.qmd)において、ある元と結合したときに[単位元](def-identity-element.qmd)を生じるような元のことです。"@en,
+        "An **inverse element** of an element under a [Binary Operation](def-binary-operation.qmd) is another element that, when combined with the original, yields the [Identity Element](def-identity-element.qmd)."@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
+        <https://mathwiki.org/resource/def-identity-element> .
+
 <https://mathwiki.org/resource/def-kernel> a mymath:Definition ;
     rdfs:label "Definition: Kernel"@en,
         "定義: 核"@en ;
@@ -989,6 +995,7 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearMap.ker> ;
     mymath:uses <https://mathwiki.org/resource/def-homomorphism>,
+        <https://mathwiki.org/resource/def-ideal>,
         <https://mathwiki.org/resource/def-linear-transformation>,
         <https://mathwiki.org/resource/def-normal-subgroup>,
         <https://mathwiki.org/resource/def-quotient-group>,
@@ -1047,16 +1054,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
 
-<https://mathwiki.org/resource/def-subset> a mymath:Definition ;
-    rdfs:label "Definition: Subset"@en,
-        "定義: 部分集合"@en ;
-    rdfs:comment "A [Set](def-set.qmd) $A$ is a **subset** of a set $B$, denoted $A \\subseteq B$, if every element of $A$ is also an element of $B$."@en,
-        "[集合](def-set.qmd) $A$ が集合 $B$ の**部分集合**であるとは、$A$ のすべての要素が $B$ の要素でもあることをいい、$A \\subseteq B$ と表記する。"@en ;
-    mymath:hasDomain "Logic Set Theory",
-        "論理・集合論" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-set> .
-
 <https://mathwiki.org/resource/def-triangle> a mymath:Definition ;
     rdfs:label "Definition: Triangle"@en,
         "定義: 三角形"@en ;
@@ -1097,9 +1094,18 @@ ns1:hasTranslation a rdf:Property ;
         "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-field>,
+        <https://mathwiki.org/resource/def-ideal>,
         <https://mathwiki.org/resource/def-prime>,
         <https://mathwiki.org/resource/def-quotient-group>,
         <https://mathwiki.org/resource/ex-quotient-integers-mod-n> .
+
+<https://mathwiki.org/resource/ex-principal-ideal> a mymath:Example ;
+    rdfs:label "Example: Principal Ideals in Integers"@en ;
+    mymath:hasDomain "Algebra" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-gcd>,
+        <https://mathwiki.org/resource/def-ideal>,
+        <https://mathwiki.org/resource/def-ring> .
 
 <https://mathwiki.org/resource/thm-heine-borel> a mymath:Theorem ;
     rdfs:label "Theorem: Heine-Borel Theorem"@en,
@@ -1111,6 +1117,14 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-compact>,
         <https://mathwiki.org/resource/def-metric-space> .
 
+<https://mathwiki.org/resource/thm-unique-identity> a mymath:Theorem ;
+    rdfs:label "Theorem: Uniqueness of Identity"@en,
+        "定理: 単位元の一意性"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-group> .
+
 <https://mathwiki.org/resource/def-angle> a mymath:Definition ;
     rdfs:label "Definition: Angle"@en,
         "定義: 角"@en ;
@@ -1121,15 +1135,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-line>,
         <https://mathwiki.org/resource/def-point> .
-
-<https://mathwiki.org/resource/def-associativity> a mymath:Definition ;
-    rdfs:label "Definition: Associativity"@en,
-        "結合性"@en ;
-    rdfs:comment "**Associativity** is a fundamental property of a [Binary Operation](def-binary-operation.qmd) that allows us to perform multiple operations without needing to specify the order of evaluation using parentheses."@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-binary-operation> .
 
 <https://mathwiki.org/resource/def-basis> a mymath:Definition ;
     rdfs:label "Definition: Basis"@en,
@@ -1191,6 +1196,7 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Field.Defs.Field> ;
     mymath:uses <https://mathwiki.org/resource/def-group>,
+        <https://mathwiki.org/resource/def-ideal>,
         <https://mathwiki.org/resource/def-ring> .
 
 <https://mathwiki.org/resource/def-functor> a mymath:Definition ;
@@ -1201,16 +1207,23 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-category> .
 
-<https://mathwiki.org/resource/def-inverse-element> a mymath:Definition ;
-    rdfs:label "Definition: Inverse Element"@en,
-        "定義: 逆元"@en ;
-    rdfs:comment "**逆元**とは、[二項演算](def-binary-operation.qmd)において、ある元と結合したときに[単位元](def-identity-element.qmd)を生じるような元のことです。"@en,
-        "An **inverse element** of an element under a [Binary Operation](def-binary-operation.qmd) is another element that, when combined with the original, yields the [Identity Element](def-identity-element.qmd)."@en ;
+<https://mathwiki.org/resource/def-gcd> a mymath:Definition ;
+    rdfs:label "Definition: Greatest Common Divisor"@en,
+        "定義：最大公約数"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-set> .
+
+<https://mathwiki.org/resource/def-identity-element> a mymath:Definition ;
+    rdfs:label "Definition: Identity Element"@en,
+        "定義: 単位元"@en ;
+    rdfs:comment "An **identity element** for a [Binary Operation](def-binary-operation.qmd) is an element that leaves any other element unchanged when combined with it."@en,
+        "[二項演算](def-binary-operation.qmd)に対する**単位元**（たんいげん）とは、他の任意の元と結合したときにその元を変化させない元のことである。"@en ;
     mymath:hasDomain "Algebra",
         "代数学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
-        <https://mathwiki.org/resource/def-identity-element> .
+    mymath:uses <https://mathwiki.org/resource/def-binary-operation> .
 
 <https://mathwiki.org/resource/def-linear-independence> a mymath:Definition ;
     rdfs:label "Definition: Linear Independence"@en,
@@ -1238,23 +1251,25 @@ ns1:hasTranslation a rdf:Property ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.Span.Submodule.span> ;
     mymath:uses <https://mathwiki.org/resource/def-vector-space> .
 
-<https://mathwiki.org/resource/thm-unique-identity> a mymath:Theorem ;
-    rdfs:label "Theorem: Uniqueness of Identity"@en,
-        "定理: 単位元の一意性"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
+<https://mathwiki.org/resource/def-subset> a mymath:Definition ;
+    rdfs:label "Definition: Subset"@en,
+        "定義: 部分集合"@en ;
+    rdfs:comment "A [Set](def-set.qmd) $A$ is a **subset** of a set $B$, denoted $A \\subseteq B$, if every element of $A$ is also an element of $B$."@en,
+        "[集合](def-set.qmd) $A$ が集合 $B$ の**部分集合**であるとは、$A$ のすべての要素が $B$ の要素でもあることをいい、$A \\subseteq B$ と表記する。"@en ;
+    mymath:hasDomain "Logic Set Theory",
+        "論理・集合論" ;
     mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-group> .
+    mymath:uses <https://mathwiki.org/resource/def-set> .
 
-<https://mathwiki.org/resource/def-identity-element> a mymath:Definition ;
-    rdfs:label "Definition: Identity Element"@en,
-        "定義: 単位元"@en ;
-    rdfs:comment "An **identity element** for a [Binary Operation](def-binary-operation.qmd) is an element that leaves any other element unchanged when combined with it."@en,
-        "[二項演算](def-binary-operation.qmd)に対する**単位元**（たんいげん）とは、他の任意の元と結合したときにその元を変化させない元のことである。"@en ;
+<https://mathwiki.org/resource/thm-lagrange> a mymath:Theorem ;
+    rdfs:label "Theorem: Lagrange's Theorem"@en,
+        "定理: ラグランジュの定理"@en ;
     mymath:hasDomain "Algebra",
         "代数学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-binary-operation> .
+    mymath:uses <https://mathwiki.org/resource/def-group>,
+        <https://mathwiki.org/resource/def-quotient-group>,
+        <https://mathwiki.org/resource/def-subgroup> .
 
 <https://mathwiki.org/resource/def-probability-space> a mymath:Definition ;
     rdfs:label "Definition: Probability Space"@en,
@@ -1264,13 +1279,12 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
 
-<https://mathwiki.org/resource/def-ring> a mymath:Definition ;
-    rdfs:label "Definition: Ring"@en,
-        "定義：環"@en ;
+<https://mathwiki.org/resource/ex-integers-addition> a mymath:Example ;
+    rdfs:label "Example: Integers under Addition"@en,
+        "例: 加法における整数"@en ;
     mymath:hasDomain "Algebra",
         "代数学" ;
     mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Ring.Defs.Ring> ;
     mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
         <https://mathwiki.org/resource/def-group>,
         <https://mathwiki.org/resource/def-set> .
@@ -1286,15 +1300,15 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-quotient-group>,
         <https://mathwiki.org/resource/ex-integers-addition> .
 
-<https://mathwiki.org/resource/thm-lagrange> a mymath:Theorem ;
-    rdfs:label "Theorem: Lagrange's Theorem"@en,
-        "定理: ラグランジュの定理"@en ;
+<https://mathwiki.org/resource/def-homomorphism> a mymath:Definition ;
+    rdfs:label "Definition: Group Homomorphism"@en,
+        "定義: 群準同型"@en ;
     mymath:hasDomain "Algebra",
         "代数学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-group>,
-        <https://mathwiki.org/resource/def-quotient-group>,
-        <https://mathwiki.org/resource/def-subgroup> .
+    mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
+        <https://mathwiki.org/resource/def-group>,
+        <https://mathwiki.org/resource/def-quotient-group> .
 
 <https://mathwiki.org/resource/def-line> a mymath:Definition ;
     rdfs:label "Definition: Line"@en,
@@ -1330,16 +1344,6 @@ ns1:hasTranslation a rdf:Property ;
         "数論" ;
     mymath:hasStatus "complete" .
 
-<https://mathwiki.org/resource/ex-integers-addition> a mymath:Example ;
-    rdfs:label "Example: Integers under Addition"@en,
-        "例: 加法における整数"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
-        <https://mathwiki.org/resource/def-group>,
-        <https://mathwiki.org/resource/def-set> .
-
 <https://mathwiki.org/resource/def-continuity> a mymath:Definition ;
     rdfs:label "Definition: Continuity"@en,
         "定義: 連続性"@en ;
@@ -1347,16 +1351,6 @@ ns1:hasTranslation a rdf:Property ;
         "解析学" ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-limit> .
-
-<https://mathwiki.org/resource/def-homomorphism> a mymath:Definition ;
-    rdfs:label "Definition: Group Homomorphism"@en,
-        "定義: 群準同型"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
-        <https://mathwiki.org/resource/def-group>,
-        <https://mathwiki.org/resource/def-quotient-group> .
 
 <https://mathwiki.org/resource/def-linear-transformation> a mymath:Definition ;
     rdfs:label "Definition: Linear Transformation"@en,
@@ -1375,6 +1369,39 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Basic.IsOpen> ;
     mymath:uses <https://mathwiki.org/resource/def-topological-space> .
+
+<https://mathwiki.org/resource/def-ring> a mymath:Definition ;
+    rdfs:label "Definition: Ring"@en,
+        "定義：環"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Ring.Defs.Ring> ;
+    mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
+        <https://mathwiki.org/resource/def-group>,
+        <https://mathwiki.org/resource/def-set> .
+
+<https://mathwiki.org/resource/def-subgroup> a mymath:Definition ;
+    rdfs:label "Definition: Subgroup"@en,
+        "定義：部分群"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasLeanId "Mathlib.Algebra.Group.Subgroup.Basic.Subgroup" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Group.Subgroup.Basic.Subgroup> ;
+    mymath:uses <https://mathwiki.org/resource/def-group>,
+        <https://mathwiki.org/resource/def-normal-subgroup>,
+        <https://mathwiki.org/resource/def-quotient-group>,
+        <https://mathwiki.org/resource/def-set>,
+        <https://mathwiki.org/resource/thm-lagrange> .
+
+<https://mathwiki.org/resource/def-ideal> a mymath:Definition ;
+    rdfs:label "Definition: Ideal"@en ;
+    mymath:hasDomain "Algebra" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
+        <https://mathwiki.org/resource/def-ring>,
+        <https://mathwiki.org/resource/def-subset> .
 
 <https://mathwiki.org/resource/def-limit> a mymath:Definition ;
     rdfs:label "Definition: Limit of a Sequence"@en,
@@ -1407,20 +1434,6 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-subgroup>,
         <https://mathwiki.org/resource/thm-lagrange> .
 
-<https://mathwiki.org/resource/def-subgroup> a mymath:Definition ;
-    rdfs:label "Definition: Subgroup"@en,
-        "定義：部分群"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasLeanId "Mathlib.Algebra.Group.Subgroup.Basic.Subgroup" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Group.Subgroup.Basic.Subgroup> ;
-    mymath:uses <https://mathwiki.org/resource/def-group>,
-        <https://mathwiki.org/resource/def-normal-subgroup>,
-        <https://mathwiki.org/resource/def-quotient-group>,
-        <https://mathwiki.org/resource/def-set>,
-        <https://mathwiki.org/resource/thm-lagrange> .
-
 <https://mathwiki.org/resource/def-category> a mymath:Definition ;
     rdfs:label "Definition: Category"@en,
         "定義: 圏"@en ;
@@ -1446,6 +1459,7 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasLeanId "Mathlib.GroupTheory.QuotientGroup" ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-group>,
+        <https://mathwiki.org/resource/def-ideal>,
         <https://mathwiki.org/resource/def-normal-subgroup>,
         <https://mathwiki.org/resource/def-subgroup> .
 
