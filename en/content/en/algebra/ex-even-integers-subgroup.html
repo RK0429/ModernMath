@@ -324,12 +324,43 @@ window.Quarto = {
 </section>
 <section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
-<p>%%| fig-cap: “Local dependency graph” graph TD classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px def-subgroup[“Definition: Subgroup”]:::definition ex-even-integers-subgroup[“Example: Even Integers Form a Subgroup”]:::example ex-integers-addition[“Example: Integers under Addition”]:::example def-group[“Definition: Group”]:::definition def-normal-subgroup[“Definition: Normal Subgroup”]:::definition ex-even-integers-subgroup –&gt; ex-integers-addition ex-even-integers-subgroup –&gt; def-group ex-even-integers-subgroup –&gt; def-normal-subgroup def-group –&gt; ex-even-integers-subgroup ex-even-integers-subgroup –&gt; def-subgroup class ex-even-integers-subgroup current ``` click def-subgroup “def-subgroup.html” “Go to Subgroup definition” click ex-integers-addition “ex-integers-addition.html” “Go to Integers under Addition example” click def-group “def-group.html” “Go to Group definition” click def-normal-subgroup “def-normal-subgroup.html” “Go to Normal Subgroup definition”</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    ex-integers-addition["Example: Integers under Addition"]:::example
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    ex-even-integers-subgroup --&gt; def-group
+    ex-even-integers-subgroup --&gt; ex-integers-addition
+    ex-even-integers-subgroup --&gt; def-normal-subgroup
+    def-group --&gt; ex-even-integers-subgroup
+    ex-even-integers-subgroup --&gt; def-subgroup
+    class ex-even-integers-subgroup current
+</pre>
+</div>
+<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+<pre><code>click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
+click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
+click def-group "def-group.html" "Go to Group definition"
+click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"</code></pre>
 </section>
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-ex-even-integers-subgroup-1753100906" class="graph-visualization-container">
+<div id="graph-viz-ex-even-integers-subgroup-1753102157" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -509,12 +540,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-even-integers-subgroup-1753100906', {
+    createForceGraph(data, 'graph-viz-ex-even-integers-subgroup-1753102157', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-even-integers-subgroup-1753100906').innerHTML =
+    document.getElementById('graph-viz-ex-even-integers-subgroup-1753102157').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
