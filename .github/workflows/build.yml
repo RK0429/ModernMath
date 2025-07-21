@@ -273,9 +273,9 @@ jobs:
         path: _site/
         retention-days: 30
 
-    # Optional: Deploy to GitHub Pages (only on main branch, Python 3.11)
+    # Optional: Deploy to GitHub Pages (only on main branch, Python 3.12)
     - name: Deploy to GitHub Pages
-      if: github.ref == 'refs/heads/main' && matrix.python-version == '3.11' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/main' && matrix.python-version == '3.12' && github.event_name == 'push'
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}

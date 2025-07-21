@@ -3,4 +3,4 @@
 This is just a button.
 DO NOT change this file.
 
-- [x] This is just a button.
+- [ ] This is just a button.
