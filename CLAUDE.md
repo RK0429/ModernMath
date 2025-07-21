@@ -6,55 +6,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ModernMath is a Mathematics Knowledge Graph Wiki that represents mathematical concepts (axioms, definitions, theorems, examples) as interconnected nodes in a semantic knowledge graph. It uses Quarto for content authoring, RDF/OWL for graph representation, Python for processing, and provides SPARQL querying capabilities.
 
-## Web Interaction Guidelines
+## Web Debugging
 
-- Use MCP tools such as Playwright or Puppeteer when viewing web content.
+Use Playwright MCP tools for debugging deployed sites:
 
-### Debugging Web UI with Playwright MCP
-
-When debugging web UI issues (e.g., 404 errors, JavaScript problems), use the Playwright MCP tools:
-
-1. **Navigate to the problematic page**:
-
-   ```text
-   mcp__playwright__browser_navigate(url="https://example.com/page")
-   ```
-
-2. **Get console messages to see errors**:
-
-   ```text
-   mcp__playwright__browser_console_messages()
-   ```
-
-   This shows all console errors, warnings, and logs with their sources.
-
-3. **Evaluate JavaScript in the browser context**:
-
-   ```text
-   mcp__playwright__browser_evaluate(function="() => {
-     // Test path calculations or DOM queries
-     return {
-       path: window.location.pathname,
-       calculatedPath: /* your test logic */
-     };
-   }")
-   ```
-
-4. **Take screenshots for visual debugging**:
-
-   ```text
-   mcp__playwright__browser_take_screenshot()
-   ```
-
-5. **Get page structure snapshot**:
-   The browser_navigate response includes a YAML-formatted page snapshot showing the DOM structure, which is useful for understanding element hierarchy and finding selectors.
-
-**Example debugging workflow for 404 errors**:
-
-- Navigate to the page with the error
-- Check console messages to see exact resource URLs failing
-- Use browser_evaluate to test path calculation logic
-- Verify fixes by checking if console errors disappear after changes
+- `mcp__playwright__browser_navigate(url)` - Navigate to page
+- `mcp__playwright__browser_console_messages()` - View console errors
+- `mcp__playwright__browser_evaluate(function)` - Test JS in browser context
+- Browser navigation includes DOM snapshot for element inspection
 
 ## Essential Commands
 
@@ -95,15 +54,9 @@ poetry run python scripts/visualization/generate_mermaid.py
 poetry run python scripts/visualization/generate_pyvis.py
 poetry run python scripts/visualization/generate_d3_data.py
 
-# Insert both Mermaid diagrams and interactive visualizations into content files
+# Insert both Mermaid and D3.js visualizations
 poetry run python scripts/visualization/insert_diagrams.py
 ```
-
-**Note**: The `visualization/insert_diagrams.py` script now:
-
-- Inserts both Mermaid dependency graphs and interactive D3.js visualizations
-- Handles files that already have Mermaid diagrams but are missing interactive visualizations
-- Respects language context (Japanese vs English) for headers and descriptions
 
 ### Site Development
 
@@ -128,28 +81,10 @@ poetry run python scripts/site/build_search_index.py
 # Update translation status for all files
 poetry run python scripts/translation/manage_translations.py update
 
-# Generate translation progress report
-poetry run python scripts/translation/manage_translations.py report
-
-# List files by translation status
-poetry run python scripts/translation/manage_translations.py list --status=not_started
-poetry run python scripts/translation/manage_translations.py list --status=needs_update
-
-# Validate translation metadata consistency
-poetry run python scripts/translation/manage_translations.py validate
-
-# Show domain-by-domain statistics
-poetry run python scripts/translation/manage_translations.py stats
+# Other commands: report, list --status=X, validate, stats
 ```
 
-**Translation Status Categories:**
-
-- `not_started`: No translation file exists
-- `in_progress`: Translation file exists but marked incomplete
-- `completed`: Translation finished and verified
-- `needs_update`: Source changed after translation
-
-The system uses MD5 hashes to detect content changes and automatically updates status in `translations-status.yml`. Translation edges are added to the RDF graph as `hasTranslation` relationships.
+Uses MD5 hashes to track status: `not_started`, `in_progress`, `completed`, `needs_update`
 
 ### Code Quality
 
@@ -252,21 +187,10 @@ The project supports multiple languages (currently English and Japanese) with au
 - **Translation Links**: Each page includes `translations` field in YAML front matter linking to its translations
 - **Domain Metadata**: Each domain requires `_metadata.yml` with translated domain name (e.g., `domain: "代数学"` for algebra)
 
-### Translation Implementation Details
+### Translation Implementation
 
-**Required Metadata Fields**:
-
-```yaml
-translation_of: ../../en/algebra/def-group.qmd # Japanese files only (points to .qmd)
-translations: # Both languages (points to .html)
-  en: "../en/algebra/def-group.html"
-  ja: "../ja/algebra/def-group.html"
-```
-
-**Key Requirements**:
-
-- `translations` must be a dictionary with both `en` and `ja` entries
-- Keep cross-references as `.qmd` extensions: `[群の定義](def-group.qmd)`
+- Japanese files need `translation_of: ../../en/path.qmd`
+- All files need `translations: {en: "path.html", ja: "path.html"}`
 - Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間
 
 ### Building Multilingual Sites
@@ -353,66 +277,12 @@ The project implements a page-level language switcher that redirects to the tran
    - Tooltip explaining unavailability
    - `cursor: not-allowed` styling
 
-**Configuration Requirements:**
+**Key Configuration Notes:**
 
-```yaml
-# In _quarto-en.yml and _quarto-ja.yml
-format:
-  html:
-    include-in-header:
-      - text: |
-          <script>
-            window.siteLanguage = 'en'; # or 'ja' for Japanese
-            window.alternateLanguage = 'ja'; # or 'en' for Japanese
-            window.alternateLanguageUrl = '../ja/'; # or '../en/' for Japanese
-            // Calculate the correct path to js directory based on current location
-            (function() {
-              var path = window.location.pathname;
-              var pathParts = path.split('/');
-              var basePath = '';
-
-              // Remove empty parts and the HTML filename
-              pathParts = pathParts.filter(function(part) { return part && !part.endsWith('.html'); });
-
-              // Count how many directories deep we are from the root
-              var depth = pathParts.length;
-
-              // Build the path with the correct number of '../'
-              for (var i = 0; i < depth; i++) {
-                basePath += '../';
-              }
-
-              basePath = basePath || './';
-
-              // Load language switcher
-              var script = document.createElement('script');
-              script.src = basePath + 'js/language-switcher.js';
-              script.defer = true;
-              document.head.appendChild(script);
-
-              // Load issue button
-              var issueScript = document.createElement('script');
-              issueScript.src = basePath + 'js/issue-button.js';
-              issueScript.defer = true;
-              document.head.appendChild(issueScript);
-            })();
-          </script>
-
-filters:
-  - translation-metadata # Must come after other filters
-
-resources:
-  - js/language-switcher.js
-  - js/issue-button.js
-```
-
-**Usage Notes:**
-
-- The switcher activates on DOMContentLoaded and Quarto's after-render event
-- Async translation checking prevents UI blocking
-- Debug functions available via `window.ModernMathLanguageSwitcher`
-- **Important**: Uses simple depth-based path calculation to navigate from any nested content directory (e.g., `/ja/content/ja/algebra/`) back to the site root where JS files are located
-- **Resources**: JavaScript files must be explicitly listed in the resources section to ensure they are copied during build
+- JavaScript loading uses language directory detection (`/en/` or `/ja/`) to find the correct base path on GitHub Pages
+- CSS files should use simple filenames (e.g., `styles.css`) without relative paths - Quarto handles resolution
+- Resources section must explicitly list JS files for proper deployment
+- The language switcher updates navbar links dynamically based on available translations
 
 ### Japanese Navigation Pages
 
@@ -449,6 +319,13 @@ Uses hash-based change detection to track translation status in `translations-st
 - **Pre-commit Hook**: Only updates timestamps when content actually changes
 
 ## Critical Implementation Details
+
+### GitHub Pages Deployment
+
+- JavaScript files are deployed to language-specific directories (`/ModernMath/ja/js/`, `/ModernMath/en/js/`)
+- Path calculation must extract the language directory position to find the correct base path
+- CSS files should use simple names without relative paths for proper resolution
+- Test resource loading after deployment using Playwright MCP tools
 
 ### CI/CD Script Exit Codes
 
