@@ -76,8 +76,26 @@ ul.task-list li input[type="checkbox"] {
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
   window.alternateLanguageUrl = '../en/';
+  // Calculate the correct path to js directory based on current location
+  (function() {
+    var path = window.location.pathname;
+    var depth = (path.match(/\//g) || []).length - 1;
+    var basePath = '';
+    if (path.includes('/ja/')) {
+      // Count slashes after /ja/
+      var afterLang = path.split('/ja/')[1] || '';
+      var extraDepth = (afterLang.match(/\//g) || []).length;
+      for (var i = 0; i < extraDepth; i++) {
+        basePath += '../';
+      }
+    }
+    basePath = basePath || './';
+    var script = document.createElement('script');
+    script.src = basePath + 'js/language-switcher.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  })();
 </script>
-<script src="../../js/language-switcher.js" defer=""></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -299,8 +317,8 @@ window.Quarto = {
     def-metric-space["Definition: Metric Space"]:::definition
     def-limit["Definition: Limit of a Sequence"]:::definition
     def-complete-metric-space["Definition: Complete Metric Space"]:::definition
-    def-complete-metric-space --&gt; def-metric-space
     def-complete-metric-space --&gt; def-limit
+    def-complete-metric-space --&gt; def-metric-space
     class def-complete-metric-space current
 </pre>
 </div>
@@ -312,7 +330,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-complete-metric-space-1753036133" class="graph-visualization-container">
+<div id="graph-viz-def-complete-metric-space-1753070443" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -492,12 +510,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-complete-metric-space-1753036133', {
+    createForceGraph(data, 'graph-viz-def-complete-metric-space-1753070443', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-complete-metric-space-1753036133').innerHTML =
+    document.getElementById('graph-viz-def-complete-metric-space-1753070443').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

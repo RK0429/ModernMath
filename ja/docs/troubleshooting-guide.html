@@ -112,8 +112,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
   window.alternateLanguageUrl = '../en/';
+  // Calculate the correct path to js directory based on current location
+  (function() {
+    var path = window.location.pathname;
+    var depth = (path.match(/\//g) || []).length - 1;
+    var basePath = '';
+    if (path.includes('/ja/')) {
+      // Count slashes after /ja/
+      var afterLang = path.split('/ja/')[1] || '';
+      var extraDepth = (afterLang.match(/\//g) || []).length;
+      for (var i = 0; i < extraDepth; i++) {
+        basePath += '../';
+      }
+    }
+    basePath = basePath || './';
+    var script = document.createElement('script');
+    script.src = basePath + 'js/language-switcher.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  })();
 </script>
-<script src="../../js/language-switcher.js" defer=""></script>
 
 
 <link rel="stylesheet" href="../styles.css">
