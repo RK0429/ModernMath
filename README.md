@@ -42,14 +42,14 @@ This project creates an evolving, queryable wiki covering all fields of mathemat
 3. **Build the knowledge graph:**
 
    ```bash
-   poetry run python scripts/build_graph.py
+   poetry run python scripts/graph/build_graph.py
    ```
 
 4. **Generate visualizations:**
 
    ```bash
-   poetry run python scripts/generate_mermaid.py
-   poetry run python scripts/insert_diagrams.py
+   poetry run python scripts/visualization/generate_mermaid.py
+   poetry run python scripts/visualization/insert_diagrams.py
    ```
 
 5. **Preview the site:**
@@ -111,7 +111,7 @@ ModernMath/
 3. **Query via command line:**
 
    ```bash
-   poetry run python scripts/query_graph.py find-type Definition
+   poetry run python scripts/graph/query_graph.py find-type Definition
    ```
 
 4. **Or use SPARQL directly:**
@@ -164,10 +164,10 @@ Check for broken cross-references without full rendering:
 ./check-refs.sh
 
 # Check specific file
-poetry run python scripts/check_cross_references.py --file content/algebra/def-group.qmd
+poetry run python scripts/validation/check_cross_references.py --file content/algebra/def-group.qmd
 
 # Verbose output
-poetry run python scripts/check_cross_references.py --verbose
+poetry run python scripts/validation/check_cross_references.py --verbose
 ```
 
 #### Pre-commit Hooks

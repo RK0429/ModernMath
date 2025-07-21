@@ -1,215 +1,174 @@
-# ModernMath Scripts Documentation
+# ModernMath Scripts
 
-This directory contains Python scripts for managing and building the Mathematics Knowledge Graph Wiki.
+This directory contains Python scripts for building and managing the ModernMath knowledge graph wiki.
 
-## Translation Management System
+## Directory Structure
 
-### Overview
+Scripts are organized by functionality into the following subdirectories:
 
-The translation management system tracks and manages translations between English and Japanese content in the ModernMath project. It provides automated tools for:
+### 📊 graph/
 
-- Tracking translation status
-- Detecting when source files change and translations need updates
-- Validating translation metadata consistency
-- Generating translation progress reports
+Knowledge graph and RDF operations
 
-### Scripts
+- `build_graph.py` - Build RDF knowledge graph from content files
+- `validate_graph.py` - Validate the generated graph structure
+- `query_graph.py` - Query the knowledge graph
+- `add_verification_triples.py` - Add verification status to graph
+- `translation_graph.py` - Manage translation relationships in graph
 
-#### `manage_translations.py`
+### 🎨 visualization/
 
-Main script for managing translations with the following commands:
+Diagram and visualization generation
 
-##### Update Command
+- `generate_mermaid.py` - Generate Mermaid diagrams for each node
+- `generate_pyvis.py` - Create interactive PyVis visualizations
+- `generate_d3_data.py` - Generate D3.js visualization data
+- `insert_diagrams.py` - Insert visualizations into content files
+- `add_mermaid_links.py` - Add navigation links to Mermaid diagrams
+- `fix_pyvis_css.py` - Fix CSS issues in PyVis outputs
+- `check_visualization_order.py` - Verify visualization section placement
+- `fix_visualization_placement.py` - Ensure visualizations appear at article end
+
+### 🌐 translation/
+
+Translation management and multilingual support
+
+- `manage_translations.py` - Main translation management tool
+- `fix_translation_metadata.py` - Fix translation metadata issues
+- `fix_translations_field.py` - Correct translation field formats
+- `check_translations_format.py` - Validate translation formats
+- `setup_multilingual.py` - Configure multilingual site structure
+- `fix_japanese_index.py` - Fix Japanese index page generation
+- `standardize_dependency_headers.py` - Standardize Japanese terminology
+- `README_translations.md` - Detailed translation system documentation
+
+### ✅ validation/
+
+Content validation and consistency checks
+
+- `validate_metadata.py` - Validate YAML frontmatter
+- `validate_ontology.py` - Check ontology consistency
+- `verify_consistency.py` - Verify overall consistency
+- `check_cross_references.py` - Validate cross-references
+
+### 🌏 site/
+
+Site building and generation
+
+- `build_search_index.py` - Build search functionality
+- `generate_index_pages.py` - Generate domain index pages
+- `resolve_cross_references.py` - Resolve inter-domain references
+
+### 🧪 experimental/
+
+Experimental features and integrations
+
+- `llm_integration.py` - LLM integration experiments
+- `nl_query.py` - Natural language query interface
+- `test_llm_pr_review.py` - LLM-based PR review testing
+- `extract_lean_deps.py` - Extract Lean dependencies
+- `extract_lean_mappings.py` - Map to Lean theorems
+- `test_leandojo.py` - Test LeanDojo integration
+
+## Usage
+
+Scripts should be run from the project root directory using Poetry:
 
 ```bash
-poetry run python scripts/manage_translations.py update
+# Run from project root
+poetry run python scripts/graph/build_graph.py
+poetry run python scripts/visualization/generate_mermaid.py
+poetry run python scripts/translation/manage_translations.py update
+# etc.
 ```
 
-- Scans all content files in source and target languages
-- Calculates MD5 hashes of content (excluding front matter)
-- Updates translation status based on file existence and content changes
-- Automatically detects:
-  - Missing translations (`not_started`)
-  - Outdated translations (`needs_update`)
-  - Completed translations (`completed`)
-  - Work in progress (`in_progress`)
+## Build Pipeline Order
 
-##### Report Command
+The typical build pipeline runs scripts in this order:
+
+1. **Graph Building**
+
+   ```bash
+   poetry run python scripts/graph/build_graph.py
+   ```
+
+2. **Visualization Generation**
+
+   ```bash
+   poetry run python scripts/visualization/add_mermaid_links.py
+   poetry run python scripts/visualization/generate_mermaid.py
+   poetry run python scripts/visualization/generate_pyvis.py
+   poetry run python scripts/visualization/generate_d3_data.py
+   poetry run python scripts/visualization/insert_diagrams.py
+   ```
+
+3. **Site Generation**
+
+   ```bash
+   poetry run python scripts/site/generate_index_pages.py
+   poetry run python scripts/site/resolve_cross_references.py
+   ```
+
+4. **Final Build**
+   ```bash
+   quarto render
+   ```
+
+## Key Functionality
+
+### Translation Management
+
+The translation system provides comprehensive tools for managing multilingual content. See `translation/README_translations.md` for detailed documentation.
+
+Key commands:
 
 ```bash
-poetry run python scripts/manage_translations.py report
+# Update translation status
+poetry run python scripts/translation/manage_translations.py update
+
+# Generate translation report
+poetry run python scripts/translation/manage_translations.py report
+
+# List files needing translation
+poetry run python scripts/translation/manage_translations.py list --status=not_started
+
+# Validate translation metadata
+poetry run python scripts/translation/manage_translations.py validate
 ```
 
-- Generates a summary report of translation status
-- Shows percentage completion by language
-- Displays statistics for each status category
+### Content Validation
 
-##### List Command
+Ensure content quality with validation scripts:
 
 ```bash
-poetry run python scripts/manage_translations.py list --status=<status>
+# Validate all metadata
+poetry run python scripts/validation/validate_metadata.py
+
+# Check cross-references
+poetry run python scripts/validation/check_cross_references.py
+
+# Verify overall consistency
+poetry run python scripts/validation/verify_consistency.py
 ```
 
-- Lists all files with a specific translation status
-- Status options: `not_started`, `in_progress`, `completed`, `needs_update`
-- Useful for finding files that need attention
+### Visualization Generation
 
-##### Validate Command
+Generate various types of visualizations:
 
 ```bash
-poetry run python scripts/manage_translations.py validate
+# Generate all visualizations
+poetry run python scripts/visualization/generate_mermaid.py
+poetry run python scripts/visualization/generate_pyvis.py
+poetry run python scripts/visualization/generate_d3_data.py
+
+# Insert into content files
+poetry run python scripts/visualization/insert_diagrams.py
 ```
 
-- Validates front matter consistency between source and translation files
-- Checks for:
-  - Matching `id` fields
-  - Matching `type` fields
-  - Presence of required `translations` field
-  - Presence of `translation_of` field
+## Development Guidelines
 
-##### Stats Command
-
-```bash
-poetry run python scripts/manage_translations.py stats
-```
-
-- Shows detailed statistics organized by mathematical domain
-- Displays completion percentages for each domain
-- Formatted as a table for easy reading
-
-#### `translation_graph.py`
-
-Integration module for adding translation relationships to the RDF knowledge graph.
-
-```python
-from translation_graph import add_translation_edges
-
-# Add translation edges to an existing RDF graph
-add_translation_edges(graph, Path("translations-status.yml"))
-```
-
-- Adds `hasTranslation` predicate to the RDF graph
-- Creates translation edges between source and translated concepts
-- Includes language metadata for each translation
-
-### Translation Status File
-
-The system maintains translation status in `translations-status.yml`:
-
-```yaml
-metadata:
-  last_updated: "2025-01-20T14:16:41.122730+00:00"
-  source_language: en
-  target_languages:
-    - ja
-  version: 1.0.0
-
-translations:
-  algebra/def-group.qmd:
-    source_hash: 5c93ea5739579e3328fcba2e7345482a
-    translations:
-      ja:
-        status: completed
-        translated_hash: 5c93ea5739579e3328fcba2e7345482a
-        translated_at: "2025-01-20T14:16:41.122700+00:00"
-```
-
-### Status Categories
-
-1. **not_started**: No translation file exists
-2. **in_progress**: Translation file exists but marked as work in progress
-3. **completed**: Translation finished and content matches source
-4. **needs_update**: Source file changed after translation was completed
-
-### Integration with CI/CD
-
-#### GitHub Actions
-
-Two workflows are provided:
-
-1. **translation-check.yml**: Runs on every push/PR affecting content files
-   - Updates translation status
-   - Validates translations
-   - Fails if status file needs updating
-
-2. **translation-report.yml**: Runs weekly or on-demand
-   - Generates comprehensive reports
-   - Creates GitHub issues if translations need attention
-   - Uploads reports as artifacts
-
-#### Pre-commit Hooks
-
-The following hooks are configured in `.pre-commit-config.yaml`:
-
-- `update-translation-status`: Automatically updates status when content files change
-- `check-translation-metadata`: Validates translation metadata consistency
-
-### Best Practices
-
-1. **Run status update regularly**: Before committing changes to content files
-2. **Check validation**: Ensure all translations have proper metadata
-3. **Monitor reports**: Review weekly translation status reports
-4. **Update translations promptly**: When source files change, update translations to maintain consistency
-
-### Front Matter Requirements
-
-Each translated file must include:
-
-```yaml
----
-title: "群" # Translated title
-id: group # Must match source file
-type: Definition # Must match source file
-translations:
-  en: ../en/algebra/def-group.html
-  ja: ../ja/algebra/def-group.html
-translation_of: en/algebra/def-group.qmd
----
-```
-
-### Example Workflow
-
-1. Create or modify a source file in `content/en/`
-2. Run `poetry run python scripts/manage_translations.py update`
-3. Check which files need translation: `poetry run python scripts/manage_translations.py list --status=not_started`
-4. Create translation in `content/ja/` with proper metadata
-5. Run update again to mark as completed
-6. Validate metadata: `poetry run python scripts/manage_translations.py validate`
-
-## Other Scripts
-
-### `build_graph.py`
-
-Builds the RDF knowledge graph from content files. Now includes translation edges automatically.
-
-### `validate_metadata.py`
-
-Validates YAML front matter in all content files.
-
-### `check_cross_references.py`
-
-Validates cross-references between content files.
-
-### `generate_mermaid.py`
-
-Generates Mermaid diagrams for visualizing the knowledge graph.
-
-### `generate_pyvis.py`
-
-Creates interactive PyVis visualizations of the knowledge graph.
-
-### `generate_d3_data.py`
-
-Exports graph data in D3.js-compatible format.
-
-### `insert_diagrams.py`
-
-Inserts generated diagrams into content files.
-
-### `resolve_cross_references.py`
-
-Resolves and updates cross-references in generated HTML.
-
-### `generate_index_pages.py`
-
-Generates comprehensive index pages for each mathematical domain.
+- All scripts should include proper type hints
+- Scripts must pass flake8, mypy, and pylint checks
+- Use Poetry for dependency management
+- Document any new scripts in this README
+- Place new scripts in the appropriate subdirectory based on functionality

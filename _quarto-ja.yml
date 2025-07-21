@@ -112,16 +112,32 @@ format:
             // Calculate the correct path to js directory based on current location
             (function() {
               var path = window.location.pathname;
-              var depth = (path.match(/\//g) || []).length - 1;
+              var pathParts = path.split('/');
               var basePath = '';
-              if (path.includes('/ja/')) {
-                // Count slashes after /ja/
-                var afterLang = path.split('/ja/')[1] || '';
-                var extraDepth = (afterLang.match(/\//g) || []).length;
-                for (var i = 0; i < extraDepth; i++) {
+
+              // Remove empty parts
+              pathParts = pathParts.filter(function(part) { return part; });
+
+              // Find the FIRST occurrence of the language directory ('en' or 'ja')
+              var langIndex = -1;
+              for (var i = 0; i < pathParts.length; i++) {
+                if (pathParts[i] === 'en' || pathParts[i] === 'ja') {
+                  langIndex = i;
+                  break;
+                }
+              }
+
+              if (langIndex >= 0) {
+                // Calculate how many directories deep we are from the language root
+                // Don't count the HTML file itself
+                var dirsAfterLang = pathParts.length - langIndex - 2;
+
+                // Build the path with the correct number of '../'
+                for (var k = 0; k < dirsAfterLang; k++) {
                   basePath += '../';
                 }
               }
+
               basePath = basePath || './';
               var script = document.createElement('script');
               script.src = basePath + 'js/language-switcher.js';

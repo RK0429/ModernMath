@@ -14,7 +14,7 @@ quarto render --profile ja
 
 # Fix Japanese index page
 echo "Fixing Japanese index page..."
-poetry run python scripts/fix_japanese_index.py
+poetry run python scripts/translation/fix_japanese_index.py
 
 # Create language detection index.html
 echo "Creating language detection page..."

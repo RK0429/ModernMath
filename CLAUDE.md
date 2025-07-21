@@ -26,34 +26,34 @@ poetry shell
 
 ```bash
 # Build the RDF knowledge graph from content files
-poetry run python scripts/build_graph.py
+poetry run python scripts/graph/build_graph.py
 
 # Validate all metadata before building
-poetry run python scripts/validate_metadata.py
+poetry run python scripts/validation/validate_metadata.py
 
 # Validate the generated graph
-poetry run python scripts/validate_graph.py
+poetry run python scripts/graph/validate_graph.py
 
 # Generate comprehensive index pages for all domains
-poetry run python scripts/generate_index_pages.py
+poetry run python scripts/site/generate_index_pages.py
 ```
 
 ### Generating Visualizations
 
 ```bash
 # Add click directives to Mermaid diagrams (run before generating)
-poetry run python scripts/add_mermaid_links.py
+poetry run python scripts/visualization/add_mermaid_links.py
 
 # Generate all visualizations in sequence
-poetry run python scripts/generate_mermaid.py
-poetry run python scripts/generate_pyvis.py
-poetry run python scripts/generate_d3_data.py
+poetry run python scripts/visualization/generate_mermaid.py
+poetry run python scripts/visualization/generate_pyvis.py
+poetry run python scripts/visualization/generate_d3_data.py
 
 # Insert both Mermaid diagrams and interactive visualizations into content files
-poetry run python scripts/insert_diagrams.py
+poetry run python scripts/visualization/insert_diagrams.py
 ```
 
-**Note**: The `insert_diagrams.py` script now:
+**Note**: The `visualization/insert_diagrams.py` script now:
 
 - Inserts both Mermaid dependency graphs and interactive D3.js visualizations
 - Handles files that already have Mermaid diagrams but are missing interactive visualizations
@@ -73,27 +73,27 @@ quarto render --profile en  # Uses _quarto-en.yml automatically
 quarto render --profile ja  # Uses _quarto-ja.yml automatically
 
 # Build search index
-poetry run python scripts/build_search_index.py
+poetry run python scripts/site/build_search_index.py
 ```
 
 ### Managing Translations
 
 ```bash
 # Update translation status for all files
-poetry run python scripts/manage_translations.py update
+poetry run python scripts/translation/manage_translations.py update
 
 # Generate translation progress report
-poetry run python scripts/manage_translations.py report
+poetry run python scripts/translation/manage_translations.py report
 
 # List files by translation status
-poetry run python scripts/manage_translations.py list --status=not_started
-poetry run python scripts/manage_translations.py list --status=needs_update
+poetry run python scripts/translation/manage_translations.py list --status=not_started
+poetry run python scripts/translation/manage_translations.py list --status=needs_update
 
 # Validate translation metadata consistency
-poetry run python scripts/manage_translations.py validate
+poetry run python scripts/translation/manage_translations.py validate
 
 # Show domain-by-domain statistics
-poetry run python scripts/manage_translations.py stats
+poetry run python scripts/translation/manage_translations.py stats
 ```
 
 **Translation Status Categories:**
@@ -150,9 +150,20 @@ All mathematical content is in `content/` organized by domain. Each `.qmd` file 
 - **Cross-References**: Use `@label` syntax to create graph edges
 - **File Naming**: `def-*.qmd`, `thm-*.qmd`, `ex-*.qmd`, `ax-*.qmd`
 
+### Script Organization
+
+Python scripts are organized into functional subdirectories:
+
+- **graph/**: Knowledge graph and RDF operations (build, validate, query)
+- **visualization/**: Diagram generation (Mermaid, PyVis, D3.js)
+- **translation/**: Multilingual support and translation management
+- **validation/**: Content validation and consistency checks
+- **site/**: Site building, index pages, and cross-reference resolution
+- **experimental/**: Experimental features (LLM integration, Lean support)
+
 ### Processing Pipeline
 
-1. **Content Parsing** (`scripts/build_graph.py`):
+1. **Content Parsing** (`scripts/graph/build_graph.py`):
    - Reads `.qmd` files using `python-frontmatter`
    - Extracts metadata and cross-references
    - Builds RDF triples using `rdflib`
@@ -162,7 +173,7 @@ All mathematical content is in `content/` organized by domain. Each `.qmd` file 
    - **PyVis**: Interactive HTML visualizations (force-directed graphs)
    - **D3.js**: JSON data for client-side rendering
 
-3. **Cross-Reference Resolution** (`scripts/resolve_cross_references.py`):
+3. **Cross-Reference Resolution** (`scripts/site/resolve_cross_references.py`):
    - Handles inter-domain references
    - Updates relative paths in generated HTML
 
@@ -191,7 +202,7 @@ For GitHub Pages deployments with project subdirectories, the graph-viz extensio
 
 Add click directives to enable navigation: `click node-id "relative-path.html" "tooltip-text"`
 
-The `scripts/add_mermaid_links.py` script automatically adds click directives with language-aware tooltips.
+The `scripts/visualization/add_mermaid_links.py` script automatically adds click directives with language-aware tooltips.
 
 #### Content Visualization Standards
 
@@ -205,25 +216,25 @@ The project enforces strict placement rules for visualization sections to ensure
 
 **Key Scripts**:
 
-1. **`fix_visualization_placement.py`** - Enforces visualization placement standards:
+1. **`visualization/fix_visualization_placement.py`** - Enforces visualization placement standards:
 
    ```bash
    # Check for misplaced sections
-   poetry run python scripts/fix_visualization_placement.py --check
+   poetry run python scripts/visualization/fix_visualization_placement.py --check
 
    # Fix placement without updating content
-   poetry run python scripts/fix_visualization_placement.py --fix-only
+   poetry run python scripts/visualization/fix_visualization_placement.py --fix-only
 
    # Full update with new diagram content
-   poetry run python scripts/fix_visualization_placement.py
+   poetry run python scripts/visualization/fix_visualization_placement.py
    ```
 
-2. **`insert_diagrams.py`** - Automatically uses placement fix logic:
+2. **`visualization/insert_diagrams.py`** - Automatically uses placement fix logic:
    - Inserts both Mermaid dependency graphs and interactive visualizations
    - Ensures proper placement at end of articles
    - Language-aware headers ("Dependency Graph" vs "依存関係グラフ")
 
-**Important**: The build pipeline automatically enforces correct placement via `insert_diagrams.py`.
+**Important**: The build pipeline automatically enforces correct placement via `visualization/insert_diagrams.py`.
 
 ## Multilingual Support
 
@@ -261,7 +272,7 @@ quarto render --profile en
 quarto render --profile ja
 
 # Fix Japanese index page (copies index-ja.html to index.html)
-poetry run python scripts/fix_japanese_index.py
+poetry run python scripts/translation/fix_japanese_index.py
 
 # Or use the convenience script that includes all steps
 ./build-multilingual.sh
@@ -269,7 +280,7 @@ poetry run python scripts/fix_japanese_index.py
 # Note: The CI/CD uses the unified build.yml workflow
 ```
 
-**Important**: The Japanese site requires a post-build fix because Quarto generates `index.html` from `index.qmd` (English content) by default. The `fix_japanese_index.py` script copies `index-ja.html` to `index.html` in the Japanese output directory to ensure the correct content is displayed.
+**Important**: The Japanese site requires a post-build fix because Quarto generates `index.html` from `index.qmd` (English content) by default. The `translation/fix_japanese_index.py` script copies `index-ja.html` to `index.html` in the Japanese output directory to ensure the correct content is displayed.
 
 ### Quarto Configuration Merging
 
@@ -287,7 +298,7 @@ All Python scripts handle multilingual paths automatically:
 - Scripts detect `content/lang/domain/` structure
 - Domain extraction logic accounts for language directories
 - Falls back to flat structure for backward compatibility
-- `generate_index_pages.py` generates language-specific content:
+- `content/generate_index_pages.py` generates language-specific content:
   - Uses Japanese domain names and descriptions when `lang="ja"`
   - Translates section headers (定義, 定理, 例) for Japanese
   - Adjusts navigation links to language-specific pages
@@ -297,7 +308,7 @@ All Python scripts handle multilingual paths automatically:
 The project uses a unified `build.yml` workflow:
 
 1. Builds both language versions sequentially
-2. Fixes Japanese index page using `scripts/fix_japanese_index.py`
+2. Fixes Japanese index page using `scripts/translation/fix_japanese_index.py`
 3. Creates a root `index.html` with automatic language detection
 4. Deploys both versions to `_site/en/` and `_site/ja/`
 5. Includes .nojekyll file for GitHub Pages compatibility
@@ -352,15 +363,32 @@ format:
             // Dynamic path resolution for nested pages
             (function() {
               var path = window.location.pathname;
-              var depth = (path.match(/\//g) || []).length - 1;
+              var pathParts = path.split('/');
               var basePath = '';
-              if (path.includes('/en/')) { # or '/ja/' for Japanese config
-                var afterLang = path.split('/en/')[1] || '';
-                var extraDepth = (afterLang.match(/\//g) || []).length;
-                for (var i = 0; i < extraDepth; i++) {
+
+              // Remove empty parts
+              pathParts = pathParts.filter(function(part) { return part; });
+
+              // Find the FIRST occurrence of the language directory ('en' or 'ja')
+              var langIndex = -1;
+              for (var i = 0; i < pathParts.length; i++) {
+                if (pathParts[i] === 'en' || pathParts[i] === 'ja') {
+                  langIndex = i;
+                  break;
+                }
+              }
+
+              if (langIndex >= 0) {
+                // Calculate how many directories deep we are from the language root
+                // Don't count the HTML file itself
+                var dirsAfterLang = pathParts.length - langIndex - 2;
+
+                // Build the path with the correct number of '../'
+                for (var k = 0; k < dirsAfterLang; k++) {
                   basePath += '../';
                 }
               }
+
               basePath = basePath || './';
               var script = document.createElement('script');
               script.src = basePath + 'js/language-switcher.js';
@@ -401,7 +429,7 @@ To maintain consistency across all Japanese content:
 
 - **Dependency Graph Header**: Always use "依存関係グラフ" (not "依存グラフ")
 - **Interactive Visualization Header**: Always use "インタラクティブ可視化"
-- **Standardization Script**: Use `scripts/standardize_dependency_headers.py` to fix any inconsistent headers
+- **Standardization Script**: Use `scripts/translation/standardize_dependency_headers.py` to fix any inconsistent headers
 
 ### Translation Management System
 
@@ -417,7 +445,7 @@ Uses hash-based change detection to track translation status in `translations-st
 
 ### CI/CD Script Exit Codes
 
-**Important**: Scripts in the CI/CD pipeline should return exit code 0 when no changes are needed. In CI/CD contexts, "no changes required" is a normal success case, not an error. For example, `add_mermaid_links.py` correctly returns 0 whether files were modified or not.
+**Important**: Scripts in the CI/CD pipeline should return exit code 0 when no changes are needed. In CI/CD contexts, "no changes required" is a normal success case, not an error. For example, `visualization/add_mermaid_links.py` correctly returns 0 whether files were modified or not.
 
 ### Cross-Reference Format
 
@@ -437,11 +465,11 @@ PyVis graphs include:
 
 ### Build Order Dependencies
 
-1. First: `build_graph.py` (creates knowledge_graph.ttl)
-2. Then: `add_mermaid_links.py` (adds click directives to Mermaid diagrams)
+1. First: `graph/build_graph.py` (creates knowledge_graph.ttl)
+2. Then: `visualization/add_mermaid_links.py` (adds click directives to Mermaid diagrams)
 3. Then: Visualization scripts (read the .ttl file)
-4. Then: `generate_index_pages.py` (creates comprehensive index pages with language support)
-5. Then: `resolve_cross_references.py` (needs content to exist)
+4. Then: `content/generate_index_pages.py` (creates comprehensive index pages with language support)
+5. Then: `content/resolve_cross_references.py` (needs content to exist)
 6. Finally: `quarto render` (uses all generated assets)
 
 ## Current Status

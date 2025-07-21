@@ -31,11 +31,13 @@ ModernMath/
 ## Language-Specific Configuration
 
 ### English Configuration (`_quarto-en.yml`)
+
 - Output directory: `_site/en`
 - Language: `en`
 - Renders only content in `content/en/`
 
 ### Japanese Configuration (`_quarto-ja.yml`)
+
 - Output directory: `_site/ja`
 - Language: `ja`
 - Renders only content in `content/ja/`
@@ -70,6 +72,7 @@ Use the provided build script:
 ```
 
 This script:
+
 1. Builds the English version using `_quarto-en.yml`
 2. Builds the Japanese version using `_quarto-ja.yml`
 3. Creates a root `index.html` that redirects based on browser language
@@ -81,6 +84,7 @@ The `build-multilingual.yml` workflow automatically builds both language version
 ## Language Switching
 
 Users can switch languages using:
+
 1. The language switcher in the navigation bar (🌐 日本語 / 🌐 English)
 2. Direct links in the translations metadata
 3. The root index.html language selection page
@@ -88,6 +92,7 @@ Users can switch languages using:
 ## Adding New Translations
 
 1. **Create the translated file** in the appropriate language directory:
+
    ```bash
    cp content/en/algebra/def-group.qmd content/ja/algebra/def-group.qmd
    ```
@@ -107,19 +112,23 @@ Users can switch languages using:
 ## Translation Guidelines
 
 ### What to Translate
+
 - Titles and headings
 - Definition text
 - Explanatory prose
 - Navigation labels
 
 ### What NOT to Translate
+
 - Mathematical symbols and equations
 - Node IDs (`def-group`, etc.)
 - Cross-reference labels
 - File names
 
 ### Mathematical Terms
+
 Use standard Japanese mathematical terminology:
+
 - Group → 群
 - Ring → 環
 - Field → 体
@@ -129,11 +138,13 @@ Use standard Japanese mathematical terminology:
 ## Helper Scripts
 
 ### Setup Script
+
 ```bash
-poetry run python scripts/setup_multilingual.py --migrate
+poetry run python scripts/translation/setup_multilingual.py --migrate
 ```
 
 This script:
+
 - Creates language directories
 - Migrates existing content to English directory
 - Creates build scripts
@@ -157,6 +168,7 @@ This script:
 ## CSS Styling
 
 The `styles-multilingual.css` file provides:
+
 - Language switcher styling
 - Language indicators
 - Bilingual content support

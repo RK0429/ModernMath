@@ -36,9 +36,9 @@ If you need to deploy manually:
 1. **Build the site locally:**
 
    ```bash
-   poetry run python scripts/build_graph.py
-   poetry run python scripts/generate_mermaid.py
-   poetry run python scripts/insert_diagrams.py
+   poetry run python scripts/graph/build_graph.py
+   poetry run python scripts/visualization/generate_mermaid.py
+   poetry run python scripts/visualization/insert_diagrams.py
    quarto render
    ```
 
@@ -77,7 +77,7 @@ To use a custom domain:
 1. **Build the site:**
 
    ```bash
-   poetry run python scripts/build_graph.py
+   poetry run python scripts/graph/build_graph.py
    quarto render
    ```
 
@@ -98,7 +98,7 @@ To use a custom domain:
 
    ```json
    {
-     "buildCommand": "poetry install && poetry run python scripts/build_graph.py && quarto render",
+     "buildCommand": "poetry install && poetry run python scripts/graph/build_graph.py && quarto render",
      "outputDirectory": "_site",
      "installCommand": "pip install poetry"
    }

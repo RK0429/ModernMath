@@ -109,7 +109,7 @@ The extension:
 When creating new mathematical content:
 
 1. Ensure the node has a unique ID in its YAML front matter
-2. Run `poetry run python scripts/build_graph.py` to update the knowledge graph
+2. Run `poetry run python scripts/graph/build_graph.py` to update the knowledge graph
 3. Run `poetry run python scripts/generate_d3_data.py` to generate visualization data
 4. Add the visualization shortcode to your content file
 
@@ -125,7 +125,7 @@ When creating new mathematical content:
 ### Missing Nodes or Links
 
 1. Verify all cross-references use the `@label` syntax
-2. Run the graph validation script: `poetry run python scripts/validate_graph.py`
+2. Run the graph validation script: `poetry run python scripts/graph/validate_graph.py`
 3. Regenerate the D3 data files
 
 ### Performance Issues
@@ -139,7 +139,7 @@ For very large neighborhoods:
 
 The D3.js visualization generation is integrated into the CI/CD pipeline:
 
-1. Graph building (`scripts/build_graph.py`)
+1. Graph building (`scripts/graph/build_graph.py`)
 2. D3 data generation (`scripts/generate_d3_data.py`)
 3. Quarto site rendering with embedded visualizations
 4. Deployment to GitHub Pages

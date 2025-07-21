@@ -5,7 +5,7 @@ echo "Checking cross-references in ModernMath project..."
 echo "================================================"
 
 # Run the Python validation script
-poetry run python scripts/check_cross_references.py "$@"
+poetry run python scripts/validation/check_cross_references.py "$@"
 
 # Optional: Also run a quick quarto render on a sample file to catch other warnings
 if [ "$1" != "--no-render" ]; then

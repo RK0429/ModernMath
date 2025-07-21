@@ -25,15 +25,15 @@ jobs:
         run: poetry install --no-root
 
       - name: Update translation status
-        run: poetry run python scripts/manage_translations.py update
+        run: poetry run python scripts/translation/manage_translations.py update
 
       - name: Generate translation reports
         run: |
           mkdir -p reports
-          poetry run python scripts/manage_translations.py report > reports/translation-summary.txt
-          poetry run python scripts/manage_translations.py stats > reports/translation-stats.txt
-          poetry run python scripts/manage_translations.py list --status=not_started > reports/not-translated.txt
-          poetry run python scripts/manage_translations.py list --status=needs_update > reports/needs-update.txt
+          poetry run python scripts/translation/manage_translations.py report > reports/translation-summary.txt
+          poetry run python scripts/translation/manage_translations.py stats > reports/translation-stats.txt
+          poetry run python scripts/translation/manage_translations.py list --status=not_started > reports/not-translated.txt
+          poetry run python scripts/translation/manage_translations.py list --status=needs_update > reports/needs-update.txt
 
       - name: Upload reports
         uses: actions/upload-artifact@v3

@@ -11,6 +11,7 @@ This tutorial will guide you through adding new mathematical content to the Math
 ## Overview
 
 Each mathematical concept in our wiki is:
+
 1. Written as a Quarto Markdown (`.qmd`) file
 2. Structured with semantic metadata
 3. Connected to related concepts through cross-references
@@ -47,6 +48,7 @@ content/
 ### Step 3: Create the File
 
 Use the naming convention:
+
 - Definitions: `def-<name>.qmd`
 - Theorems: `thm-<name>.qmd`
 - Examples: `ex-<name>.qmd`
@@ -70,7 +72,7 @@ requires:
 ---
 ```
 
-#### Metadata Fields Explained:
+#### Metadata Fields Explained
 
 - **title**: Human-readable title (format: "Type: Name")
 - **id**: Unique identifier matching the filename (without .qmd)
@@ -144,10 +146,10 @@ Before committing, validate your file:
 
 ```bash
 # Validate metadata structure
-poetry run python scripts/validate_metadata.py
+poetry run python scripts/validation/validate_metadata.py
 
 # Check that all cross-references exist
-poetry run python scripts/validate_graph.py
+poetry run python scripts/graph/validate_graph.py
 ```
 
 ## Complete Example
@@ -206,16 +208,19 @@ Non-examples:
 After adding content:
 
 1. **Rebuild the knowledge graph**:
+
    ```bash
-   poetry run python scripts/build_graph.py
+   poetry run python scripts/graph/build_graph.py
    ```
 
 2. **Generate visualizations**:
+
    ```bash
-   poetry run python scripts/generate_pyvis.py
+   poetry run python scripts/visualization/generate_pyvis.py
    ```
 
 3. **Preview locally**:
+
    ```bash
    quarto preview
    ```
@@ -225,14 +230,16 @@ After adding content:
 
 ## Best Practices
 
-### Do's:
+### Do's
+
 - ✅ Keep definitions concise and precise
 - ✅ Use standard mathematical notation
 - ✅ Link to all referenced concepts
 - ✅ Provide illustrative examples
 - ✅ Include both formal and intuitive explanations
 
-### Don'ts:
+### Don'ts
+
 - ❌ Don't duplicate existing content
 - ❌ Don't use ambiguous notation
 - ❌ Don't forget to validate metadata
@@ -241,12 +248,15 @@ After adding content:
 ## Common Issues and Solutions
 
 ### Issue: Cross-reference not found
+
 **Solution**: Ensure the referenced file exists and has the correct ID in its metadata
 
 ### Issue: LaTeX not rendering
+
 **Solution**: Check for syntax errors, ensure you're using `$` for inline and `$$` for display math
 
 ### Issue: File in wrong location
+
 **Solution**: Move to the correct domain folder and update any existing references
 
 ## Getting Help

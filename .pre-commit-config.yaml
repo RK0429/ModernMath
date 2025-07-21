@@ -46,7 +46,7 @@ repos:
       # Cross-reference validation
       - id: check-cross-references
         name: Check cross-references in Quarto files
-        entry: poetry run python scripts/check_cross_references.py
+        entry: poetry run python scripts/validation/check_cross_references.py
         language: system
         files: '\.qmd$'
         pass_filenames: false
@@ -56,7 +56,7 @@ repos:
       # YAML metadata validation
       - id: validate-metadata
         name: Validate YAML metadata
-        entry: poetry run python scripts/validate_metadata.py
+        entry: poetry run python scripts/validation/validate_metadata.py
         language: system
         files: '\.qmd$'
         pass_filenames: false
@@ -65,7 +65,7 @@ repos:
       # Translation status management
       - id: update-translation-status
         name: Update translation status
-        entry: poetry run python scripts/manage_translations.py update
+        entry: poetry run python scripts/translation/manage_translations.py update
         language: system
         files: 'content/.*\.qmd$'
         pass_filenames: false
@@ -74,7 +74,7 @@ repos:
 
       - id: check-translation-metadata
         name: Check translation metadata
-        entry: poetry run python scripts/manage_translations.py validate
+        entry: poetry run python scripts/translation/manage_translations.py validate
         language: system
         files: 'content/.*\.qmd$'
         pass_filenames: false

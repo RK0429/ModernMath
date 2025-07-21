@@ -182,7 +182,7 @@ poetry run mypy scripts/
 Validate metadata before building:
 
 ```bash
-poetry run python scripts/validate_metadata.py
+poetry run python scripts/validation/validate_metadata.py
 ```
 
 ### Graph Validation
@@ -191,10 +191,10 @@ After making changes to content:
 
 ```bash
 # Rebuild the knowledge graph
-poetry run python scripts/build_graph.py
+poetry run python scripts/graph/build_graph.py
 
 # Validate the graph structure
-poetry run python scripts/validate_graph.py
+poetry run python scripts/graph/validate_graph.py
 ```
 
 ### API Testing
@@ -224,10 +224,10 @@ git checkout -b feature/your-feature-name
 
 ```bash
 # Build the knowledge graph
-poetry run python scripts/build_graph.py
+poetry run python scripts/graph/build_graph.py
 
 # Generate visualizations
-poetry run python scripts/generate_pyvis.py
+poetry run python scripts/visualization/generate_pyvis.py
 
 # Preview the site
 quarto preview
