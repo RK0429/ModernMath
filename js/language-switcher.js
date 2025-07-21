@@ -117,10 +117,19 @@
             // This handles cases like:
             // - content/ja/algebra/ -> content/en/algebra/
             // - nav/ja/about.html -> nav/en/about.html
-            const translatedPagePath = pagePath.replace(
+            let translatedPagePath = pagePath.replace(
                 new RegExp(`(content|nav)/${currentLang}/`, 'g'),
                 `$1/${targetLang}/`
             );
+
+            // Special handling for index pages
+            // When switching from Japanese to English: index-ja.html -> index.html
+            // When switching from English to Japanese: index.html -> index-ja.html
+            if (currentLang === 'ja' && targetLang === 'en' && translatedPagePath === 'index-ja.html') {
+                translatedPagePath = 'index.html';
+            } else if (currentLang === 'en' && targetLang === 'ja' && translatedPagePath === 'index.html') {
+                translatedPagePath = 'index-ja.html';
+            }
 
             // Construct the translation path
             // This assumes the same file structure in both languages
