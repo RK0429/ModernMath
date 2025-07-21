@@ -265,6 +265,7 @@ The project implements a page-level language switcher that redirects to the tran
    - Falls back to path construction with existence checking
    - Updates navbar language links dynamically
    - Provides visual feedback for unavailable translations
+   - **Important**: Must replace language indicators in both main path AND content subdirectories (e.g., `/ja/content/ja/` → `/en/content/en/`)
 
 2. **Quarto Filter** (`_extensions/translation-metadata/`):
    - Extracts `translations` field from YAML front matter
