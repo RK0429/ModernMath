@@ -10,6 +10,52 @@ ModernMath is a Mathematics Knowledge Graph Wiki that represents mathematical co
 
 - Use MCP tools such as Playwright or Puppeteer when viewing web content.
 
+### Debugging Web UI with Playwright MCP
+
+When debugging web UI issues (e.g., 404 errors, JavaScript problems), use the Playwright MCP tools:
+
+1. **Navigate to the problematic page**:
+
+   ```text
+   mcp__playwright__browser_navigate(url="https://example.com/page")
+   ```
+
+2. **Get console messages to see errors**:
+
+   ```text
+   mcp__playwright__browser_console_messages()
+   ```
+
+   This shows all console errors, warnings, and logs with their sources.
+
+3. **Evaluate JavaScript in the browser context**:
+
+   ```text
+   mcp__playwright__browser_evaluate(function="() => {
+     // Test path calculations or DOM queries
+     return {
+       path: window.location.pathname,
+       calculatedPath: /* your test logic */
+     };
+   }")
+   ```
+
+4. **Take screenshots for visual debugging**:
+
+   ```text
+   mcp__playwright__browser_take_screenshot()
+   ```
+
+5. **Get page structure snapshot**:
+   The browser_navigate response includes a YAML-formatted page snapshot showing the DOM structure, which is useful for understanding element hierarchy and finding selectors.
+
+**Example debugging workflow for 404 errors**:
+
+- Navigate to the page with the error
+- Check console messages to see exact resource URLs failing
+- Use browser_evaluate to test path calculation logic
+- Verify fixes by checking if console errors disappear after changes
+
 ## Essential Commands
 
 ### Development Setup
@@ -120,13 +166,7 @@ poetry run mypy scripts/
 
 #### Code Quality Requirements
 
-All Python scripts must pass pre-commit checks with proper type annotations:
-
-- **Type hints**: Import from `typing`, annotate all functions, use `Any` for frontmatter posts
-- **flake8**: 100-character line limit, ignore E203,W503,W293
-- **pylint**: Avoid too-many-locals (>20), too-many-branches (>12), too-many-statements (>50)
-- **mypy/pyright**: Strict type checking, explicit casts when needed
-- **Refactoring**: Extract helper functions to reduce complexity
+All Python scripts must pass pre-commit checks: proper type annotations from `typing`, flake8 (100-char limit, ignore E203,W503,W293), pylint complexity limits, strict mypy/pyright checks.
 
 ### SPARQL and API
 
@@ -196,47 +236,10 @@ The ontology (`ontology/math-ontology.ttl`) defines:
 
 ### Visualization Troubleshooting
 
-#### Interactive Visualization Path Issues
-
-For GitHub Pages deployments with project subdirectories, the graph-viz extension calculates relative paths dynamically to ensure visualizations load correctly from any nested directory level.
-
-#### Mermaid Diagram Navigation
-
-Add click directives to enable navigation: `click node-id "relative-path.html" "tooltip-text"`
-
-The `scripts/visualization/add_mermaid_links.py` script automatically adds click directives with language-aware tooltips.
-
-#### Content Visualization Standards
-
-The project enforces strict placement rules for visualization sections to ensure consistency:
-
-**Visualization Placement Rules**:
-
-- Dependency Graph and Interactive Visualization sections must ALWAYS appear at the end of articles
-- These sections must come after all content sections (Examples, Properties, Related Concepts, etc.)
-- The order is: 1) Dependency Graph, 2) Interactive Visualization
-
-**Key Scripts**:
-
-1. **`visualization/fix_visualization_placement.py`** - Enforces visualization placement standards:
-
-   ```bash
-   # Check for misplaced sections
-   poetry run python scripts/visualization/fix_visualization_placement.py --check
-
-   # Fix placement without updating content
-   poetry run python scripts/visualization/fix_visualization_placement.py --fix-only
-
-   # Full update with new diagram content
-   poetry run python scripts/visualization/fix_visualization_placement.py
-   ```
-
-2. **`visualization/insert_diagrams.py`** - Automatically uses placement fix logic:
-   - Inserts both Mermaid dependency graphs and interactive visualizations
-   - Ensures proper placement at end of articles
-   - Language-aware headers ("Dependency Graph" vs "依存関係グラフ")
-
-**Important**: The build pipeline automatically enforces correct placement via `visualization/insert_diagrams.py`.
+- **Path Issues**: graph-viz extension handles relative paths dynamically for GitHub Pages
+- **Mermaid Navigation**: Use `click node-id "path.html" "tooltip"` - automated by `add_mermaid_links.py`
+- **Placement Rules**: Visualizations must appear at end of articles (Dependency Graph, then Interactive)
+- **Key Scripts**: `fix_visualization_placement.py` (enforce standards), `insert_diagrams.py` (auto-placement)
 
 ## Multilingual Support
 
@@ -362,40 +365,36 @@ format:
             window.siteLanguage = 'en'; # or 'ja' for Japanese
             window.alternateLanguage = 'ja'; # or 'en' for Japanese
             window.alternateLanguageUrl = '../ja/'; # or '../en/' for Japanese
-            // Dynamic path resolution for nested pages
+            // Calculate the correct path to js directory based on current location
             (function() {
               var path = window.location.pathname;
               var pathParts = path.split('/');
               var basePath = '';
 
-              // Remove empty parts
-              pathParts = pathParts.filter(function(part) { return part; });
+              // Remove empty parts and the HTML filename
+              pathParts = pathParts.filter(function(part) { return part && !part.endsWith('.html'); });
 
-              // Find the FIRST occurrence of the language directory ('en' or 'ja')
-              var langIndex = -1;
-              for (var i = 0; i < pathParts.length; i++) {
-                if (pathParts[i] === 'en' || pathParts[i] === 'ja') {
-                  langIndex = i;
-                  break;
-                }
-              }
+              // Count how many directories deep we are from the root
+              var depth = pathParts.length;
 
-              if (langIndex >= 0) {
-                // Calculate how many directories deep we are from the language root
-                // Don't count the HTML file itself
-                var dirsAfterLang = pathParts.length - langIndex - 2;
-
-                // Build the path with the correct number of '../'
-                for (var k = 0; k < dirsAfterLang; k++) {
-                  basePath += '../';
-                }
+              // Build the path with the correct number of '../'
+              for (var i = 0; i < depth; i++) {
+                basePath += '../';
               }
 
               basePath = basePath || './';
+
+              // Load language switcher
               var script = document.createElement('script');
               script.src = basePath + 'js/language-switcher.js';
               script.defer = true;
               document.head.appendChild(script);
+
+              // Load issue button
+              var issueScript = document.createElement('script');
+              issueScript.src = basePath + 'js/issue-button.js';
+              issueScript.defer = true;
+              document.head.appendChild(issueScript);
             })();
           </script>
 
@@ -403,7 +402,8 @@ filters:
   - translation-metadata # Must come after other filters
 
 resources:
-  - js # Include JavaScript directory
+  - js/language-switcher.js
+  - js/issue-button.js
 ```
 
 **Usage Notes:**
@@ -411,7 +411,8 @@ resources:
 - The switcher activates on DOMContentLoaded and Quarto's after-render event
 - Async translation checking prevents UI blocking
 - Debug functions available via `window.ModernMathLanguageSwitcher`
-- **Important**: Static paths like `../../js/language-switcher.js` will fail for nested pages. The dynamic path resolution above ensures the script loads correctly from any page depth
+- **Important**: Uses simple depth-based path calculation to navigate from any nested content directory (e.g., `/ja/content/ja/algebra/`) back to the site root where JS files are located
+- **Resources**: JavaScript files must be explicitly listed in the resources section to ensure they are copied during build
 
 ### Japanese Navigation Pages
 
