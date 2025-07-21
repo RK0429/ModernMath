@@ -114,17 +114,23 @@
             const targetLang = currentLang === 'en' ? 'ja' : 'en';
 
             // Replace language indicators in the page path as well
-            // This handles cases like content/ja/algebra/ -> content/en/algebra/
+            // This handles cases like:
+            // - content/ja/algebra/ -> content/en/algebra/
+            // - nav/ja/about.html -> nav/en/about.html
             const translatedPagePath = pagePath.replace(
-                new RegExp(`content/${currentLang}/`, 'g'),
-                `content/${targetLang}/`
+                new RegExp(`(content|nav)/${currentLang}/`, 'g'),
+                `$1/${targetLang}/`
             );
 
             // Construct the translation path
             // This assumes the same file structure in both languages
             const translationPath = `${basePath}/${targetLang}/${translatedPagePath}`;
 
-            console.log('Checking translation path:', translationPath);
+            console.log('Translation path mapping:', {
+                from: currentPath,
+                to: translationPath,
+                pagePathTransformation: `${pagePath} -> ${translatedPagePath}`
+            });
 
             // For GitHub Pages, we might not be able to check if file exists
             // So let's just assume the translation exists if we have a valid path structure

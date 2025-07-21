@@ -333,29 +333,29 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
     def-metric-space["Definition: Metric Space"]:::definition
+    thm-heine-borel["Theorem: Heine-Borel Theorem"]:::theorem
+    def-set["Definition: Set"]:::definition
+    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
+    def-euclidean-space["Definition: Euclidean Space"]:::definition
     ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
     ex-euclidean-metric["Example: Euclidean Metric on ℝⁿ"]:::example
     def-complete-metric-space["Definition: Complete Metric Space"]:::definition
-    def-euclidean-space["Definition: Euclidean Space"]:::definition
-    thm-heine-borel["Theorem: Heine-Borel Theorem"]:::theorem
-    def-set["Definition: Set"]:::definition
-    ex-real-line-metric --&gt; def-metric-space
-    thm-heine-borel --&gt; def-metric-space
     def-complete-metric-space --&gt; def-metric-space
-    thm-metric-hausdorff --&gt; def-metric-space
-    def-euclidean-space --&gt; def-metric-space
-    def-metric-space --&gt; def-set
     ex-euclidean-metric --&gt; def-metric-space
+    ex-real-line-metric --&gt; def-metric-space
+    def-euclidean-space --&gt; def-metric-space
+    thm-metric-hausdorff --&gt; def-metric-space
+    thm-heine-borel --&gt; def-metric-space
+    def-metric-space --&gt; def-set
     class def-metric-space current
+    click thm-heine-borel "thm-heine-borel.html" "Go to Heine-Borel Theorem theorem"
+    click def-set "def-set.html" "Go to Set definition"
     click thm-metric-hausdorff "thm-metric-hausdorff.html" "Go to Every Metric Space is Hausdorff theorem"
+    click def-euclidean-space "def-euclidean-space.html" "Go to Euclidean Space definition"
     click ex-real-line-metric "ex-real-line-metric.html" "Go to Real Line with Standard Metric example"
     click ex-euclidean-metric "ex-euclidean-metric.html" "Go to Euclidean Metric on ℝⁿ example"
     click def-complete-metric-space "def-complete-metric-space.html" "Go to Complete Metric Space definition"
-    click def-euclidean-space "def-euclidean-space.html" "Go to Euclidean Space definition"
-    click thm-heine-borel "thm-heine-borel.html" "Go to Heine-Borel Theorem theorem"
-    click def-set "def-set.html" "Go to Set definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -366,7 +366,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-metric-space-1753113889" class="graph-visualization-container">
+<div id="graph-viz-def-metric-space-1753114721" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -546,12 +546,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-metric-space-1753113889', {
+    createForceGraph(data, 'graph-viz-def-metric-space-1753114721', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-metric-space-1753113889').innerHTML =
+    document.getElementById('graph-viz-def-metric-space-1753114721').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
