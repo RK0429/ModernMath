@@ -134,13 +134,20 @@ When adding new mathematical content:
 
 ### Cross-Reference Management
 
-When adding fundamental concepts (e.g., quotient groups, isomorphisms):
+When adding fundamental concepts (e.g., quotient groups, isomorphisms, cyclic groups):
 
 1. **Search Comprehensively**: Use `grep` to find all articles mentioning related terms across domains
 2. **Update Systematically**: Add references in both YAML `requires` and article content where appropriate
 3. **Cross-Domain Awareness**: Mathematical concepts often appear in multiple domains (e.g., modular arithmetic in number theory relates to quotient groups in algebra)
 4. **Bilingual Consistency**: Always update both English and Japanese versions together
 5. **Rebuild and Validate**: After updates, rebuild the knowledge graph to verify all cross-references resolve correctly
+
+**Cross-Reference Update Pattern**: When creating a new definition that's already mentioned in existing articles:
+
+- Search for all mentions using grep (case-insensitive)
+- Update YAML `requires` lists to include the new definition
+- Add inline cross-references using `@id` or `[text](file.qmd)` syntax
+- Ensure special types sections (e.g., "Special Types of Groups") link to new definitions
 
 ### Script Organization
 
@@ -212,7 +219,7 @@ The project supports multiple languages (currently English and Japanese) with au
 
 - Japanese files need `translation_of: ../../en/path.qmd`
 - All files need `translations: {en: "path.html", ja: "path.html"}`
-- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Ideal→イデアル
+- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Ideal→イデアル, Cyclic Group→巡回群
 
 ### Building Multilingual Sites
 
@@ -297,7 +304,7 @@ The project implements a page-level language switcher that redirects to the tran
    - Falls back to path construction with existence checking
    - Updates navbar language links dynamically
    - Provides visual feedback for unavailable translations
-   - **Important**: Must replace language indicators in both main path AND content subdirectories (e.g., `/ja/content/ja/` → `/en/content/en/`)
+   - **Important**: Must replace language indicators in both main path AND content/nav subdirectories (e.g., `/ja/content/ja/` → `/en/content/en/`, `/ja/nav/ja/` → `/en/nav/en/`)
 
 2. **Quarto Filter** (`_extensions/translation-metadata/`):
    - Extracts `translations` field from YAML front matter
@@ -436,8 +443,8 @@ PyVis graphs include:
 
 ## Current Status
 
-- **Content**: 105 nodes across 9 mathematical domains
-- **Translations**: 103/105 (98%) Japanese translations with automated status tracking
+- **Content**: 106 nodes across 9 mathematical domains
+- **Translations**: 103/106 (97%) Japanese translations with automated status tracking
 - **Graph**: 1171 RDF triples with full dependency tracking and translation edges
 - **Visualizations**: 105 interactive graphs deployed
 - **API**: RESTful endpoints for node queries and dependencies

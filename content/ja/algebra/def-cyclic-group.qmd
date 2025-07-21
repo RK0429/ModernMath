@@ -1,0 +1,110 @@
+---
+id: def-cyclic-group
+requires:
+- def-group
+- def-subgroup
+- def-identity-element
+status: complete
+title: '定義: 巡回群'
+translation_of: ../../en/algebra/def-cyclic-group.qmd
+translations:
+  en: ../en/algebra/def-cyclic-group.html
+  ja: ../ja/algebra/def-cyclic-group.html
+type: Definition
+---
+
+# 定義: 巡回群 {#def-cyclic-group}
+
+**巡回群**は、単一の元によって生成される[群](def-group.qmd) $G$ である。すなわち、$G$ のすべての元が $g$ のべき乗として表現できるような元 $g \in G$ が存在する。
+
+## 正式な定義
+
+群 $(G, \cdot)$ が巡回群であるとは、ある $g \in G$ が存在して
+$$G = \{g^n : n \in \mathbb{Z}\}$$
+となることである。
+
+$G = \langle g \rangle$ と書き、$g$ が $G$ を**生成する**、または $g$ が $G$ の**生成元**であるという。
+
+## べき乗の記法
+
+巡回群 $G = \langle g \rangle$ において：
+- $g^0 = e$（[単位元](def-identity-element.qmd)）
+- 正の $n$ に対して $g^n = \underbrace{g \cdot g \cdot \ldots \cdot g}_{n \text{ 個}}$
+- 正の $n$ に対して $g^{-n} = (g^{-1})^n$
+
+加法群に対しては、以下を使用する：
+- $g^n$ の代わりに $ng$
+- $0g = 0$（加法単位元）
+- 正の $n$ に対して $(-n)g = n(-g)$
+
+## 巡回群の位数
+
+巡回群は以下のいずれかである：
+- **有限**：ある正整数 $n$ に対して $|G| = n$ の場合、$G = \{e, g, g^2, \ldots, g^{n-1}\}$
+- **無限**：$g$ のどの正のべき乗も単位元にならない場合
+
+## 重要な性質
+
+1. **アーベル性**：すべての巡回群はアーベル群（可換）である
+   - 任意の $a, b \in G$ に対して、ある $m, n \in \mathbb{Z}$ が存在して $a = g^m$、$b = g^n$
+   - したがって $ab = g^m g^n = g^{m+n} = g^{n+m} = g^n g^m = ba$
+
+2. **部分群**：巡回群のすべての[部分群](def-subgroup.qmd)は巡回群である
+
+3. **同型類**：
+   - すべての無限巡回群は $(\mathbb{Z}, +)$ に同型である
+   - 位数 $n$ のすべての有限巡回群は $(\mathbb{Z}/n\mathbb{Z}, +)$ に同型である
+
+4. **生成元**：
+   - 位数 $n$ の巡回群は $\phi(n)$ 個の生成元を持つ（$\phi$ はオイラーのトーシェント関数）
+   - 無限巡回群では、$g$ と $g^{-1}$ のみが生成元である
+
+## 例
+
+### 有限巡回群
+- 加法における $\mathbb{Z}/n\mathbb{Z}$、$\overline{1}$ によって生成される
+- 乗法における $n$ 次単位根の群、$e^{2\pi i/n}$ によって生成される
+- 正 $n$ 角形の回転群
+
+### 無限巡回群
+- $(\mathbb{Z}, +)$、$1$（または $-1$）によって生成される
+- 乗法における 2 のべき乗の群：$\{2^n : n \in \mathbb{Z}\}$
+
+## 分類
+
+巡回群の分類は特に単純である：
+- 同型を除いて、各位数（有限または無限）の巡回群はちょうど一つ存在する
+- 二つの巡回群が同型であるのは、それらが同じ位数を持つときかつそのときに限る
+
+## 関連項目
+
+- @def-group
+- @def-subgroup
+- @thm-lagrange
+- @ex-integers-addition
+- @ex-quotient-integers-mod-n
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+```
+
+## インタラクティブ可視化
+
+ローカル知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-cyclic-group" data-width="700" data-height="500"}
+:::
+
+以下の操作が可能です：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [完全なインタラクティブバージョン](../../output/interactive/def-cyclic-group.html){target="_blank"}を表示
