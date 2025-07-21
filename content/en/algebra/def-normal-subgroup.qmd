@@ -1,0 +1,119 @@
+---
+id: def-normal-subgroup
+lean_id: null
+requires:
+- def-group
+- def-subgroup
+- def-homomorphism
+status: complete
+title: 'Definition: Normal Subgroup'
+translations:
+  en: ../en/algebra/def-normal-subgroup.html
+  ja: ../ja/algebra/def-normal-subgroup.html
+type: Definition
+---
+
+# Normal Subgroup {#def-normal-subgroup}
+
+A **normal subgroup** is a @def-subgroup that is invariant under conjugation by any element of the parent @def-group.
+
+## Formal Definition
+
+Let $(G, \cdot)$ be a group and $H \leq G$ be a subgroup. We say that $H$ is a **normal subgroup** of $G$, denoted $H \triangleleft G$, if and only if:
+
+$$gHg^{-1} = H \text{ for all } g \in G$$
+
+where $gHg^{-1} = \{ghg^{-1} : h \in H\}$ is the conjugate of $H$ by $g$.
+
+## Equivalent Characterizations
+
+The following conditions are equivalent for a subgroup $H$ of $G$:
+
+1. $H$ is a normal subgroup of $G$
+2. $gHg^{-1} \subseteq H$ for all $g \in G$
+3. $gH = Hg$ for all $g \in G$ (left and right cosets coincide)
+4. The conjugacy class of each element of $H$ is contained in $H$
+5. $H$ is the kernel of some @def-homomorphism from $G$
+
+## Properties
+
+### Trivial Normal Subgroups
+
+Every group $G$ has at least two normal subgroups:
+- The trivial subgroup $\{e\} \triangleleft G$
+- The improper subgroup $G \triangleleft G$
+
+### Normal Subgroups in Abelian Groups
+
+If $G$ is an abelian group, then every subgroup of $G$ is normal. This is because for abelian groups:
+$$ghg^{-1} = gg^{-1}h = eh = h$$
+for all $g \in G$ and $h \in H$.
+
+### Index 2 Subgroups
+
+If $H$ is a subgroup of $G$ with index $[G:H] = 2$, then $H$ is normal in $G$. This is because there are only two cosets: $H$ and $G \setminus H$.
+
+### Non-transitivity
+
+Normality is not transitive: if $K \triangleleft H$ and $H \triangleleft G$, it does not necessarily follow that $K \triangleleft G$.
+
+## Examples
+
+1. **Center of a Group**: The center $Z(G) = \{g \in G : gx = xg \text{ for all } x \in G\}$ is always a normal subgroup of $G$.
+
+2. **Alternating Group**: The alternating group $A_n$ is a normal subgroup of the symmetric group $S_n$ for all $n \geq 2$, since $[S_n : A_n] = 2$.
+
+3. **Even Integers**: The subgroup $2\mathbb{Z}$ of even integers is normal in $(\mathbb{Z}, +)$.
+
+4. **Special Linear Group**: $SL_n(\mathbb{R}) = \{A \in GL_n(\mathbb{R}) : \det(A) = 1\}$ is normal in $GL_n(\mathbb{R})$.
+
+## Applications
+
+Normal subgroups are fundamental in group theory because:
+- They are precisely the subgroups that can be used to construct quotient groups
+- They are the kernels of group homomorphisms
+- They play a crucial role in the classification of groups
+
+## See Also
+
+- @def-group
+- @def-subgroup
+- @def-homomorphism
+- @thm-lagrange
+- Quotient Group (coming soon)
+- First Isomorphism Theorem (coming soon)
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-group["Definition: Group"]:::definition
+    def-normal-subgroup --> def-group
+    def-normal-subgroup --> def-subgroup
+    def-normal-subgroup --> thm-lagrange
+    def-normal-subgroup --> def-homomorphism
+    class def-normal-subgroup current
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-normal-subgroup" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-normal-subgroup.html){target="_blank"}

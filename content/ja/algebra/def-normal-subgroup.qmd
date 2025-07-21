@@ -1,0 +1,120 @@
+---
+id: def-normal-subgroup
+lean_id: null
+requires:
+- def-group
+- def-subgroup
+- def-homomorphism
+status: complete
+title: '定義: 正規部分群'
+translation_of: ../../en/algebra/def-normal-subgroup.qmd
+translations:
+  en: ../en/algebra/def-normal-subgroup.html
+  ja: ../ja/algebra/def-normal-subgroup.html
+type: Definition
+---
+
+# 正規部分群 {#def-normal-subgroup}
+
+**正規部分群**は、親@def-groupの任意の元による共役で不変な@def-subgroupです。
+
+## 形式的定義
+
+$(G, \cdot)$ を群、$H \leq G$ を部分群とします。$H$ が $G$ の**正規部分群**であるとは、以下が成り立つときをいい、$H \triangleleft G$ と表記します：
+
+$$gHg^{-1} = H \text{ すべての } g \in G \text{ に対して}$$
+
+ここで $gHg^{-1} = \{ghg^{-1} : h \in H\}$ は $g$ による $H$ の共役です。
+
+## 同値な特徴付け
+
+部分群 $H$ について、以下の条件は同値です：
+
+1. $H$ は $G$ の正規部分群である
+2. すべての $g \in G$ に対して $gHg^{-1} \subseteq H$
+3. すべての $g \in G$ に対して $gH = Hg$（左剰余類と右剰余類が一致）
+4. $H$ の各元の共役類が $H$ に含まれる
+5. $H$ は $G$ からの何らかの@def-homomorphismの核である
+
+## 性質
+
+### 自明な正規部分群
+
+すべての群 $G$ は少なくとも2つの正規部分群を持ちます：
+- 自明な部分群 $\{e\} \triangleleft G$
+- 真でない部分群 $G \triangleleft G$
+
+### アーベル群における正規部分群
+
+$G$ がアーベル群ならば、$G$ のすべての部分群は正規です。これは、アーベル群では：
+$$ghg^{-1} = gg^{-1}h = eh = h$$
+がすべての $g \in G$ と $h \in H$ に対して成り立つからです。
+
+### 指数2の部分群
+
+$H$ が $G$ の部分群で指数 $[G:H] = 2$ ならば、$H$ は $G$ の正規部分群です。これは剰余類が $H$ と $G \setminus H$ の2つしかないためです。
+
+### 推移性の欠如
+
+正規性は推移的ではありません：$K \triangleleft H$ かつ $H \triangleleft G$ であっても、必ずしも $K \triangleleft G$ とは限りません。
+
+## 例
+
+1. **群の中心**：中心 $Z(G) = \{g \in G : gx = xg \text{ すべての } x \in G \text{ に対して}\}$ は常に $G$ の正規部分群です。
+
+2. **交代群**：交代群 $A_n$ は、すべての $n \geq 2$ に対して対称群 $S_n$ の正規部分群です。これは $[S_n : A_n] = 2$ だからです。
+
+3. **偶数整数**：偶数整数の部分群 $2\mathbb{Z}$ は $(\mathbb{Z}, +)$ の正規部分群です。
+
+4. **特殊線形群**：$SL_n(\mathbb{R}) = \{A \in GL_n(\mathbb{R}) : \det(A) = 1\}$ は $GL_n(\mathbb{R})$ の正規部分群です。
+
+## 応用
+
+正規部分群は群論において基本的です。なぜなら：
+- 商群を構成するために使用できる部分群はまさに正規部分群だけです
+- 群準同型の核は正規部分群です
+- 群の分類において重要な役割を果たします
+
+## 関連項目
+
+- @def-group
+- @def-subgroup
+- @def-homomorphism
+- @thm-lagrange
+- 商群（準備中）
+- 第一同型定理（準備中）
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-group["Definition: Group"]:::definition
+    def-normal-subgroup --> def-group
+    def-normal-subgroup --> def-subgroup
+    def-normal-subgroup --> thm-lagrange
+    def-normal-subgroup --> def-homomorphism
+    class def-normal-subgroup current
+```
+
+## インタラクティブ可視化
+
+ローカル知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-normal-subgroup" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/def-normal-subgroup.html){target="_blank"}で完全なインタラクティブ版を表示

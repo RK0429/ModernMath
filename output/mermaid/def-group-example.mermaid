@@ -1,0 +1,29 @@
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-inverse-element["Definition: Inverse Element"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    ex-integers-addition["Example: Integers under Addition"]:::example
+    thm-unique-identity["Theorem: Uniqueness of Identity"]:::theorem
+    def-group-example["Definition: Group"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-identity-element["Definition: Identity Element"]:::definition
+    def-associativity["Definition: Associativity"]:::definition
+    def-group-example --> def-inverse-element
+    def-group-example --> def-associativity
+    def-group-example --> def-homomorphism
+    def-group-example --> thm-lagrange
+    def-group-example --> def-subgroup
+    def-group-example --> ex-integers-addition
+    def-group-example --> thm-unique-identity
+    def-group-example --> def-identity-element
+    def-group-example --> def-binary-operation
+    class def-group-example current
+```

@@ -3,6 +3,8 @@ id: def-kernel
 requires:
 - def-linear-transformation
 - def-vector-space
+- def-homomorphism
+- def-normal-subgroup
 status: complete
 title: 'Definition: Kernel'
 translations:
@@ -41,6 +43,20 @@ $$\ker(T_A) = \{\mathbf{x} \in \mathbb{R}^n : A\mathbf{x} = \mathbf{0}\}$$
 
 This is precisely the solution set of the homogeneous linear system $A\mathbf{x} = \mathbf{0}$.
 
+## Kernel in Group Theory
+
+The concept of kernel extends to @def-homomorphism between groups. If $\phi: G \to H$ is a group homomorphism, then:
+
+$$\ker(\phi) = \{g \in G : \phi(g) = e_H\}$$
+
+where $e_H$ is the identity element of $H$.
+
+**Important**: The kernel of a group homomorphism is always a @def-normal-subgroup of the domain. This is because for any $g \in G$ and $k \in \ker(\phi)$:
+
+$$\phi(gkg^{-1}) = \phi(g)\phi(k)\phi(g^{-1}) = \phi(g)e_H\phi(g)^{-1} = \phi(g)\phi(g)^{-1} = e_H$$
+
+Therefore $gkg^{-1} \in \ker(\phi)$, showing that $\ker(\phi)$ is invariant under conjugation.
+
 ## Dependency Graph
 
 ```{mermaid}
@@ -51,18 +67,14 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-linear-transformation["Definition: Linear Transformation"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
-    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
     def-kernel["Definition: Kernel"]:::definition
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-kernel --> def-linear-transformation
     def-kernel --> def-vector-space
     thm-rank-nullity --> def-kernel
-    def-kernel --> def-linear-transformation
     class def-kernel current
-
-    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation definition"
-    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
-    click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem theorem"
 ```
 
 ## Interactive Visualization

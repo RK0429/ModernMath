@@ -311,7 +311,9 @@ class KnowledgeGraphBuilder:  # pylint: disable=too-few-public-methods
 def main() -> None:
     """Main entry point."""
     # Set up paths
-    project_root = Path(__file__).parent.parent
+    project_root = Path(
+        __file__
+    ).parent.parent.parent  # Go up 3 levels: graph -> scripts -> project root
     content_dir = project_root / "content"
     output_file = project_root / "knowledge_graph.ttl"
 

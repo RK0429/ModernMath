@@ -3,6 +3,8 @@ id: def-kernel
 requires:
 - def-linear-transformation
 - def-vector-space
+- def-homomorphism
+- def-normal-subgroup
 status: complete
 title: '定義: 核'
 translation_of: ../../en/algebra/def-kernel.qmd
@@ -42,6 +44,20 @@ $$\ker(T_A) = \{\mathbf{x} \in \mathbb{R}^n : A\mathbf{x} = \mathbf{0}\}$$
 
 これは同次線形方程式系 $A\mathbf{x} = \mathbf{0}$ の解集合にほかなりません。
 
+## 群論における核
+
+核の概念は群の間の@def-homomorphismにも拡張されます。$\phi: G \to H$ を群準同型とすると：
+
+$$\ker(\phi) = \{g \in G : \phi(g) = e_H\}$$
+
+ここで $e_H$ は $H$ の単位元です。
+
+**重要**：群準同型の核は常に定義域の@def-normal-subgroupです。これは任意の $g \in G$ と $k \in \ker(\phi)$ に対して：
+
+$$\phi(gkg^{-1}) = \phi(g)\phi(k)\phi(g^{-1}) = \phi(g)e_H\phi(g)^{-1} = \phi(g)\phi(g)^{-1} = e_H$$
+
+したがって $gkg^{-1} \in \ker(\phi)$ となり、$\ker(\phi)$ が共役で不変であることを示しています。
+
 ## 依存関係グラフ
 
 ```{mermaid}
@@ -52,18 +68,14 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-linear-transformation["Definition: Linear Transformation"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
-    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
     def-kernel["Definition: Kernel"]:::definition
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-kernel --> def-linear-transformation
     def-kernel --> def-vector-space
     thm-rank-nullity --> def-kernel
-    def-kernel --> def-linear-transformation
     class def-kernel current
-
-    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation definition"
-    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
-    click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem theorem"
 ```
 
 ## インタラクティブ可視化

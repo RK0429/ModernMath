@@ -53,18 +53,19 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group["Definition: Group"]:::definition
     def-homomorphism["Definition: Group Homomorphism"]:::definition
-    ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-binary-operation["Definition: Binary Operation"]:::definition
-    ex-exponential-homomorphism --> def-homomorphism
+    ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
+    def-group["Definition: Group"]:::definition
+    def-group-example["Definition: Group"]:::definition
+    def-group --> def-homomorphism
+    def-group-example --> def-homomorphism
     def-homomorphism --> def-binary-operation
     def-homomorphism --> def-group
+    def-normal-subgroup --> def-homomorphism
+    ex-exponential-homomorphism --> def-homomorphism
     class def-homomorphism current
-
-    click def-group "def-group.html" "Definition: Groupへ"
-    click ex-exponential-homomorphism "ex-exponential-homomorphism.html" "Example: Exponential Homomorphismへ"
-    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
 ```
 
 ## インタラクティブ可視化
