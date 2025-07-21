@@ -214,11 +214,11 @@ window.Quarto = {
 <span class="menu-text">Probability &amp; Statistics</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../about.html"> 
+    <a class="nav-link" href="../../../nav/en/about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../contributing.html"> 
+    <a class="nav-link" href="../../../nav/en/contributing.html"> 
 <span class="menu-text">Contributing</span></a>
   </li>  
 </ul>
@@ -326,10 +326,10 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-continuity["Definition: Continuity"]:::definition
-    def-connected["Definition: Connected Space"]:::definition
     thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
-    thm-intermediate-value --&gt; def-connected
+    def-connected["Definition: Connected Space"]:::definition
     thm-intermediate-value --&gt; def-continuity
+    thm-intermediate-value --&gt; def-connected
     class thm-intermediate-value current
     click def-continuity "def-continuity.html" "Definition: Continuityへ"
     click def-connected "def-connected.html" "Definition: Connected Spaceへ"
@@ -343,7 +343,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-intermediate-value-1753112596" class="graph-visualization-container">
+<div id="graph-viz-thm-intermediate-value-1753113970" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -523,12 +523,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-intermediate-value-1753112596', {
+    createForceGraph(data, 'graph-viz-thm-intermediate-value-1753113970', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-intermediate-value-1753112596').innerHTML =
+    document.getElementById('graph-viz-thm-intermediate-value-1753113970').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

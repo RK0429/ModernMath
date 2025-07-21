@@ -214,11 +214,11 @@ window.Quarto = {
 <span class="menu-text">確率統計</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../about-ja.html"> 
+    <a class="nav-link" href="../../../nav/ja/about.html"> 
 <span class="menu-text">概要</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../contributing-ja.html"> 
+    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
 <span class="menu-text">貢献</span></a>
   </li>  
 </ul>
@@ -394,16 +394,16 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-inverse-element["Definition: Inverse Element"]:::definition
-    def-identity-element["Definition: Identity Element"]:::definition
-    def-group["Definition: Group"]:::definition
     def-binary-operation["Definition: Binary Operation"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-identity-element["Definition: Identity Element"]:::definition
     def-group --&gt; def-inverse-element
     def-inverse-element --&gt; def-identity-element
     def-inverse-element --&gt; def-binary-operation
     class def-inverse-element current
-    click def-identity-element "def-identity-element.html" "Go to Identity Element definition"
-    click def-group "def-group.html" "Go to Group definition"
     click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click def-identity-element "def-identity-element.html" "Go to Identity Element definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -414,7 +414,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-inverse-element-1753112682" class="graph-visualization-container">
+<div id="graph-viz-def-inverse-element-1753114058" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -594,12 +594,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-inverse-element-1753112682', {
+    createForceGraph(data, 'graph-viz-def-inverse-element-1753114058', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-inverse-element-1753112682').innerHTML =
+    document.getElementById('graph-viz-def-inverse-element-1753114058').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

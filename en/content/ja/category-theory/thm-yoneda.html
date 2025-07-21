@@ -214,11 +214,11 @@ window.Quarto = {
 <span class="menu-text">Probability &amp; Statistics</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../about.html"> 
+    <a class="nav-link" href="../../../nav/en/about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../contributing.html"> 
+    <a class="nav-link" href="../../../nav/en/contributing.html"> 
 <span class="menu-text">Contributing</span></a>
   </li>  
 </ul>
@@ -380,16 +380,16 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-natural-transformation["Definition: Natural Transformation"]:::definition
-    def-functor["Definition: Functor"]:::definition
-    def-category["Definition: Category"]:::definition
     thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
-    thm-yoneda --&gt; def-functor
-    thm-yoneda --&gt; def-category
+    def-functor["Definition: Functor"]:::definition
+    def-natural-transformation["Definition: Natural Transformation"]:::definition
+    def-category["Definition: Category"]:::definition
     thm-yoneda --&gt; def-natural-transformation
+    thm-yoneda --&gt; def-category
+    thm-yoneda --&gt; def-functor
     class thm-yoneda current
-    click def-natural-transformation "def-natural-transformation.html" "Definition: Natural Transformationへ"
     click def-functor "def-functor.html" "Definition: Functorへ"
+    click def-natural-transformation "def-natural-transformation.html" "Definition: Natural Transformationへ"
     click def-category "def-category.html" "Definition: Categoryへ"
 </pre>
 </div>
@@ -401,7 +401,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-yoneda-1753112598" class="graph-visualization-container">
+<div id="graph-viz-thm-yoneda-1753113973" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -581,12 +581,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-yoneda-1753112598', {
+    createForceGraph(data, 'graph-viz-thm-yoneda-1753113973', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-yoneda-1753112598').innerHTML =
+    document.getElementById('graph-viz-thm-yoneda-1753113973').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

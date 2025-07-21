@@ -214,11 +214,11 @@ window.Quarto = {
 <span class="menu-text">Probability &amp; Statistics</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../about.html"> 
+    <a class="nav-link" href="../../../nav/en/about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../contributing.html"> 
+    <a class="nav-link" href="../../../nav/en/contributing.html"> 
 <span class="menu-text">Contributing</span></a>
   </li>  
 </ul>
@@ -306,7 +306,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="special-types">Special Types</h2>
 <ul>
 <li><strong>Linear functional</strong>: When <span class="math inline">\(W = F\)</span> (the field of scalars)</li>
-<li><strong>Linear operator</strong>: When <span class="math inline">\(V = W\)</span> (transformation from a space to itself)</li>
+<li><strong>Linear operator</strong>: When <span class="math inline">\(V = W\)</span> (transformation from a space to itself). For linear operators, we can study <a href="../../../content/en/algebra/def-eigenvalue-eigenvector.html">eigenvalues and eigenvectors</a></li>
 <li><strong>Isomorphism</strong>: When <span class="math inline">\(T\)</span> is bijective (one-to-one and onto)</li>
 </ul>
 <p>Linear transformations preserve the vector space structure and are the morphisms in the category of vector spaces.</p>
@@ -324,26 +324,29 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-image["Definition: Image"]:::definition
-    def-linear-transformation["Definition: Linear Transformation"]:::definition
     def-kernel["Definition: Kernel"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
-    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
     thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
+    def-vector-space["Definition: Vector Space"]:::definition
     ex-matrix-transformation["Example: Matrix Transformation"]:::example
-    def-image --&gt; def-linear-transformation
-    ex-matrix-transformation --&gt; def-linear-transformation
+    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    def-image["Definition: Image"]:::definition
+    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
     def-kernel --&gt; def-linear-transformation
-    thm-rank-nullity --&gt; def-linear-transformation
     thm-linear-transformation-basis --&gt; def-linear-transformation
     def-linear-transformation --&gt; def-vector-space
+    thm-rank-nullity --&gt; def-linear-transformation
+    def-image --&gt; def-linear-transformation
+    ex-matrix-transformation --&gt; def-linear-transformation
+    def-eigenvalue-eigenvector --&gt; def-linear-transformation
     class def-linear-transformation current
-    click def-image "def-image.html" "Go to Image definition"
     click def-kernel "def-kernel.html" "Go to Kernel definition"
-    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
-    click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem theorem"
     click thm-linear-transformation-basis "thm-linear-transformation-basis.html" "Go to Linear Transformation Determined by Basis theorem"
+    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
     click ex-matrix-transformation "ex-matrix-transformation.html" "Go to Matrix Transformation example"
+    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector definition"
+    click def-image "def-image.html" "Go to Image definition"
+    click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem theorem"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -354,7 +357,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-linear-transformation-1753112502" class="graph-visualization-container">
+<div id="graph-viz-def-linear-transformation-1753113876" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -534,12 +537,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-linear-transformation-1753112502', {
+    createForceGraph(data, 'graph-viz-def-linear-transformation-1753113876', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-linear-transformation-1753112502').innerHTML =
+    document.getElementById('graph-viz-def-linear-transformation-1753113876').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

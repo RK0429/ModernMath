@@ -214,11 +214,11 @@ window.Quarto = {
 <span class="menu-text">Probability &amp; Statistics</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../about.html"> 
+    <a class="nav-link" href="../../../nav/en/about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../contributing.html"> 
+    <a class="nav-link" href="../../../nav/en/contributing.html"> 
 <span class="menu-text">Contributing</span></a>
   </li>  
 </ul>
@@ -307,7 +307,7 @@ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
 <section id="特殊な行列" class="level2">
 <h2 class="anchored" data-anchor-id="特殊な行列">特殊な行列</h2>
 <ul>
-<li><strong>正方行列</strong>：<span class="math inline">\(m = n\)</span> のとき</li>
+<li><strong>正方行列</strong>：<span class="math inline">\(m = n\)</span> のとき。正方行列に対しては、<a href="../../../content/ja/algebra/def-eigenvalue-eigenvector.html">固有値と固有ベクトル</a>を研究できます</li>
 <li><strong>行ベクトル</strong>：<span class="math inline">\(1 \times n\)</span> 行列</li>
 <li><strong>列ベクトル</strong>：<span class="math inline">\(m \times 1\)</span> 行列</li>
 <li><strong>零行列</strong>：すべての成分が 0 で、<span class="math inline">\(O\)</span> または <span class="math inline">\(0_{m \times n}\)</span> と表記される</li>
@@ -341,9 +341,12 @@ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-matrix["Definition: Matrix"]:::definition
+    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
     ex-matrix-transformation["Example: Matrix Transformation"]:::example
+    def-eigenvalue-eigenvector --&gt; def-matrix
     ex-matrix-transformation --&gt; def-matrix
     class def-matrix current
+    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Definition: Eigenvalue and Eigenvectorへ"
     click ex-matrix-transformation "ex-matrix-transformation.html" "Example: Matrix Transformationへ"
 </pre>
 </div>
@@ -355,7 +358,7 @@ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-matrix-1753112564" class="graph-visualization-container">
+<div id="graph-viz-def-matrix-1753113938" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -535,12 +538,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-matrix-1753112564', {
+    createForceGraph(data, 'graph-viz-def-matrix-1753113938', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-matrix-1753112564').innerHTML =
+    document.getElementById('graph-viz-def-matrix-1753113938').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -214,11 +214,11 @@ window.Quarto = {
 <span class="menu-text">Probability &amp; Statistics</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../about.html"> 
+    <a class="nav-link" href="../../../nav/en/about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../contributing.html"> 
+    <a class="nav-link" href="../../../nav/en/contributing.html"> 
 <span class="menu-text">Contributing</span></a>
   </li>  
 </ul>
@@ -307,7 +307,7 @@ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
 <section id="special-types-of-matrices" class="level2">
 <h2 class="anchored" data-anchor-id="special-types-of-matrices">Special Types of Matrices</h2>
 <ul>
-<li><strong>Square matrix</strong>: When <span class="math inline">\(m = n\)</span></li>
+<li><strong>Square matrix</strong>: When <span class="math inline">\(m = n\)</span>. For square matrices, we can study <a href="../../../content/en/algebra/def-eigenvalue-eigenvector.html">eigenvalues and eigenvectors</a></li>
 <li><strong>Row vector</strong>: A <span class="math inline">\(1 \times n\)</span> matrix</li>
 <li><strong>Column vector</strong>: An <span class="math inline">\(m \times 1\)</span> matrix</li>
 <li><strong>Zero matrix</strong>: All entries are 0, denoted <span class="math inline">\(O\)</span> or <span class="math inline">\(0_{m \times n}\)</span></li>
@@ -341,9 +341,12 @@ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-matrix["Definition: Matrix"]:::definition
+    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
     ex-matrix-transformation["Example: Matrix Transformation"]:::example
+    def-eigenvalue-eigenvector --&gt; def-matrix
     ex-matrix-transformation --&gt; def-matrix
     class def-matrix current
+    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector definition"
     click ex-matrix-transformation "ex-matrix-transformation.html" "Go to Matrix Transformation example"
 </pre>
 </div>
@@ -355,7 +358,7 @@ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-matrix-1753112503" class="graph-visualization-container">
+<div id="graph-viz-def-matrix-1753113876" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -535,12 +538,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-matrix-1753112503', {
+    createForceGraph(data, 'graph-viz-def-matrix-1753113876', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-matrix-1753112503').innerHTML =
+    document.getElementById('graph-viz-def-matrix-1753113876').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

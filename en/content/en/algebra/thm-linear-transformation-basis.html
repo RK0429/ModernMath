@@ -214,11 +214,11 @@ window.Quarto = {
 <span class="menu-text">Probability &amp; Statistics</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../about.html"> 
+    <a class="nav-link" href="../../../nav/en/about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../contributing.html"> 
+    <a class="nav-link" href="../../../nav/en/contributing.html"> 
 <span class="menu-text">Contributing</span></a>
   </li>  
 </ul>
@@ -314,11 +314,11 @@ window.Quarto = {
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-basis["Definition: Basis"]:::definition
     def-linear-transformation["Definition: Linear Transformation"]:::definition
-    thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
     def-vector-space["Definition: Vector Space"]:::definition
+    thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
     thm-linear-transformation-basis --&gt; def-vector-space
-    thm-linear-transformation-basis --&gt; def-basis
     thm-linear-transformation-basis --&gt; def-linear-transformation
+    thm-linear-transformation-basis --&gt; def-basis
     class thm-linear-transformation-basis current
     click def-basis "def-basis.html" "Go to Basis definition"
     click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation definition"
@@ -333,7 +333,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-linear-transformation-basis-1753112511" class="graph-visualization-container">
+<div id="graph-viz-thm-linear-transformation-basis-1753113885" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -513,12 +513,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-linear-transformation-basis-1753112511', {
+    createForceGraph(data, 'graph-viz-thm-linear-transformation-basis-1753113885', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-linear-transformation-basis-1753112511').innerHTML =
+    document.getElementById('graph-viz-thm-linear-transformation-basis-1753113885').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

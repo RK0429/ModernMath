@@ -214,11 +214,11 @@ window.Quarto = {
 <span class="menu-text">Probability &amp; Statistics</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../about.html"> 
+    <a class="nav-link" href="../../../nav/en/about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../contributing.html"> 
+    <a class="nav-link" href="../../../nav/en/contributing.html"> 
 <span class="menu-text">Contributing</span></a>
   </li>  
 </ul>
@@ -306,7 +306,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="特別な種類">特別な種類</h2>
 <ul>
 <li><strong>線形汎関数</strong>：<span class="math inline">\(W = F\)</span>（スカラー体）の場合</li>
-<li><strong>線形作用素</strong>：<span class="math inline">\(V = W\)</span>（空間から自分自身への変換）の場合</li>
+<li><strong>線形作用素</strong>：<span class="math inline">\(V = W\)</span>（空間から自分自身への変換）の場合。線形作用素に対しては、<a href="../../../content/ja/algebra/def-eigenvalue-eigenvector.html">固有値と固有ベクトル</a>を研究できます</li>
 <li><strong>同型写像</strong>：<span class="math inline">\(T\)</span> が全単射（一対一かつ上への写像）の場合</li>
 </ul>
 <p>線形変換はベクトル空間の構造を保存し、ベクトル空間の圏における射です。</p>
@@ -324,26 +324,29 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-image["Definition: Image"]:::definition
-    def-linear-transformation["Definition: Linear Transformation"]:::definition
     def-kernel["Definition: Kernel"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
-    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
     thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
+    def-vector-space["Definition: Vector Space"]:::definition
     ex-matrix-transformation["Example: Matrix Transformation"]:::example
-    def-image --&gt; def-linear-transformation
-    ex-matrix-transformation --&gt; def-linear-transformation
+    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    def-image["Definition: Image"]:::definition
+    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
     def-kernel --&gt; def-linear-transformation
-    thm-rank-nullity --&gt; def-linear-transformation
     thm-linear-transformation-basis --&gt; def-linear-transformation
     def-linear-transformation --&gt; def-vector-space
+    thm-rank-nullity --&gt; def-linear-transformation
+    def-image --&gt; def-linear-transformation
+    ex-matrix-transformation --&gt; def-linear-transformation
+    def-eigenvalue-eigenvector --&gt; def-linear-transformation
     class def-linear-transformation current
-    click def-image "def-image.html" "Definition: Imageへ"
     click def-kernel "def-kernel.html" "Definition: Kernelへ"
-    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
-    click thm-rank-nullity "thm-rank-nullity.html" "Theorem: Rank-Nullity Theoremへ"
     click thm-linear-transformation-basis "thm-linear-transformation-basis.html" "Theorem: Linear Transformation Determined by Basisへ"
+    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
     click ex-matrix-transformation "ex-matrix-transformation.html" "Example: Matrix Transformationへ"
+    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Definition: Eigenvalue and Eigenvectorへ"
+    click def-image "def-image.html" "Definition: Imageへ"
+    click thm-rank-nullity "thm-rank-nullity.html" "Theorem: Rank-Nullity Theoremへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -354,7 +357,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-linear-transformation-1753112566" class="graph-visualization-container">
+<div id="graph-viz-def-linear-transformation-1753113941" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -534,12 +537,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-linear-transformation-1753112566', {
+    createForceGraph(data, 'graph-viz-def-linear-transformation-1753113941', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-linear-transformation-1753112566').innerHTML =
+    document.getElementById('graph-viz-def-linear-transformation-1753113941').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

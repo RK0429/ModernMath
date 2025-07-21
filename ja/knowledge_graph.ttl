@@ -53,6 +53,8 @@
 
 <http://modernmath.org/concepts/distributivity> ns1:hasTranslation <http://modernmath.org/concepts/distributivity_ja> .
 
+<http://modernmath.org/concepts/eigenvalue-eigenvector> ns1:hasTranslation <http://modernmath.org/concepts/eigenvalue-eigenvector_ja> .
+
 <http://modernmath.org/concepts/euclidean-algorithm> ns1:hasTranslation <http://modernmath.org/concepts/euclidean-algorithm_ja> .
 
 <http://modernmath.org/concepts/euclidean-metric> ns1:hasTranslation <http://modernmath.org/concepts/euclidean-metric_ja> .
@@ -256,6 +258,16 @@ base:def-distributivity a mymath:Definition ;
         "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-binary-operation .
+
+base:def-eigenvalue-eigenvector a mymath:Definition ;
+    rdfs:label "Definition: Eigenvalue and Eigenvector"@en,
+        "定義: 固有値と固有ベクトル"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-linear-transformation,
+        base:def-matrix,
+        base:def-vector-space .
 
 base:def-integral a mymath:Definition ;
     rdfs:label "Definition: Integral"@en,
@@ -636,6 +648,8 @@ base:thm-yoneda a mymath:Theorem ;
 
 <http://modernmath.org/concepts/distributivity_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/eigenvalue-eigenvector_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/euclidean-algorithm_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/euclidean-metric_ja> ns1:language "ja" .
@@ -1014,13 +1028,6 @@ base:def-kernel a mymath:Definition ;
         base:def-quotient-group,
         base:def-vector-space .
 
-base:def-matrix a mymath:Definition ;
-    rdfs:label "Definition: Matrix"@en,
-        "定義：行列"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" .
-
 base:def-natural-transformation a mymath:Definition ;
     rdfs:label "Definition: Natural Transformation"@en,
         "定義：自然変換"@en ;
@@ -1344,6 +1351,13 @@ base:def-linear-independence a mymath:Definition ;
         base:formal-proof-def-linear-independence ;
     mymath:uses base:def-vector-space .
 
+base:def-matrix a mymath:Definition ;
+    rdfs:label "Definition: Matrix"@en,
+        "定義：行列"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" .
+
 base:def-random-variable a mymath:Definition ;
     rdfs:label "Definition: Random Variable"@en,
         "定義: 確率変数"@en ;
@@ -1463,16 +1477,6 @@ base:def-continuity a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-limit .
 
-base:def-linear-transformation a mymath:Definition ;
-    rdfs:label "Definition: Linear Transformation"@en,
-        "定義: 線形変換"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearMap.LinearMap>,
-        base:formal-proof-def-linear-transformation ;
-    mymath:uses base:def-vector-space .
-
 base:def-open-set a mymath:Definition ;
     rdfs:label "Definition: Open Set"@en,
         "定義: 開集合"@en ;
@@ -1526,6 +1530,16 @@ base:def-limit a mymath:Definition ;
     mymath:hasDomain "Analysis",
         "解析学" ;
     mymath:hasStatus "complete" .
+
+base:def-linear-transformation a mymath:Definition ;
+    rdfs:label "Definition: Linear Transformation"@en,
+        "定義: 線形変換"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearMap.LinearMap>,
+        base:formal-proof-def-linear-transformation ;
+    mymath:uses base:def-vector-space .
 
 base:def-metric-space a mymath:Definition ;
     rdfs:label "Definition: Metric Space"@en,
@@ -1581,15 +1595,6 @@ base:def-quotient-group a mymath:Definition ;
         base:def-normal-subgroup,
         base:def-subgroup .
 
-base:def-vector-space a mymath:Definition ;
-    rdfs:label "Definition: Vector Space"@en,
-        "定義: ベクトル空間"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.Basic.Module>,
-        base:formal-proof-def-vector-space .
-
 base:def-binary-operation a mymath:Definition ;
     rdfs:label "Definition: Binary Operation"@en,
         "定義: 二項演算"@en ;
@@ -1600,6 +1605,15 @@ base:def-binary-operation a mymath:Definition ;
     mymath:isVerifiedBy <https://mathlib.org/proof/MathKnowledgeGraph.Algebra.BinaryOp>,
         base:formal-proof-def-binary-operation ;
     mymath:uses base:def-set .
+
+base:def-vector-space a mymath:Definition ;
+    rdfs:label "Definition: Vector Space"@en,
+        "定義: ベクトル空間"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.Basic.Module>,
+        base:formal-proof-def-vector-space .
 
 base:def-group a mymath:Definition ;
     rdfs:label "Definition: Group"@en,
