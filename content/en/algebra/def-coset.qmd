@@ -161,17 +161,37 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-coset["Definition: Coset"]:::current
-    def-group["Definition: Group"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    def-coset["Definition: Coset"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-binary-operation["Definition: Binary Operation"]:::definition
-    def-coset --> def-group
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-group["Definition: Group"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    ex-quotient-integers-mod-n --> def-coset
+    def-coset --> ex-even-integers-subgroup
+    def-coset --> ex-quotient-integers-mod-n
+    def-coset --> def-quotient-group
     def-coset --> def-subgroup
+    thm-lagrange --> def-coset
+    def-coset --> def-normal-subgroup
+    def-normal-subgroup --> def-coset
+    def-coset --> thm-lagrange
+    ex-even-integers-subgroup --> def-coset
     def-coset --> def-binary-operation
+    def-quotient-group --> def-coset
+    def-coset --> def-group
     class def-coset current
-    click def-group "def-group.html" "Go to Group definition"
-    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Go to Even Integers Form a Subgroup example"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
     click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
 ```
 
 ## Interactive Visualization

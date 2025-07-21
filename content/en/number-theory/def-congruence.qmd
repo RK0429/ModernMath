@@ -1,0 +1,168 @@
+---
+id: def-congruence
+lean_id: Mathlib.Data.Int.ModEq
+requires:
+- def-set
+- ax-induction
+status: complete
+title: 'Definition: Congruence (Modular Arithmetic)'
+translations:
+  en: ../en/number-theory/def-congruence.html
+  ja: ../ja/number-theory/def-congruence.html
+type: Definition
+---
+
+# Definition: Congruence (Modular Arithmetic) {#def-congruence}
+
+Two integers $a$ and $b$ are **congruent modulo** $n$ (where $n$ is a positive integer) if their difference $a - b$ is divisible by $n$. We write this as:
+
+$$a \equiv b \pmod{n}$$
+
+## Formal Definition
+
+For integers $a, b$ and positive integer $n$:
+$$a \equiv b \pmod{n} \iff n \mid (a - b)$$
+
+Equivalently, $a$ and $b$ are congruent modulo $n$ if they have the same remainder when divided by $n$.
+
+## Properties
+
+### Equivalence Relation
+
+Congruence modulo $n$ is an equivalence relation on the [set](../logic-set-theory/def-set.qmd) of integers:
+
+1. **Reflexive**: $a \equiv a \pmod{n}$ for all $a \in \mathbb{Z}$
+2. **Symmetric**: If $a \equiv b \pmod{n}$, then $b \equiv a \pmod{n}$
+3. **Transitive**: If $a \equiv b \pmod{n}$ and $b \equiv c \pmod{n}$, then $a \equiv c \pmod{n}$
+
+### Arithmetic Properties
+
+Congruence is compatible with arithmetic operations:
+
+1. **Addition**: If $a \equiv b \pmod{n}$ and $c \equiv d \pmod{n}$, then:
+   $$a + c \equiv b + d \pmod{n}$$
+
+2. **Subtraction**: If $a \equiv b \pmod{n}$ and $c \equiv d \pmod{n}$, then:
+   $$a - c \equiv b - d \pmod{n}$$
+
+3. **Multiplication**: If $a \equiv b \pmod{n}$ and $c \equiv d \pmod{n}$, then:
+   $$ac \equiv bd \pmod{n}$$
+
+4. **Exponentiation**: If $a \equiv b \pmod{n}$ and $k$ is a positive integer, then:
+   $$a^k \equiv b^k \pmod{n}$$
+
+### Division Property
+
+Division requires special care. If $ac \equiv bc \pmod{n}$ and $\gcd(c, n) = d$, then:
+$$a \equiv b \pmod{n/d}$$
+
+In particular, if $\gcd(c, n) = 1$, then $a \equiv b \pmod{n}$.
+
+## Modular Inverse
+
+An integer $a$ has a **multiplicative inverse** modulo $n$ if there exists $b$ such that:
+$$ab \equiv 1 \pmod{n}$$
+
+This inverse exists if and only if $\gcd(a, n) = 1$ (see @def-gcd).
+
+## Examples
+
+### Clock Arithmetic
+
+A 12-hour clock uses modular arithmetic with modulus 12:
+- 7 hours after 9 o'clock: $9 + 7 \equiv 16 \equiv 4 \pmod{12}$
+- 15 hours before 2 o'clock: $2 - 15 \equiv -13 \equiv 11 \pmod{12}$
+
+### Numerical Examples
+
+1. $17 \equiv 5 \pmod{3}$ because $17 - 5 = 12 = 3 \cdot 4$
+2. $-7 \equiv 3 \pmod{5}$ because $-7 - 3 = -10 = 5 \cdot (-2)$
+3. $100 \equiv 0 \pmod{4}$ because $100 - 0 = 100 = 4 \cdot 25$
+
+### Days of the Week
+
+Days cycle modulo 7. If today is Tuesday (day 2), then:
+- 10 days from now: $2 + 10 \equiv 12 \equiv 5 \pmod{7}$ (Friday)
+- 100 days from now: $2 + 100 \equiv 102 \equiv 4 \pmod{7}$ (Thursday)
+
+## Congruence Classes
+
+The **congruence class** of $a$ modulo $n$ is:
+$$[a]_n = \{b \in \mathbb{Z} : b \equiv a \pmod{n}\} = \{a + kn : k \in \mathbb{Z}\}$$
+
+There are exactly $n$ distinct congruence classes modulo $n$, typically represented by $\{0, 1, 2, \ldots, n-1\}$.
+
+## Connection to Other Concepts
+
+- The set of congruence classes forms the quotient group $\mathbb{Z}/n\mathbb{Z}$ (see @ex-quotient-integers-mod-n)
+- Fermat's Little Theorem and Euler's Theorem use modular arithmetic (see @thm-euler)
+- Prime numbers have special properties in modular arithmetic (see @def-prime)
+- The Euclidean algorithm can find modular inverses (see @thm-euclidean-algorithm)
+
+## Applications
+
+1. **Cryptography**: RSA encryption, Diffie-Hellman key exchange
+2. **Computer Science**: Hash functions, checksums, random number generation
+3. **Number Theory**: Solving Diophantine equations, primality testing
+4. **Error Detection**: ISBN codes, credit card validation
+5. **Music Theory**: Pitch classes and intervals
+
+## See Also
+
+- @def-gcd
+- @def-prime
+- @thm-euler
+- @thm-euclidean-algorithm
+- @ex-quotient-integers-mod-n
+- @ax-induction
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-gcd["Definition: Greatest Common Divisor"]:::definition
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    ax-induction["Axiom: Mathematical Induction"]:::axiom
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
+    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-prime["Definition: Prime Number"]:::definition
+    thm-euler --> def-congruence
+    def-congruence --> ex-quotient-integers-mod-n
+    def-congruence --> ax-induction
+    def-congruence --> thm-euclidean-algorithm
+    def-congruence --> def-prime
+    def-congruence --> thm-euler
+    def-congruence --> def-set
+    def-gcd --> def-congruence
+    def-congruence --> def-gcd
+    ex-quotient-integers-mod-n --> def-congruence
+    class def-congruence current
+    click def-gcd "def-gcd.html" "Go to Greatest Common Divisor definition"
+    click thm-euler "thm-euler.html" "Go to Euler's Theorem theorem"
+    click ax-induction "ax-induction.html" "Go to Mathematical Induction axiom"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
+    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Go to Euclidean Algorithm theorem"
+    click def-set "def-set.html" "Go to Set definition"
+    click def-prime "def-prime.html" "Go to Prime Number definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-congruence" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-congruence.html){target="_blank"}
