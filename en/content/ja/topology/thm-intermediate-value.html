@@ -320,9 +320,9 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-continuity["Definition: Continuity"]:::definition
-    def-connected["Definition: Connected Space"]:::definition
     thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
+    def-connected["Definition: Connected Space"]:::definition
+    def-continuity["Definition: Continuity"]:::definition
     thm-intermediate-value --&gt; def-connected
     thm-intermediate-value --&gt; def-continuity
     class thm-intermediate-value current
@@ -336,7 +336,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-intermediate-value-1753076715" class="graph-visualization-container">
+<div id="graph-viz-thm-intermediate-value-1753077162" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -516,12 +516,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-intermediate-value-1753076715', {
+    createForceGraph(data, 'graph-viz-thm-intermediate-value-1753077162', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-intermediate-value-1753076715').innerHTML =
+    document.getElementById('graph-viz-thm-intermediate-value-1753077162').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
