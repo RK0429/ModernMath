@@ -326,6 +326,10 @@ Uses hash-based change detection to track translation status in `translations-st
 - Path calculation must extract the language directory position to find the correct base path
 - CSS files should use simple names without relative paths for proper resolution
 - Test resource loading after deployment using Playwright MCP tools
+- **JavaScript Debugging Tips**:
+  - Use flexible selectors (e.g., `.navbar a` vs `.navbar-nav .nav-link`) as HTML structure may vary
+  - Avoid file existence checks via fetch() due to CORS - construct paths deterministically instead
+  - URL patterns must account for GitHub Pages subdirectory structure: `/ProjectName/lang/path/`
 
 ### CI/CD Script Exit Codes
 
