@@ -221,7 +221,7 @@ The project enforces strict placement rules for visualization sections to ensure
 2. **`insert_diagrams.py`** - Automatically uses placement fix logic:
    - Inserts both Mermaid dependency graphs and interactive visualizations
    - Ensures proper placement at end of articles
-   - Language-aware headers ("Dependency Graph" vs "依存グラフ")
+   - Language-aware headers ("Dependency Graph" vs "依存関係グラフ")
 
 **Important**: The build pipeline automatically enforces correct placement via `insert_diagrams.py`.
 
@@ -394,6 +394,14 @@ When implementing Japanese support, create these navigation pages with `-ja.qmd`
 - `contributing-ja.qmd` - Japanese contributing guide
 
 Update `_quarto-ja.yml` navbar to reference these files and ensure all domain links use Japanese paths (e.g., `../../search-ja.qmd` instead of `../../search.qmd`).
+
+### Japanese Terminology Consistency
+
+To maintain consistency across all Japanese content:
+
+- **Dependency Graph Header**: Always use "依存関係グラフ" (not "依存グラフ")
+- **Interactive Visualization Header**: Always use "インタラクティブ可視化"
+- **Standardization Script**: Use `scripts/standardize_dependency_headers.py` to fix any inconsistent headers
 
 ### Translation Management System
 

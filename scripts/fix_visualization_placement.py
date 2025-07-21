@@ -34,6 +34,7 @@ def identify_sections(content: str) -> List[Dict[str, Any]]:
                 for keyword in [
                     "Dependency Graph",
                     "依存グラフ",
+                    "依存関係グラフ",
                     "Local Graph",
                     "局所依存関係グラフ",
                 ]
@@ -156,7 +157,7 @@ def update_visualization_content(
 
     if diagram_content:
         if is_japanese:
-            dependency_section = f"## 依存グラフ\n\n{diagram_content}"
+            dependency_section = f"## 依存関係グラフ\n\n{diagram_content}"
         else:
             dependency_section = f"## Dependency Graph\n\n{diagram_content}"
         sections_to_add.append(dependency_section)
