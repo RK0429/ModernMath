@@ -5,50 +5,40 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-associativity["Definition: Associativity"]:::definition
+    def-identity-element["Definition: Identity Element"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     ex-integers-addition["Example: Integers under Addition"]:::example
-    def-subgroup["Definition: Subgroup"]:::definition
-    def-ring["Definition: Ring"]:::definition
     ex-finite-field["Example: Finite Field"]:::example
     ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
-    thm-unique-identity["Theorem: Uniqueness of Identity"]:::theorem
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-commutativity["Definition: Commutativity"]:::definition
-    def-field["Definition: Field"]:::definition
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
-    def-associativity["Definition: Associativity"]:::definition
-    ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
-    def-group["Definition: Group"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
     def-set["Definition: Set"]:::definition
-    def-identity-element["Definition: Identity Element"]:::definition
+    def-commutativity["Definition: Commutativity"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
     def-inverse-element["Definition: Inverse Element"]:::definition
-    ex-integers-addition --> def-group
-    thm-unique-identity --> def-group
-    def-group --> def-set
-    def-ring --> def-group
-    def-group --> def-binary-operation
-    def-group --> ex-finite-field
-    ex-integers-ring --> def-group
-    def-group --> def-homomorphism
-    thm-euler --> def-group
-    ex-even-integers-subgroup --> def-group
+    thm-unique-identity["Theorem: Uniqueness of Identity"]:::theorem
+    def-group["Definition: Group"]:::definition
     def-homomorphism --> def-group
-    def-group --> def-identity-element
+    def-group --> thm-unique-identity
+    thm-unique-identity --> def-group
     def-group --> ex-even-integers-subgroup
     def-group --> def-associativity
-    def-group --> def-commutativity
-    thm-lagrange --> def-group
-    def-field --> def-group
-    def-group --> thm-lagrange
-    def-group --> def-subgroup
-    def-group --> ex-integers-addition
-    ex-exponential-homomorphism --> def-group
-    def-subgroup --> def-group
-    def-group --> def-inverse-element
-    def-group --> thm-unique-identity
+    ex-even-integers-subgroup --> def-group
+    def-quotient-group --> def-group
     def-normal-subgroup --> def-group
+    def-group --> def-commutativity
+    def-group --> ex-finite-field
+    def-group --> def-homomorphism
+    def-group --> def-quotient-group
+    def-group --> ex-integers-addition
+    def-group --> def-normal-subgroup
+    def-group --> def-identity-element
+    def-group --> def-subgroup
+    def-group --> def-binary-operation
+    def-group --> def-set
+    def-subgroup --> def-group
+    ex-integers-addition --> def-group
+    def-group --> def-inverse-element
     class def-group current
-```

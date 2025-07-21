@@ -257,6 +257,8 @@ window.Quarto = {
   <li><a href="#形式的定義" id="toc-形式的定義" class="nav-link" data-scroll-target="#形式的定義">形式的定義</a></li>
   <li><a href="#性質" id="toc-性質" class="nav-link" data-scroll-target="#性質">性質</a></li>
   <li><a href="#特殊な型" id="toc-特殊な型" class="nav-link" data-scroll-target="#特殊な型">特殊な型</a></li>
+  <li><a href="#核と像" id="toc-核と像" class="nav-link" data-scroll-target="#核と像">核と像</a></li>
+  <li><a href="#第一同型定理" id="toc-第一同型定理" class="nav-link" data-scroll-target="#第一同型定理">第一同型定理</a></li>
   <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul></li>
@@ -313,6 +315,21 @@ window.Quarto = {
 <li><strong>自己同型</strong>：全単射である自己準同型</li>
 </ul>
 </section>
+<section id="核と像" class="level2">
+<h2 class="anchored" data-anchor-id="核と像">核と像</h2>
+<p>準同型 <span class="math inline">\(f: G \to H\)</span> に対して：</p>
+<ul>
+<li><strong>核</strong>は <span class="math inline">\(\ker(f) = \{g \in G : f(g) = e_H\}\)</span></li>
+<li><strong>像</strong>は <span class="math inline">\(\text{Im}(f) = \{f(g) : g \in G\}\)</span></li>
+</ul>
+<p>核は常に <span class="math inline">\(G\)</span> の正規部分群であり、これにより商群 <span class="math inline">\(G/\ker(f)\)</span> を形成できます。</p>
+</section>
+<section id="第一同型定理" class="level2">
+<h2 class="anchored" data-anchor-id="第一同型定理">第一同型定理</h2>
+<p>準同型と商群の間の基本的な関係は次で与えられます：</p>
+<p><span class="math display">\[G/\ker(f) \cong \text{Im}(f)\]</span></p>
+<p>これは、すべての準同型像が本質的に商群であることを示しています。詳細は <a href="../../../content/ja/algebra/def-quotient-group.html">商群</a> を参照してください。</p>
+</section>
 <section id="依存関係グラフ" class="level2">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
@@ -326,38 +343,41 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
     ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
-    def-group["Definition: Group"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
     def-kernel["Definition: Kernel"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-group-example["Definition: Group"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-homomorphism --&gt; def-binary-operation
     def-homomorphism --&gt; def-group
     def-kernel --&gt; def-homomorphism
-    def-homomorphism --&gt; def-binary-operation
     ex-exponential-homomorphism --&gt; def-homomorphism
-    def-normal-subgroup --&gt; def-homomorphism
-    def-group-example --&gt; def-homomorphism
     def-group --&gt; def-homomorphism
+    def-group-example --&gt; def-homomorphism
+    def-normal-subgroup --&gt; def-homomorphism
+    def-homomorphism --&gt; def-quotient-group
     class def-homomorphism current
+    click ex-exponential-homomorphism "ex-exponential-homomorphism.html" "Example: Exponential Homomorphismへ"
+    click def-kernel "def-kernel.html" "Definition: Kernelへ"
+    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
+    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
+    click def-group-example "def-group-example.html" "Definition: Groupへ"
+    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
+    click def-group "def-group.html" "Definition: Groupへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
 </div>
 </div>
 </div>
-<pre><code>click ex-exponential-homomorphism "ex-exponential-homomorphism.html" "Example: Exponential Homomorphismへ"
-click def-group "def-group.html" "Definition: Groupへ"
-click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
-click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
-click def-kernel "def-kernel.html" "Definition: Kernelへ"
-click def-group-example "def-group-example.html" "Definition: Groupへ"</code></pre>
 </section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-homomorphism-1753102210" class="graph-visualization-container">
+<div id="graph-viz-def-homomorphism-1753107522" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -537,12 +557,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-homomorphism-1753102210', {
+    createForceGraph(data, 'graph-viz-def-homomorphism-1753107522', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-homomorphism-1753102210').innerHTML =
+    document.getElementById('graph-viz-def-homomorphism-1753107522').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

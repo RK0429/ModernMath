@@ -254,7 +254,10 @@ window.Quarto = {
   <ul>
   <li><a href="#thm-lagrange" id="toc-thm-lagrange" class="nav-link active" data-scroll-target="#thm-lagrange">Lagrange’s Theorem</a>
   <ul class="collapse">
-  <li><a href="#statement" id="toc-statement" class="nav-link" data-scroll-target="#statement">Statement</a></li>
+  <li><a href="#statement" id="toc-statement" class="nav-link" data-scroll-target="#statement">Statement</a>
+  <ul class="collapse">
+  <li><a href="#connection-to-quotient-groups" id="toc-connection-to-quotient-groups" class="nav-link" data-scroll-target="#connection-to-quotient-groups">Connection to Quotient Groups</a></li>
+  </ul></li>
   <li><a href="#corollaries" id="toc-corollaries" class="nav-link" data-scroll-target="#corollaries">Corollaries</a></li>
   <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
   <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
@@ -292,6 +295,11 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="statement">Statement</h2>
 <p>If <span class="math inline">\(G\)</span> is a finite group and <span class="math inline">\(H \leq G\)</span>, then: <span class="math display">\[|G| = |H| \cdot [G:H]\]</span></p>
 <p>where <span class="math inline">\(|G|\)</span> denotes the order (number of elements) of <span class="math inline">\(G\)</span>, and <span class="math inline">\([G:H]\)</span> is the index of <span class="math inline">\(H\)</span> in <span class="math inline">\(G\)</span> (the number of distinct left cosets of <span class="math inline">\(H\)</span> in <span class="math inline">\(G\)</span>).</p>
+<section id="connection-to-quotient-groups" class="level3">
+<h3 class="anchored" data-anchor-id="connection-to-quotient-groups">Connection to Quotient Groups</h3>
+<p>When <span class="math inline">\(H\)</span> is a normal subgroup of <span class="math inline">\(G\)</span>, the index <span class="math inline">\([G:H]\)</span> equals the order of the <a href="../../../content/en/algebra/def-quotient-group.html">商群</a> <span class="math inline">\(G/H\)</span>: <span class="math display">\[[G:H] = |G/H|\]</span></p>
+<p>This provides another interpretation of Lagrange’s theorem: the order of a quotient group divides the order of the original group.</p>
+</section>
 </section>
 <section id="corollaries" class="level2">
 <h2 class="anchored" data-anchor-id="corollaries">Corollaries</h2>
@@ -318,32 +326,35 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-subgroup["Definition: Subgroup"]:::definition
-    def-group["Definition: Group"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-group-example["Definition: Group"]:::definition
-    thm-lagrange --&gt; def-group
-    def-group --&gt; thm-lagrange
-    def-group-example --&gt; thm-lagrange
-    thm-lagrange --&gt; def-subgroup
+    def-subgroup["Definition: Subgroup"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-group["Definition: Group"]:::definition
     def-normal-subgroup --&gt; thm-lagrange
+    def-subgroup --&gt; thm-lagrange
+    thm-lagrange --&gt; def-quotient-group
+    thm-lagrange --&gt; def-group
+    thm-lagrange --&gt; def-subgroup
+    def-group-example --&gt; thm-lagrange
     class thm-lagrange current
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click def-group-example "def-group-example.html" "Go to Group definition"
+    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click def-group "def-group.html" "Go to Group definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
 </div>
 </div>
 </div>
-<pre><code>click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
-click def-group "def-group.html" "Go to Group definition"
-click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-click def-group-example "def-group-example.html" "Go to Group definition"</code></pre>
 </section>
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-lagrange-1753102162" class="graph-visualization-container">
+<div id="graph-viz-thm-lagrange-1753107475" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -523,12 +534,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-lagrange-1753102162', {
+    createForceGraph(data, 'graph-viz-thm-lagrange-1753107475', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-lagrange-1753102162').innerHTML =
+    document.getElementById('graph-viz-thm-lagrange-1753107475').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

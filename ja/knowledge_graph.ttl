@@ -167,6 +167,10 @@
 
 <http://modernmath.org/concepts/pythagorean> ns1:hasTranslation <http://modernmath.org/concepts/pythagorean_ja> .
 
+<http://modernmath.org/concepts/quotient-group> ns1:hasTranslation <http://modernmath.org/concepts/quotient-group_ja> .
+
+<http://modernmath.org/concepts/quotient-integers-mod-n> ns1:hasTranslation <http://modernmath.org/concepts/quotient-integers-mod-n_ja> .
+
 <http://modernmath.org/concepts/random-variable> ns1:hasTranslation <http://modernmath.org/concepts/random-variable_ja> .
 
 <http://modernmath.org/concepts/rank-nullity> ns1:hasTranslation <http://modernmath.org/concepts/rank-nullity_ja> .
@@ -457,7 +461,8 @@ base:thm-euclidean-algorithm a mymath:Theorem ;
     mymath:hasDomain "Number Theory",
         "数論" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-gcd .
+    mymath:uses base:def-gcd,
+        base:ex-quotient-integers-mod-n .
 
 base:thm-euler a mymath:Theorem ;
     rdfs:label "Theorem: Euler's Theorem"@en,
@@ -466,7 +471,9 @@ base:thm-euler a mymath:Theorem ;
         "数論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-group,
-        base:def-prime .
+        base:def-prime,
+        base:def-quotient-group,
+        base:ex-quotient-integers-mod-n .
 
 base:thm-field-characteristic a mymath:Theorem ;
     rdfs:label "Theorem: Field Characteristic"@en,
@@ -753,6 +760,10 @@ base:thm-yoneda a mymath:Theorem ;
 
 <http://modernmath.org/concepts/pythagorean_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/quotient-group_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/quotient-integers-mod-n_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/random-variable_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/rank-nullity_ja> ns1:language "ja" .
@@ -993,6 +1004,7 @@ base:def-kernel a mymath:Definition ;
     mymath:uses base:def-homomorphism,
         base:def-linear-transformation,
         base:def-normal-subgroup,
+        base:def-quotient-group,
         base:def-vector-space .
 
 base:def-matrix a mymath:Definition ;
@@ -1098,7 +1110,9 @@ base:ex-finite-field a mymath:Example ;
         "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-field,
-        base:def-prime .
+        base:def-prime,
+        base:def-quotient-group,
+        base:ex-quotient-integers-mod-n .
 
 base:formal-proof-def-basis a mymath:FormalProof ;
     rdfs:label "Formal proof of def-basis"@en ;
@@ -1315,18 +1329,6 @@ base:def-linear-independence a mymath:Definition ;
         base:formal-proof-def-linear-independence ;
     mymath:uses base:def-vector-space .
 
-base:def-normal-subgroup a mymath:Definition ;
-    rdfs:label "Definition: Normal Subgroup"@en,
-        "定義: 正規部分群"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasLeanId "None" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-group,
-        base:def-homomorphism,
-        base:def-subgroup,
-        base:thm-lagrange .
-
 base:def-random-variable a mymath:Definition ;
     rdfs:label "Definition: Random Variable"@en,
         "定義: 確率変数"@en ;
@@ -1383,15 +1385,16 @@ base:def-ring a mymath:Definition ;
         base:def-group,
         base:def-set .
 
-base:ex-integers-addition a mymath:Example ;
-    rdfs:label "Example: Integers under Addition"@en,
-        "例: 加法における整数"@en ;
+base:ex-quotient-integers-mod-n a mymath:Example ;
+    rdfs:label "Example: Integers Modulo n"@en,
+        "例: 整数の n による剰余"@en ;
     mymath:hasDomain "Algebra",
         "代数学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation,
-        base:def-group,
-        base:def-set .
+    mymath:uses base:def-group,
+        base:def-normal-subgroup,
+        base:def-quotient-group,
+        base:ex-integers-addition .
 
 base:thm-lagrange a mymath:Theorem ;
     rdfs:label "Theorem: Lagrange's Theorem"@en,
@@ -1400,6 +1403,7 @@ base:thm-lagrange a mymath:Theorem ;
         "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-group,
+        base:def-quotient-group,
         base:def-subgroup .
 
 base:def-line a mymath:Definition ;
@@ -1436,6 +1440,16 @@ base:def-prime a mymath:Definition ;
         "数論" ;
     mymath:hasStatus "complete" .
 
+base:ex-integers-addition a mymath:Example ;
+    rdfs:label "Example: Integers under Addition"@en,
+        "例: 加法における整数"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-binary-operation,
+        base:def-group,
+        base:def-set .
+
 base:def-continuity a mymath:Definition ;
     rdfs:label "Definition: Continuity"@en,
         "定義: 連続性"@en ;
@@ -1451,7 +1465,8 @@ base:def-homomorphism a mymath:Definition ;
         "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-binary-operation,
-        base:def-group .
+        base:def-group,
+        base:def-quotient-group .
 
 base:def-linear-transformation a mymath:Definition ;
     rdfs:label "Definition: Linear Transformation"@en,
@@ -1473,18 +1488,6 @@ base:def-open-set a mymath:Definition ;
         base:formal-proof-def-open-set ;
     mymath:uses base:def-topological-space .
 
-base:def-subgroup a mymath:Definition ;
-    rdfs:label "Definition: Subgroup"@en,
-        "定義：部分群"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasLeanId "Mathlib.Algebra.Group.Subgroup.Basic.Subgroup" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Group.Subgroup.Basic.Subgroup>,
-        base:formal-proof-def-subgroup ;
-    mymath:uses base:def-group,
-        base:def-set .
-
 base:def-limit a mymath:Definition ;
     rdfs:label "Definition: Limit of a Sequence"@en,
         "定義：数列の極限"@en ;
@@ -1503,6 +1506,34 @@ base:def-metric-space a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
+base:def-normal-subgroup a mymath:Definition ;
+    rdfs:label "Definition: Normal Subgroup"@en,
+        "定義: 正規部分群"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasLeanId "None" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-group,
+        base:def-homomorphism,
+        base:def-quotient-group,
+        base:def-subgroup,
+        base:thm-lagrange .
+
+base:def-subgroup a mymath:Definition ;
+    rdfs:label "Definition: Subgroup"@en,
+        "定義：部分群"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasLeanId "Mathlib.Algebra.Group.Subgroup.Basic.Subgroup" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Group.Subgroup.Basic.Subgroup>,
+        base:formal-proof-def-subgroup ;
+    mymath:uses base:def-group,
+        base:def-normal-subgroup,
+        base:def-quotient-group,
+        base:def-set,
+        base:thm-lagrange .
+
 base:def-category a mymath:Definition ;
     rdfs:label "Definition: Category"@en,
         "定義: 圏"@en ;
@@ -1520,6 +1551,17 @@ base:def-topological-space a mymath:Definition ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Basic.TopologicalSpace>,
         base:formal-proof-def-topological-space ;
     mymath:uses base:def-set .
+
+base:def-quotient-group a mymath:Definition ;
+    rdfs:label "Definition: Quotient Group"@en,
+        "定義: 商群"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasLeanId "Mathlib.GroupTheory.QuotientGroup" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-group,
+        base:def-normal-subgroup,
+        base:def-subgroup .
 
 base:def-vector-space a mymath:Definition ;
     rdfs:label "Definition: Vector Space"@en,
@@ -1557,12 +1599,13 @@ base:def-group a mymath:Definition ;
         base:def-homomorphism,
         base:def-identity-element,
         base:def-inverse-element,
+        base:def-normal-subgroup,
+        base:def-quotient-group,
         base:def-set,
         base:def-subgroup,
         base:ex-even-integers-subgroup,
         base:ex-finite-field,
         base:ex-integers-addition,
-        base:thm-lagrange,
         base:thm-unique-identity .
 
 base:def-set a mymath:Definition ;

@@ -343,46 +343,46 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    ex-integers-addition["Example: Integers under Addition"]:::example
     def-associativity["Definition: Associativity"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
     def-identity-element["Definition: Identity Element"]:::definition
-    def-inverse-element["Definition: Inverse Element"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
     def-binary-operation["Definition: Binary Operation"]:::definition
-    thm-unique-identity["Theorem: Uniqueness of Identity"]:::theorem
     def-group-example["Definition: Group"]:::definition
-    def-group-example --&gt; thm-unique-identity
-    def-group-example --&gt; def-binary-operation
-    def-group-example --&gt; def-subgroup
+    ex-integers-addition["Example: Integers under Addition"]:::example
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-inverse-element["Definition: Inverse Element"]:::definition
+    thm-unique-identity["Theorem: Uniqueness of Identity"]:::theorem
     def-group-example --&gt; def-associativity
     def-group-example --&gt; def-inverse-element
-    def-group-example --&gt; thm-lagrange
-    def-group-example --&gt; def-homomorphism
+    def-group-example --&gt; def-subgroup
     def-group-example --&gt; ex-integers-addition
+    def-group-example --&gt; thm-unique-identity
+    def-group-example --&gt; def-binary-operation
+    def-group-example --&gt; def-homomorphism
     def-group-example --&gt; def-identity-element
+    def-group-example --&gt; thm-lagrange
     class def-group-example current
+    click def-associativity "def-associativity.html" "Go to Associativity definition"
+    click def-identity-element "def-identity-element.html" "Go to Identity Element definition"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
+    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
+    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
+    click def-inverse-element "def-inverse-element.html" "Go to Inverse Element definition"
+    click thm-unique-identity "thm-unique-identity.html" "Go to Uniqueness of Identity theorem"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
 </div>
 </div>
 </div>
-<pre><code>click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
-click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
-click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
-click def-associativity "def-associativity.html" "Go to Associativity definition"
-click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
-click def-identity-element "def-identity-element.html" "Go to Identity Element definition"
-click def-inverse-element "def-inverse-element.html" "Go to Inverse Element definition"
-click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
-click thm-unique-identity "thm-unique-identity.html" "Go to Uniqueness of Identity theorem"</code></pre>
 </section>
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-group-example-1753102150" class="graph-visualization-container">
+<div id="graph-viz-def-group-example-1753107461" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -562,12 +562,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-group-example-1753102150', {
+    createForceGraph(data, 'graph-viz-def-group-example-1753107461', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-group-example-1753102150').innerHTML =
+    document.getElementById('graph-viz-def-group-example-1753107461').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -295,7 +295,7 @@ window.Quarto = {
 
 <section id="ex-finite-field" class="level1">
 <h1>Example: The Finite Field <span class="math inline">\(\mathbb{F}_5\)</span></h1>
-<p>The integers modulo 5 form a <a href="../../../content/en/algebra/def-field.html">Field</a>, denoted <span class="math inline">\(\mathbb{F}_5\)</span> or <span class="math inline">\(\mathbb{Z}/5\mathbb{Z}\)</span>.</p>
+<p>The integers modulo 5 form a <a href="../../../content/en/algebra/def-field.html">Field</a>, denoted <span class="math inline">\(\mathbb{F}_5\)</span> or <span class="math inline">\(\mathbb{Z}/5\mathbb{Z}\)</span>. This notation reflects that <span class="math inline">\(\mathbb{F}_5\)</span> is the <a href="../../../content/en/algebra/def-quotient-group.html">Quotient Group</a> of <span class="math inline">\(\mathbb{Z}\)</span> by the subgroup <span class="math inline">\(5\mathbb{Z}\)</span> (see <a href="../../../content/en/algebra/ex-quotient-integers-mod-n.html">Example: Integers Modulo n</a>).</p>
 <section id="elements-and-operations" class="level2">
 <h2 class="anchored" data-anchor-id="elements-and-operations">Elements and Operations</h2>
 <p>The field <span class="math inline">\(\mathbb{F}_5 = \{0, 1, 2, 3, 4\}\)</span> with operations:</p>
@@ -349,25 +349,31 @@ window.Quarto = {
     def-prime["Definition: Prime Number"]:::definition
     def-field["Definition: Field"]:::definition
     ex-finite-field["Example: Finite Field"]:::example
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-quotient-group["Definition: Quotient Group"]:::definition
     def-group["Definition: Group"]:::definition
+    ex-finite-field --&gt; ex-quotient-integers-mod-n
     def-group --&gt; ex-finite-field
-    ex-finite-field --&gt; def-field
     ex-finite-field --&gt; def-prime
+    ex-finite-field --&gt; def-field
+    ex-finite-field --&gt; def-quotient-group
     class ex-finite-field current
+    click def-prime "def-prime.html" "Go to Prime Number definition"
+    click def-field "def-field.html" "Go to Field definition"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click def-group "def-group.html" "Go to Group definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
 </div>
 </div>
 </div>
-<pre><code>click def-prime "def-prime.html" "Go to Prime Number definition"
-click def-field "def-field.html" "Go to Field definition"
-click def-group "def-group.html" "Go to Group definition"</code></pre>
 </section>
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-ex-finite-field-1753102337" class="graph-visualization-container">
+<div id="graph-viz-ex-finite-field-1753107647" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -547,12 +553,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-finite-field-1753102337', {
+    createForceGraph(data, 'graph-viz-ex-finite-field-1753107647', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-finite-field-1753102337').innerHTML =
+    document.getElementById('graph-viz-ex-finite-field-1753107647').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

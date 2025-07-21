@@ -261,6 +261,8 @@ window.Quarto = {
   <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link" data-scroll-target="#formal-definition">Formal Definition</a></li>
   <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
   <li><a href="#special-types" id="toc-special-types" class="nav-link" data-scroll-target="#special-types">Special Types</a></li>
+  <li><a href="#kernel-and-image" id="toc-kernel-and-image" class="nav-link" data-scroll-target="#kernel-and-image">Kernel and Image</a></li>
+  <li><a href="#first-isomorphism-theorem" id="toc-first-isomorphism-theorem" class="nav-link" data-scroll-target="#first-isomorphism-theorem">First Isomorphism Theorem</a></li>
   <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
   <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
   </ul></li>
@@ -317,6 +319,21 @@ window.Quarto = {
 <li><strong>Automorphism</strong>: A bijective endomorphism</li>
 </ul>
 </section>
+<section id="kernel-and-image" class="level2">
+<h2 class="anchored" data-anchor-id="kernel-and-image">Kernel and Image</h2>
+<p>For a homomorphism <span class="math inline">\(f: G \to H\)</span>:</p>
+<ul>
+<li>The <strong>kernel</strong> is <span class="math inline">\(\ker(f) = \{g \in G : f(g) = e_H\}\)</span></li>
+<li>The <strong>image</strong> is <span class="math inline">\(\text{Im}(f) = \{f(g) : g \in G\}\)</span></li>
+</ul>
+<p>The kernel is always a normal subgroup of <span class="math inline">\(G\)</span>, which allows us to form the quotient group <span class="math inline">\(G/\ker(f)\)</span>.</p>
+</section>
+<section id="first-isomorphism-theorem" class="level2">
+<h2 class="anchored" data-anchor-id="first-isomorphism-theorem">First Isomorphism Theorem</h2>
+<p>The fundamental relationship between homomorphisms and quotient groups is given by:</p>
+<p><span class="math display">\[G/\ker(f) \cong \text{Im}(f)\]</span></p>
+<p>This shows that every homomorphic image is essentially a quotient group. See <a href="../../../content/en/algebra/def-quotient-group.html">商群</a> for more details.</p>
+</section>
 <section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
@@ -330,38 +347,41 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
     ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
-    def-group["Definition: Group"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
     def-kernel["Definition: Kernel"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-group-example["Definition: Group"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-homomorphism --&gt; def-binary-operation
     def-homomorphism --&gt; def-group
     def-kernel --&gt; def-homomorphism
-    def-homomorphism --&gt; def-binary-operation
     ex-exponential-homomorphism --&gt; def-homomorphism
-    def-normal-subgroup --&gt; def-homomorphism
-    def-group-example --&gt; def-homomorphism
     def-group --&gt; def-homomorphism
+    def-group-example --&gt; def-homomorphism
+    def-normal-subgroup --&gt; def-homomorphism
+    def-homomorphism --&gt; def-quotient-group
     class def-homomorphism current
+    click ex-exponential-homomorphism "ex-exponential-homomorphism.html" "Go to Exponential Homomorphism example"
+    click def-kernel "def-kernel.html" "Go to Kernel definition"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click def-group-example "def-group-example.html" "Go to Group definition"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click def-group "def-group.html" "Go to Group definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
 </div>
 </div>
 </div>
-<pre><code>click ex-exponential-homomorphism "ex-exponential-homomorphism.html" "Go to Exponential Homomorphism example"
-click def-group "def-group.html" "Go to Group definition"
-click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
-click def-kernel "def-kernel.html" "Go to Kernel definition"
-click def-group-example "def-group-example.html" "Go to Group definition"</code></pre>
 </section>
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-homomorphism-1753102329" class="graph-visualization-container">
+<div id="graph-viz-def-homomorphism-1753107639" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -541,12 +561,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-homomorphism-1753102329', {
+    createForceGraph(data, 'graph-viz-def-homomorphism-1753107639', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-homomorphism-1753102329').innerHTML =
+    document.getElementById('graph-viz-def-homomorphism-1753107639').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
