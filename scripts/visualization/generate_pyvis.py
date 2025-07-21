@@ -12,14 +12,22 @@ import logging
 from typing import List
 
 # Add the project root to the Python path
-project_root = Path(__file__).parent.parent
+project_root = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(project_root))
 
-from viz.pyvis_graphs import (  # noqa: E402
-    generate_all_node_graphs,
-    create_domain_overview,
-    save_as_html,
-)
+# pylint: disable=import-error,wrong-import-position
+try:
+    from viz.pyvis_graphs import (  # noqa: E402
+        generate_all_node_graphs,
+        create_domain_overview,
+        save_as_html,
+    )
+except ImportError as e:
+    print(f"Error importing viz.pyvis_graphs: {e}")
+    print(f"Project root: {project_root}")
+    print(f"sys.path: {sys.path}")
+    sys.exit(1)
+# pylint: enable=import-error,wrong-import-position
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -31,7 +39,7 @@ def main() -> None:
     ttl_path = project_root / "knowledge_graph.ttl"
 
     if not ttl_path.exists():
-        logger.error(f"Knowledge graph not found at {ttl_path}")
+        logger.error("Knowledge graph not found at %s", ttl_path)
         logger.error("Please run build_graph.py first")
         sys.exit(1)
 
@@ -57,16 +65,16 @@ def main() -> None:
 
     for domain in domains:
         try:
-            logger.info(f"Creating overview for {domain}...")
+            logger.info("Creating overview for %s...", domain)
             net = create_domain_overview(domain, ttl_path)
             save_as_html(net, f"domain-{domain.lower().replace(' ', '-')}")
-        except Exception as e:
-            logger.warning(f"Could not create overview for {domain}: {e}")
+        except (ValueError, IOError) as e:
+            logger.warning("Could not create overview for %s: %s", domain, e)
 
     # Generate a summary
     output_dir = project_root / "output" / "interactive"
     html_files = list(output_dir.glob("*.html"))
-    logger.info(f"Successfully generated {len(html_files)} interactive visualizations")
+    logger.info("Successfully generated %d interactive visualizations", len(html_files))
 
     # Create an index file listing all visualizations
     create_visualization_index(output_dir, html_files)
@@ -180,7 +188,7 @@ def create_visualization_index(output_dir: Path, html_files: List[Path]) -> None
 
     index_path = output_dir / "index.html"
     index_path.write_text(index_content)
-    logger.info(f"Created visualization index at {index_path}")
+    logger.info("Created visualization index at %s", index_path)
 
 
 if __name__ == "__main__":
