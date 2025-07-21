@@ -1,0 +1,95 @@
+---
+id: def-abelian-group
+lean_id: Mathlib.Algebra.Group.Defs
+requires:
+- def-group
+- def-commutativity
+status: complete
+title: '定義: アーベル群'
+translation_of: ../../en/algebra/def-abelian-group.qmd
+translations:
+  en: ../en/algebra/def-abelian-group.html
+  ja: ../ja/algebra/def-abelian-group.html
+type: Definition
+---
+
+# 定義: アーベル群 {#def-abelian-group}
+
+**アーベル群**（**可換群**とも呼ばれる）は、演算が[可換](def-commutativity.qmd)である[群](def-group.qmd) $(G, \star)$ である。
+
+## 形式的定義
+
+群 $(G, \star)$ が**アーベル群**であるとは、すべての群の公理に加えて以下を満たすときである：
+
+4. **可換性**: すべての $a, b \in G$ に対して、
+   $$a \star b = b \star a$$
+
+したがって、アーベル群は以下を満たす：
+1. **結合律**: すべての $a, b, c \in G$ に対して $(a \star b) \star c = a \star (b \star c)$
+2. **単位元**: すべての $a \in G$ に対して $a \star e = e \star a = a$ となる $e \in G$ が存在する
+3. **逆元**: 各 $a \in G$ に対して、$a \star a^{-1} = a^{-1} \star a = e$ となる $a^{-1} \in G$ が存在する
+4. **可換性**: すべての $a, b \in G$ に対して $a \star b = b \star a$
+
+## 記法
+
+- アーベル群はしばしば加法的に書かれる：$(G, +)$ で単位元は $0$、逆元は $-a$
+- 非アーベル群は通常乗法的に書かれる：$(G, \cdot)$ で単位元は $1$、逆元は $a^{-1}$
+- 交換子 $[a,b] = aba^{-1}b^{-1}$ はアーベル群では単位元に等しい
+
+## 例
+
+### 数体系
+- $(\mathbb{Z}, +)$：整数の加法群
+- $(\mathbb{Q}, +)$, $(\mathbb{R}, +)$, $(\mathbb{C}, +)$：有理数、実数、複素数の加法群
+- $(\mathbb{Q}^*, \cdot)$, $(\mathbb{R}^*, \cdot)$, $(\mathbb{C}^*, \cdot)$：非零有理数、実数、複素数の乗法群
+- $(\mathbb{Z}_n, +)$：$n$ を法とする整数の加法群
+
+### ベクトル空間
+- $(V, +)$：任意のベクトル空間のベクトル加法
+- $(\mathbb{R}^n, +)$：$n$ 次元ユークリッド空間の成分ごとの加法
+
+### その他の例
+- 巡回群：すべての[巡回群](def-cyclic-group.qmd)はアーベル群である
+- 直積：$G$ と $H$ がアーベル群ならば、$G \times H$ もアーベル群である
+- 単位元のみからなる自明な群 $\{e\}$
+
+## 反例
+
+- $(GL_n(\mathbb{R}), \cdot)$ ($n \geq 2$ のとき)：一般線形群（可逆行列）は非アーベル群
+- $(S_n, \circ)$ ($n \geq 3$ のとき)：対称群（置換）は非アーベル群
+- 四元数群 $Q_8 = \{\pm 1, \pm i, \pm j, \pm k\}$ は非アーベル群
+
+## 性質
+
+### 基本的性質
+- アーベル群のすべての部分群は[正規部分群](def-normal-subgroup.qmd)である
+- アーベル群のすべての[商群](def-quotient-group.qmd)はアーベル群である
+- 任意の群の中心 $Z(G) = \{g \in G : gx = xg \text{ すべての } x \in G \text{ に対して}\}$ はアーベル群である
+
+### 構造定理
+- **基本定理**：有限生成アーベル群はすべて巡回群の直積に同型である
+- **分類**：有限アーベル群は不変因子または初等因子によって同型を除いて分類される
+
+### 準同型
+- アーベル群間の群準同型の集合 $\text{Hom}(G, H)$ はアーベル群をなす
+- アーベル群に対して、任意の準同型の核と像は部分群である
+
+## 歴史的記述
+
+ノルウェーの数学者ニールス・ヘンリック・アーベル（1802-1829）にちなんで名付けられた。アーベルは群の形式的概念が確立される前に群論への先駆的な貢献をした。「アーベル」という用語はカミーユ・ジョルダンによって導入された。
+
+## 応用
+
+- **数論**：環の単元の構造、イデアル類群
+- **位相幾何学**：多くの空間の基本群、ホモロジー群
+- **物理学**：量子力学における対称群、ゲージ理論
+- **暗号理論**：楕円曲線群、ディフィー・ヘルマン鍵交換
+
+## 関連項目
+
+- @def-group
+- @def-commutativity
+- @def-cyclic-group
+- @def-normal-subgroup
+- @def-quotient-group
+- @thm-lagrange

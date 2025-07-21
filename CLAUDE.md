@@ -157,6 +157,12 @@ When adding fundamental concepts (e.g., quotient groups, isomorphisms, cyclic gr
 - Add inline cross-references using `@id` or `[text](file.qmd)` syntax
 - Ensure special types sections (e.g., "Special Types of Groups") link to new definitions
 
+**Bidirectional Cross-Reference Pattern**: When creating a new article:
+
+- Update articles that mention the new concept to link to it (e.g., "abelian group" → "[abelian group](def-abelian-group.qmd)")
+- Use grep with `-i` flag for case-insensitive search to find all mentions
+- Focus on definition articles and "Special Types" sections for cross-reference opportunities
+
 ### Script Organization
 
 Python scripts are organized into functional subdirectories:
@@ -227,7 +233,7 @@ The project supports multiple languages (currently English and Japanese) with au
 
 - Japanese files need `translation_of: ../../en/path.qmd`
 - All files need `translations: {en: "path.html", ja: "path.html"}`
-- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Ideal→イデアル, Cyclic Group→巡回群, Polynomial Ring→多項式環, Variance→分散
+- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Ideal→イデアル, Cyclic Group→巡回群, Polynomial Ring→多項式環, Variance→分散, Abelian Group→アーベル群/可換群
 
 ### Building Multilingual Sites
 
@@ -451,10 +457,10 @@ PyVis graphs include:
 
 ## Current Status
 
-- **Content**: 112 nodes across 9 mathematical domains (added polynomial ring definition)
-- **Translations**: 104/112 (93%) Japanese translations with automated status tracking
+- **Content**: 110+ nodes across 9 mathematical domains (algebra, analysis, category theory, combinatorics, geometry, logic/set theory, number theory, probability/statistics, topology)
+- **Translations**: 90%+ Japanese translations with automated status tracking
 - **Graph**: 1300+ RDF triples with full dependency tracking and translation edges
-- **Visualizations**: 112 interactive graphs deployed
+- **Visualizations**: Interactive graphs automatically generated for all nodes
 - **API**: RESTful endpoints for node queries and dependencies
 - **CI/CD**: Full automation via GitHub Actions with translation validation
 - **Translation Management**: Fully implemented with MD5 hash-based change detection and pre-commit hooks
