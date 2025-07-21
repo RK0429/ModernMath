@@ -283,6 +283,7 @@ window.Quarto = {
   <li><a href="#群の分類" id="toc-群の分類" class="nav-link" data-scroll-target="#群の分類">群の分類</a></li>
   <li><a href="#完全系列" id="toc-完全系列" class="nav-link" data-scroll-target="#完全系列">完全系列</a></li>
   </ul></li>
+  <li><a href="#他の代数構造における並行概念" id="toc-他の代数構造における並行概念" class="nav-link" data-scroll-target="#他の代数構造における並行概念">他の代数構造における並行概念</a></li>
   <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul></li>
@@ -396,6 +397,16 @@ window.Quarto = {
 <p>商群 <span class="math inline">\(G/N\)</span> は <span class="math inline">\(G\)</span> における <span class="math inline">\(N\)</span> の「補集合」を捉えています。</p>
 </section>
 </section>
+<section id="他の代数構造における並行概念" class="level2">
+<h2 class="anchored" data-anchor-id="他の代数構造における並行概念">他の代数構造における並行概念</h2>
+<p>商群の概念は他の代数構造にも一般化されます：</p>
+<ul>
+<li><strong>剰余環</strong>：正規部分群が商群を形成させるように、<a href="../../../content/ja/algebra/def-ideal.html">イデアル</a>は剰余環を形成させます。例えば、<span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> は（加法群 <span class="math inline">\(\mathbb{Z}\)</span> の）商群と剰余環の両方として見ることができます。</li>
+<li><strong>商ベクトル空間</strong>：ベクトル空間は部分空間で割ることができる</li>
+<li><strong>商加群</strong>：群とベクトル空間の両方を包含する、最も一般的な場合</li>
+</ul>
+<p>適切な部分構造による「剰余」のこのパターンは、代数学全体を通じて基本的です。</p>
+</section>
 <section id="依存関係グラフ" class="level2">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
@@ -409,38 +420,41 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group["Definition: Group"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    def-kernel["Definition: Kernel"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-quotient-group["Definition: Quotient Group"]:::definition
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    ex-finite-field["Example: Finite Field"]:::example
+    def-kernel["Definition: Kernel"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-subgroup["Definition: Subgroup"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-group["Definition: Group"]:::definition
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    ex-finite-field["Example: Finite Field"]:::example
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
     def-homomorphism --&gt; def-quotient-group
-    def-quotient-group --&gt; def-subgroup
-    def-quotient-group --&gt; def-group
-    def-group --&gt; def-quotient-group
-    thm-lagrange --&gt; def-quotient-group
-    def-subgroup --&gt; def-quotient-group
-    ex-quotient-integers-mod-n --&gt; def-quotient-group
     ex-finite-field --&gt; def-quotient-group
     def-normal-subgroup --&gt; def-quotient-group
+    def-quotient-group --&gt; def-subgroup
+    def-subgroup --&gt; def-quotient-group
+    def-group --&gt; def-quotient-group
     def-quotient-group --&gt; def-normal-subgroup
+    def-quotient-group --&gt; def-group
     def-kernel --&gt; def-quotient-group
+    def-quotient-group --&gt; def-ideal
+    thm-lagrange --&gt; def-quotient-group
+    ex-quotient-integers-mod-n --&gt; def-quotient-group
     thm-euler --&gt; def-quotient-group
     class def-quotient-group current
-    click def-group "def-group.html" "Definition: Groupへ"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
     click def-kernel "def-kernel.html" "Definition: Kernelへ"
-    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
-    click thm-euler "thm-euler.html" "Theorem: Euler's Theoremへ"
-    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
-    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
-    click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
     click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
+    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click thm-euler "thm-euler.html" "Theorem: Euler's Theoremへ"
+    click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
+    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
+    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
+    click def-ideal "def-ideal.html" "Definition: Idealへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -451,7 +465,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-quotient-group-1753109383" class="graph-visualization-container">
+<div id="graph-viz-def-quotient-group-1753111058" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -631,12 +645,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-quotient-group-1753109383', {
+    createForceGraph(data, 'graph-viz-def-quotient-group-1753111058', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-quotient-group-1753109383').innerHTML =
+    document.getElementById('graph-viz-def-quotient-group-1753111058').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

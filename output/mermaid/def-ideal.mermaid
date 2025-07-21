@@ -1,0 +1,27 @@
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-kernel["Definition: Kernel"]:::definition
+    def-field["Definition: Field"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-subset["Definition: Subset"]:::definition
+    ex-finite-field["Example: Finite Field"]:::example
+    def-ring["Definition: Ring"]:::definition
+    ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
+    def-ideal --> def-subset
+    def-field --> def-ideal
+    def-kernel --> def-ideal
+    ex-finite-field --> def-ideal
+    ex-integers-ring --> def-ideal
+    def-quotient-group --> def-ideal
+    def-ideal --> def-ring
+    ex-principal-ideal --> def-ideal
+    def-ideal --> def-binary-operation
+    class def-ideal current

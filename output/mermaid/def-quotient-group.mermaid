@@ -5,26 +5,28 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group["Definition: Group"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    def-kernel["Definition: Kernel"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-quotient-group["Definition: Quotient Group"]:::definition
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    ex-finite-field["Example: Finite Field"]:::example
+    def-kernel["Definition: Kernel"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-subgroup["Definition: Subgroup"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-group["Definition: Group"]:::definition
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    ex-finite-field["Example: Finite Field"]:::example
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
     def-homomorphism --> def-quotient-group
-    def-quotient-group --> def-subgroup
-    def-quotient-group --> def-group
-    def-group --> def-quotient-group
-    thm-lagrange --> def-quotient-group
-    def-subgroup --> def-quotient-group
-    ex-quotient-integers-mod-n --> def-quotient-group
     ex-finite-field --> def-quotient-group
     def-normal-subgroup --> def-quotient-group
+    def-quotient-group --> def-subgroup
+    def-subgroup --> def-quotient-group
+    def-group --> def-quotient-group
     def-quotient-group --> def-normal-subgroup
+    def-quotient-group --> def-group
     def-kernel --> def-quotient-group
+    def-quotient-group --> def-ideal
+    thm-lagrange --> def-quotient-group
+    ex-quotient-integers-mod-n --> def-quotient-group
     thm-euler --> def-quotient-group
     class def-quotient-group current

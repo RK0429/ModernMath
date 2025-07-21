@@ -262,6 +262,7 @@ window.Quarto = {
   </ul></li>
   <li><a href="#types-of-rings" id="toc-types-of-rings" class="nav-link" data-scroll-target="#types-of-rings">Types of Rings</a></li>
   <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  <li><a href="#important-ring-structures" id="toc-important-ring-structures" class="nav-link" data-scroll-target="#important-ring-structures">Important Ring Structures</a></li>
   <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
   <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
   </ul></li>
@@ -339,6 +340,15 @@ window.Quarto = {
 <li><span class="math inline">\(\mathbb{Z}[x]\)</span> - polynomials with integer coefficients</li>
 </ul>
 </section>
+<section id="important-ring-structures" class="level2">
+<h2 class="anchored" data-anchor-id="important-ring-structures">Important Ring Structures</h2>
+<ul>
+<li><strong><a href="../../../content/en/algebra/def-ideal.html">Ideals</a></strong>: Special subsets that absorb multiplication, analogous to normal subgroups in group theory</li>
+<li><strong>Subrings</strong>: Subsets closed under both ring operations</li>
+<li><strong>Quotient rings</strong>: Formed by factoring out ideals, generalizing modular arithmetic</li>
+<li><strong>Ring homomorphisms</strong>: Structure-preserving maps between rings</li>
+</ul>
+</section>
 <section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
@@ -352,26 +362,32 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-field["Definition: Field"]:::definition
     def-group["Definition: Group"]:::definition
     def-ring["Definition: Ring"]:::definition
+    ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
     def-binary-operation["Definition: Binary Operation"]:::definition
-    thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
     def-set["Definition: Set"]:::definition
-    def-field["Definition: Field"]:::definition
-    def-ring --&gt; def-group
-    ex-integers-ring --&gt; def-ring
+    def-ideal["Definition: Ideal"]:::definition
+    thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
     def-ring --&gt; def-binary-operation
-    thm-field-characteristic --&gt; def-ring
-    def-ring --&gt; def-set
+    def-ring --&gt; def-group
     def-field --&gt; def-ring
+    ex-integers-ring --&gt; def-ring
+    ex-principal-ideal --&gt; def-ring
+    thm-field-characteristic --&gt; def-ring
+    def-ideal --&gt; def-ring
+    def-ring --&gt; def-set
     class def-ring current
-    click def-group "def-group.html" "Go to Group definition"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
-    click thm-field-characteristic "thm-field-characteristic.html" "Go to Field Characteristic theorem"
     click ex-integers-ring "ex-integers-ring.html" "Go to Integers Form a Ring example"
-    click def-set "def-set.html" "Go to Set definition"
     click def-field "def-field.html" "Go to Field definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click ex-principal-ideal "ex-principal-ideal.html" "Go to Principal Ideals in Integers example"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click def-set "def-set.html" "Go to Set definition"
+    click def-ideal "def-ideal.html" "Go to Ideal definition"
+    click thm-field-characteristic "thm-field-characteristic.html" "Go to Field Characteristic theorem"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -382,7 +398,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-ring-1753109252" class="graph-visualization-container">
+<div id="graph-viz-def-ring-1753110939" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -562,12 +578,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-ring-1753109252', {
+    createForceGraph(data, 'graph-viz-def-ring-1753110939', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-ring-1753109252').innerHTML =
+    document.getElementById('graph-viz-def-ring-1753110939').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

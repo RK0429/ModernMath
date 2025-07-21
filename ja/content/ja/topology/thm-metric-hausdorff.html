@@ -335,16 +335,16 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-hausdorff["Definition: Hausdorff Space"]:::definition
     def-metric-space["Definition: Metric Space"]:::definition
+    def-hausdorff["Definition: Hausdorff Space"]:::definition
     thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
     def-topological-space["Definition: Topological Space"]:::definition
-    thm-metric-hausdorff --&gt; def-hausdorff
-    thm-metric-hausdorff --&gt; def-metric-space
     thm-metric-hausdorff --&gt; def-topological-space
+    thm-metric-hausdorff --&gt; def-metric-space
+    thm-metric-hausdorff --&gt; def-hausdorff
     class thm-metric-hausdorff current
-    click def-hausdorff "def-hausdorff.html" "Definition: Hausdorff Spaceへ"
     click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
+    click def-hausdorff "def-hausdorff.html" "Definition: Hausdorff Spaceへ"
     click def-topological-space "def-topological-space.html" "Definition: Topological Spaceへ"
 </pre>
 </div>
@@ -356,7 +356,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-metric-hausdorff-1753109430" class="graph-visualization-container">
+<div id="graph-viz-thm-metric-hausdorff-1753111102" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -536,12 +536,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-metric-hausdorff-1753109430', {
+    createForceGraph(data, 'graph-viz-thm-metric-hausdorff-1753111102', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-metric-hausdorff-1753109430').innerHTML =
+    document.getElementById('graph-viz-thm-metric-hausdorff-1753111102').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
