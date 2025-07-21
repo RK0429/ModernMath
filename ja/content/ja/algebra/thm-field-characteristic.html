@@ -336,13 +336,13 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-ring["Definition: Ring"]:::definition
-    def-prime["Definition: Prime Number"]:::definition
-    def-field["Definition: Field"]:::definition
     thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
+    def-prime["Definition: Prime Number"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-field["Definition: Field"]:::definition
     thm-field-characteristic --&gt; def-ring
-    thm-field-characteristic --&gt; def-prime
     thm-field-characteristic --&gt; def-field
+    thm-field-characteristic --&gt; def-prime
     class thm-field-characteristic current
 </pre>
 </div>
@@ -354,7 +354,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-field-characteristic-1753091749" class="graph-visualization-container">
+<div id="graph-viz-thm-field-characteristic-1753093447" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -534,12 +534,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-field-characteristic-1753091749', {
+    createForceGraph(data, 'graph-viz-thm-field-characteristic-1753093447', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-field-characteristic-1753091749').innerHTML =
+    document.getElementById('graph-viz-thm-field-characteristic-1753093447').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

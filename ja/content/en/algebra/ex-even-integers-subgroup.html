@@ -333,12 +333,12 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
     ex-integers-addition["Example: Integers under Addition"]:::example
-    def-subgroup["Definition: Subgroup"]:::definition
     def-group["Definition: Group"]:::definition
-    ex-even-integers-subgroup --&gt; def-subgroup
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    def-subgroup["Definition: Subgroup"]:::definition
     ex-even-integers-subgroup --&gt; def-group
+    ex-even-integers-subgroup --&gt; def-subgroup
     ex-even-integers-subgroup --&gt; ex-integers-addition
     class ex-even-integers-subgroup current
 </pre>
@@ -351,7 +351,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-ex-even-integers-subgroup-1753091796" class="graph-visualization-container">
+<div id="graph-viz-ex-even-integers-subgroup-1753093495" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -531,12 +531,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-even-integers-subgroup-1753091796', {
+    createForceGraph(data, 'graph-viz-ex-even-integers-subgroup-1753093495', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-even-integers-subgroup-1753091796').innerHTML =
+    document.getElementById('graph-viz-ex-even-integers-subgroup-1753093495').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

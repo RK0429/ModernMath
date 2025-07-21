@@ -332,22 +332,22 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-limit["Definition: Limit of a Sequence"]:::definition
-    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
-    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
-    thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
-    def-continuity["Definition: Continuity"]:::definition
-    def-metric-space["Definition: Metric Space"]:::definition
     thm-chain-rule["Theorem: Chain Rule"]:::theorem
-    def-integral["Definition: Integral"]:::definition
+    def-metric-space["Definition: Metric Space"]:::definition
     ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
-    def-metric-space --&gt; def-continuity
-    thm-intermediate-value --&gt; def-continuity
-    thm-chain-rule --&gt; def-continuity
-    ex-real-line-metric --&gt; def-continuity
+    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
+    thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
+    def-integral["Definition: Integral"]:::definition
+    def-continuity["Definition: Continuity"]:::definition
+    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
     thm-mean-value --&gt; def-continuity
+    ex-real-line-metric --&gt; def-continuity
     ex-polynomial-continuity --&gt; def-continuity
+    thm-intermediate-value --&gt; def-continuity
     def-integral --&gt; def-continuity
+    def-metric-space --&gt; def-continuity
     def-continuity --&gt; def-limit
+    thm-chain-rule --&gt; def-continuity
     class def-continuity current
 </pre>
 </div>
@@ -359,7 +359,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-continuity-1753091636" class="graph-visualization-container">
+<div id="graph-viz-def-continuity-1753093337" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -539,12 +539,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-continuity-1753091636', {
+    createForceGraph(data, 'graph-viz-def-continuity-1753093337', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-continuity-1753091636').innerHTML =
+    document.getElementById('graph-viz-def-continuity-1753093337').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

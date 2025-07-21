@@ -361,12 +361,12 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-probability-space["Definition: Probability Space"]:::definition
-    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
-    def-expectation["Definition: Expected Value"]:::definition
     def-random-variable["Definition: Random Variable"]:::definition
-    def-expectation --&gt; def-probability-space
+    def-expectation["Definition: Expected Value"]:::definition
+    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
     def-expectation --&gt; def-random-variable
     thm-law-of-large-numbers --&gt; def-expectation
+    def-expectation --&gt; def-probability-space
     class def-expectation current
 </pre>
 </div>
@@ -378,7 +378,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-expectation-1753091708" class="graph-visualization-container">
+<div id="graph-viz-def-expectation-1753093407" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -558,12 +558,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-expectation-1753091708', {
+    createForceGraph(data, 'graph-viz-def-expectation-1753093407', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-expectation-1753091708').innerHTML =
+    document.getElementById('graph-viz-def-expectation-1753093407').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
