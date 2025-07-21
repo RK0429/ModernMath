@@ -321,12 +321,10 @@ The project implements a page-level language switcher that redirects to the tran
 When implementing Japanese support, create these navigation pages with `-ja.qmd` suffix:
 
 - `index-ja.qmd` - Japanese home page (referenced in `_quarto-ja.yml` navbar)
-- `search-ja.qmd` - Japanese search interface
-- `visualizations-ja.qmd` - Japanese visualizations page
 - `about-ja.qmd` - Japanese about page
 - `contributing-ja.qmd` - Japanese contributing guide
 
-Update `_quarto-ja.yml` navbar to reference these files and ensure all domain links use Japanese paths (e.g., `../../search-ja.qmd` instead of `../../search.qmd`).
+Update `_quarto-ja.yml` navbar to reference these files and ensure all domain links use Japanese paths.
 
 ### Japanese Terminology Consistency
 

@@ -182,8 +182,8 @@ title: "{domain_title}"
         content += """## ナビゲーション
 
 - サイドバーを使用して、このドメインのすべてのトピックを閲覧できます
-- [可視化](../../visualizations-ja.html)ページで知識グラフを探索できます
-- [検索](../../search-ja.html)機能を使用して特定の概念を見つけることができます
+- 各記事には依存関係を示すインタラクティブな可視化が含まれています
+- ナビゲーションバーの検索モーダルを使用して特定の概念を見つけることができます
 
 ## 貢献
 
@@ -194,8 +194,8 @@ title: "{domain_title}"
         content += """## Navigation
 
 - Use the sidebar to browse all topics in this domain
-- Visit the [Visualizations](../../visualizations.html) page to explore the knowledge graph
-- Use the [Search](../../search.html) function to find specific concepts
+- Each article includes interactive visualizations showing its dependencies
+- Use the search modal in the navigation bar to find specific concepts
 
 ## Contributing
 
