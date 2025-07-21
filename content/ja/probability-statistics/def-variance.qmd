@@ -1,0 +1,92 @@
+---
+id: def-variance
+requires:
+- def-expectation
+- def-random-variable
+status: complete
+title: '定義: 分散'
+translation_of: ../../en/probability-statistics/def-variance.qmd
+translations:
+  en: ../en/probability-statistics/def-variance.html
+  ja: ../ja/probability-statistics/def-variance.html
+type: Definition
+---
+
+# 定義: 分散 {#def-variance}
+
+[確率変数](def-random-variable.qmd)の**分散**は、その散らばりや広がりの尺度であり、確率変数の値が[期待値](def-expectation.qmd)からどれだけ離れているかを定量化するものである。
+
+## 数学的定義
+
+期待値 $\mu = E[X]$ を持つ確率変数 $X$ に対して、分散は次のように定義される：
+
+$$\text{Var}(X) = E[(X - \mu)^2]$$
+
+これは平均からの偏差の二乗の期待値を表す。
+
+## 離散的な場合
+
+確率質量関数 $p(x)$ と平均 $\mu$ を持つ離散確率変数 $X$ に対して：
+
+$$\text{Var}(X) = \sum_{x} (x - \mu)^2 \cdot p(x)$$
+
+ここで、和は $X$ のすべての可能な値にわたって取られる。
+
+## 連続的な場合
+
+確率密度関数 $f(x)$ と平均 $\mu$ を持つ連続確率変数 $X$ に対して：
+
+$$\text{Var}(X) = \int_{-\infty}^{\infty} (x - \mu)^2 \cdot f(x) \, dx$$
+
+## 計算公式
+
+計算においてより便利な別の公式：
+
+$$\text{Var}(X) = E[X^2] - (E[X])^2$$
+
+これは「二乗の期待値から期待値の二乗を引いたもの」として知られている。
+
+## 性質
+
+1. **非負性**: 任意の確率変数 $X$ に対して $\text{Var}(X) \geq 0$
+2. **ゼロ分散**: $\text{Var}(X) = 0$ であることと $X$ が（ほとんど確実に）定数であることは同値
+3. **スケーリング**: 定数 $a, b$ に対して $\text{Var}(aX + b) = a^2 \text{Var}(X)$
+4. **独立性**: $X$ と $Y$ が独立ならば、$\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)$
+5. **標準偏差**: 分散の平方根 $\sigma = \sqrt{\text{Var}(X)}$ は標準偏差と呼ばれる
+
+## 存在条件
+
+分散が存在するのは $E[X^2] < \infty$ のとき、そしてそのときに限る。これは $E[X]$ と $E[(X - \mu)^2]$ の両方が有限であることを意味する。
+
+## 例
+
+1. **ベルヌーイ分布**: $X \sim \text{Bernoulli}(p)$ ならば、$\text{Var}(X) = p(1-p)$
+2. **二項分布**: $X \sim \text{Binomial}(n, p)$ ならば、$\text{Var}(X) = np(1-p)$
+3. **正規分布**: $X \sim \mathcal{N}(\mu, \sigma^2)$ ならば、$\text{Var}(X) = \sigma^2$
+4. **指数分布**: $X \sim \text{Exp}(\lambda)$ ならば、$\text{Var}(X) = 1/\lambda^2$
+5. **ポアソン分布**: $X \sim \text{Poisson}(\lambda)$ ならば、$\text{Var}(X) = \lambda$
+
+## 解釈
+
+- 分散は平均からの二乗距離の平均を測定する
+- より大きな分散はデータのより大きな変動性を示す
+- 分散の単位は確率変数の単位の二乗である
+- 標準偏差（分散の平方根）は確率変数と同じ単位を持つ
+
+## Mermaid図
+
+```mermaid
+graph TD
+    A[分散] --> B[定義: E[(X-μ)²]]
+    A --> C[計算式: E[X²] - E[X]²]
+    A --> D[性質]
+    D --> E[非負性]
+    D --> F[スケーリング: Var(aX+b) = a²Var(X)]
+    D --> G[独立性: Var(X+Y) = Var(X) + Var(Y)]
+    A --> H[標準偏差: σ = √Var(X)]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+    style H fill:#bfb,stroke:#333,stroke-width:2px
+```

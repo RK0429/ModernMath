@@ -227,7 +227,7 @@ The project supports multiple languages (currently English and Japanese) with au
 
 - Japanese files need `translation_of: ../../en/path.qmd`
 - All files need `translations: {en: "path.html", ja: "path.html"}`
-- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Ideal→イデアル, Cyclic Group→巡回群, Polynomial Ring→多項式環
+- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Ideal→イデアル, Cyclic Group→巡回群, Polynomial Ring→多項式環, Variance→分散
 
 ### Building Multilingual Sites
 
@@ -451,10 +451,10 @@ PyVis graphs include:
 
 ## Current Status
 
-- **Content**: 111 nodes across 9 mathematical domains
-- **Translations**: 103/111 (93%) Japanese translations with automated status tracking
-- **Graph**: 1294 RDF triples with full dependency tracking and translation edges
-- **Visualizations**: 111 interactive graphs deployed
+- **Content**: 112 nodes across 9 mathematical domains (added polynomial ring definition)
+- **Translations**: 104/112 (93%) Japanese translations with automated status tracking
+- **Graph**: 1300+ RDF triples with full dependency tracking and translation edges
+- **Visualizations**: 112 interactive graphs deployed
 - **API**: RESTful endpoints for node queries and dependencies
 - **CI/CD**: Full automation via GitHub Actions with translation validation
 - **Translation Management**: Fully implemented with MD5 hash-based change detection and pre-commit hooks

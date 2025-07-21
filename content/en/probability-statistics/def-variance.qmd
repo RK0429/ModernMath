@@ -1,0 +1,91 @@
+---
+id: def-variance
+requires:
+- def-expectation
+- def-random-variable
+status: complete
+title: 'Definition: Variance'
+translations:
+  en: ../en/probability-statistics/def-variance.html
+  ja: ../ja/probability-statistics/def-variance.html
+type: Definition
+---
+
+# Definition: Variance {#def-variance}
+
+The **variance** of a [random variable](def-random-variable.qmd) is a measure of its dispersion or spread, quantifying how far the values of the random variable typically deviate from their [expected value](def-expectation.qmd).
+
+## Mathematical Definition
+
+For a random variable $X$ with expected value $\mu = E[X]$, the variance is defined as:
+
+$$\text{Var}(X) = E[(X - \mu)^2]$$
+
+This represents the expected value of the squared deviation from the mean.
+
+## Discrete Case
+
+For a discrete random variable $X$ with probability mass function $p(x)$ and mean $\mu$:
+
+$$\text{Var}(X) = \sum_{x} (x - \mu)^2 \cdot p(x)$$
+
+where the sum is taken over all possible values of $X$.
+
+## Continuous Case
+
+For a continuous random variable $X$ with probability density function $f(x)$ and mean $\mu$:
+
+$$\text{Var}(X) = \int_{-\infty}^{\infty} (x - \mu)^2 \cdot f(x) \, dx$$
+
+## Computational Formula
+
+An alternative formula that is often more convenient for computation:
+
+$$\text{Var}(X) = E[X^2] - (E[X])^2$$
+
+This is known as the "expectation of the square minus the square of the expectation."
+
+## Properties
+
+1. **Non-negativity**: $\text{Var}(X) \geq 0$ for any random variable $X$
+2. **Zero variance**: $\text{Var}(X) = 0$ if and only if $X$ is constant (almost surely)
+3. **Scaling**: $\text{Var}(aX + b) = a^2 \text{Var}(X)$ for constants $a, b$
+4. **Independence**: If $X$ and $Y$ are independent, then $\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)$
+5. **Standard deviation**: The square root of variance, denoted $\sigma = \sqrt{\text{Var}(X)}$, is called the standard deviation
+
+## Existence
+
+The variance exists if and only if $E[X^2] < \infty$, which implies that both $E[X]$ and $E[(X - \mu)^2]$ are finite.
+
+## Examples
+
+1. **Bernoulli**: If $X \sim \text{Bernoulli}(p)$, then $\text{Var}(X) = p(1-p)$
+2. **Binomial**: If $X \sim \text{Binomial}(n, p)$, then $\text{Var}(X) = np(1-p)$
+3. **Normal**: If $X \sim \mathcal{N}(\mu, \sigma^2)$, then $\text{Var}(X) = \sigma^2$
+4. **Exponential**: If $X \sim \text{Exp}(\lambda)$, then $\text{Var}(X) = 1/\lambda^2$
+5. **Poisson**: If $X \sim \text{Poisson}(\lambda)$, then $\text{Var}(X) = \lambda$
+
+## Interpretation
+
+- Variance measures the average squared distance from the mean
+- A larger variance indicates greater variability in the data
+- Units of variance are the square of the units of the random variable
+- Standard deviation (square root of variance) has the same units as the random variable
+
+## Mermaid Diagram
+
+```mermaid
+graph TD
+    A[Variance] --> B[Definition: E[(X-μ)²]]
+    A --> C[Computational: E[X²] - E[X]²]
+    A --> D[Properties]
+    D --> E[Non-negative]
+    D --> F[Scaling: Var(aX+b) = a²Var(X)]
+    D --> G[Independence: Var(X+Y) = Var(X) + Var(Y)]
+    A --> H[Standard Deviation: σ = √Var(X)]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+    style H fill:#bfb,stroke:#333,stroke-width:2px
+```
