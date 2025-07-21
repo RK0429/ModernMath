@@ -1,0 +1,156 @@
+---
+id: def-tree
+requires:
+- def-graph
+- def-set
+status: complete
+title: 'Definition: Tree'
+translations:
+  en: ../en/combinatorics/def-tree.html
+  ja: ../ja/combinatorics/def-tree.html
+type: Definition
+---
+
+# Definition: Tree {#def-tree}
+
+A **tree** is a connected [graph](def-graph.qmd) with no cycles. It is one of the most fundamental structures in graph theory and has numerous applications in mathematics and computer science.
+
+## Formal Definition
+
+A graph $T = (V, E)$ is a tree if and only if:
+1. $T$ is connected (there exists a path between any two vertices)
+2. $T$ is acyclic (contains no cycles)
+
+## Equivalent Characterizations
+
+For a graph $T$ with $n$ vertices, the following statements are equivalent:
+
+1. $T$ is a tree
+2. $T$ is connected and has exactly $n - 1$ edges
+3. $T$ is acyclic and has exactly $n - 1$ edges
+4. There is exactly one path between any two vertices in $T$
+5. $T$ is connected, but removing any edge disconnects it
+6. $T$ is acyclic, but adding any edge creates exactly one cycle
+
+## Properties
+
+### Fundamental Properties
+
+1. **Edge Count**: A tree with $n$ vertices has exactly $n - 1$ edges
+
+2. **Leaf Vertices**: Every tree with at least two vertices has at least two leaves (vertices of degree 1)
+
+3. **Unique Path**: Between any two vertices in a tree, there exists exactly one path
+
+4. **Bipartite**: Every tree is a bipartite graph (vertices can be colored with two colors such that no adjacent vertices share the same color)
+
+### Structural Properties
+
+1. **Deletion Property**: Removing any edge from a tree disconnects it into exactly two components
+
+2. **Addition Property**: Adding any edge to a tree creates exactly one cycle
+
+3. **Degree Sum**: For a tree with $n$ vertices: $\sum_{v \in V} \deg(v) = 2(n - 1)$
+
+## Special Types of Trees
+
+### Rooted Tree
+
+A **rooted tree** is a tree with one designated vertex called the *root*. This imposes a hierarchical structure where:
+- Each vertex has a unique *parent* (except the root)
+- Vertices may have zero or more *children*
+- Leaves are vertices with no children
+
+### Binary Tree
+
+A rooted tree where each vertex has at most two children, typically designated as left and right children.
+
+### Spanning Tree
+
+Given a connected graph $G$, a **spanning tree** is a subgraph that:
+- Includes all vertices of $G$
+- Is a tree
+
+## Examples
+
+### Example 1: Path Graph
+
+The path graph $P_n$ with vertices $\{1, 2, ..., n\}$ and edges $\{(i, i+1) : 1 \leq i < n\}$ is a tree.
+
+### Example 2: Star Graph
+
+The star graph $S_n$ with:
+- Central vertex $c$
+- $n$ other vertices $v_1, v_2, ..., v_n$
+- Edges connecting $c$ to each $v_i$
+
+### Example 3: Binary Tree
+
+A complete binary tree of height $h$ has:
+- $2^{h+1} - 1$ vertices
+- $2^h$ leaves
+- Internal vertices with exactly two children (except possibly at the last level)
+
+## Applications
+
+Trees are fundamental in:
+
+1. **Computer Science**:
+   - Data structures (binary search trees, heaps, B-trees)
+   - Algorithms (spanning tree algorithms, decision trees)
+   - File systems and directory structures
+
+2. **Mathematics**:
+   - Combinatorial enumeration (Cayley's formula: $n^{n-2}$ labeled trees on $n$ vertices)
+   - Optimization (minimum spanning trees)
+   - Algebraic structures (tree decompositions)
+
+3. **Real-world Applications**:
+   - Family trees and genealogy
+   - Organizational hierarchies
+   - Network routing and broadcasting
+
+## Related Concepts
+
+### Forest
+
+A **forest** is an acyclic graph, equivalently a disjoint union of trees.
+
+### Tree Center
+
+The **center** of a tree consists of the vertex or vertices with minimum eccentricity (maximum distance to any other vertex).
+
+### Tree Diameter
+
+The **diameter** of a tree is the length of the longest path between any two vertices.
+
+## See Also
+
+- @def-graph
+- @def-binomial-coefficient (for counting labeled trees)
+- Graph connectivity and paths
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-tree" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-tree.html){target="_blank"}

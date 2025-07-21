@@ -1,0 +1,117 @@
+---
+id: def-graph
+requires:
+- def-set
+status: complete
+title: '定義: グラフ'
+translation_of: ../../en/combinatorics/def-graph.qmd
+translations:
+  en: ../en/combinatorics/def-graph.html
+  ja: ../ja/combinatorics/def-graph.html
+type: Definition
+---
+
+# グラフ {#def-graph}
+
+**グラフ**は、頂点（ノードとも呼ばれる）の[集合](../logic-set-theory/def-set.qmd)と、頂点の対を結ぶ辺の集合から成る数学的構造です。
+
+## 形式的定義
+
+グラフ $G$ は順序対 $G = (V, E)$ で、ここで：
+- $V$ は頂点の有限非空集合
+- $E$ は辺の集合で、各辺は2つの頂点を結ぶ
+
+### 無向グラフ
+
+無向グラフでは、辺に方向がありません。形式的には：
+- $E \subseteq \{\{u, v\} : u, v \in V, u \neq v\}$
+- 各辺は異なる頂点の順序なし対
+
+### 有向グラフ（ダイグラフ）
+
+有向グラフでは、辺に方向があります。形式的には：
+- $E \subseteq V \times V$
+- 各辺（または弧）は順序対 $(u, v)$ で、$u$ が始点、$v$ が終点
+
+## 記法と用語
+
+- **頂点**: $v_1, v_2, ..., v_n$ または単に $1, 2, ..., n$ と表記
+- **辺**: 無向グラフでは $\{u, v\}$ または $uv$、有向グラフでは $(u, v)$ または $u \to v$
+- **隣接頂点**: 2つの頂点 $u$ と $v$ の間に辺があるとき、隣接している
+- **接続辺**: 辺がある頂点に接続しているとき、その頂点に接続している
+- **次数**: 頂点 $v$ の次数 $\deg(v)$ は、$v$ に接続する辺の数
+  - 有向グラフでは：入次数 $\deg^-(v)$ と出次数 $\deg^+(v)$
+
+## 性質
+
+### 無向グラフの場合
+- すべての頂点の次数の和は辺の数の2倍に等しい：$\sum_{v \in V} \deg(v) = 2|E|$
+- 奇数次数の頂点の数は偶数
+
+### 有向グラフの場合
+- すべての入次数の和はすべての出次数の和に等しい：$\sum_{v \in V} \deg^-(v) = \sum_{v \in V} \deg^+(v) = |E|$
+
+## グラフの種類
+
+1. **単純グラフ**: ループ（頂点から自分自身への辺）や同じ頂点対間の多重辺がない
+2. **多重グラフ**: 同じ頂点対間に複数の辺を許す
+3. **完全グラフ $K_n$**: すべての異なる頂点対が辺で結ばれている
+4. **二部グラフ**: 頂点を2つの互いに素な集合に分割でき、同じ集合内の頂点間に辺がない
+5. **[木](def-tree.qmd)**: 閉路のない連結グラフ
+
+## 例
+
+### 例1: 無向グラフ
+$G = (V, E)$ ただし：
+- $V = \{1, 2, 3, 4\}$
+- $E = \{\{1, 2\}, \{2, 3\}, \{3, 4\}, \{1, 4\}\}$
+
+これは長さ4の閉路を形成します。
+
+### 例2: 有向グラフ
+$G = (V, E)$ ただし：
+- $V = \{A, B, C\}$
+- $E = \{(A, B), (B, C), (C, A)\}$
+
+これは有向閉路を形成します。
+
+### 例3: 完全グラフ $K_4$
+4頂点の完全グラフは $\binom{4}{2} = 6$ 個の辺を持ちます。
+
+## 応用
+
+グラフは以下の分野で基本的です：
+- コンピュータネットワーク（頂点はコンピュータ、辺は接続）
+- ソーシャルネットワーク（頂点は人、辺は関係）
+- 交通システム（頂点は場所、辺は経路）
+- 回路設計（頂点は部品、辺は接続）
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-graph["定義: グラフ"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-graph --> def-set
+    class def-graph current
+    click def-set "def-set.html" "集合の定義へ"
+```
+
+## インタラクティブ可視化
+
+ローカルな知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-graph" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [フルインタラクティブ版](../../output/interactive/def-graph.html){target="_blank"}を表示

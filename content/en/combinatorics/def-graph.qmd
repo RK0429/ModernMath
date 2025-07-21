@@ -1,0 +1,116 @@
+---
+id: def-graph
+requires:
+- def-set
+status: complete
+title: 'Definition: Graph'
+translations:
+  en: ../en/combinatorics/def-graph.html
+  ja: ../ja/combinatorics/def-graph.html
+type: Definition
+---
+
+# Graph {#def-graph}
+
+A **graph** is a mathematical structure consisting of a [Set](../logic-set-theory/def-set.qmd) of vertices (also called nodes) and a set of edges that connect pairs of vertices.
+
+## Formal Definition
+
+A graph $G$ is an ordered pair $G = (V, E)$ where:
+- $V$ is a finite non-empty set of vertices
+- $E$ is a set of edges, where each edge connects two vertices
+
+### Undirected Graph
+
+In an undirected graph, edges have no direction. Formally:
+- $E \subseteq \{\{u, v\} : u, v \in V, u \neq v\}$
+- Each edge is an unordered pair of distinct vertices
+
+### Directed Graph (Digraph)
+
+In a directed graph, edges have direction. Formally:
+- $E \subseteq V \times V$
+- Each edge (or arc) is an ordered pair $(u, v)$ where $u$ is the tail and $v$ is the head
+
+## Notation and Terminology
+
+- **Vertices**: Denoted as $v_1, v_2, ..., v_n$ or simply $1, 2, ..., n$
+- **Edges**: In undirected graphs: $\{u, v\}$ or $uv$; in directed graphs: $(u, v)$ or $u \to v$
+- **Adjacent vertices**: Two vertices $u$ and $v$ are adjacent if there is an edge between them
+- **Incident edge**: An edge is incident to a vertex if the vertex is one of its endpoints
+- **Degree**: The degree of a vertex $v$, denoted $\deg(v)$, is the number of edges incident to $v$
+  - In directed graphs: in-degree $\deg^-(v)$ and out-degree $\deg^+(v)$
+
+## Properties
+
+### For Undirected Graphs
+- The sum of all vertex degrees equals twice the number of edges: $\sum_{v \in V} \deg(v) = 2|E|$
+- The number of vertices with odd degree is even
+
+### For Directed Graphs
+- The sum of all in-degrees equals the sum of all out-degrees: $\sum_{v \in V} \deg^-(v) = \sum_{v \in V} \deg^+(v) = |E|$
+
+## Types of Graphs
+
+1. **Simple Graph**: No loops (edges from a vertex to itself) and no multiple edges between the same pair of vertices
+2. **Multigraph**: Allows multiple edges between the same pair of vertices
+3. **Complete Graph $K_n$**: Every pair of distinct vertices is connected by an edge
+4. **Bipartite Graph**: Vertices can be divided into two disjoint sets such that no edge connects vertices within the same set
+5. **[Tree](def-tree.qmd)**: A connected graph with no cycles
+
+## Examples
+
+### Example 1: Undirected Graph
+$G = (V, E)$ where:
+- $V = \{1, 2, 3, 4\}$
+- $E = \{\{1, 2\}, \{2, 3\}, \{3, 4\}, \{1, 4\}\}$
+
+This forms a cycle of length 4.
+
+### Example 2: Directed Graph
+$G = (V, E)$ where:
+- $V = \{A, B, C\}$
+- $E = \{(A, B), (B, C), (C, A)\}$
+
+This forms a directed cycle.
+
+### Example 3: Complete Graph $K_4$
+The complete graph on 4 vertices has $\binom{4}{2} = 6$ edges.
+
+## Applications
+
+Graphs are fundamental in:
+- Computer networks (vertices as computers, edges as connections)
+- Social networks (vertices as people, edges as relationships)
+- Transportation systems (vertices as locations, edges as routes)
+- Circuit design (vertices as components, edges as connections)
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-graph["Definition: Graph"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-graph --> def-set
+    class def-graph current
+    click def-set "def-set.html" "Go to Set definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-graph" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-graph.html){target="_blank"}
