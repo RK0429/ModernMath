@@ -253,7 +253,7 @@ window.Quarto = {
   <li><a href="#重要性" id="toc-重要性" class="nav-link" data-scroll-target="#重要性">重要性</a></li>
   <li><a href="#関連する性質" id="toc-関連する性質" class="nav-link" data-scroll-target="#関連する性質">関連する性質</a></li>
   <li><a href="#帰結" id="toc-帰結" class="nav-link" data-scroll-target="#帰結">帰結</a></li>
-  <li><a href="#依存グラフ" id="toc-依存グラフ" class="nav-link" data-scroll-target="#依存グラフ">依存グラフ</a></li>
+  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul></li>
   </ul>
@@ -384,8 +384,8 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="帰結">帰結</h2>
 <p>結合性を持つ構造では： - 冪を定義できる：<span class="math inline">\(a^n = a * a * \cdots * a\)</span>（n回） - 無限積に拡張できる（適切な収束性のもとで） - 行列の乗法は結合的で、効率的な計算を可能にする</p>
 </section>
-<section id="依存グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存グラフ">依存グラフ</h2>
+<section id="依存関係グラフ" class="level2">
+<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -398,12 +398,12 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-group-example["Definition: Group"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
     def-associativity["Definition: Associativity"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
     def-group["Definition: Group"]:::definition
+    def-associativity --&gt; def-binary-operation
     def-group --&gt; def-associativity
     def-group-example --&gt; def-associativity
-    def-associativity --&gt; def-binary-operation
     class def-associativity current
 </pre>
 </div>
@@ -415,7 +415,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-associativity-1753070366" class="graph-visualization-container">
+<div id="graph-viz-def-associativity-1753070832" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -595,12 +595,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-associativity-1753070366', {
+    createForceGraph(data, 'graph-viz-def-associativity-1753070832', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-associativity-1753070366').innerHTML =
+    document.getElementById('graph-viz-def-associativity-1753070832').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

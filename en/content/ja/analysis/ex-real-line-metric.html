@@ -235,7 +235,7 @@ window.Quarto = {
   <li><a href="#開球" id="toc-開球" class="nav-link" data-scroll-target="#開球">開球</a></li>
   <li><a href="#性質" id="toc-性質" class="nav-link" data-scroll-target="#性質">性質</a></li>
   <li><a href="#関連項目" id="toc-関連項目" class="nav-link" data-scroll-target="#関連項目">関連項目</a></li>
-  <li><a href="#依存グラフ" id="toc-依存グラフ" class="nav-link" data-scroll-target="#依存グラフ">依存グラフ</a></li>
+  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul></li>
   </ul>
@@ -308,8 +308,8 @@ window.Quarto = {
 <li><a href="../../../content/ja/analysis/def-continuity.html">連続性</a> - 連続関数はこの距離構造を保つ</li>
 </ul>
 </section>
-<section id="依存グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存グラフ">依存グラフ</h2>
+<section id="依存関係グラフ" class="level2">
+<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -321,8 +321,8 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
     def-metric-space["Definition: Metric Space"]:::definition
+    ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
     ex-real-line-metric --&gt; def-metric-space
     class ex-real-line-metric current
 </pre>
@@ -335,7 +335,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-real-line-metric-1753070326" class="graph-visualization-container">
+<div id="graph-viz-ex-real-line-metric-1753070792" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -515,12 +515,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-real-line-metric-1753070326', {
+    createForceGraph(data, 'graph-viz-ex-real-line-metric-1753070792', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-real-line-metric-1753070326').innerHTML =
+    document.getElementById('graph-viz-ex-real-line-metric-1753070792').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

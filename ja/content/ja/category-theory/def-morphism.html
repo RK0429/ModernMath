@@ -239,7 +239,6 @@ window.Quarto = {
   <li><a href="#記法" id="toc-記法" class="nav-link" data-scroll-target="#記法">記法</a></li>
   <li><a href="#射の種類" id="toc-射の種類" class="nav-link" data-scroll-target="#射の種類">射の種類</a></li>
   <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
-  <li><a href="#依存グラフ" id="toc-依存グラフ" class="nav-link" data-scroll-target="#依存グラフ">依存グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul></li>
   </ul>
@@ -316,49 +315,17 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-set-category["例: 集合の圏"]:::example
-    def-morphism["定義: 射"]:::definition
-    def-natural-transformation["定義: 自然変換"]:::definition
-    def-category["定義: 圏"]:::definition
-    ex-set-category --&gt; def-morphism
-    def-natural-transformation --&gt; def-morphism
-    def-morphism --&gt; def-category
-    class def-morphism current
-
-    click ex-set-category "ex-set-category.html" "Go to 例: 集合の圏"
-    click def-natural-transformation "def-natural-transformation.html" "Go to 定義: 自然変換"
-    click def-category "def-category.html" "Go to 定義: 圏"
-</pre>
-</div>
-<p></p><figcaption> 局所依存関係グラフ</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
-<section id="依存グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存グラフ">依存グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-morphism["Definition: Morphism"]:::definition
-    ex-set-category["Example: The Category of Sets"]:::example
-    def-composition["Definition: Composition"]:::definition
-    def-natural-transformation["Definition: Natural Transformation"]:::definition
     def-category["Definition: Category"]:::definition
+    ex-set-category["Example: The Category of Sets"]:::example
+    def-natural-transformation["Definition: Natural Transformation"]:::definition
+    def-composition["Definition: Composition"]:::definition
+    def-morphism["Definition: Morphism"]:::definition
     def-isomorphism["Definition: Isomorphism"]:::definition
-    def-natural-transformation --&gt; def-morphism
-    ex-set-category --&gt; def-morphism
     def-isomorphism --&gt; def-morphism
-    def-composition --&gt; def-morphism
+    def-natural-transformation --&gt; def-morphism
     def-morphism --&gt; def-category
+    ex-set-category --&gt; def-morphism
+    def-composition --&gt; def-morphism
     class def-morphism current
 </pre>
 </div>
@@ -370,7 +337,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-morphism-1753070389" class="graph-visualization-container">
+<div id="graph-viz-def-morphism-1753070854" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -550,12 +517,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-morphism-1753070389', {
+    createForceGraph(data, 'graph-viz-def-morphism-1753070854', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-morphism-1753070389').innerHTML =
+    document.getElementById('graph-viz-def-morphism-1753070854').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

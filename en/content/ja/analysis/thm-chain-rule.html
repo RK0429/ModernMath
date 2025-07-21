@@ -236,7 +236,7 @@ window.Quarto = {
   <li><a href="#拡張連鎖律" id="toc-拡張連鎖律" class="nav-link" data-scroll-target="#拡張連鎖律">拡張連鎖律</a></li>
   <li><a href="#例" id="toc-例" class="nav-link" data-scroll-target="#例">例</a></li>
   <li><a href="#マーメイド図" id="toc-マーメイド図" class="nav-link" data-scroll-target="#マーメイド図">マーメイド図</a></li>
-  <li><a href="#依存グラフ" id="toc-依存グラフ" class="nav-link" data-scroll-target="#依存グラフ">依存グラフ</a></li>
+  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul></li>
   </ul>
@@ -316,8 +316,8 @@ window.Quarto = {
     style B fill:#bfb,stroke:#333,stroke-width:2px
     style F fill:#bfb,stroke:#333,stroke-width:2px</code></pre>
 </section>
-<section id="依存グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存グラフ">依存グラフ</h2>
+<section id="依存関係グラフ" class="level2">
+<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -330,8 +330,8 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-derivative["Definition: Derivative"]:::definition
-    def-continuity["Definition: Continuity"]:::definition
     thm-chain-rule["Theorem: Chain Rule"]:::theorem
+    def-continuity["Definition: Continuity"]:::definition
     thm-chain-rule --&gt; def-derivative
     thm-chain-rule --&gt; def-continuity
     class thm-chain-rule current
@@ -345,7 +345,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-chain-rule-1753070326" class="graph-visualization-container">
+<div id="graph-viz-thm-chain-rule-1753070793" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -525,12 +525,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-chain-rule-1753070326', {
+    createForceGraph(data, 'graph-viz-thm-chain-rule-1753070793', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-chain-rule-1753070326').innerHTML =
+    document.getElementById('graph-viz-thm-chain-rule-1753070793').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

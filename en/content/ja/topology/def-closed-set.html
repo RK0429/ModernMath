@@ -235,7 +235,6 @@ window.Quarto = {
   <li><a href="#開集合との関係" id="toc-開集合との関係" class="nav-link" data-scroll-target="#開集合との関係">開集合との関係</a></li>
   <li><a href="#閉包作用素" id="toc-閉包作用素" class="nav-link" data-scroll-target="#閉包作用素">閉包作用素</a></li>
   <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
-  <li><a href="#依存グラフ" id="toc-依存グラフ" class="nav-link" data-scroll-target="#依存グラフ">依存グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul></li>
   </ul>
@@ -304,54 +303,16 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-heine-borel["定理: ハイネ・ボレルの定理"]:::theorem
-    def-connected["定義: 連結空間"]:::definition
-    def-closed-set["定義: 閉集合"]:::definition
-    def-set["定義: 集合"]:::definition
-    def-open-set["定義: 開集合"]:::definition
-    def-topological-space["定義: 位相空間"]:::definition
-    def-closed-set --&gt; def-set
-    def-connected --&gt; def-closed-set
-    def-closed-set --&gt; def-topological-space
-    thm-heine-borel --&gt; def-closed-set
-    def-closed-set --&gt; def-open-set
-    class def-closed-set current
-
-    click thm-heine-borel "thm-heine-borel.html" "Go to 定理: ハイネ・ボレルの定理"
-    click def-connected "def-connected.html" "Go to 定義: 連結空間"
-    click def-set "def-set.html" "Go to 定義: 集合"
-    click def-open-set "def-open-set.html" "Go to 定義: 開集合"
-    click def-topological-space "def-topological-space.html" "Go to 定義: 位相空間"
-</pre>
-</div>
-<p></p><figcaption> 局所依存関係グラフ</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
-<section id="依存グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存グラフ">依存グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-heine-borel["Theorem: Heine-Borel Theorem"]:::theorem
-    def-topological-space["Definition: Topological Space"]:::definition
-    def-open-set["Definition: Open Set"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-closed-set["Definition: Closed Set"]:::definition
     def-connected["Definition: Connected Space"]:::definition
-    def-closed-set --&gt; def-topological-space
-    def-closed-set --&gt; def-open-set
+    thm-heine-borel["Theorem: Heine-Borel Theorem"]:::theorem
+    def-open-set["Definition: Open Set"]:::definition
+    def-closed-set["Definition: Closed Set"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-topological-space["Definition: Topological Space"]:::definition
     def-closed-set --&gt; def-set
+    def-closed-set --&gt; def-open-set
     thm-heine-borel --&gt; def-closed-set
+    def-closed-set --&gt; def-topological-space
     def-connected --&gt; def-closed-set
     class def-closed-set current
 </pre>
@@ -364,7 +325,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-closed-set-1753070350" class="graph-visualization-container">
+<div id="graph-viz-def-closed-set-1753070816" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -544,12 +505,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-closed-set-1753070350', {
+    createForceGraph(data, 'graph-viz-def-closed-set-1753070816', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-closed-set-1753070350').innerHTML =
+    document.getElementById('graph-viz-def-closed-set-1753070816').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

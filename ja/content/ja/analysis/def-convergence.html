@@ -245,7 +245,6 @@ window.Quarto = {
   <li><a href="#コーシーの判定法" id="toc-コーシーの判定法" class="nav-link" data-scroll-target="#コーシーの判定法">コーシーの判定法</a></li>
   <li><a href="#応用" id="toc-応用" class="nav-link" data-scroll-target="#応用">応用</a></li>
   <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
-  <li><a href="#依存グラフ" id="toc-依存グラフ" class="nav-link" data-scroll-target="#依存グラフ">依存グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul>
 </nav>
@@ -350,42 +349,9 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-complete-metric-space["定義: 完備距離空間"]:::definition
-    def-limit["定義: 数列の極限"]:::definition
-    def-convergence["定義: 収束"]:::definition
-    def-sequence["定義: 数列"]:::definition
-    def-convergence --&gt; def-complete-metric-space
-    def-convergence --&gt; def-limit
-    def-sequence --&gt; def-convergence
-    def-convergence --&gt; def-sequence
-    class def-convergence current
-
-    click def-complete-metric-space "def-complete-metric-space.html" "Go to 定義: 完備距離空間"
-    click def-limit "def-limit.html" "Go to 定義: 数列の極限"
-    click def-sequence "def-sequence.html" "Go to 定義: 数列"
-</pre>
-</div>
-<p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
-<section id="依存グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存グラフ">依存グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-limit["Definition: Limit of a Sequence"]:::definition
-    def-convergence["Definition: Convergence"]:::definition
     def-sequence["Definition: Sequence"]:::definition
+    def-convergence["Definition: Convergence"]:::definition
+    def-limit["Definition: Limit of a Sequence"]:::definition
     def-convergence --&gt; def-limit
     def-convergence --&gt; def-sequence
     class def-convergence current
@@ -399,7 +365,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-convergence-1753070382" class="graph-visualization-container">
+<div id="graph-viz-def-convergence-1753070847" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -579,12 +545,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-convergence-1753070382', {
+    createForceGraph(data, 'graph-viz-def-convergence-1753070847', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-convergence-1753070382').innerHTML =
+    document.getElementById('graph-viz-def-convergence-1753070847').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

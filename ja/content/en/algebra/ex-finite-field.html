@@ -323,12 +323,12 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-field["Definition: Field"]:::definition
-    ex-finite-field["Example: Finite Field"]:::example
     def-prime["Definition: Prime Number"]:::definition
+    ex-finite-field["Example: Finite Field"]:::example
     def-group["Definition: Group"]:::definition
-    ex-finite-field --&gt; def-field
-    ex-finite-field --&gt; def-prime
     def-group --&gt; ex-finite-field
+    ex-finite-field --&gt; def-prime
+    ex-finite-field --&gt; def-field
     class ex-finite-field current
 </pre>
 </div>
@@ -340,7 +340,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-ex-finite-field-1753070433" class="graph-visualization-container">
+<div id="graph-viz-ex-finite-field-1753070899" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -520,12 +520,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-finite-field-1753070433', {
+    createForceGraph(data, 'graph-viz-ex-finite-field-1753070899', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-finite-field-1753070433').innerHTML =
+    document.getElementById('graph-viz-ex-finite-field-1753070899').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

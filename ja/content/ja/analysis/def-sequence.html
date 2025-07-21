@@ -242,7 +242,7 @@ window.Quarto = {
   <li><a href="#例" id="toc-例" class="nav-link" data-scroll-target="#例">例</a></li>
   <li><a href="#性質" id="toc-性質" class="nav-link" data-scroll-target="#性質">性質</a></li>
   <li><a href="#関連概念" id="toc-関連概念" class="nav-link" data-scroll-target="#関連概念">関連概念</a></li>
-  <li><a href="#依存グラフ" id="toc-依存グラフ" class="nav-link" data-scroll-target="#依存グラフ">依存グラフ</a></li>
+  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul>
 </nav>
@@ -337,8 +337,8 @@ window.Quarto = {
 <li>部分列：数列から抽出された数列</li>
 </ul>
 </section>
-<section id="依存グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存グラフ">依存グラフ</h2>
+<section id="依存関係グラフ" class="level2">
+<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -350,8 +350,8 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-convergence["Definition: Convergence"]:::definition
     def-sequence["Definition: Sequence"]:::definition
+    def-convergence["Definition: Convergence"]:::definition
     def-set["Definition: Set"]:::definition
     def-sequence --&gt; def-set
     def-convergence --&gt; def-sequence
@@ -366,7 +366,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-sequence-1753070384" class="graph-visualization-container">
+<div id="graph-viz-def-sequence-1753070849" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -546,12 +546,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-sequence-1753070384', {
+    createForceGraph(data, 'graph-viz-def-sequence-1753070849', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-sequence-1753070384').innerHTML =
+    document.getElementById('graph-viz-def-sequence-1753070849').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

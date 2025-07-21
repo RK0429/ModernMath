@@ -235,7 +235,6 @@ window.Quarto = {
   <li><a href="#事象の確率" id="toc-事象の確率" class="nav-link" data-scroll-target="#事象の確率">事象の確率</a></li>
   <li><a href="#特別な関係" id="toc-特別な関係" class="nav-link" data-scroll-target="#特別な関係">特別な関係</a></li>
   <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
-  <li><a href="#依存グラフ" id="toc-依存グラフ" class="nav-link" data-scroll-target="#依存グラフ">依存グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul>
 </nav>
@@ -328,60 +327,15 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-event["定義: 事象"]:::definition
-    def-sample-space["定義: 標本空間"]:::definition
-    thm-bayes["定理: ベイズの定理"]:::theorem
-    def-probability-space["定義: 確率空間"]:::definition
-    def-conditional-probability["定義: 条件付き確率"]:::definition
-    def-union["定義: 和集合"]:::definition
-    def-subset["定義: 部分集合"]:::definition
-    def-intersection["定義: 積集合"]:::definition
-    def-event --&gt; def-sample-space
-    def-event --&gt; def-intersection
-    def-event --&gt; def-union
-    thm-bayes --&gt; def-event
-    def-event --&gt; def-probability-space
-    def-event --&gt; def-subset
-    def-conditional-probability --&gt; def-event
-    def-sample-space --&gt; def-event
-    class def-event current
-
-    click def-sample-space "def-sample-space.html" "Go to 定義: 標本空間"
-    click thm-bayes "thm-bayes.html" "Go to 定理: ベイズの定理"
-    click def-probability-space "def-probability-space.html" "Go to 定義: 確率空間"
-    click def-conditional-probability "def-conditional-probability.html" "Go to 定義: 条件付き確率"
-    click def-union "def-union.html" "Go to 定義: 和集合"
-    click def-subset "def-subset.html" "Go to 定義: 部分集合"
-    click def-intersection "def-intersection.html" "Go to 定義: 積集合"
-</pre>
-</div>
-<p></p><figcaption> 局所依存関係グラフ</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
-<section id="依存グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存グラフ">依存グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-sample-space["Definition: Sample Space"]:::definition
-    thm-bayes["Theorem: Bayes' Theorem"]:::theorem
-    def-event["Definition: Event"]:::definition
-    def-subset["Definition: Subset"]:::definition
     def-conditional-probability["Definition: Conditional Probability"]:::definition
+    def-subset["Definition: Subset"]:::definition
+    def-sample-space["Definition: Sample Space"]:::definition
+    def-event["Definition: Event"]:::definition
+    thm-bayes["Theorem: Bayes' Theorem"]:::theorem
     thm-bayes --&gt; def-event
     def-event --&gt; def-subset
-    def-conditional-probability --&gt; def-event
     def-event --&gt; def-sample-space
+    def-conditional-probability --&gt; def-event
     class def-event current
 </pre>
 </div>
@@ -393,7 +347,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-event-1753070336" class="graph-visualization-container">
+<div id="graph-viz-def-event-1753070802" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -573,12 +527,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-event-1753070336', {
+    createForceGraph(data, 'graph-viz-def-event-1753070802', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-event-1753070336').innerHTML =
+    document.getElementById('graph-viz-def-event-1753070802').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

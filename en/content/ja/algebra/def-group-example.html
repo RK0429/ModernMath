@@ -235,7 +235,7 @@ window.Quarto = {
   <li><a href="#性質" id="toc-性質" class="nav-link" data-scroll-target="#性質">性質</a></li>
   <li><a href="#例" id="toc-例" class="nav-link" data-scroll-target="#例">例</a></li>
   <li><a href="#関連概念" id="toc-関連概念" class="nav-link" data-scroll-target="#関連概念">関連概念</a></li>
-  <li><a href="#依存グラフ" id="toc-依存グラフ" class="nav-link" data-scroll-target="#依存グラフ">依存グラフ</a></li>
+  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul></li>
   </ul>
@@ -306,8 +306,8 @@ window.Quarto = {
 <li><a href="../../../content/ja/algebra/thm-lagrange.html">ラグランジュの定理</a></li>
 </ul>
 </section>
-<section id="依存グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存グラフ">依存グラフ</h2>
+<section id="依存関係グラフ" class="level2">
+<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -319,25 +319,25 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-subgroup["Definition: Subgroup"]:::definition
     def-inverse-element["Definition: Inverse Element"]:::definition
     def-group-example["Definition: Group"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-identity-element["Definition: Identity Element"]:::definition
     def-associativity["Definition: Associativity"]:::definition
+    thm-unique-identity["Theorem: Uniqueness of Identity"]:::theorem
     def-homomorphism["Definition: Group Homomorphism"]:::definition
     ex-integers-addition["Example: Integers under Addition"]:::example
-    thm-unique-identity["Theorem: Uniqueness of Identity"]:::theorem
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-identity-element["Definition: Identity Element"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
     def-group-example --&gt; def-homomorphism
-    def-group-example --&gt; thm-lagrange
-    def-group-example --&gt; def-associativity
     def-group-example --&gt; def-identity-element
-    def-group-example --&gt; def-subgroup
-    def-group-example --&gt; ex-integers-addition
-    def-group-example --&gt; def-binary-operation
-    def-group-example --&gt; def-inverse-element
     def-group-example --&gt; thm-unique-identity
+    def-group-example --&gt; ex-integers-addition
+    def-group-example --&gt; thm-lagrange
+    def-group-example --&gt; def-inverse-element
+    def-group-example --&gt; def-subgroup
+    def-group-example --&gt; def-associativity
+    def-group-example --&gt; def-binary-operation
     class def-group-example current
 </pre>
 </div>
@@ -349,7 +349,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-group-example-1753070317" class="graph-visualization-container">
+<div id="graph-viz-def-group-example-1753070784" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -529,12 +529,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-group-example-1753070317', {
+    createForceGraph(data, 'graph-viz-def-group-example-1753070784', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-group-example-1753070317').innerHTML =
+    document.getElementById('graph-viz-def-group-example-1753070784').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

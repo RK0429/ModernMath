@@ -239,7 +239,6 @@ window.Quarto = {
   <li><a href="#証明の概要" id="toc-証明の概要" class="nav-link" data-scroll-target="#証明の概要">証明の概要</a></li>
   <li><a href="#帰結" id="toc-帰結" class="nav-link" data-scroll-target="#帰結">帰結</a></li>
   <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
-  <li><a href="#依存グラフ" id="toc-依存グラフ" class="nav-link" data-scroll-target="#依存グラフ">依存グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul></li>
   </ul>
@@ -311,49 +310,14 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-rank-nullity["定理: 階数・退化次数定理"]:::theorem
-    def-image["定義: 像"]:::definition
-    def-linear-transformation["定義: 線形変換"]:::definition
-    def-vector-space["定義: ベクトル空間"]:::definition
-    def-kernel["定義: 核"]:::definition
-    thm-rank-nullity --&gt; def-vector-space
-    thm-rank-nullity --&gt; def-image
-    thm-rank-nullity --&gt; def-kernel
-    thm-rank-nullity --&gt; def-linear-transformation
-    class thm-rank-nullity current
-
-    click def-image "def-image.html" "Go to 定義: 像"
-    click def-linear-transformation "def-linear-transformation.html" "Go to 定義: 線形変換"
-    click def-vector-space "def-vector-space.html" "Go to 定義: ベクトル空間"
-    click def-kernel "def-kernel.html" "Go to 定義: 核"
-</pre>
-</div>
-<p></p><figcaption> 局所的な依存関係グラフ</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
-<section id="依存グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存グラフ">依存グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-image["Definition: Image"]:::definition
     def-kernel["Definition: Kernel"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
     thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
     def-linear-transformation["Definition: Linear Transformation"]:::definition
-    def-image["Definition: Image"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    thm-rank-nullity --&gt; def-linear-transformation
     thm-rank-nullity --&gt; def-image
     thm-rank-nullity --&gt; def-vector-space
-    thm-rank-nullity --&gt; def-linear-transformation
     thm-rank-nullity --&gt; def-kernel
     class thm-rank-nullity current
 </pre>
@@ -366,7 +330,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-rank-nullity-1753070380" class="graph-visualization-container">
+<div id="graph-viz-thm-rank-nullity-1753070845" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -546,12 +510,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-rank-nullity-1753070380', {
+    createForceGraph(data, 'graph-viz-thm-rank-nullity-1753070845', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-rank-nullity-1753070380').innerHTML =
+    document.getElementById('graph-viz-thm-rank-nullity-1753070845').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

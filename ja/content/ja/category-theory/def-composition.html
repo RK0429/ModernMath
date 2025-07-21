@@ -249,7 +249,6 @@ window.Quarto = {
   <li><a href="#可換図式" id="toc-可換図式" class="nav-link" data-scroll-target="#可換図式">可換図式</a></li>
   <li><a href="#関連概念" id="toc-関連概念" class="nav-link" data-scroll-target="#関連概念">関連概念</a></li>
   <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
-  <li><a href="#依存グラフ" id="toc-依存グラフ" class="nav-link" data-scroll-target="#依存グラフ">依存グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul>
 </nav>
@@ -354,46 +353,13 @@ C ---k---&gt; D</code></pre>
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-category["定義: 圏"]:::definition
-    def-isomorphism["定義: 同型射"]:::definition
-    def-composition["定義: 合成"]:::definition
-    def-morphism["定義: 射"]:::definition
-    def-isomorphism --&gt; def-composition
-    def-composition --&gt; def-morphism
-    def-composition --&gt; def-category
-    def-composition --&gt; def-isomorphism
-    class def-composition current
-
-    click def-category "def-category.html" "Go to 定義: 圏"
-    click def-isomorphism "def-isomorphism.html" "Go to 定義: 同型射"
-    click def-morphism "def-morphism.html" "Go to 定義: 射"
-</pre>
-</div>
-<p></p><figcaption> 局所依存関係グラフ</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
-<section id="依存グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存グラフ">依存グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-category["Definition: Category"]:::definition
     def-morphism["Definition: Morphism"]:::definition
-    def-composition["Definition: Composition"]:::definition
+    def-category["Definition: Category"]:::definition
     def-isomorphism["Definition: Isomorphism"]:::definition
+    def-composition["Definition: Composition"]:::definition
     def-composition --&gt; def-category
-    def-isomorphism --&gt; def-composition
     def-composition --&gt; def-morphism
+    def-isomorphism --&gt; def-composition
     class def-composition current
 </pre>
 </div>
@@ -405,7 +371,7 @@ C ---k---&gt; D</code></pre>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-composition-1753070388" class="graph-visualization-container">
+<div id="graph-viz-def-composition-1753070853" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -585,12 +551,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-composition-1753070388', {
+    createForceGraph(data, 'graph-viz-def-composition-1753070853', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-composition-1753070388').innerHTML =
+    document.getElementById('graph-viz-def-composition-1753070853').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
