@@ -182,7 +182,7 @@ cat > _site/index.html << 'EOF'
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Math Knowledge Graph - 数学知識グラフ</title>
+    <title>Math Knowledge Graph - 数学ナレッジグラフ</title>
     <script>
         // Detect user language preference
         const userLang = navigator.language || navigator.userLanguage;

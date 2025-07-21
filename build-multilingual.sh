@@ -23,7 +23,7 @@ cat > _site/index.html << 'EOF'
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Math Knowledge Graph - 数学知識グラフ</title>
+    <title>Math Knowledge Graph - 数学ナレッジグラフ</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -123,7 +123,7 @@ cat > _site/index.html << 'EOF'
 </head>
 <body>
     <div class="container">
-        <h1>Mathematics Knowledge Graph<br>数学知識グラフ</h1>
+        <h1>Mathematics Knowledge Graph<br>数学ナレッジグラフ</h1>
 
         <p id="loading" class="loading">Preparing to redirect based on your language preference...</p>
 

@@ -1,0 +1,189 @@
+---
+id: def-coset
+lean_id: Mathlib.GroupTheory.Coset
+requires:
+- def-group
+- def-subgroup
+- def-binary-operation
+status: complete
+title: '定義: 剰余類'
+translations:
+  en: ../en/algebra/def-coset.html
+  ja: ../ja/algebra/def-coset.html
+translation_of: ../../en/algebra/def-coset.qmd
+type: Definition
+---
+
+# 定義: 剰余類 {#def-coset}
+
+**剰余類**（coset）は、親[群](def-group.qmd)の固定された元によって[部分群](def-subgroup.qmd)を平行移動させたときに生じる群論の基本概念です。剰余類は群を等しい大きさの互いに素な部分集合に分割します。
+
+## 形式的定義
+
+$(G, \star)$を群、$H \leq G$を部分群とします。任意の元$g \in G$に対して：
+
+### 左剰余類
+
+$H$の$g$による**左剰余類**は次の集合です：
+$$gH = \{g \star h : h \in H\}$$
+
+### 右剰余類
+
+$H$の$g$による**右剰余類**は次の集合です：
+$$Hg = \{h \star g : h \in H\}$$
+
+## 記法と用語
+
+- 元$g$は剰余類の**代表元**と呼ばれます
+- 演算が加法の場合、$g + H$および$H + g$と書きます
+- 演算が乗法の場合、記号を省略することが多いです：$gH$および$Hg$
+- $H$の$G$におけるすべての左剰余類の集合を$G/H$（「$G$を$H$で割る」と読む）と表記します
+- $H$の$G$におけるすべての右剰余類の集合を$H\backslash G$と表記します
+
+## 基本的性質
+
+### 1. 濃度の相等性
+
+$H$のすべての剰余類は$H$と同じ要素数を持ちます：
+$$|gH| = |H| = |Hg|$$
+
+これは写像$h \mapsto gh$が$H$から$gH$への全単射であることから従います。
+
+### 2. 分割の性質
+
+$H$の左剰余類（および別に右剰余類）は$G$を分割します：
+- $G$のすべての元はちょうど1つの左剰余類に属します
+- 2つの左剰余類は一致するか互いに素です：$g_1H = g_2H$または$g_1H \cap g_2H = \emptyset$
+
+### 3. 剰余類の相等判定基準
+
+任意の$g_1, g_2 \in G$に対して：
+- $g_1H = g_2H$ ⟺ $g_1^{-1}g_2 \in H$
+- $Hg_1 = Hg_2$ ⟺ $g_1g_2^{-1} \in H$
+
+### 4. 単位剰余類
+
+部分群$H$自身は常に剰余類です：
+- $eH = H = He$（ここで$e$は単位元）
+
+### 5. 指数
+
+異なる左剰余類の個数は異なる右剰余類の個数に等しく、この共通の値を$G$における$H$の**指数**と呼び、$[G:H]$と表記します。
+
+## 例
+
+### 例1：整数の法$n$剰余類
+
+$G = (\mathbb{Z}, +)$、$H = n\mathbb{Z} = \{..., -2n, -n, 0, n, 2n, ...\}$とします。
+
+左剰余類は：
+- $0 + n\mathbb{Z} = n\mathbb{Z} = \{..., -2n, -n, 0, n, 2n, ...\}$
+- $1 + n\mathbb{Z} = \{..., -2n+1, -n+1, 1, n+1, 2n+1, ...\}$
+- $2 + n\mathbb{Z} = \{..., -2n+2, -n+2, 2, n+2, 2n+2, ...\}$
+- ...
+- $(n-1) + n\mathbb{Z} = \{..., -n-1, -1, n-1, 2n-1, 3n-1, ...\}$
+
+ちょうど$n$個の異なる剰余類があるので、$[\mathbb{Z} : n\mathbb{Z}] = n$です。
+
+### 例2：整数群における偶数部分群
+
+$G = \mathbb{Z}$における$H = 2\mathbb{Z}$（偶数）とします。
+
+剰余類は：
+- $0 + 2\mathbb{Z} = 2\mathbb{Z}$（すべての偶数）
+- $1 + 2\mathbb{Z} = \{..., -3, -1, 1, 3, 5, ...\}$（すべての奇数）
+
+したがって$[\mathbb{Z} : 2\mathbb{Z}] = 2$です。
+
+### 例3：有限群における剰余類
+
+正三角形の対称性を表す二面体群$D_3$において、部分群$H = \{e, r\}$（$r$は120°回転）を考えます：
+
+左剰余類は：
+- $eH = \{e, r\} = H$
+- $r^2H = \{r^2, r^2r\} = \{r^2, e\} = H$
+- $sH = \{s, sr\}$（$s$は反射）
+
+## 幾何学的解釈
+
+剰余類は次のように視覚化できます：
+- **平行移動**：各剰余類$gH$は$H$を元$g$で「平行移動」したもの
+- **平行な部分集合**：アーベル群では、剰余類は平行線や平行平面のようなもの
+- **軌道**：剰余類は自然な群作用の軌道を表す
+
+## 左剰余類と右剰余類が一致する場合
+
+一般に$gH \neq Hg$です。しかし、2つの重要な場合に一致します：
+
+1. **アーベル群**：$G$がアーベル群ならば、すべての$g \in G$に対して$gH = Hg$
+
+2. **正規部分群**：部分群$N$が正規であることと、すべての$g \in G$に対して$gN = Ng$となることは同値
+
+## 商群との関係
+
+$N$が[正規部分群](def-normal-subgroup.qmd)のとき、剰余類の集合$G/N$に群構造を入れることができ、[商群](def-quotient-group.qmd)を形成します。群演算は：
+$$(gN) \star (hN) = (g \star h)N$$
+
+この演算が矛盾なく定義されるのは、正規部分群では左剰余類と右剰余類が一致するからです。
+
+## 応用
+
+### ラグランジュの定理
+
+剰余類の概念は[ラグランジュの定理](thm-lagrange.qmd)の中心的役割を果たします。有限群$G$に対して：
+$$|G| = |H| \cdot [G:H]$$
+
+### 群作用
+
+剰余類は群作用の研究で自然に現れます：
+- $H$の左剰余類は、$H$が$G$に右から作用するときの軌道
+- $H$の右剰余類は、$H$が$G$に左から作用するときの軌道
+
+### 数え上げの議論
+
+剰余類は有限群における数え上げと整除性の結果を証明する強力な道具を提供します。
+
+## 関連項目
+
+- @def-subgroup
+- @def-normal-subgroup
+- @def-quotient-group
+- @thm-lagrange
+- @ex-even-integers-subgroup
+- @ex-quotient-integers-mod-n
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-coset["定義: 剰余類"]:::current
+    def-group["定義: 群"]:::definition
+    def-subgroup["定義: 部分群"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-coset --> def-group
+    def-coset --> def-subgroup
+    def-coset --> def-binary-operation
+    class def-coset current
+    click def-group "def-group.html" "群の定義へ"
+    click def-subgroup "def-subgroup.html" "部分群の定義へ"
+    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
+```
+
+## インタラクティブ可視化
+
+局所ナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-coset" data-width="700" data-height="500"}
+:::
+
+以下のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [完全なインタラクティブ版](../../output/interactive/def-coset.html){target="_blank"}を表示

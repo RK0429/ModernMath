@@ -7,7 +7,8 @@ to ensure they always appear at the end of articles.
 import argparse
 import re
 from pathlib import Path
-from typing import Tuple, List, Dict, Optional, Any, Set
+from typing import Any, Dict, List, Optional, Set, Tuple
+
 import frontmatter
 
 
@@ -281,7 +282,7 @@ def update_visualization_content(
     if is_japanese:
         interactive_section = f"""## インタラクティブ可視化
 
-ローカル知識グラフの近傍をインタラクティブに探索：
+ローカルナレッジグラフの近傍をインタラクティブに探索：
 
 ::: {{.graph-viz data-id="{node_id}" data-width="700" data-height="500"}}
 :::

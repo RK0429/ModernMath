@@ -1,0 +1,188 @@
+---
+id: def-coset
+lean_id: Mathlib.GroupTheory.Coset
+requires:
+- def-group
+- def-subgroup
+- def-binary-operation
+status: complete
+title: 'Definition: Coset'
+translations:
+  en: ../en/algebra/def-coset.html
+  ja: ../ja/algebra/def-coset.html
+type: Definition
+---
+
+# Definition: Coset {#def-coset}
+
+A **coset** is a fundamental concept in group theory that arises when we translate a [subgroup](def-subgroup.qmd) by a fixed element of the parent [group](def-group.qmd). Cosets partition a group into equal-sized disjoint subsets.
+
+## Formal Definition
+
+Let $(G, \star)$ be a group and $H \leq G$ be a subgroup. For any element $g \in G$:
+
+### Left Coset
+
+The **left coset** of $H$ by $g$ is the set:
+$$gH = \{g \star h : h \in H\}$$
+
+### Right Coset
+
+The **right coset** of $H$ by $g$ is the set:
+$$Hg = \{h \star g : h \in H\}$$
+
+## Notation and Terminology
+
+- The element $g$ is called a **representative** of the coset
+- When the operation is addition, we write $g + H$ and $H + g$
+- When the operation is multiplication, we often omit the symbol: $gH$ and $Hg$
+- The set of all left cosets of $H$ in $G$ is denoted $G/H$ (read "$G$ modulo $H$")
+- The set of all right cosets of $H$ in $G$ is denoted $H\backslash G$
+
+## Fundamental Properties
+
+### 1. Equal Cardinality
+
+Every coset of $H$ has the same number of elements as $H$:
+$$|gH| = |H| = |Hg|$$
+
+This follows from the fact that the map $h \mapsto gh$ is a bijection from $H$ to $gH$.
+
+### 2. Partition Property
+
+The left cosets (and separately, the right cosets) of $H$ partition $G$:
+- Every element of $G$ belongs to exactly one left coset
+- Two left cosets are either identical or disjoint: $g_1H = g_2H$ or $g_1H \cap g_2H = \emptyset$
+
+### 3. Coset Equality Criterion
+
+For any $g_1, g_2 \in G$:
+- $g_1H = g_2H$ if and only if $g_1^{-1}g_2 \in H$
+- $Hg_1 = Hg_2$ if and only if $g_1g_2^{-1} \in H$
+
+### 4. The Identity Coset
+
+The subgroup $H$ itself is always a coset:
+- $eH = H = He$ where $e$ is the identity element
+
+### 5. Index
+
+The number of distinct left cosets equals the number of distinct right cosets. This common value is called the **index** of $H$ in $G$, denoted $[G:H]$.
+
+## Examples
+
+### Example 1: Integers Modulo n
+
+Consider $G = (\mathbb{Z}, +)$ and $H = n\mathbb{Z} = \{..., -2n, -n, 0, n, 2n, ...\}$.
+
+The left cosets are:
+- $0 + n\mathbb{Z} = n\mathbb{Z} = \{..., -2n, -n, 0, n, 2n, ...\}$
+- $1 + n\mathbb{Z} = \{..., -2n+1, -n+1, 1, n+1, 2n+1, ...\}$
+- $2 + n\mathbb{Z} = \{..., -2n+2, -n+2, 2, n+2, 2n+2, ...\}$
+- ...
+- $(n-1) + n\mathbb{Z} = \{..., -n-1, -1, n-1, 2n-1, 3n-1, ...\}$
+
+There are exactly $n$ distinct cosets, so $[\mathbb{Z} : n\mathbb{Z}] = n$.
+
+### Example 2: Even Integers in Z
+
+Let $H = 2\mathbb{Z}$ (even integers) in $G = \mathbb{Z}$.
+
+The cosets are:
+- $0 + 2\mathbb{Z} = 2\mathbb{Z}$ (all even integers)
+- $1 + 2\mathbb{Z} = \{..., -3, -1, 1, 3, 5, ...\}$ (all odd integers)
+
+Thus $[\mathbb{Z} : 2\mathbb{Z}] = 2$.
+
+### Example 3: Cosets in a Finite Group
+
+In the dihedral group $D_3$ (symmetries of an equilateral triangle) with subgroup $H = \{e, r\}$ (where $r$ is a 120° rotation):
+
+The left cosets are:
+- $eH = \{e, r\} = H$
+- $r^2H = \{r^2, r^2r\} = \{r^2, e\} = H$
+- $sH = \{s, sr\}$ (where $s$ is a reflection)
+
+## Geometric Interpretation
+
+Cosets can be visualized as:
+- **Translations**: Each coset $gH$ is a "translate" of $H$ by the element $g$
+- **Parallel subsets**: In abelian groups, cosets are like parallel lines or planes
+- **Orbits**: Cosets represent the orbits of a natural group action
+
+## When Left and Right Cosets Coincide
+
+In general, $gH \neq Hg$. However, they coincide in two important cases:
+
+1. **Abelian Groups**: If $G$ is abelian, then $gH = Hg$ for all $g \in G$
+
+2. **Normal Subgroups**: A subgroup $N$ is normal if and only if $gN = Ng$ for all $g \in G$
+
+## Connection to Quotient Groups
+
+When $N$ is a [normal subgroup](def-normal-subgroup.qmd), the set of cosets $G/N$ can be given a group structure, forming the [quotient group](def-quotient-group.qmd). The group operation is:
+$$(gN) \star (hN) = (g \star h)N$$
+
+This operation is well-defined precisely because left and right cosets coincide for normal subgroups.
+
+## Applications
+
+### Lagrange's Theorem
+
+The concept of cosets is central to [Lagrange's theorem](thm-lagrange.qmd), which states that for a finite group $G$:
+$$|G| = |H| \cdot [G:H]$$
+
+### Group Actions
+
+Cosets naturally arise in the study of group actions:
+- The left cosets of $H$ are the orbits of $H$ acting on $G$ by right multiplication
+- The right cosets of $H$ are the orbits of $H$ acting on $G$ by left multiplication
+
+### Counting Arguments
+
+Cosets provide a powerful tool for counting in finite groups and proving divisibility results.
+
+## See Also
+
+- @def-subgroup
+- @def-normal-subgroup
+- @def-quotient-group
+- @thm-lagrange
+- @ex-even-integers-subgroup
+- @ex-quotient-integers-mod-n
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-coset["Definition: Coset"]:::current
+    def-group["Definition: Group"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-coset --> def-group
+    def-coset --> def-subgroup
+    def-coset --> def-binary-operation
+    class def-coset current
+    click def-group "def-group.html" "Go to Group definition"
+    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-coset" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-coset.html){target="_blank"}
