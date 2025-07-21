@@ -329,16 +329,16 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-angle["Definition: Angle"]:::definition
-    def-euclidean-space["Definition: Euclidean Space"]:::definition
-    thm-angle-sum-triangle["Theorem: Angle Sum of a Triangle"]:::theorem
-    def-line["Definition: Line"]:::definition
     def-point["Definition: Point"]:::definition
     def-triangle["Definition: Triangle"]:::definition
-    def-angle --&gt; def-point
-    thm-angle-sum-triangle --&gt; def-angle
+    def-line["Definition: Line"]:::definition
+    def-euclidean-space["Definition: Euclidean Space"]:::definition
+    thm-angle-sum-triangle["Theorem: Angle Sum of a Triangle"]:::theorem
     def-angle --&gt; def-line
-    def-angle --&gt; def-euclidean-space
     def-triangle --&gt; def-angle
+    def-angle --&gt; def-euclidean-space
+    thm-angle-sum-triangle --&gt; def-angle
+    def-angle --&gt; def-point
     class def-angle current
 </pre>
 </div>
@@ -350,7 +350,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-angle-1753085231" class="graph-visualization-container">
+<div id="graph-viz-def-angle-1753091737" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -530,12 +530,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-angle-1753085231', {
+    createForceGraph(data, 'graph-viz-def-angle-1753091737', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-angle-1753085231').innerHTML =
+    document.getElementById('graph-viz-def-angle-1753091737').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -337,22 +337,22 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-natural-transformation["Definition: Natural Transformation"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
     def-morphism["Definition: Morphism"]:::definition
+    def-category["Definition: Category"]:::definition
+    def-composition["Definition: Composition"]:::definition
     ex-set-category["Example: The Category of Sets"]:::example
     def-set["Definition: Set"]:::definition
     def-functor["Definition: Functor"]:::definition
-    def-composition["Definition: Composition"]:::definition
-    def-natural-transformation["Definition: Natural Transformation"]:::definition
-    def-category["Definition: Category"]:::definition
-    def-isomorphism["Definition: Isomorphism"]:::definition
     thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
     def-isomorphism --&gt; def-category
-    def-category --&gt; def-set
     def-composition --&gt; def-category
-    def-morphism --&gt; def-category
     def-natural-transformation --&gt; def-category
-    def-functor --&gt; def-category
+    def-morphism --&gt; def-category
     thm-yoneda --&gt; def-category
+    def-functor --&gt; def-category
+    def-category --&gt; def-set
     ex-set-category --&gt; def-category
     class def-category current
 </pre>
@@ -365,7 +365,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-category-1753085168" class="graph-visualization-container">
+<div id="graph-viz-def-category-1753091675" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -545,12 +545,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-category-1753085168', {
+    createForceGraph(data, 'graph-viz-def-category-1753091675', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-category-1753085168').innerHTML =
+    document.getElementById('graph-viz-def-category-1753091675').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

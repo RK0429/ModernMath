@@ -354,13 +354,13 @@ window.Quarto = {
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-intersection["Definition: Intersection"]:::definition
     def-set["Definition: Set"]:::definition
-    thm-de-morgan["Theorem: De Morgan's Laws"]:::theorem
     def-union["Definition: Union"]:::definition
-    thm-de-morgan --&gt; def-intersection
-    def-intersection --&gt; thm-de-morgan
-    thm-de-morgan --&gt; def-union
+    thm-de-morgan["Theorem: De Morgan's Laws"]:::theorem
     def-union --&gt; thm-de-morgan
+    def-intersection --&gt; thm-de-morgan
     thm-de-morgan --&gt; def-set
+    thm-de-morgan --&gt; def-union
+    thm-de-morgan --&gt; def-intersection
     class thm-de-morgan current
 </pre>
 </div>
@@ -372,7 +372,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-de-morgan-1753085184" class="graph-visualization-container">
+<div id="graph-viz-thm-de-morgan-1753091691" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -552,12 +552,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-de-morgan-1753085184', {
+    createForceGraph(data, 'graph-viz-thm-de-morgan-1753091691', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-de-morgan-1753085184').innerHTML =
+    document.getElementById('graph-viz-thm-de-morgan-1753091691').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
