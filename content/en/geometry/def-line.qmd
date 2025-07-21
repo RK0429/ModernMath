@@ -42,7 +42,6 @@ In different mathematical contexts:
 
 ## Dependency Graph
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -50,19 +49,24 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-line["Definition: Line"]:::definition
     def-angle["Definition: Angle"]:::definition
     thm-angle-sum-triangle["Theorem: Angle Sum of a Triangle"]:::theorem
     def-point["Definition: Point"]:::definition
     def-parallel["Definition: Parallel Lines"]:::definition
-    def-line["Definition: Line"]:::definition
     def-triangle["Definition: Triangle"]:::definition
-    def-angle --> def-line
-    def-line --> def-point
-    def-triangle --> def-line
-    def-parallel --> def-line
     thm-angle-sum-triangle --> def-line
+    def-line --> def-point
+    def-parallel --> def-line
+    def-triangle --> def-line
+    def-angle --> def-line
     class def-line current
 ```
+    click def-angle "def-angle.html" "Go to Angle definition"
+    click thm-angle-sum-triangle "thm-angle-sum-triangle.html" "Go to Angle Sum of a Triangle theorem"
+    click def-point "def-point.html" "Go to Point definition"
+    click def-parallel "def-parallel.html" "Go to Parallel Lines definition"
+    click def-triangle "def-triangle.html" "Go to Triangle definition"
 
 ## Interactive Visualization
 

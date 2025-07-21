@@ -65,7 +65,6 @@ graph TD
 
 ## 依存関係グラフ
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -73,15 +72,18 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-pythagorean["Theorem: Pythagorean Theorem"]:::theorem
-    def-vector-space["Definition: Vector Space"]:::definition
-    def-euclidean-space["Definition: Euclidean Space"]:::definition
     def-metric-space["Definition: Metric Space"]:::definition
-    thm-pythagorean --> def-euclidean-space
-    def-euclidean-space --> def-metric-space
+    def-euclidean-space["Definition: Euclidean Space"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    thm-pythagorean["Theorem: Pythagorean Theorem"]:::theorem
     def-euclidean-space --> def-vector-space
+    def-euclidean-space --> def-metric-space
+    thm-pythagorean --> def-euclidean-space
     class def-euclidean-space current
 ```
+    click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
+    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
+    click thm-pythagorean "thm-pythagorean.html" "Theorem: Pythagorean Theoremへ"
 
 ## インタラクティブ可視化
 

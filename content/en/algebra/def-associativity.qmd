@@ -85,7 +85,6 @@ In structures with associativity:
 
 ## Dependency Graph
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -93,15 +92,18 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group["Definition: Group"]:::definition
     def-group-example["Definition: Group"]:::definition
-    def-associativity["Definition: Associativity"]:::definition
     def-binary-operation["Definition: Binary Operation"]:::definition
-    def-associativity --> def-binary-operation
-    def-group-example --> def-associativity
+    def-associativity["Definition: Associativity"]:::definition
+    def-group["Definition: Group"]:::definition
     def-group --> def-associativity
+    def-group-example --> def-associativity
+    def-associativity --> def-binary-operation
     class def-associativity current
 ```
+    click def-group-example "def-group-example.html" "Go to Group definition"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click def-group "def-group.html" "Go to Group definition"
 
 ## Interactive Visualization
 

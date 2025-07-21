@@ -44,7 +44,6 @@ The concept of span connects individual vectors to the subspaces they generate.
 
 ## Dependency Graph
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -52,15 +51,18 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-basis["Definition: Basis"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
     def-span["Definition: Span"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-basis["Definition: Basis"]:::definition
     ex-standard-basis-rn["Example: Standard Basis of ℝⁿ"]:::example
-    def-span --> def-vector-space
-    def-basis --> def-span
     ex-standard-basis-rn --> def-span
+    def-basis --> def-span
+    def-span --> def-vector-space
     class def-span current
 ```
+    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
+    click def-basis "def-basis.html" "Go to Basis definition"
+    click ex-standard-basis-rn "ex-standard-basis-rn.html" "Go to Standard Basis of ℝⁿ example"
 
 ## Interactive Visualization
 

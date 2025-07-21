@@ -52,7 +52,6 @@ $$\text{im}(T_A) = \{A\mathbf{x} : \mathbf{x} \in \mathbb{R}^n\}$$
 
 ## 依存関係グラフ
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -60,15 +59,18 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-vector-space["Definition: Vector Space"]:::definition
     def-linear-transformation["Definition: Linear Transformation"]:::definition
     thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
     def-image["Definition: Image"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
     def-image --> def-vector-space
-    def-image --> def-linear-transformation
     thm-rank-nullity --> def-image
+    def-image --> def-linear-transformation
     class def-image current
 ```
+    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
+    click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
+    click thm-rank-nullity "thm-rank-nullity.html" "Theorem: Rank-Nullity Theoremへ"
 
 ## インタラクティブ可視化
 

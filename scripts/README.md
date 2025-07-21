@@ -23,8 +23,7 @@ Diagram and visualization generation
 - `generate_mermaid.py` - Generate Mermaid diagrams for each node
 - `generate_pyvis.py` - Create interactive PyVis visualizations
 - `generate_d3_data.py` - Generate D3.js visualization data
-- `insert_diagrams.py` - Insert visualizations into content files
-- `add_mermaid_links.py` - Add navigation links to Mermaid diagrams
+- `insert_diagrams.py` - Insert visualizations into content files (with automatic hyperlinks)
 - `fix_pyvis_css.py` - Fix CSS issues in PyVis outputs
 - `check_visualization_order.py` - Verify visualization section placement
 - `fix_visualization_placement.py` - Ensure visualizations appear at article end
@@ -95,7 +94,6 @@ The typical build pipeline runs scripts in this order:
 2. **Visualization Generation**
 
    ```bash
-   poetry run python scripts/visualization/add_mermaid_links.py
    poetry run python scripts/visualization/generate_mermaid.py
    poetry run python scripts/visualization/generate_pyvis.py
    poetry run python scripts/visualization/generate_d3_data.py

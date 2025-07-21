@@ -46,15 +46,12 @@ poetry run python scripts/site/generate_index_pages.py
 ### Generating Visualizations
 
 ```bash
-# Add click directives to Mermaid diagrams (run before generating)
-poetry run python scripts/visualization/add_mermaid_links.py
-
 # Generate all visualizations in sequence
 poetry run python scripts/visualization/generate_mermaid.py
 poetry run python scripts/visualization/generate_pyvis.py
 poetry run python scripts/visualization/generate_d3_data.py
 
-# Insert both Mermaid and D3.js visualizations
+# Insert both Mermaid and D3.js visualizations with automatic hyperlinks
 poetry run python scripts/visualization/insert_diagrams.py
 ```
 
@@ -146,9 +143,10 @@ Python scripts are organized into functional subdirectories:
    - Builds RDF triples using `rdflib`
 
 2. **Visualization Generation**:
-   - **Mermaid**: Static diagrams for each node's local neighborhood
+   - **Mermaid**: Static diagrams for each node's local neighborhood with clickable nodes
    - **PyVis**: Interactive HTML visualizations (force-directed graphs)
    - **D3.js**: JSON data for client-side rendering
+   - **Hyperlink Integration**: Click directives are automatically added to Mermaid diagrams during insertion
 
 3. **Cross-Reference Resolution** (`scripts/site/resolve_cross_references.py`):
    - Handles inter-domain references
@@ -172,9 +170,12 @@ The ontology (`ontology/math-ontology.ttl`) defines:
 ### Visualization Troubleshooting
 
 - **Path Issues**: graph-viz extension handles relative paths dynamically for GitHub Pages
-- **Mermaid Navigation**: Use `click node-id "path.html" "tooltip"` - automated by `add_mermaid_links.py`
+- **Mermaid Navigation**: Click directives (`click node-id "path.html" "tooltip"`) are automatically added by `fix_visualization_placement.py`
 - **Placement Rules**: Visualizations must appear at end of articles (Dependency Graph, then Interactive)
-- **Key Scripts**: `fix_visualization_placement.py` (enforce standards), `insert_diagrams.py` (auto-placement)
+- **Key Scripts**:
+  - `fix_visualization_placement.py`: Enforces placement standards AND adds click directives to Mermaid diagrams
+  - `insert_diagrams.py`: Auto-placement of visualizations (uses fix_visualization_placement.py internally)
+  - `generate_mermaid.py`: Creates base Mermaid diagrams without click directives
 
 ## Multilingual Support
 
@@ -355,7 +356,7 @@ The `auto-translate.yml` workflow automates bidirectional translation of article
 
 ### CI/CD Script Exit Codes
 
-**Important**: Scripts in the CI/CD pipeline should return exit code 0 when no changes are needed. In CI/CD contexts, "no changes required" is a normal success case, not an error. For example, `visualization/add_mermaid_links.py` correctly returns 0 whether files were modified or not.
+**Important**: Scripts in the CI/CD pipeline should return exit code 0 when no changes are needed. In CI/CD contexts, "no changes required" is a normal success case, not an error. For example, `visualization/fix_visualization_placement.py` correctly returns 0 whether files were modified or not.
 
 ### Quarto HTML Rendering
 
@@ -384,11 +385,16 @@ PyVis graphs include:
 ### Build Order Dependencies
 
 1. First: `graph/build_graph.py` (creates knowledge_graph.ttl)
-2. Then: `visualization/add_mermaid_links.py` (adds click directives to Mermaid diagrams)
-3. Then: Visualization scripts (read the .ttl file)
+2. Then: Visualization scripts (read the .ttl file):
+   - `generate_mermaid.py`: Creates base Mermaid diagram files
+   - `generate_pyvis.py`: Creates interactive visualizations
+   - `generate_d3_data.py`: Creates D3.js data files
+3. Then: `insert_diagrams.py` (inserts visualizations with automatic click directives)
 4. Then: `content/generate_index_pages.py` (creates comprehensive index pages with language support)
 5. Then: `content/resolve_cross_references.py` (needs content to exist)
 6. Finally: `quarto render` (uses all generated assets)
+
+**Note**: Click directives for Mermaid diagrams are automatically added when `insert_diagrams.py` runs.
 
 ## Current Status
 

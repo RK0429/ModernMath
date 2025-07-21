@@ -130,49 +130,44 @@ jobs:
           echo "Verification triples added to knowledge graph"
         fi
 
-    # Step 6b: Add click directives to Mermaid diagrams
-    - name: Add click directives to Mermaid diagrams
-      run: |
-        poetry run python scripts/visualization/add_mermaid_links.py
-
-    # Step 6c: Generate Mermaid diagrams
+    # Step 6b: Generate Mermaid diagrams
     - name: Generate Mermaid diagrams
       run: |
         poetry run python scripts/visualization/generate_mermaid.py
 
-    # Step 6d: Generate PyVis interactive visualizations
+    # Step 6c: Generate PyVis interactive visualizations
     - name: Generate PyVis interactive visualizations
       run: |
         poetry run python scripts/visualization/generate_pyvis.py
 
-    # Step 6e: Fix PyVis CSS paths
+    # Step 6d: Fix PyVis CSS paths
     - name: Fix PyVis CSS paths
       run: |
         poetry run python scripts/visualization/fix_pyvis_css.py
 
-    # Step 6f: Generate D3.js data files
+    # Step 6e: Generate D3.js data files
     - name: Generate D3.js data files
       run: |
         poetry run python scripts/visualization/generate_d3_data.py
 
-    # Step 6g: Generate comprehensive index pages
+    # Step 6f: Generate comprehensive index pages
     - name: Generate index pages for all domains
       run: |
         poetry run python scripts/site/generate_index_pages.py
         echo "Index pages generated successfully!"
 
-    # Step 6h: Resolve cross-references
+    # Step 6g: Resolve cross-references
     - name: Resolve cross-references
       run: |
         poetry run python scripts/site/resolve_cross_references.py
         echo "Cross-references resolved successfully!"
 
-    # Step 6i: Insert diagrams into content
+    # Step 6h: Insert diagrams into content
     - name: Insert diagrams into content
       run: |
         poetry run python scripts/visualization/insert_diagrams.py
 
-    # Step 6j: Build search index
+    # Step 6i: Build search index
     - name: Build search index
       run: |
         poetry run python scripts/site/build_search_index.py

@@ -43,7 +43,6 @@ satisfying:
 
 ## Dependency Graph
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -51,25 +50,33 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-natural-transformation["Definition: Natural Transformation"]:::definition
-    thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
-    def-functor["Definition: Functor"]:::definition
     ex-set-category["Example: The Category of Sets"]:::example
-    def-isomorphism["Definition: Isomorphism"]:::definition
-    def-composition["Definition: Composition"]:::definition
+    def-functor["Definition: Functor"]:::definition
+    thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
     def-morphism["Definition: Morphism"]:::definition
-    def-set["Definition: Set"]:::definition
+    def-composition["Definition: Composition"]:::definition
+    def-natural-transformation["Definition: Natural Transformation"]:::definition
     def-category["Definition: Category"]:::definition
-    thm-yoneda --> def-category
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    def-set["Definition: Set"]:::definition
     def-natural-transformation --> def-category
-    def-functor --> def-category
     def-category --> def-set
-    def-morphism --> def-category
-    def-composition --> def-category
     def-isomorphism --> def-category
+    def-composition --> def-category
+    def-functor --> def-category
     ex-set-category --> def-category
+    def-morphism --> def-category
+    thm-yoneda --> def-category
     class def-category current
 ```
+    click ex-set-category "ex-set-category.html" "Go to The Category of Sets example"
+    click def-functor "def-functor.html" "Go to Functor definition"
+    click thm-yoneda "thm-yoneda.html" "Go to Yoneda Lemma theorem"
+    click def-morphism "def-morphism.html" "Go to Morphism definition"
+    click def-composition "def-composition.html" "Go to Composition definition"
+    click def-natural-transformation "def-natural-transformation.html" "Go to Natural Transformation definition"
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
+    click def-set "def-set.html" "Go to Set definition"
 
 ## Interactive Visualization
 

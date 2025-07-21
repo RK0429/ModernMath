@@ -7,7 +7,7 @@ to ensure they always appear at the end of articles.
 import argparse
 import re
 from pathlib import Path
-from typing import Tuple, List, Dict, Optional, Any
+from typing import Tuple, List, Dict, Optional, Any, Set
 import frontmatter
 
 
@@ -142,6 +142,116 @@ def fix_visualization_placement(content: str) -> str:
     return content
 
 
+def extract_node_definitions(mermaid_content: str) -> List[Tuple[str, str, str]]:
+    """Extract node definitions from Mermaid diagram content."""
+    nodes = []
+    node_pattern = r'(\S+)\["([^"]+)"\](?::::(\w+))?'
+
+    for match in re.finditer(node_pattern, mermaid_content):
+        node_id = match.group(1)
+        display_label = match.group(2)
+        node_type = match.group(3) or ""
+
+        if node_id not in ["graph", "TD", "LR", "TB", "BT", "RL", "classDef", "class"]:
+            nodes.append((node_id, display_label, node_type))
+
+    return nodes
+
+
+def extract_existing_clicks(mermaid_content: str) -> Set[str]:
+    """Extract node IDs that already have click directives."""
+    click_pattern = r"click\s+(\S+)\s+"
+    return {match.group(1) for match in re.finditer(click_pattern, mermaid_content)}
+
+
+def determine_link_path(node_id: str) -> Optional[str]:
+    """Determine the relative path for a node ID based on naming conventions."""
+    if node_id.startswith("class ") or node_id in ["graph", "TD", "LR", "TB", "BT", "RL"]:
+        return None
+
+    patterns = ["def-", "thm-", "ex-", "ax-", "prop-", "lem-", "cor-"]
+
+    for pattern in patterns:
+        if node_id.startswith(pattern):
+            return f"{node_id}.html"
+
+    return None
+
+
+def get_link_tooltip(display_label: str, lang: str = "ja") -> str:
+    """Generate appropriate tooltip text based on the display label and language."""
+    ja_mappings = {"定義:": "の定義へ", "定理:": "の定理へ", "例:": "の例へ", "公理:": "の公理へ"}
+    en_mappings = {
+        "Definition:": " definition",
+        "Theorem:": " theorem",
+        "Example:": " example",
+        "Axiom:": " axiom",
+    }
+
+    if lang == "ja":
+        for prefix, suffix in ja_mappings.items():
+            if prefix in display_label:
+                concept = display_label.replace(prefix, "").strip()
+                return f"{concept}{suffix}"
+        return f"{display_label}へ"
+
+    for prefix, suffix in en_mappings.items():
+        if prefix in display_label:
+            concept = display_label.replace(prefix, "").strip()
+            return f"Go to {concept}{suffix}"
+    return f"Go to {display_label}"
+
+
+def add_click_directives(mermaid_content: str, current_node_id: str, lang: str = "ja") -> str:
+    """Add click directives to a Mermaid diagram."""
+    lines = mermaid_content.split("\n")
+
+    # Extract nodes and existing clicks
+    nodes = extract_node_definitions(mermaid_content)
+    existing_clicks = extract_existing_clicks(mermaid_content)
+
+    # Find where to insert click directives
+    insert_index = -1
+    for i, line in enumerate(lines):
+        stripped = line.strip()
+        has_arrow = "-->" in stripped or "--" in stripped
+        has_class_def = ":::" in stripped
+        is_node_def = stripped and not stripped.startswith(("click", "%%"))
+
+        if has_arrow or has_class_def or is_node_def:
+            insert_index = i
+
+    # Generate click directives
+    click_lines = []
+    for node_id, display_label, _ in nodes:
+        # Skip if already has a click directive
+        if node_id in existing_clicks:
+            continue
+
+        # Skip the current node (marked with 'current' class)
+        if node_id == current_node_id or "class " + node_id + " current" in mermaid_content:
+            continue
+
+        # Determine the link path
+        link_path = determine_link_path(node_id)
+        if link_path:
+            tooltip = get_link_tooltip(display_label, lang)
+            click_lines.append(f'    click {node_id} "{link_path}" "{tooltip}"')
+
+    # Insert click directives if we have any
+    if click_lines and insert_index >= 0:
+        # Add a blank line before click directives for readability
+        if insert_index < len(lines) - 1:
+            lines.insert(insert_index + 1, "")
+            insert_index += 1
+
+        # Insert all click directives
+        for i, click_line in enumerate(click_lines):
+            lines.insert(insert_index + 1 + i, click_line)
+
+    return "\n".join(lines)
+
+
 def update_visualization_content(
     content: str, node_id: str, diagram_content: Optional[str], is_japanese: bool
 ) -> str:
@@ -155,10 +265,16 @@ def update_visualization_content(
     sections_to_add = []
 
     if diagram_content:
+        # Determine language
+        lang = "ja" if is_japanese else "en"
+
+        # Add click directives to the diagram content
+        enhanced_diagram = add_click_directives(diagram_content, node_id, lang)
+
         if is_japanese:
-            dependency_section = f"## 依存関係グラフ\n\n{diagram_content}"
+            dependency_section = f"## 依存関係グラフ\n\n{enhanced_diagram}"
         else:
-            dependency_section = f"## Dependency Graph\n\n{diagram_content}"
+            dependency_section = f"## Dependency Graph\n\n{enhanced_diagram}"
         sections_to_add.append(dependency_section)
 
     # Always add interactive visualization

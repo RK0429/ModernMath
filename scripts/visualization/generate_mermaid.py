@@ -41,9 +41,7 @@ def get_node_info(g: Graph, node_uri: Any) -> Dict[str, Any]:
     return info
 
 
-def get_local_neighborhood(
-    g: Graph, node_id: str, depth: int = 1
-) -> Tuple[Set[str], Set[Tuple[str, str, str]]]:
+def get_local_neighborhood(g: Graph, node_id: str) -> Tuple[Set[str], Set[Tuple[str, str, str]]]:
     """
     Get the local neighborhood of a node (dependencies and dependents).
     Returns (nodes, edges) where edges are tuples of (source_id, target_id, relation).
@@ -116,7 +114,7 @@ def generate_mermaid_diagram(g: Graph, node_id: str, max_nodes: int = 20) -> str
         node_info[n] = info
 
     # Generate Mermaid code
-    lines = ["```{mermaid}", '%%| fig-cap: "Local dependency graph"', "graph TD"]
+    lines = ['%%| fig-cap: "Local dependency graph"', "graph TD"]
 
     # Add class definitions for styling
     lines.extend(
@@ -187,7 +185,7 @@ def generate_all_diagrams(ttl_file: Path, output_dir: Path) -> None:
     # Also generate a JSON index for easy lookup
     index = {"nodes": list(sorted(nodes)), "generated": True}
 
-    with open(output_dir / "index.json", "w") as f:
+    with open(output_dir / "index.json", "w", encoding="utf-8") as f:
         json.dump(index, f, indent=2)
 
 
