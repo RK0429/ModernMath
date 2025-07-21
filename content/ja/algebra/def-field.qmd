@@ -52,7 +52,6 @@ updated: 2024-01-20
 
 ## 依存関係グラフ
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -63,12 +62,12 @@ graph TD
     def-group["Definition: Group"]:::definition
     ex-finite-field["Example: Finite Field"]:::example
     def-ring["Definition: Ring"]:::definition
-    def-field["Definition: Field"]:::definition
     thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
-    def-field --> def-group
-    ex-finite-field --> def-field
+    def-field["Definition: Field"]:::definition
     def-field --> def-ring
     thm-field-characteristic --> def-field
+    ex-finite-field --> def-field
+    def-field --> def-group
     class def-field current
 ```
     click def-group "def-group.html" "Definition: Groupへ"

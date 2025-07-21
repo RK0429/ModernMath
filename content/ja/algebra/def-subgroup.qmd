@@ -39,9 +39,14 @@ $(G, \cdot)$ を群とする。空でない部分集合 $H \subseteq G$ が $G$ 
 - 部分群の任意の共通部分は部分群である
 - 部分群は親の群から結合律を継承する
 
+## 関連項目
+
+- @def-normal-subgroup - 商群を構成するために使われる特別な部分群
+- @def-quotient-group - 正規部分群で群を分割することで形成される群
+- @thm-lagrange - 部分群の位数と群の位数の関係
+
 ## 依存関係グラフ
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -50,27 +55,33 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-subgroup["Definition: Subgroup"]:::definition
-    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    def-group["Definition: Group"]:::definition
     def-group-example["Definition: Group"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     def-set["Definition: Set"]:::definition
-    def-subgroup --> def-set
-    def-subgroup --> def-group
-    def-normal-subgroup --> def-subgroup
-    def-group --> def-subgroup
+    def-group["Definition: Group"]:::definition
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    ex-even-integers-subgroup --> def-subgroup
+    def-subgroup --> def-normal-subgroup
+    def-subgroup --> def-quotient-group
     def-group-example --> def-subgroup
     thm-lagrange --> def-subgroup
-    ex-even-integers-subgroup --> def-subgroup
+    def-subgroup --> def-group
+    def-group --> def-subgroup
+    def-subgroup --> thm-lagrange
+    def-normal-subgroup --> def-subgroup
+    def-subgroup --> def-set
+    def-quotient-group --> def-subgroup
     class def-subgroup current
 ```
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Example: Even Integers Form a Subgroupへ"
-    click def-group "def-group.html" "Definition: Groupへ"
     click def-group-example "def-group-example.html" "Definition: Groupへ"
     click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
-    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
     click def-set "def-set.html" "Definition: Setへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Example: Even Integers Form a Subgroupへ"
+    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
+    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
 
 ## インタラクティブ可視化
 

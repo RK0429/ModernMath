@@ -1,0 +1,147 @@
+---
+id: ex-quotient-integers-mod-n
+requires:
+- def-quotient-group
+- def-group
+- def-normal-subgroup
+- ex-integers-addition
+status: complete
+title: '例: 整数の n による剰余'
+translation_of: ../../en/algebra/ex-quotient-integers-mod-n.qmd
+translations:
+  en: ../en/algebra/ex-quotient-integers-mod-n.html
+  ja: ../ja/algebra/ex-quotient-integers-mod-n.html
+type: Example
+---
+
+# 例: 整数の n による剰余 {#ex-quotient-integers-mod-n}
+
+[商群](def-quotient-group.qmd) $\mathbb{Z}/n\mathbb{Z}$ は、商群が代数的構造をどのように簡潔化するかを示す基本的な例を提供します。
+
+## 構成
+
+[加法による整数群](ex-integers-addition.qmd) $(\mathbb{Z}, +)$ と、$n$ の倍数からなる部分群 $n\mathbb{Z} = \{..., -2n, -n, 0, n, 2n, ...\}$ を考えます。
+
+$(\mathbb{Z}, +)$ はアーベル群なので、すべての部分群は[正規](def-normal-subgroup.qmd)であり、商群を形成できます：
+
+$$\mathbb{Z}/n\mathbb{Z} = \{k + n\mathbb{Z} : k \in \mathbb{Z}\}$$
+
+## 具体例: $\mathbb{Z}/6\mathbb{Z}$
+
+$n = 6$ の場合を考えてみましょう。部分群は $6\mathbb{Z} = \{..., -12, -6, 0, 6, 12, ...\}$ です。
+
+### 剰余類
+
+異なる剰余類は：
+- $0 + 6\mathbb{Z} = \{..., -12, -6, 0, 6, 12, ...\}$
+- $1 + 6\mathbb{Z} = \{..., -11, -5, 1, 7, 13, ...\}$
+- $2 + 6\mathbb{Z} = \{..., -10, -4, 2, 8, 14, ...\}$
+- $3 + 6\mathbb{Z} = \{..., -9, -3, 3, 9, 15, ...\}$
+- $4 + 6\mathbb{Z} = \{..., -8, -2, 4, 10, 16, ...\}$
+- $5 + 6\mathbb{Z} = \{..., -7, -1, 5, 11, 17, ...\}$
+
+$6 + 6\mathbb{Z} = 0 + 6\mathbb{Z}$、$7 + 6\mathbb{Z} = 1 + 6\mathbb{Z}$ などとなることに注意してください。
+
+### 群演算
+
+$\mathbb{Z}/6\mathbb{Z}$ での演算は：
+$$(a + 6\mathbb{Z}) + (b + 6\mathbb{Z}) = (a + b) + 6\mathbb{Z}$$
+
+例えば：
+- $(2 + 6\mathbb{Z}) + (3 + 6\mathbb{Z}) = 5 + 6\mathbb{Z}$
+- $(4 + 6\mathbb{Z}) + (5 + 6\mathbb{Z}) = 9 + 6\mathbb{Z} = 3 + 6\mathbb{Z}$
+
+### ケーリー表
+
+簡潔に $k + 6\mathbb{Z}$ を $\bar{k}$ と書くことがよくあります：
+
+| + | $\bar{0}$ | $\bar{1}$ | $\bar{2}$ | $\bar{3}$ | $\bar{4}$ | $\bar{5}$ |
+|---|-----------|-----------|-----------|-----------|-----------|-----------|
+| $\bar{0}$ | $\bar{0}$ | $\bar{1}$ | $\bar{2}$ | $\bar{3}$ | $\bar{4}$ | $\bar{5}$ |
+| $\bar{1}$ | $\bar{1}$ | $\bar{2}$ | $\bar{3}$ | $\bar{4}$ | $\bar{5}$ | $\bar{0}$ |
+| $\bar{2}$ | $\bar{2}$ | $\bar{3}$ | $\bar{4}$ | $\bar{5}$ | $\bar{0}$ | $\bar{1}$ |
+| $\bar{3}$ | $\bar{3}$ | $\bar{4}$ | $\bar{5}$ | $\bar{0}$ | $\bar{1}$ | $\bar{2}$ |
+| $\bar{4}$ | $\bar{4}$ | $\bar{5}$ | $\bar{0}$ | $\bar{1}$ | $\bar{2}$ | $\bar{3}$ |
+| $\bar{5}$ | $\bar{5}$ | $\bar{0}$ | $\bar{1}$ | $\bar{2}$ | $\bar{3}$ | $\bar{4}$ |
+
+## 性質
+
+### 巡回構造
+
+$\mathbb{Z}/n\mathbb{Z}$ は位数 $n$ の巡回群です：
+- $\bar{1} = 1 + n\mathbb{Z}$ によって生成されます
+- すべての要素はある $k$ に対して $k \cdot \bar{1}$ と書けます
+
+### 同型
+
+$\mathbb{Z}/n\mathbb{Z} \cong C_n$、位数 $n$ の巡回群。
+
+### 部分群
+
+$\mathbb{Z}/n\mathbb{Z}$ の部分群は $n$ の約数に対応します。$\mathbb{Z}/6\mathbb{Z}$ の場合：
+- 位数 1: $\{\bar{0}\}$
+- 位数 2: $\{\bar{0}, \bar{3}\}$
+- 位数 3: $\{\bar{0}, \bar{2}, \bar{4}\}$
+- 位数 6: $\mathbb{Z}/6\mathbb{Z}$ 自身
+
+## 応用
+
+### 合同算術
+
+$\mathbb{Z}/n\mathbb{Z}$ は合同算術の数学的基礎です：
+- 時計の算術（時間: $\mathbb{Z}/12\mathbb{Z}$）
+- 曜日（$\mathbb{Z}/7\mathbb{Z}$）
+- コンピュータサイエンス：ハッシュ関数、チェックサム
+
+### 数論
+
+- 合同式の研究：$a \equiv b \pmod{n}$ は $a + n\mathbb{Z} = b + n\mathbb{Z}$ を意味する
+- オイラーの定理とフェルマーの小定理
+- 中国の剰余定理
+
+### 暗号理論
+
+- RSA暗号は $n = pq$ の場合の $\mathbb{Z}/n\mathbb{Z}$ の性質に依存
+- 巡回群における離散対数問題
+
+## 一般化
+
+構成 $\mathbb{Z}/n\mathbb{Z}$ は以下に一般化されます：
+- 環の商：多項式に対する $\mathbb{Z}[x]/(p(x))$
+- 他の代数的構造の商
+- 位相における商空間
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
+    def-quotient-group["定義: 商群"]:::definition
+    def-group["定義: 群"]:::definition
+    def-normal-subgroup["定義: 正規部分群"]:::definition
+    ex-integers-addition["例: 加法による整数群"]:::example
+    ex-quotient-integers-mod-n --> def-quotient-group
+    ex-quotient-integers-mod-n --> def-group
+    ex-quotient-integers-mod-n --> def-normal-subgroup
+    ex-quotient-integers-mod-n --> ex-integers-addition
+    class ex-quotient-integers-mod-n current
+```
+
+## インタラクティブ可視化
+
+ローカル知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="ex-quotient-integers-mod-n" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- **ドラッグ**してノードを並べ替える
+- マウスホイールで**ズームイン/アウト**
+- ノードに**ホバー**して詳細を表示
+- [完全なインタラクティブ版](../../output/interactive/ex-quotient-integers-mod-n.html){target="_blank"}を表示

@@ -3,6 +3,8 @@ id: thm-euler
 requires:
 - def-prime
 - def-group
+- def-quotient-group
+- ex-quotient-integers-mod-n
 status: complete
 title: 定理：オイラーの定理
 translation_of: ../../en/number-theory/thm-euler.qmd
@@ -32,7 +34,7 @@ $$a^{\phi(n)} \equiv 1 \pmod{n}$$
 
 ## 群論を用いた証明
 
-$n$ と互いに素な整数は、法 $n$ での乗法に関して[群](../algebra/def-group.qmd)を成し、$(\mathbb{Z}/n\mathbb{Z})^*$ と表されます。この群の位数は $\phi(n)$ であり、ラグランジュの定理により、任意の元を群の位数でべき乗すると単位元になります。
+$n$ と互いに素な整数は、法 $n$ での乗法に関して[群](../algebra/def-group.qmd)を成し、$(\mathbb{Z}/n\mathbb{Z})^*$ と表されます。これは[商群](../algebra/def-quotient-group.qmd) $\mathbb{Z}/n\mathbb{Z}$ の単元群です（[例：整数の法 n](../algebra/ex-quotient-integers-mod-n.qmd)を参照）。この群の位数は $\phi(n)$ であり、ラグランジュの定理により、任意の元を群の位数でべき乗すると単位元になります。
 
 ## 特殊な場合
 
@@ -47,7 +49,6 @@ $n$ と互いに素な整数は、法 $n$ での乗法に関して[群](../algeb
 
 ## 依存関係グラフ
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -55,15 +56,21 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-quotient-group["Definition: Quotient Group"]:::definition
     def-group["Definition: Group"]:::definition
     def-prime["Definition: Prime Number"]:::definition
     thm-euler["Theorem: Euler's Theorem"]:::theorem
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     thm-euler --> def-group
+    thm-euler --> ex-quotient-integers-mod-n
+    thm-euler --> def-quotient-group
     thm-euler --> def-prime
     class thm-euler current
 ```
+    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
     click def-group "def-group.html" "Definition: Groupへ"
     click def-prime "def-prime.html" "Definition: Prime Numberへ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
 
 ## インタラクティブ可視化
 

@@ -41,7 +41,6 @@ $$\overline{A} = \bigcap \{C : A \subseteq C \text{ and } C \text{ is closed}\}$
 
 ## Dependency Graph
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -49,24 +48,24 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-open-set["Definition: Open Set"]:::definition
-    thm-heine-borel["Theorem: Heine-Borel Theorem"]:::theorem
-    def-connected["Definition: Connected Space"]:::definition
     def-topological-space["Definition: Topological Space"]:::definition
     def-closed-set["Definition: Closed Set"]:::definition
+    def-connected["Definition: Connected Space"]:::definition
+    def-open-set["Definition: Open Set"]:::definition
     def-set["Definition: Set"]:::definition
+    thm-heine-borel["Theorem: Heine-Borel Theorem"]:::theorem
     def-closed-set --> def-topological-space
-    def-closed-set --> def-set
+    def-closed-set --> def-open-set
     def-connected --> def-closed-set
     thm-heine-borel --> def-closed-set
-    def-closed-set --> def-open-set
+    def-closed-set --> def-set
     class def-closed-set current
 ```
-    click def-open-set "def-open-set.html" "Go to Open Set definition"
-    click thm-heine-borel "thm-heine-borel.html" "Go to Heine-Borel Theorem theorem"
-    click def-connected "def-connected.html" "Go to Connected Space definition"
     click def-topological-space "def-topological-space.html" "Go to Topological Space definition"
+    click def-connected "def-connected.html" "Go to Connected Space definition"
+    click def-open-set "def-open-set.html" "Go to Open Set definition"
     click def-set "def-set.html" "Go to Set definition"
+    click thm-heine-borel "thm-heine-borel.html" "Go to Heine-Borel Theorem theorem"
 
 ## Interactive Visualization
 

@@ -52,7 +52,6 @@ Special types of morphisms include:
 
 ## Dependency Graph
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -60,24 +59,24 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-set-category["Example: The Category of Sets"]:::example
-    def-morphism["Definition: Morphism"]:::definition
-    def-composition["Definition: Composition"]:::definition
-    def-natural-transformation["Definition: Natural Transformation"]:::definition
-    def-category["Definition: Category"]:::definition
     def-isomorphism["Definition: Isomorphism"]:::definition
+    def-category["Definition: Category"]:::definition
+    ex-set-category["Example: The Category of Sets"]:::example
+    def-composition["Definition: Composition"]:::definition
+    def-morphism["Definition: Morphism"]:::definition
+    def-natural-transformation["Definition: Natural Transformation"]:::definition
+    def-composition --> def-morphism
     def-natural-transformation --> def-morphism
     ex-set-category --> def-morphism
-    def-isomorphism --> def-morphism
     def-morphism --> def-category
-    def-composition --> def-morphism
+    def-isomorphism --> def-morphism
     class def-morphism current
 ```
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
+    click def-category "def-category.html" "Go to Category definition"
     click ex-set-category "ex-set-category.html" "Go to The Category of Sets example"
     click def-composition "def-composition.html" "Go to Composition definition"
     click def-natural-transformation "def-natural-transformation.html" "Go to Natural Transformation definition"
-    click def-category "def-category.html" "Go to Category definition"
-    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
 
 ## Interactive Visualization
 

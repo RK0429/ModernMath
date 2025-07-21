@@ -1,0 +1,164 @@
+---
+id: def-quotient-group
+lean_id: Mathlib.GroupTheory.QuotientGroup
+requires:
+- def-group
+- def-normal-subgroup
+- def-subgroup
+status: complete
+title: '定義: 商群'
+translation_of: ../../en/algebra/def-quotient-group.qmd
+translations:
+  en: ../en/algebra/def-quotient-group.html
+  ja: ../ja/algebra/def-quotient-group.html
+type: Definition
+---
+
+# 定義: 商群 {#def-quotient-group}
+
+**商群**（**剰余群**とも呼ばれる）は、[群](def-group.qmd)を[正規部分群](def-normal-subgroup.qmd)の剰余類に分割することによって形成される[群](def-group.qmd)です。
+
+## 形式的定義
+
+$G$ を群、$N \triangleleft G$ を正規部分群とします。$G$ の $N$ による**商群**（「$G$ を $N$ で割ったもの」と読む）$G/N$ は、$G$ における $N$ のすべての左剰余類の集合です：
+
+$$G/N = \{gN : g \in G\}$$
+
+ここで $gN = \{gn : n \in N\}$ は $g$ を含む $N$ の左剰余類です。
+
+## 群構造
+
+商 $G/N$ は次の演算によって群になります：
+
+$$(gN) \cdot (hN) = (gh)N$$
+
+この演算が well-defined であるのは、まさに $N$ が $G$ の正規部分群だからです。
+
+### 群の公理の検証
+
+1. **閉性**: 任意の $gN, hN \in G/N$ に対して、$(gN)(hN) = (gh)N \in G/N$
+
+2. **結合律**: $G$ の結合律から継承されます：
+   $$((gN)(hN))(kN) = (gh)N \cdot kN = ((gh)k)N = (g(hk))N = gN \cdot (hk)N = (gN)((hN)(kN))$$
+
+3. **単位元**: 剰余類 $eN = N$ が単位元として機能します：
+   $$(gN) \cdot N = (gN) \cdot (eN) = (ge)N = gN$$
+
+4. **逆元**: 各 $gN \in G/N$ に対して、逆元は $(g^{-1})N$ です：
+   $$(gN) \cdot (g^{-1}N) = (gg^{-1})N = eN = N$$
+
+## 基本的性質
+
+### 商群の位数
+
+$G$ が有限群の場合：
+$$|G/N| = \frac{|G|}{|N|} = [G:N]$$
+
+これは $G$ における $N$ の指数です。
+
+### 自然準同型
+
+写像 $\pi: G \to G/N$ を $\pi(g) = gN$ で定義すると、これは**自然準同型**または**標準射影**と呼ばれる全射群準同型です。その核はまさに $N$ です：
+$$\ker(\pi) = N$$
+
+### 性質の継承
+
+1. $G$ がアーベル群なら、$G/N$ もアーベル群
+2. $G$ が巡回群なら、$G/N$ も巡回群
+3. $G$ が有限生成なら、$G/N$ も有限生成
+
+## 例
+
+### 1. 整数の n による剰余
+
+商群 $\mathbb{Z}/n\mathbb{Z}$ は $n$ を法とする剰余類から構成されます：
+$$\mathbb{Z}/n\mathbb{Z} = \{0 + n\mathbb{Z}, 1 + n\mathbb{Z}, ..., (n-1) + n\mathbb{Z}\}$$
+
+これは位数 $n$ の巡回群で、しばしば $\mathbb{Z}_n$ または $C_n$ と表記されます。
+
+### 2. 円周群
+
+商 $\mathbb{R}/\mathbb{Z}$ は円周群 $S^1$ と同一視できます：
+- 要素は $x \in \mathbb{R}$ に対する剰余類 $x + \mathbb{Z}$
+- 二つの実数 $x, y$ が同じ剰余類に属する ⟺ $x - y \in \mathbb{Z}$
+
+### 3. 中心による商
+
+任意の群 $G$ に対して、その中心による商 $G/Z(G)$ は群がどれだけ「非アーベル的」かを測ります：
+- $G/Z(G)$ が巡回群なら、$G$ はアーベル群
+- $|G/Z(G)| = 1$ なら、$G = Z(G)$ となり、$G$ はアーベル群
+
+### 4. 単純群
+
+群 $G$ が**単純**であるとは、その正規部分群が $\{e\}$ と $G$ 自身のみの場合です。単純群の商群は：
+- $G/\{e\} \cong G$
+- $G/G \cong \{e\}$
+
+## 幾何学的解釈
+
+商群は次のように視覚化できます：
+- 正規部分群 $N$ を単一の点（単位元）に**潰す**
+- $N$ の要素だけ異なる要素を**同一視**する
+- $N$ の構造を「除外」することで「より単純な」群を作る
+
+## 応用
+
+### 第一同型定理
+
+$\phi: G \to H$ が群準同型なら：
+$$G/\ker(\phi) \cong \text{Im}(\phi)$$
+
+この基本的な結果は、すべての準同型像が（同型を除いて）商群であることを示しています。
+
+### 群の分類
+
+商群は以下の場面で不可欠です：
+- 有限群の構造の理解
+- ジョルダン・ヘルダーの定理（組成列）
+- 可解群と冪零群
+
+### 完全系列
+
+短完全系列において：
+$$1 \to N \to G \to G/N \to 1$$
+
+商群 $G/N$ は $G$ における $N$ の「補集合」を捉えています。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-quotient-group["定義: 商群"]:::definition
+    def-group["定義: 群"]:::definition
+    def-normal-subgroup["定義: 正規部分群"]:::definition
+    def-subgroup["定義: 部分群"]:::definition
+    def-homomorphism["定義: 群準同型"]:::definition
+    def-kernel["定義: 核"]:::definition
+    thm-lagrange["定理: ラグランジュの定理"]:::theorem
+    def-quotient-group --> def-group
+    def-quotient-group --> def-normal-subgroup
+    def-quotient-group --> def-subgroup
+    def-homomorphism --> def-quotient-group
+    def-kernel --> def-quotient-group
+    thm-lagrange --> def-quotient-group
+    class def-quotient-group current
+```
+
+## インタラクティブ可視化
+
+ローカル知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-quotient-group" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- **ドラッグ**してノードを並べ替える
+- マウスホイールで**ズームイン/アウト**
+- ノードに**ホバー**して詳細を表示
+- [完全なインタラクティブ版](../../output/interactive/def-quotient-group.html){target="_blank"}を表示

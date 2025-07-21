@@ -3,6 +3,8 @@ id: ex-finite-field
 requires:
 - def-field
 - def-prime
+- def-quotient-group
+- ex-quotient-integers-mod-n
 status: complete
 title: '例: 有限体'
 translation_of: ../../en/algebra/ex-finite-field.qmd
@@ -14,7 +16,7 @@ type: Example
 
 # 例: 有限体 $\mathbb{F}_5$ {#ex-finite-field}
 
-5を法とする整数は[体](def-field.qmd)を形成し、$\mathbb{F}_5$ または $\mathbb{Z}/5\mathbb{Z}$ と表記されます。
+5を法とする整数は[体](def-field.qmd)を形成し、$\mathbb{F}_5$ または $\mathbb{Z}/5\mathbb{Z}$ と表記されます。この記法は、$\mathbb{F}_5$ が $\mathbb{Z}$ の部分群 $5\mathbb{Z}$ による[商群](def-quotient-group.qmd)であることを反映しています（[例：整数の法 n](ex-quotient-integers-mod-n.qmd)を参照）。
 
 ## 元と演算
 
@@ -57,7 +59,6 @@ type: Example
 
 ## 依存関係グラフ
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -65,18 +66,24 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-finite-field["Example: Finite Field"]:::example
-    def-field["Definition: Field"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
     def-group["Definition: Group"]:::definition
+    ex-finite-field["Example: Finite Field"]:::example
     def-prime["Definition: Prime Number"]:::definition
+    def-field["Definition: Field"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-group --> ex-finite-field
-    ex-finite-field --> def-field
+    ex-finite-field --> ex-quotient-integers-mod-n
+    ex-finite-field --> def-quotient-group
     ex-finite-field --> def-prime
+    ex-finite-field --> def-field
     class ex-finite-field current
 ```
-    click def-field "def-field.html" "Definition: Fieldへ"
+    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
     click def-group "def-group.html" "Definition: Groupへ"
     click def-prime "def-prime.html" "Definition: Prime Numberへ"
+    click def-field "def-field.html" "Definition: Fieldへ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
 
 ## インタラクティブ可視化
 

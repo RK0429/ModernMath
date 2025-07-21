@@ -50,7 +50,6 @@ Since fields have no zero divisors, either $a \cdot 1 = 0$ or $b \cdot 1 = 0$, c
 
 ## Dependency Graph
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -59,17 +58,17 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-ring["Definition: Ring"]:::definition
-    def-field["Definition: Field"]:::definition
     def-prime["Definition: Prime Number"]:::definition
+    def-field["Definition: Field"]:::definition
     thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
-    thm-field-characteristic --> def-ring
     thm-field-characteristic --> def-prime
     thm-field-characteristic --> def-field
+    thm-field-characteristic --> def-ring
     class thm-field-characteristic current
 ```
     click def-ring "def-ring.html" "Go to Ring definition"
-    click def-field "def-field.html" "Go to Field definition"
     click def-prime "def-prime.html" "Go to Prime Number definition"
+    click def-field "def-field.html" "Go to Field definition"
 
 ## Interactive Visualization
 

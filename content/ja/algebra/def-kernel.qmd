@@ -58,9 +58,16 @@ $$\phi(gkg^{-1}) = \phi(g)\phi(k)\phi(g^{-1}) = \phi(g)e_H\phi(g)^{-1} = \phi(g)
 
 したがって $gkg^{-1} \in \ker(\phi)$ となり、$\ker(\phi)$ が共役で不変であることを示しています。
 
+### 商群と第一同型定理
+
+核は正規部分群なので、@def-quotient-group $G/\ker(\phi)$ を形成できます。第一同型定理は次を述べます：
+
+$$G/\ker(\phi) \cong \text{Im}(\phi)$$
+
+この基本的な結果は、すべての準同型像が商群と同型であることを示しています。
+
 ## 依存関係グラフ
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -68,24 +75,27 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
-    def-kernel["Definition: Kernel"]:::definition
-    def-linear-transformation["Definition: Linear Transformation"]:::definition
     def-vector-space["Definition: Vector Space"]:::definition
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
     def-kernel --> def-vector-space
-    def-kernel --> def-homomorphism
     thm-rank-nullity --> def-kernel
-    def-kernel --> def-normal-subgroup
     def-kernel --> def-linear-transformation
+    def-kernel --> def-normal-subgroup
+    def-kernel --> def-quotient-group
+    def-kernel --> def-homomorphism
     class def-kernel current
 ```
-    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
     click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
     click thm-rank-nullity "thm-rank-nullity.html" "Theorem: Rank-Nullity Theoremへ"
-    click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
     click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
+    click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
+    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
+    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
 
 ## インタラクティブ可視化
 

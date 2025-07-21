@@ -122,6 +122,26 @@ All mathematical content is in `content/` organized by domain. Each `.qmd` file 
 - **Cross-References**: Use `@label` syntax to create graph edges
 - **File Naming**: `def-*.qmd`, `thm-*.qmd`, `ex-*.qmd`, `ax-*.qmd`
 
+### Content Creation Workflow
+
+When adding new mathematical content:
+
+1. **Verify Accuracy**: Use web search to verify mathematical definitions, theorems, and properties before writing
+2. **Follow Existing Format**: Examine similar articles in the same domain for consistent structure and style
+3. **Add Cross-References**: Link to required concepts using `@domain/concept-id` syntax
+4. **Build and Validate**: Run `validate_metadata.py` after creating new content
+5. **Generate Assets**: The visualization pipeline automatically handles diagram generation and insertion
+
+### Cross-Reference Management
+
+When adding fundamental concepts (e.g., quotient groups, isomorphisms):
+
+1. **Search Comprehensively**: Use `grep` to find all articles mentioning related terms across domains
+2. **Update Systematically**: Add references in both YAML `requires` and article content where appropriate
+3. **Cross-Domain Awareness**: Mathematical concepts often appear in multiple domains (e.g., modular arithmetic in number theory relates to quotient groups in algebra)
+4. **Bilingual Consistency**: Always update both English and Japanese versions together
+5. **Rebuild and Validate**: After updates, rebuild the knowledge graph to verify all cross-references resolve correctly
+
 ### Script Organization
 
 Python scripts are organized into functional subdirectories:
@@ -415,10 +435,10 @@ PyVis graphs include:
 
 ## Current Status
 
-- **Content**: 101 nodes across 9 mathematical domains
-- **Translations**: 101/101 (100%) Japanese translations with automated status tracking
-- **Graph**: 276+ RDF triples with full dependency tracking and translation edges
-- **Visualizations**: 80 interactive graphs deployed
+- **Content**: 105 nodes across 9 mathematical domains
+- **Translations**: 103/105 (98%) Japanese translations with automated status tracking
+- **Graph**: 1171 RDF triples with full dependency tracking and translation edges
+- **Visualizations**: 105 interactive graphs deployed
 - **API**: RESTful endpoints for node queries and dependencies
 - **CI/CD**: Full automation via GitHub Actions with translation validation
 - **Translation Management**: Fully implemented with MD5 hash-based change detection and pre-commit hooks

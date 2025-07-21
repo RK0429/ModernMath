@@ -22,6 +22,13 @@ $$|G| = |H| \cdot [G:H]$$
 
 where $|G|$ denotes the order (number of elements) of $G$, and $[G:H]$ is the index of $H$ in $G$ (the number of distinct left cosets of $H$ in $G$).
 
+### Connection to Quotient Groups
+
+When $H$ is a normal subgroup of $G$, the index $[G:H]$ equals the order of the @def-quotient-group $G/H$:
+$$[G:H] = |G/H|$$
+
+This provides another interpretation of Lagrange's theorem: the order of a quotient group divides the order of the original group.
+
 ## Corollaries
 
 1. The order of any element $a \in G$ divides the order of $G$
@@ -37,7 +44,6 @@ Lagrange's theorem is fundamental in group theory and has numerous applications:
 
 ## Dependency Graph
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -45,22 +51,26 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-subgroup["Definition: Subgroup"]:::definition
     def-group-example["Definition: Group"]:::definition
-    def-group["Definition: Group"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-group["Definition: Group"]:::definition
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    thm-lagrange --> def-group
-    def-normal-subgroup --> thm-lagrange
+    def-quotient-group["Definition: Quotient Group"]:::definition
     def-group --> thm-lagrange
+    def-normal-subgroup --> thm-lagrange
     thm-lagrange --> def-subgroup
+    thm-lagrange --> def-quotient-group
+    thm-lagrange --> def-group
     def-group-example --> thm-lagrange
+    def-subgroup --> thm-lagrange
     class thm-lagrange current
 ```
-    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
     click def-group-example "def-group-example.html" "Go to Group definition"
-    click def-group "def-group.html" "Go to Group definition"
+    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
     click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
 
 ## Interactive Visualization
 

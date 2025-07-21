@@ -56,13 +56,14 @@ From these axioms, we can prove:
 
 ## See Also
 
-- Theorem: Uniqueness of Identity (proves a property of groups)
-- Definition: Subgroup (coming soon)
-- Definition: Group Homomorphism (coming soon)
+- @thm-unique-identity
+- @def-subgroup
+- @def-homomorphism
+- @def-normal-subgroup
+- @def-quotient-group
 
 ## Dependency Graph
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -70,54 +71,62 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-integers-addition["Example: Integers under Addition"]:::example
-    def-commutativity["Definition: Commutativity"]:::definition
     def-subgroup["Definition: Subgroup"]:::definition
-    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    def-group["Definition: Group"]:::definition
-    thm-unique-identity["Theorem: Uniqueness of Identity"]:::theorem
-    def-identity-element["Definition: Identity Element"]:::definition
     def-associativity["Definition: Associativity"]:::definition
-    ex-finite-field["Example: Finite Field"]:::example
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-inverse-element["Definition: Inverse Element"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    thm-unique-identity["Theorem: Uniqueness of Identity"]:::theorem
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-set["Definition: Set"]:::definition
-    def-group --> ex-integers-addition
+    def-group["Definition: Group"]:::definition
+    ex-finite-field["Example: Finite Field"]:::example
+    def-identity-element["Definition: Identity Element"]:::definition
+    def-commutativity["Definition: Commutativity"]:::definition
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-inverse-element["Definition: Inverse Element"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    ex-integers-addition["Example: Integers under Addition"]:::example
+    def-homomorphism --> def-group
+    def-group --> def-inverse-element
     ex-even-integers-subgroup --> def-group
+    def-group --> def-normal-subgroup
+    def-group --> ex-even-integers-subgroup
+    def-group --> def-commutativity
+    def-group --> def-set
+    def-group --> def-quotient-group
+    def-group --> thm-lagrange
+    thm-lagrange --> def-group
+    ex-integers-addition --> def-group
+    def-group --> def-homomorphism
+    def-group --> thm-unique-identity
+    def-group --> ex-integers-addition
+    def-group --> def-binary-operation
+    def-group --> ex-finite-field
+    def-group --> def-identity-element
     def-subgroup --> def-group
     def-group --> def-subgroup
-    def-group --> ex-even-integers-subgroup
-    def-group --> thm-unique-identity
-    def-group --> def-set
-    def-group --> def-identity-element
-    def-group --> thm-lagrange
-    def-group --> def-inverse-element
-    def-homomorphism --> def-group
-    thm-lagrange --> def-group
-    def-group --> def-commutativity
+    def-normal-subgroup --> def-group
     def-group --> def-associativity
-    def-group --> ex-finite-field
-    def-group --> def-homomorphism
-    ex-integers-addition --> def-group
     thm-unique-identity --> def-group
-    def-group --> def-binary-operation
+    def-quotient-group --> def-group
     class def-group current
 ```
-    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
-    click def-commutativity "def-commutativity.html" "Go to Commutativity definition"
     click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Go to Even Integers Form a Subgroup example"
-    click thm-unique-identity "thm-unique-identity.html" "Go to Uniqueness of Identity theorem"
-    click def-identity-element "def-identity-element.html" "Go to Identity Element definition"
     click def-associativity "def-associativity.html" "Go to Associativity definition"
-    click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
-    click def-inverse-element "def-inverse-element.html" "Go to Inverse Element definition"
-    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
+    click thm-unique-identity "thm-unique-identity.html" "Go to Uniqueness of Identity theorem"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
     click def-set "def-set.html" "Go to Set definition"
+    click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
+    click def-identity-element "def-identity-element.html" "Go to Identity Element definition"
+    click def-commutativity "def-commutativity.html" "Go to Commutativity definition"
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Go to Even Integers Form a Subgroup example"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click def-inverse-element "def-inverse-element.html" "Go to Inverse Element definition"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
+    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
 
 ## Interactive Visualization
 

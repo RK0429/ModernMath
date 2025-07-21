@@ -80,12 +80,11 @@ Normal subgroups are fundamental in group theory because:
 - @def-subgroup
 - @def-homomorphism
 - @thm-lagrange
-- Quotient Group (coming soon)
+- @def-quotient-group
 - First Isomorphism Theorem (coming soon)
 
 ## Dependency Graph
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -94,26 +93,35 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-subgroup["Definition: Subgroup"]:::definition
-    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    def-group["Definition: Group"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-kernel["Definition: Kernel"]:::definition
+    def-group["Definition: Group"]:::definition
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-kernel["Definition: Kernel"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-normal-subgroup --> def-group
+    def-normal-subgroup --> def-quotient-group
+    def-subgroup --> def-normal-subgroup
     def-normal-subgroup --> thm-lagrange
+    def-quotient-group --> def-normal-subgroup
+    def-kernel --> def-normal-subgroup
+    def-group --> def-normal-subgroup
+    def-normal-subgroup --> def-homomorphism
     def-normal-subgroup --> def-subgroup
     ex-even-integers-subgroup --> def-normal-subgroup
-    def-normal-subgroup --> def-homomorphism
-    def-kernel --> def-normal-subgroup
-    def-normal-subgroup --> def-group
+    ex-quotient-integers-mod-n --> def-normal-subgroup
     class def-normal-subgroup current
 ```
     click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Go to Even Integers Form a Subgroup example"
     click def-group "def-group.html" "Go to Group definition"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
-    click def-kernel "def-kernel.html" "Go to Kernel definition"
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Go to Even Integers Form a Subgroup example"
     click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
+    click def-kernel "def-kernel.html" "Go to Kernel definition"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
 
 ## Interactive Visualization
 

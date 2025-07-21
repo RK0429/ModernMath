@@ -35,10 +35,10 @@ $$|G| = |H| \cdot [G:H]$$
 - 可能な部分群構造の決定
 - フェルマーの小定理の証明
 - 小さい位数の群の分類
+- @def-quotient-group の構成において、商群の位数が$|G/N| = |G|/|N|$となることを保証
 
 ## 依存関係グラフ
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -46,22 +46,26 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-subgroup["Definition: Subgroup"]:::definition
     def-group-example["Definition: Group"]:::definition
-    def-group["Definition: Group"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-group["Definition: Group"]:::definition
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    thm-lagrange --> def-group
-    def-normal-subgroup --> thm-lagrange
+    def-quotient-group["Definition: Quotient Group"]:::definition
     def-group --> thm-lagrange
+    def-normal-subgroup --> thm-lagrange
     thm-lagrange --> def-subgroup
+    thm-lagrange --> def-quotient-group
+    thm-lagrange --> def-group
     def-group-example --> thm-lagrange
+    def-subgroup --> thm-lagrange
     class thm-lagrange current
 ```
-    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
     click def-group-example "def-group-example.html" "Definition: Groupへ"
-    click def-group "def-group.html" "Definition: Groupへ"
+    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
     click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
 
 ## インタラクティブ可視化
 

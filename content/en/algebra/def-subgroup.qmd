@@ -38,9 +38,14 @@ A subset $H$ of a group $G$ is a subgroup if and only if:
 - The intersection of any collection of subgroups is a subgroup
 - Subgroups inherit associativity from the parent group
 
+## See Also
+
+- @def-normal-subgroup - Special subgroups used to construct quotient groups
+- @def-quotient-group - Groups formed by partitioning a group by a normal subgroup
+- @thm-lagrange - Relates the order of a subgroup to the order of the group
+
 ## Dependency Graph
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -49,27 +54,33 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-subgroup["Definition: Subgroup"]:::definition
-    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    def-group["Definition: Group"]:::definition
     def-group-example["Definition: Group"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     def-set["Definition: Set"]:::definition
-    def-subgroup --> def-set
-    def-subgroup --> def-group
-    def-normal-subgroup --> def-subgroup
-    def-group --> def-subgroup
+    def-group["Definition: Group"]:::definition
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    ex-even-integers-subgroup --> def-subgroup
+    def-subgroup --> def-normal-subgroup
+    def-subgroup --> def-quotient-group
     def-group-example --> def-subgroup
     thm-lagrange --> def-subgroup
-    ex-even-integers-subgroup --> def-subgroup
+    def-subgroup --> def-group
+    def-group --> def-subgroup
+    def-subgroup --> thm-lagrange
+    def-normal-subgroup --> def-subgroup
+    def-subgroup --> def-set
+    def-quotient-group --> def-subgroup
     class def-subgroup current
 ```
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Go to Even Integers Form a Subgroup example"
-    click def-group "def-group.html" "Go to Group definition"
     click def-group-example "def-group-example.html" "Go to Group definition"
     click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
     click def-set "def-set.html" "Go to Set definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Go to Even Integers Form a Subgroup example"
+    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
 
 ## Interactive Visualization
 

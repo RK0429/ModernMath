@@ -57,7 +57,6 @@ G(X) --G(f)--> G(Y)
 
 ## 依存関係グラフ
 
-```{mermaid}
 %%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -65,21 +64,21 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-functor["Definition: Functor"]:::definition
+    def-category["Definition: Category"]:::definition
     thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
+    def-functor["Definition: Functor"]:::definition
     def-morphism["Definition: Morphism"]:::definition
     def-natural-transformation["Definition: Natural Transformation"]:::definition
-    def-category["Definition: Category"]:::definition
-    def-natural-transformation --> def-morphism
     def-natural-transformation --> def-functor
-    def-natural-transformation --> def-category
     thm-yoneda --> def-natural-transformation
+    def-natural-transformation --> def-morphism
+    def-natural-transformation --> def-category
     class def-natural-transformation current
 ```
-    click def-functor "def-functor.html" "Definition: Functorへ"
-    click thm-yoneda "thm-yoneda.html" "Theorem: Yoneda Lemmaへ"
-    click def-morphism "def-morphism.html" "Definition: Morphismへ"
     click def-category "def-category.html" "Definition: Categoryへ"
+    click thm-yoneda "thm-yoneda.html" "Theorem: Yoneda Lemmaへ"
+    click def-functor "def-functor.html" "Definition: Functorへ"
+    click def-morphism "def-morphism.html" "Definition: Morphismへ"
 
 ## インタラクティブ可視化
 
