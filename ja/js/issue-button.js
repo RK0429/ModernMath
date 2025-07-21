@@ -1,0 +1,301 @@
+// Issue Button Integration for ModernMath
+// This script adds a "Report Issue" button to each page that creates GitHub issues with context
+
+(function() {
+  'use strict';
+
+  // Configuration
+  const GITHUB_REPO = 'RK0429/ModernMath';
+  const ISSUE_LABELS = ['documentation', 'content'];
+
+  // Helper function to get page metadata
+  function getPageMetadata() {
+    const metadata = {
+      title: document.title || 'Unknown Page',
+      url: window.location.href,
+      path: window.location.pathname,
+      language: 'en' // default
+    };
+
+    // Detect language from path or HTML lang attribute
+    if (window.location.pathname.includes('/ja/')) {
+      metadata.language = 'ja';
+    } else if (window.location.pathname.includes('/en/')) {
+      metadata.language = 'en';
+    } else {
+      // Fallback to HTML lang attribute
+      const htmlLang = document.documentElement.lang;
+      if (htmlLang) {
+        metadata.language = htmlLang.split('-')[0];
+      }
+    }
+
+    // Try to get the mathematical concept ID from the page
+    const mainHeading = document.querySelector('h1');
+    if (mainHeading) {
+      const headingId = mainHeading.id;
+      if (headingId) {
+        metadata.conceptId = headingId;
+      }
+    }
+
+    // Get the domain from the URL path
+    const pathParts = window.location.pathname.split('/');
+    const langIndex = pathParts.findIndex(part => part === 'en' || part === 'ja');
+    if (langIndex >= 0 && langIndex + 1 < pathParts.length) {
+      metadata.domain = pathParts[langIndex + 1];
+    }
+
+    return metadata;
+  }
+
+  // Helper function to create the issue URL
+  function createIssueUrl(metadata) {
+    const baseUrl = `https://github.com/${GITHUB_REPO}/issues/new`;
+    const params = new URLSearchParams();
+
+    // Create issue title
+    const title = metadata.language === 'ja'
+      ? `[${metadata.domain || 'コンテンツ'}] ${metadata.title} に関する問題`
+      : `[${metadata.domain || 'Content'}] Issue with ${metadata.title}`;
+    params.append('title', title);
+
+    // Create issue body
+    const body = metadata.language === 'ja' ? `
+## 問題の説明
+
+[ここに問題の詳細を記入してください]
+
+## ページ情報
+
+- **ページタイトル**: ${metadata.title}
+- **URL**: ${metadata.url}
+- **パス**: ${metadata.path}
+${metadata.conceptId ? `- **概念ID**: ${metadata.conceptId}` : ''}
+${metadata.domain ? `- **ドメイン**: ${metadata.domain}` : ''}
+- **言語**: ${metadata.language}
+
+## 期待される動作
+
+[正しい動作や内容について記述してください]
+
+## 実際の動作
+
+[現在の問題のある動作や内容について記述してください]
+
+## スクリーンショット
+
+[必要に応じてスクリーンショットを追加してください]
+` : `
+## Issue Description
+
+[Please describe the issue in detail]
+
+## Page Information
+
+- **Page Title**: ${metadata.title}
+- **URL**: ${metadata.url}
+- **Path**: ${metadata.path}
+${metadata.conceptId ? `- **Concept ID**: ${metadata.conceptId}` : ''}
+${metadata.domain ? `- **Domain**: ${metadata.domain}` : ''}
+- **Language**: ${metadata.language}
+
+## Expected Behavior
+
+[Describe what should happen]
+
+## Actual Behavior
+
+[Describe what actually happens]
+
+## Screenshots
+
+[Add screenshots if applicable]
+`;
+
+    params.append('body', body.trim());
+
+    // Add labels
+    if (metadata.domain) {
+      params.append('labels', [...ISSUE_LABELS, metadata.domain].join(','));
+    } else {
+      params.append('labels', ISSUE_LABELS.join(','));
+    }
+
+    return `${baseUrl}?${params.toString()}`;
+  }
+
+  // Helper function to create the issue button
+  function createIssueButton() {
+    const metadata = getPageMetadata();
+
+    const button = document.createElement('a');
+    button.className = 'issue-button';
+    button.href = createIssueUrl(metadata);
+    button.target = '_blank';
+    button.rel = 'noopener noreferrer';
+
+    // Set button text based on language
+    const buttonText = metadata.language === 'ja' ? '問題を報告' : 'Report Issue';
+    button.innerHTML = `<i class="bi bi-exclamation-circle"></i> ${buttonText}`;
+
+    // Add tooltip
+    const tooltipText = metadata.language === 'ja'
+      ? 'このページに関する問題をGitHubで報告する'
+      : 'Report an issue with this page on GitHub';
+    button.title = tooltipText;
+
+    return button;
+  }
+
+  // Helper function to add styles
+  function addStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+      .issue-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #0366d6;
+        color: white;
+        padding: 10px 16px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: all 0.2s ease;
+        z-index: 1000;
+      }
+
+      .issue-button:hover {
+        background-color: #0256c7;
+        color: white;
+        text-decoration: none;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      }
+
+      .issue-button:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+
+      .issue-button i {
+        font-size: 16px;
+      }
+
+      /* Mobile responsive */
+      @media (max-width: 768px) {
+        .issue-button {
+          bottom: 10px;
+          right: 10px;
+          padding: 8px 12px;
+          font-size: 13px;
+        }
+
+        .issue-button i {
+          font-size: 14px;
+        }
+      }
+
+      /* Hide on print */
+      @media print {
+        .issue-button {
+          display: none;
+        }
+      }
+
+      /* Alternative placement in article footer for better integration */
+      .article-issue-button {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e1e4e8;
+        text-align: center;
+      }
+
+      .article-issue-button .issue-button {
+        position: static;
+        display: inline-flex;
+        box-shadow: none;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  // Helper function to check if we should show the button
+  function shouldShowButton() {
+    // Don't show on index pages, search pages, or other non-content pages
+    const path = window.location.pathname;
+    const excludedPages = ['index.html', 'search.html', 'search-ja.html', 'visualizations.html',
+                          'visualizations-ja.html', 'about.html', 'about-ja.html',
+                          'contributing.html', 'contributing-ja.html'];
+
+    // Check if current page is in excluded list
+    const currentFile = path.split('/').pop();
+    if (excludedPages.includes(currentFile)) {
+      return false;
+    }
+
+    // Check if we're on a content page (has a mathematical domain in the path)
+    const mathDomains = ['algebra', 'analysis', 'topology', 'geometry', 'category-theory',
+                        'combinatorics', 'logic-set-theory', 'number-theory', 'probability-statistics'];
+    return mathDomains.some(domain => path.includes(domain));
+  }
+
+  // Initialize the issue button
+  function initIssueButton() {
+    if (!shouldShowButton()) {
+      return;
+    }
+
+    // Add styles
+    addStyles();
+
+    // Create and add the button
+    const button = createIssueButton();
+
+    // Option 1: Floating button (default)
+    document.body.appendChild(button);
+
+    // Option 2: Also add to article footer if article element exists
+    const article = document.querySelector('main article, .content article, article');
+    if (article) {
+      const footerSection = document.createElement('div');
+      footerSection.className = 'article-issue-button';
+
+      const metadata = getPageMetadata();
+      const helpText = metadata.language === 'ja'
+        ? 'このページに誤りや改善点を見つけましたか？'
+        : 'Found an error or have a suggestion for this page?';
+
+      footerSection.innerHTML = `<p>${helpText}</p>`;
+      footerSection.appendChild(createIssueButton());
+
+      article.appendChild(footerSection);
+    }
+  }
+
+  // Wait for DOM to be ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initIssueButton);
+  } else {
+    // Also wait for Quarto to finish rendering
+    if (window.Quarto && window.Quarto.afterInit) {
+      window.Quarto.afterInit(initIssueButton);
+    } else {
+      // Fallback: use setTimeout to ensure Quarto has finished
+      setTimeout(initIssueButton, 100);
+    }
+  }
+
+  // Export for debugging
+  window.ModernMathIssueButton = {
+    getPageMetadata: getPageMetadata,
+    createIssueUrl: createIssueUrl,
+    shouldShowButton: shouldShowButton
+  };
+})();

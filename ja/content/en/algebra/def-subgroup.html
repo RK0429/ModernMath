@@ -72,6 +72,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
 <link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -79,21 +80,45 @@ ul.task-list li input[type="checkbox"] {
   // Calculate the correct path to js directory based on current location
   (function() {
     var path = window.location.pathname;
-    var depth = (path.match(/\//g) || []).length - 1;
+    var pathParts = path.split('/');
     var basePath = '';
-    if (path.includes('/ja/')) {
-      // Count slashes after /ja/
-      var afterLang = path.split('/ja/')[1] || '';
-      var extraDepth = (afterLang.match(/\//g) || []).length;
-      for (var i = 0; i < extraDepth; i++) {
+
+    // Remove empty parts
+    pathParts = pathParts.filter(function(part) { return part; });
+
+    // Find the FIRST occurrence of the language directory ('en' or 'ja')
+    var langIndex = -1;
+    for (var i = 0; i < pathParts.length; i++) {
+      if (pathParts[i] === 'en' || pathParts[i] === 'ja') {
+        langIndex = i;
+        break;
+      }
+    }
+
+    if (langIndex >= 0) {
+      // Calculate how many directories deep we are from the language root
+      // Don't count the HTML file itself
+      var dirsAfterLang = pathParts.length - langIndex - 2;
+
+      // Build the path with the correct number of '../'
+      for (var k = 0; k < dirsAfterLang; k++) {
         basePath += '../';
       }
     }
+
     basePath = basePath || './';
+
+    // Load language switcher
     var script = document.createElement('script');
     script.src = basePath + 'js/language-switcher.js';
     script.defer = true;
     document.head.appendChild(script);
+
+    // Load issue button
+    var issueScript = document.createElement('script');
+    issueScript.src = basePath + 'js/issue-button.js';
+    issueScript.defer = true;
+    document.head.appendChild(issueScript);
   })();
 </script>
 
@@ -303,18 +328,15 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-subgroup["Definition: Subgroup"]:::definition
-    def-group-example["Definition: Group"]:::definition
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    def-subgroup["Definition: Subgroup"]:::definition
     def-set["Definition: Set"]:::definition
     def-group["Definition: Group"]:::definition
-    ex-even-integers-subgroup --&gt; def-subgroup
-    def-subgroup --&gt; def-group
-    def-group-example --&gt; def-subgroup
-    def-subgroup --&gt; def-set
     thm-lagrange --&gt; def-subgroup
-    def-group --&gt; def-subgroup
+    def-subgroup --&gt; def-group
+    ex-even-integers-subgroup --&gt; def-subgroup
+    def-subgroup --&gt; def-set
     class def-subgroup current
 </pre>
 </div>
@@ -326,7 +348,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-subgroup-1753070890" class="graph-visualization-container">
+<div id="graph-viz-def-subgroup-1753074772" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -506,12 +528,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-subgroup-1753070890', {
+    createForceGraph(data, 'graph-viz-def-subgroup-1753074772', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-subgroup-1753070890').innerHTML =
+    document.getElementById('graph-viz-def-subgroup-1753074772').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -73,6 +73,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
 <link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -80,21 +81,45 @@ ul.task-list li input[type="checkbox"] {
   // Calculate the correct path to js directory based on current location
   (function() {
     var path = window.location.pathname;
-    var depth = (path.match(/\//g) || []).length - 1;
+    var pathParts = path.split('/');
     var basePath = '';
-    if (path.includes('/ja/')) {
-      // Count slashes after /ja/
-      var afterLang = path.split('/ja/')[1] || '';
-      var extraDepth = (afterLang.match(/\//g) || []).length;
-      for (var i = 0; i < extraDepth; i++) {
+
+    // Remove empty parts
+    pathParts = pathParts.filter(function(part) { return part; });
+
+    // Find the FIRST occurrence of the language directory ('en' or 'ja')
+    var langIndex = -1;
+    for (var i = 0; i < pathParts.length; i++) {
+      if (pathParts[i] === 'en' || pathParts[i] === 'ja') {
+        langIndex = i;
+        break;
+      }
+    }
+
+    if (langIndex >= 0) {
+      // Calculate how many directories deep we are from the language root
+      // Don't count the HTML file itself
+      var dirsAfterLang = pathParts.length - langIndex - 2;
+
+      // Build the path with the correct number of '../'
+      for (var k = 0; k < dirsAfterLang; k++) {
         basePath += '../';
       }
     }
+
     basePath = basePath || './';
+
+    // Load language switcher
     var script = document.createElement('script');
     script.src = basePath + 'js/language-switcher.js';
     script.defer = true;
     document.head.appendChild(script);
+
+    // Load issue button
+    var issueScript = document.createElement('script');
+    issueScript.src = basePath + 'js/issue-button.js';
+    issueScript.defer = true;
+    document.head.appendChild(issueScript);
   })();
 </script>
 
