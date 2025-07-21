@@ -1,0 +1,187 @@
+name: Auto-Translate Articles
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "content/**/*.qmd"
+  workflow_dispatch:
+    inputs:
+      max_articles:
+        description: "Maximum number of articles to translate in one run"
+        required: false
+        default: "5"
+        type: string
+
+jobs:
+  translate-articles:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: read
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+
+      - name: Install dependencies
+        run: poetry install --no-root
+
+      - name: Update translation status
+        run: poetry run python scripts/translation/manage_translations.py update
+
+      - name: Get untranslated articles
+        id: get_untranslated
+        run: |
+          # Get list of untranslated articles
+          UNTRANSLATED=$(poetry run python scripts/translation/manage_translations.py list --status not_started | grep "content/" | sed 's/  - //' | head -n ${{ github.event.inputs.max_articles || '5' }})
+
+          if [ -z "$UNTRANSLATED" ]; then
+            echo "No untranslated articles found"
+            echo "has_untranslated=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Separate English and Japanese articles
+          EN_FILES=$(echo "$UNTRANSLATED" | grep "content/en/" || true)
+          JA_FILES=$(echo "$UNTRANSLATED" | grep "content/ja/" || true)
+
+          # Save to files for Claude
+          echo "$EN_FILES" > untranslated_en_files.txt
+          echo "$JA_FILES" > untranslated_ja_files.txt
+
+          echo "has_untranslated=true" >> $GITHUB_OUTPUT
+          echo "Found untranslated articles:"
+          echo "English articles needing Japanese translation:"
+          cat untranslated_en_files.txt
+          echo "Japanese articles needing English translation:"
+          cat untranslated_ja_files.txt
+
+      - name: Translate articles with Claude
+        if: steps.get_untranslated.outputs.has_untranslated == 'true'
+        id: claude_translate
+        uses: anthropics/claude-code-action@beta
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+
+          # Use Claude Opus for better translation quality
+          model: "claude-opus-4-20250514"
+
+          # Allow file operations and git commands
+          allowed_tools: "Read,Write,MultiEdit,Bash(git add),Bash(git status),Bash(poetry run python scripts/translation/manage_translations.py update)"
+
+          # Direct prompt for translation
+          direct_prompt: |
+            Please translate the mathematical articles from both untranslated_en_files.txt and untranslated_ja_files.txt.
+
+            ## For English to Japanese translations (files in untranslated_en_files.txt):
+            1. Read the English source file from content/en/...
+            2. Create the corresponding Japanese translation in content/ja/...
+            3. Translate the content while preserving:
+               - All YAML front matter fields (keep id, type, status, etc. the same)
+               - Add `translation_of: ../../en/<path>` field
+               - Update the `translations` field to include both en and ja versions
+               - Mathematical formulas (LaTeX) should remain unchanged
+               - Cross-references (@label syntax) should remain unchanged
+               - Code blocks should remain unchanged
+
+            4. Use these standard Japanese translations for mathematical terms:
+               - Group → 群
+               - Ring → 環
+               - Field → 体
+               - Vector Space → ベクトル空間
+               - Homomorphism → 準同型
+               - Isomorphism → 同型
+               - Theorem → 定理
+               - Definition → 定義
+               - Example → 例
+               - Axiom → 公理
+               - Proposition → 命題
+               - Lemma → 補題
+               - Corollary → 系
+
+            ## For Japanese to English translations (files in untranslated_ja_files.txt):
+            1. Read the Japanese source file from content/ja/...
+            2. Create the corresponding English translation in content/en/...
+            3. Translate the content while preserving:
+               - All YAML front matter fields (keep id, type, status, etc. the same)
+               - Add `translation_of: ../../ja/<path>` field
+               - Update the `translations` field to include both en and ja versions
+               - Mathematical formulas (LaTeX) should remain unchanged
+               - Cross-references (@label syntax) should remain unchanged
+               - Code blocks should remain unchanged
+
+            4. Use these standard English translations for mathematical terms:
+               - 群 → Group
+               - 環 → Ring
+               - 体 → Field
+               - ベクトル空間 → Vector Space
+               - 準同型 → Homomorphism
+               - 同型 → Isomorphism
+               - 定理 → Theorem
+               - 定義 → Definition
+               - 例 → Example
+               - 公理 → Axiom
+               - 命題 → Proposition
+               - 補題 → Lemma
+               - 系 → Corollary
+
+            ## For all translations:
+            - After creating each translation, update both source and target files to have proper cross-references to each other
+            - Ensure high-quality mathematical translations that preserve the formal nature of the content
+            - After completing all translations, run: poetry run python scripts/translation/manage_translations.py update
+
+            Only translate the files listed in the respective .txt files, do not translate other files.
+
+      - name: Configure Git
+        if: steps.get_untranslated.outputs.has_untranslated == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+      - name: Create Pull Request
+        if: steps.get_untranslated.outputs.has_untranslated == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Auto-translate mathematical articles (EN↔JA)"
+          branch: auto-translate-${{ github.run_number }}
+          delete-branch: true
+          title: "🌐 Auto-translate mathematical articles (bidirectional)"
+          body: |
+            This PR contains automatic translations of mathematical articles between English and Japanese.
+
+            ## Summary
+            - Translated articles that were marked as `not_started` in the translation status
+            - Supports bidirectional translation: EN→JA and JA→EN
+            - Used Claude Opus model for high-quality mathematical translations
+            - Updated translation metadata and cross-references
+
+            ## Review Checklist
+            - [ ] Mathematical terms are correctly translated in both directions
+            - [ ] LaTeX formulas are preserved unchanged
+            - [ ] Cross-references (@label syntax) are preserved
+            - [ ] YAML front matter is properly updated
+            - [ ] Translation links work bidirectionally
+            - [ ] Language-specific terminology is consistent
+
+            ---
+            *This PR was automatically generated by the auto-translate workflow.*
+          labels: |
+            translation
+            automated

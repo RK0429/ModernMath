@@ -252,6 +252,7 @@ The project uses a unified `build.yml` workflow:
 - `llm-review.yml`: 10 minutes (PR content analysis)
 - `translation-check.yml`: 10 minutes (translation validation)
 - `translation-report.yml`: 10 minutes (scheduled reports)
+- `auto-translate.yml`: 30 minutes (automatic article translation)
 
 ### Language Detection
 
@@ -327,6 +328,17 @@ Uses hash-based change detection to track translation status in `translations-st
 - **Management Commands**: `update`, `report`, `list --status=X`, `validate`, `stats`
 - **RDF Integration**: Adds `hasTranslation` relationships to the knowledge graph
 - **Pre-commit Hook**: Only updates timestamps when content actually changes
+
+### Automatic Translation Workflow
+
+The `auto-translate.yml` workflow automates bidirectional translation of articles between English and Japanese:
+
+- **Triggers**: On push to main when `.qmd` files change, or manual workflow dispatch
+- **Process**: Identifies up to 5 untranslated articles (in either language) and uses Claude Opus for high-quality mathematical translations
+- **Bidirectional**: Supports both EN→JA and JA→EN translations in a single workflow run
+- **Creates PRs**: Generates pull requests with translated content for human review
+- **Preserves**: LaTeX formulas, cross-references, and all metadata unchanged
+- **Standard Terms**: Automatically maps mathematical terminology correctly in both directions (Group↔群, Ring↔環, Field↔体, etc.)
 
 ## Critical Implementation Details
 
