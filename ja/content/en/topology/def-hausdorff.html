@@ -83,27 +83,17 @@ ul.task-list li input[type="checkbox"] {
     var pathParts = path.split('/');
     var basePath = '';
 
-    // Remove empty parts
-    pathParts = pathParts.filter(function(part) { return part; });
+    // Remove empty parts and the HTML filename
+    pathParts = pathParts.filter(function(part) { return part && !part.endsWith('.html'); });
 
-    // Find the FIRST occurrence of the language directory ('en' or 'ja')
-    var langIndex = -1;
-    for (var i = 0; i < pathParts.length; i++) {
-      if (pathParts[i] === 'en' || pathParts[i] === 'ja') {
-        langIndex = i;
-        break;
-      }
-    }
+    // For Japanese site, js files are at the root of the Japanese site
+    // Count how many directories deep we are from the root
+    var depth = pathParts.length;
 
-    if (langIndex >= 0) {
-      // Calculate how many directories deep we are from the language root
-      // Don't count the HTML file itself
-      var dirsAfterLang = pathParts.length - langIndex - 2;
-
-      // Build the path with the correct number of '../'
-      for (var k = 0; k < dirsAfterLang; k++) {
-        basePath += '../';
-      }
+    // If we're in a content/ja/* structure, we need to go back to the site root
+    // where the js directory is located
+    for (var i = 0; i < depth; i++) {
+      basePath += '../';
     }
 
     basePath = basePath || './';
@@ -338,14 +328,14 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-hausdorff["Definition: Hausdorff Space"]:::definition
-    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
-    def-open-set["Definition: Open Set"]:::definition
     def-topological-space["Definition: Topological Space"]:::definition
-    thm-metric-hausdorff --&gt; def-hausdorff
-    def-hausdorff --&gt; thm-metric-hausdorff
+    def-hausdorff["Definition: Hausdorff Space"]:::definition
+    def-open-set["Definition: Open Set"]:::definition
+    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
     def-hausdorff --&gt; def-open-set
+    def-hausdorff --&gt; thm-metric-hausdorff
     def-hausdorff --&gt; def-topological-space
+    thm-metric-hausdorff --&gt; def-hausdorff
     class def-hausdorff current
 </pre>
 </div>
@@ -357,7 +347,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-hausdorff-1753074811" class="graph-visualization-container">
+<div id="graph-viz-def-hausdorff-1753076830" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -537,12 +527,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-hausdorff-1753074811', {
+    createForceGraph(data, 'graph-viz-def-hausdorff-1753076830', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-hausdorff-1753074811').innerHTML =
+    document.getElementById('graph-viz-def-hausdorff-1753076830').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

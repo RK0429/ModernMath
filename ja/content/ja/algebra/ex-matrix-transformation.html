@@ -83,27 +83,17 @@ ul.task-list li input[type="checkbox"] {
     var pathParts = path.split('/');
     var basePath = '';
 
-    // Remove empty parts
-    pathParts = pathParts.filter(function(part) { return part; });
+    // Remove empty parts and the HTML filename
+    pathParts = pathParts.filter(function(part) { return part && !part.endsWith('.html'); });
 
-    // Find the FIRST occurrence of the language directory ('en' or 'ja')
-    var langIndex = -1;
-    for (var i = 0; i < pathParts.length; i++) {
-      if (pathParts[i] === 'en' || pathParts[i] === 'ja') {
-        langIndex = i;
-        break;
-      }
-    }
+    // For Japanese site, js files are at the root of the Japanese site
+    // Count how many directories deep we are from the root
+    var depth = pathParts.length;
 
-    if (langIndex >= 0) {
-      // Calculate how many directories deep we are from the language root
-      // Don't count the HTML file itself
-      var dirsAfterLang = pathParts.length - langIndex - 2;
-
-      // Build the path with the correct number of '../'
-      for (var k = 0; k < dirsAfterLang; k++) {
-        basePath += '../';
-      }
+    // If we're in a content/ja/* structure, we need to go back to the site root
+    // where the js directory is located
+    for (var i = 0; i < depth; i++) {
+      basePath += '../';
     }
 
     basePath = basePath || './';
@@ -336,8 +326,8 @@ window.Quarto = {
     ex-matrix-transformation["Example: Matrix Transformation"]:::example
     def-matrix["Definition: Matrix"]:::definition
     def-linear-transformation["Definition: Linear Transformation"]:::definition
-    ex-matrix-transformation --&gt; def-linear-transformation
     ex-matrix-transformation --&gt; def-matrix
+    ex-matrix-transformation --&gt; def-linear-transformation
     class ex-matrix-transformation current
 </pre>
 </div>
@@ -349,7 +339,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカル知識グラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-matrix-transformation-1753074725" class="graph-visualization-container">
+<div id="graph-viz-ex-matrix-transformation-1753076744" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -529,12 +519,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-matrix-transformation-1753074725', {
+    createForceGraph(data, 'graph-viz-ex-matrix-transformation-1753076744', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-matrix-transformation-1753074725').innerHTML =
+    document.getElementById('graph-viz-ex-matrix-transformation-1753076744').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
