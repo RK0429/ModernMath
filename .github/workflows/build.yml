@@ -173,6 +173,16 @@ jobs:
         poetry run python scripts/site/build_search_index.py
         echo "Search index built successfully!"
 
+    # Step 6j: Fix Mermaid diagram syntax
+    - name: Fix Mermaid diagram syntax
+      run: |
+        if [ -f "scripts/fix_mermaid_blocks.py" ]; then
+          poetry run python scripts/fix_mermaid_blocks.py
+          echo "Mermaid diagram syntax fixed successfully!"
+        else
+          echo "Warning: fix_mermaid_blocks.py not found, skipping Mermaid syntax fix"
+        fi
+
     # Step 7: Render Quarto site for multiple languages
     - name: Render English site
       env:

@@ -366,6 +366,23 @@ When including raw HTML in Quarto documents:
 - **JavaScript Timing**: Always wrap DOM element access in `DOMContentLoaded` event listeners to avoid null reference errors.
 - **Error Handling**: Provide user-friendly error messages for missing dependencies (e.g., local API services) when deploying to GitHub Pages.
 
+### Mermaid Diagram Syntax
+
+Mermaid diagrams in Quarto require specific syntax:
+
+- **Correct Format**: Wrap diagrams in proper code blocks:
+
+  ````markdown
+  ```{mermaid}
+  %%| fig-cap: "Local dependency graph"
+  graph TD
+  ...
+  ```
+  ````
+
+- **Common Error**: Using `%%|` without code block wrapper will display as raw text
+- **Fix Script**: Use `scripts/fix_mermaid_blocks.py` to correct syntax issues across all content files
+
 ### Cross-Reference Format
 
 When referencing concepts across domains, the resolver transforms paths:
