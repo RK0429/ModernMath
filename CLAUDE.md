@@ -345,7 +345,29 @@ format:
   html:
     include-in-header:
       - text: |
-          <script src="../../js/language-switcher.js" defer></script>
+          <script>
+            window.siteLanguage = 'en'; # or 'ja' for Japanese
+            window.alternateLanguage = 'ja'; # or 'en' for Japanese
+            window.alternateLanguageUrl = '../ja/'; # or '../en/' for Japanese
+            // Dynamic path resolution for nested pages
+            (function() {
+              var path = window.location.pathname;
+              var depth = (path.match(/\//g) || []).length - 1;
+              var basePath = '';
+              if (path.includes('/en/')) { # or '/ja/' for Japanese config
+                var afterLang = path.split('/en/')[1] || '';
+                var extraDepth = (afterLang.match(/\//g) || []).length;
+                for (var i = 0; i < extraDepth; i++) {
+                  basePath += '../';
+                }
+              }
+              basePath = basePath || './';
+              var script = document.createElement('script');
+              script.src = basePath + 'js/language-switcher.js';
+              script.defer = true;
+              document.head.appendChild(script);
+            })();
+          </script>
 
 filters:
   - translation-metadata # Must come after other filters
@@ -359,6 +381,7 @@ resources:
 - The switcher activates on DOMContentLoaded and Quarto's after-render event
 - Async translation checking prevents UI blocking
 - Debug functions available via `window.ModernMathLanguageSwitcher`
+- **Important**: Static paths like `../../js/language-switcher.js` will fail for nested pages. The dynamic path resolution above ensures the script loads correctly from any page depth
 
 ### Japanese Navigation Pages
 
