@@ -1,0 +1,152 @@
+---
+id: def-independence
+requires:
+- def-probability-space
+- def-event
+- def-conditional-probability
+- def-random-variable
+status: complete
+title: 'Definition: Independence'
+translations:
+  en: ../en/probability-statistics/def-independence.html
+  ja: ../ja/probability-statistics/def-independence.html
+type: Definition
+---
+
+**Independence** is a fundamental concept in probability theory that formalizes the intuitive notion that the occurrence of one event does not affect the probability of another event.
+
+## Formal Definition
+
+### Independence of Two Events
+
+Two [events](def-event.qmd) $A$ and $B$ in a [probability space](def-probability-space.qmd) are **independent** if and only if:
+
+$$P(A \cap B) = P(A) \cdot P(B)$$
+
+Equivalently, when $P(B) > 0$, events $A$ and $B$ are independent if and only if:
+
+$$P(A|B) = P(A)$$
+
+where $P(A|B)$ is the [conditional probability](def-conditional-probability.qmd) of $A$ given $B$.
+
+### Independence of Multiple Events
+
+A collection of events $\{A_1, A_2, \ldots, A_n\}$ is **mutually independent** (or simply **independent**) if for every subset $\{i_1, i_2, \ldots, i_k\} \subseteq \{1, 2, \ldots, n\}$:
+
+$$P(A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k}) = P(A_{i_1}) \cdot P(A_{i_2}) \cdots P(A_{i_k})$$
+
+### Independence of Random Variables
+
+Two [random variables](def-random-variable.qmd) $X$ and $Y$ are **independent** if for all measurable sets $A$ and $B$:
+
+$$P(X \in A, Y \in B) = P(X \in A) \cdot P(Y \in B)$$
+
+Equivalently, their joint distribution function factorizes:
+
+$$F_{X,Y}(x,y) = F_X(x) \cdot F_Y(y)$$
+
+## Properties
+
+1. **Symmetry**: If $A$ is independent of $B$, then $B$ is independent of $A$
+
+2. **Complement**: If $A$ and $B$ are independent, then:
+   - $A$ and $B^c$ are independent
+   - $A^c$ and $B$ are independent
+   - $A^c$ and $B^c$ are independent
+
+3. **Functions**: If $X$ and $Y$ are independent random variables, then $g(X)$ and $h(Y)$ are independent for any measurable functions $g$ and $h$
+
+4. **Expectation**: For independent random variables $X$ and $Y$ with finite expectations:
+   $$E[XY] = E[X] \cdot E[Y]$$
+
+## Important Distinctions
+
+### Pairwise vs Mutual Independence
+
+- **Pairwise independence**: Every pair of events is independent
+- **Mutual independence**: The full independence condition holds for all subsets
+
+Mutual independence implies pairwise independence, but the converse is not true.
+
+### Independence vs Disjointness
+
+Independence and disjointness (mutual exclusivity) are different concepts:
+- If $A$ and $B$ are disjoint with positive probabilities, they cannot be independent
+- If $P(A) > 0$ and $P(B) > 0$, then $A \cap B = \emptyset$ implies $P(A \cap B) = 0 \neq P(A)P(B)$
+
+## Examples
+
+1. **Coin Tosses**: Successive tosses of a fair coin are independent events
+   - $P(\text{Head on 1st toss}) = \frac{1}{2}$
+   - $P(\text{Head on 2nd toss}) = \frac{1}{2}$
+   - $P(\text{Head on both}) = \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{4}$
+
+2. **Dice Rolls**: Rolling two dice produces independent outcomes
+   - Let $A$ = "first die shows 6" and $B$ = "sum is 7"
+   - $P(A) = \frac{1}{6}$, $P(B) = \frac{6}{36} = \frac{1}{6}$
+   - $P(A \cap B) = P(\{(6,1)\}) = \frac{1}{36} = \frac{1}{6} \cdot \frac{1}{6}$
+   - Therefore, $A$ and $B$ are independent
+
+3. **Pairwise but not Mutual Independence**: Consider tossing two fair coins
+   - Let $A$ = "first coin is heads"
+   - Let $B$ = "second coin is heads"
+   - Let $C$ = "both coins show the same face"
+   - $A, B, C$ are pairwise independent but not mutually independent
+
+## Applications
+
+Independence is crucial in:
+- **Statistical inference**: Assumptions about independent samples
+- **Probability calculations**: Simplifying complex probability computations
+- **Stochastic processes**: Building models with independent increments
+- **Machine learning**: Feature independence assumptions in naive Bayes classifiers
+
+## Related Concepts
+
+- Conditional Independence: Independence given additional information
+- [Law of Large Numbers](thm-law-of-large-numbers.qmd): Relies on independence of trials
+- Central Limit Theorem: Requires independence of summands
+- Product measures and product spaces formalize independence in measure theory
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
+    def-probability-space["Definition: Probability Space"]:::definition
+    def-event["Definition: Event"]:::definition
+    def-conditional-probability["Definition: Conditional Probability"]:::definition
+    def-random-variable["Definition: Random Variable"]:::definition
+    def-independence["Definition: Independence"]:::definition
+    thm-law-of-large-numbers --> def-independence
+    def-independence --> def-probability-space
+    def-independence --> def-event
+    def-independence --> def-conditional-probability
+    def-independence --> def-random-variable
+    def-conditional-probability --> def-independence
+    class def-independence current
+    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "Go to Law of Large Numbers theorem"
+    click def-probability-space "def-probability-space.html" "Go to Probability Space definition"
+    click def-event "def-event.html" "Go to Event definition"
+    click def-conditional-probability "def-conditional-probability.html" "Go to Conditional Probability definition"
+    click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-independence" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-independence.html){target="_blank"}

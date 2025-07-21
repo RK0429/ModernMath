@@ -1,0 +1,153 @@
+---
+id: def-independence
+requires:
+- def-probability-space
+- def-event
+- def-conditional-probability
+- def-random-variable
+status: complete
+title: '定義: 独立性'
+translation_of: ../../en/probability-statistics/def-independence.qmd
+translations:
+  en: ../en/probability-statistics/def-independence.html
+  ja: ../ja/probability-statistics/def-independence.html
+type: Definition
+---
+
+**独立性**は、ある事象の発生が他の事象の確率に影響を与えないという直感的な概念を形式化した、確率論における基本的な概念です。
+
+## 形式的定義
+
+### 2つの事象の独立性
+
+[確率空間](def-probability-space.qmd)における2つの[事象](def-event.qmd) $A$ と $B$ が**独立**であるとは、次の条件を満たすときをいいます：
+
+$$P(A \cap B) = P(A) \cdot P(B)$$
+
+同値な条件として、$P(B) > 0$ のとき、事象 $A$ と $B$ が独立であることは次と同値です：
+
+$$P(A|B) = P(A)$$
+
+ここで、$P(A|B)$ は $B$ が与えられたときの $A$ の[条件付き確率](def-conditional-probability.qmd)です。
+
+### 複数の事象の独立性
+
+事象の集合 $\{A_1, A_2, \ldots, A_n\}$ が**互いに独立**（または単に**独立**）であるとは、$\{1, 2, \ldots, n\}$ の任意の部分集合 $\{i_1, i_2, \ldots, i_k\}$ に対して次が成り立つときをいいます：
+
+$$P(A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k}) = P(A_{i_1}) \cdot P(A_{i_2}) \cdots P(A_{i_k})$$
+
+### 確率変数の独立性
+
+2つの[確率変数](def-random-variable.qmd) $X$ と $Y$ が**独立**であるとは、すべての可測集合 $A$ と $B$ に対して次が成り立つときをいいます：
+
+$$P(X \in A, Y \in B) = P(X \in A) \cdot P(Y \in B)$$
+
+同値な条件として、それらの同時分布関数が因数分解されます：
+
+$$F_{X,Y}(x,y) = F_X(x) \cdot F_Y(y)$$
+
+## 性質
+
+1. **対称性**：$A$ が $B$ から独立ならば、$B$ も $A$ から独立である
+
+2. **補集合**：$A$ と $B$ が独立ならば：
+   - $A$ と $B^c$ は独立
+   - $A^c$ と $B$ は独立
+   - $A^c$ と $B^c$ は独立
+
+3. **関数**：$X$ と $Y$ が独立な確率変数ならば、任意の可測関数 $g$ と $h$ に対して $g(X)$ と $h(Y)$ は独立
+
+4. **期待値**：有限の期待値を持つ独立な確率変数 $X$ と $Y$ に対して：
+   $$E[XY] = E[X] \cdot E[Y]$$
+
+## 重要な区別
+
+### 対ごとの独立性 vs 互いの独立性
+
+- **対ごとに独立**：すべての事象のペアが独立
+- **互いに独立**：すべての部分集合に対して完全な独立条件が成立
+
+互いの独立性は対ごとの独立性を含意しますが、逆は成り立ちません。
+
+### 独立性 vs 排反性
+
+独立性と排反性（互いに排反）は異なる概念です：
+- $A$ と $B$ が正の確率を持つ排反事象ならば、それらは独立になりえません
+- $P(A) > 0$ かつ $P(B) > 0$ ならば、$A \cap B = \emptyset$ は $P(A \cap B) = 0 \neq P(A)P(B)$ を意味します
+
+## 例
+
+1. **コイン投げ**：公正なコインの連続投げは独立事象です
+   - $P(\text{1回目が表}) = \frac{1}{2}$
+   - $P(\text{2回目が表}) = \frac{1}{2}$
+   - $P(\text{両方とも表}) = \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{4}$
+
+2. **サイコロ投げ**：2つのサイコロを投げると独立な結果が得られます
+   - $A$ = 「1つ目のサイコロが6」、$B$ = 「和が7」とします
+   - $P(A) = \frac{1}{6}$、$P(B) = \frac{6}{36} = \frac{1}{6}$
+   - $P(A \cap B) = P(\{(6,1)\}) = \frac{1}{36} = \frac{1}{6} \cdot \frac{1}{6}$
+   - したがって、$A$ と $B$ は独立です
+
+3. **対ごとに独立だが互いに独立でない例**：公正なコインを2枚投げる場合を考えます
+   - $A$ = 「1枚目が表」とします
+   - $B$ = 「2枚目が表」とします
+   - $C$ = 「両方のコインが同じ面を示す」とします
+   - $A, B, C$ は対ごとに独立ですが、互いに独立ではありません
+
+## 応用
+
+独立性は以下の分野で重要です：
+- **統計的推論**：独立標本に関する仮定
+- **確率計算**：複雑な確率計算の簡略化
+- **確率過程**：独立増分を持つモデルの構築
+- **機械学習**：ナイーブベイズ分類器における特徴量独立性の仮定
+
+## 関連概念
+
+- 条件付き独立性：追加情報が与えられたときの独立性
+- [大数の法則](thm-law-of-large-numbers.qmd)：試行の独立性に依存
+- 中心極限定理：和の項の独立性が必要
+- 積測度と積空間は測度論における独立性を形式化します
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-law-of-large-numbers["定理: 大数の法則"]:::theorem
+    def-probability-space["定義: 確率空間"]:::definition
+    def-event["定義: 事象"]:::definition
+    def-conditional-probability["定義: 条件付き確率"]:::definition
+    def-random-variable["定義: 確率変数"]:::definition
+    def-independence["定義: 独立性"]:::definition
+    thm-law-of-large-numbers --> def-independence
+    def-independence --> def-probability-space
+    def-independence --> def-event
+    def-independence --> def-conditional-probability
+    def-independence --> def-random-variable
+    def-conditional-probability --> def-independence
+    class def-independence current
+    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "大数の法則へ移動"
+    click def-probability-space "def-probability-space.html" "確率空間の定義へ移動"
+    click def-event "def-event.html" "事象の定義へ移動"
+    click def-conditional-probability "def-conditional-probability.html" "条件付き確率の定義へ移動"
+    click def-random-variable "def-random-variable.html" "確率変数の定義へ移動"
+```
+
+## インタラクティブ可視化
+
+ローカル知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-independence" data-width="700" data-height="500"}
+:::
+
+以下のことができます：
+- ノードを**ドラッグ**してレイアウトを変更
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [完全なインタラクティブ版](../../output/interactive/def-independence.html){target="_blank"}を表示

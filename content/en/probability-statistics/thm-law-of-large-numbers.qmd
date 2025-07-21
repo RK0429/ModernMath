@@ -4,6 +4,7 @@ requires:
 - def-random-variable
 - def-expectation
 - def-variance
+- def-independence
 status: complete
 title: 'Theorem: Law of Large Numbers'
 translations:
@@ -14,11 +15,11 @@ type: Theorem
 
 # Theorem: Law of Large Numbers {#thm-law-of-large-numbers}
 
-The **Law of Large Numbers** states that the sample average of independent and identically distributed [random variables](def-random-variable.qmd) converges to their [expected value](def-expectation.qmd) as the sample size increases.
+The **Law of Large Numbers** states that the sample average of [independent](def-independence.qmd) and identically distributed [random variables](def-random-variable.qmd) converges to their [expected value](def-expectation.qmd) as the sample size increases.
 
 ## Weak Law of Large Numbers
 
-Let $X_1, X_2, \ldots$ be independent and identically distributed random variables with finite expected value $\mu = E[X_i]$ and finite [variance](def-variance.qmd) $\sigma^2 = \text{Var}(X_i)$.
+Let $X_1, X_2, \ldots$ be [independent](def-independence.qmd) and identically distributed random variables with finite expected value $\mu = E[X_i]$ and finite [variance](def-variance.qmd) $\sigma^2 = \text{Var}(X_i)$.
 
 Define the sample average:
 $$\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i$$
@@ -40,7 +41,7 @@ This is written as: $\bar{X}_n \xrightarrow{a.s.} \mu$.
 Using Chebyshev's inequality:
 $$P(|\bar{X}_n - \mu| > \epsilon) \leq \frac{\text{Var}(\bar{X}_n)}{\epsilon^2}$$
 
-Since the $X_i$ are independent:
+Since the $X_i$ are [independent](def-independence.qmd):
 $$\text{Var}(\bar{X}_n) = \text{Var}\left(\frac{1}{n} \sum_{i=1}^n X_i\right) = \frac{1}{n^2} \sum_{i=1}^n \text{Var}(X_i) = \frac{\sigma^2}{n}$$
 
 Therefore:
