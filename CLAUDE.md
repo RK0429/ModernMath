@@ -132,7 +132,8 @@ When adding new mathematical content:
 4. **Update Existing References**: Search for mentions of your new concept and add cross-references from existing articles
 5. **Update Index**: Add the new article to the domain's index.qmd file in alphabetical order
 6. **Build and Validate**: Run `validate_metadata.py` after creating new content
-7. **Generate Assets**: Run the full visualization pipeline in order:
+7. **Maintain Bilingual Consistency**: When updating cross-references, always update both English and Japanese versions together
+8. **Generate Assets**: Run the full visualization pipeline in order:
    ```bash
    poetry run python scripts/graph/build_graph.py
    poetry run python scripts/visualization/generate_mermaid.py
@@ -233,7 +234,7 @@ The project supports multiple languages (currently English and Japanese) with au
 
 - Japanese files need `translation_of: ../../en/path.qmd`
 - All files need `translations: {en: "path.html", ja: "path.html"}`
-- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Ideal→イデアル, Cyclic Group→巡回群, Polynomial Ring→多項式環, Variance→分散, Abelian Group→アーベル群/可換群, Independence→独立性
+- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Ideal→イデアル, Cyclic Group→巡回群, Polynomial Ring→多項式環, Variance→分散, Abelian Group→アーベル群/可換群, Independence→独立性, Uniform Continuity→一様連続性
 
 ### Building Multilingual Sites
 

@@ -1,0 +1,63 @@
+---
+id: def-uniform-continuity
+requires:
+- def-continuity
+- def-metric-space
+status: complete
+title: 'Definition: Uniform Continuity'
+translations:
+  en: ../en/analysis/def-uniform-continuity.html
+  ja: ../ja/analysis/def-uniform-continuity.html
+type: Definition
+---
+
+# Definition: Uniform Continuity {#def-uniform-continuity}
+
+A function $f: (X, d_X) \to (Y, d_Y)$ between [metric spaces](def-metric-space.qmd) is **uniformly continuous** if the choice of $\delta$ in the definition of [continuity](def-continuity.qmd) depends only on $\varepsilon$ and not on the specific point.
+
+## Formal Definition
+
+$f$ is uniformly continuous on $X$ if:
+
+For every $\varepsilon > 0$, there exists $\delta > 0$ such that for all $x, y \in X$:
+$$d_X(x, y) < \delta \implies d_Y(f(x), f(y)) < \varepsilon$$
+
+## Comparison with Continuity
+
+The key difference lies in the order of quantifiers:
+
+- **Continuity**: $\forall x \in X$ $\forall \varepsilon > 0$ $\exists \delta > 0$ $\forall y \in X$: $d_X(x, y) < \delta \implies d_Y(f(x), f(y)) < \varepsilon$
+- **Uniform Continuity**: $\forall \varepsilon > 0$ $\exists \delta > 0$ $\forall x, y \in X$: $d_X(x, y) < \delta \implies d_Y(f(x), f(y)) < \varepsilon$
+
+In uniform continuity, we choose $\delta$ first (depending only on $\varepsilon$), then it works for all pairs of points.
+
+## Properties
+
+1. **Uniform continuity implies continuity**: Every uniformly continuous function is continuous, but not conversely
+2. **Preservation under composition**: The composition of uniformly continuous functions is uniformly continuous
+3. **Extension property**: A uniformly continuous function on a dense subset can be uniquely extended to the closure
+
+## Important Theorems
+
+- **Heine-Cantor Theorem**: Every continuous function on a compact metric space is uniformly continuous
+- A continuous function on a bounded interval $[a, b]$ is uniformly continuous
+- Lipschitz continuous functions are uniformly continuous
+
+## Examples and Non-Examples
+
+### Examples of Uniformly Continuous Functions
+
+1. **Linear functions**: $f(x) = ax + b$ on $\mathbb{R}$ is uniformly continuous
+2. **Square root**: $f(x) = \sqrt{x}$ on $[0, \infty)$ is uniformly continuous
+3. **Sine function**: $f(x) = \sin(x)$ on $\mathbb{R}$ is uniformly continuous
+
+### Non-Examples
+
+1. **Quadratic function**: $f(x) = x^2$ on $\mathbb{R}$ is continuous but not uniformly continuous
+2. **Reciprocal**: $f(x) = 1/x$ on $(0, 1]$ is continuous but not uniformly continuous
+
+## Intuition
+
+Uniform continuity means that the function's rate of change is globally bounded. No matter where we are in the domain, points that are close together are mapped to points that are close together, with the same tolerance everywhere.
+
+This is stronger than ordinary continuity, where the tolerance might vary from point to point.
