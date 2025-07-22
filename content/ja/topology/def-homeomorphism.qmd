@@ -1,0 +1,121 @@
+---
+id: def-homeomorphism
+requires:
+- def-topological-space
+- def-open-set
+- def-continuity
+- def-set
+status: complete
+title: '定義：同相写像'
+translation_of: ../../en/topology/def-homeomorphism.qmd
+translations:
+  en: ../en/topology/def-homeomorphism.html
+  ja: ../ja/topology/def-homeomorphism.html
+type: Definition
+---
+
+# 定義：同相写像 {#def-homeomorphism}
+
+**同相写像**（どうそうしゃぞう）は、[位相空間](def-topological-space.qmd)の間の全単射で、連続かつその逆写像も連続であるものである。位相的同値性の基本概念を表す。
+
+## 形式的定義
+
+$(X, \tau_X)$ と $(Y, \tau_Y)$ を[位相空間](def-topological-space.qmd)とする。関数 $f: X \to Y$ が**同相写像**であるとは、以下を満たすときをいう：
+
+1. **全単射**：$f$ は単射（1対1）かつ全射（上への）である
+2. **連続性**：$f$ は連続である（$\tau_Y$ の任意の[開集合](def-open-set.qmd) $V$ に対して、その逆像 $f^{-1}(V) \in \tau_X$）
+3. **逆写像の連続性**：逆関数 $f^{-1}: Y \to X$ が存在し、連続である
+
+## 同相な空間
+
+2つの位相空間 $X$ と $Y$ の間に同相写像が存在するとき、$X$ と $Y$ は**同相**（どうそう）であるという。これを次のように表記する：
+$$X \cong Y$$
+
+## 主要な性質
+
+### 位相的性質の保存
+
+同相写像はすべての位相的性質を保存する：
+- **開集合と閉集合**：$U$ が $X$ の開集合 ⟺ $f(U)$ が $Y$ の開集合
+- **連結性**：$X$ が連結 ⟺ $Y$ が連結
+- **コンパクト性**：$X$ がコンパクト ⟺ $Y$ がコンパクト（@def-compact 参照）
+- **分離公理**：$X$ がハウスドルフ ⟺ $Y$ がハウスドルフ（@def-hausdorff 参照）
+- **収束性**：$X$ で列が収束 ⟺ その像が $Y$ で収束
+
+### 同値関係
+
+「同相である」という関係は、すべての位相空間のクラス上の同値関係を成す：
+- **反射律**：$X \cong X$（恒等写像は同相写像）
+- **対称律**：$X \cong Y$ ならば $Y \cong X$
+- **推移律**：$X \cong Y$ かつ $Y \cong Z$ ならば $X \cong Z$
+
+## 例
+
+### 典型的な例
+
+1. **開区間と実数直線**：$(0,1) \cong \mathbb{R}$ （同相写像は次の通り）
+   $$f(x) = \tan\left(\pi\left(x - \frac{1}{2}\right)\right)$$
+
+2. **1点を除いた円と直線**：$S^1 \setminus \{p\} \cong \mathbb{R}$（$S^1$ は単位円、$p$ はその上の任意の点）
+
+3. **開球**：$\mathbb{R}^n$ の任意の2つの開球は、その半径や中心によらず同相である
+
+4. **立体射影**：球面 $S^n$ から1点を除いたものは $\mathbb{R}^n$ と同相
+
+### 非例
+
+1. **閉区間と開区間**：$[0,1]$ と $(0,1)$ は同相でない（一方はコンパクトで他方はそうでない）
+
+2. **異なる次元**：$m \neq n$ のとき $\mathbb{R}^m$ と $\mathbb{R}^n$ は同相でない（証明には代数的位相幾何学が必要）
+
+3. **連結 vs 非連結**：円 $S^1$ と2つの分離した円は同相でない（一方は連結で他方はそうでない）
+
+## 位相不変量
+
+同相写像によって保存される性質を**位相不変量**という。これには以下が含まれる：
+- 連結成分の個数
+- 基本群（代数的位相幾何学において）
+- オイラー標数（適切な空間に対して）
+- 次元（慎重な定義が必要）
+
+## 直観的理解
+
+同相な空間は、以下を行わずに互いに連続的に変形できる空間として考えることができる：
+- 空間を引き裂いたり切断したりすること
+- 以前は分離していた点を貼り合わせたり同一視したりすること
+
+これにより有名な例が導かれる：コーヒーカップとドーナツ（トーラス）は、どちらもちょうど1つの穴を持つため同相である。
+
+## 関連項目
+
+- @def-topological-space
+- @def-continuity
+- @def-isomorphism （数学の他の分野における類似概念）
+- @def-compact
+- @def-connected
+- @def-hausdorff
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+```
+
+## インタラクティブ可視化
+
+局所的な知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-homeomorphism" data-width="700" data-height="500"}
+:::
+
+できること：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [完全なインタラクティブ版](../../output/interactive/def-homeomorphism.html){target="_blank"}を表示

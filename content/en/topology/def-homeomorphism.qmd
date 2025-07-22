@@ -1,0 +1,120 @@
+---
+id: def-homeomorphism
+requires:
+- def-topological-space
+- def-open-set
+- def-continuity
+- def-set
+status: complete
+title: 'Definition: Homeomorphism'
+translations:
+  en: ../en/topology/def-homeomorphism.html
+  ja: ../ja/topology/def-homeomorphism.html
+type: Definition
+---
+
+# Definition: Homeomorphism {#def-homeomorphism}
+
+A **homeomorphism** is a bijective function between [topological spaces](def-topological-space.qmd) that is continuous and has a continuous inverse. It represents the fundamental notion of topological equivalence.
+
+## Formal Definition
+
+Let $(X, \tau_X)$ and $(Y, \tau_Y)$ be [topological spaces](def-topological-space.qmd). A function $f: X \to Y$ is a **homeomorphism** if:
+
+1. **Bijection**: $f$ is both injective (one-to-one) and surjective (onto)
+2. **Continuous**: $f$ is continuous (for every [open set](def-open-set.qmd) $V \in \tau_Y$, the preimage $f^{-1}(V) \in \tau_X$)
+3. **Continuous inverse**: The inverse function $f^{-1}: Y \to X$ exists and is continuous
+
+## Homeomorphic Spaces
+
+Two topological spaces $X$ and $Y$ are said to be **homeomorphic** if there exists a homeomorphism between them. We denote this as:
+$$X \cong Y$$
+
+## Key Properties
+
+### Preservation of Topological Properties
+
+Homeomorphisms preserve all topological properties:
+- **Open and closed sets**: $U$ is open in $X$ if and only if $f(U)$ is open in $Y$
+- **Connectedness**: $X$ is connected if and only if $Y$ is connected
+- **Compactness**: $X$ is compact if and only if $Y$ is compact (see @def-compact)
+- **Separation axioms**: $X$ is Hausdorff if and only if $Y$ is Hausdorff (see @def-hausdorff)
+- **Convergence**: A sequence converges in $X$ if and only if its image converges in $Y$
+
+### Equivalence Relation
+
+The relation "is homeomorphic to" forms an equivalence relation on the class of all topological spaces:
+- **Reflexive**: $X \cong X$ (the identity map is a homeomorphism)
+- **Symmetric**: If $X \cong Y$, then $Y \cong X$
+- **Transitive**: If $X \cong Y$ and $Y \cong Z$, then $X \cong Z$
+
+## Examples
+
+### Classic Examples
+
+1. **Open interval and real line**: $(0,1) \cong \mathbb{R}$ via the homeomorphism
+   $$f(x) = \tan\left(\pi\left(x - \frac{1}{2}\right)\right)$$
+
+2. **Circle minus a point and line**: $S^1 \setminus \{p\} \cong \mathbb{R}$ where $S^1$ is the unit circle and $p$ is any point on it
+
+3. **Open balls**: Any two open balls in $\mathbb{R}^n$ are homeomorphic, regardless of their radius or center
+
+4. **Stereographic projection**: The sphere $S^n$ minus a point is homeomorphic to $\mathbb{R}^n$
+
+### Non-Examples
+
+1. **Closed and open intervals**: $[0,1]$ is not homeomorphic to $(0,1)$ since one is compact and the other is not
+
+2. **Different dimensions**: $\mathbb{R}^m$ is not homeomorphic to $\mathbb{R}^n$ for $m \neq n$ (requires algebraic topology to prove)
+
+3. **Connected vs disconnected**: A circle $S^1$ is not homeomorphic to two disjoint circles since one is connected and the other is not
+
+## Topological Invariants
+
+Properties preserved by homeomorphisms are called **topological invariants**. These include:
+- Number of connected components
+- Fundamental group (in algebraic topology)
+- Euler characteristic (for suitable spaces)
+- Dimension (requires careful definition)
+
+## Intuitive Understanding
+
+Homeomorphic spaces can be thought of as spaces that can be continuously deformed into each other without:
+- Tearing or cutting the space apart
+- Gluing or identifying previously separate points
+
+This leads to the famous example: a coffee mug and a donut (torus) are homeomorphic because each has exactly one hole.
+
+## See Also
+
+- @def-topological-space
+- @def-continuity
+- @def-isomorphism (the analogous concept in other areas of mathematics)
+- @def-compact
+- @def-connected
+- @def-hausdorff
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-homeomorphism" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-homeomorphism.html){target="_blank"}
