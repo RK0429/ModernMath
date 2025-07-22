@@ -84,6 +84,8 @@
 
 <http://modernmath.org/concepts/finite-field> ns1:hasTranslation <http://modernmath.org/concepts/finite-field_ja> .
 
+<http://modernmath.org/concepts/first-isomorphism> ns1:hasTranslation <http://modernmath.org/concepts/first-isomorphism_ja> .
+
 <http://modernmath.org/concepts/functor> ns1:hasTranslation <http://modernmath.org/concepts/functor_ja> .
 
 <http://modernmath.org/concepts/fundamental-arithmetic> ns1:hasTranslation <http://modernmath.org/concepts/fundamental-arithmetic_ja> .
@@ -93,6 +95,10 @@
 <http://modernmath.org/concepts/graph> ns1:hasTranslation <http://modernmath.org/concepts/graph_ja> .
 
 <http://modernmath.org/concepts/group> ns1:hasTranslation <http://modernmath.org/concepts/group_ja> .
+
+<http://modernmath.org/concepts/group-action> ns1:hasTranslation <http://modernmath.org/concepts/group-action_ja> .
+
+<http://modernmath.org/concepts/group-action-examples> ns1:hasTranslation <http://modernmath.org/concepts/group-action-examples_ja> .
 
 <http://modernmath.org/concepts/group-example> ns1:hasTranslation <http://modernmath.org/concepts/group-example_ja> .
 
@@ -165,6 +171,8 @@
 <http://modernmath.org/concepts/normal-subgroup> ns1:hasTranslation <http://modernmath.org/concepts/normal-subgroup_ja> .
 
 <http://modernmath.org/concepts/open-set> ns1:hasTranslation <http://modernmath.org/concepts/open-set_ja> .
+
+<http://modernmath.org/concepts/orbit-stabilizer> ns1:hasTranslation <http://modernmath.org/concepts/orbit-stabilizer_ja> .
 
 <http://modernmath.org/concepts/parallel> ns1:hasTranslation <http://modernmath.org/concepts/parallel_ja> .
 
@@ -496,6 +504,17 @@ ns1:hasTranslation a rdf:Property ;
     mymath:uses <https://mathwiki.org/resource/def-continuity>,
         <https://mathwiki.org/resource/def-derivative> .
 
+<https://mathwiki.org/resource/thm-chinese-remainder> a mymath:Theorem ;
+    rdfs:label "Theorem: Chinese Remainder Theorem"@en,
+        "定理: 中国剰余定理"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-congruence>,
+        <https://mathwiki.org/resource/def-gcd>,
+        <https://mathwiki.org/resource/def-prime>,
+        <https://mathwiki.org/resource/thm-euclidean-algorithm> .
+
 <https://mathwiki.org/resource/thm-de-morgan> a mymath:Theorem ;
     rdfs:label "Theorem: De Morgan's Laws"@en,
         "定理: ド・モルガンの法則"@en ;
@@ -726,6 +745,8 @@ ns1:hasTranslation a rdf:Property ;
 
 <http://modernmath.org/concepts/finite-field_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/first-isomorphism_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/functor_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/fundamental-arithmetic_ja> ns1:language "ja" .
@@ -733,6 +754,10 @@ ns1:hasTranslation a rdf:Property ;
 <http://modernmath.org/concepts/gcd_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/graph_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/group-action-examples_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/group-action_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/group-example_ja> ns1:language "ja" .
 
@@ -807,6 +832,8 @@ ns1:hasTranslation a rdf:Property ;
 <http://modernmath.org/concepts/normal-subgroup_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/open-set_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/orbit-stabilizer_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/parallel_ja> ns1:language "ja" .
 
@@ -1024,16 +1051,6 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-set>,
         <https://mathwiki.org/resource/def-topological-space> .
 
-<https://mathwiki.org/resource/def-image> a mymath:Definition ;
-    rdfs:label "Definition: Image"@en,
-        "定義: 像"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearMap.range> ;
-    mymath:uses <https://mathwiki.org/resource/def-linear-transformation>,
-        <https://mathwiki.org/resource/def-vector-space> .
-
 <https://mathwiki.org/resource/def-independence> a mymath:Definition ;
     rdfs:label "Definition: Independence"@en,
         "定義: 独立性"@en ;
@@ -1080,20 +1097,6 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-composition>,
         <https://mathwiki.org/resource/def-homeomorphism>,
         <https://mathwiki.org/resource/def-morphism> .
-
-<https://mathwiki.org/resource/def-kernel> a mymath:Definition ;
-    rdfs:label "Definition: Kernel"@en,
-        "定義: 核"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearMap.ker> ;
-    mymath:uses <https://mathwiki.org/resource/def-homomorphism>,
-        <https://mathwiki.org/resource/def-ideal>,
-        <https://mathwiki.org/resource/def-linear-transformation>,
-        <https://mathwiki.org/resource/def-normal-subgroup>,
-        <https://mathwiki.org/resource/def-quotient-group>,
-        <https://mathwiki.org/resource/def-vector-space> .
 
 <https://mathwiki.org/resource/def-natural-transformation> a mymath:Definition ;
     rdfs:label "Definition: Natural Transformation"@en,
@@ -1314,6 +1317,31 @@ ns1:hasTranslation a rdf:Property ;
     mymath:uses <https://mathwiki.org/resource/def-open-set>,
         <https://mathwiki.org/resource/def-topological-space> .
 
+<https://mathwiki.org/resource/def-image> a mymath:Definition ;
+    rdfs:label "Definition: Image"@en,
+        "定義: 像"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearMap.range> ;
+    mymath:uses <https://mathwiki.org/resource/def-linear-transformation>,
+        <https://mathwiki.org/resource/def-vector-space> .
+
+<https://mathwiki.org/resource/def-kernel> a mymath:Definition ;
+    rdfs:label "Definition: Kernel"@en,
+        "定義: 核"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearMap.ker> ;
+    mymath:uses <https://mathwiki.org/resource/def-homomorphism>,
+        <https://mathwiki.org/resource/def-ideal>,
+        <https://mathwiki.org/resource/def-linear-transformation>,
+        <https://mathwiki.org/resource/def-normal-subgroup>,
+        <https://mathwiki.org/resource/def-quotient-group>,
+        <https://mathwiki.org/resource/def-vector-space>,
+        <https://mathwiki.org/resource/thm-first-isomorphism> .
+
 <https://mathwiki.org/resource/def-linear-independence> a mymath:Definition ;
     rdfs:label "Definition: Linear Independence"@en,
         "定義: 線形独立"@en ;
@@ -1372,15 +1400,6 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-subgroup>,
         <https://mathwiki.org/resource/ex-integers-addition> .
 
-<https://mathwiki.org/resource/thm-euclidean-algorithm> a mymath:Theorem ;
-    rdfs:label "Theorem: Euclidean Algorithm"@en,
-        "定理：ユークリッドのアルゴリズム"@en ;
-    mymath:hasDomain "Number Theory",
-        "数論" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-gcd>,
-        <https://mathwiki.org/resource/ex-quotient-integers-mod-n> .
-
 <https://mathwiki.org/resource/thm-euler> a mymath:Theorem ;
     rdfs:label "Theorem: Euler's Theorem"@en,
         "定理：オイラーの定理"@en ;
@@ -1404,6 +1423,36 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-set>,
         <https://mathwiki.org/resource/def-topological-space> .
 
+<https://mathwiki.org/resource/def-event> a mymath:Definition ;
+    rdfs:label "Definition: Event"@en,
+        "定義: 事象"@en ;
+    rdfs:comment "An **event** in probability theory is a [Subset](../logic-set-theory/def-subset.qmd) of the [Sample Space](def-sample-space.qmd) $\\Omega$. It represents a collection of outcomes to which a probability can be assigned."@en,
+        "確率論における**事象**とは、[標本空間](def-sample-space.qmd) $\\Omega$ の[部分集合](../logic-set-theory/def-subset.qmd)である。これは確率を割り当てることができる結果の集まりを表す。"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-sample-space>,
+        <https://mathwiki.org/resource/def-subset> .
+
+<https://mathwiki.org/resource/def-polynomial-ring> a mymath:Definition ;
+    rdfs:label "Definition: Polynomial Ring"@en,
+        "定義: 多項式環"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
+        <https://mathwiki.org/resource/def-field>,
+        <https://mathwiki.org/resource/def-ring> .
+
+<https://mathwiki.org/resource/thm-euclidean-algorithm> a mymath:Theorem ;
+    rdfs:label "Theorem: Euclidean Algorithm"@en,
+        "定理：ユークリッドのアルゴリズム"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-gcd>,
+        <https://mathwiki.org/resource/ex-quotient-integers-mod-n> .
+
 <https://mathwiki.org/resource/def-congruence> a mymath:Definition ;
     rdfs:label "Definition: Congruence (Modular Arithmetic)"@en,
         "定義: 合同（モジュラー演算）"@en ;
@@ -1419,16 +1468,17 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/thm-euclidean-algorithm>,
         <https://mathwiki.org/resource/thm-euler> .
 
-<https://mathwiki.org/resource/def-event> a mymath:Definition ;
-    rdfs:label "Definition: Event"@en,
-        "定義: 事象"@en ;
-    rdfs:comment "An **event** in probability theory is a [Subset](../logic-set-theory/def-subset.qmd) of the [Sample Space](def-sample-space.qmd) $\\Omega$. It represents a collection of outcomes to which a probability can be assigned."@en,
-        "確率論における**事象**とは、[標本空間](def-sample-space.qmd) $\\Omega$ の[部分集合](../logic-set-theory/def-subset.qmd)である。これは確率を割り当てることができる結果の集まりを表す。"@en ;
-    mymath:hasDomain "Probability Statistics",
-        "確率・統計学" ;
+<https://mathwiki.org/resource/def-field> a mymath:Definition ;
+    rdfs:label "Definition: Field"@en,
+        "定義: 体"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-sample-space>,
-        <https://mathwiki.org/resource/def-subset> .
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Field.Defs.Field> ;
+    mymath:uses <https://mathwiki.org/resource/def-abelian-group>,
+        <https://mathwiki.org/resource/def-group>,
+        <https://mathwiki.org/resource/def-ideal>,
+        <https://mathwiki.org/resource/def-ring> .
 
 <https://mathwiki.org/resource/def-gcd> a mymath:Definition ;
     rdfs:label "Definition: Greatest Common Divisor"@en,
@@ -1442,28 +1492,6 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/thm-euclidean-algorithm>,
         <https://mathwiki.org/resource/thm-euler> .
 
-<https://mathwiki.org/resource/def-polynomial-ring> a mymath:Definition ;
-    rdfs:label "Definition: Polynomial Ring"@en,
-        "定義: 多項式環"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
-        <https://mathwiki.org/resource/def-field>,
-        <https://mathwiki.org/resource/def-ring> .
-
-<https://mathwiki.org/resource/def-field> a mymath:Definition ;
-    rdfs:label "Definition: Field"@en,
-        "定義: 体"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Field.Defs.Field> ;
-    mymath:uses <https://mathwiki.org/resource/def-abelian-group>,
-        <https://mathwiki.org/resource/def-group>,
-        <https://mathwiki.org/resource/def-ideal>,
-        <https://mathwiki.org/resource/def-ring> .
-
 <https://mathwiki.org/resource/def-group-action> a mymath:Definition ;
     rdfs:label "Group Action"@en,
         "群の作用"@en ;
@@ -1474,16 +1502,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "verified" ;
     mymath:uses <https://mathwiki.org/resource/def-group>,
         <https://mathwiki.org/resource/def-identity-element> .
-
-<https://mathwiki.org/resource/def-homomorphism> a mymath:Definition ;
-    rdfs:label "Definition: Group Homomorphism"@en,
-        "定義: 群準同型"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
-        <https://mathwiki.org/resource/def-group>,
-        <https://mathwiki.org/resource/def-quotient-group> .
 
 <https://mathwiki.org/resource/def-identity-element> a mymath:Definition ;
     rdfs:label "Definition: Identity Element"@en,
@@ -1559,6 +1577,31 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
 
+<https://mathwiki.org/resource/def-homomorphism> a mymath:Definition ;
+    rdfs:label "Definition: Group Homomorphism"@en,
+        "定義: 群準同型"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-binary-operation>,
+        <https://mathwiki.org/resource/def-group>,
+        <https://mathwiki.org/resource/def-quotient-group>,
+        <https://mathwiki.org/resource/thm-first-isomorphism> .
+
+<https://mathwiki.org/resource/thm-first-isomorphism> a mymath:Theorem ;
+    rdfs:label "Theorem: First Isomorphism Theorem"@en,
+        "定理: 第一同型定理"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-abelian-group>,
+        <https://mathwiki.org/resource/def-group>,
+        <https://mathwiki.org/resource/def-homomorphism>,
+        <https://mathwiki.org/resource/def-image>,
+        <https://mathwiki.org/resource/def-kernel>,
+        <https://mathwiki.org/resource/def-normal-subgroup>,
+        <https://mathwiki.org/resource/def-quotient-group> .
+
 <https://mathwiki.org/resource/def-coset> a mymath:Definition ;
     rdfs:label "Definition: Coset"@en,
         "定義: 剰余類"@en ;
@@ -1604,13 +1647,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Basic.IsOpen> ;
     mymath:uses <https://mathwiki.org/resource/def-topological-space> .
-
-<https://mathwiki.org/resource/def-prime> a mymath:Definition ;
-    rdfs:label "Definition: Prime Number"@en,
-        "定義：素数"@en ;
-    mymath:hasDomain "Number Theory",
-        "数論" ;
-    mymath:hasStatus "complete" .
 
 <https://mathwiki.org/resource/ex-quotient-integers-mod-n> a mymath:Example ;
     rdfs:label "Example: Integers Modulo n"@en,
@@ -1674,6 +1710,13 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
 
+<https://mathwiki.org/resource/def-prime> a mymath:Definition ;
+    rdfs:label "Definition: Prime Number"@en,
+        "定義：素数"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" .
+
 <https://mathwiki.org/resource/def-ring> a mymath:Definition ;
     rdfs:label "Definition: Ring"@en,
         "定義：環"@en ;
@@ -1729,6 +1772,7 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-homomorphism>,
         <https://mathwiki.org/resource/def-quotient-group>,
         <https://mathwiki.org/resource/def-subgroup>,
+        <https://mathwiki.org/resource/thm-first-isomorphism>,
         <https://mathwiki.org/resource/thm-lagrange> .
 
 <https://mathwiki.org/resource/def-topological-space> a mymath:Definition ;
@@ -1739,21 +1783,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Basic.TopologicalSpace> ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
-
-<https://mathwiki.org/resource/def-quotient-group> a mymath:Definition ;
-    rdfs:label "Definition: Quotient Group"@en,
-        "定義: 商群"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasLeanId "Mathlib.GroupTheory.QuotientGroup" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-abelian-group>,
-        <https://mathwiki.org/resource/def-coset>,
-        <https://mathwiki.org/resource/def-cyclic-group>,
-        <https://mathwiki.org/resource/def-group>,
-        <https://mathwiki.org/resource/def-ideal>,
-        <https://mathwiki.org/resource/def-normal-subgroup>,
-        <https://mathwiki.org/resource/def-subgroup> .
 
 <https://mathwiki.org/resource/def-vector-space> a mymath:Definition ;
     rdfs:label "Definition: Vector Space"@en,
@@ -1768,6 +1797,22 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-group>,
         <https://mathwiki.org/resource/def-set> .
 
+<https://mathwiki.org/resource/def-quotient-group> a mymath:Definition ;
+    rdfs:label "Definition: Quotient Group"@en,
+        "定義: 商群"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasLeanId "Mathlib.GroupTheory.QuotientGroup" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-abelian-group>,
+        <https://mathwiki.org/resource/def-coset>,
+        <https://mathwiki.org/resource/def-cyclic-group>,
+        <https://mathwiki.org/resource/def-group>,
+        <https://mathwiki.org/resource/def-ideal>,
+        <https://mathwiki.org/resource/def-normal-subgroup>,
+        <https://mathwiki.org/resource/def-subgroup>,
+        <https://mathwiki.org/resource/thm-first-isomorphism> .
+
 <https://mathwiki.org/resource/def-abelian-group> a mymath:Definition ;
     rdfs:label "Definition: Abelian Group"@en,
         "定義: アーベル群"@en ;
@@ -1780,6 +1825,7 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-group>,
         <https://mathwiki.org/resource/def-normal-subgroup>,
         <https://mathwiki.org/resource/def-quotient-group>,
+        <https://mathwiki.org/resource/thm-first-isomorphism>,
         <https://mathwiki.org/resource/thm-lagrange> .
 
 <https://mathwiki.org/resource/def-binary-operation> a mymath:Definition ;

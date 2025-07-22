@@ -150,8 +150,12 @@ When adding fundamental concepts (e.g., quotient groups, isomorphisms, cyclic gr
 1. **Search Comprehensively**: Use `grep` to find all articles mentioning related terms across domains
 2. **Update Systematically**: Add references in both YAML `requires` and article content where appropriate
 3. **Cross-Domain Awareness**: Mathematical concepts often appear in multiple domains (e.g., modular arithmetic in number theory relates to quotient groups in algebra)
+   - For cross-domain references in YAML `requires`, use relative path syntax: `../domain-name/def-concept`
+   - Example: `- ../category-theory/def-isomorphism` for referencing isomorphism from algebra domain
 4. **Bilingual Consistency**: Always update both English and Japanese versions together
 5. **Rebuild and Validate**: After updates, rebuild the knowledge graph to verify all cross-references resolve correctly
+
+**Creating Articles for Referenced Concepts**: When a theorem or definition is mentioned in multiple existing articles (e.g., "First Isomorphism Theorem"), create a dedicated article for it rather than leaving it as text-only references. This ensures proper knowledge graph connectivity.
 
 **Cross-Reference Update Pattern**: When creating a new definition that's already mentioned in existing articles:
 

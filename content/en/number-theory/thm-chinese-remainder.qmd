@@ -1,0 +1,122 @@
+---
+id: thm-chinese-remainder
+requires:
+- def-congruence
+- def-gcd
+- def-prime
+- ../algebra/ex-quotient-integers-mod-n
+- thm-euclidean-algorithm
+status: complete
+title: 'Theorem: Chinese Remainder Theorem'
+translations:
+  en: ../en/number-theory/thm-chinese-remainder.html
+  ja: ../ja/number-theory/thm-chinese-remainder.html
+type: Theorem
+---
+
+# Chinese Remainder Theorem {#thm-chinese-remainder}
+
+The Chinese Remainder Theorem provides a method for solving systems of simultaneous [congruences](def-congruence.qmd) with pairwise coprime moduli. It states that such systems have a unique solution modulo the product of the moduli.
+
+## Statement
+
+Let $m_1, m_2, \ldots, m_k$ be positive integers that are pairwise coprime, meaning $\gcd(m_i, m_j) = 1$ for all $i \neq j$ (see [Greatest Common Divisor](def-gcd.qmd)). Then the system of congruences:
+
+$$\begin{align}
+x &\equiv a_1 \pmod{m_1}\\
+x &\equiv a_2 \pmod{m_2}\\
+&\vdots\\
+x &\equiv a_k \pmod{m_k}
+\end{align}$$
+
+has a unique solution modulo $M = m_1 m_2 \cdots m_k$.
+
+## Constructive Solution
+
+The solution can be explicitly constructed as follows:
+
+1. Let $M = m_1 m_2 \cdots m_k$ be the product of all moduli
+2. For each $i$, define $M_i = M/m_i$ (the product of all moduli except $m_i$)
+3. Since $\gcd(M_i, m_i) = 1$, there exists $y_i$ such that $M_i y_i \equiv 1 \pmod{m_i}$ (found using the [Euclidean Algorithm](thm-euclidean-algorithm.qmd))
+4. The solution is: $$x \equiv \sum_{i=1}^{k} a_i M_i y_i \pmod{M}$$
+
+## Example
+
+Solve the system:
+$$\begin{align}
+x &\equiv 2 \pmod{3}\\
+x &\equiv 3 \pmod{5}\\
+x &\equiv 2 \pmod{7}
+\end{align}$$
+
+Since $\gcd(3,5) = \gcd(3,7) = \gcd(5,7) = 1$, we can apply the theorem:
+
+- $M = 3 \cdot 5 \cdot 7 = 105$
+- $M_1 = 35$, $M_2 = 21$, $M_3 = 15$
+- Find inverses: $35 \cdot 2 \equiv 1 \pmod{3}$, so $y_1 = 2$
+- $21 \cdot 1 \equiv 1 \pmod{5}$, so $y_2 = 1$
+- $15 \cdot 1 \equiv 1 \pmod{7}$, so $y_3 = 1$
+- Solution: $x \equiv 2 \cdot 35 \cdot 2 + 3 \cdot 21 \cdot 1 + 2 \cdot 15 \cdot 1 \equiv 233 \equiv 23 \pmod{105}$
+
+## Proof Outline
+
+**Uniqueness**: If $x$ and $y$ are both solutions, then $x \equiv y \pmod{m_i}$ for all $i$. Thus $m_i$ divides $x - y$ for all $i$. Since the $m_i$ are pairwise coprime, their product $M$ divides $x - y$, so $x \equiv y \pmod{M}$.
+
+**Existence**: The constructed solution satisfies all congruences because:
+- $M_i \equiv 0 \pmod{m_j}$ for $j \neq i$
+- $M_i y_i \equiv 1 \pmod{m_i}$
+- Therefore, modulo $m_i$: $x \equiv a_i M_i y_i \equiv a_i \cdot 1 \equiv a_i \pmod{m_i}$
+
+## Applications
+
+### Number Theory
+- Solving Diophantine equations
+- Computing with large moduli by decomposing into smaller coprime factors
+- Structure theorem for finite abelian groups (see [Quotient Groups](../algebra/ex-quotient-integers-mod-n.qmd))
+
+### Computer Science
+- **RSA Cryptography**: Speeds up decryption by computing modulo [prime](def-prime.qmd) factors separately
+- **Multi-modular Arithmetic**: Perform calculations modulo several small primes instead of one large number
+- **Error-Correcting Codes**: Reed-Solomon codes use CRT for data recovery
+
+### Historical Note
+Despite its name, the theorem was known to ancient Chinese mathematicians. The earliest known statement appears in *Sunzi Suanjing* (3rd-5th century CE), though the complete theorem was first given by Qin Jiushao in 1247.
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
+    thm-chinese-remainder["Theorem: Chinese Remainder Theorem"]:::theorem
+    def-gcd["Definition: Greatest Common Divisor"]:::definition
+    def-prime["Definition: Prime Number"]:::definition
+    thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
+    thm-chinese-remainder --> thm-euclidean-algorithm
+    thm-chinese-remainder --> def-prime
+    thm-chinese-remainder --> def-congruence
+    thm-chinese-remainder --> def-gcd
+    class thm-chinese-remainder current
+    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic) definition"
+    click def-gcd "def-gcd.html" "Go to Greatest Common Divisor definition"
+    click def-prime "def-prime.html" "Go to Prime Number definition"
+    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Go to Euclidean Algorithm theorem"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="thm-chinese-remainder" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/thm-chinese-remainder.html){target="_blank"}

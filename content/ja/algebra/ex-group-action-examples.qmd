@@ -1,17 +1,17 @@
 ---
-title: "群作用の例"
 id: ex-group-action-examples
-type: Example
-status: verified
-sidebar: true
 requires:
-  - def-group-action
-  - def-group
-  - def-cyclic-group
+- def-group-action
+- def-group
+- def-cyclic-group
+sidebar: true
+status: verified
+title: 群作用の例
 translation_of: ../../en/algebra/ex-group-action-examples.qmd
 translations:
   en: ex-group-action-examples.html
   ja: ex-group-action-examples.html
+type: Example
 ---
 
 [群作用](def-group-action.qmd)は対称性を理解する上で基本的です。ここでいくつかの重要な例を示します。
@@ -68,3 +68,39 @@ $$\sigma \cdot i = \sigma(i) \text{ ただし } \sigma \in S_n, i \in \{1, 2, \l
 $$k \cdot \omega = \omega \cdot e^{2\pi i k/n} \text{ ここで } \omega = e^{2\pi i j/n}$$
 
 これは複素単位円の $2\pi/n$ の倍数による回転を与えます。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-group["Definition: Group"]:::definition
+    ex-group-action-examples["Examples of Group Actions"]:::example
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
+    def-group-action["Group Action"]:::definition
+    ex-group-action-examples --> def-cyclic-group
+    ex-group-action-examples --> def-group-action
+    ex-group-action-examples --> def-group
+    class ex-group-action-examples current
+    click def-group "def-group.html" "Definition: Groupへ"
+    click def-cyclic-group "def-cyclic-group.html" "Definition: Cyclic Groupへ"
+    click def-group-action "def-group-action.html" "Group Actionへ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="ex-group-action-examples" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/ex-group-action-examples.html){target="_blank"}で完全なインタラクティブ版を表示

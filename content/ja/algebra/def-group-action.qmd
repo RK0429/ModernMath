@@ -1,16 +1,16 @@
 ---
-title: "群の作用"
 id: def-group-action
-type: Definition
-status: verified
-sidebar: true
 requires:
-  - def-group
-  - def-identity-element
+- def-group
+- def-identity-element
+sidebar: true
+status: verified
+title: 群の作用
 translation_of: ../../en/algebra/def-group-action.qmd
 translations:
   en: def-group-action.html
   ja: def-group-action.html
+type: Definition
 ---
 
 **群の作用**は、群が集合の要素を群の構造と整合的な方法で置換する方法です。
@@ -55,3 +55,48 @@ $$G_x = \{g \in G : g \cdot x = x\}$$
 - [準同型](def-homomorphism.qmd): 群作用は準同型 $G \to \text{Sym}(X)$ を誘導する
 - [剰余類](def-coset.qmd): $G/G_x$ と軌道 $G \cdot x$ の間に自然な全単射が存在する
 - [正規部分群](def-normal-subgroup.qmd): 誘導される準同型の核は正規部分群
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-group-action["Group Action"]:::definition
+    ex-group-action-examples["Examples of Group Actions"]:::example
+    def-group["Definition: Group"]:::definition
+    def-identity-element["Definition: Identity Element"]:::definition
+    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
+    def-coset["Definition: Coset"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-coset --> def-group-action
+    def-group-action --> def-group
+    ex-group-action-examples --> def-group-action
+    def-group-action --> def-identity-element
+    def-normal-subgroup --> def-group-action
+    thm-orbit-stabilizer --> def-group-action
+    class def-group-action current
+    click ex-group-action-examples "ex-group-action-examples.html" "Examples of Group Actionsへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click def-identity-element "def-identity-element.html" "Definition: Identity Elementへ"
+    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "Orbit-Stabilizer Theoremへ"
+    click def-coset "def-coset.html" "Definition: Cosetへ"
+    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-group-action" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/def-group-action.html){target="_blank"}で完全なインタラクティブ版を表示

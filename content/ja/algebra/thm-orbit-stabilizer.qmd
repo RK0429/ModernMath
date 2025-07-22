@@ -1,17 +1,17 @@
 ---
-title: "軌道・固定化部分群定理"
 id: thm-orbit-stabilizer
-type: Theorem
-status: verified
-sidebar: true
 requires:
-  - def-group-action
-  - def-coset
-  - thm-lagrange
+- def-group-action
+- def-coset
+- thm-lagrange
+sidebar: true
+status: verified
+title: 軌道・固定化部分群定理
 translation_of: ../../en/algebra/thm-orbit-stabilizer.qmd
 translations:
   en: thm-orbit-stabilizer.html
   ja: thm-orbit-stabilizer.html
+type: Theorem
 ---
 
 **軌道・固定化部分群定理**は、[群作用](def-group-action.qmd)における群の位数と軌道・固定化部分群の大きさの関係を述べます。
@@ -55,3 +55,39 @@ $$|X| = \frac{|G|}{|G_x|}$$
 2. **バーンサイドの補題**: 固定点を使って軌道を数える
 3. **シローの定理**: 部分群への共役作用を解析
 4. **分類**: 様々な集合への作用により群を分類
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
+    def-coset["Definition: Coset"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-group-action["Group Action"]:::definition
+    thm-orbit-stabilizer --> def-coset
+    thm-orbit-stabilizer --> def-group-action
+    thm-orbit-stabilizer --> thm-lagrange
+    class thm-orbit-stabilizer current
+    click def-coset "def-coset.html" "Definition: Cosetへ"
+    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
+    click def-group-action "def-group-action.html" "Group Actionへ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="thm-orbit-stabilizer" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/thm-orbit-stabilizer.html){target="_blank"}で完全なインタラクティブ版を表示
