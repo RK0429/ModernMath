@@ -1,0 +1,51 @@
+---
+id: def-module
+requires:
+- def-ring
+- def-abelian-group
+- def-binary-operation
+status: complete
+title: 'Definition: Module'
+translations:
+  en: ../en/algebra/def-module.html
+  ja: ../ja/algebra/def-module.html
+type: Definition
+---
+
+# Definition: Module {#def-module}
+
+A **module** over a [Ring](def-ring.qmd) $R$ is an [Abelian Group](def-abelian-group.qmd) $(M, +)$ together with a [Binary Operation](def-binary-operation.qmd) called **scalar multiplication**:
+
+$$\cdot : R \times M \to M$$
+
+written as $(r, m) \mapsto rm$, such that the following axioms are satisfied:
+
+## Module Axioms
+
+For all $r, s \in R$ and $m, n \in M$:
+
+1. **Distributivity over module addition**: $r(m + n) = rm + rn$
+2. **Distributivity over ring addition**: $(r + s)m = rm + sm$
+3. **Compatibility with ring multiplication**: $(rs)m = r(sm)$
+4. **Identity**: $1_R m = m$, where $1_R$ is the multiplicative identity in $R$
+
+When the ring $R$ is noncommutative, the above axioms define a **left $R$-module**. A **right $R$-module** is defined similarly with scalar multiplication $M \times R \to M$ written as $(m, r) \mapsto mr$ and the compatibility axiom becoming $m(rs) = (mr)s$.
+
+## Special Cases
+
+- When $R$ is a [Field](def-field.qmd), an $R$-module is precisely a [Vector Space](def-vector-space.qmd) over $R$
+- Every [Abelian Group](def-abelian-group.qmd) is naturally a module over the integers $\mathbb{Z}$
+- A ring $R$ is a module over itself (both left and right)
+
+## Remarks
+
+- Modules generalize both vector spaces and abelian groups
+- Unlike vector spaces, modules may not have a basis since division by ring elements is not always possible
+- Left [Ideals](def-ideal.qmd) of a ring $R$ are precisely the left $R$-submodules of $R$
+- Module theory is fundamental in commutative algebra, homological algebra, and representation theory
+
+## Examples
+
+1. **$\mathbb{Z}$-modules**: Every abelian group is a $\mathbb{Z}$-module in a unique way, with scalar multiplication $n \cdot g = g + g + \cdots + g$ ($n$ times)
+2. **$k[x]$-modules**: For a field $k$, modules over the polynomial ring $k[x]$ correspond to vector spaces with a linear transformation
+3. **Quotient modules**: If $N$ is a submodule of $M$, then $M/N$ has a natural module structure
