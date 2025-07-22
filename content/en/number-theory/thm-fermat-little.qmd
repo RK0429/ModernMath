@@ -1,0 +1,121 @@
+---
+id: thm-fermat-little
+requires:
+- def-prime
+- def-congruence
+- def-gcd
+status: complete
+title: "Theorem: Fermat's Little Theorem"
+translations:
+  en: ../en/number-theory/thm-fermat-little.html
+  ja: ../ja/number-theory/thm-fermat-little.html
+type: Theorem
+---
+
+# Fermat's Little Theorem {#thm-fermat-little}
+
+If $p$ is a [prime number](def-prime.qmd), then for any integer $a$ not divisible by $p$, we have $a^{p-1} \equiv 1 \pmod{p}$ (see [Congruence](def-congruence.qmd)).
+
+## Statement
+
+Let $p$ be a prime number and let $a$ be an integer such that $\gcd(a, p) = 1$ (see [Greatest Common Divisor](def-gcd.qmd)). Then:
+$$a^{p-1} \equiv 1 \pmod{p}$$
+
+Equivalently, for any integer $a$:
+$$a^p \equiv a \pmod{p}$$
+
+## Historical Note
+
+Pierre de Fermat stated this theorem in a letter dated October 18, 1640, to his friend and confidant Frénicle de Bessy. Fermat did not publish a proof, and the first published proof was given by Leonhard Euler in 1736.
+
+## Proof by Induction
+
+**Base case**: For $a = 1$, we have $1^p = 1 \equiv 1 \pmod{p}$.
+
+**Inductive step**: Assume $a^p \equiv a \pmod{p}$. We need to show $(a+1)^p \equiv a+1 \pmod{p}$.
+
+By the binomial theorem:
+$$(a+1)^p = \sum_{k=0}^{p} \binom{p}{k} a^k$$
+
+For $0 < k < p$, the binomial coefficient $\binom{p}{k} = \frac{p!}{k!(p-k)!}$ is divisible by $p$ because $p$ divides the numerator but not the denominator.
+
+Therefore:
+$$(a+1)^p \equiv a^p + 1 \equiv a + 1 \pmod{p}$$
+
+## Group-Theoretic Proof
+
+The non-zero residues modulo $p$ form a group of order $p-1$ under multiplication. By Lagrange's theorem, any element of this group raised to the order of the group equals the identity element. Hence $a^{p-1} \equiv 1 \pmod{p}$ for any $a$ coprime to $p$.
+
+## Applications
+
+### Primality Testing
+
+Fermat's Little Theorem forms the basis for the **Fermat primality test**: If $a^{n-1} \not\equiv 1 \pmod{n}$ for some $a$ coprime to $n$, then $n$ is composite. This is used in:
+- Miller-Rabin primality test
+- Solovay-Strassen primality test
+
+### Modular Arithmetic Simplification
+
+For large exponents, Fermat's Little Theorem helps simplify calculations:
+- To compute $3^{100} \pmod{7}$: Since $3^6 \equiv 1 \pmod{7}$, we have $3^{100} = 3^{96} \cdot 3^4 \equiv 1 \cdot 81 \equiv 4 \pmod{7}$
+
+### Cryptography
+
+- **RSA encryption**: Uses the fact that $(m^e)^d \equiv m \pmod{n}$ when $ed \equiv 1 \pmod{\phi(n)}$
+- **Digital signatures**: Many signature schemes rely on properties derived from Fermat's Little Theorem
+
+## Related Results
+
+- **[Euler's Theorem](thm-euler.qmd)**: Generalizes Fermat's Little Theorem to composite moduli
+- **Wilson's Theorem**: $(p-1)! \equiv -1 \pmod{p}$ for prime $p$
+- **[Chinese Remainder Theorem](thm-chinese-remainder.qmd)**: Often used together for solving systems of congruences
+- **Carmichael numbers**: Composite numbers $n$ for which $a^{n-1} \equiv 1 \pmod{n}$ for all $a$ coprime to $n$
+
+## Examples
+
+1. **Example**: Find $2^{100} \pmod{13}$
+   - Since $13$ is prime and $\gcd(2, 13) = 1$, we have $2^{12} \equiv 1 \pmod{13}$
+   - $100 = 8 \cdot 12 + 4$, so $2^{100} = (2^{12})^8 \cdot 2^4 \equiv 1^8 \cdot 16 \equiv 3 \pmod{13}$
+
+2. **Example**: Prove that $n^5 - n$ is divisible by $30$ for all integers $n$
+   - We need to show $n^5 \equiv n$ modulo $2$, $3$, and $5$
+   - By Fermat's Little Theorem: $n^2 \equiv n \pmod{2}$, $n^3 \equiv n \pmod{3}$, $n^5 \equiv n \pmod{5}$
+   - Since $n^5 - n = n(n^4 - 1) = n(n^2-1)(n^2+1)$, the divisibility by $2$ and $3$ follows
+   - By the Chinese Remainder Theorem, $n^5 \equiv n \pmod{30}$
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-fermat-little["Theorem: Fermat's Little Theorem"]:::theorem
+    def-prime["Definition: Prime Number"]:::definition
+    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
+    def-gcd["Definition: Greatest Common Divisor"]:::definition
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    thm-chinese-remainder["Theorem: Chinese Remainder Theorem"]:::theorem
+    thm-fermat-little --> def-prime
+    thm-fermat-little --> def-congruence
+    thm-fermat-little --> def-gcd
+    thm-euler --> thm-fermat-little
+    thm-chinese-remainder --> thm-fermat-little
+    class thm-fermat-little current
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="thm-fermat-little" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/thm-fermat-little.html){target="_blank"}

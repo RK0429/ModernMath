@@ -24,6 +24,8 @@
 
 <http://modernmath.org/concepts/category> ns1:hasTranslation <http://modernmath.org/concepts/category_ja> .
 
+<http://modernmath.org/concepts/central-limit> ns1:hasTranslation <http://modernmath.org/concepts/central-limit_ja> .
+
 <http://modernmath.org/concepts/chain-rule> ns1:hasTranslation <http://modernmath.org/concepts/chain-rule_ja> .
 
 <http://modernmath.org/concepts/chinese-remainder> ns1:hasTranslation <http://modernmath.org/concepts/chinese-remainder_ja> .
@@ -697,6 +699,8 @@ ns1:hasTranslation a rdf:Property ;
 <http://modernmath.org/concepts/cantor_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/category_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/central-limit_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/chain-rule_ja> ns1:language "ja" .
 
@@ -1416,7 +1420,18 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-group>,
         <https://mathwiki.org/resource/def-prime>,
         <https://mathwiki.org/resource/def-quotient-group>,
-        <https://mathwiki.org/resource/ex-quotient-integers-mod-n> .
+        <https://mathwiki.org/resource/ex-quotient-integers-mod-n>,
+        <https://mathwiki.org/resource/thm-fermat-little> .
+
+<https://mathwiki.org/resource/thm-fermat-little> a mymath:Theorem ;
+    rdfs:label "Theorem: Fermat's Little Theorem"@en,
+        "定理: フェルマーの小定理"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-congruence>,
+        <https://mathwiki.org/resource/def-gcd>,
+        <https://mathwiki.org/resource/def-prime> .
 
 <https://mathwiki.org/resource/def-compact> a mymath:Definition ;
     rdfs:label "Definition: Compact Space"@en,
@@ -1468,21 +1483,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:uses <https://mathwiki.org/resource/def-gcd>,
         <https://mathwiki.org/resource/ex-quotient-integers-mod-n> .
 
-<https://mathwiki.org/resource/def-congruence> a mymath:Definition ;
-    rdfs:label "Definition: Congruence (Modular Arithmetic)"@en,
-        "定義: 合同（モジュラー演算）"@en ;
-    mymath:hasDomain "Number Theory",
-        "数論" ;
-    mymath:hasLeanId "Mathlib.Data.Int.ModEq" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/ax-induction>,
-        <https://mathwiki.org/resource/def-gcd>,
-        <https://mathwiki.org/resource/def-prime>,
-        <https://mathwiki.org/resource/def-set>,
-        <https://mathwiki.org/resource/ex-quotient-integers-mod-n>,
-        <https://mathwiki.org/resource/thm-euclidean-algorithm>,
-        <https://mathwiki.org/resource/thm-euler> .
-
 <https://mathwiki.org/resource/def-field> a mymath:Definition ;
     rdfs:label "Definition: Field"@en,
         "定義: 体"@en ;
@@ -1494,18 +1494,6 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-group>,
         <https://mathwiki.org/resource/def-ideal>,
         <https://mathwiki.org/resource/def-ring> .
-
-<https://mathwiki.org/resource/def-gcd> a mymath:Definition ;
-    rdfs:label "Definition: Greatest Common Divisor"@en,
-        "定義：最大公約数"@en ;
-    mymath:hasDomain "Number Theory",
-        "数論" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-congruence>,
-        <https://mathwiki.org/resource/def-prime>,
-        <https://mathwiki.org/resource/def-set>,
-        <https://mathwiki.org/resource/thm-euclidean-algorithm>,
-        <https://mathwiki.org/resource/thm-euler> .
 
 <https://mathwiki.org/resource/def-group-action> a mymath:Definition ;
     rdfs:label "Group Action"@en,
@@ -1575,6 +1563,34 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-cyclic-group>,
         <https://mathwiki.org/resource/def-group>,
         <https://mathwiki.org/resource/def-set> .
+
+<https://mathwiki.org/resource/def-congruence> a mymath:Definition ;
+    rdfs:label "Definition: Congruence (Modular Arithmetic)"@en,
+        "定義: 合同（モジュラー演算）"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasLeanId "Mathlib.Data.Int.ModEq" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/ax-induction>,
+        <https://mathwiki.org/resource/def-gcd>,
+        <https://mathwiki.org/resource/def-prime>,
+        <https://mathwiki.org/resource/def-set>,
+        <https://mathwiki.org/resource/ex-quotient-integers-mod-n>,
+        <https://mathwiki.org/resource/thm-euclidean-algorithm>,
+        <https://mathwiki.org/resource/thm-euler>,
+        <https://mathwiki.org/resource/thm-fermat-little> .
+
+<https://mathwiki.org/resource/def-gcd> a mymath:Definition ;
+    rdfs:label "Definition: Greatest Common Divisor"@en,
+        "定義：最大公約数"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-congruence>,
+        <https://mathwiki.org/resource/def-prime>,
+        <https://mathwiki.org/resource/def-set>,
+        <https://mathwiki.org/resource/thm-euclidean-algorithm>,
+        <https://mathwiki.org/resource/thm-euler> .
 
 <https://mathwiki.org/resource/def-graph> a mymath:Definition ;
     rdfs:label "Definition: Graph"@en,
@@ -1725,13 +1741,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
 
-<https://mathwiki.org/resource/def-prime> a mymath:Definition ;
-    rdfs:label "Definition: Prime Number"@en,
-        "定義：素数"@en ;
-    mymath:hasDomain "Number Theory",
-        "数論" ;
-    mymath:hasStatus "complete" .
-
 <https://mathwiki.org/resource/def-ring> a mymath:Definition ;
     rdfs:label "Definition: Ring"@en,
         "定義：環"@en ;
@@ -1772,6 +1781,13 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/ex-integers-addition>,
         <https://mathwiki.org/resource/ex-quotient-integers-mod-n>,
         <https://mathwiki.org/resource/thm-lagrange> .
+
+<https://mathwiki.org/resource/def-prime> a mymath:Definition ;
+    rdfs:label "Definition: Prime Number"@en,
+        "定義：素数"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" .
 
 <https://mathwiki.org/resource/def-normal-subgroup> a mymath:Definition ;
     rdfs:label "Definition: Normal Subgroup"@en,

@@ -1,0 +1,122 @@
+---
+id: thm-fermat-little
+requires:
+- def-prime
+- def-congruence
+- def-gcd
+status: complete
+title: "定理: フェルマーの小定理"
+translation_of: ../../en/number-theory/thm-fermat-little.qmd
+translations:
+  en: ../en/number-theory/thm-fermat-little.html
+  ja: ../ja/number-theory/thm-fermat-little.html
+type: Theorem
+---
+
+# フェルマーの小定理 {#thm-fermat-little}
+
+$p$ が[素数](def-prime.qmd)で、$a$ が $p$ で割り切れない整数のとき、$a^{p-1} \equiv 1 \pmod{p}$ が成り立つ（[合同式](def-congruence.qmd)を参照）。
+
+## 定理の主張
+
+$p$ を素数とし、$a$ を $\gcd(a, p) = 1$ を満たす整数とする（[最大公約数](def-gcd.qmd)を参照）。このとき：
+$$a^{p-1} \equiv 1 \pmod{p}$$
+
+同値な表現として、任意の整数 $a$ に対して：
+$$a^p \equiv a \pmod{p}$$
+
+## 歴史的背景
+
+ピエール・ド・フェルマーは1640年10月18日、友人で信頼できる相談相手であったフレニクル・ド・ベシーに宛てた手紙の中でこの定理を述べました。フェルマーは証明を公表せず、最初の公表された証明は1736年にレオンハルト・オイラーによって与えられました。
+
+## 帰納法による証明
+
+**基底**: $a = 1$ のとき、$1^p = 1 \equiv 1 \pmod{p}$ が成り立つ。
+
+**帰納段階**: $a^p \equiv a \pmod{p}$ と仮定する。$(a+1)^p \equiv a+1 \pmod{p}$ を示す必要がある。
+
+二項定理により：
+$$(a+1)^p = \sum_{k=0}^{p} \binom{p}{k} a^k$$
+
+$0 < k < p$ のとき、二項係数 $\binom{p}{k} = \frac{p!}{k!(p-k)!}$ は $p$ で割り切れる。なぜなら、$p$ は分子を割り切るが分母を割り切らないからである。
+
+したがって：
+$$(a+1)^p \equiv a^p + 1 \equiv a + 1 \pmod{p}$$
+
+## 群論的証明
+
+$p$ を法とする非零剰余類は乗法に関して位数 $p-1$ の群を成す。ラグランジュの定理により、この群の任意の元を群の位数でべき乗すると単位元になる。よって $p$ と互いに素な任意の $a$ に対して $a^{p-1} \equiv 1 \pmod{p}$ が成り立つ。
+
+## 応用
+
+### 素数判定
+
+フェルマーの小定理は **フェルマー素数判定法** の基礎となる：$n$ と互いに素なある $a$ に対して $a^{n-1} \not\equiv 1 \pmod{n}$ ならば、$n$ は合成数である。これは以下で使用される：
+- ミラー・ラビン素数判定法
+- ソロベイ・シュトラッセン素数判定法
+
+### 法演算の簡略化
+
+大きな指数に対して、フェルマーの小定理は計算を簡略化する：
+- $3^{100} \pmod{7}$ を計算する：$3^6 \equiv 1 \pmod{7}$ より、$3^{100} = 3^{96} \cdot 3^4 \equiv 1 \cdot 81 \equiv 4 \pmod{7}$
+
+### 暗号理論
+
+- **RSA暗号**: $ed \equiv 1 \pmod{\phi(n)}$ のとき $(m^e)^d \equiv m \pmod{n}$ となる事実を使用
+- **デジタル署名**: 多くの署名方式がフェルマーの小定理から導かれる性質に依存
+
+## 関連する結果
+
+- **[オイラーの定理](thm-euler.qmd)**: フェルマーの小定理を合成数の法に一般化
+- **ウィルソンの定理**: 素数 $p$ に対して $(p-1)! \equiv -1 \pmod{p}$
+- **[中国剰余定理](thm-chinese-remainder.qmd)**: 合同式の連立を解くためによく併用される
+- **カーマイケル数**: $n$ と互いに素なすべての $a$ に対して $a^{n-1} \equiv 1 \pmod{n}$ となる合成数 $n$
+
+## 例
+
+1. **例**: $2^{100} \pmod{13}$ を求める
+   - $13$ は素数で $\gcd(2, 13) = 1$ なので、$2^{12} \equiv 1 \pmod{13}$
+   - $100 = 8 \cdot 12 + 4$ より、$2^{100} = (2^{12})^8 \cdot 2^4 \equiv 1^8 \cdot 16 \equiv 3 \pmod{13}$
+
+2. **例**: すべての整数 $n$ に対して $n^5 - n$ が $30$ で割り切れることを証明
+   - $n^5 \equiv n$ が $2$、$3$、$5$ を法として成り立つことを示す必要がある
+   - フェルマーの小定理により：$n^2 \equiv n \pmod{2}$、$n^3 \equiv n \pmod{3}$、$n^5 \equiv n \pmod{5}$
+   - $n^5 - n = n(n^4 - 1) = n(n^2-1)(n^2+1)$ なので、$2$ と $3$ による整除性も従う
+   - 中国剰余定理により、$n^5 \equiv n \pmod{30}$
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-fermat-little["定理: フェルマーの小定理"]:::theorem
+    def-prime["定義: 素数"]:::definition
+    def-congruence["定義: 合同式（モジュラー算術）"]:::definition
+    def-gcd["定義: 最大公約数"]:::definition
+    thm-euler["定理: オイラーの定理"]:::theorem
+    thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
+    thm-fermat-little --> def-prime
+    thm-fermat-little --> def-congruence
+    thm-fermat-little --> def-gcd
+    thm-euler --> thm-fermat-little
+    thm-chinese-remainder --> thm-fermat-little
+    class thm-fermat-little current
+```
+
+## インタラクティブ可視化
+
+ローカルな知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="thm-fermat-little" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズームイン/アウト**
+- ノードに**ホバー**して詳細を表示
+- [完全なインタラクティブ版](../../output/interactive/thm-fermat-little.html){target="_blank"}を表示
