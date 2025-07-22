@@ -163,45 +163,45 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group-action["Group Action"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     def-binary-operation["Definition: Binary Operation"]:::definition
     def-abelian-group["Definition: Abelian Group"]:::definition
-    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    def-coset["Definition: Coset"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-coset["Definition: Coset"]:::definition
+    def-group["Definition: Group"]:::definition
+    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-group-action["Group Action"]:::definition
     def-quotient-group["Definition: Quotient Group"]:::definition
-    def-coset --> def-normal-subgroup
+    def-coset --> def-abelian-group
     thm-orbit-stabilizer --> def-coset
+    thm-lagrange --> def-coset
+    def-coset --> thm-lagrange
+    def-coset --> ex-even-integers-subgroup
+    def-coset --> def-subgroup
+    def-coset --> def-group
+    ex-even-integers-subgroup --> def-coset
     def-quotient-group --> def-coset
     def-coset --> def-quotient-group
-    def-coset --> def-group-action
-    def-coset --> ex-even-integers-subgroup
-    def-coset --> ex-quotient-integers-mod-n
-    def-coset --> def-abelian-group
-    ex-even-integers-subgroup --> def-coset
-    def-coset --> thm-lagrange
-    def-coset --> def-subgroup
-    ex-quotient-integers-mod-n --> def-coset
-    thm-lagrange --> def-coset
-    def-coset --> def-binary-operation
-    def-coset --> def-group
     def-normal-subgroup --> def-coset
+    ex-quotient-integers-mod-n --> def-coset
+    def-coset --> def-normal-subgroup
+    def-coset --> def-binary-operation
+    def-coset --> ex-quotient-integers-mod-n
+    def-coset --> def-group-action
     class def-coset current
-    click def-group-action "def-group-action.html" "Group Actionへ"
-    click def-group "def-group.html" "Definition: Groupへ"
-    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
-    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
     click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
     click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Example: Even Integers Form a Subgroupへ"
-    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "Orbit-Stabilizer Theoremへ"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
     click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Example: Even Integers Form a Subgroupへ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
+    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "Orbit-Stabilizer Theoremへ"
+    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
+    click def-group-action "def-group-action.html" "Group Actionへ"
     click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
 ```
 

@@ -59,6 +59,11 @@ $$P(|\bar{X}_n - \mu| > \epsilon) \leq \frac{\sigma^2}{n\epsilon^2} \to 0 \text{
 
 公正なコイン投げ（ベルヌーイ(1/2)）では、投げる回数が増加するにつれて、表の割合は1/2に収束します。
 
+## 関連概念
+
+- [中心極限定理](thm-central-limit.qmd)：標本平均の分布を記述し、単なる収束だけでなくその分布を示す
+- 集中不等式：収束率の限界を与える
+
 ## Mermaidダイアグラム
 
 ```mermaid
@@ -89,20 +94,20 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-independence["Definition: Independence"]:::definition
+    def-expectation["Definition: Expected Value"]:::definition
     def-random-variable["Definition: Random Variable"]:::definition
     thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
+    def-independence["Definition: Independence"]:::definition
     def-variance["Definition: Variance"]:::definition
-    def-expectation["Definition: Expected Value"]:::definition
-    thm-law-of-large-numbers --> def-variance
     thm-law-of-large-numbers --> def-random-variable
-    thm-law-of-large-numbers --> def-expectation
     thm-law-of-large-numbers --> def-independence
+    thm-law-of-large-numbers --> def-variance
+    thm-law-of-large-numbers --> def-expectation
     class thm-law-of-large-numbers current
-    click def-independence "def-independence.html" "Definition: Independenceへ"
-    click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
-    click def-variance "def-variance.html" "Definition: Varianceへ"
     click def-expectation "def-expectation.html" "Definition: Expected Valueへ"
+    click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
+    click def-independence "def-independence.html" "Definition: Independenceへ"
+    click def-variance "def-variance.html" "Definition: Varianceへ"
 ```
 
 ## インタラクティブ可視化

@@ -73,6 +73,12 @@ $$\text{Var}(X) = E[X^2] - (E[X])^2$$
 - 分散の単位は確率変数の単位の二乗である
 - 標準偏差（分散の平方根）は確率変数と同じ単位を持つ
 
+## 極限定理における役割
+
+分散は以下において重要な役割を果たす：
+- [大数の法則](thm-law-of-large-numbers.qmd)：収束の速度は分散に依存する
+- [中心極限定理](thm-central-limit.qmd)：標本平均の極限正規分布の分散はσ²/nとなる
+
 ## Mermaid図
 
 ```mermaid
@@ -101,17 +107,20 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-variance["Definition: Variance"]:::definition
+    def-expectation["Definition: Expected Value"]:::definition
+    thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
     def-random-variable["Definition: Random Variable"]:::definition
     thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
-    def-expectation["Definition: Expected Value"]:::definition
-    def-variance --> def-random-variable
+    def-variance["Definition: Variance"]:::definition
     def-variance --> def-expectation
+    thm-central-limit --> def-variance
     thm-law-of-large-numbers --> def-variance
+    def-variance --> def-random-variable
     class def-variance current
+    click def-expectation "def-expectation.html" "Definition: Expected Valueへ"
+    click thm-central-limit "thm-central-limit.html" "Theorem: Central Limit Theoremへ"
     click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
     click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "Theorem: Law of Large Numbersへ"
-    click def-expectation "def-expectation.html" "Definition: Expected Valueへ"
 ```
 
 ## インタラクティブ可視化

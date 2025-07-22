@@ -63,32 +63,32 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
-    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    ex-finite-field["Example: Finite Field"]:::example
+    def-field["Definition: Field"]:::definition
     def-group["Definition: Group"]:::definition
     def-ideal["Definition: Ideal"]:::definition
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    def-field["Definition: Field"]:::definition
-    def-ring["Definition: Ring"]:::definition
+    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
     def-vector-space["Definition: Vector Space"]:::definition
-    ex-finite-field["Example: Finite Field"]:::example
-    def-field --> def-group
+    def-ring["Definition: Ring"]:::definition
+    thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
+    thm-field-characteristic --> def-field
+    def-polynomial-ring --> def-field
+    ex-finite-field --> def-field
     def-field --> def-ideal
     def-field --> def-ring
-    ex-finite-field --> def-field
     def-vector-space --> def-field
+    def-field --> def-group
     def-field --> def-abelian-group
-    def-polynomial-ring --> def-field
-    thm-field-characteristic --> def-field
     class def-field current
-    click thm-field-characteristic "thm-field-characteristic.html" "Theorem: Field Characteristicへ"
-    click def-polynomial-ring "def-polynomial-ring.html" "Definition: Polynomial Ringへ"
+    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
+    click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
     click def-group "def-group.html" "Definition: Groupへ"
     click def-ideal "def-ideal.html" "Definition: Idealへ"
-    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
-    click def-ring "def-ring.html" "Definition: Ringへ"
+    click def-polynomial-ring "def-polynomial-ring.html" "Definition: Polynomial Ringへ"
     click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
-    click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
+    click def-ring "def-ring.html" "Definition: Ringへ"
+    click thm-field-characteristic "thm-field-characteristic.html" "Theorem: Field Characteristicへ"
 ```
 
 ## インタラクティブ可視化

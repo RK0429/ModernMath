@@ -26,6 +26,8 @@
 
 <http://modernmath.org/concepts/chain-rule> ns1:hasTranslation <http://modernmath.org/concepts/chain-rule_ja> .
 
+<http://modernmath.org/concepts/chinese-remainder> ns1:hasTranslation <http://modernmath.org/concepts/chinese-remainder_ja> .
+
 <http://modernmath.org/concepts/closed-interval-compact> ns1:hasTranslation <http://modernmath.org/concepts/closed-interval-compact_ja> .
 
 <http://modernmath.org/concepts/closed-set> ns1:hasTranslation <http://modernmath.org/concepts/closed-set_ja> .
@@ -495,6 +497,17 @@ ns1:hasTranslation a rdf:Property ;
     mymath:uses <https://mathwiki.org/resource/def-power-set>,
         <https://mathwiki.org/resource/def-set> .
 
+<https://mathwiki.org/resource/thm-central-limit> a mymath:Theorem ;
+    rdfs:label "Theorem: Central Limit Theorem"@en,
+        "定理: 中心極限定理"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-expectation>,
+        <https://mathwiki.org/resource/def-independence>,
+        <https://mathwiki.org/resource/def-random-variable>,
+        <https://mathwiki.org/resource/def-variance> .
+
 <https://mathwiki.org/resource/thm-chain-rule> a mymath:Theorem ;
     rdfs:label "Theorem: Chain Rule"@en,
         "定理：連鎖律"@en ;
@@ -686,6 +699,8 @@ ns1:hasTranslation a rdf:Property ;
 <http://modernmath.org/concepts/category_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/chain-rule_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/chinese-remainder_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/closed-interval-compact_ja> ns1:language "ja" .
 
@@ -1051,19 +1066,6 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-set>,
         <https://mathwiki.org/resource/def-topological-space> .
 
-<https://mathwiki.org/resource/def-independence> a mymath:Definition ;
-    rdfs:label "Definition: Independence"@en,
-        "定義: 独立性"@en ;
-    rdfs:comment "**Independence** is a fundamental concept in probability theory that formalizes the intuitive notion that the occurrence of one event does not affect the probability of another event."@en,
-        "**独立性**は、ある事象の発生が他の事象の確率に影響を与えないという直感的な概念を形式化した、確率論における基本的な概念です。"@en ;
-    mymath:hasDomain "Probability Statistics",
-        "確率・統計学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-conditional-probability>,
-        <https://mathwiki.org/resource/def-event>,
-        <https://mathwiki.org/resource/def-probability-space>,
-        <https://mathwiki.org/resource/def-random-variable> .
-
 <https://mathwiki.org/resource/def-intersection> a mymath:Definition ;
     rdfs:label "Definition: Intersection"@en,
         "定義: 共通部分"@en ;
@@ -1156,15 +1158,6 @@ ns1:hasTranslation a rdf:Property ;
         "論理・集合論" ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
-
-<https://mathwiki.org/resource/def-variance> a mymath:Definition ;
-    rdfs:label "Definition: Variance"@en,
-        "定義: 分散"@en ;
-    mymath:hasDomain "Probability Statistics",
-        "確率・統計学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-expectation>,
-        <https://mathwiki.org/resource/def-random-variable> .
 
 <https://mathwiki.org/resource/ex-finite-field> a mymath:Example ;
     rdfs:label "Example: Finite Field"@en,
@@ -1289,15 +1282,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-limit> .
 
-<https://mathwiki.org/resource/def-expectation> a mymath:Definition ;
-    rdfs:label "Definition: Expected Value"@en,
-        "定義: 期待値"@en ;
-    mymath:hasDomain "Probability Statistics",
-        "確率・統計学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-probability-space>,
-        <https://mathwiki.org/resource/def-random-variable> .
-
 <https://mathwiki.org/resource/def-functor> a mymath:Definition ;
     rdfs:label "Definition: Functor"@en,
         "定義: 関手"@en ;
@@ -1326,6 +1310,19 @@ ns1:hasTranslation a rdf:Property ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearMap.range> ;
     mymath:uses <https://mathwiki.org/resource/def-linear-transformation>,
         <https://mathwiki.org/resource/def-vector-space> .
+
+<https://mathwiki.org/resource/def-independence> a mymath:Definition ;
+    rdfs:label "Definition: Independence"@en,
+        "定義: 独立性"@en ;
+    rdfs:comment "**Independence** is a fundamental concept in probability theory that formalizes the intuitive notion that the occurrence of one event does not affect the probability of another event."@en,
+        "**独立性**は、ある事象の発生が他の事象の確率に影響を与えないという直感的な概念を形式化した、確率論における基本的な概念です。"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-conditional-probability>,
+        <https://mathwiki.org/resource/def-event>,
+        <https://mathwiki.org/resource/def-probability-space>,
+        <https://mathwiki.org/resource/def-random-variable> .
 
 <https://mathwiki.org/resource/def-kernel> a mymath:Definition ;
     rdfs:label "Definition: Kernel"@en,
@@ -1387,6 +1384,15 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
 
+<https://mathwiki.org/resource/def-variance> a mymath:Definition ;
+    rdfs:label "Definition: Variance"@en,
+        "定義: 分散"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-expectation>,
+        <https://mathwiki.org/resource/def-random-variable> .
+
 <https://mathwiki.org/resource/ex-even-integers-subgroup> a mymath:Example ;
     rdfs:label "Example: Even Integers Form a Subgroup"@en,
         "例: 偶数整数は部分群を成す"@en ;
@@ -1433,6 +1439,15 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-sample-space>,
         <https://mathwiki.org/resource/def-subset> .
+
+<https://mathwiki.org/resource/def-expectation> a mymath:Definition ;
+    rdfs:label "Definition: Expected Value"@en,
+        "定義: 期待値"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-probability-space>,
+        <https://mathwiki.org/resource/def-random-variable> .
 
 <https://mathwiki.org/resource/def-polynomial-ring> a mymath:Definition ;
     rdfs:label "Definition: Polynomial Ring"@en,
@@ -1549,14 +1564,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
 
-<https://mathwiki.org/resource/def-random-variable> a mymath:Definition ;
-    rdfs:label "Definition: Random Variable"@en,
-        "定義: 確率変数"@en ;
-    mymath:hasDomain "Probability Statistics",
-        "確率・統計学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-probability-space> .
-
 <https://mathwiki.org/resource/ex-integers-addition> a mymath:Example ;
     rdfs:label "Example: Integers under Addition"@en,
         "例: 加法における整数"@en ;
@@ -1587,6 +1594,14 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-group>,
         <https://mathwiki.org/resource/def-quotient-group>,
         <https://mathwiki.org/resource/thm-first-isomorphism> .
+
+<https://mathwiki.org/resource/def-random-variable> a mymath:Definition ;
+    rdfs:label "Definition: Random Variable"@en,
+        "定義: 確率変数"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-probability-space> .
 
 <https://mathwiki.org/resource/thm-first-isomorphism> a mymath:Theorem ;
     rdfs:label "Theorem: First Isomorphism Theorem"@en,

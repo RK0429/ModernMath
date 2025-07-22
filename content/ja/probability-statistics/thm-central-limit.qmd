@@ -1,0 +1,144 @@
+---
+id: thm-central-limit
+requires:
+- def-random-variable
+- def-expectation
+- def-variance
+- def-independence
+status: complete
+title: '定理: 中心極限定理'
+translation_of: ../../en/probability-statistics/thm-central-limit.qmd
+translations:
+  en: ../en/probability-statistics/thm-central-limit.html
+  ja: ../ja/probability-statistics/thm-central-limit.html
+type: Theorem
+---
+
+# 定理: 中心極限定理 {#thm-central-limit}
+
+**中心極限定理（CLT）**は確率論における最も基本的な結果の一つであり、[独立な](def-independence.qmd)[確率変数](def-random-variable.qmd)の正規化された和の分布が正規分布に収束することを述べています。
+
+## 主張
+
+$X_1, X_2, \ldots, X_n$を[独立](def-independence.qmd)かつ同一に分布した（i.i.d.）確率変数とし、以下を満たすものとする：
+- 有限の[期待値](def-expectation.qmd)：$\mu = E[X_i] < \infty$
+- 有限の[分散](def-variance.qmd)：$\sigma^2 = \text{Var}(X_i) < \infty$、ただし$\sigma > 0$
+
+以下を定義する：
+- 標本平均：$\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i$
+- 標準化和：$Z_n = \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} = \frac{\sum_{i=1}^n X_i - n\mu}{\sigma\sqrt{n}}$
+
+このとき、任意の$z \in \mathbb{R}$に対して：
+$$\lim_{n \to \infty} P(Z_n \leq z) = \Phi(z)$$
+
+ここで、$\Phi(z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-t^2/2} dt$は標準正規分布の累積分布関数である。
+
+## 同値な表現
+
+$n$が大きいとき、$\bar{X}_n$の分布は近似的に正規分布となる：
+$$\bar{X}_n \stackrel{d}{\approx} N\left(\mu, \frac{\sigma^2}{n}\right)$$
+
+## 証明の概略
+
+古典的な証明は特性関数を用いる：
+
+1. $Z_n$の特性関数は：
+   $$\phi_{Z_n}(t) = \left[\phi_X\left(\frac{t}{\sigma\sqrt{n}}\right) \cdot e^{-it\mu/(\sigma\sqrt{n})}\right]^n$$
+
+2. $\phi_X$の0の周りでのテイラー展開を用いると：
+   $$\phi_X(s) = 1 + is\mu - \frac{s^2(\mu^2 + \sigma^2)}{2} + o(s^2)$$
+
+3. 代入と簡略化の後：
+   $$\phi_{Z_n}(t) = \left(1 - \frac{t^2}{2n} + o\left(\frac{1}{n}\right)\right)^n$$
+
+4. 極限をとると：
+   $$\lim_{n \to \infty} \phi_{Z_n}(t) = e^{-t^2/2}$$
+
+これは$N(0,1)$の特性関数であり、連続性定理により証明が完成する。
+
+## 応用
+
+1. **統計的推論**：信頼区間と仮説検定の正当化
+2. **品質管理**：製造業におけるプロセス能力分析
+3. **金融モデリング**：リスク評価とポートフォリオ理論
+4. **科学的測定**：誤差分析と不確実性の定量化
+5. **モンテカルロ法**：収束率の推定
+
+## 例
+
+### 例1：コイン投げ
+$n$回の公平なコイン投げ（ベルヌーイ(1/2)）：
+- $\mu = 0.5$、$\sigma^2 = 0.25$
+- 表の出る割合は$n$が大きいとき$\approx N(0.5, 0.25/n)$
+
+### 例2：サイコロ投げ
+$n$回の公平なサイコロ投げの和：
+- 各投げ：$\mu = 3.5$、$\sigma^2 = 35/12$
+- 平均は$n$が大きいとき$\approx N(3.5, 35/(12n))$
+
+## 実用的な経験則
+
+定理は$n \to \infty$で適用されるが、実際には：
+- $n \geq 30$はしばしば良い近似のために十分とされる
+- 歪度の大きい分布に対しては、より大きい$n$が必要となる場合がある
+
+## Mermaidダイアグラム
+
+```mermaid
+graph TD
+    A[中心極限定理] --> B[標本平均 X̄ₙ]
+    A --> C[標準化和 Zₙ]
+    B --> D[近似的に正規分布]
+    C --> E[N(0,1)に収束]
+    D --> F[X̄ₙ ~ N(μ, σ²/n)]
+    E --> G[P(Zₙ ≤ z) → Φ(z)]
+    A --> H[応用]
+    H --> I[統計的推論]
+    H --> J[品質管理]
+    H --> K[金融モデリング]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style D fill:#bbf,stroke:#333,stroke-width:2px
+    style E fill:#bbf,stroke:#333,stroke-width:2px
+    style F fill:#bfb,stroke:#333,stroke-width:2px
+    style G fill:#bfb,stroke:#333,stroke-width:2px
+```
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-expectation["Definition: Expected Value"]:::definition
+    thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
+    def-random-variable["Definition: Random Variable"]:::definition
+    def-independence["Definition: Independence"]:::definition
+    def-variance["Definition: Variance"]:::definition
+    thm-central-limit --> def-independence
+    thm-central-limit --> def-variance
+    thm-central-limit --> def-expectation
+    thm-central-limit --> def-random-variable
+    class thm-central-limit current
+    click def-expectation "def-expectation.html" "Definition: Expected Valueへ"
+    click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
+    click def-independence "def-independence.html" "Definition: Independenceへ"
+    click def-variance "def-variance.html" "Definition: Varianceへ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="thm-central-limit" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/thm-central-limit.html){target="_blank"}で完全なインタラクティブ版を表示

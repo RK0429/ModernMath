@@ -1,0 +1,143 @@
+---
+id: thm-central-limit
+requires:
+- def-random-variable
+- def-expectation
+- def-variance
+- def-independence
+status: complete
+title: 'Theorem: Central Limit Theorem'
+translations:
+  en: ../en/probability-statistics/thm-central-limit.html
+  ja: ../ja/probability-statistics/thm-central-limit.html
+type: Theorem
+---
+
+# Theorem: Central Limit Theorem {#thm-central-limit}
+
+The **Central Limit Theorem (CLT)** is one of the most fundamental results in probability theory, stating that the distribution of the normalized sum of [independent](def-independence.qmd) [random variables](def-random-variable.qmd) converges to a normal distribution.
+
+## Statement
+
+Let $X_1, X_2, \ldots, X_n$ be [independent](def-independence.qmd) and identically distributed (i.i.d.) random variables with:
+- Finite [expected value](def-expectation.qmd): $\mu = E[X_i] < \infty$
+- Finite [variance](def-variance.qmd): $\sigma^2 = \text{Var}(X_i) < \infty$, where $\sigma > 0$
+
+Define:
+- Sample mean: $\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i$
+- Standardized sum: $Z_n = \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} = \frac{\sum_{i=1}^n X_i - n\mu}{\sigma\sqrt{n}}$
+
+Then for any $z \in \mathbb{R}$:
+$$\lim_{n \to \infty} P(Z_n \leq z) = \Phi(z)$$
+
+where $\Phi(z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-t^2/2} dt$ is the cumulative distribution function of the standard normal distribution.
+
+## Equivalently
+
+The distribution of $\bar{X}_n$ is approximately normal for large $n$:
+$$\bar{X}_n \stackrel{d}{\approx} N\left(\mu, \frac{\sigma^2}{n}\right)$$
+
+## Proof Sketch
+
+The classical proof uses characteristic functions:
+
+1. The characteristic function of $Z_n$ is:
+   $$\phi_{Z_n}(t) = \left[\phi_X\left(\frac{t}{\sigma\sqrt{n}}\right) \cdot e^{-it\mu/(\sigma\sqrt{n})}\right]^n$$
+
+2. Using Taylor expansion of $\phi_X$ around 0:
+   $$\phi_X(s) = 1 + is\mu - \frac{s^2(\mu^2 + \sigma^2)}{2} + o(s^2)$$
+
+3. After substitution and simplification:
+   $$\phi_{Z_n}(t) = \left(1 - \frac{t^2}{2n} + o\left(\frac{1}{n}\right)\right)^n$$
+
+4. Taking the limit:
+   $$\lim_{n \to \infty} \phi_{Z_n}(t) = e^{-t^2/2}$$
+
+This is the characteristic function of $N(0,1)$, completing the proof by the continuity theorem.
+
+## Applications
+
+1. **Statistical Inference**: Justifies confidence intervals and hypothesis tests
+2. **Quality Control**: Process capability analysis in manufacturing
+3. **Financial Modeling**: Risk assessment and portfolio theory
+4. **Scientific Measurement**: Error analysis and uncertainty quantification
+5. **Monte Carlo Methods**: Convergence rate estimation
+
+## Examples
+
+### Example 1: Coin Flips
+For $n$ fair coin flips (Bernoulli(1/2)):
+- $\mu = 0.5$, $\sigma^2 = 0.25$
+- The proportion of heads $\approx N(0.5, 0.25/n)$ for large $n$
+
+### Example 2: Die Rolls
+Sum of $n$ fair die rolls:
+- Each roll: $\mu = 3.5$, $\sigma^2 = 35/12$
+- Average of rolls $\approx N(3.5, 35/(12n))$ for large $n$
+
+## Practical Rule of Thumb
+
+While the theorem applies as $n \to \infty$, in practice:
+- $n \geq 30$ is often considered sufficient for a good approximation
+- For heavily skewed distributions, larger $n$ may be needed
+
+## Mermaid Diagram
+
+```mermaid
+graph TD
+    A[Central Limit Theorem] --> B[Sample Mean X̄ₙ]
+    A --> C[Standardized Sum Zₙ]
+    B --> D[Approximately Normal]
+    C --> E[Converges to N(0,1)]
+    D --> F[X̄ₙ ~ N(μ, σ²/n)]
+    E --> G[P(Zₙ ≤ z) → Φ(z)]
+    A --> H[Applications]
+    H --> I[Statistical Inference]
+    H --> J[Quality Control]
+    H --> K[Financial Modeling]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style D fill:#bbf,stroke:#333,stroke-width:2px
+    style E fill:#bbf,stroke:#333,stroke-width:2px
+    style F fill:#bfb,stroke:#333,stroke-width:2px
+    style G fill:#bfb,stroke:#333,stroke-width:2px
+```
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-expectation["Definition: Expected Value"]:::definition
+    thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
+    def-random-variable["Definition: Random Variable"]:::definition
+    def-independence["Definition: Independence"]:::definition
+    def-variance["Definition: Variance"]:::definition
+    thm-central-limit --> def-independence
+    thm-central-limit --> def-variance
+    thm-central-limit --> def-expectation
+    thm-central-limit --> def-random-variable
+    class thm-central-limit current
+    click def-expectation "def-expectation.html" "Go to Expected Value definition"
+    click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
+    click def-independence "def-independence.html" "Go to Independence definition"
+    click def-variance "def-variance.html" "Go to Variance definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="thm-central-limit" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/thm-central-limit.html){target="_blank"}
