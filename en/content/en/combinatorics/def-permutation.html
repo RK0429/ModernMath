@@ -306,6 +306,7 @@ window.Quarto = {
 <li>The number of permutations of <span class="math inline">\(n\)</span> distinct elements is <span class="math inline">\(n!\)</span></li>
 <li>Every permutation can be decomposed into disjoint cycles (which form <a href="../../../content/en/combinatorics/def-graph.html">Directed Graphs</a> where each vertex has exactly one outgoing edge)</li>
 <li>Every permutation can be expressed as a product of transpositions</li>
+<li>The symmetric group <span class="math inline">\(S_n\)</span> naturally acts on sets via <a href="../../../content/en/algebra/def-group-action.html">group actions</a></li>
 </ul>
 </section>
 <section id="examples" class="level2">
@@ -325,16 +326,16 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Definition: Set"]:::definition
-    def-graph["Definition: Graph"]:::definition
     def-permutation["Definition: Permutation"]:::definition
+    def-graph["Definition: Graph"]:::definition
+    def-set["Definition: Set"]:::definition
     def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
     def-permutation --&gt; def-graph
     def-permutation --&gt; def-set
     def-binomial-coefficient --&gt; def-permutation
     class def-permutation current
-    click def-set "def-set.html" "Go to Set definition"
     click def-graph "def-graph.html" "Go to Graph definition"
+    click def-set "def-set.html" "Go to Set definition"
     click def-binomial-coefficient "def-binomial-coefficient.html" "Go to Binomial Coefficient definition"
 </pre>
 </div>
@@ -346,7 +347,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-permutation-1753165177" class="graph-visualization-container">
+<div id="graph-viz-def-permutation-1753167873" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -526,12 +527,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-permutation-1753165177', {
+    createForceGraph(data, 'graph-viz-def-permutation-1753167873', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-permutation-1753165177').innerHTML =
+    document.getElementById('graph-viz-def-permutation-1753167873').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

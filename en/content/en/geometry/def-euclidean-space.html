@@ -302,7 +302,7 @@ window.Quarto = {
 <li><strong>Finite-dimensional</strong>: Has dimension <span class="math inline">\(n\)</span> as a vector space</li>
 <li><strong>Locally compact</strong>: Every point has a compact neighborhood</li>
 <li><strong>Simply connected</strong>: For <span class="math inline">\(n \geq 2\)</span></li>
-<li><strong>Homogeneous</strong>: Looks the same at every point</li>
+<li><strong>Homogeneous</strong>: Looks the same at every point (the Euclidean group <a href="../../../content/en/algebra/def-group-action.html">acts</a> transitively)</li>
 </ul>
 </section>
 <section id="special-cases" class="level2">
@@ -347,8 +347,8 @@ window.Quarto = {
     thm-pythagorean["Theorem: Pythagorean Theorem"]:::theorem
     def-metric-space["Definition: Metric Space"]:::definition
     def-euclidean-space --&gt; def-vector-space
-    def-euclidean-space --&gt; def-metric-space
     thm-pythagorean --&gt; def-euclidean-space
+    def-euclidean-space --&gt; def-metric-space
     class def-euclidean-space current
     click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
     click thm-pythagorean "thm-pythagorean.html" "Go to Pythagorean Theorem theorem"
@@ -363,7 +363,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-euclidean-space-1753165179" class="graph-visualization-container">
+<div id="graph-viz-def-euclidean-space-1753167876" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -543,12 +543,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-euclidean-space-1753165179', {
+    createForceGraph(data, 'graph-viz-def-euclidean-space-1753167876', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-euclidean-space-1753165179').innerHTML =
+    document.getElementById('graph-viz-def-euclidean-space-1753167876').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -336,32 +336,32 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-ring["Definition: Ring"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    ex-finite-field["Example: Finite Field"]:::example
+    def-group["Definition: Group"]:::definition
+    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
     thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
     def-ideal["Definition: Ideal"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
     def-field["Definition: Field"]:::definition
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
-    ex-finite-field["Example: Finite Field"]:::example
+    def-field --&gt; def-ring
+    def-field --&gt; def-ideal
     thm-field-characteristic --&gt; def-field
-    def-field --&gt; def-group
+    ex-finite-field --&gt; def-field
+    def-vector-space --&gt; def-field
     def-polynomial-ring --&gt; def-field
     def-field --&gt; def-abelian-group
-    def-field --&gt; def-ideal
-    ex-finite-field --&gt; def-field
-    def-field --&gt; def-ring
-    def-vector-space --&gt; def-field
+    def-field --&gt; def-group
     class def-field current
+    click def-ring "def-ring.html" "Go to Ring definition"
+    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
+    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
+    click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
+    click def-group "def-group.html" "Go to Group definition"
+    click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring definition"
     click thm-field-characteristic "thm-field-characteristic.html" "Go to Field Characteristic theorem"
     click def-ideal "def-ideal.html" "Go to Ideal definition"
-    click def-ring "def-ring.html" "Go to Ring definition"
-    click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring definition"
-    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
-    click def-group "def-group.html" "Go to Group definition"
-    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
-    click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -372,7 +372,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-field-1753165341" class="graph-visualization-container">
+<div id="graph-viz-def-field-1753168052" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -552,12 +552,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-field-1753165341', {
+    createForceGraph(data, 'graph-viz-def-field-1753168052', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-field-1753165341').innerHTML =
+    document.getElementById('graph-viz-def-field-1753168052').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

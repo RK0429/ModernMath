@@ -302,7 +302,7 @@ window.Quarto = {
 <li><strong>有限次元</strong>: ベクトル空間として次元 <span class="math inline">\(n\)</span> を持つ</li>
 <li><strong>局所コンパクト</strong>: すべての点がコンパクトな近傍を持つ</li>
 <li><strong>単連結</strong>: <span class="math inline">\(n \geq 2\)</span> の場合</li>
-<li><strong>等質</strong>: どの点でも同じに見える</li>
+<li><strong>等質</strong>: どの点でも同じに見える（ユークリッド群が推移的に<a href="../../../content/ja/algebra/def-group-action.html">作用</a>する）</li>
 </ul>
 </section>
 <section id="特殊な場合" class="level2">
@@ -347,8 +347,8 @@ window.Quarto = {
     thm-pythagorean["Theorem: Pythagorean Theorem"]:::theorem
     def-metric-space["Definition: Metric Space"]:::definition
     def-euclidean-space --&gt; def-vector-space
-    def-euclidean-space --&gt; def-metric-space
     thm-pythagorean --&gt; def-euclidean-space
+    def-euclidean-space --&gt; def-metric-space
     class def-euclidean-space current
     click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
     click thm-pythagorean "thm-pythagorean.html" "Theorem: Pythagorean Theoremへ"
@@ -363,7 +363,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-euclidean-space-1753165308" class="graph-visualization-container">
+<div id="graph-viz-def-euclidean-space-1753168016" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -543,12 +543,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-euclidean-space-1753165308', {
+    createForceGraph(data, 'graph-viz-def-euclidean-space-1753168016', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-euclidean-space-1753165308').innerHTML =
+    document.getElementById('graph-viz-def-euclidean-space-1753168016').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

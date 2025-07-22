@@ -308,7 +308,7 @@ window.Quarto = {
 <li><strong>Epimorphism</strong>: A surjective homomorphism</li>
 <li><strong>Isomorphism</strong>: A bijective homomorphism</li>
 <li><strong>Endomorphism</strong>: A homomorphism from a group to itself</li>
-<li><strong>Automorphism</strong>: A bijective endomorphism</li>
+<li><strong>Automorphism</strong>: A bijective endomorphism (the set of all automorphisms forms a group that <a href="../../../content/en/algebra/def-group-action.html">acts</a> on <span class="math inline">\(G\)</span>)</li>
 </ul>
 </section>
 <section id="kernel-and-image" class="level2">
@@ -322,9 +322,9 @@ window.Quarto = {
 </section>
 <section id="first-isomorphism-theorem" class="level2">
 <h2 class="anchored" data-anchor-id="first-isomorphism-theorem">First Isomorphism Theorem</h2>
-<p>The fundamental relationship between homomorphisms and quotient groups is given by:</p>
+<p>The fundamental relationship between homomorphisms and quotient groups is given by the <a href="../../../content/en/algebra/thm-first-isomorphism.html">First Isomorphism Theorem</a>:</p>
 <p><span class="math display">\[G/\ker(f) \cong \text{Im}(f)\]</span></p>
-<p>This shows that every homomorphic image is essentially a quotient group. See <a href="../../../content/en/algebra/def-quotient-group.html">商群</a> for more details.</p>
+<p>This shows that every homomorphic image is essentially a quotient group. See <a href="../../../content/en/algebra/def-quotient-group.html">商群</a> and <a href="../../../content/en/algebra/thm-first-isomorphism.html">第一同型定理</a> for more details.</p>
 </section>
 <section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
@@ -339,25 +339,29 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
+    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
     def-kernel["Definition: Kernel"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
     def-group["Definition: Group"]:::definition
     def-quotient-group["Definition: Quotient Group"]:::definition
     def-homomorphism["Definition: Group Homomorphism"]:::definition
+    ex-exponential-homomorphism --&gt; def-homomorphism
     def-group --&gt; def-homomorphism
+    def-homomorphism --&gt; def-quotient-group
+    def-normal-subgroup --&gt; def-homomorphism
+    def-homomorphism --&gt; def-binary-operation
     def-kernel --&gt; def-homomorphism
     def-homomorphism --&gt; def-group
-    def-homomorphism --&gt; def-quotient-group
-    def-homomorphism --&gt; def-binary-operation
-    ex-exponential-homomorphism --&gt; def-homomorphism
-    def-normal-subgroup --&gt; def-homomorphism
+    def-homomorphism --&gt; thm-first-isomorphism
+    thm-first-isomorphism --&gt; def-homomorphism
     class def-homomorphism current
-    click ex-exponential-homomorphism "ex-exponential-homomorphism.html" "Go to Exponential Homomorphism example"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem theorem"
     click def-kernel "def-kernel.html" "Go to Kernel definition"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click ex-exponential-homomorphism "ex-exponential-homomorphism.html" "Go to Exponential Homomorphism example"
     click def-group "def-group.html" "Go to Group definition"
     click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
 </pre>
@@ -370,7 +374,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-homomorphism-1753165150" class="graph-visualization-container">
+<div id="graph-viz-def-homomorphism-1753167842" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -550,12 +554,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-homomorphism-1753165150', {
+    createForceGraph(data, 'graph-viz-def-homomorphism-1753167842', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-homomorphism-1753165150').innerHTML =
+    document.getElementById('graph-viz-def-homomorphism-1753167842').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

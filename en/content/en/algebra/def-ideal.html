@@ -260,6 +260,7 @@ window.Quarto = {
   <li><a href="#connection-to-modules" id="toc-connection-to-modules" class="nav-link" data-scroll-target="#connection-to-modules">Connection to Modules</a></li>
   <li><a href="#types-of-ideals" id="toc-types-of-ideals" class="nav-link" data-scroll-target="#types-of-ideals">Types of Ideals</a></li>
   <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  <li><a href="#quotient-rings-and-the-first-isomorphism-theorem" id="toc-quotient-rings-and-the-first-isomorphism-theorem" class="nav-link" data-scroll-target="#quotient-rings-and-the-first-isomorphism-theorem">Quotient Rings and the First Isomorphism Theorem</a></li>
   <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
   <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
   </ul></li>
@@ -341,6 +342,16 @@ window.Quarto = {
 <li>In matrix ring <span class="math inline">\(M_n(K)\)</span>: The set of matrices with zero first row</li>
 </ul>
 </section>
+<section id="quotient-rings-and-the-first-isomorphism-theorem" class="level2">
+<h2 class="anchored" data-anchor-id="quotient-rings-and-the-first-isomorphism-theorem">Quotient Rings and the First Isomorphism Theorem</h2>
+<p>Just as <a href="../../../content/en/algebra/def-normal-subgroup.html">normal subgroups</a> allow us to form <a href="../../../content/en/algebra/def-quotient-group.html">quotient groups</a>, ideals allow us to form quotient rings. For a ring <span class="math inline">\(R\)</span> and ideal <span class="math inline">\(I\)</span>:</p>
+<ul>
+<li>The quotient ring <span class="math inline">\(R/I\)</span> consists of cosets <span class="math inline">\(\{r + I : r \in R\}\)</span></li>
+<li>Ring operations: <span class="math inline">\((r + I) + (s + I) = (r + s) + I\)</span> and <span class="math inline">\((r + I)(s + I) = rs + I\)</span></li>
+<li>The kernel of a ring homomorphism is always an ideal</li>
+</ul>
+<p>The <a href="../../../content/en/algebra/thm-first-isomorphism.html">First Isomorphism Theorem</a> extends to rings: if <span class="math inline">\(\phi: R \to S\)</span> is a ring homomorphism, then <span class="math inline">\(R/\ker(\phi) \cong \text{Im}(\phi)\)</span> as rings. This fundamental result shows that every homomorphic image of a ring is isomorphic to a quotient ring.</p>
+</section>
 <section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
@@ -354,35 +365,35 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-ideal["Definition: Ideal"]:::definition
     def-ring["Definition: Ring"]:::definition
-    def-field["Definition: Field"]:::definition
-    ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-kernel["Definition: Kernel"]:::definition
-    def-quotient-group["Definition: Quotient Group"]:::definition
     ex-finite-field["Example: Finite Field"]:::example
+    def-kernel["Definition: Kernel"]:::definition
     ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
     def-subset["Definition: Subset"]:::definition
+    ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
+    def-ideal["Definition: Ideal"]:::definition
+    def-field["Definition: Field"]:::definition
     ex-integers-ring --&gt; def-ideal
-    def-quotient-group --&gt; def-ideal
+    ex-principal-ideal --&gt; def-ideal
     def-field --&gt; def-ideal
+    def-ideal --&gt; def-binary-operation
+    def-ideal --&gt; def-ring
     def-kernel --&gt; def-ideal
     ex-finite-field --&gt; def-ideal
-    def-ideal --&gt; def-binary-operation
+    def-quotient-group --&gt; def-ideal
     def-ideal --&gt; def-subset
-    ex-principal-ideal --&gt; def-ideal
-    def-ideal --&gt; def-ring
     class def-ideal current
     click def-ring "def-ring.html" "Go to Ring definition"
-    click def-field "def-field.html" "Go to Field definition"
-    click ex-principal-ideal "ex-principal-ideal.html" "Go to Principal Ideals in Integers example"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
-    click def-kernel "def-kernel.html" "Go to Kernel definition"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
     click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
+    click def-kernel "def-kernel.html" "Go to Kernel definition"
     click ex-integers-ring "ex-integers-ring.html" "Go to Integers Form a Ring example"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
     click def-subset "def-subset.html" "Go to Subset definition"
+    click ex-principal-ideal "ex-principal-ideal.html" "Go to Principal Ideals in Integers example"
+    click def-field "def-field.html" "Go to Field definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -393,7 +404,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-ideal-1753165150" class="graph-visualization-container">
+<div id="graph-viz-def-ideal-1753167842" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -573,12 +584,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-ideal-1753165150', {
+    createForceGraph(data, 'graph-viz-def-ideal-1753167842', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-ideal-1753165150').innerHTML =
+    document.getElementById('graph-viz-def-ideal-1753167842').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

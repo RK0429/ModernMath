@@ -7,11 +7,11 @@ graph TD
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-angle["Definition: Angle"]:::definition
     thm-angle-sum-triangle["Theorem: Angle Sum of a Triangle"]:::theorem
-    def-point["Definition: Point"]:::definition
     def-line["Definition: Line"]:::definition
     def-triangle["Definition: Triangle"]:::definition
+    def-point["Definition: Point"]:::definition
+    def-triangle --> def-angle
+    thm-angle-sum-triangle --> def-triangle
     def-triangle --> def-point
     def-triangle --> def-line
-    thm-angle-sum-triangle --> def-triangle
-    def-triangle --> def-angle
     class def-triangle current

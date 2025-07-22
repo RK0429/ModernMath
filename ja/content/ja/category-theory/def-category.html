@@ -329,35 +329,35 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-category["Definition: Category"]:::definition
-    def-composition["Definition: Composition"]:::definition
-    def-isomorphism["Definition: Isomorphism"]:::definition
-    def-graph["Definition: Graph"]:::definition
-    thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
     ex-set-category["Example: The Category of Sets"]:::example
-    def-natural-transformation["Definition: Natural Transformation"]:::definition
-    def-functor["Definition: Functor"]:::definition
-    def-set["Definition: Set"]:::definition
+    def-graph["Definition: Graph"]:::definition
     def-morphism["Definition: Morphism"]:::definition
-    def-morphism --&gt; def-category
+    def-functor["Definition: Functor"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    def-composition["Definition: Composition"]:::definition
+    def-natural-transformation["Definition: Natural Transformation"]:::definition
+    thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
+    def-category["Definition: Category"]:::definition
+    def-set["Definition: Set"]:::definition
     def-composition --&gt; def-category
-    thm-yoneda --&gt; def-category
-    def-natural-transformation --&gt; def-category
-    def-category --&gt; def-graph
+    def-morphism --&gt; def-category
     def-isomorphism --&gt; def-category
-    def-category --&gt; def-set
     ex-set-category --&gt; def-category
+    def-natural-transformation --&gt; def-category
     def-functor --&gt; def-category
+    def-category --&gt; def-graph
+    thm-yoneda --&gt; def-category
+    def-category --&gt; def-set
     class def-category current
-    click def-composition "def-composition.html" "Definition: Compositionへ"
-    click def-isomorphism "def-isomorphism.html" "Definition: Isomorphismへ"
-    click def-graph "def-graph.html" "Definition: Graphへ"
-    click thm-yoneda "thm-yoneda.html" "Theorem: Yoneda Lemmaへ"
     click ex-set-category "ex-set-category.html" "Example: The Category of Setsへ"
-    click def-natural-transformation "def-natural-transformation.html" "Definition: Natural Transformationへ"
-    click def-functor "def-functor.html" "Definition: Functorへ"
-    click def-set "def-set.html" "Definition: Setへ"
+    click def-graph "def-graph.html" "Definition: Graphへ"
     click def-morphism "def-morphism.html" "Definition: Morphismへ"
+    click def-functor "def-functor.html" "Definition: Functorへ"
+    click def-isomorphism "def-isomorphism.html" "Definition: Isomorphismへ"
+    click def-composition "def-composition.html" "Definition: Compositionへ"
+    click def-natural-transformation "def-natural-transformation.html" "Definition: Natural Transformationへ"
+    click thm-yoneda "thm-yoneda.html" "Theorem: Yoneda Lemmaへ"
+    click def-set "def-set.html" "Definition: Setへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -368,7 +368,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-category-1753165301" class="graph-visualization-container">
+<div id="graph-viz-def-category-1753168008" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -548,12 +548,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-category-1753165301', {
+    createForceGraph(data, 'graph-viz-def-category-1753168008', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-category-1753165301').innerHTML =
+    document.getElementById('graph-viz-def-category-1753168008').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -325,7 +325,7 @@ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
 <section id="転置" class="level2">
 <h2 class="anchored" data-anchor-id="転置">転置</h2>
 <p><span class="math inline">\(m \times n\)</span> 行列 <span class="math inline">\(A\)</span> の<strong>転置</strong>は <span class="math inline">\(n \times m\)</span> 行列 <span class="math inline">\(A^T\)</span> であり、次を満たす： <span class="math display">\[(A^T)_{ij} = a_{ji}\]</span></p>
-<p>行列は線形代数における基本的な対象であり、線形変換、連立方程式、双線形形式などを表現する。</p>
+<p>行列は線形代数における基本的な対象であり、線形変換、連立方程式、双線形形式などを表現する。可逆 <span class="math inline">\(n \times n\)</span> 行列の集合は乗法の下で群をなし（一般線形群 <span class="math inline">\(GL_n(F)\)</span> と呼ばれる）、<span class="math inline">\(F^n\)</span> に自然に<a href="../../../content/ja/algebra/def-group-action.html">作用</a>する。</p>
 </section>
 <section id="依存関係グラフ" class="level2">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
@@ -340,8 +340,8 @@ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-matrix["Definition: Matrix"]:::definition
     ex-matrix-transformation["Example: Matrix Transformation"]:::example
+    def-matrix["Definition: Matrix"]:::definition
     def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
     ex-matrix-transformation --&gt; def-matrix
     def-eigenvalue-eigenvector --&gt; def-matrix
@@ -358,7 +358,7 @@ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-matrix-1753165283" class="graph-visualization-container">
+<div id="graph-viz-def-matrix-1753167988" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -538,12 +538,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-matrix-1753165283', {
+    createForceGraph(data, 'graph-viz-def-matrix-1753167988', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-matrix-1753165283').innerHTML =
+    document.getElementById('graph-viz-def-matrix-1753167988').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

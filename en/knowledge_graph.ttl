@@ -85,6 +85,8 @@
 
 <http://modernmath.org/concepts/finite-field> ns1:hasTranslation <http://modernmath.org/concepts/finite-field_ja> .
 
+<http://modernmath.org/concepts/first-isomorphism> ns1:hasTranslation <http://modernmath.org/concepts/first-isomorphism_ja> .
+
 <http://modernmath.org/concepts/functor> ns1:hasTranslation <http://modernmath.org/concepts/functor_ja> .
 
 <http://modernmath.org/concepts/fundamental-arithmetic> ns1:hasTranslation <http://modernmath.org/concepts/fundamental-arithmetic_ja> .
@@ -94,6 +96,10 @@
 <http://modernmath.org/concepts/graph> ns1:hasTranslation <http://modernmath.org/concepts/graph_ja> .
 
 <http://modernmath.org/concepts/group> ns1:hasTranslation <http://modernmath.org/concepts/group_ja> .
+
+<http://modernmath.org/concepts/group-action> ns1:hasTranslation <http://modernmath.org/concepts/group-action_ja> .
+
+<http://modernmath.org/concepts/group-action-examples> ns1:hasTranslation <http://modernmath.org/concepts/group-action-examples_ja> .
 
 <http://modernmath.org/concepts/group-example> ns1:hasTranslation <http://modernmath.org/concepts/group-example_ja> .
 
@@ -166,6 +172,8 @@
 <http://modernmath.org/concepts/normal-subgroup> ns1:hasTranslation <http://modernmath.org/concepts/normal-subgroup_ja> .
 
 <http://modernmath.org/concepts/open-set> ns1:hasTranslation <http://modernmath.org/concepts/open-set_ja> .
+
+<http://modernmath.org/concepts/orbit-stabilizer> ns1:hasTranslation <http://modernmath.org/concepts/orbit-stabilizer_ja> .
 
 <http://modernmath.org/concepts/parallel> ns1:hasTranslation <http://modernmath.org/concepts/parallel_ja> .
 
@@ -376,6 +384,18 @@ base:ex-exponential-homomorphism a mymath:Example ;
     mymath:uses base:def-group,
         base:def-homomorphism .
 
+base:ex-group-action-examples a mymath:Example ;
+    rdfs:label "Examples of Group Actions"@en,
+        "群作用の例"@en ;
+    rdfs:comment "[Group actions](def-group-action.qmd) are fundamental in understanding symmetries. Here are several important examples."@en,
+        "[群作用](def-group-action.qmd)は対称性を理解する上で基本的です。ここでいくつかの重要な例を示します。"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "verified" ;
+    mymath:uses base:def-cyclic-group,
+        base:def-group,
+        base:def-group-action .
+
 base:ex-integers-ring a mymath:Example ;
     rdfs:label "Example: Integers Form a Ring"@en,
         "例: 整数は環を形成する"@en ;
@@ -575,6 +595,18 @@ base:thm-metric-hausdorff a mymath:Theorem ;
         base:def-metric-space,
         base:def-topological-space .
 
+base:thm-orbit-stabilizer a mymath:Theorem ;
+    rdfs:label "Orbit-Stabilizer Theorem"@en,
+        "軌道・固定化部分群定理"@en ;
+    rdfs:comment "**軌道・固定化部分群定理**は、[群作用](def-group-action.qmd)における群の位数と軌道・固定化部分群の大きさの関係を述べます。"@en,
+        "The **Orbit-Stabilizer Theorem** relates the size of a group to the sizes of orbits and stabilizers under a [group action](def-group-action.qmd)."@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "verified" ;
+    mymath:uses base:def-coset,
+        base:def-group-action,
+        base:thm-lagrange .
+
 base:thm-pigeonhole-principle a mymath:Theorem ;
     rdfs:label "Theorem: Pigeonhole Principle"@en,
         "定理：鳩の巣原理"@en ;
@@ -703,6 +735,8 @@ base:thm-yoneda a mymath:Theorem ;
 
 <http://modernmath.org/concepts/finite-field_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/first-isomorphism_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/functor_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/fundamental-arithmetic_ja> ns1:language "ja" .
@@ -710,6 +744,10 @@ base:thm-yoneda a mymath:Theorem ;
 <http://modernmath.org/concepts/gcd_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/graph_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/group-action-examples_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/group-action_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/group-example_ja> ns1:language "ja" .
 
@@ -784,6 +822,8 @@ base:thm-yoneda a mymath:Theorem ;
 <http://modernmath.org/concepts/normal-subgroup_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/open-set_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/orbit-stabilizer_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/parallel_ja> ns1:language "ja" .
 
@@ -1001,17 +1041,6 @@ base:def-homeomorphism a mymath:Definition ;
         base:def-set,
         base:def-topological-space .
 
-base:def-image a mymath:Definition ;
-    rdfs:label "Definition: Image"@en,
-        "定義: 像"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearMap.range>,
-        base:formal-proof-def-image ;
-    mymath:uses base:def-linear-transformation,
-        base:def-vector-space .
-
 base:def-independence a mymath:Definition ;
     rdfs:label "Definition: Independence"@en,
         "定義: 独立性"@en ;
@@ -1058,21 +1087,6 @@ base:def-isomorphism a mymath:Definition ;
         base:def-composition,
         base:def-homeomorphism,
         base:def-morphism .
-
-base:def-kernel a mymath:Definition ;
-    rdfs:label "Definition: Kernel"@en,
-        "定義: 核"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearMap.ker>,
-        base:formal-proof-def-kernel ;
-    mymath:uses base:def-homomorphism,
-        base:def-ideal,
-        base:def-linear-transformation,
-        base:def-normal-subgroup,
-        base:def-quotient-group,
-        base:def-vector-space .
 
 base:def-natural-transformation a mymath:Definition ;
     rdfs:label "Definition: Natural Transformation"@en,
@@ -1387,6 +1401,33 @@ base:def-hausdorff a mymath:Definition ;
     mymath:uses base:def-open-set,
         base:def-topological-space .
 
+base:def-image a mymath:Definition ;
+    rdfs:label "Definition: Image"@en,
+        "定義: 像"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearMap.range>,
+        base:formal-proof-def-image ;
+    mymath:uses base:def-linear-transformation,
+        base:def-vector-space .
+
+base:def-kernel a mymath:Definition ;
+    rdfs:label "Definition: Kernel"@en,
+        "定義: 核"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearMap.ker>,
+        base:formal-proof-def-kernel ;
+    mymath:uses base:def-homomorphism,
+        base:def-ideal,
+        base:def-linear-transformation,
+        base:def-normal-subgroup,
+        base:def-quotient-group,
+        base:def-vector-space,
+        base:thm-first-isomorphism .
+
 base:def-linear-independence a mymath:Definition ;
     rdfs:label "Definition: Linear Independence"@en,
         "定義: 線形独立"@en ;
@@ -1518,16 +1559,6 @@ base:def-gcd a mymath:Definition ;
         base:thm-euclidean-algorithm,
         base:thm-euler .
 
-base:def-identity-element a mymath:Definition ;
-    rdfs:label "Definition: Identity Element"@en,
-        "定義: 単位元"@en ;
-    rdfs:comment "An **identity element** for a [Binary Operation](def-binary-operation.qmd) is an element that leaves any other element unchanged when combined with it."@en,
-        "[二項演算](def-binary-operation.qmd)に対する**単位元**（たんいげん）とは、他の任意の元と結合したときにその元を変化させない元のことである。"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation .
-
 base:def-polynomial-ring a mymath:Definition ;
     rdfs:label "Definition: Polynomial Ring"@en,
         "定義: 多項式環"@en ;
@@ -1551,15 +1582,26 @@ base:def-field a mymath:Definition ;
         base:def-ideal,
         base:def-ring .
 
-base:def-homomorphism a mymath:Definition ;
-    rdfs:label "Definition: Group Homomorphism"@en,
-        "定義: 群準同型"@en ;
+base:def-group-action a mymath:Definition ;
+    rdfs:label "Group Action"@en,
+        "群の作用"@en ;
+    rdfs:comment "**群の作用**は、群が集合の要素を群の構造と整合的な方法で置換する方法です。"@en,
+        "A **group action** is a way for a group to act on a set by permuting its elements in a manner compatible with the group structure."@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "verified" ;
+    mymath:uses base:def-group,
+        base:def-identity-element .
+
+base:def-identity-element a mymath:Definition ;
+    rdfs:label "Definition: Identity Element"@en,
+        "定義: 単位元"@en ;
+    rdfs:comment "An **identity element** for a [Binary Operation](def-binary-operation.qmd) is an element that leaves any other element unchanged when combined with it."@en,
+        "[二項演算](def-binary-operation.qmd)に対する**単位元**（たんいげん）とは、他の任意の元と結合したときにその元を変化させない元のことである。"@en ;
     mymath:hasDomain "Algebra",
         "代数学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation,
-        base:def-group,
-        base:def-quotient-group .
+    mymath:uses base:def-binary-operation .
 
 base:def-line a mymath:Definition ;
     rdfs:label "Definition: Line"@en,
@@ -1617,6 +1659,39 @@ base:ex-integers-addition a mymath:Example ;
         base:def-group,
         base:def-set .
 
+base:def-graph a mymath:Definition ;
+    rdfs:label "Definition: Graph"@en,
+        "定義: グラフ"@en ;
+    mymath:hasDomain "Combinatorics",
+        "組合せ論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-set .
+
+base:def-homomorphism a mymath:Definition ;
+    rdfs:label "Definition: Group Homomorphism"@en,
+        "定義: 群準同型"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-binary-operation,
+        base:def-group,
+        base:def-quotient-group,
+        base:thm-first-isomorphism .
+
+base:thm-first-isomorphism a mymath:Theorem ;
+    rdfs:label "Theorem: First Isomorphism Theorem"@en,
+        "定理: 第一同型定理"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-abelian-group,
+        base:def-group,
+        base:def-homomorphism,
+        base:def-image,
+        base:def-kernel,
+        base:def-normal-subgroup,
+        base:def-quotient-group .
+
 base:def-coset a mymath:Definition ;
     rdfs:label "Definition: Coset"@en,
         "定義: 剰余類"@en ;
@@ -1627,32 +1702,13 @@ base:def-coset a mymath:Definition ;
     mymath:uses base:def-abelian-group,
         base:def-binary-operation,
         base:def-group,
+        base:def-group-action,
         base:def-normal-subgroup,
         base:def-quotient-group,
         base:def-subgroup,
         base:ex-even-integers-subgroup,
         base:ex-quotient-integers-mod-n,
         base:thm-lagrange .
-
-base:def-graph a mymath:Definition ;
-    rdfs:label "Definition: Graph"@en,
-        "定義: グラフ"@en ;
-    mymath:hasDomain "Combinatorics",
-        "組合せ論" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-set .
-
-base:thm-lagrange a mymath:Theorem ;
-    rdfs:label "Theorem: Lagrange's Theorem"@en,
-        "定理: ラグランジュの定理"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-coset,
-        base:def-cyclic-group,
-        base:def-group,
-        base:def-quotient-group,
-        base:def-subgroup .
 
 base:def-ideal a mymath:Definition ;
     rdfs:label "Definition: Ideal"@en,
@@ -1706,6 +1762,18 @@ base:ex-quotient-integers-mod-n a mymath:Example ;
         base:def-quotient-group,
         base:ex-integers-addition .
 
+base:thm-lagrange a mymath:Theorem ;
+    rdfs:label "Theorem: Lagrange's Theorem"@en,
+        "定理: ラグランジュの定理"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-coset,
+        base:def-cyclic-group,
+        base:def-group,
+        base:def-quotient-group,
+        base:def-subgroup .
+
 base:def-category a mymath:Definition ;
     rdfs:label "Definition: Category"@en,
         "定義: 圏"@en ;
@@ -1722,20 +1790,6 @@ base:def-continuity a mymath:Definition ;
         "解析学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-limit .
-
-base:def-cyclic-group a mymath:Definition ;
-    rdfs:label "Definition: Cyclic Group"@en,
-        "定義: 巡回群"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-abelian-group,
-        base:def-group,
-        base:def-identity-element,
-        base:def-subgroup,
-        base:ex-integers-addition,
-        base:ex-quotient-integers-mod-n,
-        base:thm-lagrange .
 
 base:def-limit a mymath:Definition ;
     rdfs:label "Definition: Limit of a Sequence"@en,
@@ -1784,6 +1838,20 @@ base:def-subgroup a mymath:Definition ;
         base:def-set,
         base:thm-lagrange .
 
+base:def-cyclic-group a mymath:Definition ;
+    rdfs:label "Definition: Cyclic Group"@en,
+        "定義: 巡回群"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-abelian-group,
+        base:def-group,
+        base:def-identity-element,
+        base:def-subgroup,
+        base:ex-integers-addition,
+        base:ex-quotient-integers-mod-n,
+        base:thm-lagrange .
+
 base:def-normal-subgroup a mymath:Definition ;
     rdfs:label "Definition: Normal Subgroup"@en,
         "定義: 正規部分群"@en ;
@@ -1794,9 +1862,11 @@ base:def-normal-subgroup a mymath:Definition ;
     mymath:uses base:def-abelian-group,
         base:def-coset,
         base:def-group,
+        base:def-group-action,
         base:def-homomorphism,
         base:def-quotient-group,
         base:def-subgroup,
+        base:thm-first-isomorphism,
         base:thm-lagrange .
 
 base:def-topological-space a mymath:Definition ;
@@ -1808,21 +1878,6 @@ base:def-topological-space a mymath:Definition ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Basic.TopologicalSpace>,
         base:formal-proof-def-topological-space ;
     mymath:uses base:def-set .
-
-base:def-quotient-group a mymath:Definition ;
-    rdfs:label "Definition: Quotient Group"@en,
-        "定義: 商群"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasLeanId "Mathlib.GroupTheory.QuotientGroup" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-abelian-group,
-        base:def-coset,
-        base:def-cyclic-group,
-        base:def-group,
-        base:def-ideal,
-        base:def-normal-subgroup,
-        base:def-subgroup .
 
 base:def-vector-space a mymath:Definition ;
     rdfs:label "Definition: Vector Space"@en,
@@ -1838,6 +1893,22 @@ base:def-vector-space a mymath:Definition ;
         base:def-group,
         base:def-set .
 
+base:def-quotient-group a mymath:Definition ;
+    rdfs:label "Definition: Quotient Group"@en,
+        "定義: 商群"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasLeanId "Mathlib.GroupTheory.QuotientGroup" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-abelian-group,
+        base:def-coset,
+        base:def-cyclic-group,
+        base:def-group,
+        base:def-ideal,
+        base:def-normal-subgroup,
+        base:def-subgroup,
+        base:thm-first-isomorphism .
+
 base:def-abelian-group a mymath:Definition ;
     rdfs:label "Definition: Abelian Group"@en,
         "定義: アーベル群"@en ;
@@ -1850,6 +1921,7 @@ base:def-abelian-group a mymath:Definition ;
         base:def-group,
         base:def-normal-subgroup,
         base:def-quotient-group,
+        base:thm-first-isomorphism,
         base:thm-lagrange .
 
 base:def-binary-operation a mymath:Definition ;
