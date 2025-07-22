@@ -337,7 +337,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="その他の例">その他の例</h3>
 <ul>
 <li>巡回群：すべての<a href="../../../content/ja/algebra/def-cyclic-group.html">巡回群</a>はアーベル群である</li>
-<li>直積：<span class="math inline">\(G\)</span> と <span class="math inline">\(H\)</span> がアーベル群ならば、<span class="math inline">\(G \times H\)</span> もアーベル群である</li>
+<li>直積：<span class="math inline">\(G\)</span> と <span class="math inline">\(H\)</span> がアーベル群ならば、<span class="math inline">\(G \times H\)</span> もアーベル群である（<a href="../../../content/ja/algebra/def-direct-product.html">直積</a>を参照）</li>
 <li>単位元のみからなる自明な群 <span class="math inline">\(\{e\}\)</span></li>
 </ul>
 </section>
@@ -364,7 +364,7 @@ window.Quarto = {
 <section id="構造定理" class="level3">
 <h3 class="anchored" data-anchor-id="構造定理">構造定理</h3>
 <ul>
-<li><strong>基本定理</strong>：有限生成アーベル群はすべて巡回群の直積に同型である</li>
+<li><strong>基本定理</strong>：有限生成アーベル群はすべて<a href="../../../content/ja/algebra/def-cyclic-group.html">巡回群</a>の<a href="../../../content/ja/algebra/def-direct-product.html">直積</a>に同型である</li>
 <li><strong>分類</strong>：有限アーベル群は不変因子または初等因子によって同型を除いて分類される</li>
 </ul>
 </section>
@@ -415,61 +415,65 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    def-field["Definition: Field"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-module["Definition: Module"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
     def-cyclic-group["Definition: Cyclic Group"]:::definition
-    ex-integers-addition["Example: Integers under Addition"]:::example
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-coset["Definition: Coset"]:::definition
-    def-quotient-group["Definition: Quotient Group"]:::definition
+    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-module["Definition: Module"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
+    ex-integers-addition["Example: Integers under Addition"]:::example
+    def-field["Definition: Field"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-ring["Definition: Ring"]:::definition
     def-commutativity["Definition: Commutativity"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-direct-product["Definition: Direct Product of Groups"]:::definition
+    def-coset["Definition: Coset"]:::definition
     ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    def-cyclic-group --&gt; def-abelian-group
-    def-abelian-group --&gt; thm-lagrange
-    ex-integers-ring --&gt; def-abelian-group
-    def-group --&gt; def-abelian-group
-    def-abelian-group --&gt; def-quotient-group
-    def-normal-subgroup --&gt; def-abelian-group
-    def-abelian-group --&gt; def-group
-    def-abelian-group --&gt; thm-first-isomorphism
-    ex-quotient-integers-mod-n --&gt; def-abelian-group
-    def-quotient-group --&gt; def-abelian-group
     def-abelian-group --&gt; def-cyclic-group
-    def-vector-space --&gt; def-abelian-group
-    def-ring --&gt; def-abelian-group
-    def-coset --&gt; def-abelian-group
     def-commutativity --&gt; def-abelian-group
     def-abelian-group --&gt; def-commutativity
-    def-module --&gt; def-abelian-group
+    def-quotient-group --&gt; def-abelian-group
+    def-abelian-group --&gt; def-group
+    def-normal-subgroup --&gt; def-abelian-group
+    def-abelian-group --&gt; def-quotient-group
+    def-abelian-group --&gt; def-direct-product
+    def-cyclic-group --&gt; def-abelian-group
+    ex-quotient-integers-mod-n --&gt; def-abelian-group
+    def-direct-product --&gt; def-abelian-group
+    def-abelian-group --&gt; def-normal-subgroup
+    def-group --&gt; def-abelian-group
+    def-abelian-group --&gt; thm-lagrange
     def-field --&gt; def-abelian-group
-    ex-integers-addition --&gt; def-abelian-group
+    def-coset --&gt; def-abelian-group
     thm-first-isomorphism --&gt; def-abelian-group
     ex-even-integers-subgroup --&gt; def-abelian-group
-    def-abelian-group --&gt; def-normal-subgroup
+    def-module --&gt; def-abelian-group
+    def-abelian-group --&gt; thm-first-isomorphism
+    def-vector-space --&gt; def-abelian-group
+    def-ring --&gt; def-abelian-group
+    ex-integers-addition --&gt; def-abelian-group
+    ex-integers-ring --&gt; def-abelian-group
     class def-abelian-group current
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
-    click ex-integers-ring "ex-integers-ring.html" "Example: Integers Form a Ringへ"
-    click def-field "def-field.html" "Definition: Fieldへ"
-    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
-    click def-group "def-group.html" "Definition: Groupへ"
-    click def-module "def-module.html" "Definition: Moduleへ"
-    click def-ring "def-ring.html" "Definition: Ringへ"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Theorem: First Isomorphism Theoremへ"
     click def-cyclic-group "def-cyclic-group.html" "Definition: Cyclic Groupへ"
-    click ex-integers-addition "ex-integers-addition.html" "Example: Integers under Additionへ"
-    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
-    click def-coset "def-coset.html" "Definition: Cosetへ"
-    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
+    click ex-integers-ring "ex-integers-ring.html" "Example: Integers Form a Ringへ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
     click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
+    click def-module "def-module.html" "Definition: Moduleへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "Theorem: First Isomorphism Theoremへ"
+    click ex-integers-addition "ex-integers-addition.html" "Example: Integers under Additionへ"
+    click def-field "def-field.html" "Definition: Fieldへ"
+    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
+    click def-ring "def-ring.html" "Definition: Ringへ"
     click def-commutativity "def-commutativity.html" "Definition: Commutativityへ"
+    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
+    click def-direct-product "def-direct-product.html" "Definition: Direct Product of Groupsへ"
+    click def-coset "def-coset.html" "Definition: Cosetへ"
     click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Example: Even Integers Form a Subgroupへ"
 </pre>
 </div>
@@ -481,7 +485,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-abelian-group-1753183078" class="graph-visualization-container">
+<div id="graph-viz-def-abelian-group-1753194100" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -661,12 +665,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-abelian-group-1753183078', {
+    createForceGraph(data, 'graph-viz-def-abelian-group-1753194100', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-abelian-group-1753183078').innerHTML =
+    document.getElementById('graph-viz-def-abelian-group-1753194100').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

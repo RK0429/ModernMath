@@ -359,40 +359,40 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
+    def-binary-operation["Definition: Binary Operation"]:::definition
     ex-integers-ring["Example: Integers Form a Ring"]:::example
+    ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
+    def-module["Definition: Module"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
+    def-group["Definition: Group"]:::definition
     def-abelian-group["Definition: Abelian Group"]:::definition
     def-field["Definition: Field"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    def-module["Definition: Module"]:::definition
-    ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
     def-polynomial-ring["Definition: Polynomial Ring"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-ideal["Definition: Ideal"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
     def-set["Definition: Set"]:::definition
-    def-ring --&gt; def-set
     ex-integers-ring --&gt; def-ring
-    thm-field-characteristic --&gt; def-ring
     def-polynomial-ring --&gt; def-ring
-    def-module --&gt; def-ring
-    def-ring --&gt; def-group
-    def-field --&gt; def-ring
-    def-ideal --&gt; def-ring
     ex-principal-ideal --&gt; def-ring
-    def-ring --&gt; def-binary-operation
     def-ring --&gt; def-abelian-group
+    def-field --&gt; def-ring
+    def-ring --&gt; def-group
+    def-ideal --&gt; def-ring
+    def-ring --&gt; def-set
+    thm-field-characteristic --&gt; def-ring
+    def-module --&gt; def-ring
+    def-ring --&gt; def-binary-operation
     class def-ring current
-    click thm-field-characteristic "thm-field-characteristic.html" "Go to Field Characteristic theorem"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
     click ex-integers-ring "ex-integers-ring.html" "Go to Integers Form a Ring example"
+    click ex-principal-ideal "ex-principal-ideal.html" "Go to Principal Ideals in Integers example"
+    click def-module "def-module.html" "Go to Module definition"
+    click def-ideal "def-ideal.html" "Go to Ideal definition"
+    click def-group "def-group.html" "Go to Group definition"
     click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
     click def-field "def-field.html" "Go to Field definition"
-    click def-group "def-group.html" "Go to Group definition"
-    click def-module "def-module.html" "Go to Module definition"
-    click ex-principal-ideal "ex-principal-ideal.html" "Go to Principal Ideals in Integers example"
     click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring definition"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
-    click def-ideal "def-ideal.html" "Go to Ideal definition"
+    click thm-field-characteristic "thm-field-characteristic.html" "Go to Field Characteristic theorem"
     click def-set "def-set.html" "Go to Set definition"
 </pre>
 </div>
@@ -404,7 +404,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-ring-1753182953" class="graph-visualization-container">
+<div id="graph-viz-def-ring-1753193968" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -584,12 +584,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-ring-1753182953', {
+    createForceGraph(data, 'graph-viz-def-ring-1753193968', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-ring-1753182953').innerHTML =
+    document.getElementById('graph-viz-def-ring-1753193968').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

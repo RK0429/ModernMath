@@ -325,16 +325,16 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group["Definition: Group"]:::definition
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
     ex-group-action-examples["Examples of Group Actions"]:::example
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
+    def-group["Definition: Group"]:::definition
     def-group-action["Group Action"]:::definition
-    ex-group-action-examples --&gt; def-group
-    ex-group-action-examples --&gt; def-group-action
     ex-group-action-examples --&gt; def-cyclic-group
+    ex-group-action-examples --&gt; def-group-action
+    ex-group-action-examples --&gt; def-group
     class ex-group-action-examples current
-    click def-group "def-group.html" "Definition: Groupへ"
     click def-cyclic-group "def-cyclic-group.html" "Definition: Cyclic Groupへ"
+    click def-group "def-group.html" "Definition: Groupへ"
     click def-group-action "def-group-action.html" "Group Actionへ"
 </pre>
 </div>
@@ -346,7 +346,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-group-action-examples-1753183024" class="graph-visualization-container">
+<div id="graph-viz-ex-group-action-examples-1753194044" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -526,12 +526,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-group-action-examples-1753183024', {
+    createForceGraph(data, 'graph-viz-ex-group-action-examples-1753194044', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-group-action-examples-1753183024').innerHTML =
+    document.getElementById('graph-viz-ex-group-action-examples-1753194044').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

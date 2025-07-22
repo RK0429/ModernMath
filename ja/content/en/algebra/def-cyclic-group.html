@@ -260,6 +260,7 @@ window.Quarto = {
   <li><a href="#infinite-cyclic-groups" id="toc-infinite-cyclic-groups" class="nav-link" data-scroll-target="#infinite-cyclic-groups">Infinite Cyclic Groups</a></li>
   </ul></li>
   <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification">Classification</a></li>
+  <li><a href="#products-of-cyclic-groups" id="toc-products-of-cyclic-groups" class="nav-link" data-scroll-target="#products-of-cyclic-groups">Products of Cyclic Groups</a></li>
   <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
   <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
   <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
@@ -349,6 +350,10 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="classification">Classification</h2>
 <p>The classification of cyclic groups is particularly simple: - Up to isomorphism, there is exactly one cyclic group of each order (finite or infinite) - Two cyclic groups are isomorphic if and only if they have the same order</p>
 </section>
+<section id="products-of-cyclic-groups" class="level2">
+<h2 class="anchored" data-anchor-id="products-of-cyclic-groups">Products of Cyclic Groups</h2>
+<p>The <a href="../../../content/en/algebra/def-direct-product.html">direct product</a> of cyclic groups has special properties: - <span class="math inline">\(\mathbb{Z}_m \times \mathbb{Z}_n\)</span> is cyclic if and only if <span class="math inline">\(\gcd(m,n) = 1\)</span> - When <span class="math inline">\(\gcd(m,n) = 1\)</span>, we have <span class="math inline">\(\mathbb{Z}_m \times \mathbb{Z}_n \cong \mathbb{Z}_{mn}\)</span> - In general, <span class="math inline">\(\mathbb{Z}_m \times \mathbb{Z}_n \cong \mathbb{Z}_{\gcd(m,n)} \times \mathbb{Z}_{\text{lcm}(m,n)}\)</span></p>
+</section>
 <section id="see-also" class="level2">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
@@ -357,6 +362,7 @@ window.Quarto = {
 <li><a href="../../../content/en/algebra/thm-lagrange.html">ラグランジュの定理</a></li>
 <li><a href="../../../content/en/algebra/ex-integers-addition.html">加法における整数</a></li>
 <li><a href="../../../content/en/algebra/ex-quotient-integers-mod-n.html">整数の n による剰余</a></li>
+<li><a href="../../../content/en/algebra/def-direct-product.html">定義：群の直積</a></li>
 </ul>
 </section>
 <section id="dependency-graph" class="level2">
@@ -372,41 +378,45 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-identity-element["Definition: Identity Element"]:::definition
     def-cyclic-group["Definition: Cyclic Group"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
     def-subgroup["Definition: Subgroup"]:::definition
-    ex-integers-addition["Example: Integers under Addition"]:::example
+    def-identity-element["Definition: Identity Element"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     ex-group-action-examples["Examples of Group Actions"]:::example
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    ex-integers-addition --&gt; def-cyclic-group
-    ex-quotient-integers-mod-n --&gt; def-cyclic-group
-    def-cyclic-group --&gt; def-group
-    def-cyclic-group --&gt; def-abelian-group
-    def-cyclic-group --&gt; ex-integers-addition
-    ex-group-action-examples --&gt; def-cyclic-group
-    def-subgroup --&gt; def-cyclic-group
-    def-cyclic-group --&gt; ex-quotient-integers-mod-n
-    thm-lagrange --&gt; def-cyclic-group
+    ex-integers-addition["Example: Integers under Addition"]:::example
+    def-direct-product["Definition: Direct Product of Groups"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-abelian-group --&gt; def-cyclic-group
-    def-cyclic-group --&gt; def-identity-element
-    def-group --&gt; def-cyclic-group
-    def-quotient-group --&gt; def-cyclic-group
-    def-cyclic-group --&gt; thm-lagrange
+    def-cyclic-group --&gt; ex-integers-addition
     def-cyclic-group --&gt; def-subgroup
+    ex-quotient-integers-mod-n --&gt; def-cyclic-group
+    thm-lagrange --&gt; def-cyclic-group
+    def-quotient-group --&gt; def-cyclic-group
+    ex-group-action-examples --&gt; def-cyclic-group
+    def-cyclic-group --&gt; thm-lagrange
+    def-cyclic-group --&gt; ex-quotient-integers-mod-n
+    def-group --&gt; def-cyclic-group
+    def-cyclic-group --&gt; def-group
+    ex-integers-addition --&gt; def-cyclic-group
+    def-subgroup --&gt; def-cyclic-group
+    def-cyclic-group --&gt; def-abelian-group
+    def-cyclic-group --&gt; def-identity-element
+    def-cyclic-group --&gt; def-direct-product
+    def-direct-product --&gt; def-cyclic-group
     class def-cyclic-group current
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
-    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
-    click def-group "def-group.html" "Go to Group definition"
-    click def-identity-element "def-identity-element.html" "Go to Identity Element definition"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
     click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
-    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
+    click def-identity-element "def-identity-element.html" "Go to Identity Element definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
     click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
     click ex-group-action-examples "ex-group-action-examples.html" "Go to Examples of Group Actions"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
+    click def-direct-product "def-direct-product.html" "Go to Direct Product of Groups definition"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -417,7 +427,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-cyclic-group-1753183145" class="graph-visualization-container">
+<div id="graph-viz-def-cyclic-group-1753194168" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -597,12 +607,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-cyclic-group-1753183145', {
+    createForceGraph(data, 'graph-viz-def-cyclic-group-1753194168', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-cyclic-group-1753183145').innerHTML =
+    document.getElementById('graph-viz-def-cyclic-group-1753194168').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

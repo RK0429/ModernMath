@@ -63,6 +63,8 @@
 
 <http://modernmath.org/concepts/derivative> ns1:hasTranslation <http://modernmath.org/concepts/derivative_ja> .
 
+<http://modernmath.org/concepts/direct-product> ns1:hasTranslation <http://modernmath.org/concepts/direct-product_ja> .
+
 <http://modernmath.org/concepts/distributivity> ns1:hasTranslation <http://modernmath.org/concepts/distributivity_ja> .
 
 <http://modernmath.org/concepts/eigenvalue-eigenvector> ns1:hasTranslation <http://modernmath.org/concepts/eigenvalue-eigenvector_ja> .
@@ -82,6 +84,8 @@
 <http://modernmath.org/concepts/expectation> ns1:hasTranslation <http://modernmath.org/concepts/expectation_ja> .
 
 <http://modernmath.org/concepts/exponential-homomorphism> ns1:hasTranslation <http://modernmath.org/concepts/exponential-homomorphism_ja> .
+
+<http://modernmath.org/concepts/fermat-little> ns1:hasTranslation <http://modernmath.org/concepts/fermat-little_ja> .
 
 <http://modernmath.org/concepts/field> ns1:hasTranslation <http://modernmath.org/concepts/field_ja> .
 
@@ -739,6 +743,8 @@ base:thm-yoneda a mymath:Theorem ;
 
 <http://modernmath.org/concepts/derivative_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/direct-product_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/distributivity_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/eigenvalue-eigenvector_ja> ns1:language "ja" .
@@ -758,6 +764,8 @@ base:thm-yoneda a mymath:Theorem ;
 <http://modernmath.org/concepts/expectation_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/exponential-homomorphism_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/fermat-little_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/field-characteristic_ja> ns1:language "ja" .
 
@@ -1519,7 +1527,18 @@ base:thm-euler a mymath:Theorem ;
         base:def-group,
         base:def-prime,
         base:def-quotient-group,
-        base:ex-quotient-integers-mod-n .
+        base:ex-quotient-integers-mod-n,
+        base:thm-fermat-little .
+
+base:thm-fermat-little a mymath:Theorem ;
+    rdfs:label "Theorem: Fermat's Little Theorem"@en,
+        "定理: フェルマーの小定理"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-congruence,
+        base:def-gcd,
+        base:def-prime .
 
 base:def-compact a mymath:Definition ;
     rdfs:label "Definition: Compact Space"@en,
@@ -1532,6 +1551,21 @@ base:def-compact a mymath:Definition ;
     mymath:uses base:def-open-set,
         base:def-set,
         base:def-topological-space .
+
+base:def-direct-product a mymath:Definition ;
+    rdfs:label "Definition: Direct Product of Groups"@en,
+        "定義：群の直積"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasLeanId "Mathlib.Algebra.Group.Pi" ;
+    mymath:hasStatus "complete",
+        "stub" ;
+    mymath:uses base:def-abelian-group,
+        base:def-cyclic-group,
+        base:def-group,
+        base:def-homomorphism,
+        base:def-normal-subgroup,
+        base:def-set .
 
 base:def-event a mymath:Definition ;
     rdfs:label "Definition: Event"@en,
@@ -1572,21 +1606,6 @@ base:thm-euclidean-algorithm a mymath:Theorem ;
     mymath:uses base:def-gcd,
         base:ex-quotient-integers-mod-n .
 
-base:def-congruence a mymath:Definition ;
-    rdfs:label "Definition: Congruence (Modular Arithmetic)"@en,
-        "定義: 合同（モジュラー演算）"@en ;
-    mymath:hasDomain "Number Theory",
-        "数論" ;
-    mymath:hasLeanId "Mathlib.Data.Int.ModEq" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:ax-induction,
-        base:def-gcd,
-        base:def-prime,
-        base:def-set,
-        base:ex-quotient-integers-mod-n,
-        base:thm-euclidean-algorithm,
-        base:thm-euler .
-
 base:def-field a mymath:Definition ;
     rdfs:label "Definition: Field"@en,
         "定義: 体"@en ;
@@ -1599,18 +1618,6 @@ base:def-field a mymath:Definition ;
         base:def-group,
         base:def-ideal,
         base:def-ring .
-
-base:def-gcd a mymath:Definition ;
-    rdfs:label "Definition: Greatest Common Divisor"@en,
-        "定義：最大公約数"@en ;
-    mymath:hasDomain "Number Theory",
-        "数論" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-congruence,
-        base:def-prime,
-        base:def-set,
-        base:thm-euclidean-algorithm,
-        base:thm-euler .
 
 base:def-group-action a mymath:Definition ;
     rdfs:label "Group Action"@en,
@@ -1681,6 +1688,34 @@ base:ex-integers-addition a mymath:Example ;
         base:def-group,
         base:def-set .
 
+base:def-congruence a mymath:Definition ;
+    rdfs:label "Definition: Congruence (Modular Arithmetic)"@en,
+        "定義: 合同（モジュラー演算）"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasLeanId "Mathlib.Data.Int.ModEq" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:ax-induction,
+        base:def-gcd,
+        base:def-prime,
+        base:def-set,
+        base:ex-quotient-integers-mod-n,
+        base:thm-euclidean-algorithm,
+        base:thm-euler,
+        base:thm-fermat-little .
+
+base:def-gcd a mymath:Definition ;
+    rdfs:label "Definition: Greatest Common Divisor"@en,
+        "定義：最大公約数"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-congruence,
+        base:def-prime,
+        base:def-set,
+        base:thm-euclidean-algorithm,
+        base:thm-euler .
+
 base:def-graph a mymath:Definition ;
     rdfs:label "Definition: Graph"@en,
         "定義: グラフ"@en ;
@@ -1688,17 +1723,6 @@ base:def-graph a mymath:Definition ;
         "組合せ論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
-
-base:def-homomorphism a mymath:Definition ;
-    rdfs:label "Definition: Group Homomorphism"@en,
-        "定義: 群準同型"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation,
-        base:def-group,
-        base:def-quotient-group,
-        base:thm-first-isomorphism .
 
 base:def-random-variable a mymath:Definition ;
     rdfs:label "Definition: Random Variable"@en,
@@ -1740,6 +1764,17 @@ base:def-coset a mymath:Definition ;
         base:ex-quotient-integers-mod-n,
         base:thm-lagrange .
 
+base:def-homomorphism a mymath:Definition ;
+    rdfs:label "Definition: Group Homomorphism"@en,
+        "定義: 群準同型"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-binary-operation,
+        base:def-group,
+        base:def-quotient-group,
+        base:thm-first-isomorphism .
+
 base:def-ideal a mymath:Definition ;
     rdfs:label "Definition: Ideal"@en,
         "定義: イデアル"@en ;
@@ -1780,6 +1815,7 @@ base:ex-quotient-integers-mod-n a mymath:Example ;
         base:def-congruence,
         base:def-coset,
         base:def-cyclic-group,
+        base:def-direct-product,
         base:def-group,
         base:def-normal-subgroup,
         base:def-quotient-group,
@@ -1832,13 +1868,6 @@ base:def-metric-space a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
-base:def-prime a mymath:Definition ;
-    rdfs:label "Definition: Prime Number"@en,
-        "定義：素数"@en ;
-    mymath:hasDomain "Number Theory",
-        "数論" ;
-    mymath:hasStatus "complete" .
-
 base:def-ring a mymath:Definition ;
     rdfs:label "Definition: Ring"@en,
         "定義：環"@en ;
@@ -1868,6 +1897,13 @@ base:def-subgroup a mymath:Definition ;
         base:def-set,
         base:thm-lagrange .
 
+base:def-prime a mymath:Definition ;
+    rdfs:label "Definition: Prime Number"@en,
+        "定義：素数"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" .
+
 base:def-cyclic-group a mymath:Definition ;
     rdfs:label "Definition: Cyclic Group"@en,
         "定義: 巡回群"@en ;
@@ -1875,12 +1911,23 @@ base:def-cyclic-group a mymath:Definition ;
         "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-abelian-group,
+        base:def-direct-product,
         base:def-group,
         base:def-identity-element,
         base:def-subgroup,
         base:ex-integers-addition,
         base:ex-quotient-integers-mod-n,
         base:thm-lagrange .
+
+base:def-topological-space a mymath:Definition ;
+    rdfs:label "Definition: Topological Space"@en,
+        "定義: 位相空間"@en ;
+    mymath:hasDomain "Topology",
+        "位相幾何学" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Basic.TopologicalSpace>,
+        base:formal-proof-def-topological-space ;
+    mymath:uses base:def-set .
 
 base:def-normal-subgroup a mymath:Definition ;
     rdfs:label "Definition: Normal Subgroup"@en,
@@ -1898,16 +1945,6 @@ base:def-normal-subgroup a mymath:Definition ;
         base:def-subgroup,
         base:thm-first-isomorphism,
         base:thm-lagrange .
-
-base:def-topological-space a mymath:Definition ;
-    rdfs:label "Definition: Topological Space"@en,
-        "定義: 位相空間"@en ;
-    mymath:hasDomain "Topology",
-        "位相幾何学" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Basic.TopologicalSpace>,
-        base:formal-proof-def-topological-space ;
-    mymath:uses base:def-set .
 
 base:def-vector-space a mymath:Definition ;
     rdfs:label "Definition: Vector Space"@en,
@@ -1939,21 +1976,6 @@ base:def-quotient-group a mymath:Definition ;
         base:def-subgroup,
         base:thm-first-isomorphism .
 
-base:def-abelian-group a mymath:Definition ;
-    rdfs:label "Definition: Abelian Group"@en,
-        "定義: アーベル群"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasLeanId "Mathlib.Algebra.Group.Defs" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-commutativity,
-        base:def-cyclic-group,
-        base:def-group,
-        base:def-normal-subgroup,
-        base:def-quotient-group,
-        base:thm-first-isomorphism,
-        base:thm-lagrange .
-
 base:def-binary-operation a mymath:Definition ;
     rdfs:label "Definition: Binary Operation"@en,
         "定義: 二項演算"@en ;
@@ -1964,6 +1986,22 @@ base:def-binary-operation a mymath:Definition ;
     mymath:isVerifiedBy <https://mathlib.org/proof/MathKnowledgeGraph.Algebra.BinaryOp>,
         base:formal-proof-def-binary-operation ;
     mymath:uses base:def-set .
+
+base:def-abelian-group a mymath:Definition ;
+    rdfs:label "Definition: Abelian Group"@en,
+        "定義: アーベル群"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasLeanId "Mathlib.Algebra.Group.Defs" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-commutativity,
+        base:def-cyclic-group,
+        base:def-direct-product,
+        base:def-group,
+        base:def-normal-subgroup,
+        base:def-quotient-group,
+        base:thm-first-isomorphism,
+        base:thm-lagrange .
 
 base:def-group a mymath:Definition ;
     rdfs:label "Definition: Group"@en,

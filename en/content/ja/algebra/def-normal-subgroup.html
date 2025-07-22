@@ -367,48 +367,51 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-group-action["Group Action"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    def-group["Definition: Group"]:::definition
-    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
     def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     def-kernel["Definition: Kernel"]:::definition
-    def-coset["Definition: Coset"]:::definition
-    def-quotient-group["Definition: Quotient Group"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-direct-product["Definition: Direct Product of Groups"]:::definition
+    def-coset["Definition: Coset"]:::definition
     ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    def-subgroup --&gt; def-normal-subgroup
-    def-normal-subgroup --&gt; def-group
-    def-quotient-group --&gt; def-normal-subgroup
-    def-normal-subgroup --&gt; def-subgroup
-    def-abelian-group --&gt; def-normal-subgroup
     ex-quotient-integers-mod-n --&gt; def-normal-subgroup
-    def-normal-subgroup --&gt; def-coset
-    thm-first-isomorphism --&gt; def-normal-subgroup
-    def-normal-subgroup --&gt; def-quotient-group
-    def-group --&gt; def-normal-subgroup
-    def-normal-subgroup --&gt; def-homomorphism
-    def-coset --&gt; def-normal-subgroup
-    def-normal-subgroup --&gt; def-abelian-group
     def-kernel --&gt; def-normal-subgroup
     def-normal-subgroup --&gt; def-group-action
-    def-normal-subgroup --&gt; thm-lagrange
+    def-coset --&gt; def-normal-subgroup
+    def-normal-subgroup --&gt; def-subgroup
+    def-group --&gt; def-normal-subgroup
+    def-normal-subgroup --&gt; def-group
+    thm-first-isomorphism --&gt; def-normal-subgroup
+    def-normal-subgroup --&gt; def-abelian-group
     ex-even-integers-subgroup --&gt; def-normal-subgroup
+    def-normal-subgroup --&gt; def-quotient-group
+    def-normal-subgroup --&gt; def-homomorphism
+    def-abelian-group --&gt; def-normal-subgroup
+    def-quotient-group --&gt; def-normal-subgroup
+    def-normal-subgroup --&gt; def-coset
+    def-subgroup --&gt; def-normal-subgroup
+    def-normal-subgroup --&gt; thm-lagrange
+    def-direct-product --&gt; def-normal-subgroup
     def-normal-subgroup --&gt; thm-first-isomorphism
     class def-normal-subgroup current
     click def-group-action "def-group-action.html" "Group Actionへ"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
-    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
-    click def-group "def-group.html" "Definition: Groupへ"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Theorem: First Isomorphism Theoremへ"
     click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
-    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
-    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
     click def-kernel "def-kernel.html" "Definition: Kernelへ"
-    click def-coset "def-coset.html" "Definition: Cosetへ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
+    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "Theorem: First Isomorphism Theoremへ"
+    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
     click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
+    click def-direct-product "def-direct-product.html" "Definition: Direct Product of Groupsへ"
+    click def-coset "def-coset.html" "Definition: Cosetへ"
     click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Example: Even Integers Form a Subgroupへ"
 </pre>
 </div>
@@ -420,7 +423,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-normal-subgroup-1753183028" class="graph-visualization-container">
+<div id="graph-viz-def-normal-subgroup-1753194049" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -600,12 +603,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-normal-subgroup-1753183028', {
+    createForceGraph(data, 'graph-viz-def-normal-subgroup-1753194049', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-normal-subgroup-1753183028').innerHTML =
+    document.getElementById('graph-viz-def-normal-subgroup-1753194049').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

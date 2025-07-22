@@ -365,7 +365,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="connection-to-other-concepts">Connection to Other Concepts</h2>
 <ul>
 <li>The set of congruence classes forms the quotient group <span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> (see <a href="../../../content/en/algebra/ex-quotient-integers-mod-n.html">整数の n による剰余</a>)</li>
-<li>Fermat’s Little Theorem and Euler’s Theorem use modular arithmetic (see <a href="../../../content/en/number-theory/thm-euler.html">定理：オイラーの定理</a>)</li>
+<li><a href="../../../content/en/number-theory/thm-fermat-little.html">Fermat’s Little Theorem</a> and <a href="../../../content/en/number-theory/thm-euler.html">Euler’s Theorem</a> use modular arithmetic</li>
 <li>Prime numbers have special properties in modular arithmetic (see <a href="../../../content/en/number-theory/def-prime.html">定義：素数</a>)</li>
 <li>The Euclidean algorithm can find modular inverses (see <a href="../../../content/en/number-theory/thm-euclidean-algorithm.html">定理：ユークリッドのアルゴリズム</a>)</li>
 </ul>
@@ -404,34 +404,38 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
-    def-gcd["Definition: Greatest Common Divisor"]:::definition
     thm-chinese-remainder["Theorem: Chinese Remainder Theorem"]:::theorem
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     ax-induction["Axiom: Mathematical Induction"]:::axiom
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    thm-fermat-little["Theorem: Fermat's Little Theorem"]:::theorem
     def-prime["Definition: Prime Number"]:::definition
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    def-gcd["Definition: Greatest Common Divisor"]:::definition
     def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
     def-set["Definition: Set"]:::definition
-    def-congruence --&gt; def-set
-    ex-quotient-integers-mod-n --&gt; def-congruence
-    def-congruence --&gt; thm-euler
-    def-congruence --&gt; def-prime
-    def-gcd --&gt; def-congruence
-    thm-euler --&gt; def-congruence
-    def-congruence --&gt; def-gcd
     def-congruence --&gt; ex-quotient-integers-mod-n
     def-congruence --&gt; ax-induction
+    thm-euler --&gt; def-congruence
+    thm-fermat-little --&gt; def-congruence
+    def-congruence --&gt; def-prime
+    def-gcd --&gt; def-congruence
+    def-congruence --&gt; def-gcd
+    def-congruence --&gt; thm-fermat-little
+    def-congruence --&gt; def-set
+    ex-quotient-integers-mod-n --&gt; def-congruence
     def-congruence --&gt; thm-euclidean-algorithm
+    def-congruence --&gt; thm-euler
     thm-chinese-remainder --&gt; def-congruence
     class def-congruence current
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
     click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Go to Euclidean Algorithm theorem"
-    click def-gcd "def-gcd.html" "Go to Greatest Common Divisor definition"
     click thm-chinese-remainder "thm-chinese-remainder.html" "Go to Chinese Remainder Theorem theorem"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
     click ax-induction "ax-induction.html" "Go to Mathematical Induction axiom"
-    click thm-euler "thm-euler.html" "Go to Euler's Theorem theorem"
+    click thm-fermat-little "thm-fermat-little.html" "Go to Fermat's Little Theorem theorem"
     click def-prime "def-prime.html" "Go to Prime Number definition"
+    click thm-euler "thm-euler.html" "Go to Euler's Theorem theorem"
+    click def-gcd "def-gcd.html" "Go to Greatest Common Divisor definition"
     click def-set "def-set.html" "Go to Set definition"
 </pre>
 </div>
@@ -443,7 +447,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-congruence-1753182988" class="graph-visualization-container">
+<div id="graph-viz-def-congruence-1753194005" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -623,12 +627,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-congruence-1753182988', {
+    createForceGraph(data, 'graph-viz-def-congruence-1753194005', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-congruence-1753182988').innerHTML =
+    document.getElementById('graph-viz-def-congruence-1753194005').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

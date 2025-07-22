@@ -325,20 +325,20 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-image["Definition: Image"]:::definition
     def-vector-space["Definition: Vector Space"]:::definition
+    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
     thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
     def-linear-transformation["Definition: Linear Transformation"]:::definition
-    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
-    def-image["Definition: Image"]:::definition
     thm-rank-nullity --&gt; def-image
     thm-first-isomorphism --&gt; def-image
-    def-image --&gt; def-linear-transformation
     def-image --&gt; def-vector-space
+    def-image --&gt; def-linear-transformation
     class def-image current
     click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "Theorem: First Isomorphism Theoremへ"
     click thm-rank-nullity "thm-rank-nullity.html" "Theorem: Rank-Nullity Theoremへ"
     click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Theorem: First Isomorphism Theoremへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -349,7 +349,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-image-1753183027" class="graph-visualization-container">
+<div id="graph-viz-def-image-1753194048" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -529,12 +529,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-image-1753183027', {
+    createForceGraph(data, 'graph-viz-def-image-1753194048', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-image-1753183027').innerHTML =
+    document.getElementById('graph-viz-def-image-1753194048').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
