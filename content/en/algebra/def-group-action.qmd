@@ -1,0 +1,98 @@
+---
+id: def-group-action
+requires:
+- def-group
+- def-identity-element
+sidebar: true
+status: verified
+title: Group Action
+translations:
+  en: def-group-action.html
+  ja: def-group-action.html
+type: Definition
+---
+
+A **group action** is a way for a group to act on a set by permuting its elements in a manner compatible with the group structure.
+
+## Formal Definition
+
+Let $G$ be a [group](def-group.qmd) and $X$ be a set. A **(left) group action** of $G$ on $X$ is a function
+$$\phi: G \times X \to X$$
+written as $\phi(g,x) = g \cdot x$, that satisfies:
+
+1. **Identity axiom**: $e \cdot x = x$ for all $x \in X$, where $e$ is the [identity element](def-identity-element.qmd) of $G$
+2. **Compatibility axiom**: $g \cdot (h \cdot x) = (gh) \cdot x$ for all $g, h \in G$ and $x \in X$
+
+## Key Concepts
+
+### Orbit
+
+For any element $x \in X$, the **orbit** of $x$ under $G$ is:
+$$G \cdot x = \{g \cdot x : g \in G\}$$
+
+The orbits partition $X$ into disjoint equivalence classes.
+
+### Stabilizer
+
+The **stabilizer** of $x \in X$ is the subgroup:
+$$G_x = \{g \in G : g \cdot x = x\}$$
+
+This is indeed a [subgroup](def-subgroup.qmd) of $G$.
+
+### Fixed Points
+
+An element $x \in X$ is a **fixed point** if $g \cdot x = x$ for all $g \in G$. Equivalently, $x$ is fixed if its orbit contains only itself.
+
+## Properties
+
+- **Transitive action**: The action is transitive if there is only one orbit, i.e., for any $x, y \in X$, there exists $g \in G$ such that $g \cdot x = y$
+- **Faithful action**: The action is faithful if different group elements act differently, i.e., if $g \cdot x = h \cdot x$ for all $x \in X$, then $g = h$
+- **Free action**: The action is free if $g \cdot x = x$ for some $x \in X$ implies $g = e$
+
+## Related Concepts
+
+- [Homomorphism](def-homomorphism.qmd): A group action induces a homomorphism $G \to \text{Sym}(X)$
+- [Coset](def-coset.qmd): There is a natural bijection between $G/G_x$ and the orbit $G \cdot x$
+- [Normal Subgroup](def-normal-subgroup.qmd): The kernel of the induced homomorphism is normal
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-group-action-examples["Examples of Group Actions"]:::example
+    def-group-action["Group Action"]:::definition
+    def-coset["Definition: Coset"]:::definition
+    def-identity-element["Definition: Identity Element"]:::definition
+    def-group["Definition: Group"]:::definition
+    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
+    ex-group-action-examples --> def-group-action
+    def-group-action --> def-group
+    def-group-action --> def-identity-element
+    thm-orbit-stabilizer --> def-group-action
+    def-coset --> def-group-action
+    class def-group-action current
+    click ex-group-action-examples "ex-group-action-examples.html" "Go to Examples of Group Actions"
+    click def-coset "def-coset.html" "Go to Coset definition"
+    click def-identity-element "def-identity-element.html" "Go to Identity Element definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "Go to Orbit-Stabilizer Theorem"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-group-action" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-group-action.html){target="_blank"}

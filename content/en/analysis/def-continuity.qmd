@@ -62,26 +62,32 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
+    def-uniform-continuity["Definition: Uniform Continuity"]:::definition
+    def-limit["Definition: Limit of a Sequence"]:::definition
+    def-continuity["Definition: Continuity"]:::definition
+    def-homeomorphism["Definition: Homeomorphism"]:::definition
+    thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
     thm-chain-rule["Theorem: Chain Rule"]:::theorem
     def-integral["Definition: Integral"]:::definition
     thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
-    def-continuity["Definition: Continuity"]:::definition
-    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
-    def-limit["Definition: Limit of a Sequence"]:::definition
-    thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
+    def-homeomorphism --> def-continuity
+    thm-mean-value --> def-continuity
+    def-uniform-continuity --> def-continuity
     thm-chain-rule --> def-continuity
+    def-continuity --> def-limit
     def-integral --> def-continuity
     ex-polynomial-continuity --> def-continuity
-    def-continuity --> def-limit
-    thm-mean-value --> def-continuity
     thm-intermediate-value --> def-continuity
     class def-continuity current
+    click ex-polynomial-continuity "ex-polynomial-continuity.html" "Go to Polynomial Continuity example"
+    click def-uniform-continuity "def-uniform-continuity.html" "Go to Uniform Continuity definition"
+    click def-limit "def-limit.html" "Go to Limit of a Sequence definition"
+    click def-homeomorphism "def-homeomorphism.html" "Go to Homeomorphism definition"
+    click thm-mean-value "thm-mean-value.html" "Go to Mean Value Theorem theorem"
     click thm-chain-rule "thm-chain-rule.html" "Go to Chain Rule theorem"
     click def-integral "def-integral.html" "Go to Integral definition"
     click thm-intermediate-value "thm-intermediate-value.html" "Go to Intermediate Value Theorem theorem"
-    click ex-polynomial-continuity "ex-polynomial-continuity.html" "Go to Polynomial Continuity example"
-    click def-limit "def-limit.html" "Go to Limit of a Sequence definition"
-    click thm-mean-value "thm-mean-value.html" "Go to Mean Value Theorem theorem"
 ```
 
 ## Interactive Visualization

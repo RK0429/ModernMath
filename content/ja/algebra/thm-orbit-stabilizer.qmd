@@ -1,0 +1,57 @@
+---
+title: "軌道・固定化部分群定理"
+id: thm-orbit-stabilizer
+type: Theorem
+status: verified
+sidebar: true
+requires:
+  - def-group-action
+  - def-coset
+  - thm-lagrange
+translation_of: ../../en/algebra/thm-orbit-stabilizer.qmd
+translations:
+  en: thm-orbit-stabilizer.html
+  ja: thm-orbit-stabilizer.html
+---
+
+**軌道・固定化部分群定理**は、[群作用](def-group-action.qmd)における群の位数と軌道・固定化部分群の大きさの関係を述べます。
+
+## 定理の主張
+
+有限[群](def-group.qmd) $G$ が集合 $X$ に作用し、$x \in X$ とする。このとき：
+$$|G| = |G \cdot x| \times |G_x|$$
+
+ここで：
+- $G \cdot x$ は $x$ の軌道
+- $G_x$ は $x$ の固定化部分群
+
+## 証明の概要
+
+1. 写像 $\phi: G/G_x \to G \cdot x$ を $\phi(gG_x) = g \cdot x$ で定義する
+2. この写像は well-defined：$gG_x = hG_x$ ならば $h^{-1}g \in G_x$ なので $(h^{-1}g) \cdot x = x$ となり、$g \cdot x = h \cdot x$
+3. 写像は全単射：
+   - **単射**: $g \cdot x = h \cdot x$ ならば $(h^{-1}g) \cdot x = x$ なので $h^{-1}g \in G_x$、よって $gG_x = hG_x$
+   - **全射**: $G \cdot x$ のすべての元は $g \cdot x$ の形
+4. したがって $|G/G_x| = |G \cdot x|$
+5. [ラグランジュの定理](thm-lagrange.qmd)により、$|G| = |G_x| \times |G/G_x| = |G_x| \times |G \cdot x|$
+
+## 系
+
+### 系 1：整除性
+有限群 $G$ の集合 $X$ への任意の群作用に対して：
+- すべての軌道の大きさは $|G|$ を割る
+- すべての固定化部分群の大きさは $|G|$ を割る
+
+### 系 2：推移的作用
+作用が推移的（単一の軌道）ならば、任意の $x \in X$ に対して：
+$$|X| = \frac{|G|}{|G_x|}$$
+
+### 系 3：固定点の計数
+群の元 $g \in G$ の固定点の個数は、巡回部分群 $\langle g \rangle$ による軌道の個数に等しい。
+
+## 応用
+
+1. **対称性の計数**: グラフや他の構造の自己同型の個数を数える
+2. **バーンサイドの補題**: 固定点を使って軌道を数える
+3. **シローの定理**: 部分群への共役作用を解析
+4. **分類**: 様々な集合への作用により群を分類

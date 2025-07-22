@@ -39,7 +39,7 @@ $T: V \to W$ が線形変換ならば：
 - **線形作用素**：$V = W$（空間から自分自身への変換）の場合。線形作用素に対しては、[固有値と固有ベクトル](def-eigenvalue-eigenvector.qmd)を研究できます
 - **同型写像**：$T$ が全単射（一対一かつ上への写像）の場合
 
-線形変換はベクトル空間の構造を保存し、ベクトル空間の圏における射です。
+線形変換はベクトル空間の構造を保存し、ベクトル空間の圏における射です。ベクトル空間上のすべての可逆線形作用素の集合は合成の下で群をなし、そのベクトル空間に自然に[作用](def-group-action.qmd)します。
 
 ## 依存関係グラフ
 
@@ -51,29 +51,29 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-image["Definition: Image"]:::definition
     def-linear-transformation["Definition: Linear Transformation"]:::definition
     thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
     ex-matrix-transformation["Example: Matrix Transformation"]:::example
-    def-kernel["Definition: Kernel"]:::definition
-    def-image["Definition: Image"]:::definition
-    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
-    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
     def-vector-space["Definition: Vector Space"]:::definition
-    ex-matrix-transformation --> def-linear-transformation
-    def-linear-transformation --> def-vector-space
+    def-kernel["Definition: Kernel"]:::definition
+    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
+    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
     thm-linear-transformation-basis --> def-linear-transformation
+    ex-matrix-transformation --> def-linear-transformation
+    def-kernel --> def-linear-transformation
     def-eigenvalue-eigenvector --> def-linear-transformation
     def-image --> def-linear-transformation
+    def-linear-transformation --> def-vector-space
     thm-rank-nullity --> def-linear-transformation
-    def-kernel --> def-linear-transformation
     class def-linear-transformation current
+    click def-image "def-image.html" "Definition: Imageへ"
     click thm-linear-transformation-basis "thm-linear-transformation-basis.html" "Theorem: Linear Transformation Determined by Basisへ"
     click ex-matrix-transformation "ex-matrix-transformation.html" "Example: Matrix Transformationへ"
-    click def-kernel "def-kernel.html" "Definition: Kernelへ"
-    click def-image "def-image.html" "Definition: Imageへ"
-    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Definition: Eigenvalue and Eigenvectorへ"
-    click thm-rank-nullity "thm-rank-nullity.html" "Theorem: Rank-Nullity Theoremへ"
     click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
+    click def-kernel "def-kernel.html" "Definition: Kernelへ"
+    click thm-rank-nullity "thm-rank-nullity.html" "Theorem: Rank-Nullity Theoremへ"
+    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Definition: Eigenvalue and Eigenvectorへ"
 ```
 
 ## インタラクティブ可視化

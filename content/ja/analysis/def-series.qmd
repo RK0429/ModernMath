@@ -88,35 +88,35 @@ $$\sum_{n=1}^{\infty} \frac{1}{n^p} \begin{cases}
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "局所依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-sequence["定義: 数列"]:::definition
-    def-convergence["定義: 収束"]:::definition
-    def-limit["定義: 極限"]:::definition
-    def-series["定義: 級数"]:::definition
-    def-series --> def-sequence
+    def-limit["Definition: Limit of a Sequence"]:::definition
+    def-sequence["Definition: Sequence"]:::definition
+    def-convergence["Definition: Convergence"]:::definition
+    def-series["Definition: Series"]:::definition
     def-series --> def-convergence
+    def-series --> def-sequence
     def-series --> def-limit
     class def-series current
-    click def-sequence "def-sequence.html" "数列の定義へ"
-    click def-convergence "def-convergence.html" "収束の定義へ"
-    click def-limit "def-limit.html" "極限の定義へ"
+    click def-limit "def-limit.html" "Definition: Limit of a Sequenceへ"
+    click def-sequence "def-sequence.html" "Definition: Sequenceへ"
+    click def-convergence "def-convergence.html" "Definition: Convergenceへ"
 ```
 
 ## インタラクティブ可視化
 
-局所的な知識グラフの近傍をインタラクティブに探索：
+ローカルナレッジグラフの近傍をインタラクティブに探索：
 
 ::: {.graph-viz data-id="def-series" data-width="700" data-height="500"}
 :::
 
 次のことができます：
 - ノードを**ドラッグ**してレイアウトを再配置
-- マウスホイールで**ズームイン/アウト**
+- マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [完全なインタラクティブ版](../../output/interactive/def-series.html){target="_blank"}を表示
+- [別ウィンドウ](../../output/interactive/def-series.html){target="_blank"}で完全なインタラクティブ版を表示

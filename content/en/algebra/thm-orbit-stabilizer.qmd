@@ -1,0 +1,92 @@
+---
+id: thm-orbit-stabilizer
+requires:
+- def-group-action
+- def-coset
+- thm-lagrange
+sidebar: true
+status: verified
+title: Orbit-Stabilizer Theorem
+translations:
+  en: thm-orbit-stabilizer.html
+  ja: thm-orbit-stabilizer.html
+type: Theorem
+---
+
+The **Orbit-Stabilizer Theorem** relates the size of a group to the sizes of orbits and stabilizers under a [group action](def-group-action.qmd).
+
+## Statement
+
+Let $G$ be a finite [group](def-group.qmd) acting on a set $X$, and let $x \in X$. Then:
+$$|G| = |G \cdot x| \times |G_x|$$
+
+where:
+- $G \cdot x$ is the orbit of $x$
+- $G_x$ is the stabilizer of $x$
+
+## Proof Outline
+
+1. Define a map $\phi: G/G_x \to G \cdot x$ by $\phi(gG_x) = g \cdot x$
+2. This map is well-defined: if $gG_x = hG_x$, then $h^{-1}g \in G_x$, so $(h^{-1}g) \cdot x = x$, giving $g \cdot x = h \cdot x$
+3. The map is bijective:
+   - **Injective**: If $g \cdot x = h \cdot x$, then $(h^{-1}g) \cdot x = x$, so $h^{-1}g \in G_x$, thus $gG_x = hG_x$
+   - **Surjective**: Every element of $G \cdot x$ has the form $g \cdot x$ for some $g \in G$
+4. Therefore $|G/G_x| = |G \cdot x|$
+5. By [Lagrange's theorem](thm-lagrange.qmd), $|G| = |G_x| \times |G/G_x| = |G_x| \times |G \cdot x|$
+
+## Consequences
+
+### Corollary 1: Divisibility
+For any group action of a finite group $G$ on a set $X$:
+- The size of every orbit divides $|G|$
+- The size of every stabilizer divides $|G|$
+
+### Corollary 2: Transitive Actions
+If the action is transitive (single orbit), then for any $x \in X$:
+$$|X| = \frac{|G|}{|G_x|}$$
+
+### Corollary 3: Fixed Point Counting
+The number of fixed points of an element $g \in G$ equals the number of orbits under the cyclic subgroup $\langle g \rangle$.
+
+## Applications
+
+1. **Counting symmetries**: Used to count automorphisms of graphs and other structures
+2. **Burnside's lemma**: Counts orbits using fixed points
+3. **Sylow theorems**: Analyzes conjugation actions on subgroups
+4. **Classification**: Helps classify groups by their actions on various sets
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-coset["Definition: Coset"]:::definition
+    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-group-action["Group Action"]:::definition
+    thm-orbit-stabilizer --> def-group-action
+    thm-orbit-stabilizer --> thm-lagrange
+    thm-orbit-stabilizer --> def-coset
+    class thm-orbit-stabilizer current
+    click def-coset "def-coset.html" "Go to Coset definition"
+    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
+    click def-group-action "def-group-action.html" "Go to Group Action"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="thm-orbit-stabilizer" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/thm-orbit-stabilizer.html){target="_blank"}

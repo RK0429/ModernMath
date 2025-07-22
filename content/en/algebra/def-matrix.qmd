@@ -50,7 +50,7 @@ where $a_{ij} \in F$ is the entry in the $i$-th row and $j$-th column.
 The **transpose** of an $m \times n$ matrix $A$ is the $n \times m$ matrix $A^T$ where:
 $$(A^T)_{ij} = a_{ji}$$
 
-Matrices are fundamental objects in linear algebra, representing linear transformations, systems of equations, and bilinear forms.
+Matrices are fundamental objects in linear algebra, representing linear transformations, systems of equations, and bilinear forms. The set of invertible $n \times n$ matrices forms a group under multiplication (called the general linear group $GL_n(F)$), which naturally [acts](def-group-action.qmd) on $F^n$.
 
 ## Dependency Graph
 
@@ -62,14 +62,14 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-matrix-transformation["Example: Matrix Transformation"]:::example
-    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
     def-matrix["Definition: Matrix"]:::definition
-    def-eigenvalue-eigenvector --> def-matrix
+    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    ex-matrix-transformation["Example: Matrix Transformation"]:::example
     ex-matrix-transformation --> def-matrix
+    def-eigenvalue-eigenvector --> def-matrix
     class def-matrix current
-    click ex-matrix-transformation "ex-matrix-transformation.html" "Go to Matrix Transformation example"
     click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector definition"
+    click ex-matrix-transformation "ex-matrix-transformation.html" "Go to Matrix Transformation example"
 ```
 
 ## Interactive Visualization

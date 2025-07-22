@@ -90,3 +90,39 @@ graph TD
     style C fill:#bbf,stroke:#333,stroke-width:2px
     style H fill:#bfb,stroke:#333,stroke-width:2px
 ```
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-expectation["Definition: Expected Value"]:::definition
+    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
+    def-variance["Definition: Variance"]:::definition
+    def-random-variable["Definition: Random Variable"]:::definition
+    def-variance --> def-expectation
+    def-variance --> def-random-variable
+    thm-law-of-large-numbers --> def-variance
+    class def-variance current
+    click def-expectation "def-expectation.html" "Definition: Expected Valueへ"
+    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "Theorem: Law of Large Numbersへ"
+    click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-variance" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/def-variance.html){target="_blank"}で完全なインタラクティブ版を表示

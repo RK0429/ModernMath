@@ -1,0 +1,105 @@
+---
+id: ex-group-action-examples
+requires:
+- def-group-action
+- def-group
+- def-cyclic-group
+sidebar: true
+status: verified
+title: Examples of Group Actions
+translations:
+  en: ex-group-action-examples.html
+  ja: ex-group-action-examples.html
+type: Example
+---
+
+[Group actions](def-group-action.qmd) are fundamental in understanding symmetries. Here are several important examples.
+
+## Trivial Action
+
+For any [group](def-group.qmd) $G$ and set $X$, the **trivial action** is defined by:
+$$g \cdot x = x \text{ for all } g \in G, x \in X$$
+
+Every element of $X$ is a fixed point, and each orbit consists of a single element.
+
+## Left Multiplication Action
+
+A group $G$ acts on itself by left multiplication:
+$$g \cdot h = gh \text{ for } g, h \in G$$
+
+This action is:
+- **Transitive**: For any $h_1, h_2 \in G$, we have $h_2h_1^{-1} \cdot h_1 = h_2$
+- **Free**: If $g \cdot h = h$, then $gh = h$, so $g = e$
+
+## Conjugation Action
+
+A group $G$ acts on itself by conjugation:
+$$g \cdot h = ghg^{-1} \text{ for } g, h \in G$$
+
+Properties:
+- The orbit of $h$ is its conjugacy class: $\{ghg^{-1} : g \in G\}$
+- The stabilizer of $h$ is its centralizer: $C_G(h) = \{g \in G : gh = hg\}$
+- Fixed points are exactly the elements of the center $Z(G)$
+
+## Symmetric Group on a Set
+
+The symmetric group $S_n$ acts naturally on the set $\{1, 2, \ldots, n\}$ by:
+$$\sigma \cdot i = \sigma(i) \text{ for } \sigma \in S_n, i \in \{1, 2, \ldots, n\}$$
+
+This action is:
+- **Transitive**: Any element can be mapped to any other by some permutation
+- **Faithful**: Different permutations act differently on the set
+
+## Dihedral Group on a Polygon
+
+The dihedral group $D_n$ acts on the vertices of a regular $n$-gon:
+- Rotations move vertices cyclically
+- Reflections flip vertices across axes of symmetry
+
+For a square ($n = 4$):
+- The stabilizer of any vertex has order 2 (identity and one reflection)
+- Each orbit is the entire set of vertices (transitive action)
+- By the orbit-stabilizer theorem: $|D_4| = |orbit| \times |stabilizer| = 4 \times 2 = 8$
+
+## Cyclic Group on Roots of Unity
+
+The [cyclic group](def-cyclic-group.qmd) $\mathbb{Z}/n\mathbb{Z}$ acts on the $n$-th roots of unity in $\mathbb{C}$:
+$$k \cdot \omega = \omega \cdot e^{2\pi i k/n} \text{ where } \omega = e^{2\pi i j/n}$$
+
+This gives a rotation of the complex unit circle by multiples of $2\pi/n$.
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-group["Definition: Group"]:::definition
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
+    ex-group-action-examples["Examples of Group Actions"]:::example
+    def-group-action["Group Action"]:::definition
+    ex-group-action-examples --> def-group
+    ex-group-action-examples --> def-cyclic-group
+    ex-group-action-examples --> def-group-action
+    class ex-group-action-examples current
+    click def-group "def-group.html" "Go to Group definition"
+    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
+    click def-group-action "def-group-action.html" "Go to Group Action"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="ex-group-action-examples" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/ex-group-action-examples.html){target="_blank"}

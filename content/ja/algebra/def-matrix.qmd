@@ -51,7 +51,7 @@ a_{m1} & a_{m2} & \cdots & a_{mn}
 $m \times n$ 行列 $A$ の**転置**は $n \times m$ 行列 $A^T$ であり、次を満たす：
 $$(A^T)_{ij} = a_{ji}$$
 
-行列は線形代数における基本的な対象であり、線形変換、連立方程式、双線形形式などを表現する。
+行列は線形代数における基本的な対象であり、線形変換、連立方程式、双線形形式などを表現する。可逆 $n \times n$ 行列の集合は乗法の下で群をなし（一般線形群 $GL_n(F)$ と呼ばれる）、$F^n$ に自然に[作用](def-group-action.qmd)する。
 
 ## 依存関係グラフ
 
@@ -63,14 +63,14 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-matrix-transformation["Example: Matrix Transformation"]:::example
-    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
     def-matrix["Definition: Matrix"]:::definition
-    def-eigenvalue-eigenvector --> def-matrix
+    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    ex-matrix-transformation["Example: Matrix Transformation"]:::example
     ex-matrix-transformation --> def-matrix
+    def-eigenvalue-eigenvector --> def-matrix
     class def-matrix current
-    click ex-matrix-transformation "ex-matrix-transformation.html" "Example: Matrix Transformationへ"
     click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Definition: Eigenvalue and Eigenvectorへ"
+    click ex-matrix-transformation "ex-matrix-transformation.html" "Example: Matrix Transformationへ"
 ```
 
 ## インタラクティブ可視化

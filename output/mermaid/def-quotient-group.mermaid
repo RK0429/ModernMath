@@ -5,33 +5,36 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-finite-field["Example: Finite Field"]:::example
+    def-ideal["Definition: Ideal"]:::definition
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    def-quotient-group["Definition: Quotient Group"]:::definition
     ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-kernel["Definition: Kernel"]:::definition
     def-coset["Definition: Coset"]:::definition
     def-group["Definition: Group"]:::definition
     def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-kernel["Definition: Kernel"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    def-ideal["Definition: Ideal"]:::definition
+    ex-finite-field["Example: Finite Field"]:::example
+    def-abelian-group["Definition: Abelian Group"]:::definition
     def-subgroup["Definition: Subgroup"]:::definition
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    def-subgroup --> def-quotient-group
     thm-lagrange --> def-quotient-group
-    def-homomorphism --> def-quotient-group
-    def-quotient-group --> def-normal-subgroup
-    def-quotient-group --> def-cyclic-group
-    ex-finite-field --> def-quotient-group
-    thm-euler --> def-quotient-group
-    def-normal-subgroup --> def-quotient-group
     def-coset --> def-quotient-group
+    def-kernel --> def-quotient-group
+    def-homomorphism --> def-quotient-group
+    def-quotient-group --> def-abelian-group
+    ex-finite-field --> def-quotient-group
+    def-quotient-group --> def-normal-subgroup
+    def-normal-subgroup --> def-quotient-group
+    def-group --> def-quotient-group
+    thm-euler --> def-quotient-group
     def-quotient-group --> def-subgroup
     ex-quotient-integers-mod-n --> def-quotient-group
-    def-subgroup --> def-quotient-group
-    def-quotient-group --> def-coset
-    def-group --> def-quotient-group
-    def-kernel --> def-quotient-group
-    def-quotient-group --> def-group
+    def-quotient-group --> def-cyclic-group
+    def-abelian-group --> def-quotient-group
     def-quotient-group --> def-ideal
+    def-quotient-group --> def-coset
+    def-quotient-group --> def-group
     class def-quotient-group current

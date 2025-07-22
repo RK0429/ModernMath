@@ -62,3 +62,36 @@ $$d_X(x, y) < \delta \implies d_Y(f(x), f(y)) < \varepsilon$$
 一様連続性は、関数の変化率が大域的に有界であることを意味する。定義域のどこにいても、近い点は近い点に写され、その許容度はどこでも同じである。
 
 これは通常の連続性よりも強い条件であり、通常の連続性では許容度が点ごとに変わる可能性がある。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-metric-space["Definition: Metric Space"]:::definition
+    def-uniform-continuity["Definition: Uniform Continuity"]:::definition
+    def-continuity["Definition: Continuity"]:::definition
+    def-uniform-continuity --> def-metric-space
+    def-uniform-continuity --> def-continuity
+    class def-uniform-continuity current
+    click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
+    click def-continuity "def-continuity.html" "Definition: Continuityへ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-uniform-continuity" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/def-uniform-continuity.html){target="_blank"}で完全なインタラクティブ版を表示

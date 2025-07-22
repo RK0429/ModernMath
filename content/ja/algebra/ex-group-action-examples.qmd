@@ -1,0 +1,70 @@
+---
+title: "群作用の例"
+id: ex-group-action-examples
+type: Example
+status: verified
+sidebar: true
+requires:
+  - def-group-action
+  - def-group
+  - def-cyclic-group
+translation_of: ../../en/algebra/ex-group-action-examples.qmd
+translations:
+  en: ex-group-action-examples.html
+  ja: ex-group-action-examples.html
+---
+
+[群作用](def-group-action.qmd)は対称性を理解する上で基本的です。ここでいくつかの重要な例を示します。
+
+## 自明な作用
+
+任意の[群](def-group.qmd) $G$ と集合 $X$ に対して、**自明な作用**は以下で定義されます：
+$$g \cdot x = x \text{ すべての } g \in G, x \in X$$
+
+$X$ のすべての元が固定点で、各軌道は単一の元からなります。
+
+## 左からの乗法による作用
+
+群 $G$ は左からの乗法により自分自身に作用します：
+$$g \cdot h = gh \text{ ただし } g, h \in G$$
+
+この作用は：
+- **推移的**: 任意の $h_1, h_2 \in G$ に対して、$h_2h_1^{-1} \cdot h_1 = h_2$
+- **自由**: $g \cdot h = h$ ならば、$gh = h$ なので $g = e$
+
+## 共役による作用
+
+群 $G$ は共役により自分自身に作用します：
+$$g \cdot h = ghg^{-1} \text{ ただし } g, h \in G$$
+
+性質：
+- $h$ の軌道はその共役類：$\{ghg^{-1} : g \in G\}$
+- $h$ の固定化部分群はその中心化群：$C_G(h) = \{g \in G : gh = hg\}$
+- 固定点はちょうど中心 $Z(G)$ の元
+
+## 集合への対称群の作用
+
+対称群 $S_n$ は集合 $\{1, 2, \ldots, n\}$ に自然に作用します：
+$$\sigma \cdot i = \sigma(i) \text{ ただし } \sigma \in S_n, i \in \{1, 2, \ldots, n\}$$
+
+この作用は：
+- **推移的**: 任意の元を他の任意の元に移す置換が存在する
+- **忠実**: 異なる置換は集合に異なる作用をする
+
+## 多角形への二面体群の作用
+
+二面体群 $D_n$ は正 $n$ 角形の頂点に作用します：
+- 回転は頂点を巡回的に移動する
+- 鏡映は対称軸について頂点を反転する
+
+正方形（$n = 4$）の場合：
+- 任意の頂点の固定化部分群は位数 2（恒等元と1つの鏡映）
+- 各軌道は頂点全体の集合（推移的作用）
+- 軌道・固定化部分群定理により：$|D_4| = |軌道| \times |固定化部分群| = 4 \times 2 = 8$
+
+## 単位根への巡回群の作用
+
+[巡回群](def-cyclic-group.qmd) $\mathbb{Z}/n\mathbb{Z}$ は $\mathbb{C}$ 内の $n$ 乗根に作用します：
+$$k \cdot \omega = \omega \cdot e^{2\pi i k/n} \text{ ここで } \omega = e^{2\pi i j/n}$$
+
+これは複素単位円の $2\pi/n$ の倍数による回転を与えます。
