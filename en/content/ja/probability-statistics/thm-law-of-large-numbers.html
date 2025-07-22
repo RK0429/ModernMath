@@ -286,10 +286,10 @@ window.Quarto = {
 
 <section id="thm-law-of-large-numbers" class="level1">
 <h1>定理: 大数の法則</h1>
-<p><strong>大数の法則</strong>は、独立同一分布に従う<a href="../../../content/ja/probability-statistics/def-random-variable.html">確率変数</a>の標本平均が、標本数が増加するにつれてそれらの<a href="../../../content/ja/probability-statistics/def-expectation.html">期待値</a>に収束することを述べています。</p>
+<p><strong>大数の法則</strong>は、<a href="../../../content/ja/probability-statistics/def-independence.html">独立</a>同一分布に従う<a href="../../../content/ja/probability-statistics/def-random-variable.html">確率変数</a>の標本平均が、標本数が増加するにつれてそれらの<a href="../../../content/ja/probability-statistics/def-expectation.html">期待値</a>に収束することを述べています。</p>
 <section id="大数の弱法則" class="level2">
 <h2 class="anchored" data-anchor-id="大数の弱法則">大数の弱法則</h2>
-<p><span class="math inline">\(X_1, X_2, \ldots\)</span> を有限の期待値 <span class="math inline">\(\mu = E[X_i]\)</span> と有限の分散 <span class="math inline">\(\sigma^2 = \text{Var}(X_i)\)</span> を持つ独立同一分布の確率変数とします。</p>
+<p><span class="math inline">\(X_1, X_2, \ldots\)</span> を有限の期待値 <span class="math inline">\(\mu = E[X_i]\)</span> と有限の<a href="../../../content/ja/probability-statistics/def-variance.html">分散</a> <span class="math inline">\(\sigma^2 = \text{Var}(X_i)\)</span> を持つ<a href="../../../content/ja/probability-statistics/def-independence.html">独立</a>同一分布の確率変数とします。</p>
 <p>標本平均を以下のように定義します： <span class="math display">\[\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i\]</span></p>
 <p>このとき、任意の <span class="math inline">\(\epsilon &gt; 0\)</span> に対して： <span class="math display">\[\lim_{n \to \infty} P(|\bar{X}_n - \mu| &gt; \epsilon) = 0\]</span></p>
 <p>これは確率収束です：<span class="math inline">\(\bar{X}_n \xrightarrow{P} \mu\)</span></p>
@@ -302,7 +302,7 @@ window.Quarto = {
 <section id="証明の概要弱法則" class="level2">
 <h2 class="anchored" data-anchor-id="証明の概要弱法則">証明の概要（弱法則）</h2>
 <p>チェビシェフの不等式を用いて： <span class="math display">\[P(|\bar{X}_n - \mu| &gt; \epsilon) \leq \frac{\text{Var}(\bar{X}_n)}{\epsilon^2}\]</span></p>
-<p><span class="math inline">\(X_i\)</span> が独立であることから： <span class="math display">\[\text{Var}(\bar{X}_n) = \text{Var}\left(\frac{1}{n} \sum_{i=1}^n X_i\right) = \frac{1}{n^2} \sum_{i=1}^n \text{Var}(X_i) = \frac{\sigma^2}{n}\]</span></p>
+<p><span class="math inline">\(X_i\)</span> が<a href="../../../content/ja/probability-statistics/def-independence.html">独立</a>であることから： <span class="math display">\[\text{Var}(\bar{X}_n) = \text{Var}\left(\frac{1}{n} \sum_{i=1}^n X_i\right) = \frac{1}{n^2} \sum_{i=1}^n \text{Var}(X_i) = \frac{\sigma^2}{n}\]</span></p>
 <p>したがって： <span class="math display">\[P(|\bar{X}_n - \mu| &gt; \epsilon) \leq \frac{\sigma^2}{n\epsilon^2} \to 0 \text{ （} n \to \infty \text{ のとき）}\]</span></p>
 </section>
 <section id="応用" class="level2">
@@ -349,13 +349,19 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-independence["Definition: Independence"]:::definition
     def-expectation["Definition: Expected Value"]:::definition
     thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
+    def-variance["Definition: Variance"]:::definition
     def-random-variable["Definition: Random Variable"]:::definition
     thm-law-of-large-numbers --&gt; def-random-variable
+    thm-law-of-large-numbers --&gt; def-independence
     thm-law-of-large-numbers --&gt; def-expectation
+    thm-law-of-large-numbers --&gt; def-variance
     class thm-law-of-large-numbers current
+    click def-independence "def-independence.html" "Definition: Independenceへ"
     click def-expectation "def-expectation.html" "Definition: Expected Valueへ"
+    click def-variance "def-variance.html" "Definition: Varianceへ"
     click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
 </pre>
 </div>
@@ -367,7 +373,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-law-of-large-numbers-1753116584" class="graph-visualization-container">
+<div id="graph-viz-thm-law-of-large-numbers-1753143652" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -547,12 +553,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-law-of-large-numbers-1753116584', {
+    createForceGraph(data, 'graph-viz-thm-law-of-large-numbers-1753143652', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-law-of-large-numbers-1753116584').innerHTML =
+    document.getElementById('graph-viz-thm-law-of-large-numbers-1753143652').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -5,15 +5,21 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
-    def-field["Definition: Field"]:::definition
-    def-ideal["Definition: Ideal"]:::definition
     def-group["Definition: Group"]:::definition
-    def-ring["Definition: Ring"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-field["Definition: Field"]:::definition
+    thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
     ex-finite-field["Example: Finite Field"]:::example
+    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
+    def-field --> def-abelian-group
+    def-polynomial-ring --> def-field
     thm-field-characteristic --> def-field
-    def-field --> def-ideal
+    def-field --> def-group
     ex-finite-field --> def-field
     def-field --> def-ring
-    def-field --> def-group
+    def-field --> def-ideal
+    def-vector-space --> def-field
     class def-field current

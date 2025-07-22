@@ -5,6 +5,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
+<http://modernmath.org/concepts/abelian-group> ns1:hasTranslation <http://modernmath.org/concepts/abelian-group_ja> .
+
 <http://modernmath.org/concepts/angle> ns1:hasTranslation <http://modernmath.org/concepts/angle_ja> .
 
 <http://modernmath.org/concepts/angle-sum-triangle> ns1:hasTranslation <http://modernmath.org/concepts/angle-sum-triangle_ja> .
@@ -40,6 +42,8 @@
 <http://modernmath.org/concepts/composition> ns1:hasTranslation <http://modernmath.org/concepts/composition_ja> .
 
 <http://modernmath.org/concepts/conditional-probability> ns1:hasTranslation <http://modernmath.org/concepts/conditional-probability_ja> .
+
+<http://modernmath.org/concepts/congruence> ns1:hasTranslation <http://modernmath.org/concepts/congruence_ja> .
 
 <http://modernmath.org/concepts/connected> ns1:hasTranslation <http://modernmath.org/concepts/connected_ja> .
 
@@ -87,6 +91,8 @@
 
 <http://modernmath.org/concepts/gcd> ns1:hasTranslation <http://modernmath.org/concepts/gcd_ja> .
 
+<http://modernmath.org/concepts/graph> ns1:hasTranslation <http://modernmath.org/concepts/graph_ja> .
+
 <http://modernmath.org/concepts/group> ns1:hasTranslation <http://modernmath.org/concepts/group_ja> .
 
 <http://modernmath.org/concepts/group-example> ns1:hasTranslation <http://modernmath.org/concepts/group-example_ja> .
@@ -102,6 +108,8 @@
 <http://modernmath.org/concepts/identity-element> ns1:hasTranslation <http://modernmath.org/concepts/identity-element_ja> .
 
 <http://modernmath.org/concepts/image> ns1:hasTranslation <http://modernmath.org/concepts/image_ja> .
+
+<http://modernmath.org/concepts/independence> ns1:hasTranslation <http://modernmath.org/concepts/independence_ja> .
 
 <http://modernmath.org/concepts/induction> ns1:hasTranslation <http://modernmath.org/concepts/induction_ja> .
 
@@ -167,6 +175,8 @@
 
 <http://modernmath.org/concepts/polynomial-continuity> ns1:hasTranslation <http://modernmath.org/concepts/polynomial-continuity_ja> .
 
+<http://modernmath.org/concepts/polynomial-ring> ns1:hasTranslation <http://modernmath.org/concepts/polynomial-ring_ja> .
+
 <http://modernmath.org/concepts/power-set> ns1:hasTranslation <http://modernmath.org/concepts/power-set_ja> .
 
 <http://modernmath.org/concepts/prime> ns1:hasTranslation <http://modernmath.org/concepts/prime_ja> .
@@ -207,6 +217,8 @@
 
 <http://modernmath.org/concepts/topological-space> ns1:hasTranslation <http://modernmath.org/concepts/topological-space_ja> .
 
+<http://modernmath.org/concepts/tree> ns1:hasTranslation <http://modernmath.org/concepts/tree_ja> .
+
 <http://modernmath.org/concepts/triangle> ns1:hasTranslation <http://modernmath.org/concepts/triangle_ja> .
 
 <http://modernmath.org/concepts/union> ns1:hasTranslation <http://modernmath.org/concepts/union_ja> .
@@ -214,6 +226,8 @@
 <http://modernmath.org/concepts/union-open-sets> ns1:hasTranslation <http://modernmath.org/concepts/union-open-sets_ja> .
 
 <http://modernmath.org/concepts/unique-identity> ns1:hasTranslation <http://modernmath.org/concepts/unique-identity_ja> .
+
+<http://modernmath.org/concepts/variance> ns1:hasTranslation <http://modernmath.org/concepts/variance_ja> .
 
 <http://modernmath.org/concepts/vector-space> ns1:hasTranslation <http://modernmath.org/concepts/vector-space_ja> .
 
@@ -264,6 +278,7 @@ base:def-eigenvalue-eigenvector a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-linear-transformation,
         base:def-matrix,
+        base:def-polynomial-ring,
         base:def-vector-space .
 
 base:def-integral a mymath:Definition ;
@@ -299,6 +314,16 @@ base:def-parallel a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-line,
         base:def-point .
+
+base:def-tree a mymath:Definition ;
+    rdfs:label "Definition: Tree"@en,
+        "定義: 木"@en ;
+    mymath:hasDomain "Combinatorics",
+        "組合せ論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-binomial-coefficient,
+        base:def-graph,
+        base:def-set .
 
 base:ex-closed-interval-compact a mymath:Example ;
     rdfs:label "Example: Closed Interval is Compact"@en,
@@ -341,7 +366,8 @@ base:ex-integers-ring a mymath:Example ;
     mymath:hasDomain "Algebra",
         "代数学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation,
+    mymath:uses base:def-abelian-group,
+        base:def-binary-operation,
         base:def-group,
         base:def-ideal,
         base:def-ring,
@@ -370,7 +396,8 @@ base:ex-polynomial-continuity a mymath:Example ;
     mymath:hasDomain "Analysis",
         "解析学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-continuity .
+    mymath:uses base:def-continuity,
+        base:def-polynomial-ring .
 
 base:ex-real-line-metric a mymath:Example ;
     rdfs:label "Example: Real Line with Standard Metric"@en,
@@ -479,7 +506,8 @@ base:thm-intermediate-value a mymath:Theorem ;
         "位相幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-connected,
-        base:def-continuity .
+        base:def-continuity,
+        base:def-polynomial-ring .
 
 base:thm-law-of-large-numbers a mymath:Theorem ;
     rdfs:label "Theorem: Law of Large Numbers"@en,
@@ -488,7 +516,9 @@ base:thm-law-of-large-numbers a mymath:Theorem ;
         "確率・統計学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-expectation,
-        base:def-random-variable .
+        base:def-independence,
+        base:def-random-variable,
+        base:def-variance .
 
 base:thm-limit-arithmetic a mymath:Theorem ;
     rdfs:label "Theorem: Arithmetic of Limits"@en,
@@ -577,6 +607,8 @@ base:thm-yoneda a mymath:Theorem ;
         base:def-functor,
         base:def-natural-transformation .
 
+<http://modernmath.org/concepts/abelian-group_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/angle-sum-triangle_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/angle_ja> ns1:language "ja" .
@@ -612,6 +644,8 @@ base:thm-yoneda a mymath:Theorem ;
 <http://modernmath.org/concepts/composition_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/conditional-probability_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/congruence_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/connected_ja> ns1:language "ja" .
 
@@ -659,6 +693,8 @@ base:thm-yoneda a mymath:Theorem ;
 
 <http://modernmath.org/concepts/gcd_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/graph_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/group-example_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/group_ja> ns1:language "ja" .
@@ -674,6 +710,8 @@ base:thm-yoneda a mymath:Theorem ;
 <http://modernmath.org/concepts/identity-element_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/image_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/independence_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/induction_ja> ns1:language "ja" .
 
@@ -739,6 +777,8 @@ base:thm-yoneda a mymath:Theorem ;
 
 <http://modernmath.org/concepts/polynomial-continuity_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/polynomial-ring_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/power-set_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/prime_ja> ns1:language "ja" .
@@ -779,6 +819,8 @@ base:thm-yoneda a mymath:Theorem ;
 
 <http://modernmath.org/concepts/topological-space_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/tree_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/triangle_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/union-open-sets_ja> ns1:language "ja" .
@@ -786,6 +828,8 @@ base:thm-yoneda a mymath:Theorem ;
 <http://modernmath.org/concepts/union_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/unique-identity_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/variance_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/vector-space_ja> ns1:language "ja" .
 
@@ -879,15 +923,6 @@ base:def-associativity a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-binary-operation .
 
-base:def-binomial-coefficient a mymath:Definition ;
-    rdfs:label "Definition: Binomial Coefficient"@en,
-        "定義：二項係数"@en ;
-    mymath:hasDomain "Combinatorics",
-        "組合せ論" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-combination,
-        base:def-permutation .
-
 base:def-combination a mymath:Definition ;
     rdfs:label "Definition: Combination"@en,
         "定義：組合せ"@en ;
@@ -895,16 +930,6 @@ base:def-combination a mymath:Definition ;
         "組合せ論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
-
-base:def-commutativity a mymath:Definition ;
-    rdfs:label "Definition: Commutativity"@en,
-        "定義: 可換性"@en ;
-    rdfs:comment "**Commutativity** is a property of a [Binary Operation](def-binary-operation.qmd) where the order of the operands does not affect the result."@en,
-        "**可換性**は、演算子の順序が結果に影響しない[二項演算](def-binary-operation.qmd)の性質である。"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation .
 
 base:def-composition a mymath:Definition ;
     rdfs:label "Definition: Composition"@en,
@@ -916,17 +941,6 @@ base:def-composition a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-category,
         base:def-morphism .
-
-base:def-conditional-probability a mymath:Definition ;
-    rdfs:label "Definition: Conditional Probability"@en,
-        "定義: 条件付き確率"@en ;
-    rdfs:comment "**条件付き確率**とは、[事象](def-event.qmd) $B$ が起こったという条件の下で、[事象](def-event.qmd) $A$ が起こる確率である。これは $P(A|B)$ と表記される。"@en,
-        "The **conditional probability** of an [Event](def-event.qmd) $A$ given event $B$ is the probability that $A$ occurs, given that $B$ has occurred. It is denoted $P(A|B)$."@en ;
-    mymath:hasDomain "Probability Statistics",
-        "確率・統計学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-event,
-        base:def-probability-space .
 
 base:def-connected a mymath:Definition ;
     rdfs:label "Definition: Connected Space"@en,
@@ -949,15 +963,6 @@ base:def-euclidean-space a mymath:Definition ;
     mymath:uses base:def-metric-space,
         base:def-vector-space .
 
-base:def-expectation a mymath:Definition ;
-    rdfs:label "Definition: Expected Value"@en,
-        "定義: 期待値"@en ;
-    mymath:hasDomain "Probability Statistics",
-        "確率・統計学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-probability-space,
-        base:def-random-variable .
-
 base:def-hausdorff a mymath:Definition ;
     rdfs:label "Definition: Hausdorff Space"@en,
         "定義: ハウスドルフ空間"@en ;
@@ -979,6 +984,19 @@ base:def-image a mymath:Definition ;
         base:formal-proof-def-image ;
     mymath:uses base:def-linear-transformation,
         base:def-vector-space .
+
+base:def-independence a mymath:Definition ;
+    rdfs:label "Definition: Independence"@en,
+        "定義: 独立性"@en ;
+    rdfs:comment "**Independence** is a fundamental concept in probability theory that formalizes the intuitive notion that the occurrence of one event does not affect the probability of another event."@en,
+        "**独立性**は、ある事象の発生が他の事象の確率に影響を与えないという直感的な概念を形式化した、確率論における基本的な概念です。"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-conditional-probability,
+        base:def-event,
+        base:def-probability-space,
+        base:def-random-variable .
 
 base:def-intersection a mymath:Definition ;
     rdfs:label "Definition: Intersection"@en,
@@ -1032,7 +1050,8 @@ base:def-permutation a mymath:Definition ;
     mymath:hasDomain "Combinatorics",
         "組合せ論" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-set .
+    mymath:uses base:def-graph,
+        base:def-set .
 
 base:def-power-set a mymath:Definition ;
     rdfs:label "Definition: Power Set"@en,
@@ -1083,6 +1102,15 @@ base:def-union a mymath:Definition ;
         "論理・集合論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
+
+base:def-variance a mymath:Definition ;
+    rdfs:label "Definition: Variance"@en,
+        "定義: 分散"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-expectation,
+        base:def-random-variable .
 
 base:ex-finite-field a mymath:Example ;
     rdfs:label "Example: Finite Field"@en,
@@ -1237,6 +1265,15 @@ base:def-basis a mymath:Definition ;
         base:def-span,
         base:def-vector-space .
 
+base:def-binomial-coefficient a mymath:Definition ;
+    rdfs:label "Definition: Binomial Coefficient"@en,
+        "定義：二項係数"@en ;
+    mymath:hasDomain "Combinatorics",
+        "組合せ論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-combination,
+        base:def-permutation .
+
 base:def-closed-set a mymath:Definition ;
     rdfs:label "Definition: Closed Set"@en,
         "定義: 閉集合"@en ;
@@ -1248,6 +1285,17 @@ base:def-closed-set a mymath:Definition ;
     mymath:uses base:def-open-set,
         base:def-set,
         base:def-topological-space .
+
+base:def-commutativity a mymath:Definition ;
+    rdfs:label "Definition: Commutativity"@en,
+        "定義: 可換性"@en ;
+    rdfs:comment "**Commutativity** is a property of a [Binary Operation](def-binary-operation.qmd) where the order of the operands does not affect the result."@en,
+        "**可換性**は、演算子の順序が結果に影響しない[二項演算](def-binary-operation.qmd)の性質である。"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-abelian-group,
+        base:def-binary-operation .
 
 base:def-compact a mymath:Definition ;
     rdfs:label "Definition: Compact Space"@en,
@@ -1261,6 +1309,17 @@ base:def-compact a mymath:Definition ;
         base:def-set,
         base:def-topological-space .
 
+base:def-conditional-probability a mymath:Definition ;
+    rdfs:label "Definition: Conditional Probability"@en,
+        "定義: 条件付き確率"@en ;
+    rdfs:comment "**条件付き確率**とは、[事象](def-event.qmd) $B$ が起こったという条件の下で、[事象](def-event.qmd) $A$ が起こる確率である。これは $P(A|B)$ と表記される。"@en,
+        "The **conditional probability** of an [Event](def-event.qmd) $A$ given event $B$ is the probability that $A$ occurs, given that $B$ has occurred. It is denoted $P(A|B)$."@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-event,
+        base:def-probability-space .
+
 base:def-derivative a mymath:Definition ;
     rdfs:label "Definition: Derivative"@en,
         "定義: 導関数"@en ;
@@ -1269,28 +1328,14 @@ base:def-derivative a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-limit .
 
-base:def-event a mymath:Definition ;
-    rdfs:label "Definition: Event"@en,
-        "定義: 事象"@en ;
-    rdfs:comment "An **event** in probability theory is a [Subset](../logic-set-theory/def-subset.qmd) of the [Sample Space](def-sample-space.qmd) $\\Omega$. It represents a collection of outcomes to which a probability can be assigned."@en,
-        "確率論における**事象**とは、[標本空間](def-sample-space.qmd) $\\Omega$ の[部分集合](../logic-set-theory/def-subset.qmd)である。これは確率を割り当てることができる結果の集まりを表す。"@en ;
+base:def-expectation a mymath:Definition ;
+    rdfs:label "Definition: Expected Value"@en,
+        "定義: 期待値"@en ;
     mymath:hasDomain "Probability Statistics",
         "確率・統計学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-sample-space,
-        base:def-subset .
-
-base:def-field a mymath:Definition ;
-    rdfs:label "Definition: Field"@en,
-        "定義: 体"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Field.Defs.Field>,
-        base:formal-proof-def-field ;
-    mymath:uses base:def-group,
-        base:def-ideal,
-        base:def-ring .
+    mymath:uses base:def-probability-space,
+        base:def-random-variable .
 
 base:def-functor a mymath:Definition ;
     rdfs:label "Definition: Functor"@en,
@@ -1298,7 +1343,8 @@ base:def-functor a mymath:Definition ;
     mymath:hasDomain "Category Theory",
         "圏論" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-category .
+    mymath:uses base:def-category,
+        base:def-graph .
 
 base:def-linear-independence a mymath:Definition ;
     rdfs:label "Definition: Linear Independence"@en,
@@ -1316,14 +1362,6 @@ base:def-matrix a mymath:Definition ;
     mymath:hasDomain "Algebra",
         "代数学" ;
     mymath:hasStatus "complete" .
-
-base:def-random-variable a mymath:Definition ;
-    rdfs:label "Definition: Random Variable"@en,
-        "定義: 確率変数"@en ;
-    mymath:hasDomain "Probability Statistics",
-        "確率・統計学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-probability-space .
 
 base:def-span a mymath:Definition ;
     rdfs:label "Definition: Span"@en,
@@ -1351,7 +1389,8 @@ base:ex-even-integers-subgroup a mymath:Example ;
     mymath:hasDomain "Algebra",
         "代数学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-coset,
+    mymath:uses base:def-abelian-group,
+        base:def-coset,
         base:def-group,
         base:def-normal-subgroup,
         base:def-subgroup,
@@ -1379,8 +1418,10 @@ base:thm-euler a mymath:Theorem ;
         base:ex-quotient-integers-mod-n .
 
 base:def-congruence a mymath:Definition ;
-    rdfs:label "Definition: Congruence (Modular Arithmetic)"@en ;
-    mymath:hasDomain "Number Theory" ;
+    rdfs:label "Definition: Congruence (Modular Arithmetic)"@en,
+        "定義: 合同（モジュラー演算）"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
     mymath:hasLeanId "Mathlib.Data.Int.ModEq" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:ax-induction,
@@ -1390,6 +1431,17 @@ base:def-congruence a mymath:Definition ;
         base:ex-quotient-integers-mod-n,
         base:thm-euclidean-algorithm,
         base:thm-euler .
+
+base:def-event a mymath:Definition ;
+    rdfs:label "Definition: Event"@en,
+        "定義: 事象"@en ;
+    rdfs:comment "An **event** in probability theory is a [Subset](../logic-set-theory/def-subset.qmd) of the [Sample Space](def-sample-space.qmd) $\\Omega$. It represents a collection of outcomes to which a probability can be assigned."@en,
+        "確率論における**事象**とは、[標本空間](def-sample-space.qmd) $\\Omega$ の[部分集合](../logic-set-theory/def-subset.qmd)である。これは確率を割り当てることができる結果の集まりを表す。"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-sample-space,
+        base:def-subset .
 
 base:def-gcd a mymath:Definition ;
     rdfs:label "Definition: Greatest Common Divisor"@en,
@@ -1413,13 +1465,28 @@ base:def-identity-element a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-binary-operation .
 
-base:def-probability-space a mymath:Definition ;
-    rdfs:label "Definition: Probability Space"@en,
-        "定義: 確率空間"@en ;
-    mymath:hasDomain "Probability Statistics",
-        "確率・統計学" ;
+base:def-polynomial-ring a mymath:Definition ;
+    rdfs:label "Definition: Polynomial Ring"@en,
+        "定義: 多項式環"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-set .
+    mymath:uses base:def-binary-operation,
+        base:def-field,
+        base:def-ring .
+
+base:def-field a mymath:Definition ;
+    rdfs:label "Definition: Field"@en,
+        "定義: 体"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Field.Defs.Field>,
+        base:formal-proof-def-field ;
+    mymath:uses base:def-abelian-group,
+        base:def-group,
+        base:def-ideal,
+        base:def-ring .
 
 base:def-homomorphism a mymath:Definition ;
     rdfs:label "Definition: Group Homomorphism"@en,
@@ -1447,7 +1514,8 @@ base:def-morphism a mymath:Definition ;
     mymath:hasDomain "Category Theory",
         "圏論" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-category .
+    mymath:uses base:def-category,
+        base:def-graph .
 
 base:def-point a mymath:Definition ;
     rdfs:label "Definition: Point"@en,
@@ -1458,28 +1526,33 @@ base:def-point a mymath:Definition ;
         "幾何学" ;
     mymath:hasStatus "complete" .
 
+base:def-probability-space a mymath:Definition ;
+    rdfs:label "Definition: Probability Space"@en,
+        "定義: 確率空間"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-set .
+
+base:def-random-variable a mymath:Definition ;
+    rdfs:label "Definition: Random Variable"@en,
+        "定義: 確率変数"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-probability-space .
+
 base:ex-integers-addition a mymath:Example ;
     rdfs:label "Example: Integers under Addition"@en,
         "例: 加法における整数"@en ;
     mymath:hasDomain "Algebra",
         "代数学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation,
+    mymath:uses base:def-abelian-group,
+        base:def-binary-operation,
         base:def-cyclic-group,
         base:def-group,
         base:def-set .
-
-base:thm-lagrange a mymath:Theorem ;
-    rdfs:label "Theorem: Lagrange's Theorem"@en,
-        "定理: ラグランジュの定理"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-coset,
-        base:def-cyclic-group,
-        base:def-group,
-        base:def-quotient-group,
-        base:def-subgroup .
 
 base:def-continuity a mymath:Definition ;
     rdfs:label "Definition: Continuity"@en,
@@ -1496,7 +1569,8 @@ base:def-coset a mymath:Definition ;
         "代数学" ;
     mymath:hasLeanId "Mathlib.GroupTheory.Coset" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation,
+    mymath:uses base:def-abelian-group,
+        base:def-binary-operation,
         base:def-group,
         base:def-normal-subgroup,
         base:def-quotient-group,
@@ -1504,6 +1578,14 @@ base:def-coset a mymath:Definition ;
         base:ex-even-integers-subgroup,
         base:ex-quotient-integers-mod-n,
         base:thm-lagrange .
+
+base:def-graph a mymath:Definition ;
+    rdfs:label "Definition: Graph"@en,
+        "定義: グラフ"@en ;
+    mymath:hasDomain "Combinatorics",
+        "組合せ論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-set .
 
 base:def-open-set a mymath:Definition ;
     rdfs:label "Definition: Open Set"@en,
@@ -1515,30 +1597,17 @@ base:def-open-set a mymath:Definition ;
         base:formal-proof-def-open-set ;
     mymath:uses base:def-topological-space .
 
-base:def-ring a mymath:Definition ;
-    rdfs:label "Definition: Ring"@en,
-        "定義：環"@en ;
+base:thm-lagrange a mymath:Theorem ;
+    rdfs:label "Theorem: Lagrange's Theorem"@en,
+        "定理: ラグランジュの定理"@en ;
     mymath:hasDomain "Algebra",
         "代数学" ;
     mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Ring.Defs.Ring>,
-        base:formal-proof-def-ring ;
-    mymath:uses base:def-binary-operation,
+    mymath:uses base:def-coset,
+        base:def-cyclic-group,
         base:def-group,
-        base:def-set .
-
-base:def-cyclic-group a mymath:Definition ;
-    rdfs:label "Definition: Cyclic Group"@en,
-        "定義: 巡回群"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-group,
-        base:def-identity-element,
-        base:def-subgroup,
-        base:ex-integers-addition,
-        base:ex-quotient-integers-mod-n,
-        base:thm-lagrange .
+        base:def-quotient-group,
+        base:def-subgroup .
 
 base:def-ideal a mymath:Definition ;
     rdfs:label "Definition: Ideal"@en,
@@ -1585,13 +1654,27 @@ base:def-prime a mymath:Definition ;
         "数論" ;
     mymath:hasStatus "complete" .
 
+base:def-ring a mymath:Definition ;
+    rdfs:label "Definition: Ring"@en,
+        "定義：環"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Ring.Defs.Ring>,
+        base:formal-proof-def-ring ;
+    mymath:uses base:def-abelian-group,
+        base:def-binary-operation,
+        base:def-group,
+        base:def-set .
+
 base:ex-quotient-integers-mod-n a mymath:Example ;
     rdfs:label "Example: Integers Modulo n"@en,
         "例: 整数の n による剰余"@en ;
     mymath:hasDomain "Algebra",
         "代数学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-congruence,
+    mymath:uses base:def-abelian-group,
+        base:def-congruence,
         base:def-coset,
         base:def-cyclic-group,
         base:def-group,
@@ -1605,20 +1688,21 @@ base:def-category a mymath:Definition ;
     mymath:hasDomain "Category Theory",
         "圏論" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-set .
+    mymath:uses base:def-graph,
+        base:def-set .
 
-base:def-normal-subgroup a mymath:Definition ;
-    rdfs:label "Definition: Normal Subgroup"@en,
-        "定義: 正規部分群"@en ;
+base:def-cyclic-group a mymath:Definition ;
+    rdfs:label "Definition: Cyclic Group"@en,
+        "定義: 巡回群"@en ;
     mymath:hasDomain "Algebra",
         "代数学" ;
-    mymath:hasLeanId "None" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-coset,
+    mymath:uses base:def-abelian-group,
         base:def-group,
-        base:def-homomorphism,
-        base:def-quotient-group,
+        base:def-identity-element,
         base:def-subgroup,
+        base:ex-integers-addition,
+        base:ex-quotient-integers-mod-n,
         base:thm-lagrange .
 
 base:def-subgroup a mymath:Definition ;
@@ -1635,6 +1719,21 @@ base:def-subgroup a mymath:Definition ;
         base:def-normal-subgroup,
         base:def-quotient-group,
         base:def-set,
+        base:thm-lagrange .
+
+base:def-normal-subgroup a mymath:Definition ;
+    rdfs:label "Definition: Normal Subgroup"@en,
+        "定義: 正規部分群"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasLeanId "None" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-abelian-group,
+        base:def-coset,
+        base:def-group,
+        base:def-homomorphism,
+        base:def-quotient-group,
+        base:def-subgroup,
         base:thm-lagrange .
 
 base:def-topological-space a mymath:Definition ;
@@ -1654,7 +1753,8 @@ base:def-quotient-group a mymath:Definition ;
         "代数学" ;
     mymath:hasLeanId "Mathlib.GroupTheory.QuotientGroup" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-coset,
+    mymath:uses base:def-abelian-group,
+        base:def-coset,
         base:def-cyclic-group,
         base:def-group,
         base:def-ideal,
@@ -1668,7 +1768,26 @@ base:def-vector-space a mymath:Definition ;
         "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.Basic.Module>,
-        base:formal-proof-def-vector-space .
+        base:formal-proof-def-vector-space ;
+    mymath:uses base:def-abelian-group,
+        base:def-binary-operation,
+        base:def-field,
+        base:def-group,
+        base:def-set .
+
+base:def-abelian-group a mymath:Definition ;
+    rdfs:label "Definition: Abelian Group"@en,
+        "定義: アーベル群"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasLeanId "Mathlib.Algebra.Group.Defs" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-commutativity,
+        base:def-cyclic-group,
+        base:def-group,
+        base:def-normal-subgroup,
+        base:def-quotient-group,
+        base:thm-lagrange .
 
 base:def-binary-operation a mymath:Definition ;
     rdfs:label "Definition: Binary Operation"@en,
@@ -1691,7 +1810,8 @@ base:def-group a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Group.Defs.Group>,
         base:formal-proof-def-group ;
-    mymath:uses base:def-associativity,
+    mymath:uses base:def-abelian-group,
+        base:def-associativity,
         base:def-binary-operation,
         base:def-commutativity,
         base:def-cyclic-group,

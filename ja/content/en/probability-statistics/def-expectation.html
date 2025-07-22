@@ -312,6 +312,7 @@ window.Quarto = {
 <li><strong>Monotonicity</strong>: If <span class="math inline">\(X \leq Y\)</span> (almost surely), then <span class="math inline">\(E[X] \leq E[Y]\)</span></li>
 <li><strong>Constant</strong>: <span class="math inline">\(E[c] = c\)</span> for any constant <span class="math inline">\(c\)</span></li>
 <li><strong>Non-negativity</strong>: If <span class="math inline">\(X \geq 0\)</span> (almost surely), then <span class="math inline">\(E[X] \geq 0\)</span></li>
+<li><strong>Independence</strong>: If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are <a href="../../../content/en/probability-statistics/def-independence.html">independent</a> with finite expectations, then <span class="math inline">\(E[XY] = E[X]E[Y]\)</span></li>
 </ol>
 </section>
 <section id="existence" class="level2">
@@ -323,7 +324,7 @@ window.Quarto = {
 <ol type="1">
 <li><strong>Bernoulli</strong>: If <span class="math inline">\(X \sim \text{Bernoulli}(p)\)</span>, then <span class="math inline">\(E[X] = p\)</span></li>
 <li><strong>Binomial</strong>: If <span class="math inline">\(X \sim \text{Binomial}(n, p)\)</span>, then <span class="math inline">\(E[X] = np\)</span></li>
-<li><strong>Normal</strong>: If <span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span>, then <span class="math inline">\(E[X] = \mu\)</span></li>
+<li><strong>Normal</strong>: If <span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span>, then <span class="math inline">\(E[X] = \mu\)</span> (where <span class="math inline">\(\sigma^2\)</span> is the <a href="../../../content/en/probability-statistics/def-variance.html">variance</a>)</li>
 <li><strong>Exponential</strong>: If <span class="math inline">\(X \sim \text{Exp}(\lambda)\)</span>, then <span class="math inline">\(E[X] = 1/\lambda\)</span></li>
 </ol>
 </section>
@@ -357,15 +358,18 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-expectation["Definition: Expected Value"]:::definition
-    def-probability-space["Definition: Probability Space"]:::definition
     thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
+    def-probability-space["Definition: Probability Space"]:::definition
+    def-variance["Definition: Variance"]:::definition
     def-random-variable["Definition: Random Variable"]:::definition
     def-expectation --&gt; def-random-variable
-    def-expectation --&gt; def-probability-space
     thm-law-of-large-numbers --&gt; def-expectation
+    def-variance --&gt; def-expectation
+    def-expectation --&gt; def-probability-space
     class def-expectation current
-    click def-probability-space "def-probability-space.html" "Go to Probability Space definition"
     click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "Go to Law of Large Numbers theorem"
+    click def-probability-space "def-probability-space.html" "Go to Probability Space definition"
+    click def-variance "def-variance.html" "Go to Variance definition"
     click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
 </pre>
 </div>
@@ -377,7 +381,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-expectation-1753116706" class="graph-visualization-container">
+<div id="graph-viz-def-expectation-1753143776" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -557,12 +561,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-expectation-1753116706', {
+    createForceGraph(data, 'graph-viz-def-expectation-1753143776', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-expectation-1753116706').innerHTML =
+    document.getElementById('graph-viz-def-expectation-1753143776').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

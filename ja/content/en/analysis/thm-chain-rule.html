@@ -352,8 +352,8 @@ window.Quarto = {
     thm-chain-rule["Theorem: Chain Rule"]:::theorem
     def-continuity["Definition: Continuity"]:::definition
     def-derivative["Definition: Derivative"]:::definition
-    thm-chain-rule --&gt; def-derivative
     thm-chain-rule --&gt; def-continuity
+    thm-chain-rule --&gt; def-derivative
     class thm-chain-rule current
     click def-continuity "def-continuity.html" "Go to Continuity definition"
     click def-derivative "def-derivative.html" "Go to Derivative definition"
@@ -367,7 +367,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-chain-rule-1753116695" class="graph-visualization-container">
+<div id="graph-viz-thm-chain-rule-1753143764" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -547,12 +547,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-chain-rule-1753116695', {
+    createForceGraph(data, 'graph-viz-thm-chain-rule-1753143764', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-chain-rule-1753116695').innerHTML =
+    document.getElementById('graph-viz-thm-chain-rule-1753143764').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

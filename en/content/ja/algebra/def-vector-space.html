@@ -313,7 +313,7 @@ window.Quarto = {
 <section id="注意" class="level2">
 <h2 class="anchored" data-anchor-id="注意">注意</h2>
 <ul>
-<li>ベクトル空間の公理により、<span class="math inline">\((V, +)\)</span> はアーベル<a href="../../../content/ja/algebra/def-group.html">群</a>を成す</li>
+<li>ベクトル空間の公理により、<span class="math inline">\((V, +)\)</span> は<a href="../../../content/ja/algebra/def-abelian-group.html">アーベル群</a>を成す</li>
 <li>体 <span class="math inline">\(F\)</span> はベクトル空間の「型」を決定する（例：<span class="math inline">\(F = \mathbb{R}\)</span> のとき実ベクトル空間）</li>
 <li>ベクトル空間は線形代数の基本構造であり、数学全体を通じて現れる</li>
 </ul>
@@ -331,41 +331,56 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
+    def-group["Definition: Group"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-basis["Definition: Basis"]:::definition
+    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
+    def-field["Definition: Field"]:::definition
+    def-linear-independence["Definition: Linear Independence"]:::definition
     def-linear-transformation["Definition: Linear Transformation"]:::definition
     def-image["Definition: Image"]:::definition
-    def-linear-independence["Definition: Linear Independence"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
     def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
-    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
+    def-euclidean-space["Definition: Euclidean Space"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    def-set["Definition: Set"]:::definition
     def-span["Definition: Span"]:::definition
     ex-standard-basis-rn["Example: Standard Basis of ℝⁿ"]:::example
-    def-euclidean-space["Definition: Euclidean Space"]:::definition
-    def-basis["Definition: Basis"]:::definition
     def-kernel["Definition: Kernel"]:::definition
-    thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
-    def-euclidean-space --&gt; def-vector-space
-    def-image --&gt; def-vector-space
-    ex-standard-basis-rn --&gt; def-vector-space
-    def-kernel --&gt; def-vector-space
-    def-linear-independence --&gt; def-vector-space
-    def-span --&gt; def-vector-space
     thm-linear-transformation-basis --&gt; def-vector-space
+    def-kernel --&gt; def-vector-space
+    ex-standard-basis-rn --&gt; def-vector-space
     def-basis --&gt; def-vector-space
-    thm-rank-nullity --&gt; def-vector-space
     def-linear-transformation --&gt; def-vector-space
     def-eigenvalue-eigenvector --&gt; def-vector-space
+    def-euclidean-space --&gt; def-vector-space
+    def-vector-space --&gt; def-set
+    def-vector-space --&gt; def-binary-operation
+    def-image --&gt; def-vector-space
+    def-vector-space --&gt; def-group
+    def-linear-independence --&gt; def-vector-space
+    def-span --&gt; def-vector-space
+    def-vector-space --&gt; def-abelian-group
+    def-vector-space --&gt; def-field
+    thm-rank-nullity --&gt; def-vector-space
     class def-vector-space current
+    click thm-linear-transformation-basis "thm-linear-transformation-basis.html" "Theorem: Linear Transformation Determined by Basisへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click def-basis "def-basis.html" "Definition: Basisへ"
+    click thm-rank-nullity "thm-rank-nullity.html" "Theorem: Rank-Nullity Theoremへ"
+    click def-field "def-field.html" "Definition: Fieldへ"
+    click def-linear-independence "def-linear-independence.html" "Definition: Linear Independenceへ"
     click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
     click def-image "def-image.html" "Definition: Imageへ"
-    click def-linear-independence "def-linear-independence.html" "Definition: Linear Independenceへ"
+    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
     click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Definition: Eigenvalue and Eigenvectorへ"
-    click thm-rank-nullity "thm-rank-nullity.html" "Theorem: Rank-Nullity Theoremへ"
+    click def-euclidean-space "def-euclidean-space.html" "Definition: Euclidean Spaceへ"
+    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
+    click def-set "def-set.html" "Definition: Setへ"
     click def-span "def-span.html" "Definition: Spanへ"
     click ex-standard-basis-rn "ex-standard-basis-rn.html" "Example: Standard Basis of ℝⁿへ"
-    click def-euclidean-space "def-euclidean-space.html" "Definition: Euclidean Spaceへ"
-    click def-basis "def-basis.html" "Definition: Basisへ"
     click def-kernel "def-kernel.html" "Definition: Kernelへ"
-    click thm-linear-transformation-basis "thm-linear-transformation-basis.html" "Theorem: Linear Transformation Determined by Basisへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -376,7 +391,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-vector-space-1753116557" class="graph-visualization-container">
+<div id="graph-viz-def-vector-space-1753143622" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -556,12 +571,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-vector-space-1753116557', {
+    createForceGraph(data, 'graph-viz-def-vector-space-1753143622', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-vector-space-1753116557').innerHTML =
+    document.getElementById('graph-viz-def-vector-space-1753143622').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

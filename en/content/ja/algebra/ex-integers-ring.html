@@ -293,7 +293,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="環の公理の検証">環の公理の検証</h2>
 <section id="加法群構造" class="level3">
 <h3 class="anchored" data-anchor-id="加法群構造">加法群構造</h3>
-<p>整数は加法の下でアーベル<a href="../../../content/ja/algebra/def-group.html">群</a>を形成します： - <strong>結合性</strong>：すべての <span class="math inline">\(a, b, c \in \mathbb{Z}\)</span> に対して <span class="math inline">\((a + b) + c = a + (b + c)\)</span> - <strong>単位元</strong>：<span class="math inline">\(0\)</span> が加法単位元 - <strong>逆元</strong>：各 <span class="math inline">\(a \in \mathbb{Z}\)</span> に対して、逆元は <span class="math inline">\(-a\)</span> - <strong>可換性</strong>：すべての <span class="math inline">\(a, b \in \mathbb{Z}\)</span> に対して <span class="math inline">\(a + b = b + a\)</span></p>
+<p>整数は加法の下で<a href="../../../content/ja/algebra/def-abelian-group.html">アーベル群</a>を形成します： - <strong>結合性</strong>：すべての <span class="math inline">\(a, b, c \in \mathbb{Z}\)</span> に対して <span class="math inline">\((a + b) + c = a + (b + c)\)</span> - <strong>単位元</strong>：<span class="math inline">\(0\)</span> が加法単位元 - <strong>逆元</strong>：各 <span class="math inline">\(a \in \mathbb{Z}\)</span> に対して、逆元は <span class="math inline">\(-a\)</span> - <strong>可換性</strong>：すべての <span class="math inline">\(a, b \in \mathbb{Z}\)</span> に対して <span class="math inline">\(a + b = b + a\)</span></p>
 </section>
 <section id="乗法構造" class="level3">
 <h3 class="anchored" data-anchor-id="乗法構造">乗法構造</h3>
@@ -337,23 +337,26 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-ideal["Definition: Ideal"]:::definition
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
     def-group["Definition: Group"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
+    ex-integers-ring["Example: Integers Form a Ring"]:::example
     ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
+    def-binary-operation["Definition: Binary Operation"]:::definition
     def-ring["Definition: Ring"]:::definition
-    ex-integers-ring --&gt; def-ideal
-    ex-integers-ring --&gt; def-binary-operation
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
     ex-integers-ring --&gt; ex-principal-ideal
     ex-integers-ring --&gt; def-ring
+    ex-integers-ring --&gt; def-binary-operation
     ex-integers-ring --&gt; def-group
+    ex-integers-ring --&gt; def-abelian-group
+    ex-integers-ring --&gt; def-ideal
     class ex-integers-ring current
-    click def-ideal "def-ideal.html" "Definition: Idealへ"
     click def-group "def-group.html" "Definition: Groupへ"
-    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
     click ex-principal-ideal "ex-principal-ideal.html" "Example: Principal Ideals in Integersへ"
+    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
     click def-ring "def-ring.html" "Definition: Ringへ"
+    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
+    click def-ideal "def-ideal.html" "Definition: Idealへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -364,7 +367,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-integers-ring-1753116570" class="graph-visualization-container">
+<div id="graph-viz-ex-integers-ring-1753143635" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -544,12 +547,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-integers-ring-1753116570', {
+    createForceGraph(data, 'graph-viz-ex-integers-ring-1753143635', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-integers-ring-1753116570').innerHTML =
+    document.getElementById('graph-viz-ex-integers-ring-1753143635').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

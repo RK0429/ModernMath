@@ -300,7 +300,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="特性方程式">特性方程式</h2>
 <p>行列 <span class="math inline">\(A\)</span> の固有値を求めるには、<strong>特性方程式</strong>を解きます：</p>
 <p><span class="math display">\[\det(A - \lambda I) = 0\]</span></p>
-<p>ここで <span class="math inline">\(I\)</span> は <span class="math inline">\(n \times n\)</span> 単位行列です。多項式 <span class="math inline">\(p(\lambda) = \det(A - \lambda I)\)</span> は <span class="math inline">\(A\)</span> の<strong>特性多項式</strong>と呼ばれます。</p>
+<p>ここで <span class="math inline">\(I\)</span> は <span class="math inline">\(n \times n\)</span> 単位行列です。<a href="../../../content/ja/algebra/def-polynomial-ring.html">多項式</a> <span class="math inline">\(p(\lambda) = \det(A - \lambda I)\)</span> は <span class="math inline">\(A\)</span> の<strong>特性多項式</strong>と呼ばれます。</p>
 </section>
 <section id="固有空間" class="level2">
 <h2 class="anchored" data-anchor-id="固有空間">固有空間</h2>
@@ -349,17 +349,20 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
     def-matrix["Definition: Matrix"]:::definition
     def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
     def-eigenvalue-eigenvector --&gt; def-linear-transformation
     def-eigenvalue-eigenvector --&gt; def-matrix
+    def-eigenvalue-eigenvector --&gt; def-polynomial-ring
     def-eigenvalue-eigenvector --&gt; def-vector-space
     class def-eigenvalue-eigenvector current
-    click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
-    click def-matrix "def-matrix.html" "Definition: Matrixへ"
     click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
+    click def-polynomial-ring "def-polynomial-ring.html" "Definition: Polynomial Ringへ"
+    click def-matrix "def-matrix.html" "Definition: Matrixへ"
+    click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -370,7 +373,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-eigenvalue-eigenvector-1753116617" class="graph-visualization-container">
+<div id="graph-viz-def-eigenvalue-eigenvector-1753143686" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -550,12 +553,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-eigenvalue-eigenvector-1753116617', {
+    createForceGraph(data, 'graph-viz-def-eigenvalue-eigenvector-1753143686', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-eigenvalue-eigenvector-1753116617').innerHTML =
+    document.getElementById('graph-viz-def-eigenvalue-eigenvector-1753143686').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

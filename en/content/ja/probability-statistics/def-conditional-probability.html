@@ -312,7 +312,7 @@ window.Quarto = {
 </section>
 <section id="独立性" class="level2">
 <h2 class="anchored" data-anchor-id="独立性">独立性</h2>
-<p>事象 <span class="math inline">\(A\)</span> と <span class="math inline">\(B\)</span> が<strong>独立</strong>であるとは、次が成り立つときである： <span class="math display">\[P(A|B) = P(A)\]</span></p>
+<p>事象 <span class="math inline">\(A\)</span> と <span class="math inline">\(B\)</span> が<strong><a href="../../../content/ja/probability-statistics/def-independence.html">独立</a></strong>であるとは、次が成り立つときである： <span class="math display">\[P(A|B) = P(A)\]</span></p>
 <p>これは、<span class="math inline">\(B\)</span> が起こったことを知っても <span class="math inline">\(A\)</span> の確率が変わらないことを意味する。</p>
 </section>
 <section id="例" class="level2">
@@ -356,13 +356,16 @@ window.Quarto = {
     def-event["Definition: Event"]:::definition
     def-probability-space["Definition: Probability Space"]:::definition
     def-conditional-probability["Definition: Conditional Probability"]:::definition
+    def-independence["Definition: Independence"]:::definition
+    def-conditional-probability --&gt; def-probability-space
     def-conditional-probability --&gt; def-event
     thm-bayes --&gt; def-conditional-probability
-    def-conditional-probability --&gt; def-probability-space
+    def-independence --&gt; def-conditional-probability
     class def-conditional-probability current
     click thm-bayes "thm-bayes.html" "Theorem: Bayes' Theoremへ"
     click def-event "def-event.html" "Definition: Eventへ"
     click def-probability-space "def-probability-space.html" "Definition: Probability Spaceへ"
+    click def-independence "def-independence.html" "Definition: Independenceへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -373,7 +376,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-conditional-probability-1753116587" class="graph-visualization-container">
+<div id="graph-viz-def-conditional-probability-1753143655" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -553,12 +556,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-conditional-probability-1753116587', {
+    createForceGraph(data, 'graph-viz-def-conditional-probability-1753143655', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-conditional-probability-1753116587').innerHTML =
+    document.getElementById('graph-viz-def-conditional-probability-1753143655').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

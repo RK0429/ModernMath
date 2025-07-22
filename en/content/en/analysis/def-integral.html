@@ -371,8 +371,8 @@ window.Quarto = {
     def-limit["Definition: Limit of a Sequence"]:::definition
     def-continuity["Definition: Continuity"]:::definition
     def-integral["Definition: Integral"]:::definition
-    def-integral --&gt; def-limit
     def-integral --&gt; def-continuity
+    def-integral --&gt; def-limit
     class def-integral current
     click def-limit "def-limit.html" "Go to Limit of a Sequence definition"
     click def-continuity "def-continuity.html" "Go to Continuity definition"
@@ -386,7 +386,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-integral-1753116513" class="graph-visualization-container">
+<div id="graph-viz-def-integral-1753143576" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -566,12 +566,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-integral-1753116513', {
+    createForceGraph(data, 'graph-viz-def-integral-1753143576', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-integral-1753116513').innerHTML =
+    document.getElementById('graph-viz-def-integral-1753143576').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -286,10 +286,10 @@ window.Quarto = {
 
 <section id="thm-law-of-large-numbers" class="level1">
 <h1>Theorem: Law of Large Numbers</h1>
-<p>The <strong>Law of Large Numbers</strong> states that the sample average of independent and identically distributed <a href="../../../content/en/probability-statistics/def-random-variable.html">random variables</a> converges to their <a href="../../../content/en/probability-statistics/def-expectation.html">expected value</a> as the sample size increases.</p>
+<p>The <strong>Law of Large Numbers</strong> states that the sample average of <a href="../../../content/en/probability-statistics/def-independence.html">independent</a> and identically distributed <a href="../../../content/en/probability-statistics/def-random-variable.html">random variables</a> converges to their <a href="../../../content/en/probability-statistics/def-expectation.html">expected value</a> as the sample size increases.</p>
 <section id="weak-law-of-large-numbers" class="level2">
 <h2 class="anchored" data-anchor-id="weak-law-of-large-numbers">Weak Law of Large Numbers</h2>
-<p>Let <span class="math inline">\(X_1, X_2, \ldots\)</span> be independent and identically distributed random variables with finite expected value <span class="math inline">\(\mu = E[X_i]\)</span> and finite variance <span class="math inline">\(\sigma^2 = \text{Var}(X_i)\)</span>.</p>
+<p>Let <span class="math inline">\(X_1, X_2, \ldots\)</span> be <a href="../../../content/en/probability-statistics/def-independence.html">independent</a> and identically distributed random variables with finite expected value <span class="math inline">\(\mu = E[X_i]\)</span> and finite <a href="../../../content/en/probability-statistics/def-variance.html">variance</a> <span class="math inline">\(\sigma^2 = \text{Var}(X_i)\)</span>.</p>
 <p>Define the sample average: <span class="math display">\[\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i\]</span></p>
 <p>Then for any <span class="math inline">\(\epsilon &gt; 0\)</span>: <span class="math display">\[\lim_{n \to \infty} P(|\bar{X}_n - \mu| &gt; \epsilon) = 0\]</span></p>
 <p>This is convergence in probability: <span class="math inline">\(\bar{X}_n \xrightarrow{P} \mu\)</span>.</p>
@@ -302,7 +302,7 @@ window.Quarto = {
 <section id="proof-sketch-weak-law" class="level2">
 <h2 class="anchored" data-anchor-id="proof-sketch-weak-law">Proof Sketch (Weak Law)</h2>
 <p>Using Chebyshev’s inequality: <span class="math display">\[P(|\bar{X}_n - \mu| &gt; \epsilon) \leq \frac{\text{Var}(\bar{X}_n)}{\epsilon^2}\]</span></p>
-<p>Since the <span class="math inline">\(X_i\)</span> are independent: <span class="math display">\[\text{Var}(\bar{X}_n) = \text{Var}\left(\frac{1}{n} \sum_{i=1}^n X_i\right) = \frac{1}{n^2} \sum_{i=1}^n \text{Var}(X_i) = \frac{\sigma^2}{n}\]</span></p>
+<p>Since the <span class="math inline">\(X_i\)</span> are <a href="../../../content/en/probability-statistics/def-independence.html">independent</a>: <span class="math display">\[\text{Var}(\bar{X}_n) = \text{Var}\left(\frac{1}{n} \sum_{i=1}^n X_i\right) = \frac{1}{n^2} \sum_{i=1}^n \text{Var}(X_i) = \frac{\sigma^2}{n}\]</span></p>
 <p>Therefore: <span class="math display">\[P(|\bar{X}_n - \mu| &gt; \epsilon) \leq \frac{\sigma^2}{n\epsilon^2} \to 0 \text{ as } n \to \infty\]</span></p>
 </section>
 <section id="applications" class="level2">
@@ -349,13 +349,19 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-independence["Definition: Independence"]:::definition
     def-expectation["Definition: Expected Value"]:::definition
     thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
+    def-variance["Definition: Variance"]:::definition
     def-random-variable["Definition: Random Variable"]:::definition
     thm-law-of-large-numbers --&gt; def-random-variable
+    thm-law-of-large-numbers --&gt; def-independence
     thm-law-of-large-numbers --&gt; def-expectation
+    thm-law-of-large-numbers --&gt; def-variance
     class thm-law-of-large-numbers current
+    click def-independence "def-independence.html" "Go to Independence definition"
     click def-expectation "def-expectation.html" "Go to Expected Value definition"
+    click def-variance "def-variance.html" "Go to Variance definition"
     click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
 </pre>
 </div>
@@ -367,7 +373,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-law-of-large-numbers-1753116541" class="graph-visualization-container">
+<div id="graph-viz-thm-law-of-large-numbers-1753143606" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -547,12 +553,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-law-of-large-numbers-1753116541', {
+    createForceGraph(data, 'graph-viz-thm-law-of-large-numbers-1753143606', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-law-of-large-numbers-1753116541').innerHTML =
+    document.getElementById('graph-viz-thm-law-of-large-numbers-1753143606').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

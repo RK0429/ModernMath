@@ -5,28 +5,30 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
     def-group["Definition: Group"]:::definition
-    def-coset["Definition: Coset"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    ex-integers-addition["Example: Integers under Addition"]:::example
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    ex-finite-field["Example: Finite Field"]:::example
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
     thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
-    def-coset --> ex-quotient-integers-mod-n
-    ex-quotient-integers-mod-n --> ex-integers-addition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    ex-integers-addition["Example: Integers under Addition"]:::example
+    ex-finite-field["Example: Finite Field"]:::example
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    def-coset["Definition: Coset"]:::definition
+    ex-quotient-integers-mod-n --> def-abelian-group
+    ex-quotient-integers-mod-n --> def-congruence
     ex-quotient-integers-mod-n --> def-group
+    ex-quotient-integers-mod-n --> def-normal-subgroup
     thm-euclidean-algorithm --> ex-quotient-integers-mod-n
-    ex-quotient-integers-mod-n --> def-quotient-group
-    def-congruence --> ex-quotient-integers-mod-n
-    def-cyclic-group --> ex-quotient-integers-mod-n
+    def-coset --> ex-quotient-integers-mod-n
     thm-euler --> ex-quotient-integers-mod-n
     ex-quotient-integers-mod-n --> def-coset
-    ex-quotient-integers-mod-n --> def-normal-subgroup
+    def-cyclic-group --> ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --> ex-integers-addition
     ex-finite-field --> ex-quotient-integers-mod-n
-    ex-quotient-integers-mod-n --> def-congruence
+    ex-quotient-integers-mod-n --> def-quotient-group
     ex-quotient-integers-mod-n --> def-cyclic-group
+    def-congruence --> ex-quotient-integers-mod-n
     class ex-quotient-integers-mod-n current
