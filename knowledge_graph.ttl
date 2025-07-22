@@ -62,6 +62,8 @@
 
 <http://modernmath.org/concepts/derivative> ns1:hasTranslation <http://modernmath.org/concepts/derivative_ja> .
 
+<http://modernmath.org/concepts/direct-product> ns1:hasTranslation <http://modernmath.org/concepts/direct-product_ja> .
+
 <http://modernmath.org/concepts/distributivity> ns1:hasTranslation <http://modernmath.org/concepts/distributivity_ja> .
 
 <http://modernmath.org/concepts/eigenvalue-eigenvector> ns1:hasTranslation <http://modernmath.org/concepts/eigenvalue-eigenvector_ja> .
@@ -322,18 +324,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-line>,
         <https://mathwiki.org/resource/def-point> .
-
-<https://mathwiki.org/resource/def-series> a mymath:Definition ;
-    rdfs:label "Definition: Series"@en,
-        "定義: 級数"@en ;
-    rdfs:comment "**級数**とは、数列の項の和である。より正確には、数列 $(a_n)_{n=1}^{\\infty}$ が与えられたとき、それに対応する級数は形式的な表現 $\\sum_{n=1}^{\\infty} a_n$ である。"@en,
-        "A **series** is the sum of the terms of a sequence. More precisely, given a sequence $(a_n)_{n=1}^{\\infty}$, the associated series is the formal expression $\\sum_{n=1}^{\\infty} a_n$."@en ;
-    mymath:hasDomain "Analysis",
-        "解析学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-convergence>,
-        <https://mathwiki.org/resource/def-limit>,
-        <https://mathwiki.org/resource/def-sequence> .
 
 <https://mathwiki.org/resource/def-tree> a mymath:Definition ;
     rdfs:label "Definition: Tree"@en,
@@ -601,17 +591,6 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-linear-transformation>,
         <https://mathwiki.org/resource/def-vector-space> .
 
-<https://mathwiki.org/resource/thm-mean-value> a mymath:Theorem ;
-    rdfs:label "Theorem: Mean Value Theorem"@en,
-        "定理：平均値の定理"@en ;
-    rdfs:comment "**平均値の定理（MVT）**は、区間上で微分可能な関数に対して、瞬間変化率が区間全体の平均変化率に等しくなる点が少なくとも1つ存在することを主張する。"@en,
-        "The **Mean Value Theorem (MVT)** states that for a differentiable function on an interval, there exists at least one point where the instantaneous rate of change equals the average rate of change over the interval."@en ;
-    mymath:hasDomain "Analysis",
-        "解析学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-continuity>,
-        <https://mathwiki.org/resource/def-derivative> .
-
 <https://mathwiki.org/resource/thm-metric-hausdorff> a mymath:Theorem ;
     rdfs:label "Theorem: Every Metric Space is Hausdorff"@en,
         "定理: すべての距離空間はハウスドルフ空間"@en ;
@@ -660,6 +639,18 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-kernel>,
         <https://mathwiki.org/resource/def-linear-transformation>,
         <https://mathwiki.org/resource/def-vector-space> .
+
+<https://mathwiki.org/resource/thm-taylor-series> a mymath:Theorem ;
+    rdfs:label "Theorem: Taylor Series"@en,
+        "定理: テイラー級数"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-continuity>,
+        <https://mathwiki.org/resource/def-convergence>,
+        <https://mathwiki.org/resource/def-derivative>,
+        <https://mathwiki.org/resource/def-series>,
+        <https://mathwiki.org/resource/thm-mean-value> .
 
 <https://mathwiki.org/resource/thm-union-open-sets> a mymath:Theorem ;
     rdfs:label "Theorem: Union of Open Sets"@en,
@@ -739,6 +730,8 @@ ns1:hasTranslation a rdf:Property ;
 <http://modernmath.org/concepts/de-morgan_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/derivative_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/direct-product_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/distributivity_ja> ns1:language "ja" .
 
@@ -1039,17 +1032,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:uses <https://mathwiki.org/resource/def-category>,
         <https://mathwiki.org/resource/def-morphism> .
 
-<https://mathwiki.org/resource/def-convergence> a mymath:Definition ;
-    rdfs:label "Definition: Convergence"@en,
-        "定義: 収束"@en ;
-    rdfs:comment "**Convergence** describes the behavior of a [Sequence](def-sequence.qmd) whose terms approach a specific value as the index increases. A convergent sequence gets arbitrarily close to its limit."@en,
-        "**収束**とは、[数列](def-sequence.qmd)の項が、添字が増加するにつれて特定の値に近づく挙動を表す。収束する数列は、その極限に任意に近づく。"@en ;
-    mymath:hasDomain "Analysis",
-        "解析学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-limit>,
-        <https://mathwiki.org/resource/def-sequence> .
-
 <https://mathwiki.org/resource/def-euclidean-space> a mymath:Definition ;
     rdfs:label "Definition: Euclidean Space"@en,
         "定義: ユークリッド空間"@en ;
@@ -1145,6 +1127,18 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-set> .
 
+<https://mathwiki.org/resource/def-series> a mymath:Definition ;
+    rdfs:label "Definition: Series"@en,
+        "定義: 級数"@en ;
+    rdfs:comment "**級数**とは、数列の項の和である。より正確には、数列 $(a_n)_{n=1}^{\\infty}$ が与えられたとき、それに対応する級数は形式的な表現 $\\sum_{n=1}^{\\infty} a_n$ である。"@en,
+        "A **series** is the sum of the terms of a sequence. More precisely, given a sequence $(a_n)_{n=1}^{\\infty}$, the associated series is the formal expression $\\sum_{n=1}^{\\infty} a_n$."@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-convergence>,
+        <https://mathwiki.org/resource/def-limit>,
+        <https://mathwiki.org/resource/def-sequence> .
+
 <https://mathwiki.org/resource/def-triangle> a mymath:Definition ;
     rdfs:label "Definition: Triangle"@en,
         "定義: 三角形"@en ;
@@ -1198,6 +1192,17 @@ ns1:hasTranslation a rdf:Property ;
     mymath:uses <https://mathwiki.org/resource/def-closed-set>,
         <https://mathwiki.org/resource/def-compact>,
         <https://mathwiki.org/resource/def-metric-space> .
+
+<https://mathwiki.org/resource/thm-mean-value> a mymath:Theorem ;
+    rdfs:label "Theorem: Mean Value Theorem"@en,
+        "定理：平均値の定理"@en ;
+    rdfs:comment "**平均値の定理（MVT）**は、区間上で微分可能な関数に対して、瞬間変化率が区間全体の平均変化率に等しくなる点が少なくとも1つ存在することを主張する。"@en,
+        "The **Mean Value Theorem (MVT)** states that for a differentiable function on an interval, there exists at least one point where the instantaneous rate of change equals the average rate of change over the interval."@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-continuity>,
+        <https://mathwiki.org/resource/def-derivative> .
 
 <https://mathwiki.org/resource/thm-unique-identity> a mymath:Theorem ;
     rdfs:label "Theorem: Uniqueness of Identity"@en,
@@ -1282,13 +1287,16 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-open-set>,
         <https://mathwiki.org/resource/def-topological-space> .
 
-<https://mathwiki.org/resource/def-derivative> a mymath:Definition ;
-    rdfs:label "Definition: Derivative"@en,
-        "定義: 導関数"@en ;
+<https://mathwiki.org/resource/def-convergence> a mymath:Definition ;
+    rdfs:label "Definition: Convergence"@en,
+        "定義: 収束"@en ;
+    rdfs:comment "**Convergence** describes the behavior of a [Sequence](def-sequence.qmd) whose terms approach a specific value as the index increases. A convergent sequence gets arbitrarily close to its limit."@en,
+        "**収束**とは、[数列](def-sequence.qmd)の項が、添字が増加するにつれて特定の値に近づく挙動を表す。収束する数列は、その極限に任意に近づく。"@en ;
     mymath:hasDomain "Analysis",
         "解析学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-limit> .
+    mymath:uses <https://mathwiki.org/resource/def-limit>,
+        <https://mathwiki.org/resource/def-sequence> .
 
 <https://mathwiki.org/resource/def-functor> a mymath:Definition ;
     rdfs:label "Definition: Functor"@en,
@@ -1447,6 +1455,14 @@ ns1:hasTranslation a rdf:Property ;
     mymath:uses <https://mathwiki.org/resource/def-open-set>,
         <https://mathwiki.org/resource/def-set>,
         <https://mathwiki.org/resource/def-topological-space> .
+
+<https://mathwiki.org/resource/def-derivative> a mymath:Definition ;
+    rdfs:label "Definition: Derivative"@en,
+        "定義: 導関数"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-limit> .
 
 <https://mathwiki.org/resource/def-direct-product> a mymath:Definition ;
     rdfs:label "Definition: Direct Product of Groups"@en,
@@ -1735,14 +1751,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:uses <https://mathwiki.org/resource/def-graph>,
         <https://mathwiki.org/resource/def-set> .
 
-<https://mathwiki.org/resource/def-continuity> a mymath:Definition ;
-    rdfs:label "Definition: Continuity"@en,
-        "定義: 連続性"@en ;
-    mymath:hasDomain "Analysis",
-        "解析学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-limit> .
-
 <https://mathwiki.org/resource/def-limit> a mymath:Definition ;
     rdfs:label "Definition: Limit of a Sequence"@en,
         "定義：数列の極限"@en ;
@@ -1787,6 +1795,14 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/def-quotient-group>,
         <https://mathwiki.org/resource/def-set>,
         <https://mathwiki.org/resource/thm-lagrange> .
+
+<https://mathwiki.org/resource/def-continuity> a mymath:Definition ;
+    rdfs:label "Definition: Continuity"@en,
+        "定義: 連続性"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-limit> .
 
 <https://mathwiki.org/resource/def-prime> a mymath:Definition ;
     rdfs:label "Definition: Prime Number"@en,
