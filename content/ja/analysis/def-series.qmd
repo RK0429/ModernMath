@@ -1,0 +1,122 @@
+---
+id: def-series
+requires:
+- def-sequence
+- def-convergence
+- def-limit
+status: complete
+title: '定義: 級数'
+translation_of: ../../en/analysis/def-series.qmd
+translations:
+  en: ../en/analysis/def-series.html
+  ja: ../ja/analysis/def-series.html
+type: Definition
+---
+
+**級数**とは、数列の項の和である。より正確には、数列 $(a_n)_{n=1}^{\infty}$ が与えられたとき、それに対応する級数は形式的な表現 $\sum_{n=1}^{\infty} a_n$ である。
+
+## 形式的定義
+
+ノルム空間における数列 $(a_n)_{n=1}^{\infty}$ が与えられたとき、**級数** $\sum_{n=1}^{\infty} a_n$ は部分和の数列によって定義される：
+
+$$S_N = \sum_{n=1}^{N} a_n = a_1 + a_2 + \cdots + a_N$$
+
+級数は、部分和の数列 $(S_N)$ が $S$ に収束するとき、和 $S$ に**収束する**という：
+$$\sum_{n=1}^{\infty} a_n = S \iff \lim_{N \to \infty} S_N = S$$
+
+部分和の数列が発散する場合、級数は**発散する**という。
+
+## 収束の種類
+
+### 絶対収束
+
+級数 $\sum_{n=1}^{\infty} a_n$ は、絶対値の級数が収束するとき**絶対収束する**という：
+$$\sum_{n=1}^{\infty} |a_n| < \infty$$
+
+**重要な性質**：級数が絶対収束すれば、それは収束する。
+
+### 条件収束
+
+級数 $\sum_{n=1}^{\infty} a_n$ が**条件収束する**とは：
+- 級数が収束する：$\sum_{n=1}^{\infty} a_n$ が収束
+- しかし絶対収束しない：$\sum_{n=1}^{\infty} |a_n| = \infty$
+
+## 重要な性質
+
+1. **収束の必要条件**：$\sum_{n=1}^{\infty} a_n$ が収束するならば、$\lim_{n \to \infty} a_n = 0$
+
+2. **コーシーの判定法**：級数が収束することの必要十分条件は、任意の $\varepsilon > 0$ に対して、ある $N$ が存在して、すべての $n > m \geq N$ に対して：
+   $$\left|\sum_{k=m+1}^{n} a_k\right| < \varepsilon$$
+
+3. **項の並べ替えに関する性質**：
+   - 絶対収束する級数は、項を並べ替えても和は変わらない
+   - 条件収束する級数は、項を並べ替えることで任意の値に収束させることができる（リーマンの定理）
+
+## 一般的な級数の種類
+
+### 等比級数
+$$\sum_{n=0}^{\infty} ar^n = \frac{a}{1-r} \text{ （ただし } |r| < 1 \text{）}$$
+
+### 調和級数
+$$\sum_{n=1}^{\infty} \frac{1}{n} = \infty \text{ （発散）}$$
+
+### 交代調和級数
+$$\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n} = \ln(2) \text{ （条件収束）}$$
+
+### p級数
+$$\sum_{n=1}^{\infty} \frac{1}{n^p} \begin{cases}
+\text{収束} & \text{（} p > 1 \text{のとき）} \\
+\text{発散} & \text{（} p \leq 1 \text{のとき）}
+\end{cases}$$
+
+## 収束判定法
+
+1. **比較判定法**：既知の収束/発散級数と比較する
+2. **比の判定法**：$\lim_{n \to \infty} \left|\frac{a_{n+1}}{a_n}\right|$ を用いる
+3. **根の判定法**：$\lim_{n \to \infty} \sqrt[n]{|a_n|}$ を用いる
+4. **積分判定法**：級数を広義積分と関連付ける
+5. **交代級数判定法**：符号が交代する級数に対して
+
+## 関連する概念
+
+- [数列](def-sequence.qmd)：和を取る項の順序付きリスト
+- [収束](def-convergence.qmd)：極限に近づくという基本概念
+- [極限](def-limit.qmd)：部分和が近づく値
+- べき級数：変数のべきを含む級数
+- フーリエ級数：関数の三角関数級数による表現
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-sequence["定義: 数列"]:::definition
+    def-convergence["定義: 収束"]:::definition
+    def-limit["定義: 極限"]:::definition
+    def-series["定義: 級数"]:::definition
+    def-series --> def-sequence
+    def-series --> def-convergence
+    def-series --> def-limit
+    class def-series current
+    click def-sequence "def-sequence.html" "数列の定義へ"
+    click def-convergence "def-convergence.html" "収束の定義へ"
+    click def-limit "def-limit.html" "極限の定義へ"
+```
+
+## インタラクティブ可視化
+
+局所的な知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-series" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズームイン/アウト**
+- ノードに**ホバー**して詳細を表示
+- [完全なインタラクティブ版](../../output/interactive/def-series.html){target="_blank"}を表示

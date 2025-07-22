@@ -1,0 +1,121 @@
+---
+id: def-series
+requires:
+- def-sequence
+- def-convergence
+- def-limit
+status: complete
+title: 'Definition: Series'
+translations:
+  en: ../en/analysis/def-series.html
+  ja: ../ja/analysis/def-series.html
+type: Definition
+---
+
+A **series** is the sum of the terms of a sequence. More precisely, given a sequence $(a_n)_{n=1}^{\infty}$, the associated series is the formal expression $\sum_{n=1}^{\infty} a_n$.
+
+## Formal Definition
+
+Given a sequence $(a_n)_{n=1}^{\infty}$ in a normed space, the **series** $\sum_{n=1}^{\infty} a_n$ is defined through its sequence of partial sums:
+
+$$S_N = \sum_{n=1}^{N} a_n = a_1 + a_2 + \cdots + a_N$$
+
+The series **converges** to a sum $S$ if the sequence of partial sums $(S_N)$ converges to $S$:
+$$\sum_{n=1}^{\infty} a_n = S \iff \lim_{N \to \infty} S_N = S$$
+
+If the sequence of partial sums diverges, we say the series **diverges**.
+
+## Types of Convergence
+
+### Absolute Convergence
+
+A series $\sum_{n=1}^{\infty} a_n$ **converges absolutely** if the series of absolute values converges:
+$$\sum_{n=1}^{\infty} |a_n| < \infty$$
+
+**Key Property**: If a series converges absolutely, then it converges.
+
+### Conditional Convergence
+
+A series $\sum_{n=1}^{\infty} a_n$ **converges conditionally** if:
+- The series converges: $\sum_{n=1}^{\infty} a_n$ converges
+- But does not converge absolutely: $\sum_{n=1}^{\infty} |a_n| = \infty$
+
+## Important Properties
+
+1. **Necessary Condition for Convergence**: If $\sum_{n=1}^{\infty} a_n$ converges, then $\lim_{n \to \infty} a_n = 0$
+
+2. **Cauchy Criterion**: A series converges if and only if for every $\varepsilon > 0$, there exists $N$ such that for all $n > m \geq N$:
+   $$\left|\sum_{k=m+1}^{n} a_k\right| < \varepsilon$$
+
+3. **Rearrangement Property**:
+   - Absolutely convergent series can be rearranged without changing the sum
+   - Conditionally convergent series can be rearranged to converge to any value (Riemann's Rearrangement Theorem)
+
+## Common Types of Series
+
+### Geometric Series
+$$\sum_{n=0}^{\infty} ar^n = \frac{a}{1-r} \text{ if } |r| < 1$$
+
+### Harmonic Series
+$$\sum_{n=1}^{\infty} \frac{1}{n} = \infty \text{ (diverges)}$$
+
+### Alternating Harmonic Series
+$$\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n} = \ln(2) \text{ (converges conditionally)}$$
+
+### p-Series
+$$\sum_{n=1}^{\infty} \frac{1}{n^p} \begin{cases}
+\text{converges} & \text{if } p > 1 \\
+\text{diverges} & \text{if } p \leq 1
+\end{cases}$$
+
+## Convergence Tests
+
+1. **Comparison Test**: Compare with a known convergent/divergent series
+2. **Ratio Test**: Uses $\lim_{n \to \infty} \left|\frac{a_{n+1}}{a_n}\right|$
+3. **Root Test**: Uses $\lim_{n \to \infty} \sqrt[n]{|a_n|}$
+4. **Integral Test**: Relates series to improper integrals
+5. **Alternating Series Test**: For series with alternating signs
+
+## Related Concepts
+
+- [Sequence](def-sequence.qmd): The ordered list of terms being summed
+- [Convergence](def-convergence.qmd): The fundamental concept of approaching a limit
+- [Limit](def-limit.qmd): The value that partial sums approach
+- Power Series: Series involving powers of a variable
+- Fourier Series: Representation of functions as trigonometric series
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-sequence["Definition: Sequence"]:::definition
+    def-convergence["Definition: Convergence"]:::definition
+    def-limit["Definition: Limit"]:::definition
+    def-series["Definition: Series"]:::definition
+    def-series --> def-sequence
+    def-series --> def-convergence
+    def-series --> def-limit
+    class def-series current
+    click def-sequence "def-sequence.html" "Go to Sequence definition"
+    click def-convergence "def-convergence.html" "Go to Convergence definition"
+    click def-limit "def-limit.html" "Go to Limit definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-series" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-series.html){target="_blank"}
