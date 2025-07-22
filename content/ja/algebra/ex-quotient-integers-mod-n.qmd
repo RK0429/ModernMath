@@ -9,7 +9,7 @@ requires:
 - def-coset
 - def-congruence
 - def-abelian-group
-- ../number-theory/thm-fermat-little
+- def-direct-product
 status: complete
 title: '例: 整数の n による剰余'
 translation_of: ../../en/algebra/ex-quotient-integers-mod-n.qmd
@@ -106,6 +106,17 @@ $\mathbb{Z}/n\mathbb{Z}$ は合同算術の数学的基礎です：
 - [オイラーの定理](../number-theory/thm-euler.qmd)と[フェルマーの小定理](../number-theory/thm-fermat-little.qmd)
 - [中国剰余定理](../number-theory/thm-chinese-remainder.qmd)
 
+### 直積
+
+$\gcd(m,n) = 1$ のとき、同型が存在します：
+$$\mathbb{Z}/mn\mathbb{Z} \cong \mathbb{Z}/m\mathbb{Z} \times \mathbb{Z}/n\mathbb{Z}$$
+
+これは[中国剰余定理](../number-theory/thm-chinese-remainder.qmd)の特別な場合です。例えば：
+- $\mathbb{Z}/6\mathbb{Z} \cong \mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/3\mathbb{Z}$
+- $\mathbb{Z}/15\mathbb{Z} \cong \mathbb{Z}/3\mathbb{Z} \times \mathbb{Z}/5\mathbb{Z}$
+
+詳細は[群の直積](def-direct-product.qmd)を参照してください。
+
 ### 暗号理論
 
 - RSA暗号は $n = pq$ の場合の $\mathbb{Z}/n\mathbb{Z}$ の性質に依存
@@ -128,44 +139,47 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    ex-finite-field["Example: Finite Field"]:::example
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
-    thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
-    def-coset["Definition: Coset"]:::definition
-    def-group["Definition: Group"]:::definition
-    ex-integers-addition["Example: Integers under Addition"]:::example
     def-quotient-group["Definition: Quotient Group"]:::definition
-    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    ex-integers-addition["Example: Integers under Addition"]:::example
     ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    ex-quotient-integers-mod-n --> def-group
+    def-coset["Definition: Coset"]:::definition
+    ex-finite-field["Example: Finite Field"]:::example
+    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
+    def-direct-product["Definition: Direct Product of Groups"]:::definition
+    def-group["Definition: Group"]:::definition
+    thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
+    ex-quotient-integers-mod-n --> ex-integers-addition
+    def-congruence --> ex-quotient-integers-mod-n
     ex-quotient-integers-mod-n --> def-cyclic-group
-    ex-quotient-integers-mod-n --> def-abelian-group
-    ex-quotient-integers-mod-n --> def-normal-subgroup
-    ex-quotient-integers-mod-n --> def-quotient-group
-    def-cyclic-group --> ex-quotient-integers-mod-n
     ex-quotient-integers-mod-n --> def-coset
-    ex-quotient-integers-mod-n --> def-congruence
-    thm-euler --> ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --> def-normal-subgroup
+    def-cyclic-group --> ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --> def-direct-product
     ex-finite-field --> ex-quotient-integers-mod-n
+    thm-euler --> ex-quotient-integers-mod-n
     thm-euclidean-algorithm --> ex-quotient-integers-mod-n
     def-coset --> ex-quotient-integers-mod-n
-    def-congruence --> ex-quotient-integers-mod-n
-    ex-quotient-integers-mod-n --> ex-integers-addition
+    ex-quotient-integers-mod-n --> def-congruence
+    ex-quotient-integers-mod-n --> def-quotient-group
+    ex-quotient-integers-mod-n --> def-abelian-group
+    ex-quotient-integers-mod-n --> def-group
     class ex-quotient-integers-mod-n current
-    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
-    click def-cyclic-group "def-cyclic-group.html" "Definition: Cyclic Groupへ"
     click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
-    click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
-    click thm-euler "thm-euler.html" "Theorem: Euler's Theoremへ"
-    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Theorem: Euclidean Algorithmへ"
-    click def-coset "def-coset.html" "Definition: Cosetへ"
-    click def-group "def-group.html" "Definition: Groupへ"
-    click ex-integers-addition "ex-integers-addition.html" "Example: Integers under Additionへ"
     click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
+    click thm-euler "thm-euler.html" "Theorem: Euler's Theoremへ"
+    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
+    click ex-integers-addition "ex-integers-addition.html" "Example: Integers under Additionへ"
+    click def-coset "def-coset.html" "Definition: Cosetへ"
+    click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
     click def-congruence "def-congruence.html" "Definition: Congruence (Modular Arithmetic)へ"
+    click def-cyclic-group "def-cyclic-group.html" "Definition: Cyclic Groupへ"
+    click def-direct-product "def-direct-product.html" "Definition: Direct Product of Groupsへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Theorem: Euclidean Algorithmへ"
 ```
 
 ## インタラクティブ可視化

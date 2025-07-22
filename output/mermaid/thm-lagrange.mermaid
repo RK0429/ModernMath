@@ -5,24 +5,24 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
-    def-coset["Definition: Coset"]:::definition
-    def-group["Definition: Group"]:::definition
-    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     def-quotient-group["Definition: Quotient Group"]:::definition
-    thm-lagrange --> def-coset
-    thm-lagrange --> def-group
-    def-coset --> thm-lagrange
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-coset["Definition: Coset"]:::definition
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
     thm-lagrange --> def-cyclic-group
-    def-normal-subgroup --> thm-lagrange
-    thm-lagrange --> def-quotient-group
-    def-subgroup --> thm-lagrange
-    def-abelian-group --> thm-lagrange
-    thm-lagrange --> def-subgroup
     def-cyclic-group --> thm-lagrange
     thm-orbit-stabilizer --> thm-lagrange
+    def-normal-subgroup --> thm-lagrange
+    thm-lagrange --> def-group
+    thm-lagrange --> def-subgroup
+    thm-lagrange --> def-coset
+    def-abelian-group --> thm-lagrange
+    thm-lagrange --> def-quotient-group
+    def-coset --> thm-lagrange
+    def-subgroup --> thm-lagrange
     class thm-lagrange current

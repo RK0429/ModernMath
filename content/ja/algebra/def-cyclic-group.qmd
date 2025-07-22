@@ -5,6 +5,7 @@ requires:
 - def-subgroup
 - def-identity-element
 - def-abelian-group
+- def-direct-product
 status: complete
 title: '定義: 巡回群'
 translation_of: ../../en/algebra/def-cyclic-group.qmd
@@ -77,6 +78,13 @@ $G = \langle g \rangle$ と書き、$g$ が $G$ を**生成する**、または 
 - 同型を除いて、各位数（有限または無限）の巡回群はちょうど一つ存在する
 - 二つの巡回群が同型であるのは、それらが同じ位数を持つときかつそのときに限る
 
+## 巡回群の直積
+
+巡回群の[直積](def-direct-product.qmd)には特別な性質がある：
+- $\mathbb{Z}_m \times \mathbb{Z}_n$ が巡回群となるのは $\gcd(m,n) = 1$ のときかつそのときに限る
+- $\gcd(m,n) = 1$ のとき、$\mathbb{Z}_m \times \mathbb{Z}_n \cong \mathbb{Z}_{mn}$
+- 一般に、$\mathbb{Z}_m \times \mathbb{Z}_n \cong \mathbb{Z}_{\gcd(m,n)} \times \mathbb{Z}_{\text{lcm}(m,n)}$
+
 ## 関連項目
 
 - @def-group
@@ -84,6 +92,7 @@ $G = \langle g \rangle$ と書き、$g$ が $G$ を**生成する**、または 
 - @thm-lagrange
 - @ex-integers-addition
 - @ex-quotient-integers-mod-n
+- @def-direct-product
 
 ## 依存関係グラフ
 
@@ -95,41 +104,45 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-quotient-group["Definition: Quotient Group"]:::definition
     def-abelian-group["Definition: Abelian Group"]:::definition
+    ex-integers-addition["Example: Integers under Addition"]:::example
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-identity-element["Definition: Identity Element"]:::definition
     def-cyclic-group["Definition: Cyclic Group"]:::definition
+    def-direct-product["Definition: Direct Product of Groups"]:::definition
+    def-group["Definition: Group"]:::definition
     ex-group-action-examples["Examples of Group Actions"]:::example
     def-subgroup["Definition: Subgroup"]:::definition
-    def-group["Definition: Group"]:::definition
-    ex-integers-addition["Example: Integers under Addition"]:::example
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    def-identity-element["Definition: Identity Element"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    ex-quotient-integers-mod-n --> def-cyclic-group
-    thm-lagrange --> def-cyclic-group
-    def-quotient-group --> def-cyclic-group
-    def-cyclic-group --> def-identity-element
-    ex-group-action-examples --> def-cyclic-group
-    ex-integers-addition --> def-cyclic-group
-    def-subgroup --> def-cyclic-group
-    def-cyclic-group --> ex-quotient-integers-mod-n
-    def-group --> def-cyclic-group
     def-cyclic-group --> ex-integers-addition
     def-cyclic-group --> thm-lagrange
+    thm-lagrange --> def-cyclic-group
+    def-cyclic-group --> def-abelian-group
+    ex-integers-addition --> def-cyclic-group
+    def-cyclic-group --> ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --> def-cyclic-group
+    def-direct-product --> def-cyclic-group
+    def-abelian-group --> def-cyclic-group
+    def-group --> def-cyclic-group
+    def-cyclic-group --> def-direct-product
+    def-quotient-group --> def-cyclic-group
+    ex-group-action-examples --> def-cyclic-group
     def-cyclic-group --> def-subgroup
     def-cyclic-group --> def-group
-    def-abelian-group --> def-cyclic-group
-    def-cyclic-group --> def-abelian-group
+    def-subgroup --> def-cyclic-group
+    def-cyclic-group --> def-identity-element
     class def-cyclic-group current
+    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
     click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
+    click ex-integers-addition "ex-integers-addition.html" "Example: Integers under Additionへ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
+    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
+    click def-identity-element "def-identity-element.html" "Definition: Identity Elementへ"
+    click def-direct-product "def-direct-product.html" "Definition: Direct Product of Groupsへ"
+    click def-group "def-group.html" "Definition: Groupへ"
     click ex-group-action-examples "ex-group-action-examples.html" "Examples of Group Actionsへ"
     click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
-    click def-group "def-group.html" "Definition: Groupへ"
-    click ex-integers-addition "ex-integers-addition.html" "Example: Integers under Additionへ"
-    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
-    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
-    click def-identity-element "def-identity-element.html" "Definition: Identity Elementへ"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
 ```
 
 ## インタラクティブ可視化

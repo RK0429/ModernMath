@@ -1,0 +1,149 @@
+---
+id: def-direct-product
+lean_id: Mathlib.Algebra.Group.Pi
+requires:
+- def-group
+- def-set
+- ../logic-set-theory/def-power-set
+status: complete
+title: 'Definition: Direct Product of Groups'
+translations:
+  en: ../en/algebra/def-direct-product.html
+  ja: ../ja/algebra/def-direct-product.html
+type: Definition
+---
+
+# Definition: Direct Product of Groups {#def-direct-product}
+
+The **direct product** (or **external direct product**) of two [groups](def-group.qmd) $(G, \cdot_G)$ and $(H, \cdot_H)$ is the [group](def-group.qmd) $(G \times H, \cdot)$ where:
+
+## Construction
+
+1. **Underlying set**: The [set](../logic-set-theory/def-set.qmd) $G \times H$ is the Cartesian product of sets
+   $$G \times H = \{(g, h) : g \in G, h \in H\}$$
+
+2. **Group operation**: The operation $\cdot$ is defined component-wise:
+   $$(g_1, h_1) \cdot (g_2, h_2) = (g_1 \cdot_G g_2, h_1 \cdot_H h_2)$$
+
+## Group Structure
+
+The direct product $G \times H$ forms a group:
+
+- **Identity element**: $(e_G, e_H)$ where $e_G$ and $e_H$ are the identities of $G$ and $H$ respectively
+- **Inverse**: $(g, h)^{-1} = (g^{-1}, h^{-1})$
+- **Associativity**: Inherited from the component groups
+
+## Important Properties
+
+### Order
+If $G$ and $H$ are finite groups, then:
+$$|G \times H| = |G| \cdot |H|$$
+
+### Abelian Property
+If $G$ and $H$ are [abelian](def-abelian-group.qmd), then $G \times H$ is abelian.
+
+### Canonical Embeddings
+There are natural injective [homomorphisms](def-homomorphism.qmd):
+- $\iota_G: G \to G \times H$ defined by $\iota_G(g) = (g, e_H)$
+- $\iota_H: H \to G \times H$ defined by $\iota_H(h) = (e_G, h)$
+
+### Canonical Projections
+There are natural surjective [homomorphisms](def-homomorphism.qmd):
+- $\pi_G: G \times H \to G$ defined by $\pi_G(g, h) = g$
+- $\pi_H: G \times H \to H$ defined by $\pi_H(g, h) = h$
+
+## Universal Property
+
+For any group $K$ and [homomorphisms](def-homomorphism.qmd) $f: K \to G$ and $g: K \to H$, there exists a unique homomorphism $h: K \to G \times H$ such that:
+- $\pi_G \circ h = f$
+- $\pi_H \circ h = g$
+
+Specifically, $h(k) = (f(k), g(k))$.
+
+## Examples
+
+### Klein Four-Group
+The Klein four-group is isomorphic to $\mathbb{Z}_2 \times \mathbb{Z}_2$:
+$$V_4 \cong \mathbb{Z}_2 \times \mathbb{Z}_2 = \{(0,0), (1,0), (0,1), (1,1)\}$$
+
+### Integer Plane
+$\mathbb{Z} \times \mathbb{Z}$ forms the additive group of integer lattice points in the plane.
+
+### Cyclic Group Products
+For positive integers $m$ and $n$:
+- $\mathbb{Z}_m \times \mathbb{Z}_n \cong \mathbb{Z}_{mn}$ if and only if $\gcd(m,n) = 1$
+- When $\gcd(m,n) > 1$, the product is not [cyclic](def-cyclic-group.qmd)
+
+## Generalizations
+
+### Finite Products
+For groups $G_1, G_2, \ldots, G_n$, the direct product is:
+$$G_1 \times G_2 \times \cdots \times G_n = \{(g_1, g_2, \ldots, g_n) : g_i \in G_i\}$$
+
+### Infinite Products
+For an indexed family of groups $\{G_i\}_{i \in I}$:
+$$\prod_{i \in I} G_i = \{(g_i)_{i \in I} : g_i \in G_i \text{ for all } i \in I\}$$
+
+## Related Concepts
+
+- **Direct sum**: For infinite products, the restricted direct product where all but finitely many components are the identity
+- **Semidirect product**: A generalization where one group acts on the other
+- **Internal direct product**: When a group decomposes as a product of its [normal subgroups](def-normal-subgroup.qmd)
+
+## See Also
+
+- @def-group
+- @def-homomorphism
+- @def-abelian-group
+- @def-cyclic-group
+- @def-normal-subgroup
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-set["Definition: Set"]:::definition
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
+    def-direct-product["Definition: Direct Product of Groups"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-direct-product --> def-set
+    def-abelian-group --> def-direct-product
+    def-direct-product --> def-cyclic-group
+    ex-quotient-integers-mod-n --> def-direct-product
+    def-cyclic-group --> def-direct-product
+    def-direct-product --> def-group
+    def-direct-product --> def-abelian-group
+    def-direct-product --> def-normal-subgroup
+    def-direct-product --> def-homomorphism
+    class def-direct-product current
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
+    click def-set "def-set.html" "Go to Set definition"
+    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
+    click def-group "def-group.html" "Go to Group definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-direct-product" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-direct-product.html){target="_blank"}
