@@ -343,8 +343,8 @@ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
     def-matrix["Definition: Matrix"]:::definition
     ex-matrix-transformation["Example: Matrix Transformation"]:::example
     def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
-    def-eigenvalue-eigenvector --&gt; def-matrix
     ex-matrix-transformation --&gt; def-matrix
+    def-eigenvalue-eigenvector --&gt; def-matrix
     class def-matrix current
     click ex-matrix-transformation "ex-matrix-transformation.html" "Go to Matrix Transformation example"
     click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector definition"
@@ -358,7 +358,7 @@ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-matrix-1753143563" class="graph-visualization-container">
+<div id="graph-viz-def-matrix-1753165153" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -538,12 +538,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-matrix-1753143563', {
+    createForceGraph(data, 'graph-viz-def-matrix-1753165153', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-matrix-1753143563').innerHTML =
+    document.getElementById('graph-viz-def-matrix-1753165153').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

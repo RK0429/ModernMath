@@ -334,7 +334,7 @@ window.Quarto = {
 <section id="top-topological-spaces" class="level3">
 <h3 class="anchored" data-anchor-id="top-topological-spaces">Top (Topological Spaces)</h3>
 <ul>
-<li>Isomorphisms are homeomorphisms (continuous bijections with continuous inverse)</li>
+<li>Isomorphisms are <a href="../../../content/en/topology/def-homeomorphism.html">homeomorphisms</a> (continuous bijections with continuous inverse)</li>
 <li>Example: Open interval <span class="math inline">\((0,1)\)</span> is homeomorphic to <span class="math inline">\(\mathbb{R}\)</span></li>
 </ul>
 </section>
@@ -388,14 +388,18 @@ window.Quarto = {
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-category["Definition: Category"]:::definition
     def-composition["Definition: Composition"]:::definition
-    def-morphism["Definition: Morphism"]:::definition
+    def-homeomorphism["Definition: Homeomorphism"]:::definition
     def-isomorphism["Definition: Isomorphism"]:::definition
-    def-isomorphism --&gt; def-morphism
+    def-morphism["Definition: Morphism"]:::definition
+    def-isomorphism --&gt; def-homeomorphism
     def-isomorphism --&gt; def-composition
+    def-homeomorphism --&gt; def-isomorphism
     def-isomorphism --&gt; def-category
+    def-isomorphism --&gt; def-morphism
     class def-isomorphism current
     click def-category "def-category.html" "Go to Category definition"
     click def-composition "def-composition.html" "Go to Composition definition"
+    click def-homeomorphism "def-homeomorphism.html" "Go to Homeomorphism definition"
     click def-morphism "def-morphism.html" "Go to Morphism definition"
 </pre>
 </div>
@@ -407,7 +411,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-isomorphism-1753143582" class="graph-visualization-container">
+<div id="graph-viz-def-isomorphism-1753165173" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -587,12 +591,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-isomorphism-1753143582', {
+    createForceGraph(data, 'graph-viz-def-isomorphism-1753165173', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-isomorphism-1753143582').innerHTML =
+    document.getElementById('graph-viz-def-isomorphism-1753165173').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

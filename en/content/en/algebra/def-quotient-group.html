@@ -395,7 +395,7 @@ window.Quarto = {
 <ul>
 <li><strong>Quotient Rings</strong>: Just as normal subgroups allow us to form quotient groups, <a href="../../../content/en/algebra/def-ideal.html">Ideals</a> allow us to form quotient rings. For example, <span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> can be viewed both as a quotient group (of the additive group <span class="math inline">\(\mathbb{Z}\)</span>) and as a quotient ring.</li>
 <li><strong>Quotient Vector Spaces</strong>: Vector spaces can be quotiented by subspaces</li>
-<li><strong>Quotient Modules</strong>: The most general case, encompassing both groups and vector spaces</li>
+<li><strong>Quotient <a href="../../../content/en/algebra/def-module.html">Modules</a></strong>: The most general case, encompassing both groups and vector spaces</li>
 </ul>
 <p>This pattern of “modding out” by a suitable substructure is fundamental throughout algebra.</p>
 </section>
@@ -412,52 +412,52 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group["Definition: Group"]:::definition
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    def-coset["Definition: Coset"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-ideal["Definition: Ideal"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
     ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    ex-finite-field["Example: Finite Field"]:::example
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    def-group["Definition: Group"]:::definition
     def-quotient-group["Definition: Quotient Group"]:::definition
     def-cyclic-group["Definition: Cyclic Group"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    def-ideal["Definition: Ideal"]:::definition
-    def-coset["Definition: Coset"]:::definition
-    def-kernel["Definition: Kernel"]:::definition
-    def-group --&gt; def-quotient-group
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    ex-finite-field["Example: Finite Field"]:::example
+    def-quotient-group --&gt; def-ideal
+    def-abelian-group --&gt; def-quotient-group
+    thm-lagrange --&gt; def-quotient-group
+    def-quotient-group --&gt; def-normal-subgroup
+    ex-quotient-integers-mod-n --&gt; def-quotient-group
+    def-quotient-group --&gt; def-subgroup
+    def-coset --&gt; def-quotient-group
     def-quotient-group --&gt; def-abelian-group
     def-kernel --&gt; def-quotient-group
-    thm-lagrange --&gt; def-quotient-group
-    def-normal-subgroup --&gt; def-quotient-group
-    def-abelian-group --&gt; def-quotient-group
-    def-quotient-group --&gt; def-subgroup
-    def-homomorphism --&gt; def-quotient-group
-    def-quotient-group --&gt; def-ideal
-    def-subgroup --&gt; def-quotient-group
-    def-quotient-group --&gt; def-normal-subgroup
-    def-coset --&gt; def-quotient-group
-    ex-quotient-integers-mod-n --&gt; def-quotient-group
-    thm-euler --&gt; def-quotient-group
-    ex-finite-field --&gt; def-quotient-group
     def-quotient-group --&gt; def-coset
+    thm-euler --&gt; def-quotient-group
     def-quotient-group --&gt; def-group
+    def-homomorphism --&gt; def-quotient-group
+    def-group --&gt; def-quotient-group
     def-quotient-group --&gt; def-cyclic-group
+    def-normal-subgroup --&gt; def-quotient-group
+    def-subgroup --&gt; def-quotient-group
+    ex-finite-field --&gt; def-quotient-group
     class def-quotient-group current
-    click def-group "def-group.html" "Go to Group definition"
-    click thm-euler "thm-euler.html" "Go to Euler's Theorem theorem"
+    click def-coset "def-coset.html" "Go to Coset definition"
+    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
+    click def-ideal "def-ideal.html" "Go to Ideal definition"
+    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
     click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
+    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click def-kernel "def-kernel.html" "Go to Kernel definition"
+    click thm-euler "thm-euler.html" "Go to Euler's Theorem theorem"
+    click def-group "def-group.html" "Go to Group definition"
+    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
     click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
     click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
-    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
-    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
-    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
-    click def-ideal "def-ideal.html" "Go to Ideal definition"
-    click def-coset "def-coset.html" "Go to Coset definition"
-    click def-kernel "def-kernel.html" "Go to Kernel definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -468,7 +468,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-quotient-group-1753143565" class="graph-visualization-container">
+<div id="graph-viz-def-quotient-group-1753165155" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -648,12 +648,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-quotient-group-1753143565', {
+    createForceGraph(data, 'graph-viz-def-quotient-group-1753165155', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-quotient-group-1753143565').innerHTML =
+    document.getElementById('graph-viz-def-quotient-group-1753165155').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

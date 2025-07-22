@@ -326,7 +326,7 @@ Row 5: 1   5  10  10   5   1</code></pre>
 </section>
 <section id="generating-function" class="level2">
 <h2 class="anchored" data-anchor-id="generating-function">Generating Function</h2>
-<p>The entries in Pascal’s Triangle can be generated using: <span class="math display">\[\frac{1}{(1-x)^{n+1}} = \sum_{k=0}^{\infty} \binom{n+k}{k} x^k\]</span></p>
+<p>The entries in Pascal’s Triangle can be generated using a power <a href="../../../content/en/analysis/def-series.html">series</a>: <span class="math display">\[\frac{1}{(1-x)^{n+1}} = \sum_{k=0}^{\infty} \binom{n+k}{k} x^k\]</span></p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -367,7 +367,7 @@ Row 5: 1   5  10  10   5   1</code></pre>
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-ex-pascals-triangle-1753143798" class="graph-visualization-container">
+<div id="graph-viz-ex-pascals-triangle-1753165395" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -547,12 +547,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-pascals-triangle-1753143798', {
+    createForceGraph(data, 'graph-viz-ex-pascals-triangle-1753165395', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-pascals-triangle-1753143798').innerHTML =
+    document.getElementById('graph-viz-ex-pascals-triangle-1753165395').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

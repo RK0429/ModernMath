@@ -334,7 +334,7 @@ window.Quarto = {
 <section id="top位相空間" class="level3">
 <h3 class="anchored" data-anchor-id="top位相空間">Top（位相空間）</h3>
 <ul>
-<li>同型射は同相写像（連続な逆射を持つ連続全単射）</li>
+<li>同型射は<a href="../../../content/ja/topology/def-homeomorphism.html">同相写像</a>（連続な逆射を持つ連続全単射）</li>
 <li>例: 開区間 <span class="math inline">\((0,1)\)</span> は <span class="math inline">\(\mathbb{R}\)</span> と同相</li>
 </ul>
 </section>
@@ -388,14 +388,18 @@ window.Quarto = {
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-category["Definition: Category"]:::definition
     def-composition["Definition: Composition"]:::definition
-    def-morphism["Definition: Morphism"]:::definition
+    def-homeomorphism["Definition: Homeomorphism"]:::definition
     def-isomorphism["Definition: Isomorphism"]:::definition
-    def-isomorphism --&gt; def-morphism
+    def-morphism["Definition: Morphism"]:::definition
+    def-isomorphism --&gt; def-homeomorphism
     def-isomorphism --&gt; def-composition
+    def-homeomorphism --&gt; def-isomorphism
     def-isomorphism --&gt; def-category
+    def-isomorphism --&gt; def-morphism
     class def-isomorphism current
     click def-category "def-category.html" "Definition: Categoryへ"
     click def-composition "def-composition.html" "Definition: Compositionへ"
+    click def-homeomorphism "def-homeomorphism.html" "Definition: Homeomorphismへ"
     click def-morphism "def-morphism.html" "Definition: Morphismへ"
 </pre>
 </div>
@@ -407,7 +411,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-isomorphism-1753143708" class="graph-visualization-container">
+<div id="graph-viz-def-isomorphism-1753165302" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -587,12 +591,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-isomorphism-1753143708', {
+    createForceGraph(data, 'graph-viz-def-isomorphism-1753165302', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-isomorphism-1753143708').innerHTML =
+    document.getElementById('graph-viz-def-isomorphism-1753165302').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

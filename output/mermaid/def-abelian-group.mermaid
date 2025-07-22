@@ -5,38 +5,40 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group["Definition: Group"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
-    def-commutativity["Definition: Commutativity"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    ex-integers-addition["Example: Integers under Addition"]:::example
-    def-field["Definition: Field"]:::definition
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
-    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    def-abelian-group["Definition: Abelian Group"]:::definition
     def-coset["Definition: Coset"]:::definition
-    def-abelian-group --> def-normal-subgroup
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-module["Definition: Module"]:::definition
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    def-ring["Definition: Ring"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-field["Definition: Field"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    ex-integers-addition["Example: Integers under Addition"]:::example
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-group["Definition: Group"]:::definition
+    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
+    def-commutativity["Definition: Commutativity"]:::definition
     ex-integers-addition --> def-abelian-group
-    def-coset --> def-abelian-group
+    def-abelian-group --> def-quotient-group
+    def-cyclic-group --> def-abelian-group
+    def-vector-space --> def-abelian-group
     def-ring --> def-abelian-group
-    ex-quotient-integers-mod-n --> def-abelian-group
+    def-module --> def-abelian-group
     def-field --> def-abelian-group
-    def-quotient-group --> def-abelian-group
+    def-normal-subgroup --> def-abelian-group
+    def-abelian-group --> def-commutativity
+    ex-quotient-integers-mod-n --> def-abelian-group
     def-group --> def-abelian-group
+    def-abelian-group --> def-normal-subgroup
+    def-quotient-group --> def-abelian-group
     def-abelian-group --> def-group
     def-abelian-group --> def-cyclic-group
-    def-commutativity --> def-abelian-group
-    def-cyclic-group --> def-abelian-group
-    def-abelian-group --> def-commutativity
-    def-abelian-group --> thm-lagrange
-    def-abelian-group --> def-quotient-group
-    def-normal-subgroup --> def-abelian-group
     ex-even-integers-subgroup --> def-abelian-group
-    def-vector-space --> def-abelian-group
+    def-commutativity --> def-abelian-group
     ex-integers-ring --> def-abelian-group
+    def-abelian-group --> thm-lagrange
+    def-coset --> def-abelian-group
     class def-abelian-group current

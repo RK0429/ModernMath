@@ -329,16 +329,19 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-open-set["Definition: Open Set"]:::definition
+    def-homeomorphism["Definition: Homeomorphism"]:::definition
     thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
+    def-open-set["Definition: Open Set"]:::definition
     def-hausdorff["Definition: Hausdorff Space"]:::definition
     def-topological-space["Definition: Topological Space"]:::definition
+    thm-metric-hausdorff --&gt; def-hausdorff
+    def-homeomorphism --&gt; def-hausdorff
     def-hausdorff --&gt; def-open-set
     def-hausdorff --&gt; def-topological-space
-    thm-metric-hausdorff --&gt; def-hausdorff
     class def-hausdorff current
-    click def-open-set "def-open-set.html" "Definition: Open Setへ"
+    click def-homeomorphism "def-homeomorphism.html" "Definition: Homeomorphismへ"
     click thm-metric-hausdorff "thm-metric-hausdorff.html" "Theorem: Every Metric Space is Hausdorffへ"
+    click def-open-set "def-open-set.html" "Definition: Open Setへ"
     click def-topological-space "def-topological-space.html" "Definition: Topological Spaceへ"
 </pre>
 </div>
@@ -350,7 +353,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-hausdorff-1753143663" class="graph-visualization-container">
+<div id="graph-viz-def-hausdorff-1753165255" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -530,12 +533,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-hausdorff-1753143663', {
+    createForceGraph(data, 'graph-viz-def-hausdorff-1753165255', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-hausdorff-1753143663').innerHTML =
+    document.getElementById('graph-viz-def-hausdorff-1753165255').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

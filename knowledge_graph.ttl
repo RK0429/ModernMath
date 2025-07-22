@@ -101,6 +101,8 @@
 
 <http://modernmath.org/concepts/heine-borel> ns1:hasTranslation <http://modernmath.org/concepts/heine-borel_ja> .
 
+<http://modernmath.org/concepts/homeomorphism> ns1:hasTranslation <http://modernmath.org/concepts/homeomorphism_ja> .
+
 <http://modernmath.org/concepts/homomorphism> ns1:hasTranslation <http://modernmath.org/concepts/homomorphism_ja> .
 
 <http://modernmath.org/concepts/ideal> ns1:hasTranslation <http://modernmath.org/concepts/ideal_ja> .
@@ -155,6 +157,8 @@
 
 <http://modernmath.org/concepts/metric-space> ns1:hasTranslation <http://modernmath.org/concepts/metric-space_ja> .
 
+<http://modernmath.org/concepts/module> ns1:hasTranslation <http://modernmath.org/concepts/module_ja> .
+
 <http://modernmath.org/concepts/morphism> ns1:hasTranslation <http://modernmath.org/concepts/morphism_ja> .
 
 <http://modernmath.org/concepts/natural-transformation> ns1:hasTranslation <http://modernmath.org/concepts/natural-transformation_ja> .
@@ -203,6 +207,8 @@
 
 <http://modernmath.org/concepts/sequence> ns1:hasTranslation <http://modernmath.org/concepts/sequence_ja> .
 
+<http://modernmath.org/concepts/series> ns1:hasTranslation <http://modernmath.org/concepts/series_ja> .
+
 <http://modernmath.org/concepts/set> ns1:hasTranslation <http://modernmath.org/concepts/set_ja> .
 
 <http://modernmath.org/concepts/set-category> ns1:hasTranslation <http://modernmath.org/concepts/set-category_ja> .
@@ -220,6 +226,8 @@
 <http://modernmath.org/concepts/tree> ns1:hasTranslation <http://modernmath.org/concepts/tree_ja> .
 
 <http://modernmath.org/concepts/triangle> ns1:hasTranslation <http://modernmath.org/concepts/triangle_ja> .
+
+<http://modernmath.org/concepts/uniform-continuity> ns1:hasTranslation <http://modernmath.org/concepts/uniform-continuity_ja> .
 
 <http://modernmath.org/concepts/union> ns1:hasTranslation <http://modernmath.org/concepts/union_ja> .
 
@@ -248,17 +256,6 @@ base:def-complete-metric-space a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-limit,
         base:def-metric-space .
-
-base:def-convergence a mymath:Definition ;
-    rdfs:label "Definition: Convergence"@en,
-        "定義: 収束"@en ;
-    rdfs:comment "**Convergence** describes the behavior of a [Sequence](def-sequence.qmd) whose terms approach a specific value as the index increases. A convergent sequence gets arbitrarily close to its limit."@en,
-        "**収束**とは、[数列](def-sequence.qmd)の項が、添字が増加するにつれて特定の値に近づく挙動を表す。収束する数列は、その極限に任意に近づく。"@en ;
-    mymath:hasDomain "Analysis",
-        "解析学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-limit,
-        base:def-sequence .
 
 base:def-distributivity a mymath:Definition ;
     rdfs:label "Definition: Distributivity"@en,
@@ -292,17 +289,15 @@ base:def-integral a mymath:Definition ;
     mymath:uses base:def-continuity,
         base:def-limit .
 
-base:def-isomorphism a mymath:Definition ;
-    rdfs:label "Definition: Isomorphism"@en,
-        "定義: 同型射"@en ;
-    rdfs:comment "An **isomorphism** in a [Category](def-category.qmd) is a [Morphism](def-morphism.qmd) that has a two-sided inverse. Isomorphic objects are considered \"the same\" from the categorical perspective."@en,
-        "[圏](def-category.qmd)における**同型射**は、両側逆射を持つ[射](def-morphism.qmd)です。同型な対象は圏論的観点から「同じ」と見なされます。"@en ;
-    mymath:hasDomain "Category Theory",
-        "圏論" ;
+base:def-module a mymath:Definition ;
+    rdfs:label "Definition: Module"@en,
+        "定義: 加群"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-category,
-        base:def-composition,
-        base:def-morphism .
+    mymath:uses base:def-abelian-group,
+        base:def-binary-operation,
+        base:def-ring .
 
 base:def-parallel a mymath:Definition ;
     rdfs:label "Definition: Parallel Lines"@en,
@@ -315,6 +310,18 @@ base:def-parallel a mymath:Definition ;
     mymath:uses base:def-line,
         base:def-point .
 
+base:def-series a mymath:Definition ;
+    rdfs:label "Definition: Series"@en,
+        "定義: 級数"@en ;
+    rdfs:comment "**級数**とは、数列の項の和である。より正確には、数列 $(a_n)_{n=1}^{\\infty}$ が与えられたとき、それに対応する級数は形式的な表現 $\\sum_{n=1}^{\\infty} a_n$ である。"@en,
+        "A **series** is the sum of the terms of a sequence. More precisely, given a sequence $(a_n)_{n=1}^{\\infty}$, the associated series is the formal expression $\\sum_{n=1}^{\\infty} a_n$."@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-convergence,
+        base:def-limit,
+        base:def-sequence .
+
 base:def-tree a mymath:Definition ;
     rdfs:label "Definition: Tree"@en,
         "定義: 木"@en ;
@@ -324,6 +331,15 @@ base:def-tree a mymath:Definition ;
     mymath:uses base:def-binomial-coefficient,
         base:def-graph,
         base:def-set .
+
+base:def-uniform-continuity a mymath:Definition ;
+    rdfs:label "Definition: Uniform Continuity"@en,
+        "定義: 一様連続性"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-continuity,
+        base:def-metric-space .
 
 base:ex-closed-interval-compact a mymath:Example ;
     rdfs:label "Example: Closed Interval is Compact"@en,
@@ -703,6 +719,8 @@ base:thm-yoneda a mymath:Theorem ;
 
 <http://modernmath.org/concepts/heine-borel_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/homeomorphism_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/homomorphism_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/ideal_ja> ns1:language "ja" .
@@ -757,6 +775,8 @@ base:thm-yoneda a mymath:Theorem ;
 
 <http://modernmath.org/concepts/metric-space_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/module_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/morphism_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/natural-transformation_ja> ns1:language "ja" .
@@ -805,6 +825,8 @@ base:thm-yoneda a mymath:Theorem ;
 
 <http://modernmath.org/concepts/sequence_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/series_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/set-category_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/set_ja> ns1:language "ja" .
@@ -822,6 +844,8 @@ base:thm-yoneda a mymath:Theorem ;
 <http://modernmath.org/concepts/tree_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/triangle_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/uniform-continuity_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/union-open-sets_ja> ns1:language "ja" .
 
@@ -942,17 +966,16 @@ base:def-composition a mymath:Definition ;
     mymath:uses base:def-category,
         base:def-morphism .
 
-base:def-connected a mymath:Definition ;
-    rdfs:label "Definition: Connected Space"@en,
-        "定義: 連結空間"@en ;
-    mymath:hasDomain "Topology",
-        "位相幾何学" ;
+base:def-convergence a mymath:Definition ;
+    rdfs:label "Definition: Convergence"@en,
+        "定義: 収束"@en ;
+    rdfs:comment "**Convergence** describes the behavior of a [Sequence](def-sequence.qmd) whose terms approach a specific value as the index increases. A convergent sequence gets arbitrarily close to its limit."@en,
+        "**収束**とは、[数列](def-sequence.qmd)の項が、添字が増加するにつれて特定の値に近づく挙動を表す。収束する数列は、その極限に任意に近づく。"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
     mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Connected.IsConnected>,
-        base:formal-proof-def-connected ;
-    mymath:uses base:def-closed-set,
-        base:def-open-set,
-        base:def-topological-space .
+    mymath:uses base:def-limit,
+        base:def-sequence .
 
 base:def-euclidean-space a mymath:Definition ;
     rdfs:label "Definition: Euclidean Space"@en,
@@ -963,15 +986,19 @@ base:def-euclidean-space a mymath:Definition ;
     mymath:uses base:def-metric-space,
         base:def-vector-space .
 
-base:def-hausdorff a mymath:Definition ;
-    rdfs:label "Definition: Hausdorff Space"@en,
-        "定義: ハウスドルフ空間"@en ;
+base:def-homeomorphism a mymath:Definition ;
+    rdfs:label "Definition: Homeomorphism"@en,
+        "定義：同相写像"@en ;
     mymath:hasDomain "Topology",
         "位相幾何学" ;
     mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Separation.T2Space>,
-        base:formal-proof-def-hausdorff ;
-    mymath:uses base:def-open-set,
+    mymath:uses base:def-compact,
+        base:def-connected,
+        base:def-continuity,
+        base:def-hausdorff,
+        base:def-isomorphism,
+        base:def-open-set,
+        base:def-set,
         base:def-topological-space .
 
 base:def-image a mymath:Definition ;
@@ -1018,6 +1045,19 @@ base:def-inverse-element a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-binary-operation,
         base:def-identity-element .
+
+base:def-isomorphism a mymath:Definition ;
+    rdfs:label "Definition: Isomorphism"@en,
+        "定義: 同型射"@en ;
+    rdfs:comment "An **isomorphism** in a [Category](def-category.qmd) is a [Morphism](def-morphism.qmd) that has a two-sided inverse. Isomorphic objects are considered \"the same\" from the categorical perspective."@en,
+        "[圏](def-category.qmd)における**同型射**は、両側逆射を持つ[射](def-morphism.qmd)です。同型な対象は圏論的観点から「同じ」と見なされます。"@en ;
+    mymath:hasDomain "Category Theory",
+        "圏論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-category,
+        base:def-composition,
+        base:def-homeomorphism,
+        base:def-morphism .
 
 base:def-kernel a mymath:Definition ;
     rdfs:label "Definition: Kernel"@en,
@@ -1068,16 +1108,6 @@ base:def-sample-space a mymath:Definition ;
         "A **sample space** is the [Set](../logic-set-theory/def-set.qmd) of all possible outcomes of a random experiment or probabilistic scenario. It is typically denoted by $\\Omega$ (omega) or $S$."@en ;
     mymath:hasDomain "Probability Statistics",
         "確率・統計学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-set .
-
-base:def-sequence a mymath:Definition ;
-    rdfs:label "Definition: Sequence"@en,
-        "定義：数列"@en ;
-    rdfs:comment "**数列**とは、要素（通常は数）の順序付けられたリストであり、自然数で添字付けられている。形式的には、数列は自然数から集合への関数である。"@en,
-        "A **sequence** is an ordered list of elements, typically numbers, indexed by the natural numbers. Formally, a sequence is a function from the natural numbers to a set."@en ;
-    mymath:hasDomain "Analysis",
-        "解析学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
@@ -1297,18 +1327,6 @@ base:def-commutativity a mymath:Definition ;
     mymath:uses base:def-abelian-group,
         base:def-binary-operation .
 
-base:def-compact a mymath:Definition ;
-    rdfs:label "Definition: Compact Space"@en,
-        "定義: コンパクト空間"@en ;
-    mymath:hasDomain "Topology",
-        "位相幾何学" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Compactness.Compact.IsCompact>,
-        base:formal-proof-def-compact ;
-    mymath:uses base:def-open-set,
-        base:def-set,
-        base:def-topological-space .
-
 base:def-conditional-probability a mymath:Definition ;
     rdfs:label "Definition: Conditional Probability"@en,
         "定義: 条件付き確率"@en ;
@@ -1319,6 +1337,18 @@ base:def-conditional-probability a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-event,
         base:def-probability-space .
+
+base:def-connected a mymath:Definition ;
+    rdfs:label "Definition: Connected Space"@en,
+        "定義: 連結空間"@en ;
+    mymath:hasDomain "Topology",
+        "位相幾何学" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Connected.IsConnected>,
+        base:formal-proof-def-connected ;
+    mymath:uses base:def-closed-set,
+        base:def-open-set,
+        base:def-topological-space .
 
 base:def-derivative a mymath:Definition ;
     rdfs:label "Definition: Derivative"@en,
@@ -1346,6 +1376,17 @@ base:def-functor a mymath:Definition ;
     mymath:uses base:def-category,
         base:def-graph .
 
+base:def-hausdorff a mymath:Definition ;
+    rdfs:label "Definition: Hausdorff Space"@en,
+        "定義: ハウスドルフ空間"@en ;
+    mymath:hasDomain "Topology",
+        "位相幾何学" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Separation.T2Space>,
+        base:formal-proof-def-hausdorff ;
+    mymath:uses base:def-open-set,
+        base:def-topological-space .
+
 base:def-linear-independence a mymath:Definition ;
     rdfs:label "Definition: Linear Independence"@en,
         "定義: 線形独立"@en ;
@@ -1362,6 +1403,16 @@ base:def-matrix a mymath:Definition ;
     mymath:hasDomain "Algebra",
         "代数学" ;
     mymath:hasStatus "complete" .
+
+base:def-sequence a mymath:Definition ;
+    rdfs:label "Definition: Sequence"@en,
+        "定義：数列"@en ;
+    rdfs:comment "**数列**とは、要素（通常は数）の順序付けられたリストであり、自然数で添字付けられている。形式的には、数列は自然数から集合への関数である。"@en,
+        "A **sequence** is an ordered list of elements, typically numbers, indexed by the natural numbers. Formally, a sequence is a function from the natural numbers to a set."@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-set .
 
 base:def-span a mymath:Definition ;
     rdfs:label "Definition: Span"@en,
@@ -1416,6 +1467,18 @@ base:thm-euler a mymath:Theorem ;
         base:def-prime,
         base:def-quotient-group,
         base:ex-quotient-integers-mod-n .
+
+base:def-compact a mymath:Definition ;
+    rdfs:label "Definition: Compact Space"@en,
+        "定義: コンパクト空間"@en ;
+    mymath:hasDomain "Topology",
+        "位相幾何学" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Compactness.Compact.IsCompact>,
+        base:formal-proof-def-compact ;
+    mymath:uses base:def-open-set,
+        base:def-set,
+        base:def-topological-space .
 
 base:def-congruence a mymath:Definition ;
     rdfs:label "Definition: Congruence (Modular Arithmetic)"@en,
@@ -1554,14 +1617,6 @@ base:ex-integers-addition a mymath:Example ;
         base:def-group,
         base:def-set .
 
-base:def-continuity a mymath:Definition ;
-    rdfs:label "Definition: Continuity"@en,
-        "定義: 連続性"@en ;
-    mymath:hasDomain "Analysis",
-        "解析学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-limit .
-
 base:def-coset a mymath:Definition ;
     rdfs:label "Definition: Coset"@en,
         "定義: 剰余類"@en ;
@@ -1587,16 +1642,6 @@ base:def-graph a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
-base:def-open-set a mymath:Definition ;
-    rdfs:label "Definition: Open Set"@en,
-        "定義: 開集合"@en ;
-    mymath:hasDomain "Topology",
-        "位相幾何学" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Basic.IsOpen>,
-        base:formal-proof-def-open-set ;
-    mymath:uses base:def-topological-space .
-
 base:thm-lagrange a mymath:Theorem ;
     rdfs:label "Theorem: Lagrange's Theorem"@en,
         "定理: ラグランジュの定理"@en ;
@@ -1619,13 +1664,6 @@ base:def-ideal a mymath:Definition ;
         base:def-ring,
         base:def-subset .
 
-base:def-limit a mymath:Definition ;
-    rdfs:label "Definition: Limit of a Sequence"@en,
-        "定義：数列の極限"@en ;
-    mymath:hasDomain "Analysis",
-        "解析学" ;
-    mymath:hasStatus "complete" .
-
 base:def-linear-transformation a mymath:Definition ;
     rdfs:label "Definition: Linear Transformation"@en,
         "定義: 線形変換"@en ;
@@ -1636,16 +1674,15 @@ base:def-linear-transformation a mymath:Definition ;
         base:formal-proof-def-linear-transformation ;
     mymath:uses base:def-vector-space .
 
-base:def-metric-space a mymath:Definition ;
-    rdfs:label "Definition: Metric Space"@en,
-        "定義: 距離空間"@en,
-        "定義：距離空間"@en ;
-    mymath:hasDomain "Analysis",
-        "Geometry",
-        "幾何学",
-        "解析学" ;
+base:def-open-set a mymath:Definition ;
+    rdfs:label "Definition: Open Set"@en,
+        "定義: 開集合"@en ;
+    mymath:hasDomain "Topology",
+        "位相幾何学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-set .
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Basic.IsOpen>,
+        base:formal-proof-def-open-set ;
+    mymath:uses base:def-topological-space .
 
 base:def-prime a mymath:Definition ;
     rdfs:label "Definition: Prime Number"@en,
@@ -1653,19 +1690,6 @@ base:def-prime a mymath:Definition ;
     mymath:hasDomain "Number Theory",
         "数論" ;
     mymath:hasStatus "complete" .
-
-base:def-ring a mymath:Definition ;
-    rdfs:label "Definition: Ring"@en,
-        "定義：環"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Ring.Defs.Ring>,
-        base:formal-proof-def-ring ;
-    mymath:uses base:def-abelian-group,
-        base:def-binary-operation,
-        base:def-group,
-        base:def-set .
 
 base:ex-quotient-integers-mod-n a mymath:Example ;
     rdfs:label "Example: Integers Modulo n"@en,
@@ -1691,6 +1715,14 @@ base:def-category a mymath:Definition ;
     mymath:uses base:def-graph,
         base:def-set .
 
+base:def-continuity a mymath:Definition ;
+    rdfs:label "Definition: Continuity"@en,
+        "定義: 連続性"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-limit .
+
 base:def-cyclic-group a mymath:Definition ;
     rdfs:label "Definition: Cyclic Group"@en,
         "定義: 巡回群"@en ;
@@ -1704,6 +1736,37 @@ base:def-cyclic-group a mymath:Definition ;
         base:ex-integers-addition,
         base:ex-quotient-integers-mod-n,
         base:thm-lagrange .
+
+base:def-limit a mymath:Definition ;
+    rdfs:label "Definition: Limit of a Sequence"@en,
+        "定義：数列の極限"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
+    mymath:hasStatus "complete" .
+
+base:def-metric-space a mymath:Definition ;
+    rdfs:label "Definition: Metric Space"@en,
+        "定義: 距離空間"@en,
+        "定義：距離空間"@en ;
+    mymath:hasDomain "Analysis",
+        "Geometry",
+        "幾何学",
+        "解析学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-set .
+
+base:def-ring a mymath:Definition ;
+    rdfs:label "Definition: Ring"@en,
+        "定義：環"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Ring.Defs.Ring>,
+        base:formal-proof-def-ring ;
+    mymath:uses base:def-abelian-group,
+        base:def-binary-operation,
+        base:def-group,
+        base:def-set .
 
 base:def-subgroup a mymath:Definition ;
     rdfs:label "Definition: Subgroup"@en,
