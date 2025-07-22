@@ -25,7 +25,11 @@
 
 <http://modernmath.org/concepts/category> ns1:hasTranslation <http://modernmath.org/concepts/category_ja> .
 
+<http://modernmath.org/concepts/central-limit> ns1:hasTranslation <http://modernmath.org/concepts/central-limit_ja> .
+
 <http://modernmath.org/concepts/chain-rule> ns1:hasTranslation <http://modernmath.org/concepts/chain-rule_ja> .
+
+<http://modernmath.org/concepts/chinese-remainder> ns1:hasTranslation <http://modernmath.org/concepts/chinese-remainder_ja> .
 
 <http://modernmath.org/concepts/closed-interval-compact> ns1:hasTranslation <http://modernmath.org/concepts/closed-interval-compact_ja> .
 
@@ -496,6 +500,17 @@ base:thm-cantor a mymath:Theorem ;
     mymath:uses base:def-power-set,
         base:def-set .
 
+base:thm-central-limit a mymath:Theorem ;
+    rdfs:label "Theorem: Central Limit Theorem"@en,
+        "定理: 中心極限定理"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-expectation,
+        base:def-independence,
+        base:def-random-variable,
+        base:def-variance .
+
 base:thm-chain-rule a mymath:Theorem ;
     rdfs:label "Theorem: Chain Rule"@en,
         "定理：連鎖律"@en ;
@@ -504,6 +519,17 @@ base:thm-chain-rule a mymath:Theorem ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-continuity,
         base:def-derivative .
+
+base:thm-chinese-remainder a mymath:Theorem ;
+    rdfs:label "Theorem: Chinese Remainder Theorem"@en,
+        "定理: 中国剰余定理"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-congruence,
+        base:def-gcd,
+        base:def-prime,
+        base:thm-euclidean-algorithm .
 
 base:thm-de-morgan a mymath:Theorem ;
     rdfs:label "Theorem: De Morgan's Laws"@en,
@@ -675,7 +701,11 @@ base:thm-yoneda a mymath:Theorem ;
 
 <http://modernmath.org/concepts/category_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/central-limit_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/chain-rule_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/chinese-remainder_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/closed-interval-compact_ja> ns1:language "ja" .
 
@@ -1041,19 +1071,6 @@ base:def-homeomorphism a mymath:Definition ;
         base:def-set,
         base:def-topological-space .
 
-base:def-independence a mymath:Definition ;
-    rdfs:label "Definition: Independence"@en,
-        "定義: 独立性"@en ;
-    rdfs:comment "**Independence** is a fundamental concept in probability theory that formalizes the intuitive notion that the occurrence of one event does not affect the probability of another event."@en,
-        "**独立性**は、ある事象の発生が他の事象の確率に影響を与えないという直感的な概念を形式化した、確率論における基本的な概念です。"@en ;
-    mymath:hasDomain "Probability Statistics",
-        "確率・統計学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-conditional-probability,
-        base:def-event,
-        base:def-probability-space,
-        base:def-random-variable .
-
 base:def-intersection a mymath:Definition ;
     rdfs:label "Definition: Intersection"@en,
         "定義: 共通部分"@en ;
@@ -1146,15 +1163,6 @@ base:def-union a mymath:Definition ;
         "論理・集合論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
-
-base:def-variance a mymath:Definition ;
-    rdfs:label "Definition: Variance"@en,
-        "定義: 分散"@en ;
-    mymath:hasDomain "Probability Statistics",
-        "確率・統計学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-expectation,
-        base:def-random-variable .
 
 base:ex-finite-field a mymath:Example ;
     rdfs:label "Example: Finite Field"@en,
@@ -1372,15 +1380,6 @@ base:def-derivative a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-limit .
 
-base:def-expectation a mymath:Definition ;
-    rdfs:label "Definition: Expected Value"@en,
-        "定義: 期待値"@en ;
-    mymath:hasDomain "Probability Statistics",
-        "確率・統計学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-probability-space,
-        base:def-random-variable .
-
 base:def-functor a mymath:Definition ;
     rdfs:label "Definition: Functor"@en,
         "定義: 関手"@en ;
@@ -1411,6 +1410,19 @@ base:def-image a mymath:Definition ;
         base:formal-proof-def-image ;
     mymath:uses base:def-linear-transformation,
         base:def-vector-space .
+
+base:def-independence a mymath:Definition ;
+    rdfs:label "Definition: Independence"@en,
+        "定義: 独立性"@en ;
+    rdfs:comment "**Independence** is a fundamental concept in probability theory that formalizes the intuitive notion that the occurrence of one event does not affect the probability of another event."@en,
+        "**独立性**は、ある事象の発生が他の事象の確率に影響を与えないという直感的な概念を形式化した、確率論における基本的な概念です。"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-conditional-probability,
+        base:def-event,
+        base:def-probability-space,
+        base:def-random-variable .
 
 base:def-kernel a mymath:Definition ;
     rdfs:label "Definition: Kernel"@en,
@@ -1475,6 +1487,15 @@ base:def-subset a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
+base:def-variance a mymath:Definition ;
+    rdfs:label "Definition: Variance"@en,
+        "定義: 分散"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-expectation,
+        base:def-random-variable .
+
 base:ex-even-integers-subgroup a mymath:Example ;
     rdfs:label "Example: Even Integers Form a Subgroup"@en,
         "例: 偶数整数は部分群を成す"@en ;
@@ -1487,15 +1508,6 @@ base:ex-even-integers-subgroup a mymath:Example ;
         base:def-normal-subgroup,
         base:def-subgroup,
         base:ex-integers-addition .
-
-base:thm-euclidean-algorithm a mymath:Theorem ;
-    rdfs:label "Theorem: Euclidean Algorithm"@en,
-        "定理：ユークリッドのアルゴリズム"@en ;
-    mymath:hasDomain "Number Theory",
-        "数論" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-gcd,
-        base:ex-quotient-integers-mod-n .
 
 base:thm-euler a mymath:Theorem ;
     rdfs:label "Theorem: Euler's Theorem"@en,
@@ -1521,6 +1533,45 @@ base:def-compact a mymath:Definition ;
         base:def-set,
         base:def-topological-space .
 
+base:def-event a mymath:Definition ;
+    rdfs:label "Definition: Event"@en,
+        "定義: 事象"@en ;
+    rdfs:comment "An **event** in probability theory is a [Subset](../logic-set-theory/def-subset.qmd) of the [Sample Space](def-sample-space.qmd) $\\Omega$. It represents a collection of outcomes to which a probability can be assigned."@en,
+        "確率論における**事象**とは、[標本空間](def-sample-space.qmd) $\\Omega$ の[部分集合](../logic-set-theory/def-subset.qmd)である。これは確率を割り当てることができる結果の集まりを表す。"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-sample-space,
+        base:def-subset .
+
+base:def-expectation a mymath:Definition ;
+    rdfs:label "Definition: Expected Value"@en,
+        "定義: 期待値"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-probability-space,
+        base:def-random-variable .
+
+base:def-polynomial-ring a mymath:Definition ;
+    rdfs:label "Definition: Polynomial Ring"@en,
+        "定義: 多項式環"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-binary-operation,
+        base:def-field,
+        base:def-ring .
+
+base:thm-euclidean-algorithm a mymath:Theorem ;
+    rdfs:label "Theorem: Euclidean Algorithm"@en,
+        "定理：ユークリッドのアルゴリズム"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-gcd,
+        base:ex-quotient-integers-mod-n .
+
 base:def-congruence a mymath:Definition ;
     rdfs:label "Definition: Congruence (Modular Arithmetic)"@en,
         "定義: 合同（モジュラー演算）"@en ;
@@ -1536,39 +1587,6 @@ base:def-congruence a mymath:Definition ;
         base:thm-euclidean-algorithm,
         base:thm-euler .
 
-base:def-event a mymath:Definition ;
-    rdfs:label "Definition: Event"@en,
-        "定義: 事象"@en ;
-    rdfs:comment "An **event** in probability theory is a [Subset](../logic-set-theory/def-subset.qmd) of the [Sample Space](def-sample-space.qmd) $\\Omega$. It represents a collection of outcomes to which a probability can be assigned."@en,
-        "確率論における**事象**とは、[標本空間](def-sample-space.qmd) $\\Omega$ の[部分集合](../logic-set-theory/def-subset.qmd)である。これは確率を割り当てることができる結果の集まりを表す。"@en ;
-    mymath:hasDomain "Probability Statistics",
-        "確率・統計学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-sample-space,
-        base:def-subset .
-
-base:def-gcd a mymath:Definition ;
-    rdfs:label "Definition: Greatest Common Divisor"@en,
-        "定義：最大公約数"@en ;
-    mymath:hasDomain "Number Theory",
-        "数論" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-congruence,
-        base:def-prime,
-        base:def-set,
-        base:thm-euclidean-algorithm,
-        base:thm-euler .
-
-base:def-polynomial-ring a mymath:Definition ;
-    rdfs:label "Definition: Polynomial Ring"@en,
-        "定義: 多項式環"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation,
-        base:def-field,
-        base:def-ring .
-
 base:def-field a mymath:Definition ;
     rdfs:label "Definition: Field"@en,
         "定義: 体"@en ;
@@ -1581,6 +1599,18 @@ base:def-field a mymath:Definition ;
         base:def-group,
         base:def-ideal,
         base:def-ring .
+
+base:def-gcd a mymath:Definition ;
+    rdfs:label "Definition: Greatest Common Divisor"@en,
+        "定義：最大公約数"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-congruence,
+        base:def-prime,
+        base:def-set,
+        base:thm-euclidean-algorithm,
+        base:thm-euler .
 
 base:def-group-action a mymath:Definition ;
     rdfs:label "Group Action"@en,
@@ -1639,14 +1669,6 @@ base:def-probability-space a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
 
-base:def-random-variable a mymath:Definition ;
-    rdfs:label "Definition: Random Variable"@en,
-        "定義: 確率変数"@en ;
-    mymath:hasDomain "Probability Statistics",
-        "確率・統計学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-probability-space .
-
 base:ex-integers-addition a mymath:Example ;
     rdfs:label "Example: Integers under Addition"@en,
         "例: 加法における整数"@en ;
@@ -1677,6 +1699,14 @@ base:def-homomorphism a mymath:Definition ;
         base:def-group,
         base:def-quotient-group,
         base:thm-first-isomorphism .
+
+base:def-random-variable a mymath:Definition ;
+    rdfs:label "Definition: Random Variable"@en,
+        "定義: 確率変数"@en ;
+    mymath:hasDomain "Probability Statistics",
+        "確率・統計学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-probability-space .
 
 base:thm-first-isomorphism a mymath:Theorem ;
     rdfs:label "Theorem: First Isomorphism Theorem"@en,
@@ -1740,13 +1770,6 @@ base:def-open-set a mymath:Definition ;
         base:formal-proof-def-open-set ;
     mymath:uses base:def-topological-space .
 
-base:def-prime a mymath:Definition ;
-    rdfs:label "Definition: Prime Number"@en,
-        "定義：素数"@en ;
-    mymath:hasDomain "Number Theory",
-        "数論" ;
-    mymath:hasStatus "complete" .
-
 base:ex-quotient-integers-mod-n a mymath:Example ;
     rdfs:label "Example: Integers Modulo n"@en,
         "例: 整数の n による剰余"@en ;
@@ -1808,6 +1831,13 @@ base:def-metric-space a mymath:Definition ;
         "解析学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
+
+base:def-prime a mymath:Definition ;
+    rdfs:label "Definition: Prime Number"@en,
+        "定義：素数"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" .
 
 base:def-ring a mymath:Definition ;
     rdfs:label "Definition: Ring"@en,

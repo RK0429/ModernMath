@@ -368,9 +368,9 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-integral["Definition: Integral"]:::definition
     def-continuity["Definition: Continuity"]:::definition
     def-limit["Definition: Limit of a Sequence"]:::definition
-    def-integral["Definition: Integral"]:::definition
     def-integral --&gt; def-limit
     def-integral --&gt; def-continuity
     class def-integral current
@@ -386,7 +386,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-integral-1753167935" class="graph-visualization-container">
+<div id="graph-viz-def-integral-1753183035" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -566,12 +566,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-integral-1753167935', {
+    createForceGraph(data, 'graph-viz-def-integral-1753183035', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-integral-1753167935').innerHTML =
+    document.getElementById('graph-viz-def-integral-1753183035').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

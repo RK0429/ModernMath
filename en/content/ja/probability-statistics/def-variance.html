@@ -258,6 +258,7 @@ window.Quarto = {
   <li><a href="#存在条件" id="toc-存在条件" class="nav-link" data-scroll-target="#存在条件">存在条件</a></li>
   <li><a href="#例" id="toc-例" class="nav-link" data-scroll-target="#例">例</a></li>
   <li><a href="#解釈" id="toc-解釈" class="nav-link" data-scroll-target="#解釈">解釈</a></li>
+  <li><a href="#極限定理における役割" id="toc-極限定理における役割" class="nav-link" data-scroll-target="#極限定理における役割">極限定理における役割</a></li>
   <li><a href="#mermaid図" id="toc-mermaid図" class="nav-link" data-scroll-target="#mermaid図">Mermaid図</a></li>
   <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
@@ -346,6 +347,10 @@ window.Quarto = {
 <li>標準偏差（分散の平方根）は確率変数と同じ単位を持つ</li>
 </ul>
 </section>
+<section id="極限定理における役割" class="level2">
+<h2 class="anchored" data-anchor-id="極限定理における役割">極限定理における役割</h2>
+<p>分散は以下において重要な役割を果たす： - <a href="../../../content/ja/probability-statistics/thm-law-of-large-numbers.html">大数の法則</a>：収束の速度は分散に依存する - <a href="../../../content/ja/probability-statistics/thm-central-limit.html">中心極限定理</a>：標本平均の極限正規分布の分散はσ²/nとなる</p>
+</section>
 <section id="mermaid図" class="level2">
 <h2 class="anchored" data-anchor-id="mermaid図">Mermaid図</h2>
 <pre class="mermaid"><code>graph TD
@@ -375,17 +380,20 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-variance["Definition: Variance"]:::definition
     def-random-variable["Definition: Random Variable"]:::definition
-    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
     def-expectation["Definition: Expected Value"]:::definition
-    def-variance --&gt; def-expectation
-    def-variance --&gt; def-random-variable
+    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
+    def-variance["Definition: Variance"]:::definition
+    thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
     thm-law-of-large-numbers --&gt; def-variance
+    def-variance --&gt; def-random-variable
+    thm-central-limit --&gt; def-variance
+    def-variance --&gt; def-expectation
     class def-variance current
     click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
-    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "Theorem: Law of Large Numbersへ"
     click def-expectation "def-expectation.html" "Definition: Expected Valueへ"
+    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "Theorem: Law of Large Numbersへ"
+    click thm-central-limit "thm-central-limit.html" "Theorem: Central Limit Theoremへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -396,7 +404,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-variance-1753167944" class="graph-visualization-container">
+<div id="graph-viz-def-variance-1753183043" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -576,12 +584,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-variance-1753167944', {
+    createForceGraph(data, 'graph-viz-def-variance-1753183043', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-variance-1753167944').innerHTML =
+    document.getElementById('graph-viz-def-variance-1753183043').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
