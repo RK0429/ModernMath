@@ -1,0 +1,121 @@
+---
+id: thm-first-isomorphism
+requires:
+- def-group
+- def-homomorphism
+- def-kernel
+- def-quotient-group
+- def-normal-subgroup
+- def-image
+- ../category-theory/def-isomorphism
+- def-abelian-group
+status: complete
+title: 'Theorem: First Isomorphism Theorem'
+translations:
+  en: ../en/algebra/thm-first-isomorphism.html
+  ja: ../ja/algebra/thm-first-isomorphism.html
+type: Theorem
+---
+
+# First Isomorphism Theorem {#thm-first-isomorphism}
+
+The **First Isomorphism Theorem** (also known as the **Fundamental Homomorphism Theorem**) establishes a fundamental relationship between [Group Homomorphism](def-homomorphism.qmd), [Kernel](def-kernel.qmd), and [Quotient Group](def-quotient-group.qmd). It states that every homomorphic image is isomorphic to a quotient group.
+
+## Statement
+
+Let $\phi: G \to H$ be a group homomorphism. Then:
+
+$$G/\ker(\phi) \cong \text{Im}(\phi)$$
+
+where:
+- $\ker(\phi) = \{g \in G : \phi(g) = e_H\}$ is the kernel of $\phi$
+- $\text{Im}(\phi) = \{\phi(g) : g \in G\}$ is the image of $\phi$
+- $G/\ker(\phi)$ is the quotient group of $G$ by $\ker(\phi)$
+
+## Formal Statement
+
+More precisely, there exists an isomorphism $\bar{\phi}: G/\ker(\phi) \to \text{Im}(\phi)$ defined by:
+
+$$\bar{\phi}(g\ker(\phi)) = \phi(g)$$
+
+for all $g \in G$.
+
+## Key Insights
+
+1. **Natural Partitioning**: The homomorphism $\phi$ naturally partitions $G$ into cosets of $\ker(\phi)$, where elements in the same coset map to the same element in $H$.
+
+2. **Well-Defined Map**: The map $\bar{\phi}$ is well-defined because if $g_1\ker(\phi) = g_2\ker(\phi)$, then $g_1^{-1}g_2 \in \ker(\phi)$, which implies $\phi(g_1) = \phi(g_2)$.
+
+3. **Structure Preservation**: The theorem shows that homomorphisms "collapse" the kernel while preserving the group structure in the image.
+
+## Proof Outline
+
+The proof consists of four main steps:
+
+### Step 1: Well-Defined
+If $g\ker(\phi) = g'\ker(\phi)$, then $g' = gk$ for some $k \in \ker(\phi)$. Thus:
+$$\phi(g') = \phi(gk) = \phi(g)\phi(k) = \phi(g)e_H = \phi(g)$$
+
+### Step 2: Homomorphism
+For any $g_1, g_2 \in G$:
+$$\bar{\phi}(g_1\ker(\phi) \cdot g_2\ker(\phi)) = \bar{\phi}(g_1g_2\ker(\phi)) = \phi(g_1g_2) = \phi(g_1)\phi(g_2) = \bar{\phi}(g_1\ker(\phi)) \cdot \bar{\phi}(g_2\ker(\phi))$$
+
+### Step 3: Surjectivity
+For any $h \in \text{Im}(\phi)$, there exists $g \in G$ such that $\phi(g) = h$. Then $\bar{\phi}(g\ker(\phi)) = h$.
+
+### Step 4: Injectivity
+If $\bar{\phi}(g\ker(\phi)) = e_H$, then $\phi(g) = e_H$, so $g \in \ker(\phi)$, which means $g\ker(\phi) = \ker(\phi)$ (the identity in $G/\ker(\phi)$).
+
+## Applications
+
+The First Isomorphism Theorem has numerous important applications:
+
+1. **Classification of Groups**: To prove that a quotient group $G/N$ is isomorphic to a group $H$, it suffices to find a surjective homomorphism $\phi: G \to H$ with kernel $N$.
+
+2. **Proving Group Properties**: Many group-theoretic results can be proved by constructing appropriate homomorphisms and applying this theorem.
+
+3. **Computing Quotient Groups**: The theorem provides a concrete way to understand quotient groups through homomorphic images.
+
+### Example Applications
+
+- **Integers Modulo n**: The natural projection $\pi: \mathbb{Z} \to \mathbb{Z}/n\mathbb{Z}$ has kernel $n\mathbb{Z}$, so $\mathbb{Z}/n\mathbb{Z} \cong \mathbb{Z}_n$.
+
+- **Abelianization**: For any group $G$, the quotient $G/[G,G]$ (where $[G,G]$ is the commutator subgroup) is the largest [abelian](def-abelian-group.qmd) quotient of $G$.
+
+## Related Theorems
+
+The First Isomorphism Theorem is part of a family of isomorphism theorems:
+- **Second Isomorphism Theorem** (Diamond Isomorphism Theorem)
+- **Third Isomorphism Theorem** (Correspondence Theorem)
+- **Fourth Isomorphism Theorem** (Lattice Isomorphism Theorem)
+
+These theorems together provide a comprehensive framework for understanding the relationships between subgroups, normal subgroups, and quotient groups.
+
+## Historical Note
+
+The isomorphism theorems were formulated in their modern generality by Emmy Noether in her 1927 paper "Abstrakter Aufbau der Idealtheorie in algebraischen Zahl- und Funktionenkörpern". Less general versions appeared in earlier work by Richard Dedekind and in previous papers by Noether.
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="thm-first-isomorphism" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/thm-first-isomorphism.html){target="_blank"}

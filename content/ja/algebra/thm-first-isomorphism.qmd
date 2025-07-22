@@ -1,0 +1,122 @@
+---
+id: thm-first-isomorphism
+requires:
+- def-group
+- def-homomorphism
+- def-kernel
+- def-quotient-group
+- def-normal-subgroup
+- def-image
+- ../category-theory/def-isomorphism
+- def-abelian-group
+status: complete
+title: '定理: 第一同型定理'
+translation_of: ../../en/algebra/thm-first-isomorphism.qmd
+translations:
+  en: ../en/algebra/thm-first-isomorphism.html
+  ja: ../ja/algebra/thm-first-isomorphism.html
+type: Theorem
+---
+
+# 第一同型定理 {#thm-first-isomorphism}
+
+**第一同型定理**（だいいちどうけいていり、**準同型基本定理**とも呼ばれる）は、[群準同型](def-homomorphism.qmd)、[核](def-kernel.qmd)、[商群](def-quotient-group.qmd)の間の基本的な関係を確立する。これは、すべての準同型像が商群と同型であることを述べている。
+
+## 定理の主張
+
+$\phi: G \to H$ を群準同型とする。このとき：
+
+$$G/\ker(\phi) \cong \text{Im}(\phi)$$
+
+ここで：
+- $\ker(\phi) = \{g \in G : \phi(g) = e_H\}$ は $\phi$ の核
+- $\text{Im}(\phi) = \{\phi(g) : g \in G\}$ は $\phi$ の像
+- $G/\ker(\phi)$ は $\ker(\phi)$ による $G$ の商群
+
+## 形式的な主張
+
+より正確には、同型写像 $\bar{\phi}: G/\ker(\phi) \to \text{Im}(\phi)$ が存在し、次で定義される：
+
+$$\bar{\phi}(g\ker(\phi)) = \phi(g)$$
+
+すべての $g \in G$ に対して。
+
+## 重要な洞察
+
+1. **自然な分割**: 準同型 $\phi$ は $G$ を $\ker(\phi)$ の剰余類に自然に分割し、同じ剰余類の元は $H$ の同じ元に写される。
+
+2. **良定義な写像**: 写像 $\bar{\phi}$ は良定義である。なぜなら $g_1\ker(\phi) = g_2\ker(\phi)$ ならば、$g_1^{-1}g_2 \in \ker(\phi)$ であり、これは $\phi(g_1) = \phi(g_2)$ を意味するからである。
+
+3. **構造の保存**: この定理は、準同型が核を「潰し」ながら、像において群構造を保存することを示している。
+
+## 証明の概要
+
+証明は4つの主要なステップから成る：
+
+### ステップ1: 良定義性
+$g\ker(\phi) = g'\ker(\phi)$ ならば、ある $k \in \ker(\phi)$ に対して $g' = gk$ となる。従って：
+$$\phi(g') = \phi(gk) = \phi(g)\phi(k) = \phi(g)e_H = \phi(g)$$
+
+### ステップ2: 準同型性
+任意の $g_1, g_2 \in G$ に対して：
+$$\bar{\phi}(g_1\ker(\phi) \cdot g_2\ker(\phi)) = \bar{\phi}(g_1g_2\ker(\phi)) = \phi(g_1g_2) = \phi(g_1)\phi(g_2) = \bar{\phi}(g_1\ker(\phi)) \cdot \bar{\phi}(g_2\ker(\phi))$$
+
+### ステップ3: 全射性
+任意の $h \in \text{Im}(\phi)$ に対して、$\phi(g) = h$ となる $g \in G$ が存在する。このとき $\bar{\phi}(g\ker(\phi)) = h$。
+
+### ステップ4: 単射性
+$\bar{\phi}(g\ker(\phi)) = e_H$ ならば、$\phi(g) = e_H$ となり、$g \in \ker(\phi)$ である。これは $g\ker(\phi) = \ker(\phi)$（$G/\ker(\phi)$ の単位元）を意味する。
+
+## 応用
+
+第一同型定理には多くの重要な応用がある：
+
+1. **群の分類**: 商群 $G/N$ が群 $H$ と同型であることを示すには、核が $N$ である全射準同型 $\phi: G \to H$ を見つければ十分である。
+
+2. **群論的性質の証明**: 多くの群論的結果は、適切な準同型を構成してこの定理を適用することで証明できる。
+
+3. **商群の計算**: この定理は準同型像を通じて商群を理解する具体的な方法を提供する。
+
+### 応用例
+
+- **整数の剰余類**: 自然な射影 $\pi: \mathbb{Z} \to \mathbb{Z}/n\mathbb{Z}$ は核 $n\mathbb{Z}$ を持つので、$\mathbb{Z}/n\mathbb{Z} \cong \mathbb{Z}_n$ である。
+
+- **アーベル化**: 任意の群 $G$ に対して、商 $G/[G,G]$（ここで $[G,G]$ は交換子部分群）は $G$ の最大[アーベル](def-abelian-group.qmd)商群である。
+
+## 関連定理
+
+第一同型定理は同型定理の族の一部である：
+- **第二同型定理**（ダイヤモンド同型定理）
+- **第三同型定理**（対応定理）
+- **第四同型定理**（束同型定理）
+
+これらの定理は共に、部分群、正規部分群、商群の間の関係を理解するための包括的な枠組みを提供する。
+
+## 歴史的注記
+
+同型定理は、エミー・ネーターによって1927年の論文「Abstrakter Aufbau der Idealtheorie in algebraischen Zahl- und Funktionenkörpern」で現代的な一般性で定式化された。より一般的でない版は、リヒャルト・デデキントの作品やネーターの以前の論文に現れている。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+```
+
+## インタラクティブ可視化
+
+ローカル知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="thm-first-isomorphism" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [完全なインタラクティブ版](../../output/interactive/thm-first-isomorphism.html){target="_blank"}を表示
