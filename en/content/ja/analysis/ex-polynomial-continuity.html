@@ -318,7 +318,7 @@ window.Quarto = {
 </section>
 <section id="重要性" class="level2">
 <h2 class="anchored" data-anchor-id="重要性">重要性</h2>
-<p>多項式の連続性が重要な理由： - 多項式は他の関数を近似する（テイラー<a href="../../../content/ja/analysis/def-series.html">級数</a>） - 連続関数の稠密な部分集合を形成する（ワイエルシュトラスの近似定理） - 連続性に関する定理を検証するための具体例を提供する</p>
+<p>多項式の連続性が重要な理由： - 多項式は他の関数を近似する（<a href="../../../content/ja/analysis/thm-taylor-series.html">テイラー級数</a>） - 連続関数の稠密な部分集合を形成する（ワイエルシュトラスの近似定理） - 連続性に関する定理を検証するための具体例を提供する</p>
 </section>
 <section id="依存関係グラフ" class="level2">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
@@ -333,14 +333,14 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-continuity["Definition: Continuity"]:::definition
-    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
     def-polynomial-ring["Definition: Polynomial Ring"]:::definition
+    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
+    def-continuity["Definition: Continuity"]:::definition
     ex-polynomial-continuity --&gt; def-continuity
     ex-polynomial-continuity --&gt; def-polynomial-ring
     class ex-polynomial-continuity current
-    click def-continuity "def-continuity.html" "Definition: Continuityへ"
     click def-polynomial-ring "def-polynomial-ring.html" "Definition: Polynomial Ringへ"
+    click def-continuity "def-continuity.html" "Definition: Continuityへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -351,7 +351,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-polynomial-continuity-1753194053" class="graph-visualization-container">
+<div id="graph-viz-ex-polynomial-continuity-1753269237" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -531,12 +531,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-polynomial-continuity-1753194053', {
+    createForceGraph(data, 'graph-viz-ex-polynomial-continuity-1753269237', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-polynomial-continuity-1753194053').innerHTML =
+    document.getElementById('graph-viz-ex-polynomial-continuity-1753269237').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

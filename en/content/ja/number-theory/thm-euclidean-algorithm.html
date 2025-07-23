@@ -307,8 +307,8 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="正当性の証明">正当性の証明</h2>
 <p><span class="math inline">\(\gcd(a, b) = \gcd(b, a \bmod b)\)</span> を示す必要があります。</p>
 <p><span class="math inline">\(r = a \bmod b\)</span> とします。このとき、ある整数 <span class="math inline">\(q\)</span> に対して <span class="math inline">\(a = qb + r\)</span> です。</p>
-<p><strong>ステップ1</strong>：<span class="math inline">\(a\)</span> と <span class="math inline">\(b\)</span> の任意の公約数が、<span class="math inline">\(b\)</span> と <span class="math inline">\(r\)</span> の公約数でもあることを示す。</p>
-<p><span class="math inline">\(d \mid a\)</span> かつ <span class="math inline">\(d \mid b\)</span> ならば、<span class="math inline">\(d \mid (a - qb) = r\)</span> です。したがって <span class="math inline">\(d\)</span> は <span class="math inline">\(b\)</span> と <span class="math inline">\(r\)</span> の両方を割り切ります。</p>
+<p><strong>ステップ1</strong>：<span class="math inline">\(a\)</span> と <span class="math inline">\(b\)</span> の任意の公<a href="../../../content/ja/number-theory/def-divisibility.html">約数</a>が、<span class="math inline">\(b\)</span> と <span class="math inline">\(r\)</span> の公約数でもあることを示す。</p>
+<p><span class="math inline">\(d \mid a\)</span> かつ <span class="math inline">\(d \mid b\)</span> ならば、<span class="math inline">\(d \mid (a - qb) = r\)</span> です。したがって <span class="math inline">\(d\)</span> は <span class="math inline">\(b\)</span> と <span class="math inline">\(r\)</span> の両方を<a href="../../../content/ja/number-theory/def-divisibility.html">割り切ります</a>。</p>
 <p><strong>ステップ2</strong>：<span class="math inline">\(b\)</span> と <span class="math inline">\(r\)</span> の任意の公約数が、<span class="math inline">\(a\)</span> と <span class="math inline">\(b\)</span> の公約数でもあることを示す。</p>
 <p><span class="math inline">\(d \mid b\)</span> かつ <span class="math inline">\(d \mid r\)</span> ならば、<span class="math inline">\(d \mid (qb + r) = a\)</span> です。したがって <span class="math inline">\(d\)</span> は <span class="math inline">\(a\)</span> と <span class="math inline">\(b\)</span> の両方を割り切ります。</p>
 <p>よって、<span class="math inline">\((a, b)\)</span> の公約数の集合と <span class="math inline">\((b, r)\)</span> の公約数の集合は等しく、それらの最大元も等しいです。</p>
@@ -363,20 +363,23 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
-    thm-chinese-remainder["Theorem: Chinese Remainder Theorem"]:::theorem
-    def-gcd["Definition: Greatest Common Divisor"]:::definition
     def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
+    thm-chinese-remainder["Theorem: Chinese Remainder Theorem"]:::theorem
+    def-divisibility["Definition: Divisibility"]:::definition
+    def-gcd["Definition: Greatest Common Divisor"]:::definition
+    thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
     ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-gcd --&gt; thm-euclidean-algorithm
     thm-euclidean-algorithm --&gt; ex-quotient-integers-mod-n
-    def-congruence --&gt; thm-euclidean-algorithm
     thm-chinese-remainder --&gt; thm-euclidean-algorithm
     thm-euclidean-algorithm --&gt; def-gcd
+    thm-euclidean-algorithm --&gt; def-divisibility
+    def-congruence --&gt; thm-euclidean-algorithm
     class thm-euclidean-algorithm current
-    click thm-chinese-remainder "thm-chinese-remainder.html" "Theorem: Chinese Remainder Theoremへ"
-    click def-gcd "def-gcd.html" "Definition: Greatest Common Divisorへ"
     click def-congruence "def-congruence.html" "Definition: Congruence (Modular Arithmetic)へ"
+    click thm-chinese-remainder "thm-chinese-remainder.html" "Theorem: Chinese Remainder Theoremへ"
+    click def-divisibility "def-divisibility.html" "Definition: Divisibilityへ"
+    click def-gcd "def-gcd.html" "Definition: Greatest Common Divisorへ"
     click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
 </pre>
 </div>
@@ -388,7 +391,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-euclidean-algorithm-1753194086" class="graph-visualization-container">
+<div id="graph-viz-thm-euclidean-algorithm-1753269271" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -568,12 +571,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-euclidean-algorithm-1753194086', {
+    createForceGraph(data, 'graph-viz-thm-euclidean-algorithm-1753269271', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-euclidean-algorithm-1753194086').innerHTML =
+    document.getElementById('graph-viz-thm-euclidean-algorithm-1753269271').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

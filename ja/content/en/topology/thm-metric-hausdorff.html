@@ -328,12 +328,12 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-topological-space["Definition: Topological Space"]:::definition
-    def-metric-space["Definition: Metric Space"]:::definition
     thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
+    def-metric-space["Definition: Metric Space"]:::definition
     def-hausdorff["Definition: Hausdorff Space"]:::definition
+    thm-metric-hausdorff --&gt; def-hausdorff
     thm-metric-hausdorff --&gt; def-topological-space
     thm-metric-hausdorff --&gt; def-metric-space
-    thm-metric-hausdorff --&gt; def-hausdorff
     class thm-metric-hausdorff current
     click def-topological-space "def-topological-space.html" "Go to Topological Space definition"
     click def-metric-space "def-metric-space.html" "Go to Metric Space definition"
@@ -348,7 +348,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-metric-hausdorff-1753194214" class="graph-visualization-container">
+<div id="graph-viz-thm-metric-hausdorff-1753269402" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -528,12 +528,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-metric-hausdorff-1753194214', {
+    createForceGraph(data, 'graph-viz-thm-metric-hausdorff-1753269402', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-metric-hausdorff-1753194214').innerHTML =
+    document.getElementById('graph-viz-thm-metric-hausdorff-1753269402').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

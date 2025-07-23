@@ -286,7 +286,7 @@ window.Quarto = {
 
 <section id="thm-lagrange" class="level1">
 <h1>Lagrange’s Theorem</h1>
-<p>For a finite <a href="../../../content/en/algebra/def-group.html">Group</a> <span class="math inline">\(G\)</span> and a <a href="../../../content/en/algebra/def-subgroup.html">Subgroup</a> <span class="math inline">\(H\)</span> of <span class="math inline">\(G\)</span>, the order of <span class="math inline">\(H\)</span> divides the order of <span class="math inline">\(G\)</span>.</p>
+<p>For a finite <a href="../../../content/en/algebra/def-group.html">Group</a> <span class="math inline">\(G\)</span> and a <a href="../../../content/en/algebra/def-subgroup.html">Subgroup</a> <span class="math inline">\(H\)</span> of <span class="math inline">\(G\)</span>, the order of <span class="math inline">\(H\)</span> <a href="../../../content/en/number-theory/def-divisibility.html">divides</a> the order of <span class="math inline">\(G\)</span>.</p>
 <section id="statement" class="level2">
 <h2 class="anchored" data-anchor-id="statement">Statement</h2>
 <p>If <span class="math inline">\(G\)</span> is a finite group and <span class="math inline">\(H \leq G\)</span>, then: <span class="math display">\[|G| = |H| \cdot [G:H]\]</span></p>
@@ -294,13 +294,13 @@ window.Quarto = {
 <section id="connection-to-quotient-groups" class="level3">
 <h3 class="anchored" data-anchor-id="connection-to-quotient-groups">Connection to Quotient Groups</h3>
 <p>When <span class="math inline">\(H\)</span> is a normal subgroup of <span class="math inline">\(G\)</span>, the index <span class="math inline">\([G:H]\)</span> equals the order of the <a href="../../../content/en/algebra/def-quotient-group.html">商群</a> <span class="math inline">\(G/H\)</span>: <span class="math display">\[[G:H] = |G/H|\]</span></p>
-<p>This provides another interpretation of Lagrange’s theorem: the order of a quotient group divides the order of the original group.</p>
+<p>This provides another interpretation of Lagrange’s theorem: the order of a quotient group <a href="../../../content/en/number-theory/def-divisibility.html">divides</a> the order of the original group.</p>
 </section>
 </section>
 <section id="corollaries" class="level2">
 <h2 class="anchored" data-anchor-id="corollaries">Corollaries</h2>
 <ol type="1">
-<li>The order of any element <span class="math inline">\(a \in G\)</span> divides the order of <span class="math inline">\(G\)</span></li>
+<li>The order of any element <span class="math inline">\(a \in G\)</span> <a href="../../../content/en/number-theory/def-divisibility.html">divides</a> the order of <span class="math inline">\(G\)</span></li>
 <li>If <span class="math inline">\(|G|\)</span> is prime, then <span class="math inline">\(G\)</span> is <a href="../../../content/en/algebra/def-cyclic-group.html">cyclic</a> and has no proper non-trivial subgroups</li>
 <li>Any group of prime order is isomorphic to <span class="math inline">\(\mathbb{Z}_p\)</span> for some prime <span class="math inline">\(p\)</span></li>
 </ol>
@@ -322,35 +322,35 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
-    def-group["Definition: Group"]:::definition
     def-abelian-group["Definition: Abelian Group"]:::definition
-    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-subgroup["Definition: Subgroup"]:::definition
     def-quotient-group["Definition: Quotient Group"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
     def-coset["Definition: Coset"]:::definition
-    thm-lagrange --&gt; def-subgroup
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-cyclic-group --&gt; thm-lagrange
+    thm-orbit-stabilizer --&gt; thm-lagrange
+    thm-lagrange --&gt; def-quotient-group
+    def-subgroup --&gt; thm-lagrange
+    thm-lagrange --&gt; def-coset
     thm-lagrange --&gt; def-cyclic-group
+    def-normal-subgroup --&gt; thm-lagrange
     def-abelian-group --&gt; thm-lagrange
     thm-lagrange --&gt; def-group
-    thm-orbit-stabilizer --&gt; thm-lagrange
-    def-cyclic-group --&gt; thm-lagrange
-    def-normal-subgroup --&gt; thm-lagrange
-    thm-lagrange --&gt; def-coset
-    def-subgroup --&gt; thm-lagrange
     def-coset --&gt; thm-lagrange
-    thm-lagrange --&gt; def-quotient-group
+    thm-lagrange --&gt; def-subgroup
     class thm-lagrange current
-    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
-    click def-group "def-group.html" "Go to Group definition"
     click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
-    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "Go to Orbit-Stabilizer Theorem"
+    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
     click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "Go to Orbit-Stabilizer Theorem"
     click def-coset "def-coset.html" "Go to Coset definition"
+    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -361,7 +361,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-lagrange-1753193976" class="graph-visualization-container">
+<div id="graph-viz-thm-lagrange-1753269162" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -541,12 +541,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-lagrange-1753193976', {
+    createForceGraph(data, 'graph-viz-thm-lagrange-1753269162', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-lagrange-1753193976').innerHTML =
+    document.getElementById('graph-viz-thm-lagrange-1753269162').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

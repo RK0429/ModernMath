@@ -67,6 +67,8 @@
 
 <http://modernmath.org/concepts/distributivity> ns1:hasTranslation <http://modernmath.org/concepts/distributivity_ja> .
 
+<http://modernmath.org/concepts/divisibility> ns1:hasTranslation <http://modernmath.org/concepts/divisibility_ja> .
+
 <http://modernmath.org/concepts/eigenvalue-eigenvector> ns1:hasTranslation <http://modernmath.org/concepts/eigenvalue-eigenvector_ja> .
 
 <http://modernmath.org/concepts/euclidean-algorithm> ns1:hasTranslation <http://modernmath.org/concepts/euclidean-algorithm_ja> .
@@ -237,6 +239,8 @@
 
 <http://modernmath.org/concepts/subset> ns1:hasTranslation <http://modernmath.org/concepts/subset_ja> .
 
+<http://modernmath.org/concepts/taylor-series> ns1:hasTranslation <http://modernmath.org/concepts/taylor-series_ja> .
+
 <http://modernmath.org/concepts/topological-space> ns1:hasTranslation <http://modernmath.org/concepts/topological-space_ja> .
 
 <http://modernmath.org/concepts/tree> ns1:hasTranslation <http://modernmath.org/concepts/tree_ja> .
@@ -325,18 +329,6 @@ base:def-parallel a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-line,
         base:def-point .
-
-base:def-series a mymath:Definition ;
-    rdfs:label "Definition: Series"@en,
-        "定義: 級数"@en ;
-    rdfs:comment "**級数**とは、数列の項の和である。より正確には、数列 $(a_n)_{n=1}^{\\infty}$ が与えられたとき、それに対応する級数は形式的な表現 $\\sum_{n=1}^{\\infty} a_n$ である。"@en,
-        "A **series** is the sum of the terms of a sequence. More precisely, given a sequence $(a_n)_{n=1}^{\\infty}$, the associated series is the formal expression $\\sum_{n=1}^{\\infty} a_n$."@en ;
-    mymath:hasDomain "Analysis",
-        "解析学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-convergence,
-        base:def-limit,
-        base:def-sequence .
 
 base:def-tree a mymath:Definition ;
     rdfs:label "Definition: Tree"@en,
@@ -531,6 +523,7 @@ base:thm-chinese-remainder a mymath:Theorem ;
         "数論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-congruence,
+        base:def-divisibility,
         base:def-gcd,
         base:def-prime,
         base:thm-euclidean-algorithm .
@@ -604,17 +597,6 @@ base:thm-linear-transformation-basis a mymath:Theorem ;
         base:def-linear-transformation,
         base:def-vector-space .
 
-base:thm-mean-value a mymath:Theorem ;
-    rdfs:label "Theorem: Mean Value Theorem"@en,
-        "定理：平均値の定理"@en ;
-    rdfs:comment "**平均値の定理（MVT）**は、区間上で微分可能な関数に対して、瞬間変化率が区間全体の平均変化率に等しくなる点が少なくとも1つ存在することを主張する。"@en,
-        "The **Mean Value Theorem (MVT)** states that for a differentiable function on an interval, there exists at least one point where the instantaneous rate of change equals the average rate of change over the interval."@en ;
-    mymath:hasDomain "Analysis",
-        "解析学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-continuity,
-        base:def-derivative .
-
 base:thm-metric-hausdorff a mymath:Theorem ;
     rdfs:label "Theorem: Every Metric Space is Hausdorff"@en,
         "定理: すべての距離空間はハウスドルフ空間"@en ;
@@ -663,6 +645,18 @@ base:thm-rank-nullity a mymath:Theorem ;
         base:def-kernel,
         base:def-linear-transformation,
         base:def-vector-space .
+
+base:thm-taylor-series a mymath:Theorem ;
+    rdfs:label "Theorem: Taylor Series"@en,
+        "定理: テイラー級数"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-continuity,
+        base:def-convergence,
+        base:def-derivative,
+        base:def-series,
+        base:thm-mean-value .
 
 base:thm-union-open-sets a mymath:Theorem ;
     rdfs:label "Theorem: Union of Open Sets"@en,
@@ -746,6 +740,8 @@ base:thm-yoneda a mymath:Theorem ;
 <http://modernmath.org/concepts/direct-product_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/distributivity_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/divisibility_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/eigenvalue-eigenvector_ja> ns1:language "ja" .
 
@@ -917,6 +913,8 @@ base:thm-yoneda a mymath:Theorem ;
 
 <http://modernmath.org/concepts/subset_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/taylor-series_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/topological-space_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/tree_ja> ns1:language "ja" .
@@ -1044,17 +1042,6 @@ base:def-composition a mymath:Definition ;
     mymath:uses base:def-category,
         base:def-morphism .
 
-base:def-convergence a mymath:Definition ;
-    rdfs:label "Definition: Convergence"@en,
-        "定義: 収束"@en ;
-    rdfs:comment "**Convergence** describes the behavior of a [Sequence](def-sequence.qmd) whose terms approach a specific value as the index increases. A convergent sequence gets arbitrarily close to its limit."@en,
-        "**収束**とは、[数列](def-sequence.qmd)の項が、添字が増加するにつれて特定の値に近づく挙動を表す。収束する数列は、その極限に任意に近づく。"@en ;
-    mymath:hasDomain "Analysis",
-        "解析学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-limit,
-        base:def-sequence .
-
 base:def-euclidean-space a mymath:Definition ;
     rdfs:label "Definition: Euclidean Space"@en,
         "定義: ユークリッド空間"@en ;
@@ -1149,6 +1136,18 @@ base:def-sample-space a mymath:Definition ;
         "確率・統計学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-set .
+
+base:def-series a mymath:Definition ;
+    rdfs:label "Definition: Series"@en,
+        "定義: 級数"@en ;
+    rdfs:comment "**級数**とは、数列の項の和である。より正確には、数列 $(a_n)_{n=1}^{\\infty}$ が与えられたとき、それに対応する級数は形式的な表現 $\\sum_{n=1}^{\\infty} a_n$ である。"@en,
+        "A **series** is the sum of the terms of a sequence. More precisely, given a sequence $(a_n)_{n=1}^{\\infty}$, the associated series is the formal expression $\\sum_{n=1}^{\\infty} a_n$."@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-convergence,
+        base:def-limit,
+        base:def-sequence .
 
 base:def-triangle a mymath:Definition ;
     rdfs:label "Definition: Triangle"@en,
@@ -1294,6 +1293,17 @@ base:thm-heine-borel a mymath:Theorem ;
         base:def-compact,
         base:def-metric-space .
 
+base:thm-mean-value a mymath:Theorem ;
+    rdfs:label "Theorem: Mean Value Theorem"@en,
+        "定理：平均値の定理"@en ;
+    rdfs:comment "**平均値の定理（MVT）**は、区間上で微分可能な関数に対して、瞬間変化率が区間全体の平均変化率に等しくなる点が少なくとも1つ存在することを主張する。"@en,
+        "The **Mean Value Theorem (MVT)** states that for a differentiable function on an interval, there exists at least one point where the instantaneous rate of change equals the average rate of change over the interval."@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-continuity,
+        base:def-derivative .
+
 base:thm-unique-identity a mymath:Theorem ;
     rdfs:label "Theorem: Uniqueness of Identity"@en,
         "定理: 単位元の一意性"@en ;
@@ -1380,13 +1390,16 @@ base:def-connected a mymath:Definition ;
         base:def-open-set,
         base:def-topological-space .
 
-base:def-derivative a mymath:Definition ;
-    rdfs:label "Definition: Derivative"@en,
-        "定義: 導関数"@en ;
+base:def-convergence a mymath:Definition ;
+    rdfs:label "Definition: Convergence"@en,
+        "定義: 収束"@en ;
+    rdfs:comment "**Convergence** describes the behavior of a [Sequence](def-sequence.qmd) whose terms approach a specific value as the index increases. A convergent sequence gets arbitrarily close to its limit."@en,
+        "**収束**とは、[数列](def-sequence.qmd)の項が、添字が増加するにつれて特定の値に近づく挙動を表す。収束する数列は、その極限に任意に近づく。"@en ;
     mymath:hasDomain "Analysis",
         "解析学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-limit .
+    mymath:uses base:def-limit,
+        base:def-sequence .
 
 base:def-functor a mymath:Definition ;
     rdfs:label "Definition: Functor"@en,
@@ -1537,6 +1550,7 @@ base:thm-fermat-little a mymath:Theorem ;
         "数論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-congruence,
+        base:def-divisibility,
         base:def-gcd,
         base:def-prime .
 
@@ -1551,6 +1565,14 @@ base:def-compact a mymath:Definition ;
     mymath:uses base:def-open-set,
         base:def-set,
         base:def-topological-space .
+
+base:def-derivative a mymath:Definition ;
+    rdfs:label "Definition: Derivative"@en,
+        "定義: 導関数"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-limit .
 
 base:def-direct-product a mymath:Definition ;
     rdfs:label "Definition: Direct Product of Groups"@en,
@@ -1603,7 +1625,8 @@ base:thm-euclidean-algorithm a mymath:Theorem ;
     mymath:hasDomain "Number Theory",
         "数論" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-gcd,
+    mymath:uses base:def-divisibility,
+        base:def-gcd,
         base:ex-quotient-integers-mod-n .
 
 base:def-field a mymath:Definition ;
@@ -1696,6 +1719,7 @@ base:def-congruence a mymath:Definition ;
     mymath:hasLeanId "Mathlib.Data.Int.ModEq" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:ax-induction,
+        base:def-divisibility,
         base:def-gcd,
         base:def-prime,
         base:def-set,
@@ -1703,18 +1727,6 @@ base:def-congruence a mymath:Definition ;
         base:thm-euclidean-algorithm,
         base:thm-euler,
         base:thm-fermat-little .
-
-base:def-gcd a mymath:Definition ;
-    rdfs:label "Definition: Greatest Common Divisor"@en,
-        "定義：最大公約数"@en ;
-    mymath:hasDomain "Number Theory",
-        "数論" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-congruence,
-        base:def-prime,
-        base:def-set,
-        base:thm-euclidean-algorithm,
-        base:thm-euler .
 
 base:def-graph a mymath:Definition ;
     rdfs:label "Definition: Graph"@en,
@@ -1763,6 +1775,28 @@ base:def-coset a mymath:Definition ;
         base:ex-even-integers-subgroup,
         base:ex-quotient-integers-mod-n,
         base:thm-lagrange .
+
+base:def-divisibility a mymath:Definition ;
+    rdfs:label "Definition: Divisibility"@en,
+        "定義: 整除性"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-gcd,
+        base:def-prime .
+
+base:def-gcd a mymath:Definition ;
+    rdfs:label "Definition: Greatest Common Divisor"@en,
+        "定義：最大公約数"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-congruence,
+        base:def-divisibility,
+        base:def-prime,
+        base:def-set,
+        base:thm-euclidean-algorithm,
+        base:thm-euler .
 
 base:def-homomorphism a mymath:Definition ;
     rdfs:label "Definition: Group Homomorphism"@en,
@@ -1842,14 +1876,6 @@ base:def-category a mymath:Definition ;
     mymath:uses base:def-graph,
         base:def-set .
 
-base:def-continuity a mymath:Definition ;
-    rdfs:label "Definition: Continuity"@en,
-        "定義: 連続性"@en ;
-    mymath:hasDomain "Analysis",
-        "解析学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-limit .
-
 base:def-limit a mymath:Definition ;
     rdfs:label "Definition: Limit of a Sequence"@en,
         "定義：数列の極限"@en ;
@@ -1897,12 +1923,13 @@ base:def-subgroup a mymath:Definition ;
         base:def-set,
         base:thm-lagrange .
 
-base:def-prime a mymath:Definition ;
-    rdfs:label "Definition: Prime Number"@en,
-        "定義：素数"@en ;
-    mymath:hasDomain "Number Theory",
-        "数論" ;
-    mymath:hasStatus "complete" .
+base:def-continuity a mymath:Definition ;
+    rdfs:label "Definition: Continuity"@en,
+        "定義: 連続性"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-limit .
 
 base:def-cyclic-group a mymath:Definition ;
     rdfs:label "Definition: Cyclic Group"@en,
@@ -1918,6 +1945,14 @@ base:def-cyclic-group a mymath:Definition ;
         base:ex-integers-addition,
         base:ex-quotient-integers-mod-n,
         base:thm-lagrange .
+
+base:def-prime a mymath:Definition ;
+    rdfs:label "Definition: Prime Number"@en,
+        "定義：素数"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-divisibility .
 
 base:def-topological-space a mymath:Definition ;
     rdfs:label "Definition: Topological Space"@en,
