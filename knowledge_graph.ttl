@@ -236,6 +236,8 @@
 
 <http://modernmath.org/concepts/subset> ns1:hasTranslation <http://modernmath.org/concepts/subset_ja> .
 
+<http://modernmath.org/concepts/taylor-series> ns1:hasTranslation <http://modernmath.org/concepts/taylor-series_ja> .
+
 <http://modernmath.org/concepts/topological-space> ns1:hasTranslation <http://modernmath.org/concepts/topological-space_ja> .
 
 <http://modernmath.org/concepts/tree> ns1:hasTranslation <http://modernmath.org/concepts/tree_ja> .
@@ -518,6 +520,7 @@ ns1:hasTranslation a rdf:Property ;
         "数論" ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-congruence>,
+        <https://mathwiki.org/resource/def-divisibility>,
         <https://mathwiki.org/resource/def-gcd>,
         <https://mathwiki.org/resource/def-prime>,
         <https://mathwiki.org/resource/thm-euclidean-algorithm> .
@@ -904,6 +907,8 @@ ns1:hasTranslation a rdf:Property ;
 <http://modernmath.org/concepts/subgroup_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/subset_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/taylor-series_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/topological-space_ja> ns1:language "ja" .
 
@@ -1442,6 +1447,7 @@ ns1:hasTranslation a rdf:Property ;
         "数論" ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-congruence>,
+        <https://mathwiki.org/resource/def-divisibility>,
         <https://mathwiki.org/resource/def-gcd>,
         <https://mathwiki.org/resource/def-prime> .
 
@@ -1515,7 +1521,8 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasDomain "Number Theory",
         "数論" ;
     mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-gcd>,
+    mymath:uses <https://mathwiki.org/resource/def-divisibility>,
+        <https://mathwiki.org/resource/def-gcd>,
         <https://mathwiki.org/resource/ex-quotient-integers-mod-n> .
 
 <https://mathwiki.org/resource/def-field> a mymath:Definition ;
@@ -1607,6 +1614,7 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasLeanId "Mathlib.Data.Int.ModEq" ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/ax-induction>,
+        <https://mathwiki.org/resource/def-divisibility>,
         <https://mathwiki.org/resource/def-gcd>,
         <https://mathwiki.org/resource/def-prime>,
         <https://mathwiki.org/resource/def-set>,
@@ -1614,18 +1622,6 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/thm-euclidean-algorithm>,
         <https://mathwiki.org/resource/thm-euler>,
         <https://mathwiki.org/resource/thm-fermat-little> .
-
-<https://mathwiki.org/resource/def-gcd> a mymath:Definition ;
-    rdfs:label "Definition: Greatest Common Divisor"@en,
-        "定義：最大公約数"@en ;
-    mymath:hasDomain "Number Theory",
-        "数論" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses <https://mathwiki.org/resource/def-congruence>,
-        <https://mathwiki.org/resource/def-prime>,
-        <https://mathwiki.org/resource/def-set>,
-        <https://mathwiki.org/resource/thm-euclidean-algorithm>,
-        <https://mathwiki.org/resource/thm-euler> .
 
 <https://mathwiki.org/resource/def-graph> a mymath:Definition ;
     rdfs:label "Definition: Graph"@en,
@@ -1674,6 +1670,28 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/ex-even-integers-subgroup>,
         <https://mathwiki.org/resource/ex-quotient-integers-mod-n>,
         <https://mathwiki.org/resource/thm-lagrange> .
+
+<https://mathwiki.org/resource/def-divisibility> a mymath:Definition ;
+    rdfs:label "Definition: Divisibility"@en,
+        "定義: 整除性"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-gcd>,
+        <https://mathwiki.org/resource/def-prime> .
+
+<https://mathwiki.org/resource/def-gcd> a mymath:Definition ;
+    rdfs:label "Definition: Greatest Common Divisor"@en,
+        "定義：最大公約数"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-congruence>,
+        <https://mathwiki.org/resource/def-divisibility>,
+        <https://mathwiki.org/resource/def-prime>,
+        <https://mathwiki.org/resource/def-set>,
+        <https://mathwiki.org/resource/thm-euclidean-algorithm>,
+        <https://mathwiki.org/resource/thm-euler> .
 
 <https://mathwiki.org/resource/def-homomorphism> a mymath:Definition ;
     rdfs:label "Definition: Group Homomorphism"@en,
@@ -1804,13 +1822,6 @@ ns1:hasTranslation a rdf:Property ;
     mymath:hasStatus "complete" ;
     mymath:uses <https://mathwiki.org/resource/def-limit> .
 
-<https://mathwiki.org/resource/def-prime> a mymath:Definition ;
-    rdfs:label "Definition: Prime Number"@en,
-        "定義：素数"@en ;
-    mymath:hasDomain "Number Theory",
-        "数論" ;
-    mymath:hasStatus "complete" .
-
 <https://mathwiki.org/resource/def-cyclic-group> a mymath:Definition ;
     rdfs:label "Definition: Cyclic Group"@en,
         "定義: 巡回群"@en ;
@@ -1825,6 +1836,14 @@ ns1:hasTranslation a rdf:Property ;
         <https://mathwiki.org/resource/ex-integers-addition>,
         <https://mathwiki.org/resource/ex-quotient-integers-mod-n>,
         <https://mathwiki.org/resource/thm-lagrange> .
+
+<https://mathwiki.org/resource/def-prime> a mymath:Definition ;
+    rdfs:label "Definition: Prime Number"@en,
+        "定義：素数"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses <https://mathwiki.org/resource/def-divisibility> .
 
 <https://mathwiki.org/resource/def-topological-space> a mymath:Definition ;
     rdfs:label "Definition: Topological Space"@en,

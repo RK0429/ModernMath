@@ -3,6 +3,7 @@ id: thm-euclidean-algorithm
 requires:
 - def-gcd
 - ex-quotient-integers-mod-n
+- def-divisibility
 status: complete
 title: 定理：ユークリッドのアルゴリズム
 translation_of: ../../en/number-theory/thm-euclidean-algorithm.qmd
@@ -39,9 +40,9 @@ $\gcd(a, b) = \gcd(b, a \bmod b)$ を示す必要があります。
 
 $r = a \bmod b$ とします。このとき、ある整数 $q$ に対して $a = qb + r$ です。
 
-**ステップ1**：$a$ と $b$ の任意の公約数が、$b$ と $r$ の公約数でもあることを示す。
+**ステップ1**：$a$ と $b$ の任意の公[約数](def-divisibility.qmd)が、$b$ と $r$ の公約数でもあることを示す。
 
-$d \mid a$ かつ $d \mid b$ ならば、$d \mid (a - qb) = r$ です。したがって $d$ は $b$ と $r$ の両方を割り切ります。
+$d \mid a$ かつ $d \mid b$ ならば、$d \mid (a - qb) = r$ です。したがって $d$ は $b$ と $r$ の両方を[割り切ります](def-divisibility.qmd)。
 
 **ステップ2**：$b$ と $r$ の任意の公約数が、$a$ と $b$ の公約数でもあることを示す。
 
@@ -100,21 +101,21 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-chinese-remainder["Theorem: Chinese Remainder Theorem"]:::theorem
+    def-gcd["Definition: Greatest Common Divisor"]:::definition
     ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    thm-chinese-remainder["Theorem: Chinese Remainder Theorem"]:::theorem
     def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
     thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
-    def-gcd["Definition: Greatest Common Divisor"]:::definition
     thm-euclidean-algorithm --> def-gcd
-    thm-euclidean-algorithm --> ex-quotient-integers-mod-n
-    def-gcd --> thm-euclidean-algorithm
-    def-congruence --> thm-euclidean-algorithm
     thm-chinese-remainder --> thm-euclidean-algorithm
+    def-congruence --> thm-euclidean-algorithm
+    def-gcd --> thm-euclidean-algorithm
+    thm-euclidean-algorithm --> ex-quotient-integers-mod-n
     class thm-euclidean-algorithm current
-    click thm-chinese-remainder "thm-chinese-remainder.html" "Theorem: Chinese Remainder Theoremへ"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
-    click def-congruence "def-congruence.html" "Definition: Congruence (Modular Arithmetic)へ"
     click def-gcd "def-gcd.html" "Definition: Greatest Common Divisorへ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
+    click thm-chinese-remainder "thm-chinese-remainder.html" "Theorem: Chinese Remainder Theoremへ"
+    click def-congruence "def-congruence.html" "Definition: Congruence (Modular Arithmetic)へ"
 ```
 
 ## インタラクティブ可視化
