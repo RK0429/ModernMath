@@ -121,6 +121,7 @@ All mathematical content is in `content/` organized by domain. Each `.qmd` file 
 - **YAML Front Matter**: Contains metadata (id, type, status, requires)
   - **type**: Must be one of: `Corollary`, `Definition`, `Theorem`, `Example`, `Axiom`, `Proposition`, `Lemma` (capitalized)
   - **status**: Must be one of: `verified`, `stub`, `complete`, `draft`
+  - **requires**: Must be a list (use `[]` for empty, not `null`)
 - **Cross-References**: Use `@label` syntax to create graph edges
 - **File Naming**: `def-*.qmd`, `thm-*.qmd`, `ex-*.qmd`, `ax-*.qmd`
 
@@ -240,7 +241,7 @@ The project supports multiple languages (currently English and Japanese) with au
 
 - Japanese files need `translation_of: ../../en/path.qmd`
 - All files need `translations: {en: "path.html", ja: "path.html"}`
-- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Module→加群, Ideal→イデアル, Cyclic Group→巡回群, Polynomial Ring→多項式環, Variance→分散, Abelian Group→アーベル群/可換群, Independence→独立性, Uniform Continuity→一様連続性, Homeomorphism→同相写像, Series→級数, Group Action→群の作用, Orbit→軌道, Stabilizer→固定化部分群
+- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Module→加群, Ideal→イデアル, Cyclic Group→巡回群, Polynomial Ring→多項式環, Variance→分散, Abelian Group→アーベル群/可換群, Independence→独立性, Uniform Continuity→一様連続性, Homeomorphism→同相写像, Series→級数, Group Action→群の作用, Orbit→軌道, Stabilizer→固定化部分群, Cauchy Sequence→コーシー列
 
 ### Building Multilingual Sites
 

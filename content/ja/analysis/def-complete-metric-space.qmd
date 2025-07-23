@@ -3,6 +3,7 @@ id: def-complete-metric-space
 requires:
 - def-metric-space
 - def-limit
+- def-cauchy-sequence
 status: complete
 title: '定義: 完備距離空間'
 translation_of: ../../en/analysis/def-complete-metric-space.qmd
@@ -14,21 +15,13 @@ type: Definition
 
 # 定義: 完備距離空間 {#def-complete-metric-space}
 
-[距離空間](../geometry/def-metric-space.qmd) $(X, d)$ が**完備**であるとは、$X$ のすべてのコーシー列が $X$ 内の[数列の極限](def-limit.qmd)に収束することをいう。
-
-## コーシー列
-
-距離空間 $(X, d)$ における数列 $(x_n)_{n=1}^{\infty}$ が**コーシー列**であるとは、任意の $\varepsilon > 0$ に対して、ある $N \in \mathbb{N}$ が存在して、すべての $m, n \geq N$ に対して次が成り立つことをいう：
-
-$$d(x_m, x_n) < \varepsilon$$
-
-直感的には、コーシー列の項は、数列が進むにつれて互いに任意に近くなる。
+[距離空間](../geometry/def-metric-space.qmd) $(X, d)$ が**完備**であるとは、$X$ のすべての[コーシー列](def-cauchy-sequence.qmd)が $X$ 内の[数列の極限](def-limit.qmd)に収束することをいう。
 
 ## 収束性との関係
 
-- すべての収束列はコーシー列である
-- 完備距離空間において、すべてのコーシー列は収束する
-- 距離空間が完備であることの必要十分条件は、逆が成り立つこと、すなわちすべてのコーシー列が収束することである
+- すべての収束列は[コーシー列](def-cauchy-sequence.qmd)である
+- 完備距離空間において、すべての[コーシー列](def-cauchy-sequence.qmd)は収束する
+- 距離空間が完備であることの必要十分条件は、逆が成り立つこと、すなわちすべての[コーシー列](def-cauchy-sequence.qmd)が収束することである
 
 ## 例
 
@@ -39,7 +32,7 @@ $$d(x_m, x_n) < \varepsilon$$
 - 上限距離を持つ $C[a,b]$（$[a,b]$ 上の連続関数）
 
 **非完備距離空間：**
-- 標準的な距離を持つ $\mathbb{Q}$（例えば、$x_n$ を $\sqrt{2}$ の $n$ 番目の小数近似とする数列 $(x_n)$ はコーシー列だが $\mathbb{Q}$ では収束しない）
+- 標準的な距離を持つ $\mathbb{Q}$（例えば、$x_n$ を $\sqrt{2}$ の $n$ 番目の小数近似とする数列 $(x_n)$ は[コーシー列](def-cauchy-sequence.qmd)だが $\mathbb{Q}$ では収束しない）
 - 標準的な距離を持つ $(0, 1)$
 - $L^1$ 距離を持つ $C[a,b]$
 
@@ -48,7 +41,7 @@ $$d(x_m, x_n) < \varepsilon$$
 完備性は以下にとって重要である：
 - **不動点定理**：バナッハの不動点定理は完備性を必要とする
 - **存在定理**：解析学における多くの存在結果は完備性に依存している
-- **$\mathbb{R}$ の構成**：実数は $\mathbb{Q}$ の完備化として構成できる
+- **$\mathbb{R}$ の構成**：実数は $\mathbb{Q}$ の[コーシー列](def-cauchy-sequence.qmd)を用いた完備化として構成できる
 
 ## 関連項目
 

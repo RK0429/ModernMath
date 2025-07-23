@@ -1,0 +1,127 @@
+---
+id: def-cauchy-sequence
+requires:
+- def-sequence
+- def-metric-space
+- def-limit
+status: complete
+title: '定義: コーシー列'
+translations:
+  en: ../en/analysis/def-cauchy-sequence.html
+  ja: ../ja/analysis/def-cauchy-sequence.html
+translation_of: ../../en/analysis/def-cauchy-sequence.qmd
+type: Definition
+---
+
+**コーシー列**（基本列とも呼ばれる）は、数列が進むにつれて要素が互いに任意に近くなる数列である。この概念は、極限を知らなくても収束性を捉えることができる。
+
+## 形式的定義
+
+$(X, d)$ を[距離空間](../geometry/def-metric-space.qmd)とする。$X$ における[数列](def-sequence.qmd) $(x_n)_{n=1}^{\infty}$ が**コーシー列**であるとは、任意の $\varepsilon > 0$ に対して、ある $N \in \mathbb{N}$ が存在して、すべての $m, n \geq N$ に対して次が成り立つことをいう：
+
+$$d(x_m, x_n) < \varepsilon$$
+
+記号で表すと：$\forall \varepsilon > 0, \exists N \in \mathbb{N}, \forall m,n \geq N: d(x_m, x_n) < \varepsilon$
+
+## 直観的理解
+
+コーシー列は、項が最終的に集まる数列である。特定の極限点を必要とする[収束](def-convergence.qmd)の定義とは異なり、コーシー条件は数列の要素が互いに近づくことのみを要求する。
+
+## 性質
+
+### 基本的性質
+
+1. **すべての収束列はコーシー列である**：距離空間において $(x_n) \to x$ ならば、$(x_n)$ はコーシー列である。
+
+2. **コーシー列は有界である**：距離空間におけるすべてのコーシー列は有界である。
+
+3. **部分列の性質**：コーシー列が収束する部分列を持つならば、元の数列全体が同じ極限に収束する。
+
+### 完備性との関係
+
+コーシー列の重要性は、[完備距離空間](def-complete-metric-space.qmd)との関連にある：
+
+- 距離空間が完備であることの必要十分条件は、すべてのコーシー列が収束することである
+- 完備空間において、コーシーであることと収束することは同値である
+
+## 例
+
+### 収束するコーシー列
+
+1. **$\mathbb{R}$ における例**：数列 $a_n = \frac{1}{n}$ はコーシー列である。
+   - $\varepsilon > 0$ に対して、$N > \frac{2}{\varepsilon}$ を選ぶ
+   - $m, n \geq N$ のとき：$|a_m - a_n| = |\frac{1}{m} - \frac{1}{n}| < \frac{1}{N} + \frac{1}{N} < \varepsilon$
+
+2. **幾何数列**：$a_n = \frac{1}{2^n}$ は $\mathbb{R}$ におけるコーシー列である。
+   - 0 に収束する
+
+### 収束しないコーシー列
+
+1. **$\mathbb{Q}$ における例**：$\sqrt{2}$ の小数近似の数列：
+   - $a_1 = 1.4$
+   - $a_2 = 1.41$
+   - $a_3 = 1.414$
+   - ...
+
+   これは $\mathbb{Q}$ におけるコーシー列だが、$\mathbb{Q}$ では収束しない（$\sqrt{2} \notin \mathbb{Q}$ のため）。
+
+2. **$(0,1)$ における例**：数列 $a_n = \frac{1}{n}$ はコーシー列だが、$(0,1)$ では収束しない（極限 0 がこの空間に含まれないため）。
+
+## コーシーの判定法
+
+**コーシーの判定法**は、完備距離空間において、数列が収束することとコーシー列であることが同値であることを述べている。これにより、極限を知らなくても収束性を証明できる。
+
+### 応用
+
+1. **収束性の検証**：数列がコーシー列であることを示すことで収束を証明できる
+2. **数値解析**：アルゴリズムはしばしばコーシー列を生成して解を近似する
+3. **$\mathbb{R}$ の構成**：実数は有理数のコーシー列の同値類として構成できる
+
+## 関連概念
+
+- [完備距離空間](def-complete-metric-space.qmd)：すべてのコーシー列が収束する空間
+- [収束](def-convergence.qmd)：極限に近づく性質
+- [級数](def-series.qmd)：級数収束のコーシー判定法
+- [一様連続性](def-uniform-continuity.qmd)：コーシー列を保存する関数
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-sequence["定義: 数列"]:::definition
+    def-metric-space["定義: 距離空間"]:::definition
+    def-limit["定義: 数列の極限"]:::definition
+    def-cauchy-sequence["定義: コーシー列"]:::definition
+    def-complete-metric-space["定義: 完備距離空間"]:::definition
+    def-convergence["定義: 収束"]:::definition
+    def-complete-metric-space --> def-cauchy-sequence
+    def-convergence --> def-cauchy-sequence
+    def-cauchy-sequence --> def-sequence
+    def-cauchy-sequence --> def-metric-space
+    def-cauchy-sequence --> def-limit
+    class def-cauchy-sequence current
+    click def-sequence "def-sequence.html" "数列の定義へ"
+    click def-metric-space "../geometry/def-metric-space.html" "距離空間の定義へ"
+    click def-limit "def-limit.html" "極限の定義へ"
+    click def-complete-metric-space "def-complete-metric-space.html" "完備距離空間の定義へ"
+    click def-convergence "def-convergence.html" "収束の定義へ"
+```
+
+## インタラクティブ可視化
+
+局所的な知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-cauchy-sequence" data-width="700" data-height="500"}
+:::
+
+以下のことができます：
+- ノードを**ドラッグ**してレイアウトを調整
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [完全なインタラクティブ版を表示](../../output/interactive/def-cauchy-sequence.html){target="_blank"}

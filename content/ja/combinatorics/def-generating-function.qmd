@@ -1,0 +1,113 @@
+---
+id: def-generating-function
+requires:
+- ../analysis/def-series
+- def-binomial-coefficient
+status: complete
+title: '定義: 母関数'
+translation_of: ../../en/combinatorics/def-generating-function.qmd
+translations:
+  en: ../en/combinatorics/def-generating-function.html
+  ja: ../ja/combinatorics/def-generating-function.html
+type: Definition
+---
+
+# 定義: 母関数
+
+**母関数**は、数列に関する情報をその係数として符号化する形式的べき級数であり、組合せ論における数え上げ問題でよく現れます。
+
+## 形式的定義
+
+### 通常母関数 (OGF)
+
+複素数の数列 $(a_n)_{n \geq 0}$ が与えられたとき、**通常母関数**は次の形式的べき[級数](../analysis/def-series.qmd)です：
+
+$$G(x) = \sum_{n=0}^{\infty} a_n x^n = a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \cdots$$
+
+### 指数母関数 (EGF)
+
+同じ数列の**指数母関数**は：
+
+$$E(x) = \sum_{n=0}^{\infty} a_n \frac{x^n}{n!} = a_0 + a_1 x + a_2 \frac{x^2}{2!} + a_3 \frac{x^3}{3!} + \cdots$$
+
+## 主要な性質
+
+### 形式的べき級数
+
+母関数は**形式的べき級数**として扱われます。これは：
+- 変数 $x$ は不定元（数値を割り当てない）
+- 組合せ論的応用では収束性は必要ない
+- 演算は係数に対して代数的に行われる
+
+### 各タイプの使い分け
+
+1. **通常母関数**: ラベルなしオブジェクトの数え上げや順序が重要でない場合に最適
+2. **指数母関数**: ラベル付きオブジェクトの数え上げや順序が重要な場合に最適
+
+## 母関数の演算
+
+### 通常母関数の場合
+
+$F(x) = \sum_{n=0}^{\infty} a_n x^n$ と $G(x) = \sum_{n=0}^{\infty} b_n x^n$ のとき：
+
+1. **加法**: $(F + G)(x) = \sum_{n=0}^{\infty} (a_n + b_n) x^n$
+
+2. **乗法（畳み込み）**: $(F \cdot G)(x) = \sum_{n=0}^{\infty} \left(\sum_{k=0}^{n} a_k b_{n-k}\right) x^n$
+
+3. **微分**: $F'(x) = \sum_{n=1}^{\infty} n a_n x^{n-1}$
+
+### 指数母関数の場合
+
+乗法は二項畳み込みを与えます：
+$$(E \cdot F)(x) = \sum_{n=0}^{\infty} \left(\sum_{k=0}^{n} \binom{n}{k} a_k b_{n-k}\right) \frac{x^n}{n!}$$
+
+## 例
+
+### 例1: 幾何級数
+
+数列 $(1, 1, 1, \ldots)$ の OGF：
+$$\frac{1}{1-x} = \sum_{n=0}^{\infty} x^n$$
+
+### 例2: フィボナッチ数
+
+フィボナッチ数列 $(F_n)$（$F_0 = 0, F_1 = 1$）の OGF：
+$$F(x) = \frac{x}{1 - x - x^2}$$
+
+### 例3: 階乗
+
+数列 $(n!)_{n \geq 0}$ の EGF：
+$$E(x) = \sum_{n=0}^{\infty} n! \frac{x^n}{n!} = \sum_{n=0}^{\infty} x^n = \frac{1}{1-x}$$
+
+## 応用
+
+1. **漸化式の解法**: 漸化式を関数方程式に変換
+2. **組合せ論的対象の数え上げ**: 数え上げ数列の符号化
+3. **漸近解析**: 係数の漸近的振る舞いの抽出
+4. **確率論**: モーメント母関数と確率母関数
+
+## 二項係数との関係
+
+[二項係数](def-binomial-coefficient.qmd)は多くの母関数に自然に現れます：
+- $(1 + x)^n = \sum_{k=0}^{n} \binom{n}{k} x^k$ （有限 OGF）
+- $e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!}$ （全て1の数列の EGF）
+
+```{mermaid}
+```
+
+## 依存関係グラフ
+
+```{mermaid}
+```
+
+## インタラクティブ可視化
+
+局所的な知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-generating-function" data-width="700" data-height="500"}
+:::
+
+以下のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [完全なインタラクティブ版](../../output/interactive/def-generating-function.html){target="_blank"}を表示

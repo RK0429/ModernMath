@@ -1,0 +1,126 @@
+---
+id: def-cauchy-sequence
+requires:
+- def-sequence
+- def-metric-space
+- def-limit
+status: complete
+title: 'Definition: Cauchy Sequence'
+translations:
+  en: ../en/analysis/def-cauchy-sequence.html
+  ja: ../ja/analysis/def-cauchy-sequence.html
+type: Definition
+---
+
+A **Cauchy sequence** is a sequence whose elements become arbitrarily close to each other as the sequence progresses. This concept captures the idea of convergence without requiring knowledge of the limit.
+
+## Formal Definition
+
+Let $(X, d)$ be a [Metric Space](../geometry/def-metric-space.qmd). A [Sequence](def-sequence.qmd) $(x_n)_{n=1}^{\infty}$ in $X$ is called a **Cauchy sequence** if for every $\varepsilon > 0$, there exists $N \in \mathbb{N}$ such that for all $m, n \geq N$:
+
+$$d(x_m, x_n) < \varepsilon$$
+
+In symbols: $\forall \varepsilon > 0, \exists N \in \mathbb{N}, \forall m,n \geq N: d(x_m, x_n) < \varepsilon$
+
+## Intuition
+
+A Cauchy sequence is one where the terms eventually cluster together. Unlike the definition of [Convergence](def-convergence.qmd), which requires a specific limit point, the Cauchy condition only requires that sequence elements get close to each other.
+
+## Properties
+
+### Fundamental Properties
+
+1. **Every convergent sequence is Cauchy**: If $(x_n) \to x$ in a metric space, then $(x_n)$ is Cauchy.
+
+2. **Cauchy sequences are bounded**: Every Cauchy sequence in a metric space is bounded.
+
+3. **Subsequence property**: If a Cauchy sequence has a convergent subsequence, then the entire sequence converges to the same limit.
+
+### Relationship to Completeness
+
+The importance of Cauchy sequences lies in their connection to [Complete Metric Spaces](def-complete-metric-space.qmd):
+
+- A metric space is complete if and only if every Cauchy sequence converges
+- In complete spaces, being Cauchy is equivalent to being convergent
+
+## Examples
+
+### Convergent Cauchy Sequences
+
+1. **In $\mathbb{R}$**: The sequence $a_n = \frac{1}{n}$ is Cauchy.
+   - For $\varepsilon > 0$, choose $N > \frac{2}{\varepsilon}$
+   - Then for $m, n \geq N$: $|a_m - a_n| = |\frac{1}{m} - \frac{1}{n}| < \frac{1}{N} + \frac{1}{N} < \varepsilon$
+
+2. **Geometric sequence**: $a_n = \frac{1}{2^n}$ is Cauchy in $\mathbb{R}$.
+   - Converges to 0
+
+### Non-convergent Cauchy Sequences
+
+1. **In $\mathbb{Q}$**: The sequence of decimal approximations to $\sqrt{2}$:
+   - $a_1 = 1.4$
+   - $a_2 = 1.41$
+   - $a_3 = 1.414$
+   - ...
+
+   This is Cauchy in $\mathbb{Q}$ but doesn't converge in $\mathbb{Q}$ (since $\sqrt{2} \notin \mathbb{Q}$).
+
+2. **In $(0,1)$**: The sequence $a_n = \frac{1}{n}$ is Cauchy but doesn't converge in $(0,1)$ (the limit 0 is not in the space).
+
+## Cauchy Criterion
+
+The **Cauchy criterion** states that in a complete metric space, a sequence converges if and only if it is Cauchy. This provides a way to prove convergence without knowing the limit.
+
+### Applications
+
+1. **Testing convergence**: We can prove a sequence converges by showing it's Cauchy
+2. **Numerical analysis**: Algorithms often generate Cauchy sequences to approximate solutions
+3. **Construction of $\mathbb{R}$**: The real numbers can be constructed as equivalence classes of Cauchy sequences of rational numbers
+
+## Related Concepts
+
+- [Complete Metric Space](def-complete-metric-space.qmd): Spaces where all Cauchy sequences converge
+- [Convergence](def-convergence.qmd): The property of approaching a limit
+- [Series](def-series.qmd): Cauchy criterion for series convergence
+- [Uniform Continuity](def-uniform-continuity.qmd): Functions that preserve Cauchy sequences
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-sequence["Definition: Sequence"]:::definition
+    def-metric-space["Definition: Metric Space"]:::definition
+    def-limit["Definition: Limit of a Sequence"]:::definition
+    def-cauchy-sequence["Definition: Cauchy Sequence"]:::definition
+    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
+    def-convergence["Definition: Convergence"]:::definition
+    def-complete-metric-space --> def-cauchy-sequence
+    def-convergence --> def-cauchy-sequence
+    def-cauchy-sequence --> def-sequence
+    def-cauchy-sequence --> def-metric-space
+    def-cauchy-sequence --> def-limit
+    class def-cauchy-sequence current
+    click def-sequence "def-sequence.html" "Go to Sequence definition"
+    click def-metric-space "../geometry/def-metric-space.html" "Go to Metric Space definition"
+    click def-limit "def-limit.html" "Go to Limit definition"
+    click def-complete-metric-space "def-complete-metric-space.html" "Go to Complete Metric Space definition"
+    click def-convergence "def-convergence.html" "Go to Convergence definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-cauchy-sequence" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-cauchy-sequence.html){target="_blank"}
