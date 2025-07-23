@@ -1,0 +1,173 @@
+---
+id: thm-fundamental-calculus
+requires:
+- def-continuity
+- def-derivative
+- def-integral
+status: complete
+title: 'Theorem: Fundamental Theorem of Calculus'
+translations:
+  en: ../en/analysis/thm-fundamental-calculus.html
+  ja: ../ja/analysis/thm-fundamental-calculus.html
+type: Theorem
+---
+
+The **Fundamental Theorem of Calculus** is the central theorem of calculus that establishes the profound connection between differentiation and integration, showing that these two operations are essentially inverses of one another.
+
+## Statement
+
+The theorem consists of two closely related parts:
+
+### Part I (First Fundamental Theorem)
+
+Let $f$ be a [continuous](def-continuity.qmd) function on $[a,b]$. Define the function $F$ on $[a,b]$ by:
+
+$$F(x) = \int_a^x f(t) \, dt$$
+
+Then $F$ is differentiable on $(a,b)$, and:
+$$F'(x) = f(x)$$
+
+for all $x \in (a,b)$.
+
+### Part II (Second Fundamental Theorem)
+
+Let $f$ be a continuous function on $[a,b]$. If $F$ is any antiderivative of $f$ on $[a,b]$ (i.e., $F' = f$), then:
+
+$$\int_a^b f(x) \, dx = F(b) - F(a)$$
+
+## Interpretation
+
+### Part I Interpretation
+Part I tells us that every continuous function has an antiderivative, namely the [integral](def-integral.qmd) function with variable upper limit. It also shows that differentiation undoes integration.
+
+### Part II Interpretation
+Part II provides a powerful method for evaluating definite integrals: instead of computing [limits](def-limit.qmd) of Riemann sums, we can find an antiderivative and evaluate it at the endpoints.
+
+## Proof Sketch
+
+### Proof of Part I
+
+Let $h > 0$ be small. By the definition of [derivative](def-derivative.qmd):
+
+$$F'(x) = \lim_{h \to 0} \frac{F(x+h) - F(x)}{h} = \lim_{h \to 0} \frac{1}{h} \int_x^{x+h} f(t) \, dt$$
+
+By the Mean Value Theorem for integrals, there exists $c \in [x, x+h]$ such that:
+
+$$\int_x^{x+h} f(t) \, dt = f(c) \cdot h$$
+
+Therefore:
+$$F'(x) = \lim_{h \to 0} f(c)$$
+
+Since $c \to x$ as $h \to 0$ and $f$ is continuous, we get $F'(x) = f(x)$.
+
+### Proof of Part II
+
+Let $G(x) = \int_a^x f(t) \, dt$ and let $F$ be any antiderivative of $f$.
+
+By Part I, $G'(x) = f(x) = F'(x)$, so $(F - G)'(x) = 0$ on $(a,b)$.
+
+Therefore, $F - G$ is constant, say $F(x) - G(x) = C$.
+
+Since $G(a) = 0$, we have $C = F(a)$.
+
+Thus: $F(x) - \int_a^x f(t) \, dt = F(a)$
+
+Setting $x = b$: $F(b) - \int_a^b f(t) \, dt = F(a)$
+
+Therefore: $\int_a^b f(t) \, dt = F(b) - F(a)$
+
+## Historical Development
+
+The theorem was developed independently by:
+- **Isaac Newton** (1642-1727): Focused on the relationship between velocities and distances
+- **Gottfried Wilhelm Leibniz** (1646-1716): Developed the notation and formal framework
+- **Isaac Barrow** (1630-1677): Newton's teacher, proved a geometric version
+- **James Gregory** (1638-1675): Published an early version with geometric focus
+
+## Consequences and Applications
+
+### 1. Evaluation of Definite Integrals
+Instead of computing limits of Riemann sums, we can use:
+$$\int_0^{\pi} \sin x \, dx = [-\cos x]_0^{\pi} = -\cos(\pi) + \cos(0) = 2$$
+
+### 2. Existence of Antiderivatives
+Every continuous function on an interval has an antiderivative.
+
+### 3. Integration by Parts
+Derived from the product rule and FTC:
+$$\int_a^b u \, dv = [uv]_a^b - \int_a^b v \, du$$
+
+### 4. Change of Variables
+The substitution rule follows from the chain rule and FTC:
+$$\int_a^b f(g(x))g'(x) \, dx = \int_{g(a)}^{g(b)} f(u) \, du$$
+
+### 5. Physical Applications
+- **Kinematics**: Position is the integral of velocity
+- **Work**: Work is the integral of force over distance
+- **Probability**: Cumulative distribution functions are integrals of density functions
+
+## Relationship to Other Theorems
+
+The Fundamental Theorem of Calculus is closely related to:
+- [Mean Value Theorem](thm-mean-value.qmd): Used in the proof of Part I
+- [Chain Rule](thm-chain-rule.qmd): Generalizes to composition of functions
+- [Taylor Series](thm-taylor-series.qmd): Higher-order version using repeated integration
+
+## Examples
+
+### Example 1: Area Calculation
+Find the area under $f(x) = x^2$ from 0 to 2:
+$$\int_0^2 x^2 \, dx = \left[\frac{x^3}{3}\right]_0^2 = \frac{8}{3} - 0 = \frac{8}{3}$$
+
+### Example 2: Variable Upper Limit
+If $F(x) = \int_1^x \frac{1}{t} \, dt$, then by Part I:
+$$F'(x) = \frac{1}{x}$$
+
+This shows that $\ln x$ is an antiderivative of $1/x$.
+
+### Example 3: Physics Application
+A particle moves with velocity $v(t) = 3t^2 - 2t$. The displacement from $t = 0$ to $t = 3$ is:
+$$s = \int_0^3 (3t^2 - 2t) \, dt = [t^3 - t^2]_0^3 = 27 - 9 = 18$$
+
+## Generalizations
+
+1. **Lebesgue Integration**: The theorem extends to more general integration theories
+2. **Vector-Valued Functions**: Applies component-wise to vector functions
+3. **Complex Analysis**: Cauchy's theorem is an analog for complex functions
+4. **Differential Forms**: Stokes' theorem generalizes FTC to higher dimensions
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-continuity["Definition: Continuity"]:::definition
+    def-derivative["Definition: Derivative"]:::definition
+    def-integral["Definition: Integral"]:::definition
+    thm-fundamental-calculus["Theorem: Fundamental Theorem of Calculus"]:::theorem
+    thm-fundamental-calculus --> def-continuity
+    thm-fundamental-calculus --> def-derivative
+    thm-fundamental-calculus --> def-integral
+    class thm-fundamental-calculus current
+    click def-continuity "def-continuity.html" "Go to Continuity definition"
+    click def-derivative "def-derivative.html" "Go to Derivative definition"
+    click def-integral "def-integral.html" "Go to Integral definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="thm-fundamental-calculus" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/thm-fundamental-calculus.html){target="_blank"}

@@ -1,0 +1,174 @@
+---
+id: thm-fundamental-calculus
+requires:
+- def-continuity
+- def-derivative
+- def-integral
+status: complete
+title: '定理: 微積分学の基本定理'
+translation_of: ../../en/analysis/thm-fundamental-calculus.qmd
+translations:
+  en: ../en/analysis/thm-fundamental-calculus.html
+  ja: ../ja/analysis/thm-fundamental-calculus.html
+type: Theorem
+---
+
+**微積分学の基本定理**は、微分と積分がお互いに逆演算であることを示す、微積分学の中心となる定理である。
+
+## 命題
+
+定理は密接に関連する2つの部分からなる：
+
+### 第一部（第一基本定理）
+
+$f$ を $[a,b]$ 上の[連続](def-continuity.qmd)関数とする。$[a,b]$ 上の関数 $F$ を次のように定義する：
+
+$$F(x) = \int_a^x f(t) \, dt$$
+
+このとき $F$ は $(a,b)$ で微分可能であり：
+$$F'(x) = f(x)$$
+
+がすべての $x \in (a,b)$ で成り立つ。
+
+### 第二部（第二基本定理）
+
+$f$ を $[a,b]$ 上の連続関数とする。$F$ が $[a,b]$ 上で $f$ の原始関数（つまり $F' = f$）ならば：
+
+$$\int_a^b f(x) \, dx = F(b) - F(a)$$
+
+## 解釈
+
+### 第一部の解釈
+第一部は、すべての連続関数が原始関数を持つこと、すなわち可変上限を持つ[積分](def-integral.qmd)関数であることを示している。また、微分が積分を打ち消すことも示している。
+
+### 第二部の解釈
+第二部は定積分を評価する強力な方法を提供する：リーマン和の[極限](def-limit.qmd)を計算する代わりに、原始関数を見つけて両端点で評価すればよい。
+
+## 証明の概略
+
+### 第一部の証明
+
+$h > 0$ を小さくとる。[導関数](def-derivative.qmd)の定義により：
+
+$$F'(x) = \lim_{h \to 0} \frac{F(x+h) - F(x)}{h} = \lim_{h \to 0} \frac{1}{h} \int_x^{x+h} f(t) \, dt$$
+
+積分の平均値定理により、ある $c \in [x, x+h]$ が存在して：
+
+$$\int_x^{x+h} f(t) \, dt = f(c) \cdot h$$
+
+したがって：
+$$F'(x) = \lim_{h \to 0} f(c)$$
+
+$h \to 0$ のとき $c \to x$ であり、$f$ は連続なので、$F'(x) = f(x)$ を得る。
+
+### 第二部の証明
+
+$G(x) = \int_a^x f(t) \, dt$ とし、$F$ を $f$ の任意の原始関数とする。
+
+第一部により、$G'(x) = f(x) = F'(x)$ なので、$(F - G)'(x) = 0$ が $(a,b)$ で成り立つ。
+
+したがって、$F - G$ は定数、すなわち $F(x) - G(x) = C$ である。
+
+$G(a) = 0$ なので、$C = F(a)$ である。
+
+よって：$F(x) - \int_a^x f(t) \, dt = F(a)$
+
+$x = b$ とおくと：$F(b) - \int_a^b f(t) \, dt = F(a)$
+
+したがって：$\int_a^b f(t) \, dt = F(b) - F(a)$
+
+## 歴史的発展
+
+この定理は以下の数学者たちによって独立に発展した：
+- **アイザック・ニュートン** (1642-1727)：速度と距離の関係に焦点を当てた
+- **ゴットフリート・ヴィルヘルム・ライプニッツ** (1646-1716)：記法と形式的枠組みを開発
+- **アイザック・バロー** (1630-1677)：ニュートンの師、幾何学的バージョンを証明
+- **ジェームズ・グレゴリー** (1638-1675)：幾何学的な焦点を持つ初期バージョンを発表
+
+## 帰結と応用
+
+### 1. 定積分の評価
+リーマン和の極限を計算する代わりに、次を使用できる：
+$$\int_0^{\pi} \sin x \, dx = [-\cos x]_0^{\pi} = -\cos(\pi) + \cos(0) = 2$$
+
+### 2. 原始関数の存在
+区間上のすべての連続関数は原始関数を持つ。
+
+### 3. 部分積分
+積の微分法則とFTCから導かれる：
+$$\int_a^b u \, dv = [uv]_a^b - \int_a^b v \, du$$
+
+### 4. 置換積分
+置換法則は連鎖律とFTCから従う：
+$$\int_a^b f(g(x))g'(x) \, dx = \int_{g(a)}^{g(b)} f(u) \, du$$
+
+### 5. 物理学的応用
+- **運動学**：位置は速度の積分
+- **仕事**：仕事は距離にわたる力の積分
+- **確率**：累積分布関数は密度関数の積分
+
+## 他の定理との関係
+
+微積分学の基本定理は以下と密接に関連している：
+- [平均値定理](thm-mean-value.qmd)：第一部の証明で使用
+- [連鎖律](thm-chain-rule.qmd)：関数の合成に一般化
+- [テイラー級数](thm-taylor-series.qmd)：反復積分を使用する高次バージョン
+
+## 例
+
+### 例1：面積計算
+$f(x) = x^2$ の 0 から 2 までの下の面積を求める：
+$$\int_0^2 x^2 \, dx = \left[\frac{x^3}{3}\right]_0^2 = \frac{8}{3} - 0 = \frac{8}{3}$$
+
+### 例2：可変上限
+$F(x) = \int_1^x \frac{1}{t} \, dt$ ならば、第一部により：
+$$F'(x) = \frac{1}{x}$$
+
+これは $\ln x$ が $1/x$ の原始関数であることを示している。
+
+### 例3：物理学的応用
+粒子が速度 $v(t) = 3t^2 - 2t$ で運動する。$t = 0$ から $t = 3$ までの変位は：
+$$s = \int_0^3 (3t^2 - 2t) \, dt = [t^3 - t^2]_0^3 = 27 - 9 = 18$$
+
+## 一般化
+
+1. **ルベーグ積分**：定理はより一般的な積分理論に拡張される
+2. **ベクトル値関数**：ベクトル関数に成分ごとに適用
+3. **複素解析**：コーシーの定理は複素関数に対する類似
+4. **微分形式**：ストークスの定理はFTCを高次元に一般化
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "局所依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-continuity["定義: 連続性"]:::definition
+    def-derivative["定義: 導関数"]:::definition
+    def-integral["定義: 積分"]:::definition
+    thm-fundamental-calculus["定理: 微積分学の基本定理"]:::theorem
+    thm-fundamental-calculus --> def-continuity
+    thm-fundamental-calculus --> def-derivative
+    thm-fundamental-calculus --> def-integral
+    class thm-fundamental-calculus current
+    click def-continuity "def-continuity.html" "連続性の定義へ"
+    click def-derivative "def-derivative.html" "導関数の定義へ"
+    click def-integral "def-integral.html" "積分の定義へ"
+```
+
+## インタラクティブ可視化
+
+局所知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="thm-fundamental-calculus" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [完全なインタラクティブ版](../../output/interactive/thm-fundamental-calculus.html){target="_blank"}を表示
