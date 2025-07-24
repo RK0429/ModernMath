@@ -256,6 +256,7 @@ window.Quarto = {
   <li><a href="#一般化" id="toc-一般化" class="nav-link" data-scroll-target="#一般化">一般化</a></li>
   <li><a href="#応用" id="toc-応用" class="nav-link" data-scroll-target="#応用">応用</a></li>
   <li><a href="#古典的な例" id="toc-古典的な例" class="nav-link" data-scroll-target="#古典的な例">古典的な例</a></li>
+  <li><a href="#関連する数え上げ原理" id="toc-関連する数え上げ原理" class="nav-link" data-scroll-target="#関連する数え上げ原理">関連する数え上げ原理</a></li>
   <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul></li>
@@ -324,6 +325,13 @@ window.Quarto = {
 <li>任意の6人の中で、3人が互いに友人であるか、3人が互いに他人です</li>
 <li><span class="math inline">\(n^2 + 1\)</span> 個の異なる実数の列には、長さ <span class="math inline">\(n + 1\)</span> の増加部分列または減少部分列が存在します</li>
 </ul>
+</section>
+<section id="関連する数え上げ原理" class="level2">
+<h2 class="anchored" data-anchor-id="関連する数え上げ原理">関連する数え上げ原理</h2>
+<ul>
+<li><a href="../../../content/ja/combinatorics/thm-inclusion-exclusion.html">包含排除の原理</a>：集合の和集合の大きさを求めるもう一つの基本的な数え上げ原理</li>
+<li><a href="../../../content/ja/combinatorics/def-binomial-coefficient.html">二項係数</a>：組み合わせと部分集合の数え上げのため</li>
+</ul>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -350,10 +358,13 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-set["Definition: Set"]:::definition
+    def-function["Definition: Function"]:::definition
     thm-pigeonhole-principle["Theorem: Pigeonhole Principle"]:::theorem
     thm-pigeonhole-principle --&gt; def-set
+    thm-pigeonhole-principle --&gt; def-function
     class thm-pigeonhole-principle current
     click def-set "def-set.html" "Definition: Setへ"
+    click def-function "def-function.html" "Definition: Functionへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -364,7 +375,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-pigeonhole-principle-1753363133" class="graph-visualization-container">
+<div id="graph-viz-thm-pigeonhole-principle-1753374309" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -544,12 +555,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-pigeonhole-principle-1753363133', {
+    createForceGraph(data, 'graph-viz-thm-pigeonhole-principle-1753374309', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-pigeonhole-principle-1753363133').innerHTML =
+    document.getElementById('graph-viz-thm-pigeonhole-principle-1753374309').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

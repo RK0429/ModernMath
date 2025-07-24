@@ -101,6 +101,8 @@
 
 <http://modernmath.org/concepts/first-isomorphism> ns1:hasTranslation <http://modernmath.org/concepts/first-isomorphism_ja> .
 
+<http://modernmath.org/concepts/function> ns1:hasTranslation <http://modernmath.org/concepts/function_ja> .
+
 <http://modernmath.org/concepts/functor> ns1:hasTranslation <http://modernmath.org/concepts/functor_ja> .
 
 <http://modernmath.org/concepts/fundamental-arithmetic> ns1:hasTranslation <http://modernmath.org/concepts/fundamental-arithmetic_ja> .
@@ -134,6 +136,8 @@
 <http://modernmath.org/concepts/identity-element> ns1:hasTranslation <http://modernmath.org/concepts/identity-element_ja> .
 
 <http://modernmath.org/concepts/image> ns1:hasTranslation <http://modernmath.org/concepts/image_ja> .
+
+<http://modernmath.org/concepts/inclusion-exclusion> ns1:hasTranslation <http://modernmath.org/concepts/inclusion-exclusion_ja> .
 
 <http://modernmath.org/concepts/independence> ns1:hasTranslation <http://modernmath.org/concepts/independence_ja> .
 
@@ -246,6 +250,8 @@
 <http://modernmath.org/concepts/subgroup> ns1:hasTranslation <http://modernmath.org/concepts/subgroup_ja> .
 
 <http://modernmath.org/concepts/subset> ns1:hasTranslation <http://modernmath.org/concepts/subset_ja> .
+
+<http://modernmath.org/concepts/sylow> ns1:hasTranslation <http://modernmath.org/concepts/sylow_ja> .
 
 <http://modernmath.org/concepts/taylor-series> ns1:hasTranslation <http://modernmath.org/concepts/taylor-series_ja> .
 
@@ -571,6 +577,14 @@ base:thm-fundamental-calculus a mymath:Theorem ;
         base:def-derivative,
         base:def-integral .
 
+base:thm-inclusion-exclusion a mymath:Theorem ;
+    rdfs:label "Theorem: Inclusion-Exclusion Principle"@en,
+        "定理: 包除原理"@en ;
+    mymath:hasDomain "Combinatorics",
+        "組合せ論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-set .
+
 base:thm-intermediate-value a mymath:Theorem ;
     rdfs:label "Theorem: Intermediate Value Theorem"@en,
         "定理: 中間値の定理"@en ;
@@ -638,7 +652,8 @@ base:thm-pigeonhole-principle a mymath:Theorem ;
     mymath:hasDomain "Combinatorics",
         "組合せ論" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-set .
+    mymath:uses base:def-function,
+        base:def-set .
 
 base:thm-pythagorean a mymath:Theorem ;
     rdfs:label "Theorem: Pythagorean Theorem"@en,
@@ -658,6 +673,18 @@ base:thm-rank-nullity a mymath:Theorem ;
         base:def-kernel,
         base:def-linear-transformation,
         base:def-vector-space .
+
+base:thm-sylow a mymath:Theorem ;
+    rdfs:label "Sylow Theorems"@en,
+        "シローの定理"@en ;
+    rdfs:comment "**シローの定理**は、有限[群論](def-group.qmd)における基本的な結果で、[素数](../number-theory/def-prime.qmd)べき位数の[部分群](def-subgroup.qmd)の存在と性質についての詳細な情報を提供します。"@en,
+        "The **Sylow Theorems** are fundamental results in finite [group theory](def-group.qmd) that provide detailed information about the existence and properties of [subgroups](def-subgroup.qmd) of [prime](../number-theory/def-prime.qmd) power order."@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "verified" ;
+    mymath:uses base:def-group,
+        base:def-subgroup,
+        base:thm-lagrange .
 
 base:thm-taylor-series a mymath:Theorem ;
     rdfs:label "Theorem: Taylor Series"@en,
@@ -788,6 +815,8 @@ base:thm-yoneda a mymath:Theorem ;
 
 <http://modernmath.org/concepts/first-isomorphism_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/function_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/functor_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/fundamental-arithmetic_ja> ns1:language "ja" .
@@ -821,6 +850,8 @@ base:thm-yoneda a mymath:Theorem ;
 <http://modernmath.org/concepts/identity-element_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/image_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/inclusion-exclusion_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/independence_ja> ns1:language "ja" .
 
@@ -933,6 +964,8 @@ base:thm-yoneda a mymath:Theorem ;
 <http://modernmath.org/concepts/subgroup_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/subset_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/sylow_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/taylor-series_ja> ns1:language "ja" .
 
@@ -1081,6 +1114,7 @@ base:def-homeomorphism a mymath:Definition ;
     mymath:uses base:def-compact,
         base:def-connected,
         base:def-continuity,
+        base:def-function,
         base:def-hausdorff,
         base:def-isomorphism,
         base:def-open-set,
@@ -1148,7 +1182,8 @@ base:def-permutation a mymath:Definition ;
     mymath:hasDomain "Combinatorics",
         "組合せ論" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-graph,
+    mymath:uses base:def-function,
+        base:def-graph,
         base:def-set .
 
 base:def-power-set a mymath:Definition ;
@@ -1443,6 +1478,7 @@ base:def-determinant a mymath:Definition ;
         "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-field,
+        base:def-function,
         base:def-matrix .
 
 base:def-functor a mymath:Definition ;
@@ -1452,6 +1488,7 @@ base:def-functor a mymath:Definition ;
         "圏論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-category,
+        base:def-function,
         base:def-graph .
 
 base:def-generating-function a mymath:Definition ;
@@ -1660,11 +1697,12 @@ base:def-sequence a mymath:Definition ;
     rdfs:label "Definition: Sequence"@en,
         "定義：数列"@en ;
     rdfs:comment "**数列**とは、要素（通常は数）の順序付けられたリストであり、自然数で添字付けられている。形式的には、数列は自然数から集合への関数である。"@en,
-        "A **sequence** is an ordered list of elements, typically numbers, indexed by the natural numbers. Formally, a sequence is a function from the natural numbers to a set."@en ;
+        "A **sequence** is an ordered list of elements, typically numbers, indexed by the natural numbers. Formally, a sequence is a [function](../logic-set-theory/def-function.qmd) from the natural numbers to a set."@en ;
     mymath:hasDomain "Analysis",
         "解析学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-set .
+    mymath:uses base:def-function,
+        base:def-set .
 
 base:thm-euclidean-algorithm a mymath:Theorem ;
     rdfs:label "Theorem: Euclidean Algorithm"@en,
@@ -1692,7 +1730,8 @@ base:def-group-action a mymath:Definition ;
     mymath:hasDomain "Algebra",
         "代数学" ;
     mymath:hasStatus "verified" ;
-    mymath:uses base:def-group,
+    mymath:uses base:def-function,
+        base:def-group,
         base:def-identity-element .
 
 base:def-identity-element a mymath:Definition ;
@@ -1792,7 +1831,8 @@ base:def-random-variable a mymath:Definition ;
     mymath:hasDomain "Probability Statistics",
         "確率・統計学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-probability-space .
+    mymath:uses base:def-function,
+        base:def-probability-space .
 
 base:thm-first-isomorphism a mymath:Theorem ;
     rdfs:label "Theorem: First Isomorphism Theorem"@en,
@@ -1868,6 +1908,7 @@ base:def-homomorphism a mymath:Definition ;
         "代数学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-binary-operation,
+        base:def-function,
         base:def-group,
         base:def-quotient-group,
         base:thm-first-isomorphism .
@@ -1890,7 +1931,8 @@ base:def-linear-transformation a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearMap.LinearMap>,
         base:formal-proof-def-linear-transformation ;
-    mymath:uses base:def-vector-space .
+    mymath:uses base:def-function,
+        base:def-vector-space .
 
 base:def-open-set a mymath:Definition ;
     rdfs:label "Definition: Open Set"@en,
@@ -1918,18 +1960,6 @@ base:ex-quotient-integers-mod-n a mymath:Example ;
         base:def-quotient-group,
         base:ex-integers-addition .
 
-base:thm-lagrange a mymath:Theorem ;
-    rdfs:label "Theorem: Lagrange's Theorem"@en,
-        "定理: ラグランジュの定理"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-coset,
-        base:def-cyclic-group,
-        base:def-group,
-        base:def-quotient-group,
-        base:def-subgroup .
-
 base:def-category a mymath:Definition ;
     rdfs:label "Definition: Category"@en,
         "定義: 圏"@en ;
@@ -1952,21 +1982,17 @@ base:def-ring a mymath:Definition ;
         base:def-group,
         base:def-set .
 
-base:def-subgroup a mymath:Definition ;
-    rdfs:label "Definition: Subgroup"@en,
-        "定義：部分群"@en ;
+base:thm-lagrange a mymath:Theorem ;
+    rdfs:label "Theorem: Lagrange's Theorem"@en,
+        "定理: ラグランジュの定理"@en ;
     mymath:hasDomain "Algebra",
         "代数学" ;
-    mymath:hasLeanId "Mathlib.Algebra.Group.Subgroup.Basic.Subgroup" ;
     mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Group.Subgroup.Basic.Subgroup>,
-        base:formal-proof-def-subgroup ;
-    mymath:uses base:def-cyclic-group,
+    mymath:uses base:def-coset,
+        base:def-cyclic-group,
         base:def-group,
-        base:def-normal-subgroup,
         base:def-quotient-group,
-        base:def-set,
-        base:thm-lagrange .
+        base:def-subgroup .
 
 base:def-limit a mymath:Definition ;
     rdfs:label "Definition: Limit of a Sequence"@en,
@@ -1984,7 +2010,24 @@ base:def-metric-space a mymath:Definition ;
         "幾何学",
         "解析学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-set .
+    mymath:uses base:def-function,
+        base:def-set .
+
+base:def-subgroup a mymath:Definition ;
+    rdfs:label "Definition: Subgroup"@en,
+        "定義：部分群"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasLeanId "Mathlib.Algebra.Group.Subgroup.Basic.Subgroup" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Group.Subgroup.Basic.Subgroup>,
+        base:formal-proof-def-subgroup ;
+    mymath:uses base:def-cyclic-group,
+        base:def-group,
+        base:def-normal-subgroup,
+        base:def-quotient-group,
+        base:def-set,
+        base:thm-lagrange .
 
 base:def-continuity a mymath:Definition ;
     rdfs:label "Definition: Continuity"@en,
@@ -1992,7 +2035,8 @@ base:def-continuity a mymath:Definition ;
     mymath:hasDomain "Analysis",
         "解析学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-limit .
+    mymath:uses base:def-function,
+        base:def-limit .
 
 base:def-cyclic-group a mymath:Definition ;
     rdfs:label "Definition: Cyclic Group"@en,
@@ -2076,6 +2120,14 @@ base:def-quotient-group a mymath:Definition ;
         base:def-subgroup,
         base:thm-first-isomorphism .
 
+base:def-function a mymath:Definition ;
+    rdfs:label "Definition: Function"@en,
+        "定義: 関数"@en ;
+    mymath:hasDomain "Logic Set Theory",
+        "論理・集合論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-set .
+
 base:def-binary-operation a mymath:Definition ;
     rdfs:label "Definition: Binary Operation"@en,
         "定義: 二項演算"@en ;
@@ -2085,7 +2137,8 @@ base:def-binary-operation a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:isVerifiedBy <https://mathlib.org/proof/MathKnowledgeGraph.Algebra.BinaryOp>,
         base:formal-proof-def-binary-operation ;
-    mymath:uses base:def-set .
+    mymath:uses base:def-function,
+        base:def-set .
 
 base:def-abelian-group a mymath:Definition ;
     rdfs:label "Definition: Abelian Group"@en,

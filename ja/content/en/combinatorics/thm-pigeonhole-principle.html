@@ -256,6 +256,7 @@ window.Quarto = {
   <li><a href="#generalizations" id="toc-generalizations" class="nav-link" data-scroll-target="#generalizations">Generalizations</a></li>
   <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
   <li><a href="#classic-examples" id="toc-classic-examples" class="nav-link" data-scroll-target="#classic-examples">Classic Examples</a></li>
+  <li><a href="#related-counting-principles" id="toc-related-counting-principles" class="nav-link" data-scroll-target="#related-counting-principles">Related Counting Principles</a></li>
   <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
   <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
   </ul></li>
@@ -294,7 +295,7 @@ window.Quarto = {
 </section>
 <section id="formal-statement" class="level2">
 <h2 class="anchored" data-anchor-id="formal-statement">Formal Statement</h2>
-<p>Let <span class="math inline">\(f: A \to B\)</span> be a function where <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are finite <a href="../../../content/en/logic-set-theory/def-set.html">Set</a> s with <span class="math inline">\(|A| &gt; |B|\)</span>. Then <span class="math inline">\(f\)</span> is not injective; that is, there exist distinct elements <span class="math inline">\(a_1, a_2 \in A\)</span> such that <span class="math inline">\(f(a_1) = f(a_2)\)</span>.</p>
+<p>Let <span class="math inline">\(f: A \to B\)</span> be a <a href="../../../content/en/logic-set-theory/def-function.html">function</a> where <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are finite <a href="../../../content/en/logic-set-theory/def-set.html">Set</a>s with <span class="math inline">\(|A| &gt; |B|\)</span>. Then <span class="math inline">\(f\)</span> is not injective; that is, there exist distinct elements <span class="math inline">\(a_1, a_2 \in A\)</span> such that <span class="math inline">\(f(a_1) = f(a_2)\)</span>.</p>
 </section>
 <section id="proof" class="level2">
 <h2 class="anchored" data-anchor-id="proof">Proof</h2>
@@ -324,6 +325,13 @@ window.Quarto = {
 <li>Among any 6 people, either 3 are mutual friends or 3 are mutual strangers</li>
 <li>In any sequence of <span class="math inline">\(n^2 + 1\)</span> distinct real numbers, there is either an increasing subsequence or a decreasing subsequence of length <span class="math inline">\(n + 1\)</span></li>
 </ul>
+</section>
+<section id="related-counting-principles" class="level2">
+<h2 class="anchored" data-anchor-id="related-counting-principles">Related Counting Principles</h2>
+<ul>
+<li><a href="../../../content/en/combinatorics/thm-inclusion-exclusion.html">Inclusion-Exclusion Principle</a>: Another fundamental counting principle for finding the size of unions of sets</li>
+<li><a href="../../../content/en/combinatorics/def-binomial-coefficient.html">Binomial Coefficient</a>: For counting combinations and subsets</li>
+</ul>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -350,10 +358,13 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-set["Definition: Set"]:::definition
+    def-function["Definition: Function"]:::definition
     thm-pigeonhole-principle["Theorem: Pigeonhole Principle"]:::theorem
     thm-pigeonhole-principle --&gt; def-set
+    thm-pigeonhole-principle --&gt; def-function
     class thm-pigeonhole-principle current
     click def-set "def-set.html" "Go to Set definition"
+    click def-function "def-function.html" "Go to Function definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -364,7 +375,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-pigeonhole-principle-1753363230" class="graph-visualization-container">
+<div id="graph-viz-thm-pigeonhole-principle-1753374402" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -544,12 +555,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-pigeonhole-principle-1753363230', {
+    createForceGraph(data, 'graph-viz-thm-pigeonhole-principle-1753374402', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-pigeonhole-principle-1753363230').innerHTML =
+    document.getElementById('graph-viz-thm-pigeonhole-principle-1753374402').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

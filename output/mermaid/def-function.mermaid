@@ -1,0 +1,37 @@
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-sequence["Definition: Sequence"]:::definition
+    def-homeomorphism["Definition: Homeomorphism"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-permutation["Definition: Permutation"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-group-action["Group Action"]:::definition
+    def-function["Definition: Function"]:::definition
+    def-random-variable["Definition: Random Variable"]:::definition
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-functor["Definition: Functor"]:::definition
+    def-determinant["Definition: Determinant"]:::definition
+    def-metric-space["Definition: Metric Space"]:::definition
+    def-continuity["Definition: Continuity"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    thm-pigeonhole-principle["Theorem: Pigeonhole Principle"]:::theorem
+    def-homeomorphism --> def-function
+    def-homomorphism --> def-function
+    def-linear-transformation --> def-function
+    def-metric-space --> def-function
+    def-permutation --> def-function
+    def-determinant --> def-function
+    thm-pigeonhole-principle --> def-function
+    def-sequence --> def-function
+    def-function --> def-set
+    def-binary-operation --> def-function
+    def-continuity --> def-function
+    def-random-variable --> def-function
+    def-functor --> def-function
+    def-group-action --> def-function
+    class def-function current

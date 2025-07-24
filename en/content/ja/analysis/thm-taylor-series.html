@@ -382,20 +382,20 @@ window.Quarto = {
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-convergence["Definition: Convergence"]:::definition
     thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
-    def-continuity["Definition: Continuity"]:::definition
-    def-derivative["Definition: Derivative"]:::definition
-    def-series["Definition: Series"]:::definition
     thm-taylor-series["Theorem: Taylor Series"]:::theorem
-    thm-taylor-series --&gt; def-derivative
-    thm-taylor-series --&gt; def-series
-    thm-taylor-series --&gt; def-continuity
+    def-derivative["Definition: Derivative"]:::definition
+    def-continuity["Definition: Continuity"]:::definition
+    def-series["Definition: Series"]:::definition
     thm-taylor-series --&gt; def-convergence
     thm-taylor-series --&gt; thm-mean-value
+    thm-taylor-series --&gt; def-derivative
+    thm-taylor-series --&gt; def-continuity
+    thm-taylor-series --&gt; def-series
     class thm-taylor-series current
     click def-convergence "def-convergence.html" "Definition: Convergenceへ"
     click thm-mean-value "thm-mean-value.html" "Theorem: Mean Value Theoremへ"
-    click def-continuity "def-continuity.html" "Definition: Continuityへ"
     click def-derivative "def-derivative.html" "Definition: Derivativeへ"
+    click def-continuity "def-continuity.html" "Definition: Continuityへ"
     click def-series "def-series.html" "Definition: Seriesへ"
 </pre>
 </div>
@@ -407,7 +407,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-taylor-series-1753363049" class="graph-visualization-container">
+<div id="graph-viz-thm-taylor-series-1753374227" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -587,12 +587,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-taylor-series-1753363049', {
+    createForceGraph(data, 'graph-viz-thm-taylor-series-1753374227', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-taylor-series-1753363049').innerHTML =
+    document.getElementById('graph-viz-thm-taylor-series-1753374227').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
