@@ -354,6 +354,7 @@ window.Quarto = {
 <li>微分方程式の解法</li>
 <li>数値解析と計算</li>
 <li>関数の振る舞いと<a href="../../../content/ja/analysis/def-continuity.html">連続性</a>の研究</li>
+<li>組合せ論における<a href="../../../content/ja/combinatorics/def-generating-function.html">母関数</a>のインスピレーション</li>
 </ul>
 </section>
 <section id="例e-の計算" class="level2">
@@ -379,22 +380,22 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-taylor-series["Theorem: Taylor Series"]:::theorem
-    def-continuity["Definition: Continuity"]:::definition
-    thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
-    def-derivative["Definition: Derivative"]:::definition
     def-convergence["Definition: Convergence"]:::definition
+    thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
+    def-continuity["Definition: Continuity"]:::definition
+    def-derivative["Definition: Derivative"]:::definition
     def-series["Definition: Series"]:::definition
+    thm-taylor-series["Theorem: Taylor Series"]:::theorem
+    thm-taylor-series --&gt; def-derivative
     thm-taylor-series --&gt; def-series
     thm-taylor-series --&gt; def-continuity
-    thm-taylor-series --&gt; thm-mean-value
-    thm-taylor-series --&gt; def-derivative
     thm-taylor-series --&gt; def-convergence
+    thm-taylor-series --&gt; thm-mean-value
     class thm-taylor-series current
-    click def-continuity "def-continuity.html" "Definition: Continuityへ"
-    click thm-mean-value "thm-mean-value.html" "Theorem: Mean Value Theoremへ"
-    click def-derivative "def-derivative.html" "Definition: Derivativeへ"
     click def-convergence "def-convergence.html" "Definition: Convergenceへ"
+    click thm-mean-value "thm-mean-value.html" "Theorem: Mean Value Theoremへ"
+    click def-continuity "def-continuity.html" "Definition: Continuityへ"
+    click def-derivative "def-derivative.html" "Definition: Derivativeへ"
     click def-series "def-series.html" "Definition: Seriesへ"
 </pre>
 </div>
@@ -406,7 +407,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-taylor-series-1753269241" class="graph-visualization-container">
+<div id="graph-viz-thm-taylor-series-1753363049" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -586,12 +587,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-taylor-series-1753269241', {
+    createForceGraph(data, 'graph-viz-thm-taylor-series-1753363049', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-taylor-series-1753269241').innerHTML =
+    document.getElementById('graph-viz-thm-taylor-series-1753363049').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

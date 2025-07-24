@@ -333,6 +333,7 @@ window.Quarto = {
 <li><strong>フィボナッチ数列</strong>：<span class="math inline">\(a_1 = 1, a_2 = 1, a_n = a_{n-1} + a_{n-2}\)</span>
 <ul>
 <li><span class="math inline">\((1, 1, 2, 3, 5, 8, 13, ...)\)</span></li>
+<li><a href="../../../content/ja/combinatorics/def-generating-function.html">母関数</a>を用いて閉形式を持つ</li>
 </ul></li>
 </ol>
 </section>
@@ -342,7 +343,7 @@ window.Quarto = {
 <li><strong>有界</strong>：すべての <span class="math inline">\(n\)</span> に対して <span class="math inline">\(|a_n| \leq M\)</span> となる <span class="math inline">\(M &gt; 0\)</span> が存在する</li>
 <li><strong>単調</strong>：増加列（<span class="math inline">\(a_n \leq a_{n+1}\)</span>）または減少列</li>
 <li><strong>周期的</strong>：すべての <span class="math inline">\(n\)</span> に対して <span class="math inline">\(a_{n+p} = a_n\)</span> となる <span class="math inline">\(p\)</span> が存在する</li>
-<li><strong>コーシー列</strong>：<span class="math inline">\(\forall \varepsilon &gt; 0, \exists N\)</span> に対して、すべての <span class="math inline">\(m,n &gt; N\)</span> で <span class="math inline">\(|a_m - a_n| &lt; \varepsilon\)</span></li>
+<li><strong>コーシー列</strong>：<span class="math inline">\(\forall \varepsilon &gt; 0, \exists N\)</span> に対して、すべての <span class="math inline">\(m,n &gt; N\)</span> で <span class="math inline">\(|a_m - a_n| &lt; \varepsilon\)</span>（<a href="../../../content/ja/analysis/def-cauchy-sequence.html">コーシー列</a>を参照）</li>
 </ul>
 </section>
 <section id="関連概念" class="level2">
@@ -368,14 +369,17 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-convergence["Definition: Convergence"]:::definition
+    def-cauchy-sequence["Definition: Cauchy Sequence"]:::definition
     def-set["Definition: Set"]:::definition
-    def-sequence["Definition: Sequence"]:::definition
     def-series["Definition: Series"]:::definition
+    def-sequence["Definition: Sequence"]:::definition
+    def-cauchy-sequence --&gt; def-sequence
     def-series --&gt; def-sequence
-    def-sequence --&gt; def-set
     def-convergence --&gt; def-sequence
+    def-sequence --&gt; def-set
     class def-sequence current
     click def-convergence "def-convergence.html" "Definition: Convergenceへ"
+    click def-cauchy-sequence "def-cauchy-sequence.html" "Definition: Cauchy Sequenceへ"
     click def-set "def-set.html" "Definition: Setへ"
     click def-series "def-series.html" "Definition: Seriesへ"
 </pre>
@@ -388,7 +392,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-sequence-1753269236" class="graph-visualization-container">
+<div id="graph-viz-def-sequence-1753363043" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -568,12 +572,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-sequence-1753269236', {
+    createForceGraph(data, 'graph-viz-def-sequence-1753363043', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-sequence-1753269236').innerHTML =
+    document.getElementById('graph-viz-def-sequence-1753363043').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

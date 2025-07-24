@@ -325,7 +325,7 @@ window.Quarto = {
 </ol>
 </section>
 <section id="母関数" class="level2">
-<h2 class="anchored" data-anchor-id="母関数">母関数</h2>
+<h2 class="anchored" data-anchor-id="母関数"><a href="../../../content/ja/combinatorics/def-generating-function.html">母関数</a></h2>
 <p>パスカルの三角形のエントリはべき<a href="../../../content/ja/analysis/def-series.html">級数</a>を使用して生成できます： <span class="math display">\[\frac{1}{(1-x)^{n+1}} = \sum_{k=0}^{\infty} \binom{n+k}{k} x^k\]</span></p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -352,10 +352,13 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
     ex-pascals-triangle["Example: Pascal's Triangle"]:::example
+    def-generating-function["Definition: Generating Function"]:::definition
+    def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
     ex-pascals-triangle --&gt; def-binomial-coefficient
+    ex-pascals-triangle --&gt; def-generating-function
     class ex-pascals-triangle current
+    click def-generating-function "def-generating-function.html" "Definition: Generating Functionへ"
     click def-binomial-coefficient "def-binomial-coefficient.html" "Definition: Binomial Coefficientへ"
 </pre>
 </div>
@@ -367,7 +370,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-pascals-triangle-1753269321" class="graph-visualization-container">
+<div id="graph-viz-ex-pascals-triangle-1753363132" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -547,12 +550,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-pascals-triangle-1753269321', {
+    createForceGraph(data, 'graph-viz-ex-pascals-triangle-1753363132', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-pascals-triangle-1753269321').innerHTML =
+    document.getElementById('graph-viz-ex-pascals-triangle-1753363132').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

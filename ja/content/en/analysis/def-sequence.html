@@ -333,6 +333,7 @@ window.Quarto = {
 <li><strong>Fibonacci sequence</strong>: <span class="math inline">\(a_1 = 1, a_2 = 1, a_n = a_{n-1} + a_{n-2}\)</span>
 <ul>
 <li><span class="math inline">\((1, 1, 2, 3, 5, 8, 13, ...)\)</span></li>
+<li>Has a closed form via <a href="../../../content/en/combinatorics/def-generating-function.html">generating functions</a></li>
 </ul></li>
 </ol>
 </section>
@@ -342,7 +343,7 @@ window.Quarto = {
 <li><strong>Bounded</strong>: <span class="math inline">\(\exists M &gt; 0\)</span> such that <span class="math inline">\(|a_n| \leq M\)</span> for all <span class="math inline">\(n\)</span></li>
 <li><strong>Monotonic</strong>: Either increasing (<span class="math inline">\(a_n \leq a_{n+1}\)</span>) or decreasing</li>
 <li><strong>Periodic</strong>: <span class="math inline">\(\exists p\)</span> such that <span class="math inline">\(a_{n+p} = a_n\)</span> for all <span class="math inline">\(n\)</span></li>
-<li><strong>Cauchy</strong>: <span class="math inline">\(\forall \varepsilon &gt; 0, \exists N\)</span> such that <span class="math inline">\(|a_m - a_n| &lt; \varepsilon\)</span> for all <span class="math inline">\(m,n &gt; N\)</span></li>
+<li><strong>Cauchy</strong>: <span class="math inline">\(\forall \varepsilon &gt; 0, \exists N\)</span> such that <span class="math inline">\(|a_m - a_n| &lt; \varepsilon\)</span> for all <span class="math inline">\(m,n &gt; N\)</span> (see <a href="../../../content/en/analysis/def-cauchy-sequence.html">Cauchy Sequence</a>)</li>
 </ul>
 </section>
 <section id="related-concepts" class="level2">
@@ -368,14 +369,17 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-convergence["Definition: Convergence"]:::definition
+    def-cauchy-sequence["Definition: Cauchy Sequence"]:::definition
     def-set["Definition: Set"]:::definition
-    def-sequence["Definition: Sequence"]:::definition
     def-series["Definition: Series"]:::definition
+    def-sequence["Definition: Sequence"]:::definition
+    def-cauchy-sequence --&gt; def-sequence
     def-series --&gt; def-sequence
-    def-sequence --&gt; def-set
     def-convergence --&gt; def-sequence
+    def-sequence --&gt; def-set
     class def-sequence current
     click def-convergence "def-convergence.html" "Go to Convergence definition"
+    click def-cauchy-sequence "def-cauchy-sequence.html" "Go to Cauchy Sequence definition"
     click def-set "def-set.html" "Go to Set definition"
     click def-series "def-series.html" "Go to Series definition"
 </pre>
@@ -388,7 +392,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-sequence-1753269378" class="graph-visualization-container">
+<div id="graph-viz-def-sequence-1753363190" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -568,12 +572,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-sequence-1753269378', {
+    createForceGraph(data, 'graph-viz-def-sequence-1753363190', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-sequence-1753269378').innerHTML =
+    document.getElementById('graph-viz-def-sequence-1753363190').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

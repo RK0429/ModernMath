@@ -298,7 +298,7 @@ window.Quarto = {
 <section id="性質" class="level2">
 <h2 class="anchored" data-anchor-id="性質">性質</h2>
 <ul>
-<li><strong>完備距離空間</strong>: すべてのコーシー列が収束する</li>
+<li><strong>完備距離空間</strong>: すべての<a href="../../../content/ja/analysis/def-cauchy-sequence.html">コーシー列</a>が収束する</li>
 <li><strong>有限次元</strong>: ベクトル空間として次元 <span class="math inline">\(n\)</span> を持つ</li>
 <li><strong>局所コンパクト</strong>: すべての点がコンパクトな近傍を持つ</li>
 <li><strong>単連結</strong>: <span class="math inline">\(n \geq 2\)</span> の場合</li>
@@ -342,16 +342,16 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-pythagorean["Theorem: Pythagorean Theorem"]:::theorem
-    def-metric-space["Definition: Metric Space"]:::definition
     def-euclidean-space["Definition: Euclidean Space"]:::definition
+    def-metric-space["Definition: Metric Space"]:::definition
+    thm-pythagorean["Theorem: Pythagorean Theorem"]:::theorem
     def-vector-space["Definition: Vector Space"]:::definition
-    def-euclidean-space --&gt; def-metric-space
     def-euclidean-space --&gt; def-vector-space
+    def-euclidean-space --&gt; def-metric-space
     thm-pythagorean --&gt; def-euclidean-space
     class def-euclidean-space current
-    click thm-pythagorean "thm-pythagorean.html" "Theorem: Pythagorean Theoremへ"
     click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
+    click thm-pythagorean "thm-pythagorean.html" "Theorem: Pythagorean Theoremへ"
     click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
 </pre>
 </div>
@@ -363,7 +363,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-euclidean-space-1753269243" class="graph-visualization-container">
+<div id="graph-viz-def-euclidean-space-1753363051" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -543,12 +543,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-euclidean-space-1753269243', {
+    createForceGraph(data, 'graph-viz-def-euclidean-space-1753363051', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-euclidean-space-1753269243').innerHTML =
+    document.getElementById('graph-viz-def-euclidean-space-1753363051').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

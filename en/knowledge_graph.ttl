@@ -25,6 +25,8 @@
 
 <http://modernmath.org/concepts/category> ns1:hasTranslation <http://modernmath.org/concepts/category_ja> .
 
+<http://modernmath.org/concepts/cauchy-sequence> ns1:hasTranslation <http://modernmath.org/concepts/cauchy-sequence_ja> .
+
 <http://modernmath.org/concepts/central-limit> ns1:hasTranslation <http://modernmath.org/concepts/central-limit_ja> .
 
 <http://modernmath.org/concepts/chain-rule> ns1:hasTranslation <http://modernmath.org/concepts/chain-rule_ja> .
@@ -62,6 +64,8 @@
 <http://modernmath.org/concepts/de-morgan> ns1:hasTranslation <http://modernmath.org/concepts/de-morgan_ja> .
 
 <http://modernmath.org/concepts/derivative> ns1:hasTranslation <http://modernmath.org/concepts/derivative_ja> .
+
+<http://modernmath.org/concepts/determinant> ns1:hasTranslation <http://modernmath.org/concepts/determinant_ja> .
 
 <http://modernmath.org/concepts/direct-product> ns1:hasTranslation <http://modernmath.org/concepts/direct-product_ja> .
 
@@ -101,7 +105,11 @@
 
 <http://modernmath.org/concepts/fundamental-arithmetic> ns1:hasTranslation <http://modernmath.org/concepts/fundamental-arithmetic_ja> .
 
+<http://modernmath.org/concepts/fundamental-calculus> ns1:hasTranslation <http://modernmath.org/concepts/fundamental-calculus_ja> .
+
 <http://modernmath.org/concepts/gcd> ns1:hasTranslation <http://modernmath.org/concepts/gcd_ja> .
+
+<http://modernmath.org/concepts/generating-function> ns1:hasTranslation <http://modernmath.org/concepts/generating-function_ja> .
 
 <http://modernmath.org/concepts/graph> ns1:hasTranslation <http://modernmath.org/concepts/graph_ja> .
 
@@ -274,7 +282,8 @@ base:def-complete-metric-space a mymath:Definition ;
     mymath:hasDomain "Analysis",
         "解析学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-limit,
+    mymath:uses base:def-cauchy-sequence,
+        base:def-limit,
         base:def-metric-space .
 
 base:def-distributivity a mymath:Definition ;
@@ -293,21 +302,11 @@ base:def-eigenvalue-eigenvector a mymath:Definition ;
     mymath:hasDomain "Algebra",
         "代数学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-linear-transformation,
+    mymath:uses base:def-determinant,
+        base:def-linear-transformation,
         base:def-matrix,
         base:def-polynomial-ring,
         base:def-vector-space .
-
-base:def-integral a mymath:Definition ;
-    rdfs:label "Definition: Integral"@en,
-        "定義: 積分"@en ;
-    rdfs:comment "The **integral** of a function represents the signed area under its curve, accumulation of quantities, or the inverse operation to differentiation. We focus on the Riemann integral for real-valued functions."@en,
-        "関数の**積分**は、その曲線の下の符号付き面積、量の累積、または微分の逆演算を表す。ここでは実数値関数のリーマン積分に焦点を当てる。"@en ;
-    mymath:hasDomain "Analysis",
-        "解析学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-continuity,
-        base:def-limit .
 
 base:def-module a mymath:Definition ;
     rdfs:label "Definition: Module"@en,
@@ -346,7 +345,8 @@ base:def-uniform-continuity a mymath:Definition ;
     mymath:hasDomain "Analysis",
         "解析学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-continuity,
+    mymath:uses base:def-cauchy-sequence,
+        base:def-continuity,
         base:def-metric-space .
 
 base:ex-closed-interval-compact a mymath:Example ;
@@ -424,7 +424,8 @@ base:ex-pascals-triangle a mymath:Example ;
     mymath:hasDomain "Combinatorics",
         "組合せ論" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-binomial-coefficient .
+    mymath:uses base:def-binomial-coefficient,
+        base:def-generating-function .
 
 base:ex-polynomial-continuity a mymath:Example ;
     rdfs:label "Example: Polynomial Continuity"@en,
@@ -557,6 +558,18 @@ base:thm-fundamental-arithmetic a mymath:Theorem ;
         "数論" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-prime .
+
+base:thm-fundamental-calculus a mymath:Theorem ;
+    rdfs:label "Theorem: Fundamental Theorem of Calculus"@en,
+        "定理: 微積分学の基本定理"@en ;
+    rdfs:comment "**微積分学の基本定理**は、微分と積分がお互いに逆演算であることを示す、微積分学の中心となる定理である。"@en,
+        "The **Fundamental Theorem of Calculus** is the central theorem of calculus that establishes the profound connection between differentiation and integration, showing that these two operations are essentially inverses of one another."@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-continuity,
+        base:def-derivative,
+        base:def-integral .
 
 base:thm-intermediate-value a mymath:Theorem ;
     rdfs:label "Theorem: Intermediate Value Theorem"@en,
@@ -699,6 +712,8 @@ base:thm-yoneda a mymath:Theorem ;
 
 <http://modernmath.org/concepts/category_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/cauchy-sequence_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/central-limit_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/chain-rule_ja> ns1:language "ja" .
@@ -736,6 +751,8 @@ base:thm-yoneda a mymath:Theorem ;
 <http://modernmath.org/concepts/de-morgan_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/derivative_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/determinant_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/direct-product_ja> ns1:language "ja" .
 
@@ -775,7 +792,11 @@ base:thm-yoneda a mymath:Theorem ;
 
 <http://modernmath.org/concepts/fundamental-arithmetic_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/fundamental-calculus_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/gcd_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/generating-function_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/graph_ja> ns1:language "ja" .
 
@@ -1066,6 +1087,17 @@ base:def-homeomorphism a mymath:Definition ;
         base:def-set,
         base:def-topological-space .
 
+base:def-integral a mymath:Definition ;
+    rdfs:label "Definition: Integral"@en,
+        "定義: 積分"@en ;
+    rdfs:comment "The **integral** of a function represents the signed area under its curve, accumulation of quantities, or the inverse operation to differentiation. We focus on the Riemann integral for real-valued functions."@en,
+        "関数の**積分**は、その曲線の下の符号付き面積、量の累積、または微分の逆演算を表す。ここでは実数値関数のリーマン積分に焦点を当てる。"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-continuity,
+        base:def-limit .
+
 base:def-intersection a mymath:Definition ;
     rdfs:label "Definition: Intersection"@en,
         "定義: 共通部分"@en ;
@@ -1335,14 +1367,17 @@ base:def-basis a mymath:Definition ;
         base:def-span,
         base:def-vector-space .
 
-base:def-binomial-coefficient a mymath:Definition ;
-    rdfs:label "Definition: Binomial Coefficient"@en,
-        "定義：二項係数"@en ;
-    mymath:hasDomain "Combinatorics",
-        "組合せ論" ;
+base:def-cauchy-sequence a mymath:Definition ;
+    rdfs:label "Definition: Cauchy Sequence"@en,
+        "定義: コーシー列"@en ;
+    rdfs:comment "**コーシー列**（基本列とも呼ばれる）は、数列が進むにつれて要素が互いに任意に近くなる数列である。この概念は、極限を知らなくても収束性を捉えることができる。"@en,
+        "A **Cauchy sequence** is a sequence whose elements become arbitrarily close to each other as the sequence progresses. This concept captures the idea of convergence without requiring knowledge of the limit."@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-combination,
-        base:def-permutation .
+    mymath:uses base:def-limit,
+        base:def-metric-space,
+        base:def-sequence .
 
 base:def-closed-set a mymath:Definition ;
     rdfs:label "Definition: Closed Set"@en,
@@ -1401,6 +1436,15 @@ base:def-convergence a mymath:Definition ;
     mymath:uses base:def-limit,
         base:def-sequence .
 
+base:def-determinant a mymath:Definition ;
+    rdfs:label "Definition: Determinant"@en,
+        "定義: 行列式"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-field,
+        base:def-matrix .
+
 base:def-functor a mymath:Definition ;
     rdfs:label "Definition: Functor"@en,
         "定義: 関手"@en ;
@@ -1409,6 +1453,14 @@ base:def-functor a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-category,
         base:def-graph .
+
+base:def-generating-function a mymath:Definition ;
+    rdfs:label "Definition: Generating Function"@en,
+        "定義: 母関数"@en ;
+    mymath:hasDomain "Combinatorics",
+        "組合せ論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-binomial-coefficient .
 
 base:def-hausdorff a mymath:Definition ;
     rdfs:label "Definition: Hausdorff Space"@en,
@@ -1470,23 +1522,6 @@ base:def-linear-independence a mymath:Definition ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.LinearAlgebra.LinearIndependent.LinearIndependent>,
         base:formal-proof-def-linear-independence ;
     mymath:uses base:def-vector-space .
-
-base:def-matrix a mymath:Definition ;
-    rdfs:label "Definition: Matrix"@en,
-        "定義：行列"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" .
-
-base:def-sequence a mymath:Definition ;
-    rdfs:label "Definition: Sequence"@en,
-        "定義：数列"@en ;
-    rdfs:comment "**数列**とは、要素（通常は数）の順序付けられたリストであり、自然数で添字付けられている。形式的には、数列は自然数から集合への関数である。"@en,
-        "A **sequence** is an ordered list of elements, typically numbers, indexed by the natural numbers. Formally, a sequence is a function from the natural numbers to a set."@en ;
-    mymath:hasDomain "Analysis",
-        "解析学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-set .
 
 base:def-span a mymath:Definition ;
     rdfs:label "Definition: Span"@en,
@@ -1554,6 +1589,16 @@ base:thm-fermat-little a mymath:Theorem ;
         base:def-gcd,
         base:def-prime .
 
+base:def-binomial-coefficient a mymath:Definition ;
+    rdfs:label "Definition: Binomial Coefficient"@en,
+        "定義：二項係数"@en ;
+    mymath:hasDomain "Combinatorics",
+        "組合せ論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-combination,
+        base:def-generating-function,
+        base:def-permutation .
+
 base:def-compact a mymath:Definition ;
     rdfs:label "Definition: Compact Space"@en,
         "定義: コンパクト空間"@en ;
@@ -1565,14 +1610,6 @@ base:def-compact a mymath:Definition ;
     mymath:uses base:def-open-set,
         base:def-set,
         base:def-topological-space .
-
-base:def-derivative a mymath:Definition ;
-    rdfs:label "Definition: Derivative"@en,
-        "定義: 導関数"@en ;
-    mymath:hasDomain "Analysis",
-        "解析学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-limit .
 
 base:def-direct-product a mymath:Definition ;
     rdfs:label "Definition: Direct Product of Groups"@en,
@@ -1619,6 +1656,16 @@ base:def-polynomial-ring a mymath:Definition ;
         base:def-field,
         base:def-ring .
 
+base:def-sequence a mymath:Definition ;
+    rdfs:label "Definition: Sequence"@en,
+        "定義：数列"@en ;
+    rdfs:comment "**数列**とは、要素（通常は数）の順序付けられたリストであり、自然数で添字付けられている。形式的には、数列は自然数から集合への関数である。"@en,
+        "A **sequence** is an ordered list of elements, typically numbers, indexed by the natural numbers. Formally, a sequence is a function from the natural numbers to a set."@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-set .
+
 base:thm-euclidean-algorithm a mymath:Theorem ;
     rdfs:label "Theorem: Euclidean Algorithm"@en,
         "定理：ユークリッドのアルゴリズム"@en ;
@@ -1629,18 +1676,13 @@ base:thm-euclidean-algorithm a mymath:Theorem ;
         base:def-gcd,
         base:ex-quotient-integers-mod-n .
 
-base:def-field a mymath:Definition ;
-    rdfs:label "Definition: Field"@en,
-        "定義: 体"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
+base:def-derivative a mymath:Definition ;
+    rdfs:label "Definition: Derivative"@en,
+        "定義: 導関数"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
     mymath:hasStatus "complete" ;
-    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Field.Defs.Field>,
-        base:formal-proof-def-field ;
-    mymath:uses base:def-abelian-group,
-        base:def-group,
-        base:def-ideal,
-        base:def-ring .
+    mymath:uses base:def-limit .
 
 base:def-group-action a mymath:Definition ;
     rdfs:label "Group Action"@en,
@@ -1672,6 +1714,14 @@ base:def-line a mymath:Definition ;
         "幾何学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-point .
+
+base:def-matrix a mymath:Definition ;
+    rdfs:label "Definition: Matrix"@en,
+        "定義：行列"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-field .
 
 base:def-morphism a mymath:Definition ;
     rdfs:label "Definition: Morphism"@en,
@@ -1785,6 +1835,19 @@ base:def-divisibility a mymath:Definition ;
     mymath:uses base:def-gcd,
         base:def-prime .
 
+base:def-field a mymath:Definition ;
+    rdfs:label "Definition: Field"@en,
+        "定義: 体"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Algebra.Field.Defs.Field>,
+        base:formal-proof-def-field ;
+    mymath:uses base:def-abelian-group,
+        base:def-group,
+        base:def-ideal,
+        base:def-ring .
+
 base:def-gcd a mymath:Definition ;
     rdfs:label "Definition: Greatest Common Divisor"@en,
         "定義：最大公約数"@en ;
@@ -1876,24 +1939,6 @@ base:def-category a mymath:Definition ;
     mymath:uses base:def-graph,
         base:def-set .
 
-base:def-limit a mymath:Definition ;
-    rdfs:label "Definition: Limit of a Sequence"@en,
-        "定義：数列の極限"@en ;
-    mymath:hasDomain "Analysis",
-        "解析学" ;
-    mymath:hasStatus "complete" .
-
-base:def-metric-space a mymath:Definition ;
-    rdfs:label "Definition: Metric Space"@en,
-        "定義: 距離空間"@en,
-        "定義：距離空間"@en ;
-    mymath:hasDomain "Analysis",
-        "Geometry",
-        "幾何学",
-        "解析学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-set .
-
 base:def-ring a mymath:Definition ;
     rdfs:label "Definition: Ring"@en,
         "定義：環"@en ;
@@ -1922,6 +1967,24 @@ base:def-subgroup a mymath:Definition ;
         base:def-quotient-group,
         base:def-set,
         base:thm-lagrange .
+
+base:def-limit a mymath:Definition ;
+    rdfs:label "Definition: Limit of a Sequence"@en,
+        "定義：数列の極限"@en ;
+    mymath:hasDomain "Analysis",
+        "解析学" ;
+    mymath:hasStatus "complete" .
+
+base:def-metric-space a mymath:Definition ;
+    rdfs:label "Definition: Metric Space"@en,
+        "定義: 距離空間"@en,
+        "定義：距離空間"@en ;
+    mymath:hasDomain "Analysis",
+        "Geometry",
+        "幾何学",
+        "解析学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-set .
 
 base:def-continuity a mymath:Definition ;
     rdfs:label "Definition: Continuity"@en,
@@ -1973,9 +2036,11 @@ base:def-normal-subgroup a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-abelian-group,
         base:def-coset,
+        base:def-determinant,
         base:def-group,
         base:def-group-action,
         base:def-homomorphism,
+        base:def-matrix,
         base:def-quotient-group,
         base:def-subgroup,
         base:thm-first-isomorphism,

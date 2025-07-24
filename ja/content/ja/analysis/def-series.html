@@ -315,7 +315,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="重要な性質">重要な性質</h2>
 <ol type="1">
 <li><p><strong>収束の必要条件</strong>：<span class="math inline">\(\sum_{n=1}^{\infty} a_n\)</span> が収束するならば、<span class="math inline">\(\lim_{n \to \infty} a_n = 0\)</span></p></li>
-<li><p><strong>コーシーの判定法</strong>：級数が収束することの必要十分条件は、任意の <span class="math inline">\(\varepsilon &gt; 0\)</span> に対して、ある <span class="math inline">\(N\)</span> が存在して、すべての <span class="math inline">\(n &gt; m \geq N\)</span> に対して： <span class="math display">\[\left|\sum_{k=m+1}^{n} a_k\right| &lt; \varepsilon\]</span></p></li>
+<li><p><strong>コーシーの判定法</strong>：級数が収束することの必要十分条件は、任意の <span class="math inline">\(\varepsilon &gt; 0\)</span> に対して、ある <span class="math inline">\(N\)</span> が存在して、すべての <span class="math inline">\(n &gt; m \geq N\)</span> に対して（<a href="../../../content/ja/analysis/def-cauchy-sequence.html">コーシー列</a>と関連）： <span class="math display">\[\left|\sum_{k=m+1}^{n} a_k\right| &lt; \varepsilon\]</span></p></li>
 <li><p><strong>項の並べ替えに関する性質</strong>：</p>
 <ul>
 <li>絶対収束する級数は、項を並べ替えても和は変わらない</li>
@@ -363,6 +363,7 @@ window.Quarto = {
 <li><a href="../../../content/ja/analysis/def-limit.html">極限</a>：部分和が近づく値</li>
 <li><a href="../../../content/ja/analysis/thm-taylor-series.html">べき級数</a>：変数のべきを含む級数（テイラー級数は特殊な種類）</li>
 <li>フーリエ級数：関数の三角関数級数による表現</li>
+<li><a href="../../../content/ja/combinatorics/def-generating-function.html">母関数</a>：組合せ論で数列を符号化するために使われる形式的べき級数</li>
 </ul>
 </section>
 <section id="依存関係グラフ" class="level2">
@@ -378,19 +379,19 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-taylor-series["Theorem: Taylor Series"]:::theorem
-    def-limit["Definition: Limit of a Sequence"]:::definition
     def-convergence["Definition: Convergence"]:::definition
-    def-sequence["Definition: Sequence"]:::definition
+    thm-taylor-series["Theorem: Taylor Series"]:::theorem
     def-series["Definition: Series"]:::definition
+    def-limit["Definition: Limit of a Sequence"]:::definition
+    def-sequence["Definition: Sequence"]:::definition
     thm-taylor-series --&gt; def-series
-    def-series --&gt; def-sequence
-    def-series --&gt; def-limit
     def-series --&gt; def-convergence
+    def-series --&gt; def-limit
+    def-series --&gt; def-sequence
     class def-series current
+    click def-convergence "def-convergence.html" "Definition: Convergenceへ"
     click thm-taylor-series "thm-taylor-series.html" "Theorem: Taylor Seriesへ"
     click def-limit "def-limit.html" "Definition: Limit of a Sequenceへ"
-    click def-convergence "def-convergence.html" "Definition: Convergenceへ"
     click def-sequence "def-sequence.html" "Definition: Sequenceへ"
 </pre>
 </div>
@@ -402,7 +403,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-series-1753269311" class="graph-visualization-container">
+<div id="graph-viz-def-series-1753363120" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -582,12 +583,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-series-1753269311', {
+    createForceGraph(data, 'graph-viz-def-series-1753363120', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-series-1753269311').innerHTML =
+    document.getElementById('graph-viz-def-series-1753363120').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -370,23 +370,23 @@ x &amp;\equiv 2 \pmod{7}
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
-    def-divisibility["Definition: Divisibility"]:::definition
-    thm-chinese-remainder["Theorem: Chinese Remainder Theorem"]:::theorem
-    def-gcd["Definition: Greatest Common Divisor"]:::definition
     thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
+    def-divisibility["Definition: Divisibility"]:::definition
+    def-gcd["Definition: Greatest Common Divisor"]:::definition
     def-prime["Definition: Prime Number"]:::definition
-    thm-chinese-remainder --&gt; thm-euclidean-algorithm
+    thm-chinese-remainder["Theorem: Chinese Remainder Theorem"]:::theorem
+    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
     thm-chinese-remainder --&gt; def-gcd
-    thm-chinese-remainder --&gt; def-divisibility
-    thm-chinese-remainder --&gt; def-congruence
     thm-chinese-remainder --&gt; def-prime
+    thm-chinese-remainder --&gt; thm-euclidean-algorithm
+    thm-chinese-remainder --&gt; def-congruence
+    thm-chinese-remainder --&gt; def-divisibility
     class thm-chinese-remainder current
-    click def-congruence "def-congruence.html" "Definition: Congruence (Modular Arithmetic)へ"
+    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Theorem: Euclidean Algorithmへ"
     click def-divisibility "def-divisibility.html" "Definition: Divisibilityへ"
     click def-gcd "def-gcd.html" "Definition: Greatest Common Divisorへ"
-    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Theorem: Euclidean Algorithmへ"
     click def-prime "def-prime.html" "Definition: Prime Numberへ"
+    click def-congruence "def-congruence.html" "Definition: Congruence (Modular Arithmetic)へ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -397,7 +397,7 @@ x &amp;\equiv 2 \pmod{7}
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-chinese-remainder-1753269335" class="graph-visualization-container">
+<div id="graph-viz-thm-chinese-remainder-1753363146" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -577,12 +577,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-chinese-remainder-1753269335', {
+    createForceGraph(data, 'graph-viz-thm-chinese-remainder-1753363146', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-chinese-remainder-1753269335').innerHTML =
+    document.getElementById('graph-viz-thm-chinese-remainder-1753363146').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
