@@ -1,0 +1,116 @@
+---
+id: def-simple-group
+lean_id: Mathlib.GroupTheory.SimpleGroup
+requires:
+- def-group
+- def-normal-subgroup
+- def-quotient-group
+- def-abelian-group
+- def-cyclic-group
+- thm-lagrange
+- def-homomorphism
+- thm-first-isomorphism
+status: complete
+title: 'Definition: Simple Group'
+translations:
+  en: ../en/algebra/def-simple-group.html
+  ja: ../ja/algebra/def-simple-group.html
+type: Definition
+---
+
+# Definition: Simple Group {#def-simple-group}
+
+A **simple group** is a non-trivial [group](def-group.qmd) whose only [normal subgroups](def-normal-subgroup.qmd) are the trivial subgroup $\{e\}$ and the group itself $G$.
+
+## Formal Definition
+
+A group $G$ is simple if:
+1. $G \neq \{e\}$ (the group is non-trivial)
+2. The only normal subgroups of $G$ are $\{e\}$ and $G$
+
+## Equivalent Characterizations
+
+A group $G$ is simple if and only if:
+- $G$ has no proper non-trivial normal subgroups
+- For any normal subgroup $N \triangleleft G$, either $N = \{e\}$ or $N = G$
+- The only [quotient groups](def-quotient-group.qmd) of $G$ are $G/\{e\} \cong G$ and $G/G \cong \{e\}$
+
+## Importance
+
+Simple groups are fundamental in group theory because:
+- They serve as the "building blocks" of all finite groups
+- The Jordan-Hölder theorem shows that every finite group can be broken down into a composition series of simple groups
+- They cannot be decomposed into smaller groups via the quotient construction
+
+## Classification
+
+### Abelian Simple Groups
+The only [abelian](def-abelian-group.qmd) simple groups are the [cyclic groups](def-cyclic-group.qmd) of prime order:
+- $\mathbb{Z}_p$ where $p$ is prime
+
+This follows from [Lagrange's theorem](thm-lagrange.qmd): a group of prime order has no proper non-trivial subgroups.
+
+### Non-Abelian Simple Groups
+The complete classification of finite simple groups includes:
+
+1. **Cyclic groups of prime order**: $\mathbb{Z}_p$
+2. **Alternating groups**: $A_n$ for $n \geq 5$
+3. **Groups of Lie type**: Classical groups over finite fields
+4. **Sporadic groups**: 26 exceptional groups
+
+## Examples
+
+### Simple Groups
+- $\mathbb{Z}_2, \mathbb{Z}_3, \mathbb{Z}_5, \ldots$ (cyclic groups of prime order)
+- $A_5$ (the alternating group on 5 elements, smallest non-abelian simple group with 60 elements)
+- $A_n$ for all $n \geq 5$
+- $PSL(2, 7)$ (projective special linear group with 168 elements)
+
+### Non-Simple Groups
+- $\mathbb{Z}_4$ has $\{0, 2\}$ as a proper normal subgroup
+- $S_n$ for $n \geq 2$ has $A_n$ as a proper normal subgroup
+- Any abelian group of composite order
+
+## Properties
+
+1. **Simplicity and Homomorphisms**: If $\phi: G \to H$ is a [homomorphism](def-homomorphism.qmd) from a simple group $G$, then either:
+   - $\phi$ is trivial (maps everything to identity), or
+   - $\phi$ is injective (by the [first isomorphism theorem](thm-first-isomorphism.qmd))
+
+2. **Center**: The center of a non-abelian simple group is trivial
+
+3. **Minimal Normal Subgroups**: A simple group is a minimal normal subgroup of any group containing it
+
+## See Also
+
+- @def-group
+- @def-normal-subgroup
+- @def-quotient-group
+- @def-cyclic-group
+- @thm-lagrange
+- @thm-first-isomorphism
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-simple-group" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-simple-group.html){target="_blank"}

@@ -1,0 +1,117 @@
+---
+id: def-simple-group
+lean_id: Mathlib.GroupTheory.SimpleGroup
+requires:
+- def-group
+- def-normal-subgroup
+- def-quotient-group
+- def-abelian-group
+- def-cyclic-group
+- thm-lagrange
+- def-homomorphism
+- thm-first-isomorphism
+status: complete
+title: '定義: 単純群'
+translation_of: ../../en/algebra/def-simple-group.qmd
+translations:
+  en: ../en/algebra/def-simple-group.html
+  ja: ../ja/algebra/def-simple-group.html
+type: Definition
+---
+
+# 定義: 単純群 {#def-simple-group}
+
+**単純群**（たんじゅんぐん）とは、自明でない[群](def-group.qmd)であって、その[正規部分群](def-normal-subgroup.qmd)が自明な部分群 $\{e\}$ と群自身 $G$ のみであるものをいう。
+
+## 形式的定義
+
+群 $G$ が単純群であるとは：
+1. $G \neq \{e\}$（群が自明でない）
+2. $G$ の正規部分群は $\{e\}$ と $G$ のみである
+
+## 同値な特徴付け
+
+群 $G$ が単純群であることは以下と同値である：
+- $G$ は真で自明でない正規部分群を持たない
+- 任意の正規部分群 $N \triangleleft G$ に対して、$N = \{e\}$ または $N = G$
+- $G$ の[商群](def-quotient-group.qmd)は $G/\{e\} \cong G$ と $G/G \cong \{e\}$ のみである
+
+## 重要性
+
+単純群が群論において基本的である理由：
+- すべての有限群の「構成要素」として機能する
+- ジョルダン・ヘルダーの定理により、すべての有限群は単純群の合成列に分解できることが示される
+- 商構成によってより小さな群に分解することができない
+
+## 分類
+
+### アーベル単純群
+[アーベル群](def-abelian-group.qmd)の単純群は素数位数の[巡回群](def-cyclic-group.qmd)のみである：
+- $\mathbb{Z}_p$（$p$ は素数）
+
+これは[ラグランジュの定理](thm-lagrange.qmd)から従う：素数位数の群は真で自明でない部分群を持たない。
+
+### 非アーベル単純群
+有限単純群の完全な分類には以下が含まれる：
+
+1. **素数位数の巡回群**: $\mathbb{Z}_p$
+2. **交代群**: $A_n$（$n \geq 5$）
+3. **リー型の群**: 有限体上の古典群
+4. **散在型単純群**: 26個の例外的な群
+
+## 例
+
+### 単純群の例
+- $\mathbb{Z}_2, \mathbb{Z}_3, \mathbb{Z}_5, \ldots$（素数位数の巡回群）
+- $A_5$（5次交代群、60個の元を持つ最小の非アーベル単純群）
+- $A_n$（すべての $n \geq 5$ に対して）
+- $PSL(2, 7)$（168個の元を持つ射影特殊線形群）
+
+### 単純群でない群の例
+- $\mathbb{Z}_4$ は $\{0, 2\}$ を真の正規部分群として持つ
+- $S_n$（$n \geq 2$）は $A_n$ を真の正規部分群として持つ
+- 合成数位数の任意のアーベル群
+
+## 性質
+
+1. **単純性と準同型**: $\phi: G \to H$ が単純群 $G$ からの[準同型](def-homomorphism.qmd)ならば、以下のいずれか：
+   - $\phi$ は自明（すべてを単位元に写す）、または
+   - $\phi$ は単射（[第一同型定理](thm-first-isomorphism.qmd)による）
+
+2. **中心**: 非アーベル単純群の中心は自明である
+
+3. **極小正規部分群**: 単純群はそれを含む任意の群の極小正規部分群である
+
+## 関連項目
+
+- @def-group
+- @def-normal-subgroup
+- @def-quotient-group
+- @def-cyclic-group
+- @thm-lagrange
+- @thm-first-isomorphism
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+```
+
+## インタラクティブ可視化
+
+ローカル知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-simple-group" data-width="700" data-height="500"}
+:::
+
+以下の操作が可能です：
+- ノードを**ドラッグ**してレイアウトを調整
+- マウスホイールで**ズーム**イン/アウト
+- ノード上に**ホバー**して詳細を表示
+- [完全なインタラクティブ版](../../output/interactive/def-simple-group.html){target="_blank"}を表示
