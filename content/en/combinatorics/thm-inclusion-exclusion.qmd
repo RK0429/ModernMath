@@ -1,0 +1,133 @@
+---
+id: thm-inclusion-exclusion
+requires:
+- def-set
+- ../logic-set-theory/def-union
+- ../logic-set-theory/def-intersection
+status: complete
+title: 'Theorem: Inclusion-Exclusion Principle'
+translations:
+  en: ../en/combinatorics/thm-inclusion-exclusion.html
+  ja: ../ja/combinatorics/thm-inclusion-exclusion.html
+type: Theorem
+---
+
+# Theorem: Inclusion-Exclusion Principle
+
+The **Inclusion-Exclusion Principle** is a fundamental counting principle in combinatorics that provides a formula for finding the cardinality of the union of multiple sets by considering their intersections.
+
+## Statement
+
+For finite [sets](../logic-set-theory/def-set.qmd) $A_1, A_2, \ldots, A_n$, the cardinality of their [union](../logic-set-theory/def-union.qmd) is given by:
+
+$$\left|\bigcup_{i=1}^{n} A_i\right| = \sum_{k=1}^{n} (-1)^{k+1} \sum_{1 \leq i_1 < i_2 < \cdots < i_k \leq n} \left|A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k}\right|$$
+
+## Special Cases
+
+**For two sets:**
+$$|A \cup B| = |A| + |B| - |A \cap B|$$
+
+**For three sets:**
+$$|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|$$
+
+## Intuitive Explanation
+
+To find the cardinality of the union of $n$ sets:
+1. Add the cardinalities of all individual sets
+2. Subtract the cardinalities of all pairwise [intersections](../logic-set-theory/def-intersection.qmd)
+3. Add the cardinalities of all triple-wise intersections
+4. Continue alternating signs until reaching the intersection of all $n$ sets
+
+## Proof
+
+We prove this by showing that each element in the union is counted exactly once.
+
+Let $x$ be an arbitrary element in $\bigcup_{i=1}^{n} A_i$, and let $m$ be the number of sets among $A_1, \ldots, A_n$ that contain $x$ (where $m \geq 1$).
+
+On the left side, $x$ is counted exactly once.
+
+On the right side, $x$ is counted:
+- $\binom{m}{1}$ times in the single-set terms
+- $-\binom{m}{2}$ times in the pairwise intersection terms
+- $+\binom{m}{3}$ times in the triple-wise intersection terms
+- And so on...
+
+The total count is:
+$$\sum_{k=1}^{m} (-1)^{k+1} \binom{m}{k}$$
+
+By the binomial theorem, we know that:
+$$(1-1)^m = 0 = \sum_{k=0}^{m} (-1)^k \binom{m}{k} = 1 + \sum_{k=1}^{m} (-1)^k \binom{m}{k}$$
+
+Therefore:
+$$\sum_{k=1}^{m} (-1)^{k+1} \binom{m}{k} = \sum_{k=1}^{m} (-1)^k \binom{m}{k} \cdot (-1) = -\left(\sum_{k=1}^{m} (-1)^k \binom{m}{k}\right) = -(-1) = 1$$
+
+Thus, each element is counted exactly once, proving the principle.
+
+## Applications
+
+1. **Derangements**: Counting permutations with no fixed points
+2. **Euler's totient function**: Counting integers coprime to a given integer
+3. **Sieve methods**: In number theory for counting primes
+4. **Probability theory**: Computing probabilities of unions of events
+5. **Graph theory**: Counting graphs with specific properties
+
+## Example: Counting Integers
+
+How many integers from 1 to 1000 are divisible by 2, 3, or 5?
+
+Let:
+- $A$ = integers divisible by 2
+- $B$ = integers divisible by 3
+- $C$ = integers divisible by 5
+
+Then:
+- $|A| = \lfloor 1000/2 \rfloor = 500$
+- $|B| = \lfloor 1000/3 \rfloor = 333$
+- $|C| = \lfloor 1000/5 \rfloor = 200$
+- $|A \cap B| = \lfloor 1000/6 \rfloor = 166$
+- $|A \cap C| = \lfloor 1000/10 \rfloor = 100$
+- $|B \cap C| = \lfloor 1000/15 \rfloor = 66$
+- $|A \cap B \cap C| = \lfloor 1000/30 \rfloor = 33$
+
+By inclusion-exclusion:
+$$|A \cup B \cup C| = 500 + 333 + 200 - 166 - 100 - 66 + 33 = 734$$
+
+## Historical Note
+
+The principle is attributed to Abraham de Moivre (1718), though it first appears explicitly in papers by Daniel da Silva (1854) and J. J. Sylvester (1883). As Gian-Carlo Rota noted, it is "one of the most useful principles of enumeration in discrete probability and combinatorial theory."
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["Definition: Set"]:::definition
+    def-union["Definition: Union"]:::definition
+    def-intersection["Definition: Intersection"]:::definition
+    thm-inclusion-exclusion["Theorem: Inclusion-Exclusion Principle"]:::theorem
+    thm-inclusion-exclusion --> def-set
+    thm-inclusion-exclusion --> def-union
+    thm-inclusion-exclusion --> def-intersection
+    class thm-inclusion-exclusion current
+    click def-set "../logic-set-theory/def-set.html" "Go to Set definition"
+    click def-union "../logic-set-theory/def-union.html" "Go to Union definition"
+    click def-intersection "../logic-set-theory/def-intersection.html" "Go to Intersection definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="thm-inclusion-exclusion" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/thm-inclusion-exclusion.html){target="_blank"}
