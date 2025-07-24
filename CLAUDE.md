@@ -100,7 +100,7 @@ poetry run mypy scripts/
 
 All Python scripts must pass pre-commit checks: proper type annotations from `typing`, flake8 (100-char limit, ignore E203,W503,W293), pylint complexity limits, strict mypy/pyright checks.
 
-**Pre-commit Hook Behavior**: Hooks automatically fix trailing whitespace and end-of-file issues in `.qmd` files. The translation status hook updates `translations-status.yml` on every commit involving content files.
+**Pre-commit Hook Behavior**: Hooks automatically fix trailing whitespace and end-of-file issues in `.qmd` files. The translation status hook updates `translations-status.yml` on every commit involving content files. **Important**: When hooks modify files, the commit will fail and require re-adding the modified files and retrying the commit.
 
 ### SPARQL and API
 
@@ -241,7 +241,7 @@ The project supports multiple languages (currently English and Japanese) with au
 
 - Japanese files need `translation_of: ../../en/path.qmd`
 - All files need `translations: {en: "path.html", ja: "path.html"}`
-- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Module→加群, Ideal→イデアル, Cyclic Group→巡回群, Polynomial Ring→多項式環, Variance→分散, Abelian Group→アーベル群/可換群, Independence→独立性, Uniform Continuity→一様連続性, Homeomorphism→同相写像, Series→級数, Group Action→群の作用, Orbit→軌道, Stabilizer→固定化部分群, Cauchy Sequence→コーシー列
+- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Module→加群, Ideal→イデアル, Cyclic Group→巡回群, Polynomial Ring→多項式環, Variance→分散, Abelian Group→アーベル群/可換群, Independence→独立性, Uniform Continuity→一様連続性, Homeomorphism→同相写像, Series→級数, Group Action→群の作用, Orbit→軌道, Stabilizer→固定化部分群, Cauchy Sequence→コーシー列, Inclusion-Exclusion Principle→包除原理
 
 ### Building Multilingual Sites
 

@@ -97,17 +97,33 @@ $$E(x) = \sum_{n=0}^{\infty} n! \frac{x^n}{n!} = \sum_{n=0}^{\infty} x^n = \frac
 ## 依存関係グラフ
 
 ```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
+    ex-pascals-triangle["Example: Pascal's Triangle"]:::example
+    def-generating-function["Definition: Generating Function"]:::definition
+    ex-pascals-triangle --> def-generating-function
+    def-generating-function --> def-binomial-coefficient
+    def-binomial-coefficient --> def-generating-function
+    class def-generating-function current
+    click def-binomial-coefficient "def-binomial-coefficient.html" "Definition: Binomial Coefficientへ"
+    click ex-pascals-triangle "ex-pascals-triangle.html" "Example: Pascal's Triangleへ"
 ```
 
 ## インタラクティブ可視化
 
-局所的な知識グラフの近傍をインタラクティブに探索：
+ローカルナレッジグラフの近傍をインタラクティブに探索：
 
 ::: {.graph-viz data-id="def-generating-function" data-width="700" data-height="500"}
 :::
 
-以下のことができます：
+次のことができます：
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [完全なインタラクティブ版](../../output/interactive/def-generating-function.html){target="_blank"}を表示
+- [別ウィンドウ](../../output/interactive/def-generating-function.html){target="_blank"}で完全なインタラクティブ版を表示

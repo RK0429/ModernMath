@@ -38,6 +38,7 @@ $$[G:H] = |G/H|$$
 1. $G$の任意の元$a \in G$の位数は$G$の位数を[割り切る](../number-theory/def-divisibility.qmd)
 2. $|G|$が素数ならば、$G$は[巡回群](def-cyclic-group.qmd)であり、自明でない真部分群を持たない
 3. 素数位数の群はすべて、ある素数$p$に対して$\mathbb{Z}_p$と同型である
+4. 素数べきに対しては、部分的な逆を与える[シローの定理](thm-sylow.qmd)を参照
 
 ## 応用
 
@@ -57,35 +58,38 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
-    def-coset["Definition: Coset"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
-    def-group["Definition: Group"]:::definition
     def-abelian-group["Definition: Abelian Group"]:::definition
-    thm-lagrange --> def-quotient-group
-    thm-lagrange --> def-cyclic-group
-    def-coset --> thm-lagrange
-    def-abelian-group --> thm-lagrange
-    def-cyclic-group --> thm-lagrange
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    thm-sylow["Sylow Theorems"]:::theorem
+    def-group["Definition: Group"]:::definition
+    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-coset["Definition: Coset"]:::definition
+    thm-orbit-stabilizer --> thm-lagrange
     thm-lagrange --> def-coset
     thm-lagrange --> def-subgroup
-    def-normal-subgroup --> thm-lagrange
+    def-cyclic-group --> thm-lagrange
+    thm-lagrange --> def-cyclic-group
     thm-lagrange --> def-group
-    thm-orbit-stabilizer --> thm-lagrange
+    thm-lagrange --> def-quotient-group
+    def-coset --> thm-lagrange
+    def-normal-subgroup --> thm-lagrange
+    thm-sylow --> thm-lagrange
+    def-abelian-group --> thm-lagrange
     def-subgroup --> thm-lagrange
     class thm-lagrange current
-    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
-    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "Orbit-Stabilizer Theoremへ"
-    click def-coset "def-coset.html" "Definition: Cosetへ"
-    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
-    click def-cyclic-group "def-cyclic-group.html" "Definition: Cyclic Groupへ"
-    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
-    click def-group "def-group.html" "Definition: Groupへ"
     click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
+    click def-cyclic-group "def-cyclic-group.html" "Definition: Cyclic Groupへ"
+    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
+    click thm-sylow "thm-sylow.html" "Sylow Theoremsへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "Orbit-Stabilizer Theoremへ"
+    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
+    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
+    click def-coset "def-coset.html" "Definition: Cosetへ"
 ```
 
 ## インタラクティブ可視化

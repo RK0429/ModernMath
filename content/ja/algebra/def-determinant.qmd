@@ -1,5 +1,8 @@
 ---
 id: def-determinant
+requires:
+- def-matrix
+- def-field
 status: complete
 title: '定義: 行列式'
 translation_of: ../../en/algebra/def-determinant.qmd
@@ -7,9 +10,6 @@ translations:
   en: ../en/algebra/def-determinant.html
   ja: ../ja/algebra/def-determinant.html
 type: Definition
-requires:
-  - def-matrix
-  - def-field
 ---
 
 # 定義: 行列式 {#def-determinant}
@@ -78,29 +78,32 @@ $$\det(A) = \sum_{k=1}^n a_{ik}(-1)^{i+k}M_{ik}$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "ローカル依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-determinant["定義: 行列式"]:::definition
-    def-matrix["定義: 行列"]:::definition
-    def-field["定義: 体"]:::definition
-    def-eigenvalue-eigenvector["定義: 固有値と固有ベクトル"]:::definition
-    def-determinant --> def-matrix
+    def-field["Definition: Field"]:::definition
+    def-determinant["Definition: Determinant"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    def-matrix["Definition: Matrix"]:::definition
     def-determinant --> def-field
     def-eigenvalue-eigenvector --> def-determinant
+    def-determinant --> def-matrix
+    def-normal-subgroup --> def-determinant
     class def-determinant current
-    click def-matrix "def-matrix.html" "行列の定義へ"
-    click def-field "def-field.html" "体の定義へ"
-    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "固有値と固有ベクトルの定義へ"
+    click def-field "def-field.html" "Definition: Fieldへ"
+    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
+    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Definition: Eigenvalue and Eigenvectorへ"
+    click def-matrix "def-matrix.html" "Definition: Matrixへ"
 ```
 
 ## インタラクティブ可視化
 
-ローカル知識グラフの近傍をインタラクティブに探索：
+ローカルナレッジグラフの近傍をインタラクティブに探索：
 
 ::: {.graph-viz data-id="def-determinant" data-width="700" data-height="500"}
 :::
@@ -109,4 +112,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [完全なインタラクティブ版](../../output/interactive/def-determinant.html){target="_blank"}を表示
+- [別ウィンドウ](../../output/interactive/def-determinant.html){target="_blank"}で完全なインタラクティブ版を表示
