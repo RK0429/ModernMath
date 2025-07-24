@@ -144,6 +144,18 @@ When adding new mathematical content:
    poetry run python scripts/visualization/insert_diagrams.py
    ```
 
+### Content Enrichment Workflow
+
+When enriching the knowledge graph with missing mathematical content:
+
+1. **Identify Gaps**: Use grep/search to find concepts mentioned but not yet defined as articles
+2. **Verify Non-Duplication**: Ensure the content doesn't already exist in another form
+3. **Research Accuracy**: Use web searches to verify mathematical statements and theorems
+4. **Create Bilingual Content**: Always create both English and Japanese versions simultaneously
+5. **Update Cross-References**: Search for all mentions of the new concept and add links
+6. **Generate All Visualizations**: Run the complete pipeline (build_graph, mermaid, pyvis, insert_diagrams)
+7. **Commit Pattern**: Be prepared to re-add files and retry commits when pre-commit hooks make modifications
+
 ### Cross-Reference Management
 
 When adding fundamental concepts (e.g., quotient groups, isomorphisms, cyclic groups):
@@ -151,8 +163,9 @@ When adding fundamental concepts (e.g., quotient groups, isomorphisms, cyclic gr
 1. **Search Comprehensively**: Use `grep` to find all articles mentioning related terms across domains
 2. **Update Systematically**: Add references in both YAML `requires` and article content where appropriate
 3. **Cross-Domain Awareness**: Mathematical concepts often appear in multiple domains (e.g., modular arithmetic in number theory relates to quotient groups in algebra)
-   - For cross-domain references in YAML `requires`, use relative path syntax: `../domain-name/def-concept`
-   - Example: `- ../category-theory/def-isomorphism` for referencing isomorphism from algebra domain
+   - For cross-domain references in YAML `requires`, use simple ID syntax: `def-concept` (not path-based)
+   - The cross-reference resolution system handles paths automatically
+   - **Important**: Japanese files should use the same simple ID format, not `../domain/def-concept`
 4. **Bilingual Consistency**: Always update both English and Japanese versions together
 5. **Rebuild and Validate**: After updates, rebuild the knowledge graph to verify all cross-references resolve correctly
 
@@ -241,7 +254,7 @@ The project supports multiple languages (currently English and Japanese) with au
 
 - Japanese files need `translation_of: ../../en/path.qmd`
 - All files need `translations: {en: "path.html", ja: "path.html"}`
-- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Module→加群, Ideal→イデアル, Cyclic Group→巡回群, Polynomial Ring→多項式環, Variance→分散, Abelian Group→アーベル群/可換群, Independence→独立性, Uniform Continuity→一様連続性, Homeomorphism→同相写像, Series→級数, Group Action→群の作用, Orbit→軌道, Stabilizer→固定化部分群, Cauchy Sequence→コーシー列, Inclusion-Exclusion Principle→包除原理
+- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Module→加群, Ideal→イデアル, Cyclic Group→巡回群, Polynomial Ring→多項式環, Variance→分散, Abelian Group→アーベル群/可換群, Independence→独立性, Uniform Continuity→一様連続性, Homeomorphism→同相写像, Series→級数, Group Action→群の作用, Orbit→軌道, Stabilizer→固定化部分群, Cauchy Sequence→コーシー列, Inclusion-Exclusion Principle→包除原理, Sylow Theorems→シローの定理
 
 ### Building Multilingual Sites
 

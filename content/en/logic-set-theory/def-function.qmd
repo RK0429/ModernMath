@@ -1,0 +1,95 @@
+---
+id: def-function
+status: complete
+title: 'Definition: Function'
+translations:
+  en: ../en/logic-set-theory/def-function.html
+  ja: ../ja/logic-set-theory/def-function.html
+type: Definition
+requires:
+- def-set
+---
+
+# Definition: Function {#def-function}
+
+A **function** from a [set](def-set.qmd) $A$ to a [set](def-set.qmd) $B$ is a relation that assigns to each element of $A$ exactly one element of $B$.
+
+## Formal Definition
+
+A function $f$ from $A$ to $B$ (written $f: A \to B$) is a subset of the Cartesian product $A \times B$ such that:
+
+1. **Existence**: For every $a \in A$, there exists at least one $b \in B$ such that $(a, b) \in f$
+2. **Uniqueness**: For every $a \in A$, if $(a, b_1) \in f$ and $(a, b_2) \in f$, then $b_1 = b_2$
+
+## Notation and Terminology
+
+- **Domain**: The set $A$ is called the domain of $f$, denoted $\text{dom}(f) = A$
+- **Codomain**: The set $B$ is called the codomain of $f$
+- **Value**: If $(a, b) \in f$, we write $f(a) = b$ and say "$b$ is the value of $f$ at $a$"
+- **Image/Range**: The set $\{f(a) : a \in A\} = \{b \in B : \exists a \in A, f(a) = b\}$ is called the image or range of $f$, denoted $\text{im}(f)$ or $\text{range}(f)$
+
+## Types of Functions
+
+### Injective (One-to-One)
+
+A function $f: A \to B$ is **injective** if different elements in $A$ map to different elements in $B$:
+
+$$\forall a_1, a_2 \in A: f(a_1) = f(a_2) \implies a_1 = a_2$$
+
+### Surjective (Onto)
+
+A function $f: A \to B$ is **surjective** if every element in $B$ is the image of at least one element in $A$:
+
+$$\forall b \in B: \exists a \in A \text{ such that } f(a) = b$$
+
+Equivalently, $f$ is surjective if $\text{im}(f) = B$.
+
+### Bijective (One-to-One Correspondence)
+
+A function $f: A \to B$ is **bijective** if it is both injective and surjective. A bijective function has an inverse function $f^{-1}: B \to A$.
+
+## Special Functions
+
+- **Identity function**: $\text{id}_A: A \to A$ defined by $\text{id}_A(a) = a$ for all $a \in A$
+- **Constant function**: A function $f: A \to B$ where $f(a) = b_0$ for some fixed $b_0 \in B$ and all $a \in A$
+- **Inclusion function**: If $A \subseteq B$, the inclusion $i: A \to B$ defined by $i(a) = a$ for all $a \in A$
+
+## Properties
+
+- **Composition**: If $f: A \to B$ and $g: B \to C$, then $g \circ f: A \to C$ is defined by $(g \circ f)(a) = g(f(a))$
+- **Equality**: Two functions $f, g: A \to B$ are equal if $f(a) = g(a)$ for all $a \in A$
+
+## See Also
+
+- Definition: Homomorphism (coming soon - functions that preserve structure)
+- Definition: Linear Transformation (coming soon - functions between vector spaces)
+- Example: Exponential Function (coming soon)
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-function["Definition: Function"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-function --> def-set
+    class def-function current
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-function" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-function.html){target="_blank"}
