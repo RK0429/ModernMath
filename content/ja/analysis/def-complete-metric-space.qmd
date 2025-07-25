@@ -29,7 +29,7 @@ type: Definition
 - 標準的な距離を持つ $\mathbb{R}$（[標準的な距離を持つ実数直線](ex-real-line-metric.qmd)を参照）
 - 標準的な距離を持つ $\mathbb{C}$
 - 完備距離空間の任意の閉部分集合
-- 上限距離を持つ $C[a,b]$（$[a,b]$ 上の連続関数）
+- 上限距離を持つ $C[a,b]$（$[a,b]$ 上の連続関数）（[ノルム空間](def-normed-vector-space.qmd)参照）
 
 **非完備距離空間：**
 - 標準的な距離を持つ $\mathbb{Q}$（例えば、$x_n$ を $\sqrt{2}$ の $n$ 番目の小数近似とする数列 $(x_n)$ は[コーシー列](def-cauchy-sequence.qmd)だが $\mathbb{Q}$ では収束しない）
@@ -46,7 +46,7 @@ type: Definition
 ## 関連項目
 
 - @thm-banach-fixed-point - 完備性を必要とする基本定理
-- @def-banach-space - 完備ノルム空間
+- @def-banach-space - 完備[ノルム空間](def-normed-vector-space.qmd)
 - @thm-baire-category - 完備距離空間に関する重要な定理
 
 ## 依存関係グラフ
@@ -59,16 +59,16 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-limit["Definition: Limit of a Sequence"]:::definition
     def-cauchy-sequence["Definition: Cauchy Sequence"]:::definition
     def-complete-metric-space["Definition: Complete Metric Space"]:::definition
+    def-limit["Definition: Limit of a Sequence"]:::definition
     def-metric-space["Definition: Metric Space"]:::definition
-    def-complete-metric-space --> def-metric-space
     def-complete-metric-space --> def-cauchy-sequence
     def-complete-metric-space --> def-limit
+    def-complete-metric-space --> def-metric-space
     class def-complete-metric-space current
-    click def-limit "def-limit.html" "Definition: Limit of a Sequenceへ"
     click def-cauchy-sequence "def-cauchy-sequence.html" "Definition: Cauchy Sequenceへ"
+    click def-limit "def-limit.html" "Definition: Limit of a Sequenceへ"
     click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
 ```
 

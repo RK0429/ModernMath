@@ -3,6 +3,7 @@ id: def-euclidean-space
 requires:
 - def-vector-space
 - def-metric-space
+- def-normed-vector-space
 status: complete
 title: '定義: ユークリッド空間'
 translation_of: ../../en/geometry/def-euclidean-space.qmd
@@ -25,7 +26,7 @@ $n$次元ユークリッド空間は以下で構成されます：
 2. **標準内積**: $\mathbf{x} = (x_1, \ldots, x_n)$ と $\mathbf{y} = (y_1, \ldots, y_n)$ に対して、
    $$\langle \mathbf{x}, \mathbf{y} \rangle = \sum_{i=1}^n x_i y_i$$
 
-3. **ユークリッドノルム**:
+3. **ユークリッドノルム**（[ノルム空間](../analysis/def-normed-vector-space.qmd)参照）:
    $$\|\mathbf{x}\| = \sqrt{\langle \mathbf{x}, \mathbf{x} \rangle} = \sqrt{\sum_{i=1}^n x_i^2}$$
 
 4. **ユークリッド計量**:
@@ -73,17 +74,17 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-euclidean-space["Definition: Euclidean Space"]:::definition
     def-vector-space["Definition: Vector Space"]:::definition
-    def-metric-space["Definition: Metric Space"]:::definition
     thm-pythagorean["Theorem: Pythagorean Theorem"]:::theorem
-    thm-pythagorean --> def-euclidean-space
-    def-euclidean-space --> def-vector-space
+    def-metric-space["Definition: Metric Space"]:::definition
+    def-euclidean-space["Definition: Euclidean Space"]:::definition
     def-euclidean-space --> def-metric-space
+    def-euclidean-space --> def-vector-space
+    thm-pythagorean --> def-euclidean-space
     class def-euclidean-space current
     click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
-    click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
     click thm-pythagorean "thm-pythagorean.html" "Theorem: Pythagorean Theoremへ"
+    click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
 ```
 
 ## インタラクティブ可視化

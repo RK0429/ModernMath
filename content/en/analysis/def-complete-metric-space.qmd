@@ -28,7 +28,7 @@ A [Metric Space](../geometry/def-metric-space.qmd) $(X, d)$ is called **complete
 - $\mathbb{R}$ with the standard metric (see [Real Line with Standard Metric](ex-real-line-metric.qmd))
 - $\mathbb{C}$ with the standard metric
 - Any closed subset of a complete metric space
-- $C[a,b]$ (continuous functions on $[a,b]$) with the supremum metric
+- $C[a,b]$ (continuous functions on $[a,b]$) with the supremum metric (see [Normed Vector Space](def-normed-vector-space.qmd))
 
 **Incomplete metric spaces:**
 - $\mathbb{Q}$ with the standard metric (e.g., the sequence $(x_n)$ where $x_n$ is the $n$-th decimal approximation of $\sqrt{2}$ is a [Cauchy Sequence](def-cauchy-sequence.qmd) but doesn't converge in $\mathbb{Q}$)
@@ -45,7 +45,7 @@ Completeness is crucial for:
 ## See Also
 
 - @thm-banach-fixed-point - A fundamental theorem requiring completeness
-- @def-banach-space - A complete normed vector space
+- @def-banach-space - A complete [Normed Vector Space](def-normed-vector-space.qmd)
 - @thm-baire-category - An important theorem about complete metric spaces
 
 ## Dependency Graph
@@ -58,16 +58,16 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-limit["Definition: Limit of a Sequence"]:::definition
     def-cauchy-sequence["Definition: Cauchy Sequence"]:::definition
     def-complete-metric-space["Definition: Complete Metric Space"]:::definition
+    def-limit["Definition: Limit of a Sequence"]:::definition
     def-metric-space["Definition: Metric Space"]:::definition
-    def-complete-metric-space --> def-metric-space
     def-complete-metric-space --> def-cauchy-sequence
     def-complete-metric-space --> def-limit
+    def-complete-metric-space --> def-metric-space
     class def-complete-metric-space current
-    click def-limit "def-limit.html" "Go to Limit of a Sequence definition"
     click def-cauchy-sequence "def-cauchy-sequence.html" "Go to Cauchy Sequence definition"
+    click def-limit "def-limit.html" "Go to Limit of a Sequence definition"
     click def-metric-space "def-metric-space.html" "Go to Metric Space definition"
 ```
 

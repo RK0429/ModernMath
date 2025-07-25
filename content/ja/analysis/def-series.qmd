@@ -17,7 +17,7 @@ type: Definition
 
 ## 形式的定義
 
-ノルム空間における数列 $(a_n)_{n=1}^{\infty}$ が与えられたとき、**級数** $\sum_{n=1}^{\infty} a_n$ は部分和の数列によって定義される：
+[ノルム空間](def-normed-vector-space.qmd)における数列 $(a_n)_{n=1}^{\infty}$ が与えられたとき、**級数** $\sum_{n=1}^{\infty} a_n$ は部分和の数列によって定義される：
 
 $$S_N = \sum_{n=1}^{N} a_n = a_1 + a_2 + \cdots + a_N$$
 
@@ -96,20 +96,20 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-sequence["Definition: Sequence"]:::definition
-    def-series["Definition: Series"]:::definition
-    thm-taylor-series["Theorem: Taylor Series"]:::theorem
-    def-limit["Definition: Limit of a Sequence"]:::definition
     def-convergence["Definition: Convergence"]:::definition
+    thm-taylor-series["Theorem: Taylor Series"]:::theorem
+    def-series["Definition: Series"]:::definition
+    def-sequence["Definition: Sequence"]:::definition
+    def-limit["Definition: Limit of a Sequence"]:::definition
     def-series --> def-limit
-    def-series --> def-convergence
-    def-series --> def-sequence
     thm-taylor-series --> def-series
+    def-series --> def-sequence
+    def-series --> def-convergence
     class def-series current
-    click def-sequence "def-sequence.html" "Definition: Sequenceへ"
-    click thm-taylor-series "thm-taylor-series.html" "Theorem: Taylor Seriesへ"
-    click def-limit "def-limit.html" "Definition: Limit of a Sequenceへ"
     click def-convergence "def-convergence.html" "Definition: Convergenceへ"
+    click thm-taylor-series "thm-taylor-series.html" "Theorem: Taylor Seriesへ"
+    click def-sequence "def-sequence.html" "Definition: Sequenceへ"
+    click def-limit "def-limit.html" "Definition: Limit of a Sequenceへ"
 ```
 
 ## インタラクティブ可視化

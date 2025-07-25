@@ -1,0 +1,166 @@
+---
+id: def-normed-vector-space
+requires:
+- def-vector-space
+- def-metric-space
+status: complete
+title: '定義：ノルム空間'
+translation_of: ../../en/analysis/def-normed-vector-space.qmd
+translations:
+  en: ../en/analysis/def-normed-vector-space.html
+  ja: ../ja/analysis/def-normed-vector-space.html
+type: Definition
+---
+
+**ノルム空間**（ノルム線型空間）は、そのベクトルの「大きさ」や「長さ」を測る関数を備えた[ベクトル空間](../algebra/def-vector-space.qmd)である。これはユークリッド空間における長さの概念を一般化したものである。
+
+## 形式的定義
+
+ノルム空間は組 $(V, \|\cdot\|)$ である。ここで：
+- $V$ は体 $\mathbb{F}$（通常は $\mathbb{R}$ または $\mathbb{C}$）上の[ベクトル空間](../algebra/def-vector-space.qmd)
+- $\|\cdot\|: V \to [0, \infty)$ は**ノルム**と呼ばれる関数で、以下を満たす：
+
+### ノルムの公理
+
+すべての $\mathbf{x}, \mathbf{y} \in V$ およびすべてのスカラー $\alpha \in \mathbb{F}$ に対して：
+
+1. **正定値性**：$\|\mathbf{x}\| = 0$ となるのは $\mathbf{x} = \mathbf{0}$ のときかつそのときに限る
+
+2. **正同次性**：$\|\alpha \mathbf{x}\| = |\alpha| \|\mathbf{x}\|$
+
+3. **三角不等式**：$\|\mathbf{x} + \mathbf{y}\| \leq \|\mathbf{x}\| + \|\mathbf{y}\|$
+
+## 誘導される距離
+
+すべてのノルム空間 $(V, \|\cdot\|)$ は自然に[距離空間](def-metric-space.qmd)となる。距離は以下で定義される：
+
+$$d(\mathbf{x}, \mathbf{y}) = \|\mathbf{x} - \mathbf{y}\|$$
+
+これにより、ノルム空間において[収束](def-convergence.qmd)、[連続性](def-continuity.qmd)、完備性について議論できる。
+
+## 性質
+
+### 基本的性質
+
+1. **非負性**：すべての $\mathbf{x} \in V$ に対して $\|\mathbf{x}\| \geq 0$（公理から導かれる）
+
+2. **逆三角不等式**：$|\|\mathbf{x}\| - \|\mathbf{y}\|| \leq \|\mathbf{x} - \mathbf{y}\|$
+
+3. **ノルムの連続性**：ノルム関数 $\|\cdot\|: V \to [0, \infty)$ は誘導される距離に関して連続
+
+### 位相的性質
+
+ノルムは $V$ 上に位相を誘導する：
+- 開球：$B_r(\mathbf{x}) = \{\mathbf{y} \in V : \|\mathbf{y} - \mathbf{x}\| < r\}$
+- ベクトル演算（加法とスカラー倍）は連続
+
+## 例
+
+### 有限次元の例
+
+1. **$\mathbb{R}^n$ のユークリッドノルム**：$\|\mathbf{x}\|_2 = \sqrt{\sum_{i=1}^n x_i^2}$
+
+2. **$\mathbb{R}^n$ の $p$-ノルム**（$1 \leq p < \infty$ に対して）：$\|\mathbf{x}\|_p = \left(\sum_{i=1}^n |x_i|^p\right)^{1/p}$
+
+3. **$\mathbb{R}^n$ の最大値ノルム**：$\|\mathbf{x}\|_\infty = \max_{1 \leq i \leq n} |x_i|$
+
+4. **重み付きノルム**：正の重み $w_i > 0$ に対して：$\|\mathbf{x}\|_w = \sqrt{\sum_{i=1}^n w_i x_i^2}$
+
+### 無限次元の例
+
+1. **$\ell^p$ 空間**：$\|(x_n)\|_p = \left(\sum_{n=1}^\infty |x_n|^p\right)^{1/p} < \infty$ を満たす数列 $(x_n)$
+
+2. **上限ノルムを持つ $C[a,b]$**：$\|f\|_\infty = \sup_{x \in [a,b]} |f(x)|$ を持つ連続関数
+
+3. **$L^p$ 空間**：$\|f\|_p = \left(\int |f|^p \, d\mu\right)^{1/p} < \infty$ を満たす可測関数
+
+4. **ソボレフ空間**：$L^p$ に属する導関数を持つ関数
+
+## 同値なノルム
+
+ベクトル空間 $V$ 上の2つのノルム $\|\cdot\|_1$ と $\|\cdot\|_2$ が**同値**であるとは、定数 $c, C > 0$ が存在して：
+
+$$c\|\mathbf{x}\|_1 \leq \|\mathbf{x}\|_2 \leq C\|\mathbf{x}\|_1 \quad \text{すべての } \mathbf{x} \in V \text{ に対して}$$
+
+### 重要な定理
+有限次元ベクトル空間上では、すべてのノルムは同値である。これは無限次元では成り立たない。
+
+## 完備ノルム空間
+
+ノルム空間 $(V, \|\cdot\|)$ が**完備**であるとは、距離空間として完備であること、すなわちすべての[コーシー列](def-cauchy-sequence.qmd)が収束することである。完備ノルム空間は**バナッハ空間**と呼ばれる。
+
+### 完備ノルム空間の例
+- 任意のノルムを持つ $\mathbb{R}^n$
+- $1 \leq p \leq \infty$ に対する $\ell^p$ 空間
+- 上限ノルムを持つ $C[a,b]$
+- $1 \leq p \leq \infty$ に対する $L^p$ 空間
+
+### 不完備ノルム空間の例
+- $L^1$ ノルムを持つ $C[a,b]$
+- $[0,1]$ 上の上限ノルムを持つ多項式の空間
+- $\ell^p$ ノルムを持つ有限個の非零項を持つ数列の空間
+
+## 連続線形汎関数
+
+線形汎関数 $f: V \to \mathbb{F}$ が連続であることと、有界であることは同値：
+
+$$\|f\| = \sup_{\|\mathbf{x}\| = 1} |f(\mathbf{x})| < \infty$$
+
+すべての連続線形汎関数の集合は**双対空間** $V^*$ を形成し、これ自身が作用素ノルムを持つノルム空間となる。
+
+## 応用
+
+1. **関数解析**：ノルム空間は線形作用素、スペクトル理論、微分方程式の研究の基礎を提供する
+
+2. **近似理論**：ノルム空間における最良近似問題
+
+3. **最適化**：多くの最適化問題は自然にノルム空間で定式化される
+
+4. **数値解析**：数値手法の誤差解析と収束性
+
+## 関連概念
+
+- [完備距離空間](def-complete-metric-space.qmd)：誘導される距離が完備な場合
+- [ベクトル空間](../algebra/def-vector-space.qmd)：基礎となる代数構造
+- [線形変換](../algebra/def-linear-transformation.qmd)：ノルム空間間の構造を保つ写像
+- **バナッハ空間**：完備ノルムベクトル空間
+- **内積空間**：ノルムが内積から導かれるノルム空間
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-normed-vector-space["定義：ノルム空間"]:::definition
+    def-vector-space["定義：ベクトル空間"]:::definition
+    def-metric-space["定義：距離空間"]:::definition
+    def-complete-metric-space["定義：完備距離空間"]:::definition
+    def-cauchy-sequence["定義：コーシー列"]:::definition
+    def-normed-vector-space --> def-vector-space
+    def-normed-vector-space --> def-metric-space
+    def-complete-metric-space --> def-normed-vector-space
+    def-normed-vector-space --> def-cauchy-sequence
+    class def-normed-vector-space current
+    click def-vector-space "../algebra/def-vector-space.html" "ベクトル空間の定義へ"
+    click def-metric-space "def-metric-space.html" "距離空間の定義へ"
+    click def-complete-metric-space "def-complete-metric-space.html" "完備距離空間の定義へ"
+    click def-cauchy-sequence "def-cauchy-sequence.html" "コーシー列の定義へ"
+```
+
+## インタラクティブ可視化
+
+ローカルな知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-normed-vector-space" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを調整
+- マウスホイールで**ズームイン/アウト**
+- ノードに**ホバー**して詳細を表示
+- [完全なインタラクティブ版](../../output/interactive/def-normed-vector-space.html){target="_blank"}を表示
