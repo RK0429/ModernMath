@@ -45,7 +45,7 @@ type: Definition
 ## 射の種類
 
 特殊な射には以下が含まれます：
-- **単射**: 単射関数の圏論的一般化
+- **[単射](def-monomorphism.qmd)**: 単射関数の圏論的一般化
 - **全射**: 全射関数の圏論的一般化
 - **同型射**: 両側逆射を持つ射
 
@@ -62,26 +62,26 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-set-category["Example: The Category of Sets"]:::example
-    def-category["Definition: Category"]:::definition
-    def-natural-transformation["Definition: Natural Transformation"]:::definition
     def-graph["Definition: Graph"]:::definition
-    def-isomorphism["Definition: Isomorphism"]:::definition
-    def-morphism["Definition: Morphism"]:::definition
+    def-category["Definition: Category"]:::definition
     def-composition["Definition: Composition"]:::definition
-    def-natural-transformation --> def-morphism
-    def-composition --> def-morphism
-    def-isomorphism --> def-morphism
-    def-morphism --> def-category
+    def-natural-transformation["Definition: Natural Transformation"]:::definition
+    def-morphism["Definition: Morphism"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    ex-set-category["Example: The Category of Sets"]:::example
     def-morphism --> def-graph
     ex-set-category --> def-morphism
+    def-natural-transformation --> def-morphism
+    def-morphism --> def-category
+    def-isomorphism --> def-morphism
+    def-composition --> def-morphism
     class def-morphism current
-    click ex-set-category "ex-set-category.html" "Example: The Category of Setsへ"
-    click def-category "def-category.html" "Definition: Categoryへ"
-    click def-natural-transformation "def-natural-transformation.html" "Definition: Natural Transformationへ"
     click def-graph "def-graph.html" "Definition: Graphへ"
-    click def-isomorphism "def-isomorphism.html" "Definition: Isomorphismへ"
+    click def-category "def-category.html" "Definition: Categoryへ"
     click def-composition "def-composition.html" "Definition: Compositionへ"
+    click def-natural-transformation "def-natural-transformation.html" "Definition: Natural Transformationへ"
+    click def-isomorphism "def-isomorphism.html" "Definition: Isomorphismへ"
+    click ex-set-category "ex-set-category.html" "Example: The Category of Setsへ"
 ```
 
 ## インタラクティブ可視化

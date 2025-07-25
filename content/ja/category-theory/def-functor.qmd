@@ -35,7 +35,7 @@ $\mathcal{C}$ と $\mathcal{D}$ を圏とします。関手 $F: \mathcal{C} \to 
 
 - **共変関手**: 上記で定義したもの
 - **反変関手**: 射の向きを逆にする
-- **忠実関手**: 射集合上で単射
+- **忠実関手**: 射集合上で単射（[単射](def-monomorphism.qmd)を保存）
 - **充満関手**: 射集合上で全射
 - **充満忠実関手**: 忠実かつ充満
 - **本質的全射**: $\mathcal{D}$ のすべての対象が、ある $A$ に対する $F(A)$ と同型
@@ -56,23 +56,23 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-functor["Definition: Functor"]:::definition
+    def-graph["Definition: Graph"]:::definition
+    def-function["Definition: Function"]:::definition
     def-category["Definition: Category"]:::definition
+    def-functor["Definition: Functor"]:::definition
     def-natural-transformation["Definition: Natural Transformation"]:::definition
     thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
-    def-function["Definition: Function"]:::definition
-    def-graph["Definition: Graph"]:::definition
-    thm-yoneda --> def-functor
     def-functor --> def-function
-    def-natural-transformation --> def-functor
-    def-functor --> def-category
     def-functor --> def-graph
+    def-natural-transformation --> def-functor
+    thm-yoneda --> def-functor
+    def-functor --> def-category
     class def-functor current
+    click def-graph "def-graph.html" "Definition: Graphへ"
+    click def-function "def-function.html" "Definition: Functionへ"
     click def-category "def-category.html" "Definition: Categoryへ"
     click def-natural-transformation "def-natural-transformation.html" "Definition: Natural Transformationへ"
     click thm-yoneda "thm-yoneda.html" "Theorem: Yoneda Lemmaへ"
-    click def-function "def-function.html" "Definition: Functionへ"
-    click def-graph "def-graph.html" "Definition: Graphへ"
 ```
 
 ## インタラクティブ可視化

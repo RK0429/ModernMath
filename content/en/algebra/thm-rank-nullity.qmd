@@ -5,6 +5,7 @@ requires:
 - def-vector-space
 - def-kernel
 - def-image
+- def-isomorphism
 status: complete
 title: 'Theorem: Rank-Nullity Theorem'
 translations:
@@ -44,9 +45,9 @@ where:
 
 ## Consequences
 
-- **Injectivity criterion**: $T$ is injective if and only if $\dim(\ker(T)) = 0$
+- **Injectivity criterion**: $T$ is injective if and only if $\dim(\ker(T)) = 0$ (i.e., $T$ is a [monomorphism](../category-theory/def-monomorphism.qmd))
 - **Surjectivity criterion**: $T$ is surjective if and only if $\dim(\text{im}(T)) = \dim(W)$
-- **Isomorphism criterion**: For $\dim(V) = \dim(W)$, $T$ is an isomorphism if and only if $T$ is injective (or surjective)
+- **Isomorphism criterion**: For $\dim(V) = \dim(W)$, $T$ is an [isomorphism](def-isomorphism.qmd) if and only if $T$ is injective (or surjective)
 
 This theorem is fundamental to understanding the structure of linear transformations and solving systems of linear equations.
 
@@ -60,19 +61,19 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-vector-space["Definition: Vector Space"]:::definition
     thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
-    def-kernel["Definition: Kernel"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
     def-image["Definition: Image"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
     def-linear-transformation["Definition: Linear Transformation"]:::definition
-    thm-rank-nullity --> def-image
     thm-rank-nullity --> def-kernel
+    thm-rank-nullity --> def-image
     thm-rank-nullity --> def-linear-transformation
     thm-rank-nullity --> def-vector-space
     class thm-rank-nullity current
     click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
-    click def-kernel "def-kernel.html" "Go to Kernel definition"
     click def-image "def-image.html" "Go to Image definition"
+    click def-kernel "def-kernel.html" "Go to Kernel definition"
     click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation definition"
 ```
 

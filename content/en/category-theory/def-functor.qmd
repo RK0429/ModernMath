@@ -34,7 +34,7 @@ satisfying:
 
 - **Covariant functor**: As defined above
 - **Contravariant functor**: Reverses the direction of morphisms
-- **Faithful functor**: Injective on morphism sets
+- **Faithful functor**: Injective on morphism sets (preserves [monomorphisms](def-monomorphism.qmd))
 - **Full functor**: Surjective on morphism sets
 - **Fully faithful functor**: Both faithful and full
 - **Essentially surjective**: Every object in $\mathcal{D}$ is isomorphic to $F(A)$ for some $A$
@@ -55,23 +55,23 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-functor["Definition: Functor"]:::definition
+    def-graph["Definition: Graph"]:::definition
+    def-function["Definition: Function"]:::definition
     def-category["Definition: Category"]:::definition
+    def-functor["Definition: Functor"]:::definition
     def-natural-transformation["Definition: Natural Transformation"]:::definition
     thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
-    def-function["Definition: Function"]:::definition
-    def-graph["Definition: Graph"]:::definition
-    thm-yoneda --> def-functor
     def-functor --> def-function
-    def-natural-transformation --> def-functor
-    def-functor --> def-category
     def-functor --> def-graph
+    def-natural-transformation --> def-functor
+    thm-yoneda --> def-functor
+    def-functor --> def-category
     class def-functor current
+    click def-graph "def-graph.html" "Go to Graph definition"
+    click def-function "def-function.html" "Go to Function definition"
     click def-category "def-category.html" "Go to Category definition"
     click def-natural-transformation "def-natural-transformation.html" "Go to Natural Transformation definition"
     click thm-yoneda "thm-yoneda.html" "Go to Yoneda Lemma theorem"
-    click def-function "def-function.html" "Go to Function definition"
-    click def-graph "def-graph.html" "Go to Graph definition"
 ```
 
 ## Interactive Visualization

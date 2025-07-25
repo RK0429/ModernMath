@@ -1,0 +1,91 @@
+---
+id: def-monomorphism
+requires:
+- def-morphism
+- def-category
+- def-composition
+status: complete
+title: 'Definition: Monomorphism'
+translations:
+  en: ../en/category-theory/def-monomorphism.html
+  ja: ../ja/category-theory/def-monomorphism.html
+type: Definition
+---
+
+# Definition: Monomorphism {#def-monomorphism}
+
+A **monomorphism** (also called a monic morphism or simply mono) is a [morphism](def-morphism.qmd) in a [category](def-category.qmd) that satisfies the left-cancellation property.
+
+## Formal Definition
+
+In a [category](def-category.qmd) $\mathcal{C}$, a morphism $f: A \to B$ is a **monomorphism** if for any object $C$ and any pair of morphisms $g, h: C \to A$, the following implication holds:
+
+$$f \circ g = f \circ h \implies g = h$$
+
+In other words, $f$ is left-cancellative: it can be "cancelled" from the left side of an equation.
+
+## Characterization
+
+A morphism $f: A \to B$ is a monomorphism if and only if for every object $C$, the induced function
+$$f_*: \text{Hom}(C, A) \to \text{Hom}(C, B)$$
+defined by $f_*(g) = f \circ g$ is injective.
+
+## Examples
+
+### In Familiar Categories
+
+1. **Set**: In the category of sets, monomorphisms are exactly the injective functions
+2. **Grp**: In the category of groups, monomorphisms are the injective group homomorphisms
+3. **Ring**: In the category of rings, monomorphisms are the injective ring homomorphisms
+4. **Top**: In the category of topological spaces, monomorphisms are the injective continuous maps
+5. **Vect**: In the category of vector spaces, monomorphisms are the injective linear transformations
+
+### Non-injective Monomorphisms
+
+Not all monomorphisms are injective in the usual sense:
+
+- In the category **Div** of divisible abelian groups, the quotient map $q: \mathbb{Q} \to \mathbb{Q}/\mathbb{Z}$ is a monomorphism but not injective (every integer maps to 0)
+- In certain categories of topological spaces with additional structure, there exist monomorphisms that are not injective as functions
+
+## Properties
+
+### Basic Properties
+
+1. **Composition**: The [composition](def-composition.qmd) of two monomorphisms is a monomorphism
+2. **Identity**: Every identity morphism is a monomorphism
+3. **Decomposition**: If $g \circ f$ is a monomorphism, then $f$ is a monomorphism
+
+### Relationship to Other Concepts
+
+1. **Sections**: Every section (left inverse) is a monomorphism
+2. **Isomorphisms**: Every [isomorphism](def-isomorphism.qmd) is both a monomorphism and an epimorphism
+3. **Equalizers**: Every equalizer is a monomorphism
+
+## Types of Monomorphisms
+
+In categories with additional structure, we can define special types of monomorphisms:
+
+1. **Regular monomorphism**: An equalizer of some pair of parallel morphisms
+2. **Strong monomorphism**: A monomorphism that has the left lifting property with respect to epimorphisms
+3. **Extremal monomorphism**: A monomorphism that doesn't factor through any proper epimorphism
+4. **Split monomorphism**: A monomorphism that has a left inverse (i.e., a section)
+
+## Categorical Importance
+
+Monomorphisms are fundamental in category theory because:
+
+1. They generalize the notion of "injective" to arbitrary categories
+2. They are preserved by many categorical constructions (e.g., pullbacks)
+3. They appear naturally in the study of subobjects
+4. They form one half of the factorization systems in many categories
+
+## Dual Concept
+
+The categorical dual of a monomorphism is an **epimorphism**. That is, a monomorphism in a category $\mathcal{C}$ is an epimorphism in the opposite category $\mathcal{C}^{\text{op}}$.
+
+## See Also
+
+- @def-epimorphism
+- @def-isomorphism
+- @def-morphism
+- @def-functor

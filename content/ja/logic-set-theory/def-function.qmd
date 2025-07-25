@@ -38,6 +38,8 @@ $A$ から $B$ への関数 $f$（$f: A \to B$ と表記）は、直積 $A \time
 
 $$\forall a_1, a_2 \in A: f(a_1) = f(a_2) \implies a_1 = a_2$$
 
+圏論では、単射関数の概念は[単射](../category-theory/def-monomorphism.qmd)に一般化されます。
+
 ### 全射（Onto）
 
 関数 $f: A \to B$ が**全射**であるとは、$B$ のすべての要素が $A$ の少なくとも一つの要素の像であることをいう：
@@ -78,57 +80,60 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-functor["Definition: Functor"]:::definition
-    thm-pigeonhole-principle["Theorem: Pigeonhole Principle"]:::theorem
-    def-sequence["Definition: Sequence"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-function["Definition: Function"]:::definition
+    def-homeomorphism["Definition: Homeomorphism"]:::definition
+    def-permutation["Definition: Permutation"]:::definition
     def-random-variable["Definition: Random Variable"]:::definition
+    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
+    thm-pigeonhole-principle["Theorem: Pigeonhole Principle"]:::theorem
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-functor["Definition: Functor"]:::definition
+    def-metric-space["Definition: Metric Space"]:::definition
+    def-relation["Definition: Relation"]:::definition
+    def-determinant["Definition: Determinant"]:::definition
+    def-partial-order["Definition: Partial Order"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-continuity["Definition: Continuity"]:::definition
+    def-sequence["Definition: Sequence"]:::definition
     def-group-action["Group Action"]:::definition
     def-linear-transformation["Definition: Linear Transformation"]:::definition
-    def-continuity["Definition: Continuity"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
-    def-function["Definition: Function"]:::definition
-    def-relation["Definition: Relation"]:::definition
-    def-homeomorphism["Definition: Homeomorphism"]:::definition
-    def-determinant["Definition: Determinant"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-permutation["Definition: Permutation"]:::definition
-    def-metric-space["Definition: Metric Space"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-homeomorphism --> def-function
+    def-functor --> def-function
     def-sequence --> def-function
+    def-homeomorphism --> def-function
+    def-function --> def-set
+    thm-pigeonhole-principle --> def-function
+    def-function --> def-relation
+    def-relation --> def-function
+    def-binary-operation --> def-function
+    def-homomorphism --> def-function
+    def-determinant --> def-function
+    def-permutation --> def-function
+    def-equivalence-relation --> def-function
     def-continuity --> def-function
     def-linear-transformation --> def-function
-    def-homomorphism --> def-function
-    def-function --> def-relation
-    def-functor --> def-function
-    def-random-variable --> def-function
     def-metric-space --> def-function
-    def-permutation --> def-function
-    thm-pigeonhole-principle --> def-function
-    def-relation --> def-function
-    def-function --> def-set
-    def-determinant --> def-function
-    def-equivalence-relation --> def-function
-    def-binary-operation --> def-function
+    def-partial-order --> def-function
+    def-random-variable --> def-function
     def-group-action --> def-function
     class def-function current
-    click def-functor "def-functor.html" "Definition: Functorへ"
-    click thm-pigeonhole-principle "thm-pigeonhole-principle.html" "Theorem: Pigeonhole Principleへ"
-    click def-sequence "def-sequence.html" "Definition: Sequenceへ"
+    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
+    click def-homeomorphism "def-homeomorphism.html" "Definition: Homeomorphismへ"
+    click def-permutation "def-permutation.html" "Definition: Permutationへ"
     click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
+    click def-equivalence-relation "def-equivalence-relation.html" "Definition: Equivalence Relationへ"
+    click thm-pigeonhole-principle "thm-pigeonhole-principle.html" "Theorem: Pigeonhole Principleへ"
+    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
+    click def-functor "def-functor.html" "Definition: Functorへ"
+    click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
+    click def-relation "def-relation.html" "Definition: Relationへ"
+    click def-determinant "def-determinant.html" "Definition: Determinantへ"
+    click def-partial-order "def-partial-order.html" "Definition: Partial Orderへ"
+    click def-set "def-set.html" "Definition: Setへ"
+    click def-continuity "def-continuity.html" "Definition: Continuityへ"
+    click def-sequence "def-sequence.html" "Definition: Sequenceへ"
     click def-group-action "def-group-action.html" "Group Actionへ"
     click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
-    click def-continuity "def-continuity.html" "Definition: Continuityへ"
-    click def-set "def-set.html" "Definition: Setへ"
-    click def-equivalence-relation "def-equivalence-relation.html" "Definition: Equivalence Relationへ"
-    click def-relation "def-relation.html" "Definition: Relationへ"
-    click def-homeomorphism "def-homeomorphism.html" "Definition: Homeomorphismへ"
-    click def-determinant "def-determinant.html" "Definition: Determinantへ"
-    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
-    click def-permutation "def-permutation.html" "Definition: Permutationへ"
-    click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
-    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
 ```
 
 ## インタラクティブ可視化

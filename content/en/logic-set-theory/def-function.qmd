@@ -37,6 +37,8 @@ A function $f: A \to B$ is **injective** if different elements in $A$ map to dif
 
 $$\forall a_1, a_2 \in A: f(a_1) = f(a_2) \implies a_1 = a_2$$
 
+In category theory, the concept of injective function is generalized to [monomorphism](../category-theory/def-monomorphism.qmd).
+
 ### Surjective (Onto)
 
 A function $f: A \to B$ is **surjective** if every element in $B$ is the image of at least one element in $A$:
@@ -77,57 +79,60 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-functor["Definition: Functor"]:::definition
-    thm-pigeonhole-principle["Theorem: Pigeonhole Principle"]:::theorem
-    def-sequence["Definition: Sequence"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-function["Definition: Function"]:::definition
+    def-homeomorphism["Definition: Homeomorphism"]:::definition
+    def-permutation["Definition: Permutation"]:::definition
     def-random-variable["Definition: Random Variable"]:::definition
+    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
+    thm-pigeonhole-principle["Theorem: Pigeonhole Principle"]:::theorem
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-functor["Definition: Functor"]:::definition
+    def-metric-space["Definition: Metric Space"]:::definition
+    def-relation["Definition: Relation"]:::definition
+    def-determinant["Definition: Determinant"]:::definition
+    def-partial-order["Definition: Partial Order"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-continuity["Definition: Continuity"]:::definition
+    def-sequence["Definition: Sequence"]:::definition
     def-group-action["Group Action"]:::definition
     def-linear-transformation["Definition: Linear Transformation"]:::definition
-    def-continuity["Definition: Continuity"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
-    def-function["Definition: Function"]:::definition
-    def-relation["Definition: Relation"]:::definition
-    def-homeomorphism["Definition: Homeomorphism"]:::definition
-    def-determinant["Definition: Determinant"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-permutation["Definition: Permutation"]:::definition
-    def-metric-space["Definition: Metric Space"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-homeomorphism --> def-function
+    def-functor --> def-function
     def-sequence --> def-function
+    def-homeomorphism --> def-function
+    def-function --> def-set
+    thm-pigeonhole-principle --> def-function
+    def-function --> def-relation
+    def-relation --> def-function
+    def-binary-operation --> def-function
+    def-homomorphism --> def-function
+    def-determinant --> def-function
+    def-permutation --> def-function
+    def-equivalence-relation --> def-function
     def-continuity --> def-function
     def-linear-transformation --> def-function
-    def-homomorphism --> def-function
-    def-function --> def-relation
-    def-functor --> def-function
-    def-random-variable --> def-function
     def-metric-space --> def-function
-    def-permutation --> def-function
-    thm-pigeonhole-principle --> def-function
-    def-relation --> def-function
-    def-function --> def-set
-    def-determinant --> def-function
-    def-equivalence-relation --> def-function
-    def-binary-operation --> def-function
+    def-partial-order --> def-function
+    def-random-variable --> def-function
     def-group-action --> def-function
     class def-function current
-    click def-functor "def-functor.html" "Go to Functor definition"
-    click thm-pigeonhole-principle "thm-pigeonhole-principle.html" "Go to Pigeonhole Principle theorem"
-    click def-sequence "def-sequence.html" "Go to Sequence definition"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
+    click def-homeomorphism "def-homeomorphism.html" "Go to Homeomorphism definition"
+    click def-permutation "def-permutation.html" "Go to Permutation definition"
     click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
+    click def-equivalence-relation "def-equivalence-relation.html" "Go to Equivalence Relation definition"
+    click thm-pigeonhole-principle "thm-pigeonhole-principle.html" "Go to Pigeonhole Principle theorem"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click def-functor "def-functor.html" "Go to Functor definition"
+    click def-metric-space "def-metric-space.html" "Go to Metric Space definition"
+    click def-relation "def-relation.html" "Go to Relation definition"
+    click def-determinant "def-determinant.html" "Go to Determinant definition"
+    click def-partial-order "def-partial-order.html" "Go to Partial Order definition"
+    click def-set "def-set.html" "Go to Set definition"
+    click def-continuity "def-continuity.html" "Go to Continuity definition"
+    click def-sequence "def-sequence.html" "Go to Sequence definition"
     click def-group-action "def-group-action.html" "Go to Group Action"
     click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation definition"
-    click def-continuity "def-continuity.html" "Go to Continuity definition"
-    click def-set "def-set.html" "Go to Set definition"
-    click def-equivalence-relation "def-equivalence-relation.html" "Go to Equivalence Relation definition"
-    click def-relation "def-relation.html" "Go to Relation definition"
-    click def-homeomorphism "def-homeomorphism.html" "Go to Homeomorphism definition"
-    click def-determinant "def-determinant.html" "Go to Determinant definition"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
-    click def-permutation "def-permutation.html" "Go to Permutation definition"
-    click def-metric-space "def-metric-space.html" "Go to Metric Space definition"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
 ```
 
 ## Interactive Visualization

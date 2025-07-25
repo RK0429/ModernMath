@@ -5,6 +5,7 @@ requires:
 - def-vector-space
 - def-kernel
 - def-image
+- def-isomorphism
 status: complete
 title: '定理: 階数・退化次数定理'
 translation_of: ../../en/algebra/thm-rank-nullity.qmd
@@ -45,9 +46,9 @@ $$\text{nullity}(T) + \text{rank}(T) = \dim(V)$$
 
 ## 帰結
 
-- **単射性判定**：$T$が単射であることと$\dim(\ker(T)) = 0$は同値
+- **単射性判定**：$T$が単射であることと$\dim(\ker(T)) = 0$は同値（すなわち、$T$は[単射](../category-theory/def-monomorphism.qmd)）
 - **全射性判定**：$T$が全射であることと$\dim(\text{im}(T)) = \dim(W)$は同値
-- **同型性判定**：$\dim(V) = \dim(W)$のとき、$T$が同型であることと$T$が単射（または全射）であることは同値
+- **同型性判定**：$\dim(V) = \dim(W)$のとき、$T$が[同型](def-isomorphism.qmd)であることと$T$が単射（または全射）であることは同値
 
 この定理は線形変換の構造を理解し、連立一次方程式を解く上で基本的である。
 
@@ -61,19 +62,19 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-vector-space["Definition: Vector Space"]:::definition
     thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
-    def-kernel["Definition: Kernel"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
     def-image["Definition: Image"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
     def-linear-transformation["Definition: Linear Transformation"]:::definition
-    thm-rank-nullity --> def-image
     thm-rank-nullity --> def-kernel
+    thm-rank-nullity --> def-image
     thm-rank-nullity --> def-linear-transformation
     thm-rank-nullity --> def-vector-space
     class thm-rank-nullity current
     click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
-    click def-kernel "def-kernel.html" "Definition: Kernelへ"
     click def-image "def-image.html" "Definition: Imageへ"
+    click def-kernel "def-kernel.html" "Definition: Kernelへ"
     click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
 ```
 

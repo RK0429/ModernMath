@@ -6,6 +6,7 @@ requires:
 - def-homomorphism
 - def-normal-subgroup
 - def-ideal
+- def-isomorphism
 status: complete
 title: '定義: 核'
 translation_of: ../../en/algebra/def-kernel.qmd
@@ -34,7 +35,7 @@ $$\ker(T) = \{\mathbf{v} \in V : T(\mathbf{v}) = \mathbf{0}_W\}$$
    - 加法について閉じている：$\mathbf{u}, \mathbf{v} \in \ker(T)$ ならば、$T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v}) = \mathbf{0} + \mathbf{0} = \mathbf{0}$
    - スカラー倍について閉じている：$\mathbf{v} \in \ker(T)$ かつ $a \in F$ ならば、$T(a\mathbf{v}) = aT(\mathbf{v}) = a\mathbf{0} = \mathbf{0}$
 
-2. **単射性の判定条件**：$T$ が単射（一対一）であることと $\ker(T) = \{\mathbf{0}_V\}$ は同値
+2. **単射性の判定条件**：$T$ が単射（一対一）であることと $\ker(T) = \{\mathbf{0}_V\}$ は同値。圏論的には、これは $T$ が[単射](../category-theory/def-monomorphism.qmd)であることを意味する
 
 3. **次元**：$\ker(T)$ の次元を $T$ の**退化次数**という
 
@@ -65,7 +66,7 @@ $$\phi(gkg^{-1}) = \phi(g)\phi(k)\phi(g^{-1}) = \phi(g)e_H\phi(g)^{-1} = \phi(g)
 
 $$G/\ker(\phi) \cong \text{Im}(\phi)$$
 
-この基本的な結果は、すべての準同型像が商群と同型であることを示しています。完全な主張と証明については @thm-first-isomorphism を参照してください。
+この基本的な結果は、すべての準同型像が商群と[同型](def-isomorphism.qmd)であることを示しています。完全な主張と証明については @thm-first-isomorphism を参照してください。
 
 ## 環論における核
 
@@ -85,33 +86,33 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
+    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
     def-quotient-group["Definition: Quotient Group"]:::definition
     def-vector-space["Definition: Vector Space"]:::definition
     thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
     def-kernel["Definition: Kernel"]:::definition
-    def-ideal["Definition: Ideal"]:::definition
-    def-linear-transformation["Definition: Linear Transformation"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
-    def-kernel --> def-homomorphism
     def-kernel --> def-linear-transformation
-    thm-rank-nullity --> def-kernel
+    def-kernel --> def-normal-subgroup
+    def-kernel --> def-quotient-group
+    def-kernel --> def-homomorphism
     def-kernel --> def-vector-space
     def-kernel --> thm-first-isomorphism
     thm-first-isomorphism --> def-kernel
+    thm-rank-nullity --> def-kernel
     def-kernel --> def-ideal
-    def-kernel --> def-normal-subgroup
-    def-kernel --> def-quotient-group
     class def-kernel current
+    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
+    click def-ideal "def-ideal.html" "Definition: Idealへ"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "Theorem: First Isomorphism Theoremへ"
+    click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
     click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
     click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
     click thm-rank-nullity "thm-rank-nullity.html" "Theorem: Rank-Nullity Theoremへ"
-    click def-ideal "def-ideal.html" "Definition: Idealへ"
-    click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
     click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
-    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Theorem: First Isomorphism Theoremへ"
 ```
 
 ## インタラクティブ可視化
