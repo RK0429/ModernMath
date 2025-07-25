@@ -70,26 +70,30 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-ring["Definition: Ring"]:::definition
+    def-integral-domain["Definition: Integral Domain"]:::definition
     def-ideal["Definition: Ideal"]:::definition
-    def-abelian-group["Definition: Abelian Group"]:::definition
     ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
-    def-group["Definition: Group"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
     ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-group["Definition: Group"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
     ex-integers-ring --> def-ring
-    ex-integers-ring --> def-ideal
-    ex-integers-ring --> def-abelian-group
     ex-integers-ring --> def-group
-    ex-integers-ring --> ex-principal-ideal
     ex-integers-ring --> def-binary-operation
+    def-integral-domain --> ex-integers-ring
+    ex-integers-ring --> def-integral-domain
+    ex-integers-ring --> def-abelian-group
+    ex-integers-ring --> ex-principal-ideal
+    ex-integers-ring --> def-ideal
     class ex-integers-ring current
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
-    click def-ring "def-ring.html" "Go to Ring definition"
+    click def-integral-domain "def-integral-domain.html" "Go to Integral Domain definition"
     click def-ideal "def-ideal.html" "Go to Ideal definition"
-    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
     click ex-principal-ideal "ex-principal-ideal.html" "Go to Principal Ideals in Integers example"
+    click def-ring "def-ring.html" "Go to Ring definition"
+    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
     click def-group "def-group.html" "Go to Group definition"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
 ```
 
 ## Interactive Visualization

@@ -4,12 +4,13 @@ requires:
 - def-ring
 - def-commutativity
 - def-field
+- def-subring
 status: complete
-title: '定義：整域'
+title: 定義：整域
+translation_of: ../../en/algebra/def-integral-domain.qmd
 translations:
   en: ../en/algebra/def-integral-domain.html
   ja: ../ja/algebra/def-integral-domain.html
-translation_of: ../../en/algebra/def-integral-domain.qmd
 type: Definition
 ---
 
@@ -43,6 +44,7 @@ type: Definition
 - すべての[体](def-field.qmd)は整域である
 - すべての有限整域は体である
 - すべての整域が体であるわけではない（例：$\mathbb{Z}$）
+- 整域のすべての[部分環](def-subring.qmd)は整域である
 
 ### 素イデアルによる特徴付け
 
@@ -55,7 +57,7 @@ type: Definition
 1. **整数** $\mathbb{Z}$ （通常の加法と乗法）
 2. **任意の体**：$\mathbb{Q}$、$\mathbb{R}$、$\mathbb{C}$、または $\mathbb{Z}_p$（$p$ は素数）など
 3. **多項式環** $R[x]$（ただし $R$ は整域）
-4. **ガウス整数** $\mathbb{Z}[i] = \{a + bi : a, b \in \mathbb{Z}\}$
+4. **ガウス整数** $\mathbb{Z}[i] = \{a + bi : a, b \in \mathbb{Z}\}$（$\mathbb{C}$ の[部分環](def-subring.qmd)）
 
 ### 整域でない例
 
@@ -65,9 +67,9 @@ type: Definition
 
 ## 分数体
 
-すべての整域 $D$ は、その**分数体**または**商体**と呼ばれる体 $\text{Frac}(D)$ に埋め込むことができる。
+すべての整域 $D$ は、その**分数体**または**商体**と呼ばれる体 $\text{Frac}(D)$ に埋め込むことができる。元の整域 $D$ は自然に $\text{Frac}(D)$ の[部分環](def-subring.qmd)となる。
 
-- $\mathbb{Z}$ の分数体は $\mathbb{Q}$ である
+- $\mathbb{Z}$ の分数体は $\mathbb{Q}$ である（そして $\mathbb{Z}$ は $\mathbb{Q}$ の部分環である）
 - 体 $F$ 上の多項式環 $F[x]$ の分数体は有理関数体 $F(x)$ である
 
 ## 応用
@@ -90,24 +92,47 @@ type: Definition
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "ローカル依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-integral-domain["Definition: Integral Domain"]:::definition
+    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
+    def-field["Definition: Field"]:::definition
+    def-commutativity["Definition: Commutativity"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-integral-domain --> def-commutativity
+    def-integral-domain --> def-polynomial-ring
+    def-field --> def-integral-domain
+    def-integral-domain --> def-ideal
+    def-integral-domain --> def-field
+    def-integral-domain --> ex-integers-ring
+    ex-integers-ring --> def-integral-domain
+    def-integral-domain --> def-ring
+    def-polynomial-ring --> def-integral-domain
+    class def-integral-domain current
+    click def-polynomial-ring "def-polynomial-ring.html" "Definition: Polynomial Ringへ"
+    click def-ideal "def-ideal.html" "Definition: Idealへ"
+    click def-field "def-field.html" "Definition: Fieldへ"
+    click def-commutativity "def-commutativity.html" "Definition: Commutativityへ"
+    click def-ring "def-ring.html" "Definition: Ringへ"
+    click ex-integers-ring "ex-integers-ring.html" "Example: Integers Form a Ringへ"
 ```
 
 ## インタラクティブ可視化
 
-ローカル知識グラフの近傍をインタラクティブに探索：
+ローカルナレッジグラフの近傍をインタラクティブに探索：
 
 ::: {.graph-viz data-id="def-integral-domain" data-width="700" data-height="500"}
 :::
 
-以下のことができます：
+次のことができます：
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [完全なインタラクティブ版](../../output/interactive/def-integral-domain.html){target="_blank"}を表示
+- [別ウィンドウ](../../output/interactive/def-integral-domain.html){target="_blank"}で完全なインタラクティブ版を表示

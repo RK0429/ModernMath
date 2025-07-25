@@ -1,0 +1,130 @@
+---
+id: def-quotient-ring
+requires:
+- def-ring
+- def-ideal
+- def-coset
+- def-equivalence-relation
+- def-homomorphism
+status: complete
+title: '定義: 剰余環'
+translation_of: ../../en/algebra/def-quotient-ring.qmd
+translations:
+  en: algebra/def-quotient-ring.html
+  ja: algebra/def-quotient-ring.html
+type: Definition
+---
+
+$R$ を[環](def-ring.qmd)、$I$ を $R$ の[イデアル](def-ideal.qmd)とする。剰余環（factor ring または quotient ring とも呼ばれる）$R/I$ は、次のように定義される集合である：
+
+$$R/I = \{r + I : r \in R\}$$
+
+ここで $r + I = \{r + i : i \in I\}$ は $I$ による $r$ の[剰余類](def-coset.qmd)である。
+
+## 演算
+
+剰余環上の演算は次のように定義される：
+
+1. **加法**: $(r + I) + (s + I) = (r + s) + I$
+2. **乗法**: $(r + I) \cdot (s + I) = (r \cdot s) + I$
+
+## Well-definedness
+
+これらの演算が well-defined である（つまり、代表元の選び方に依存しない）ことは、$I$ が[イデアル](def-ideal.qmd)であることから保証される。
+
+$r + I = r' + I$ かつ $s + I = s' + I$ の場合、$r - r' \in I$ かつ $s - s' \in I$ である。すると：
+- $(r + s) - (r' + s') = (r - r') + (s - s') \in I$、よって加法は well-defined
+- $rs - r's' = r(s - s') + (r - r')s' \in I$（$I$ が両側イデアルであるため）、よって乗法は well-defined
+
+## 性質
+
+1. **環構造**: $R/I$ は[環](def-ring.qmd)の公理をすべて満たす
+2. **零元**: $R/I$ の零元は $0 + I = I$
+3. **単位元**: $R$ が単位元 $1$ を持つ場合、$R/I$ の単位元は $1 + I$
+4. **自然な準同型**: 写像 $\pi: R \to R/I$（$\pi(r) = r + I$ で定義）は全射[環準同型](def-homomorphism.qmd)である
+
+## 特殊な場合
+
+### 極大イデアルによる剰余
+$M$ が極大イデアルの場合、$R/M$ は[体](def-field.qmd)である。
+
+### 素イデアルによる剰余
+$P$ が素イデアルの場合、$R/P$ は[整域](def-integral-domain.qmd)である。
+
+## 例
+
+### $\mathbb{Z}/n\mathbb{Z}$
+整数環 $\mathbb{Z}$ を $n$ で生成される主イデアル $n\mathbb{Z}$ で割った剰余環は、法 $n$ での整数環である。詳細は[例：$\mathbb{Z}/n\mathbb{Z}$](ex-quotient-integers-mod-n.qmd)を参照。
+
+### 多項式環の剰余
+$F$ を[体](def-field.qmd)、$F[x]$ を $F$ 上の[多項式環](def-polynomial-ring.qmd)とする。$p(x) \in F[x]$ が既約多項式の場合、$F[x]/\langle p(x) \rangle$ は体である。例えば：
+- $\mathbb{R}[x]/\langle x^2 + 1 \rangle \cong \mathbb{C}$（複素数体）
+- $\mathbb{F}_p[x]/\langle f(x) \rangle$（$f(x)$ が次数 $n$ の既約多項式）は位数 $p^n$ の[有限体](ex-finite-field.qmd)を与える
+
+## 準同型との関係
+
+[環準同型の第一同型定理](thm-first-isomorphism.qmd)により、任意の全射環準同型 $\phi: R \to S$ に対して：
+
+$$R/\ker(\phi) \cong S$$
+
+ここで $\ker(\phi)$ は $\phi$ の[核](def-kernel.qmd)である。これは、すべての準同型像が適切な剰余環として実現できることを示している。
+
+## 関連概念
+
+- [剰余群](def-quotient-group.qmd)：剰余環の群論的類似
+- [イデアル](def-ideal.qmd)：剰余環の構成に必要
+- [同値関係](def-equivalence-relation.qmd)：剰余類が形成する構造
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-finite-field["Example: Finite Field"]:::example
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-ideal["Definition: Ideal"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-coset["Definition: Coset"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    ex-quotient-integers-mod-n --> def-quotient-ring
+    def-quotient-ring --> def-coset
+    def-quotient-group --> def-quotient-ring
+    def-quotient-ring --> def-equivalence-relation
+    def-quotient-ring --> def-ideal
+    ex-finite-field --> def-quotient-ring
+    def-kernel --> def-quotient-ring
+    def-quotient-ring --> def-ring
+    def-quotient-ring --> def-homomorphism
+    class def-quotient-ring current
+    click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
+    click def-ideal "def-ideal.html" "Definition: Idealへ"
+    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
+    click def-equivalence-relation "def-equivalence-relation.html" "Definition: Equivalence Relationへ"
+    click def-coset "def-coset.html" "Definition: Cosetへ"
+    click def-ring "def-ring.html" "Definition: Ringへ"
+    click def-kernel "def-kernel.html" "Definition: Kernelへ"
+    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-quotient-ring" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/def-quotient-ring.html){target="_blank"}で完全なインタラクティブ版を表示

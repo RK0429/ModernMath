@@ -76,7 +76,7 @@ $R$ が一意分解[整域](def-integral-domain.qmd)（UFD）なら、$R[x]$ も
 
 ## 例
 
-- $\mathbb{Z}[x]$ - 整数係数の多項式
+- $\mathbb{Z}[x]$ - 整数係数の多項式（$\mathbb{Q}[x]$ の[部分環](def-subring.qmd)をなす）
 - $\mathbb{R}[x]$ - 実数係数の多項式
 - $\mathbb{C}[x, y]$ - 複素数上の2変数多項式
 - $\mathbb{Z}_p[x]$ - $p$ 個の元を持つ有限体上の多項式
@@ -99,26 +99,33 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
     ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
+    def-integral-domain["Definition: Integral Domain"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-polynomial-ring["Definition: Polynomial Ring"]:::definition
     thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
+    def-ring["Definition: Ring"]:::definition
     def-field["Definition: Field"]:::definition
-    def-polynomial-ring --> def-field
-    def-polynomial-ring --> def-binary-operation
-    def-eigenvalue-eigenvector --> def-polynomial-ring
-    def-polynomial-ring --> def-ring
-    thm-intermediate-value --> def-polynomial-ring
+    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-integral-domain --> def-polynomial-ring
     ex-polynomial-continuity --> def-polynomial-ring
+    ex-quotient-integers-mod-n --> def-polynomial-ring
+    def-polynomial-ring --> def-ring
+    def-polynomial-ring --> def-field
+    thm-intermediate-value --> def-polynomial-ring
+    def-polynomial-ring --> def-integral-domain
+    def-eigenvalue-eigenvector --> def-polynomial-ring
+    def-polynomial-ring --> def-binary-operation
     class def-polynomial-ring current
-    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
-    click def-ring "def-ring.html" "Definition: Ringへ"
-    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Definition: Eigenvalue and Eigenvectorへ"
     click ex-polynomial-continuity "ex-polynomial-continuity.html" "Example: Polynomial Continuityへ"
+    click def-integral-domain "def-integral-domain.html" "Definition: Integral Domainへ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
     click thm-intermediate-value "thm-intermediate-value.html" "Theorem: Intermediate Value Theoremへ"
+    click def-ring "def-ring.html" "Definition: Ringへ"
     click def-field "def-field.html" "Definition: Fieldへ"
+    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Definition: Eigenvalue and Eigenvectorへ"
+    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
 ```
 
 ## インタラクティブ可視化

@@ -5,6 +5,7 @@ requires:
 - def-subset
 - def-binary-operation
 - def-isomorphism
+- def-subring
 status: complete
 title: '定義: イデアル'
 translation_of: ../../en/algebra/def-ideal.qmd
@@ -47,6 +48,7 @@ $(R, +, \cdot)$ を環とする。部分集合 $I \subseteq R$ は以下の場�
 - イデアルは有限和と差について閉じている
 - イデアルの任意の族の共通部分はイデアル
 - 単位元を持つ環では、$I = R$ と $1 \in I$ は同値
+- すべてのイデアルが[部分環](def-subring.qmd)であるわけではない：イデアル $I$ が部分環であるための必要十分条件は $1 \in I$（これは $I = R$ を意味する）
 
 ## 加群との関係
 
@@ -68,7 +70,7 @@ $(R, +, \cdot)$ を環とする。部分集合 $I \subseteq R$ は以下の場�
 
 ## 剰余環と第一同型定理
 
-[正規部分群](def-normal-subgroup.qmd)が[商群](def-quotient-group.qmd)を形成させるように、イデアルは剰余環を形成させます。環 $R$ とイデアル $I$ に対して：
+[正規部分群](def-normal-subgroup.qmd)が[商群](def-quotient-group.qmd)を形成させるように、イデアルは[剰余環](def-quotient-ring.qmd)を形成させます。環 $R$ とイデアル $I$ に対して：
 
 - 剰余環 $R/I$ は剰余類 $\{r + I : r \in R\}$ から構成される
 - 環演算：$(r + I) + (s + I) = (r + s) + I$ および $(r + I)(s + I) = rs + I$
@@ -86,38 +88,44 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-binary-operation["Definition: Binary Operation"]:::definition
     def-subset["Definition: Subset"]:::definition
-    def-ring["Definition: Ring"]:::definition
     ex-finite-field["Example: Finite Field"]:::example
-    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-integral-domain["Definition: Integral Domain"]:::definition
     def-ideal["Definition: Ideal"]:::definition
     def-isomorphism["Definition: Group Isomorphism"]:::definition
-    def-kernel["Definition: Kernel"]:::definition
     ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
     def-field["Definition: Field"]:::definition
-    ex-finite-field --> def-ideal
-    def-ideal --> def-binary-operation
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-binary-operation["Definition: Binary Operation"]:::definition
     ex-principal-ideal --> def-ideal
-    def-field --> def-ideal
-    def-ideal --> def-ring
-    def-kernel --> def-ideal
-    ex-integers-ring --> def-ideal
     def-quotient-group --> def-ideal
-    def-ideal --> def-subset
+    def-ideal --> def-binary-operation
     def-ideal --> def-isomorphism
+    def-integral-domain --> def-ideal
+    def-quotient-ring --> def-ideal
+    def-kernel --> def-ideal
+    def-ideal --> def-ring
+    def-field --> def-ideal
+    ex-integers-ring --> def-ideal
+    ex-finite-field --> def-ideal
+    def-ideal --> def-subset
     class def-ideal current
-    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
     click def-subset "def-subset.html" "Definition: Subsetへ"
-    click def-ring "def-ring.html" "Definition: Ringへ"
     click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
-    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
+    click def-integral-domain "def-integral-domain.html" "Definition: Integral Domainへ"
     click def-isomorphism "def-isomorphism.html" "Definition: Group Isomorphismへ"
-    click def-kernel "def-kernel.html" "Definition: Kernelへ"
     click ex-principal-ideal "ex-principal-ideal.html" "Example: Principal Ideals in Integersへ"
-    click ex-integers-ring "ex-integers-ring.html" "Example: Integers Form a Ringへ"
+    click def-quotient-ring "def-quotient-ring.html" "Definition: Quotient Ringへ"
+    click def-ring "def-ring.html" "Definition: Ringへ"
+    click def-kernel "def-kernel.html" "Definition: Kernelへ"
     click def-field "def-field.html" "Definition: Fieldへ"
+    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
+    click ex-integers-ring "ex-integers-ring.html" "Example: Integers Form a Ringへ"
+    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
 ```
 
 ## インタラクティブ可視化

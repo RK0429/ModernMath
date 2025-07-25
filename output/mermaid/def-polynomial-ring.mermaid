@@ -5,17 +5,22 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
     ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
+    def-integral-domain["Definition: Integral Domain"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-polynomial-ring["Definition: Polynomial Ring"]:::definition
     thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
+    def-ring["Definition: Ring"]:::definition
     def-field["Definition: Field"]:::definition
-    def-polynomial-ring --> def-field
-    def-polynomial-ring --> def-binary-operation
-    def-eigenvalue-eigenvector --> def-polynomial-ring
-    def-polynomial-ring --> def-ring
-    thm-intermediate-value --> def-polynomial-ring
+    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-integral-domain --> def-polynomial-ring
     ex-polynomial-continuity --> def-polynomial-ring
+    ex-quotient-integers-mod-n --> def-polynomial-ring
+    def-polynomial-ring --> def-ring
+    def-polynomial-ring --> def-field
+    thm-intermediate-value --> def-polynomial-ring
+    def-polynomial-ring --> def-integral-domain
+    def-eigenvalue-eigenvector --> def-polynomial-ring
+    def-polynomial-ring --> def-binary-operation
     class def-polynomial-ring current

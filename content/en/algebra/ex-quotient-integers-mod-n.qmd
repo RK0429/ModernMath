@@ -12,6 +12,8 @@ requires:
 - def-direct-product
 - def-order
 - def-isomorphism
+- def-quotient-ring
+- def-polynomial-ring
 status: complete
 title: 'Example: Integers Modulo n'
 translations:
@@ -126,7 +128,7 @@ See [Direct Product of Groups](def-direct-product.qmd) for more details.
 ## Generalizations
 
 The construction $\mathbb{Z}/n\mathbb{Z}$ generalizes to:
-- Ring quotients: $\mathbb{Z}[x]/(p(x))$ for [polynomial rings](def-polynomial-ring.qmd)
+- [Quotient rings](def-quotient-ring.qmd): $\mathbb{Z}[x]/(p(x))$ for [polynomial rings](def-polynomial-ring.qmd)
 - Quotients of other algebraic structures
 - Quotient spaces in topology
 
@@ -140,53 +142,59 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
-    def-order["Definition: Order"]:::definition
     ex-finite-field["Example: Finite Field"]:::example
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-order["Definition: Order"]:::definition
+    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
     thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
+    ex-integers-addition["Example: Integers under Addition"]:::example
+    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
+    def-isomorphism["Definition: Group Isomorphism"]:::definition
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-coset["Definition: Coset"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-quotient-group["Definition: Quotient Group"]:::definition
     def-abelian-group["Definition: Abelian Group"]:::definition
-    def-coset["Definition: Coset"]:::definition
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
     def-direct-product["Definition: Direct Product of Groups"]:::definition
-    def-isomorphism["Definition: Group Isomorphism"]:::definition
-    ex-integers-addition["Example: Integers under Addition"]:::example
     def-group["Definition: Group"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    ex-quotient-integers-mod-n --> def-direct-product
-    thm-euler --> ex-quotient-integers-mod-n
-    ex-quotient-integers-mod-n --> def-group
-    def-cyclic-group --> ex-quotient-integers-mod-n
-    ex-quotient-integers-mod-n --> def-cyclic-group
-    ex-quotient-integers-mod-n --> def-isomorphism
-    ex-quotient-integers-mod-n --> def-coset
-    ex-finite-field --> ex-quotient-integers-mod-n
-    ex-quotient-integers-mod-n --> def-order
-    thm-euclidean-algorithm --> ex-quotient-integers-mod-n
-    ex-quotient-integers-mod-n --> def-abelian-group
+    def-coset --> ex-quotient-integers-mod-n
     ex-quotient-integers-mod-n --> def-quotient-group
     ex-quotient-integers-mod-n --> def-normal-subgroup
-    ex-quotient-integers-mod-n --> def-congruence
+    ex-quotient-integers-mod-n --> def-polynomial-ring
+    ex-quotient-integers-mod-n --> def-abelian-group
     def-congruence --> ex-quotient-integers-mod-n
+    ex-finite-field --> ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --> def-coset
+    ex-quotient-integers-mod-n --> def-group
+    ex-quotient-integers-mod-n --> def-isomorphism
+    ex-quotient-integers-mod-n --> def-quotient-ring
+    def-cyclic-group --> ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --> def-order
+    ex-quotient-integers-mod-n --> def-cyclic-group
     ex-quotient-integers-mod-n --> ex-integers-addition
-    def-coset --> ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --> def-direct-product
+    ex-quotient-integers-mod-n --> def-congruence
+    thm-euler --> ex-quotient-integers-mod-n
+    thm-euclidean-algorithm --> ex-quotient-integers-mod-n
     class ex-quotient-integers-mod-n current
-    click thm-euler "thm-euler.html" "Go to Euler's Theorem theorem"
-    click def-order "def-order.html" "Go to Order definition"
     click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
+    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
+    click def-order "def-order.html" "Go to Order definition"
+    click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring definition"
+    click thm-euler "thm-euler.html" "Go to Euler's Theorem theorem"
     click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Go to Euclidean Algorithm theorem"
+    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
+    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic) definition"
+    click def-isomorphism "def-isomorphism.html" "Go to Group Isomorphism definition"
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring definition"
+    click def-coset "def-coset.html" "Go to Coset definition"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
     click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
     click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
-    click def-coset "def-coset.html" "Go to Coset definition"
-    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
-    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic) definition"
     click def-direct-product "def-direct-product.html" "Go to Direct Product of Groups definition"
-    click def-isomorphism "def-isomorphism.html" "Go to Group Isomorphism definition"
-    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
     click def-group "def-group.html" "Go to Group definition"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
 ```
 
 ## Interactive Visualization

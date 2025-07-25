@@ -5,6 +5,7 @@ requires:
 - def-subset
 - def-binary-operation
 - def-isomorphism
+- def-subring
 status: complete
 title: 'Definition: Ideal'
 translations:
@@ -46,6 +47,7 @@ A **two-sided ideal** (or simply **ideal**) if it is both a left ideal and a rig
 - Ideals are closed under finite sums and differences
 - The intersection of any collection of ideals is an ideal
 - For rings with unity, $I = R$ if and only if $1 \in I$
+- Not every ideal is a [subring](def-subring.qmd): an ideal $I$ is a subring if and only if $1 \in I$ (which implies $I = R$)
 
 ## Connection to Modules
 
@@ -67,7 +69,7 @@ A **two-sided ideal** (or simply **ideal**) if it is both a left ideal and a rig
 
 ## Quotient Rings and the First Isomorphism Theorem
 
-Just as [normal subgroups](def-normal-subgroup.qmd) allow us to form [quotient groups](def-quotient-group.qmd), ideals allow us to form quotient rings. For a ring $R$ and ideal $I$:
+Just as [normal subgroups](def-normal-subgroup.qmd) allow us to form [quotient groups](def-quotient-group.qmd), ideals allow us to form [quotient rings](def-quotient-ring.qmd). For a ring $R$ and ideal $I$:
 
 - The quotient ring $R/I$ consists of cosets $\{r + I : r \in R\}$
 - Ring operations: $(r + I) + (s + I) = (r + s) + I$ and $(r + I)(s + I) = rs + I$
@@ -85,38 +87,44 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-binary-operation["Definition: Binary Operation"]:::definition
     def-subset["Definition: Subset"]:::definition
-    def-ring["Definition: Ring"]:::definition
     ex-finite-field["Example: Finite Field"]:::example
-    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-integral-domain["Definition: Integral Domain"]:::definition
     def-ideal["Definition: Ideal"]:::definition
     def-isomorphism["Definition: Group Isomorphism"]:::definition
-    def-kernel["Definition: Kernel"]:::definition
     ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
     def-field["Definition: Field"]:::definition
-    ex-finite-field --> def-ideal
-    def-ideal --> def-binary-operation
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-binary-operation["Definition: Binary Operation"]:::definition
     ex-principal-ideal --> def-ideal
-    def-field --> def-ideal
-    def-ideal --> def-ring
-    def-kernel --> def-ideal
-    ex-integers-ring --> def-ideal
     def-quotient-group --> def-ideal
-    def-ideal --> def-subset
+    def-ideal --> def-binary-operation
     def-ideal --> def-isomorphism
+    def-integral-domain --> def-ideal
+    def-quotient-ring --> def-ideal
+    def-kernel --> def-ideal
+    def-ideal --> def-ring
+    def-field --> def-ideal
+    ex-integers-ring --> def-ideal
+    ex-finite-field --> def-ideal
+    def-ideal --> def-subset
     class def-ideal current
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
     click def-subset "def-subset.html" "Go to Subset definition"
-    click def-ring "def-ring.html" "Go to Ring definition"
     click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click def-integral-domain "def-integral-domain.html" "Go to Integral Domain definition"
     click def-isomorphism "def-isomorphism.html" "Go to Group Isomorphism definition"
-    click def-kernel "def-kernel.html" "Go to Kernel definition"
     click ex-principal-ideal "ex-principal-ideal.html" "Go to Principal Ideals in Integers example"
-    click ex-integers-ring "ex-integers-ring.html" "Go to Integers Form a Ring example"
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring definition"
+    click def-ring "def-ring.html" "Go to Ring definition"
+    click def-kernel "def-kernel.html" "Go to Kernel definition"
     click def-field "def-field.html" "Go to Field definition"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click ex-integers-ring "ex-integers-ring.html" "Go to Integers Form a Ring example"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
 ```
 
 ## Interactive Visualization

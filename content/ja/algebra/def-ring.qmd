@@ -52,8 +52,8 @@ type: Definition
 ## 重要な環の構造
 
 - **[イデアル](def-ideal.qmd)**：乗法を吸収する特別な部分集合、群論における正規部分群に類似
-- **部分環**：両方の環演算について閉じている部分集合
-- **剰余環**：イデアルで割ることによって形成される、合同算術を一般化
+- **[部分環](def-subring.qmd)**：両方の環演算について閉じている部分集合
+- **[剰余環](def-quotient-ring.qmd)**：イデアルで割ることによって形成される、合同算術を一般化
 - **環準同型**：環の間の構造を保つ写像
 - **[加群](def-module.qmd)**：スカラーが体ではなく環から来るベクトル空間の一般化
 
@@ -67,44 +67,50 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-module["Definition: Module"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-ring["Definition: Ring"]:::definition
+    def-integral-domain["Definition: Integral Domain"]:::definition
     thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
     def-polynomial-ring["Definition: Polynomial Ring"]:::definition
     def-ideal["Definition: Ideal"]:::definition
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    def-endomorphism["Definition: Endomorphism"]:::definition
+    def-module["Definition: Module"]:::definition
     ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
-    def-group["Definition: Group"]:::definition
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
     def-set["Definition: Set"]:::definition
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-endomorphism["Definition: Endomorphism"]:::definition
+    def-ring["Definition: Ring"]:::definition
     def-field["Definition: Field"]:::definition
-    def-ring --> def-abelian-group
-    def-module --> def-ring
-    ex-integers-ring --> def-ring
-    def-ideal --> def-ring
-    def-endomorphism --> def-ring
-    thm-field-characteristic --> def-ring
-    def-polynomial-ring --> def-ring
-    def-ring --> def-binary-operation
-    def-field --> def-ring
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-group["Definition: Group"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
     def-ring --> def-group
-    ex-principal-ideal --> def-ring
+    ex-integers-ring --> def-ring
+    def-module --> def-ring
     def-ring --> def-set
+    thm-field-characteristic --> def-ring
+    def-endomorphism --> def-ring
+    ex-principal-ideal --> def-ring
+    def-ring --> def-abelian-group
+    def-ring --> def-binary-operation
+    def-integral-domain --> def-ring
+    def-polynomial-ring --> def-ring
+    def-field --> def-ring
+    def-quotient-ring --> def-ring
+    def-ideal --> def-ring
     class def-ring current
-    click def-module "def-module.html" "Definition: Moduleへ"
-    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
+    click def-integral-domain "def-integral-domain.html" "Definition: Integral Domainへ"
     click thm-field-characteristic "thm-field-characteristic.html" "Theorem: Field Characteristicへ"
     click def-polynomial-ring "def-polynomial-ring.html" "Definition: Polynomial Ringへ"
     click def-ideal "def-ideal.html" "Definition: Idealへ"
-    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
-    click def-endomorphism "def-endomorphism.html" "Definition: Endomorphismへ"
+    click def-module "def-module.html" "Definition: Moduleへ"
     click ex-principal-ideal "ex-principal-ideal.html" "Example: Principal Ideals in Integersへ"
-    click def-group "def-group.html" "Definition: Groupへ"
+    click def-quotient-ring "def-quotient-ring.html" "Definition: Quotient Ringへ"
     click def-set "def-set.html" "Definition: Setへ"
-    click ex-integers-ring "ex-integers-ring.html" "Example: Integers Form a Ringへ"
+    click def-endomorphism "def-endomorphism.html" "Definition: Endomorphismへ"
     click def-field "def-field.html" "Definition: Fieldへ"
+    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
+    click ex-integers-ring "ex-integers-ring.html" "Example: Integers Form a Ringへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
 ```
 
 ## インタラクティブ可視化

@@ -6,6 +6,7 @@ requires:
 - def-homomorphism
 - def-normal-subgroup
 - def-ideal
+- def-quotient-ring
 - def-isomorphism
 status: complete
 title: 'Definition: Kernel'
@@ -73,7 +74,7 @@ For ring homomorphisms (maps that preserve both addition and multiplication), th
 
 $$\ker(\phi) = \{r \in R : \phi(r) = 0_S\}$$
 
-The kernel of a ring homomorphism is always an [Ideal](def-ideal.qmd) of the domain ring $R$. This is the ring-theoretic analogue of the fact that kernels of group homomorphisms are normal subgroups. Just as normal subgroups allow us to form quotient groups, ideals allow us to form quotient rings.
+The kernel of a ring homomorphism is always an [Ideal](def-ideal.qmd) of the domain ring $R$. This is the ring-theoretic analogue of the fact that kernels of group homomorphisms are normal subgroups. Just as normal subgroups allow us to form quotient groups, ideals allow us to form [quotient rings](def-quotient-ring.qmd).
 
 ## Dependency Graph
 
@@ -85,36 +86,39 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-vector-space["Definition: Vector Space"]:::definition
-    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
-    def-quotient-group["Definition: Quotient Group"]:::definition
     def-ideal["Definition: Ideal"]:::definition
-    def-linear-transformation["Definition: Linear Transformation"]:::definition
-    def-isomorphism["Definition: Group Isomorphism"]:::definition
-    def-kernel["Definition: Kernel"]:::definition
-    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
     def-homomorphism["Definition: Group Homomorphism"]:::definition
+    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-isomorphism["Definition: Group Isomorphism"]:::definition
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-kernel --> def-quotient-group
-    thm-rank-nullity --> def-kernel
-    thm-first-isomorphism --> def-kernel
-    def-kernel --> def-ideal
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-kernel --> thm-first-isomorphism
     def-kernel --> def-normal-subgroup
+    def-kernel --> def-homomorphism
     def-kernel --> def-vector-space
     def-kernel --> def-isomorphism
-    def-kernel --> def-homomorphism
+    def-kernel --> def-quotient-ring
+    def-kernel --> def-ideal
+    thm-first-isomorphism --> def-kernel
+    def-kernel --> def-quotient-group
     def-kernel --> def-linear-transformation
-    def-kernel --> thm-first-isomorphism
+    thm-rank-nullity --> def-kernel
     class def-kernel current
-    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
-    click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem theorem"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
     click def-ideal "def-ideal.html" "Go to Ideal definition"
-    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation definition"
-    click def-isomorphism "def-isomorphism.html" "Go to Group Isomorphism definition"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem theorem"
     click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
+    click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem theorem"
+    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
+    click def-isomorphism "def-isomorphism.html" "Go to Group Isomorphism definition"
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring definition"
     click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem theorem"
+    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation definition"
 ```
 
 ## Interactive Visualization
