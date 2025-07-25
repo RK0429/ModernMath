@@ -1,0 +1,141 @@
+---
+id: def-automorphism
+requires:
+- def-homomorphism
+- ../category-theory/def-isomorphism
+- def-group
+- def-identity-element
+status: complete
+title: '定義: 自己同型'
+translation_of: ../../en/algebra/def-automorphism.qmd
+translations:
+  en: ../en/algebra/def-automorphism.html
+  ja: ../ja/algebra/def-automorphism.html
+type: Definition
+---
+
+# 自己同型 {#def-automorphism}
+
+**自己同型**は、数学的対象からそれ自身への[同型写像](../category-theory/def-isomorphism.qmd)である。これは、逆写像を持つ方法で対象をそれ自身に写す構造保存変換を表す。
+
+## 形式的定義
+
+[群](def-group.qmd) $(G, \cdot)$ に対して、自己同型は全単射（単射かつ全射）である[準同型写像](def-homomorphism.qmd) $\phi: G \to G$ である。
+
+より一般に、任意の圏において、対象 $X$ の自己同型は同型写像 $f: X \to X$ である。
+
+## 性質
+
+群 $G$ の任意の自己同型 $\phi$ に対して：
+
+1. **単位元の保存**: $\phi(e) = e$ ここで $e$ は[単位元](def-identity-element.qmd)
+2. **逆元の保存**: すべての $g \in G$ に対して $\phi(g^{-1}) = \phi(g)^{-1}$
+3. **演算の保存**: すべての $g, h \in G$ に対して $\phi(gh) = \phi(g)\phi(h)$
+4. **全単射**: $\phi$ は一対一かつ上への写像
+
+## 自己同型群
+
+対象 $X$ のすべての自己同型の集合は、合成を演算として群を成し、$\text{Aut}(X)$ と表記される：
+
+- **閉性**: 二つの自己同型の合成は自己同型である
+- **単位元**: 恒等写像 $\text{id}_X$ は自己同型である
+- **逆元**: すべての自己同型は、それ自身も自己同型である逆元を持つ
+- **結合性**: 関数の合成は結合的である
+
+## 自己同型の種類
+
+### 内部自己同型
+
+群 $G$ に対して、**内部自己同型**は元 $g \in G$ による共役で定義される：
+$$\phi_g(x) = gxg^{-1}$$
+
+内部自己同型の集合は $\text{Aut}(G)$ の正規部分群を成し、$\text{Inn}(G)$ と表記される。
+
+### 外部自己同型
+
+**外部自己同型**は内部自己同型でない自己同型である。商群 $\text{Out}(G) = \text{Aut}(G)/\text{Inn}(G)$ は外部自己同型群と呼ばれる。
+
+## 例
+
+### 群
+
+1. **巡回群**: $\mathbb{Z}_n$ に対して、$\text{Aut}(\mathbb{Z}_n) \cong (\mathbb{Z}/n\mathbb{Z})^*$
+2. **対称群**: $n \neq 6$ のとき、$S_n$ のすべての自己同型は内部自己同型
+3. **アーベル群**: アーベル群では、すべての共役が自明なので、$\text{Inn}(G) = \{e\}$
+
+### 体
+
+1. **複素数**: 複素共役 $z \mapsto \bar{z}$ は $\mathbb{C}$ の自己同型
+2. **体の拡大**: ガロア群は体の拡大のすべての自己同型から成る
+
+### ベクトル空間
+
+有限次元ベクトル空間 $V$ に対して、$\text{Aut}(V)$ は可逆線形変換の一般線形群 $GL(V)$ である。
+
+### グラフ
+
+グラフの自己同型は隣接関係を保つ頂点の置換である。
+
+## 群の作用との関係
+
+自己同型群 $\text{Aut}(X)$ は $X$ に自然に[作用](def-group-action.qmd)する：
+- 各 $\phi \in \text{Aut}(X)$ と $x \in X$ に対して、作用は $\phi \cdot x = \phi(x)$ で与えられる
+- この作用はすべての群作用の公理を満たす
+
+## 応用
+
+1. **ガロア理論**: 体の自己同型は多項式方程式の理解に基本的である
+2. **対称性解析**: 自己同型は数学的構造の対称性を表す
+3. **分類**: 同型な自己同型群を持つ対象は重要な構造的性質を共有する
+4. **暗号**: ある暗号プロトコルは自己同型の計算の困難性に依存する
+
+## 完全群
+
+群 $G$ が**完全**であるとは：
+- その中心 $Z(G)$ が自明である
+- $G$ のすべての自己同型が内部自己同型である（すなわち、$\text{Aut}(G) = \text{Inn}(G)$）
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-automorphism["定義: 自己同型"]:::definition
+    def-homomorphism["定義: 群準同型"]:::definition
+    def-isomorphism["定義: 同型写像"]:::definition
+    def-group["定義: 群"]:::definition
+    def-identity-element["定義: 単位元"]:::definition
+    def-group-action["定義: 群の作用"]:::definition
+    thm-orbit-stabilizer["定理: 軌道・固定化部分群"]:::theorem
+    def-automorphism --> def-homomorphism
+    def-automorphism --> def-isomorphism
+    def-automorphism --> def-group
+    def-automorphism --> def-identity-element
+    def-automorphism --> def-group-action
+    thm-orbit-stabilizer --> def-automorphism
+    class def-automorphism current
+    click def-homomorphism "def-homomorphism.html" "群準同型の定義へ"
+    click def-isomorphism "def-isomorphism.html" "同型写像の定義へ"
+    click def-group "def-group.html" "群の定義へ"
+    click def-identity-element "def-identity-element.html" "単位元の定義へ"
+    click def-group-action "def-group-action.html" "群の作用の定義へ"
+    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "軌道・固定化部分群の定理へ"
+```
+
+## インタラクティブ可視化
+
+ローカル知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-automorphism" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [完全なインタラクティブ版](../../output/interactive/def-automorphism.html){target="_blank"}を表示

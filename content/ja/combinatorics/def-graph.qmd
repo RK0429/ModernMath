@@ -2,6 +2,7 @@
 id: def-graph
 requires:
 - def-set
+- ../algebra/def-automorphism
 status: complete
 title: '定義: グラフ'
 translation_of: ../../en/combinatorics/def-graph.qmd
@@ -47,6 +48,7 @@ type: Definition
 ### 無向グラフの場合
 - すべての頂点の次数の和は辺の数の2倍に等しい：$\sum_{v \in V} \deg(v) = 2|E|$
 - 奇数次数の頂点の数は偶数
+- グラフ[自己同型](../algebra/def-automorphism.qmd)は隣接性を保つ頂点の置換である
 
 ### 有向グラフの場合
 - すべての入次数の和はすべての出次数の和に等しい：$\sum_{v \in V} \deg^-(v) = \sum_{v \in V} \deg^+(v) = |E|$
@@ -96,25 +98,25 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-functor["Definition: Functor"]:::definition
+    def-graph["Definition: Graph"]:::definition
+    def-permutation["Definition: Permutation"]:::definition
     def-category["Definition: Category"]:::definition
+    def-functor["Definition: Functor"]:::definition
     def-tree["Definition: Tree"]:::definition
     def-set["Definition: Set"]:::definition
-    def-permutation["Definition: Permutation"]:::definition
     def-morphism["Definition: Morphism"]:::definition
-    def-graph["Definition: Graph"]:::definition
+    def-functor --> def-graph
+    def-morphism --> def-graph
+    def-permutation --> def-graph
     def-graph --> def-set
     def-tree --> def-graph
-    def-morphism --> def-graph
-    def-functor --> def-graph
     def-category --> def-graph
-    def-permutation --> def-graph
     class def-graph current
-    click def-functor "def-functor.html" "Definition: Functorへ"
+    click def-permutation "def-permutation.html" "Definition: Permutationへ"
     click def-category "def-category.html" "Definition: Categoryへ"
+    click def-functor "def-functor.html" "Definition: Functorへ"
     click def-tree "def-tree.html" "Definition: Treeへ"
     click def-set "def-set.html" "Definition: Setへ"
-    click def-permutation "def-permutation.html" "Definition: Permutationへ"
     click def-morphism "def-morphism.html" "Definition: Morphismへ"
 ```
 

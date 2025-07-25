@@ -1,0 +1,140 @@
+---
+id: def-automorphism
+requires:
+- def-homomorphism
+- ../category-theory/def-isomorphism
+- def-group
+- def-identity-element
+status: complete
+title: 'Definition: Automorphism'
+translations:
+  en: ../en/algebra/def-automorphism.html
+  ja: ../ja/algebra/def-automorphism.html
+type: Definition
+---
+
+# Automorphism {#def-automorphism}
+
+An **automorphism** is an [isomorphism](../category-theory/def-isomorphism.qmd) from a mathematical object to itself. It represents a structure-preserving transformation that maps an object onto itself in a way that can be reversed.
+
+## Formal Definition
+
+For a [Group](def-group.qmd) $(G, \cdot)$, an automorphism is a [homomorphism](def-homomorphism.qmd) $\phi: G \to G$ that is bijective (both injective and surjective).
+
+More generally, in any category, an automorphism of an object $X$ is an isomorphism $f: X \to X$.
+
+## Properties
+
+For any automorphism $\phi$ of a group $G$:
+
+1. **Identity preservation**: $\phi(e) = e$ where $e$ is the [identity element](def-identity-element.qmd)
+2. **Inverse preservation**: $\phi(g^{-1}) = \phi(g)^{-1}$ for all $g \in G$
+3. **Operation preservation**: $\phi(gh) = \phi(g)\phi(h)$ for all $g, h \in G$
+4. **Bijection**: $\phi$ is both one-to-one and onto
+
+## The Automorphism Group
+
+The set of all automorphisms of an object $X$ forms a group under composition, denoted $\text{Aut}(X)$:
+
+- **Closure**: The composition of two automorphisms is an automorphism
+- **Identity**: The identity map $\text{id}_X$ is an automorphism
+- **Inverses**: Every automorphism has an inverse that is also an automorphism
+- **Associativity**: Function composition is associative
+
+## Types of Automorphisms
+
+### Inner Automorphisms
+
+For a group $G$, an **inner automorphism** is defined by conjugation by an element $g \in G$:
+$$\phi_g(x) = gxg^{-1}$$
+
+The set of inner automorphisms forms a normal subgroup of $\text{Aut}(G)$, denoted $\text{Inn}(G)$.
+
+### Outer Automorphisms
+
+An **outer automorphism** is an automorphism that is not inner. The quotient group $\text{Out}(G) = \text{Aut}(G)/\text{Inn}(G)$ is called the outer automorphism group.
+
+## Examples
+
+### Groups
+
+1. **Cyclic groups**: For $\mathbb{Z}_n$, we have $\text{Aut}(\mathbb{Z}_n) \cong (\mathbb{Z}/n\mathbb{Z})^*$
+2. **Symmetric groups**: Every automorphism of $S_n$ is inner for $n \neq 6$
+3. **Abelian groups**: For abelian groups, all conjugations are trivial, so $\text{Inn}(G) = \{e\}$
+
+### Fields
+
+1. **Complex numbers**: Complex conjugation $z \mapsto \bar{z}$ is an automorphism of $\mathbb{C}$
+2. **Field extensions**: The Galois group consists of all automorphisms of a field extension
+
+### Vector Spaces
+
+For a finite-dimensional vector space $V$, $\text{Aut}(V)$ is the general linear group $GL(V)$ of invertible linear transformations.
+
+### Graphs
+
+A graph automorphism is a permutation of vertices that preserves adjacency relations.
+
+## Relationship to Group Actions
+
+The automorphism group $\text{Aut}(X)$ naturally [acts](def-group-action.qmd) on $X$:
+- For each $\phi \in \text{Aut}(X)$ and $x \in X$, the action is given by $\phi \cdot x = \phi(x)$
+- This action satisfies all group action axioms
+
+## Applications
+
+1. **Galois Theory**: Field automorphisms are fundamental to understanding polynomial equations
+2. **Symmetry Analysis**: Automorphisms represent the symmetries of mathematical structures
+3. **Classification**: Objects with isomorphic automorphism groups share important structural properties
+4. **Cryptography**: Certain cryptographic protocols rely on the difficulty of computing automorphisms
+
+## Complete Groups
+
+A group $G$ is called **complete** if:
+- Its center $Z(G)$ is trivial
+- Every automorphism of $G$ is inner (i.e., $\text{Aut}(G) = \text{Inn}(G)$)
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-automorphism["Definition: Automorphism"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-identity-element["Definition: Identity Element"]:::definition
+    def-group-action["Definition: Group Action"]:::definition
+    thm-orbit-stabilizer["Theorem: Orbit-Stabilizer"]:::theorem
+    def-automorphism --> def-homomorphism
+    def-automorphism --> def-isomorphism
+    def-automorphism --> def-group
+    def-automorphism --> def-identity-element
+    def-automorphism --> def-group-action
+    thm-orbit-stabilizer --> def-automorphism
+    class def-automorphism current
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click def-identity-element "def-identity-element.html" "Go to Identity Element definition"
+    click def-group-action "def-group-action.html" "Go to Group Action definition"
+    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "Go to Orbit-Stabilizer theorem"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-automorphism" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-automorphism.html){target="_blank"}

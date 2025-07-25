@@ -2,6 +2,7 @@
 id: def-graph
 requires:
 - def-set
+- ../algebra/def-automorphism
 status: complete
 title: 'Definition: Graph'
 translations:
@@ -46,6 +47,7 @@ In a directed graph, edges have direction. Formally:
 ### For Undirected Graphs
 - The sum of all vertex degrees equals twice the number of edges: $\sum_{v \in V} \deg(v) = 2|E|$
 - The number of vertices with odd degree is even
+- Graph [automorphisms](../algebra/def-automorphism.qmd) are permutations of vertices that preserve adjacency
 
 ### For Directed Graphs
 - The sum of all in-degrees equals the sum of all out-degrees: $\sum_{v \in V} \deg^-(v) = \sum_{v \in V} \deg^+(v) = |E|$
@@ -95,25 +97,25 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-functor["Definition: Functor"]:::definition
+    def-graph["Definition: Graph"]:::definition
+    def-permutation["Definition: Permutation"]:::definition
     def-category["Definition: Category"]:::definition
+    def-functor["Definition: Functor"]:::definition
     def-tree["Definition: Tree"]:::definition
     def-set["Definition: Set"]:::definition
-    def-permutation["Definition: Permutation"]:::definition
     def-morphism["Definition: Morphism"]:::definition
-    def-graph["Definition: Graph"]:::definition
+    def-functor --> def-graph
+    def-morphism --> def-graph
+    def-permutation --> def-graph
     def-graph --> def-set
     def-tree --> def-graph
-    def-morphism --> def-graph
-    def-functor --> def-graph
     def-category --> def-graph
-    def-permutation --> def-graph
     class def-graph current
-    click def-functor "def-functor.html" "Go to Functor definition"
+    click def-permutation "def-permutation.html" "Go to Permutation definition"
     click def-category "def-category.html" "Go to Category definition"
+    click def-functor "def-functor.html" "Go to Functor definition"
     click def-tree "def-tree.html" "Go to Tree definition"
     click def-set "def-set.html" "Go to Set definition"
-    click def-permutation "def-permutation.html" "Go to Permutation definition"
     click def-morphism "def-morphism.html" "Go to Morphism definition"
 ```
 

@@ -51,7 +51,7 @@ $$|X| = \frac{|G|}{|G_x|}$$
 
 ## 応用
 
-1. **対称性の計数**: グラフや他の構造の自己同型の個数を数える
+1. **対称性の計数**: グラフや他の構造の[自己同型](def-automorphism.qmd)の個数を数える
 2. **バーンサイドの補題**: 固定点を使って軌道を数える
 3. **[シローの定理](thm-sylow.qmd)**: 部分群への共役作用を解析
 4. **分類**: 様々な集合への作用により群を分類
@@ -66,17 +66,17 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group-action["Group Action"]:::definition
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
     def-coset["Definition: Coset"]:::definition
-    thm-orbit-stabilizer --> def-coset
+    def-group-action["Group Action"]:::definition
     thm-orbit-stabilizer --> def-group-action
+    thm-orbit-stabilizer --> def-coset
     thm-orbit-stabilizer --> thm-lagrange
     class thm-orbit-stabilizer current
-    click def-group-action "def-group-action.html" "Group Actionへ"
     click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
     click def-coset "def-coset.html" "Definition: Cosetへ"
+    click def-group-action "def-group-action.html" "Group Actionへ"
 ```
 
 ## インタラクティブ可視化
