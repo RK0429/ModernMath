@@ -1,0 +1,204 @@
+---
+id: def-hilbert-space
+requires:
+- def-normed-vector-space
+- def-complete-metric-space
+- def-banach-space
+- ../algebra/def-vector-space
+status: complete
+title: 'Definition: Hilbert Space'
+type: Definition
+---
+
+# Definition: Hilbert Space {#def-hilbert-space}
+
+A **Hilbert space** is a complete inner product space. More precisely, it is a [Vector Space](../algebra/def-vector-space.qmd) equipped with an inner product that is complete with respect to the norm induced by this inner product. This fundamental structure combines algebraic, geometric, and topological properties in a way that makes it indispensable in functional analysis, quantum mechanics, and many other areas of mathematics and physics.
+
+## Formal Definition
+
+A Hilbert space is a pair $(H, \langle \cdot, \cdot \rangle)$ where:
+- $H$ is a [Vector Space](../algebra/def-vector-space.qmd) over a field $\mathbb{F}$ (either $\mathbb{R}$ or $\mathbb{C}$)
+- $\langle \cdot, \cdot \rangle: H \times H \to \mathbb{F}$ is an **inner product** satisfying:
+
+### Inner Product Axioms
+
+For all $x, y, z \in H$ and all scalars $\alpha, \beta \in \mathbb{F}$:
+
+1. **Linearity in the first argument**:
+   $$\langle \alpha x + \beta y, z \rangle = \alpha \langle x, z \rangle + \beta \langle y, z \rangle$$
+
+2. **Conjugate symmetry**:
+   $$\langle x, y \rangle = \overline{\langle y, x \rangle}$$
+   (For real Hilbert spaces, this becomes symmetry: $\langle x, y \rangle = \langle y, x \rangle$)
+
+3. **Positive definiteness**:
+   - $\langle x, x \rangle \geq 0$ for all $x \in H$
+   - $\langle x, x \rangle = 0$ if and only if $x = 0$
+
+### Induced Norm and Completeness
+
+The inner product induces a norm on $H$ defined by:
+$$\|x\| = \sqrt{\langle x, x \rangle}$$
+
+This makes $(H, \|\cdot\|)$ a [Normed Vector Space](def-normed-vector-space.qmd). The space $H$ is a Hilbert space if and only if it is [Complete](def-complete-metric-space.qmd) with respect to this norm, making it a special type of [Banach Space](def-banach-space.qmd).
+
+## Notation
+
+- Standard notation: $(H, \langle \cdot, \cdot \rangle)$ or simply $H$ when the inner product is understood
+- Inner product: $\langle x, y \rangle$, $(x, y)$, or $\langle x | y \rangle$ (physics notation)
+- The norm: $\|x\| = \sqrt{\langle x, x \rangle}$
+- For specific spaces: $L^2(\mu)$, $\ell^2$, $H^k$ (Sobolev spaces)
+
+## Intuitive Understanding
+
+A Hilbert space can be thought of as an infinite-dimensional generalization of Euclidean space that preserves the essential geometric structure:
+- **Lengths**: The norm $\|x\|$ measures the "length" of a vector
+- **Angles**: The inner product allows us to define angles between vectors via $\cos \theta = \frac{\langle x, y \rangle}{\|x\| \|y\|}$
+- **Orthogonality**: Two vectors are orthogonal if $\langle x, y \rangle = 0$
+- **Completeness**: Every Cauchy sequence converges, ensuring no "holes" in the space
+
+This combination of algebraic structure (vector space), geometric structure (inner product), and analytic structure (completeness) makes Hilbert spaces the natural setting for many mathematical theories.
+
+## Key Properties
+
+### Fundamental Inequalities
+
+1. **Cauchy-Schwarz Inequality**: For all $x, y \in H$:
+   $$|\langle x, y \rangle| \leq \|x\| \|y\|$$
+   with equality if and only if $x$ and $y$ are linearly dependent.
+
+2. **Parallelogram Law**: For all $x, y \in H$:
+   $$\|x + y\|^2 + \|x - y\|^2 = 2(\|x\|^2 + \|y\|^2)$$
+   This property characterizes norms that come from inner products.
+
+### Orthogonality and Projections
+
+- **Orthogonal complement**: For any closed subspace $M \subseteq H$, the space decomposes as $H = M \oplus M^\perp$
+- **Projection theorem**: For any closed convex subset $C \subseteq H$ and any $x \in H$, there exists a unique closest point in $C$ to $x$
+- **Orthonormal bases**: Every separable Hilbert space has a countable orthonormal basis
+
+### Duality
+
+The **Riesz Representation Theorem** establishes that every continuous linear functional $f: H \to \mathbb{F}$ can be uniquely represented as:
+$$f(x) = \langle x, y \rangle$$
+for some $y \in H$. This creates a natural isomorphism between $H$ and its dual space $H^*$.
+
+## Examples
+
+### Finite-Dimensional Hilbert Spaces
+
+1. **Euclidean space $\mathbb{R}^n$**: With inner product $\langle x, y \rangle = \sum_{i=1}^n x_i y_i$
+
+2. **Complex coordinate space $\mathbb{C}^n$**: With inner product $\langle x, y \rangle = \sum_{i=1}^n x_i \overline{y_i}$
+
+### Infinite-Dimensional Hilbert Spaces
+
+1. **Square-summable sequences $\ell^2$**:
+   $$\ell^2 = \left\{(x_n)_{n=1}^\infty : \sum_{n=1}^\infty |x_n|^2 < \infty\right\}$$
+   with inner product $\langle x, y \rangle = \sum_{n=1}^\infty x_n \overline{y_n}$
+
+2. **Square-integrable functions $L^2([a,b])$**:
+   $$L^2([a,b]) = \left\{f : [a,b] \to \mathbb{C} : \int_a^b |f(x)|^2 \, dx < \infty\right\}$$
+   with inner product $\langle f, g \rangle = \int_a^b f(x) \overline{g(x)} \, dx$
+
+3. **General $L^2$ spaces**: For a measure space $(X, \mathcal{M}, \mu)$:
+   $$L^2(\mu) = \left\{f : X \to \mathbb{C} : \int_X |f|^2 \, d\mu < \infty\right\}$$
+
+4. **Sobolev spaces $H^k(\Omega)$**: Functions on $\Omega \subseteq \mathbb{R}^n$ whose derivatives up to order $k$ are in $L^2(\Omega)$
+
+5. **Hardy spaces $H^2(\mathbb{D})$**: Holomorphic functions on the unit disk with bounded $L^2$ norm on circles
+
+## Special Types
+
+### Classification by Properties
+
+- **Separable Hilbert spaces**: Contain a countable dense subset
+- **Non-separable Hilbert spaces**: e.g., $L^2(\mathbb{R})$ with uncountable orthonormal basis
+- **Real Hilbert spaces**: Inner product takes real values
+- **Complex Hilbert spaces**: Inner product takes complex values
+- **Reproducing kernel Hilbert spaces**: Function spaces with point evaluation functionals
+
+## Applications
+
+1. **Quantum Mechanics**:
+   - State vectors live in Hilbert spaces
+   - Observables are self-adjoint operators
+   - The inner product gives probability amplitudes
+
+2. **Fourier Analysis**:
+   - $L^2$ functions have Fourier series/transforms
+   - Parseval's identity relates $L^2$ norms
+
+3. **Partial Differential Equations**:
+   - Weak solutions in Sobolev spaces
+   - Variational formulations use Hilbert space structure
+
+4. **Signal Processing**:
+   - Signals as vectors in $L^2$ or $\ell^2$
+   - Orthogonal decompositions for compression
+
+5. **Machine Learning**:
+   - Reproducing kernel Hilbert spaces in kernel methods
+   - Feature spaces in support vector machines
+
+## Fundamental Theorems
+
+Several cornerstone results rely on Hilbert space structure:
+
+1. **Riesz Representation Theorem**: Characterizes continuous linear functionals
+2. **Spectral Theorem**: Self-adjoint operators have orthogonal spectral decompositions
+3. **Lax-Milgram Theorem**: Existence of solutions to variational problems
+4. **Closed Graph Theorem**: Applies as Hilbert spaces are Banach spaces
+
+## Historical Note
+
+The concept evolved through the work of David Hilbert, Erhard Schmidt, and Frigyes Riesz in the early 20th century. John von Neumann coined the term "Hilbert space" in 1929, recognizing these spaces as the proper mathematical framework for quantum mechanics. The abstract axiomatic treatment unified various concrete function spaces that had been studied separately.
+
+## Related Concepts
+
+- [Banach Space](def-banach-space.qmd): Complete normed spaces (Hilbert spaces are special Banach spaces)
+- [Normed Vector Space](def-normed-vector-space.qmd): The underlying normed structure
+- [Complete Metric Space](def-complete-metric-space.qmd): The completeness property
+- [Vector Space](../algebra/def-vector-space.qmd): The algebraic foundation
+- **Inner Product Space**: Pre-Hilbert space (may not be complete)
+- **Orthonormal Basis**: Generalizes standard basis to infinite dimensions
+- **Self-adjoint Operator**: Linear operators equal to their adjoints
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-hilbert-space["Definition: Hilbert Space"]:::definition
+    def-normed-vector-space["Definition: Normed Vector Space"]:::definition
+    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
+    def-banach-space["Definition: Banach Space"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-hilbert-space --> def-complete-metric-space
+    def-hilbert-space --> def-normed-vector-space
+    def-hilbert-space --> def-banach-space
+    def-hilbert-space --> def-vector-space
+    class def-hilbert-space current
+    click def-normed-vector-space "def-normed-vector-space.html" "Go to Normed Vector Space definition"
+    click def-complete-metric-space "def-complete-metric-space.html" "Go to Complete Metric Space definition"
+    click def-banach-space "def-banach-space.html" "Go to Banach Space definition"
+    click def-vector-space "../algebra/def-vector-space.html" "Go to Vector Space definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-hilbert-space" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-hilbert-space.html){target="_blank"}

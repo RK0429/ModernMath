@@ -258,7 +258,7 @@ The project supports multiple languages (currently English and Japanese) with au
 
 - Japanese files need `translation_of: ../../en/path.qmd`
 - All files need `translations: {en: "path.html", ja: "path.html"}`
-- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Module→加群, Ideal→イデアル, Cyclic Group→巡回群, Polynomial Ring→多項式環, Variance→分散, Abelian Group→アーベル群/可換群, Independence→独立性, Uniform Continuity→一様連続性, Homeomorphism→同相写像, Series→級数, Group Action→群の作用, Orbit→軌道, Stabilizer→固定化部分群, Cauchy Sequence→コーシー列, Inclusion-Exclusion Principle→包除原理, Sylow Theorems→シローの定理, Automorphism→自己同型
+- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Module→加群, Ideal→イデアル, Cyclic Group→巡回群, Polynomial Ring→多項式環, Variance→分散, Abelian Group→アーベル群/可換群, Independence→独立性, Uniform Continuity→一様連続性, Homeomorphism→同相写像, Series→級数, Group Action→群の作用, Orbit→軌道, Stabilizer→固定化部分群, Cauchy Sequence→コーシー列, Inclusion-Exclusion Principle→包除原理, Sylow Theorems→シローの定理, Automorphism→自己同型, Isomorphism→同型, Hilbert Space→ヒルベルト空間
 
 ### Building Multilingual Sites
 

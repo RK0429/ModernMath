@@ -53,6 +53,9 @@ $$f_n \to f \text{ 一様収束するとは } \sup_{x \in X} |f_n(x) - f(x)| \to
 ### 絶対収束
 [級数](def-series.qmd)に対して：$\sum_{n=1}^{\infty} a_n$ が絶対収束するとは $\sum_{n=1}^{\infty} |a_n|$ が収束することをいう
 
+### ヒルベルト空間における収束
+[ヒルベルト空間](def-hilbert-space.qmd)において、収束は内積を用いて特徴づけられる：$x_n \to x$ となるのは $\|x_n - x\| \to 0$ のときかつそのときに限る。ここで $\|x\| = \sqrt{\langle x, x \rangle}$ である
+
 ## 例
 
 1. **収束する例**：$a_n = \frac{1}{n} \to 0$
@@ -83,19 +86,19 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-sequence["Definition: Sequence"]:::definition
-    def-series["Definition: Series"]:::definition
-    thm-taylor-series["Theorem: Taylor Series"]:::theorem
-    def-limit["Definition: Limit of a Sequence"]:::definition
     def-convergence["Definition: Convergence"]:::definition
-    thm-taylor-series --> def-convergence
+    def-series["Definition: Series"]:::definition
+    def-limit["Definition: Limit of a Sequence"]:::definition
+    thm-taylor-series["Theorem: Taylor Series"]:::theorem
     def-convergence --> def-sequence
-    def-convergence --> def-limit
+    thm-taylor-series --> def-convergence
     def-series --> def-convergence
+    def-convergence --> def-limit
     class def-convergence current
     click def-sequence "def-sequence.html" "Definition: Sequenceへ"
     click def-series "def-series.html" "Definition: Seriesへ"
-    click thm-taylor-series "thm-taylor-series.html" "Theorem: Taylor Seriesへ"
     click def-limit "def-limit.html" "Definition: Limit of a Sequenceへ"
+    click thm-taylor-series "thm-taylor-series.html" "Theorem: Taylor Seriesへ"
 ```
 
 ## インタラクティブ可視化

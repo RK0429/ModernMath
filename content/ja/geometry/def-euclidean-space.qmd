@@ -4,6 +4,7 @@ requires:
 - def-vector-space
 - def-metric-space
 - def-normed-vector-space
+- ../analysis/def-hilbert-space
 status: complete
 title: '定義: ユークリッド空間'
 translation_of: ../../en/geometry/def-euclidean-space.qmd
@@ -15,7 +16,7 @@ type: Definition
 
 # 定義: ユークリッド空間 {#def-euclidean-space}
 
-**$n$次元ユークリッド空間** $\mathbb{E}^n$ は、標準内積とそれから誘導される[計量](def-metric-space.qmd)を備えた[ベクトル空間](../algebra/def-vector-space.qmd) $\mathbb{R}^n$ です。
+**$n$次元ユークリッド空間** $\mathbb{E}^n$ は、標準内積とそれから誘導される[計量](def-metric-space.qmd)を備えた[ベクトル空間](../algebra/def-vector-space.qmd) $\mathbb{R}^n$ です。これにより有限次元[ヒルベルト空間](../analysis/def-hilbert-space.qmd)となります。
 
 ## 形式的定義
 
@@ -35,7 +36,7 @@ $n$次元ユークリッド空間は以下で構成されます：
 ## 性質
 
 - **完備距離空間**: すべての[コーシー列](../analysis/def-cauchy-sequence.qmd)が収束する
-- **有限次元**: ベクトル空間として次元 $n$ を持つ
+- **有限次元[ヒルベルト空間](../analysis/def-hilbert-space.qmd)**: ベクトル空間として次元 $n$ を持つ
 - **局所コンパクト**: すべての点がコンパクトな近傍を持つ
 - **単連結**: $n \geq 2$ の場合
 - **等質**: どの点でも同じに見える（ユークリッド群が推移的に[作用](../algebra/def-group-action.qmd)する）
@@ -75,16 +76,19 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-vector-space["Definition: Vector Space"]:::definition
-    thm-pythagorean["Theorem: Pythagorean Theorem"]:::theorem
-    def-metric-space["Definition: Metric Space"]:::definition
+    def-normed-vector-space["Definition: Normed Vector Space"]:::definition
     def-euclidean-space["Definition: Euclidean Space"]:::definition
+    def-metric-space["Definition: Metric Space"]:::definition
+    thm-pythagorean["Theorem: Pythagorean Theorem"]:::theorem
     def-euclidean-space --> def-metric-space
-    def-euclidean-space --> def-vector-space
     thm-pythagorean --> def-euclidean-space
+    def-euclidean-space --> def-vector-space
+    def-euclidean-space --> def-normed-vector-space
     class def-euclidean-space current
     click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
-    click thm-pythagorean "thm-pythagorean.html" "Theorem: Pythagorean Theoremへ"
+    click def-normed-vector-space "def-normed-vector-space.html" "Definition: Normed Vector Spaceへ"
     click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
+    click thm-pythagorean "thm-pythagorean.html" "Theorem: Pythagorean Theoremへ"
 ```
 
 ## インタラクティブ可視化

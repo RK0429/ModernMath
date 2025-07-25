@@ -1,0 +1,208 @@
+---
+id: def-hilbert-space
+requires:
+- def-normed-vector-space
+- def-complete-metric-space
+- def-banach-space
+- ../algebra/def-vector-space
+status: complete
+title: '定義: ヒルベルト空間'
+type: Definition
+translation_of: ../../en/analysis/def-hilbert-space.qmd
+translations:
+  en: ../en/analysis/def-hilbert-space.html
+  ja: ../ja/analysis/def-hilbert-space.html
+---
+
+# 定義: ヒルベルト空間 {#def-hilbert-space}
+
+**ヒルベルト空間**とは、完備な内積空間のことである。より正確には、内積を備えた[ベクトル空間](../algebra/def-vector-space.qmd)であって、この内積から誘導されるノルムに関して完備であるものをいう。この基本的な構造は、代数的、幾何学的、位相的性質を組み合わせたものであり、関数解析、量子力学、その他多くの数学および物理学の分野において不可欠なものとなっている。
+
+## 形式的定義
+
+ヒルベルト空間とは、次の条件を満たす組 $(H, \langle \cdot, \cdot \rangle)$ である：
+- $H$ は体 $\mathbb{F}$（$\mathbb{R}$ または $\mathbb{C}$）上の[ベクトル空間](../algebra/def-vector-space.qmd)
+- $\langle \cdot, \cdot \rangle: H \times H \to \mathbb{F}$ は次を満たす**内積**：
+
+### 内積の公理
+
+すべての $x, y, z \in H$ およびすべてのスカラー $\alpha, \beta \in \mathbb{F}$ に対して：
+
+1. **第一引数に関する線形性**:
+   $$\langle \alpha x + \beta y, z \rangle = \alpha \langle x, z \rangle + \beta \langle y, z \rangle$$
+
+2. **共役対称性**:
+   $$\langle x, y \rangle = \overline{\langle y, x \rangle}$$
+   （実ヒルベルト空間の場合、これは対称性となる：$\langle x, y \rangle = \langle y, x \rangle$）
+
+3. **正定値性**:
+   - すべての $x \in H$ に対して $\langle x, x \rangle \geq 0$
+   - $\langle x, x \rangle = 0$ となるのは $x = 0$ のときかつそのときに限る
+
+### 誘導ノルムと完備性
+
+内積は $H$ 上のノルムを次のように誘導する：
+$$\|x\| = \sqrt{\langle x, x \rangle}$$
+
+これにより $(H, \|\cdot\|)$ は[ノルム空間](def-normed-vector-space.qmd)となる。空間 $H$ がヒルベルト空間であるのは、このノルムに関して[完備](def-complete-metric-space.qmd)であるときかつそのときに限り、これは[バナッハ空間](def-banach-space.qmd)の特別な場合となる。
+
+## 記法
+
+- 標準的な記法：$(H, \langle \cdot, \cdot \rangle)$ または内積が明らかな場合は単に $H$
+- 内積：$\langle x, y \rangle$、$(x, y)$、または $\langle x | y \rangle$（物理学の記法）
+- ノルム：$\|x\| = \sqrt{\langle x, x \rangle}$
+- 特定の空間：$L^2(\mu)$、$\ell^2$、$H^k$（ソボレフ空間）
+
+## 直観的理解
+
+ヒルベルト空間は、本質的な幾何学的構造を保ちながらユークリッド空間を無限次元に一般化したものと考えることができる：
+- **長さ**：ノルム $\|x\|$ はベクトルの「長さ」を測る
+- **角度**：内積により、$\cos \theta = \frac{\langle x, y \rangle}{\|x\| \|y\|}$ を通じてベクトル間の角度を定義できる
+- **直交性**：$\langle x, y \rangle = 0$ のとき、2つのベクトルは直交する
+- **完備性**：すべてのコーシー列が収束し、空間に「穴」がないことを保証する
+
+この代数的構造（ベクトル空間）、幾何学的構造（内積）、解析的構造（完備性）の組み合わせにより、ヒルベルト空間は多くの数学理論の自然な舞台となる。
+
+## 主要な性質
+
+### 基本的な不等式
+
+1. **コーシー・シュワルツの不等式**：すべての $x, y \in H$ に対して：
+   $$|\langle x, y \rangle| \leq \|x\| \|y\|$$
+   等号成立は $x$ と $y$ が線形従属であるときかつそのときに限る。
+
+2. **平行四辺形の法則**：すべての $x, y \in H$ に対して：
+   $$\|x + y\|^2 + \|x - y\|^2 = 2(\|x\|^2 + \|y\|^2)$$
+   この性質は内積から来るノルムを特徴づける。
+
+### 直交性と射影
+
+- **直交補空間**：任意の閉部分空間 $M \subseteq H$ に対して、空間は $H = M \oplus M^\perp$ と分解される
+- **射影定理**：任意の閉凸集合 $C \subseteq H$ と任意の $x \in H$ に対して、$C$ 内の $x$ に最も近い点が一意に存在する
+- **正規直交基底**：すべての可分ヒルベルト空間は可算な正規直交基底を持つ
+
+### 双対性
+
+**リースの表現定理**により、すべての連続線形汎関数 $f: H \to \mathbb{F}$ は次のように一意に表される：
+$$f(x) = \langle x, y \rangle$$
+ある $y \in H$ に対して。これにより $H$ とその双対空間 $H^*$ の間に自然な同型が作られる。
+
+## 例
+
+### 有限次元ヒルベルト空間
+
+1. **ユークリッド空間 $\mathbb{R}^n$**：内積 $\langle x, y \rangle = \sum_{i=1}^n x_i y_i$ を持つ
+
+2. **複素座標空間 $\mathbb{C}^n$**：内積 $\langle x, y \rangle = \sum_{i=1}^n x_i \overline{y_i}$ を持つ
+
+### 無限次元ヒルベルト空間
+
+1. **二乗総和可能な数列 $\ell^2$**：
+   $$\ell^2 = \left\{(x_n)_{n=1}^\infty : \sum_{n=1}^\infty |x_n|^2 < \infty\right\}$$
+   内積 $\langle x, y \rangle = \sum_{n=1}^\infty x_n \overline{y_n}$ を持つ
+
+2. **二乗可積分関数 $L^2([a,b])$**：
+   $$L^2([a,b]) = \left\{f : [a,b] \to \mathbb{C} : \int_a^b |f(x)|^2 \, dx < \infty\right\}$$
+   内積 $\langle f, g \rangle = \int_a^b f(x) \overline{g(x)} \, dx$ を持つ
+
+3. **一般の $L^2$ 空間**：測度空間 $(X, \mathcal{M}, \mu)$ に対して：
+   $$L^2(\mu) = \left\{f : X \to \mathbb{C} : \int_X |f|^2 \, d\mu < \infty\right\}$$
+
+4. **ソボレフ空間 $H^k(\Omega)$**：$\Omega \subseteq \mathbb{R}^n$ 上の関数で、$k$ 階までの導関数が $L^2(\Omega)$ に属するもの
+
+5. **ハーディ空間 $H^2(\mathbb{D})$**：単位円板上の正則関数で、円周上の $L^2$ ノルムが有界なもの
+
+## 特別な種類
+
+### 性質による分類
+
+- **可分ヒルベルト空間**：可算な稠密部分集合を含む
+- **非可分ヒルベルト空間**：例：非可算な正規直交基底を持つ $L^2(\mathbb{R})$
+- **実ヒルベルト空間**：内積が実数値を取る
+- **複素ヒルベルト空間**：内積が複素数値を取る
+- **再生核ヒルベルト空間**：点評価汎関数を持つ関数空間
+
+## 応用
+
+1. **量子力学**：
+   - 状態ベクトルはヒルベルト空間に存在する
+   - 観測量は自己共役作用素である
+   - 内積は確率振幅を与える
+
+2. **フーリエ解析**：
+   - $L^2$ 関数はフーリエ級数・変換を持つ
+   - パーセバルの等式は $L^2$ ノルムを関係付ける
+
+3. **偏微分方程式**：
+   - ソボレフ空間における弱解
+   - 変分法はヒルベルト空間構造を使用する
+
+4. **信号処理**：
+   - 信号を $L^2$ または $\ell^2$ のベクトルとして扱う
+   - 圧縮のための直交分解
+
+5. **機械学習**：
+   - カーネル法における再生核ヒルベルト空間
+   - サポートベクターマシンの特徴空間
+
+## 基本定理
+
+ヒルベルト空間構造に依存するいくつかの重要な結果：
+
+1. **リースの表現定理**：連続線形汎関数を特徴づける
+2. **スペクトル定理**：自己共役作用素は直交スペクトル分解を持つ
+3. **ラックス・ミルグラム定理**：変分問題の解の存在
+4. **閉グラフ定理**：ヒルベルト空間はバナッハ空間であるため適用される
+
+## 歴史的注記
+
+この概念は20世紀初頭のダヴィド・ヒルベルト、エルハルト・シュミット、フリジェシュ・リースの研究を通じて発展した。ジョン・フォン・ノイマンは1929年に「ヒルベルト空間」という用語を作り、これらの空間を量子力学の適切な数学的枠組みとして認識した。抽象的な公理的扱いは、それまで別々に研究されていた様々な具体的な関数空間を統一した。
+
+## 関連概念
+
+- [バナッハ空間](def-banach-space.qmd)：完備ノルム空間（ヒルベルト空間は特別なバナッハ空間）
+- [ノルム空間](def-normed-vector-space.qmd)：基礎となるノルム構造
+- [完備距離空間](def-complete-metric-space.qmd)：完備性の性質
+- [ベクトル空間](../algebra/def-vector-space.qmd)：代数的基礎
+- **内積空間**：前ヒルベルト空間（完備でない可能性がある）
+- **正規直交基底**：標準基底を無限次元に一般化
+- **自己共役作用素**：その随伴と等しい線形作用素
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-hilbert-space["定義: ヒルベルト空間"]:::definition
+    def-normed-vector-space["定義: ノルム空間"]:::definition
+    def-complete-metric-space["定義: 完備距離空間"]:::definition
+    def-banach-space["定義: バナッハ空間"]:::definition
+    def-vector-space["定義: ベクトル空間"]:::definition
+    def-hilbert-space --> def-complete-metric-space
+    def-hilbert-space --> def-normed-vector-space
+    def-hilbert-space --> def-banach-space
+    def-hilbert-space --> def-vector-space
+    class def-hilbert-space current
+    click def-normed-vector-space "def-normed-vector-space.html" "ノルム空間の定義へ"
+    click def-complete-metric-space "def-complete-metric-space.html" "完備距離空間の定義へ"
+    click def-banach-space "def-banach-space.html" "バナッハ空間の定義へ"
+    click def-vector-space "../algebra/def-vector-space.html" "ベクトル空間の定義へ"
+```
+
+## インタラクティブ可視化
+
+ローカルな知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-hilbert-space" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [完全なインタラクティブ版](../../output/interactive/def-hilbert-space.html){target="_blank"}を表示

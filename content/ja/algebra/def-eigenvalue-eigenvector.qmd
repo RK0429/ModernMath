@@ -60,7 +60,7 @@ $$E_\lambda = \{\mathbf{v} \in V : A\mathbf{v} = \lambda\mathbf{v}\} = \ker(A - 
 ## 特殊な場合
 
 - **実行列**：$n \times n$ 実行列は複素固有値を持つことがあり、それらは共役対で現れる
-- **対称行列**：実対称行列は常に実固有値を持ち、固有ベクトルは直交する
+- **対称行列**：実対称行列は常に実固有値を持ち、固有ベクトルは直交する（有限次元[ヒルベルト空間](../analysis/def-hilbert-space.qmd)における自己共役作用素のスペクトル定理）
 - **対角行列**：固有値は対角成分である
 - **三角行列**：固有値は対角成分である
 
@@ -83,22 +83,22 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-vector-space["Definition: Vector Space"]:::definition
-    def-linear-transformation["Definition: Linear Transformation"]:::definition
-    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
     def-matrix["Definition: Matrix"]:::definition
     def-determinant["Definition: Determinant"]:::definition
     def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-eigenvalue-eigenvector --> def-matrix
+    def-eigenvalue-eigenvector --> def-vector-space
     def-eigenvalue-eigenvector --> def-polynomial-ring
     def-eigenvalue-eigenvector --> def-linear-transformation
     def-eigenvalue-eigenvector --> def-determinant
-    def-eigenvalue-eigenvector --> def-matrix
-    def-eigenvalue-eigenvector --> def-vector-space
     class def-eigenvalue-eigenvector current
     click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
-    click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
-    click def-polynomial-ring "def-polynomial-ring.html" "Definition: Polynomial Ringへ"
     click def-matrix "def-matrix.html" "Definition: Matrixへ"
     click def-determinant "def-determinant.html" "Definition: Determinantへ"
+    click def-polynomial-ring "def-polynomial-ring.html" "Definition: Polynomial Ringへ"
+    click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
 ```
 
 ## インタラクティブ可視化
