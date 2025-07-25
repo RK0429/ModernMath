@@ -3,6 +3,7 @@ id: thm-pigeonhole-principle
 requires:
 - def-set
 - def-function
+- ../logic-set-theory/def-cardinality
 status: complete
 title: 定理：鳩の巣原理
 translation_of: ../../en/combinatorics/thm-pigeonhole-principle.qmd
@@ -24,7 +25,7 @@ type: Theorem
 
 ## 形式的命題
 
-$f: A \to B$ を関数とし、$A$ と $B$ は $|A| > |B|$ となる有限[集合](../logic-set-theory/def-set.qmd)とします。このとき $f$ は単射ではありません。つまり、$f(a_1) = f(a_2)$ となる異なる要素 $a_1, a_2 \in A$ が存在します。
+$f: A \to B$ を関数とし、$A$ と $B$ は[濃度](../logic-set-theory/def-cardinality.qmd)が $|A| > |B|$ を満たす有限[集合](../logic-set-theory/def-set.qmd)とします。このとき $f$ は単射ではありません。つまり、$f(a_1) = f(a_2)$ となる異なる要素 $a_1, a_2 \in A$ が存在します。
 
 ## 証明
 
@@ -69,14 +70,14 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Definition: Set"]:::definition
     thm-pigeonhole-principle["Theorem: Pigeonhole Principle"]:::theorem
     def-function["Definition: Function"]:::definition
-    thm-pigeonhole-principle --> def-function
+    def-set["Definition: Set"]:::definition
     thm-pigeonhole-principle --> def-set
+    thm-pigeonhole-principle --> def-function
     class thm-pigeonhole-principle current
-    click def-set "def-set.html" "Definition: Setへ"
     click def-function "def-function.html" "Definition: Functionへ"
+    click def-set "def-set.html" "Definition: Setへ"
 ```
 
 ## インタラクティブ可視化

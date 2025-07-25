@@ -4,6 +4,7 @@ requires:
 - def-set
 - ../logic-set-theory/def-union
 - ../logic-set-theory/def-intersection
+- ../logic-set-theory/def-cardinality
 status: complete
 title: 'Theorem: Inclusion-Exclusion Principle'
 translations:
@@ -14,11 +15,11 @@ type: Theorem
 
 # Theorem: Inclusion-Exclusion Principle
 
-The **Inclusion-Exclusion Principle** is a fundamental counting principle in combinatorics that provides a formula for finding the cardinality of the union of multiple sets by considering their intersections.
+The **Inclusion-Exclusion Principle** is a fundamental counting principle in combinatorics that provides a formula for finding the [cardinality](../logic-set-theory/def-cardinality.qmd) of the union of multiple sets by considering their intersections.
 
 ## Statement
 
-For finite [sets](../logic-set-theory/def-set.qmd) $A_1, A_2, \ldots, A_n$, the cardinality of their [union](../logic-set-theory/def-union.qmd) is given by:
+For finite [sets](../logic-set-theory/def-set.qmd) $A_1, A_2, \ldots, A_n$, the [cardinality](../logic-set-theory/def-cardinality.qmd) of their [union](../logic-set-theory/def-union.qmd) is given by:
 
 $$\left|\bigcup_{i=1}^{n} A_i\right| = \sum_{k=1}^{n} (-1)^{k+1} \sum_{1 \leq i_1 < i_2 < \cdots < i_k \leq n} \left|A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k}\right|$$
 
@@ -106,8 +107,8 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Definition: Set"]:::definition
     thm-inclusion-exclusion["Theorem: Inclusion-Exclusion Principle"]:::theorem
+    def-set["Definition: Set"]:::definition
     thm-inclusion-exclusion --> def-set
     class thm-inclusion-exclusion current
     click def-set "def-set.html" "Go to Set definition"

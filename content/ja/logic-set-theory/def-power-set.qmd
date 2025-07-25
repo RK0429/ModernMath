@@ -3,6 +3,7 @@ id: def-power-set
 requires:
 - def-set
 - def-partial-order
+- def-cardinality
 status: complete
 title: '定義: べき集合'
 translation_of: ../../en/logic-set-theory/def-power-set.qmd
@@ -26,7 +27,7 @@ $$\mathcal{P}(A) = \{B : B \subseteq A\}$$
 
 1. **常に空集合を含む**: 任意の集合 $A$ に対して $\emptyset \in \mathcal{P}(A)$
 2. **常に元の集合を含む**: $A \in \mathcal{P}(A)$
-3. **濃度**: $|A| = n$（有限）ならば $|\mathcal{P}(A)| = 2^n$
+3. **[濃度](def-cardinality.qmd)**: $|A| = n$（有限）ならば $|\mathcal{P}(A)| = 2^n$
 4. **順序**: $\mathcal{P}(A)$ は包含関係の下で[半順序集合](def-partial-order.qmd)をなす
 
 ## 例
@@ -74,12 +75,16 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-partial-order["Definition: Partial Order"]:::definition
     def-power-set["Definition: Power Set"]:::definition
     def-set["Definition: Set"]:::definition
     thm-cantor["Theorem: Cantor's Theorem"]:::theorem
     thm-cantor --> def-power-set
+    def-partial-order --> def-power-set
     def-power-set --> def-set
+    def-power-set --> def-partial-order
     class def-power-set current
+    click def-partial-order "def-partial-order.html" "Definition: Partial Orderへ"
     click def-set "def-set.html" "Definition: Setへ"
     click thm-cantor "thm-cantor.html" "Theorem: Cantor's Theoremへ"
 ```

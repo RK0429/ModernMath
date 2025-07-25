@@ -4,8 +4,10 @@ requires:
 - def-group
 - def-subgroup
 - thm-lagrange
+- def-order
 - ../number-theory/def-prime
 - ../number-theory/def-divisibility
+- ../logic-set-theory/def-cardinality
 status: verified
 title: シローの定理
 translation_of: ../../en/algebra/thm-sylow.qmd
@@ -15,19 +17,19 @@ translations:
 type: Theorem
 ---
 
-**シローの定理**は、有限[群論](def-group.qmd)における基本的な結果で、[素数](../number-theory/def-prime.qmd)べき位数の[部分群](def-subgroup.qmd)の存在と性質についての詳細な情報を提供します。
+**シローの定理**は、有限[群論](def-group.qmd)における基本的な結果で、[素数](../number-theory/def-prime.qmd)べき[位数](def-order.qmd)の[部分群](def-subgroup.qmd)の存在と性質についての詳細な情報を提供します。
 
 ## 準備
 
-$G$ を有限[群](def-group.qmd)とし、その位数を $|G| = p^k m$ とする。ここで $p$ は[素数](../number-theory/def-prime.qmd)、$k \geq 1$、$\gcd(p, m) = 1$ とする。
+$G$ を有限[群](def-group.qmd)とし、その[位数](def-order.qmd)を $|G| = p^k m$ とする。ここで $p$ は[素数](../number-theory/def-prime.qmd)、$k \geq 1$、$\gcd(p, m) = 1$ とし、$|G|$ は $G$ の[濃度](../logic-set-theory/def-cardinality.qmd)を表す。
 
-$G$ の **Sylow $p$-部分群**とは、位数 $p^k$（$|G|$ を[割る](../number-theory/def-divisibility.qmd) $p$ の最高べき）の[部分群](def-subgroup.qmd)である。
+$G$ の **Sylow $p$-部分群**とは、[位数](def-order.qmd) $p^k$（$|G|$ を[割る](../number-theory/def-divisibility.qmd) $p$ の最高べき）の[部分群](def-subgroup.qmd)である。
 
 ## 3つのシローの定理
 
 ### 第一シローの定理（存在定理）
 
-$0 \leq r \leq k$ を満たす任意の整数 $r$ に対して、$G$ には位数 $p^r$ の[部分群](def-subgroup.qmd)が存在する。特に：
+$0 \leq r \leq k$ を満たす任意の整数 $r$ に対して、$G$ には[位数](def-order.qmd) $p^r$ の[部分群](def-subgroup.qmd)が存在する。特に：
 - $G$ は $|G|$ の各[素因数](../number-theory/def-prime.qmd)に対して少なくとも1つの Sylow $p$-部分群を含む
 
 ### 第二シローの定理（共役性）
@@ -90,16 +92,19 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-group["Definition: Group"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
     thm-sylow["Sylow Theorems"]:::theorem
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-order["Definition: Order"]:::definition
     thm-sylow --> def-group
-    thm-sylow --> thm-lagrange
     thm-sylow --> def-subgroup
+    def-order --> thm-sylow
+    thm-sylow --> thm-lagrange
     class thm-sylow current
     click def-group "def-group.html" "Definition: Groupへ"
-    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
     click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
+    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
+    click def-order "def-order.html" "Definition: Orderへ"
 ```
 
 ## インタラクティブ可視化

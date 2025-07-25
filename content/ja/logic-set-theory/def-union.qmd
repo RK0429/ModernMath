@@ -2,6 +2,7 @@
 id: def-union
 requires:
 - def-set
+- def-cardinality
 status: complete
 title: '定義: 和集合'
 translation_of: ../../en/logic-set-theory/def-union.qmd
@@ -47,7 +48,7 @@ $$\bigcup_{i \in I} A_i = \{x : \exists i \in I, x \in A_i\}$$
 
 - ド・モルガンの法則：$(A \cup B)^c = A^c \cap B^c$（[ド・モルガンの法則](thm-de-morgan.qmd)を参照）
 - 分配法則：$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
-- 濃度：$|A \cup B| = |A| + |B| - |A \cap B|$（[包含排除の原理](../combinatorics/thm-inclusion-exclusion.qmd)を参照）
+- [濃度](def-cardinality.qmd)：$|A \cup B| = |A| + |B| - |A \cap B|$（[包含排除の原理](../combinatorics/thm-inclusion-exclusion.qmd)を参照）
 
 ## 依存関係グラフ
 
@@ -59,14 +60,14 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["Definition: Set"]:::definition
     thm-de-morgan["Theorem: De Morgan's Laws"]:::theorem
     def-union["Definition: Union"]:::definition
-    def-set["Definition: Set"]:::definition
-    thm-de-morgan --> def-union
     def-union --> def-set
+    thm-de-morgan --> def-union
     class def-union current
-    click thm-de-morgan "thm-de-morgan.html" "Theorem: De Morgan's Lawsへ"
     click def-set "def-set.html" "Definition: Setへ"
+    click thm-de-morgan "thm-de-morgan.html" "Theorem: De Morgan's Lawsへ"
 ```
 
 ## インタラクティブ可視化

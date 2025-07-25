@@ -6,6 +6,8 @@ requires:
 - thm-lagrange
 - ../number-theory/def-prime
 - ../number-theory/def-divisibility
+- def-order
+- ../logic-set-theory/def-cardinality
 status: verified
 title: Sylow Theorems
 translations:
@@ -18,15 +20,15 @@ The **Sylow Theorems** are fundamental results in finite [group theory](def-grou
 
 ## Preliminaries
 
-Let $G$ be a finite [group](def-group.qmd) with order $|G| = p^k m$ where $p$ is a [prime](../number-theory/def-prime.qmd), $k \geq 1$, and $\gcd(p, m) = 1$.
+Let $G$ be a finite [group](def-group.qmd) with [order](def-order.qmd) $|G| = p^k m$ where $p$ is a [prime](../number-theory/def-prime.qmd), $k \geq 1$, and $\gcd(p, m) = 1$, and $|G|$ denotes the [cardinality](../logic-set-theory/def-cardinality.qmd) of $G$.
 
-A **Sylow $p$-subgroup** of $G$ is a [subgroup](def-subgroup.qmd) of order $p^k$ (the highest power of $p$ [dividing](../number-theory/def-divisibility.qmd) $|G|$).
+A **Sylow $p$-subgroup** of $G$ is a [subgroup](def-subgroup.qmd) of [order](def-order.qmd) $p^k$ (the highest power of $p$ [dividing](../number-theory/def-divisibility.qmd) $|G|$).
 
 ## The Three Sylow Theorems
 
 ### First Sylow Theorem (Existence)
 
-For any integer $r$ with $0 \leq r \leq k$, there exists a [subgroup](def-subgroup.qmd) of $G$ of order $p^r$. In particular:
+For any integer $r$ with $0 \leq r \leq k$, there exists a [subgroup](def-subgroup.qmd) of $G$ of [order](def-order.qmd) $p^r$. In particular:
 - $G$ contains at least one Sylow $p$-subgroup for each [prime](../number-theory/def-prime.qmd) factor of $|G|$
 
 ### Second Sylow Theorem (Conjugacy)
@@ -54,7 +56,7 @@ Combining the conditions from the third theorem: $n_p$ must satisfy both $n_p \e
 
 ### Cauchy's Theorem
 
-As a special case when $r = 1$: If a [prime](../number-theory/def-prime.qmd) $p$ [divides](../number-theory/def-divisibility.qmd) $|G|$, then $G$ contains an element of order $p$.
+As a special case when $r = 1$: If a [prime](../number-theory/def-prime.qmd) $p$ [divides](../number-theory/def-divisibility.qmd) $|G|$, then $G$ contains an element of [order](def-order.qmd) $p$.
 
 ## Applications
 
@@ -65,7 +67,7 @@ The Sylow theorems have numerous applications:
 3. **Structural analysis**: Provides information about the [normal subgroup](def-normal-subgroup.qmd) structure
 4. **Partial converse to Lagrange**: While [Lagrange's theorem](thm-lagrange.qmd) states that subgroup orders divide the group order, Sylow's first theorem provides a partial converse for prime powers
 
-## Example: Groups of Order 15
+## Example: Groups of [Order](def-order.qmd) 15
 
 Let $|G| = 15 = 3 \cdot 5$. By the Sylow theorems:
 
@@ -89,16 +91,19 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-group["Definition: Group"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
     thm-sylow["Sylow Theorems"]:::theorem
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-order["Definition: Order"]:::definition
     thm-sylow --> def-group
-    thm-sylow --> thm-lagrange
     thm-sylow --> def-subgroup
+    def-order --> thm-sylow
+    thm-sylow --> thm-lagrange
     class thm-sylow current
     click def-group "def-group.html" "Go to Group definition"
-    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
     click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
+    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
+    click def-order "def-order.html" "Go to Order definition"
 ```
 
 ## Interactive Visualization

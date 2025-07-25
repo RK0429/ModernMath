@@ -10,6 +10,7 @@ requires:
 - def-coset
 - def-abelian-group
 - ../logic-set-theory/def-equivalence-relation
+- ../logic-set-theory/def-cardinality
 status: complete
 title: '定義: 商群'
 translation_of: ../../en/algebra/def-quotient-group.qmd
@@ -56,7 +57,7 @@ $$(gN) \cdot (hN) = (gh)N$$
 
 ### 商群の位数
 
-$G$ が有限群の場合：
+$G$ が有限群の場合、[濃度](../logic-set-theory/def-cardinality.qmd)は次のようになる：
 $$|G/N| = \frac{|G|}{|N|} = [G:N]$$
 
 これは $G$ における $N$ の指数です。
@@ -151,62 +152,65 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    ex-finite-field["Example: Finite Field"]:::example
-    def-kernel["Definition: Kernel"]:::definition
     def-ideal["Definition: Ideal"]:::definition
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
-    def-simple-group["Definition: Simple Group"]:::definition
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-group["Definition: Group"]:::definition
-    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-homomorphism["Definition: Group Homomorphism"]:::definition
     def-coset["Definition: Coset"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
     thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
-    def-coset --> def-quotient-group
-    def-quotient-group --> def-cyclic-group
-    def-quotient-group --> def-subgroup
-    thm-euler --> def-quotient-group
-    def-group --> def-quotient-group
+    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    def-subgroup["Definition: Subgroup"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-order["Definition: Order"]:::definition
+    def-simple-group["Definition: Simple Group"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    ex-finite-field["Example: Finite Field"]:::example
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-quotient-group --> def-coset
-    def-quotient-group --> thm-first-isomorphism
-    def-subgroup --> def-quotient-group
-    thm-first-isomorphism --> def-quotient-group
-    def-kernel --> def-quotient-group
-    def-equivalence-relation --> def-quotient-group
-    def-quotient-group --> def-normal-subgroup
-    def-simple-group --> def-quotient-group
-    ex-quotient-integers-mod-n --> def-quotient-group
-    def-quotient-group --> def-ideal
-    def-quotient-group --> def-group
-    ex-finite-field --> def-quotient-group
-    def-abelian-group --> def-quotient-group
     def-quotient-group --> def-abelian-group
+    def-kernel --> def-quotient-group
+    def-subgroup --> def-quotient-group
+    def-quotient-group --> def-normal-subgroup
+    thm-lagrange --> def-quotient-group
+    def-quotient-group --> thm-first-isomorphism
+    ex-quotient-integers-mod-n --> def-quotient-group
+    thm-euler --> def-quotient-group
     def-homomorphism --> def-quotient-group
     def-normal-subgroup --> def-quotient-group
-    thm-lagrange --> def-quotient-group
+    def-simple-group --> def-quotient-group
+    def-order --> def-quotient-group
+    def-group --> def-quotient-group
+    ex-finite-field --> def-quotient-group
+    def-coset --> def-quotient-group
+    def-quotient-group --> def-cyclic-group
+    def-equivalence-relation --> def-quotient-group
+    def-quotient-group --> def-ideal
+    def-abelian-group --> def-quotient-group
+    def-quotient-group --> def-group
+    def-quotient-group --> def-subgroup
+    thm-first-isomorphism --> def-quotient-group
     class def-quotient-group current
-    click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
-    click def-kernel "def-kernel.html" "Definition: Kernelへ"
     click def-ideal "def-ideal.html" "Definition: Idealへ"
-    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
-    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
-    click def-simple-group "def-simple-group.html" "Definition: Simple Groupへ"
-    click def-cyclic-group "def-cyclic-group.html" "Definition: Cyclic Groupへ"
-    click thm-euler "thm-euler.html" "Theorem: Euler's Theoremへ"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
     click def-group "def-group.html" "Definition: Groupへ"
-    click def-equivalence-relation "def-equivalence-relation.html" "Definition: Equivalence Relationへ"
-    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
     click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
     click def-coset "def-coset.html" "Definition: Cosetへ"
-    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
+    click def-cyclic-group "def-cyclic-group.html" "Definition: Cyclic Groupへ"
     click thm-first-isomorphism "thm-first-isomorphism.html" "Theorem: First Isomorphism Theoremへ"
+    click def-equivalence-relation "def-equivalence-relation.html" "Definition: Equivalence Relationへ"
+    click thm-euler "thm-euler.html" "Theorem: Euler's Theoremへ"
+    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
+    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
+    click def-order "def-order.html" "Definition: Orderへ"
+    click def-simple-group "def-simple-group.html" "Definition: Simple Groupへ"
+    click def-kernel "def-kernel.html" "Definition: Kernelへ"
+    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
+    click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
+    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
 ```
 
 ## インタラクティブ可視化

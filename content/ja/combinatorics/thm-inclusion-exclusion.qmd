@@ -4,6 +4,7 @@ requires:
 - def-set
 - ../logic-set-theory/def-union
 - ../logic-set-theory/def-intersection
+- ../logic-set-theory/def-cardinality
 status: complete
 title: '定理: 包除原理'
 translation_of: ../../en/combinatorics/thm-inclusion-exclusion.qmd
@@ -15,11 +16,11 @@ type: Theorem
 
 # 定理: 包除原理
 
-**包除原理**（包含排除の原理）は、組合せ論における基本的な数え上げ原理で、複数の集合の和集合の濃度を、それらの共通部分を考慮して求める公式を提供します。
+**包除原理**（包含排除の原理）は、組合せ論における基本的な数え上げ原理で、複数の集合の和集合の[濃度](../logic-set-theory/def-cardinality.qmd)を、それらの共通部分を考慮して求める公式を提供します。
 
 ## 命題
 
-有限[集合](../logic-set-theory/def-set.qmd) $A_1, A_2, \ldots, A_n$ に対して、それらの[和集合](../logic-set-theory/def-union.qmd)の濃度は次のように与えられます：
+有限[集合](../logic-set-theory/def-set.qmd) $A_1, A_2, \ldots, A_n$ に対して、それらの[和集合](../logic-set-theory/def-union.qmd)の[濃度](../logic-set-theory/def-cardinality.qmd)は次のように与えられます：
 
 $$\left|\bigcup_{i=1}^{n} A_i\right| = \sum_{k=1}^{n} (-1)^{k+1} \sum_{1 \leq i_1 < i_2 < \cdots < i_k \leq n} \left|A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k}\right|$$
 
@@ -107,8 +108,8 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Definition: Set"]:::definition
     thm-inclusion-exclusion["Theorem: Inclusion-Exclusion Principle"]:::theorem
+    def-set["Definition: Set"]:::definition
     thm-inclusion-exclusion --> def-set
     class thm-inclusion-exclusion current
     click def-set "def-set.html" "Definition: Setへ"

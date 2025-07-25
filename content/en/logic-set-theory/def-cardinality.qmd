@@ -1,0 +1,81 @@
+---
+id: def-cardinality
+requires:
+- def-set
+- def-function
+status: complete
+title: 'Definition: Cardinality'
+translations:
+  en: ../en/logic-set-theory/def-cardinality.html
+  ja: ../ja/logic-set-theory/def-cardinality.html
+type: Definition
+---
+
+# Definition: Cardinality {#def-cardinality}
+
+The **cardinality** of a [set](def-set.qmd) is a measure of the "number of elements" in the set. For finite sets, this is simply the count of elements. For infinite sets, cardinality provides a way to compare the "sizes" of different infinite sets.
+
+## Formal Definition
+
+Two sets $A$ and $B$ have the same **cardinality** if there exists a bijective [function](def-function.qmd) (one-to-one correspondence) $f: A \to B$. We write $|A| = |B|$ to denote that $A$ and $B$ have the same cardinality.
+
+The cardinality of a set $A$ is denoted by $|A|$ or $\text{card}(A)$.
+
+## Finite Cardinality
+
+For a finite set $A$, the cardinality $|A|$ is the number of elements in $A$:
+
+- $|\emptyset| = 0$
+- $|\{a\}| = 1$
+- $|\{a, b, c\}| = 3$ (assuming $a$, $b$, and $c$ are distinct)
+
+## Infinite Cardinality
+
+For infinite sets, we distinguish between different "sizes" of infinity:
+
+### Countably Infinite Sets
+
+A set $A$ is **countably infinite** if there exists a bijection between $A$ and the natural numbers $\mathbb{N}$. The cardinality of countably infinite sets is denoted by $\aleph_0$ (aleph-null).
+
+Examples of countably infinite sets:
+- $\mathbb{N}$ (natural numbers)
+- $\mathbb{Z}$ (integers)
+- $\mathbb{Q}$ (rational numbers)
+
+### Uncountable Sets
+
+A set is **uncountable** if it is infinite but not countably infinite. The most common example is $\mathbb{R}$ (real numbers), whose cardinality is denoted by $\mathfrak{c}$ (the cardinality of the continuum) or $2^{\aleph_0}$.
+
+## Cardinal Arithmetic
+
+For sets $A$ and $B$:
+
+1. **Addition**: $|A \cup B| = |A| + |B|$ when $A \cap B = \emptyset$
+2. **Multiplication**: $|A \times B| = |A| \cdot |B|$
+3. **Exponentiation**: $|B^A| = |B|^{|A|}$ where $B^A$ is the set of all functions from $A$ to $B$
+
+## Ordering of Cardinals
+
+We say $|A| \leq |B|$ if there exists an injective function $f: A \to B$.
+
+The **Cantor-Bernstein-Schröder theorem** states that if $|A| \leq |B|$ and $|B| \leq |A|$, then $|A| = |B|$.
+
+## Key Results
+
+1. **Cantor's theorem**: For any set $A$, $|A| < |\mathcal{P}(A)|$ where $\mathcal{P}(A)$ is the [power set](def-power-set.qmd) of $A$
+2. **Countable union**: A countable union of countable sets is countable
+3. **Continuum hypothesis**: The statement that there is no set whose cardinality is strictly between $\aleph_0$ and $\mathfrak{c}$
+
+## Properties
+
+- **Reflexive**: $|A| = |A|$ for any set $A$
+- **Symmetric**: If $|A| = |B|$, then $|B| = |A|$
+- **Transitive**: If $|A| = |B|$ and $|B| = |C|$, then $|A| = |C|$
+
+## See Also
+
+- @thm-cantor
+- @def-power-set
+- @def-function
+- Definition: Countable Set (coming soon)
+- Definition: Continuum (coming soon)
