@@ -96,23 +96,27 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Definition: Set"]:::definition
-    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
-    def-relation["Definition: Relation"]:::definition
     def-function["Definition: Function"]:::definition
     def-subset["Definition: Subset"]:::definition
-    def-relation --> def-equivalence-relation
-    def-relation --> def-set
+    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
+    def-partial-order["Definition: Partial Order"]:::definition
+    def-relation["Definition: Relation"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-subset --> def-relation
     def-function --> def-relation
     def-relation --> def-function
-    def-subset --> def-relation
     def-equivalence-relation --> def-relation
+    def-relation --> def-set
+    def-relation --> def-partial-order
+    def-partial-order --> def-relation
+    def-relation --> def-equivalence-relation
     def-relation --> def-subset
     class def-relation current
-    click def-set "def-set.html" "Definition: Setへ"
-    click def-equivalence-relation "def-equivalence-relation.html" "Definition: Equivalence Relationへ"
     click def-function "def-function.html" "Definition: Functionへ"
     click def-subset "def-subset.html" "Definition: Subsetへ"
+    click def-equivalence-relation "def-equivalence-relation.html" "Definition: Equivalence Relationへ"
+    click def-partial-order "def-partial-order.html" "Definition: Partial Orderへ"
+    click def-set "def-set.html" "Definition: Setへ"
 ```
 
 ## インタラクティブ可視化

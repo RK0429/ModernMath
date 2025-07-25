@@ -51,22 +51,22 @@ status: "complete"
 
 ### Required Fields
 
-| Field | Type | Description | Valid Values |
-|-------|------|-------------|--------------|
-| `title` | String | Human-readable title | Should follow format "Type: Name" |
-| `id` | String | Unique identifier | Must match the cross-reference label |
-| `type` | String | Node type in the ontology | Definition, Theorem, Axiom, Example, Lemma, Proposition, Corollary |
-| `status` | String | Content maturity level | stub, draft, complete, verified |
+| Field    | Type   | Description               | Valid Values                                                       |
+| -------- | ------ | ------------------------- | ------------------------------------------------------------------ |
+| `title`  | String | Human-readable title      | Should follow format "Type: Name"                                  |
+| `id`     | String | Unique identifier         | Must match the cross-reference label                               |
+| `type`   | String | Node type in the ontology | Definition, Theorem, Axiom, Example, Lemma, Proposition, Corollary |
+| `status` | String | Content maturity level    | stub, draft, complete, verified                                    |
 
 ### Optional Fields
 
-| Field | Type | Description | Example |
-|-------|------|-------------|---------|
-| `lean_id` | String | Lean library identifier | `Mathlib.GroupTheory.Group.group` |
-| `requires` | Array | Explicit dependencies | `["def-set", "def-binary-operation"]` |
-| `author` | String | Content author | `John Doe` |
-| `date_created` | Date | Creation date | `2025-01-20` |
-| `date_modified` | Date | Last modification | `2025-01-20` |
+| Field           | Type   | Description             | Example                               |
+| --------------- | ------ | ----------------------- | ------------------------------------- |
+| `lean_id`       | String | Lean library identifier | `Mathlib.GroupTheory.Group.group`     |
+| `requires`      | Array  | Explicit dependencies   | `["def-set", "def-binary-operation"]` |
+| `author`        | String | Content author          | `John Doe`                            |
+| `date_created`  | Date   | Creation date           | `2025-01-20`                          |
+| `date_modified` | Date   | Last modification       | `2025-01-20`                          |
 
 ### Complete Example
 
@@ -122,6 +122,7 @@ Use LaTeX for all mathematical expressions:
 
 - Inline math: `$G$` or `$x \in \mathbb{R}$`
 - Display math:
+
   ```markdown
   $$
   \sum_{i=1}^{n} i = \frac{n(n+1)}{2}
@@ -137,35 +138,21 @@ Use LaTeX for all mathematical expressions:
 
 ## Content Structure Guidelines
 
-### Definitions
+For detailed authoring guidelines specific to each content type, please refer to the **[Style Guide Directory](style_guide/index.md)**, which contains:
 
-Structure definition pages as follows:
+- **[Axiom Authoring Guide](style_guide/axiom-guide.md)**: Comprehensive guidelines for writing axiom pages
+- **[Definition Authoring Guide](style_guide/definition-guide.md)**: Best practices for creating definition pages
+- **[Theorem Authoring Guide](style_guide/theorem-guide.md)**: Instructions for theorem, proposition, lemma, and corollary pages
+- **[Example Authoring Guide](style_guide/example-guide.md)**: Guidelines for constructing effective example pages
 
-1. **Formal Definition**: Start with the precise mathematical definition
-2. **Intuitive Explanation**: Provide an accessible explanation
-3. **Key Properties**: List important properties (if any)
-4. **Related Concepts**: Link to related definitions using `@` syntax
-5. **Examples**: Link to example pages using `@` syntax
+Each guide includes:
 
-### Theorems
-
-Structure theorem pages as follows:
-
-1. **Statement**: Clear statement of the theorem
-2. **Prerequisites**: List all required definitions/theorems using `@` syntax
-3. **Proof**: Complete proof (or proof sketch for complex theorems)
-4. **Significance**: Explain why the theorem is important
-5. **Applications**: Link to theorems that use this result
-
-### Examples
-
-Structure example pages as follows:
-
-1. **Context**: State what concept this exemplifies using `@` syntax
-2. **Construction**: Describe the example clearly
-3. **Verification**: Show why it satisfies the definition
-4. **Properties**: Highlight interesting properties
-5. **Counterexample**: If applicable, show what it doesn't satisfy
+- Content structure templates
+- Required and optional metadata fields
+- Best practices and common pitfalls
+- Domain-specific considerations
+- Quality checklists
+- Examples of well-written pages
 
 ## Writing Style
 
@@ -225,6 +212,7 @@ When a concept has multiple examples, create separate example files and link the
 
 ```markdown
 Common examples include:
+
 - @ex-integers-addition
 - @ex-matrices-multiplication
 - @ex-polynomial-ring
@@ -243,6 +231,7 @@ proof_methods: ["direct", "contradiction", "induction"]
 ### Status Progression
 
 Content typically progresses through these stages:
+
 1. `stub`: Minimal content, may be incomplete
 2. `draft`: Complete content, needs review
 3. `complete`: Reviewed and verified

@@ -85,7 +85,7 @@ C ---k---> D
 ## 関連概念
 
 - [同型射](def-isomorphism.qmd): 合成に関して両側逆射を持つ射
-- 自己射: 自分自身と合成可能な射
+- [自己射](../algebra/def-endomorphism.qmd): 自分自身と合成可能な射
 - モノイド: すべての射が合成可能な単一対象圏
 
 ## 依存関係グラフ
@@ -98,17 +98,20 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-category["Definition: Category"]:::definition
-    def-isomorphism["Definition: Isomorphism"]:::definition
     def-morphism["Definition: Morphism"]:::definition
+    def-category["Definition: Category"]:::definition
+    def-monomorphism["Definition: Monomorphism"]:::definition
+    def-isomorphism["Definition: Group Isomorphism"]:::definition
     def-composition["Definition: Composition"]:::definition
-    def-isomorphism --> def-composition
-    def-composition --> def-category
     def-composition --> def-morphism
+    def-isomorphism --> def-composition
+    def-monomorphism --> def-composition
+    def-composition --> def-category
     class def-composition current
-    click def-category "def-category.html" "Definition: Categoryへ"
-    click def-isomorphism "def-isomorphism.html" "Definition: Isomorphismへ"
     click def-morphism "def-morphism.html" "Definition: Morphismへ"
+    click def-category "def-category.html" "Definition: Categoryへ"
+    click def-monomorphism "def-monomorphism.html" "Definition: Monomorphismへ"
+    click def-isomorphism "def-isomorphism.html" "Definition: Group Isomorphismへ"
 ```
 
 ## インタラクティブ可視化

@@ -58,7 +58,7 @@ Not all monomorphisms are injective in the usual sense:
 ### Relationship to Other Concepts
 
 1. **Sections**: Every section (left inverse) is a monomorphism
-2. **Isomorphisms**: Every [isomorphism](def-isomorphism.qmd) is both a monomorphism and an epimorphism
+2. **Isomorphisms**: Every [isomorphism](def-isomorphism.qmd) is both a monomorphism and an [epimorphism](def-epimorphism.qmd)
 3. **Equalizers**: Every equalizer is a monomorphism
 
 ## Types of Monomorphisms
@@ -66,8 +66,8 @@ Not all monomorphisms are injective in the usual sense:
 In categories with additional structure, we can define special types of monomorphisms:
 
 1. **Regular monomorphism**: An equalizer of some pair of parallel morphisms
-2. **Strong monomorphism**: A monomorphism that has the left lifting property with respect to epimorphisms
-3. **Extremal monomorphism**: A monomorphism that doesn't factor through any proper epimorphism
+2. **Strong monomorphism**: A monomorphism that has the left lifting property with respect to [epimorphisms](def-epimorphism.qmd)
+3. **Extremal monomorphism**: A monomorphism that doesn't factor through any proper [epimorphism](def-epimorphism.qmd)
 4. **Split monomorphism**: A monomorphism that has a left inverse (i.e., a section)
 
 ## Categorical Importance
@@ -81,7 +81,7 @@ Monomorphisms are fundamental in category theory because:
 
 ## Dual Concept
 
-The categorical dual of a monomorphism is an **epimorphism**. That is, a monomorphism in a category $\mathcal{C}$ is an epimorphism in the opposite category $\mathcal{C}^{\text{op}}$.
+The categorical dual of a monomorphism is an **[epimorphism](def-epimorphism.qmd)**. That is, a monomorphism in a category $\mathcal{C}$ is an [epimorphism](def-epimorphism.qmd) in the opposite category $\mathcal{C}^{\text{op}}$.
 
 ## See Also
 
@@ -89,3 +89,46 @@ The categorical dual of a monomorphism is an **epimorphism**. That is, a monomor
 - @def-isomorphism
 - @def-morphism
 - @def-functor
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-morphism["Definition: Morphism"]:::definition
+    def-category["Definition: Category"]:::definition
+    def-monomorphism["Definition: Monomorphism"]:::definition
+    def-isomorphism["Definition: Group Isomorphism"]:::definition
+    def-composition["Definition: Composition"]:::definition
+    def-functor["Definition: Functor"]:::definition
+    def-monomorphism --> def-functor
+    def-monomorphism --> def-morphism
+    def-monomorphism --> def-composition
+    def-isomorphism --> def-monomorphism
+    def-monomorphism --> def-category
+    def-monomorphism --> def-isomorphism
+    class def-monomorphism current
+    click def-morphism "def-morphism.html" "Go to Morphism definition"
+    click def-category "def-category.html" "Go to Category definition"
+    click def-isomorphism "def-isomorphism.html" "Go to Group Isomorphism definition"
+    click def-composition "def-composition.html" "Go to Composition definition"
+    click def-functor "def-functor.html" "Go to Functor definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-monomorphism" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-monomorphism.html){target="_blank"}

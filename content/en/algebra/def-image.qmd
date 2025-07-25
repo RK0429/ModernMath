@@ -30,7 +30,7 @@ The image is also known as:
    - Closed under addition: if $\mathbf{w}_1 = T(\mathbf{v}_1)$ and $\mathbf{w}_2 = T(\mathbf{v}_2)$, then $\mathbf{w}_1 + \mathbf{w}_2 = T(\mathbf{v}_1) + T(\mathbf{v}_2) = T(\mathbf{v}_1 + \mathbf{v}_2) \in \text{im}(T)$
    - Closed under scalar multiplication: if $\mathbf{w} = T(\mathbf{v})$ and $a \in F$, then $a\mathbf{w} = aT(\mathbf{v}) = T(a\mathbf{v}) \in \text{im}(T)$
 
-2. **Surjectivity criterion**: $T$ is surjective (onto) if and only if $\text{im}(T) = W$
+2. **Surjectivity criterion**: $T$ is surjective (onto) if and only if $\text{im}(T) = W$ (see [epimorphism](../category-theory/def-epimorphism.qmd) for categorical perspective)
 
 3. **Dimension**: The dimension of $\text{im}(T)$ is called the **rank** of $T$
 
@@ -57,13 +57,13 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-vector-space["Definition: Vector Space"]:::definition
-    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
     def-image["Definition: Image"]:::definition
+    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
     def-linear-transformation["Definition: Linear Transformation"]:::definition
     thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
-    def-image --> def-vector-space
-    thm-rank-nullity --> def-image
     def-image --> def-linear-transformation
+    thm-rank-nullity --> def-image
+    def-image --> def-vector-space
     thm-first-isomorphism --> def-image
     class def-image current
     click def-vector-space "def-vector-space.html" "Go to Vector Space definition"

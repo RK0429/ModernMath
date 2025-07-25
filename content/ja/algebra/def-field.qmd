@@ -34,8 +34,8 @@ updated: 2024-01-20
 
 ## 性質
 
-- すべての体は整域である
-- すべての有限整域は体である
+- すべての体は[整域](def-integral-domain.qmd)である
+- すべての有限[整域](def-integral-domain.qmd)は体である
 - 体には零因子が存在しない：$ab = 0$ ならば、$a = 0$ または $b = 0$ である
 - ゼロでないすべての元 $a$ は、$a \cdot a^{-1} = 1$ を満たす唯一の逆元 $a^{-1}$ を持つ
 - 体は自明な[イデアル](def-ideal.qmd)のみを持つ：イデアルは $\{0\}$ と $F$ 自身のみ
@@ -63,38 +63,38 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-field["Definition: Field"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    ex-finite-field["Example: Finite Field"]:::example
     def-vector-space["Definition: Vector Space"]:::definition
-    def-ideal["Definition: Ideal"]:::definition
-    thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
-    def-group["Definition: Group"]:::definition
     def-matrix["Definition: Matrix"]:::definition
+    def-ring["Definition: Ring"]:::definition
     def-determinant["Definition: Determinant"]:::definition
+    ex-finite-field["Example: Finite Field"]:::example
+    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    def-group["Definition: Group"]:::definition
+    thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
+    def-field["Definition: Field"]:::definition
+    def-field --> def-abelian-group
+    ex-finite-field --> def-field
+    thm-field-characteristic --> def-field
+    def-polynomial-ring --> def-field
+    def-field --> def-ideal
     def-matrix --> def-field
     def-vector-space --> def-field
-    thm-field-characteristic --> def-field
     def-determinant --> def-field
-    def-field --> def-ideal
-    def-field --> def-group
-    ex-finite-field --> def-field
     def-field --> def-ring
-    def-field --> def-abelian-group
-    def-polynomial-ring --> def-field
+    def-field --> def-group
     class def-field current
-    click def-ring "def-ring.html" "Definition: Ringへ"
-    click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
     click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
-    click def-ideal "def-ideal.html" "Definition: Idealへ"
-    click thm-field-characteristic "thm-field-characteristic.html" "Theorem: Field Characteristicへ"
-    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
-    click def-polynomial-ring "def-polynomial-ring.html" "Definition: Polynomial Ringへ"
-    click def-group "def-group.html" "Definition: Groupへ"
     click def-matrix "def-matrix.html" "Definition: Matrixへ"
+    click def-ring "def-ring.html" "Definition: Ringへ"
     click def-determinant "def-determinant.html" "Definition: Determinantへ"
+    click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
+    click def-polynomial-ring "def-polynomial-ring.html" "Definition: Polynomial Ringへ"
+    click def-ideal "def-ideal.html" "Definition: Idealへ"
+    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click thm-field-characteristic "thm-field-characteristic.html" "Theorem: Field Characteristicへ"
 ```
 
 ## インタラクティブ可視化

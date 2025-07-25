@@ -43,13 +43,13 @@ $$c_k = \sum_{i+j=k} a_ib_j$$
 
 1. $R$ が単位元 $1_R$ を持つなら、$R[x]$ も単位元（定数多項式 $1_R$）を持つ
 2. $R$ が可換なら、$R[x]$ も可換
-3. $R$ が整域なら、$R[x]$ も整域
+3. $R$ が[整域](def-integral-domain.qmd)なら、$R[x]$ も[整域](def-integral-domain.qmd)
 
 ### 次数の性質
 
 非零多項式 $f, g \in R[x]$ に対して：
 - $\deg(f + g) \leq \max(\deg(f), \deg(g))$
-- $R$ が整域の場合：$\deg(fg) = \deg(f) + \deg(g)$
+- $R$ が[整域](def-integral-domain.qmd)の場合：$\deg(fg) = \deg(f) + \deg(g)$
 
 ### 除法アルゴリズム
 
@@ -66,7 +66,7 @@ $$R[x_1, \ldots, x_n] = (R[x_1, \ldots, x_{n-1}])[x_n]$$
 
 ### 一意分解性
 
-$R$ が一意分解整域（UFD）なら、$R[x]$ も UFD である。特に：
+$R$ が一意分解[整域](def-integral-domain.qmd)（UFD）なら、$R[x]$ も UFD である。特に：
 - $F$ が体なら、$F[x]$ は UFD
 - $F[x]$ 内のすべての非零多項式は既約多項式に一意的に分解される
 
@@ -99,26 +99,26 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-field["Definition: Field"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
     def-ring["Definition: Ring"]:::definition
+    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
     def-polynomial-ring["Definition: Polynomial Ring"]:::definition
     thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
-    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
-    def-eigenvalue-eigenvector --> def-polynomial-ring
-    ex-polynomial-continuity --> def-polynomial-ring
-    def-polynomial-ring --> def-ring
+    def-field["Definition: Field"]:::definition
     def-polynomial-ring --> def-field
     def-polynomial-ring --> def-binary-operation
+    def-eigenvalue-eigenvector --> def-polynomial-ring
+    def-polynomial-ring --> def-ring
     thm-intermediate-value --> def-polynomial-ring
+    ex-polynomial-continuity --> def-polynomial-ring
     class def-polynomial-ring current
-    click def-field "def-field.html" "Definition: Fieldへ"
-    click def-ring "def-ring.html" "Definition: Ringへ"
-    click thm-intermediate-value "thm-intermediate-value.html" "Theorem: Intermediate Value Theoremへ"
     click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
-    click ex-polynomial-continuity "ex-polynomial-continuity.html" "Example: Polynomial Continuityへ"
+    click def-ring "def-ring.html" "Definition: Ringへ"
     click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Definition: Eigenvalue and Eigenvectorへ"
+    click ex-polynomial-continuity "ex-polynomial-continuity.html" "Example: Polynomial Continuityへ"
+    click thm-intermediate-value "thm-intermediate-value.html" "Theorem: Intermediate Value Theoremへ"
+    click def-field "def-field.html" "Definition: Fieldへ"
 ```
 
 ## インタラクティブ可視化

@@ -4,6 +4,7 @@ requires:
 - def-matrix
 - def-field
 - def-function
+- def-isomorphism
 status: complete
 title: '定義: 行列式'
 translation_of: ../../en/algebra/def-determinant.qmd
@@ -72,7 +73,7 @@ $$\det(A) = \sum_{k=1}^n a_{ik}(-1)^{i+k}M_{ik}$$
 - $\det(A) \neq 0$
 - $A$ は可逆である
 - $A$ の列（および行）は線形独立である
-- $A$ が表す線形変換は同型写像である
+- $A$ が表す線形変換は[同型写像](def-isomorphism.qmd)である
 
 行列式は線形代数の基本的なツールであり、連立一次方程式を解くためのクラメルの公式、[固有値](def-eigenvalue-eigenvector.qmd)を求めるための特性多項式、逆行列の計算などに現れる。
 
@@ -86,23 +87,26 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-field["Definition: Field"]:::definition
     def-matrix["Definition: Matrix"]:::definition
     def-function["Definition: Function"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-determinant["Definition: Determinant"]:::definition
     def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
-    def-determinant --> def-field
-    def-eigenvalue-eigenvector --> def-determinant
-    def-determinant --> def-matrix
-    def-determinant --> def-function
+    def-isomorphism["Definition: Group Isomorphism"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-field["Definition: Field"]:::definition
     def-normal-subgroup --> def-determinant
+    def-determinant --> def-matrix
+    def-determinant --> def-field
+    def-determinant --> def-function
+    def-eigenvalue-eigenvector --> def-determinant
+    def-determinant --> def-isomorphism
     class def-determinant current
-    click def-field "def-field.html" "Definition: Fieldへ"
     click def-matrix "def-matrix.html" "Definition: Matrixへ"
     click def-function "def-function.html" "Definition: Functionへ"
-    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
     click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Definition: Eigenvalue and Eigenvectorへ"
+    click def-isomorphism "def-isomorphism.html" "Definition: Group Isomorphismへ"
+    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
+    click def-field "def-field.html" "Definition: Fieldへ"
 ```
 
 ## インタラクティブ可視化

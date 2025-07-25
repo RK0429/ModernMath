@@ -40,7 +40,7 @@ type: Definition
 
 - **可換環**：すべての $a, b$ に対して $a \cdot b = b \cdot a$
 - **単位的環**：$1 \cdot a = a \cdot 1 = a$ となる $1 \in R$ が存在する
-- **整域**：単位的可換環で零因子を持たない
+- **[整域](def-integral-domain.qmd)**：単位的可換環で零因子を持たない
 - **体**：すべての非零元が乗法逆元を持つ可換環
 
 ## 例
@@ -67,41 +67,44 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-module["Definition: Module"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
     def-ring["Definition: Ring"]:::definition
-    ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
-    def-field["Definition: Field"]:::definition
     thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
+    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
     def-ideal["Definition: Ideal"]:::definition
     def-abelian-group["Definition: Abelian Group"]:::definition
-    def-module["Definition: Module"]:::definition
-    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
+    def-endomorphism["Definition: Endomorphism"]:::definition
+    ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
     def-group["Definition: Group"]:::definition
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
     def-set["Definition: Set"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-module --> def-ring
-    def-ring --> def-binary-operation
-    ex-principal-ideal --> def-ring
-    ex-integers-ring --> def-ring
-    def-ring --> def-group
+    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-field["Definition: Field"]:::definition
     def-ring --> def-abelian-group
-    def-field --> def-ring
+    def-module --> def-ring
+    ex-integers-ring --> def-ring
     def-ideal --> def-ring
-    def-polynomial-ring --> def-ring
-    def-ring --> def-set
+    def-endomorphism --> def-ring
     thm-field-characteristic --> def-ring
+    def-polynomial-ring --> def-ring
+    def-ring --> def-binary-operation
+    def-field --> def-ring
+    def-ring --> def-group
+    ex-principal-ideal --> def-ring
+    def-ring --> def-set
     class def-ring current
-    click ex-principal-ideal "ex-principal-ideal.html" "Example: Principal Ideals in Integersへ"
-    click def-field "def-field.html" "Definition: Fieldへ"
+    click def-module "def-module.html" "Definition: Moduleへ"
+    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
     click thm-field-characteristic "thm-field-characteristic.html" "Theorem: Field Characteristicへ"
+    click def-polynomial-ring "def-polynomial-ring.html" "Definition: Polynomial Ringへ"
     click def-ideal "def-ideal.html" "Definition: Idealへ"
     click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
-    click def-module "def-module.html" "Definition: Moduleへ"
-    click def-polynomial-ring "def-polynomial-ring.html" "Definition: Polynomial Ringへ"
+    click def-endomorphism "def-endomorphism.html" "Definition: Endomorphismへ"
+    click ex-principal-ideal "ex-principal-ideal.html" "Example: Principal Ideals in Integersへ"
     click def-group "def-group.html" "Definition: Groupへ"
-    click ex-integers-ring "ex-integers-ring.html" "Example: Integers Form a Ringへ"
     click def-set "def-set.html" "Definition: Setへ"
-    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
+    click ex-integers-ring "ex-integers-ring.html" "Example: Integers Form a Ringへ"
+    click def-field "def-field.html" "Definition: Fieldへ"
 ```
 
 ## インタラクティブ可視化

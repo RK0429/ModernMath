@@ -1,0 +1,124 @@
+---
+id: def-endomorphism
+lang: ja
+requires:
+- def-homomorphism
+- def-group
+- def-ring
+- def-vector-space
+status: complete
+title: '定義: 自己準同型'
+translation_of: ../../en/algebra/def-endomorphism.qmd
+translations:
+  en: ../en/algebra/def-endomorphism.html
+  ja: ../ja/algebra/def-endomorphism.html
+type: Definition
+---
+
+# 自己準同型 {#def-endomorphism}
+
+**自己準同型**（じこじゅんどうけい）とは、ある数学的構造から自分自身への[準同型](def-homomorphism.qmd)である。構造を保存しながら、同じ対象内で元を写像する。
+
+## 形式的定義
+
+任意の代数的構造 $X$（[群](def-group.qmd)、[環](def-ring.qmd)、[ベクトル空間](def-vector-space.qmd)など）に対して、自己準同型とは準同型 $f: X \to X$ である。
+
+具体的には：
+
+1. **群の自己準同型**：群 $(G, \cdot)$ に対して、すべての $x, y \in G$ で $f(xy) = f(x)f(y)$ を満たす関数 $f: G \to G$
+2. **環の自己準同型**：環 $(R, +, \cdot)$ に対して、両方の演算を保存する関数 $f: R \to R$
+3. **ベクトル空間の自己準同型**：体 $F$ 上のベクトル空間 $V$ に対して、線形写像 $f: V \to V$
+
+## 記法
+
+- 構造 $X$ のすべての自己準同型の集合を $\text{End}(X)$ と表記する
+- ベクトル空間の文脈では、自己準同型は**線形作用素**とも呼ばれる
+- 自己準同型の合成は $f \circ g$ または単に $fg$ と書く
+
+## 自己準同型モノイドと環
+
+### モノイド構造
+
+集合 $\text{End}(X)$ は合成に関してモノイドを成す：
+
+- **閉性**：2つの自己準同型の合成は自己準同型である
+- **結合律**：$(f \circ g) \circ h = f \circ (g \circ h)$
+- **単位元**：恒等写像 $\text{id}_X$ が単位元である
+
+### 環構造（アーベル群）
+
+アーベル群 $(A, +)$ に対して、集合 $\text{End}(A)$ は環を成す：
+
+- **加法**：すべての $x \in A$ に対して $(f + g)(x) = f(x) + g(x)$
+- **乗法**：すべての $x \in A$ に対して $(f \cdot g)(x) = f(g(x))$
+- **加法の単位元**：すべての $x$ に対して $0(x) = 0$ となる零写像
+- **乗法の単位元**：恒等写像 $\text{id}_A$
+
+注意：自己準同型環は一般に非可換である。
+
+## 主な性質
+
+1. **単位元の保存**：すべての自己準同型は（存在する場合）単位元を保存する
+2. **部分構造の保存**：自己準同型は部分構造を部分構造に写像する
+3. **非可換性**：一般に、自己準同型 $f, g$ に対して $f \circ g \neq g \circ f$
+
+## 例
+
+一般的な例には以下が含まれる：
+
+- **恒等写像**：自明な自己準同型 $\text{id}_X: X \to X$
+- **スカラー倍**：ベクトル空間 $V$ 上で、固定された $\lambda$ に対する写像 $v \mapsto \lambda v$
+- **共役**：群 $G$ において、固定された $g \in G$ に対する写像 $x \mapsto gxg^{-1}$（内部自己同型）
+- **フロベニウス自己準同型**：標数 $p$ において、写像 $x \mapsto x^p$
+
+## 特殊な型
+
+- **[自己同型](def-automorphism.qmd)**：全単射な自己準同型（$X$ から自分自身への同型写像）
+- **冪等自己準同型**：$f \circ f = f$ を満たす自己準同型 $f$
+- **冪零自己準同型**：ある $n$ に対して $f^n = 0$ となる自己準同型 $f$
+- **対合**：$f \circ f = \text{id}$ を満たす自己準同型 $f$
+
+## 関連概念
+
+- **一般化**：[準同型](def-homomorphism.qmd)（異なる構造間）
+- **特殊化**：[自己同型](def-automorphism.qmd)（全単射な自己準同型）
+- **応用**：表現論、加群論、力学系
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-endomorphism["Definition: Endomorphism"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-endomorphism --> def-group
+    def-endomorphism --> def-vector-space
+    def-endomorphism --> def-ring
+    def-endomorphism --> def-homomorphism
+    class def-endomorphism current
+    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
+    click def-ring "def-ring.html" "Definition: Ringへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-endomorphism" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/def-endomorphism.html){target="_blank"}で完全なインタラクティブ版を表示

@@ -34,7 +34,7 @@ type: Definition
 3. **合成**: 同型射の[合成](def-composition.qmd)は同型射：
    - $f: A \to B$ と $g: B \to C$ が同型射なら
    - $g \circ f: A \to C$ は同型射で $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$
-4. **単射かつ全射**: すべての同型射は[単射](def-monomorphism.qmd)かつ全射である
+4. **単射かつ全射**: すべての同型射は[単射](def-monomorphism.qmd)かつ[全射](def-epimorphism.qmd)である
 
 ## 同型な対象
 
@@ -93,21 +93,67 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-function["Definition: Function"]:::definition
+    ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    def-isomorphism["Definition: Group Isomorphism"]:::definition
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
     def-homeomorphism["Definition: Homeomorphism"]:::definition
-    def-category["Definition: Category"]:::definition
     def-composition["Definition: Composition"]:::definition
     def-morphism["Definition: Morphism"]:::definition
-    def-isomorphism["Definition: Isomorphism"]:::definition
-    def-isomorphism --> def-category
-    def-isomorphism --> def-composition
-    def-isomorphism --> def-homeomorphism
-    def-isomorphism --> def-morphism
+    def-category["Definition: Category"]:::definition
+    def-monomorphism["Definition: Monomorphism"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-determinant["Definition: Determinant"]:::definition
+    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
+    def-kernel["Definition: Kernel"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-automorphism["Definition: Automorphism"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-homeomorphism --> def-isomorphism
+    def-isomorphism --> def-group
+    def-isomorphism --> def-monomorphism
+    def-kernel --> def-isomorphism
+    def-isomorphism --> def-binary-operation
+    def-isomorphism --> def-homomorphism
+    def-isomorphism --> def-function
+    ex-exponential-homomorphism --> def-isomorphism
+    def-cyclic-group --> def-isomorphism
+    thm-rank-nullity --> def-isomorphism
+    def-isomorphism --> def-homeomorphism
+    def-determinant --> def-isomorphism
+    def-linear-transformation --> def-isomorphism
+    def-ideal --> def-isomorphism
+    def-automorphism --> def-isomorphism
+    def-monomorphism --> def-isomorphism
+    def-isomorphism --> def-composition
+    ex-quotient-integers-mod-n --> def-isomorphism
+    def-abelian-group --> def-isomorphism
+    def-isomorphism --> def-category
+    def-isomorphism --> def-morphism
     class def-isomorphism current
+    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
+    click def-function "def-function.html" "Definition: Functionへ"
+    click ex-exponential-homomorphism "ex-exponential-homomorphism.html" "Example: Exponential Homomorphismへ"
+    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
+    click def-cyclic-group "def-cyclic-group.html" "Definition: Cyclic Groupへ"
     click def-homeomorphism "def-homeomorphism.html" "Definition: Homeomorphismへ"
-    click def-category "def-category.html" "Definition: Categoryへ"
     click def-composition "def-composition.html" "Definition: Compositionへ"
     click def-morphism "def-morphism.html" "Definition: Morphismへ"
+    click def-category "def-category.html" "Definition: Categoryへ"
+    click def-monomorphism "def-monomorphism.html" "Definition: Monomorphismへ"
+    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
+    click def-determinant "def-determinant.html" "Definition: Determinantへ"
+    click thm-rank-nullity "thm-rank-nullity.html" "Theorem: Rank-Nullity Theoremへ"
+    click def-kernel "def-kernel.html" "Definition: Kernelへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click def-ideal "def-ideal.html" "Definition: Idealへ"
+    click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
+    click def-automorphism "def-automorphism.html" "Definition: Automorphismへ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
 ```
 
 ## インタラクティブ可視化

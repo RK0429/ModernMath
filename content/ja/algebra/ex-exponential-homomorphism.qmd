@@ -3,6 +3,7 @@ id: ex-exponential-homomorphism
 requires:
 - def-homomorphism
 - def-group
+- def-isomorphism
 status: complete
 title: '例: 指数準同型'
 translation_of: ../../en/algebra/ex-exponential-homomorphism.qmd
@@ -33,11 +34,11 @@ $$\exp(x + y) = e^{x+y} = e^x \cdot e^y = \exp(x) \cdot \exp(y)$$
 
 - **単射**: はい、$e^x = e^y$ ならば $x = y$ となるため
 - **全射**: はい、任意の $a \in \mathbb{R}^+$ に対して、$\exp(\ln a) = a$ となるため
-- **全単射**: したがって、$\exp$ は同型写像である
+- **全単射**: したがって、$\exp$ は[同型写像](def-isomorphism.qmd)である
 
 ## 逆写像
 
-自然対数 $\ln: (\mathbb{R}^+, \cdot) \to (\mathbb{R}, +)$ は逆同型写像である：
+自然対数 $\ln: (\mathbb{R}^+, \cdot) \to (\mathbb{R}, +)$ は逆[同型写像](def-isomorphism.qmd)である：
 $$\ln(xy) = \ln(x) + \ln(y)$$
 
 ## 依存関係グラフ
@@ -51,12 +52,15 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-group["Definition: Group"]:::definition
-    ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
+    def-isomorphism["Definition: Group Isomorphism"]:::definition
     def-homomorphism["Definition: Group Homomorphism"]:::definition
-    ex-exponential-homomorphism --> def-group
+    ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
     ex-exponential-homomorphism --> def-homomorphism
+    ex-exponential-homomorphism --> def-isomorphism
+    ex-exponential-homomorphism --> def-group
     class ex-exponential-homomorphism current
     click def-group "def-group.html" "Definition: Groupへ"
+    click def-isomorphism "def-isomorphism.html" "Definition: Group Isomorphismへ"
     click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
 ```
 

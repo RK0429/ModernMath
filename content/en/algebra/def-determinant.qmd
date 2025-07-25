@@ -4,6 +4,7 @@ requires:
 - def-matrix
 - def-field
 - ../logic-set-theory/def-function
+- def-isomorphism
 status: complete
 title: 'Definition: Determinant'
 translations:
@@ -71,7 +72,7 @@ A square matrix $A$ has the following equivalent properties:
 - $\det(A) \neq 0$
 - $A$ is invertible
 - The columns (and rows) of $A$ are linearly independent
-- The linear transformation represented by $A$ is an isomorphism
+- The linear transformation represented by $A$ is an [isomorphism](def-isomorphism.qmd)
 
 The determinant is a fundamental tool in linear algebra, appearing in Cramer's rule for solving linear systems, the characteristic polynomial for finding [eigenvalues](def-eigenvalue-eigenvector.qmd), and the computation of matrix inverses.
 
@@ -85,23 +86,26 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-field["Definition: Field"]:::definition
     def-matrix["Definition: Matrix"]:::definition
     def-function["Definition: Function"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-determinant["Definition: Determinant"]:::definition
     def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
-    def-determinant --> def-field
-    def-eigenvalue-eigenvector --> def-determinant
-    def-determinant --> def-matrix
-    def-determinant --> def-function
+    def-isomorphism["Definition: Group Isomorphism"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-field["Definition: Field"]:::definition
     def-normal-subgroup --> def-determinant
+    def-determinant --> def-matrix
+    def-determinant --> def-field
+    def-determinant --> def-function
+    def-eigenvalue-eigenvector --> def-determinant
+    def-determinant --> def-isomorphism
     class def-determinant current
-    click def-field "def-field.html" "Go to Field definition"
     click def-matrix "def-matrix.html" "Go to Matrix definition"
     click def-function "def-function.html" "Go to Function definition"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
     click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector definition"
+    click def-isomorphism "def-isomorphism.html" "Go to Group Isomorphism definition"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click def-field "def-field.html" "Go to Field definition"
 ```
 
 ## Interactive Visualization

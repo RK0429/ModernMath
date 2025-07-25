@@ -10,6 +10,7 @@ requires:
 - thm-lagrange
 - def-homomorphism
 - thm-first-isomorphism
+- def-order
 status: complete
 title: 'Definition: Simple Group'
 translations:
@@ -45,15 +46,15 @@ Simple groups are fundamental in group theory because:
 ## Classification
 
 ### Abelian Simple Groups
-The only [abelian](def-abelian-group.qmd) simple groups are the [cyclic groups](def-cyclic-group.qmd) of prime order:
+The only [abelian](def-abelian-group.qmd) simple groups are the [cyclic groups](def-cyclic-group.qmd) of prime [order](def-order.qmd):
 - $\mathbb{Z}_p$ where $p$ is prime
 
-This follows from [Lagrange's theorem](thm-lagrange.qmd): a group of prime order has no proper non-trivial subgroups.
+This follows from [Lagrange's theorem](thm-lagrange.qmd): a group of prime [order](def-order.qmd) has no proper non-trivial subgroups.
 
 ### Non-Abelian Simple Groups
 The complete classification of finite simple groups includes:
 
-1. **Cyclic groups of prime order**: $\mathbb{Z}_p$
+1. **Cyclic groups of prime [order](def-order.qmd)**: $\mathbb{Z}_p$
 2. **Alternating groups**: $A_n$ for $n \geq 5$
 3. **Groups of Lie type**: Classical groups over finite fields
 4. **Sporadic groups**: 26 exceptional groups
@@ -61,7 +62,7 @@ The complete classification of finite simple groups includes:
 ## Examples
 
 ### Simple Groups
-- $\mathbb{Z}_2, \mathbb{Z}_3, \mathbb{Z}_5, \ldots$ (cyclic groups of prime order)
+- $\mathbb{Z}_2, \mathbb{Z}_3, \mathbb{Z}_5, \ldots$ (cyclic groups of prime [order](def-order.qmd))
 - $A_5$ (the alternating group on 5 elements, smallest non-abelian simple group with 60 elements)
 - $A_n$ for all $n \geq 5$
 - $PSL(2, 7)$ (projective special linear group with 168 elements)
@@ -69,7 +70,7 @@ The complete classification of finite simple groups includes:
 ### Non-Simple Groups
 - $\mathbb{Z}_4$ has $\{0, 2\}$ as a proper normal subgroup
 - $S_n$ for $n \geq 2$ has $A_n$ as a proper normal subgroup
-- Any abelian group of composite order
+- Any abelian group of composite [order](def-order.qmd)
 
 ## Properties
 
@@ -100,33 +101,36 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    def-abelian-group["Definition: Abelian Group"]:::definition
     def-simple-group["Definition: Simple Group"]:::definition
+    def-order["Definition: Order"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-abelian-group["Definition: Abelian Group"]:::definition
     def-cyclic-group["Definition: Cyclic Group"]:::definition
     def-group["Definition: Group"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
-    def-simple-group --> def-cyclic-group
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-simple-group --> def-group
     def-simple-group --> def-abelian-group
     def-simple-group --> thm-lagrange
+    def-simple-group --> def-order
+    def-simple-group --> thm-first-isomorphism
     def-simple-group --> def-quotient-group
+    def-simple-group --> def-homomorphism
     def-simple-group --> def-normal-subgroup
     def-group --> def-simple-group
-    def-simple-group --> def-group
-    def-simple-group --> thm-first-isomorphism
-    def-simple-group --> def-homomorphism
+    def-simple-group --> def-cyclic-group
     class def-simple-group current
+    click def-order "def-order.html" "Go to Order definition"
     click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
     click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
     click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
     click def-group "def-group.html" "Go to Group definition"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
-    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
     click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem theorem"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
 ```
 
 ## Interactive Visualization

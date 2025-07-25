@@ -34,7 +34,7 @@ $$\text{im}(T) = \{T(\mathbf{v}) : \mathbf{v} \in V\} = T(V)$$
    - 加法について閉じている：$\mathbf{w}_1 = T(\mathbf{v}_1)$ かつ $\mathbf{w}_2 = T(\mathbf{v}_2)$ ならば、$\mathbf{w}_1 + \mathbf{w}_2 = T(\mathbf{v}_1) + T(\mathbf{v}_2) = T(\mathbf{v}_1 + \mathbf{v}_2) \in \text{im}(T)$
    - スカラー倍について閉じている：$\mathbf{w} = T(\mathbf{v})$ かつ $a \in F$ ならば、$a\mathbf{w} = aT(\mathbf{v}) = T(a\mathbf{v}) \in \text{im}(T)$
 
-2. **全射性の判定基準**：$T$ が全射（上への写像）であることと $\text{im}(T) = W$ は同値
+2. **全射性の判定基準**：$T$ が全射（上への写像）であることと $\text{im}(T) = W$ は同値（圏論的観点については[全射](../category-theory/def-epimorphism.qmd)を参照）
 
 3. **次元**：$\text{im}(T)$ の次元は $T$ の**階数**と呼ばれる
 
@@ -61,13 +61,13 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-vector-space["Definition: Vector Space"]:::definition
-    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
     def-image["Definition: Image"]:::definition
+    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
     def-linear-transformation["Definition: Linear Transformation"]:::definition
     thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
-    def-image --> def-vector-space
-    thm-rank-nullity --> def-image
     def-image --> def-linear-transformation
+    thm-rank-nullity --> def-image
+    def-image --> def-vector-space
     thm-first-isomorphism --> def-image
     class def-image current
     click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"

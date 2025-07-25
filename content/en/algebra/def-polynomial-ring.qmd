@@ -4,6 +4,7 @@ requires:
 - def-ring
 - def-field
 - def-binary-operation
+- def-integral-domain
 status: complete
 title: 'Definition: Polynomial Ring'
 translations:
@@ -42,13 +43,13 @@ $$c_k = \sum_{i+j=k} a_ib_j$$
 
 1. If $R$ has unity $1_R$, then $R[x]$ has unity (the constant polynomial $1_R$)
 2. If $R$ is commutative, then $R[x]$ is commutative
-3. If $R$ is an integral domain, then $R[x]$ is an integral domain
+3. If $R$ is an [integral domain](def-integral-domain.qmd), then $R[x]$ is an [integral domain](def-integral-domain.qmd)
 
 ### Degree Properties
 
 For non-zero polynomials $f, g \in R[x]$:
 - $\deg(f + g) \leq \max(\deg(f), \deg(g))$
-- If $R$ is an integral domain: $\deg(fg) = \deg(f) + \deg(g)$
+- If $R$ is an [integral domain](def-integral-domain.qmd): $\deg(fg) = \deg(f) + \deg(g)$
 
 ### Division Algorithm
 
@@ -98,26 +99,26 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-field["Definition: Field"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
     def-ring["Definition: Ring"]:::definition
+    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
     def-polynomial-ring["Definition: Polynomial Ring"]:::definition
     thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
-    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
-    def-eigenvalue-eigenvector --> def-polynomial-ring
-    ex-polynomial-continuity --> def-polynomial-ring
-    def-polynomial-ring --> def-ring
+    def-field["Definition: Field"]:::definition
     def-polynomial-ring --> def-field
     def-polynomial-ring --> def-binary-operation
+    def-eigenvalue-eigenvector --> def-polynomial-ring
+    def-polynomial-ring --> def-ring
     thm-intermediate-value --> def-polynomial-ring
+    ex-polynomial-continuity --> def-polynomial-ring
     class def-polynomial-ring current
-    click def-field "def-field.html" "Go to Field definition"
-    click def-ring "def-ring.html" "Go to Ring definition"
-    click thm-intermediate-value "thm-intermediate-value.html" "Go to Intermediate Value Theorem theorem"
     click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
-    click ex-polynomial-continuity "ex-polynomial-continuity.html" "Go to Polynomial Continuity example"
+    click def-ring "def-ring.html" "Go to Ring definition"
     click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector definition"
+    click ex-polynomial-continuity "ex-polynomial-continuity.html" "Go to Polynomial Continuity example"
+    click thm-intermediate-value "thm-intermediate-value.html" "Go to Intermediate Value Theorem theorem"
+    click def-field "def-field.html" "Go to Field definition"
 ```
 
 ## Interactive Visualization

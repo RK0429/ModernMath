@@ -76,7 +76,7 @@ For a sequence $(x_n)$ in a Banach space $B$:
 
 ### Important Classes of Banach Spaces
 
-- **Hilbert spaces**: Banach spaces where the norm comes from an inner product
+- **[Hilbert spaces](def-hilbert-space.qmd)**: Banach spaces where the norm comes from an inner product
 - **Reflexive spaces**: Banach spaces naturally isomorphic to their double dual
 - **Separable spaces**: Banach spaces containing a [countable](../logic-set-theory/def-cardinality.qmd) dense subset
 - **Uniformly convex spaces**: Spaces with strong geometric properties
@@ -108,5 +108,38 @@ Banach spaces are named after the Polish mathematician Stefan Banach (1892-1945)
 - [Complete Metric Space](def-complete-metric-space.qmd): The metric completeness property
 - [Cauchy Sequence](def-cauchy-sequence.qmd): The sequences that must converge in a Banach space
 - [Linear Transformation](../algebra/def-linear-transformation.qmd): Structure-preserving maps between Banach spaces
-- **Hilbert Space**: A Banach space with additional inner product structure
+- [Hilbert Space](def-hilbert-space.qmd): A Banach space with additional inner product structure
 - **Fréchet Space**: A complete metrizable topological vector space
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-banach-space["Definition: Banach Space"]:::definition
+    def-normed-vector-space["Definition: Normed Vector Space"]:::definition
+    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
+    def-banach-space --> def-complete-metric-space
+    def-banach-space --> def-normed-vector-space
+    class def-banach-space current
+    click def-normed-vector-space "def-normed-vector-space.html" "Go to Normed Vector Space definition"
+    click def-complete-metric-space "def-complete-metric-space.html" "Go to Complete Metric Space definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-banach-space" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-banach-space.html){target="_blank"}

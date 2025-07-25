@@ -5,6 +5,7 @@ requires:
 - ../category-theory/def-isomorphism
 - def-group
 - def-identity-element
+- def-isomorphism
 status: complete
 title: '定義: 自己同型'
 translation_of: ../../en/algebra/def-automorphism.qmd
@@ -105,31 +106,28 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-automorphism["定義: 自己同型"]:::definition
-    def-homomorphism["定義: 群準同型"]:::definition
-    def-isomorphism["定義: 同型写像"]:::definition
-    def-group["定義: 群"]:::definition
-    def-identity-element["定義: 単位元"]:::definition
-    def-group-action["定義: 群の作用"]:::definition
-    thm-orbit-stabilizer["定理: 軌道・固定化部分群"]:::theorem
+    def-isomorphism["Definition: Group Isomorphism"]:::definition
+    ex-group-action-examples["Examples of Group Actions"]:::example
+    def-identity-element["Definition: Identity Element"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-automorphism["Definition: Automorphism"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
     def-automorphism --> def-homomorphism
-    def-automorphism --> def-isomorphism
     def-automorphism --> def-group
+    ex-group-action-examples --> def-automorphism
+    def-automorphism --> def-isomorphism
     def-automorphism --> def-identity-element
-    def-automorphism --> def-group-action
-    thm-orbit-stabilizer --> def-automorphism
     class def-automorphism current
-    click def-homomorphism "def-homomorphism.html" "群準同型の定義へ"
-    click def-isomorphism "def-isomorphism.html" "同型写像の定義へ"
-    click def-group "def-group.html" "群の定義へ"
-    click def-identity-element "def-identity-element.html" "単位元の定義へ"
-    click def-group-action "def-group-action.html" "群の作用の定義へ"
-    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "軌道・固定化部分群の定理へ"
+    click def-isomorphism "def-isomorphism.html" "Definition: Group Isomorphismへ"
+    click ex-group-action-examples "ex-group-action-examples.html" "Examples of Group Actionsへ"
+    click def-identity-element "def-identity-element.html" "Definition: Identity Elementへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
 ```
 
 ## インタラクティブ可視化
 
-ローカル知識グラフの近傍をインタラクティブに探索：
+ローカルナレッジグラフの近傍をインタラクティブに探索：
 
 ::: {.graph-viz data-id="def-automorphism" data-width="700" data-height="500"}
 :::
@@ -138,4 +136,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [完全なインタラクティブ版](../../output/interactive/def-automorphism.html){target="_blank"}を表示
+- [別ウィンドウ](../../output/interactive/def-automorphism.html){target="_blank"}で完全なインタラクティブ版を表示

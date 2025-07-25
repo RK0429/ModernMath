@@ -48,11 +48,11 @@ $\mathbb{Z}$ は実際には**単位元を持つ可換環**です：
 - **可換性**：すべての $a, b \in \mathbb{Z}$ に対して $a \cdot b = b \cdot a$
 - **単位元**：乗法単位元 $1$ が存在する
 
-さらに、$\mathbb{Z}$ は零因子を持たないため**整域**です：$a \cdot b = 0$ ならば、$a = 0$ または $b = 0$ です。
+さらに、$\mathbb{Z}$ は零因子を持たないため**[整域](def-integral-domain.qmd)**です：$a \cdot b = 0$ ならば、$a = 0$ または $b = 0$ です。
 
 ## イデアル構造
 
-$\mathbb{Z}$ は**単項イデアル整域**（PID）です：$\mathbb{Z}$ のすべての[イデアル](def-ideal.qmd)は単項であり、単一の元によって生成されます。具体的には：
+$\mathbb{Z}$ は**単項イデアル[整域](def-integral-domain.qmd)**（PID）です：$\mathbb{Z}$ のすべての[イデアル](def-ideal.qmd)は単項であり、単一の元によって生成されます。具体的には：
 - $\mathbb{Z}$ のすべてのイデアルは、ある $n \in \mathbb{Z}$ に対して $(n) = n\mathbb{Z} = \{na : a \in \mathbb{Z}\}$ の形をしている
 - 例：$(2)$ は偶数のイデアル、$(5)$ は5の倍数のイデアル
 - この性質は $\mathbb{Z}$ が除法アルゴリズムを持つことと密接に関連している
@@ -70,26 +70,26 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-binary-operation["Definition: Binary Operation"]:::definition
     def-ring["Definition: Ring"]:::definition
-    ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
     def-ideal["Definition: Ideal"]:::definition
     def-abelian-group["Definition: Abelian Group"]:::definition
+    ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
     def-group["Definition: Group"]:::definition
     ex-integers-ring["Example: Integers Form a Ring"]:::example
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    ex-integers-ring --> def-ideal
-    ex-integers-ring --> def-binary-operation
-    ex-integers-ring --> def-group
     ex-integers-ring --> def-ring
-    ex-integers-ring --> ex-principal-ideal
+    ex-integers-ring --> def-ideal
     ex-integers-ring --> def-abelian-group
+    ex-integers-ring --> def-group
+    ex-integers-ring --> ex-principal-ideal
+    ex-integers-ring --> def-binary-operation
     class ex-integers-ring current
+    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
     click def-ring "def-ring.html" "Definition: Ringへ"
-    click ex-principal-ideal "ex-principal-ideal.html" "Example: Principal Ideals in Integersへ"
     click def-ideal "def-ideal.html" "Definition: Idealへ"
     click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
+    click ex-principal-ideal "ex-principal-ideal.html" "Example: Principal Ideals in Integersへ"
     click def-group "def-group.html" "Definition: Groupへ"
-    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
 ```
 
 ## インタラクティブ可視化

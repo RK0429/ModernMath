@@ -80,7 +80,7 @@ type: Definition
 
 ### バナッハ空間の重要なクラス
 
-- **ヒルベルト空間**：ノルムが内積から導かれるバナッハ空間
+- **[ヒルベルト空間](def-hilbert-space.qmd)**：ノルムが内積から導かれるバナッハ空間
 - **反射的空間**：二重双対と自然に同型なバナッハ空間
 - **可分空間**：[可算](../logic-set-theory/def-cardinality.qmd)稠密部分集合を含むバナッハ空間
 - **一様凸空間**：強い幾何学的性質を持つ空間
@@ -112,5 +112,38 @@ type: Definition
 - [完備距離空間](def-complete-metric-space.qmd)：距離的完備性の性質
 - [コーシー列](def-cauchy-sequence.qmd)：バナッハ空間で収束しなければならない数列
 - [線形変換](../algebra/def-linear-transformation.qmd)：バナッハ空間間の構造を保つ写像
-- **ヒルベルト空間**：追加の内積構造を持つバナッハ空間
+- [ヒルベルト空間](def-hilbert-space.qmd)：追加の内積構造を持つバナッハ空間
 - **フレシェ空間**：完備な距離化可能位相ベクトル空間
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-banach-space["Definition: Banach Space"]:::definition
+    def-normed-vector-space["Definition: Normed Vector Space"]:::definition
+    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
+    def-banach-space --> def-complete-metric-space
+    def-banach-space --> def-normed-vector-space
+    class def-banach-space current
+    click def-normed-vector-space "def-normed-vector-space.html" "Definition: Normed Vector Spaceへ"
+    click def-complete-metric-space "def-complete-metric-space.html" "Definition: Complete Metric Spaceへ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-banach-space" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/def-banach-space.html){target="_blank"}で完全なインタラクティブ版を表示

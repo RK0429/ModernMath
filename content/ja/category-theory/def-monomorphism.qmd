@@ -5,7 +5,7 @@ requires:
 - def-category
 - def-composition
 status: complete
-title: '定義：単射'
+title: 定義：単射
 translation_of: ../../en/category-theory/def-monomorphism.qmd
 translations:
   en: ../en/category-theory/def-monomorphism.html
@@ -59,7 +59,7 @@ $$f_*: \text{Hom}(C, A) \to \text{Hom}(C, B)$$
 ### 他の概念との関係
 
 1. **切断**：すべての切断（左逆射）は単射である
-2. **同型射**：すべての[同型射](def-isomorphism.qmd)は単射かつ全射である
+2. **同型射**：すべての[同型射](def-isomorphism.qmd)は単射かつ[全射](def-epimorphism.qmd)である
 3. **等化子**：すべての等化子は単射である
 
 ## 単射の種類
@@ -67,8 +67,8 @@ $$f_*: \text{Hom}(C, A) \to \text{Hom}(C, B)$$
 付加構造を持つ圏では、特殊な種類の単射を定義できる：
 
 1. **正則単射**：ある平行射の対の等化子
-2. **強単射**：全射に対して左持ち上げ性質を持つ単射
-3. **極大単射**：真の全射を通して分解しない単射
+2. **強単射**：[全射](def-epimorphism.qmd)に対して左持ち上げ性質を持つ単射
+3. **極大単射**：真の[全射](def-epimorphism.qmd)を通して分解しない単射
 4. **分裂単射**：左逆射（すなわち切断）を持つ単射
 
 ## 圏論的重要性
@@ -82,7 +82,7 @@ $$f_*: \text{Hom}(C, A) \to \text{Hom}(C, B)$$
 
 ## 双対概念
 
-単射の圏論的双対は**全射**である。すなわち、圏 $\mathcal{C}$ における単射は、反対圏 $\mathcal{C}^{\text{op}}$ における全射である。
+単射の圏論的双対は**[全射](def-epimorphism.qmd)**である。すなわち、圏 $\mathcal{C}$ における単射は、反対圏 $\mathcal{C}^{\text{op}}$ における[全射](def-epimorphism.qmd)である。
 
 ## 関連項目
 
@@ -90,3 +90,46 @@ $$f_*: \text{Hom}(C, A) \to \text{Hom}(C, B)$$
 - @def-isomorphism
 - @def-morphism
 - @def-functor
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-morphism["Definition: Morphism"]:::definition
+    def-category["Definition: Category"]:::definition
+    def-monomorphism["Definition: Monomorphism"]:::definition
+    def-isomorphism["Definition: Group Isomorphism"]:::definition
+    def-composition["Definition: Composition"]:::definition
+    def-functor["Definition: Functor"]:::definition
+    def-monomorphism --> def-functor
+    def-monomorphism --> def-morphism
+    def-monomorphism --> def-composition
+    def-isomorphism --> def-monomorphism
+    def-monomorphism --> def-category
+    def-monomorphism --> def-isomorphism
+    class def-monomorphism current
+    click def-morphism "def-morphism.html" "Definition: Morphismへ"
+    click def-category "def-category.html" "Definition: Categoryへ"
+    click def-isomorphism "def-isomorphism.html" "Definition: Group Isomorphismへ"
+    click def-composition "def-composition.html" "Definition: Compositionへ"
+    click def-functor "def-functor.html" "Definition: Functorへ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-monomorphism" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/def-monomorphism.html){target="_blank"}で完全なインタラクティブ版を表示

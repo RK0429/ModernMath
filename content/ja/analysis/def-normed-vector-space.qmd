@@ -4,7 +4,7 @@ requires:
 - def-vector-space
 - def-metric-space
 status: complete
-title: '定義：ノルム空間'
+title: 定義：ノルム空間
 translation_of: ../../en/analysis/def-normed-vector-space.qmd
 translations:
   en: ../en/analysis/def-normed-vector-space.html
@@ -125,42 +125,43 @@ $$\|f\| = \sup_{\|\mathbf{x}\| = 1} |f(\mathbf{x})| < \infty$$
 - [線形変換](../algebra/def-linear-transformation.qmd)：ノルム空間間の構造を保つ写像
 - [バナッハ空間](def-banach-space.qmd)：完備ノルムベクトル空間
 - **内積空間**：ノルムが内積から導かれるノルム空間
+- [ヒルベルト空間](def-hilbert-space.qmd)：完備な内積空間
 
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "ローカル依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-normed-vector-space["定義：ノルム空間"]:::definition
-    def-vector-space["定義：ベクトル空間"]:::definition
-    def-metric-space["定義：距離空間"]:::definition
-    def-complete-metric-space["定義：完備距離空間"]:::definition
-    def-cauchy-sequence["定義：コーシー列"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-normed-vector-space["Definition: Normed Vector Space"]:::definition
+    def-euclidean-space["Definition: Euclidean Space"]:::definition
+    def-banach-space["Definition: Banach Space"]:::definition
+    def-metric-space["Definition: Metric Space"]:::definition
+    def-euclidean-space --> def-normed-vector-space
+    def-banach-space --> def-normed-vector-space
     def-normed-vector-space --> def-vector-space
     def-normed-vector-space --> def-metric-space
-    def-complete-metric-space --> def-normed-vector-space
-    def-normed-vector-space --> def-cauchy-sequence
     class def-normed-vector-space current
-    click def-vector-space "../algebra/def-vector-space.html" "ベクトル空間の定義へ"
-    click def-metric-space "def-metric-space.html" "距離空間の定義へ"
-    click def-complete-metric-space "def-complete-metric-space.html" "完備距離空間の定義へ"
-    click def-cauchy-sequence "def-cauchy-sequence.html" "コーシー列の定義へ"
+    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
+    click def-euclidean-space "def-euclidean-space.html" "Definition: Euclidean Spaceへ"
+    click def-banach-space "def-banach-space.html" "Definition: Banach Spaceへ"
+    click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
 ```
 
 ## インタラクティブ可視化
 
-ローカルな知識グラフの近傍をインタラクティブに探索：
+ローカルナレッジグラフの近傍をインタラクティブに探索：
 
 ::: {.graph-viz data-id="def-normed-vector-space" data-width="700" data-height="500"}
 :::
 
 次のことができます：
-- ノードを**ドラッグ**してレイアウトを調整
-- マウスホイールで**ズームイン/アウト**
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [完全なインタラクティブ版](../../output/interactive/def-normed-vector-space.html){target="_blank"}を表示
+- [別ウィンドウ](../../output/interactive/def-normed-vector-space.html){target="_blank"}で完全なインタラクティブ版を表示

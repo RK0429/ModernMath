@@ -4,7 +4,7 @@ requires:
 - def-relation
 - def-set
 status: complete
-title: '定義：半順序'
+title: 定義：半順序
 translation_of: ../../en/logic-set-theory/def-partial-order.qmd
 translations:
   en: ../en/logic-set-theory/def-partial-order.html
@@ -155,40 +155,44 @@ $$a \geq b \iff b \leq a$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-partial-order["定義：半順序"]:::definition
-    def-relation["定義：関係"]:::definition
-    def-set["定義：集合"]:::definition
-    def-subset["定義：部分集合"]:::definition
-    def-power-set["定義：べき集合"]:::definition
-    def-equivalence-relation["定義：同値関係"]:::definition
-    def-function["定義：関数"]:::definition
-    def-relation --> def-partial-order
-    def-set --> def-partial-order
-    def-partial-order --> def-subset
-    def-partial-order --> def-power-set
-    def-partial-order --> def-equivalence-relation
+    def-function["Definition: Function"]:::definition
+    def-subset["Definition: Subset"]:::definition
+    def-divisibility["Definition: Divisibility"]:::definition
+    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
+    def-partial-order["Definition: Partial Order"]:::definition
+    def-power-set["Definition: Power Set"]:::definition
+    def-relation["Definition: Relation"]:::definition
+    def-set["Definition: Set"]:::definition
     def-partial-order --> def-function
     def-partial-order --> def-relation
+    def-relation --> def-partial-order
+    def-subset --> def-partial-order
+    def-partial-order --> def-subset
+    def-divisibility --> def-partial-order
+    def-power-set --> def-partial-order
     def-partial-order --> def-set
+    def-partial-order --> def-power-set
+    def-partial-order --> def-equivalence-relation
     class def-partial-order current
-    click def-relation "def-relation.html" "関係の定義へ"
-    click def-set "def-set.html" "集合の定義へ"
-    click def-subset "def-subset.html" "部分集合の定義へ"
-    click def-power-set "def-power-set.html" "べき集合の定義へ"
-    click def-equivalence-relation "def-equivalence-relation.html" "同値関係の定義へ"
-    click def-function "def-function.html" "関数の定義へ"
+    click def-function "def-function.html" "Definition: Functionへ"
+    click def-subset "def-subset.html" "Definition: Subsetへ"
+    click def-divisibility "def-divisibility.html" "Definition: Divisibilityへ"
+    click def-equivalence-relation "def-equivalence-relation.html" "Definition: Equivalence Relationへ"
+    click def-power-set "def-power-set.html" "Definition: Power Setへ"
+    click def-relation "def-relation.html" "Definition: Relationへ"
+    click def-set "def-set.html" "Definition: Setへ"
 ```
 
 ## インタラクティブ可視化
 
-ローカル知識グラフの近傍をインタラクティブに探索：
+ローカルナレッジグラフの近傍をインタラクティブに探索：
 
 ::: {.graph-viz data-id="def-partial-order" data-width="700" data-height="500"}
 :::
@@ -197,4 +201,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [フルインタラクティブ版](../../output/interactive/def-partial-order.html){target="_blank"}を表示
+- [別ウィンドウ](../../output/interactive/def-partial-order.html){target="_blank"}で完全なインタラクティブ版を表示

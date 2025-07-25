@@ -1,0 +1,112 @@
+---
+id: def-integral-domain
+requires:
+- def-ring
+- def-commutativity
+- def-field
+status: complete
+title: 'Definition: Integral Domain'
+translations:
+  en: ../en/algebra/def-integral-domain.html
+  ja: ../ja/algebra/def-integral-domain.html
+type: Definition
+---
+
+# Definition: Integral Domain {#def-integral-domain}
+
+An **integral domain** is a [commutative](def-commutativity.qmd) [ring](def-ring.qmd) with unity (multiplicative identity) that has no zero divisors.
+
+## Formal Definition
+
+A ring $(R, +, \cdot)$ is an integral domain if:
+
+1. **Commutativity**: For all $a, b \in R$,
+   $$a \cdot b = b \cdot a$$
+
+2. **Unity**: There exists an element $1 \in R$ such that for all $a \in R$,
+   $$1 \cdot a = a \cdot 1 = a$$
+
+3. **No zero divisors**: For all $a, b \in R$,
+   $$a \cdot b = 0 \implies a = 0 \text{ or } b = 0$$
+
+## Important Properties
+
+### Cancellation Law
+
+In an integral domain, the cancellation law holds: if $a \neq 0$ and $ab = ac$, then $b = c$.
+
+**Proof**: If $ab = ac$, then $ab - ac = 0$, so $a(b - c) = 0$. Since $a \neq 0$ and there are no zero divisors, we must have $b - c = 0$, hence $b = c$.
+
+### Relationship to Other Structures
+
+- Every [field](def-field.qmd) is an integral domain
+- Every finite integral domain is a field
+- Not every integral domain is a field (e.g., $\mathbb{Z}$)
+
+### Prime Ideal Characterization
+
+A commutative ring $R$ is an integral domain if and only if the zero [ideal](def-ideal.qmd) $(0)$ is prime.
+
+## Examples
+
+### Examples of Integral Domains
+
+1. **The integers** $\mathbb{Z}$ under usual addition and multiplication
+2. **Any field** such as $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$, or $\mathbb{Z}_p$ (where $p$ is prime)
+3. **Polynomial rings** $R[x]$ where $R$ is an integral domain
+4. **Gaussian integers** $\mathbb{Z}[i] = \{a + bi : a, b \in \mathbb{Z}\}$
+
+### Non-Examples
+
+1. **$\mathbb{Z}_6$** (integers modulo 6): Since $2 \cdot 3 = 0 \pmod{6}$ but $2 \neq 0$ and $3 \neq 0$
+2. **Matrix rings** $M_n(R)$ for $n > 1$: Non-zero matrices can multiply to give the zero matrix
+3. **$\mathbb{Z} \times \mathbb{Z}$** with componentwise operations: $(1,0) \cdot (0,1) = (0,0)$
+
+## Field of Fractions
+
+Every integral domain $D$ can be embedded in a field called its **field of fractions** or **quotient field**, denoted $\text{Frac}(D)$.
+
+- For $\mathbb{Z}$, the field of fractions is $\mathbb{Q}$
+- For a polynomial ring $F[x]$ over a field $F$, the field of fractions is the field of rational functions $F(x)$
+
+## Applications
+
+Integral domains provide the appropriate setting for:
+
+1. **Divisibility theory**: Concepts like greatest common divisor and unique factorization
+2. **Polynomial equations**: A polynomial of degree $n$ has at most $n$ roots in an integral domain
+3. **Algebraic number theory**: Study of algebraic integers
+4. **Algebraic geometry**: Coordinate rings of irreducible algebraic varieties
+
+## See Also
+
+- @def-ring
+- @def-field
+- @def-ideal
+- @def-polynomial-ring
+- @ex-integers-ring
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-integral-domain" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-integral-domain.html){target="_blank"}
