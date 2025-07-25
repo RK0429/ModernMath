@@ -1,6 +1,7 @@
 ---
 id: def-divisibility
-requires: []
+requires:
+- def-partial-order
 status: complete
 title: 'Definition: Divisibility'
 type: Definition
@@ -57,6 +58,15 @@ When $a \mid b$, we also say:
 1. **Unity**: $1$ divides every integer
 2. **Zero**: Every non-zero integer divides $0$
 3. **Self-divisibility**: Every non-zero integer divides itself
+
+## Partial Order Structure
+
+The divisibility relation on positive integers forms a [partial order](../logic-set-theory/def-partial-order.qmd):
+- **Reflexive**: $a \mid a$ for all positive integers $a$
+- **Antisymmetric**: If $a \mid b$ and $b \mid a$ for positive integers, then $a = b$
+- **Transitive**: If $a \mid b$ and $b \mid c$, then $a \mid c$
+
+Note that this is not a total order since not all pairs of positive integers are comparable under divisibility (e.g., neither $2 \mid 3$ nor $3 \mid 2$).
 
 ## Connection to Division Algorithm
 

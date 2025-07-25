@@ -3,6 +3,7 @@ id: def-divisibility
 requires:
 - def-prime
 - def-gcd
+- def-partial-order
 status: complete
 title: '定義: 整除性'
 translation_of: ../../en/number-theory/def-divisibility.qmd
@@ -57,6 +58,15 @@ $a \mid b$かつ$b \mid a$ならば、$a = \pm b$
 
 ### 6. ゼロの性質
 任意の非零整数$a$に対して、$a \mid 0$（なぜなら$0 = a \cdot 0$）
+
+## 半順序構造
+
+正の整数上の整除関係は[半順序](../logic-set-theory/def-partial-order.qmd)を形成する：
+- **反射的**：すべての正の整数 $a$ に対して $a \mid a$
+- **反対称的**：正の整数に対して、$a \mid b$ かつ $b \mid a$ ならば $a = b$
+- **推移的**：$a \mid b$ かつ $b \mid c$ ならば $a \mid c$
+
+これは全順序ではないことに注意。なぜなら、すべての正の整数の組が整除性の下で比較可能ではないから（例：$2 \nmid 3$ かつ $3 \nmid 2$）。
 
 ## 例
 

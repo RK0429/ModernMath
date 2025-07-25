@@ -1,0 +1,199 @@
+---
+id: def-partial-order
+requires:
+- def-relation
+- def-set
+status: complete
+title: 'Definition: Partial Order'
+translations:
+  en: ../en/logic-set-theory/def-partial-order.html
+  ja: ../ja/logic-set-theory/def-partial-order.html
+type: Definition
+---
+
+# Definition: Partial Order {#def-partial-order}
+
+A **partial order** on a [set](def-set.qmd) $A$ is a [relation](def-relation.qmd) $\leq$ on $A$ that is reflexive, antisymmetric, and transitive.
+
+## Formal Definition
+
+A relation $\leq$ on a set $A$ is a partial order if and only if it satisfies the following three properties:
+
+### 1. Reflexive Property
+
+For all $a \in A$:
+$$a \leq a$$
+
+Every element is related to itself.
+
+### 2. Antisymmetric Property
+
+For all $a, b \in A$:
+$$(a \leq b \text{ and } b \leq a) \implies a = b$$
+
+If $a$ is related to $b$ and $b$ is related to $a$, then $a$ and $b$ must be equal.
+
+### 3. Transitive Property
+
+For all $a, b, c \in A$:
+$$(a \leq b \text{ and } b \leq c) \implies a \leq c$$
+
+If $a$ is related to $b$ and $b$ is related to $c$, then $a$ is related to $c$.
+
+## Partially Ordered Set (Poset)
+
+A **partially ordered set** (or **poset**) is an ordered pair $(A, \leq)$ consisting of a set $A$ together with a partial order relation $\leq$ on $A$.
+
+### Notation
+
+- We often write $a < b$ to mean $a \leq b$ and $a \neq b$ (strict partial order)
+- If neither $a \leq b$ nor $b \leq a$, we say $a$ and $b$ are **incomparable**
+- We write $a \parallel b$ when $a$ and $b$ are incomparable
+
+## Comparable Elements
+
+Two elements $a, b \in A$ are **comparable** if either $a \leq b$ or $b \leq a$ (or both). The word "partial" in partial order indicates that not all pairs of elements need to be comparable.
+
+## Examples
+
+### 1. Subset Relation
+
+The [subset](def-subset.qmd) relation $\subseteq$ on the [power set](def-power-set.qmd) $\mathcal{P}(X)$ of any set $X$ is a partial order:
+- Reflexive: $A \subseteq A$ for all $A \in \mathcal{P}(X)$
+- Antisymmetric: $(A \subseteq B \text{ and } B \subseteq A) \implies A = B$
+- Transitive: $(A \subseteq B \text{ and } B \subseteq C) \implies A \subseteq C$
+
+### 2. Divisibility Relation
+
+On the positive integers $\mathbb{Z}^+$, the relation $a \mid b$ (read "$a$ divides $b$") is a partial order:
+- Reflexive: $a \mid a$ for all $a \in \mathbb{Z}^+$
+- Antisymmetric: $(a \mid b \text{ and } b \mid a) \implies a = b$ for positive integers
+- Transitive: $(a \mid b \text{ and } b \mid c) \implies a \mid c$
+
+### 3. Standard Order on Real Numbers
+
+The usual $\leq$ relation on $\mathbb{R}$ is a partial order (in fact, a total order):
+- Reflexive: $a \leq a$ for all $a \in \mathbb{R}$
+- Antisymmetric: $(a \leq b \text{ and } b \leq a) \implies a = b$
+- Transitive: $(a \leq b \text{ and } b \leq c) \implies a \leq c$
+
+### 4. Component-wise Order
+
+On $\mathbb{R}^n$, define $(x_1, ..., x_n) \leq (y_1, ..., y_n)$ if $x_i \leq y_i$ for all $i$. This is a partial order where many pairs are incomparable.
+
+## Special Elements
+
+In a poset $(A, \leq)$:
+
+### Minimal and Maximal Elements
+
+- $a \in A$ is **minimal** if there is no $b \in A$ with $b < a$
+- $a \in A$ is **maximal** if there is no $b \in A$ with $a < b$
+
+### Least and Greatest Elements
+
+- $a \in A$ is the **least element** (or **minimum**) if $a \leq b$ for all $b \in A$
+- $a \in A$ is the **greatest element** (or **maximum**) if $b \leq a$ for all $b \in A$
+
+### Upper and Lower Bounds
+
+For a subset $S \subseteq A$:
+- $a \in A$ is an **upper bound** of $S$ if $s \leq a$ for all $s \in S$
+- $a \in A$ is a **lower bound** of $S$ if $a \leq s$ for all $s \in S$
+
+## Hasse Diagrams
+
+A finite poset can be visualized using a **Hasse diagram**, which:
+- Represents elements as vertices
+- Draws an edge from $a$ up to $b$ if $a < b$ and there is no $c$ with $a < c < b$
+- Omits self-loops and edges implied by transitivity
+
+## Special Types of Partial Orders
+
+### Total Order (Linear Order)
+
+A partial order $\leq$ on $A$ is a **total order** if every two elements are comparable:
+$$\forall a, b \in A: (a \leq b \text{ or } b \leq a)$$
+
+### Well Order
+
+A total order on $A$ is a **well order** if every non-empty subset of $A$ has a least element.
+
+### Lattice
+
+A poset $(A, \leq)$ is a **lattice** if every pair of elements has both a least upper bound (join) and a greatest lower bound (meet).
+
+## Important Theorems
+
+### Duality Principle
+
+If $\leq$ is a partial order on $A$, then the **dual relation** $\geq$ defined by:
+$$a \geq b \iff b \leq a$$
+is also a partial order on $A$.
+
+### Chain and Antichain
+
+- A **chain** in a poset is a subset where all elements are pairwise comparable
+- An **antichain** is a subset where no two distinct elements are comparable
+
+## Applications
+
+- **Computer Science**: Dependency resolution, task scheduling, type hierarchies
+- **Mathematics**: Order theory, lattice theory, domain theory
+- **Logic**: Boolean algebras, Heyting algebras
+- **Combinatorics**: Sperner's theorem, Dilworth's theorem
+
+## See Also
+
+- @def-relation
+- @def-equivalence-relation
+- @def-subset
+- @def-function
+- @def-power-set
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-partial-order["Definition: Partial Order"]:::definition
+    def-relation["Definition: Relation"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-subset["Definition: Subset"]:::definition
+    def-power-set["Definition: Power Set"]:::definition
+    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
+    def-function["Definition: Function"]:::definition
+    def-relation --> def-partial-order
+    def-set --> def-partial-order
+    def-partial-order --> def-subset
+    def-partial-order --> def-power-set
+    def-partial-order --> def-equivalence-relation
+    def-partial-order --> def-function
+    def-partial-order --> def-relation
+    def-partial-order --> def-set
+    class def-partial-order current
+    click def-relation "def-relation.html" "Go to Relation definition"
+    click def-set "def-set.html" "Go to Set definition"
+    click def-subset "def-subset.html" "Go to Subset definition"
+    click def-power-set "def-power-set.html" "Go to Power Set definition"
+    click def-equivalence-relation "def-equivalence-relation.html" "Go to Equivalence Relation definition"
+    click def-function "def-function.html" "Go to Function definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-partial-order" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-partial-order.html){target="_blank"}

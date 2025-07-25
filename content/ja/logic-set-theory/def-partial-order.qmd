@@ -1,0 +1,200 @@
+---
+id: def-partial-order
+requires:
+- def-relation
+- def-set
+status: complete
+title: '定義：半順序'
+translation_of: ../../en/logic-set-theory/def-partial-order.qmd
+translations:
+  en: ../en/logic-set-theory/def-partial-order.html
+  ja: ../ja/logic-set-theory/def-partial-order.html
+type: Definition
+---
+
+# 定義：半順序 {#def-partial-order}
+
+[集合](def-set.qmd) $A$ 上の**半順序**は、反射的、反対称的、推移的な[関係](def-relation.qmd) $\leq$ である。
+
+## 形式的定義
+
+集合 $A$ 上の関係 $\leq$ が以下の3つの性質を満たすとき、かつそのときに限り、半順序である：
+
+### 1. 反射的性質
+
+すべての $a \in A$ に対して：
+$$a \leq a$$
+
+すべての要素は自分自身と関係している。
+
+### 2. 反対称的性質
+
+すべての $a, b \in A$ に対して：
+$$(a \leq b \text{ かつ } b \leq a) \implies a = b$$
+
+$a$ が $b$ と関係し、$b$ が $a$ と関係しているならば、$a$ と $b$ は等しくなければならない。
+
+### 3. 推移的性質
+
+すべての $a, b, c \in A$ に対して：
+$$(a \leq b \text{ かつ } b \leq c) \implies a \leq c$$
+
+$a$ が $b$ と関係し、$b$ が $c$ と関係しているならば、$a$ は $c$ と関係している。
+
+## 半順序集合（Poset）
+
+**半順序集合**（または**poset**）は、集合 $A$ とその上の半順序関係 $\leq$ からなる順序対 $(A, \leq)$ である。
+
+### 記法
+
+- $a < b$ は $a \leq b$ かつ $a \neq b$ を意味する（狭義半順序）
+- $a \leq b$ でも $b \leq a$ でもないとき、$a$ と $b$ は**比較不可能**であるという
+- $a$ と $b$ が比較不可能なとき、$a \parallel b$ と書く
+
+## 比較可能な要素
+
+2つの要素 $a, b \in A$ が、$a \leq b$ または $b \leq a$（またはその両方）のとき、**比較可能**であるという。半順序の「半」は、すべての要素の組が比較可能である必要がないことを示している。
+
+## 例
+
+### 1. 部分集合関係
+
+任意の集合 $X$ の[べき集合](def-power-set.qmd) $\mathcal{P}(X)$ 上の[部分集合](def-subset.qmd)関係 $\subseteq$ は半順序である：
+- 反射的：すべての $A \in \mathcal{P}(X)$ に対して $A \subseteq A$
+- 反対称的：$(A \subseteq B \text{ かつ } B \subseteq A) \implies A = B$
+- 推移的：$(A \subseteq B \text{ かつ } B \subseteq C) \implies A \subseteq C$
+
+### 2. 整除関係
+
+正の整数 $\mathbb{Z}^+$ 上の関係 $a \mid b$（「$a$ は $b$ を割り切る」と読む）は半順序である：
+- 反射的：すべての $a \in \mathbb{Z}^+$ に対して $a \mid a$
+- 反対称的：正の整数に対して $(a \mid b \text{ かつ } b \mid a) \implies a = b$
+- 推移的：$(a \mid b \text{ かつ } b \mid c) \implies a \mid c$
+
+### 3. 実数の通常の順序
+
+$\mathbb{R}$ 上の通常の $\leq$ 関係は半順序である（実際には全順序）：
+- 反射的：すべての $a \in \mathbb{R}$ に対して $a \leq a$
+- 反対称的：$(a \leq b \text{ かつ } b \leq a) \implies a = b$
+- 推移的：$(a \leq b \text{ かつ } b \leq c) \implies a \leq c$
+
+### 4. 成分ごとの順序
+
+$\mathbb{R}^n$ 上で、すべての $i$ に対して $x_i \leq y_i$ のとき $(x_1, ..., x_n) \leq (y_1, ..., y_n)$ と定義する。これは多くの組が比較不可能な半順序である。
+
+## 特別な要素
+
+半順序集合 $(A, \leq)$ において：
+
+### 極小要素と極大要素
+
+- $b < a$ となる $b \in A$ が存在しないとき、$a \in A$ は**極小**である
+- $a < b$ となる $b \in A$ が存在しないとき、$a \in A$ は**極大**である
+
+### 最小要素と最大要素
+
+- すべての $b \in A$ に対して $a \leq b$ のとき、$a \in A$ は**最小要素**（または**最小元**）である
+- すべての $b \in A$ に対して $b \leq a$ のとき、$a \in A$ は**最大要素**（または**最大元**）である
+
+### 上界と下界
+
+部分集合 $S \subseteq A$ に対して：
+- すべての $s \in S$ に対して $s \leq a$ のとき、$a \in A$ は $S$ の**上界**である
+- すべての $s \in S$ に対して $a \leq s$ のとき、$a \in A$ は $S$ の**下界**である
+
+## ハッセ図
+
+有限半順序集合は**ハッセ図**を使って視覚化できる：
+- 要素を頂点として表す
+- $a < b$ かつ $a < c < b$ となる $c$ が存在しないとき、$a$ から $b$ へ上向きに辺を描く
+- 自己ループと推移性によって暗示される辺は省略する
+
+## 特別な種類の半順序
+
+### 全順序（線形順序）
+
+$A$ 上の半順序 $\leq$ が、任意の2つの要素が比較可能なとき、**全順序**である：
+$$\forall a, b \in A: (a \leq b \text{ または } b \leq a)$$
+
+### 整列順序
+
+$A$ 上の全順序が、$A$ のすべての空でない部分集合が最小要素を持つとき、**整列順序**である。
+
+### 束
+
+半順序集合 $(A, \leq)$ が、任意の要素の組が最小上界（結び）と最大下界（交わり）の両方を持つとき、**束**である。
+
+## 重要な定理
+
+### 双対原理
+
+$\leq$ が $A$ 上の半順序ならば、以下で定義される**双対関係** $\geq$：
+$$a \geq b \iff b \leq a$$
+も $A$ 上の半順序である。
+
+### 鎖と反鎖
+
+- 半順序集合の**鎖**は、すべての要素が対ごとに比較可能な部分集合である
+- **反鎖**は、異なる2つの要素が比較不可能な部分集合である
+
+## 応用
+
+- **計算機科学**：依存関係の解決、タスクスケジューリング、型階層
+- **数学**：順序論、束論、領域理論
+- **論理学**：ブール代数、ヘイティング代数
+- **組合せ論**：シュペルナーの定理、ディルワースの定理
+
+## 関連項目
+
+- @def-relation
+- @def-equivalence-relation
+- @def-subset
+- @def-function
+- @def-power-set
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-partial-order["定義：半順序"]:::definition
+    def-relation["定義：関係"]:::definition
+    def-set["定義：集合"]:::definition
+    def-subset["定義：部分集合"]:::definition
+    def-power-set["定義：べき集合"]:::definition
+    def-equivalence-relation["定義：同値関係"]:::definition
+    def-function["定義：関数"]:::definition
+    def-relation --> def-partial-order
+    def-set --> def-partial-order
+    def-partial-order --> def-subset
+    def-partial-order --> def-power-set
+    def-partial-order --> def-equivalence-relation
+    def-partial-order --> def-function
+    def-partial-order --> def-relation
+    def-partial-order --> def-set
+    class def-partial-order current
+    click def-relation "def-relation.html" "関係の定義へ"
+    click def-set "def-set.html" "集合の定義へ"
+    click def-subset "def-subset.html" "部分集合の定義へ"
+    click def-power-set "def-power-set.html" "べき集合の定義へ"
+    click def-equivalence-relation "def-equivalence-relation.html" "同値関係の定義へ"
+    click def-function "def-function.html" "関数の定義へ"
+```
+
+## インタラクティブ可視化
+
+ローカル知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-partial-order" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [フルインタラクティブ版](../../output/interactive/def-partial-order.html){target="_blank"}を表示
