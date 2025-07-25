@@ -102,6 +102,8 @@ All Python scripts must pass pre-commit checks: proper type annotations from `ty
 
 **Pre-commit Hook Behavior**: Hooks automatically fix trailing whitespace and end-of-file issues in `.qmd` files. The translation status hook updates `translations-status.yml` on every commit involving content files. **Important**: When hooks modify files, the commit will fail and require re-adding the modified files and retrying the commit.
 
+**Commit Staging Best Practice**: When the repository has many uncommitted changes, use `git add` with specific file paths rather than `git add -A` to stage only the files related to your current task. This prevents accidentally committing unrelated changes.
+
 ### SPARQL and API
 
 ```bash
@@ -130,7 +132,7 @@ All mathematical content is in `content/` organized by domain. Each `.qmd` file 
 When adding new mathematical content:
 
 1. **Verify Accuracy**: Use web search to verify mathematical definitions, theorems, and properties before writing
-2. **Follow Existing Format**: Examine similar articles in the same domain for consistent structure and style
+2. **Follow Style Guides**: Consult `/docs/style_guide/` for detailed templates and guidelines specific to axioms, definitions, theorems, and examples
 3. **Add Cross-References**: Link to required concepts using `@domain/concept-id` syntax
 4. **Update Existing References**: Search for mentions of your new concept and add cross-references from existing articles
 5. **Update Index**: Add the new article to the domain's index.qmd file in alphabetical order
@@ -256,7 +258,7 @@ The project supports multiple languages (currently English and Japanese) with au
 
 - Japanese files need `translation_of: ../../en/path.qmd`
 - All files need `translations: {en: "path.html", ja: "path.html"}`
-- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Module→加群, Ideal→イデアル, Cyclic Group→巡回群, Polynomial Ring→多項式環, Variance→分散, Abelian Group→アーベル群/可換群, Independence→独立性, Uniform Continuity→一様連続性, Homeomorphism→同相写像, Series→級数, Group Action→群の作用, Orbit→軌道, Stabilizer→固定化部分群, Cauchy Sequence→コーシー列, Inclusion-Exclusion Principle→包除原理, Sylow Theorems→シローの定理
+- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Module→加群, Ideal→イデアル, Cyclic Group→巡回群, Polynomial Ring→多項式環, Variance→分散, Abelian Group→アーベル群/可換群, Independence→独立性, Uniform Continuity→一様連続性, Homeomorphism→同相写像, Series→級数, Group Action→群の作用, Orbit→軌道, Stabilizer→固定化部分群, Cauchy Sequence→コーシー列, Inclusion-Exclusion Principle→包除原理, Sylow Theorems→シローの定理, Automorphism→自己同型
 
 ### Building Multilingual Sites
 
