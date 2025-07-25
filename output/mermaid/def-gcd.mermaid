@@ -5,26 +5,26 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-chinese-remainder["Theorem: Chinese Remainder Theorem"]:::theorem
-    def-divisibility["Definition: Divisibility"]:::definition
-    def-set["Definition: Set"]:::definition
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
-    thm-fermat-little["Theorem: Fermat's Little Theorem"]:::theorem
-    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
-    def-gcd["Definition: Greatest Common Divisor"]:::definition
     def-prime["Definition: Prime Number"]:::definition
     ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
+    thm-chinese-remainder["Theorem: Chinese Remainder Theorem"]:::theorem
+    def-divisibility["Definition: Divisibility"]:::definition
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    def-set["Definition: Set"]:::definition
+    thm-fermat-little["Theorem: Fermat's Little Theorem"]:::theorem
+    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
     thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
-    def-gcd --> thm-euclidean-algorithm
-    def-gcd --> def-set
-    def-gcd --> thm-euler
-    def-congruence --> def-gcd
-    def-gcd --> def-congruence
-    def-gcd --> def-prime
-    thm-euclidean-algorithm --> def-gcd
+    def-gcd["Definition: Greatest Common Divisor"]:::definition
     thm-chinese-remainder --> def-gcd
+    def-gcd --> def-congruence
+    ex-principal-ideal --> def-gcd
+    def-gcd --> def-prime
     def-gcd --> def-divisibility
     def-divisibility --> def-gcd
+    def-gcd --> def-set
+    def-congruence --> def-gcd
+    def-gcd --> thm-euclidean-algorithm
+    thm-euclidean-algorithm --> def-gcd
+    def-gcd --> thm-euler
     thm-fermat-little --> def-gcd
-    ex-principal-ideal --> def-gcd
     class def-gcd current

@@ -2,6 +2,7 @@
 id: def-subset
 requires:
 - def-set
+- def-relation
 status: complete
 title: 'Definition: Subset'
 translations:
@@ -42,7 +43,7 @@ In words: $A$ is a subset of $B$ if and only if for all $x$, if $x$ is in $A$, t
 
 - [Power Set](def-power-set.qmd): The set of all subsets of a given set
 - Set equality can be proven by showing mutual subset relations
-- The subset relation defines a partial order on the power set
+- The subset [relation](def-relation.qmd) defines a partial order on the power set
 
 ## Dependency Graph
 
@@ -54,17 +55,21 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-event["Definition: Event"]:::definition
     def-ideal["Definition: Ideal"]:::definition
     def-set["Definition: Set"]:::definition
-    def-event["Definition: Event"]:::definition
+    def-relation["Definition: Relation"]:::definition
     def-subset["Definition: Subset"]:::definition
-    def-subset --> def-set
-    def-ideal --> def-subset
     def-event --> def-subset
+    def-subset --> def-set
+    def-subset --> def-relation
+    def-ideal --> def-subset
+    def-relation --> def-subset
     class def-subset current
+    click def-event "def-event.html" "Go to Event definition"
     click def-ideal "def-ideal.html" "Go to Ideal definition"
     click def-set "def-set.html" "Go to Set definition"
-    click def-event "def-event.html" "Go to Event definition"
+    click def-relation "def-relation.html" "Go to Relation definition"
 ```
 
 ## Interactive Visualization

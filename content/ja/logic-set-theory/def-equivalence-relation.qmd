@@ -1,0 +1,155 @@
+---
+id: def-equivalence-relation
+requires:
+- def-relation
+- def-set
+status: complete
+title: 定義：同値関係
+translation_of: ../../en/logic-set-theory/def-equivalence-relation.qmd
+translations:
+  en: ../en/logic-set-theory/def-equivalence-relation.html
+  ja: ../ja/logic-set-theory/def-equivalence-relation.html
+type: Definition
+---
+
+# 定義：同値関係 {#def-equivalence-relation}
+
+[集合](def-set.qmd) $A$ 上の**同値関係**は、反射的、対称的、推移的な $A$ 上の[関係](def-relation.qmd) $\sim$ である。
+
+## 形式的定義
+
+集合 $A$ 上の関係 $\sim$ が同値関係であるための必要十分条件は、以下の3つの性質を満たすことである：
+
+### 1. 反射律
+
+すべての $a \in A$ に対して：
+$$a \sim a$$
+
+すべての要素は自分自身と関係している。
+
+### 2. 対称律
+
+すべての $a, b \in A$ に対して：
+$$a \sim b \implies b \sim a$$
+
+$a$ が $b$ と関係しているならば、$b$ も $a$ と関係している。
+
+### 3. 推移律
+
+すべての $a, b, c \in A$ に対して：
+$$(a \sim b \text{ かつ } b \sim c) \implies a \sim c$$
+
+$a$ が $b$ と関係し、$b$ が $c$ と関係しているならば、$a$ は $c$ と関係している。
+
+## 同値類
+
+集合 $A$ 上の同値関係 $\sim$ が与えられたとき、各要素 $a \in A$ の**同値類**は：
+
+$$[a] = \{x \in A : x \sim a\}$$
+
+### 同値類の性質
+
+1. **空でない**：すべての $a \in A$ に対して $a \in [a]$（反射律による）
+2. **相等または互いに素**：任意の $a, b \in A$ に対して、$[a] = [b]$ または $[a] \cap [b] = \emptyset$
+3. **分割**：すべての同値類の集合は $A$ の分割を形成する：
+   $$A = \bigcup_{a \in A} [a]$$
+
+## 商集合
+
+$\sim$ による $A$ の**商集合**は、$A/\sim$ と表記され、すべての同値類の集合である：
+
+$$A/\sim = \{[a] : a \in A\}$$
+
+## 例
+
+### 1. 等号関係
+
+任意の集合上の関係 $=$ は同値関係である：
+- 反射的：$a = a$
+- 対称的：$a = b \implies b = a$
+- 推移的：$a = b$ かつ $b = c \implies a = c$
+
+### 2. 合同関係（mod n）
+
+正の整数 $n$ を固定するとき、$\mathbb{Z}$ 上の関係 $\equiv_n$ を以下で定義する：
+$$a \equiv_n b \iff n \mid (a - b)$$
+
+これは同値関係である。同値類は $n$ を法とする剰余類である。
+
+### 3. 相似行列
+
+$n \times n$ 行列の集合上で、「相似である」という関係を以下で定義する：
+$$A \sim B \iff \exists \text{ 正則行列 } P \text{ で } B = P^{-1}AP$$
+
+これは同値関係である。
+
+### 4. 平行線
+
+平面上の直線の集合で、「平行である」という関係は同値関係である（直線は自分自身と平行であると考える）。
+
+## 重要な定理
+
+### 同値関係の基本定理
+
+以下の間には全単射対応が存在する：
+1. 集合 $A$ 上の同値関係
+2. 集合 $A$ の分割
+
+すべての同値関係は分割を誘導し、すべての分割は同値関係を定義する。
+
+## 応用
+
+- **モジュラー算術**：合同類はモジュラー算術の基礎を形成する
+- **抽象代数**：商群、商環、商空間
+- **位相幾何学**：商位相と同一視空間
+- **計算機科学**：Union-Find データ構造、型の同値性
+
+## 関連項目
+
+- @def-relation
+- @def-congruence
+- @def-quotient-group
+- @def-function
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-function["Definition: Function"]:::definition
+    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
+    def-relation["Definition: Relation"]:::definition
+    def-relation --> def-equivalence-relation
+    def-equivalence-relation --> def-quotient-group
+    def-equivalence-relation --> def-congruence
+    def-equivalence-relation --> def-set
+    def-equivalence-relation --> def-function
+    def-equivalence-relation --> def-relation
+    class def-equivalence-relation current
+    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
+    click def-set "def-set.html" "Definition: Setへ"
+    click def-function "def-function.html" "Definition: Functionへ"
+    click def-congruence "def-congruence.html" "Definition: Congruence (Modular Arithmetic)へ"
+    click def-relation "def-relation.html" "Definition: Relationへ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-equivalence-relation" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/def-equivalence-relation.html){target="_blank"}で完全なインタラクティブ版を表示

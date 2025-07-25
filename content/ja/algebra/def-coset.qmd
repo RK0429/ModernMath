@@ -6,6 +6,7 @@ requires:
 - def-subgroup
 - def-binary-operation
 - def-abelian-group
+- ../logic-set-theory/def-equivalence-relation
 status: complete
 title: '定義: 剰余類'
 translation_of: ../../en/algebra/def-coset.qmd
@@ -55,6 +56,8 @@ $$|gH| = |H| = |Hg|$$
 $H$の左剰余類（および別に右剰余類）は$G$を分割します：
 - $G$のすべての元はちょうど1つの左剰余類に属します
 - 2つの左剰余類は一致するか互いに素です：$g_1H = g_2H$または$g_1H \cap g_2H = \emptyset$
+
+この分割は[同値関係](../logic-set-theory/def-equivalence-relation.qmd)から生じます：$g_1 \sim g_2$ ⟺ $g_1^{-1}g_2 \in H$。
 
 ### 3. 剰余類の相等判定基準
 
@@ -163,46 +166,46 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-abelian-group["Definition: Abelian Group"]:::definition
     def-quotient-group["Definition: Quotient Group"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
+    def-group-action["Group Action"]:::definition
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    def-abelian-group["Definition: Abelian Group"]:::definition
     def-subgroup["Definition: Subgroup"]:::definition
     ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    def-group["Definition: Group"]:::definition
     def-binary-operation["Definition: Binary Operation"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
     def-coset["Definition: Coset"]:::definition
-    def-group-action["Group Action"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    ex-even-integers-subgroup --> def-coset
     def-coset --> ex-even-integers-subgroup
-    def-coset --> ex-quotient-integers-mod-n
-    def-coset --> def-subgroup
-    thm-lagrange --> def-coset
     def-coset --> def-binary-operation
     def-coset --> def-normal-subgroup
-    def-coset --> def-group-action
-    def-coset --> def-group
-    def-quotient-group --> def-coset
     def-coset --> def-quotient-group
-    def-normal-subgroup --> def-coset
-    def-coset --> thm-lagrange
-    thm-orbit-stabilizer --> def-coset
-    ex-quotient-integers-mod-n --> def-coset
+    def-coset --> def-group
+    def-coset --> ex-quotient-integers-mod-n
+    def-coset --> def-subgroup
     def-coset --> def-abelian-group
-    ex-even-integers-subgroup --> def-coset
+    thm-lagrange --> def-coset
+    def-coset --> thm-lagrange
+    ex-quotient-integers-mod-n --> def-coset
+    def-quotient-group --> def-coset
+    def-normal-subgroup --> def-coset
+    thm-orbit-stabilizer --> def-coset
+    def-coset --> def-group-action
     class def-coset current
-    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
     click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
-    click def-group "def-group.html" "Definition: Groupへ"
-    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
-    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "Orbit-Stabilizer Theoremへ"
+    click def-group-action "def-group-action.html" "Group Actionへ"
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Example: Even Integers Form a Subgroupへ"
+    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
     click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
     click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
-    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Example: Even Integers Form a Subgroupへ"
+    click def-group "def-group.html" "Definition: Groupへ"
     click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
-    click def-group-action "def-group-action.html" "Group Actionへ"
+    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
+    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "Orbit-Stabilizer Theoremへ"
+    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
 ```
 
 ## インタラクティブ可視化

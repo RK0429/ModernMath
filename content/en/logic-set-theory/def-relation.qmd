@@ -1,0 +1,128 @@
+---
+id: def-relation
+requires:
+- def-set
+status: complete
+title: 'Definition: Relation'
+translations:
+  en: ../en/logic-set-theory/def-relation.html
+  ja: ../ja/logic-set-theory/def-relation.html
+type: Definition
+---
+
+# Definition: Relation {#def-relation}
+
+A **relation** from a [set](def-set.qmd) $A$ to a [set](def-set.qmd) $B$ is a [subset](def-subset.qmd) of the Cartesian product $A \times B$.
+
+## Formal Definition
+
+Given two sets $A$ and $B$, the **Cartesian product** $A \times B$ is defined as:
+
+$$A \times B = \{(a, b) : a \in A \text{ and } b \in B\}$$
+
+A **relation** $R$ from $A$ to $B$ is any subset of $A \times B$:
+
+$$R \subseteq A \times B$$
+
+## Notation
+
+- If $(a, b) \in R$, we write $aRb$ and say "$a$ is related to $b$ by $R$"
+- If $(a, b) \notin R$, we write $a \cancel{R} b$
+- A relation from $A$ to itself (i.e., $R \subseteq A \times A$) is called a **relation on $A$**
+
+## Types of Relations
+
+### Domain and Range
+
+For a relation $R \subseteq A \times B$:
+
+- **Domain**: $\text{dom}(R) = \{a \in A : \exists b \in B, (a, b) \in R\}$
+- **Range**: $\text{range}(R) = \{b \in B : \exists a \in A, (a, b) \in R\}$
+
+### Inverse Relation
+
+The **inverse** of a relation $R \subseteq A \times B$ is the relation $R^{-1} \subseteq B \times A$ defined by:
+
+$$R^{-1} = \{(b, a) : (a, b) \in R\}$$
+
+## Properties of Relations on a Set
+
+For a relation $R$ on a set $A$ (i.e., $R \subseteq A \times A$):
+
+### Reflexive
+
+$R$ is **reflexive** if $aRa$ for all $a \in A$
+
+### Symmetric
+
+$R$ is **symmetric** if $aRb$ implies $bRa$ for all $a, b \in A$
+
+### Transitive
+
+$R$ is **transitive** if $aRb$ and $bRc$ implies $aRc$ for all $a, b, c \in A$
+
+### Antisymmetric
+
+$R$ is **antisymmetric** if $aRb$ and $bRa$ implies $a = b$ for all $a, b \in A$
+
+## Examples
+
+1. **Less than**: The relation $<$ on $\mathbb{R}$ where $aRb$ if $a < b$
+2. **Divides**: The relation on $\mathbb{Z}$ where $aRb$ if $a$ divides $b$
+3. **Subset**: The relation $\subseteq$ on the [power set](def-power-set.qmd) of a set
+4. **Function**: Every [function](def-function.qmd) $f: A \to B$ is a special type of relation
+
+## Special Types of Relations
+
+- **Equivalence relation**: A relation that is reflexive, symmetric, and transitive
+- **Partial order**: A relation that is reflexive, antisymmetric, and transitive
+- **Total order**: A partial order where every two elements are comparable
+
+## See Also
+
+- @def-function
+- @def-subset
+- @def-equivalence-relation
+- Partial Orders (coming soon)
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["Definition: Set"]:::definition
+    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
+    def-relation["Definition: Relation"]:::definition
+    def-function["Definition: Function"]:::definition
+    def-subset["Definition: Subset"]:::definition
+    def-relation --> def-equivalence-relation
+    def-relation --> def-set
+    def-function --> def-relation
+    def-relation --> def-function
+    def-subset --> def-relation
+    def-equivalence-relation --> def-relation
+    def-relation --> def-subset
+    class def-relation current
+    click def-set "def-set.html" "Go to Set definition"
+    click def-equivalence-relation "def-equivalence-relation.html" "Go to Equivalence Relation definition"
+    click def-function "def-function.html" "Go to Function definition"
+    click def-subset "def-subset.html" "Go to Subset definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-relation" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-relation.html){target="_blank"}

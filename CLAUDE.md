@@ -160,6 +160,8 @@ When enriching the knowledge graph with missing mathematical content:
 
 When adding fundamental concepts (e.g., quotient groups, isomorphisms, cyclic groups):
 
+**Special Attention for Foundational Concepts**: Relations, equivalence relations, partial orders, and similar foundational concepts often have many existing text mentions that need to be converted to proper cross-references. These require systematic updates across multiple domains.
+
 1. **Search Comprehensively**: Use `grep` to find all articles mentioning related terms across domains
 2. **Update Systematically**: Add references in both YAML `requires` and article content where appropriate
 3. **Cross-Domain Awareness**: Mathematical concepts often appear in multiple domains (e.g., modular arithmetic in number theory relates to quotient groups in algebra)

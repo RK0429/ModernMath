@@ -1,5 +1,8 @@
 ---
 id: def-function
+requires:
+- def-set
+- def-relation
 status: complete
 title: '定義: 関数'
 translation_of: ../../en/logic-set-theory/def-function.qmd
@@ -7,13 +10,11 @@ translations:
   en: ../en/logic-set-theory/def-function.html
   ja: ../ja/logic-set-theory/def-function.html
 type: Definition
-requires:
-- def-set
 ---
 
 # 定義: 関数 {#def-function}
 
-**関数**は[集合](def-set.qmd) $A$ から[集合](def-set.qmd) $B$ への関係で、$A$ の各要素に対して $B$ の要素をちょうど一つ割り当てるものです。
+**関数**は[集合](def-set.qmd) $A$ から[集合](def-set.qmd) $B$ への[関係](def-relation.qmd)で、$A$ の各要素に対して $B$ の要素をちょうど一つ割り当てるものです。
 
 ## 形式的定義
 
@@ -62,6 +63,7 @@ $$\forall b \in B: \exists a \in A \text{ such that } f(a) = b$$
 
 ## 関連項目
 
+- @def-relation
 - 定義: 準同型（構造を保つ関数）（近日公開）
 - 定義: 線形変換（ベクトル空間間の関数）（近日公開）
 - 例: 指数関数（近日公開）
@@ -76,21 +78,68 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-function["定義: 関数"]:::definition
-    def-set["定義: 集合"]:::definition
+    def-functor["Definition: Functor"]:::definition
+    thm-pigeonhole-principle["Theorem: Pigeonhole Principle"]:::theorem
+    def-sequence["Definition: Sequence"]:::definition
+    def-random-variable["Definition: Random Variable"]:::definition
+    def-group-action["Group Action"]:::definition
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-continuity["Definition: Continuity"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
+    def-function["Definition: Function"]:::definition
+    def-relation["Definition: Relation"]:::definition
+    def-homeomorphism["Definition: Homeomorphism"]:::definition
+    def-determinant["Definition: Determinant"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-permutation["Definition: Permutation"]:::definition
+    def-metric-space["Definition: Metric Space"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-homeomorphism --> def-function
+    def-sequence --> def-function
+    def-continuity --> def-function
+    def-linear-transformation --> def-function
+    def-homomorphism --> def-function
+    def-function --> def-relation
+    def-functor --> def-function
+    def-random-variable --> def-function
+    def-metric-space --> def-function
+    def-permutation --> def-function
+    thm-pigeonhole-principle --> def-function
+    def-relation --> def-function
     def-function --> def-set
+    def-determinant --> def-function
+    def-equivalence-relation --> def-function
+    def-binary-operation --> def-function
+    def-group-action --> def-function
     class def-function current
+    click def-functor "def-functor.html" "Definition: Functorへ"
+    click thm-pigeonhole-principle "thm-pigeonhole-principle.html" "Theorem: Pigeonhole Principleへ"
+    click def-sequence "def-sequence.html" "Definition: Sequenceへ"
+    click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
+    click def-group-action "def-group-action.html" "Group Actionへ"
+    click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
+    click def-continuity "def-continuity.html" "Definition: Continuityへ"
+    click def-set "def-set.html" "Definition: Setへ"
+    click def-equivalence-relation "def-equivalence-relation.html" "Definition: Equivalence Relationへ"
+    click def-relation "def-relation.html" "Definition: Relationへ"
+    click def-homeomorphism "def-homeomorphism.html" "Definition: Homeomorphismへ"
+    click def-determinant "def-determinant.html" "Definition: Determinantへ"
+    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
+    click def-permutation "def-permutation.html" "Definition: Permutationへ"
+    click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
+    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
 ```
 
 ## インタラクティブ可視化
 
-ローカルの知識グラフの近傍をインタラクティブに探索:
+ローカルナレッジグラフの近傍をインタラクティブに探索：
 
 ::: {.graph-viz data-id="def-function" data-width="700" data-height="500"}
 :::
 
-操作方法:
-- **ドラッグ**: ノードを動かしてレイアウトを調整
-- **ズーム**: マウスホイールで拡大/縮小
-- **ホバー**: ノードの詳細を表示
-- [完全なインタラクティブ版を表示](../../output/interactive/def-function.html){target="_blank"}
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/def-function.html){target="_blank"}で完全なインタラクティブ版を表示

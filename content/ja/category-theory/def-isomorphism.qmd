@@ -5,6 +5,7 @@ requires:
 - def-composition
 - def-category
 - def-homeomorphism
+- ../logic-set-theory/def-equivalence-relation
 status: complete
 title: '定義: 同型射'
 translation_of: ../../en/category-theory/def-isomorphism.qmd
@@ -36,7 +37,7 @@ type: Definition
 
 対象 $A$ と $B$ が**同型**であるとは、同型射 $f: A \to B$ が存在することで、$A \cong B$ と書きます。
 
-同型は同値関係です：
+同型は[同値関係](../logic-set-theory/def-equivalence-relation.qmd)です：
 - **反射律**: $\text{id}_A$ により $A \cong A$
 - **対称律**: $A \cong B$ ならば $B \cong A$
 - **推移律**: $A \cong B$ かつ $B \cong C$ ならば $A \cong C$
@@ -89,21 +90,21 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-homeomorphism["Definition: Homeomorphism"]:::definition
     def-category["Definition: Category"]:::definition
-    def-composition["Definition: Composition"]:::definition
-    def-morphism["Definition: Morphism"]:::definition
+    def-homeomorphism["Definition: Homeomorphism"]:::definition
     def-isomorphism["Definition: Isomorphism"]:::definition
-    def-isomorphism --> def-morphism
-    def-isomorphism --> def-category
-    def-homeomorphism --> def-isomorphism
+    def-morphism["Definition: Morphism"]:::definition
+    def-composition["Definition: Composition"]:::definition
     def-isomorphism --> def-composition
     def-isomorphism --> def-homeomorphism
+    def-isomorphism --> def-category
+    def-homeomorphism --> def-isomorphism
+    def-isomorphism --> def-morphism
     class def-isomorphism current
-    click def-homeomorphism "def-homeomorphism.html" "Definition: Homeomorphismへ"
     click def-category "def-category.html" "Definition: Categoryへ"
-    click def-composition "def-composition.html" "Definition: Compositionへ"
+    click def-homeomorphism "def-homeomorphism.html" "Definition: Homeomorphismへ"
     click def-morphism "def-morphism.html" "Definition: Morphismへ"
+    click def-composition "def-composition.html" "Definition: Compositionへ"
 ```
 
 ## インタラクティブ可視化

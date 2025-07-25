@@ -2,6 +2,7 @@
 id: def-subset
 requires:
 - def-set
+- def-relation
 status: complete
 title: '定義: 部分集合'
 translation_of: ../../en/logic-set-theory/def-subset.qmd
@@ -43,7 +44,7 @@ $$A \subseteq B \iff \forall x (x \in A \implies x \in B)$$
 
 - [べき集合](def-power-set.qmd)：与えられた集合のすべての部分集合の集合
 - 集合の等価性は相互の部分集合関係を示すことで証明できる
-- 部分集合関係はべき集合上の半順序を定義する
+- 部分集合[関係](def-relation.qmd)はべき集合上の半順序を定義する
 
 ## 依存関係グラフ
 
@@ -55,17 +56,21 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-event["Definition: Event"]:::definition
     def-ideal["Definition: Ideal"]:::definition
     def-set["Definition: Set"]:::definition
-    def-event["Definition: Event"]:::definition
+    def-relation["Definition: Relation"]:::definition
     def-subset["Definition: Subset"]:::definition
-    def-subset --> def-set
-    def-ideal --> def-subset
     def-event --> def-subset
+    def-subset --> def-set
+    def-subset --> def-relation
+    def-ideal --> def-subset
+    def-relation --> def-subset
     class def-subset current
+    click def-event "def-event.html" "Definition: Eventへ"
     click def-ideal "def-ideal.html" "Definition: Idealへ"
     click def-set "def-set.html" "Definition: Setへ"
-    click def-event "def-event.html" "Definition: Eventへ"
+    click def-relation "def-relation.html" "Definition: Relationへ"
 ```
 
 ## インタラクティブ可視化

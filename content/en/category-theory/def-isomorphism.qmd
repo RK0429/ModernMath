@@ -5,6 +5,7 @@ requires:
 - def-composition
 - def-category
 - def-homeomorphism
+- ../logic-set-theory/def-equivalence-relation
 status: complete
 title: 'Definition: Isomorphism'
 translations:
@@ -35,7 +36,7 @@ The morphism $g$ is called the **inverse** of $f$, denoted $f^{-1}$.
 
 Objects $A$ and $B$ are **isomorphic**, written $A \cong B$, if there exists an isomorphism $f: A \to B$.
 
-Isomorphism is an equivalence relation:
+Isomorphism is an [equivalence relation](../logic-set-theory/def-equivalence-relation.qmd):
 - **Reflexive**: $A \cong A$ via $\text{id}_A$
 - **Symmetric**: $A \cong B$ implies $B \cong A$
 - **Transitive**: $A \cong B$ and $B \cong C$ implies $A \cong C$
@@ -88,21 +89,21 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-homeomorphism["Definition: Homeomorphism"]:::definition
     def-category["Definition: Category"]:::definition
-    def-composition["Definition: Composition"]:::definition
-    def-morphism["Definition: Morphism"]:::definition
+    def-homeomorphism["Definition: Homeomorphism"]:::definition
     def-isomorphism["Definition: Isomorphism"]:::definition
-    def-isomorphism --> def-morphism
-    def-isomorphism --> def-category
-    def-homeomorphism --> def-isomorphism
+    def-morphism["Definition: Morphism"]:::definition
+    def-composition["Definition: Composition"]:::definition
     def-isomorphism --> def-composition
     def-isomorphism --> def-homeomorphism
+    def-isomorphism --> def-category
+    def-homeomorphism --> def-isomorphism
+    def-isomorphism --> def-morphism
     class def-isomorphism current
-    click def-homeomorphism "def-homeomorphism.html" "Go to Homeomorphism definition"
     click def-category "def-category.html" "Go to Category definition"
-    click def-composition "def-composition.html" "Go to Composition definition"
+    click def-homeomorphism "def-homeomorphism.html" "Go to Homeomorphism definition"
     click def-morphism "def-morphism.html" "Go to Morphism definition"
+    click def-composition "def-composition.html" "Go to Composition definition"
 ```
 
 ## Interactive Visualization
