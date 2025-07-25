@@ -334,16 +334,16 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-set["Definition: Set"]:::definition
-    def-probability-space["Definition: Probability Space"]:::definition
     def-conditional-probability["Definition: Conditional Probability"]:::definition
     def-random-variable["Definition: Random Variable"]:::definition
     def-expectation["Definition: Expected Value"]:::definition
     def-independence["Definition: Independence"]:::definition
-    def-conditional-probability --&gt; def-probability-space
+    def-probability-space["Definition: Probability Space"]:::definition
     def-probability-space --&gt; def-set
-    def-independence --&gt; def-probability-space
     def-expectation --&gt; def-probability-space
     def-random-variable --&gt; def-probability-space
+    def-conditional-probability --&gt; def-probability-space
+    def-independence --&gt; def-probability-space
     class def-probability-space current
     click def-set "def-set.html" "Go to Set definition"
     click def-conditional-probability "def-conditional-probability.html" "Go to Conditional Probability definition"
@@ -360,7 +360,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-probability-space-1753374183" class="graph-visualization-container">
+<div id="graph-viz-def-probability-space-1753450968" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -540,12 +540,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-probability-space-1753374183', {
+    createForceGraph(data, 'graph-viz-def-probability-space-1753450968', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-probability-space-1753374183').innerHTML =
+    document.getElementById('graph-viz-def-probability-space-1753450968').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

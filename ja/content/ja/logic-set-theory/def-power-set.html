@@ -297,7 +297,7 @@ window.Quarto = {
 <li><strong>常に空集合を含む</strong>: 任意の集合 <span class="math inline">\(A\)</span> に対して <span class="math inline">\(\emptyset \in \mathcal{P}(A)\)</span></li>
 <li><strong>常に元の集合を含む</strong>: <span class="math inline">\(A \in \mathcal{P}(A)\)</span></li>
 <li><strong>濃度</strong>: <span class="math inline">\(|A| = n\)</span>（有限）ならば <span class="math inline">\(|\mathcal{P}(A)| = 2^n\)</span></li>
-<li><strong>順序</strong>: <span class="math inline">\(\mathcal{P}(A)\)</span> は包含関係の下で半順序集合をなす</li>
+<li><strong>順序</strong>: <span class="math inline">\(\mathcal{P}(A)\)</span> は包含関係の下で半順序集合をなす（<a href="../../../content/ja/logic-set-theory/def-relation.html">関係</a>を参照）</li>
 </ol>
 </section>
 <section id="例" class="level2">
@@ -364,7 +364,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-power-set-1753374316" class="graph-visualization-container">
+<div id="graph-viz-def-power-set-1753451104" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -544,12 +544,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-power-set-1753374316', {
+    createForceGraph(data, 'graph-viz-def-power-set-1753451104', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-power-set-1753374316').innerHTML =
+    document.getElementById('graph-viz-def-power-set-1753451104').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

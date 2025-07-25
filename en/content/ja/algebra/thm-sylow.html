@@ -337,7 +337,7 @@ window.Quarto = {
 <p>シローの定理には多くの応用がある：</p>
 <ol type="1">
 <li><strong>有限群の分類</strong>：特定の位数の群が特定の構造を持つことを証明するために使用</li>
-<li><strong>非単純性の結果</strong>：特定の位数の群が単純でないことを示すためによく使用される</li>
+<li><strong>非単純性の結果</strong>：特定の位数の群が<a href="../../../content/ja/algebra/def-simple-group.html">単純</a>でないことを示すためによく使用される</li>
 <li><strong>構造解析</strong>：<a href="../../../content/ja/algebra/def-normal-subgroup.html">正規部分群</a>構造についての情報を提供</li>
 <li><strong>ラグランジュの部分的逆</strong>：<a href="../../../content/ja/algebra/thm-lagrange.html">ラグランジュの定理</a>は部分群の位数が群の位数を割ることを述べるが、シローの第一定理は素数べきに対する部分的な逆を提供する</li>
 </ol>
@@ -369,12 +369,12 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    thm-sylow["Sylow Theorems"]:::theorem
     def-group["Definition: Group"]:::definition
     def-subgroup["Definition: Subgroup"]:::definition
-    thm-sylow["Sylow Theorems"]:::theorem
     thm-sylow --&gt; thm-lagrange
-    thm-sylow --&gt; def-group
     thm-sylow --&gt; def-subgroup
+    thm-sylow --&gt; def-group
     class thm-sylow current
     click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
     click def-group "def-group.html" "Definition: Groupへ"
@@ -389,7 +389,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-sylow-1753374213" class="graph-visualization-container">
+<div id="graph-viz-thm-sylow-1753450998" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -569,12 +569,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-sylow-1753374213', {
+    createForceGraph(data, 'graph-viz-thm-sylow-1753450998', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-sylow-1753374213').innerHTML =
+    document.getElementById('graph-viz-thm-sylow-1753450998').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

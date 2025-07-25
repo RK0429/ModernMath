@@ -306,7 +306,7 @@ window.Quarto = {
 
 <section id="def-quotient-group" class="level1">
 <h1>Definition: Quotient Group</h1>
-<p>A <strong>quotient group</strong> (also called a <strong>factor group</strong>) is a <a href="../../../content/en/algebra/def-group.html">group</a> formed by partitioning a group into <a href="../../../content/en/algebra/def-coset.html">cosets</a> of a <a href="../../../content/en/algebra/def-normal-subgroup.html">normal subgroup</a>.</p>
+<p>A <strong>quotient group</strong> (also called a <strong>factor group</strong>) is a <a href="../../../content/en/algebra/def-group.html">group</a> formed by partitioning a group into <a href="../../../content/en/algebra/def-coset.html">cosets</a> of a <a href="../../../content/en/algebra/def-normal-subgroup.html">normal subgroup</a>. The cosets form the equivalence classes of an <a href="../../../content/en/logic-set-theory/def-equivalence-relation.html">equivalence relation</a>.</p>
 <section id="formal-definition" class="level2">
 <h2 class="anchored" data-anchor-id="formal-definition">Formal Definition</h2>
 <p>Let <span class="math inline">\(G\)</span> be a group and <span class="math inline">\(N \triangleleft G\)</span> be a normal subgroup. The <strong>quotient group</strong> of <span class="math inline">\(G\)</span> by <span class="math inline">\(N\)</span>, denoted <span class="math inline">\(G/N\)</span> (read “<span class="math inline">\(G\)</span> modulo <span class="math inline">\(N\)</span>”), is the set of all left cosets of <span class="math inline">\(N\)</span> in <span class="math inline">\(G\)</span>:</p>
@@ -365,7 +365,7 @@ window.Quarto = {
 </section>
 <section id="simple-groups" class="level3">
 <h3 class="anchored" data-anchor-id="simple-groups">4. Simple Groups</h3>
-<p>A group <span class="math inline">\(G\)</span> is <strong>simple</strong> if its only normal subgroups are <span class="math inline">\(\{e\}\)</span> and <span class="math inline">\(G\)</span> itself. For simple groups, the only quotient groups are: - <span class="math inline">\(G/\{e\} \cong G\)</span> - <span class="math inline">\(G/G \cong \{e\}\)</span></p>
+<p>A group <span class="math inline">\(G\)</span> is <a href="../../../content/en/algebra/def-simple-group.html"><strong>simple</strong></a> if its only normal subgroups are <span class="math inline">\(\{e\}\)</span> and <span class="math inline">\(G\)</span> itself. For simple groups, the only quotient groups are: - <span class="math inline">\(G/\{e\} \cong G\)</span> - <span class="math inline">\(G/G \cong \{e\}\)</span></p>
 <p>The <a href="../../../content/en/algebra/thm-sylow.html">Sylow theorems</a> are often used to prove that groups of certain orders cannot be simple.</p>
 </section>
 </section>
@@ -413,56 +413,62 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-subgroup["Definition: Subgroup"]:::definition
-    def-kernel["Definition: Kernel"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    ex-finite-field["Example: Finite Field"]:::example
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    def-group["Definition: Group"]:::definition
-    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
-    def-coset["Definition: Coset"]:::definition
     def-quotient-group["Definition: Quotient Group"]:::definition
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    def-ideal["Definition: Ideal"]:::definition
+    def-coset["Definition: Coset"]:::definition
+    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
+    def-kernel["Definition: Kernel"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    def-simple-group["Definition: Simple Group"]:::definition
+    ex-finite-field["Example: Finite Field"]:::example
     thm-euler["Theorem: Euler's Theorem"]:::theorem
-    def-quotient-group --&gt; def-subgroup
-    def-abelian-group --&gt; def-quotient-group
-    ex-quotient-integers-mod-n --&gt; def-quotient-group
-    def-subgroup --&gt; def-quotient-group
-    def-quotient-group --&gt; def-coset
-    def-group --&gt; def-quotient-group
-    thm-euler --&gt; def-quotient-group
-    def-quotient-group --&gt; def-ideal
-    def-coset --&gt; def-quotient-group
-    thm-lagrange --&gt; def-quotient-group
-    def-quotient-group --&gt; def-abelian-group
+    def-ideal["Definition: Ideal"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-kernel --&gt; def-quotient-group
+    def-abelian-group --&gt; def-quotient-group
+    def-quotient-group --&gt; def-coset
+    def-homomorphism --&gt; def-quotient-group
+    def-quotient-group --&gt; def-cyclic-group
+    def-quotient-group --&gt; def-ideal
+    ex-quotient-integers-mod-n --&gt; def-quotient-group
+    def-equivalence-relation --&gt; def-quotient-group
+    def-quotient-group --&gt; def-subgroup
+    def-quotient-group --&gt; def-abelian-group
+    def-normal-subgroup --&gt; def-quotient-group
+    def-quotient-group --&gt; def-normal-subgroup
+    def-group --&gt; def-quotient-group
     def-quotient-group --&gt; def-group
     ex-finite-field --&gt; def-quotient-group
-    def-quotient-group --&gt; def-normal-subgroup
-    thm-first-isomorphism --&gt; def-quotient-group
-    def-quotient-group --&gt; def-cyclic-group
+    thm-lagrange --&gt; def-quotient-group
     def-quotient-group --&gt; thm-first-isomorphism
-    def-homomorphism --&gt; def-quotient-group
-    def-normal-subgroup --&gt; def-quotient-group
+    def-subgroup --&gt; def-quotient-group
+    def-simple-group --&gt; def-quotient-group
+    thm-first-isomorphism --&gt; def-quotient-group
+    def-coset --&gt; def-quotient-group
+    thm-euler --&gt; def-quotient-group
     class def-quotient-group current
-    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
-    click def-kernel "def-kernel.html" "Go to Kernel definition"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
-    click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
-    click def-group "def-group.html" "Go to Group definition"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem theorem"
     click def-coset "def-coset.html" "Go to Coset definition"
-    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
-    click def-ideal "def-ideal.html" "Go to Ideal definition"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem theorem"
+    click def-kernel "def-kernel.html" "Go to Kernel definition"
+    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
     click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
+    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
+    click def-simple-group "def-simple-group.html" "Go to Simple Group definition"
+    click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
     click thm-euler "thm-euler.html" "Go to Euler's Theorem theorem"
+    click def-ideal "def-ideal.html" "Go to Ideal definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
+    click def-equivalence-relation "def-equivalence-relation.html" "Go to Equivalence Relation definition"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -473,7 +479,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-quotient-group-1753374138" class="graph-visualization-container">
+<div id="graph-viz-def-quotient-group-1753450921" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -653,12 +659,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-quotient-group-1753374138', {
+    createForceGraph(data, 'graph-viz-def-quotient-group-1753450921', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-quotient-group-1753374138').innerHTML =
+    document.getElementById('graph-viz-def-quotient-group-1753450921').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

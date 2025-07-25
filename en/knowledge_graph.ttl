@@ -75,6 +75,8 @@
 
 <http://modernmath.org/concepts/eigenvalue-eigenvector> ns1:hasTranslation <http://modernmath.org/concepts/eigenvalue-eigenvector_ja> .
 
+<http://modernmath.org/concepts/equivalence-relation> ns1:hasTranslation <http://modernmath.org/concepts/equivalence-relation_ja> .
+
 <http://modernmath.org/concepts/euclidean-algorithm> ns1:hasTranslation <http://modernmath.org/concepts/euclidean-algorithm_ja> .
 
 <http://modernmath.org/concepts/euclidean-metric> ns1:hasTranslation <http://modernmath.org/concepts/euclidean-metric_ja> .
@@ -231,6 +233,8 @@
 
 <http://modernmath.org/concepts/real-line-metric> ns1:hasTranslation <http://modernmath.org/concepts/real-line-metric_ja> .
 
+<http://modernmath.org/concepts/relation> ns1:hasTranslation <http://modernmath.org/concepts/relation_ja> .
+
 <http://modernmath.org/concepts/ring> ns1:hasTranslation <http://modernmath.org/concepts/ring_ja> .
 
 <http://modernmath.org/concepts/sample-space> ns1:hasTranslation <http://modernmath.org/concepts/sample-space_ja> .
@@ -242,6 +246,8 @@
 <http://modernmath.org/concepts/set> ns1:hasTranslation <http://modernmath.org/concepts/set_ja> .
 
 <http://modernmath.org/concepts/set-category> ns1:hasTranslation <http://modernmath.org/concepts/set-category_ja> .
+
+<http://modernmath.org/concepts/simple-group> ns1:hasTranslation <http://modernmath.org/concepts/simple-group_ja> .
 
 <http://modernmath.org/concepts/span> ns1:hasTranslation <http://modernmath.org/concepts/span_ja> .
 
@@ -789,6 +795,8 @@ base:thm-yoneda a mymath:Theorem ;
 
 <http://modernmath.org/concepts/eigenvalue-eigenvector_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/equivalence-relation_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/euclidean-algorithm_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/euclidean-metric_ja> ns1:language "ja" .
@@ -945,6 +953,8 @@ base:thm-yoneda a mymath:Theorem ;
 
 <http://modernmath.org/concepts/real-line-metric_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/relation_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/ring_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/sample-space_ja> ns1:language "ja" .
@@ -956,6 +966,8 @@ base:thm-yoneda a mymath:Theorem ;
 <http://modernmath.org/concepts/set-category_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/set_ja> ns1:language "ja" .
+
+<http://modernmath.org/concepts/simple-group_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/span_ja> ns1:language "ja" .
 
@@ -1096,6 +1108,18 @@ base:def-composition a mymath:Definition ;
     mymath:uses base:def-category,
         base:def-morphism .
 
+base:def-equivalence-relation a mymath:Definition ;
+    rdfs:label "Definition: Equivalence Relation"@en,
+        "定義：同値関係"@en ;
+    mymath:hasDomain "Logic Set Theory",
+        "論理・集合論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-congruence,
+        base:def-function,
+        base:def-quotient-group,
+        base:def-relation,
+        base:def-set .
+
 base:def-euclidean-space a mymath:Definition ;
     rdfs:label "Definition: Euclidean Space"@en,
         "定義: ユークリッド空間"@en ;
@@ -1215,6 +1239,22 @@ base:def-series a mymath:Definition ;
     mymath:uses base:def-convergence,
         base:def-limit,
         base:def-sequence .
+
+base:def-simple-group a mymath:Definition ;
+    rdfs:label "Definition: Simple Group"@en,
+        "定義: 単純群"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasLeanId "Mathlib.GroupTheory.SimpleGroup" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-abelian-group,
+        base:def-cyclic-group,
+        base:def-group,
+        base:def-homomorphism,
+        base:def-normal-subgroup,
+        base:def-quotient-group,
+        base:thm-first-isomorphism,
+        base:thm-lagrange .
 
 base:def-triangle a mymath:Definition ;
     rdfs:label "Definition: Triangle"@en,
@@ -1570,16 +1610,6 @@ base:def-span a mymath:Definition ;
         base:formal-proof-def-span ;
     mymath:uses base:def-vector-space .
 
-base:def-subset a mymath:Definition ;
-    rdfs:label "Definition: Subset"@en,
-        "定義: 部分集合"@en ;
-    rdfs:comment "A [Set](def-set.qmd) $A$ is a **subset** of a set $B$, denoted $A \\subseteq B$, if every element of $A$ is also an element of $B$."@en,
-        "[集合](def-set.qmd) $A$ が集合 $B$ の**部分集合**であるとは、$A$ のすべての要素が $B$ の要素でもあることをいい、$A \\subseteq B$ と表記する。"@en ;
-    mymath:hasDomain "Logic Set Theory",
-        "論理・集合論" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-set .
-
 base:def-variance a mymath:Definition ;
     rdfs:label "Definition: Variance"@en,
         "定義: 分散"@en ;
@@ -1693,6 +1723,17 @@ base:def-polynomial-ring a mymath:Definition ;
         base:def-field,
         base:def-ring .
 
+base:def-relation a mymath:Definition ;
+    rdfs:label "Definition: Relation"@en,
+        "定義：関係"@en ;
+    mymath:hasDomain "Logic Set Theory",
+        "論理・集合論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-equivalence-relation,
+        base:def-function,
+        base:def-set,
+        base:def-subset .
+
 base:def-sequence a mymath:Definition ;
     rdfs:label "Definition: Sequence"@en,
         "定義：数列"@en ;
@@ -1702,6 +1743,17 @@ base:def-sequence a mymath:Definition ;
         "解析学" ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-function,
+        base:def-set .
+
+base:def-subset a mymath:Definition ;
+    rdfs:label "Definition: Subset"@en,
+        "定義: 部分集合"@en ;
+    rdfs:comment "A [Set](def-set.qmd) $A$ is a **subset** of a set $B$, denoted $A \\subseteq B$, if every element of $A$ is also an element of $B$."@en,
+        "[集合](def-set.qmd) $A$ が集合 $B$ の**部分集合**であるとは、$A$ のすべての要素が $B$ の要素でもあることをいい、$A \\subseteq B$ と表記する。"@en ;
+    mymath:hasDomain "Logic Set Theory",
+        "論理・集合論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-relation,
         base:def-set .
 
 base:thm-euclidean-algorithm a mymath:Theorem ;
@@ -1800,23 +1852,6 @@ base:ex-integers-addition a mymath:Example ;
         base:def-group,
         base:def-set .
 
-base:def-congruence a mymath:Definition ;
-    rdfs:label "Definition: Congruence (Modular Arithmetic)"@en,
-        "定義: 合同（モジュラー演算）"@en ;
-    mymath:hasDomain "Number Theory",
-        "数論" ;
-    mymath:hasLeanId "Mathlib.Data.Int.ModEq" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:ax-induction,
-        base:def-divisibility,
-        base:def-gcd,
-        base:def-prime,
-        base:def-set,
-        base:ex-quotient-integers-mod-n,
-        base:thm-euclidean-algorithm,
-        base:thm-euler,
-        base:thm-fermat-little .
-
 base:def-graph a mymath:Definition ;
     rdfs:label "Definition: Graph"@en,
         "定義: グラフ"@en ;
@@ -1834,19 +1869,22 @@ base:def-random-variable a mymath:Definition ;
     mymath:uses base:def-function,
         base:def-probability-space .
 
-base:thm-first-isomorphism a mymath:Theorem ;
-    rdfs:label "Theorem: First Isomorphism Theorem"@en,
-        "定理: 第一同型定理"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
+base:def-congruence a mymath:Definition ;
+    rdfs:label "Definition: Congruence (Modular Arithmetic)"@en,
+        "定義: 合同（モジュラー演算）"@en ;
+    mymath:hasDomain "Number Theory",
+        "数論" ;
+    mymath:hasLeanId "Mathlib.Data.Int.ModEq" ;
     mymath:hasStatus "complete" ;
-    mymath:uses base:def-abelian-group,
-        base:def-group,
-        base:def-homomorphism,
-        base:def-image,
-        base:def-kernel,
-        base:def-normal-subgroup,
-        base:def-quotient-group .
+    mymath:uses base:ax-induction,
+        base:def-divisibility,
+        base:def-gcd,
+        base:def-prime,
+        base:def-set,
+        base:ex-quotient-integers-mod-n,
+        base:thm-euclidean-algorithm,
+        base:thm-euler,
+        base:thm-fermat-little .
 
 base:def-coset a mymath:Definition ;
     rdfs:label "Definition: Coset"@en,
@@ -1901,18 +1939,6 @@ base:def-gcd a mymath:Definition ;
         base:thm-euclidean-algorithm,
         base:thm-euler .
 
-base:def-homomorphism a mymath:Definition ;
-    rdfs:label "Definition: Group Homomorphism"@en,
-        "定義: 群準同型"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation,
-        base:def-function,
-        base:def-group,
-        base:def-quotient-group,
-        base:thm-first-isomorphism .
-
 base:def-ideal a mymath:Definition ;
     rdfs:label "Definition: Ideal"@en,
         "定義: イデアル"@en ;
@@ -1960,6 +1986,20 @@ base:ex-quotient-integers-mod-n a mymath:Example ;
         base:def-quotient-group,
         base:ex-integers-addition .
 
+base:thm-first-isomorphism a mymath:Theorem ;
+    rdfs:label "Theorem: First Isomorphism Theorem"@en,
+        "定理: 第一同型定理"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-abelian-group,
+        base:def-group,
+        base:def-homomorphism,
+        base:def-image,
+        base:def-kernel,
+        base:def-normal-subgroup,
+        base:def-quotient-group .
+
 base:def-category a mymath:Definition ;
     rdfs:label "Definition: Category"@en,
         "定義: 圏"@en ;
@@ -1968,6 +2008,18 @@ base:def-category a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-graph,
         base:def-set .
+
+base:def-homomorphism a mymath:Definition ;
+    rdfs:label "Definition: Group Homomorphism"@en,
+        "定義: 群準同型"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-binary-operation,
+        base:def-function,
+        base:def-group,
+        base:def-quotient-group,
+        base:thm-first-isomorphism .
 
 base:def-ring a mymath:Definition ;
     rdfs:label "Definition: Ring"@en,
@@ -1981,18 +2033,6 @@ base:def-ring a mymath:Definition ;
         base:def-binary-operation,
         base:def-group,
         base:def-set .
-
-base:thm-lagrange a mymath:Theorem ;
-    rdfs:label "Theorem: Lagrange's Theorem"@en,
-        "定理: ラグランジュの定理"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-coset,
-        base:def-cyclic-group,
-        base:def-group,
-        base:def-quotient-group,
-        base:def-subgroup .
 
 base:def-limit a mymath:Definition ;
     rdfs:label "Definition: Limit of a Sequence"@en,
@@ -2029,6 +2069,18 @@ base:def-subgroup a mymath:Definition ;
         base:def-set,
         base:thm-lagrange .
 
+base:thm-lagrange a mymath:Theorem ;
+    rdfs:label "Theorem: Lagrange's Theorem"@en,
+        "定理: ラグランジュの定理"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-coset,
+        base:def-cyclic-group,
+        base:def-group,
+        base:def-quotient-group,
+        base:def-subgroup .
+
 base:def-continuity a mymath:Definition ;
     rdfs:label "Definition: Continuity"@en,
         "定義: 連続性"@en ;
@@ -2037,21 +2089,6 @@ base:def-continuity a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-function,
         base:def-limit .
-
-base:def-cyclic-group a mymath:Definition ;
-    rdfs:label "Definition: Cyclic Group"@en,
-        "定義: 巡回群"@en ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-abelian-group,
-        base:def-direct-product,
-        base:def-group,
-        base:def-identity-element,
-        base:def-subgroup,
-        base:ex-integers-addition,
-        base:ex-quotient-integers-mod-n,
-        base:thm-lagrange .
 
 base:def-prime a mymath:Definition ;
     rdfs:label "Definition: Prime Number"@en,
@@ -2070,6 +2107,21 @@ base:def-topological-space a mymath:Definition ;
     mymath:isVerifiedBy <https://mathlib.org/proof/Mathlib.Topology.Basic.TopologicalSpace>,
         base:formal-proof-def-topological-space ;
     mymath:uses base:def-set .
+
+base:def-cyclic-group a mymath:Definition ;
+    rdfs:label "Definition: Cyclic Group"@en,
+        "定義: 巡回群"@en ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-abelian-group,
+        base:def-direct-product,
+        base:def-group,
+        base:def-identity-element,
+        base:def-subgroup,
+        base:ex-integers-addition,
+        base:ex-quotient-integers-mod-n,
+        base:thm-lagrange .
 
 base:def-normal-subgroup a mymath:Definition ;
     rdfs:label "Definition: Normal Subgroup"@en,
@@ -2120,14 +2172,6 @@ base:def-quotient-group a mymath:Definition ;
         base:def-subgroup,
         base:thm-first-isomorphism .
 
-base:def-function a mymath:Definition ;
-    rdfs:label "Definition: Function"@en,
-        "定義: 関数"@en ;
-    mymath:hasDomain "Logic Set Theory",
-        "論理・集合論" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-set .
-
 base:def-binary-operation a mymath:Definition ;
     rdfs:label "Definition: Binary Operation"@en,
         "定義: 二項演算"@en ;
@@ -2138,6 +2182,15 @@ base:def-binary-operation a mymath:Definition ;
     mymath:isVerifiedBy <https://mathlib.org/proof/MathKnowledgeGraph.Algebra.BinaryOp>,
         base:formal-proof-def-binary-operation ;
     mymath:uses base:def-function,
+        base:def-set .
+
+base:def-function a mymath:Definition ;
+    rdfs:label "Definition: Function"@en,
+        "定義: 関数"@en ;
+    mymath:hasDomain "Logic Set Theory",
+        "論理・集合論" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-relation,
         base:def-set .
 
 base:def-abelian-group a mymath:Definition ;
@@ -2177,6 +2230,7 @@ base:def-group a mymath:Definition ;
         base:def-normal-subgroup,
         base:def-quotient-group,
         base:def-set,
+        base:def-simple-group,
         base:def-subgroup,
         base:ex-even-integers-subgroup,
         base:ex-finite-field,
