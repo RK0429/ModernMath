@@ -5,6 +5,7 @@ requires:
 - def-expectation
 - def-variance
 - def-independence
+- def-probability-distribution
 - ../analysis/thm-taylor-series
 status: complete
 title: 'Theorem: Central Limit Theorem'
@@ -16,7 +17,7 @@ type: Theorem
 
 # Theorem: Central Limit Theorem {#thm-central-limit}
 
-The **Central Limit Theorem (CLT)** is one of the most fundamental results in probability theory, stating that the distribution of the normalized sum of [independent](def-independence.qmd) [random variables](def-random-variable.qmd) converges to a normal distribution.
+The **Central Limit Theorem (CLT)** is one of the most fundamental results in probability theory, stating that the [distribution](def-probability-distribution.qmd) of the normalized sum of [independent](def-independence.qmd) [random variables](def-random-variable.qmd) converges to a normal distribution.
 
 ## Statement
 
@@ -31,11 +32,11 @@ Define:
 Then for any $z \in \mathbb{R}$:
 $$\lim_{n \to \infty} P(Z_n \leq z) = \Phi(z)$$
 
-where $\Phi(z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-t^2/2} dt$ is the cumulative distribution function of the standard normal distribution.
+where $\Phi(z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-t^2/2} dt$ is the cumulative distribution function of the standard normal [distribution](def-probability-distribution.qmd).
 
 ## Equivalently
 
-The distribution of $\bar{X}_n$ is approximately normal for large $n$:
+The [distribution](def-probability-distribution.qmd) of $\bar{X}_n$ is approximately normal for large $n$:
 $$\bar{X}_n \stackrel{d}{\approx} N\left(\mu, \frac{\sigma^2}{n}\right)$$
 
 ## Proof Sketch

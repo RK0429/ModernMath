@@ -5,6 +5,7 @@ requires:
 - def-expectation
 - def-variance
 - def-independence
+- def-probability-distribution
 - ../analysis/thm-taylor-series
 status: complete
 title: '定理: 中心極限定理'
@@ -17,11 +18,11 @@ type: Theorem
 
 # 定理: 中心極限定理 {#thm-central-limit}
 
-**中心極限定理（CLT）**は確率論における最も基本的な結果の一つであり、[独立な](def-independence.qmd)[確率変数](def-random-variable.qmd)の正規化された和の分布が正規分布に収束することを述べています。
+**中心極限定理（CLT）**は確率論における最も基本的な結果の一つであり、[独立な](def-independence.qmd)[確率変数](def-random-variable.qmd)の正規化された和の[分布](def-probability-distribution.qmd)が正規[分布](def-probability-distribution.qmd)に収束することを述べています。
 
 ## 主張
 
-$X_1, X_2, \ldots, X_n$を[独立](def-independence.qmd)かつ同一に分布した（i.i.d.）確率変数とし、以下を満たすものとする：
+$X_1, X_2, \ldots, X_n$を[独立](def-independence.qmd)かつ同一に[分布](def-probability-distribution.qmd)した（i.i.d.）確率変数とし、以下を満たすものとする：
 - 有限の[期待値](def-expectation.qmd)：$\mu = E[X_i] < \infty$
 - 有限の[分散](def-variance.qmd)：$\sigma^2 = \text{Var}(X_i) < \infty$、ただし$\sigma > 0$
 
@@ -32,11 +33,11 @@ $X_1, X_2, \ldots, X_n$を[独立](def-independence.qmd)かつ同一に分布し
 このとき、任意の$z \in \mathbb{R}$に対して：
 $$\lim_{n \to \infty} P(Z_n \leq z) = \Phi(z)$$
 
-ここで、$\Phi(z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-t^2/2} dt$は標準正規分布の累積分布関数である。
+ここで、$\Phi(z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-t^2/2} dt$は標準正規[分布](def-probability-distribution.qmd)の累積分布関数である。
 
 ## 同値な表現
 
-$n$が大きいとき、$\bar{X}_n$の分布は近似的に正規分布となる：
+$n$が大きいとき、$\bar{X}_n$の[分布](def-probability-distribution.qmd)は近似的に正規[分布](def-probability-distribution.qmd)となる：
 $$\bar{X}_n \stackrel{d}{\approx} N\left(\mu, \frac{\sigma^2}{n}\right)$$
 
 ## 証明の概略
