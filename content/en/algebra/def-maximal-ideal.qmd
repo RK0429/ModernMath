@@ -1,0 +1,135 @@
+---
+id: def-maximal-ideal
+requires:
+- def-ideal
+- def-ring
+- def-field
+- def-quotient-ring
+- def-subset
+- def-prime-ideal
+status: complete
+title: 'Definition: Maximal Ideal'
+translations:
+  en: ../en/algebra/def-maximal-ideal.html
+  ja: ../ja/algebra/def-maximal-ideal.html
+type: Definition
+---
+
+# Maximal Ideal {#def-maximal-ideal}
+
+A **maximal ideal** is an [ideal](def-ideal.qmd) that is maximal with respect to set inclusion among all proper ideals. In other words, it is a proper ideal that is not properly contained in any other proper ideal.
+
+## Formal Definition
+
+Let $R$ be a [ring](def-ring.qmd). An [ideal](def-ideal.qmd) $M \subseteq R$ is called a **maximal ideal** if:
+
+1. $M \neq R$ (proper ideal)
+2. For any ideal $I$ of $R$: if $M \subseteq I \subseteq R$, then either $I = M$ or $I = R$
+
+Equivalently, $M$ is maximal if there is no ideal strictly between $M$ and $R$.
+
+## Equivalent Characterizations
+
+### Quotient Ring Characterization
+
+An ideal $M$ in a ring $R$ is maximal if and only if the [quotient ring](def-quotient-ring.qmd) $R/M$ is a [field](def-field.qmd).
+
+**Proof**:
+- ($\Rightarrow$) Suppose $M$ is maximal. Let $a + M \neq 0 + M$ in $R/M$. Then $a \notin M$, so the ideal $(M, a) = M + (a)$ properly contains $M$. By maximality, $(M, a) = R$, so $1 = m + ra$ for some $m \in M$ and $r \in R$. Thus $(r + M)(a + M) = 1 + M$, showing $a + M$ has an inverse.
+- ($\Leftarrow$) Suppose $R/M$ is a field. Let $I$ be an ideal with $M \subset I \subseteq R$. Take $a \in I \setminus M$. Since $a + M \neq 0 + M$ and $R/M$ is a field, there exists $r \in R$ with $(r + M)(a + M) = 1 + M$. Thus $1 - ra \in M \subset I$, so $1 = (1 - ra) + ra \in I$, which implies $I = R$.
+
+### Zorn's Lemma Characterization
+
+Every proper ideal is contained in a maximal ideal. This follows from Zorn's lemma applied to the partially ordered set of proper ideals containing a given ideal.
+
+## Properties
+
+- Every maximal ideal is a [prime ideal](def-prime-ideal.qmd)
+- The converse is not true: not every prime ideal is maximal
+- In a commutative ring with unity, every nonzero prime ideal contains a minimal prime ideal and is contained in a maximal ideal
+- Krull's theorem: Every ring with identity has at least one maximal left ideal (and similarly for right and two-sided ideals)
+
+## Examples
+
+### In the Integers
+
+In $\mathbb{Z}$:
+- The ideal $(p) = p\mathbb{Z}$ is maximal if and only if $p$ is a prime number
+- This is because $\mathbb{Z}/(p) \cong \mathbb{Z}_p$ is a field if and only if $p$ is prime
+- $(0)$ is prime but not maximal since $(0) \subset (p) \subset \mathbb{Z}$ for any prime $p$
+
+### In Polynomial Rings
+
+In $\mathbb{R}[x]$:
+- $(x - a)$ is maximal for any $a \in \mathbb{R}$ since $\mathbb{R}[x]/(x - a) \cong \mathbb{R}$ is a field
+- $(x^2 + 1)$ is maximal since $\mathbb{R}[x]/(x^2 + 1) \cong \mathbb{C}$ is a field
+- $(x)$ is not maximal in $\mathbb{Z}[x]$ since $\mathbb{Z}[x]/(x) \cong \mathbb{Z}$ is not a field
+
+### In Function Rings
+
+In $C[a,b]$, the ring of continuous real-valued functions on $[a,b]$:
+- For any $x_0 \in [a,b]$, the ideal $M_{x_0} = \{f \in C[a,b] : f(x_0) = 0\}$ is maximal
+- The quotient $C[a,b]/M_{x_0} \cong \mathbb{R}$ via the evaluation map $f + M_{x_0} \mapsto f(x_0)$
+
+## Connection to Algebraic Geometry
+
+In algebraic geometry:
+- Maximal ideals correspond to points in the spectrum of a ring
+- For $k[x_1, \ldots, x_n]$ where $k$ is algebraically closed, maximal ideals correspond to points in $k^n$ via Hilbert's Nullstellensatz
+- The maximal spectrum $\text{Specm}(R)$ consists of all maximal ideals and forms a subspace of the prime spectrum
+
+## The Jacobson Radical
+
+The intersection of all maximal ideals in a ring $R$ is called the Jacobson radical $J(R)$:
+- $J(R) = \bigcap \{M : M \text{ is a maximal ideal of } R\}$
+- An element belongs to $J(R)$ if and only if $1 - rx$ is a unit for all $r \in R$
+- The quotient $R/J(R)$ is a semisimple ring
+
+## Historical Note
+
+The concept of maximal ideals emerged from Emmy Noether's abstract approach to ideal theory in the 1920s. The existence of maximal ideals in rings with identity (Krull's theorem, 1929) was one of the first significant applications of Zorn's lemma in algebra, demonstrating the power of set-theoretic methods in ring theory.
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-maximal-ideal["Definition: Maximal Ideal"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-field["Definition: Field"]:::definition
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-subset["Definition: Subset"]:::definition
+    def-prime-ideal["Definition: Prime Ideal"]:::definition
+    def-maximal-ideal --> def-ideal
+    def-maximal-ideal --> def-ring
+    def-maximal-ideal --> def-field
+    def-maximal-ideal --> def-quotient-ring
+    def-maximal-ideal --> def-subset
+    def-maximal-ideal --> def-prime-ideal
+    class def-maximal-ideal current
+    click def-ideal "def-ideal.html" "Go to Ideal definition"
+    click def-ring "def-ring.html" "Go to Ring definition"
+    click def-field "def-field.html" "Go to Field definition"
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring definition"
+    click def-subset "def-subset.html" "Go to Subset definition"
+    click def-prime-ideal "def-prime-ideal.html" "Go to Prime Ideal definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-maximal-ideal" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-maximal-ideal.html){target="_blank"}

@@ -1,0 +1,136 @@
+---
+id: def-maximal-ideal
+requires:
+- def-ideal
+- def-ring
+- def-field
+- def-quotient-ring
+- def-subset
+- def-prime-ideal
+status: complete
+title: '定義: 極大イデアル'
+translation_of: ../../en/algebra/def-maximal-ideal.qmd
+translations:
+  en: ../en/algebra/def-maximal-ideal.html
+  ja: ../ja/algebra/def-maximal-ideal.html
+type: Definition
+---
+
+# 極大イデアル {#def-maximal-ideal}
+
+**極大イデアル**は、すべての真のイデアルの中で集合の包含関係に関して極大である[イデアル](def-ideal.qmd)です。言い換えれば、他のどの真のイデアルにも真に含まれない真のイデアルです。
+
+## 形式的定義
+
+$R$を[環](def-ring.qmd)とする。[イデアル](def-ideal.qmd) $M \subseteq R$が**極大イデアル**であるとは：
+
+1. $M \neq R$（真のイデアル）
+2. $R$の任意のイデアル$I$に対して：$M \subseteq I \subseteq R$ならば、$I = M$または$I = R$
+
+同値な表現として、$M$と$R$の間に厳密に存在するイデアルがないとき、$M$は極大である。
+
+## 同値な特徴づけ
+
+### 剰余環による特徴づけ
+
+環$R$のイデアル$M$が極大イデアルであることと、[剰余環](def-quotient-ring.qmd) $R/M$が[体](def-field.qmd)であることは同値である。
+
+**証明**：
+- ($\Rightarrow$) $M$を極大イデアルとする。$R/M$において$a + M \neq 0 + M$とする。このとき$a \notin M$なので、イデアル$(M, a) = M + (a)$は$M$を真に含む。極大性により$(M, a) = R$となり、ある$m \in M$と$r \in R$に対して$1 = m + ra$となる。よって$(r + M)(a + M) = 1 + M$となり、$a + M$は逆元を持つ。
+- ($\Leftarrow$) $R/M$を体とする。$M \subset I \subseteq R$となるイデアル$I$を考える。$a \in I \setminus M$を取る。$a + M \neq 0 + M$かつ$R/M$は体なので、ある$r \in R$で$(r + M)(a + M) = 1 + M$となるものが存在する。よって$1 - ra \in M \subset I$となり、$1 = (1 - ra) + ra \in I$が成り立つ。これは$I = R$を意味する。
+
+### ツォルンの補題による特徴づけ
+
+すべての真のイデアルは極大イデアルに含まれる。これは与えられたイデアルを含む真のイデアルの半順序集合にツォルンの補題を適用することで従う。
+
+## 性質
+
+- すべての極大イデアルは[素イデアル](def-prime-ideal.qmd)である
+- 逆は成り立たない：すべての素イデアルが極大であるわけではない
+- 単位元を持つ可換環において、すべての零でない素イデアルは極小素イデアルを含み、極大イデアルに含まれる
+- クルルの定理：単位元を持つすべての環は少なくとも1つの極大左イデアルを持つ（右イデアル、両側イデアルについても同様）
+
+## 例
+
+### 整数環において
+
+$\mathbb{Z}$において：
+- イデアル$(p) = p\mathbb{Z}$が極大イデアルであることと、$p$が素数であることは同値
+- これは$\mathbb{Z}/(p) \cong \mathbb{Z}_p$が体であることと$p$が素数であることが同値であるため
+- $(0)$は素イデアルだが極大イデアルではない（任意の素数$p$に対して$(0) \subset (p) \subset \mathbb{Z}$となるため）
+
+### 多項式環において
+
+$\mathbb{R}[x]$において：
+- 任意の$a \in \mathbb{R}$に対して$(x - a)$は極大イデアル（$\mathbb{R}[x]/(x - a) \cong \mathbb{R}$は体であるため）
+- $(x^2 + 1)$は極大イデアル（$\mathbb{R}[x]/(x^2 + 1) \cong \mathbb{C}$は体であるため）
+- $\mathbb{Z}[x]$において$(x)$は極大イデアルではない（$\mathbb{Z}[x]/(x) \cong \mathbb{Z}$は体ではないため）
+
+### 関数環において
+
+$C[a,b]$（$[a,b]$上の連続実数値関数の環）において：
+- 任意の$x_0 \in [a,b]$に対して、イデアル$M_{x_0} = \{f \in C[a,b] : f(x_0) = 0\}$は極大イデアル
+- 評価写像$f + M_{x_0} \mapsto f(x_0)$により剰余$C[a,b]/M_{x_0} \cong \mathbb{R}$
+
+## 代数幾何学との関係
+
+代数幾何学において：
+- 極大イデアルは環のスペクトラムの点に対応する
+- $k$が代数的閉体のとき、$k[x_1, \ldots, x_n]$に対して、極大イデアルはヒルベルトの零点定理により$k^n$の点に対応する
+- 極大スペクトラム$\text{Specm}(R)$はすべての極大イデアルから成り、素スペクトラムの部分空間を形成する
+
+## ヤコブソン根基
+
+環$R$のすべての極大イデアルの共通部分をヤコブソン根基$J(R)$という：
+- $J(R) = \bigcap \{M : M \text{ は } R \text{ の極大イデアル}\}$
+- 元が$J(R)$に属することと、すべての$r \in R$に対して$1 - rx$が単元であることは同値
+- 剰余$R/J(R)$は半単純環である
+
+## 歴史的注記
+
+極大イデアルの概念は、1920年代のエミー・ネーターのイデアル理論への抽象的アプローチから生まれました。単位元を持つ環における極大イデアルの存在（クルルの定理、1929年）は、代数におけるツォルンの補題の最初の重要な応用の1つであり、環論における集合論的方法の威力を示しました。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-maximal-ideal["定義: 極大イデアル"]:::definition
+    def-ideal["定義: イデアル"]:::definition
+    def-ring["定義: 環"]:::definition
+    def-field["定義: 体"]:::definition
+    def-quotient-ring["定義: 剰余環"]:::definition
+    def-subset["定義: 部分集合"]:::definition
+    def-prime-ideal["定義: 素イデアル"]:::definition
+    def-maximal-ideal --> def-ideal
+    def-maximal-ideal --> def-ring
+    def-maximal-ideal --> def-field
+    def-maximal-ideal --> def-quotient-ring
+    def-maximal-ideal --> def-subset
+    def-maximal-ideal --> def-prime-ideal
+    class def-maximal-ideal current
+    click def-ideal "def-ideal.html" "Go to Ideal definition"
+    click def-ring "def-ring.html" "Go to Ring definition"
+    click def-field "def-field.html" "Go to Field definition"
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring definition"
+    click def-subset "def-subset.html" "Go to Subset definition"
+    click def-prime-ideal "def-prime-ideal.html" "Go to Prime Ideal definition"
+```
+
+## インタラクティブ可視化
+
+ローカル知識グラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-maximal-ideal" data-width="700" data-height="500"}
+:::
+
+できること：
+- ノードを**ドラッグ**してレイアウトを調整
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [完全なインタラクティブ版](../../output/interactive/def-maximal-ideal.html){target="_blank"}を表示
