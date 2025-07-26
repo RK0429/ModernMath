@@ -79,7 +79,7 @@ $$F_X(x) = P(X \leq x) = P_X((-\infty, x])$$
 
 ### 連続分布
 - **一様分布**：区間 $[a, b]$ 上で等確率
-- **正規（ガウス）分布**：パラメータ $\mu$（平均）と $\sigma^2$（分散）を持つ釣鐘型曲線
+- **[正規（ガウス）分布](def-normal-distribution.qmd)**：パラメータ $\mu$（平均）と $\sigma^2$（分散）を持つ釣鐘型曲線
 - **指数分布**：ポアソン過程における事象間の時間
 - **ガンマ分布**：指数分布の一般化
 
@@ -91,7 +91,7 @@ $$F_X(x) = P(X \leq x) = P_X((-\infty, x])$$
 - **モーメント母関数**：$M_X(t) = E[e^{tX}]$（存在する場合）
 
 ## 関連項目
-- [中心極限定理](thm-central-limit.qmd) - 正規分布への収束
+- [中心極限定理](thm-central-limit.qmd) - [正規分布](def-normal-distribution.qmd)への収束
 - [大数の法則](thm-law-of-large-numbers.qmd) - 標本平均の収束
 - [独立性](def-independence.qmd) - 同時分布について
 
@@ -105,49 +105,53 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-probability-space["定義: 確率空間"]:::definition
-    def-random-variable["定義: 確率変数"]:::definition
-    def-sample-space["定義: 標本空間"]:::definition
-    def-function["定義: 関数"]:::definition
-    def-integral["定義: 積分"]:::definition
-    def-probability-distribution["定義: 確率分布"]:::definition
-    def-expectation["定義: 期待値"]:::definition
-    def-variance["定義: 分散"]:::definition
-    def-independence["定義: 独立性"]:::definition
-    thm-central-limit["定理: 中心極限定理"]:::theorem
-    thm-law-of-large-numbers["定理: 大数の法則"]:::theorem
-    def-probability-distribution --> def-probability-space
-    def-probability-distribution --> def-random-variable
-    def-probability-distribution --> def-sample-space
-    def-probability-distribution --> def-function
-    def-probability-distribution --> def-integral
-    def-expectation --> def-probability-distribution
+    def-independence["Definition: Independence"]:::definition
+    thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
+    def-probability-space["Definition: Probability Space"]:::definition
+    def-expectation["Definition: Expected Value"]:::definition
+    def-variance["Definition: Variance"]:::definition
+    def-probability-distribution["Definition: Probability Distribution"]:::definition
+    def-normal-distribution["Definition: Normal Distribution"]:::definition
+    def-function["Definition: Function"]:::definition
+    def-integral["Definition: Integral"]:::definition
+    def-sample-space["Definition: Sample Space"]:::definition
+    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
+    def-random-variable["Definition: Random Variable"]:::definition
     def-variance --> def-probability-distribution
-    def-independence --> def-probability-distribution
+    def-expectation --> def-probability-distribution
+    def-normal-distribution --> def-probability-distribution
+    def-probability-distribution --> def-integral
+    def-probability-distribution --> def-function
+    def-probability-distribution --> def-probability-space
     thm-central-limit --> def-probability-distribution
+    def-probability-distribution --> def-random-variable
+    def-independence --> def-probability-distribution
     thm-law-of-large-numbers --> def-probability-distribution
+    def-probability-distribution --> def-sample-space
+    def-random-variable --> def-probability-distribution
     class def-probability-distribution current
-    click def-probability-space "def-probability-space.html" "確率空間の定義へ"
-    click def-random-variable "def-random-variable.html" "確率変数の定義へ"
-    click def-sample-space "def-sample-space.html" "標本空間の定義へ"
-    click def-function "def-function.html" "関数の定義へ"
-    click def-integral "def-integral.html" "積分の定義へ"
-    click def-expectation "def-expectation.html" "期待値の定義へ"
-    click def-variance "def-variance.html" "分散の定義へ"
-    click def-independence "def-independence.html" "独立性の定義へ"
-    click thm-central-limit "thm-central-limit.html" "中心極限定理へ"
-    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "大数の法則へ"
+    click def-independence "def-independence.html" "Definition: Independenceへ"
+    click thm-central-limit "thm-central-limit.html" "Theorem: Central Limit Theoremへ"
+    click def-probability-space "def-probability-space.html" "Definition: Probability Spaceへ"
+    click def-expectation "def-expectation.html" "Definition: Expected Valueへ"
+    click def-variance "def-variance.html" "Definition: Varianceへ"
+    click def-normal-distribution "def-normal-distribution.html" "Definition: Normal Distributionへ"
+    click def-function "def-function.html" "Definition: Functionへ"
+    click def-integral "def-integral.html" "Definition: Integralへ"
+    click def-sample-space "def-sample-space.html" "Definition: Sample Spaceへ"
+    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "Theorem: Law of Large Numbersへ"
+    click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
 ```
 
 ## インタラクティブ可視化
 
-ローカル知識グラフの近傍をインタラクティブに探索：
+ローカルナレッジグラフの近傍をインタラクティブに探索：
 
 ::: {.graph-viz data-id="def-probability-distribution" data-width="700" data-height="500"}
 :::
 
 次のことができます：
-- **ドラッグ**してノードを再配置
+- ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [完全なインタラクティブ版](../../output/interactive/def-probability-distribution.html){target="_blank"}を表示
+- [別ウィンドウ](../../output/interactive/def-probability-distribution.html){target="_blank"}で完全なインタラクティブ版を表示

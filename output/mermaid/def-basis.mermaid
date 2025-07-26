@@ -5,15 +5,15 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
-    def-span["Definition: Span"]:::definition
-    def-linear-independence["Definition: Linear Independence"]:::definition
     ex-standard-basis-rn["Example: Standard Basis of ℝⁿ"]:::example
     def-basis["Definition: Basis"]:::definition
+    thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
     def-vector-space["Definition: Vector Space"]:::definition
+    def-linear-independence["Definition: Linear Independence"]:::definition
+    def-span["Definition: Span"]:::definition
+    def-basis --> def-linear-independence
+    thm-linear-transformation-basis --> def-basis
     ex-standard-basis-rn --> def-basis
     def-basis --> def-vector-space
-    thm-linear-transformation-basis --> def-basis
-    def-basis --> def-linear-independence
     def-basis --> def-span
     class def-basis current

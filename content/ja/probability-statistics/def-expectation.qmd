@@ -57,7 +57,7 @@ $$\int_{\Omega} |X(\omega)| \, dP(\omega) < \infty$$
 
 1. **ベルヌーイ分布**: $X \sim \text{Bernoulli}(p)$ のとき、$E[X] = p$
 2. **二項分布**: $X \sim \text{Binomial}(n, p)$ のとき、$E[X] = np$
-3. **正規分布**: $X \sim \mathcal{N}(\mu, \sigma^2)$ のとき、$E[X] = \mu$ （ここで $\sigma^2$ は[分散](def-variance.qmd)）
+3. **[正規分布](def-normal-distribution.qmd)**: $X \sim \mathcal{N}(\mu, \sigma^2)$ のとき、$E[X] = \mu$ （ここで $\sigma^2$ は[分散](def-variance.qmd)）
 4. **指数分布**: $X \sim \text{Exp}(\lambda)$ のとき、$E[X] = 1/\lambda$
 
 ## 極限定理における役割
@@ -95,22 +95,28 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
-    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
-    def-expectation["Definition: Expected Value"]:::definition
     def-probability-space["Definition: Probability Space"]:::definition
-    def-random-variable["Definition: Random Variable"]:::definition
+    def-expectation["Definition: Expected Value"]:::definition
     def-variance["Definition: Variance"]:::definition
-    def-expectation --> def-random-variable
-    thm-law-of-large-numbers --> def-expectation
-    thm-central-limit --> def-expectation
-    def-expectation --> def-probability-space
+    def-probability-distribution["Definition: Probability Distribution"]:::definition
+    def-normal-distribution["Definition: Normal Distribution"]:::definition
+    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
+    def-random-variable["Definition: Random Variable"]:::definition
     def-variance --> def-expectation
+    thm-law-of-large-numbers --> def-expectation
+    def-normal-distribution --> def-expectation
+    def-expectation --> def-random-variable
+    def-expectation --> def-probability-space
+    def-expectation --> def-probability-distribution
+    thm-central-limit --> def-expectation
     class def-expectation current
     click thm-central-limit "thm-central-limit.html" "Theorem: Central Limit Theoremへ"
-    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "Theorem: Law of Large Numbersへ"
     click def-probability-space "def-probability-space.html" "Definition: Probability Spaceへ"
-    click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
     click def-variance "def-variance.html" "Definition: Varianceへ"
+    click def-probability-distribution "def-probability-distribution.html" "Definition: Probability Distributionへ"
+    click def-normal-distribution "def-normal-distribution.html" "Definition: Normal Distributionへ"
+    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "Theorem: Law of Large Numbersへ"
+    click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
 ```
 
 ## インタラクティブ可視化

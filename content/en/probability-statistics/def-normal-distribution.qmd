@@ -1,0 +1,167 @@
+---
+id: def-normal-distribution
+requires:
+- def-probability-distribution
+- def-random-variable
+- def-expectation
+- def-variance
+- ../analysis/def-integral
+- ../logic-set-theory/def-function
+status: complete
+title: 'Definition: Normal Distribution'
+translations:
+  en: ../en/probability-statistics/def-normal-distribution.html
+  ja: ../ja/probability-statistics/def-normal-distribution.html
+type: Definition
+---
+
+# Normal Distribution {#def-normal-distribution}
+
+The **normal distribution** (also called the **Gaussian distribution**) is a continuous [probability distribution](def-probability-distribution.qmd) characterized by its bell-shaped probability density function. It is one of the most important distributions in probability theory and statistics.
+
+## Formal Definition
+
+A continuous [random variable](def-random-variable.qmd) $X$ follows a **normal distribution** with parameters $\mu \in \mathbb{R}$ and $\sigma^2 > 0$, denoted $X \sim N(\mu, \sigma^2)$, if its probability density [function](../logic-set-theory/def-function.qmd) is:
+
+$$f_X(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$
+
+for all $x \in \mathbb{R}$.
+
+## Parameters
+
+The normal distribution is completely characterized by two parameters:
+
+- **Mean** $\mu$: The [expected value](def-expectation.qmd) of the distribution, which determines the location of the center
+- **Variance** $\sigma^2$: The [variance](def-variance.qmd) of the distribution, which determines the spread
+- **Standard deviation** $\sigma = \sqrt{\sigma^2}$: The square root of the variance
+
+## Standard Normal Distribution
+
+The **standard normal distribution** is the special case where $\mu = 0$ and $\sigma^2 = 1$, denoted $Z \sim N(0,1)$. Its probability density function simplifies to:
+
+$$\phi(z) = \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{z^2}{2}\right)$$
+
+The cumulative distribution function of the standard normal is typically denoted by $\Phi$:
+
+$$\Phi(z) = \int_{-\infty}^z \phi(t) \, dt = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{t^2}{2}\right) dt$$
+
+## Properties
+
+### Basic Properties
+
+1. **Symmetry**: The distribution is symmetric about its mean $\mu$
+2. **Mode**: The mode (maximum of the PDF) occurs at $x = \mu$
+3. **Inflection points**: Located at $x = \mu \pm \sigma$
+4. **Total probability**: $\int_{-\infty}^{\infty} f_X(x) \, dx = 1$
+
+### Statistical Properties
+
+For $X \sim N(\mu, \sigma^2)$:
+
+- **Expected value**: $E[X] = \mu$
+- **Variance**: $\text{Var}(X) = \sigma^2$
+- **Moment generating function**: $M_X(t) = \exp(\mu t + \frac{\sigma^2 t^2}{2})$
+- **Characteristic function**: $\phi_X(t) = \exp(i\mu t - \frac{\sigma^2 t^2}{2})$
+
+### 68-95-99.7 Rule
+
+For a normal distribution:
+- Approximately 68% of values lie within $\mu \pm \sigma$
+- Approximately 95% of values lie within $\mu \pm 2\sigma$
+- Approximately 99.7% of values lie within $\mu \pm 3\sigma$
+
+## Standardization
+
+Any normal random variable $X \sim N(\mu, \sigma^2)$ can be standardized to obtain a standard normal variable:
+
+$$Z = \frac{X - \mu}{\sigma} \sim N(0,1)$$
+
+This transformation is crucial for:
+- Calculating probabilities using standard normal tables
+- Comparing values from different normal distributions
+
+## Linear Transformations
+
+If $X \sim N(\mu, \sigma^2)$ and $Y = aX + b$ where $a \neq 0$, then:
+
+$$Y \sim N(a\mu + b, a^2\sigma^2)$$
+
+## Sum of Independent Normal Variables
+
+If $X_1 \sim N(\mu_1, \sigma_1^2)$ and $X_2 \sim N(\mu_2, \sigma_2^2)$ are [independent](def-independence.qmd), then:
+
+$$X_1 + X_2 \sim N(\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2)$$
+
+More generally, for independent $X_i \sim N(\mu_i, \sigma_i^2)$:
+
+$$\sum_{i=1}^n X_i \sim N\left(\sum_{i=1}^n \mu_i, \sum_{i=1}^n \sigma_i^2\right)$$
+
+## Connection to Other Distributions
+
+### Central Limit Theorem
+
+The [Central Limit Theorem](thm-central-limit.qmd) establishes that the normalized sum of independent random variables converges to a normal distribution, explaining the ubiquity of the normal distribution in nature.
+
+### Related Distributions
+
+- **Chi-squared**: If $Z \sim N(0,1)$, then $Z^2 \sim \chi^2_1$
+- **Log-normal**: If $X \sim N(\mu, \sigma^2)$, then $e^X$ follows a log-normal distribution
+- **Multivariate normal**: Generalization to multiple dimensions
+
+## Applications
+
+The normal distribution appears in numerous contexts:
+
+1. **Natural phenomena**: Heights, weights, measurement errors
+2. **Statistical inference**: Confidence intervals, hypothesis testing
+3. **Finance**: Asset returns (under certain models)
+4. **Engineering**: Signal processing, quality control
+5. **Physics**: Brownian motion, diffusion processes
+
+## See Also
+
+- [Central Limit Theorem](thm-central-limit.qmd) - Convergence to normality
+- [Law of Large Numbers](thm-law-of-large-numbers.qmd) - Convergence of averages
+- [Bayes' Theorem](thm-bayes.qmd) - Using normal priors
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
+    def-expectation["Definition: Expected Value"]:::definition
+    def-variance["Definition: Variance"]:::definition
+    def-probability-distribution["Definition: Probability Distribution"]:::definition
+    def-normal-distribution["Definition: Normal Distribution"]:::definition
+    def-random-variable["Definition: Random Variable"]:::definition
+    def-normal-distribution --> def-random-variable
+    def-normal-distribution --> def-probability-distribution
+    def-normal-distribution --> def-variance
+    def-normal-distribution --> def-expectation
+    thm-central-limit --> def-normal-distribution
+    class def-normal-distribution current
+    click thm-central-limit "thm-central-limit.html" "Go to Central Limit Theorem theorem"
+    click def-expectation "def-expectation.html" "Go to Expected Value definition"
+    click def-variance "def-variance.html" "Go to Variance definition"
+    click def-probability-distribution "def-probability-distribution.html" "Go to Probability Distribution definition"
+    click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-normal-distribution" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-normal-distribution.html){target="_blank"}

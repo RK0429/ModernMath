@@ -1,0 +1,164 @@
+---
+id: def-center-of-group
+lean_id: null
+requires:
+- def-group
+- def-abelian-group
+- def-subgroup
+- def-normal-subgroup
+- def-automorphism
+- def-simple-group
+- def-quotient-group
+status: complete
+title: '定義: 群の中心'
+translation_of: ../../en/algebra/def-center-of-group.qmd
+translations:
+  en: ../en/algebra/def-center-of-group.html
+  ja: ../ja/algebra/def-center-of-group.html
+type: Definition
+---
+
+# 群の中心 {#def-center-of-group}
+
+**群の中心**は、群のすべての元と可換な元全体の集合です。
+
+## 形式的定義
+
+$(G, \cdot)$ を@def-groupとする。$G$ の**中心** (center) は $Z(G)$ で表され、次のように定義される：
+
+$$Z(G) = \{z \in G : zg = gz \text{ すべての } g \in G \text{ に対して}\}$$
+
+記号 $Z(G)$ はドイツ語の「Zentrum」（中心）に由来する。$Z(G)$ の元は $G$ の**中心元** (central elements) と呼ばれる。
+
+## 性質
+
+### 部分群構造
+
+中心 $Z(G)$ は常に $G$ の@def-subgroupである：
+
+1. **空でない**: 単位元 $e \in Z(G)$ である。なぜなら、すべての $g \in G$ に対して $eg = ge$ だから
+2. **閉性**: $x, y \in Z(G)$ ならば、すべての $g \in G$ に対して $(xy)g = x(yg) = x(gy) = (xg)y = (gx)y = g(xy)$
+3. **逆元**: $x \in Z(G)$ ならば、$gx = xg$ より、すべての $g \in G$ に対して $x^{-1}g = gx^{-1}$
+
+### 正規部分群かつアーベル群
+
+中心には2つの重要な構造的性質がある：
+
+1. **正規部分群**: $Z(G)$ は常に $G$ の@def-normal-subgroupである。任意の $g \in G$ と $z \in Z(G)$ に対して：
+   $$gzg^{-1} = gg^{-1}z = z \in Z(G)$$
+
+2. **アーベル部分群**: $Z(G)$ は定義により、そのすべての元が互いに可換なので、常に@def-abelian-groupである。
+
+### 群構造との関係
+
+1. **アーベル群**: 群 $G$ がアーベル群であることと $Z(G) = G$ であることは同値
+
+2. **中心のない群**: $Z(G) = \{e\}$（単位元のみを含む）のとき、群は**中心のない** (centerless) と呼ばれる
+
+3. **商構造**: 商 $G/Z(G)$ は $G$ がどれだけ「非アーベル的」かを測る。$G/Z(G)$ が巡回群ならば、$G$ はアーベル群でなければならない
+
+4. **内部自己同型**: 写像 $\phi: G \to \text{Aut}(G)$ を $\phi(g)(x) = gxg^{-1}$ で定義すると、$\phi$ の核はちょうど $Z(G)$ であり、その像は内部@def-automorphism群 $\text{Inn}(G)$ である。これにより：
+   $$G/Z(G) \cong \text{Inn}(G)$$
+
+## 例
+
+### 具体的な群
+
+1. **アーベル群**: 任意のアーベル群 $G$ に対して、$Z(G) = G$
+
+2. **自明な群**: $Z(\{e\}) = \{e\}$
+
+3. **対称群**: $n \geq 3$ のとき $Z(S_n) = \{e\}$
+
+4. **交代群**: $n \geq 4$ のとき $Z(A_n) = \{e\}$
+
+5. **二面体群**: 位数 $2n$ の二面体群 $D_n$ に対して：
+   - $n$ が奇数のとき: $Z(D_n) = \{e\}$
+   - $n$ が偶数のとき: $Z(D_n) = \{e, r^{n/2}\}$ ここで $r$ は回転生成元
+
+6. **四元数群**: $Q_8 = \{1, -1, i, -i, j, -j, k, -k\}$ に対して、$Z(Q_8) = \{1, -1\}$
+
+### 行列群
+
+1. **一般線型群**: $Z(GL_n(\mathbb{F})) = \{cI_n : c \in \mathbb{F}^*\}$（スカラー行列）
+
+2. **特殊線型群**: $Z(SL_n(\mathbb{F})) = \{cI_n : c^n = 1\}$（行列式1のスカラー行列）
+
+3. **直交群**: $\mathbb{F}$ の標数が2でないとき、$Z(O_n(\mathbb{F})) = \{I_n, -I_n\}$
+
+## 応用
+
+群の中心は多くの重要な文脈で現れる：
+
+1. **分類**: 非アーベル@def-simple-groupは常に中心がない
+
+2. **中心拡大**: 中心は群の拡大理論とコホモロジー理論で重要な役割を果たす
+
+3. **表現論**: 中心元は既約表現においてスカラー倍として作用する
+
+4. **べき零群**: 群がべき零であることと、その上中心列が群全体に到達することは同値
+
+## 関連項目
+
+- @def-group
+- @def-abelian-group
+- @def-normal-subgroup
+- @def-quotient-group
+- @def-automorphism
+- @def-simple-group
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-group["Definition: Group"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    def-simple-group["Definition: Simple Group"]:::definition
+    def-center-of-group["Definition: Center of a Group"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-automorphism["Definition: Automorphism"]:::definition
+    ex-group-action-examples["Examples of Group Actions"]:::example
+    def-simple-group --> def-center-of-group
+    ex-group-action-examples --> def-center-of-group
+    def-center-of-group --> def-subgroup
+    def-center-of-group --> def-normal-subgroup
+    def-center-of-group --> def-automorphism
+    def-quotient-group --> def-center-of-group
+    def-center-of-group --> def-abelian-group
+    def-abelian-group --> def-center-of-group
+    def-center-of-group --> def-quotient-group
+    def-center-of-group --> def-group
+    def-center-of-group --> def-simple-group
+    def-normal-subgroup --> def-center-of-group
+    def-automorphism --> def-center-of-group
+    class def-center-of-group current
+    click def-group "def-group.html" "Definition: Groupへ"
+    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
+    click def-simple-group "def-simple-group.html" "Definition: Simple Groupへ"
+    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
+    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
+    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
+    click def-automorphism "def-automorphism.html" "Definition: Automorphismへ"
+    click ex-group-action-examples "ex-group-action-examples.html" "Examples of Group Actionsへ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-center-of-group" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/def-center-of-group.html){target="_blank"}で完全なインタラクティブ版を表示

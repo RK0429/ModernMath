@@ -93,7 +93,7 @@ $$\phi_g(x) = gxg^{-1}$$
 ## 完全群
 
 群 $G$ が**完全**であるとは：
-- その中心 $Z(G)$ が自明である
+- その[中心](def-center-of-group.qmd) $Z(G)$ が自明である
 - $G$ のすべての自己同型が内部自己同型である（すなわち、$\text{Aut}(G) = \text{Inn}(G)$）
 
 ## 依存関係グラフ
@@ -107,22 +107,26 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-group["Definition: Group"]:::definition
+    def-center-of-group["Definition: Center of a Group"]:::definition
     def-isomorphism["Definition: Group Isomorphism"]:::definition
-    def-automorphism["Definition: Automorphism"]:::definition
     def-homomorphism["Definition: Group Homomorphism"]:::definition
-    ex-group-action-examples["Examples of Group Actions"]:::example
     def-identity-element["Definition: Identity Element"]:::definition
-    def-automorphism --> def-group
-    def-automorphism --> def-isomorphism
-    def-automorphism --> def-homomorphism
+    def-automorphism["Definition: Automorphism"]:::definition
+    ex-group-action-examples["Examples of Group Actions"]:::example
     def-automorphism --> def-identity-element
+    def-automorphism --> def-homomorphism
+    def-automorphism --> def-group
+    def-center-of-group --> def-automorphism
+    def-automorphism --> def-isomorphism
     ex-group-action-examples --> def-automorphism
+    def-automorphism --> def-center-of-group
     class def-automorphism current
     click def-group "def-group.html" "Definition: Groupへ"
+    click def-center-of-group "def-center-of-group.html" "Definition: Center of a Groupへ"
     click def-isomorphism "def-isomorphism.html" "Definition: Group Isomorphismへ"
     click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
-    click ex-group-action-examples "ex-group-action-examples.html" "Examples of Group Actionsへ"
     click def-identity-element "def-identity-element.html" "Definition: Identity Elementへ"
+    click ex-group-action-examples "ex-group-action-examples.html" "Examples of Group Actionsへ"
 ```
 
 ## インタラクティブ可視化

@@ -44,7 +44,7 @@ $$g \cdot h = ghg^{-1} \text{ ただし } g, h \in G$$
 性質：
 - $h$ の軌道はその共役類：$\{ghg^{-1} : g \in G\}$
 - $h$ の固定化部分群はその中心化群：$C_G(h) = \{g \in G : gh = hg\}$
-- 固定点はちょうど中心 $Z(G)$ の元
+- 固定点はちょうど[中心](def-center-of-group.qmd) $Z(G)$ の元
 
 ## 集合への対称群の作用
 
@@ -84,22 +84,25 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-group["Definition: Group"]:::definition
+    def-center-of-group["Definition: Center of a Group"]:::definition
     def-cyclic-group["Definition: Cyclic Group"]:::definition
-    def-automorphism["Definition: Automorphism"]:::definition
     def-order["Definition: Order"]:::definition
-    ex-group-action-examples["Examples of Group Actions"]:::example
     def-group-action["Group Action"]:::definition
+    def-automorphism["Definition: Automorphism"]:::definition
+    ex-group-action-examples["Examples of Group Actions"]:::example
     ex-group-action-examples --> def-group
+    ex-group-action-examples --> def-order
+    ex-group-action-examples --> def-center-of-group
+    ex-group-action-examples --> def-automorphism
     ex-group-action-examples --> def-group-action
     ex-group-action-examples --> def-cyclic-group
-    ex-group-action-examples --> def-order
-    ex-group-action-examples --> def-automorphism
     class ex-group-action-examples current
     click def-group "def-group.html" "Definition: Groupへ"
+    click def-center-of-group "def-center-of-group.html" "Definition: Center of a Groupへ"
     click def-cyclic-group "def-cyclic-group.html" "Definition: Cyclic Groupへ"
-    click def-automorphism "def-automorphism.html" "Definition: Automorphismへ"
     click def-order "def-order.html" "Definition: Orderへ"
     click def-group-action "def-group-action.html" "Group Actionへ"
+    click def-automorphism "def-automorphism.html" "Definition: Automorphismへ"
 ```
 
 ## インタラクティブ可視化

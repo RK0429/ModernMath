@@ -67,7 +67,7 @@ $H$ が $G$ の部分群で指数 $[G:H] = 2$ ならば、$H$ は $G$ の正規�
 
 ## 例
 
-1. **群の中心**：中心 $Z(G) = \{g \in G : gx = xg \text{ すべての } x \in G \text{ に対して}\}$ は常に $G$ の正規部分群です。
+1. **群の中心**：[中心](def-center-of-group.qmd) $Z(G) = \{g \in G : gx = xg \text{ すべての } x \in G \text{ に対して}\}$ は常に $G$ の正規部分群です。
 
 2. **交代群**：交代群 $A_n$ は、すべての $n \geq 2$ に対して対称群 $S_n$ の正規部分群です。これは $[S_n : A_n] = 2$ だからです。
 
@@ -102,62 +102,66 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-group["Definition: Group"]:::definition
     def-abelian-group["Definition: Abelian Group"]:::definition
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-group["Definition: Group"]:::definition
-    def-determinant["Definition: Determinant"]:::definition
-    def-kernel["Definition: Kernel"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
-    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    def-coset["Definition: Coset"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-matrix["Definition: Matrix"]:::definition
     def-simple-group["Definition: Simple Group"]:::definition
-    def-group-action["Group Action"]:::definition
+    def-center-of-group["Definition: Center of a Group"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
     def-direct-product["Definition: Direct Product of Groups"]:::definition
-    def-normal-subgroup --> thm-lagrange
-    def-simple-group --> def-normal-subgroup
-    def-coset --> def-normal-subgroup
-    def-normal-subgroup --> def-homomorphism
-    def-abelian-group --> def-normal-subgroup
-    def-kernel --> def-normal-subgroup
-    def-normal-subgroup --> def-matrix
-    def-normal-subgroup --> def-subgroup
-    ex-quotient-integers-mod-n --> def-normal-subgroup
-    def-normal-subgroup --> def-quotient-group
-    thm-first-isomorphism --> def-normal-subgroup
-    def-normal-subgroup --> def-coset
-    def-quotient-group --> def-normal-subgroup
-    def-normal-subgroup --> def-group
-    ex-even-integers-subgroup --> def-normal-subgroup
-    def-group --> def-normal-subgroup
-    def-normal-subgroup --> def-determinant
-    def-subgroup --> def-normal-subgroup
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-determinant["Definition: Determinant"]:::definition
+    def-group-action["Group Action"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-coset["Definition: Coset"]:::definition
+    def-matrix["Definition: Matrix"]:::definition
+    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
     def-normal-subgroup --> def-group-action
-    def-normal-subgroup --> def-abelian-group
-    def-direct-product --> def-normal-subgroup
+    def-normal-subgroup --> def-group
+    def-subgroup --> def-normal-subgroup
+    def-kernel --> def-normal-subgroup
+    def-group --> def-normal-subgroup
+    def-normal-subgroup --> def-subgroup
+    def-normal-subgroup --> def-determinant
+    def-normal-subgroup --> thm-lagrange
+    def-coset --> def-normal-subgroup
+    def-quotient-group --> def-normal-subgroup
+    ex-quotient-integers-mod-n --> def-normal-subgroup
+    ex-even-integers-subgroup --> def-normal-subgroup
+    def-normal-subgroup --> def-quotient-group
     def-normal-subgroup --> thm-first-isomorphism
+    def-abelian-group --> def-normal-subgroup
+    thm-first-isomorphism --> def-normal-subgroup
+    def-normal-subgroup --> def-center-of-group
+    def-normal-subgroup --> def-matrix
+    def-normal-subgroup --> def-abelian-group
+    def-simple-group --> def-normal-subgroup
+    def-normal-subgroup --> def-coset
+    def-center-of-group --> def-normal-subgroup
+    def-direct-product --> def-normal-subgroup
+    def-normal-subgroup --> def-homomorphism
     class def-normal-subgroup current
+    click def-group "def-group.html" "Definition: Groupへ"
     click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
     click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
-    click def-group "def-group.html" "Definition: Groupへ"
-    click def-determinant "def-determinant.html" "Definition: Determinantへ"
-    click def-kernel "def-kernel.html" "Definition: Kernelへ"
-    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Theorem: First Isomorphism Theoremへ"
-    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Example: Even Integers Form a Subgroupへ"
-    click def-coset "def-coset.html" "Definition: Cosetへ"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
-    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
-    click def-matrix "def-matrix.html" "Definition: Matrixへ"
     click def-simple-group "def-simple-group.html" "Definition: Simple Groupへ"
-    click def-group-action "def-group-action.html" "Group Actionへ"
+    click def-center-of-group "def-center-of-group.html" "Definition: Center of a Groupへ"
+    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
+    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Example: Even Integers Form a Subgroupへ"
     click def-direct-product "def-direct-product.html" "Definition: Direct Product of Groupsへ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
+    click def-determinant "def-determinant.html" "Definition: Determinantへ"
+    click def-group-action "def-group-action.html" "Group Actionへ"
+    click def-kernel "def-kernel.html" "Definition: Kernelへ"
+    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
+    click def-coset "def-coset.html" "Definition: Cosetへ"
+    click def-matrix "def-matrix.html" "Definition: Matrixへ"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "Theorem: First Isomorphism Theoremへ"
 ```
 
 ## インタラクティブ可視化

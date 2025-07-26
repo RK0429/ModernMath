@@ -75,22 +75,22 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Definition: Set"]:::definition
-    def-partial-order["Definition: Partial Order"]:::definition
     def-power-set["Definition: Power Set"]:::definition
-    def-cardinality["Definition: Cardinality"]:::definition
     thm-cantor["Theorem: Cantor's Theorem"]:::theorem
-    def-cardinality --> def-power-set
+    def-partial-order["Definition: Partial Order"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-cardinality["Definition: Cardinality"]:::definition
     def-partial-order --> def-power-set
-    def-power-set --> def-cardinality
-    thm-cantor --> def-power-set
     def-power-set --> def-set
+    thm-cantor --> def-power-set
+    def-cardinality --> def-power-set
+    def-power-set --> def-cardinality
     def-power-set --> def-partial-order
     class def-power-set current
-    click def-set "def-set.html" "Definition: Setへ"
-    click def-partial-order "def-partial-order.html" "Definition: Partial Orderへ"
-    click def-cardinality "def-cardinality.html" "Definition: Cardinalityへ"
     click thm-cantor "thm-cantor.html" "Theorem: Cantor's Theoremへ"
+    click def-partial-order "def-partial-order.html" "Definition: Partial Orderへ"
+    click def-set "def-set.html" "Definition: Setへ"
+    click def-cardinality "def-cardinality.html" "Definition: Cardinalityへ"
 ```
 
 ## インタラクティブ可視化

@@ -6,6 +6,7 @@ requires:
 - def-cyclic-group
 - def-order
 - def-automorphism
+- def-center-of-group
 sidebar: true
 status: verified
 title: Examples of Group Actions
@@ -43,7 +44,7 @@ This action defines inner [automorphisms](def-automorphism.qmd) of $G$.
 Properties:
 - The orbit of $h$ is its conjugacy class: $\{ghg^{-1} : g \in G\}$
 - The stabilizer of $h$ is its centralizer: $C_G(h) = \{g \in G : gh = hg\}$
-- Fixed points are exactly the elements of the center $Z(G)$
+- Fixed points are exactly the elements of the [center](def-center-of-group.qmd) $Z(G)$
 
 ## Symmetric Group on a Set
 
@@ -83,22 +84,25 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-group["Definition: Group"]:::definition
+    def-center-of-group["Definition: Center of a Group"]:::definition
     def-cyclic-group["Definition: Cyclic Group"]:::definition
-    def-automorphism["Definition: Automorphism"]:::definition
     def-order["Definition: Order"]:::definition
-    ex-group-action-examples["Examples of Group Actions"]:::example
     def-group-action["Group Action"]:::definition
+    def-automorphism["Definition: Automorphism"]:::definition
+    ex-group-action-examples["Examples of Group Actions"]:::example
     ex-group-action-examples --> def-group
+    ex-group-action-examples --> def-order
+    ex-group-action-examples --> def-center-of-group
+    ex-group-action-examples --> def-automorphism
     ex-group-action-examples --> def-group-action
     ex-group-action-examples --> def-cyclic-group
-    ex-group-action-examples --> def-order
-    ex-group-action-examples --> def-automorphism
     class ex-group-action-examples current
     click def-group "def-group.html" "Go to Group definition"
+    click def-center-of-group "def-center-of-group.html" "Go to Center of a Group definition"
     click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
-    click def-automorphism "def-automorphism.html" "Go to Automorphism definition"
     click def-order "def-order.html" "Go to Order definition"
     click def-group-action "def-group-action.html" "Go to Group Action"
+    click def-automorphism "def-automorphism.html" "Go to Automorphism definition"
 ```
 
 ## Interactive Visualization

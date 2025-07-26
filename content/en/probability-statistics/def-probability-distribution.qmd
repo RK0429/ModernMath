@@ -78,7 +78,7 @@ For a discrete distribution:
 
 ### Continuous Distributions
 - **Uniform**: Equal probability over an interval $[a, b]$
-- **Normal (Gaussian)**: Bell-shaped curve with parameters $\mu$ (mean) and $\sigma^2$ (variance)
+- **[Normal (Gaussian)](def-normal-distribution.qmd)**: Bell-shaped curve with parameters $\mu$ (mean) and $\sigma^2$ (variance)
 - **Exponential**: Time between events in a Poisson process
 - **Gamma**: Generalization of exponential distribution
 
@@ -90,7 +90,7 @@ Key characteristics of a distribution include:
 - **Moment generating function**: $M_X(t) = E[e^{tX}]$ (when it exists)
 
 ## See Also
-- [Central Limit Theorem](thm-central-limit.qmd) - Convergence to normal distribution
+- [Central Limit Theorem](thm-central-limit.qmd) - Convergence to [normal distribution](def-normal-distribution.qmd)
 - [Law of Large Numbers](thm-law-of-large-numbers.qmd) - Convergence of sample averages
 - [Independence](def-independence.qmd) - For joint distributions
 
@@ -104,38 +104,42 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-probability-space["Definition: Probability Space"]:::definition
-    def-random-variable["Definition: Random Variable"]:::definition
-    def-sample-space["Definition: Sample Space"]:::definition
-    def-function["Definition: Function"]:::definition
-    def-integral["Definition: Integral"]:::definition
-    def-probability-distribution["Definition: Probability Distribution"]:::definition
-    def-expectation["Definition: Expectation"]:::definition
-    def-variance["Definition: Variance"]:::definition
     def-independence["Definition: Independence"]:::definition
     thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
+    def-probability-space["Definition: Probability Space"]:::definition
+    def-expectation["Definition: Expected Value"]:::definition
+    def-variance["Definition: Variance"]:::definition
+    def-probability-distribution["Definition: Probability Distribution"]:::definition
+    def-normal-distribution["Definition: Normal Distribution"]:::definition
+    def-function["Definition: Function"]:::definition
+    def-integral["Definition: Integral"]:::definition
+    def-sample-space["Definition: Sample Space"]:::definition
     thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
-    def-probability-distribution --> def-probability-space
-    def-probability-distribution --> def-random-variable
-    def-probability-distribution --> def-sample-space
-    def-probability-distribution --> def-function
-    def-probability-distribution --> def-integral
-    def-expectation --> def-probability-distribution
+    def-random-variable["Definition: Random Variable"]:::definition
     def-variance --> def-probability-distribution
-    def-independence --> def-probability-distribution
+    def-expectation --> def-probability-distribution
+    def-normal-distribution --> def-probability-distribution
+    def-probability-distribution --> def-integral
+    def-probability-distribution --> def-function
+    def-probability-distribution --> def-probability-space
     thm-central-limit --> def-probability-distribution
+    def-probability-distribution --> def-random-variable
+    def-independence --> def-probability-distribution
     thm-law-of-large-numbers --> def-probability-distribution
+    def-probability-distribution --> def-sample-space
+    def-random-variable --> def-probability-distribution
     class def-probability-distribution current
+    click def-independence "def-independence.html" "Go to Independence definition"
+    click thm-central-limit "thm-central-limit.html" "Go to Central Limit Theorem theorem"
     click def-probability-space "def-probability-space.html" "Go to Probability Space definition"
-    click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
-    click def-sample-space "def-sample-space.html" "Go to Sample Space definition"
+    click def-expectation "def-expectation.html" "Go to Expected Value definition"
+    click def-variance "def-variance.html" "Go to Variance definition"
+    click def-normal-distribution "def-normal-distribution.html" "Go to Normal Distribution definition"
     click def-function "def-function.html" "Go to Function definition"
     click def-integral "def-integral.html" "Go to Integral definition"
-    click def-expectation "def-expectation.html" "Go to Expectation definition"
-    click def-variance "def-variance.html" "Go to Variance definition"
-    click def-independence "def-independence.html" "Go to Independence definition"
-    click thm-central-limit "thm-central-limit.html" "Go to Central Limit Theorem"
-    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "Go to Law of Large Numbers"
+    click def-sample-space "def-sample-space.html" "Go to Sample Space definition"
+    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "Go to Law of Large Numbers theorem"
+    click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
 ```
 
 ## Interactive Visualization

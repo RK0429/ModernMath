@@ -59,7 +59,7 @@ This test is often more practical than verifying all ring axioms.
 - The set of polynomials with zero constant term forms a subring of $R[x]$
 
 ### Special Subrings
-- The **center** of a ring $R$ is the subring $Z(R) = \{c \in R : cr = rc \text{ for all } r \in R\}$
+- The **center** of a ring $R$ is the subring $Z(R) = \{c \in R : cr = rc \text{ for all } r \in R\}$ (analogous to the [center of a group](def-center-of-group.qmd))
 - For matrix ring $M_n(R)$, the scalar matrices $\{aI : a \in R\}$ form a subring isomorphic to $R$
 
 ## Relation to Ideals
@@ -89,33 +89,33 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-ring["Definition: Ring"]:::definition
     def-integral-domain["Definition: Integral Domain"]:::definition
+    def-subring["Definition: Subring"]:::definition
+    def-field["Definition: Field"]:::definition
     def-set["Definition: Set"]:::definition
     def-ideal["Definition: Ideal"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
-    def-subring["Definition: Subring"]:::definition
-    def-quotient-ring["Definition: Quotient Ring"]:::definition
     def-polynomial-ring["Definition: Polynomial Ring"]:::definition
-    def-field["Definition: Field"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    def-field --> def-subring
-    def-subring --> def-ring
     def-integral-domain --> def-subring
-    def-ideal --> def-subring
-    def-subring --> def-polynomial-ring
-    def-subring --> def-subgroup
-    def-subring --> def-quotient-ring
-    def-subring --> def-ideal
     def-subring --> def-set
+    def-ideal --> def-subring
+    def-subring --> def-quotient-ring
+    def-field --> def-subring
+    def-subring --> def-subgroup
+    def-subring --> def-polynomial-ring
+    def-subring --> def-ideal
+    def-subring --> def-ring
     class def-subring current
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring definition"
+    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
+    click def-ring "def-ring.html" "Go to Ring definition"
     click def-integral-domain "def-integral-domain.html" "Go to Integral Domain definition"
+    click def-field "def-field.html" "Go to Field definition"
     click def-set "def-set.html" "Go to Set definition"
     click def-ideal "def-ideal.html" "Go to Ideal definition"
-    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
-    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring definition"
     click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring definition"
-    click def-field "def-field.html" "Go to Field definition"
-    click def-ring "def-ring.html" "Go to Ring definition"
 ```
 
 ## Interactive Visualization

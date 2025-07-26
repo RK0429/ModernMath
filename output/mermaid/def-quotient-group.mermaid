@@ -5,48 +5,51 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-ideal["Definition: Ideal"]:::definition
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    def-group["Definition: Group"]:::definition
     def-equivalence-relation["Definition: Equivalence Relation"]:::definition
-    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    def-center-of-group["Definition: Center of a Group"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     ex-finite-field["Example: Finite Field"]:::example
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-ideal["Definition: Ideal"]:::definition
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     def-simple-group["Definition: Simple Group"]:::definition
     def-order["Definition: Order"]:::definition
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-group["Definition: Group"]:::definition
-    def-kernel["Definition: Kernel"]:::definition
-    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    def-coset["Definition: Coset"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-homomorphism["Definition: Group Homomorphism"]:::definition
-    thm-first-isomorphism --> def-quotient-group
-    def-kernel --> def-quotient-group
-    def-equivalence-relation --> def-quotient-group
-    def-quotient-group --> def-group
+    def-coset["Definition: Coset"]:::definition
+    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
     def-simple-group --> def-quotient-group
-    ex-quotient-integers-mod-n --> def-quotient-group
-    def-abelian-group --> def-quotient-group
-    def-quotient-group --> def-subgroup
-    def-quotient-group --> def-coset
-    def-normal-subgroup --> def-quotient-group
-    def-quotient-group --> def-normal-subgroup
-    def-group --> def-quotient-group
+    def-quotient-group --> def-quotient-ring
+    def-quotient-group --> def-ideal
+    def-quotient-group --> def-cyclic-group
     def-homomorphism --> def-quotient-group
     thm-lagrange --> def-quotient-group
-    ex-finite-field --> def-quotient-group
+    def-kernel --> def-quotient-group
     def-subgroup --> def-quotient-group
-    def-order --> def-quotient-group
-    def-quotient-group --> def-quotient-ring
-    def-quotient-group --> thm-first-isomorphism
-    def-quotient-group --> def-abelian-group
-    def-quotient-group --> def-order
+    def-quotient-group --> def-group
     def-coset --> def-quotient-group
-    def-quotient-group --> def-ideal
+    def-quotient-group --> def-subgroup
+    def-quotient-group --> def-normal-subgroup
+    def-group --> def-quotient-group
+    def-quotient-group --> def-order
+    def-equivalence-relation --> def-quotient-group
+    def-quotient-group --> thm-first-isomorphism
+    def-normal-subgroup --> def-quotient-group
     thm-euler --> def-quotient-group
-    def-quotient-group --> def-cyclic-group
+    def-quotient-group --> def-coset
+    ex-quotient-integers-mod-n --> def-quotient-group
+    def-quotient-group --> def-center-of-group
+    ex-finite-field --> def-quotient-group
+    thm-first-isomorphism --> def-quotient-group
+    def-center-of-group --> def-quotient-group
+    def-abelian-group --> def-quotient-group
+    def-quotient-group --> def-abelian-group
+    def-order --> def-quotient-group
     class def-quotient-group current

@@ -6,6 +6,7 @@ requires:
 - def-variance
 - def-independence
 - def-probability-distribution
+- def-normal-distribution
 - ../analysis/thm-taylor-series
 status: complete
 title: '定理: 中心極限定理'
@@ -18,7 +19,7 @@ type: Theorem
 
 # 定理: 中心極限定理 {#thm-central-limit}
 
-**中心極限定理（CLT）**は確率論における最も基本的な結果の一つであり、[独立な](def-independence.qmd)[確率変数](def-random-variable.qmd)の正規化された和の[分布](def-probability-distribution.qmd)が正規[分布](def-probability-distribution.qmd)に収束することを述べています。
+**中心極限定理（CLT）**は確率論における最も基本的な結果の一つであり、[独立な](def-independence.qmd)[確率変数](def-random-variable.qmd)の正規化された和の[分布](def-probability-distribution.qmd)が[正規分布](def-normal-distribution.qmd)に収束することを述べています。
 
 ## 主張
 
@@ -33,11 +34,11 @@ $X_1, X_2, \ldots, X_n$を[独立](def-independence.qmd)かつ同一に[分布](
 このとき、任意の$z \in \mathbb{R}$に対して：
 $$\lim_{n \to \infty} P(Z_n \leq z) = \Phi(z)$$
 
-ここで、$\Phi(z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-t^2/2} dt$は標準正規[分布](def-probability-distribution.qmd)の累積分布関数である。
+ここで、$\Phi(z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-t^2/2} dt$は標準[正規分布](def-normal-distribution.qmd)の累積分布関数である。
 
 ## 同値な表現
 
-$n$が大きいとき、$\bar{X}_n$の[分布](def-probability-distribution.qmd)は近似的に正規[分布](def-probability-distribution.qmd)となる：
+$n$が大きいとき、$\bar{X}_n$の[分布](def-probability-distribution.qmd)は近似的に[正規分布](def-normal-distribution.qmd)となる：
 $$\bar{X}_n \stackrel{d}{\approx} N\left(\mu, \frac{\sigma^2}{n}\right)$$
 
 ## 証明の概略
@@ -116,20 +117,26 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-independence["Definition: Independence"]:::definition
     thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
     def-expectation["Definition: Expected Value"]:::definition
-    def-random-variable["Definition: Random Variable"]:::definition
     def-variance["Definition: Variance"]:::definition
-    def-independence["Definition: Independence"]:::definition
-    thm-central-limit --> def-independence
+    def-probability-distribution["Definition: Probability Distribution"]:::definition
+    def-normal-distribution["Definition: Normal Distribution"]:::definition
+    def-random-variable["Definition: Random Variable"]:::definition
     thm-central-limit --> def-random-variable
+    thm-central-limit --> def-independence
     thm-central-limit --> def-variance
+    thm-central-limit --> def-probability-distribution
+    thm-central-limit --> def-normal-distribution
     thm-central-limit --> def-expectation
     class thm-central-limit current
-    click def-expectation "def-expectation.html" "Definition: Expected Valueへ"
-    click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
-    click def-variance "def-variance.html" "Definition: Varianceへ"
     click def-independence "def-independence.html" "Definition: Independenceへ"
+    click def-expectation "def-expectation.html" "Definition: Expected Valueへ"
+    click def-variance "def-variance.html" "Definition: Varianceへ"
+    click def-probability-distribution "def-probability-distribution.html" "Definition: Probability Distributionへ"
+    click def-normal-distribution "def-normal-distribution.html" "Definition: Normal Distributionへ"
+    click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
 ```
 
 ## インタラクティブ可視化
