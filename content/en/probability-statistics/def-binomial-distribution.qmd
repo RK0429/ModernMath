@@ -1,0 +1,161 @@
+---
+id: def-binomial-distribution
+requires:
+- def-probability-distribution
+- def-random-variable
+- def-expectation
+- def-variance
+- def-independence
+- ../combinatorics/def-binomial-coefficient
+status: complete
+title: 'Definition: Binomial Distribution'
+translations:
+  en: ../en/probability-statistics/def-binomial-distribution.html
+  ja: ../ja/probability-statistics/def-binomial-distribution.html
+type: Definition
+---
+
+# Binomial Distribution {#def-binomial-distribution}
+
+The **binomial distribution** is a discrete [probability distribution](def-probability-distribution.qmd) that models the number of successes in a fixed number of independent Bernoulli trials, each with the same probability of success.
+
+## Formal Definition
+
+A discrete [random variable](def-random-variable.qmd) $X$ follows a **binomial distribution** with parameters $n \in \mathbb{N}$ and $p \in [0,1]$, denoted $X \sim \text{Binomial}(n,p)$ or $X \sim B(n,p)$, if its probability mass function is:
+
+$$P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}$$
+
+for $k \in \{0, 1, 2, \ldots, n\}$, where $\binom{n}{k}$ is the [binomial coefficient](../combinatorics/def-binomial-coefficient.qmd).
+
+## Parameters
+
+The binomial distribution is characterized by two parameters:
+
+- **Number of trials** $n$: The fixed number of independent Bernoulli trials
+- **Success probability** $p$: The probability of success in each individual trial
+- The probability of failure in each trial is $q = 1 - p$
+
+## Properties
+
+### Statistical Properties
+
+For $X \sim \text{Binomial}(n,p)$:
+
+- **[Expected value](def-expectation.qmd)**: $E[X] = np$
+- **[Variance](def-variance.qmd)**: $\text{Var}(X) = np(1-p) = npq$
+- **Standard deviation**: $\sigma = \sqrt{np(1-p)}$
+- **Mode**: $\lfloor (n+1)p \rfloor$ (where $\lfloor \cdot \rfloor$ is the floor function)
+
+### Moment Generating Function
+
+The moment generating function is:
+
+$$M_X(t) = E[e^{tX}] = (pe^t + 1-p)^n = (pe^t + q)^n$$
+
+This can be derived from the fact that a binomial random variable is the sum of $n$ [independent](def-independence.qmd) Bernoulli random variables.
+
+### Cumulative Distribution Function
+
+The cumulative distribution function is:
+
+$$F_X(k) = P(X \leq k) = \sum_{i=0}^{\lfloor k \rfloor} \binom{n}{i} p^i (1-p)^{n-i}$$
+
+where $\lfloor k \rfloor$ denotes the greatest integer less than or equal to $k$.
+
+## Special Cases
+
+### Bernoulli Distribution
+
+When $n = 1$, the binomial distribution reduces to the **Bernoulli distribution**:
+- $P(X = 1) = p$ (success)
+- $P(X = 0) = 1-p$ (failure)
+
+### Degenerate Cases
+
+- If $p = 0$, then $P(X = 0) = 1$ (no successes possible)
+- If $p = 1$, then $P(X = n) = 1$ (all trials succeed)
+
+## Relationship to Other Distributions
+
+### Sum of Bernoulli Variables
+
+If $X_1, X_2, \ldots, X_n$ are [independent](def-independence.qmd) Bernoulli random variables with the same parameter $p$, then:
+
+$$X = \sum_{i=1}^n X_i \sim \text{Binomial}(n,p)$$
+
+### Sum of Independent Binomial Variables
+
+If $X \sim \text{Binomial}(n,p)$ and $Y \sim \text{Binomial}(m,p)$ are independent with the same success probability $p$, then:
+
+$$X + Y \sim \text{Binomial}(n+m,p)$$
+
+### Approximations
+
+1. **Normal Approximation**: For large $n$, by the [Central Limit Theorem](thm-central-limit.qmd):
+   $$\frac{X - np}{\sqrt{np(1-p)}} \xrightarrow{d} N(0,1)$$
+
+   Rule of thumb: The approximation is good when $np \geq 10$ and $n(1-p) \geq 10$.
+
+2. **Poisson Approximation**: When $n$ is large and $p$ is small with $np = \lambda$ moderate:
+   $$\text{Binomial}(n,p) \approx \text{Poisson}(\lambda)$$
+
+## Examples of Applications
+
+1. **Quality Control**: Number of defective items in a batch
+2. **Clinical Trials**: Number of patients responding to treatment
+3. **Polling**: Number of voters supporting a candidate in a sample
+4. **Genetics**: Number of offspring with a specific trait
+5. **Network Reliability**: Number of functioning components in a system
+
+## Computational Considerations
+
+For large values of $n$, direct computation of binomial probabilities can lead to numerical overflow. Alternative approaches include:
+
+1. Using logarithms to compute probabilities
+2. Using the normal approximation when appropriate
+3. Recursive computation using Pascal's identity
+
+## See Also
+
+- [Normal Distribution](def-normal-distribution.qmd) - For normal approximation
+- [Central Limit Theorem](thm-central-limit.qmd) - Theoretical basis for approximation
+- [Law of Large Numbers](thm-law-of-large-numbers.qmd) - Convergence of sample proportion
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-binomial-distribution["Definition: Binomial Distribution"]:::definition
+    def-probability-distribution["Definition: Probability Distribution"]:::definition
+    def-random-variable["Definition: Random Variable"]:::definition
+    def-expectation["Definition: Expected Value"]:::definition
+    def-variance["Definition: Variance"]:::definition
+    def-independence["Definition: Independence"]:::definition
+    def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
+    def-binomial-distribution --> def-probability-distribution
+    def-binomial-distribution --> def-random-variable
+    def-binomial-distribution --> def-expectation
+    def-binomial-distribution --> def-variance
+    def-binomial-distribution --> def-independence
+    def-binomial-distribution --> def-binomial-coefficient
+    class def-binomial-distribution current
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-binomial-distribution" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-binomial-distribution.html){target="_blank"}
