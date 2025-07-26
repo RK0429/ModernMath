@@ -35,8 +35,8 @@ $$a * b = b * a$$
 - **XOR**: $p \oplus q = q \oplus p$
 
 ### Number Theory
-- **GCD**: $\gcd(a, b) = \gcd(b, a)$
-- **LCM**: $\text{lcm}(a, b) = \text{lcm}(b, a)$
+- **GCD**: $\gcd(a, b) = \gcd(b, a)$ (see @../number-theory/def-gcd)
+- **LCM**: $\text{lcm}(a, b) = \text{lcm}(b, a)$ (see @../number-theory/def-lcm)
 
 ## Non-Commutative Operations
 
@@ -98,21 +98,21 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-integral-domain["Definition: Integral Domain"]:::definition
-    def-commutativity["Definition: Commutativity"]:::definition
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    def-group["Definition: Group"]:::definition
     def-binary-operation["Definition: Binary Operation"]:::definition
+    def-integral-domain["Definition: Integral Domain"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    def-commutativity["Definition: Commutativity"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-abelian-group --> def-commutativity
+    def-commutativity --> def-abelian-group
+    def-group --> def-commutativity
     def-integral-domain --> def-commutativity
     def-commutativity --> def-binary-operation
-    def-abelian-group --> def-commutativity
-    def-group --> def-commutativity
-    def-commutativity --> def-abelian-group
     class def-commutativity current
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
     click def-integral-domain "def-integral-domain.html" "Go to Integral Domain definition"
     click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
     click def-group "def-group.html" "Go to Group definition"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
 ```
 
 ## Interactive Visualization

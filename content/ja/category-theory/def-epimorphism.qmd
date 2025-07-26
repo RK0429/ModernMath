@@ -45,7 +45,7 @@ $$f^*: \text{Hom}(B, C) \to \text{Hom}(A, C)$$
 
 すべての全射が通常の意味で全射であるわけではありません：
 
-- **Ring**：環の圏では、包含写像 $\mathbb{Z} \hookrightarrow \mathbb{Q}$ は全射ですが全射関数ではありません
+- **Ring**：環の圏では、包含写像 $\mathbb{Z} \hookrightarrow \mathbb{Q}$ は全射（[環準同型](../algebra/def-ring-homomorphism.qmd)として）ですが全射関数ではありません
 - **Haus**：ハウスドルフ空間の圏では、包含写像 $\mathbb{Q} \hookrightarrow \mathbb{R}$ は全射（稠密な像）ですが全射関数ではありません
 - **Mon**：[モノイド](../algebra/def-monoid.qmd)の圏では、全射でない全射が存在します
 
@@ -102,27 +102,27 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-epimorphism["Definition: Epimorphism"]:::definition
-    def-category["Definition: Category"]:::definition
-    def-isomorphism["Definition: Group Isomorphism"]:::definition
-    def-morphism["Definition: Morphism"]:::definition
-    def-monomorphism["Definition: Monomorphism"]:::definition
     def-composition["Definition: Composition"]:::definition
     def-functor["Definition: Functor"]:::definition
+    def-monomorphism["Definition: Monomorphism"]:::definition
+    def-epimorphism["Definition: Epimorphism"]:::definition
+    def-morphism["Definition: Morphism"]:::definition
+    def-isomorphism["Definition: Group Isomorphism"]:::definition
+    def-category["Definition: Category"]:::definition
+    def-epimorphism --> def-morphism
     def-monomorphism --> def-epimorphism
+    def-epimorphism --> def-isomorphism
+    def-epimorphism --> def-category
     def-epimorphism --> def-functor
     def-epimorphism --> def-composition
-    def-epimorphism --> def-category
-    def-epimorphism --> def-isomorphism
     def-epimorphism --> def-monomorphism
-    def-epimorphism --> def-morphism
     class def-epimorphism current
-    click def-category "def-category.html" "Definition: Categoryへ"
-    click def-isomorphism "def-isomorphism.html" "Definition: Group Isomorphismへ"
-    click def-morphism "def-morphism.html" "Definition: Morphismへ"
-    click def-monomorphism "def-monomorphism.html" "Definition: Monomorphismへ"
     click def-composition "def-composition.html" "Definition: Compositionへ"
     click def-functor "def-functor.html" "Definition: Functorへ"
+    click def-monomorphism "def-monomorphism.html" "Definition: Monomorphismへ"
+    click def-morphism "def-morphism.html" "Definition: Morphismへ"
+    click def-isomorphism "def-isomorphism.html" "Definition: Group Isomorphismへ"
+    click def-category "def-category.html" "Definition: Categoryへ"
 ```
 
 ## インタラクティブ可視化

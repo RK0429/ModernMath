@@ -1,0 +1,125 @@
+---
+id: def-ring-homomorphism
+requires:
+- def-ring
+- def-binary-operation
+- ../logic-set-theory/def-function
+status: complete
+title: '定義: 環準同型'
+translation_of: ../../en/algebra/def-ring-homomorphism.qmd
+translations:
+  en: ../en/algebra/def-ring-homomorphism.html
+  ja: ../ja/algebra/def-ring-homomorphism.html
+type: Definition
+---
+
+# 環準同型 {#def-ring-homomorphism}
+
+**環準同型**（ring homomorphism）は、2つの[環](def-ring.qmd)の間の[関数](../logic-set-theory/def-function.qmd)であり、両方の環の[二項演算](def-binary-operation.qmd)（加法と乗法）を保存するものです。
+
+## 形式的定義
+
+$(R, +, \cdot)$ と $(S, \oplus, \odot)$ を環とする。関数 $f: R \to S$ が環準同型であるとは、以下を満たすことである：
+
+1. **加法の保存**: すべての $a, b \in R$ に対して、$f(a + b) = f(a) \oplus f(b)$
+2. **乗法の保存**: すべての $a, b \in R$ に対して、$f(a \cdot b) = f(a) \odot f(b)$
+3. **単位元の保存**: $f(1_R) = 1_S$（$R$ と $S$ が乗法単位元を持つ場合）
+
+## 記法
+
+- 標準的な記法: $f: R \to S$ または $f: R \rightarrow S$
+- 元の像: $f(r)$ または時として $r^f$
+- 核の記法: $\ker(f) = \{r \in R : f(r) = 0_S\}$
+
+## 直感的理解
+
+環準同型は、代数的構造を保ちながら2つの環の間を「翻訳」する方法です。言語間で文章の意味を保ちながら翻訳するように、環準同型は一つの環から別の環へ元を写像する際に算術的関係を保存します。最初の環で $a + b = c$ ならば、2番目の環で $f(a) + f(b) = f(c)$ となります。
+
+## 主な性質
+
+環準同型は自動的にいくつかの重要な元と構造を保存します：
+
+- **零元の保存**: $f(0_R) = 0_S$（加法単位元）
+- **加法逆元の保存**: すべての $a \in R$ に対して $f(-a) = -f(a)$
+- **べき乗の保存**: すべての $a \in R$ と $n \in \mathbb{N}$ に対して $f(a^n) = f(a)^n$
+- **部分環の保存**: $T$ が $R$ の[部分環](def-subring.qmd)ならば、$f(T)$ は $S$ の部分環
+
+## 例
+
+一般的な例には以下があります：
+- 整数をその剰余類 modulo $n$ に送る自然な写像 $\mathbb{Z} \to \mathbb{Z}/n\mathbb{Z}$
+- 固定された元での評価による[多項式環](def-polynomial-ring.qmd) $R[x]$ から $R$ への評価写像
+- 任意の部分環からその親環への包含写像
+
+## 特別な種類
+
+- **[単射](../category-theory/def-monomorphism.qmd)**: 単射環準同型
+- **[全射](../category-theory/def-epimorphism.qmd)**: 全射環準同型
+- **[同型](def-isomorphism.qmd)**: 全単射環準同型（注：逆写像は自動的に環準同型となる）
+- **[自己準同型](def-endomorphism.qmd)**: 環から自身への環準同型
+- **[自己同型](def-automorphism.qmd)**: 全単射自己準同型
+
+## 核と像
+
+環準同型 $f: R \to S$ に対して：
+
+- **核**は $\ker(f) = \{r \in R : f(r) = 0_S\}$ であり、これは常に $R$ の両側[イデアル](def-ideal.qmd)である
+- **像**は $\text{Im}(f) = \{f(r) : r \in R\}$ であり、これは常に $S$ の部分環である
+
+核は準同型が単射かどうかを完全に決定します：$f$ が単射であることと $\ker(f) = \{0_R\}$ は同値です。
+
+## 環の第一同型定理
+
+環準同型と剰余環の間の基本的な関係は[第一同型定理](thm-first-isomorphism.qmd)によって与えられます：
+
+$$R/\ker(f) \cong \text{Im}(f)$$
+
+これは、環のすべての準同型像が[剰余環](def-quotient-ring.qmd)と同型であることを示し、環準同型とイデアル論の間の深い関係を確立しています。
+
+## 関連概念
+
+- **一般化**: 環上の加群構造を保存する加群準同型
+- **特殊化**: [群準同型](def-homomorphism.qmd)（加法群構造のみを考慮）
+- **類似構造**: ベクトル空間構造の準同型であるベクトル空間間の線形変換
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
+    def-ring-homomorphism["Definition: Ring Homomorphism"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-kernel --> def-ring-homomorphism
+    def-ring-homomorphism --> def-ring
+    def-ring-homomorphism --> def-binary-operation
+    def-quotient-ring --> def-ring-homomorphism
+    def-ideal --> def-ring-homomorphism
+    class def-ring-homomorphism current
+    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
+    click def-kernel "def-kernel.html" "Definition: Kernelへ"
+    click def-ideal "def-ideal.html" "Definition: Idealへ"
+    click def-quotient-ring "def-quotient-ring.html" "Definition: Quotient Ringへ"
+    click def-ring "def-ring.html" "Definition: Ringへ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-ring-homomorphism" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/def-ring-homomorphism.html){target="_blank"}で完全なインタラクティブ版を表示

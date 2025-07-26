@@ -6,7 +6,9 @@ requires:
 - def-homomorphism
 - def-normal-subgroup
 - def-ideal
+- def-quotient-ring
 - def-isomorphism
+- def-ring-homomorphism
 status: complete
 title: '定義: 核'
 translation_of: ../../en/algebra/def-kernel.qmd
@@ -86,39 +88,42 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
+    def-ring-homomorphism["Definition: Ring Homomorphism"]:::definition
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
     def-ideal["Definition: Ideal"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
     thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
-    def-vector-space["Definition: Vector Space"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
     def-isomorphism["Definition: Group Isomorphism"]:::definition
     def-quotient-ring["Definition: Quotient Ring"]:::definition
-    def-kernel["Definition: Kernel"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
-    def-linear-transformation["Definition: Linear Transformation"]:::definition
-    def-kernel --> thm-first-isomorphism
-    def-kernel --> def-normal-subgroup
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-kernel --> def-ring-homomorphism
+    def-kernel --> def-quotient-group
     def-kernel --> def-homomorphism
+    def-kernel --> thm-first-isomorphism
     def-kernel --> def-vector-space
     def-kernel --> def-isomorphism
-    def-kernel --> def-quotient-ring
-    def-kernel --> def-ideal
-    thm-first-isomorphism --> def-kernel
-    def-kernel --> def-quotient-group
     def-kernel --> def-linear-transformation
+    def-kernel --> def-quotient-ring
+    thm-first-isomorphism --> def-kernel
+    def-kernel --> def-ideal
     thm-rank-nullity --> def-kernel
+    def-kernel --> def-normal-subgroup
     class def-kernel current
+    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
+    click def-ring-homomorphism "def-ring-homomorphism.html" "Definition: Ring Homomorphismへ"
+    click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
     click def-ideal "def-ideal.html" "Definition: Idealへ"
-    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "Theorem: First Isomorphism Theoremへ"
     click thm-rank-nullity "thm-rank-nullity.html" "Theorem: Rank-Nullity Theoremへ"
-    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
+    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
     click def-isomorphism "def-isomorphism.html" "Definition: Group Isomorphismへ"
     click def-quotient-ring "def-quotient-ring.html" "Definition: Quotient Ringへ"
-    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
-    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Theorem: First Isomorphism Theoremへ"
-    click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
+    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
+    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
 ```
 
 ## インタラクティブ可視化

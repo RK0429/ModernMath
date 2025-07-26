@@ -75,3 +75,51 @@ Monoids appear throughout mathematics and computer science:
 - **Monoid homomorphism**: A function that preserves both the operation and identity
 - **Monoid action**: A way for a monoid to act on another set
 - **[Abelian group](def-abelian-group.qmd)**: A commutative monoid where every element has an inverse
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-associativity["Definition: Associativity"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-monoid["Definition: Monoid"]:::definition
+    def-inverse-element["Definition: Inverse Element"]:::definition
+    def-endomorphism["Definition: Endomorphism"]:::definition
+    def-identity-element["Definition: Identity Element"]:::definition
+    def-monoid --> def-identity-element
+    def-group --> def-monoid
+    def-monoid --> def-associativity
+    def-inverse-element --> def-monoid
+    def-endomorphism --> def-monoid
+    def-monoid --> def-set
+    def-monoid --> def-binary-operation
+    class def-monoid current
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click def-associativity "def-associativity.html" "Go to Associativity definition"
+    click def-set "def-set.html" "Go to Set definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click def-inverse-element "def-inverse-element.html" "Go to Inverse Element definition"
+    click def-endomorphism "def-endomorphism.html" "Go to Endomorphism definition"
+    click def-identity-element "def-identity-element.html" "Go to Identity Element definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-monoid" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-monoid.html){target="_blank"}

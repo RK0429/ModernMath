@@ -99,28 +99,31 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-integral-domain["Definition: Integral Domain"]:::definition
-    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
-    def-ideal["Definition: Ideal"]:::definition
-    def-field["Definition: Field"]:::definition
     def-commutativity["Definition: Commutativity"]:::definition
-    def-ring["Definition: Ring"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
     ex-integers-ring["Example: Integers Form a Ring"]:::example
-    def-integral-domain --> def-commutativity
-    def-integral-domain --> def-polynomial-ring
-    def-field --> def-integral-domain
-    def-integral-domain --> def-ideal
+    def-subring["Definition: Subring"]:::definition
+    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
+    def-field["Definition: Field"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-integral-domain --> def-subring
     def-integral-domain --> def-field
-    def-integral-domain --> ex-integers-ring
-    ex-integers-ring --> def-integral-domain
-    def-integral-domain --> def-ring
+    def-integral-domain --> def-ideal
+    def-field --> def-integral-domain
     def-polynomial-ring --> def-integral-domain
+    def-integral-domain --> def-polynomial-ring
+    ex-integers-ring --> def-integral-domain
+    def-integral-domain --> ex-integers-ring
+    def-integral-domain --> def-commutativity
+    def-integral-domain --> def-ring
     class def-integral-domain current
-    click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring definition"
-    click def-ideal "def-ideal.html" "Go to Ideal definition"
-    click def-field "def-field.html" "Go to Field definition"
     click def-commutativity "def-commutativity.html" "Go to Commutativity definition"
-    click def-ring "def-ring.html" "Go to Ring definition"
+    click def-ideal "def-ideal.html" "Go to Ideal definition"
     click ex-integers-ring "ex-integers-ring.html" "Go to Integers Form a Ring example"
+    click def-subring "def-subring.html" "Go to Subring definition"
+    click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring definition"
+    click def-field "def-field.html" "Go to Field definition"
+    click def-ring "def-ring.html" "Go to Ring definition"
 ```
 
 ## Interactive Visualization

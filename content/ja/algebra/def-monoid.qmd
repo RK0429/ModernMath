@@ -76,3 +76,51 @@ type: Definition
 - **モノイド準同型**：演算と単位元の両方を保つ関数
 - **モノイド作用**：モノイドが他の集合に作用する方法
 - **[アーベル群](def-abelian-group.qmd)**：すべての元が逆元を持つ可換モノイド
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-associativity["Definition: Associativity"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-monoid["Definition: Monoid"]:::definition
+    def-inverse-element["Definition: Inverse Element"]:::definition
+    def-endomorphism["Definition: Endomorphism"]:::definition
+    def-identity-element["Definition: Identity Element"]:::definition
+    def-monoid --> def-identity-element
+    def-group --> def-monoid
+    def-monoid --> def-associativity
+    def-inverse-element --> def-monoid
+    def-endomorphism --> def-monoid
+    def-monoid --> def-set
+    def-monoid --> def-binary-operation
+    class def-monoid current
+    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
+    click def-associativity "def-associativity.html" "Definition: Associativityへ"
+    click def-set "def-set.html" "Definition: Setへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click def-inverse-element "def-inverse-element.html" "Definition: Inverse Elementへ"
+    click def-endomorphism "def-endomorphism.html" "Definition: Endomorphismへ"
+    click def-identity-element "def-identity-element.html" "Definition: Identity Elementへ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-monoid" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/def-monoid.html){target="_blank"}で完全なインタラクティブ版を表示

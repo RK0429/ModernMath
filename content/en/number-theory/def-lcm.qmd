@@ -1,0 +1,99 @@
+---
+id: def-lcm
+requires:
+- def-set
+- def-divisibility
+- def-gcd
+status: complete
+title: 'Definition: Least Common Multiple'
+translations:
+  en: ../en/number-theory/def-lcm.html
+  ja: ../ja/number-theory/def-lcm.html
+type: Definition
+---
+
+# Definition: Least Common Multiple {#def-lcm}
+
+The **least common multiple (LCM)** of two integers is the smallest positive integer that is [divisible](def-divisibility.qmd) by both numbers.
+
+## Definition
+
+Let $a, b \in \mathbb{Z}$, not both zero. The least common multiple of $a$ and $b$, denoted $\text{lcm}(a, b)$, is the unique positive integer $m$ such that:
+
+1. $a \mid m$ and $b \mid m$ (i.e., both $a$ and $b$ [divide](def-divisibility.qmd) $m$)
+2. If $a \mid n$ and $b \mid n$ for some positive integer $n$, then $m \mid n$
+
+## Alternative Characterization
+
+$\text{lcm}(a, b)$ is the smallest element in the [set](../logic-set-theory/def-set.qmd):
+$$\{m \in \mathbb{Z}^+ : a \mid m \text{ and } b \mid m\}$$
+
+## Properties
+
+1. **Commutativity**: $\text{lcm}(a, b) = \text{lcm}(b, a)$
+2. **Associativity**: $\text{lcm}(a, \text{lcm}(b, c)) = \text{lcm}(\text{lcm}(a, b), c)$
+3. **Identity**: $\text{lcm}(a, 1) = |a|$ for any integer $a$
+4. **Zero property**: $\text{lcm}(a, 0) = 0$ for any integer $a$
+5. **Scaling**: $\text{lcm}(ka, kb) = |k| \cdot \text{lcm}(a, b)$ for any integer $k$
+6. **Distributivity over GCD**: $\text{lcm}(a, \gcd(b, c)) = \gcd(\text{lcm}(a, b), \text{lcm}(a, c))$
+
+## Relationship with GCD
+
+The fundamental relationship between LCM and [GCD](def-gcd.qmd) is:
+$$\text{lcm}(a, b) \cdot \gcd(a, b) = |a| \cdot |b|$$
+
+This allows us to compute the LCM from the GCD:
+$$\text{lcm}(a, b) = \frac{|a| \cdot |b|}{\gcd(a, b)}$$
+
+## Prime Factorization Method
+
+If $a = p_1^{i_1} \cdot p_2^{i_2} \cdots p_k^{i_k}$ and $b = p_1^{j_1} \cdot p_2^{j_2} \cdots p_k^{j_k}$ are the [prime factorizations](def-prime.qmd), then:
+$$\text{lcm}(a, b) = p_1^{\max(i_1, j_1)} \cdot p_2^{\max(i_2, j_2)} \cdots p_k^{\max(i_k, j_k)}$$
+
+## Special Cases
+
+- $\text{lcm}(a, a) = |a|$
+- If $\gcd(a, b) = 1$ (coprime), then $\text{lcm}(a, b) = |a| \cdot |b|$
+- If $a \mid b$, then $\text{lcm}(a, b) = |b|$
+
+## Examples
+
+- $\text{lcm}(12, 18) = 36$
+- $\text{lcm}(7, 5) = 35$ (since 7 and 5 are coprime)
+- $\text{lcm}(6, 10, 15) = 30$
+
+## Applications
+
+The LCM is used in:
+- Finding common denominators for fraction addition
+- Solving systems of [congruences](def-congruence.qmd)
+- Analyzing periodic phenomena with different periods
+- Computing the order of elements in cyclic groups
+
+## See Also
+
+- @def-gcd
+- @def-divisibility
+- @def-prime
+- @thm-fundamental-arithmetic
+- @thm-chinese-remainder
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-lcm" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-lcm.html){target="_blank"}

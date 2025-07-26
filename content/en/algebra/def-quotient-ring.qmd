@@ -6,6 +6,7 @@ requires:
 - def-coset
 - def-equivalence-relation
 - def-homomorphism
+- def-ring-homomorphism
 status: complete
 title: 'Definition: Quotient Ring'
 translations:
@@ -57,9 +58,9 @@ This ensures the operations don't depend on the choice of coset representatives.
 
 ## Connection to Homomorphisms
 
-The natural map $\pi: R \to R/I$ defined by $\pi(r) = r + I$ is a surjective ring [Homomorphism](def-homomorphism.qmd) with kernel $I$. This connects to the fundamental theorem:
+The natural map $\pi: R \to R/I$ defined by $\pi(r) = r + I$ is a surjective [ring homomorphism](def-ring-homomorphism.qmd) with kernel $I$. This connects to the fundamental theorem:
 
-**First Isomorphism Theorem for Rings**: If $\phi: R \to S$ is a ring homomorphism, then:
+**First Isomorphism Theorem for Rings**: If $\phi: R \to S$ is a [ring homomorphism](def-ring-homomorphism.qmd), then:
 $$R/\ker(\phi) \cong \text{Im}(\phi)$$
 
 ## Equivalence Relation Perspective
@@ -100,34 +101,40 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     ex-finite-field["Example: Finite Field"]:::example
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    def-ideal["Definition: Ideal"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
-    def-quotient-ring["Definition: Quotient Ring"]:::definition
-    def-coset["Definition: Coset"]:::definition
-    def-ring["Definition: Ring"]:::definition
+    def-ring-homomorphism["Definition: Ring Homomorphism"]:::definition
     def-kernel["Definition: Kernel"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
     def-quotient-group["Definition: Quotient Group"]:::definition
-    ex-quotient-integers-mod-n --> def-quotient-ring
-    def-quotient-ring --> def-coset
-    def-quotient-group --> def-quotient-ring
-    def-quotient-ring --> def-equivalence-relation
+    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
+    def-coset["Definition: Coset"]:::definition
+    def-subring["Definition: Subring"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-ring["Definition: Ring"]:::definition
     def-quotient-ring --> def-ideal
     ex-finite-field --> def-quotient-ring
-    def-kernel --> def-quotient-ring
     def-quotient-ring --> def-ring
+    ex-quotient-integers-mod-n --> def-quotient-ring
     def-quotient-ring --> def-homomorphism
+    def-kernel --> def-quotient-ring
+    def-quotient-group --> def-quotient-ring
+    def-quotient-ring --> def-ring-homomorphism
+    def-subring --> def-quotient-ring
+    def-quotient-ring --> def-coset
+    def-quotient-ring --> def-equivalence-relation
     class def-quotient-ring current
     click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
+    click def-ring-homomorphism "def-ring-homomorphism.html" "Go to Ring Homomorphism definition"
+    click def-kernel "def-kernel.html" "Go to Kernel definition"
     click def-ideal "def-ideal.html" "Go to Ideal definition"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
     click def-equivalence-relation "def-equivalence-relation.html" "Go to Equivalence Relation definition"
     click def-coset "def-coset.html" "Go to Coset definition"
+    click def-subring "def-subring.html" "Go to Subring definition"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
     click def-ring "def-ring.html" "Go to Ring definition"
-    click def-kernel "def-kernel.html" "Go to Kernel definition"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
 ```
 
 ## Interactive Visualization

@@ -81,69 +81,72 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-finite-field["Example: Finite Field"]:::example
-    def-identity-element["Definition: Identity Element"]:::definition
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
     thm-unique-identity["Theorem: Uniqueness of Identity"]:::theorem
-    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    ex-integers-addition["Example: Integers under Addition"]:::example
+    def-commutativity["Definition: Commutativity"]:::definition
+    def-identity-element["Definition: Identity Element"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-associativity["Definition: Associativity"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-set["Definition: Set"]:::definition
+    ex-finite-field["Example: Finite Field"]:::example
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
     def-simple-group["Definition: Simple Group"]:::definition
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
     def-inverse-element["Definition: Inverse Element"]:::definition
     def-homomorphism["Definition: Group Homomorphism"]:::definition
-    ex-integers-addition["Example: Integers under Addition"]:::example
-    def-set["Definition: Set"]:::definition
-    def-commutativity["Definition: Commutativity"]:::definition
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-associativity["Definition: Associativity"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-group --> def-identity-element
-    def-group --> ex-finite-field
+    def-monoid["Definition: Monoid"]:::definition
+    def-group --> def-binary-operation
+    def-group --> def-homomorphism
+    def-quotient-group --> def-group
     def-abelian-group --> def-group
-    thm-unique-identity --> def-group
+    ex-even-integers-subgroup --> def-group
     def-group --> def-cyclic-group
-    ex-integers-addition --> def-group
+    def-group --> def-subgroup
+    def-group --> def-identity-element
+    def-group --> def-inverse-element
+    def-group --> thm-unique-identity
     def-homomorphism --> def-group
     def-group --> def-commutativity
-    def-group --> thm-unique-identity
-    ex-even-integers-subgroup --> def-group
     def-normal-subgroup --> def-group
-    def-group --> def-set
-    def-group --> def-associativity
-    def-group --> def-homomorphism
-    def-group --> def-binary-operation
-    def-group --> ex-integers-addition
-    def-group --> ex-even-integers-subgroup
-    def-group --> def-subgroup
-    def-group --> def-simple-group
-    def-cyclic-group --> def-group
-    def-simple-group --> def-group
-    def-group --> def-abelian-group
-    def-quotient-group --> def-group
     def-group --> def-quotient-group
-    def-group --> def-normal-subgroup
     def-subgroup --> def-group
-    def-group --> def-inverse-element
+    def-group --> def-normal-subgroup
+    def-group --> def-set
+    def-group --> def-monoid
+    def-group --> ex-finite-field
+    ex-integers-addition --> def-group
+    def-group --> def-simple-group
+    def-group --> ex-integers-addition
+    thm-unique-identity --> def-group
+    def-group --> ex-even-integers-subgroup
+    def-group --> def-associativity
+    def-cyclic-group --> def-group
+    def-group --> def-abelian-group
+    def-simple-group --> def-group
     class def-group current
-    click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
-    click def-identity-element "def-identity-element.html" "Go to Identity Element definition"
-    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
     click thm-unique-identity "thm-unique-identity.html" "Go to Uniqueness of Identity theorem"
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Go to Even Integers Form a Subgroup example"
+    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
+    click def-commutativity "def-commutativity.html" "Go to Commutativity definition"
+    click def-identity-element "def-identity-element.html" "Go to Identity Element definition"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click def-associativity "def-associativity.html" "Go to Associativity definition"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click def-set "def-set.html" "Go to Set definition"
+    click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
+    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
+    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
     click def-simple-group "def-simple-group.html" "Go to Simple Group definition"
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Go to Even Integers Form a Subgroup example"
+    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
     click def-inverse-element "def-inverse-element.html" "Go to Inverse Element definition"
     click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
-    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
-    click def-set "def-set.html" "Go to Set definition"
-    click def-commutativity "def-commutativity.html" "Go to Commutativity definition"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
-    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
-    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-    click def-associativity "def-associativity.html" "Go to Associativity definition"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click def-monoid "def-monoid.html" "Go to Monoid definition"
 ```
 
 ## Interactive Visualization
