@@ -1,0 +1,98 @@
+---
+id: def-semigroup
+requires:
+- def-set
+- def-binary-operation
+- def-associativity
+status: complete
+title: 'Definition: Semigroup'
+translations:
+  en: ../en/algebra/def-semigroup.html
+  ja: ../ja/algebra/def-semigroup.html
+type: Definition
+---
+
+# Definition: Semigroup {#def-semigroup}
+
+A **semigroup** is a [set](../logic-set-theory/def-set.qmd) $S$ together with a [binary operation](def-binary-operation.qmd) $\star: S \times S \to S$ that satisfies a single fundamental axiom.
+
+## Semigroup Axiom
+
+**[Associativity](def-associativity.qmd)**: For all $a, b, c \in S$,
+$$(a \star b) \star c = a \star (b \star c)$$
+
+## Notation
+
+- A semigroup is often denoted as $(S, \star)$ to explicitly show the set and operation
+- When the operation is clear from context, we may simply write $S$
+- The operation symbol is often omitted: $ab$ instead of $a \star b$
+- Common operation symbols include $\cdot$ (multiplication), $+$ (addition), $\circ$ (composition)
+
+## Important Properties
+
+From the associativity axiom:
+
+- We can unambiguously write products of multiple elements without parentheses: $a_1 a_2 \cdots a_n$
+- Semigroups are closed under their operation (by definition of binary operation)
+- Subsemigroups can be formed from subsets closed under the operation
+- The set of [endomorphisms](def-endomorphism.qmd) of any object forms a semigroup under composition
+
+## Relationship to Other Structures
+
+- **[Monoid](def-monoid.qmd)**: A semigroup with an [identity element](def-identity-element.qmd)
+- **[Group](def-group.qmd)**: A monoid where every element has an [inverse](def-inverse-element.qmd)
+- **Commutative semigroup**: A semigroup whose operation is [commutative](def-commutativity.qmd)
+- **Band**: A semigroup where every element is idempotent ($a \star a = a$)
+
+## Examples
+
+### Numeric Semigroups
+- $(\mathbb{N} \setminus \{0\}, +)$: Positive integers under addition (no identity 0)
+- $(\mathbb{Z}, \cdot)$: All integers under multiplication
+- $(\mathbb{R}^+, \cdot)$: Positive real numbers under multiplication
+- $(2\mathbb{N}, +)$: Even positive integers under addition
+
+### Function Semigroups
+- Transformations of a set under composition (not all bijective)
+- Partial functions from a set to itself under composition
+- Binary relations on a set under composition
+
+### Matrix Semigroups
+- Square [matrices](def-matrix.qmd) of fixed size under multiplication
+- Matrices with non-negative entries under multiplication
+- Upper triangular matrices under multiplication
+
+### Other Examples
+- Strings over an alphabet under concatenation (forms the free semigroup)
+- The set $\{0\}$ under multiplication (trivial semigroup)
+- The set of all [ideals](def-ideal.qmd) in a [ring](def-ring.qmd) under multiplication
+
+## Special Types of Semigroups
+
+### Regular Semigroups
+A semigroup $S$ is **regular** if for every $a \in S$, there exists $x \in S$ such that $a = axa$.
+
+### Inverse Semigroups
+A semigroup where every element has a unique "pseudo-inverse" satisfying certain conditions.
+
+### Cancellative Semigroups
+A semigroup satisfying the cancellation laws:
+- Left cancellative: $ab = ac \implies b = c$
+- Right cancellative: $ba = ca \implies b = c$
+
+### Finite Semigroups
+Semigroups with finitely many elements, important in automata theory and computer science.
+
+## Applications
+
+Semigroups appear throughout mathematics and its applications:
+
+- **Algebra**: Foundation for more complex algebraic structures
+- **Computer Science**: Finite semigroups correspond to finite automata; used in formal language theory
+- **Analysis**: Operator semigroups in functional analysis and PDEs
+- **Probability**: Markov semigroups in stochastic processes
+- **Combinatorics**: Counting problems involving associative operations
+
+## Historical Note
+
+The concept of a semigroup emerged in the early 20th century as mathematicians began studying algebraic structures systematically. The term "semi-group" reflects that it satisfies only part of the group axioms—specifically, associativity.
