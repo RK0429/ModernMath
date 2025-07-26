@@ -1,0 +1,71 @@
+---
+id: def-fundamental-group
+requires:
+- def-topological-space
+- def-group
+- def-equivalence-relation
+- def-function
+- def-homeomorphism
+status: complete
+title: '定義: 基本群'
+translation_of: ../../en/topology/def-fundamental-group.qmd
+translations:
+  en: ../en/topology/def-fundamental-group.html
+  ja: ../ja/topology/def-fundamental-group.html
+type: Definition
+---
+
+# 基本群 {#def-fundamental-group}
+
+[位相空間](def-topological-space.qmd)の**基本群**は、固定された点を基点とするループの同値類の[群](../algebra/def-group.qmd)であり、2つのループは一方を他方に連続的に変形できる場合に同値とみなされる。
+
+## 形式的定義
+
+$(X, \tau)$ を位相空間、$x_0 \in X$ を基点とする。$x_0$ を基点とする**ループ**とは、$\gamma(0) = \gamma(1) = x_0$ を満たす連続[関数](../logic-set-theory/def-function.qmd) $\gamma: [0,1] \to X$ である。
+
+$x_0$ を基点とする2つのループ $\gamma_0, \gamma_1$ が**ホモトピック**（$\gamma_0 \simeq \gamma_1$ と記す）であるとは、以下を満たす連続関数 $H: [0,1] \times [0,1] \to X$ が存在することである：
+- すべての $s \in [0,1]$ に対して $H(s,0) = \gamma_0(s)$
+- すべての $s \in [0,1]$ に対して $H(s,1) = \gamma_1(s)$
+- すべての $t \in [0,1]$ に対して $H(0,t) = H(1,t) = x_0$
+
+**基本群** $\pi_1(X, x_0)$ は、$x_0$ を基点とするループのホモトピーによる[同値類](../logic-set-theory/def-equivalence-relation.qmd)の集合である。
+
+## 群構造
+
+$\pi_1(X, x_0)$ 上の群演算はループの**連結**によって与えられる：
+
+$x_0$ を基点とするループ $\gamma_1, \gamma_2$ に対して、それらの連結 $\gamma_1 * \gamma_2$ は次のように定義される：
+
+$$(\gamma_1 * \gamma_2)(s) = \begin{cases}
+\gamma_1(2s) & \text{if } 0 \leq s \leq 1/2 \\
+\gamma_2(2s-1) & \text{if } 1/2 \leq s \leq 1
+\end{cases}$$
+
+この演算はホモトピー類上で well-defined であり、$\pi_1(X, x_0)$ を以下を持つ群にする：
+- **単位元**: すべての $s \in [0,1]$ に対して $e(s) = x_0$ となる定値ループ
+- **逆元**: ループ $\gamma$ に対して、その逆元は $\gamma^{-1}(s) = \gamma(1-s)$
+
+## 性質
+
+1. **位相不変量**: $f: X \to Y$ が[同相写像](def-homeomorphism.qmd)ならば、$\pi_1(X, x_0) \cong \pi_1(Y, f(x_0))$
+
+2. **弧状連結空間**: 弧状連結空間に対して、基本群は基点の選び方によらず同型を除いて一意
+
+3. **単連結**: 空間 $X$ が弧状連結で $\pi_1(X, x_0) = \{e\}$（自明群）のとき、**単連結**という
+
+4. **アーベル化**: $\pi_1(X, x_0)$ のアーベル化は第1ホモロジー群 $H_1(X)$ と同型
+
+## 例
+
+- すべての $n \geq 1$ に対して $\pi_1(\mathbb{R}^n, x_0) = \{e\}$
+- $\pi_1(S^1, x_0) \cong \mathbb{Z}$、ここで $S^1$ は円周
+- $n \geq 2$ に対して $\pi_1(S^n, x_0) = \{e\}$、ここで $S^n$ は n次元球面
+- $\pi_1(T^2, x_0) \cong \mathbb{Z} \times \mathbb{Z}$、ここで $T^2$ は 2次元トーラス
+
+## 応用
+
+基本群は以下のための強力な道具である：
+- 非同相な空間の区別
+- 被覆空間の分類
+- ファイバー束の構造の理解
+- 位相幾何学と群論の結びつき

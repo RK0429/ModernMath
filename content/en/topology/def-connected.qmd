@@ -44,6 +44,10 @@ A space is disconnected if it can be written as $X = U \cup V$ where:
 - Any interval $[a, b]$, $(a, b)$, $[a, b)$ in $\mathbb{R}$ is connected
 - The space $\mathbb{R} \setminus \{0\}$ is disconnected
 
+## Path-Connectedness
+
+A stronger notion is **path-connected**: a space where any two points can be joined by a continuous path. Every path-connected space is connected, but not conversely. Path-connectedness is important for the [fundamental group](def-fundamental-group.qmd).
+
 ## Dependency Graph
 
 ```{mermaid}
@@ -54,23 +58,23 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-connected["Definition: Connected Space"]:::definition
+    def-open-set["Definition: Open Set"]:::definition
+    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
+    def-closed-set["Definition: Closed Set"]:::definition
     def-homeomorphism["Definition: Homeomorphism"]:::definition
     def-topological-space["Definition: Topological Space"]:::definition
-    def-closed-set["Definition: Closed Set"]:::definition
-    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
-    def-open-set["Definition: Open Set"]:::definition
-    def-connected["Definition: Connected Space"]:::definition
-    def-homeomorphism --> def-connected
-    def-connected --> def-closed-set
-    def-connected --> def-open-set
     thm-intermediate-value --> def-connected
     def-connected --> def-topological-space
+    def-connected --> def-closed-set
+    def-homeomorphism --> def-connected
+    def-connected --> def-open-set
     class def-connected current
+    click def-open-set "def-open-set.html" "Go to Open Set definition"
+    click thm-intermediate-value "thm-intermediate-value.html" "Go to Intermediate Value Theorem theorem"
+    click def-closed-set "def-closed-set.html" "Go to Closed Set definition"
     click def-homeomorphism "def-homeomorphism.html" "Go to Homeomorphism definition"
     click def-topological-space "def-topological-space.html" "Go to Topological Space definition"
-    click def-closed-set "def-closed-set.html" "Go to Closed Set definition"
-    click thm-intermediate-value "thm-intermediate-value.html" "Go to Intermediate Value Theorem theorem"
-    click def-open-set "def-open-set.html" "Go to Open Set definition"
 ```
 
 ## Interactive Visualization
