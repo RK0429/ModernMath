@@ -6,6 +6,7 @@ requires:
 - ../logic-set-theory/def-equivalence-relation
 - ../logic-set-theory/def-function
 - def-homeomorphism
+- def-homotopy
 status: complete
 title: 'Definition: Fundamental Group'
 translations:
@@ -22,12 +23,12 @@ The **fundamental group** of a [topological space](def-topological-space.qmd) is
 
 Let $(X, \tau)$ be a topological space and $x_0 \in X$ a basepoint. A **loop** based at $x_0$ is a continuous [function](../logic-set-theory/def-function.qmd) $\gamma: [0,1] \to X$ such that $\gamma(0) = \gamma(1) = x_0$.
 
-Two loops $\gamma_0, \gamma_1$ based at $x_0$ are **homotopic** (written $\gamma_0 \simeq \gamma_1$) if there exists a continuous function $H: [0,1] \times [0,1] \to X$ such that:
+Two loops $\gamma_0, \gamma_1$ based at $x_0$ are **[homotopic](def-homotopy.qmd)** (written $\gamma_0 \simeq \gamma_1$) if there exists a continuous function $H: [0,1] \times [0,1] \to X$ such that:
 - $H(s,0) = \gamma_0(s)$ for all $s \in [0,1]$
 - $H(s,1) = \gamma_1(s)$ for all $s \in [0,1]$
 - $H(0,t) = H(1,t) = x_0$ for all $t \in [0,1]$
 
-The **fundamental group** $\pi_1(X, x_0)$ is the set of [equivalence classes](../logic-set-theory/def-equivalence-relation.qmd) of loops based at $x_0$ under homotopy.
+The **fundamental group** $\pi_1(X, x_0)$ is the set of [equivalence classes](../logic-set-theory/def-equivalence-relation.qmd) of loops based at $x_0$ under [homotopy](def-homotopy.qmd).
 
 ## Group Structure
 
@@ -40,7 +41,7 @@ $$(\gamma_1 * \gamma_2)(s) = \begin{cases}
 \gamma_2(2s-1) & \text{if } 1/2 \leq s \leq 1
 \end{cases}$$
 
-This operation is well-defined on homotopy classes and makes $\pi_1(X, x_0)$ into a group with:
+This operation is well-defined on [homotopy](def-homotopy.qmd) classes and makes $\pi_1(X, x_0)$ into a group with:
 - **Identity**: The constant loop $e(s) = x_0$ for all $s \in [0,1]$
 - **Inverse**: For a loop $\gamma$, its inverse $\gamma^{-1}(s) = \gamma(1-s)$
 

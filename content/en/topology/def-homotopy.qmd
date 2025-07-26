@@ -1,0 +1,95 @@
+---
+id: def-homotopy
+requires:
+- def-topological-space
+- ../logic-set-theory/def-function
+- ../analysis/def-continuity
+- def-homeomorphism
+status: complete
+title: 'Definition: Homotopy'
+translations:
+  en: ../en/topology/def-homotopy.html
+  ja: ../ja/topology/def-homotopy.html
+type: Definition
+---
+
+# Homotopy {#def-homotopy}
+
+A **homotopy** between two continuous [functions](../logic-set-theory/def-function.qmd) is a [continuous](../analysis/def-continuity.qmd) deformation of one function into the other. This fundamental concept in algebraic topology formalizes the intuitive idea of continuously transforming one map into another.
+
+## Formal Definition
+
+Let $X$ and $Y$ be [topological spaces](def-topological-space.qmd), and let $f, g: X \to Y$ be continuous functions. A **homotopy** from $f$ to $g$ is a continuous function:
+
+$$H: X \times [0,1] \to Y$$
+
+such that:
+- $H(x,0) = f(x)$ for all $x \in X$
+- $H(x,1) = g(x)$ for all $x \in X$
+
+When such a homotopy exists, we say that $f$ and $g$ are **homotopic**, written $f \simeq g$.
+
+## Intuitive Understanding
+
+Think of the parameter $t \in [0,1]$ as time:
+- At time $t = 0$, we have the function $f$
+- At time $t = 1$, we have the function $g$
+- For intermediate values of $t$, $H(x,t)$ gives the "in-between" function at time $t$
+
+The continuity of $H$ ensures that this deformation from $f$ to $g$ happens smoothly, without any jumps or tears.
+
+## Properties
+
+1. **Equivalence Relation**: Being homotopic is an [equivalence relation](../logic-set-theory/def-equivalence-relation.qmd) on the set of continuous functions from $X$ to $Y$:
+   - **Reflexive**: $f \simeq f$ (via $H(x,t) = f(x)$)
+   - **Symmetric**: If $f \simeq g$, then $g \simeq f$ (via $H'(x,t) = H(x,1-t)$)
+   - **Transitive**: If $f \simeq g$ and $g \simeq h$, then $f \simeq h$
+
+2. **Composition**: If $f_0 \simeq f_1: X \to Y$ and $g_0 \simeq g_1: Y \to Z$, then $g_0 \circ f_0 \simeq g_1 \circ f_1$
+
+3. **Preservation**: Homotopy preserves many topological properties, but is weaker than [homeomorphism](def-homeomorphism.qmd)
+
+## Special Types of Homotopy
+
+### Relative Homotopy
+
+A homotopy $H$ is **relative to a subset** $A \subseteq X$ if $H(a,t) = f(a) = g(a)$ for all $a \in A$ and all $t \in [0,1]$. This means the functions agree on $A$ throughout the deformation.
+
+### Path Homotopy
+
+For paths $\gamma_0, \gamma_1: [0,1] \to Y$ with the same endpoints, a **path homotopy** is a homotopy relative to $\{0,1\}$. This keeps the endpoints fixed during the deformation and is crucial for defining the [fundamental group](def-fundamental-group.qmd).
+
+### Null-homotopic
+
+A map $f: X \to Y$ is **null-homotopic** if it is homotopic to a constant map. That is, there exists $y_0 \in Y$ such that $f \simeq c_{y_0}$ where $c_{y_0}(x) = y_0$ for all $x \in X$.
+
+## Examples
+
+1. **Straight-line Homotopy**: In $\mathbb{R}^n$, any two maps $f,g: X \to \mathbb{R}^n$ are homotopic via:
+   $$H(x,t) = (1-t)f(x) + tg(x)$$
+
+2. **Circle Maps**: Two continuous maps $f,g: S^1 \to \mathbb{R}^2 \setminus \{0\}$ are homotopic if and only if they have the same winding number around the origin.
+
+3. **Deformation Retract**: A subspace $A \subseteq X$ is a deformation retract if the identity map on $X$ is homotopic to a retraction onto $A$ (relative to $A$).
+
+## Homotopy Equivalence
+
+Two spaces $X$ and $Y$ are **homotopy equivalent** (written $X \simeq Y$) if there exist continuous functions:
+- $f: X \to Y$ and $g: Y \to X$
+
+such that:
+- $g \circ f \simeq \text{id}_X$
+- $f \circ g \simeq \text{id}_Y$
+
+Homotopy equivalent spaces share many topological invariants, including:
+- [Fundamental group](def-fundamental-group.qmd)
+- Homology groups
+- Cohomology groups
+
+## Applications
+
+Homotopy is fundamental in:
+- **Algebraic Topology**: Defining homotopy groups, especially the fundamental group
+- **Classification**: Classifying continuous maps and spaces up to homotopy
+- **Fixed Point Theory**: The Brouwer fixed-point theorem uses homotopy methods
+- **Obstruction Theory**: Determining when continuous maps can be extended or lifted
