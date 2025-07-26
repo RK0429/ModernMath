@@ -1,0 +1,134 @@
+---
+id: def-zero-divisor
+requires:
+- def-ring
+- def-identity-element
+status: complete
+title: 'Definition: Zero Divisor'
+translations:
+  en: ../en/algebra/def-zero-divisor.html
+  ja: ../ja/algebra/def-zero-divisor.html
+type: Definition
+---
+
+# Definition: Zero Divisor {#def-zero-divisor}
+
+In a [ring](def-ring.qmd) $R$, an element $a \in R$ is called a **zero divisor** if there exists a nonzero element $b \in R$ such that either $ab = 0$ or $ba = 0$.
+
+## Formal Definition
+
+Let $(R, +, \cdot)$ be a ring. An element $a \in R$ is:
+
+1. **Left zero divisor**: If there exists $b \in R$ with $b \neq 0$ such that
+   $$a \cdot b = 0$$
+
+2. **Right zero divisor**: If there exists $c \in R$ with $c \neq 0$ such that
+   $$c \cdot a = 0$$
+
+3. **Two-sided zero divisor**: If $a$ is both a left and right zero divisor
+
+In commutative rings, the concepts of left and right zero divisors coincide, and we simply say **zero divisor**.
+
+## Important Properties
+
+### Zero as a Trivial Zero Divisor
+
+In any ring $R$ except the zero ring, the element $0$ is always a zero divisor since for any nonzero $a \in R$:
+$$0 \cdot a = a \cdot 0 = 0$$
+
+For this reason, when discussing zero divisors, we often focus on **nonzero zero divisors**.
+
+### Non-invertibility
+
+Zero divisors can never be units (invertible elements):
+
+**Theorem**: If $a$ is a left (or right) zero divisor in a ring $R$ with unity, then $a$ is not a unit.
+
+**Proof**: Suppose $a$ is a left zero divisor with $ab = 0$ for some $b \neq 0$. If $a$ were a unit with inverse $a^{-1}$, then:
+$$b = 1 \cdot b = (a^{-1}a)b = a^{-1}(ab) = a^{-1} \cdot 0 = 0$$
+This contradicts $b \neq 0$.
+
+### Regular Elements
+
+An element that is neither a left nor right zero divisor is called **regular** or **cancellable**. Regular elements satisfy the cancellation property:
+- If $a$ is regular and $ab = ac$, then $b = c$
+- If $a$ is regular and $ba = ca$, then $b = c$
+
+## Examples
+
+### Examples of Zero Divisors
+
+1. **Modular arithmetic**: In $\mathbb{Z}_6$:
+   - $2$ and $3$ are zero divisors since $2 \cdot 3 = 6 \equiv 0 \pmod{6}$
+   - $4$ is a zero divisor since $4 \cdot 3 = 12 \equiv 0 \pmod{6}$
+
+2. **Matrix rings**: In $M_2(\mathbb{R})$, the ring of $2 \times 2$ real matrices:
+   $$\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} \cdot \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}$$
+   Both matrices are nonzero but their product is zero.
+
+3. **Direct products**: In $\mathbb{Z} \times \mathbb{Z}$ with componentwise operations:
+   $$(1, 0) \cdot (0, 1) = (0, 0)$$
+   Here $(1, 0)$ and $(0, 1)$ are zero divisors.
+
+4. **Polynomial rings over non-integral domains**: In $(\mathbb{Z}_4)[x]$:
+   $$2x \cdot 2x = 4x^2 = 0$$
+   So $2x$ is a zero divisor.
+
+### Rings Without Zero Divisors
+
+1. **Fields**: Every [field](def-field.qmd) has no nonzero zero divisors
+2. **Integral domains**: By definition, [integral domains](def-integral-domain.qmd) have no nonzero zero divisors
+3. **$\mathbb{Z}$**: The ring of integers
+4. **$F[x]$**: Polynomial rings over fields
+
+## Relationship to Other Structures
+
+### Integral Domains
+
+A commutative ring with unity is an [integral domain](def-integral-domain.qmd) if and only if it has no nonzero zero divisors.
+
+### Prime Ideals
+
+An [ideal](def-ideal.qmd) $P$ in a commutative ring $R$ is a [prime ideal](def-prime-ideal.qmd) if and only if the quotient ring $R/P$ has no zero divisors (i.e., $R/P$ is an integral domain).
+
+### Nilpotent Elements
+
+Every nilpotent element (an element $a$ where $a^n = 0$ for some positive integer $n$) is a zero divisor. For example, if $a^2 = 0$ and $a \neq 0$, then $a \cdot a = 0$ shows that $a$ is a zero divisor.
+
+## Applications
+
+Understanding zero divisors is crucial for:
+
+1. **Characterizing ring types**: Distinguishing between general rings, integral domains, and fields
+2. **Solving equations**: In rings with zero divisors, the equation $ab = 0$ doesn't imply $a = 0$ or $b = 0$
+3. **Factorization theory**: Zero divisors complicate unique factorization
+4. **Module theory**: Zero divisors affect torsion in modules
+5. **Algebraic geometry**: Zero divisors in coordinate rings correspond to geometric properties
+
+## See Also
+
+- @def-ring
+- @def-integral-domain
+- @def-field
+- @def-prime-ideal
+- @def-ideal
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-zero-divisor" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-zero-divisor.html){target="_blank"}

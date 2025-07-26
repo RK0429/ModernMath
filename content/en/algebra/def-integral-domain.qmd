@@ -5,6 +5,7 @@ requires:
 - def-commutativity
 - def-field
 - def-subring
+- def-zero-divisor
 status: complete
 title: 'Definition: Integral Domain'
 translations:
@@ -15,7 +16,7 @@ type: Definition
 
 # Definition: Integral Domain {#def-integral-domain}
 
-An **integral domain** is a [commutative](def-commutativity.qmd) [ring](def-ring.qmd) with unity (multiplicative identity) that has no zero divisors.
+An **integral domain** is a [commutative](def-commutativity.qmd) [ring](def-ring.qmd) with unity (multiplicative identity) that has no [zero divisors](def-zero-divisor.qmd).
 
 ## Formal Definition
 
@@ -27,7 +28,7 @@ A ring $(R, +, \cdot)$ is an integral domain if:
 2. **Unity**: There exists an element $1 \in R$ such that for all $a \in R$,
    $$1 \cdot a = a \cdot 1 = a$$
 
-3. **No zero divisors**: For all $a, b \in R$,
+3. **No [zero divisors](def-zero-divisor.qmd)**: For all $a, b \in R$,
    $$a \cdot b = 0 \implies a = 0 \text{ or } b = 0$$
 
 ## Important Properties
@@ -36,7 +37,7 @@ A ring $(R, +, \cdot)$ is an integral domain if:
 
 In an integral domain, the cancellation law holds: if $a \neq 0$ and $ab = ac$, then $b = c$.
 
-**Proof**: If $ab = ac$, then $ab - ac = 0$, so $a(b - c) = 0$. Since $a \neq 0$ and there are no zero divisors, we must have $b - c = 0$, hence $b = c$.
+**Proof**: If $ab = ac$, then $ab - ac = 0$, so $a(b - c) = 0$. Since $a \neq 0$ and there are no [zero divisors](def-zero-divisor.qmd), we must have $b - c = 0$, hence $b = c$.
 
 ### Relationship to Other Structures
 
@@ -87,6 +88,7 @@ Integral domains provide the appropriate setting for:
 - @def-ideal
 - @def-polynomial-ring
 - @ex-integers-ring
+- @def-zero-divisor
 
 ## Dependency Graph
 
