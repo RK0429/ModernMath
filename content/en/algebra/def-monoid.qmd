@@ -1,0 +1,77 @@
+---
+id: def-monoid
+requires:
+- def-set
+- def-binary-operation
+- def-associativity
+- def-identity-element
+status: complete
+title: 'Definition: Monoid'
+translations:
+  en: ../en/algebra/def-monoid.html
+  ja: ../ja/algebra/def-monoid.html
+type: Definition
+---
+
+# Definition: Monoid {#def-monoid}
+
+A **monoid** is a [set](../logic-set-theory/def-set.qmd) $M$ together with a [binary operation](def-binary-operation.qmd) $\star: M \times M \to M$ that satisfies two fundamental axioms.
+
+## Monoid Axioms
+
+1. **[Associativity](def-associativity.qmd)**: For all $a, b, c \in M$,
+   $$(a \star b) \star c = a \star (b \star c)$$
+
+2. **[Identity element](def-identity-element.qmd)**: There exists an element $e \in M$ such that for all $a \in M$,
+   $$a \star e = e \star a = a$$
+
+## Notation
+
+- A monoid is often denoted as $(M, \star)$ or $(M, \star, e)$ to explicitly show the set, operation, and identity
+- When the operation is clear from context, we may simply write $M$
+- The operation symbol is often omitted: $ab$ instead of $a \star b$
+- The identity element is often denoted as $1$ (for multiplicative notation) or $0$ (for additive notation)
+
+## Important Properties
+
+From the axioms, we can prove:
+
+- The identity element is unique
+- Monoids are closed under their operation (by definition of binary operation)
+- Submonoids can be formed from subsets closed under the operation and containing the identity
+- The [endomorphisms](def-endomorphism.qmd) of any object form a monoid under composition
+
+## Relationship to Other Structures
+
+- **Semigroup**: A monoid without the identity requirement
+- **[Group](def-group.qmd)**: A monoid where every element has an [inverse](def-inverse-element.qmd)
+- **Commutative monoid**: A monoid whose operation is [commutative](def-commutativity.qmd)
+
+## Examples
+
+### Commutative Monoids
+- $(\mathbb{N}, +, 0)$: Natural numbers under addition with identity 0
+- $(\mathbb{N}\setminus\{0\}, \cdot, 1)$: Positive integers under multiplication with identity 1
+- $(P(X), \cup, \emptyset)$: [Power set](../logic-set-theory/def-power-set.qmd) under union with empty set as identity
+- $(P(X), \cap, X)$: Power set under intersection with the full set as identity
+
+### Non-commutative Monoids
+- $(M_n(\mathbb{R}), \cdot, I_n)$: $n \times n$ [matrices](def-matrix.qmd) under multiplication with identity matrix
+- $(\Sigma^*, \cdot, \epsilon)$: Strings over alphabet $\Sigma$ under concatenation with empty string $\epsilon$
+- $(X^X, \circ, \text{id}_X)$: Functions from a set to itself under composition with identity function
+
+## Applications
+
+Monoids appear throughout mathematics and computer science:
+
+- **Algebra**: Building block for [rings](def-ring.qmd) (a ring is a set with two monoid structures that satisfy distributivity)
+- **Category theory**: The morphisms from an object to itself form a monoid
+- **Computer science**: Many algorithms use monoid structures for parallel computation and aggregation
+- **Formal languages**: String concatenation forms the free monoid
+
+## Related Concepts
+
+- **Free monoid**: The monoid of all finite sequences from a set with concatenation
+- **Monoid homomorphism**: A function that preserves both the operation and identity
+- **Monoid action**: A way for a monoid to act on another set
+- **[Abelian group](def-abelian-group.qmd)**: A commutative monoid where every element has an inverse

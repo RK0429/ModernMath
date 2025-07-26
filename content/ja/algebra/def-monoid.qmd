@@ -1,0 +1,78 @@
+---
+id: def-monoid
+requires:
+- def-set
+- def-binary-operation
+- def-associativity
+- def-identity-element
+status: complete
+title: '定義: モノイド'
+translation_of: ../../en/algebra/def-monoid.qmd
+translations:
+  en: ../en/algebra/def-monoid.html
+  ja: ../ja/algebra/def-monoid.html
+type: Definition
+---
+
+# 定義: モノイド {#def-monoid}
+
+**モノイド**とは、[集合](../logic-set-theory/def-set.qmd) $M$ と、2つの基本的な公理を満たす[二項演算](def-binary-operation.qmd) $\star: M \times M \to M$ の組である。
+
+## モノイドの公理
+
+1. **[結合性](def-associativity.qmd)**: すべての $a, b, c \in M$ に対して、
+   $$(a \star b) \star c = a \star (b \star c)$$
+
+2. **[単位元](def-identity-element.qmd)**: ある元 $e \in M$ が存在して、すべての $a \in M$ に対して、
+   $$a \star e = e \star a = a$$
+
+## 記法
+
+- モノイドは集合、演算、単位元を明示的に示すために $(M, \star)$ または $(M, \star, e)$ と表記される
+- 文脈から演算が明らかな場合は、単に $M$ と書くことがある
+- 演算記号はしばしば省略される：$a \star b$ の代わりに $ab$
+- 単位元は $1$（乗法的記法）または $0$（加法的記法）と表記されることが多い
+
+## 重要な性質
+
+公理から以下が証明できる：
+
+- 単位元は一意である
+- モノイドはその演算について閉じている（二項演算の定義による）
+- 演算について閉じていて単位元を含む部分集合から部分モノイドが形成できる
+- 任意の対象の[自己準同型](def-endomorphism.qmd)は合成に関してモノイドを成す
+
+## 他の構造との関係
+
+- **半群**：単位元の要件がないモノイド
+- **[群](def-group.qmd)**：すべての元が[逆元](def-inverse-element.qmd)を持つモノイド
+- **可換モノイド**：演算が[可換](def-commutativity.qmd)なモノイド
+
+## 例
+
+### 可換モノイド
+- $(\mathbb{N}, +, 0)$：自然数の加法、単位元は 0
+- $(\mathbb{N}\setminus\{0\}, \cdot, 1)$：正の整数の乗法、単位元は 1
+- $(P(X), \cup, \emptyset)$：[冪集合](../logic-set-theory/def-power-set.qmd)の和集合、空集合が単位元
+- $(P(X), \cap, X)$：冪集合の積集合、全体集合が単位元
+
+### 非可換モノイド
+- $(M_n(\mathbb{R}), \cdot, I_n)$：$n \times n$ [行列](def-matrix.qmd)の乗法、単位行列が単位元
+- $(\Sigma^*, \cdot, \epsilon)$：アルファベット $\Sigma$ 上の文字列の連結、空文字列 $\epsilon$ が単位元
+- $(X^X, \circ, \text{id}_X)$：集合からそれ自身への関数の合成、恒等関数が単位元
+
+## 応用
+
+モノイドは数学とコンピュータ科学の至る所に現れる：
+
+- **代数学**：[環](def-ring.qmd)の構成要素（環は分配律を満たす2つのモノイド構造を持つ集合）
+- **圏論**：対象からそれ自身への射はモノイドを成す
+- **コンピュータ科学**：多くのアルゴリズムが並列計算と集約のためにモノイド構造を使用
+- **形式言語**：文字列連結は自由モノイドを形成
+
+## 関連概念
+
+- **自由モノイド**：集合からの有限列全体が連結に関して成すモノイド
+- **モノイド準同型**：演算と単位元の両方を保つ関数
+- **モノイド作用**：モノイドが他の集合に作用する方法
+- **[アーベル群](def-abelian-group.qmd)**：すべての元が逆元を持つ可換モノイド
