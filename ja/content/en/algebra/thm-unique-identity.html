@@ -346,7 +346,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-unique-identity-1753632867" class="graph-visualization-container">
+<div id="graph-viz-thm-unique-identity-1753634818" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -521,17 +521,23 @@ async function loadAndRenderGraph() {
       basePath = '../'.repeat(depth);
     }
 
-    const response = await fetch(basePath + 'output/d3-data/thm-unique-identity.json');
+    // Detect language from URL path
+    let lang = 'en';
+    if (currentPath.includes('/ja/') || currentPath.includes('/ja.html')) {
+      lang = 'ja';
+    }
+
+    const response = await fetch(basePath + 'output/d3-data/' + lang + '/thm-unique-identity.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-unique-identity-1753632867', {
+    createForceGraph(data, 'graph-viz-thm-unique-identity-1753634818', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-unique-identity-1753632867').innerHTML =
+    document.getElementById('graph-viz-thm-unique-identity-1753634818').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

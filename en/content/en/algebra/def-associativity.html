@@ -404,20 +404,20 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-monoid["Definition: Monoid"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
     def-group["Definition: Group"]:::definition
     def-semigroup["Definition: Semigroup"]:::definition
     def-associativity["Definition: Associativity"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-monoid["Definition: Monoid"]:::definition
     def-semigroup --&gt; def-associativity
     def-associativity --&gt; def-binary-operation
     def-group --&gt; def-associativity
     def-monoid --&gt; def-associativity
     class def-associativity current
-    click def-monoid "def-monoid.html" "Go to Monoid definition"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
     click def-group "def-group.html" "Go to Group definition"
     click def-semigroup "def-semigroup.html" "Go to Semigroup definition"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click def-monoid "def-monoid.html" "Go to Monoid definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -428,7 +428,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-associativity-1753632579" class="graph-visualization-container">
+<div id="graph-viz-def-associativity-1753634528" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -603,17 +603,23 @@ async function loadAndRenderGraph() {
       basePath = '../'.repeat(depth);
     }
 
-    const response = await fetch(basePath + 'output/d3-data/def-associativity.json');
+    // Detect language from URL path
+    let lang = 'en';
+    if (currentPath.includes('/ja/') || currentPath.includes('/ja.html')) {
+      lang = 'ja';
+    }
+
+    const response = await fetch(basePath + 'output/d3-data/' + lang + '/def-associativity.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-associativity-1753632579', {
+    createForceGraph(data, 'graph-viz-def-associativity-1753634528', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-associativity-1753632579').innerHTML =
+    document.getElementById('graph-viz-def-associativity-1753634528').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

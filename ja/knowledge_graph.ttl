@@ -121,6 +121,8 @@
 
 <http://modernmath.org/concepts/first-isomorphism> ns1:hasTranslation <http://modernmath.org/concepts/first-isomorphism_ja> .
 
+<http://modernmath.org/concepts/free-group> ns1:hasTranslation <http://modernmath.org/concepts/free-group_ja> .
+
 <http://modernmath.org/concepts/function> ns1:hasTranslation <http://modernmath.org/concepts/function_ja> .
 
 <http://modernmath.org/concepts/functor> ns1:hasTranslation <http://modernmath.org/concepts/functor_ja> .
@@ -391,6 +393,22 @@ base:def-endomorphism a mymath:Definition ;
         base:def-monoid,
         base:def-ring,
         base:def-vector-space .
+
+base:def-free-group a mymath:Definition ;
+    rdfs:label "Definition: Free Group"@en,
+        "定義：自由群"@ja ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-abelian-group,
+        base:def-binary-operation,
+        base:def-function,
+        base:def-group,
+        base:def-homomorphism,
+        base:def-identity-element,
+        base:def-inverse-element,
+        base:def-quotient-group,
+        base:def-set .
 
 base:def-fundamental-group a mymath:Definition ;
     rdfs:label "Definition: Fundamental Group"@en,
@@ -915,6 +933,8 @@ base:thm-yoneda a mymath:Theorem ;
 
 <http://modernmath.org/concepts/first-isomorphism_ja> ns1:language "ja" .
 
+<http://modernmath.org/concepts/free-group_ja> ns1:language "ja" .
+
 <http://modernmath.org/concepts/function_ja> ns1:language "ja" .
 
 <http://modernmath.org/concepts/functor_ja> ns1:language "ja" .
@@ -1262,18 +1282,6 @@ base:def-intersection a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-cardinality,
         base:def-set .
-
-base:def-inverse-element a mymath:Definition ;
-    rdfs:label "Definition: Inverse Element"@en,
-        "定義: 逆元"@ja ;
-    rdfs:comment "An **inverse element** of an element under a [Binary Operation](def-binary-operation.qmd) is another element that, when combined with the original, yields the [Identity Element](def-identity-element.qmd)."@en,
-        "**逆元**とは、[二項演算](def-binary-operation.qmd)において、ある元と結合したときに[単位元](def-identity-element.qmd)を生じるような元のことです。"@ja ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation,
-        base:def-identity-element,
-        base:def-monoid .
 
 base:def-natural-transformation a mymath:Definition ;
     rdfs:label "Definition: Natural Transformation"@en,
@@ -1662,6 +1670,18 @@ base:def-integral a mymath:Definition ;
     mymath:hasStatus "complete" ;
     mymath:uses base:def-continuity,
         base:def-limit .
+
+base:def-inverse-element a mymath:Definition ;
+    rdfs:label "Definition: Inverse Element"@en,
+        "定義: 逆元"@ja ;
+    rdfs:comment "An **inverse element** of an element under a [Binary Operation](def-binary-operation.qmd) is another element that, when combined with the original, yields the [Identity Element](def-identity-element.qmd)."@en,
+        "**逆元**とは、[二項演算](def-binary-operation.qmd)において、ある元と結合したときに[単位元](def-identity-element.qmd)を生じるような元のことです。"@ja ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-binary-operation,
+        base:def-identity-element,
+        base:def-monoid .
 
 base:def-lcm a mymath:Definition ;
     rdfs:label "Definition: Least Common Multiple"@en,
@@ -2411,16 +2431,6 @@ base:def-quotient-ring a mymath:Definition ;
         base:def-ring,
         base:def-ring-homomorphism .
 
-base:def-identity-element a mymath:Definition ;
-    rdfs:label "Definition: Identity Element"@en,
-        "定義: 単位元"@ja ;
-    rdfs:comment "An **identity element** for a [Binary Operation](def-binary-operation.qmd) is an element that leaves any other element unchanged when combined with it."@en,
-        "[二項演算](def-binary-operation.qmd)に対する**単位元**（たんいげん）とは、他の任意の元と結合したときにその元を変化させない元のことである。"@ja ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation .
-
 base:def-limit a mymath:Definition ;
     rdfs:label "Definition: Limit of a Sequence"@en,
         "定義：数列の極限"@ja ;
@@ -2497,6 +2507,16 @@ base:def-gcd a mymath:Definition ;
         base:def-set,
         base:thm-euclidean-algorithm,
         base:thm-euler .
+
+base:def-identity-element a mymath:Definition ;
+    rdfs:label "Definition: Identity Element"@en,
+        "定義: 単位元"@ja ;
+    rdfs:comment "An **identity element** for a [Binary Operation](def-binary-operation.qmd) is an element that leaves any other element unchanged when combined with it."@en,
+        "[二項演算](def-binary-operation.qmd)に対する**単位元**（たんいげん）とは、他の任意の元と結合したときにその元を変化させない元のことである。"@ja ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-binary-operation .
 
 base:def-order a mymath:Definition ;
     rdfs:label "Definition: Order"@en,
@@ -2605,18 +2625,6 @@ base:def-topological-space a mymath:Definition ;
         base:formal-proof-def-topological-space ;
     mymath:uses base:def-set .
 
-base:def-homomorphism a mymath:Definition ;
-    rdfs:label "Definition: Group Homomorphism"@en,
-        "定義: 群準同型"@ja ;
-    mymath:hasDomain "Algebra",
-        "代数学" ;
-    mymath:hasStatus "complete" ;
-    mymath:uses base:def-binary-operation,
-        base:def-function,
-        base:def-group,
-        base:def-quotient-group,
-        base:thm-first-isomorphism .
-
 base:def-ideal a mymath:Definition ;
     rdfs:label "Definition: Ideal"@en,
         "定義: イデアル"@ja ;
@@ -2649,6 +2657,18 @@ base:def-normal-subgroup a mymath:Definition ;
         base:def-subgroup,
         base:thm-first-isomorphism,
         base:thm-lagrange .
+
+base:def-homomorphism a mymath:Definition ;
+    rdfs:label "Definition: Group Homomorphism"@en,
+        "定義: 群準同型"@ja ;
+    mymath:hasDomain "Algebra",
+        "代数学" ;
+    mymath:hasStatus "complete" ;
+    mymath:uses base:def-binary-operation,
+        base:def-function,
+        base:def-group,
+        base:def-quotient-group,
+        base:thm-first-isomorphism .
 
 base:def-isomorphism a mymath:Definition ;
     rdfs:label "Definition: Group Isomorphism"@en,

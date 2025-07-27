@@ -376,11 +376,11 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-parallel["Definition: Parallel Lines"]:::definition
     def-line["Definition: Line"]:::definition
     def-point["Definition: Point"]:::definition
-    def-parallel --&gt; def-line
+    def-parallel["Definition: Parallel Lines"]:::definition
     def-parallel --&gt; def-point
+    def-parallel --&gt; def-line
     class def-parallel current
     click def-line "def-line.html" "Go to Line definition"
     click def-point "def-point.html" "Go to Point definition"
@@ -394,7 +394,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-parallel-1753632633" class="graph-visualization-container">
+<div id="graph-viz-def-parallel-1753634582" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -569,17 +569,23 @@ async function loadAndRenderGraph() {
       basePath = '../'.repeat(depth);
     }
 
-    const response = await fetch(basePath + 'output/d3-data/def-parallel.json');
+    // Detect language from URL path
+    let lang = 'en';
+    if (currentPath.includes('/ja/') || currentPath.includes('/ja.html')) {
+      lang = 'ja';
+    }
+
+    const response = await fetch(basePath + 'output/d3-data/' + lang + '/def-parallel.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-parallel-1753632633', {
+    createForceGraph(data, 'graph-viz-def-parallel-1753634582', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-parallel-1753632633').innerHTML =
+    document.getElementById('graph-viz-def-parallel-1753634582').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

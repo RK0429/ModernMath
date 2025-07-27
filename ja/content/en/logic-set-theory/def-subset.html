@@ -333,31 +333,31 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-subset["Definition: Subset"]:::definition
     def-ideal["Definition: Ideal"]:::definition
-    def-relation["Definition: Relation"]:::definition
-    def-maximal-ideal["Definition: Maximal Ideal"]:::definition
-    def-prime-ideal["Definition: Prime Ideal"]:::definition
-    def-set["Definition: Set"]:::definition
+    def-subset["Definition: Subset"]:::definition
     def-partial-order["Definition: Partial Order"]:::definition
+    def-relation["Definition: Relation"]:::definition
+    def-set["Definition: Set"]:::definition
     def-event["Definition: Event"]:::definition
+    def-prime-ideal["Definition: Prime Ideal"]:::definition
+    def-maximal-ideal["Definition: Maximal Ideal"]:::definition
+    def-subset --&gt; def-relation
     def-relation --&gt; def-subset
+    def-ideal --&gt; def-subset
+    def-subset --&gt; def-set
     def-subset --&gt; def-partial-order
     def-prime-ideal --&gt; def-subset
     def-partial-order --&gt; def-subset
-    def-subset --&gt; def-relation
-    def-event --&gt; def-subset
     def-maximal-ideal --&gt; def-subset
-    def-ideal --&gt; def-subset
-    def-subset --&gt; def-set
+    def-event --&gt; def-subset
     class def-subset current
     click def-ideal "def-ideal.html" "Go to Ideal definition"
-    click def-relation "def-relation.html" "Go to Relation definition"
-    click def-maximal-ideal "def-maximal-ideal.html" "Go to Maximal Ideal definition"
-    click def-prime-ideal "def-prime-ideal.html" "Go to Prime Ideal definition"
-    click def-set "def-set.html" "Go to Set definition"
     click def-partial-order "def-partial-order.html" "Go to Partial Order definition"
+    click def-relation "def-relation.html" "Go to Relation definition"
+    click def-set "def-set.html" "Go to Set definition"
     click def-event "def-event.html" "Go to Event definition"
+    click def-prime-ideal "def-prime-ideal.html" "Go to Prime Ideal definition"
+    click def-maximal-ideal "def-maximal-ideal.html" "Go to Maximal Ideal definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -368,7 +368,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-subset-1753632907" class="graph-visualization-container">
+<div id="graph-viz-def-subset-1753634857" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -543,17 +543,23 @@ async function loadAndRenderGraph() {
       basePath = '../'.repeat(depth);
     }
 
-    const response = await fetch(basePath + 'output/d3-data/def-subset.json');
+    // Detect language from URL path
+    let lang = 'en';
+    if (currentPath.includes('/ja/') || currentPath.includes('/ja.html')) {
+      lang = 'ja';
+    }
+
+    const response = await fetch(basePath + 'output/d3-data/' + lang + '/def-subset.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-subset-1753632907', {
+    createForceGraph(data, 'graph-viz-def-subset-1753634857', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-subset-1753632907').innerHTML =
+    document.getElementById('graph-viz-def-subset-1753634857').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

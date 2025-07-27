@@ -380,29 +380,29 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-binomial-distribution["Definition: Binomial Distribution"]:::definition
-    def-normal-distribution["Definition: Normal Distribution"]:::definition
-    def-probability-distribution["Definition: Probability Distribution"]:::definition
-    def-variance["Definition: Variance"]:::definition
     thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
     def-random-variable["Definition: Random Variable"]:::definition
     def-expectation["Definition: Expected Value"]:::definition
+    def-normal-distribution["Definition: Normal Distribution"]:::definition
     thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
-    thm-central-limit --&gt; def-variance
+    def-variance["Definition: Variance"]:::definition
+    def-binomial-distribution["Definition: Binomial Distribution"]:::definition
+    def-probability-distribution["Definition: Probability Distribution"]:::definition
     def-binomial-distribution --&gt; def-variance
-    def-variance --&gt; def-probability-distribution
-    def-normal-distribution --&gt; def-variance
+    thm-central-limit --&gt; def-variance
     def-variance --&gt; def-random-variable
     def-variance --&gt; def-expectation
     thm-law-of-large-numbers --&gt; def-variance
+    def-normal-distribution --&gt; def-variance
+    def-variance --&gt; def-probability-distribution
     class def-variance current
-    click def-binomial-distribution "def-binomial-distribution.html" "Go to Binomial Distribution definition"
-    click def-normal-distribution "def-normal-distribution.html" "Go to Normal Distribution definition"
-    click def-probability-distribution "def-probability-distribution.html" "Go to Probability Distribution definition"
     click thm-central-limit "thm-central-limit.html" "Go to Central Limit Theorem theorem"
     click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
     click def-expectation "def-expectation.html" "Go to Expected Value definition"
+    click def-normal-distribution "def-normal-distribution.html" "Go to Normal Distribution definition"
     click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "Go to Law of Large Numbers theorem"
+    click def-binomial-distribution "def-binomial-distribution.html" "Go to Binomial Distribution definition"
+    click def-probability-distribution "def-probability-distribution.html" "Go to Probability Distribution definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -413,7 +413,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-variance-1753632654" class="graph-visualization-container">
+<div id="graph-viz-def-variance-1753634603" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -588,17 +588,23 @@ async function loadAndRenderGraph() {
       basePath = '../'.repeat(depth);
     }
 
-    const response = await fetch(basePath + 'output/d3-data/def-variance.json');
+    // Detect language from URL path
+    let lang = 'en';
+    if (currentPath.includes('/ja/') || currentPath.includes('/ja.html')) {
+      lang = 'ja';
+    }
+
+    const response = await fetch(basePath + 'output/d3-data/' + lang + '/def-variance.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-variance-1753632654', {
+    createForceGraph(data, 'graph-viz-def-variance-1753634603', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-variance-1753632654').innerHTML =
+    document.getElementById('graph-viz-def-variance-1753634603').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -315,9 +315,10 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="例">例</h2>
 <ul>
 <li>すべての <span class="math inline">\(n \geq 1\)</span> に対して <span class="math inline">\(\pi_1(\mathbb{R}^n, x_0) = \{e\}\)</span></li>
-<li><span class="math inline">\(\pi_1(S^1, x_0) \cong \mathbb{Z}\)</span>、ここで <span class="math inline">\(S^1\)</span> は円周</li>
+<li><span class="math inline">\(\pi_1(S^1, x_0) \cong \mathbb{Z}\)</span>、ここで <span class="math inline">\(S^1\)</span> は円周（これは一つの生成元上の<a href="../../../content/ja/algebra/def-free-group.html"><span class="citation" data-cites="自由群">(<span><strong>自由群?</strong></span>)</span></a>）</li>
 <li><span class="math inline">\(n \geq 2\)</span> に対して <span class="math inline">\(\pi_1(S^n, x_0) = \{e\}\)</span>、ここで <span class="math inline">\(S^n\)</span> は n次元球面</li>
 <li><span class="math inline">\(\pi_1(T^2, x_0) \cong \mathbb{Z} \times \mathbb{Z}\)</span>、ここで <span class="math inline">\(T^2\)</span> は 2次元トーラス</li>
+<li>8の字（二つの円周のウェッジ積）は <span class="math inline">\(\pi_1 \cong F_2\)</span>、二つの生成元上の自由群</li>
 </ul>
 </section>
 <section id="応用" class="level2">
@@ -337,26 +338,26 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-equivalence-relation["定義：同値関係"]:::definition
     def-fundamental-group["定義: 基本群"]:::definition
     def-function["定義: 関数"]:::definition
-    def-group["群"]:::definition
     def-homeomorphism["定義：同相写像"]:::definition
-    def-equivalence-relation["定義：同値関係"]:::definition
-    def-homotopy["定義: ホモトピー"]:::definition
     def-topological-space["定義: 位相空間"]:::definition
-    def-fundamental-group --&gt; def-equivalence-relation
-    def-fundamental-group --&gt; def-function
-    def-fundamental-group --&gt; def-group
+    def-group["群"]:::definition
+    def-homotopy["定義: ホモトピー"]:::definition
+    def-fundamental-group --&gt; def-homeomorphism
     def-fundamental-group --&gt; def-homotopy
     def-fundamental-group --&gt; def-topological-space
-    def-fundamental-group --&gt; def-homeomorphism
+    def-fundamental-group --&gt; def-function
+    def-fundamental-group --&gt; def-equivalence-relation
+    def-fundamental-group --&gt; def-group
     class def-fundamental-group current
-    click def-function "def-function.html" "関数の定義へ"
-    click def-group "def-group.html" "群へ"
-    click def-homeomorphism "def-homeomorphism.html" "定義：同相写像へ"
     click def-equivalence-relation "def-equivalence-relation.html" "定義：同値関係へ"
-    click def-homotopy "def-homotopy.html" "ホモトピーの定義へ"
+    click def-function "def-function.html" "関数の定義へ"
+    click def-homeomorphism "def-homeomorphism.html" "定義：同相写像へ"
     click def-topological-space "def-topological-space.html" "位相空間の定義へ"
+    click def-group "def-group.html" "群へ"
+    click def-homotopy "def-homotopy.html" "ホモトピーの定義へ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -367,7 +368,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-fundamental-group-1753632841" class="graph-visualization-container">
+<div id="graph-viz-def-fundamental-group-1753634793" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -542,17 +543,23 @@ async function loadAndRenderGraph() {
       basePath = '../'.repeat(depth);
     }
 
-    const response = await fetch(basePath + 'output/d3-data/def-fundamental-group.json');
+    // Detect language from URL path
+    let lang = 'en';
+    if (currentPath.includes('/ja/') || currentPath.includes('/ja.html')) {
+      lang = 'ja';
+    }
+
+    const response = await fetch(basePath + 'output/d3-data/' + lang + '/def-fundamental-group.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-fundamental-group-1753632841', {
+    createForceGraph(data, 'graph-viz-def-fundamental-group-1753634793', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-fundamental-group-1753632841').innerHTML =
+    document.getElementById('graph-viz-def-fundamental-group-1753634793').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -352,16 +352,16 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Definition: Set"]:::definition
     def-sample-space["Definition: Sample Space"]:::definition
     def-event["Definition: Event"]:::definition
+    def-set["Definition: Set"]:::definition
     def-probability-distribution["Definition: Probability Distribution"]:::definition
     def-event --&gt; def-sample-space
     def-probability-distribution --&gt; def-sample-space
     def-sample-space --&gt; def-set
     class def-sample-space current
-    click def-set "def-set.html" "Go to Set definition"
     click def-event "def-event.html" "Go to Event definition"
+    click def-set "def-set.html" "Go to Set definition"
     click def-probability-distribution "def-probability-distribution.html" "Go to Probability Distribution definition"
 </pre>
 </div>
@@ -373,7 +373,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-sample-space-1753632904" class="graph-visualization-container">
+<div id="graph-viz-def-sample-space-1753634855" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -548,17 +548,23 @@ async function loadAndRenderGraph() {
       basePath = '../'.repeat(depth);
     }
 
-    const response = await fetch(basePath + 'output/d3-data/def-sample-space.json');
+    // Detect language from URL path
+    let lang = 'en';
+    if (currentPath.includes('/ja/') || currentPath.includes('/ja.html')) {
+      lang = 'ja';
+    }
+
+    const response = await fetch(basePath + 'output/d3-data/' + lang + '/def-sample-space.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-sample-space-1753632904', {
+    createForceGraph(data, 'graph-viz-def-sample-space-1753634855', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-sample-space-1753632904').innerHTML =
+    document.getElementById('graph-viz-def-sample-space-1753634855').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

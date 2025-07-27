@@ -341,46 +341,46 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-finite-field["Example: Finite Field"]:::example
+    thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
     def-lcm["Definition: Least Common Multiple"]:::definition
     thm-fermat-little["Theorem: Fermat's Little Theorem"]:::theorem
-    thm-euclid-infinitude-primes["Theorem: Euclid's Theorem on the Infinitude of Primes"]:::theorem
-    thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
-    def-gcd["Definition: Greatest Common Divisor"]:::definition
-    def-divisibility["Definition: Divisibility"]:::definition
-    def-prime["Definition: Prime Number"]:::definition
     thm-chinese-remainder["Theorem: Chinese Remainder Theorem"]:::theorem
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
-    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
-    ex-finite-field["Example: Finite Field"]:::example
+    def-gcd["Definition: Greatest Common Divisor"]:::definition
+    def-prime["Definition: Prime Number"]:::definition
+    def-divisibility["Definition: Divisibility"]:::definition
     thm-fundamental-arithmetic["Theorem: Fundamental Theorem of Arithmetic"]:::theorem
-    def-prime --&gt; thm-fundamental-arithmetic
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    thm-euclid-infinitude-primes["Theorem: Euclid's Theorem on the Infinitude of Primes"]:::theorem
+    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
     def-lcm --&gt; def-prime
-    thm-fermat-little --&gt; def-prime
-    def-prime --&gt; def-gcd
-    def-congruence --&gt; def-prime
-    thm-field-characteristic --&gt; def-prime
+    thm-fundamental-arithmetic --&gt; def-prime
     ex-finite-field --&gt; def-prime
+    def-gcd --&gt; def-prime
+    def-divisibility --&gt; def-prime
+    def-congruence --&gt; def-prime
+    def-prime --&gt; def-divisibility
+    def-prime --&gt; def-congruence
+    thm-fermat-little --&gt; def-prime
     thm-euclid-infinitude-primes --&gt; def-prime
     thm-euler --&gt; def-prime
-    thm-fundamental-arithmetic --&gt; def-prime
-    def-divisibility --&gt; def-prime
     thm-chinese-remainder --&gt; def-prime
-    def-prime --&gt; def-congruence
-    def-prime --&gt; def-divisibility
+    def-prime --&gt; def-gcd
+    def-prime --&gt; thm-fundamental-arithmetic
     def-prime --&gt; thm-euclid-infinitude-primes
-    def-gcd --&gt; def-prime
+    thm-field-characteristic --&gt; def-prime
     class def-prime current
+    click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
+    click thm-field-characteristic "thm-field-characteristic.html" "Go to Field Characteristic theorem"
     click def-lcm "def-lcm.html" "Go to Least Common Multiple definition"
     click thm-fermat-little "thm-fermat-little.html" "Go to Fermat's Little Theorem theorem"
-    click thm-euclid-infinitude-primes "thm-euclid-infinitude-primes.html" "Go to Euclid's Theorem on the Infinitude of Primes theorem"
-    click thm-field-characteristic "thm-field-characteristic.html" "Go to Field Characteristic theorem"
+    click thm-chinese-remainder "thm-chinese-remainder.html" "Go to Chinese Remainder Theorem theorem"
     click def-gcd "def-gcd.html" "Go to Greatest Common Divisor definition"
     click def-divisibility "def-divisibility.html" "Go to Divisibility definition"
-    click thm-chinese-remainder "thm-chinese-remainder.html" "Go to Chinese Remainder Theorem theorem"
-    click thm-euler "thm-euler.html" "Go to Euler's Theorem theorem"
-    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic) definition"
-    click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
     click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "Go to Fundamental Theorem of Arithmetic theorem"
+    click thm-euler "thm-euler.html" "Go to Euler's Theorem theorem"
+    click thm-euclid-infinitude-primes "thm-euclid-infinitude-primes.html" "Go to Euclid's Theorem on the Infinitude of Primes theorem"
+    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic) definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -391,7 +391,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-prime-1753632645" class="graph-visualization-container">
+<div id="graph-viz-def-prime-1753634594" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -566,17 +566,23 @@ async function loadAndRenderGraph() {
       basePath = '../'.repeat(depth);
     }
 
-    const response = await fetch(basePath + 'output/d3-data/def-prime.json');
+    // Detect language from URL path
+    let lang = 'en';
+    if (currentPath.includes('/ja/') || currentPath.includes('/ja.html')) {
+      lang = 'ja';
+    }
+
+    const response = await fetch(basePath + 'output/d3-data/' + lang + '/def-prime.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-prime-1753632645', {
+    createForceGraph(data, 'graph-viz-def-prime-1753634594', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-prime-1753632645').innerHTML =
+    document.getElementById('graph-viz-def-prime-1753634594').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
