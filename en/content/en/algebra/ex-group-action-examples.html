@@ -295,7 +295,8 @@ window.Quarto = {
 <section id="conjugation-action" class="level2">
 <h2 class="anchored" data-anchor-id="conjugation-action">Conjugation Action</h2>
 <p>A group <span class="math inline">\(G\)</span> acts on itself by conjugation: <span class="math display">\[g \cdot h = ghg^{-1} \text{ for } g, h \in G\]</span></p>
-<p>Properties: - The orbit of <span class="math inline">\(h\)</span> is its conjugacy class: <span class="math inline">\(\{ghg^{-1} : g \in G\}\)</span> - The stabilizer of <span class="math inline">\(h\)</span> is its centralizer: <span class="math inline">\(C_G(h) = \{g \in G : gh = hg\}\)</span> - Fixed points are exactly the elements of the center <span class="math inline">\(Z(G)\)</span></p>
+<p>This action defines inner <a href="../../../content/en/algebra/def-automorphism.html">automorphisms</a> of <span class="math inline">\(G\)</span>.</p>
+<p>Properties: - The orbit of <span class="math inline">\(h\)</span> is its conjugacy class: <span class="math inline">\(\{ghg^{-1} : g \in G\}\)</span> - The stabilizer of <span class="math inline">\(h\)</span> is its centralizer: <span class="math inline">\(C_G(h) = \{g \in G : gh = hg\}\)</span> - Fixed points are exactly the elements of the <a href="../../../content/en/algebra/def-center-of-group.html">center</a> <span class="math inline">\(Z(G)\)</span></p>
 </section>
 <section id="symmetric-group-on-a-set" class="level2">
 <h2 class="anchored" data-anchor-id="symmetric-group-on-a-set">Symmetric Group on a Set</h2>
@@ -305,7 +306,7 @@ window.Quarto = {
 <section id="dihedral-group-on-a-polygon" class="level2">
 <h2 class="anchored" data-anchor-id="dihedral-group-on-a-polygon">Dihedral Group on a Polygon</h2>
 <p>The dihedral group <span class="math inline">\(D_n\)</span> acts on the vertices of a regular <span class="math inline">\(n\)</span>-gon: - Rotations move vertices cyclically - Reflections flip vertices across axes of symmetry</p>
-<p>For a square (<span class="math inline">\(n = 4\)</span>): - The stabilizer of any vertex has order 2 (identity and one reflection) - Each orbit is the entire set of vertices (transitive action) - By the orbit-stabilizer theorem: <span class="math inline">\(|D_4| = |orbit| \times |stabilizer| = 4 \times 2 = 8\)</span></p>
+<p>For a square (<span class="math inline">\(n = 4\)</span>): - The stabilizer of any vertex has <a href="../../../content/en/algebra/def-order.html">order</a> 2 (identity and one reflection) - Each orbit is the entire set of vertices (transitive action) - By the orbit-stabilizer theorem: <span class="math inline">\(|D_4| = |orbit| \times |stabilizer| = 4 \times 2 = 8\)</span></p>
 </section>
 <section id="cyclic-group-on-roots-of-unity" class="level2">
 <h2 class="anchored" data-anchor-id="cyclic-group-on-roots-of-unity">Cyclic Group on Roots of Unity</h2>
@@ -325,17 +326,26 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-group-action-examples["Examples of Group Actions"]:::example
-    def-group["Definition: Group"]:::definition
+    def-order["Definition: Order"]:::definition
     def-cyclic-group["Definition: Cyclic Group"]:::definition
     def-group-action["Group Action"]:::definition
-    ex-group-action-examples --&gt; def-group
+    ex-group-action-examples["Examples of Group Actions"]:::example
+    def-group["Definition: Group"]:::definition
+    def-center-of-group["Definition: Center of a Group"]:::definition
+    def-automorphism["Definition: Automorphism"]:::definition
     ex-group-action-examples --&gt; def-cyclic-group
     ex-group-action-examples --&gt; def-group-action
+    ex-group-action-examples --&gt; def-order
+    ex-group-action-examples --&gt; def-center-of-group
+    ex-group-action-examples --&gt; def-group
+    ex-group-action-examples --&gt; def-automorphism
     class ex-group-action-examples current
-    click def-group "def-group.html" "Go to Group definition"
+    click def-order "def-order.html" "Go to Order definition"
     click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
     click def-group-action "def-group-action.html" "Go to Group Action"
+    click def-group "def-group.html" "Go to Group definition"
+    click def-center-of-group "def-center-of-group.html" "Go to Center of a Group definition"
+    click def-automorphism "def-automorphism.html" "Go to Automorphism definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -346,7 +356,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-ex-group-action-examples-1753450926" class="graph-visualization-container">
+<div id="graph-viz-ex-group-action-examples-1753585765" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -526,12 +536,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-group-action-examples-1753450926', {
+    createForceGraph(data, 'graph-viz-ex-group-action-examples-1753585765', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-group-action-examples-1753450926').innerHTML =
+    document.getElementById('graph-viz-ex-group-action-examples-1753585765').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

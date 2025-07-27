@@ -316,7 +316,7 @@ window.Quarto = {
 <section id="性質" class="level2">
 <h2 class="anchored" data-anchor-id="性質">性質</h2>
 <ul>
-<li>標準基底は標準内積に関して<strong>正規直交</strong>である</li>
+<li>標準基底は標準内積に関して<strong>正規直交</strong>であり、<span class="math inline">\(\mathbb{R}^n\)</span> を有限次元<a href="../../../content/ja/analysis/def-hilbert-space.html">ヒルベルト空間</a>にする</li>
 <li>任意のベクトルの標準基底における座標は単にその成分である</li>
 <li>任意の線形変換の標準基底における行列は特に計算しやすい</li>
 </ul>
@@ -347,18 +347,18 @@ window.Quarto = {
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-vector-space["Definition: Vector Space"]:::definition
     def-basis["Definition: Basis"]:::definition
-    def-linear-independence["Definition: Linear Independence"]:::definition
     ex-standard-basis-rn["Example: Standard Basis of ℝⁿ"]:::example
     def-span["Definition: Span"]:::definition
+    def-linear-independence["Definition: Linear Independence"]:::definition
     ex-standard-basis-rn --&gt; def-vector-space
-    ex-standard-basis-rn --&gt; def-basis
     ex-standard-basis-rn --&gt; def-span
+    ex-standard-basis-rn --&gt; def-basis
     ex-standard-basis-rn --&gt; def-linear-independence
     class ex-standard-basis-rn current
     click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
     click def-basis "def-basis.html" "Definition: Basisへ"
-    click def-linear-independence "def-linear-independence.html" "Definition: Linear Independenceへ"
     click def-span "def-span.html" "Definition: Spanへ"
+    click def-linear-independence "def-linear-independence.html" "Definition: Linear Independenceへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -369,7 +369,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-standard-basis-rn-1753451004" class="graph-visualization-container">
+<div id="graph-viz-ex-standard-basis-rn-1753585864" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -549,12 +549,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-standard-basis-rn-1753451004', {
+    createForceGraph(data, 'graph-viz-ex-standard-basis-rn-1753585864', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-standard-basis-rn-1753451004').innerHTML =
+    document.getElementById('graph-viz-ex-standard-basis-rn-1753585864').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

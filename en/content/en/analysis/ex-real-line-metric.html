@@ -308,7 +308,7 @@ window.Quarto = {
 </section>
 <section id="open-balls" class="level2">
 <h2 class="anchored" data-anchor-id="open-balls">Open Balls</h2>
-<p>In this metric space, the open ball <span class="math inline">\(B(a, r)\)</span> centered at <span class="math inline">\(a\)</span> with radius <span class="math inline">\(r &gt; 0\)</span> is:</p>
+<p>In this metric space, the <a href="../../../content/en/analysis/def-open-ball.html">open ball</a> <span class="math inline">\(B(a, r)\)</span> centered at <span class="math inline">\(a\)</span> with radius <span class="math inline">\(r &gt; 0\)</span> is:</p>
 <p><span class="math display">\[B(a, r) = \{x \in \mathbb{R} : |x - a| &lt; r\} = (a - r, a + r)\]</span></p>
 <p>This is simply the open interval of length <span class="math inline">\(2r\)</span> centered at <span class="math inline">\(a\)</span>.</p>
 </section>
@@ -317,7 +317,7 @@ window.Quarto = {
 <ul>
 <li>The metric topology induced by <span class="math inline">\(d\)</span> is the standard topology on <span class="math inline">\(\mathbb{R}\)</span></li>
 <li><span class="math inline">\((\mathbb{R}, d)\)</span> is a <strong>complete metric space</strong>: every <a href="../../../content/en/analysis/def-cauchy-sequence.html">Cauchy sequence</a> converges</li>
-<li>The space is <strong>separable</strong>: the rationals <span class="math inline">\(\mathbb{Q}\)</span> form a countable dense subset</li>
+<li>The space is <strong>separable</strong>: the rationals <span class="math inline">\(\mathbb{Q}\)</span> form a <a href="../../../content/en/logic-set-theory/def-cardinality.html">countable</a> dense subset</li>
 <li>It is <strong>connected</strong> but not <strong>compact</strong></li>
 </ul>
 </section>
@@ -341,10 +341,13 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-open-ball["Definition: Open Ball"]:::definition
     def-metric-space["Definition: Metric Space"]:::definition
     ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
     ex-real-line-metric --&gt; def-metric-space
+    ex-real-line-metric --&gt; def-open-ball
     class ex-real-line-metric current
+    click def-open-ball "def-open-ball.html" "Go to Open Ball definition"
     click def-metric-space "def-metric-space.html" "Go to Metric Space definition"
 </pre>
 </div>
@@ -356,7 +359,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-ex-real-line-metric-1753450938" class="graph-visualization-container">
+<div id="graph-viz-ex-real-line-metric-1753585781" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -536,12 +539,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-real-line-metric-1753450938', {
+    createForceGraph(data, 'graph-viz-ex-real-line-metric-1753585781', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-real-line-metric-1753450938').innerHTML =
+    document.getElementById('graph-viz-ex-real-line-metric-1753585781').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

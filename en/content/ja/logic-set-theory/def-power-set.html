@@ -296,8 +296,8 @@ window.Quarto = {
 <ol type="1">
 <li><strong>常に空集合を含む</strong>: 任意の集合 <span class="math inline">\(A\)</span> に対して <span class="math inline">\(\emptyset \in \mathcal{P}(A)\)</span></li>
 <li><strong>常に元の集合を含む</strong>: <span class="math inline">\(A \in \mathcal{P}(A)\)</span></li>
-<li><strong>濃度</strong>: <span class="math inline">\(|A| = n\)</span>（有限）ならば <span class="math inline">\(|\mathcal{P}(A)| = 2^n\)</span></li>
-<li><strong>順序</strong>: <span class="math inline">\(\mathcal{P}(A)\)</span> は包含関係の下で半順序集合をなす（<a href="../../../content/ja/logic-set-theory/def-relation.html">関係</a>を参照）</li>
+<li><strong><a href="../../../content/ja/logic-set-theory/def-cardinality.html">濃度</a></strong>: <span class="math inline">\(|A| = n\)</span>（有限）ならば <span class="math inline">\(|\mathcal{P}(A)| = 2^n\)</span></li>
+<li><strong>順序</strong>: <span class="math inline">\(\mathcal{P}(A)\)</span> は包含関係の下で<a href="../../../content/ja/logic-set-theory/def-partial-order.html">半順序集合</a>をなす</li>
 </ol>
 </section>
 <section id="例" class="level2">
@@ -346,13 +346,21 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-cardinality["Definition: Cardinality"]:::definition
     def-set["Definition: Set"]:::definition
+    def-partial-order["Definition: Partial Order"]:::definition
     thm-cantor["Theorem: Cantor's Theorem"]:::theorem
     def-power-set["Definition: Power Set"]:::definition
-    thm-cantor --&gt; def-power-set
     def-power-set --&gt; def-set
+    def-partial-order --&gt; def-power-set
+    def-power-set --&gt; def-partial-order
+    def-cardinality --&gt; def-power-set
+    thm-cantor --&gt; def-power-set
+    def-power-set --&gt; def-cardinality
     class def-power-set current
+    click def-cardinality "def-cardinality.html" "Definition: Cardinalityへ"
     click def-set "def-set.html" "Definition: Setへ"
+    click def-partial-order "def-partial-order.html" "Definition: Partial Orderへ"
     click thm-cantor "thm-cantor.html" "Theorem: Cantor's Theoremへ"
 </pre>
 </div>
@@ -364,7 +372,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-power-set-1753451029" class="graph-visualization-container">
+<div id="graph-viz-def-power-set-1753585894" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -544,12 +552,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-power-set-1753451029', {
+    createForceGraph(data, 'graph-viz-def-power-set-1753585894', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-power-set-1753451029').innerHTML =
+    document.getElementById('graph-viz-def-power-set-1753585894').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

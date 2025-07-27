@@ -307,12 +307,12 @@ window.Quarto = {
 <p><strong>Base case</strong>: For <span class="math inline">\(a = 1\)</span>, we have <span class="math inline">\(1^p = 1 \equiv 1 \pmod{p}\)</span>.</p>
 <p><strong>Inductive step</strong>: Assume <span class="math inline">\(a^p \equiv a \pmod{p}\)</span>. We need to show <span class="math inline">\((a+1)^p \equiv a+1 \pmod{p}\)</span>.</p>
 <p>By the binomial theorem: <span class="math display">\[(a+1)^p = \sum_{k=0}^{p} \binom{p}{k} a^k\]</span></p>
-<p>For <span class="math inline">\(0 &lt; k &lt; p\)</span>, the binomial coefficient <span class="math inline">\(\binom{p}{k} = \frac{p!}{k!(p-k)!}\)</span> is <a href="../../../content/en/number-theory/def-divisibility.html">divisible</a> by <span class="math inline">\(p\)</span> because <span class="math inline">\(p\)</span> <a href="../../../content/en/number-theory/def-divisibility.html">divides</a> the numerator but not the denominator.</p>
+<p>For <span class="math inline">\(0 &lt; k &lt; p\)</span>, the <a href="../../../content/en/combinatorics/def-binomial-coefficient.html">binomial coefficient</a> <span class="math inline">\(\binom{p}{k} = \frac{p!}{k!(p-k)!}\)</span> is <a href="../../../content/en/number-theory/def-divisibility.html">divisible</a> by <span class="math inline">\(p\)</span> because <span class="math inline">\(p\)</span> <a href="../../../content/en/number-theory/def-divisibility.html">divides</a> the numerator but not the denominator.</p>
 <p>Therefore: <span class="math display">\[(a+1)^p \equiv a^p + 1 \equiv a + 1 \pmod{p}\]</span></p>
 </section>
 <section id="group-theoretic-proof" class="level2">
 <h2 class="anchored" data-anchor-id="group-theoretic-proof">Group-Theoretic Proof</h2>
-<p>The non-zero residues modulo <span class="math inline">\(p\)</span> form a group of order <span class="math inline">\(p-1\)</span> under multiplication. By Lagrange’s theorem, any element of this group raised to the order of the group equals the identity element. Hence <span class="math inline">\(a^{p-1} \equiv 1 \pmod{p}\)</span> for any <span class="math inline">\(a\)</span> coprime to <span class="math inline">\(p\)</span>.</p>
+<p>The non-zero residues modulo <span class="math inline">\(p\)</span> form a group of <a href="../../../content/en/algebra/def-order.html">order</a> <span class="math inline">\(p-1\)</span> under multiplication. By Lagrange’s theorem, any element of this group raised to the <a href="../../../content/en/algebra/def-order.html">order</a> of the group equals the identity element. Hence <span class="math inline">\(a^{p-1} \equiv 1 \pmod{p}\)</span> for any <span class="math inline">\(a\)</span> coprime to <span class="math inline">\(p\)</span>.</p>
 </section>
 <section id="applications" class="level2">
 <h2 class="anchored" data-anchor-id="applications">Applications</h2>
@@ -372,23 +372,23 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-gcd["Definition: Greatest Common Divisor"]:::definition
-    def-prime["Definition: Prime Number"]:::definition
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
-    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
-    thm-fermat-little["Theorem: Fermat's Little Theorem"]:::theorem
     def-divisibility["Definition: Divisibility"]:::definition
-    thm-euler --&gt; thm-fermat-little
+    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
+    def-prime["Definition: Prime Number"]:::definition
+    thm-fermat-little["Theorem: Fermat's Little Theorem"]:::theorem
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
     thm-fermat-little --&gt; def-gcd
     thm-fermat-little --&gt; def-congruence
-    thm-fermat-little --&gt; def-prime
     def-congruence --&gt; thm-fermat-little
+    thm-euler --&gt; thm-fermat-little
     thm-fermat-little --&gt; def-divisibility
+    thm-fermat-little --&gt; def-prime
     class thm-fermat-little current
     click def-gcd "def-gcd.html" "Go to Greatest Common Divisor definition"
+    click def-divisibility "def-divisibility.html" "Go to Divisibility definition"
+    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic) definition"
     click def-prime "def-prime.html" "Go to Prime Number definition"
     click thm-euler "thm-euler.html" "Go to Euler's Theorem theorem"
-    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic) definition"
-    click def-divisibility "def-divisibility.html" "Go to Divisibility definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -399,7 +399,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-fermat-little-1753450964" class="graph-visualization-container">
+<div id="graph-viz-thm-fermat-little-1753585812" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -579,12 +579,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-fermat-little-1753450964', {
+    createForceGraph(data, 'graph-viz-thm-fermat-little-1753585812', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-fermat-little-1753450964').innerHTML =
+    document.getElementById('graph-viz-thm-fermat-little-1753585812').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -315,6 +315,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="単射one-to-one">単射（One-to-One）</h3>
 <p>関数 <span class="math inline">\(f: A \to B\)</span> が<strong>単射</strong>であるとは、<span class="math inline">\(A\)</span> の異なる要素が <span class="math inline">\(B\)</span> の異なる要素に対応することをいう：</p>
 <p><span class="math display">\[\forall a_1, a_2 \in A: f(a_1) = f(a_2) \implies a_1 = a_2\]</span></p>
+<p>圏論では、単射関数の概念は<a href="../../../content/ja/category-theory/def-monomorphism.html">単射</a>に一般化されます。</p>
 </section>
 <section id="全射onto" class="level3">
 <h3 class="anchored" data-anchor-id="全射onto">全射（Onto）</h3>
@@ -364,57 +365,15 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-determinant["Definition: Determinant"]:::definition
-    def-homeomorphism["Definition: Homeomorphism"]:::definition
-    def-metric-space["Definition: Metric Space"]:::definition
-    def-permutation["Definition: Permutation"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-random-variable["Definition: Random Variable"]:::definition
-    def-continuity["Definition: Continuity"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
-    thm-pigeonhole-principle["Theorem: Pigeonhole Principle"]:::theorem
-    def-functor["Definition: Functor"]:::definition
-    def-function["Definition: Function"]:::definition
-    def-linear-transformation["Definition: Linear Transformation"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-sequence["Definition: Sequence"]:::definition
     def-relation["Definition: Relation"]:::definition
-    def-group-action["Group Action"]:::definition
-    def-binary-operation --&gt; def-function
-    def-continuity --&gt; def-function
-    def-homomorphism --&gt; def-function
-    def-function --&gt; def-relation
-    def-metric-space --&gt; def-function
-    def-permutation --&gt; def-function
-    def-linear-transformation --&gt; def-function
-    def-random-variable --&gt; def-function
-    def-determinant --&gt; def-function
+    def-function["Definition: Function"]:::definition
+    def-set["Definition: Set"]:::definition
     def-relation --&gt; def-function
     def-function --&gt; def-set
-    def-functor --&gt; def-function
-    def-homeomorphism --&gt; def-function
-    def-sequence --&gt; def-function
-    def-equivalence-relation --&gt; def-function
-    thm-pigeonhole-principle --&gt; def-function
-    def-group-action --&gt; def-function
+    def-function --&gt; def-relation
     class def-function current
-    click def-determinant "def-determinant.html" "Definition: Determinantへ"
-    click def-homeomorphism "def-homeomorphism.html" "Definition: Homeomorphismへ"
-    click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
-    click def-permutation "def-permutation.html" "Definition: Permutationへ"
-    click def-set "def-set.html" "Definition: Setへ"
-    click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
-    click def-continuity "def-continuity.html" "Definition: Continuityへ"
-    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
-    click def-equivalence-relation "def-equivalence-relation.html" "Definition: Equivalence Relationへ"
-    click thm-pigeonhole-principle "thm-pigeonhole-principle.html" "Theorem: Pigeonhole Principleへ"
-    click def-functor "def-functor.html" "Definition: Functorへ"
-    click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
-    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
-    click def-sequence "def-sequence.html" "Definition: Sequenceへ"
     click def-relation "def-relation.html" "Definition: Relationへ"
-    click def-group-action "def-group-action.html" "Group Actionへ"
+    click def-set "def-set.html" "Definition: Setへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -425,7 +384,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-function-1753451103" class="graph-visualization-container">
+<div id="graph-viz-def-function-1753585988" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -605,12 +564,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-function-1753451103', {
+    createForceGraph(data, 'graph-viz-def-function-1753585988', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-function-1753451103').innerHTML =
+    document.getElementById('graph-viz-def-function-1753585988').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>定義: 自己同型 – Math Knowledge Graph</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<script>
+  window.siteLanguage = 'en';
+  window.alternateLanguage = 'ja';
+  window.alternateLanguageUrl = '../ja/';
+  // Calculate the correct path to js directory based on current location
+  (function() {
+    var path = window.location.pathname;
+
+    // Find the base path for the English site
+    // Look for where '/en/' appears in the path
+    var enIndex = path.indexOf('/en/');
+    var basePath = '';
+
+    if (enIndex !== -1) {
+      // Extract everything up to and including '/en/'
+      var siteRoot = path.substring(0, enIndex + 4); // +4 to include '/en/'
+      basePath = siteRoot;
+    } else {
+      // Fallback: calculate relative path
+      var pathParts = path.split('/').filter(function(part) {
+        return part && !part.endsWith('.html');
+      });
+
+      // Count depth and build relative path
+      var depth = pathParts.length;
+      for (var i = 0; i < depth; i++) {
+        basePath += '../';
+      }
+    }
+
+    // Ensure basePath ends with /
+    if (basePath && !basePath.endsWith('/')) {
+      basePath += '/';
+    }
+
+    // Load language switcher
+    var script = document.createElement('script');
+    script.src = basePath + 'js/language-switcher.js';
+    script.defer = true;
+    document.head.appendChild(script);
+
+    // Load issue button
+    var issueScript = document.createElement('script');
+    issueScript.src = basePath + 'js/issue-button.js';
+    issueScript.defer = true;
+    document.head.appendChild(issueScript);
+  })();
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Math Knowledge Graph</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/algebra/index.html"> 
+<span class="menu-text">Algebra</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/analysis/index.html"> 
+<span class="menu-text">Analysis</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/topology/index.html"> 
+<span class="menu-text">Topology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/geometry/index.html"> 
+<span class="menu-text">Geometry</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/category-theory/index.html"> 
+<span class="menu-text">Category Theory</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/combinatorics/index.html"> 
+<span class="menu-text">Combinatorics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/logic-set-theory/index.html"> 
+<span class="menu-text">Logic &amp; Set Theory</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/number-theory/index.html"> 
+<span class="menu-text">Number Theory</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/probability-statistics/index.html"> 
+<span class="menu-text">Probability &amp; Statistics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/en/about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/en/contributing.html"> 
+<span class="menu-text">Contributing</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../ja/index.html"> 
+<span class="menu-text">🌐 日本語</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#def-automorphism" id="toc-def-automorphism" class="nav-link active" data-scroll-target="#def-automorphism">自己同型</a>
+  <ul class="collapse">
+  <li><a href="#形式的定義" id="toc-形式的定義" class="nav-link" data-scroll-target="#形式的定義">形式的定義</a></li>
+  <li><a href="#性質" id="toc-性質" class="nav-link" data-scroll-target="#性質">性質</a></li>
+  <li><a href="#自己同型群" id="toc-自己同型群" class="nav-link" data-scroll-target="#自己同型群">自己同型群</a></li>
+  <li><a href="#自己同型の種類" id="toc-自己同型の種類" class="nav-link" data-scroll-target="#自己同型の種類">自己同型の種類</a>
+  <ul class="collapse">
+  <li><a href="#内部自己同型" id="toc-内部自己同型" class="nav-link" data-scroll-target="#内部自己同型">内部自己同型</a></li>
+  <li><a href="#外部自己同型" id="toc-外部自己同型" class="nav-link" data-scroll-target="#外部自己同型">外部自己同型</a></li>
+  </ul></li>
+  <li><a href="#例" id="toc-例" class="nav-link" data-scroll-target="#例">例</a>
+  <ul class="collapse">
+  <li><a href="#群" id="toc-群" class="nav-link" data-scroll-target="#群">群</a></li>
+  <li><a href="#体" id="toc-体" class="nav-link" data-scroll-target="#体">体</a></li>
+  <li><a href="#ベクトル空間" id="toc-ベクトル空間" class="nav-link" data-scroll-target="#ベクトル空間">ベクトル空間</a></li>
+  <li><a href="#グラフ" id="toc-グラフ" class="nav-link" data-scroll-target="#グラフ">グラフ</a></li>
+  </ul></li>
+  <li><a href="#群の作用との関係" id="toc-群の作用との関係" class="nav-link" data-scroll-target="#群の作用との関係">群の作用との関係</a></li>
+  <li><a href="#応用" id="toc-応用" class="nav-link" data-scroll-target="#応用">応用</a></li>
+  <li><a href="#完全群" id="toc-完全群" class="nav-link" data-scroll-target="#完全群">完全群</a></li>
+  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
+  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">定義: 自己同型</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="def-automorphism" class="level1">
+<h1>自己同型</h1>
+<p><strong>自己同型</strong>は、数学的対象からそれ自身への<a href="../../../content/ja/category-theory/def-isomorphism.html">同型写像</a>である。これは、逆写像を持つ方法で対象をそれ自身に写す構造保存変換を表す。</p>
+<section id="形式的定義" class="level2">
+<h2 class="anchored" data-anchor-id="形式的定義">形式的定義</h2>
+<p><a href="../../../content/ja/algebra/def-group.html">群</a> <span class="math inline">\((G, \cdot)\)</span> に対して、自己同型は全単射（単射かつ全射）である<a href="../../../content/ja/algebra/def-homomorphism.html">準同型写像</a> <span class="math inline">\(\phi: G \to G\)</span> である。</p>
+<p>より一般に、任意の圏において、対象 <span class="math inline">\(X\)</span> の自己同型は同型写像 <span class="math inline">\(f: X \to X\)</span> である。</p>
+</section>
+<section id="性質" class="level2">
+<h2 class="anchored" data-anchor-id="性質">性質</h2>
+<p>群 <span class="math inline">\(G\)</span> の任意の自己同型 <span class="math inline">\(\phi\)</span> に対して：</p>
+<ol type="1">
+<li><strong>単位元の保存</strong>: <span class="math inline">\(\phi(e) = e\)</span> ここで <span class="math inline">\(e\)</span> は<a href="../../../content/ja/algebra/def-identity-element.html">単位元</a></li>
+<li><strong>逆元の保存</strong>: すべての <span class="math inline">\(g \in G\)</span> に対して <span class="math inline">\(\phi(g^{-1}) = \phi(g)^{-1}\)</span></li>
+<li><strong>演算の保存</strong>: すべての <span class="math inline">\(g, h \in G\)</span> に対して <span class="math inline">\(\phi(gh) = \phi(g)\phi(h)\)</span></li>
+<li><strong>全単射</strong>: <span class="math inline">\(\phi\)</span> は一対一かつ上への写像</li>
+</ol>
+</section>
+<section id="自己同型群" class="level2">
+<h2 class="anchored" data-anchor-id="自己同型群">自己同型群</h2>
+<p>対象 <span class="math inline">\(X\)</span> のすべての自己同型の集合は、合成を演算として群を成し、<span class="math inline">\(\text{Aut}(X)\)</span> と表記される：</p>
+<ul>
+<li><strong>閉性</strong>: 二つの自己同型の合成は自己同型である</li>
+<li><strong>単位元</strong>: 恒等写像 <span class="math inline">\(\text{id}_X\)</span> は自己同型である</li>
+<li><strong>逆元</strong>: すべての自己同型は、それ自身も自己同型である逆元を持つ</li>
+<li><strong>結合性</strong>: 関数の合成は結合的である</li>
+</ul>
+</section>
+<section id="自己同型の種類" class="level2">
+<h2 class="anchored" data-anchor-id="自己同型の種類">自己同型の種類</h2>
+<section id="内部自己同型" class="level3">
+<h3 class="anchored" data-anchor-id="内部自己同型">内部自己同型</h3>
+<p>群 <span class="math inline">\(G\)</span> に対して、<strong>内部自己同型</strong>は元 <span class="math inline">\(g \in G\)</span> による共役で定義される： <span class="math display">\[\phi_g(x) = gxg^{-1}\]</span></p>
+<p>内部自己同型の集合は <span class="math inline">\(\text{Aut}(G)\)</span> の正規部分群を成し、<span class="math inline">\(\text{Inn}(G)\)</span> と表記される。</p>
+</section>
+<section id="外部自己同型" class="level3">
+<h3 class="anchored" data-anchor-id="外部自己同型">外部自己同型</h3>
+<p><strong>外部自己同型</strong>は内部自己同型でない自己同型である。商群 <span class="math inline">\(\text{Out}(G) = \text{Aut}(G)/\text{Inn}(G)\)</span> は外部自己同型群と呼ばれる。</p>
+</section>
+</section>
+<section id="例" class="level2">
+<h2 class="anchored" data-anchor-id="例">例</h2>
+<section id="群" class="level3">
+<h3 class="anchored" data-anchor-id="群">群</h3>
+<ol type="1">
+<li><strong>巡回群</strong>: <span class="math inline">\(\mathbb{Z}_n\)</span> に対して、<span class="math inline">\(\text{Aut}(\mathbb{Z}_n) \cong (\mathbb{Z}/n\mathbb{Z})^*\)</span></li>
+<li><strong>対称群</strong>: <span class="math inline">\(n \neq 6\)</span> のとき、<span class="math inline">\(S_n\)</span> のすべての自己同型は内部自己同型</li>
+<li><strong>アーベル群</strong>: アーベル群では、すべての共役が自明なので、<span class="math inline">\(\text{Inn}(G) = \{e\}\)</span></li>
+</ol>
+</section>
+<section id="体" class="level3">
+<h3 class="anchored" data-anchor-id="体">体</h3>
+<ol type="1">
+<li><strong>複素数</strong>: 複素共役 <span class="math inline">\(z \mapsto \bar{z}\)</span> は <span class="math inline">\(\mathbb{C}\)</span> の自己同型</li>
+<li><strong>体の拡大</strong>: ガロア群は体の拡大のすべての自己同型から成る</li>
+</ol>
+</section>
+<section id="ベクトル空間" class="level3">
+<h3 class="anchored" data-anchor-id="ベクトル空間">ベクトル空間</h3>
+<p>有限次元ベクトル空間 <span class="math inline">\(V\)</span> に対して、<span class="math inline">\(\text{Aut}(V)\)</span> は可逆線形変換の一般線形群 <span class="math inline">\(GL(V)\)</span> である。</p>
+</section>
+<section id="グラフ" class="level3">
+<h3 class="anchored" data-anchor-id="グラフ">グラフ</h3>
+<p>グラフの自己同型は隣接関係を保つ頂点の置換である。</p>
+</section>
+</section>
+<section id="群の作用との関係" class="level2">
+<h2 class="anchored" data-anchor-id="群の作用との関係">群の作用との関係</h2>
+<p>自己同型群 <span class="math inline">\(\text{Aut}(X)\)</span> は <span class="math inline">\(X\)</span> に自然に<a href="../../../content/ja/algebra/def-group-action.html">作用</a>する： - 各 <span class="math inline">\(\phi \in \text{Aut}(X)\)</span> と <span class="math inline">\(x \in X\)</span> に対して、作用は <span class="math inline">\(\phi \cdot x = \phi(x)\)</span> で与えられる - この作用はすべての群作用の公理を満たす</p>
+</section>
+<section id="応用" class="level2">
+<h2 class="anchored" data-anchor-id="応用">応用</h2>
+<ol type="1">
+<li><strong>ガロア理論</strong>: 体の自己同型は多項式方程式の理解に基本的である</li>
+<li><strong>対称性解析</strong>: 自己同型は数学的構造の対称性を表す</li>
+<li><strong>分類</strong>: 同型な自己同型群を持つ対象は重要な構造的性質を共有する</li>
+<li><strong>暗号</strong>: ある暗号プロトコルは自己同型の計算の困難性に依存する</li>
+</ol>
+</section>
+<section id="完全群" class="level2">
+<h2 class="anchored" data-anchor-id="完全群">完全群</h2>
+<p>群 <span class="math inline">\(G\)</span> が<strong>完全</strong>であるとは： - その<a href="../../../content/ja/algebra/def-center-of-group.html">中心</a> <span class="math inline">\(Z(G)\)</span> が自明である - <span class="math inline">\(G\)</span> のすべての自己同型が内部自己同型である（すなわち、<span class="math inline">\(\text{Aut}(G) = \text{Inn}(G)\)</span>）</p>
+</section>
+<section id="依存関係グラフ" class="level2">
+<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-identity-element["Definition: Identity Element"]:::definition
+    ex-group-action-examples["Examples of Group Actions"]:::example
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-isomorphism["Definition: Group Isomorphism"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-center-of-group["Definition: Center of a Group"]:::definition
+    def-automorphism["Definition: Automorphism"]:::definition
+    def-center-of-group --&gt; def-automorphism
+    def-automorphism --&gt; def-homomorphism
+    def-automorphism --&gt; def-center-of-group
+    def-automorphism --&gt; def-group
+    def-automorphism --&gt; def-identity-element
+    ex-group-action-examples --&gt; def-automorphism
+    def-automorphism --&gt; def-isomorphism
+    class def-automorphism current
+    click def-identity-element "def-identity-element.html" "Definition: Identity Elementへ"
+    click ex-group-action-examples "ex-group-action-examples.html" "Examples of Group Actionsへ"
+    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
+    click def-isomorphism "def-isomorphism.html" "Definition: Group Isomorphismへ"
+    click def-group "def-group.html" "Definition: Groupへ"
+    click def-center-of-group "def-center-of-group.html" "Definition: Center of a Groupへ"
+</pre>
+</div>
+<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="インタラクティブ可視化" class="level2">
+<h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
+<p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
+<div id="graph-viz-def-automorphism-1753585861" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
+</div>
+
+<script type="module">
+import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+// Function to create force-directed graph
+function createForceGraph(data, containerId, options = {}) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = ''; // Clear loading message
+
+  const {
+    width = 700,
+    height = 500,
+    nodeRadius = 8,
+    linkDistance = 100,
+    chargeStrength = -300
+  } = options;
+
+  // Node colors by type
+  const nodeColors = {
+    'Definition': '#4CAF50',
+    'Theorem': '#2196F3',
+    'Axiom': '#FF9800',
+    'Example': '#9C27B0'
+  };
+
+  // Create SVG
+  const svg = d3.create("svg")
+    .attr("viewBox", [0, 0, width, height])
+    .attr("width", width)
+    .attr("height", height)
+    .style("max-width", "100%")
+    .style("height", "auto");
+
+  // Add zoom
+  const g = svg.append("g");
+
+  const zoom = d3.zoom()
+    .scaleExtent([0.1, 4])
+    .on("zoom", (event) => {
+      g.attr("transform", event.transform);
+    });
+
+  svg.call(zoom);
+
+  // Arrow markers
+  svg.append("defs").append("marker")
+    .attr("id", "arrow-" + containerId)
+    .attr("viewBox", "0 -5 10 10")
+    .attr("refX", 20)
+    .attr("refY", 0)
+    .attr("markerWidth", 6)
+    .attr("markerHeight", 6)
+    .attr("orient", "auto")
+    .append("path")
+    .attr("fill", "#999")
+    .attr("d", "M0,-5L10,0L0,5");
+
+  // Force simulation
+  const simulation = d3.forceSimulation(data.nodes)
+    .force("link", d3.forceLink(data.links).id(d => d.index).distance(linkDistance))
+    .force("charge", d3.forceManyBody().strength(chargeStrength))
+    .force("center", d3.forceCenter(width / 2, height / 2))
+    .force("collision", d3.forceCollide().radius(nodeRadius * 1.5));
+
+  // Links
+  const link = g.append("g")
+    .selectAll("line")
+    .data(data.links)
+    .join("line")
+    .attr("stroke", "#999")
+    .attr("stroke-opacity", 0.6)
+    .attr("stroke-width", 1.5)
+    .attr("marker-end", `url(#arrow-${containerId})`);
+
+  // Nodes
+  const node = g.append("g")
+    .selectAll("g")
+    .data(data.nodes)
+    .join("g")
+    .call(d3.drag()
+      .on("start", dragstarted)
+      .on("drag", dragged)
+      .on("end", dragended));
+
+  node.append("circle")
+    .attr("r", d => d.is_focus ? nodeRadius * 1.5 : nodeRadius)
+    .attr("fill", d => nodeColors[d.type] || "#888")
+    .attr("stroke", d => d.is_focus ? "#333" : "#fff")
+    .attr("stroke-width", d => d.is_focus ? 3 : 1.5);
+
+  node.append("text")
+    .text(d => d.label || d.id)
+    .attr("x", 0)
+    .attr("y", -nodeRadius - 5)
+    .attr("text-anchor", "middle")
+    .attr("font-size", "11px")
+    .attr("font-family", "system-ui, sans-serif");
+
+  node.append("title")
+    .text(d => `${d.type}: ${d.label || d.id}`);
+
+  // Tick function
+  simulation.on("tick", () => {
+    link
+      .attr("x1", d => d.source.x)
+      .attr("y1", d => d.source.y)
+      .attr("x2", d => d.target.x)
+      .attr("y2", d => d.target.y);
+
+    node.attr("transform", d => `translate(${d.x},${d.y})`);
+  });
+
+  // Drag functions
+  function dragstarted(event) {
+    if (!event.active) simulation.alphaTarget(0.3).restart();
+    event.subject.fx = event.subject.x;
+    event.subject.fy = event.subject.y;
+  }
+
+  function dragged(event) {
+    event.subject.fx = event.x;
+    event.subject.fy = event.y;
+  }
+
+  function dragended(event) {
+    if (!event.active) simulation.alphaTarget(0);
+    event.subject.fx = null;
+    event.subject.fy = null;
+  }
+
+  // Add to container
+  container.appendChild(svg.node());
+
+  // Add stats
+  const stats = document.createElement("div");
+  stats.className = "graph-stats";
+  stats.innerHTML = `
+    <p><strong>Graph Statistics:</strong></p>
+    <ul>
+      <li>Nodes: ${data.metadata.total_nodes}</li>
+      <li>Links: ${data.metadata.total_links}</li>
+      <li>Neighborhood depth: ${data.metadata.depth || 2}</li>
+    </ul>
+  `;
+  container.appendChild(stats);
+}
+
+// Load and render the graph
+async function loadAndRenderGraph() {
+  try {
+    // Calculate relative path based on current location
+    const currentPath = window.location.pathname;
+
+    // Check if we're in a GitHub Pages subdirectory (e.g., /ModernMath/)
+    const pathParts = currentPath.split('/').filter(p => p);
+    let basePath = '';
+
+    // For GitHub Pages with project name subdirectory
+    if (window.location.hostname.includes('github.io') && pathParts.length > 0) {
+      // The first part is the project name (e.g., 'ModernMath')
+      const projectName = pathParts[0];
+      // Remove project name and count remaining directories (excluding the HTML file)
+      const depthFromProjectRoot = pathParts.slice(1).length - 1;
+
+      // Go up to the project root
+      basePath = '../'.repeat(depthFromProjectRoot);
+    } else {
+      // For local development or root deployment
+      const depth = (currentPath.match(/\//g) || []).length - 1;
+      basePath = '../'.repeat(depth);
+    }
+
+    const response = await fetch(basePath + 'output/d3-data/def-automorphism.json');
+    if (!response.ok) {
+      throw new Error('Failed to load graph data');
+    }
+    const data = await response.json();
+    createForceGraph(data, 'graph-viz-def-automorphism-1753585861', {
+      width: 700,
+      height: 500
+    });
+  } catch (error) {
+    document.getElementById('graph-viz-def-automorphism-1753585861').innerHTML =
+      '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
+  }
+}
+
+// Load when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', loadAndRenderGraph);
+} else {
+  loadAndRenderGraph();
+}
+</script>
+
+<style>
+.graph-visualization-container {
+  margin: 2em 0;
+  padding: 1em;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.graph-visualization-container svg {
+  display: block;
+  margin: 0 auto;
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+}
+
+.graph-stats {
+  margin-top: 1em;
+  padding: 0.5em 1em;
+  background: white;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.graph-stats ul {
+  margin: 0.5em 0 0 1em;
+  padding: 0;
+}
+
+.graph-loading {
+  text-align: center;
+  padding: 2em;
+  color: #6c757d;
+}
+
+.alert {
+  padding: 12px 20px;
+  border-radius: 4px;
+  margin: 1em 0;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeaa7;
+  color: #856404;
+}
+</style>
+
+<p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/def-automorphism.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Mathematics Knowledge Graph Wiki - Built with Quarto and RDF</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -291,17 +291,17 @@ window.Quarto = {
 </header>
 
 
-<p><strong>シローの定理</strong>は、有限<a href="../../../content/ja/algebra/def-group.html">群論</a>における基本的な結果で、<a href="../../../content/ja/number-theory/def-prime.html">素数</a>べき位数の<a href="../../../content/ja/algebra/def-subgroup.html">部分群</a>の存在と性質についての詳細な情報を提供します。</p>
+<p><strong>シローの定理</strong>は、有限<a href="../../../content/ja/algebra/def-group.html">群論</a>における基本的な結果で、<a href="../../../content/ja/number-theory/def-prime.html">素数</a>べき<a href="../../../content/ja/algebra/def-order.html">位数</a>の<a href="../../../content/ja/algebra/def-subgroup.html">部分群</a>の存在と性質についての詳細な情報を提供します。</p>
 <section id="準備" class="level2">
 <h2 class="anchored" data-anchor-id="準備">準備</h2>
-<p><span class="math inline">\(G\)</span> を有限<a href="../../../content/ja/algebra/def-group.html">群</a>とし、その位数を <span class="math inline">\(|G| = p^k m\)</span> とする。ここで <span class="math inline">\(p\)</span> は<a href="../../../content/ja/number-theory/def-prime.html">素数</a>、<span class="math inline">\(k \geq 1\)</span>、<span class="math inline">\(\gcd(p, m) = 1\)</span> とする。</p>
-<p><span class="math inline">\(G\)</span> の <strong>Sylow <span class="math inline">\(p\)</span>-部分群</strong>とは、位数 <span class="math inline">\(p^k\)</span>（<span class="math inline">\(|G|\)</span> を<a href="../../../content/ja/number-theory/def-divisibility.html">割る</a> <span class="math inline">\(p\)</span> の最高べき）の<a href="../../../content/ja/algebra/def-subgroup.html">部分群</a>である。</p>
+<p><span class="math inline">\(G\)</span> を有限<a href="../../../content/ja/algebra/def-group.html">群</a>とし、その<a href="../../../content/ja/algebra/def-order.html">位数</a>を <span class="math inline">\(|G| = p^k m\)</span> とする。ここで <span class="math inline">\(p\)</span> は<a href="../../../content/ja/number-theory/def-prime.html">素数</a>、<span class="math inline">\(k \geq 1\)</span>、<span class="math inline">\(\gcd(p, m) = 1\)</span> とし、<span class="math inline">\(|G|\)</span> は <span class="math inline">\(G\)</span> の<a href="../../../content/ja/logic-set-theory/def-cardinality.html">濃度</a>を表す。</p>
+<p><span class="math inline">\(G\)</span> の <strong>Sylow <span class="math inline">\(p\)</span>-部分群</strong>とは、<a href="../../../content/ja/algebra/def-order.html">位数</a> <span class="math inline">\(p^k\)</span>（<span class="math inline">\(|G|\)</span> を<a href="../../../content/ja/number-theory/def-divisibility.html">割る</a> <span class="math inline">\(p\)</span> の最高べき）の<a href="../../../content/ja/algebra/def-subgroup.html">部分群</a>である。</p>
 </section>
 <section id="つのシローの定理" class="level2">
 <h2 class="anchored" data-anchor-id="つのシローの定理">3つのシローの定理</h2>
 <section id="第一シローの定理存在定理" class="level3">
 <h3 class="anchored" data-anchor-id="第一シローの定理存在定理">第一シローの定理（存在定理）</h3>
-<p><span class="math inline">\(0 \leq r \leq k\)</span> を満たす任意の整数 <span class="math inline">\(r\)</span> に対して、<span class="math inline">\(G\)</span> には位数 <span class="math inline">\(p^r\)</span> の<a href="../../../content/ja/algebra/def-subgroup.html">部分群</a>が存在する。特に： - <span class="math inline">\(G\)</span> は <span class="math inline">\(|G|\)</span> の各<a href="../../../content/ja/number-theory/def-prime.html">素因数</a>に対して少なくとも1つの Sylow <span class="math inline">\(p\)</span>-部分群を含む</p>
+<p><span class="math inline">\(0 \leq r \leq k\)</span> を満たす任意の整数 <span class="math inline">\(r\)</span> に対して、<span class="math inline">\(G\)</span> には<a href="../../../content/ja/algebra/def-order.html">位数</a> <span class="math inline">\(p^r\)</span> の<a href="../../../content/ja/algebra/def-subgroup.html">部分群</a>が存在する。特に： - <span class="math inline">\(G\)</span> は <span class="math inline">\(|G|\)</span> の各<a href="../../../content/ja/number-theory/def-prime.html">素因数</a>に対して少なくとも1つの Sylow <span class="math inline">\(p\)</span>-部分群を含む</p>
 </section>
 <section id="第二シローの定理共役性" class="level3">
 <h3 class="anchored" data-anchor-id="第二シローの定理共役性">第二シローの定理（共役性）</h3>
@@ -368,14 +368,18 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-order["Definition: Order"]:::definition
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     thm-sylow["Sylow Theorems"]:::theorem
     def-group["Definition: Group"]:::definition
     def-subgroup["Definition: Subgroup"]:::definition
     thm-sylow --&gt; thm-lagrange
-    thm-sylow --&gt; def-subgroup
+    def-order --&gt; thm-sylow
+    thm-sylow --&gt; def-order
     thm-sylow --&gt; def-group
+    thm-sylow --&gt; def-subgroup
     class thm-sylow current
+    click def-order "def-order.html" "Definition: Orderへ"
     click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
     click def-group "def-group.html" "Definition: Groupへ"
     click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
@@ -389,7 +393,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-sylow-1753451079" class="graph-visualization-container">
+<div id="graph-viz-thm-sylow-1753585960" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -569,12 +573,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-sylow-1753451079', {
+    createForceGraph(data, 'graph-viz-thm-sylow-1753585960', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-sylow-1753451079').innerHTML =
+    document.getElementById('graph-viz-thm-sylow-1753585960').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

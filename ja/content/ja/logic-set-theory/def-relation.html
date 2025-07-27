@@ -362,8 +362,8 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="特別な種類の関係">特別な種類の関係</h2>
 <ul>
 <li><strong>同値関係</strong>：反射的、対称的、推移的な関係</li>
-<li><strong>半順序</strong>：反射的、反対称的、推移的な関係</li>
-<li><strong>全順序</strong>：任意の2つの要素が比較可能な半順序</li>
+<li><strong><a href="../../../content/ja/logic-set-theory/def-partial-order.html">半順序</a></strong>：反射的、反対称的、推移的な関係</li>
+<li><strong>全順序</strong>：任意の2つの要素が比較可能な<a href="../../../content/ja/logic-set-theory/def-partial-order.html">半順序</a></li>
 </ul>
 </section>
 <section id="関連項目" class="level2">
@@ -372,7 +372,7 @@ window.Quarto = {
 <li><a href="../../../content/ja/logic-set-theory/def-function.html">関数</a></li>
 <li><a href="../../../content/ja/logic-set-theory/def-subset.html">部分集合</a></li>
 <li><a href="../../../content/ja/logic-set-theory/def-equivalence-relation.html">定義：同値関係</a></li>
-<li>半順序（準備中）</li>
+<li><a href="../../../content/ja/logic-set-theory/def-partial-order.html">定義：半順序</a></li>
 </ul>
 </section>
 <section id="依存関係グラフ" class="level2">
@@ -388,22 +388,26 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-subset["Definition: Subset"]:::definition
-    def-set["Definition: Set"]:::definition
     def-equivalence-relation["Definition: Equivalence Relation"]:::definition
-    def-function["Definition: Function"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-partial-order["Definition: Partial Order"]:::definition
     def-relation["Definition: Relation"]:::definition
-    def-relation --&gt; def-subset
-    def-function --&gt; def-relation
-    def-relation --&gt; def-function
+    def-subset["Definition: Subset"]:::definition
+    def-function["Definition: Function"]:::definition
     def-equivalence-relation --&gt; def-relation
-    def-relation --&gt; def-equivalence-relation
-    def-relation --&gt; def-set
+    def-relation --&gt; def-partial-order
+    def-partial-order --&gt; def-relation
+    def-relation --&gt; def-subset
     def-subset --&gt; def-relation
+    def-relation --&gt; def-set
+    def-relation --&gt; def-function
+    def-relation --&gt; def-equivalence-relation
+    def-function --&gt; def-relation
     class def-relation current
-    click def-subset "def-subset.html" "Definition: Subsetへ"
-    click def-set "def-set.html" "Definition: Setへ"
     click def-equivalence-relation "def-equivalence-relation.html" "Definition: Equivalence Relationへ"
+    click def-set "def-set.html" "Definition: Setへ"
+    click def-partial-order "def-partial-order.html" "Definition: Partial Orderへ"
+    click def-subset "def-subset.html" "Definition: Subsetへ"
     click def-function "def-function.html" "Definition: Functionへ"
 </pre>
 </div>
@@ -415,7 +419,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-relation-1753451104" class="graph-visualization-container">
+<div id="graph-viz-def-relation-1753585990" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -595,12 +599,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-relation-1753451104', {
+    createForceGraph(data, 'graph-viz-def-relation-1753585990', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-relation-1753451104').innerHTML =
+    document.getElementById('graph-viz-def-relation-1753585990').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

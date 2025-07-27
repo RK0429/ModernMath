@@ -288,6 +288,7 @@ window.Quarto = {
 <section id="定理の主張" class="level2">
 <h2 class="anchored" data-anchor-id="定理の主張">定理の主張</h2>
 <p>有限<a href="../../../content/ja/algebra/def-group.html">群</a> <span class="math inline">\(G\)</span> が集合 <span class="math inline">\(X\)</span> に作用し、<span class="math inline">\(x \in X\)</span> とする。このとき： <span class="math display">\[|G| = |G \cdot x| \times |G_x|\]</span></p>
+<p>ここで <span class="math inline">\(|\cdot|\)</span> は<a href="../../../content/ja/logic-set-theory/def-cardinality.html">濃度</a>を表す。</p>
 <p>ここで： - <span class="math inline">\(G \cdot x\)</span> は <span class="math inline">\(x\)</span> の軌道 - <span class="math inline">\(G_x\)</span> は <span class="math inline">\(x\)</span> の固定化部分群</p>
 </section>
 <section id="証明の概要" class="level2">
@@ -322,7 +323,7 @@ window.Quarto = {
 <section id="応用" class="level2">
 <h2 class="anchored" data-anchor-id="応用">応用</h2>
 <ol type="1">
-<li><strong>対称性の計数</strong>: グラフや他の構造の自己同型の個数を数える</li>
+<li><strong>対称性の計数</strong>: グラフや他の構造の<a href="../../../content/ja/algebra/def-automorphism.html">自己同型</a>の個数を数える</li>
 <li><strong>バーンサイドの補題</strong>: 固定点を使って軌道を数える</li>
 <li><strong><a href="../../../content/ja/algebra/thm-sylow.html">シローの定理</a></strong>: 部分群への共役作用を解析</li>
 <li><strong>分類</strong>: 様々な集合への作用により群を分類</li>
@@ -341,17 +342,17 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
     def-coset["Definition: Coset"]:::definition
+    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
     def-group-action["Group Action"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    thm-orbit-stabilizer --&gt; def-group-action
     thm-orbit-stabilizer --&gt; def-coset
     thm-orbit-stabilizer --&gt; thm-lagrange
-    thm-orbit-stabilizer --&gt; def-group-action
     class thm-orbit-stabilizer current
-    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
     click def-coset "def-coset.html" "Definition: Cosetへ"
     click def-group-action "def-group-action.html" "Group Actionへ"
+    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -362,7 +363,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-orbit-stabilizer-1753451078" class="graph-visualization-container">
+<div id="graph-viz-thm-orbit-stabilizer-1753585959" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -542,12 +543,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-orbit-stabilizer-1753451078', {
+    createForceGraph(data, 'graph-viz-thm-orbit-stabilizer-1753585959', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-orbit-stabilizer-1753451078').innerHTML =
+    document.getElementById('graph-viz-thm-orbit-stabilizer-1753585959').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -295,7 +295,7 @@ window.Quarto = {
 </section>
 <section id="形式的命題" class="level2">
 <h2 class="anchored" data-anchor-id="形式的命題">形式的命題</h2>
-<p><span class="math inline">\(f: A \to B\)</span> を関数とし、<span class="math inline">\(A\)</span> と <span class="math inline">\(B\)</span> は <span class="math inline">\(|A| &gt; |B|\)</span> となる有限<a href="../../../content/ja/logic-set-theory/def-set.html">集合</a>とします。このとき <span class="math inline">\(f\)</span> は単射ではありません。つまり、<span class="math inline">\(f(a_1) = f(a_2)\)</span> となる異なる要素 <span class="math inline">\(a_1, a_2 \in A\)</span> が存在します。</p>
+<p><span class="math inline">\(f: A \to B\)</span> を関数とし、<span class="math inline">\(A\)</span> と <span class="math inline">\(B\)</span> は<a href="../../../content/ja/logic-set-theory/def-cardinality.html">濃度</a>が <span class="math inline">\(|A| &gt; |B|\)</span> を満たす有限<a href="../../../content/ja/logic-set-theory/def-set.html">集合</a>とします。このとき <span class="math inline">\(f\)</span> は単射ではありません。つまり、<span class="math inline">\(f(a_1) = f(a_2)\)</span> となる異なる要素 <span class="math inline">\(a_1, a_2 \in A\)</span> が存在します。</p>
 </section>
 <section id="証明" class="level2">
 <h2 class="anchored" data-anchor-id="証明">証明</h2>
@@ -357,11 +357,11 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-pigeonhole-principle["Theorem: Pigeonhole Principle"]:::theorem
     def-function["Definition: Function"]:::definition
     def-set["Definition: Set"]:::definition
-    thm-pigeonhole-principle["Theorem: Pigeonhole Principle"]:::theorem
-    thm-pigeonhole-principle --&gt; def-function
     thm-pigeonhole-principle --&gt; def-set
+    thm-pigeonhole-principle --&gt; def-function
     class thm-pigeonhole-principle current
     click def-function "def-function.html" "Definition: Functionへ"
     click def-set "def-set.html" "Definition: Setへ"
@@ -375,7 +375,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-pigeonhole-principle-1753451046" class="graph-visualization-container">
+<div id="graph-viz-thm-pigeonhole-principle-1753585916" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -555,12 +555,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-pigeonhole-principle-1753451046', {
+    createForceGraph(data, 'graph-viz-thm-pigeonhole-principle-1753585916', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-pigeonhole-principle-1753451046').innerHTML =
+    document.getElementById('graph-viz-thm-pigeonhole-principle-1753585916').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

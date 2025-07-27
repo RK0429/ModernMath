@@ -330,14 +330,15 @@ window.Quarto = {
 <section id="無向グラフの場合" class="level3">
 <h3 class="anchored" data-anchor-id="無向グラフの場合">無向グラフの場合</h3>
 <ul>
-<li>すべての頂点の次数の和は辺の数の2倍に等しい：<span class="math inline">\(\sum_{v \in V} \deg(v) = 2|E|\)</span></li>
+<li>すべての頂点の次数の和は辺の集合の<a href="../../../content/ja/logic-set-theory/def-cardinality.html">濃度</a>の2倍に等しい：<span class="math inline">\(\sum_{v \in V} \deg(v) = 2|E|\)</span></li>
 <li>奇数次数の頂点の数は偶数</li>
+<li>グラフ<a href="../../../content/ja/algebra/def-automorphism.html">自己同型</a>は隣接性を保つ頂点の置換である</li>
 </ul>
 </section>
 <section id="有向グラフの場合" class="level3">
 <h3 class="anchored" data-anchor-id="有向グラフの場合">有向グラフの場合</h3>
 <ul>
-<li>すべての入次数の和はすべての出次数の和に等しい：<span class="math inline">\(\sum_{v \in V} \deg^-(v) = \sum_{v \in V} \deg^+(v) = |E|\)</span></li>
+<li>すべての入次数の和はすべての出次数の和に等しい：<span class="math inline">\(\sum_{v \in V} \deg^-(v) = \sum_{v \in V} \deg^+(v) = |E|\)</span>（辺の集合の<a href="../../../content/ja/logic-set-theory/def-cardinality.html">濃度</a>）</li>
 </ul>
 </section>
 </section>
@@ -385,26 +386,26 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-tree["Definition: Tree"]:::definition
-    def-permutation["Definition: Permutation"]:::definition
-    def-set["Definition: Set"]:::definition
     def-category["Definition: Category"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-graph["Definition: Graph"]:::definition
     def-morphism["Definition: Morphism"]:::definition
     def-functor["Definition: Functor"]:::definition
-    def-graph["Definition: Graph"]:::definition
-    def-permutation --&gt; def-graph
-    def-category --&gt; def-graph
-    def-morphism --&gt; def-graph
+    def-permutation["Definition: Permutation"]:::definition
+    def-tree["Definition: Tree"]:::definition
     def-functor --&gt; def-graph
+    def-permutation --&gt; def-graph
     def-tree --&gt; def-graph
     def-graph --&gt; def-set
+    def-morphism --&gt; def-graph
+    def-category --&gt; def-graph
     class def-graph current
-    click def-tree "def-tree.html" "Definition: Treeへ"
-    click def-permutation "def-permutation.html" "Definition: Permutationへ"
-    click def-set "def-set.html" "Definition: Setへ"
     click def-category "def-category.html" "Definition: Categoryへ"
+    click def-set "def-set.html" "Definition: Setへ"
     click def-morphism "def-morphism.html" "Definition: Morphismへ"
     click def-functor "def-functor.html" "Definition: Functorへ"
+    click def-permutation "def-permutation.html" "Definition: Permutationへ"
+    click def-tree "def-tree.html" "Definition: Treeへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -415,7 +416,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-graph-1753451093" class="graph-visualization-container">
+<div id="graph-viz-def-graph-1753585978" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -595,12 +596,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-graph-1753451093', {
+    createForceGraph(data, 'graph-viz-def-graph-1753585978', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-graph-1753451093').innerHTML =
+    document.getElementById('graph-viz-def-graph-1753585978').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

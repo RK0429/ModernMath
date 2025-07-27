@@ -324,7 +324,8 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="important-properties">Important Properties</h2>
 <section id="order" class="level3">
 <h3 class="anchored" data-anchor-id="order">Order</h3>
-<p>If <span class="math inline">\(G\)</span> and <span class="math inline">\(H\)</span> are finite groups, then: <span class="math display">\[|G \times H| = |G| \cdot |H|\]</span></p>
+<p>If <span class="math inline">\(G\)</span> and <span class="math inline">\(H\)</span> are finite groups, then the <a href="../../../content/en/algebra/def-order.html">order</a> of the direct product is: <span class="math display">\[|G \times H| = |G| \cdot |H|\]</span></p>
+<p>where <span class="math inline">\(|G|\)</span> denotes the <a href="../../../content/en/logic-set-theory/def-cardinality.html">cardinality</a> of <span class="math inline">\(G\)</span>.</p>
 </section>
 <section id="abelian-property" class="level3">
 <h3 class="anchored" data-anchor-id="abelian-property">Abelian Property</h3>
@@ -336,7 +337,7 @@ window.Quarto = {
 </section>
 <section id="canonical-projections" class="level3">
 <h3 class="anchored" data-anchor-id="canonical-projections">Canonical Projections</h3>
-<p>There are natural surjective <a href="../../../content/en/algebra/def-homomorphism.html">homomorphisms</a>: - <span class="math inline">\(\pi_G: G \times H \to G\)</span> defined by <span class="math inline">\(\pi_G(g, h) = g\)</span> - <span class="math inline">\(\pi_H: G \times H \to H\)</span> defined by <span class="math inline">\(\pi_H(g, h) = h\)</span></p>
+<p>There are natural surjective <a href="../../../content/en/algebra/def-homomorphism.html">homomorphisms</a> (i.e., <a href="../../../content/en/category-theory/def-epimorphism.html">epimorphisms</a>): - <span class="math inline">\(\pi_G: G \times H \to G\)</span> defined by <span class="math inline">\(\pi_G(g, h) = g\)</span> - <span class="math inline">\(\pi_H: G \times H \to H\)</span> defined by <span class="math inline">\(\pi_H(g, h) = h\)</span></p>
 </section>
 </section>
 <section id="universal-property" class="level2">
@@ -401,31 +402,34 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-order["Definition: Order"]:::definition
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
     def-direct-product["Definition: Direct Product of Groups"]:::definition
     def-set["Definition: Set"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
     def-abelian-group["Definition: Abelian Group"]:::definition
     def-group["Definition: Group"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-direct-product --&gt; def-set
-    def-direct-product --&gt; def-normal-subgroup
-    def-direct-product --&gt; def-homomorphism
-    def-direct-product --&gt; def-abelian-group
-    def-cyclic-group --&gt; def-direct-product
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-abelian-group --&gt; def-direct-product
-    def-direct-product --&gt; def-cyclic-group
-    def-direct-product --&gt; def-group
     ex-quotient-integers-mod-n --&gt; def-direct-product
+    def-direct-product --&gt; def-group
+    def-cyclic-group --&gt; def-direct-product
+    def-direct-product --&gt; def-normal-subgroup
+    def-direct-product --&gt; def-set
+    def-direct-product --&gt; def-homomorphism
+    def-direct-product --&gt; def-order
+    def-direct-product --&gt; def-abelian-group
+    def-direct-product --&gt; def-cyclic-group
     class def-direct-product current
+    click def-order "def-order.html" "Go to Order definition"
+    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
     click def-set "def-set.html" "Go to Set definition"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
     click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
     click def-group "def-group.html" "Go to Group definition"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
-    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -436,7 +440,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-direct-product-1753450913" class="graph-visualization-container">
+<div id="graph-viz-def-direct-product-1753585745" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -616,12 +620,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-direct-product-1753450913', {
+    createForceGraph(data, 'graph-viz-def-direct-product-1753585745', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-direct-product-1753450913').innerHTML =
+    document.getElementById('graph-viz-def-direct-product-1753585745').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

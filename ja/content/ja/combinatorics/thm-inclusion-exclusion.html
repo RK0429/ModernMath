@@ -287,10 +287,10 @@ window.Quarto = {
 
 <section id="定理-包除原理" class="level1">
 <h1>定理: 包除原理</h1>
-<p><strong>包除原理</strong>（包含排除の原理）は、組合せ論における基本的な数え上げ原理で、複数の集合の和集合の濃度を、それらの共通部分を考慮して求める公式を提供します。</p>
+<p><strong>包除原理</strong>（包含排除の原理）は、組合せ論における基本的な数え上げ原理で、複数の集合の和集合の<a href="../../../content/ja/logic-set-theory/def-cardinality.html">濃度</a>を、それらの共通部分を考慮して求める公式を提供します。</p>
 <section id="命題" class="level2">
 <h2 class="anchored" data-anchor-id="命題">命題</h2>
-<p>有限<a href="../../../content/ja/logic-set-theory/def-set.html">集合</a> <span class="math inline">\(A_1, A_2, \ldots, A_n\)</span> に対して、それらの<a href="../../../content/ja/logic-set-theory/def-union.html">和集合</a>の濃度は次のように与えられます：</p>
+<p>有限<a href="../../../content/ja/logic-set-theory/def-set.html">集合</a> <span class="math inline">\(A_1, A_2, \ldots, A_n\)</span> に対して、それらの<a href="../../../content/ja/logic-set-theory/def-union.html">和集合</a>の<a href="../../../content/ja/logic-set-theory/def-cardinality.html">濃度</a>は次のように与えられます：</p>
 <p><span class="math display">\[\left|\bigcup_{i=1}^{n} A_i\right| = \sum_{k=1}^{n} (-1)^{k+1} \sum_{1 \leq i_1 &lt; i_2 &lt; \cdots &lt; i_k \leq n} \left|A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k}\right|\]</span></p>
 </section>
 <section id="特殊な場合" class="level2">
@@ -362,7 +362,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-inclusion-exclusion-1753451095" class="graph-visualization-container">
+<div id="graph-viz-thm-inclusion-exclusion-1753585980" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -542,12 +542,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-inclusion-exclusion-1753451095', {
+    createForceGraph(data, 'graph-viz-thm-inclusion-exclusion-1753585980', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-inclusion-exclusion-1753451095').innerHTML =
+    document.getElementById('graph-viz-thm-inclusion-exclusion-1753585980').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

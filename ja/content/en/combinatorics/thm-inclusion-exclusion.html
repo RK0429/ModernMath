@@ -287,10 +287,10 @@ window.Quarto = {
 
 <section id="theorem-inclusion-exclusion-principle" class="level1">
 <h1>Theorem: Inclusion-Exclusion Principle</h1>
-<p>The <strong>Inclusion-Exclusion Principle</strong> is a fundamental counting principle in combinatorics that provides a formula for finding the cardinality of the union of multiple sets by considering their intersections.</p>
+<p>The <strong>Inclusion-Exclusion Principle</strong> is a fundamental counting principle in combinatorics that provides a formula for finding the <a href="../../../content/en/logic-set-theory/def-cardinality.html">cardinality</a> of the union of multiple sets by considering their intersections.</p>
 <section id="statement" class="level2">
 <h2 class="anchored" data-anchor-id="statement">Statement</h2>
-<p>For finite <a href="../../../content/en/logic-set-theory/def-set.html">sets</a> <span class="math inline">\(A_1, A_2, \ldots, A_n\)</span>, the cardinality of their <a href="../../../content/en/logic-set-theory/def-union.html">union</a> is given by:</p>
+<p>For finite <a href="../../../content/en/logic-set-theory/def-set.html">sets</a> <span class="math inline">\(A_1, A_2, \ldots, A_n\)</span>, the <a href="../../../content/en/logic-set-theory/def-cardinality.html">cardinality</a> of their <a href="../../../content/en/logic-set-theory/def-union.html">union</a> is given by:</p>
 <p><span class="math display">\[\left|\bigcup_{i=1}^{n} A_i\right| = \sum_{k=1}^{n} (-1)^{k+1} \sum_{1 \leq i_1 &lt; i_2 &lt; \cdots &lt; i_k \leq n} \left|A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k}\right|\]</span></p>
 </section>
 <section id="special-cases" class="level2">
@@ -362,7 +362,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-inclusion-exclusion-1753451194" class="graph-visualization-container">
+<div id="graph-viz-thm-inclusion-exclusion-1753586108" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -542,12 +542,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-inclusion-exclusion-1753451194', {
+    createForceGraph(data, 'graph-viz-thm-inclusion-exclusion-1753586108', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-inclusion-exclusion-1753451194').innerHTML =
+    document.getElementById('graph-viz-thm-inclusion-exclusion-1753586108').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

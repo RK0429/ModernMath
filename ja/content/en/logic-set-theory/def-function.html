@@ -315,6 +315,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="injective-one-to-one">Injective (One-to-One)</h3>
 <p>A function <span class="math inline">\(f: A \to B\)</span> is <strong>injective</strong> if different elements in <span class="math inline">\(A\)</span> map to different elements in <span class="math inline">\(B\)</span>:</p>
 <p><span class="math display">\[\forall a_1, a_2 \in A: f(a_1) = f(a_2) \implies a_1 = a_2\]</span></p>
+<p>In category theory, the concept of injective function is generalized to <a href="../../../content/en/category-theory/def-monomorphism.html">monomorphism</a>.</p>
 </section>
 <section id="surjective-onto" class="level3">
 <h3 class="anchored" data-anchor-id="surjective-onto">Surjective (Onto)</h3>
@@ -364,57 +365,15 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-determinant["Definition: Determinant"]:::definition
-    def-homeomorphism["Definition: Homeomorphism"]:::definition
-    def-metric-space["Definition: Metric Space"]:::definition
-    def-permutation["Definition: Permutation"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-random-variable["Definition: Random Variable"]:::definition
-    def-continuity["Definition: Continuity"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
-    thm-pigeonhole-principle["Theorem: Pigeonhole Principle"]:::theorem
-    def-functor["Definition: Functor"]:::definition
-    def-function["Definition: Function"]:::definition
-    def-linear-transformation["Definition: Linear Transformation"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-sequence["Definition: Sequence"]:::definition
     def-relation["Definition: Relation"]:::definition
-    def-group-action["Group Action"]:::definition
-    def-binary-operation --&gt; def-function
-    def-continuity --&gt; def-function
-    def-homomorphism --&gt; def-function
-    def-function --&gt; def-relation
-    def-metric-space --&gt; def-function
-    def-permutation --&gt; def-function
-    def-linear-transformation --&gt; def-function
-    def-random-variable --&gt; def-function
-    def-determinant --&gt; def-function
+    def-function["Definition: Function"]:::definition
+    def-set["Definition: Set"]:::definition
     def-relation --&gt; def-function
     def-function --&gt; def-set
-    def-functor --&gt; def-function
-    def-homeomorphism --&gt; def-function
-    def-sequence --&gt; def-function
-    def-equivalence-relation --&gt; def-function
-    thm-pigeonhole-principle --&gt; def-function
-    def-group-action --&gt; def-function
+    def-function --&gt; def-relation
     class def-function current
-    click def-determinant "def-determinant.html" "Go to Determinant definition"
-    click def-homeomorphism "def-homeomorphism.html" "Go to Homeomorphism definition"
-    click def-metric-space "def-metric-space.html" "Go to Metric Space definition"
-    click def-permutation "def-permutation.html" "Go to Permutation definition"
-    click def-set "def-set.html" "Go to Set definition"
-    click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
-    click def-continuity "def-continuity.html" "Go to Continuity definition"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
-    click def-equivalence-relation "def-equivalence-relation.html" "Go to Equivalence Relation definition"
-    click thm-pigeonhole-principle "thm-pigeonhole-principle.html" "Go to Pigeonhole Principle theorem"
-    click def-functor "def-functor.html" "Go to Functor definition"
-    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation definition"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
-    click def-sequence "def-sequence.html" "Go to Sequence definition"
     click def-relation "def-relation.html" "Go to Relation definition"
-    click def-group-action "def-group-action.html" "Go to Group Action"
+    click def-set "def-set.html" "Go to Set definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -425,7 +384,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-function-1753451177" class="graph-visualization-container">
+<div id="graph-viz-def-function-1753586087" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -605,12 +564,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-function-1753451177', {
+    createForceGraph(data, 'graph-viz-def-function-1753586087', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-function-1753451177').innerHTML =
+    document.getElementById('graph-viz-def-function-1753586087').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

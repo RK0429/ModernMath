@@ -318,12 +318,12 @@ window.Quarto = {
 <ol type="1">
 <li><span class="math inline">\(R\)</span> が単位元 <span class="math inline">\(1_R\)</span> を持つなら、<span class="math inline">\(R[x]\)</span> も単位元（定数多項式 <span class="math inline">\(1_R\)</span>）を持つ</li>
 <li><span class="math inline">\(R\)</span> が可換なら、<span class="math inline">\(R[x]\)</span> も可換</li>
-<li><span class="math inline">\(R\)</span> が整域なら、<span class="math inline">\(R[x]\)</span> も整域</li>
+<li><span class="math inline">\(R\)</span> が<a href="../../../content/ja/algebra/def-integral-domain.html">整域</a>なら、<span class="math inline">\(R[x]\)</span> も<a href="../../../content/ja/algebra/def-integral-domain.html">整域</a></li>
 </ol>
 </section>
 <section id="次数の性質" class="level3">
 <h3 class="anchored" data-anchor-id="次数の性質">次数の性質</h3>
-<p>非零多項式 <span class="math inline">\(f, g \in R[x]\)</span> に対して： - <span class="math inline">\(\deg(f + g) \leq \max(\deg(f), \deg(g))\)</span> - <span class="math inline">\(R\)</span> が整域の場合：<span class="math inline">\(\deg(fg) = \deg(f) + \deg(g)\)</span></p>
+<p>非零多項式 <span class="math inline">\(f, g \in R[x]\)</span> に対して： - <span class="math inline">\(\deg(f + g) \leq \max(\deg(f), \deg(g))\)</span> - <span class="math inline">\(R\)</span> が<a href="../../../content/ja/algebra/def-integral-domain.html">整域</a>の場合：<span class="math inline">\(\deg(fg) = \deg(f) + \deg(g)\)</span></p>
 </section>
 <section id="除法アルゴリズム" class="level3">
 <h3 class="anchored" data-anchor-id="除法アルゴリズム">除法アルゴリズム</h3>
@@ -338,7 +338,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="重要な結果">重要な結果</h2>
 <section id="一意分解性" class="level3">
 <h3 class="anchored" data-anchor-id="一意分解性">一意分解性</h3>
-<p><span class="math inline">\(R\)</span> が一意分解整域（UFD）なら、<span class="math inline">\(R[x]\)</span> も UFD である。特に： - <span class="math inline">\(F\)</span> が体なら、<span class="math inline">\(F[x]\)</span> は UFD - <span class="math inline">\(F[x]\)</span> 内のすべての非零多項式は既約多項式に一意的に分解される</p>
+<p><span class="math inline">\(R\)</span> が一意分解<a href="../../../content/ja/algebra/def-integral-domain.html">整域</a>（UFD）なら、<span class="math inline">\(R[x]\)</span> も UFD である。特に： - <span class="math inline">\(F\)</span> が体なら、<span class="math inline">\(F[x]\)</span> は UFD - <span class="math inline">\(F[x]\)</span> 内のすべての非零多項式は既約多項式に一意的に分解される</p>
 </section>
 <section id="根の定理" class="level3">
 <h3 class="anchored" data-anchor-id="根の定理">根の定理</h3>
@@ -348,7 +348,7 @@ window.Quarto = {
 <section id="例" class="level2">
 <h2 class="anchored" data-anchor-id="例">例</h2>
 <ul>
-<li><span class="math inline">\(\mathbb{Z}[x]\)</span> - 整数係数の多項式</li>
+<li><span class="math inline">\(\mathbb{Z}[x]\)</span> - 整数係数の多項式（<span class="math inline">\(\mathbb{Q}[x]\)</span> の<a href="../../../content/ja/algebra/def-subring.html">部分環</a>をなす）</li>
 <li><span class="math inline">\(\mathbb{R}[x]\)</span> - 実数係数の多項式</li>
 <li><span class="math inline">\(\mathbb{C}[x, y]\)</span> - 複素数上の2変数多項式</li>
 <li><span class="math inline">\(\mathbb{Z}_p[x]\)</span> - <span class="math inline">\(p\)</span> 個の元を持つ有限体上の多項式</li>
@@ -371,26 +371,36 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-ring["Definition: Ring"]:::definition
-    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
+    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
     def-binary-operation["Definition: Binary Operation"]:::definition
     def-field["Definition: Field"]:::definition
-    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    def-subring["Definition: Subring"]:::definition
+    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
+    def-integral-domain["Definition: Integral Domain"]:::definition
+    def-ring["Definition: Ring"]:::definition
     thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
-    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-eigenvalue-eigenvector --&gt; def-polynomial-ring
-    def-polynomial-ring --&gt; def-field
-    thm-intermediate-value --&gt; def-polynomial-ring
     def-polynomial-ring --&gt; def-binary-operation
-    def-polynomial-ring --&gt; def-ring
+    def-polynomial-ring --&gt; def-integral-domain
     ex-polynomial-continuity --&gt; def-polynomial-ring
+    thm-intermediate-value --&gt; def-polynomial-ring
+    def-polynomial-ring --&gt; def-field
+    def-integral-domain --&gt; def-polynomial-ring
+    def-polynomial-ring --&gt; def-ring
+    ex-quotient-integers-mod-n --&gt; def-polynomial-ring
+    def-subring --&gt; def-polynomial-ring
     class def-polynomial-ring current
-    click def-ring "def-ring.html" "Definition: Ringへ"
-    click ex-polynomial-continuity "ex-polynomial-continuity.html" "Example: Polynomial Continuityへ"
+    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Definition: Eigenvalue and Eigenvectorへ"
     click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
     click def-field "def-field.html" "Definition: Fieldへ"
-    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Definition: Eigenvalue and Eigenvectorへ"
+    click def-subring "def-subring.html" "Definition: Subringへ"
+    click ex-polynomial-continuity "ex-polynomial-continuity.html" "Example: Polynomial Continuityへ"
+    click def-integral-domain "def-integral-domain.html" "Definition: Integral Domainへ"
+    click def-ring "def-ring.html" "Definition: Ringへ"
     click thm-intermediate-value "thm-intermediate-value.html" "Theorem: Intermediate Value Theoremへ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -401,7 +411,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-polynomial-ring-1753450985" class="graph-visualization-container">
+<div id="graph-viz-def-polynomial-ring-1753585839" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -581,12 +591,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-polynomial-ring-1753450985', {
+    createForceGraph(data, 'graph-viz-def-polynomial-ring-1753585839', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-polynomial-ring-1753450985').innerHTML =
+    document.getElementById('graph-viz-def-polynomial-ring-1753585839').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

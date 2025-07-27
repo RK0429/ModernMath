@@ -294,7 +294,7 @@ window.Quarto = {
 <p><strong>級数</strong>とは、数列の項の和である。より正確には、数列 <span class="math inline">\((a_n)_{n=1}^{\infty}\)</span> が与えられたとき、それに対応する級数は形式的な表現 <span class="math inline">\(\sum_{n=1}^{\infty} a_n\)</span> である。</p>
 <section id="形式的定義" class="level2">
 <h2 class="anchored" data-anchor-id="形式的定義">形式的定義</h2>
-<p>ノルム空間における数列 <span class="math inline">\((a_n)_{n=1}^{\infty}\)</span> が与えられたとき、<strong>級数</strong> <span class="math inline">\(\sum_{n=1}^{\infty} a_n\)</span> は部分和の数列によって定義される：</p>
+<p><a href="../../../content/ja/analysis/def-normed-vector-space.html">ノルム空間</a>における数列 <span class="math inline">\((a_n)_{n=1}^{\infty}\)</span> が与えられたとき、<strong>級数</strong> <span class="math inline">\(\sum_{n=1}^{\infty} a_n\)</span> は部分和の数列によって定義される：</p>
 <p><span class="math display">\[S_N = \sum_{n=1}^{N} a_n = a_1 + a_2 + \cdots + a_N\]</span></p>
 <p>級数は、部分和の数列 <span class="math inline">\((S_N)\)</span> が <span class="math inline">\(S\)</span> に収束するとき、和 <span class="math inline">\(S\)</span> に<strong>収束する</strong>という： <span class="math display">\[\sum_{n=1}^{\infty} a_n = S \iff \lim_{N \to \infty} S_N = S\]</span></p>
 <p>部分和の数列が発散する場合、級数は<strong>発散する</strong>という。</p>
@@ -382,12 +382,12 @@ window.Quarto = {
     def-limit["Definition: Limit of a Sequence"]:::definition
     def-sequence["Definition: Sequence"]:::definition
     thm-taylor-series["Theorem: Taylor Series"]:::theorem
-    def-series["Definition: Series"]:::definition
     def-convergence["Definition: Convergence"]:::definition
-    thm-taylor-series --&gt; def-series
-    def-series --&gt; def-sequence
+    def-series["Definition: Series"]:::definition
     def-series --&gt; def-limit
+    thm-taylor-series --&gt; def-series
     def-series --&gt; def-convergence
+    def-series --&gt; def-sequence
     class def-series current
     click def-limit "def-limit.html" "Definition: Limit of a Sequenceへ"
     click def-sequence "def-sequence.html" "Definition: Sequenceへ"
@@ -403,7 +403,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-series-1753451009" class="graph-visualization-container">
+<div id="graph-viz-def-series-1753585871" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -583,12 +583,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-series-1753451009', {
+    createForceGraph(data, 'graph-viz-def-series-1753585871', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-series-1753451009').innerHTML =
+    document.getElementById('graph-viz-def-series-1753585871').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

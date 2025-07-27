@@ -312,9 +312,9 @@ window.Quarto = {
 <li><p><strong>サイズ</strong>：Set は<strong>大きな圏</strong>です - その対象の集まりは集合ではなく真クラスを形成します</p></li>
 <li><p><strong>特殊な射</strong>：</p>
 <ul>
-<li>Set における単射は単射関数と正確に一致します</li>
-<li>Set における全射は全射関数と正確に一致します</li>
-<li>Set における同型射は全単射関数と正確に一致します</li>
+<li>Set における<a href="../../../content/ja/category-theory/def-monomorphism.html">単射</a>は単射関数と正確に一致します</li>
+<li>Set における<a href="../../../content/ja/category-theory/def-epimorphism.html">全射</a>は全射関数と正確に一致します</li>
+<li>Set における<a href="../../../content/ja/category-theory/def-isomorphism.html">同型射</a>は全単射関数と正確に一致します</li>
 </ul></li>
 <li><p><strong>始対象と終対象</strong>：</p>
 <ul>
@@ -354,10 +354,10 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-set-category["Example: The Category of Sets"]:::example
     def-set["Definition: Set"]:::definition
     def-category["Definition: Category"]:::definition
     def-morphism["Definition: Morphism"]:::definition
+    ex-set-category["Example: The Category of Sets"]:::example
     ex-set-category --&gt; def-set
     ex-set-category --&gt; def-category
     ex-set-category --&gt; def-morphism
@@ -375,7 +375,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-set-category-1753451091" class="graph-visualization-container">
+<div id="graph-viz-ex-set-category-1753585975" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -555,12 +555,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-set-category-1753451091', {
+    createForceGraph(data, 'graph-viz-ex-set-category-1753585975', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-set-category-1753451091').innerHTML =
+    document.getElementById('graph-viz-ex-set-category-1753585975').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

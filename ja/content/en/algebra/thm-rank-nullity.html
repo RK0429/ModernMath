@@ -307,9 +307,9 @@ window.Quarto = {
 <section id="consequences" class="level2">
 <h2 class="anchored" data-anchor-id="consequences">Consequences</h2>
 <ul>
-<li><strong>Injectivity criterion</strong>: <span class="math inline">\(T\)</span> is injective if and only if <span class="math inline">\(\dim(\ker(T)) = 0\)</span></li>
+<li><strong>Injectivity criterion</strong>: <span class="math inline">\(T\)</span> is injective if and only if <span class="math inline">\(\dim(\ker(T)) = 0\)</span> (i.e., <span class="math inline">\(T\)</span> is a <a href="../../../content/en/category-theory/def-monomorphism.html">monomorphism</a>)</li>
 <li><strong>Surjectivity criterion</strong>: <span class="math inline">\(T\)</span> is surjective if and only if <span class="math inline">\(\dim(\text{im}(T)) = \dim(W)\)</span></li>
-<li><strong>Isomorphism criterion</strong>: For <span class="math inline">\(\dim(V) = \dim(W)\)</span>, <span class="math inline">\(T\)</span> is an isomorphism if and only if <span class="math inline">\(T\)</span> is injective (or surjective)</li>
+<li><strong>Isomorphism criterion</strong>: For <span class="math inline">\(\dim(V) = \dim(W)\)</span>, <span class="math inline">\(T\)</span> is an <a href="../../../content/en/algebra/def-isomorphism.html">isomorphism</a> if and only if <span class="math inline">\(T\)</span> is injective (or surjective)</li>
 </ul>
 <p>This theorem is fundamental to understanding the structure of linear transformations and solving systems of linear equations.</p>
 </section>
@@ -327,18 +327,21 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-vector-space["Definition: Vector Space"]:::definition
-    def-kernel["Definition: Kernel"]:::definition
     thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
+    def-isomorphism["Definition: Group Isomorphism"]:::definition
     def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
     def-image["Definition: Image"]:::definition
-    thm-rank-nullity --&gt; def-vector-space
     thm-rank-nullity --&gt; def-image
-    thm-rank-nullity --&gt; def-linear-transformation
+    thm-rank-nullity --&gt; def-vector-space
     thm-rank-nullity --&gt; def-kernel
+    thm-rank-nullity --&gt; def-linear-transformation
+    thm-rank-nullity --&gt; def-isomorphism
     class thm-rank-nullity current
     click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
-    click def-kernel "def-kernel.html" "Go to Kernel definition"
+    click def-isomorphism "def-isomorphism.html" "Go to Group Isomorphism definition"
     click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation definition"
+    click def-kernel "def-kernel.html" "Go to Kernel definition"
     click def-image "def-image.html" "Go to Image definition"
 </pre>
 </div>
@@ -350,7 +353,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-rank-nullity-1753451148" class="graph-visualization-container">
+<div id="graph-viz-thm-rank-nullity-1753586046" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -530,12 +533,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-rank-nullity-1753451148', {
+    createForceGraph(data, 'graph-viz-thm-rank-nullity-1753586046', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-rank-nullity-1753451148').innerHTML =
+    document.getElementById('graph-viz-thm-rank-nullity-1753586046').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -299,12 +299,12 @@ window.Quarto = {
 <ul>
 <li><strong>単射</strong>: はい、<span class="math inline">\(e^x = e^y\)</span> ならば <span class="math inline">\(x = y\)</span> となるため</li>
 <li><strong>全射</strong>: はい、任意の <span class="math inline">\(a \in \mathbb{R}^+\)</span> に対して、<span class="math inline">\(\exp(\ln a) = a\)</span> となるため</li>
-<li><strong>全単射</strong>: したがって、<span class="math inline">\(\exp\)</span> は同型写像である</li>
+<li><strong>全単射</strong>: したがって、<span class="math inline">\(\exp\)</span> は<a href="../../../content/ja/algebra/def-isomorphism.html">同型写像</a>である</li>
 </ul>
 </section>
 <section id="逆写像" class="level2">
 <h2 class="anchored" data-anchor-id="逆写像">逆写像</h2>
-<p>自然対数 <span class="math inline">\(\ln: (\mathbb{R}^+, \cdot) \to (\mathbb{R}, +)\)</span> は逆同型写像である： <span class="math display">\[\ln(xy) = \ln(x) + \ln(y)\]</span></p>
+<p>自然対数 <span class="math inline">\(\ln: (\mathbb{R}^+, \cdot) \to (\mathbb{R}, +)\)</span> は逆<a href="../../../content/ja/algebra/def-isomorphism.html">同型写像</a>である： <span class="math display">\[\ln(xy) = \ln(x) + \ln(y)\]</span></p>
 </section>
 <section id="依存関係グラフ" class="level2">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
@@ -320,12 +320,15 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-group["Definition: Group"]:::definition
+    def-isomorphism["Definition: Group Isomorphism"]:::definition
     def-homomorphism["Definition: Group Homomorphism"]:::definition
     ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
-    ex-exponential-homomorphism --&gt; def-homomorphism
     ex-exponential-homomorphism --&gt; def-group
+    ex-exponential-homomorphism --&gt; def-homomorphism
+    ex-exponential-homomorphism --&gt; def-isomorphism
     class ex-exponential-homomorphism current
     click def-group "def-group.html" "Definition: Groupへ"
+    click def-isomorphism "def-isomorphism.html" "Definition: Group Isomorphismへ"
     click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
 </pre>
 </div>
@@ -337,7 +340,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-exponential-homomorphism-1753450993" class="graph-visualization-container">
+<div id="graph-viz-ex-exponential-homomorphism-1753585849" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -517,12 +520,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-exponential-homomorphism-1753450993', {
+    createForceGraph(data, 'graph-viz-ex-exponential-homomorphism-1753585849', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-exponential-homomorphism-1753450993').innerHTML =
+    document.getElementById('graph-viz-ex-exponential-homomorphism-1753585849').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

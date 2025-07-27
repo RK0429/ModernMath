@@ -307,7 +307,7 @@ window.Quarto = {
 <section id="special-properties" class="level2">
 <h2 class="anchored" data-anchor-id="special-properties">Special Properties</h2>
 <p><span class="math inline">\(\mathbb{Z}\)</span> is actually a <strong>commutative ring with unity</strong>: - <strong>Commutativity</strong>: <span class="math inline">\(a \cdot b = b \cdot a\)</span> for all <span class="math inline">\(a, b \in \mathbb{Z}\)</span> - <strong>Unity</strong>: The multiplicative identity <span class="math inline">\(1\)</span> exists</p>
-<p>Furthermore, <span class="math inline">\(\mathbb{Z}\)</span> is an <strong>integral domain</strong> since it has no zero divisors: if <span class="math inline">\(a \cdot b = 0\)</span>, then either <span class="math inline">\(a = 0\)</span> or <span class="math inline">\(b = 0\)</span>.</p>
+<p>Furthermore, <span class="math inline">\(\mathbb{Z}\)</span> is an <strong><a href="../../../content/en/algebra/def-integral-domain.html">integral domain</a></strong> since it has no <a href="../../../content/en/algebra/def-zero-divisor.html">zero divisors</a>: if <span class="math inline">\(a \cdot b = 0\)</span>, then either <span class="math inline">\(a = 0\)</span> or <span class="math inline">\(b = 0\)</span>.</p>
 </section>
 <section id="ideal-structure" class="level2">
 <h2 class="anchored" data-anchor-id="ideal-structure">Ideal Structure</h2>
@@ -337,24 +337,28 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-ring["Definition: Ring"]:::definition
     def-binary-operation["Definition: Binary Operation"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
+    def-integral-domain["Definition: Integral Domain"]:::definition
+    def-ring["Definition: Ring"]:::definition
     def-abelian-group["Definition: Abelian Group"]:::definition
     ex-integers-ring["Example: Integers Form a Ring"]:::example
-    def-ideal["Definition: Ideal"]:::definition
     def-group["Definition: Group"]:::definition
     ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
     ex-integers-ring --&gt; def-ring
     ex-integers-ring --&gt; def-group
-    ex-integers-ring --&gt; def-ideal
-    ex-integers-ring --&gt; def-abelian-group
-    ex-integers-ring --&gt; def-binary-operation
+    def-integral-domain --&gt; ex-integers-ring
+    ex-integers-ring --&gt; def-integral-domain
     ex-integers-ring --&gt; ex-principal-ideal
+    ex-integers-ring --&gt; def-binary-operation
+    ex-integers-ring --&gt; def-abelian-group
+    ex-integers-ring --&gt; def-ideal
     class ex-integers-ring current
-    click def-ring "def-ring.html" "Go to Ring definition"
     click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
-    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
     click def-ideal "def-ideal.html" "Go to Ideal definition"
+    click def-integral-domain "def-integral-domain.html" "Go to Integral Domain definition"
+    click def-ring "def-ring.html" "Go to Ring definition"
+    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
     click def-group "def-group.html" "Go to Group definition"
     click ex-principal-ideal "ex-principal-ideal.html" "Go to Principal Ideals in Integers example"
 </pre>
@@ -367,7 +371,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-ex-integers-ring-1753451150" class="graph-visualization-container">
+<div id="graph-viz-ex-integers-ring-1753586050" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -547,12 +551,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-integers-ring-1753451150', {
+    createForceGraph(data, 'graph-viz-ex-integers-ring-1753586050', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-integers-ring-1753451150').innerHTML =
+    document.getElementById('graph-viz-ex-integers-ring-1753586050').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -308,7 +308,7 @@ window.Quarto = {
 </section>
 <section id="開球" class="level2">
 <h2 class="anchored" data-anchor-id="開球">開球</h2>
-<p>この距離空間において、<span class="math inline">\(a\)</span> を中心とする半径 <span class="math inline">\(r &gt; 0\)</span> の開球 <span class="math inline">\(B(a, r)\)</span> は：</p>
+<p>この距離空間において、<span class="math inline">\(a\)</span> を中心とする半径 <span class="math inline">\(r &gt; 0\)</span> の<a href="../../../content/ja/analysis/def-open-ball.html">開球</a> <span class="math inline">\(B(a, r)\)</span> は：</p>
 <p><span class="math display">\[B(a, r) = \{x \in \mathbb{R} : |x - a| &lt; r\} = (a - r, a + r)\]</span></p>
 <p>これは単に <span class="math inline">\(a\)</span> を中心とする長さ <span class="math inline">\(2r\)</span> の開区間である。</p>
 </section>
@@ -317,7 +317,7 @@ window.Quarto = {
 <ul>
 <li><span class="math inline">\(d\)</span> により誘導される距離位相は <span class="math inline">\(\mathbb{R}\)</span> 上の標準位相である</li>
 <li><span class="math inline">\((\mathbb{R}, d)\)</span> は<strong>完備距離空間</strong>である：すべての<a href="../../../content/ja/analysis/def-cauchy-sequence.html">コーシー列</a>が収束する</li>
-<li>この空間は<strong>可分</strong>である：有理数 <span class="math inline">\(\mathbb{Q}\)</span> が可算稠密部分集合を成す</li>
+<li>この空間は<strong>可分</strong>である：有理数 <span class="math inline">\(\mathbb{Q}\)</span> が<a href="../../../content/ja/logic-set-theory/def-cardinality.html">可算</a>稠密部分集合を成す</li>
 <li><strong>連結</strong>であるが<strong>コンパクト</strong>ではない</li>
 </ul>
 </section>
@@ -341,10 +341,13 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-open-ball["Definition: Open Ball"]:::definition
     def-metric-space["Definition: Metric Space"]:::definition
     ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
     ex-real-line-metric --&gt; def-metric-space
+    ex-real-line-metric --&gt; def-open-ball
     class ex-real-line-metric current
+    click def-open-ball "def-open-ball.html" "Definition: Open Ballへ"
     click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
 </pre>
 </div>
@@ -356,7 +359,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-real-line-metric-1753451009" class="graph-visualization-container">
+<div id="graph-viz-ex-real-line-metric-1753585872" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -536,12 +539,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-real-line-metric-1753451009', {
+    createForceGraph(data, 'graph-viz-ex-real-line-metric-1753585872', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-real-line-metric-1753451009').innerHTML =
+    document.getElementById('graph-viz-ex-real-line-metric-1753585872').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

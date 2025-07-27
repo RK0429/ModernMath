@@ -253,6 +253,7 @@ window.Quarto = {
   <li><a href="#statement" id="toc-statement" class="nav-link" data-scroll-target="#statement">Statement</a></li>
   <li><a href="#proof" id="toc-proof" class="nav-link" data-scroll-target="#proof">Proof</a></li>
   <li><a href="#classical-form" id="toc-classical-form" class="nav-link" data-scroll-target="#classical-form">Classical Form</a></li>
+  <li><a href="#generalization" id="toc-generalization" class="nav-link" data-scroll-target="#generalization">Generalization</a></li>
   <li><a href="#mermaid-diagram" id="toc-mermaid-diagram" class="nav-link" data-scroll-target="#mermaid-diagram">Mermaid Diagram</a></li>
   <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
   <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
@@ -308,6 +309,10 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="classical-form">Classical Form</h2>
 <p>In <span class="math inline">\(\mathbb{E}^2\)</span>, for a right triangle with legs of length <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and hypotenuse of length <span class="math inline">\(c\)</span>: <span class="math display">\[a^2 + b^2 = c^2\]</span></p>
 </section>
+<section id="generalization" class="level2">
+<h2 class="anchored" data-anchor-id="generalization">Generalization</h2>
+<p>This theorem extends to any <a href="../../../content/en/analysis/def-hilbert-space.html">Hilbert space</a>: vectors <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are orthogonal if and only if <span class="math inline">\(\|x + y\|^2 = \|x\|^2 + \|y\|^2\)</span>.</p>
+</section>
 <section id="mermaid-diagram" class="level2">
 <h2 class="anchored" data-anchor-id="mermaid-diagram">Mermaid Diagram</h2>
 <pre class="mermaid"><code>graph TD
@@ -337,8 +342,8 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-euclidean-space["Definition: Euclidean Space"]:::definition
     thm-pythagorean["Theorem: Pythagorean Theorem"]:::theorem
+    def-euclidean-space["Definition: Euclidean Space"]:::definition
     thm-pythagorean --&gt; def-euclidean-space
     class thm-pythagorean current
     click def-euclidean-space "def-euclidean-space.html" "Go to Euclidean Space definition"
@@ -352,7 +357,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-pythagorean-1753450954" class="graph-visualization-container">
+<div id="graph-viz-thm-pythagorean-1753585799" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -532,12 +537,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-pythagorean-1753450954', {
+    createForceGraph(data, 'graph-viz-thm-pythagorean-1753585799', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-pythagorean-1753450954').innerHTML =
+    document.getElementById('graph-viz-thm-pythagorean-1753585799').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

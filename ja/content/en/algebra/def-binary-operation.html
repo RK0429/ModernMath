@@ -294,7 +294,7 @@ window.Quarto = {
 <p>A binary operation <span class="math inline">\(\star\)</span> on a set <span class="math inline">\(S\)</span> may satisfy various properties:</p>
 <ol type="1">
 <li><p><strong>Closure</strong>: By definition, <span class="math inline">\(a \star b \in S\)</span> for all <span class="math inline">\(a, b \in S\)</span></p></li>
-<li><p><strong>Associativity</strong>: <span class="math inline">\((a \star b) \star c = a \star (b \star c)\)</span> for all <span class="math inline">\(a, b, c \in S\)</span></p></li>
+<li><p><strong><a href="../../../content/en/algebra/def-associativity.html">Associativity</a></strong>: <span class="math inline">\((a \star b) \star c = a \star (b \star c)\)</span> for all <span class="math inline">\(a, b, c \in S\)</span> (see <a href="../../../content/en/algebra/def-semigroup.html">semigroup</a>)</p></li>
 <li><p><strong>Commutativity</strong>: <span class="math inline">\(a \star b = b \star a\)</span> for all <span class="math inline">\(a, b \in S\)</span></p></li>
 <li><p><strong>Identity element</strong>: There exists <span class="math inline">\(e \in S\)</span> such that <span class="math inline">\(a \star e = e \star a = a\)</span> for all <span class="math inline">\(a \in S\)</span></p></li>
 <li><p><strong>Inverse elements</strong>: For each <span class="math inline">\(a \in S\)</span>, there exists <span class="math inline">\(b \in S\)</span> such that <span class="math inline">\(a \star b = b \star a = e\)</span> (where <span class="math inline">\(e\)</span> is the identity)</p></li>
@@ -330,59 +330,14 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-module["Definition: Module"]:::definition
-    def-commutativity["Definition: Commutativity"]:::definition
-    def-coset["Definition: Coset"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    def-inverse-element["Definition: Inverse Element"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
-    def-distributivity["Definition: Distributivity"]:::definition
-    def-set["Definition: Set"]:::definition
     def-binary-operation["Definition: Binary Operation"]:::definition
-    def-associativity["Definition: Associativity"]:::definition
-    def-identity-element["Definition: Identity Element"]:::definition
-    ex-integers-addition["Example: Integers under Addition"]:::example
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
     def-function["Definition: Function"]:::definition
-    def-ideal["Definition: Ideal"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
+    def-set["Definition: Set"]:::definition
     def-binary-operation --&gt; def-function
-    def-coset --&gt; def-binary-operation
-    def-group --&gt; def-binary-operation
-    def-module --&gt; def-binary-operation
-    def-vector-space --&gt; def-binary-operation
-    def-associativity --&gt; def-binary-operation
-    def-inverse-element --&gt; def-binary-operation
-    def-identity-element --&gt; def-binary-operation
     def-binary-operation --&gt; def-set
-    ex-integers-addition --&gt; def-binary-operation
-    def-polynomial-ring --&gt; def-binary-operation
-    def-distributivity --&gt; def-binary-operation
-    def-homomorphism --&gt; def-binary-operation
-    def-ideal --&gt; def-binary-operation
-    def-ring --&gt; def-binary-operation
-    ex-integers-ring --&gt; def-binary-operation
-    def-commutativity --&gt; def-binary-operation
     class def-binary-operation current
-    click def-module "def-module.html" "Go to Module definition"
-    click def-commutativity "def-commutativity.html" "Go to Commutativity definition"
-    click def-coset "def-coset.html" "Go to Coset definition"
-    click def-ring "def-ring.html" "Go to Ring definition"
-    click def-inverse-element "def-inverse-element.html" "Go to Inverse Element definition"
-    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
-    click def-distributivity "def-distributivity.html" "Go to Distributivity definition"
-    click def-set "def-set.html" "Go to Set definition"
-    click def-associativity "def-associativity.html" "Go to Associativity definition"
-    click def-identity-element "def-identity-element.html" "Go to Identity Element definition"
-    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
-    click ex-integers-ring "ex-integers-ring.html" "Go to Integers Form a Ring example"
     click def-function "def-function.html" "Go to Function definition"
-    click def-ideal "def-ideal.html" "Go to Ideal definition"
-    click def-group "def-group.html" "Go to Group definition"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
-    click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring definition"
+    click def-set "def-set.html" "Go to Set definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -393,7 +348,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-binary-operation-1753451140" class="graph-visualization-container">
+<div id="graph-viz-def-binary-operation-1753586035" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -573,12 +528,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-binary-operation-1753451140', {
+    createForceGraph(data, 'graph-viz-def-binary-operation-1753586035', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-binary-operation-1753451140').innerHTML =
+    document.getElementById('graph-viz-def-binary-operation-1753586035').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

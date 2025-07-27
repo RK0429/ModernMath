@@ -5,28 +5,35 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-subring["Definition: Subring"]:::definition
+    def-order["Definition: Order"]:::definition
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
     def-coset["Definition: Coset"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     def-set["Definition: Set"]:::definition
     ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    def-group["Definition: Group"]:::definition
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-center-of-group["Definition: Center of a Group"]:::definition
     thm-sylow["Sylow Theorems"]:::theorem
-    def-subgroup --> def-cyclic-group
-    def-normal-subgroup --> def-subgroup
-    def-subgroup --> thm-lagrange
-    thm-lagrange --> def-subgroup
-    def-subgroup --> def-normal-subgroup
-    def-quotient-group --> def-subgroup
-    def-subgroup --> def-set
+    def-group["Definition: Group"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-subgroup --> def-group
     def-cyclic-group --> def-subgroup
-    thm-sylow --> def-subgroup
-    def-coset --> def-subgroup
+    def-center-of-group --> def-subgroup
+    def-subring --> def-subgroup
     def-subgroup --> def-quotient-group
+    def-coset --> def-subgroup
+    def-normal-subgroup --> def-subgroup
+    def-subgroup --> def-cyclic-group
+    def-subgroup --> thm-lagrange
+    def-quotient-group --> def-subgroup
+    thm-lagrange --> def-subgroup
+    def-subgroup --> def-order
+    def-order --> def-subgroup
     def-group --> def-subgroup
     ex-even-integers-subgroup --> def-subgroup
-    def-subgroup --> def-group
+    def-subgroup --> def-set
+    def-subgroup --> def-normal-subgroup
+    thm-sylow --> def-subgroup
     class def-subgroup current

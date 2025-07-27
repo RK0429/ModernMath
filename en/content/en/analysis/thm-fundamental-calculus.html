@@ -384,7 +384,7 @@ window.Quarto = {
 <ul>
 <li><strong>Kinematics</strong>: Position is the integral of velocity</li>
 <li><strong>Work</strong>: Work is the integral of force over distance</li>
-<li><strong>Probability</strong>: Cumulative distribution functions are integrals of density functions</li>
+<li><strong>Probability</strong>: Cumulative <a href="../../../content/en/probability-statistics/def-probability-distribution.html">distribution</a> functions are integrals of density functions</li>
 </ul>
 </section>
 </section>
@@ -431,16 +431,16 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-derivative["Definition: Derivative"]:::definition
-    def-continuity["Definition: Continuity"]:::definition
-    def-integral["Definition: Integral"]:::definition
     thm-fundamental-calculus["Theorem: Fundamental Theorem of Calculus"]:::theorem
-    thm-fundamental-calculus --&gt; def-integral
+    def-integral["Definition: Integral"]:::definition
+    def-continuity["Definition: Continuity"]:::definition
     thm-fundamental-calculus --&gt; def-derivative
+    thm-fundamental-calculus --&gt; def-integral
     thm-fundamental-calculus --&gt; def-continuity
     class thm-fundamental-calculus current
     click def-derivative "def-derivative.html" "Go to Derivative definition"
-    click def-continuity "def-continuity.html" "Go to Continuity definition"
     click def-integral "def-integral.html" "Go to Integral definition"
+    click def-continuity "def-continuity.html" "Go to Continuity definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -451,7 +451,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-fundamental-calculus-1753450939" class="graph-visualization-container">
+<div id="graph-viz-thm-fundamental-calculus-1753585782" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -631,12 +631,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-fundamental-calculus-1753450939', {
+    createForceGraph(data, 'graph-viz-thm-fundamental-calculus-1753585782', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-fundamental-calculus-1753450939').innerHTML =
+    document.getElementById('graph-viz-thm-fundamental-calculus-1753585782').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

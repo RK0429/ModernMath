@@ -299,9 +299,9 @@ window.Quarto = {
 <section id="properties" class="level2">
 <h2 class="anchored" data-anchor-id="properties">Properties</h2>
 <ul>
-<li>Every field is an integral domain</li>
-<li>Every finite integral domain is a field</li>
-<li>Fields have no zero divisors: if <span class="math inline">\(ab = 0\)</span>, then <span class="math inline">\(a = 0\)</span> or <span class="math inline">\(b = 0\)</span></li>
+<li>Every field is an <a href="../../../content/en/algebra/def-integral-domain.html">integral domain</a></li>
+<li>Every finite <a href="../../../content/en/algebra/def-integral-domain.html">integral domain</a> is a field</li>
+<li>Fields have no <a href="../../../content/en/algebra/def-zero-divisor.html">zero divisors</a>: if <span class="math inline">\(ab = 0\)</span>, then <span class="math inline">\(a = 0\)</span> or <span class="math inline">\(b = 0\)</span></li>
 <li>Every non-zero element <span class="math inline">\(a\)</span> has a unique inverse <span class="math inline">\(a^{-1}\)</span> such that <span class="math inline">\(a \cdot a^{-1} = 1\)</span></li>
 <li>Fields have only trivial <a href="../../../content/en/algebra/def-ideal.html">Ideals</a>: the only ideals are <span class="math inline">\(\{0\}\)</span> and <span class="math inline">\(F\)</span> itself</li>
 </ul>
@@ -313,14 +313,14 @@ window.Quarto = {
 <li><span class="math inline">\(\mathbb{R}\)</span> - real numbers</li>
 <li><span class="math inline">\(\mathbb{C}\)</span> - complex numbers</li>
 <li><span class="math inline">\(\mathbb{F}_p = \mathbb{Z}/p\mathbb{Z}\)</span> - integers modulo prime <span class="math inline">\(p\)</span> (quotient by the principal ideal <span class="math inline">\((p)\)</span>)</li>
-<li><span class="math inline">\(\mathbb{Q}(\sqrt{2}) = \{a + b\sqrt{2} : a, b \in \mathbb{Q}\}\)</span> - field extension</li>
+<li><span class="math inline">\(\mathbb{Q}(\sqrt{2}) = \{a + b\sqrt{2} : a, b \in \mathbb{Q}\}\)</span> - field extension (contains <span class="math inline">\(\mathbb{Q}\)</span> as a <a href="../../../content/en/algebra/def-subring.html">subring</a>)</li>
 </ul>
 </section>
 <section id="non-examples" class="level2">
 <h2 class="anchored" data-anchor-id="non-examples">Non-Examples</h2>
 <ul>
 <li><span class="math inline">\(\mathbb{Z}\)</span> is not a field (no multiplicative inverse for 2)</li>
-<li><span class="math inline">\(\mathbb{Z}/6\mathbb{Z}\)</span> is not a field (has zero divisors)</li>
+<li><span class="math inline">\(\mathbb{Z}/6\mathbb{Z}\)</span> is not a field (has <a href="../../../content/en/algebra/def-zero-divisor.html">zero divisors</a>)</li>
 </ul>
 </section>
 <section id="dependency-graph" class="level2">
@@ -336,38 +336,51 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-determinant["Definition: Determinant"]:::definition
-    def-matrix["Definition: Matrix"]:::definition
+    ex-finite-field["Example: Finite Field"]:::example
+    def-subring["Definition: Subring"]:::definition
+    def-field["Definition: Field"]:::definition
+    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
     def-vector-space["Definition: Vector Space"]:::definition
+    def-determinant["Definition: Determinant"]:::definition
+    def-integral-domain["Definition: Integral Domain"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
+    def-maximal-ideal["Definition: Maximal Ideal"]:::definition
+    def-zero-divisor["Definition: Zero Divisor"]:::definition
     def-ring["Definition: Ring"]:::definition
     def-abelian-group["Definition: Abelian Group"]:::definition
-    def-field["Definition: Field"]:::definition
-    ex-finite-field["Example: Finite Field"]:::example
-    def-ideal["Definition: Ideal"]:::definition
-    def-group["Definition: Group"]:::definition
+    def-matrix["Definition: Matrix"]:::definition
     thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
-    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
-    def-field --&gt; def-group
-    thm-field-characteristic --&gt; def-field
+    def-group["Definition: Group"]:::definition
+    def-field --&gt; def-integral-domain
+    def-matrix --&gt; def-field
     def-field --&gt; def-abelian-group
-    def-vector-space --&gt; def-field
-    def-polynomial-ring --&gt; def-field
+    def-integral-domain --&gt; def-field
+    thm-field-characteristic --&gt; def-field
+    def-field --&gt; def-group
+    def-zero-divisor --&gt; def-field
     ex-finite-field --&gt; def-field
     def-determinant --&gt; def-field
     def-field --&gt; def-ideal
+    def-field --&gt; def-subring
+    def-maximal-ideal --&gt; def-field
+    def-polynomial-ring --&gt; def-field
     def-field --&gt; def-ring
-    def-matrix --&gt; def-field
+    def-vector-space --&gt; def-field
     class def-field current
-    click def-determinant "def-determinant.html" "Go to Determinant definition"
-    click def-matrix "def-matrix.html" "Go to Matrix definition"
+    click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
+    click def-subring "def-subring.html" "Go to Subring definition"
+    click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring definition"
     click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
+    click def-determinant "def-determinant.html" "Go to Determinant definition"
+    click def-integral-domain "def-integral-domain.html" "Go to Integral Domain definition"
+    click def-ideal "def-ideal.html" "Go to Ideal definition"
+    click def-maximal-ideal "def-maximal-ideal.html" "Go to Maximal Ideal definition"
+    click def-zero-divisor "def-zero-divisor.html" "Go to Zero Divisor definition"
     click def-ring "def-ring.html" "Go to Ring definition"
     click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
-    click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
-    click def-ideal "def-ideal.html" "Go to Ideal definition"
-    click def-group "def-group.html" "Go to Group definition"
+    click def-matrix "def-matrix.html" "Go to Matrix definition"
     click thm-field-characteristic "thm-field-characteristic.html" "Go to Field Characteristic theorem"
-    click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring definition"
+    click def-group "def-group.html" "Go to Group definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -378,7 +391,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-field-1753451133" class="graph-visualization-container">
+<div id="graph-viz-def-field-1753586026" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -558,12 +571,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-field-1753451133', {
+    createForceGraph(data, 'graph-viz-def-field-1753586026', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-field-1753451133').innerHTML =
+    document.getElementById('graph-viz-def-field-1753586026').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

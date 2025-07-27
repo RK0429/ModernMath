@@ -330,14 +330,15 @@ window.Quarto = {
 <section id="for-undirected-graphs" class="level3">
 <h3 class="anchored" data-anchor-id="for-undirected-graphs">For Undirected Graphs</h3>
 <ul>
-<li>The sum of all vertex degrees equals twice the number of edges: <span class="math inline">\(\sum_{v \in V} \deg(v) = 2|E|\)</span></li>
+<li>The sum of all vertex degrees equals twice the <a href="../../../content/en/logic-set-theory/def-cardinality.html">cardinality</a> of the edge set: <span class="math inline">\(\sum_{v \in V} \deg(v) = 2|E|\)</span></li>
 <li>The number of vertices with odd degree is even</li>
+<li>Graph <a href="../../../content/en/algebra/def-automorphism.html">automorphisms</a> are permutations of vertices that preserve adjacency</li>
 </ul>
 </section>
 <section id="for-directed-graphs" class="level3">
 <h3 class="anchored" data-anchor-id="for-directed-graphs">For Directed Graphs</h3>
 <ul>
-<li>The sum of all in-degrees equals the sum of all out-degrees: <span class="math inline">\(\sum_{v \in V} \deg^-(v) = \sum_{v \in V} \deg^+(v) = |E|\)</span></li>
+<li>The sum of all in-degrees equals the sum of all out-degrees: <span class="math inline">\(\sum_{v \in V} \deg^-(v) = \sum_{v \in V} \deg^+(v) = |E|\)</span> (the <a href="../../../content/en/logic-set-theory/def-cardinality.html">cardinality</a> of the edge set)</li>
 </ul>
 </section>
 </section>
@@ -385,26 +386,26 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-tree["Definition: Tree"]:::definition
-    def-permutation["Definition: Permutation"]:::definition
-    def-set["Definition: Set"]:::definition
     def-category["Definition: Category"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-graph["Definition: Graph"]:::definition
     def-morphism["Definition: Morphism"]:::definition
     def-functor["Definition: Functor"]:::definition
-    def-graph["Definition: Graph"]:::definition
-    def-permutation --&gt; def-graph
-    def-category --&gt; def-graph
-    def-morphism --&gt; def-graph
+    def-permutation["Definition: Permutation"]:::definition
+    def-tree["Definition: Tree"]:::definition
     def-functor --&gt; def-graph
+    def-permutation --&gt; def-graph
     def-tree --&gt; def-graph
     def-graph --&gt; def-set
+    def-morphism --&gt; def-graph
+    def-category --&gt; def-graph
     class def-graph current
-    click def-tree "def-tree.html" "Go to Tree definition"
-    click def-permutation "def-permutation.html" "Go to Permutation definition"
-    click def-set "def-set.html" "Go to Set definition"
     click def-category "def-category.html" "Go to Category definition"
+    click def-set "def-set.html" "Go to Set definition"
     click def-morphism "def-morphism.html" "Go to Morphism definition"
     click def-functor "def-functor.html" "Go to Functor definition"
+    click def-permutation "def-permutation.html" "Go to Permutation definition"
+    click def-tree "def-tree.html" "Go to Tree definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -415,7 +416,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-graph-1753450946" class="graph-visualization-container">
+<div id="graph-viz-def-graph-1753585791" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -595,12 +596,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-graph-1753450946', {
+    createForceGraph(data, 'graph-viz-def-graph-1753585791', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-graph-1753450946').innerHTML =
+    document.getElementById('graph-viz-def-graph-1753585791').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

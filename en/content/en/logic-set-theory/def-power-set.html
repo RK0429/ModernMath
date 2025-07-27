@@ -296,8 +296,8 @@ window.Quarto = {
 <ol type="1">
 <li><strong>Always contains the empty set</strong>: <span class="math inline">\(\emptyset \in \mathcal{P}(A)\)</span> for any set <span class="math inline">\(A\)</span></li>
 <li><strong>Always contains the original set</strong>: <span class="math inline">\(A \in \mathcal{P}(A)\)</span></li>
-<li><strong>Cardinality</strong>: If <span class="math inline">\(|A| = n\)</span> (finite), then <span class="math inline">\(|\mathcal{P}(A)| = 2^n\)</span></li>
-<li><strong>Ordering</strong>: <span class="math inline">\(\mathcal{P}(A)\)</span> forms a partially ordered set under inclusion (see <a href="../../../content/en/logic-set-theory/def-relation.html">relation</a>)</li>
+<li><strong><a href="../../../content/en/logic-set-theory/def-cardinality.html">Cardinality</a></strong>: If <span class="math inline">\(|A| = n\)</span> (finite), then <span class="math inline">\(|\mathcal{P}(A)| = 2^n\)</span></li>
+<li><strong>Ordering</strong>: <span class="math inline">\(\mathcal{P}(A)\)</span> forms a <a href="../../../content/en/logic-set-theory/def-partial-order.html">partially ordered set</a> under inclusion</li>
 </ol>
 </section>
 <section id="examples" class="level2">
@@ -346,13 +346,21 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-cardinality["Definition: Cardinality"]:::definition
     def-set["Definition: Set"]:::definition
+    def-partial-order["Definition: Partial Order"]:::definition
     thm-cantor["Theorem: Cantor's Theorem"]:::theorem
     def-power-set["Definition: Power Set"]:::definition
-    thm-cantor --&gt; def-power-set
     def-power-set --&gt; def-set
+    def-partial-order --&gt; def-power-set
+    def-power-set --&gt; def-partial-order
+    def-cardinality --&gt; def-power-set
+    thm-cantor --&gt; def-power-set
+    def-power-set --&gt; def-cardinality
     class def-power-set current
+    click def-cardinality "def-cardinality.html" "Go to Cardinality definition"
     click def-set "def-set.html" "Go to Set definition"
+    click def-partial-order "def-partial-order.html" "Go to Partial Order definition"
     click thm-cantor "thm-cantor.html" "Go to Cantor's Theorem theorem"
 </pre>
 </div>
@@ -364,7 +372,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-power-set-1753450956" class="graph-visualization-container">
+<div id="graph-viz-def-power-set-1753585802" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -544,12 +552,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-power-set-1753450956', {
+    createForceGraph(data, 'graph-viz-def-power-set-1753585802', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-power-set-1753450956').innerHTML =
+    document.getElementById('graph-viz-def-power-set-1753585802').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

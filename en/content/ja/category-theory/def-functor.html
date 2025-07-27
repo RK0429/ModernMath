@@ -308,7 +308,7 @@ window.Quarto = {
 <ul>
 <li><strong>共変関手</strong>: 上記で定義したもの</li>
 <li><strong>反変関手</strong>: 射の向きを逆にする</li>
-<li><strong>忠実関手</strong>: 射集合上で単射</li>
+<li><strong>忠実関手</strong>: 射集合上で単射（<a href="../../../content/ja/category-theory/def-monomorphism.html">単射</a>を保存）</li>
 <li><strong>充満関手</strong>: 射集合上で全射</li>
 <li><strong>充満忠実関手</strong>: 忠実かつ充満</li>
 <li><strong>本質的全射</strong>: <span class="math inline">\(\mathcal{D}\)</span> のすべての対象が、ある <span class="math inline">\(A\)</span> に対する <span class="math inline">\(F(A)\)</span> と同型</li>
@@ -319,7 +319,7 @@ window.Quarto = {
 <ul>
 <li><strong>Grp</strong> から <strong>Set</strong> への忘却関手</li>
 <li><strong>Set</strong> から <strong>Grp</strong> への自由群関手</li>
-<li><strong>Top</strong> から <strong>Grp</strong> への基本群関手</li>
+<li><strong>Top</strong> から <strong>Grp</strong> への<a href="../../../content/ja/topology/def-fundamental-group.html">基本群</a>関手</li>
 </ul>
 </section>
 <section id="依存関係グラフ" class="level2">
@@ -335,23 +335,29 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-natural-transformation["Definition: Natural Transformation"]:::definition
+    thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
+    def-epimorphism["Definition: Epimorphism"]:::definition
     def-category["Definition: Category"]:::definition
+    def-graph["Definition: Graph"]:::definition
+    def-natural-transformation["Definition: Natural Transformation"]:::definition
     def-functor["Definition: Functor"]:::definition
     def-function["Definition: Function"]:::definition
-    thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
-    def-graph["Definition: Graph"]:::definition
+    def-monomorphism["Definition: Monomorphism"]:::definition
+    def-epimorphism --&gt; def-functor
+    def-functor --&gt; def-graph
+    def-functor --&gt; def-function
     thm-yoneda --&gt; def-functor
+    def-monomorphism --&gt; def-functor
     def-functor --&gt; def-category
     def-natural-transformation --&gt; def-functor
-    def-functor --&gt; def-function
-    def-functor --&gt; def-graph
     class def-functor current
-    click def-natural-transformation "def-natural-transformation.html" "Definition: Natural Transformationへ"
-    click def-category "def-category.html" "Definition: Categoryへ"
-    click def-function "def-function.html" "Definition: Functionへ"
     click thm-yoneda "thm-yoneda.html" "Theorem: Yoneda Lemmaへ"
+    click def-epimorphism "def-epimorphism.html" "Definition: Epimorphismへ"
+    click def-category "def-category.html" "Definition: Categoryへ"
     click def-graph "def-graph.html" "Definition: Graphへ"
+    click def-natural-transformation "def-natural-transformation.html" "Definition: Natural Transformationへ"
+    click def-function "def-function.html" "Definition: Functionへ"
+    click def-monomorphism "def-monomorphism.html" "Definition: Monomorphismへ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -362,7 +368,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-functor-1753451040" class="graph-visualization-container">
+<div id="graph-viz-def-functor-1753585907" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -542,12 +548,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-functor-1753451040', {
+    createForceGraph(data, 'graph-viz-def-functor-1753585907', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-functor-1753451040').innerHTML =
+    document.getElementById('graph-viz-def-functor-1753585907').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

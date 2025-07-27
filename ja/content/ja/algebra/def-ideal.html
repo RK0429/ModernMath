@@ -316,6 +316,7 @@ window.Quarto = {
 <li>イデアルは有限和と差について閉じている</li>
 <li>イデアルの任意の族の共通部分はイデアル</li>
 <li>単位元を持つ環では、<span class="math inline">\(I = R\)</span> と <span class="math inline">\(1 \in I\)</span> は同値</li>
+<li>すべてのイデアルが<a href="../../../content/ja/algebra/def-subring.html">部分環</a>であるわけではない：イデアル <span class="math inline">\(I\)</span> が部分環であるための必要十分条件は <span class="math inline">\(1 \in I\)</span>（これは <span class="math inline">\(I = R\)</span> を意味する）</li>
 </ul>
 </section>
 <section id="加群との関係" class="level2">
@@ -329,9 +330,9 @@ window.Quarto = {
 <section id="イデアルの種類" class="level2">
 <h2 class="anchored" data-anchor-id="イデアルの種類">イデアルの種類</h2>
 <ul>
-<li><strong>単項イデアル</strong>：単一の元 <span class="math inline">\(a\)</span> によって生成される、<span class="math inline">\((a)\)</span> と表記</li>
-<li><strong>素イデアル</strong>：<span class="math inline">\(P\)</span> で <span class="math inline">\(ab \in P\)</span> ならば <span class="math inline">\(a \in P\)</span> または <span class="math inline">\(b \in P\)</span></li>
-<li><strong>極大イデアル</strong>：他の真のイデアルに含まれない真のイデアル</li>
+<li><strong>単項イデアル</strong>：単一の元 <span class="math inline">\(a\)</span> によって生成される、<span class="math inline">\((a)\)</span> と表記（<a href="../../../content/ja/algebra/ex-principal-ideal.html">例</a>を参照）</li>
+<li><strong><a href="../../../content/ja/algebra/def-prime-ideal.html">素イデアル</a></strong>：<span class="math inline">\(P\)</span> で <span class="math inline">\(ab \in P\)</span> ならば <span class="math inline">\(a \in P\)</span> または <span class="math inline">\(b \in P\)</span></li>
+<li><strong><a href="../../../content/ja/algebra/def-maximal-ideal.html">極大イデアル</a></strong>：他の真のイデアルに含まれない真のイデアル</li>
 </ul>
 </section>
 <section id="例" class="level2">
@@ -344,13 +345,13 @@ window.Quarto = {
 </section>
 <section id="剰余環と第一同型定理" class="level2">
 <h2 class="anchored" data-anchor-id="剰余環と第一同型定理">剰余環と第一同型定理</h2>
-<p><a href="../../../content/ja/algebra/def-normal-subgroup.html">正規部分群</a>が<a href="../../../content/ja/algebra/def-quotient-group.html">商群</a>を形成させるように、イデアルは剰余環を形成させます。環 <span class="math inline">\(R\)</span> とイデアル <span class="math inline">\(I\)</span> に対して：</p>
+<p><a href="../../../content/ja/algebra/def-normal-subgroup.html">正規部分群</a>が<a href="../../../content/ja/algebra/def-quotient-group.html">商群</a>を形成させるように、イデアルは<a href="../../../content/ja/algebra/def-quotient-ring.html">剰余環</a>を形成させます。環 <span class="math inline">\(R\)</span> とイデアル <span class="math inline">\(I\)</span> に対して：</p>
 <ul>
 <li>剰余環 <span class="math inline">\(R/I\)</span> は剰余類 <span class="math inline">\(\{r + I : r \in R\}\)</span> から構成される</li>
 <li>環演算：<span class="math inline">\((r + I) + (s + I) = (r + s) + I\)</span> および <span class="math inline">\((r + I)(s + I) = rs + I\)</span></li>
-<li>環準同型の核は常にイデアルである</li>
+<li><a href="../../../content/ja/algebra/def-ring-homomorphism.html">環準同型</a>の核は常にイデアルである</li>
 </ul>
-<p><a href="../../../content/ja/algebra/thm-first-isomorphism.html">第一同型定理</a>は環にも拡張されます：<span class="math inline">\(\phi: R \to S\)</span> が環準同型ならば、<span class="math inline">\(R/\ker(\phi) \cong \text{Im}(\phi)\)</span> が環として成り立ちます。この基本的な結果は、環のすべての準同型像が剰余環と同型であることを示しています。</p>
+<p><a href="../../../content/ja/algebra/thm-first-isomorphism.html">第一同型定理</a>は環にも拡張されます：<span class="math inline">\(\phi: R \to S\)</span> が<a href="../../../content/ja/algebra/def-ring-homomorphism.html">環準同型</a>ならば、<span class="math inline">\(R/\ker(\phi) \cong \text{Im}(\phi)\)</span> が環として成り立ちます。この基本的な結果は、環のすべての準同型像が剰余環と<a href="../../../content/ja/algebra/def-isomorphism.html">同型</a>であることを示しています。</p>
 </section>
 <section id="依存関係グラフ" class="level2">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
@@ -365,34 +366,59 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    def-kernel["Definition: Kernel"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    def-subset["Definition: Subset"]:::definition
+    def-ring-homomorphism["Definition: Ring Homomorphism"]:::definition
+    def-subring["Definition: Subring"]:::definition
     def-binary-operation["Definition: Binary Operation"]:::definition
     ex-finite-field["Example: Finite Field"]:::example
     def-field["Definition: Field"]:::definition
     def-ideal["Definition: Ideal"]:::definition
+    def-maximal-ideal["Definition: Maximal Ideal"]:::definition
+    def-zero-divisor["Definition: Zero Divisor"]:::definition
+    def-integral-domain["Definition: Integral Domain"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-isomorphism["Definition: Group Isomorphism"]:::definition
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
     ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-subset["Definition: Subset"]:::definition
+    def-prime-ideal["Definition: Prime Ideal"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
     ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
-    def-ideal --&gt; def-subset
-    def-quotient-group --&gt; def-ideal
-    ex-finite-field --&gt; def-ideal
-    ex-integers-ring --&gt; def-ideal
-    def-field --&gt; def-ideal
     def-ideal --&gt; def-binary-operation
-    ex-principal-ideal --&gt; def-ideal
+    def-zero-divisor --&gt; def-ideal
+    def-integral-domain --&gt; def-ideal
+    def-quotient-ring --&gt; def-ideal
+    ex-finite-field --&gt; def-ideal
+    def-quotient-group --&gt; def-ideal
+    def-ideal --&gt; def-subset
+    def-ideal --&gt; def-subring
     def-kernel --&gt; def-ideal
     def-ideal --&gt; def-ring
+    ex-principal-ideal --&gt; def-ideal
+    def-ideal --&gt; def-ring-homomorphism
+    def-maximal-ideal --&gt; def-ideal
+    def-ideal --&gt; def-isomorphism
+    def-prime-ideal --&gt; def-ideal
+    def-subring --&gt; def-ideal
+    def-field --&gt; def-ideal
+    ex-integers-ring --&gt; def-ideal
     class def-ideal current
-    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
-    click def-kernel "def-kernel.html" "Definition: Kernelへ"
-    click def-ring "def-ring.html" "Definition: Ringへ"
-    click def-subset "def-subset.html" "Definition: Subsetへ"
+    click def-ring-homomorphism "def-ring-homomorphism.html" "Definition: Ring Homomorphismへ"
+    click def-subring "def-subring.html" "Definition: Subringへ"
     click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
     click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
     click def-field "def-field.html" "Definition: Fieldへ"
+    click def-maximal-ideal "def-maximal-ideal.html" "Definition: Maximal Idealへ"
+    click def-zero-divisor "def-zero-divisor.html" "Definition: Zero Divisorへ"
+    click def-integral-domain "def-integral-domain.html" "Definition: Integral Domainへ"
+    click def-ring "def-ring.html" "Definition: Ringへ"
+    click def-isomorphism "def-isomorphism.html" "Definition: Group Isomorphismへ"
+    click def-quotient-ring "def-quotient-ring.html" "Definition: Quotient Ringへ"
+    click def-kernel "def-kernel.html" "Definition: Kernelへ"
     click ex-integers-ring "ex-integers-ring.html" "Example: Integers Form a Ringへ"
+    click def-subset "def-subset.html" "Definition: Subsetへ"
+    click def-prime-ideal "def-prime-ideal.html" "Definition: Prime Idealへ"
+    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
     click ex-principal-ideal "ex-principal-ideal.html" "Example: Principal Ideals in Integersへ"
 </pre>
 </div>
@@ -404,7 +430,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-ideal-1753451064" class="graph-visualization-container">
+<div id="graph-viz-def-ideal-1753585940" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -584,12 +610,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-ideal-1753451064', {
+    createForceGraph(data, 'graph-viz-def-ideal-1753585940', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-ideal-1753451064').innerHTML =
+    document.getElementById('graph-viz-def-ideal-1753585940').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
