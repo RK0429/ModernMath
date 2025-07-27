@@ -244,13 +244,14 @@ The ontology (`ontology/math-ontology.ttl`) defines:
 
 ### Visualization Troubleshooting
 
+- **Language Detection in graph-viz Extension**:
+  - Must explicitly check for both `/en/` and `/ja/` in URL paths (not just default to English)
+  - Falls back to HTML `lang` attribute if URL doesn't indicate language
+  - Loads data from `output/d3-data/{lang}/` based on detected language
+- **D3 Data Generation**: `generate_d3_data.py` must generate separate JSON files in language directories
 - **Path Issues**: graph-viz extension handles relative paths dynamically for GitHub Pages
-- **Mermaid Navigation**: Click directives (`click node-id "path.html" "tooltip"`) are automatically added by `fix_visualization_placement.py`
+- **Mermaid Navigation**: Click directives are automatically added by `fix_visualization_placement.py`
 - **Placement Rules**: Visualizations must appear at end of articles (Dependency Graph, then Interactive)
-- **Key Scripts**:
-  - `fix_visualization_placement.py`: Enforces placement standards, adds click directives, AND wraps diagrams in proper Mermaid code blocks
-  - `insert_diagrams.py`: Auto-placement of visualizations (uses fix_visualization_placement.py internally)
-  - `generate_mermaid.py`: Creates base Mermaid diagram content WITHOUT closing backticks (important: never include ``` in diagram content)
 
 ## Multilingual Support
 
@@ -477,17 +478,7 @@ PyVis graphs include:
 
 ### Build Order Dependencies
 
-1. First: `graph/build_graph.py` (creates knowledge_graph.ttl)
-2. Then: Visualization scripts (read the .ttl file):
-   - `generate_mermaid.py`: Creates base Mermaid diagram files
-   - `generate_pyvis.py`: Creates interactive visualizations
-   - `generate_d3_data.py`: Creates D3.js data files
-3. Then: `insert_diagrams.py` (inserts visualizations with automatic click directives)
-4. Then: `content/generate_index_pages.py` (creates comprehensive index pages with language support)
-5. Then: `content/resolve_cross_references.py` (needs content to exist)
-6. Finally: `quarto render` (uses all generated assets)
-
-**Note**: Click directives for Mermaid diagrams are automatically added when `insert_diagrams.py` runs.
+The visualization pipeline must run in order: build_graph.py → visualization scripts → insert_diagrams.py → quarto render. See "Generate Assets" in Content Creation Workflow for details.
 
 ## Current Status
 
