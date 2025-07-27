@@ -139,6 +139,7 @@ When adding new mathematical content:
 6. **Build and Validate**: Run `validate_metadata.py` after creating new content
 7. **Maintain Bilingual Consistency**: When updating cross-references, always update both English and Japanese versions together
 8. **Generate Assets**: Run the full visualization pipeline in order:
+
    ```bash
    poetry run python scripts/graph/build_graph.py
    poetry run python scripts/visualization/generate_mermaid.py
@@ -207,12 +208,16 @@ Python scripts are organized into functional subdirectories:
    - Reads `.qmd` files using `python-frontmatter`
    - Extracts metadata and cross-references
    - Builds RDF triples using `rdflib`
+   - **Multilingual Support**: Detects language from file paths and stores labels with appropriate language tags (`lang="en"` or `lang="ja"`)
 
 2. **Visualization Generation**:
    - **Mermaid**: Static diagrams for each node's local neighborhood with clickable nodes
+     - `generate_mermaid.py` creates language-specific diagrams (`{node_id}.en.mermaid` and `{node_id}.ja.mermaid`)
+     - Selects labels based on language preference from the RDF graph
    - **PyVis**: Interactive HTML visualizations (force-directed graphs)
    - **D3.js**: JSON data for client-side rendering
    - **Hyperlink Integration**: Click directives are automatically added to Mermaid diagrams during insertion
+   - **Language-Specific Diagrams**: `insert_diagrams.py` uses language-specific diagram files based on content language
 
 3. **Cross-Reference Resolution** (`scripts/site/resolve_cross_references.py`):
    - Handles inter-domain references
@@ -489,11 +494,3 @@ PyVis graphs include:
 - **API**: RESTful endpoints for node queries and dependencies
 - **CI/CD**: Full automation via GitHub Actions with translation validation
 - **Translation Management**: Fully implemented with MD5 hash-based change detection and pre-commit hooks
-
-## Next Phase: Lean Integration
-
-The project is designed for future integration with Lean 4:
-
-- `lean_id` field in YAML for mapping to formal proofs
-- Planned LeanDojo integration for dependency extraction
-- Verification workflow to compare formal/informal graphs

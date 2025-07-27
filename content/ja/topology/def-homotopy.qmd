@@ -94,3 +94,40 @@ $H$の連続性により、$f$から$g$へのこの変形は、飛躍や破れ�
 - **分類**：連続写像と空間のホモトピーによる分類
 - **不動点理論**：ブラウワーの不動点定理はホモトピー法を使用
 - **障害理論**：連続写像がいつ拡張または持ち上げられるかの決定
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-topological-space["定義: 位相空間"]:::definition
+    def-homeomorphism["定義：同相写像"]:::definition
+    def-homotopy["定義: ホモトピー"]:::definition
+    def-fundamental-group["定義: 基本群"]:::definition
+    def-homotopy --> def-topological-space
+    def-homeomorphism --> def-homotopy
+    def-fundamental-group --> def-homotopy
+    def-homotopy --> def-homeomorphism
+    class def-homotopy current
+    click def-topological-space "def-topological-space.html" "位相空間の定義へ"
+    click def-homeomorphism "def-homeomorphism.html" "定義：同相写像へ"
+    click def-fundamental-group "def-fundamental-group.html" "基本群の定義へ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-homotopy" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/def-homotopy.html){target="_blank"}で完全なインタラクティブ版を表示

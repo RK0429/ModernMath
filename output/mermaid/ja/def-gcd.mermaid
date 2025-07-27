@@ -1,0 +1,36 @@
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-congruence["定義: 合同（モジュラー演算）"]:::definition
+    def-divisibility["定義: 整除性"]:::definition
+    thm-fundamental-arithmetic["定理：算術の基本定理"]:::theorem
+    thm-euler["定理：オイラーの定理"]:::theorem
+    thm-fermat-little["定理: フェルマーの小定理"]:::theorem
+    def-set["定義: 集合"]:::definition
+    def-gcd["定義：最大公約数"]:::definition
+    thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
+    ex-principal-ideal["例: 整数における単項イデアル"]:::example
+    def-prime["定義：素数"]:::definition
+    def-lcm["定義：最小公倍数"]:::definition
+    thm-euclidean-algorithm["定理：ユークリッドのアルゴリズム"]:::theorem
+    def-prime --> def-gcd
+    def-gcd --> def-prime
+    def-gcd --> def-divisibility
+    def-gcd --> def-set
+    ex-principal-ideal --> def-gcd
+    def-lcm --> def-gcd
+    thm-chinese-remainder --> def-gcd
+    thm-euclidean-algorithm --> def-gcd
+    def-congruence --> def-gcd
+    def-divisibility --> def-gcd
+    def-gcd --> def-lcm
+    def-gcd --> thm-euler
+    def-gcd --> thm-euclidean-algorithm
+    thm-fundamental-arithmetic --> def-gcd
+    thm-fermat-little --> def-gcd
+    def-gcd --> def-congruence
+    class def-gcd current

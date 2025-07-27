@@ -1,0 +1,19 @@
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-matrix-transformation["例: 行列変換"]:::example
+    def-determinant["定義: 行列式"]:::definition
+    def-matrix["定義：行列"]:::definition
+    def-eigenvalue-eigenvector["定義: 固有値と固有ベクトル"]:::definition
+    def-field["定義: 体"]:::definition
+    def-normal-subgroup["定義: 正規部分群"]:::definition
+    ex-matrix-transformation --> def-matrix
+    def-matrix --> def-field
+    def-normal-subgroup --> def-matrix
+    def-determinant --> def-matrix
+    def-eigenvalue-eigenvector --> def-matrix
+    class def-matrix current

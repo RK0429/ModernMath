@@ -90,21 +90,21 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group["Definition: Group"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     thm-sylow["Sylow Theorems"]:::theorem
     def-order["Definition: Order"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     def-subgroup["Definition: Subgroup"]:::definition
-    thm-sylow --> thm-lagrange
-    def-order --> thm-sylow
-    thm-sylow --> def-group
-    thm-sylow --> def-order
+    def-group["Definition: Group"]:::definition
     thm-sylow --> def-subgroup
+    def-order --> thm-sylow
+    thm-sylow --> thm-lagrange
+    thm-sylow --> def-order
+    thm-sylow --> def-group
     class thm-sylow current
-    click def-group "def-group.html" "Go to Group definition"
-    click def-order "def-order.html" "Go to Order definition"
     click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
+    click def-order "def-order.html" "Go to Order definition"
     click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
+    click def-group "def-group.html" "Go to Group definition"
 ```
 
 ## Interactive Visualization

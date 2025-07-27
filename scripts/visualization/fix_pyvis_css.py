@@ -52,14 +52,15 @@ def fix_css_path(html_file: Path) -> bool:
 
 def main() -> None:
     """Fix all PyVis HTML files in the output directory."""
-    project_root = Path(__file__).parent.parent
+    project_root = Path(__file__).parent.parent.parent
     output_dir = project_root / "output" / "interactive"
 
     if not output_dir.exists():
         logger.error("Output directory not found: %s", output_dir)
         return
 
-    html_files = list(output_dir.glob("*.html"))
+    # Find HTML files in both the root and language subdirectories
+    html_files = list(output_dir.rglob("*.html"))
     logger.info("Found %d HTML files to check", len(html_files))
 
     fixed_count = 0

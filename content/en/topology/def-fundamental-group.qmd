@@ -69,3 +69,48 @@ The fundamental group is a powerful tool for:
 - Classifying covering spaces
 - Understanding the structure of fiber bundles
 - Connecting topology with group theory
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-fundamental-group["Definition: Fundamental Group"]:::definition
+    def-function["Definition: Function"]:::definition
+    def-homeomorphism["Definition: Homeomorphism"]:::definition
+    def-homotopy["Definition: Homotopy"]:::definition
+    def-topological-space["Definition: Topological Space"]:::definition
+    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-fundamental-group --> def-topological-space
+    def-fundamental-group --> def-group
+    def-fundamental-group --> def-homotopy
+    def-fundamental-group --> def-equivalence-relation
+    def-fundamental-group --> def-homeomorphism
+    def-fundamental-group --> def-function
+    class def-fundamental-group current
+    click def-function "def-function.html" "Go to Function definition"
+    click def-homeomorphism "def-homeomorphism.html" "Go to Homeomorphism definition"
+    click def-homotopy "def-homotopy.html" "Go to Homotopy definition"
+    click def-topological-space "def-topological-space.html" "Go to Topological Space definition"
+    click def-equivalence-relation "def-equivalence-relation.html" "Go to Equivalence Relation definition"
+    click def-group "def-group.html" "Go to Group definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-fundamental-group" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/def-fundamental-group.html){target="_blank"}

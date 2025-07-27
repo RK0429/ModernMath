@@ -63,17 +63,21 @@ def main() -> None:
         "Probability and Statistics",
     ]
 
-    for domain in domains:
-        try:
-            logger.info("Creating overview for %s...", domain)
-            net = create_domain_overview(domain, ttl_path)
-            save_as_html(net, f"domain-{domain.lower().replace(' ', '-')}")
-        except (ValueError, IOError) as e:
-            logger.warning("Could not create overview for %s: %s", domain, e)
+    # Generate domain overviews for each language
+    for lang in ["en", "ja"]:
+        lang_dir = project_root / "output" / "interactive" / lang
+
+        for domain in domains:
+            try:
+                logger.info("Creating %s overview for %s...", lang, domain)
+                net = create_domain_overview(domain, ttl_path, lang=lang)
+                save_as_html(net, f"domain-{domain.lower().replace(' ', '-')}", lang_dir)
+            except (ValueError, IOError) as e:
+                logger.warning("Could not create %s overview for %s: %s", lang, domain, e)
 
     # Generate a summary
     output_dir = project_root / "output" / "interactive"
-    html_files = list(output_dir.glob("*.html"))
+    html_files = list(output_dir.rglob("*.html"))
     logger.info("Successfully generated %d interactive visualizations", len(html_files))
 
     # Create an index file listing all visualizations

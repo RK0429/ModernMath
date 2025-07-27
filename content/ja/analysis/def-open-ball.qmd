@@ -5,7 +5,7 @@ requires:
 - def-metric-space
 - def-set
 status: complete
-title: '定義：開球'
+title: 定義：開球
 translation_of: ../../en/analysis/def-open-ball.qmd
 translations:
   en: ../en/analysis/def-open-ball.html
@@ -84,3 +84,63 @@ $B_r(a) \subseteq \overline{B}_r(a)$ であるが、等号は必ずしも成り�
 - @def-convergence
 - @def-cauchy-sequence
 - @def-complete-metric-space
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["定義: 集合"]:::definition
+    ex-real-line-metric["例：標準距離を持つ実数直線"]:::example
+    def-cauchy-sequence["定義: コーシー列"]:::definition
+    def-convergence["定義: 収束"]:::definition
+    def-open-set["定義: 開集合"]:::definition
+    def-complete-metric-space["定義: 完備距離空間"]:::definition
+    def-metric-space["定義：距離空間"]:::definition
+    def-normed-vector-space["定義：ノルム空間"]:::definition
+    def-continuity["定義: 連続性"]:::definition
+    def-open-ball["定義：開球"]:::definition
+    thm-taylor-series["定理: テイラー級数"]:::theorem
+    def-continuity --> def-open-ball
+    def-open-ball --> def-convergence
+    def-open-ball --> def-continuity
+    def-convergence --> def-open-ball
+    thm-taylor-series --> def-open-ball
+    def-open-ball --> def-set
+    def-open-ball --> def-cauchy-sequence
+    ex-real-line-metric --> def-open-ball
+    def-open-ball --> def-complete-metric-space
+    def-metric-space --> def-open-ball
+    def-open-ball --> def-metric-space
+    def-open-ball --> def-open-set
+    def-normed-vector-space --> def-open-ball
+    class def-open-ball current
+    click def-set "def-set.html" "集合の定義へ"
+    click ex-real-line-metric "ex-real-line-metric.html" "例：標準距離を持つ実数直線へ"
+    click def-cauchy-sequence "def-cauchy-sequence.html" "コーシー列の定義へ"
+    click def-convergence "def-convergence.html" "収束の定義へ"
+    click def-open-set "def-open-set.html" "開集合の定義へ"
+    click def-complete-metric-space "def-complete-metric-space.html" "完備距離空間の定義へ"
+    click def-metric-space "def-metric-space.html" "定義：距離空間へ"
+    click def-normed-vector-space "def-normed-vector-space.html" "定義：ノルム空間へ"
+    click def-continuity "def-continuity.html" "連続性の定義へ"
+    click thm-taylor-series "thm-taylor-series.html" "テイラー級数の定理へ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-open-ball" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/def-open-ball.html){target="_blank"}で完全なインタラクティブ版を表示

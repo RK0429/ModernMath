@@ -1,0 +1,19 @@
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-law-of-large-numbers["定理: 大数の法則"]:::theorem
+    def-probability-distribution["定義: 確率分布"]:::definition
+    def-random-variable["定義: 確率変数"]:::definition
+    def-expectation["定義: 期待値"]:::definition
+    def-variance["定義: 分散"]:::definition
+    def-independence["定義: 独立性"]:::definition
+    thm-law-of-large-numbers --> def-variance
+    thm-law-of-large-numbers --> def-expectation
+    thm-law-of-large-numbers --> def-independence
+    thm-law-of-large-numbers --> def-probability-distribution
+    thm-law-of-large-numbers --> def-random-variable
+    class thm-law-of-large-numbers current

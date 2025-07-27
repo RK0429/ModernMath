@@ -6,11 +6,13 @@ This module provides functions to create interactive graph visualizations
 for the Mathematics Knowledge Graph using the PyVis library.
 """
 
+import logging
 from pathlib import Path
 from typing import Dict, List, Set, Tuple
+
 from pyvis.network import Network
 from rdflib import Graph, Namespace, RDF, RDFS
-import logging
+from rdflib.term import Literal
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -50,23 +52,36 @@ def load_knowledge_graph(ttl_path: Path) -> Graph:
     return g
 
 
-def get_node_info(g: Graph, node_uri: str) -> Dict[str, str]:
-    """Extract information about a node from the graph."""
+def get_node_info(g: Graph, node_uri: str, lang: str = "en") -> Dict[str, str]:
+    """Extract information about a node from the graph with language preference."""
     node_uri_obj = BASE_URI[node_uri]
 
     # Get node type
     node_type = None
     for _, _, type_obj in g.triples((node_uri_obj, RDF.type, None)):
-        type_str = str(type_obj).split("#")[-1]
+        type_str = str(type_obj).rsplit("#", maxsplit=1)[-1]
         if type_str in NODE_COLORS:
             node_type = type_str
             break
 
-    # Get node label
+    # Get node label with language preference
     label = node_uri
+    labels = {}
     for _, _, label_obj in g.triples((node_uri_obj, RDFS.label, None)):
-        label = str(label_obj)
-        break
+        if isinstance(label_obj, Literal) and label_obj.language:
+            labels[label_obj.language] = str(label_obj)
+        else:
+            labels["default"] = str(label_obj)
+
+    # Select appropriate label
+    if lang in labels:
+        label = labels[lang]
+    elif "en" in labels:
+        label = labels["en"]
+    elif "default" in labels:
+        label = labels["default"]
+    elif labels:
+        label = next(iter(labels.values()))
 
     # Get domain
     domain = None
@@ -101,7 +116,7 @@ def get_neighbors(
             # Find all nodes this node uses (outgoing edges)
             for _, pred, obj in g.triples((current_uri_obj, None, None)):
                 if str(pred) == str(MYMATH.uses):
-                    target_id = str(obj).split("/")[-1]
+                    target_id = str(obj).rsplit("/", maxsplit=1)[-1]
                     if target_id and target_id != current_uri:
                         edges.append((current_uri, target_id, "uses"))
                         to_visit.append((target_id, current_depth + 1))
@@ -109,7 +124,7 @@ def get_neighbors(
             # Find all nodes that use this node (incoming edges)
             for subj, pred, _ in g.triples((None, None, current_uri_obj)):
                 if str(pred) == str(MYMATH.uses):
-                    source_id = str(subj).split("/")[-1]
+                    source_id = str(subj).rsplit("/", maxsplit=1)[-1]
                     if source_id and source_id != current_uri:
                         edges.append((source_id, current_uri, "uses"))
                         to_visit.append((source_id, current_depth + 1))
@@ -118,7 +133,7 @@ def get_neighbors(
 
 
 def create_local_graph(
-    node_id: str, depth: int = 2, ttl_path: Path = Path("knowledge_graph.ttl")
+    node_id: str, depth: int = 2, ttl_path: Path = Path("knowledge_graph.ttl"), lang: str = "en"
 ) -> Network:
     """
     Create an interactive graph visualization centered on a specific node.
@@ -127,6 +142,7 @@ def create_local_graph(
         node_id: The ID of the central node
         depth: How many hops away from the central node to include
         ttl_path: Path to the knowledge graph Turtle file
+        lang: Language preference for node labels
 
     Returns:
         A PyVis Network object
@@ -138,12 +154,12 @@ def create_local_graph(
     nodes, edges = get_neighbors(g, node_id, depth)
 
     # Create PyVis network
-    net = Network(
+    network = Network(
         height="600px", width="100%", bgcolor="#ffffff", font_color="black", directed=True
     )
 
     # Configure physics
-    net.set_options(
+    network.set_options(
         """
     {
         "physics": {
@@ -181,13 +197,13 @@ def create_local_graph(
 
     # Add nodes
     for node_uri in nodes:
-        node_info = get_node_info(g, node_uri)
+        node_info = get_node_info(g, node_uri, lang)
 
         # Determine if this is the central node
         is_central = node_uri == node_id
 
         # Add node with styling
-        net.add_node(
+        network.add_node(
             node_uri,
             label=node_info["label"],
             color=NODE_COLORS.get(node_info["type"], "#808080"),
@@ -204,31 +220,31 @@ def create_local_graph(
     # Add edges
     for source, target, rel_type in edges:
         if source in nodes and target in nodes:
-            net.add_edge(source, target, title=rel_type, color="#999999", width=2)
+            network.add_edge(source, target, title=rel_type, color="#999999", width=2)
 
-    return net
+    return network
 
 
-def style_by_node_type(net: Network) -> Network:
+def style_by_node_type(network: Network) -> Network:
     """Apply consistent styling based on node types."""
     # This is handled in create_local_graph, but kept for API compatibility
-    return net
+    return network
 
 
-def add_hover_info(net: Network) -> Network:
+def add_hover_info(network: Network) -> Network:
     """Add hover information to nodes."""
     # This is handled in create_local_graph, but kept for API compatibility
-    return net
+    return network
 
 
 def save_as_html(
-    net: Network, filename: str, output_dir: Path = Path("output/interactive")
+    network: Network, filename: str, output_dir: Path = Path("output/interactive")
 ) -> Path:
     """
     Save the network visualization as an HTML file.
 
     Args:
-        net: The PyVis Network object
+        network: The PyVis Network object
         filename: Name of the output file (without extension)
         output_dir: Directory to save the HTML file
 
@@ -236,14 +252,14 @@ def save_as_html(
         Path to the saved HTML file
     """
     output_dir.mkdir(parents=True, exist_ok=True)
-    output_path = output_dir / f"{filename}.html"
+    file_path = output_dir / f"{filename}.html"
 
     # Configure PyVis to use CDN resources instead of local files
-    net.cdn_resources = "remote"
-    net.save_graph(str(output_path))
-    logger.info(f"Saved interactive graph to {output_path}")
+    network.cdn_resources = "remote"
+    network.save_graph(str(file_path))
+    logger.info("Saved interactive graph to %s", file_path)
 
-    return output_path
+    return file_path
 
 
 def generate_all_node_graphs(
@@ -256,27 +272,38 @@ def generate_all_node_graphs(
     nodes = set()
     for subj, pred, _ in g.triples((None, RDF.type, None)):
         if str(pred) == str(RDF.type):
-            node_id = str(subj).split("/")[-1]
+            node_id = str(subj).rsplit("/", maxsplit=1)[-1]
             if node_id:
                 nodes.add(node_id)
 
-    logger.info(f"Generating interactive graphs for {len(nodes)} nodes...")
+    logger.info("Generating interactive graphs for %d nodes...", len(nodes))
 
-    # Generate graph for each node
-    for i, node_id in enumerate(nodes, 1):
-        try:
-            net = create_local_graph(node_id, depth=2, ttl_path=ttl_path)
-            save_as_html(net, node_id, output_dir)
+    # Generate graphs for each language
+    for lang in ["en", "ja"]:
+        lang_dir = output_dir / lang
+        lang_dir.mkdir(parents=True, exist_ok=True)
 
-            if i % 10 == 0:
-                logger.info(f"Progress: {i}/{len(nodes)} graphs generated")
-        except Exception as e:
-            logger.error(f"Error generating graph for {node_id}: {e}")
+        logger.info("Generating interactive graphs for language: %s", lang)
 
-    logger.info(f"Completed generating {len(nodes)} interactive graphs")
+        # Generate graph for each node
+        for i, node_id in enumerate(nodes, 1):
+            try:
+                graph_net = create_local_graph(node_id, depth=2, ttl_path=ttl_path, lang=lang)
+                save_as_html(graph_net, node_id, lang_dir)
+
+                if i % 10 == 0:
+                    logger.info("Progress (%s): %d/%d graphs generated", lang, i, len(nodes))
+            except (IOError, ValueError, KeyError) as e:
+                logger.error("Error generating graph for %s in %s: %s", node_id, lang, e)
+
+        logger.info("Completed generating %d interactive graphs for %s", len(nodes), lang)
+
+    logger.info("Completed generating all interactive graphs in both languages")
 
 
-def create_domain_overview(domain: str, ttl_path: Path = Path("knowledge_graph.ttl")) -> Network:
+def create_domain_overview(
+    domain: str, ttl_path: Path = Path("knowledge_graph.ttl"), lang: str = "en"
+) -> Network:
     """Create an overview graph for all nodes in a specific mathematical domain."""
     g = load_knowledge_graph(ttl_path)
 
@@ -284,7 +311,7 @@ def create_domain_overview(domain: str, ttl_path: Path = Path("knowledge_graph.t
     domain_nodes = set()
     for subj, _, domain_obj in g.triples((None, MYMATH.hasDomain, None)):
         if str(domain_obj).lower() == domain.lower():
-            node_id = str(subj).split("/")[-1]
+            node_id = str(subj).rsplit("/", maxsplit=1)[-1]
             if node_id:
                 domain_nodes.add(node_id)
 
@@ -321,7 +348,7 @@ def create_domain_overview(domain: str, ttl_path: Path = Path("knowledge_graph.t
     # Add nodes and collect edges
     edges = []
     for node_id in domain_nodes:
-        node_info = get_node_info(g, node_id)
+        node_info = get_node_info(g, node_id, lang)
 
         net.add_node(
             node_id,
@@ -334,8 +361,8 @@ def create_domain_overview(domain: str, ttl_path: Path = Path("knowledge_graph.t
 
         # Get edges within the domain
         node_uri_obj = BASE_URI[node_id]
-        for _, pred, obj in g.triples((node_uri_obj, MYMATH.uses, None)):
-            target_id = str(obj).split("/")[-1]
+        for _, _, obj in g.triples((node_uri_obj, MYMATH.uses, None)):
+            target_id = str(obj).rsplit("/", maxsplit=1)[-1]
             if target_id in domain_nodes:
                 edges.append((node_id, target_id))
 
@@ -359,13 +386,13 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.node:
-        net = create_local_graph(args.node, depth=args.depth)
-        output_path = save_as_html(net, args.node)
-        print(f"Generated interactive graph: {output_path}")
+        node_network = create_local_graph(args.node, depth=args.depth)
+        result_path = save_as_html(node_network, args.node)
+        print(f"Generated interactive graph: {result_path}")
     elif args.domain:
-        net = create_domain_overview(args.domain)
-        output_path = save_as_html(net, f"domain-{args.domain.lower()}")
-        print(f"Generated domain overview: {output_path}")
+        domain_network = create_domain_overview(args.domain)
+        result_path = save_as_html(domain_network, f"domain-{args.domain.lower()}")
+        print(f"Generated domain overview: {result_path}")
     elif args.all:
         generate_all_node_graphs()
     else:

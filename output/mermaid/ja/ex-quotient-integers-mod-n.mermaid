@@ -1,0 +1,44 @@
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-cyclic-group["定義: 巡回群"]:::definition
+    def-congruence["定義: 合同（モジュラー演算）"]:::definition
+    ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
+    def-order["定義：位数"]:::definition
+    thm-euler["定理：オイラーの定理"]:::theorem
+    def-abelian-group["定義: アーベル群"]:::definition
+    def-isomorphism["定義: 群同型"]:::definition
+    def-quotient-group["定義: 商群"]:::definition
+    def-coset["定義: 剰余類"]:::definition
+    def-normal-subgroup["定義: 正規部分群"]:::definition
+    def-quotient-ring["定義: 剰余環"]:::definition
+    def-polynomial-ring["定義: 多項式環"]:::definition
+    ex-finite-field["例: 有限体"]:::example
+    def-direct-product["定義：群の直積"]:::definition
+    def-group["群"]:::definition
+    thm-euclidean-algorithm["定理：ユークリッドのアルゴリズム"]:::theorem
+    ex-integers-addition["例: 加法における整数"]:::example
+    thm-euclidean-algorithm --> ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --> def-abelian-group
+    ex-quotient-integers-mod-n --> ex-integers-addition
+    ex-quotient-integers-mod-n --> def-polynomial-ring
+    ex-quotient-integers-mod-n --> def-congruence
+    ex-quotient-integers-mod-n --> def-isomorphism
+    ex-finite-field --> ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --> def-order
+    ex-quotient-integers-mod-n --> def-direct-product
+    thm-euler --> ex-quotient-integers-mod-n
+    def-coset --> ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --> def-quotient-ring
+    ex-quotient-integers-mod-n --> def-cyclic-group
+    ex-quotient-integers-mod-n --> def-group
+    ex-quotient-integers-mod-n --> def-normal-subgroup
+    ex-quotient-integers-mod-n --> def-quotient-group
+    ex-quotient-integers-mod-n --> def-coset
+    def-cyclic-group --> ex-quotient-integers-mod-n
+    def-congruence --> ex-quotient-integers-mod-n
+    class ex-quotient-integers-mod-n current

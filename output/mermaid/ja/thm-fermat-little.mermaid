@@ -1,0 +1,20 @@
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-congruence["定義: 合同（モジュラー演算）"]:::definition
+    def-divisibility["定義: 整除性"]:::definition
+    thm-euler["定理：オイラーの定理"]:::theorem
+    thm-fermat-little["定理: フェルマーの小定理"]:::theorem
+    def-gcd["定義：最大公約数"]:::definition
+    def-prime["定義：素数"]:::definition
+    thm-fermat-little --> def-gcd
+    thm-fermat-little --> def-congruence
+    thm-fermat-little --> def-prime
+    thm-fermat-little --> def-divisibility
+    def-congruence --> thm-fermat-little
+    thm-euler --> thm-fermat-little
+    class thm-fermat-little current

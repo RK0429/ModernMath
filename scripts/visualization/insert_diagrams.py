@@ -20,10 +20,13 @@ def process_file(qmd_file: Path, diagrams_dir: Path) -> Optional[str]:
         return None
 
     node_id = post.metadata["id"]
-    diagram_file = diagrams_dir / f"{node_id}.mermaid"
 
     # Determine language from path
     is_japanese = "/ja/" in str(qmd_file)
+    lang = "ja" if is_japanese else "en"
+
+    # Get language-specific diagram file
+    diagram_file = diagrams_dir / lang / f"{node_id}.mermaid"
 
     # Read diagram content if available
     diagram_content = None
