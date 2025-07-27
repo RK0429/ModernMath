@@ -371,36 +371,36 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-integral-domain["定義：整域"]:::definition
-    def-binary-operation["定義: 二項演算"]:::definition
-    def-ring["定義：環"]:::definition
-    def-subring["定義: 部分環"]:::definition
-    def-polynomial-ring["定義: 多項式環"]:::definition
-    ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
     def-field["定義: 体"]:::definition
-    thm-intermediate-value["定理: 中間値の定理"]:::theorem
+    ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
+    def-subring["定義: 部分環"]:::definition
     def-eigenvalue-eigenvector["定義: 固有値と固有ベクトル"]:::definition
+    thm-intermediate-value["定理: 中間値の定理"]:::theorem
+    def-polynomial-ring["定義: 多項式環"]:::definition
+    def-integral-domain["定義：整域"]:::definition
+    def-ring["定義：環"]:::definition
     ex-polynomial-continuity["例：多項式の連続性"]:::example
-    def-subring --&gt; def-polynomial-ring
-    thm-intermediate-value --&gt; def-polynomial-ring
-    def-polynomial-ring --&gt; def-integral-domain
-    def-polynomial-ring --&gt; def-ring
+    def-binary-operation["定義: 二項演算"]:::definition
     ex-polynomial-continuity --&gt; def-polynomial-ring
+    def-eigenvalue-eigenvector --&gt; def-polynomial-ring
     def-polynomial-ring --&gt; def-field
     ex-quotient-integers-mod-n --&gt; def-polynomial-ring
-    def-integral-domain --&gt; def-polynomial-ring
-    def-eigenvalue-eigenvector --&gt; def-polynomial-ring
+    def-polynomial-ring --&gt; def-ring
     def-polynomial-ring --&gt; def-binary-operation
+    def-polynomial-ring --&gt; def-integral-domain
+    thm-intermediate-value --&gt; def-polynomial-ring
+    def-integral-domain --&gt; def-polynomial-ring
+    def-subring --&gt; def-polynomial-ring
     class def-polynomial-ring current
-    click def-integral-domain "def-integral-domain.html" "定義：整域へ"
-    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
-    click def-ring "def-ring.html" "定義：環へ"
-    click def-subring "def-subring.html" "部分環の定義へ"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余の例へ"
     click def-field "def-field.html" "体の定義へ"
-    click thm-intermediate-value "thm-intermediate-value.html" "中間値の定理の定理へ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余の例へ"
+    click def-subring "def-subring.html" "部分環の定義へ"
     click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "固有値と固有ベクトルの定義へ"
+    click thm-intermediate-value "thm-intermediate-value.html" "中間値の定理の定理へ"
+    click def-integral-domain "def-integral-domain.html" "定義：整域へ"
+    click def-ring "def-ring.html" "定義：環へ"
     click ex-polynomial-continuity "ex-polynomial-continuity.html" "例：多項式の連続性へ"
+    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -411,7 +411,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-polynomial-ring-1753634622" class="graph-visualization-container">
+<div id="graph-viz-def-polynomial-ring-1753635729" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -586,23 +586,35 @@ async function loadAndRenderGraph() {
       basePath = '../'.repeat(depth);
     }
 
-    // Detect language from URL path
-    let lang = 'en';
+    // Detect language from URL path and HTML lang attribute
+    let lang = 'en';  // default
+
+    // First try URL path detection
     if (currentPath.includes('/ja/') || currentPath.includes('/ja.html')) {
       lang = 'ja';
+    } else if (currentPath.includes('/en/') || currentPath.includes('/en.html')) {
+      lang = 'en';
+    } else {
+      // Fallback to HTML lang attribute if URL doesn't clearly indicate language
+      const htmlLang = document.documentElement.lang || document.querySelector('html')?.getAttribute('lang');
+      if (htmlLang && htmlLang.startsWith('ja')) {
+        lang = 'ja';
+      }
     }
+
+    console.log('Detected language:', lang, 'from path:', currentPath);
 
     const response = await fetch(basePath + 'output/d3-data/' + lang + '/def-polynomial-ring.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-polynomial-ring-1753634622', {
+    createForceGraph(data, 'graph-viz-def-polynomial-ring-1753635729', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-polynomial-ring-1753634622').innerHTML =
+    document.getElementById('graph-viz-def-polynomial-ring-1753635729').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

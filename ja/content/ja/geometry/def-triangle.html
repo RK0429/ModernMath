@@ -350,20 +350,20 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-angle["定義: 角"]:::definition
-    def-line["定義: 直線"]:::definition
     thm-angle-sum-triangle["定理: 三角形の内角の和"]:::theorem
-    def-point["定義: 点"]:::definition
     def-triangle["定義: 三角形"]:::definition
-    def-triangle --&gt; def-angle
-    thm-angle-sum-triangle --&gt; def-triangle
+    def-angle["定義: 角"]:::definition
+    def-point["定義: 点"]:::definition
+    def-line["定義: 直線"]:::definition
     def-triangle --&gt; def-point
+    thm-angle-sum-triangle --&gt; def-triangle
+    def-triangle --&gt; def-angle
     def-triangle --&gt; def-line
     class def-triangle current
-    click def-angle "def-angle.html" "角の定義へ"
-    click def-line "def-line.html" "直線の定義へ"
     click thm-angle-sum-triangle "thm-angle-sum-triangle.html" "三角形の内角の和の定理へ"
+    click def-angle "def-angle.html" "角の定義へ"
     click def-point "def-point.html" "点の定義へ"
+    click def-line "def-line.html" "直線の定義へ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -374,7 +374,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-triangle-1753634769" class="graph-visualization-container">
+<div id="graph-viz-def-triangle-1753635881" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -549,23 +549,35 @@ async function loadAndRenderGraph() {
       basePath = '../'.repeat(depth);
     }
 
-    // Detect language from URL path
-    let lang = 'en';
+    // Detect language from URL path and HTML lang attribute
+    let lang = 'en';  // default
+
+    // First try URL path detection
     if (currentPath.includes('/ja/') || currentPath.includes('/ja.html')) {
       lang = 'ja';
+    } else if (currentPath.includes('/en/') || currentPath.includes('/en.html')) {
+      lang = 'en';
+    } else {
+      // Fallback to HTML lang attribute if URL doesn't clearly indicate language
+      const htmlLang = document.documentElement.lang || document.querySelector('html')?.getAttribute('lang');
+      if (htmlLang && htmlLang.startsWith('ja')) {
+        lang = 'ja';
+      }
     }
+
+    console.log('Detected language:', lang, 'from path:', currentPath);
 
     const response = await fetch(basePath + 'output/d3-data/' + lang + '/def-triangle.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-triangle-1753634769', {
+    createForceGraph(data, 'graph-viz-def-triangle-1753635881', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-triangle-1753634769').innerHTML =
+    document.getElementById('graph-viz-def-triangle-1753635881').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

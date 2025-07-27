@@ -362,32 +362,32 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-central-limit["定理: 中心極限定理"]:::theorem
-    def-probability-space["定義: 確率空間"]:::definition
-    def-random-variable["定義: 確率変数"]:::definition
     def-expectation["定義: 期待値"]:::definition
-    def-normal-distribution["定義: 正規分布"]:::definition
-    thm-law-of-large-numbers["定理: 大数の法則"]:::theorem
-    def-variance["定義: 分散"]:::definition
-    def-binomial-distribution["定義: 二項分布"]:::definition
+    thm-central-limit["定理: 中心極限定理"]:::theorem
     def-probability-distribution["定義: 確率分布"]:::definition
+    def-random-variable["定義: 確率変数"]:::definition
+    def-probability-space["定義: 確率空間"]:::definition
+    thm-law-of-large-numbers["定理: 大数の法則"]:::theorem
+    def-binomial-distribution["定義: 二項分布"]:::definition
+    def-variance["定義: 分散"]:::definition
+    def-normal-distribution["定義: 正規分布"]:::definition
     def-expectation --&gt; def-probability-distribution
-    def-expectation --&gt; def-probability-space
-    def-expectation --&gt; def-random-variable
-    def-variance --&gt; def-expectation
     thm-law-of-large-numbers --&gt; def-expectation
     thm-central-limit --&gt; def-expectation
+    def-variance --&gt; def-expectation
     def-normal-distribution --&gt; def-expectation
+    def-expectation --&gt; def-random-variable
+    def-expectation --&gt; def-probability-space
     def-binomial-distribution --&gt; def-expectation
     class def-expectation current
     click thm-central-limit "thm-central-limit.html" "中心極限定理の定理へ"
-    click def-probability-space "def-probability-space.html" "確率空間の定義へ"
-    click def-random-variable "def-random-variable.html" "確率変数の定義へ"
-    click def-normal-distribution "def-normal-distribution.html" "正規分布の定義へ"
-    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "大数の法則の定理へ"
-    click def-variance "def-variance.html" "分散の定義へ"
-    click def-binomial-distribution "def-binomial-distribution.html" "二項分布の定義へ"
     click def-probability-distribution "def-probability-distribution.html" "確率分布の定義へ"
+    click def-random-variable "def-random-variable.html" "確率変数の定義へ"
+    click def-probability-space "def-probability-space.html" "確率空間の定義へ"
+    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "大数の法則の定理へ"
+    click def-binomial-distribution "def-binomial-distribution.html" "二項分布の定義へ"
+    click def-variance "def-variance.html" "分散の定義へ"
+    click def-normal-distribution "def-normal-distribution.html" "正規分布の定義へ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -398,7 +398,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-expectation-1753634785" class="graph-visualization-container">
+<div id="graph-viz-def-expectation-1753635898" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -573,23 +573,35 @@ async function loadAndRenderGraph() {
       basePath = '../'.repeat(depth);
     }
 
-    // Detect language from URL path
-    let lang = 'en';
+    // Detect language from URL path and HTML lang attribute
+    let lang = 'en';  // default
+
+    // First try URL path detection
     if (currentPath.includes('/ja/') || currentPath.includes('/ja.html')) {
       lang = 'ja';
+    } else if (currentPath.includes('/en/') || currentPath.includes('/en.html')) {
+      lang = 'en';
+    } else {
+      // Fallback to HTML lang attribute if URL doesn't clearly indicate language
+      const htmlLang = document.documentElement.lang || document.querySelector('html')?.getAttribute('lang');
+      if (htmlLang && htmlLang.startsWith('ja')) {
+        lang = 'ja';
+      }
     }
+
+    console.log('Detected language:', lang, 'from path:', currentPath);
 
     const response = await fetch(basePath + 'output/d3-data/' + lang + '/def-expectation.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-expectation-1753634785', {
+    createForceGraph(data, 'graph-viz-def-expectation-1753635898', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-expectation-1753634785').innerHTML =
+    document.getElementById('graph-viz-def-expectation-1753635898').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

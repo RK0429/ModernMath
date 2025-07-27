@@ -371,36 +371,36 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-integral-domain["Definition: Integral Domain"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    def-subring["Definition: Subring"]:::definition
-    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-field["Definition: Field"]:::definition
-    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-subring["Definition: Subring"]:::definition
     def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
+    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
+    def-integral-domain["Definition: Integral Domain"]:::definition
+    def-ring["Definition: Ring"]:::definition
     ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
-    def-subring --&gt; def-polynomial-ring
-    thm-intermediate-value --&gt; def-polynomial-ring
-    def-polynomial-ring --&gt; def-integral-domain
-    def-polynomial-ring --&gt; def-ring
+    def-binary-operation["Definition: Binary Operation"]:::definition
     ex-polynomial-continuity --&gt; def-polynomial-ring
+    def-eigenvalue-eigenvector --&gt; def-polynomial-ring
     def-polynomial-ring --&gt; def-field
     ex-quotient-integers-mod-n --&gt; def-polynomial-ring
-    def-integral-domain --&gt; def-polynomial-ring
-    def-eigenvalue-eigenvector --&gt; def-polynomial-ring
+    def-polynomial-ring --&gt; def-ring
     def-polynomial-ring --&gt; def-binary-operation
+    def-polynomial-ring --&gt; def-integral-domain
+    thm-intermediate-value --&gt; def-polynomial-ring
+    def-integral-domain --&gt; def-polynomial-ring
+    def-subring --&gt; def-polynomial-ring
     class def-polynomial-ring current
-    click def-integral-domain "def-integral-domain.html" "Go to Integral Domain definition"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
-    click def-ring "def-ring.html" "Go to Ring definition"
-    click def-subring "def-subring.html" "Go to Subring definition"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
     click def-field "def-field.html" "Go to Field definition"
-    click thm-intermediate-value "thm-intermediate-value.html" "Go to Intermediate Value Theorem theorem"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
+    click def-subring "def-subring.html" "Go to Subring definition"
     click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector definition"
+    click thm-intermediate-value "thm-intermediate-value.html" "Go to Intermediate Value Theorem theorem"
+    click def-integral-domain "def-integral-domain.html" "Go to Integral Domain definition"
+    click def-ring "def-ring.html" "Go to Ring definition"
     click ex-polynomial-continuity "ex-polynomial-continuity.html" "Go to Polynomial Continuity example"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -411,7 +411,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-polynomial-ring-1753634545" class="graph-visualization-container">
+<div id="graph-viz-def-polynomial-ring-1753635652" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -586,23 +586,35 @@ async function loadAndRenderGraph() {
       basePath = '../'.repeat(depth);
     }
 
-    // Detect language from URL path
-    let lang = 'en';
+    // Detect language from URL path and HTML lang attribute
+    let lang = 'en';  // default
+
+    // First try URL path detection
     if (currentPath.includes('/ja/') || currentPath.includes('/ja.html')) {
       lang = 'ja';
+    } else if (currentPath.includes('/en/') || currentPath.includes('/en.html')) {
+      lang = 'en';
+    } else {
+      // Fallback to HTML lang attribute if URL doesn't clearly indicate language
+      const htmlLang = document.documentElement.lang || document.querySelector('html')?.getAttribute('lang');
+      if (htmlLang && htmlLang.startsWith('ja')) {
+        lang = 'ja';
+      }
     }
+
+    console.log('Detected language:', lang, 'from path:', currentPath);
 
     const response = await fetch(basePath + 'output/d3-data/' + lang + '/def-polynomial-ring.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-polynomial-ring-1753634545', {
+    createForceGraph(data, 'graph-viz-def-polynomial-ring-1753635652', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-polynomial-ring-1753634545').innerHTML =
+    document.getElementById('graph-viz-def-polynomial-ring-1753635652').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

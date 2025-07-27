@@ -6,18 +6,18 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-cantor["Theorem: Cantor's Theorem"]:::theorem
-    def-intersection["Definition: Intersection"]:::definition
-    def-function["Definition: Function"]:::definition
-    def-union["Definition: Union"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-power-set["Definition: Power Set"]:::definition
     def-cardinality["Definition: Cardinality"]:::definition
+    def-power-set["Definition: Power Set"]:::definition
+    def-union["Definition: Union"]:::definition
+    def-intersection["Definition: Intersection"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-function["Definition: Function"]:::definition
+    def-cardinality --> thm-cantor
     thm-cantor --> def-cardinality
     def-cardinality --> def-set
-    def-union --> def-cardinality
-    def-cardinality --> def-function
-    def-cardinality --> thm-cantor
     def-cardinality --> def-power-set
-    def-intersection --> def-cardinality
+    def-cardinality --> def-function
     def-power-set --> def-cardinality
+    def-intersection --> def-cardinality
+    def-union --> def-cardinality
     class def-cardinality current

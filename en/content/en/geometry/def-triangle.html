@@ -350,20 +350,20 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-angle["Definition: Angle"]:::definition
-    def-line["Definition: Line"]:::definition
     thm-angle-sum-triangle["Theorem: Angle Sum of a Triangle"]:::theorem
-    def-point["Definition: Point"]:::definition
     def-triangle["Definition: Triangle"]:::definition
-    def-triangle --&gt; def-angle
-    thm-angle-sum-triangle --&gt; def-triangle
+    def-angle["Definition: Angle"]:::definition
+    def-point["Definition: Point"]:::definition
+    def-line["Definition: Line"]:::definition
     def-triangle --&gt; def-point
+    thm-angle-sum-triangle --&gt; def-triangle
+    def-triangle --&gt; def-angle
     def-triangle --&gt; def-line
     class def-triangle current
-    click def-angle "def-angle.html" "Go to Angle definition"
-    click def-line "def-line.html" "Go to Line definition"
     click thm-angle-sum-triangle "thm-angle-sum-triangle.html" "Go to Angle Sum of a Triangle theorem"
+    click def-angle "def-angle.html" "Go to Angle definition"
     click def-point "def-point.html" "Go to Point definition"
+    click def-line "def-line.html" "Go to Line definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -374,7 +374,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-triangle-1753634583" class="graph-visualization-container">
+<div id="graph-viz-def-triangle-1753635690" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -549,23 +549,35 @@ async function loadAndRenderGraph() {
       basePath = '../'.repeat(depth);
     }
 
-    // Detect language from URL path
-    let lang = 'en';
+    // Detect language from URL path and HTML lang attribute
+    let lang = 'en';  // default
+
+    // First try URL path detection
     if (currentPath.includes('/ja/') || currentPath.includes('/ja.html')) {
       lang = 'ja';
+    } else if (currentPath.includes('/en/') || currentPath.includes('/en.html')) {
+      lang = 'en';
+    } else {
+      // Fallback to HTML lang attribute if URL doesn't clearly indicate language
+      const htmlLang = document.documentElement.lang || document.querySelector('html')?.getAttribute('lang');
+      if (htmlLang && htmlLang.startsWith('ja')) {
+        lang = 'ja';
+      }
     }
+
+    console.log('Detected language:', lang, 'from path:', currentPath);
 
     const response = await fetch(basePath + 'output/d3-data/' + lang + '/def-triangle.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-triangle-1753634583', {
+    createForceGraph(data, 'graph-viz-def-triangle-1753635690', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-triangle-1753634583').innerHTML =
+    document.getElementById('graph-viz-def-triangle-1753635690').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

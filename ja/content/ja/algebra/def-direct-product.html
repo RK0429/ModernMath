@@ -266,33 +266,33 @@ ul.task-list li input[type="checkbox"] {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-group["群"]:::definition
+    ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
+    def-set["定義: 集合"]:::definition
+    def-abelian-group["定義: アーベル群"]:::definition
+    def-direct-product["定義：群の直積"]:::definition
+    def-normal-subgroup["定義: 正規部分群"]:::definition
     def-order["定義：位数"]:::definition
     def-cyclic-group["定義: 巡回群"]:::definition
-    def-set["定義: 集合"]:::definition
-    def-group["群"]:::definition
-    def-direct-product["定義：群の直積"]:::definition
-    ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
-    def-abelian-group["定義: アーベル群"]:::definition
-    def-normal-subgroup["定義: 正規部分群"]:::definition
     def-homomorphism["定義: 群準同型"]:::definition
-    def-direct-product --&gt; def-homomorphism
-    def-abelian-group --&gt; def-direct-product
-    ex-quotient-integers-mod-n --&gt; def-direct-product
-    def-direct-product --&gt; def-set
-    def-cyclic-group --&gt; def-direct-product
-    def-direct-product --&gt; def-abelian-group
-    def-direct-product --&gt; def-normal-subgroup
     def-direct-product --&gt; def-cyclic-group
-    def-direct-product --&gt; def-order
+    def-abelian-group --&gt; def-direct-product
     def-direct-product --&gt; def-group
+    def-direct-product --&gt; def-abelian-group
+    def-direct-product --&gt; def-order
+    ex-quotient-integers-mod-n --&gt; def-direct-product
+    def-direct-product --&gt; def-homomorphism
+    def-cyclic-group --&gt; def-direct-product
+    def-direct-product --&gt; def-normal-subgroup
+    def-direct-product --&gt; def-set
     class def-direct-product current
-    click def-order "def-order.html" "定義：位数へ"
-    click def-cyclic-group "def-cyclic-group.html" "巡回群の定義へ"
-    click def-set "def-set.html" "集合の定義へ"
     click def-group "def-group.html" "群へ"
     click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余の例へ"
+    click def-set "def-set.html" "集合の定義へ"
     click def-abelian-group "def-abelian-group.html" "アーベル群の定義へ"
     click def-normal-subgroup "def-normal-subgroup.html" "正規部分群の定義へ"
+    click def-order "def-order.html" "定義：位数へ"
+    click def-cyclic-group "def-cyclic-group.html" "巡回群の定義へ"
     click def-homomorphism "def-homomorphism.html" "群準同型の定義へ"
 </pre>
 </div>
@@ -304,7 +304,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-direct-product-1753634722" class="graph-visualization-container">
+<div id="graph-viz-def-direct-product-1753635832" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -479,23 +479,35 @@ async function loadAndRenderGraph() {
       basePath = '../'.repeat(depth);
     }
 
-    // Detect language from URL path
-    let lang = 'en';
+    // Detect language from URL path and HTML lang attribute
+    let lang = 'en';  // default
+
+    // First try URL path detection
     if (currentPath.includes('/ja/') || currentPath.includes('/ja.html')) {
       lang = 'ja';
+    } else if (currentPath.includes('/en/') || currentPath.includes('/en.html')) {
+      lang = 'en';
+    } else {
+      // Fallback to HTML lang attribute if URL doesn't clearly indicate language
+      const htmlLang = document.documentElement.lang || document.querySelector('html')?.getAttribute('lang');
+      if (htmlLang && htmlLang.startsWith('ja')) {
+        lang = 'ja';
+      }
     }
+
+    console.log('Detected language:', lang, 'from path:', currentPath);
 
     const response = await fetch(basePath + 'output/d3-data/' + lang + '/def-direct-product.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-direct-product-1753634722', {
+    createForceGraph(data, 'graph-viz-def-direct-product-1753635832', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-direct-product-1753634722').innerHTML =
+    document.getElementById('graph-viz-def-direct-product-1753635832').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

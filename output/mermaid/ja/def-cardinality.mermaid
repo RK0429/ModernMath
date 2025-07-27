@@ -6,18 +6,18 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-cantor["定理: カントールの定理"]:::theorem
-    def-intersection["定義: 共通部分"]:::definition
-    def-function["定義: 関数"]:::definition
-    def-union["定義: 和集合"]:::definition
-    def-set["定義: 集合"]:::definition
-    def-power-set["定義: べき集合"]:::definition
     def-cardinality["定義: 濃度"]:::definition
+    def-power-set["定義: べき集合"]:::definition
+    def-union["定義: 和集合"]:::definition
+    def-intersection["定義: 共通部分"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-function["定義: 関数"]:::definition
+    def-cardinality --> thm-cantor
     thm-cantor --> def-cardinality
     def-cardinality --> def-set
-    def-union --> def-cardinality
-    def-cardinality --> def-function
-    def-cardinality --> thm-cantor
     def-cardinality --> def-power-set
-    def-intersection --> def-cardinality
+    def-cardinality --> def-function
     def-power-set --> def-cardinality
+    def-intersection --> def-cardinality
+    def-union --> def-cardinality
     class def-cardinality current

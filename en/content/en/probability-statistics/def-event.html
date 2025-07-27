@@ -348,22 +348,22 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-conditional-probability["Definition: Conditional Probability"]:::definition
+    thm-bayes["Theorem: Bayes' Theorem"]:::theorem
+    def-independence["Definition: Independence"]:::definition
     def-sample-space["Definition: Sample Space"]:::definition
     def-subset["Definition: Subset"]:::definition
-    def-independence["Definition: Independence"]:::definition
-    thm-bayes["Theorem: Bayes' Theorem"]:::theorem
     def-event["Definition: Event"]:::definition
     thm-bayes --&gt; def-event
-    def-event --&gt; def-sample-space
     def-independence --&gt; def-event
-    def-conditional-probability --&gt; def-event
     def-event --&gt; def-subset
+    def-event --&gt; def-sample-space
+    def-conditional-probability --&gt; def-event
     class def-event current
     click def-conditional-probability "def-conditional-probability.html" "Go to Conditional Probability definition"
+    click thm-bayes "thm-bayes.html" "Go to Bayes' Theorem theorem"
+    click def-independence "def-independence.html" "Go to Independence definition"
     click def-sample-space "def-sample-space.html" "Go to Sample Space definition"
     click def-subset "def-subset.html" "Go to Subset definition"
-    click def-independence "def-independence.html" "Go to Independence definition"
-    click thm-bayes "thm-bayes.html" "Go to Bayes' Theorem theorem"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -374,7 +374,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-event-1753634599" class="graph-visualization-container">
+<div id="graph-viz-def-event-1753635706" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -549,23 +549,35 @@ async function loadAndRenderGraph() {
       basePath = '../'.repeat(depth);
     }
 
-    // Detect language from URL path
-    let lang = 'en';
+    // Detect language from URL path and HTML lang attribute
+    let lang = 'en';  // default
+
+    // First try URL path detection
     if (currentPath.includes('/ja/') || currentPath.includes('/ja.html')) {
       lang = 'ja';
+    } else if (currentPath.includes('/en/') || currentPath.includes('/en.html')) {
+      lang = 'en';
+    } else {
+      // Fallback to HTML lang attribute if URL doesn't clearly indicate language
+      const htmlLang = document.documentElement.lang || document.querySelector('html')?.getAttribute('lang');
+      if (htmlLang && htmlLang.startsWith('ja')) {
+        lang = 'ja';
+      }
     }
+
+    console.log('Detected language:', lang, 'from path:', currentPath);
 
     const response = await fetch(basePath + 'output/d3-data/' + lang + '/def-event.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-event-1753634599', {
+    createForceGraph(data, 'graph-viz-def-event-1753635706', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-event-1753634599').innerHTML =
+    document.getElementById('graph-viz-def-event-1753635706').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

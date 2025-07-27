@@ -338,16 +338,16 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["定義: 集合"]:::definition
     def-intersection["定義: 共通部分"]:::definition
     thm-de-morgan["定理: ド・モルガンの法則"]:::theorem
+    def-set["定義: 集合"]:::definition
     def-cardinality["定義: 濃度"]:::definition
     def-intersection --&gt; def-set
-    thm-de-morgan --&gt; def-intersection
     def-intersection --&gt; def-cardinality
+    thm-de-morgan --&gt; def-intersection
     class def-intersection current
-    click def-set "def-set.html" "集合の定義へ"
     click thm-de-morgan "thm-de-morgan.html" "ド・モルガンの法則の定理へ"
+    click def-set "def-set.html" "集合の定義へ"
     click def-cardinality "def-cardinality.html" "濃度の定義へ"
 </pre>
 </div>
@@ -359,7 +359,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-intersection-1753634773" class="graph-visualization-container">
+<div id="graph-viz-def-intersection-1753635886" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -534,23 +534,35 @@ async function loadAndRenderGraph() {
       basePath = '../'.repeat(depth);
     }
 
-    // Detect language from URL path
-    let lang = 'en';
+    // Detect language from URL path and HTML lang attribute
+    let lang = 'en';  // default
+
+    // First try URL path detection
     if (currentPath.includes('/ja/') || currentPath.includes('/ja.html')) {
       lang = 'ja';
+    } else if (currentPath.includes('/en/') || currentPath.includes('/en.html')) {
+      lang = 'en';
+    } else {
+      // Fallback to HTML lang attribute if URL doesn't clearly indicate language
+      const htmlLang = document.documentElement.lang || document.querySelector('html')?.getAttribute('lang');
+      if (htmlLang && htmlLang.startsWith('ja')) {
+        lang = 'ja';
+      }
     }
+
+    console.log('Detected language:', lang, 'from path:', currentPath);
 
     const response = await fetch(basePath + 'output/d3-data/' + lang + '/def-intersection.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-intersection-1753634773', {
+    createForceGraph(data, 'graph-viz-def-intersection-1753635886', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-intersection-1753634773').innerHTML =
+    document.getElementById('graph-viz-def-intersection-1753635886').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

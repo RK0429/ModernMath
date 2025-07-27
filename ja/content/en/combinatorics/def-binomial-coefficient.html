@@ -352,23 +352,23 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-tree["Definition: Tree"]:::definition
-    def-combination["Definition: Combination"]:::definition
+    def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
     ex-pascals-triangle["Example: Pascal's Triangle"]:::example
     def-generating-function["Definition: Generating Function"]:::definition
-    def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
+    def-tree["Definition: Tree"]:::definition
+    def-combination["Definition: Combination"]:::definition
     def-permutation["Definition: Permutation"]:::definition
+    def-tree --&gt; def-binomial-coefficient
     def-binomial-coefficient --&gt; def-combination
     def-binomial-coefficient --&gt; def-permutation
     def-binomial-coefficient --&gt; def-generating-function
-    ex-pascals-triangle --&gt; def-binomial-coefficient
     def-generating-function --&gt; def-binomial-coefficient
-    def-tree --&gt; def-binomial-coefficient
+    ex-pascals-triangle --&gt; def-binomial-coefficient
     class def-binomial-coefficient current
-    click def-tree "def-tree.html" "Go to Tree definition"
-    click def-combination "def-combination.html" "Go to Combination definition"
     click ex-pascals-triangle "ex-pascals-triangle.html" "Go to Pascal's Triangle example"
     click def-generating-function "def-generating-function.html" "Go to Generating Function definition"
+    click def-tree "def-tree.html" "Go to Tree definition"
+    click def-combination "def-combination.html" "Go to Combination definition"
     click def-permutation "def-permutation.html" "Go to Permutation definition"
 </pre>
 </div>
@@ -380,7 +380,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-binomial-coefficient-1753634884" class="graph-visualization-container">
+<div id="graph-viz-def-binomial-coefficient-1753635999" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -555,23 +555,35 @@ async function loadAndRenderGraph() {
       basePath = '../'.repeat(depth);
     }
 
-    // Detect language from URL path
-    let lang = 'en';
+    // Detect language from URL path and HTML lang attribute
+    let lang = 'en';  // default
+
+    // First try URL path detection
     if (currentPath.includes('/ja/') || currentPath.includes('/ja.html')) {
       lang = 'ja';
+    } else if (currentPath.includes('/en/') || currentPath.includes('/en.html')) {
+      lang = 'en';
+    } else {
+      // Fallback to HTML lang attribute if URL doesn't clearly indicate language
+      const htmlLang = document.documentElement.lang || document.querySelector('html')?.getAttribute('lang');
+      if (htmlLang && htmlLang.startsWith('ja')) {
+        lang = 'ja';
+      }
     }
+
+    console.log('Detected language:', lang, 'from path:', currentPath);
 
     const response = await fetch(basePath + 'output/d3-data/' + lang + '/def-binomial-coefficient.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-binomial-coefficient-1753634884', {
+    createForceGraph(data, 'graph-viz-def-binomial-coefficient-1753635999', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-binomial-coefficient-1753634884').innerHTML =
+    document.getElementById('graph-viz-def-binomial-coefficient-1753635999').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -340,21 +340,21 @@ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-determinant["Definition: Determinant"]:::definition
-    def-matrix["Definition: Matrix"]:::definition
-    ex-matrix-transformation["Example: Matrix Transformation"]:::example
     def-field["Definition: Field"]:::definition
+    ex-matrix-transformation["Example: Matrix Transformation"]:::example
+    def-matrix["Definition: Matrix"]:::definition
+    def-determinant["Definition: Determinant"]:::definition
     def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-normal-subgroup --&gt; def-matrix
-    ex-matrix-transformation --&gt; def-matrix
     def-determinant --&gt; def-matrix
-    def-matrix --&gt; def-field
+    def-normal-subgroup --&gt; def-matrix
     def-eigenvalue-eigenvector --&gt; def-matrix
+    def-matrix --&gt; def-field
+    ex-matrix-transformation --&gt; def-matrix
     class def-matrix current
-    click def-determinant "def-determinant.html" "Go to Determinant definition"
-    click ex-matrix-transformation "ex-matrix-transformation.html" "Go to Matrix Transformation example"
     click def-field "def-field.html" "Go to Field definition"
+    click ex-matrix-transformation "ex-matrix-transformation.html" "Go to Matrix Transformation example"
+    click def-determinant "def-determinant.html" "Go to Determinant definition"
     click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector definition"
     click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
 </pre>
@@ -367,7 +367,7 @@ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-matrix-1753634542" class="graph-visualization-container">
+<div id="graph-viz-def-matrix-1753635649" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -542,23 +542,35 @@ async function loadAndRenderGraph() {
       basePath = '../'.repeat(depth);
     }
 
-    // Detect language from URL path
-    let lang = 'en';
+    // Detect language from URL path and HTML lang attribute
+    let lang = 'en';  // default
+
+    // First try URL path detection
     if (currentPath.includes('/ja/') || currentPath.includes('/ja.html')) {
       lang = 'ja';
+    } else if (currentPath.includes('/en/') || currentPath.includes('/en.html')) {
+      lang = 'en';
+    } else {
+      // Fallback to HTML lang attribute if URL doesn't clearly indicate language
+      const htmlLang = document.documentElement.lang || document.querySelector('html')?.getAttribute('lang');
+      if (htmlLang && htmlLang.startsWith('ja')) {
+        lang = 'ja';
+      }
     }
+
+    console.log('Detected language:', lang, 'from path:', currentPath);
 
     const response = await fetch(basePath + 'output/d3-data/' + lang + '/def-matrix.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-matrix-1753634542', {
+    createForceGraph(data, 'graph-viz-def-matrix-1753635649', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-matrix-1753634542').innerHTML =
+    document.getElementById('graph-viz-def-matrix-1753635649').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
