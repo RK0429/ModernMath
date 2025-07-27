@@ -1,0 +1,25 @@
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-probability-space["定義: 確率空間"]:::definition
+    def-binomial-distribution["定義: 二項分布"]:::definition
+    def-probability-distribution["定義: 確率分布"]:::definition
+    thm-central-limit["定理: 中心極限定理"]:::theorem
+    def-random-variable["定義: 確率変数"]:::definition
+    def-independence["定義: 独立性"]:::definition
+    def-event["定義: 事象"]:::definition
+    def-conditional-probability["定義: 条件付き確率"]:::definition
+    thm-law-of-large-numbers["定理: 大数の法則"]:::theorem
+    def-independence --> def-random-variable
+    thm-law-of-large-numbers --> def-independence
+    def-independence --> def-probability-space
+    def-independence --> def-conditional-probability
+    thm-central-limit --> def-independence
+    def-independence --> def-probability-distribution
+    def-binomial-distribution --> def-independence
+    def-independence --> def-event
+    class def-independence current

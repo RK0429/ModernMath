@@ -346,45 +346,45 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-ring-homomorphism["Definition: Ring Homomorphism"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
     def-vector-space["Definition: Vector Space"]:::definition
-    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
     def-ideal["Definition: Ideal"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-isomorphism["Definition: Group Isomorphism"]:::definition
-    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-ring-homomorphism["Definition: Ring Homomorphism"]:::definition
+    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
+    def-exact-sequence["Definition: Exact Sequence"]:::definition
     def-linear-transformation["Definition: Linear Transformation"]:::definition
     def-kernel["Definition: Kernel"]:::definition
-    def-exact-sequence["Definition: Exact Sequence"]:::definition
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
+    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-kernel --&gt; def-vector-space
     def-kernel --&gt; thm-first-isomorphism
-    thm-first-isomorphism --&gt; def-kernel
-    def-kernel --&gt; def-isomorphism
+    def-kernel --&gt; def-normal-subgroup
+    def-kernel --&gt; def-linear-transformation
+    def-kernel --&gt; def-ring-homomorphism
     thm-rank-nullity --&gt; def-kernel
     def-kernel --&gt; def-homomorphism
-    def-kernel --&gt; def-linear-transformation
-    def-kernel --&gt; def-vector-space
+    def-kernel --&gt; def-quotient-group
+    def-exact-sequence --&gt; def-kernel
+    thm-first-isomorphism --&gt; def-kernel
+    def-kernel --&gt; def-isomorphism
     def-kernel --&gt; def-ideal
     def-kernel --&gt; def-quotient-ring
-    def-exact-sequence --&gt; def-kernel
-    def-kernel --&gt; def-quotient-group
-    def-kernel --&gt; def-normal-subgroup
-    def-kernel --&gt; def-ring-homomorphism
     class def-kernel current
-    click def-ring-homomorphism "def-ring-homomorphism.html" "Go to Ring Homomorphism definition"
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
     click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
-    click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem theorem"
     click def-ideal "def-ideal.html" "Go to Ideal definition"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
     click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
-    click def-isomorphism "def-isomorphism.html" "Go to Group Isomorphism definition"
-    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring definition"
-    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation definition"
-    click def-exact-sequence "def-exact-sequence.html" "Go to Exact Sequence definition"
     click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click def-ring-homomorphism "def-ring-homomorphism.html" "Go to Ring Homomorphism definition"
     click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem theorem"
+    click def-exact-sequence "def-exact-sequence.html" "Go to Exact Sequence definition"
+    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation definition"
+    click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem theorem"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -395,7 +395,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-kernel-1753585753" class="graph-visualization-container">
+<div id="graph-viz-def-kernel-1753632592" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -575,12 +575,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-kernel-1753585753', {
+    createForceGraph(data, 'graph-viz-def-kernel-1753632592', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-kernel-1753585753').innerHTML =
+    document.getElementById('graph-viz-def-kernel-1753632592').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -642,7 +642,7 @@ if (document.readyState === 'loading') {
 }
 </style>
 
-<p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/def-kernel.html" target="_blank">full interactive version</a></p>
+<p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/def-kernel.html" target="_blank">full interactive version</a></p>
 
 
 </section>

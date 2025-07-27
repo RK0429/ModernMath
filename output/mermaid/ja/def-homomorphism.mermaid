@@ -1,0 +1,41 @@
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-isomorphism["定義: 群同型"]:::definition
+    ex-exponential-homomorphism["例: 指数準同型"]:::example
+    def-endomorphism["定義: 自己準同型"]:::definition
+    def-function["定義: 関数"]:::definition
+    def-quotient-group["定義: 商群"]:::definition
+    def-homomorphism["定義: 群準同型"]:::definition
+    def-group["群"]:::definition
+    thm-first-isomorphism["定理: 第一同型定理"]:::theorem
+    def-exact-sequence["定義: 完全列"]:::definition
+    def-direct-product["定義：群の直積"]:::definition
+    def-kernel["定義: 核"]:::definition
+    def-automorphism["定義: 自己同型"]:::definition
+    def-simple-group["定義: 単純群"]:::definition
+    def-normal-subgroup["定義: 正規部分群"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-quotient-ring["定義: 剰余環"]:::definition
+    def-normal-subgroup --> def-homomorphism
+    def-endomorphism --> def-homomorphism
+    def-quotient-ring --> def-homomorphism
+    def-isomorphism --> def-homomorphism
+    def-group --> def-homomorphism
+    def-automorphism --> def-homomorphism
+    def-simple-group --> def-homomorphism
+    def-homomorphism --> def-binary-operation
+    def-exact-sequence --> def-homomorphism
+    def-kernel --> def-homomorphism
+    def-homomorphism --> def-quotient-group
+    thm-first-isomorphism --> def-homomorphism
+    def-direct-product --> def-homomorphism
+    def-homomorphism --> thm-first-isomorphism
+    ex-exponential-homomorphism --> def-homomorphism
+    def-homomorphism --> def-function
+    def-homomorphism --> def-group
+    class def-homomorphism current

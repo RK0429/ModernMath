@@ -326,20 +326,20 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-isomorphism["Definition: Isomorphism"]:::definition
     def-vector-space["Definition: Vector Space"]:::definition
-    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
-    def-isomorphism["Definition: Group Isomorphism"]:::definition
     def-linear-transformation["Definition: Linear Transformation"]:::definition
     def-kernel["Definition: Kernel"]:::definition
+    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
     def-image["Definition: Image"]:::definition
     thm-rank-nullity --&gt; def-image
     thm-rank-nullity --&gt; def-vector-space
-    thm-rank-nullity --&gt; def-kernel
     thm-rank-nullity --&gt; def-linear-transformation
+    thm-rank-nullity --&gt; def-kernel
     thm-rank-nullity --&gt; def-isomorphism
     class thm-rank-nullity current
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
     click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
-    click def-isomorphism "def-isomorphism.html" "Go to Group Isomorphism definition"
     click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation definition"
     click def-kernel "def-kernel.html" "Go to Kernel definition"
     click def-image "def-image.html" "Go to Image definition"
@@ -353,7 +353,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-rank-nullity-1753585772" class="graph-visualization-container">
+<div id="graph-viz-thm-rank-nullity-1753632609" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -533,12 +533,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-rank-nullity-1753585772', {
+    createForceGraph(data, 'graph-viz-thm-rank-nullity-1753632609', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-rank-nullity-1753585772').innerHTML =
+    document.getElementById('graph-viz-thm-rank-nullity-1753632609').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -600,7 +600,7 @@ if (document.readyState === 'loading') {
 }
 </style>
 
-<p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/thm-rank-nullity.html" target="_blank">full interactive version</a></p>
+<p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/thm-rank-nullity.html" target="_blank">full interactive version</a></p>
 
 
 </section>

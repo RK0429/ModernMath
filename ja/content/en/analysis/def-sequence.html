@@ -369,22 +369,22 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-sequence["Definition: Sequence"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-convergence["Definition: Convergence"]:::definition
     def-cauchy-sequence["Definition: Cauchy Sequence"]:::definition
-    def-series["Definition: Series"]:::definition
+    def-convergence["Definition: Convergence"]:::definition
     def-function["Definition: Function"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-series["Definition: Series"]:::definition
+    def-convergence --&gt; def-sequence
+    def-series --&gt; def-sequence
+    def-sequence --&gt; def-function
     def-sequence --&gt; def-set
     def-cauchy-sequence --&gt; def-sequence
-    def-series --&gt; def-sequence
-    def-convergence --&gt; def-sequence
-    def-sequence --&gt; def-function
     class def-sequence current
-    click def-set "def-set.html" "Go to Set definition"
-    click def-convergence "def-convergence.html" "Go to Convergence definition"
     click def-cauchy-sequence "def-cauchy-sequence.html" "Go to Cauchy Sequence definition"
-    click def-series "def-series.html" "Go to Series definition"
+    click def-convergence "def-convergence.html" "Go to Convergence definition"
     click def-function "def-function.html" "Go to Function definition"
+    click def-set "def-set.html" "Go to Set definition"
+    click def-series "def-series.html" "Go to Series definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -395,7 +395,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-sequence-1753586054" class="graph-visualization-container">
+<div id="graph-viz-def-sequence-1753632883" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -575,12 +575,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-sequence-1753586054', {
+    createForceGraph(data, 'graph-viz-def-sequence-1753632883', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-sequence-1753586054').innerHTML =
+    document.getElementById('graph-viz-def-sequence-1753632883').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -642,7 +642,7 @@ if (document.readyState === 'loading') {
 }
 </style>
 
-<p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/def-sequence.html" target="_blank">full interactive version</a></p>
+<p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/def-sequence.html" target="_blank">full interactive version</a></p>
 
 
 </section>

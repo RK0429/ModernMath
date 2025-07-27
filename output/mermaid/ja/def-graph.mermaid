@@ -1,0 +1,21 @@
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-graph["定義: グラフ"]:::definition
+    def-category["定義: 圏"]:::definition
+    def-functor["定義: 関手"]:::definition
+    def-tree["定義: 木"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-morphism["定義: 射"]:::definition
+    def-permutation["定義：順列"]:::definition
+    def-tree --> def-graph
+    def-morphism --> def-graph
+    def-permutation --> def-graph
+    def-graph --> def-set
+    def-category --> def-graph
+    def-functor --> def-graph
+    class def-graph current

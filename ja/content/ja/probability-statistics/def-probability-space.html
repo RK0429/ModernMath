@@ -333,26 +333,26 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-probability-space["Definition: Probability Space"]:::definition
-    def-random-variable["Definition: Random Variable"]:::definition
-    def-probability-distribution["Definition: Probability Distribution"]:::definition
-    def-independence["Definition: Independence"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-conditional-probability["Definition: Conditional Probability"]:::definition
-    def-expectation["Definition: Expected Value"]:::definition
-    def-expectation --&gt; def-probability-space
-    def-independence --&gt; def-probability-space
+    def-probability-space["定義: 確率空間"]:::definition
+    def-probability-distribution["定義: 確率分布"]:::definition
+    def-random-variable["定義: 確率変数"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-expectation["定義: 期待値"]:::definition
+    def-independence["定義: 独立性"]:::definition
+    def-conditional-probability["定義: 条件付き確率"]:::definition
     def-conditional-probability --&gt; def-probability-space
-    def-probability-distribution --&gt; def-probability-space
     def-probability-space --&gt; def-set
+    def-independence --&gt; def-probability-space
+    def-probability-distribution --&gt; def-probability-space
+    def-expectation --&gt; def-probability-space
     def-random-variable --&gt; def-probability-space
     class def-probability-space current
-    click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
-    click def-probability-distribution "def-probability-distribution.html" "Definition: Probability Distributionへ"
-    click def-independence "def-independence.html" "Definition: Independenceへ"
-    click def-set "def-set.html" "Definition: Setへ"
-    click def-conditional-probability "def-conditional-probability.html" "Definition: Conditional Probabilityへ"
-    click def-expectation "def-expectation.html" "Definition: Expected Valueへ"
+    click def-probability-distribution "def-probability-distribution.html" "確率分布の定義へ"
+    click def-random-variable "def-random-variable.html" "確率変数の定義へ"
+    click def-set "def-set.html" "集合の定義へ"
+    click def-expectation "def-expectation.html" "期待値の定義へ"
+    click def-independence "def-independence.html" "独立性の定義へ"
+    click def-conditional-probability "def-conditional-probability.html" "条件付き確率の定義へ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -363,7 +363,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-probability-space-1753586004" class="graph-visualization-container">
+<div id="graph-viz-def-probability-space-1753632836" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -543,12 +543,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-probability-space-1753586004', {
+    createForceGraph(data, 'graph-viz-def-probability-space-1753632836', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-probability-space-1753586004').innerHTML =
+    document.getElementById('graph-viz-def-probability-space-1753632836').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -610,7 +610,7 @@ if (document.readyState === 'loading') {
 }
 </style>
 
-<p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/def-probability-space.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
+<p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/ja/def-probability-space.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
 
 
 </section>
