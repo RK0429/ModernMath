@@ -9,10 +9,10 @@ requires:
 - ../combinatorics/def-binomial-coefficient
 status: complete
 title: '定義: 二項分布'
+translation_of: ../../en/probability-statistics/def-binomial-distribution.qmd
 translations:
   en: ../en/probability-statistics/def-binomial-distribution.html
   ja: ../ja/probability-statistics/def-binomial-distribution.html
-translation_of: ../../en/probability-statistics/def-binomial-distribution.qmd
 type: Definition
 ---
 
@@ -125,32 +125,35 @@ $n$ の値が大きい場合、二項確率の直接計算は数値的オーバ�
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "局所依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-binomial-distribution["定義: 二項分布"]:::definition
-    def-probability-distribution["定義: 確率分布"]:::definition
-    def-random-variable["定義: 確率変数"]:::definition
-    def-expectation["定義: 期待値"]:::definition
-    def-variance["定義: 分散"]:::definition
-    def-independence["定義: 独立性"]:::definition
-    def-binomial-coefficient["定義: 二項係数"]:::definition
-    def-binomial-distribution --> def-probability-distribution
-    def-binomial-distribution --> def-random-variable
-    def-binomial-distribution --> def-expectation
+    def-binomial-distribution["Definition: Binomial Distribution"]:::definition
+    def-expectation["Definition: Expected Value"]:::definition
+    def-probability-distribution["Definition: Probability Distribution"]:::definition
+    def-variance["Definition: Variance"]:::definition
+    def-random-variable["Definition: Random Variable"]:::definition
+    def-independence["Definition: Independence"]:::definition
     def-binomial-distribution --> def-variance
+    def-binomial-distribution --> def-probability-distribution
+    def-binomial-distribution --> def-expectation
+    def-binomial-distribution --> def-random-variable
     def-binomial-distribution --> def-independence
-    def-binomial-distribution --> def-binomial-coefficient
     class def-binomial-distribution current
+    click def-expectation "def-expectation.html" "Definition: Expected Valueへ"
+    click def-probability-distribution "def-probability-distribution.html" "Definition: Probability Distributionへ"
+    click def-variance "def-variance.html" "Definition: Varianceへ"
+    click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
+    click def-independence "def-independence.html" "Definition: Independenceへ"
 ```
 
 ## インタラクティブ可視化
 
-ローカル知識グラフの近傍をインタラクティブに探索：
+ローカルナレッジグラフの近傍をインタラクティブに探索：
 
 ::: {.graph-viz data-id="def-binomial-distribution" data-width="700" data-height="500"}
 :::
@@ -159,4 +162,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [完全なインタラクティブ版](../../output/interactive/def-binomial-distribution.html){target="_blank"}を表示
+- [別ウィンドウ](../../output/interactive/def-binomial-distribution.html){target="_blank"}で完全なインタラクティブ版を表示

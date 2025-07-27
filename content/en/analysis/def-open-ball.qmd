@@ -1,0 +1,85 @@
+---
+id: def-open-ball
+lean_id: Mathlib.Metric.Ball
+requires:
+- def-metric-space
+- def-set
+status: complete
+title: 'Definition: Open Ball'
+translations:
+  en: ../en/analysis/def-open-ball.html
+  ja: ../ja/analysis/def-open-ball.html
+type: Definition
+---
+
+# Definition: Open Ball {#def-open-ball}
+
+Let $(M, d)$ be a [metric space](def-metric-space.qmd). Let $a \in M$ be a point and let $r > 0$ be a positive real number. The **open ball** (or **open metric ball**) of radius $r$ centered at $a$ is the [set](../logic-set-theory/def-set.qmd):
+
+$$B_r(a) = \{x \in M : d(x, a) < r\}$$
+
+## Alternative Notations
+
+The open ball is also commonly denoted as:
+- $B(a, r)$ or $B(a; r)$
+- $B^o_r(a)$ to emphasize that it is open
+- $N_r(a)$ when viewed as a neighborhood
+
+## Key Properties
+
+1. **Center inclusion**: The center $a$ is always in $B_r(a)$ since $d(a, a) = 0 < r$ for any $r > 0$
+
+2. **Open sets**: Every open ball is an open set in the metric topology
+
+3. **Basis for topology**: The collection of all open balls forms a basis for the metric topology on $M$
+
+4. **Nested balls**: If $0 < r_1 < r_2$, then $B_{r_1}(a) \subseteq B_{r_2}(a)$
+
+## Examples
+
+### Euclidean Space
+In $\mathbb{R}^n$ with the standard Euclidean metric:
+- In $\mathbb{R}$: $B_r(a) = (a - r, a + r)$ is an open interval
+- In $\mathbb{R}^2$: $B_r(a)$ is an open disk (interior of a circle)
+- In $\mathbb{R}^3$: $B_r(a)$ is an open sphere (interior of a sphere)
+
+### Other Metrics
+The shape of open balls depends on the metric:
+- **Taxicab metric** on $\mathbb{R}^2$: Open balls are open diamonds (rotated squares)
+- **Maximum metric** on $\mathbb{R}^2$: Open balls are open squares
+- **Discrete metric**: $B_r(a) = \{a\}$ if $r \leq 1$, and $B_r(a) = M$ if $r > 1$
+
+## Relationship to Other Concepts
+
+### Closed Ball
+The **closed ball** of radius $r$ centered at $a$ is defined as:
+$$\overline{B}_r(a) = \{x \in M : d(x, a) \leq r\}$$
+
+Note that $B_r(a) \subseteq \overline{B}_r(a)$, but equality does not always hold.
+
+### Neighborhoods
+In a metric space, a set $U$ is a neighborhood of a point $a$ if and only if there exists an $r > 0$ such that $B_r(a) \subseteq U$.
+
+### Continuity
+A function $f: (M_1, d_1) \to (M_2, d_2)$ between metric spaces is [continuous](def-continuity.qmd) at $a \in M_1$ if and only if:
+For every $\varepsilon > 0$, there exists $\delta > 0$ such that $f(B_\delta(a)) \subseteq B_\varepsilon(f(a))$.
+
+### Open Sets
+A subset $U$ of a metric space $M$ is open if and only if for every $x \in U$, there exists $r > 0$ such that $B_r(x) \subseteq U$.
+
+## Important Results
+
+1. **Union of open balls**: Every open set in a metric space is a union of open balls
+
+2. **Metric topology**: The topology induced by a metric has the open balls as a basis
+
+3. **Separation property**: In a metric space, for distinct points $x \neq y$, there exist disjoint open balls $B_{r_1}(x)$ and $B_{r_2}(y)$
+
+## See Also
+
+- @def-metric-space
+- @def-open-set
+- @def-continuity
+- @def-convergence
+- @def-cauchy-sequence
+- @def-complete-metric-space

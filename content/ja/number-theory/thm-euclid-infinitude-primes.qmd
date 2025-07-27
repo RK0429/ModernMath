@@ -1,0 +1,129 @@
+---
+id: thm-euclid-infinitude-primes
+requires:
+- def-prime
+- def-divisibility
+- thm-fundamental-arithmetic
+status: complete
+title: 定理：素数の無限性に関するユークリッドの定理
+translation_of: ../../en/number-theory/thm-euclid-infinitude-primes.qmd
+translations:
+  en: ../en/number-theory/thm-euclid-infinitude-primes.html
+  ja: ../ja/number-theory/thm-euclid-infinitude-primes.html
+type: Theorem
+---
+
+# 素数の無限性に関するユークリッドの定理 {#thm-euclid-infinitude-primes}
+
+[素数](def-prime.qmd)は無限に存在します。
+
+## 主張
+
+任意の有限個の素数のリスト $p_1, p_2, \ldots, p_n$ に対して、このリストに含まれない素数が存在します。したがって、素数の集合は無限です。
+
+## 歴史的注記
+
+ユークリッドの原典での表現（紀元前300年頃）は「素数は任意に与えられた素数の個数よりも多い」でした。古代ギリシャ人は現代的な無限の概念を持っていなかったため、ユークリッドは「素数は無限に存在する」と書くことはできませんでした。
+
+## 証明
+
+**ユークリッドの原証明：**
+
+$p_1, p_2, \ldots, p_n$ を任意の有限個の素数のリストとします。次の数を考えます：
+$$P = p_1 \cdot p_2 \cdot \ldots \cdot p_n + 1$$
+
+ここで二つの場合を考えます：
+
+**場合1：** $P$ が素数である。
+このとき、$P$ は元のリストに含まれない素数です（すべての $i$ に対して $P > p_i$ であるため）。
+
+**場合2：** $P$ が合成数である。
+[算術の基本定理](thm-fundamental-arithmetic.qmd)により、$P$ は素因数を持ちます。これを $p$ とします。$p$ は $p_1, p_2, \ldots, p_n$ のいずれでもないことを示します。
+
+もし $p = p_i$ （ある $i$ に対して）ならば、$p_i$ は $P$ と $p_1 \cdot p_2 \cdot \ldots \cdot p_n$ の両方を[割り切ります](def-divisibility.qmd)。したがって、$p_i$ はそれらの差を割り切ることになります：
+$$P - p_1 \cdot p_2 \cdot \ldots \cdot p_n = 1$$
+
+しかし、素数は1を割り切ることはできません。これは矛盾です。
+
+したがって、$p$ は元のリストに含まれない素数です。
+
+どちらの場合でも、元のリストに含まれない素数を見つけることができ、任意の有限個の素数のリストは不完全であることが証明されます。
+
+## よくある誤解
+
+ユークリッドの証明が $P = p_1 \cdot p_2 \cdot \ldots \cdot p_n + 1$ が常に素数であることを示していると誤解されることがよくあります。これは誤りです。例えば：
+- $2 \cdot 3 + 1 = 7$ （素数）
+- $2 \cdot 3 \cdot 5 + 1 = 31$ （素数）
+- $2 \cdot 3 \cdot 5 \cdot 7 + 1 = 211$ （素数）
+- $2 \cdot 3 \cdot 5 \cdot 7 \cdot 11 + 1 = 2311$ （素数）
+- $2 \cdot 3 \cdot 5 \cdot 7 \cdot 11 \cdot 13 + 1 = 30031 = 59 \times 509$ （合成数）
+
+証明は $P$ が元のリストに含まれない素因数を持つことのみを必要とします。
+
+## 別証明
+
+**階乗による証明：**
+
+任意の正の整数 $n$ に対して、$n! + 1$ を考えます。この数は2から $n$ までのどの整数でも割り切れません（それぞれで割ると余り1が出ます）。したがって、$n! + 1$ は：
+- 素数（かつ $n$ より大きい）、または
+- $n$ より大きい素数で割り切れる
+
+どちらの場合でも、すべての $n$ に対して $n$ より大きい素数が存在し、無限性が証明されます。
+
+## 意義
+
+ユークリッドの定理は数学において最もエレガントな証明の一つであり、多くの変種を生み出しました：
+- 200以上の異なる証明が発見されています
+- 背理法の威力を示す例となっています
+- 素数分布に関するより深い問題（素数定理、リーマン予想）への動機付けとなっています
+- 構成 $p_1 \cdot p_2 \cdot \ldots \cdot p_n + 1$ は数論の様々な分野に現れます
+
+## 関連する結果
+
+- **ディリクレの定理**：$\gcd(a,d) = 1$ であるような等差数列 $a + nd$ には無限に多くの素数が存在する
+- **素数定理**：$x$ 以下の素数の個数は約 $x/\ln(x)$ である
+- **ベルトランの仮説**：すべての $n > 1$ に対して、$n < p < 2n$ を満たす素数 $p$ が存在する
+
+## 参照
+
+- @def-prime
+- @thm-fundamental-arithmetic
+- @def-divisibility
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-fundamental-arithmetic["Theorem: Fundamental Theorem of Arithmetic"]:::theorem
+    thm-euclid-infinitude-primes["Theorem: Euclid's Theorem on the Infinitude of Primes"]:::theorem
+    def-divisibility["Definition: Divisibility"]:::definition
+    def-prime["Definition: Prime Number"]:::definition
+    thm-euclid-infinitude-primes --> def-prime
+    thm-fundamental-arithmetic --> thm-euclid-infinitude-primes
+    thm-euclid-infinitude-primes --> thm-fundamental-arithmetic
+    thm-euclid-infinitude-primes --> def-divisibility
+    def-prime --> thm-euclid-infinitude-primes
+    class thm-euclid-infinitude-primes current
+    click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "Theorem: Fundamental Theorem of Arithmeticへ"
+    click def-divisibility "def-divisibility.html" "Definition: Divisibilityへ"
+    click def-prime "def-prime.html" "Definition: Prime Numberへ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="thm-euclid-infinitude-primes" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/thm-euclid-infinitude-primes.html){target="_blank"}で完全なインタラクティブ版を表示

@@ -1,0 +1,86 @@
+---
+id: def-open-ball
+lean_id: Mathlib.Metric.Ball
+requires:
+- def-metric-space
+- def-set
+status: complete
+title: '定義：開球'
+translation_of: ../../en/analysis/def-open-ball.qmd
+translations:
+  en: ../en/analysis/def-open-ball.html
+  ja: ../ja/analysis/def-open-ball.html
+type: Definition
+---
+
+# 定義：開球 {#def-open-ball}
+
+$(M, d)$ を[距離空間](def-metric-space.qmd)とする。$a \in M$ を点、$r > 0$ を正の実数とする。**開球**（または**開距離球**）で中心が $a$、半径が $r$ のものは、次の[集合](../logic-set-theory/def-set.qmd)である：
+
+$$B_r(a) = \{x \in M : d(x, a) < r\}$$
+
+## 別記法
+
+開球は以下のようにも表記される：
+- $B(a, r)$ または $B(a; r)$
+- $B^o_r(a)$（開球であることを強調）
+- $N_r(a)$（近傍として見る場合）
+
+## 重要な性質
+
+1. **中心の包含**：$r > 0$ に対して $d(a, a) = 0 < r$ なので、中心 $a$ は常に $B_r(a)$ に含まれる
+
+2. **開集合**：すべての開球は距離位相において開集合である
+
+3. **位相の基底**：すべての開球の集まりは $M$ の距離位相の基底をなす
+
+4. **入れ子の球**：$0 < r_1 < r_2$ ならば、$B_{r_1}(a) \subseteq B_{r_2}(a)$
+
+## 例
+
+### ユークリッド空間
+標準ユークリッド距離を持つ $\mathbb{R}^n$ において：
+- $\mathbb{R}$ では：$B_r(a) = (a - r, a + r)$ は開区間
+- $\mathbb{R}^2$ では：$B_r(a)$ は開円板（円の内部）
+- $\mathbb{R}^3$ では：$B_r(a)$ は開球体（球の内部）
+
+### その他の距離
+開球の形は距離に依存する：
+- **$\mathbb{R}^2$ のタクシー距離**：開球は開ひし形（回転した正方形）
+- **$\mathbb{R}^2$ の最大値距離**：開球は開正方形
+- **離散距離**：$r \leq 1$ なら $B_r(a) = \{a\}$、$r > 1$ なら $B_r(a) = M$
+
+## 他の概念との関係
+
+### 閉球
+中心が $a$、半径が $r$ の**閉球**は次で定義される：
+$$\overline{B}_r(a) = \{x \in M : d(x, a) \leq r\}$$
+
+$B_r(a) \subseteq \overline{B}_r(a)$ であるが、等号は必ずしも成り立たない。
+
+### 近傍
+距離空間において、集合 $U$ が点 $a$ の近傍であるための必要十分条件は、ある $r > 0$ が存在して $B_r(a) \subseteq U$ となることである。
+
+### 連続性
+距離空間間の関数 $f: (M_1, d_1) \to (M_2, d_2)$ が $a \in M_1$ で[連続](def-continuity.qmd)であるための必要十分条件は：
+すべての $\varepsilon > 0$ に対して、ある $\delta > 0$ が存在して $f(B_\delta(a)) \subseteq B_\varepsilon(f(a))$ となることである。
+
+### 開集合
+距離空間 $M$ の部分集合 $U$ が開集合であるための必要十分条件は、すべての $x \in U$ に対して、ある $r > 0$ が存在して $B_r(x) \subseteq U$ となることである。
+
+## 重要な結果
+
+1. **開球の和集合**：距離空間のすべての開集合は開球の和集合である
+
+2. **距離位相**：距離によって誘導される位相は開球を基底として持つ
+
+3. **分離性**：距離空間において、異なる点 $x \neq y$ に対して、互いに素な開球 $B_{r_1}(x)$ と $B_{r_2}(y)$ が存在する
+
+## 関連項目
+
+- @def-metric-space
+- @def-open-set
+- @def-continuity
+- @def-convergence
+- @def-cauchy-sequence
+- @def-complete-metric-space

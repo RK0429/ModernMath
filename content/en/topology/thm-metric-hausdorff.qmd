@@ -4,6 +4,7 @@ requires:
 - def-metric-space
 - def-hausdorff
 - def-topological-space
+- ../analysis/def-open-ball
 status: complete
 title: 'Theorem: Every Metric Space is Hausdorff'
 translations:
@@ -24,7 +25,7 @@ Since $x \neq y$, by the identity of indiscernibles property of metrics, we have
 
 Let $r = \frac{d(x, y)}{2} > 0$.
 
-Consider the open balls:
+Consider the [open balls](../analysis/def-open-ball.qmd):
 - $U = B(x, r) = \{z \in X : d(x, z) < r\}$
 - $V = B(y, r) = \{z \in X : d(y, z) < r\}$
 
@@ -67,17 +68,17 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
     def-metric-space["Definition: Metric Space"]:::definition
-    def-topological-space["Definition: Topological Space"]:::definition
     def-hausdorff["Definition: Hausdorff Space"]:::definition
-    thm-metric-hausdorff --> def-topological-space
+    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
+    def-topological-space["Definition: Topological Space"]:::definition
     thm-metric-hausdorff --> def-hausdorff
     thm-metric-hausdorff --> def-metric-space
+    thm-metric-hausdorff --> def-topological-space
     class thm-metric-hausdorff current
     click def-metric-space "def-metric-space.html" "Go to Metric Space definition"
-    click def-topological-space "def-topological-space.html" "Go to Topological Space definition"
     click def-hausdorff "def-hausdorff.html" "Go to Hausdorff Space definition"
+    click def-topological-space "def-topological-space.html" "Go to Topological Space definition"
 ```
 
 ## Interactive Visualization

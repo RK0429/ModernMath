@@ -3,6 +3,7 @@ id: def-metric-space
 requires:
 - def-set
 - ../logic-set-theory/def-function
+- ../analysis/def-open-ball
 status: complete
 title: 'Definition: Metric Space'
 translations:
@@ -39,7 +40,7 @@ The pair $(X, d)$ is called a metric space.
 
 ## Key Concepts
 
-- **Open ball**: $B(x, r) = \{y \in X : d(x, y) < r\}$
+- **[Open ball](../analysis/def-open-ball.qmd)**: $B(x, r) = \{y \in X : d(x, y) < r\}$
 - **Closed ball**: $\bar{B}(x, r) = \{y \in X : d(x, y) \leq r\}$
 - **Bounded set**: $A \subseteq X$ is bounded if $\exists M > 0, x_0 \in X$ such that $A \subseteq B(x_0, M)$
 
@@ -62,40 +63,40 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-euclidean-space["Definition: Euclidean Space"]:::definition
-    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
-    ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
-    thm-heine-borel["Theorem: Heine-Borel Theorem"]:::theorem
-    def-cauchy-sequence["Definition: Cauchy Sequence"]:::definition
-    def-function["Definition: Function"]:::definition
-    def-metric-space["Definition: Metric Space"]:::definition
-    def-uniform-continuity["Definition: Uniform Continuity"]:::definition
-    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
     def-set["Definition: Set"]:::definition
+    def-metric-space["Definition: Metric Space"]:::definition
     ex-euclidean-metric["Example: Euclidean Metric on ℝⁿ"]:::example
     def-normed-vector-space["Definition: Normed Vector Space"]:::definition
-    def-metric-space --> def-function
-    ex-real-line-metric --> def-metric-space
-    def-euclidean-space --> def-metric-space
+    def-cauchy-sequence["Definition: Cauchy Sequence"]:::definition
+    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
+    thm-heine-borel["Theorem: Heine-Borel Theorem"]:::theorem
+    def-function["Definition: Function"]:::definition
+    ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
+    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
+    def-uniform-continuity["Definition: Uniform Continuity"]:::definition
     thm-metric-hausdorff --> def-metric-space
     ex-euclidean-metric --> def-metric-space
-    def-cauchy-sequence --> def-metric-space
-    def-complete-metric-space --> def-metric-space
     thm-heine-borel --> def-metric-space
-    def-normed-vector-space --> def-metric-space
+    def-metric-space --> def-function
+    ex-real-line-metric --> def-metric-space
     def-metric-space --> def-set
+    def-euclidean-space --> def-metric-space
+    def-complete-metric-space --> def-metric-space
+    def-cauchy-sequence --> def-metric-space
+    def-normed-vector-space --> def-metric-space
     def-uniform-continuity --> def-metric-space
     class def-metric-space current
     click def-euclidean-space "def-euclidean-space.html" "Go to Euclidean Space definition"
-    click thm-metric-hausdorff "thm-metric-hausdorff.html" "Go to Every Metric Space is Hausdorff theorem"
-    click ex-real-line-metric "ex-real-line-metric.html" "Go to Real Line with Standard Metric example"
-    click thm-heine-borel "thm-heine-borel.html" "Go to Heine-Borel Theorem theorem"
-    click def-cauchy-sequence "def-cauchy-sequence.html" "Go to Cauchy Sequence definition"
-    click def-function "def-function.html" "Go to Function definition"
-    click def-uniform-continuity "def-uniform-continuity.html" "Go to Uniform Continuity definition"
-    click def-complete-metric-space "def-complete-metric-space.html" "Go to Complete Metric Space definition"
     click def-set "def-set.html" "Go to Set definition"
     click ex-euclidean-metric "ex-euclidean-metric.html" "Go to Euclidean Metric on ℝⁿ example"
     click def-normed-vector-space "def-normed-vector-space.html" "Go to Normed Vector Space definition"
+    click def-cauchy-sequence "def-cauchy-sequence.html" "Go to Cauchy Sequence definition"
+    click def-complete-metric-space "def-complete-metric-space.html" "Go to Complete Metric Space definition"
+    click thm-heine-borel "thm-heine-borel.html" "Go to Heine-Borel Theorem theorem"
+    click def-function "def-function.html" "Go to Function definition"
+    click ex-real-line-metric "ex-real-line-metric.html" "Go to Real Line with Standard Metric example"
+    click thm-metric-hausdorff "thm-metric-hausdorff.html" "Go to Every Metric Space is Hausdorff theorem"
+    click def-uniform-continuity "def-uniform-continuity.html" "Go to Uniform Continuity definition"
 ```
 
 ## Interactive Visualization

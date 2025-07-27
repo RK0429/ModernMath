@@ -4,6 +4,7 @@ requires:
 - def-metric-space
 - def-hausdorff
 - def-topological-space
+- ../analysis/def-open-ball
 status: complete
 title: '定理: すべての距離空間はハウスドルフ空間'
 translation_of: ../../en/topology/thm-metric-hausdorff.qmd
@@ -25,7 +26,7 @@ $x \neq y$ なので、距離の非退化性により $d(x, y) > 0$ である。
 
 $r = \frac{d(x, y)}{2} > 0$ とする。
 
-以下の開球を考える：
+以下の[開球](../analysis/def-open-ball.qmd)を考える：
 - $U = B(x, r) = \{z \in X : d(x, z) < r\}$
 - $V = B(y, r) = \{z \in X : d(y, z) < r\}$
 
@@ -68,17 +69,17 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
     def-metric-space["Definition: Metric Space"]:::definition
-    def-topological-space["Definition: Topological Space"]:::definition
     def-hausdorff["Definition: Hausdorff Space"]:::definition
-    thm-metric-hausdorff --> def-topological-space
+    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
+    def-topological-space["Definition: Topological Space"]:::definition
     thm-metric-hausdorff --> def-hausdorff
     thm-metric-hausdorff --> def-metric-space
+    thm-metric-hausdorff --> def-topological-space
     class thm-metric-hausdorff current
     click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
-    click def-topological-space "def-topological-space.html" "Definition: Topological Spaceへ"
     click def-hausdorff "def-hausdorff.html" "Definition: Hausdorff Spaceへ"
+    click def-topological-space "def-topological-space.html" "Definition: Topological Spaceへ"
 ```
 
 ## インタラクティブ可視化

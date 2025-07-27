@@ -91,28 +91,28 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["Definition: Set"]:::definition
+    def-intersection["Definition: Intersection"]:::definition
+    def-cardinality["Definition: Cardinality"]:::definition
     def-power-set["Definition: Power Set"]:::definition
     def-union["Definition: Union"]:::definition
-    thm-cantor["Theorem: Cantor's Theorem"]:::theorem
     def-function["Definition: Function"]:::definition
-    def-intersection["Definition: Intersection"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-cardinality["Definition: Cardinality"]:::definition
-    thm-cantor --> def-cardinality
-    def-cardinality --> def-set
-    def-intersection --> def-cardinality
-    def-cardinality --> def-function
-    def-union --> def-cardinality
+    thm-cantor["Theorem: Cantor's Theorem"]:::theorem
     def-cardinality --> def-power-set
+    def-cardinality --> def-set
+    def-union --> def-cardinality
+    def-intersection --> def-cardinality
     def-cardinality --> thm-cantor
     def-power-set --> def-cardinality
+    def-cardinality --> def-function
+    thm-cantor --> def-cardinality
     class def-cardinality current
+    click def-set "def-set.html" "Definition: Setへ"
+    click def-intersection "def-intersection.html" "Definition: Intersectionへ"
     click def-power-set "def-power-set.html" "Definition: Power Setへ"
     click def-union "def-union.html" "Definition: Unionへ"
-    click thm-cantor "thm-cantor.html" "Theorem: Cantor's Theoremへ"
     click def-function "def-function.html" "Definition: Functionへ"
-    click def-intersection "def-intersection.html" "Definition: Intersectionへ"
-    click def-set "def-set.html" "Definition: Setへ"
+    click thm-cantor "thm-cantor.html" "Theorem: Cantor's Theoremへ"
 ```
 
 ## インタラクティブ可視化

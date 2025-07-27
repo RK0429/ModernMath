@@ -3,6 +3,7 @@ id: ex-real-line-metric
 requires:
 - def-metric-space
 - ../logic-set-theory/def-cardinality
+- def-open-ball
 status: complete
 title: 例：標準距離を持つ実数直線
 translation_of: ../../en/analysis/ex-real-line-metric.qmd
@@ -41,7 +42,7 @@ $d$ が4つの距離の公理をすべて満たすことを検証する：
 
 ## 開球
 
-この距離空間において、$a$ を中心とする半径 $r > 0$ の開球 $B(a, r)$ は：
+この距離空間において、$a$ を中心とする半径 $r > 0$ の[開球](def-open-ball.qmd) $B(a, r)$ は：
 
 $$B(a, r) = \{x \in \mathbb{R} : |x - a| < r\} = (a - r, a + r)$$
 
@@ -69,8 +70,8 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
     def-metric-space["Definition: Metric Space"]:::definition
+    ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
     ex-real-line-metric --> def-metric-space
     class ex-real-line-metric current
     click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"

@@ -101,23 +101,26 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-gcd["Definition: Greatest Common Divisor"]:::definition
-    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
-    def-divisibility["Definition: Divisibility"]:::definition
     thm-chinese-remainder["Theorem: Chinese Remainder Theorem"]:::theorem
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
-    thm-euclidean-algorithm --> def-divisibility
+    def-gcd["Definition: Greatest Common Divisor"]:::definition
+    def-divisibility["Definition: Divisibility"]:::definition
+    thm-fundamental-arithmetic["Theorem: Fundamental Theorem of Arithmetic"]:::theorem
+    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-gcd --> thm-euclidean-algorithm
+    thm-euclidean-algorithm --> ex-quotient-integers-mod-n
+    thm-euclidean-algorithm --> def-gcd
+    thm-fundamental-arithmetic --> thm-euclidean-algorithm
     thm-chinese-remainder --> thm-euclidean-algorithm
     def-congruence --> thm-euclidean-algorithm
-    def-gcd --> thm-euclidean-algorithm
-    thm-euclidean-algorithm --> def-gcd
-    thm-euclidean-algorithm --> ex-quotient-integers-mod-n
+    thm-euclidean-algorithm --> def-divisibility
     class thm-euclidean-algorithm current
-    click def-gcd "def-gcd.html" "Definition: Greatest Common Divisorへ"
-    click def-congruence "def-congruence.html" "Definition: Congruence (Modular Arithmetic)へ"
-    click def-divisibility "def-divisibility.html" "Definition: Divisibilityへ"
     click thm-chinese-remainder "thm-chinese-remainder.html" "Theorem: Chinese Remainder Theoremへ"
+    click def-gcd "def-gcd.html" "Definition: Greatest Common Divisorへ"
+    click def-divisibility "def-divisibility.html" "Definition: Divisibilityへ"
+    click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "Theorem: Fundamental Theorem of Arithmeticへ"
+    click def-congruence "def-congruence.html" "Definition: Congruence (Modular Arithmetic)へ"
     click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
 ```
 

@@ -6,6 +6,7 @@ requires:
 - def-convergence
 - def-continuity
 - thm-mean-value
+- def-open-ball
 status: complete
 title: '定理: テイラー級数'
 translation_of: ../../en/analysis/thm-taylor-series.qmd
@@ -66,7 +67,7 @@ $$\frac{1}{R} = \limsup_{n \to \infty} \sqrt[n]{|a_n|}$$
 
 ### 解析関数
 
-関数 $f$ が $a$ で**解析的**であるとは、$a$ の近傍でそのテイラー級数に等しいことをいう。すべての無限回微分可能な関数が解析的であるわけではない。
+関数 $f$ が $a$ で**解析的**であるとは、$a$ の近傍（つまり $a$ を中心とするある[開球](def-open-ball.qmd)内）でそのテイラー級数に等しいことをいう。すべての無限回微分可能な関数が解析的であるわけではない。
 
 ## 主要なテイラー級数
 
@@ -114,21 +115,21 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-convergence["Definition: Convergence"]:::definition
-    def-derivative["Definition: Derivative"]:::definition
     def-continuity["Definition: Continuity"]:::definition
     def-series["Definition: Series"]:::definition
+    def-derivative["Definition: Derivative"]:::definition
     thm-taylor-series["Theorem: Taylor Series"]:::theorem
     thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
     thm-taylor-series --> def-continuity
-    thm-taylor-series --> thm-mean-value
-    thm-taylor-series --> def-series
     thm-taylor-series --> def-convergence
     thm-taylor-series --> def-derivative
+    thm-taylor-series --> thm-mean-value
+    thm-taylor-series --> def-series
     class thm-taylor-series current
     click def-convergence "def-convergence.html" "Definition: Convergenceへ"
-    click def-derivative "def-derivative.html" "Definition: Derivativeへ"
     click def-continuity "def-continuity.html" "Definition: Continuityへ"
     click def-series "def-series.html" "Definition: Seriesへ"
+    click def-derivative "def-derivative.html" "Definition: Derivativeへ"
     click thm-mean-value "thm-mean-value.html" "Theorem: Mean Value Theoremへ"
 ```
 

@@ -5,15 +5,15 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-chain-rule["Theorem: Chain Rule"]:::theorem
     def-derivative["Definition: Derivative"]:::definition
-    thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
-    def-limit["Definition: Limit of a Sequence"]:::definition
     thm-taylor-series["Theorem: Taylor Series"]:::theorem
     thm-fundamental-calculus["Theorem: Fundamental Theorem of Calculus"]:::theorem
-    thm-mean-value --> def-derivative
+    def-limit["Definition: Limit of a Sequence"]:::definition
+    thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
+    thm-chain-rule["Theorem: Chain Rule"]:::theorem
+    thm-chain-rule --> def-derivative
     thm-fundamental-calculus --> def-derivative
     thm-taylor-series --> def-derivative
     def-derivative --> def-limit
-    thm-chain-rule --> def-derivative
+    thm-mean-value --> def-derivative
     class def-derivative current

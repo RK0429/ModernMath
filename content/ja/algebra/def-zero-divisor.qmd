@@ -119,19 +119,45 @@ $$b = 1 \cdot b = (a^{-1}a)b = a^{-1}(ab) = a^{-1} \cdot 0 = 0$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "依存関係グラフ"
+%%| fig-cap: "Local dependency graph"
 graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-field["Definition: Field"]:::definition
+    def-prime-ideal["Definition: Prime Ideal"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
+    def-zero-divisor["Definition: Zero Divisor"]:::definition
+    def-integral-domain["Definition: Integral Domain"]:::definition
+    def-identity-element["Definition: Identity Element"]:::definition
+    def-zero-divisor --> def-integral-domain
+    def-zero-divisor --> def-field
+    def-integral-domain --> def-zero-divisor
+    def-zero-divisor --> def-ring
+    def-zero-divisor --> def-ideal
+    def-zero-divisor --> def-prime-ideal
+    def-zero-divisor --> def-identity-element
+    class def-zero-divisor current
+    click def-field "def-field.html" "Definition: Fieldへ"
+    click def-prime-ideal "def-prime-ideal.html" "Definition: Prime Idealへ"
+    click def-ring "def-ring.html" "Definition: Ringへ"
+    click def-ideal "def-ideal.html" "Definition: Idealへ"
+    click def-integral-domain "def-integral-domain.html" "Definition: Integral Domainへ"
+    click def-identity-element "def-identity-element.html" "Definition: Identity Elementへ"
 ```
 
 ## インタラクティブ可視化
 
-知識グラフの近傍をインタラクティブに探索:
+ローカルナレッジグラフの近傍をインタラクティブに探索：
 
 ::: {.graph-viz data-id="def-zero-divisor" data-width="700" data-height="500"}
 :::
 
-以下が可能です:
-- ノードを**ドラッグ**してレイアウトを調整
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [完全なインタラクティブ版](../../output/interactive/def-zero-divisor.html){target="_blank"}を表示
+- [別ウィンドウ](../../output/interactive/def-zero-divisor.html){target="_blank"}で完全なインタラクティブ版を表示

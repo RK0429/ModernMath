@@ -3,6 +3,7 @@ id: def-metric-space
 requires:
 - def-set
 - def-function
+- def-open-ball
 status: complete
 title: 定義：距離空間
 translation_of: ../../en/analysis/def-metric-space.qmd
@@ -33,16 +34,17 @@ type: Definition
 
 距離空間 $(X, d)$ が与えられたとき：
 
-- **開球**：$x \in X$ と $r > 0$ に対して、$x$ を中心とする半径 $r$ の開球は $B(x, r) = \{y \in X : d(x, y) < r\}$
+- **[開球](def-open-ball.qmd)**：$x \in X$ と $r > 0$ に対して、$x$ を中心とする半径 $r$ の開球は $B(x, r) = \{y \in X : d(x, y) < r\}$
 - **閉球**：$\overline{B}(x, r) = \{y \in X : d(x, y) \leq r\}$
 - **有界集合**：部分集合 $A \subseteq X$ が有界であるとは、ある $x \in X$ と $r > 0$ が存在して $A \subseteq B(x, r)$ となることをいう
 
 ## 位相との関係
 
-すべての距離空間 $(X, d)$ は $X$ 上に位相を誘導する。ここで開集合とは開球の和集合として表される集合である。これにより、すべての距離空間は[位相空間](../topology/def-topological-space.qmd)となる。
+すべての距離空間 $(X, d)$ は $X$ 上に位相を誘導する。ここで開集合とは[開球](def-open-ball.qmd)の和集合として表される集合である。これにより、すべての距離空間は[位相空間](../topology/def-topological-space.qmd)となる。
 
 ## 関連項目
 
+- [開球](def-open-ball.qmd) - 距離空間における開球
 - [標準距離を持つ実数直線](ex-real-line-metric.qmd) - 標準距離を持つ実数直線
 - [連続性](def-continuity.qmd) - 連続性は距離を用いて定義できる
 - [すべての距離空間はハウスドルフ](../topology/thm-metric-hausdorff.qmd) - すべての距離空間はハウスドルフ空間である
@@ -58,40 +60,40 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-euclidean-space["Definition: Euclidean Space"]:::definition
-    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
-    ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
-    thm-heine-borel["Theorem: Heine-Borel Theorem"]:::theorem
-    def-cauchy-sequence["Definition: Cauchy Sequence"]:::definition
-    def-function["Definition: Function"]:::definition
-    def-metric-space["Definition: Metric Space"]:::definition
-    def-uniform-continuity["Definition: Uniform Continuity"]:::definition
-    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
     def-set["Definition: Set"]:::definition
+    def-metric-space["Definition: Metric Space"]:::definition
     ex-euclidean-metric["Example: Euclidean Metric on ℝⁿ"]:::example
     def-normed-vector-space["Definition: Normed Vector Space"]:::definition
-    def-metric-space --> def-function
-    ex-real-line-metric --> def-metric-space
-    def-euclidean-space --> def-metric-space
+    def-cauchy-sequence["Definition: Cauchy Sequence"]:::definition
+    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
+    thm-heine-borel["Theorem: Heine-Borel Theorem"]:::theorem
+    def-function["Definition: Function"]:::definition
+    ex-real-line-metric["Example: Real Line with Standard Metric"]:::example
+    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
+    def-uniform-continuity["Definition: Uniform Continuity"]:::definition
     thm-metric-hausdorff --> def-metric-space
     ex-euclidean-metric --> def-metric-space
-    def-cauchy-sequence --> def-metric-space
-    def-complete-metric-space --> def-metric-space
     thm-heine-borel --> def-metric-space
-    def-normed-vector-space --> def-metric-space
+    def-metric-space --> def-function
+    ex-real-line-metric --> def-metric-space
     def-metric-space --> def-set
+    def-euclidean-space --> def-metric-space
+    def-complete-metric-space --> def-metric-space
+    def-cauchy-sequence --> def-metric-space
+    def-normed-vector-space --> def-metric-space
     def-uniform-continuity --> def-metric-space
     class def-metric-space current
     click def-euclidean-space "def-euclidean-space.html" "Definition: Euclidean Spaceへ"
-    click thm-metric-hausdorff "thm-metric-hausdorff.html" "Theorem: Every Metric Space is Hausdorffへ"
-    click ex-real-line-metric "ex-real-line-metric.html" "Example: Real Line with Standard Metricへ"
-    click thm-heine-borel "thm-heine-borel.html" "Theorem: Heine-Borel Theoremへ"
-    click def-cauchy-sequence "def-cauchy-sequence.html" "Definition: Cauchy Sequenceへ"
-    click def-function "def-function.html" "Definition: Functionへ"
-    click def-uniform-continuity "def-uniform-continuity.html" "Definition: Uniform Continuityへ"
-    click def-complete-metric-space "def-complete-metric-space.html" "Definition: Complete Metric Spaceへ"
     click def-set "def-set.html" "Definition: Setへ"
     click ex-euclidean-metric "ex-euclidean-metric.html" "Example: Euclidean Metric on ℝⁿへ"
     click def-normed-vector-space "def-normed-vector-space.html" "Definition: Normed Vector Spaceへ"
+    click def-cauchy-sequence "def-cauchy-sequence.html" "Definition: Cauchy Sequenceへ"
+    click def-complete-metric-space "def-complete-metric-space.html" "Definition: Complete Metric Spaceへ"
+    click thm-heine-borel "thm-heine-borel.html" "Theorem: Heine-Borel Theoremへ"
+    click def-function "def-function.html" "Definition: Functionへ"
+    click ex-real-line-metric "ex-real-line-metric.html" "Example: Real Line with Standard Metricへ"
+    click thm-metric-hausdorff "thm-metric-hausdorff.html" "Theorem: Every Metric Space is Hausdorffへ"
+    click def-uniform-continuity "def-uniform-continuity.html" "Definition: Uniform Continuityへ"
 ```
 
 ## インタラクティブ可視化
