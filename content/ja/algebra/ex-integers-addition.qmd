@@ -79,31 +79,31 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["定義: 集合"]:::definition
-    def-cyclic-group["定義: 巡回群"]:::definition
     def-binary-operation["定義: 二項演算"]:::definition
-    ex-even-integers-subgroup["例: 偶数整数は部分群を成す"]:::example
-    ex-integers-addition["例: 加法における整数"]:::example
-    def-abelian-group["定義: アーベル群"]:::definition
     ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
+    def-cyclic-group["定義: 巡回群"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-abelian-group["定義: アーベル群"]:::definition
+    ex-integers-addition["例: 加法における整数"]:::example
     def-group["群"]:::definition
-    ex-integers-addition --> def-cyclic-group
+    ex-even-integers-subgroup["例: 偶数整数は部分群を成す"]:::example
     ex-integers-addition --> def-group
+    ex-integers-addition --> def-set
+    ex-integers-addition --> def-binary-operation
+    ex-integers-addition --> def-abelian-group
+    ex-quotient-integers-mod-n --> ex-integers-addition
     def-group --> ex-integers-addition
     def-cyclic-group --> ex-integers-addition
-    ex-quotient-integers-mod-n --> ex-integers-addition
-    ex-integers-addition --> def-abelian-group
+    ex-integers-addition --> def-cyclic-group
     ex-even-integers-subgroup --> ex-integers-addition
-    ex-integers-addition --> def-binary-operation
-    ex-integers-addition --> def-set
     class ex-integers-addition current
-    click def-set "def-set.html" "集合の定義へ"
-    click def-cyclic-group "def-cyclic-group.html" "巡回群の定義へ"
     click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "偶数整数は部分群を成すの例へ"
-    click def-abelian-group "def-abelian-group.html" "アーベル群の定義へ"
     click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余の例へ"
+    click def-cyclic-group "def-cyclic-group.html" "巡回群の定義へ"
+    click def-set "def-set.html" "集合の定義へ"
+    click def-abelian-group "def-abelian-group.html" "アーベル群の定義へ"
     click def-group "def-group.html" "群へ"
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "偶数整数は部分群を成すの例へ"
 ```
 
 ## インタラクティブ可視化
@@ -117,4 +117,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/ex-integers-addition.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/ex-integers-addition.html){target="_blank"}で完全なインタラクティブ版を表示

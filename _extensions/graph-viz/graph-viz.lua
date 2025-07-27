@@ -196,7 +196,13 @@ async function loadAndRenderGraph() {
       basePath = '../'.repeat(depth);
     }
 
-    const response = await fetch(basePath + 'output/d3-data/%s.json');
+    // Detect language from URL path
+    let lang = 'en';
+    if (currentPath.includes('/ja/') || currentPath.includes('/ja.html')) {
+      lang = 'ja';
+    }
+
+    const response = await fetch(basePath + 'output/d3-data/' + lang + '/%s.json');
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }

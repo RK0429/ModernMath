@@ -68,17 +68,17 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-cardinality["定義: 濃度"]:::definition
     def-intersection["定義: 共通部分"]:::definition
-    def-set["定義: 集合"]:::definition
     thm-de-morgan["定理: ド・モルガンの法則"]:::theorem
-    def-intersection --> def-set
+    def-cardinality["定義: 濃度"]:::definition
+    def-set["定義: 集合"]:::definition
     thm-de-morgan --> def-intersection
+    def-intersection --> def-set
     def-intersection --> def-cardinality
     class def-intersection current
+    click thm-de-morgan "thm-de-morgan.html" "ド・モルガンの法則の定理へ"
     click def-cardinality "def-cardinality.html" "濃度の定義へ"
     click def-set "def-set.html" "集合の定義へ"
-    click thm-de-morgan "thm-de-morgan.html" "ド・モルガンの法則の定理へ"
 ```
 
 ## インタラクティブ可視化
@@ -92,4 +92,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-intersection.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-intersection.html){target="_blank"}で完全なインタラクティブ版を表示

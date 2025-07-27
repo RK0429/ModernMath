@@ -167,49 +167,49 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-lagrange["定理: ラグランジュの定理"]:::theorem
-    thm-orbit-stabilizer["軌道・固定化部分群定理"]:::theorem
-    def-normal-subgroup["定義: 正規部分群"]:::definition
-    def-binary-operation["定義: 二項演算"]:::definition
-    ex-even-integers-subgroup["例: 偶数整数は部分群を成す"]:::example
-    def-quotient-ring["定義: 剰余環"]:::definition
     def-subgroup["定義：部分群"]:::definition
-    def-quotient-group["定義: 商群"]:::definition
-    def-abelian-group["定義: アーベル群"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
     ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
-    def-coset["定義: 剰余類"]:::definition
+    thm-orbit-stabilizer["軌道・固定化部分群定理"]:::theorem
     def-group-action["群の作用"]:::definition
+    def-abelian-group["定義: アーベル群"]:::definition
+    thm-lagrange["定理: ラグランジュの定理"]:::theorem
+    def-normal-subgroup["定義: 正規部分群"]:::definition
+    def-coset["定義: 剰余類"]:::definition
+    def-quotient-ring["定義: 剰余環"]:::definition
+    def-quotient-group["定義: 商群"]:::definition
     def-group["群"]:::definition
-    def-coset --> ex-quotient-integers-mod-n
-    thm-lagrange --> def-coset
-    thm-orbit-stabilizer --> def-coset
-    def-coset --> def-quotient-group
-    ex-even-integers-subgroup --> def-coset
-    ex-quotient-integers-mod-n --> def-coset
+    ex-even-integers-subgroup["例: 偶数整数は部分群を成す"]:::example
     def-coset --> def-subgroup
-    def-coset --> thm-lagrange
+    def-coset --> ex-even-integers-subgroup
+    def-coset --> def-normal-subgroup
+    thm-orbit-stabilizer --> def-coset
     def-coset --> def-group
-    def-quotient-ring --> def-coset
+    thm-lagrange --> def-coset
+    def-coset --> def-group-action
+    def-normal-subgroup --> def-coset
+    def-coset --> def-quotient-group
     def-coset --> def-abelian-group
+    def-coset --> thm-lagrange
+    ex-quotient-integers-mod-n --> def-coset
+    ex-even-integers-subgroup --> def-coset
+    def-quotient-ring --> def-coset
     def-coset --> def-binary-operation
     def-quotient-group --> def-coset
-    def-coset --> def-normal-subgroup
-    def-coset --> ex-even-integers-subgroup
-    def-normal-subgroup --> def-coset
-    def-coset --> def-group-action
+    def-coset --> ex-quotient-integers-mod-n
     class def-coset current
-    click thm-lagrange "thm-lagrange.html" "ラグランジュの定理の定理へ"
-    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "軌道・固定化部分群定理へ"
-    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群の定義へ"
-    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "偶数整数は部分群を成すの例へ"
-    click def-quotient-ring "def-quotient-ring.html" "剰余環の定義へ"
     click def-subgroup "def-subgroup.html" "定義：部分群へ"
-    click def-quotient-group "def-quotient-group.html" "商群の定義へ"
-    click def-abelian-group "def-abelian-group.html" "アーベル群の定義へ"
+    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
     click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余の例へ"
+    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "軌道・固定化部分群定理へ"
     click def-group-action "def-group-action.html" "群の作用へ"
+    click def-abelian-group "def-abelian-group.html" "アーベル群の定義へ"
+    click thm-lagrange "thm-lagrange.html" "ラグランジュの定理の定理へ"
+    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群の定義へ"
+    click def-quotient-ring "def-quotient-ring.html" "剰余環の定義へ"
+    click def-quotient-group "def-quotient-group.html" "商群の定義へ"
     click def-group "def-group.html" "群へ"
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "偶数整数は部分群を成すの例へ"
 ```
 
 ## インタラクティブ可視化
@@ -223,4 +223,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-coset.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-coset.html){target="_blank"}で完全なインタラクティブ版を表示

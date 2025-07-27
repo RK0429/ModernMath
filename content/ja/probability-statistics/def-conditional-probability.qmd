@@ -76,19 +76,19 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-conditional-probability["定義: 条件付き確率"]:::definition
-    def-event["定義: 事象"]:::definition
     thm-bayes["定理: ベイズの定理"]:::theorem
-    def-probability-space["定義: 確率空間"]:::definition
+    def-event["定義: 事象"]:::definition
     def-independence["定義: 独立性"]:::definition
-    def-conditional-probability --> def-event
+    def-probability-space["定義: 確率空間"]:::definition
+    def-independence --> def-conditional-probability
     thm-bayes --> def-conditional-probability
     def-conditional-probability --> def-probability-space
-    def-independence --> def-conditional-probability
+    def-conditional-probability --> def-event
     class def-conditional-probability current
-    click def-event "def-event.html" "事象の定義へ"
     click thm-bayes "thm-bayes.html" "ベイズの定理の定理へ"
-    click def-probability-space "def-probability-space.html" "確率空間の定義へ"
+    click def-event "def-event.html" "事象の定義へ"
     click def-independence "def-independence.html" "独立性の定義へ"
+    click def-probability-space "def-probability-space.html" "確率空間の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -102,4 +102,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-conditional-probability.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-conditional-probability.html){target="_blank"}で完全なインタラクティブ版を表示

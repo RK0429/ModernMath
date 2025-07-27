@@ -92,25 +92,25 @@ graph TD
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-union["Definition: Union"]:::definition
     def-set["Definition: Set"]:::definition
+    def-intersection["Definition: Intersection"]:::definition
     def-function["Definition: Function"]:::definition
     def-cardinality["Definition: Cardinality"]:::definition
     thm-cantor["Theorem: Cantor's Theorem"]:::theorem
-    def-intersection["Definition: Intersection"]:::definition
     def-power-set["Definition: Power Set"]:::definition
-    thm-cantor --> def-cardinality
+    def-cardinality --> def-function
     def-power-set --> def-cardinality
     def-intersection --> def-cardinality
     def-union --> def-cardinality
-    def-cardinality --> thm-cantor
     def-cardinality --> def-set
-    def-cardinality --> def-function
     def-cardinality --> def-power-set
+    def-cardinality --> thm-cantor
+    thm-cantor --> def-cardinality
     class def-cardinality current
     click def-union "def-union.html" "Go to Union definition"
     click def-set "def-set.html" "Go to Set definition"
+    click def-intersection "def-intersection.html" "Go to Intersection definition"
     click def-function "def-function.html" "Go to Function definition"
     click thm-cantor "thm-cantor.html" "Go to Cantor's Theorem theorem"
-    click def-intersection "def-intersection.html" "Go to Intersection definition"
     click def-power-set "def-power-set.html" "Go to Power Set definition"
 ```
 
@@ -125,4 +125,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-cardinality.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-cardinality.html){target="_blank"}

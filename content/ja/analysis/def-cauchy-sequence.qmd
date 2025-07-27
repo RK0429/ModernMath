@@ -95,25 +95,25 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-limit["定義：数列の極限"]:::definition
+    def-open-ball["定義：開球"]:::definition
+    def-metric-space["定義：距離空間"]:::definition
+    def-complete-metric-space["定義: 完備距離空間"]:::definition
     def-uniform-continuity["定義: 一様連続性"]:::definition
     def-sequence["定義：数列"]:::definition
     def-cauchy-sequence["定義: コーシー列"]:::definition
-    def-metric-space["定義：距離空間"]:::definition
-    def-complete-metric-space["定義: 完備距離空間"]:::definition
-    def-open-ball["定義：開球"]:::definition
-    def-cauchy-sequence --> def-sequence
-    def-complete-metric-space --> def-cauchy-sequence
-    def-cauchy-sequence --> def-metric-space
     def-open-ball --> def-cauchy-sequence
     def-uniform-continuity --> def-cauchy-sequence
+    def-cauchy-sequence --> def-sequence
+    def-cauchy-sequence --> def-metric-space
+    def-complete-metric-space --> def-cauchy-sequence
     def-cauchy-sequence --> def-limit
     class def-cauchy-sequence current
     click def-limit "def-limit.html" "定義：数列の極限へ"
-    click def-uniform-continuity "def-uniform-continuity.html" "一様連続性の定義へ"
-    click def-sequence "def-sequence.html" "定義：数列へ"
+    click def-open-ball "def-open-ball.html" "定義：開球へ"
     click def-metric-space "def-metric-space.html" "定義：距離空間へ"
     click def-complete-metric-space "def-complete-metric-space.html" "完備距離空間の定義へ"
-    click def-open-ball "def-open-ball.html" "定義：開球へ"
+    click def-uniform-continuity "def-uniform-continuity.html" "一様連続性の定義へ"
+    click def-sequence "def-sequence.html" "定義：数列へ"
 ```
 
 ## インタラクティブ可視化
@@ -127,4 +127,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-cauchy-sequence.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-cauchy-sequence.html){target="_blank"}で完全なインタラクティブ版を表示

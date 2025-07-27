@@ -53,35 +53,35 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-matrix-transformation["例: 行列変換"]:::example
-    def-image["定義: 像"]:::definition
-    def-linear-transformation["定義: 線形変換"]:::definition
+    def-kernel["定義: 核"]:::definition
     thm-linear-transformation-basis["定理: 基底による線形変換の決定"]:::theorem
     def-vector-space["定義: ベクトル空間"]:::definition
-    def-function["定義: 関数"]:::definition
-    def-eigenvalue-eigenvector["定義: 固有値と固有ベクトル"]:::definition
     def-isomorphism["定義: 群同型"]:::definition
+    def-linear-transformation["定義: 線形変換"]:::definition
     thm-rank-nullity["定理: 階数・退化次数定理"]:::theorem
-    def-kernel["定義: 核"]:::definition
-    def-linear-transformation --> def-vector-space
-    def-linear-transformation --> def-isomorphism
-    thm-linear-transformation-basis --> def-linear-transformation
-    def-kernel --> def-linear-transformation
-    ex-matrix-transformation --> def-linear-transformation
+    def-image["定義: 像"]:::definition
+    def-eigenvalue-eigenvector["定義: 固有値と固有ベクトル"]:::definition
+    def-function["定義: 関数"]:::definition
+    ex-matrix-transformation["例: 行列変換"]:::example
+    def-eigenvalue-eigenvector --> def-linear-transformation
     def-image --> def-linear-transformation
     def-linear-transformation --> def-function
+    def-linear-transformation --> def-vector-space
     thm-rank-nullity --> def-linear-transformation
-    def-eigenvalue-eigenvector --> def-linear-transformation
+    def-kernel --> def-linear-transformation
+    def-linear-transformation --> def-isomorphism
+    ex-matrix-transformation --> def-linear-transformation
+    thm-linear-transformation-basis --> def-linear-transformation
     class def-linear-transformation current
-    click ex-matrix-transformation "ex-matrix-transformation.html" "行列変換の例へ"
-    click def-image "def-image.html" "像の定義へ"
+    click def-kernel "def-kernel.html" "核の定義へ"
     click thm-linear-transformation-basis "thm-linear-transformation-basis.html" "基底による線形変換の決定の定理へ"
     click def-vector-space "def-vector-space.html" "ベクトル空間の定義へ"
-    click def-function "def-function.html" "関数の定義へ"
-    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "固有値と固有ベクトルの定義へ"
     click def-isomorphism "def-isomorphism.html" "群同型の定義へ"
     click thm-rank-nullity "thm-rank-nullity.html" "階数・退化次数定理の定理へ"
-    click def-kernel "def-kernel.html" "核の定義へ"
+    click def-image "def-image.html" "像の定義へ"
+    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "固有値と固有ベクトルの定義へ"
+    click def-function "def-function.html" "関数の定義へ"
+    click ex-matrix-transformation "ex-matrix-transformation.html" "行列変換の例へ"
 ```
 
 ## インタラクティブ可視化
@@ -95,4 +95,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-linear-transformation.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-linear-transformation.html){target="_blank"}で完全なインタラクティブ版を表示

@@ -72,24 +72,24 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-permutation["定義：順列"]:::definition
+    def-binomial-coefficient["定義：二項係数"]:::definition
     def-combination["定義：組合せ"]:::definition
     def-generating-function["定義: 母関数"]:::definition
-    def-binomial-coefficient["定義：二項係数"]:::definition
     ex-pascals-triangle["例：パスカルの三角形"]:::example
     def-tree["定義: 木"]:::definition
-    def-permutation["定義：順列"]:::definition
-    def-binomial-coefficient --> def-combination
     def-generating-function --> def-binomial-coefficient
-    def-binomial-coefficient --> def-permutation
-    def-tree --> def-binomial-coefficient
-    ex-pascals-triangle --> def-binomial-coefficient
     def-binomial-coefficient --> def-generating-function
+    def-binomial-coefficient --> def-combination
+    def-binomial-coefficient --> def-permutation
+    ex-pascals-triangle --> def-binomial-coefficient
+    def-tree --> def-binomial-coefficient
     class def-binomial-coefficient current
+    click def-permutation "def-permutation.html" "定義：順列へ"
     click def-combination "def-combination.html" "定義：組合せへ"
     click def-generating-function "def-generating-function.html" "母関数の定義へ"
     click ex-pascals-triangle "ex-pascals-triangle.html" "例：パスカルの三角形へ"
     click def-tree "def-tree.html" "木の定義へ"
-    click def-permutation "def-permutation.html" "定義：順列へ"
 ```
 
 ## インタラクティブ可視化
@@ -103,4 +103,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-binomial-coefficient.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-binomial-coefficient.html){target="_blank"}で完全なインタラクティブ版を表示

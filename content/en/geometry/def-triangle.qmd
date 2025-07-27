@@ -64,20 +64,20 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-line["Definition: Line"]:::definition
     def-triangle["Definition: Triangle"]:::definition
-    def-point["Definition: Point"]:::definition
     def-angle["Definition: Angle"]:::definition
     thm-angle-sum-triangle["Theorem: Angle Sum of a Triangle"]:::theorem
-    thm-angle-sum-triangle --> def-triangle
-    def-triangle --> def-point
-    def-triangle --> def-angle
+    def-line["Definition: Line"]:::definition
+    def-point["Definition: Point"]:::definition
     def-triangle --> def-line
+    thm-angle-sum-triangle --> def-triangle
+    def-triangle --> def-angle
+    def-triangle --> def-point
     class def-triangle current
-    click def-line "def-line.html" "Go to Line definition"
-    click def-point "def-point.html" "Go to Point definition"
     click def-angle "def-angle.html" "Go to Angle definition"
     click thm-angle-sum-triangle "thm-angle-sum-triangle.html" "Go to Angle Sum of a Triangle theorem"
+    click def-line "def-line.html" "Go to Line definition"
+    click def-point "def-point.html" "Go to Point definition"
 ```
 
 ## Interactive Visualization
@@ -91,4 +91,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-triangle.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-triangle.html){target="_blank"}

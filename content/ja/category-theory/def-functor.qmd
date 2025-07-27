@@ -43,7 +43,7 @@ $\mathcal{C}$ と $\mathcal{D}$ を圏とします。関手 $F: \mathcal{C} \to 
 ## 例
 
 - **Grp** から **Set** への忘却関手
-- **Set** から **Grp** への自由群関手
+- **Set** から **Grp** への[@自由群](../algebra/def-free-group.qmd)関手
 - **Top** から **Grp** への[基本群](../topology/def-fundamental-group.qmd)関手
 
 ## 依存関係グラフ
@@ -56,29 +56,29 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-monomorphism["定義：単射"]:::definition
+    thm-yoneda["定理：米田の補題"]:::theorem
+    def-natural-transformation["定義：自然変換"]:::definition
     def-category["定義: 圏"]:::definition
     def-graph["定義: グラフ"]:::definition
-    thm-yoneda["定理：米田の補題"]:::theorem
     def-function["定義: 関数"]:::definition
-    def-epimorphism["定義：全射"]:::definition
-    def-natural-transformation["定義：自然変換"]:::definition
     def-functor["定義: 関手"]:::definition
-    thm-yoneda --> def-functor
-    def-natural-transformation --> def-functor
-    def-monomorphism --> def-functor
-    def-functor --> def-category
+    def-monomorphism["定義：単射"]:::definition
+    def-epimorphism["定義：全射"]:::definition
+    def-epimorphism --> def-functor
     def-functor --> def-graph
     def-functor --> def-function
-    def-epimorphism --> def-functor
+    def-natural-transformation --> def-functor
+    def-functor --> def-category
+    thm-yoneda --> def-functor
+    def-monomorphism --> def-functor
     class def-functor current
-    click def-monomorphism "def-monomorphism.html" "定義：単射へ"
+    click thm-yoneda "thm-yoneda.html" "定理：米田の補題へ"
+    click def-natural-transformation "def-natural-transformation.html" "定義：自然変換へ"
     click def-category "def-category.html" "圏の定義へ"
     click def-graph "def-graph.html" "グラフの定義へ"
-    click thm-yoneda "thm-yoneda.html" "定理：米田の補題へ"
     click def-function "def-function.html" "関数の定義へ"
+    click def-monomorphism "def-monomorphism.html" "定義：単射へ"
     click def-epimorphism "def-epimorphism.html" "定義：全射へ"
-    click def-natural-transformation "def-natural-transformation.html" "定義：自然変換へ"
 ```
 
 ## インタラクティブ可視化
@@ -92,4 +92,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-functor.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-functor.html){target="_blank"}で完全なインタラクティブ版を表示

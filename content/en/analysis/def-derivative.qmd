@@ -93,22 +93,22 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-chain-rule["Theorem: Chain Rule"]:::theorem
     def-limit["Definition: Limit of a Sequence"]:::definition
     thm-fundamental-calculus["Theorem: Fundamental Theorem of Calculus"]:::theorem
     thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
-    thm-taylor-series["Theorem: Taylor Series"]:::theorem
     def-derivative["Definition: Derivative"]:::definition
-    thm-taylor-series --> def-derivative
+    thm-chain-rule["Theorem: Chain Rule"]:::theorem
+    thm-taylor-series["Theorem: Taylor Series"]:::theorem
+    def-derivative --> def-limit
     thm-fundamental-calculus --> def-derivative
     thm-mean-value --> def-derivative
-    def-derivative --> def-limit
+    thm-taylor-series --> def-derivative
     thm-chain-rule --> def-derivative
     class def-derivative current
-    click thm-chain-rule "thm-chain-rule.html" "Go to Chain Rule theorem"
     click def-limit "def-limit.html" "Go to Limit of a Sequence definition"
     click thm-fundamental-calculus "thm-fundamental-calculus.html" "Go to Fundamental Theorem of Calculus theorem"
     click thm-mean-value "thm-mean-value.html" "Go to Mean Value Theorem theorem"
+    click thm-chain-rule "thm-chain-rule.html" "Go to Chain Rule theorem"
     click thm-taylor-series "thm-taylor-series.html" "Go to Taylor Series theorem"
 ```
 
@@ -123,4 +123,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-derivative.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-derivative.html){target="_blank"}

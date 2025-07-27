@@ -96,23 +96,23 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-congruence["定義: 合同（モジュラー演算）"]:::definition
-    def-divisibility["定義: 整除性"]:::definition
-    thm-euler["定理：オイラーの定理"]:::theorem
-    thm-fermat-little["定理: フェルマーの小定理"]:::theorem
     def-gcd["定義：最大公約数"]:::definition
+    def-congruence["定義: 合同（モジュラー演算）"]:::definition
+    thm-euler["定理：オイラーの定理"]:::theorem
+    def-divisibility["定義: 整除性"]:::definition
+    thm-fermat-little["定理: フェルマーの小定理"]:::theorem
     def-prime["定義：素数"]:::definition
+    thm-fermat-little --> def-divisibility
     thm-fermat-little --> def-prime
     thm-fermat-little --> def-gcd
-    thm-euler --> thm-fermat-little
-    thm-fermat-little --> def-divisibility
     def-congruence --> thm-fermat-little
+    thm-euler --> thm-fermat-little
     thm-fermat-little --> def-congruence
     class thm-fermat-little current
-    click def-congruence "def-congruence.html" "合同（モジュラー演算）の定義へ"
-    click def-divisibility "def-divisibility.html" "整除性の定義へ"
-    click thm-euler "thm-euler.html" "定理：オイラーの定理へ"
     click def-gcd "def-gcd.html" "定義：最大公約数へ"
+    click def-congruence "def-congruence.html" "合同（モジュラー演算）の定義へ"
+    click thm-euler "thm-euler.html" "定理：オイラーの定理へ"
+    click def-divisibility "def-divisibility.html" "整除性の定義へ"
     click def-prime "def-prime.html" "定義：素数へ"
 ```
 
@@ -127,4 +127,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/thm-fermat-little.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/thm-fermat-little.html){target="_blank"}で完全なインタラクティブ版を表示

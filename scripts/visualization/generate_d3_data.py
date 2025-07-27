@@ -6,8 +6,9 @@ These files will be used by Observable JS in Quarto pages.
 
 import json
 from pathlib import Path
-from rdflib import Graph, Namespace, RDF, RDFS
 from typing import Dict, Set, Tuple, Any
+
+from rdflib import Graph, Namespace, RDF, RDFS
 
 # Define namespaces
 MYMATH = Namespace("https://mathwiki.org/ontology#")
@@ -15,8 +16,8 @@ BASE_URI = "https://mathwiki.org/resource/"
 BASE_NS = Namespace(BASE_URI)
 
 
-def get_node_info(g: Graph, node_uri: Any) -> Dict[str, Any]:
-    """Get basic information about a node."""
+def get_node_info(g: Graph, node_uri: Any, lang: str = "en") -> Dict[str, Any]:
+    """Get basic information about a node with language preference."""
     info = {
         "id": str(node_uri).replace(BASE_URI, ""),
         "uri": str(node_uri),
@@ -24,10 +25,25 @@ def get_node_info(g: Graph, node_uri: Any) -> Dict[str, Any]:
         "type": None,
     }
 
-    # Get label
+    # Get label with language preference
+    labels = {}
     for label in g.objects(node_uri, RDFS.label):
-        info["label"] = str(label)
-        break
+        if isinstance(label, str):
+            labels["default"] = str(label)
+        elif hasattr(label, "language") and getattr(label, "language", None):
+            labels[getattr(label, "language")] = str(label)
+        else:
+            labels["default"] = str(label)
+
+    # Select appropriate label
+    if lang in labels:
+        info["label"] = labels[lang]
+    elif "en" in labels:
+        info["label"] = labels["en"]
+    elif "default" in labels:
+        info["label"] = labels["default"]
+    elif labels:
+        info["label"] = next(iter(labels.values()))
 
     # Get type
     for node_type in g.objects(node_uri, RDF.type):
@@ -68,8 +84,8 @@ def get_node_neighbors(
     return nodes, edges
 
 
-def create_d3_json(g: Graph, node_id: str, output_dir: Path) -> Path:
-    """Create D3.js-compatible JSON for a specific node."""
+def create_d3_json(g: Graph, node_id: str, output_dir: Path, lang: str = "en") -> Path:
+    """Create D3.js-compatible JSON for a specific node with language support."""
     node_uri = BASE_NS[node_id]
 
     # Get neighborhood
@@ -80,7 +96,7 @@ def create_d3_json(g: Graph, node_id: str, output_dir: Path) -> Path:
     node_id_map = {}
 
     for i, n_uri in enumerate(neighbor_nodes):
-        node_info = get_node_info(g, n_uri)
+        node_info = get_node_info(g, n_uri, lang=lang)
         node_info["index"] = i
         node_info["is_focus"] = str(n_uri) == str(node_uri)
         nodes_data.append(node_info)
@@ -118,18 +134,17 @@ def create_d3_json(g: Graph, node_id: str, output_dir: Path) -> Path:
     return output_file
 
 
-def create_domain_json(g: Graph, domain: str, output_dir: Path) -> Path:
-    """Create D3.js-compatible JSON for an entire domain."""
-    # Query for all nodes in this domain
+def get_domain_nodes_and_edges(g: Graph, domain: str) -> Tuple[Set[Any], Set[Tuple[str, str]]]:
+    """Get all nodes and edges for a specific domain."""
     domain_nodes = set()
-    domain_edges = set()
 
     # Find all nodes with this domain
-    for s, p, o in g.triples((None, MYMATH.hasDomain, None)):
+    for s, _, o in g.triples((None, MYMATH.hasDomain, None)):
         if str(o).lower() == domain.lower():
             domain_nodes.add(s)
 
     # Get all edges between domain nodes
+    domain_edges = set()
     for node in domain_nodes:
         for dep in g.objects(node, MYMATH.uses):
             if dep in domain_nodes:
@@ -138,12 +153,20 @@ def create_domain_json(g: Graph, domain: str, output_dir: Path) -> Path:
             if dependent in domain_nodes:
                 domain_edges.add((str(dependent), str(node)))
 
+    return domain_nodes, domain_edges
+
+
+def create_domain_json(g: Graph, domain: str, output_dir: Path, lang: str = "en") -> Path:
+    """Create D3.js-compatible JSON for an entire domain with language support."""
+    # Get domain nodes and edges
+    domain_nodes, domain_edges = get_domain_nodes_and_edges(g, domain)
+
     # Build nodes array
     nodes_data = []
     node_id_map = {}
 
     for i, n_uri in enumerate(domain_nodes):
-        node_info = get_node_info(g, n_uri)
+        node_info = get_node_info(g, n_uri, lang=lang)
         node_info["index"] = i
         nodes_data.append(node_info)
         node_id_map[str(n_uri)] = i
@@ -189,26 +212,32 @@ def main() -> None:
 
     # Get all nodes
     nodes = set()
-    for s, p, o in g.triples((None, RDF.type, None)):
+    for s, _, o in g.triples((None, RDF.type, None)):
         if str(o).startswith(str(MYMATH)):
             nodes.add(s)
 
     print(f"Found {len(nodes)} nodes in the graph")
 
-    # Generate JSON for each node
+    # Generate JSON for each node in each language
     print("Generating individual node data...")
-    for node_uri in nodes:
-        # Extract node ID, handling both local and external URIs
-        uri_str = str(node_uri)
-        if uri_str.startswith(BASE_URI):
-            node_id = uri_str.replace(BASE_URI, "")
-        else:
-            # For external URIs (like Lean), skip them for D3 generation
-            continue
+    for lang in ["en", "ja"]:
+        lang_dir = output_dir / lang
+        lang_dir.mkdir(parents=True, exist_ok=True)
+        print(f"\nGenerating {lang} data files...")
 
-        if node_id and not node_id.startswith("index"):  # Skip index pages
-            create_d3_json(g, node_id, output_dir)
-            print(f"  Generated data for {node_id}")
+        for node_uri in nodes:
+            # Extract node ID, handling both local and external URIs
+            uri_str = str(node_uri)
+            if uri_str.startswith(BASE_URI):
+                node_id = uri_str.replace(BASE_URI, "")
+            else:
+                # For external URIs (like Lean), skip them for D3 generation
+                continue
+
+            if node_id and not node_id.startswith("index"):  # Skip index pages
+                create_d3_json(g, node_id, lang_dir, lang=lang)
+
+        print(f"  Generated {len(nodes)} {lang} node data files")
 
     # Generate domain overview JSONs
     print("\nGenerating domain overview data...")
@@ -224,9 +253,12 @@ def main() -> None:
         "Probability and Statistics",
     ]
 
-    for domain in domains:
-        create_domain_json(g, domain, output_dir)
-        print(f"  Generated data for {domain} domain")
+    for lang in ["en", "ja"]:
+        lang_dir = output_dir / lang
+        print(f"\nGenerating {lang} domain overview data...")
+        for domain in domains:
+            create_domain_json(g, domain, lang_dir, lang=lang)
+            print(f"  Generated data for {domain} domain")
 
     # Create an index file
     valid_nodes = []
@@ -240,7 +272,7 @@ def main() -> None:
         "domains": [d.lower().replace(" ", "-") for d in domains],
     }
 
-    with open(output_dir / "index.json", "w") as f:
+    with open(output_dir / "index.json", "w", encoding="utf-8") as f:
         json.dump(index_data, f, indent=2)
 
     print(f"\nGenerated {len(nodes)} individual node data files")

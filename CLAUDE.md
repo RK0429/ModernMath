@@ -181,6 +181,7 @@ When adding fundamental concepts (e.g., quotient groups, isomorphisms, cyclic gr
 - Search for all mentions using grep (case-insensitive)
 - Update YAML `requires` lists to include the new definition
 - Add inline cross-references using `@id` or `[text](file.qmd)` syntax
+  - For cross-domain inline references: use `[@label](../other-domain/file.qmd)` (one level up)
 - Ensure special types sections (e.g., "Special Types of Groups") link to new definitions
 
 **Bidirectional Cross-Reference Pattern**: When creating a new article:
@@ -214,14 +215,13 @@ Python scripts are organized into functional subdirectories:
      - Creates a single RDF graph containing labels in multiple languages for each node
 
 2. **Visualization Generation**:
-   - **Mermaid**: Static diagrams for each node's local neighborhood with clickable nodes
-     - `generate_mermaid.py` creates language-specific diagrams in `output/mermaid/en/` and `output/mermaid/ja/`
-     - Selects labels based on language preference from the RDF graph with language tags
-     - Each node gets separate diagrams for each language with appropriate labels
-   - **PyVis**: Interactive HTML visualizations (force-directed graphs) in language-specific directories
-   - **D3.js**: JSON data for client-side rendering
-   - **Hyperlink Integration**: Click directives are automatically added to Mermaid diagrams during insertion
-   - **Language-Specific Diagrams**: `insert_diagrams.py` looks for diagrams in language subdirectories based on content language
+   - **Mermaid**: Static diagrams with clickable nodes in `output/mermaid/en/` and `output/mermaid/ja/`
+   - **PyVis**: Interactive HTML visualizations in language-specific directories
+   - **D3.js**: Language-specific JSON data in `output/d3-data/en/` and `output/d3-data/ja/`
+     - Must use `get_node_info(g, node_uri, lang=lang)` to extract correct language labels
+     - graph-viz extension detects language from URL path to load correct data files
+   - **Language Detection**: All visualization scripts must check for `/en/` or `/ja/` in paths
+   - **Hyperlink Integration**: Click directives automatically added during insertion
 
 3. **Cross-Reference Resolution** (`scripts/site/resolve_cross_references.py`):
    - Handles inter-domain references
