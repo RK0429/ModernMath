@@ -5,21 +5,21 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-probability-space["Definition: Probability Space"]:::definition
-    def-binomial-distribution["Definition: Binomial Distribution"]:::definition
-    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
-    def-event["Definition: Event"]:::definition
     thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
-    def-probability-distribution["Definition: Probability Distribution"]:::definition
     def-conditional-probability["Definition: Conditional Probability"]:::definition
-    def-random-variable["Definition: Random Variable"]:::definition
+    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
+    def-probability-space["Definition: Probability Space"]:::definition
+    def-probability-distribution["Definition: Probability Distribution"]:::definition
+    def-event["Definition: Event"]:::definition
     def-independence["Definition: Independence"]:::definition
+    def-binomial-distribution["Definition: Binomial Distribution"]:::definition
+    def-random-variable["Definition: Random Variable"]:::definition
     thm-central-limit --> def-independence
     def-independence --> def-event
-    def-independence --> def-probability-space
-    def-independence --> def-random-variable
     def-independence --> def-conditional-probability
+    def-binomial-distribution --> def-independence
     thm-law-of-large-numbers --> def-independence
     def-independence --> def-probability-distribution
-    def-binomial-distribution --> def-independence
+    def-independence --> def-probability-space
+    def-independence --> def-random-variable
     class def-independence current

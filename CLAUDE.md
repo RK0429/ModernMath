@@ -208,16 +208,20 @@ Python scripts are organized into functional subdirectories:
    - Reads `.qmd` files using `python-frontmatter`
    - Extracts metadata and cross-references
    - Builds RDF triples using `rdflib`
-   - **Multilingual Support**: Detects language from file paths and stores labels with appropriate language tags (`lang="en"` or `lang="ja"`)
+   - **Multilingual Support**:
+     - Detects language from file paths (`content/en/` or `content/ja/`)
+     - Stores labels with appropriate language tags (`lang="en"` or `lang="ja"`)
+     - Creates a single RDF graph containing labels in multiple languages for each node
 
 2. **Visualization Generation**:
    - **Mermaid**: Static diagrams for each node's local neighborhood with clickable nodes
-     - `generate_mermaid.py` creates language-specific diagrams (`{node_id}.en.mermaid` and `{node_id}.ja.mermaid`)
-     - Selects labels based on language preference from the RDF graph
-   - **PyVis**: Interactive HTML visualizations (force-directed graphs)
+     - `generate_mermaid.py` creates language-specific diagrams in `output/mermaid/en/` and `output/mermaid/ja/`
+     - Selects labels based on language preference from the RDF graph with language tags
+     - Each node gets separate diagrams for each language with appropriate labels
+   - **PyVis**: Interactive HTML visualizations (force-directed graphs) in language-specific directories
    - **D3.js**: JSON data for client-side rendering
    - **Hyperlink Integration**: Click directives are automatically added to Mermaid diagrams during insertion
-   - **Language-Specific Diagrams**: `insert_diagrams.py` uses language-specific diagram files based on content language
+   - **Language-Specific Diagrams**: `insert_diagrams.py` looks for diagrams in language subdirectories based on content language
 
 3. **Cross-Reference Resolution** (`scripts/site/resolve_cross_references.py`):
    - Handles inter-domain references
@@ -263,7 +267,7 @@ The project supports multiple languages (currently English and Japanese) with au
 
 - Japanese files need `translation_of: ../../en/path.qmd`
 - All files need `translations: {en: "path.html", ja: "path.html"}`
-- Standard terms: Group→群, Ring→環, Field→体, Vector Space→ベクトル空間, Module→加群, Ideal→イデアル, Prime Ideal→素イデアル, Maximal Ideal→極大イデアル, Cyclic Group→巡回群, Polynomial Ring→多項式環, Variance→分散, Abelian Group→アーベル群/可換群, Independence→独立性, Uniform Continuity→一様連続性, Homeomorphism→同相写像, Series→級数, Group Action→群の作用, Orbit→軌道, Stabilizer→固定化部分群, Cauchy Sequence→コーシー列, Inclusion-Exclusion Principle→包除原理, Sylow Theorems→シローの定理, Automorphism→自己同型, Isomorphism→同型, Hilbert Space→ヒルベルト空間, Epimorphism→全射, Integral Domain→整域, Quotient Ring→剰余環, Subring→部分環, Center of a Group→群の中心, Zero Divisor→零因子
+- Standard mathematical term translations are maintained in a comprehensive mapping (e.g., Group→群, Field→体, Vector Space→ベクトル空間)
 
 ### Building Multilingual Sites
 

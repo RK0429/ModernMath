@@ -6,19 +6,19 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    thm-fermat-little["Theorem: Fermat's Little Theorem"]:::theorem
-    def-gcd["Definition: Greatest Common Divisor"]:::definition
     def-prime["Definition: Prime Number"]:::definition
+    thm-fermat-little["Theorem: Fermat's Little Theorem"]:::theorem
     def-group["Definition: Group"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-gcd["Definition: Greatest Common Divisor"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
+    thm-euler --> def-prime
     thm-euler --> def-quotient-group
     thm-euler --> ex-quotient-integers-mod-n
-    thm-euler --> def-prime
+    def-congruence --> thm-euler
     def-gcd --> thm-euler
     thm-euler --> def-group
-    thm-euler --> def-congruence
     thm-euler --> thm-fermat-little
-    def-congruence --> thm-euler
+    thm-euler --> def-congruence
     class thm-euler current

@@ -25,7 +25,7 @@ def process_file(qmd_file: Path, diagrams_dir: Path) -> Optional[str]:
     is_japanese = "/ja/" in str(qmd_file)
     lang = "ja" if is_japanese else "en"
 
-    # Get language-specific diagram file
+    # Look for language-specific diagram file in language subdirectory
     diagram_file = diagrams_dir / lang / f"{node_id}.mermaid"
 
     # Read diagram content if available
