@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Definition: Cardinality – Math Knowledge Graph</title>
+<title>Cardinality – Math Knowledge Graph</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -248,7 +248,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#def-cardinality" id="toc-def-cardinality" class="nav-link active" data-scroll-target="#def-cardinality">Definition: Cardinality</a>
+  <li><a href="#def-cardinality" id="toc-def-cardinality" class="nav-link active" data-scroll-target="#def-cardinality">Cardinality</a>
   <ul class="collapse">
   <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link" data-scroll-target="#formal-definition">Formal Definition</a></li>
   <li><a href="#finite-cardinality" id="toc-finite-cardinality" class="nav-link" data-scroll-target="#finite-cardinality">Finite Cardinality</a></li>
@@ -273,7 +273,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Definition: Cardinality</h1>
+<h1 class="title">Cardinality</h1>
 </div>
 
 
@@ -291,7 +291,7 @@ window.Quarto = {
 
 
 <section id="def-cardinality" class="level1">
-<h1>Definition: Cardinality</h1>
+<h1>Cardinality</h1>
 <p>The <strong>cardinality</strong> of a <a href="../../../content/en/logic-set-theory/def-set.html">set</a> is a measure of the “number of elements” in the set. For finite sets, this is simply the count of elements. For infinite sets, cardinality provides a way to compare the “sizes” of different infinite sets.</p>
 <section id="formal-definition" class="level2">
 <h2 class="anchored" data-anchor-id="formal-definition">Formal Definition</h2>
@@ -373,28 +373,28 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Definition: Set"]:::definition
-    def-power-set["Definition: Power Set"]:::definition
-    def-intersection["Definition: Intersection"]:::definition
-    def-cardinality["Definition: Cardinality"]:::definition
-    def-function["Definition: Function"]:::definition
-    thm-cantor["Theorem: Cantor's Theorem"]:::theorem
-    def-union["Definition: Union"]:::definition
-    thm-cantor --&gt; def-cardinality
-    def-cardinality --&gt; def-set
+    def-power-set["Power Set"]:::definition
+    def-cardinality["Cardinality"]:::definition
+    def-set["Set"]:::definition
+    def-union["Union"]:::definition
+    def-function["Function"]:::definition
+    def-intersection["Intersection"]:::definition
+    thm-cantor["Cantor's Theorem"]:::theorem
     def-cardinality --&gt; def-power-set
-    def-power-set --&gt; def-cardinality
-    def-intersection --&gt; def-cardinality
-    def-cardinality --&gt; def-function
     def-union --&gt; def-cardinality
     def-cardinality --&gt; thm-cantor
+    def-intersection --&gt; def-cardinality
+    thm-cantor --&gt; def-cardinality
+    def-cardinality --&gt; def-set
+    def-cardinality --&gt; def-function
+    def-power-set --&gt; def-cardinality
     class def-cardinality current
-    click def-set "def-set.html" "Go to Set definition"
-    click def-power-set "def-power-set.html" "Go to Power Set definition"
-    click def-intersection "def-intersection.html" "Go to Intersection definition"
-    click def-function "def-function.html" "Go to Function definition"
-    click thm-cantor "thm-cantor.html" "Go to Cantor's Theorem theorem"
-    click def-union "def-union.html" "Go to Union definition"
+    click def-power-set "def-power-set.html" "Go to Power Set"
+    click def-set "def-set.html" "Go to Set"
+    click def-union "def-union.html" "Go to Union"
+    click def-function "def-function.html" "Go to Function"
+    click def-intersection "def-intersection.html" "Go to Intersection"
+    click thm-cantor "thm-cantor.html" "Go to Cantor's Theorem"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -405,7 +405,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-cardinality-1753715621" class="graph-visualization-container">
+<div id="graph-viz-def-cardinality-1753717275" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -653,12 +653,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-cardinality-1753715621', {
+    createForceGraph(data, 'graph-viz-def-cardinality-1753717275', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-cardinality-1753715621').innerHTML =
+    document.getElementById('graph-viz-def-cardinality-1753717275').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

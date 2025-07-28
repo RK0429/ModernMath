@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>定義: 完全列 – 数学ナレッジグラフ</title>
+<title>完全列 – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -248,7 +248,7 @@ window.Quarto = {
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#def-exact-sequence" id="toc-def-exact-sequence" class="nav-link active" data-scroll-target="#def-exact-sequence">定義: 完全列</a>
+  <li><a href="#def-exact-sequence" id="toc-def-exact-sequence" class="nav-link active" data-scroll-target="#def-exact-sequence">完全列</a>
   <ul class="collapse">
   <li><a href="#形式的定義" id="toc-形式的定義" class="nav-link" data-scroll-target="#形式的定義">形式的定義</a></li>
   <li><a href="#記法" id="toc-記法" class="nav-link" data-scroll-target="#記法">記法</a></li>
@@ -270,7 +270,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">定義: 完全列</h1>
+<h1 class="title">完全列</h1>
 </div>
 
 
@@ -288,7 +288,7 @@ window.Quarto = {
 
 
 <section id="def-exact-sequence" class="level1">
-<h1>定義: 完全列</h1>
+<h1>完全列</h1>
 <p><strong>完全列</strong>とは、対象（通常は群、加群、またはベクトル空間）間の<a href="../../../content/ja/category-theory/def-morphism.html">射</a>の列であって、各射の<a href="../../../content/ja/algebra/def-image.html">像</a>が次の射の<a href="../../../content/ja/algebra/def-kernel.html">核</a>と等しくなるものである。</p>
 <section id="形式的定義" class="level2">
 <h2 class="anchored" data-anchor-id="形式的定義">形式的定義</h2>
@@ -368,23 +368,23 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-kernel["定義: 核"]:::definition
-    def-homomorphism["定義: 群準同型"]:::definition
-    def-image["定義: 像"]:::definition
-    thm-first-isomorphism["定理: 第一同型定理"]:::theorem
-    def-exact-sequence["定義: 完全列"]:::definition
-    def-quotient-group["定義: 商群"]:::definition
-    def-quotient-group --&gt; def-exact-sequence
-    thm-first-isomorphism --&gt; def-exact-sequence
+    def-quotient-group["商群"]:::definition
+    def-kernel["核"]:::definition
+    def-image["像"]:::definition
+    def-exact-sequence["完全列"]:::definition
+    def-homomorphism["群準同型"]:::definition
+    thm-first-isomorphism["第一同型定理"]:::theorem
+    def-exact-sequence --&gt; def-kernel
     def-exact-sequence --&gt; def-homomorphism
     def-exact-sequence --&gt; def-image
-    def-exact-sequence --&gt; def-kernel
+    def-quotient-group --&gt; def-exact-sequence
+    thm-first-isomorphism --&gt; def-exact-sequence
     class def-exact-sequence current
-    click def-kernel "def-kernel.html" "核の定義へ"
-    click def-homomorphism "def-homomorphism.html" "群準同型の定義へ"
-    click def-image "def-image.html" "像の定義へ"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "第一同型定理の定理へ"
-    click def-quotient-group "def-quotient-group.html" "商群の定義へ"
+    click def-quotient-group "def-quotient-group.html" "商群へ"
+    click def-kernel "def-kernel.html" "核へ"
+    click def-image "def-image.html" "像へ"
+    click def-homomorphism "def-homomorphism.html" "群準同型へ"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "第一同型定理へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -395,7 +395,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-exact-sequence-1753715753" class="graph-visualization-container">
+<div id="graph-viz-def-exact-sequence-1753717408" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -643,12 +643,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-exact-sequence-1753715753', {
+    createForceGraph(data, 'graph-viz-def-exact-sequence-1753717408', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-exact-sequence-1753715753').innerHTML =
+    document.getElementById('graph-viz-def-exact-sequence-1753717408').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

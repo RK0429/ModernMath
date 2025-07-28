@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Definition: Tree – 数学ナレッジグラフ</title>
+<title>Tree – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -248,7 +248,7 @@ window.Quarto = {
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#def-tree" id="toc-def-tree" class="nav-link active" data-scroll-target="#def-tree">Definition: Tree</a>
+  <li><a href="#def-tree" id="toc-def-tree" class="nav-link active" data-scroll-target="#def-tree">Tree</a>
   <ul class="collapse">
   <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link" data-scroll-target="#formal-definition">Formal Definition</a></li>
   <li><a href="#equivalent-characterizations" id="toc-equivalent-characterizations" class="nav-link" data-scroll-target="#equivalent-characterizations">Equivalent Characterizations</a></li>
@@ -288,7 +288,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Definition: Tree</h1>
+<h1 class="title">Tree</h1>
 </div>
 
 
@@ -306,7 +306,7 @@ window.Quarto = {
 
 
 <section id="def-tree" class="level1">
-<h1>Definition: Tree</h1>
+<h1>Tree</h1>
 <p>A <strong>tree</strong> is a connected <a href="../../../content/en/combinatorics/def-graph.html">graph</a> with no cycles. It is one of the most fundamental structures in graph theory and has numerous applications in mathematics and computer science.</p>
 <section id="formal-definition" class="level2">
 <h2 class="anchored" data-anchor-id="formal-definition">Formal Definition</h2>
@@ -435,17 +435,17 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-graph["Definition: Graph"]:::definition
-    def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-tree["Definition: Tree"]:::definition
+    def-binomial-coefficient["Binomial Coefficient"]:::definition
+    def-graph["Graph"]:::definition
+    def-set["Set"]:::definition
+    def-tree["Tree"]:::definition
     def-tree --&gt; def-graph
-    def-tree --&gt; def-binomial-coefficient
     def-tree --&gt; def-set
+    def-tree --&gt; def-binomial-coefficient
     class def-tree current
-    click def-graph "def-graph.html" "Go to Graph definition"
-    click def-binomial-coefficient "def-binomial-coefficient.html" "Go to Binomial Coefficient definition"
-    click def-set "def-set.html" "Go to Set definition"
+    click def-binomial-coefficient "def-binomial-coefficient.html" "Go to Binomial Coefficient"
+    click def-graph "def-graph.html" "Go to Graph"
+    click def-set "def-set.html" "Go to Set"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -456,7 +456,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-tree-1753715912" class="graph-visualization-container">
+<div id="graph-viz-def-tree-1753717569" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -704,12 +704,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-tree-1753715912', {
+    createForceGraph(data, 'graph-viz-def-tree-1753717569', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-tree-1753715912').innerHTML =
+    document.getElementById('graph-viz-def-tree-1753717569').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

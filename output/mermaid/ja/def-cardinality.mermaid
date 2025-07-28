@@ -4,19 +4,19 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["定義: 集合"]:::definition
-    def-power-set["定義: べき集合"]:::definition
-    def-intersection["定義: 共通部分"]:::definition
-    def-cardinality["定義: 濃度"]:::definition
-    def-function["定義: 関数"]:::definition
-    thm-cantor["定理: カントールの定理"]:::theorem
-    def-union["定義: 和集合"]:::definition
-    thm-cantor --> def-cardinality
-    def-cardinality --> def-set
+    def-power-set["べき集合"]:::definition
+    def-cardinality["濃度"]:::definition
+    def-set["集合"]:::definition
+    def-union["和集合"]:::definition
+    def-function["関数"]:::definition
+    def-intersection["共通部分"]:::definition
+    thm-cantor["カントールの定理"]:::theorem
     def-cardinality --> def-power-set
-    def-power-set --> def-cardinality
-    def-intersection --> def-cardinality
-    def-cardinality --> def-function
     def-union --> def-cardinality
     def-cardinality --> thm-cantor
+    def-intersection --> def-cardinality
+    thm-cantor --> def-cardinality
+    def-cardinality --> def-set
+    def-cardinality --> def-function
+    def-power-set --> def-cardinality
     class def-cardinality current

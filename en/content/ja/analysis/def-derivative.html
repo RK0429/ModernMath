@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>定義: 導関数 – Math Knowledge Graph</title>
+<title>導関数 – Math Knowledge Graph</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -248,7 +248,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#def-derivative" id="toc-def-derivative" class="nav-link active" data-scroll-target="#def-derivative">定義: 導関数</a>
+  <li><a href="#def-derivative" id="toc-def-derivative" class="nav-link active" data-scroll-target="#def-derivative">導関数</a>
   <ul class="collapse">
   <li><a href="#定義" id="toc-定義" class="nav-link" data-scroll-target="#定義">定義</a></li>
   <li><a href="#別の定式化" id="toc-別の定式化" class="nav-link" data-scroll-target="#別の定式化">別の定式化</a></li>
@@ -270,7 +270,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">定義: 導関数</h1>
+<h1 class="title">導関数</h1>
 </div>
 
 
@@ -288,7 +288,7 @@ window.Quarto = {
 
 
 <section id="def-derivative" class="level1">
-<h1>定義: 導関数</h1>
+<h1>導関数</h1>
 <p>関数の<strong>導関数</strong>は、ある点における関数の瞬間変化率を測るものである。これは差分商の<a href="../../../content/ja/analysis/def-limit.html">極限</a>として定義される。</p>
 <section id="定義" class="level2">
 <h2 class="anchored" data-anchor-id="定義">定義</h2>
@@ -359,23 +359,23 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-taylor-series["定理: テイラー級数"]:::theorem
-    def-limit["定義：数列の極限"]:::definition
-    thm-chain-rule["定理：連鎖律"]:::theorem
-    thm-mean-value["定理：平均値の定理"]:::theorem
-    def-derivative["定義: 導関数"]:::definition
-    thm-fundamental-calculus["定理: 微積分学の基本定理"]:::theorem
-    thm-fundamental-calculus --&gt; def-derivative
-    def-derivative --&gt; def-limit
+    def-derivative["導関数"]:::definition
+    thm-mean-value["平均値の定理"]:::theorem
+    thm-fundamental-calculus["微積分学の基本定理"]:::theorem
+    thm-chain-rule["連鎖律"]:::theorem
+    def-limit["数列の極限"]:::definition
+    thm-taylor-series["テイラー級数"]:::theorem
     thm-chain-rule --&gt; def-derivative
     thm-taylor-series --&gt; def-derivative
     thm-mean-value --&gt; def-derivative
+    thm-fundamental-calculus --&gt; def-derivative
+    def-derivative --&gt; def-limit
     class def-derivative current
-    click thm-taylor-series "thm-taylor-series.html" "テイラー級数の定理へ"
-    click def-limit "def-limit.html" "定義：数列の極限へ"
-    click thm-chain-rule "thm-chain-rule.html" "定理：連鎖律へ"
-    click thm-mean-value "thm-mean-value.html" "定理：平均値の定理へ"
-    click thm-fundamental-calculus "thm-fundamental-calculus.html" "微積分学の基本定理の定理へ"
+    click thm-mean-value "thm-mean-value.html" "平均値の定理へ"
+    click thm-fundamental-calculus "thm-fundamental-calculus.html" "微積分学の基本定理へ"
+    click thm-chain-rule "thm-chain-rule.html" "連鎖律へ"
+    click def-limit "def-limit.html" "数列の極限へ"
+    click thm-taylor-series "thm-taylor-series.html" "テイラー級数へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -386,7 +386,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-derivative-1753715691" class="graph-visualization-container">
+<div id="graph-viz-def-derivative-1753717346" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -634,12 +634,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-derivative-1753715691', {
+    createForceGraph(data, 'graph-viz-def-derivative-1753717346', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-derivative-1753715691').innerHTML =
+    document.getElementById('graph-viz-def-derivative-1753717346').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

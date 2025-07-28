@@ -4,21 +4,21 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-law-of-large-numbers["定理: 大数の法則"]:::theorem
-    def-variance["定義: 分散"]:::definition
-    thm-central-limit["定理: 中心極限定理"]:::theorem
-    def-binomial-distribution["定義: 二項分布"]:::definition
-    def-random-variable["定義: 確率変数"]:::definition
-    def-normal-distribution["定義: 正規分布"]:::definition
-    def-probability-space["定義: 確率空間"]:::definition
-    def-expectation["定義: 期待値"]:::definition
-    def-probability-distribution["定義: 確率分布"]:::definition
+    thm-central-limit["中心極限定理"]:::theorem
+    def-binomial-distribution["二項分布"]:::definition
+    def-probability-space["確率空間"]:::definition
+    def-random-variable["確率変数"]:::definition
+    def-probability-distribution["確率分布"]:::definition
+    thm-law-of-large-numbers["大数の法則"]:::theorem
+    def-normal-distribution["正規分布"]:::definition
+    def-expectation["期待値"]:::definition
+    def-variance["分散"]:::definition
+    def-binomial-distribution --> def-expectation
+    def-expectation --> def-random-variable
     thm-central-limit --> def-expectation
+    def-normal-distribution --> def-expectation
+    def-expectation --> def-probability-distribution
     def-expectation --> def-probability-space
     def-variance --> def-expectation
-    def-expectation --> def-probability-distribution
-    def-binomial-distribution --> def-expectation
     thm-law-of-large-numbers --> def-expectation
-    def-expectation --> def-random-variable
-    def-normal-distribution --> def-expectation
     class def-expectation current

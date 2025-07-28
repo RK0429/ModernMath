@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Example: The Category of Sets – 数学ナレッジグラフ</title>
+<title>The Category of Sets – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -248,7 +248,7 @@ window.Quarto = {
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#example-the-category-of-sets" id="toc-example-the-category-of-sets" class="nav-link active" data-scroll-target="#example-the-category-of-sets">Example: The Category of Sets</a>
+  <li><a href="#the-category-of-sets" id="toc-the-category-of-sets" class="nav-link active" data-scroll-target="#the-category-of-sets">The Category of Sets</a>
   <ul class="collapse">
   <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition">Definition</a></li>
   <li><a href="#verification-of-category-axioms" id="toc-verification-of-category-axioms" class="nav-link" data-scroll-target="#verification-of-category-axioms">Verification of Category Axioms</a>
@@ -269,7 +269,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Example: The Category of Sets</h1>
+<h1 class="title">The Category of Sets</h1>
 </div>
 
 
@@ -286,8 +286,8 @@ window.Quarto = {
 </header>
 
 
-<section id="example-the-category-of-sets" class="level1">
-<h1>Example: The Category of Sets</h1>
+<section id="the-category-of-sets" class="level1">
+<h1>The Category of Sets</h1>
 <p>The category <strong>Set</strong> is one of the most fundamental examples in <a href="../../../content/en/category-theory/def-category.html">Category</a> theory, with sets as objects and functions as morphisms.</p>
 <section id="definition" class="level2">
 <h2 class="anchored" data-anchor-id="definition">Definition</h2>
@@ -343,17 +343,17 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Definition: Set"]:::definition
-    ex-set-category["Example: The Category of Sets"]:::example
-    def-category["Definition: Category"]:::definition
-    def-morphism["Definition: Morphism"]:::definition
-    ex-set-category --&gt; def-set
-    ex-set-category --&gt; def-morphism
+    def-category["Category"]:::definition
+    def-morphism["Morphism"]:::definition
+    def-set["Set"]:::definition
+    ex-set-category["The Category of Sets"]:::example
     ex-set-category --&gt; def-category
+    ex-set-category --&gt; def-morphism
+    ex-set-category --&gt; def-set
     class ex-set-category current
-    click def-set "def-set.html" "Go to Set definition"
-    click def-category "def-category.html" "Go to Category definition"
-    click def-morphism "def-morphism.html" "Go to Morphism definition"
+    click def-category "def-category.html" "Go to Category"
+    click def-morphism "def-morphism.html" "Go to Morphism"
+    click def-set "def-set.html" "Go to Set"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -364,7 +364,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-ex-set-category-1753715902" class="graph-visualization-container">
+<div id="graph-viz-ex-set-category-1753717558" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -612,12 +612,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-set-category-1753715902', {
+    createForceGraph(data, 'graph-viz-ex-set-category-1753717558', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-set-category-1753715902').innerHTML =
+    document.getElementById('graph-viz-ex-set-category-1753717558').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

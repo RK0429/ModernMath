@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Definition: Derivative – 数学ナレッジグラフ</title>
+<title>Derivative – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -248,7 +248,7 @@ window.Quarto = {
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#def-derivative" id="toc-def-derivative" class="nav-link active" data-scroll-target="#def-derivative">Definition: Derivative</a>
+  <li><a href="#def-derivative" id="toc-def-derivative" class="nav-link active" data-scroll-target="#def-derivative">Derivative</a>
   <ul class="collapse">
   <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition">Definition</a></li>
   <li><a href="#alternative-formulation" id="toc-alternative-formulation" class="nav-link" data-scroll-target="#alternative-formulation">Alternative Formulation</a></li>
@@ -270,7 +270,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Definition: Derivative</h1>
+<h1 class="title">Derivative</h1>
 </div>
 
 
@@ -288,7 +288,7 @@ window.Quarto = {
 
 
 <section id="def-derivative" class="level1">
-<h1>Definition: Derivative</h1>
+<h1>Derivative</h1>
 <p>The <strong>derivative</strong> of a function at a point measures the instantaneous rate of change of the function at that point. It is defined as a <a href="../../../content/en/analysis/def-limit.html">limit</a> of difference quotients.</p>
 <section id="definition" class="level2">
 <h2 class="anchored" data-anchor-id="definition">Definition</h2>
@@ -359,23 +359,23 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-taylor-series["Theorem: Taylor Series"]:::theorem
-    def-limit["Definition: Limit of a Sequence"]:::definition
-    thm-chain-rule["Theorem: Chain Rule"]:::theorem
-    thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
-    def-derivative["Definition: Derivative"]:::definition
-    thm-fundamental-calculus["Theorem: Fundamental Theorem of Calculus"]:::theorem
-    thm-fundamental-calculus --&gt; def-derivative
-    def-derivative --&gt; def-limit
+    def-derivative["Derivative"]:::definition
+    thm-mean-value["Mean Value Theorem"]:::theorem
+    thm-fundamental-calculus["Fundamental Theorem of Calculus"]:::theorem
+    thm-chain-rule["Chain Rule"]:::theorem
+    def-limit["Limit of a Sequence"]:::definition
+    thm-taylor-series["Taylor Series"]:::theorem
     thm-chain-rule --&gt; def-derivative
     thm-taylor-series --&gt; def-derivative
     thm-mean-value --&gt; def-derivative
+    thm-fundamental-calculus --&gt; def-derivative
+    def-derivative --&gt; def-limit
     class def-derivative current
-    click thm-taylor-series "thm-taylor-series.html" "Go to Taylor Series theorem"
-    click def-limit "def-limit.html" "Go to Limit of a Sequence definition"
-    click thm-chain-rule "thm-chain-rule.html" "Go to Chain Rule theorem"
-    click thm-mean-value "thm-mean-value.html" "Go to Mean Value Theorem theorem"
-    click thm-fundamental-calculus "thm-fundamental-calculus.html" "Go to Fundamental Theorem of Calculus theorem"
+    click thm-mean-value "thm-mean-value.html" "Go to Mean Value Theorem"
+    click thm-fundamental-calculus "thm-fundamental-calculus.html" "Go to Fundamental Theorem of Calculus"
+    click thm-chain-rule "thm-chain-rule.html" "Go to Chain Rule"
+    click def-limit "def-limit.html" "Go to Limit of a Sequence"
+    click thm-taylor-series "thm-taylor-series.html" "Go to Taylor Series"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -386,7 +386,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-derivative-1753715871" class="graph-visualization-container">
+<div id="graph-viz-def-derivative-1753717527" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -634,12 +634,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-derivative-1753715871', {
+    createForceGraph(data, 'graph-viz-def-derivative-1753717527', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-derivative-1753715871').innerHTML =
+    document.getElementById('graph-viz-def-derivative-1753717527').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

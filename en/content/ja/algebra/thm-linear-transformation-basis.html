@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>定理: 基底による線形変換の決定 – Math Knowledge Graph</title>
+<title>基底による線形変換の決定 – Math Knowledge Graph</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -248,7 +248,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#thm-linear-transformation-basis" id="toc-thm-linear-transformation-basis" class="nav-link active" data-scroll-target="#thm-linear-transformation-basis">定理: 基底による線形変換の決定</a>
+  <li><a href="#thm-linear-transformation-basis" id="toc-thm-linear-transformation-basis" class="nav-link active" data-scroll-target="#thm-linear-transformation-basis">基底による線形変換の決定</a>
   <ul class="collapse">
   <li><a href="#主張" id="toc-主張" class="nav-link" data-scroll-target="#主張">主張</a></li>
   <li><a href="#証明の概略" id="toc-証明の概略" class="nav-link" data-scroll-target="#証明の概略">証明の概略</a></li>
@@ -264,7 +264,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">定理: 基底による線形変換の決定</h1>
+<h1 class="title">基底による線形変換の決定</h1>
 </div>
 
 
@@ -282,7 +282,7 @@ window.Quarto = {
 
 
 <section id="thm-linear-transformation-basis" class="level1">
-<h1>定理: 基底による線形変換の決定</h1>
+<h1>基底による線形変換の決定</h1>
 <p>有限次元<a href="../../../content/ja/algebra/def-vector-space.html">ベクトル空間</a>間の<a href="../../../content/ja/algebra/def-linear-transformation.html">線形変換</a>は、<a href="../../../content/ja/algebra/def-basis.html">基底</a>への作用によって一意に決定される。</p>
 <section id="主張" class="level2">
 <h2 class="anchored" data-anchor-id="主張">主張</h2>
@@ -312,17 +312,17 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-vector-space["ベクトル空間"]:::definition
     def-basis["基底"]:::definition
-    def-vector-space["定義: ベクトル空間"]:::definition
-    thm-linear-transformation-basis["定理: 基底による線形変換の決定"]:::theorem
-    def-linear-transformation["定義: 線形変換"]:::definition
-    thm-linear-transformation-basis --&gt; def-basis
+    thm-linear-transformation-basis["基底による線形変換の決定"]:::theorem
+    def-linear-transformation["線形変換"]:::definition
     thm-linear-transformation-basis --&gt; def-linear-transformation
+    thm-linear-transformation-basis --&gt; def-basis
     thm-linear-transformation-basis --&gt; def-vector-space
     class thm-linear-transformation-basis current
+    click def-vector-space "def-vector-space.html" "ベクトル空間へ"
     click def-basis "def-basis.html" "基底へ"
-    click def-vector-space "def-vector-space.html" "ベクトル空間の定義へ"
-    click def-linear-transformation "def-linear-transformation.html" "線形変換の定義へ"
+    click def-linear-transformation "def-linear-transformation.html" "線形変換へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -333,7 +333,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-linear-transformation-basis-1753715671" class="graph-visualization-container">
+<div id="graph-viz-thm-linear-transformation-basis-1753717325" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -581,12 +581,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-linear-transformation-basis-1753715671', {
+    createForceGraph(data, 'graph-viz-thm-linear-transformation-basis-1753717325', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-linear-transformation-basis-1753715671').innerHTML =
+    document.getElementById('graph-viz-thm-linear-transformation-basis-1753717325').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

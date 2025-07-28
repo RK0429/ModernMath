@@ -413,20 +413,20 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-associativity["結合性"]:::definition
-    def-binary-operation["定義: 二項演算"]:::definition
+    def-binary-operation["二項演算"]:::definition
     def-group["群"]:::definition
-    def-semigroup["定義：半群"]:::definition
-    def-monoid["定義: モノイド"]:::definition
+    def-associativity["結合性"]:::definition
+    def-monoid["モノイド"]:::definition
+    def-semigroup["半群"]:::definition
+    def-semigroup --&gt; def-associativity
     def-monoid --&gt; def-associativity
     def-group --&gt; def-associativity
     def-associativity --&gt; def-binary-operation
-    def-semigroup --&gt; def-associativity
     class def-associativity current
-    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
+    click def-binary-operation "def-binary-operation.html" "二項演算へ"
     click def-group "def-group.html" "群へ"
-    click def-semigroup "def-semigroup.html" "定義：半群へ"
-    click def-monoid "def-monoid.html" "モノイドの定義へ"
+    click def-monoid "def-monoid.html" "モノイドへ"
+    click def-semigroup "def-semigroup.html" "半群へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -437,7 +437,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-associativity-1753715748" class="graph-visualization-container">
+<div id="graph-viz-def-associativity-1753717402" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -685,12 +685,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-associativity-1753715748', {
+    createForceGraph(data, 'graph-viz-def-associativity-1753717402', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-associativity-1753715748').innerHTML =
+    document.getElementById('graph-viz-def-associativity-1753717402').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

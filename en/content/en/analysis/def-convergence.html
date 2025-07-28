@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Definition: Convergence – Math Knowledge Graph</title>
+<title>Convergence – Math Knowledge Graph</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -271,7 +271,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Definition: Convergence</h1>
+<h1 class="title">Convergence</h1>
 </div>
 
 
@@ -371,24 +371,24 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-convergence["Definition: Convergence"]:::definition
-    thm-taylor-series["Theorem: Taylor Series"]:::theorem
-    def-series["Definition: Series"]:::definition
-    def-limit["Definition: Limit of a Sequence"]:::definition
-    def-sequence["Definition: Sequence"]:::definition
-    def-open-ball["Definition: Open Ball"]:::definition
+    def-open-ball["Open Ball"]:::definition
+    def-sequence["Sequence"]:::definition
+    def-series["Series"]:::definition
+    def-limit["Limit of a Sequence"]:::definition
+    def-convergence["Convergence"]:::definition
+    thm-taylor-series["Taylor Series"]:::theorem
     def-convergence --&gt; def-limit
-    def-convergence --&gt; def-open-ball
-    def-convergence --&gt; def-sequence
     def-series --&gt; def-convergence
+    def-convergence --&gt; def-sequence
     thm-taylor-series --&gt; def-convergence
     def-open-ball --&gt; def-convergence
+    def-convergence --&gt; def-open-ball
     class def-convergence current
-    click thm-taylor-series "thm-taylor-series.html" "Go to Taylor Series theorem"
-    click def-series "def-series.html" "Go to Series definition"
-    click def-limit "def-limit.html" "Go to Limit of a Sequence definition"
-    click def-sequence "def-sequence.html" "Go to Sequence definition"
-    click def-open-ball "def-open-ball.html" "Go to Open Ball definition"
+    click def-open-ball "def-open-ball.html" "Go to Open Ball"
+    click def-sequence "def-sequence.html" "Go to Sequence"
+    click def-series "def-series.html" "Go to Series"
+    click def-limit "def-limit.html" "Go to Limit of a Sequence"
+    click thm-taylor-series "thm-taylor-series.html" "Go to Taylor Series"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -399,7 +399,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-convergence-1753715598" class="graph-visualization-container">
+<div id="graph-viz-def-convergence-1753717251" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -647,12 +647,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-convergence-1753715598', {
+    createForceGraph(data, 'graph-viz-def-convergence-1753717251', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-convergence-1753715598').innerHTML =
+    document.getElementById('graph-viz-def-convergence-1753717251').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
