@@ -27,10 +27,10 @@ def detect_language(file_path: Path) -> Optional[str]:
         Language code ('en' or 'ja') or None if not detectable
     """
     path_parts = file_path.parts
-    if 'en' in path_parts:
-        return 'en'
-    elif 'ja' in path_parts:
-        return 'ja'
+    if "en" in path_parts:
+        return "en"
+    elif "ja" in path_parts:
+        return "ja"
     return None
 
 
@@ -219,7 +219,7 @@ def pluralize_word(word: str) -> str:
     # Common irregular plurals
     irregular = {
         "matrix": "matrices",
-        "vertex": "vertices",
+        "vertex": "vertices", 
         "basis": "bases",
         "hypothesis": "hypotheses",
         "analysis": "analyses",
@@ -303,7 +303,7 @@ def resolve_references_in_file(
                     else:
                         clean_title = title
 
-                    # If bracketed text is 's' or 'es', pluralize the title
+                    # If bracketed text is "s" or "es", pluralize the title
                     if bracket_text and bracket_text.strip() in ["s", "es"]:
                         link_text = pluralize_word(clean_title)
                     else:
