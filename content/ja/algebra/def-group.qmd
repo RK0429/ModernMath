@@ -77,83 +77,83 @@ updated: '2024-01-15'
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-subgroup["定義：部分群"]:::definition
-    def-cyclic-group["定義: 巡回群"]:::definition
-    def-monoid["定義: モノイド"]:::definition
     def-normal-subgroup["定義: 正規部分群"]:::definition
-    ex-integers-addition["例: 加法における整数"]:::example
-    def-commutativity["定義: 可換性"]:::definition
-    def-inverse-element["定義: 逆元"]:::definition
     ex-finite-field["例: 有限体"]:::example
     def-set["定義: 集合"]:::definition
-    def-center-of-group["定義: 群の中心"]:::definition
-    def-homomorphism["定義: 群準同型"]:::definition
-    def-quotient-group["定義: 商群"]:::definition
-    ex-even-integers-subgroup["例: 偶数整数は部分群を成す"]:::example
     thm-unique-identity["定理: 単位元の一意性"]:::theorem
+    ex-integers-addition["例: 加法における整数"]:::example
     def-associativity["結合性"]:::definition
-    def-abelian-group["定義: アーベル群"]:::definition
     def-simple-group["定義: 単純群"]:::definition
-    def-identity-element["定義: 単位元"]:::definition
+    def-inverse-element["定義: 逆元"]:::definition
+    def-cyclic-group["定義: 巡回群"]:::definition
+    def-monoid["定義: モノイド"]:::definition
+    def-homomorphism["定義: 群準同型"]:::definition
+    def-abelian-group["定義: アーベル群"]:::definition
+    def-subgroup["定義：部分群"]:::definition
+    def-quotient-group["定義: 商群"]:::definition
     def-binary-operation["定義: 二項演算"]:::definition
+    def-commutativity["定義: 可換性"]:::definition
     def-group["群"]:::definition
-    def-group --> def-set
-    def-group --> def-identity-element
-    def-group --> def-center-of-group
-    thm-unique-identity --> def-group
-    def-group --> def-subgroup
-    def-group --> thm-unique-identity
-    def-group --> def-normal-subgroup
-    def-group --> def-monoid
-    def-group --> def-associativity
-    ex-integers-addition --> def-group
-    def-group --> def-simple-group
-    def-group --> ex-integers-addition
-    def-subgroup --> def-group
-    def-abelian-group --> def-group
-    def-homomorphism --> def-group
-    def-group --> def-commutativity
-    def-simple-group --> def-group
-    def-normal-subgroup --> def-group
-    def-center-of-group --> def-group
-    def-quotient-group --> def-group
-    def-group --> def-cyclic-group
-    def-group --> ex-finite-field
-    def-group --> def-homomorphism
+    def-identity-element["定義: 単位元"]:::definition
+    def-center-of-group["定義: 群の中心"]:::definition
+    ex-even-integers-subgroup["例: 偶数整数は部分群を成す"]:::example
     def-group --> def-abelian-group
-    def-group --> def-quotient-group
-    def-group --> ex-even-integers-subgroup
+    def-group --> def-associativity
+    def-abelian-group --> def-group
+    def-group --> def-commutativity
+    def-homomorphism --> def-group
     ex-even-integers-subgroup --> def-group
+    def-normal-subgroup --> def-group
+    def-group --> ex-integers-addition
+    def-group --> def-monoid
     def-cyclic-group --> def-group
-    def-group --> def-binary-operation
+    def-group --> def-simple-group
+    def-group --> def-homomorphism
+    def-group --> def-subgroup
     def-group --> def-inverse-element
+    def-group --> def-identity-element
+    def-group --> def-cyclic-group
+    def-quotient-group --> def-group
+    def-center-of-group --> def-group
+    def-group --> def-normal-subgroup
+    def-group --> def-center-of-group
+    def-simple-group --> def-group
+    thm-unique-identity --> def-group
+    def-group --> def-binary-operation
+    ex-integers-addition --> def-group
+    def-group --> def-set
+    def-group --> ex-even-integers-subgroup
+    def-group --> ex-finite-field
+    def-group --> def-quotient-group
+    def-subgroup --> def-group
+    def-group --> thm-unique-identity
     class def-group current
-    click def-subgroup "def-subgroup.html" "定義：部分群へ"
-    click def-cyclic-group "def-cyclic-group.html" "巡回群の定義へ"
-    click def-monoid "def-monoid.html" "モノイドの定義へ"
     click def-normal-subgroup "def-normal-subgroup.html" "正規部分群の定義へ"
-    click ex-integers-addition "ex-integers-addition.html" "加法における整数の例へ"
-    click def-commutativity "def-commutativity.html" "可換性の定義へ"
-    click def-inverse-element "def-inverse-element.html" "逆元の定義へ"
     click ex-finite-field "ex-finite-field.html" "有限体の例へ"
     click def-set "def-set.html" "集合の定義へ"
-    click def-center-of-group "def-center-of-group.html" "群の中心の定義へ"
-    click def-homomorphism "def-homomorphism.html" "群準同型の定義へ"
-    click def-quotient-group "def-quotient-group.html" "商群の定義へ"
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "偶数整数は部分群を成すの例へ"
     click thm-unique-identity "thm-unique-identity.html" "単位元の一意性の定理へ"
+    click ex-integers-addition "ex-integers-addition.html" "加法における整数の例へ"
     click def-associativity "def-associativity.html" "結合性へ"
-    click def-abelian-group "def-abelian-group.html" "アーベル群の定義へ"
     click def-simple-group "def-simple-group.html" "単純群の定義へ"
-    click def-identity-element "def-identity-element.html" "単位元の定義へ"
+    click def-inverse-element "def-inverse-element.html" "逆元の定義へ"
+    click def-cyclic-group "def-cyclic-group.html" "巡回群の定義へ"
+    click def-monoid "def-monoid.html" "モノイドの定義へ"
+    click def-homomorphism "def-homomorphism.html" "群準同型の定義へ"
+    click def-abelian-group "def-abelian-group.html" "アーベル群の定義へ"
+    click def-subgroup "def-subgroup.html" "定義：部分群へ"
+    click def-quotient-group "def-quotient-group.html" "商群の定義へ"
     click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
+    click def-commutativity "def-commutativity.html" "可換性の定義へ"
+    click def-identity-element "def-identity-element.html" "単位元の定義へ"
+    click def-center-of-group "def-center-of-group.html" "群の中心の定義へ"
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "偶数整数は部分群を成すの例へ"
 ```
 
 ## インタラクティブ可視化

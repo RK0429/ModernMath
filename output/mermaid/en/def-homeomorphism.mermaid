@@ -1,33 +1,32 @@
-%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["Definition: Set"]:::definition
+    def-topological-space["Definition: Topological Space"]:::definition
+    def-compact["Definition: Compact Space"]:::definition
+    def-homeomorphism["Definition: Homeomorphism"]:::definition
     def-isomorphism["Definition: Isomorphism"]:::definition
-    def-fundamental-group["Definition: Fundamental Group"]:::definition
-    def-connected["Definition: Connected Space"]:::definition
+    def-function["Definition: Function"]:::definition
     def-homotopy["Definition: Homotopy"]:::definition
     def-open-set["Definition: Open Set"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-homeomorphism["Definition: Homeomorphism"]:::definition
+    def-fundamental-group["Definition: Fundamental Group"]:::definition
     def-continuity["Definition: Continuity"]:::definition
-    def-function["Definition: Function"]:::definition
-    def-compact["Definition: Compact Space"]:::definition
-    def-topological-space["Definition: Topological Space"]:::definition
     def-hausdorff["Definition: Hausdorff Space"]:::definition
-    def-homeomorphism --> def-continuity
-    def-homeomorphism --> def-hausdorff
-    def-homeomorphism --> def-function
-    def-fundamental-group --> def-homeomorphism
-    def-homotopy --> def-homeomorphism
+    def-connected["Definition: Connected Space"]:::definition
+    def-homeomorphism --> def-homotopy
+    def-homeomorphism --> def-set
     def-isomorphism --> def-homeomorphism
     def-homeomorphism --> def-connected
     def-homeomorphism --> def-topological-space
-    def-homeomorphism --> def-homotopy
     def-homeomorphism --> def-isomorphism
     def-homeomorphism --> def-open-set
+    def-homeomorphism --> def-hausdorff
+    def-fundamental-group --> def-homeomorphism
     def-homeomorphism --> def-compact
-    def-homeomorphism --> def-set
+    def-homotopy --> def-homeomorphism
+    def-homeomorphism --> def-function
+    def-homeomorphism --> def-continuity
     class def-homeomorphism current

@@ -100,7 +100,7 @@ $$a * b = b * a$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
@@ -108,20 +108,20 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-binary-operation["定義: 二項演算"]:::definition
-    def-abelian-group["定義: アーベル群"]:::definition
-    def-commutativity["定義: 可換性"]:::definition
     def-integral-domain["定義：整域"]:::definition
+    def-commutativity["定義: 可換性"]:::definition
     def-group["群"]:::definition
-    def-abelian-group --> def-commutativity
-    def-group --> def-commutativity
-    def-integral-domain --> def-commutativity
+    def-abelian-group["定義: アーベル群"]:::definition
     def-commutativity --> def-binary-operation
+    def-integral-domain --> def-commutativity
+    def-group --> def-commutativity
     def-commutativity --> def-abelian-group
+    def-abelian-group --> def-commutativity
     class def-commutativity current
     click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
-    click def-abelian-group "def-abelian-group.html" "アーベル群の定義へ"
     click def-integral-domain "def-integral-domain.html" "定義：整域へ"
     click def-group "def-group.html" "群へ"
+    click def-abelian-group "def-abelian-group.html" "アーベル群の定義へ"
 ```
 
 ## インタラクティブ可視化

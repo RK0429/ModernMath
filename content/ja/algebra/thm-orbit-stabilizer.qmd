@@ -62,7 +62,7 @@ $$|X| = \frac{|G|}{|G_x|}$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
@@ -70,16 +70,16 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-orbit-stabilizer["軌道・固定化部分群定理"]:::theorem
+    def-group-action["群の作用"]:::definition
     thm-lagrange["定理: ラグランジュの定理"]:::theorem
     def-coset["定義: 剰余類"]:::definition
-    def-group-action["群の作用"]:::definition
-    thm-orbit-stabilizer --> thm-lagrange
-    thm-orbit-stabilizer --> def-coset
     thm-orbit-stabilizer --> def-group-action
+    thm-orbit-stabilizer --> def-coset
+    thm-orbit-stabilizer --> thm-lagrange
     class thm-orbit-stabilizer current
+    click def-group-action "def-group-action.html" "群の作用へ"
     click thm-lagrange "thm-lagrange.html" "ラグランジュの定理の定理へ"
     click def-coset "def-coset.html" "剰余類の定義へ"
-    click def-group-action "def-group-action.html" "群の作用へ"
 ```
 
 ## インタラクティブ可視化

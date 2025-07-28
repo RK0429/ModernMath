@@ -114,40 +114,40 @@ $$A \sim B \iff \exists \text{ 正則行列 } P \text{ で } B = P^{-1}AP$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-congruence["定義: 合同（モジュラー演算）"]:::definition
-    def-fundamental-group["定義: 基本群"]:::definition
-    def-partial-order["定義：半順序"]:::definition
     def-set["定義: 集合"]:::definition
-    def-equivalence-relation["定義：同値関係"]:::definition
-    def-function["定義: 関数"]:::definition
-    def-quotient-ring["定義: 剰余環"]:::definition
+    def-partial-order["定義：半順序"]:::definition
     def-quotient-group["定義: 商群"]:::definition
+    def-function["定義: 関数"]:::definition
+    def-congruence["定義: 合同（モジュラー演算）"]:::definition
+    def-equivalence-relation["定義：同値関係"]:::definition
     def-relation["定義：関係"]:::definition
-    def-equivalence-relation --> def-set
-    def-equivalence-relation --> def-relation
-    def-equivalence-relation --> def-congruence
-    def-equivalence-relation --> def-function
-    def-quotient-ring --> def-equivalence-relation
-    def-partial-order --> def-equivalence-relation
-    def-fundamental-group --> def-equivalence-relation
+    def-fundamental-group["定義: 基本群"]:::definition
+    def-quotient-ring["定義: 剰余環"]:::definition
     def-relation --> def-equivalence-relation
+    def-equivalence-relation --> def-relation
+    def-quotient-ring --> def-equivalence-relation
+    def-equivalence-relation --> def-congruence
+    def-equivalence-relation --> def-set
+    def-partial-order --> def-equivalence-relation
     def-equivalence-relation --> def-quotient-group
+    def-fundamental-group --> def-equivalence-relation
+    def-equivalence-relation --> def-function
     class def-equivalence-relation current
-    click def-congruence "def-congruence.html" "合同（モジュラー演算）の定義へ"
-    click def-fundamental-group "def-fundamental-group.html" "基本群の定義へ"
-    click def-partial-order "def-partial-order.html" "定義：半順序へ"
     click def-set "def-set.html" "集合の定義へ"
-    click def-function "def-function.html" "関数の定義へ"
-    click def-quotient-ring "def-quotient-ring.html" "剰余環の定義へ"
+    click def-partial-order "def-partial-order.html" "定義：半順序へ"
     click def-quotient-group "def-quotient-group.html" "商群の定義へ"
+    click def-function "def-function.html" "関数の定義へ"
+    click def-congruence "def-congruence.html" "合同（モジュラー演算）の定義へ"
     click def-relation "def-relation.html" "定義：関係へ"
+    click def-fundamental-group "def-fundamental-group.html" "基本群の定義へ"
+    click def-quotient-ring "def-quotient-ring.html" "剰余環の定義へ"
 ```
 
 ## インタラクティブ可視化

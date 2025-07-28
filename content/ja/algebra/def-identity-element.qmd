@@ -79,45 +79,45 @@ $e$ が左単位元かつ右単位元であるとき。
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-identity-element["定義: 単位元"]:::definition
-    def-binary-operation["定義: 二項演算"]:::definition
     def-inverse-element["定義: 逆元"]:::definition
-    def-free-group["定義：自由群"]:::definition
     def-cyclic-group["定義: 巡回群"]:::definition
     def-order["定義：位数"]:::definition
-    def-group-action["群の作用"]:::definition
-    def-monoid["定義: モノイド"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
     def-automorphism["定義: 自己同型"]:::definition
-    def-group["群"]:::definition
+    def-monoid["定義: モノイド"]:::definition
+    def-free-group["定義：自由群"]:::definition
     def-zero-divisor["定義: 零因子"]:::definition
-    def-free-group --> def-identity-element
+    def-identity-element["定義: 単位元"]:::definition
+    def-group["群"]:::definition
+    def-group-action["群の作用"]:::definition
     def-inverse-element --> def-identity-element
-    def-identity-element --> def-binary-operation
-    def-automorphism --> def-identity-element
     def-order --> def-identity-element
-    def-group --> def-identity-element
-    def-cyclic-group --> def-identity-element
-    def-group-action --> def-identity-element
     def-zero-divisor --> def-identity-element
+    def-free-group --> def-identity-element
+    def-group-action --> def-identity-element
+    def-cyclic-group --> def-identity-element
     def-monoid --> def-identity-element
+    def-identity-element --> def-binary-operation
+    def-group --> def-identity-element
+    def-automorphism --> def-identity-element
     class def-identity-element current
-    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
     click def-inverse-element "def-inverse-element.html" "逆元の定義へ"
-    click def-free-group "def-free-group.html" "定義：自由群へ"
     click def-cyclic-group "def-cyclic-group.html" "巡回群の定義へ"
     click def-order "def-order.html" "定義：位数へ"
-    click def-group-action "def-group-action.html" "群の作用へ"
-    click def-monoid "def-monoid.html" "モノイドの定義へ"
+    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
     click def-automorphism "def-automorphism.html" "自己同型の定義へ"
-    click def-group "def-group.html" "群へ"
+    click def-monoid "def-monoid.html" "モノイドの定義へ"
+    click def-free-group "def-free-group.html" "定義：自由群へ"
     click def-zero-divisor "def-zero-divisor.html" "零因子の定義へ"
+    click def-group "def-group.html" "群へ"
+    click def-group-action "def-group-action.html" "群の作用へ"
 ```
 
 ## インタラクティブ可視化

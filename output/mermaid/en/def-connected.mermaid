@@ -1,19 +1,18 @@
-%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-topological-space["Definition: Topological Space"]:::definition
+    def-homeomorphism["Definition: Homeomorphism"]:::definition
+    def-closed-set["Definition: Closed Set"]:::definition
     thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
     def-open-set["Definition: Open Set"]:::definition
     def-connected["Definition: Connected Space"]:::definition
-    def-homeomorphism["Definition: Homeomorphism"]:::definition
-    def-topological-space["Definition: Topological Space"]:::definition
-    def-closed-set["Definition: Closed Set"]:::definition
-    def-connected --> def-open-set
-    thm-intermediate-value --> def-connected
     def-connected --> def-topological-space
-    def-connected --> def-closed-set
     def-homeomorphism --> def-connected
+    def-connected --> def-open-set
+    def-connected --> def-closed-set
+    thm-intermediate-value --> def-connected
     class def-connected current

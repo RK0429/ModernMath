@@ -52,52 +52,52 @@ type: Definition
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-euclidean-metric["例: ℝⁿ上のユークリッド距離"]:::example
-    def-euclidean-space["定義: ユークリッド空間"]:::definition
     def-set["定義: 集合"]:::definition
-    def-open-ball["定義：開球"]:::definition
-    def-metric-space["定義：距離空間"]:::definition
+    def-cauchy-sequence["定義: コーシー列"]:::definition
+    def-uniform-continuity["定義: 一様連続性"]:::definition
     ex-real-line-metric["例：標準距離を持つ実数直線"]:::example
+    def-metric-space["定義：距離空間"]:::definition
+    def-open-ball["定義：開球"]:::definition
     def-function["定義: 関数"]:::definition
+    ex-euclidean-metric["例: ℝⁿ上のユークリッド距離"]:::example
     thm-metric-hausdorff["定理: すべての距離空間はハウスドルフ空間"]:::theorem
     def-complete-metric-space["定義: 完備距離空間"]:::definition
-    def-uniform-continuity["定義: 一様連続性"]:::definition
     thm-heine-borel["定理: ハイネ・ボレルの定理"]:::theorem
-    def-cauchy-sequence["定義: コーシー列"]:::definition
     def-normed-vector-space["定義：ノルム空間"]:::definition
-    def-metric-space --> def-set
-    def-normed-vector-space --> def-metric-space
+    def-euclidean-space["定義: ユークリッド空間"]:::definition
+    def-cauchy-sequence --> def-metric-space
     def-metric-space --> def-function
+    def-metric-space --> def-open-ball
     thm-metric-hausdorff --> def-metric-space
     ex-euclidean-metric --> def-metric-space
-    def-open-ball --> def-metric-space
-    def-complete-metric-space --> def-metric-space
     ex-real-line-metric --> def-metric-space
     thm-heine-borel --> def-metric-space
-    def-cauchy-sequence --> def-metric-space
-    def-metric-space --> def-open-ball
-    def-uniform-continuity --> def-metric-space
     def-euclidean-space --> def-metric-space
+    def-metric-space --> def-set
+    def-normed-vector-space --> def-metric-space
+    def-open-ball --> def-metric-space
+    def-uniform-continuity --> def-metric-space
+    def-complete-metric-space --> def-metric-space
     class def-metric-space current
-    click ex-euclidean-metric "ex-euclidean-metric.html" "ℝⁿ上のユークリッド距離の例へ"
-    click def-euclidean-space "def-euclidean-space.html" "ユークリッド空間の定義へ"
     click def-set "def-set.html" "集合の定義へ"
-    click def-open-ball "def-open-ball.html" "定義：開球へ"
+    click def-cauchy-sequence "def-cauchy-sequence.html" "コーシー列の定義へ"
+    click def-uniform-continuity "def-uniform-continuity.html" "一様連続性の定義へ"
     click ex-real-line-metric "ex-real-line-metric.html" "例：標準距離を持つ実数直線へ"
+    click def-open-ball "def-open-ball.html" "定義：開球へ"
     click def-function "def-function.html" "関数の定義へ"
+    click ex-euclidean-metric "ex-euclidean-metric.html" "ℝⁿ上のユークリッド距離の例へ"
     click thm-metric-hausdorff "thm-metric-hausdorff.html" "すべての距離空間はハウスドルフ空間の定理へ"
     click def-complete-metric-space "def-complete-metric-space.html" "完備距離空間の定義へ"
-    click def-uniform-continuity "def-uniform-continuity.html" "一様連続性の定義へ"
     click thm-heine-borel "thm-heine-borel.html" "ハイネ・ボレルの定理の定理へ"
-    click def-cauchy-sequence "def-cauchy-sequence.html" "コーシー列の定義へ"
     click def-normed-vector-space "def-normed-vector-space.html" "定義：ノルム空間へ"
+    click def-euclidean-space "def-euclidean-space.html" "ユークリッド空間の定義へ"
 ```
 
 ## インタラクティブ可視化

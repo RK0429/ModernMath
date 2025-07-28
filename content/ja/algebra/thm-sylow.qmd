@@ -84,7 +84,7 @@ $|G| = 15 = 3 \cdot 5$ とする。シローの定理により：
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
@@ -93,19 +93,19 @@ graph TD
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-subgroup["定義：部分群"]:::definition
     def-order["定義：位数"]:::definition
+    def-group["群"]:::definition
     thm-lagrange["定理: ラグランジュの定理"]:::theorem
     thm-sylow["シローの定理"]:::theorem
-    def-group["群"]:::definition
-    thm-sylow --> def-order
-    thm-sylow --> thm-lagrange
     thm-sylow --> def-subgroup
+    thm-sylow --> thm-lagrange
     thm-sylow --> def-group
     def-order --> thm-sylow
+    thm-sylow --> def-order
     class thm-sylow current
     click def-subgroup "def-subgroup.html" "定義：部分群へ"
     click def-order "def-order.html" "定義：位数へ"
-    click thm-lagrange "thm-lagrange.html" "ラグランジュの定理の定理へ"
     click def-group "def-group.html" "群へ"
+    click thm-lagrange "thm-lagrange.html" "ラグランジュの定理の定理へ"
 ```
 
 ## インタラクティブ可視化

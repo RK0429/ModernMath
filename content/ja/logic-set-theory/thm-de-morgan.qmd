@@ -77,24 +77,24 @@ $U = \{1, 2, 3, 4, 5, 6\}$ において $A = \{1, 2, 3\}$、$B = \{3, 4, 5\}$ �
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-union["定義: 和集合"]:::definition
-    def-intersection["定義: 共通部分"]:::definition
-    thm-de-morgan["定理: ド・モルガンの法則"]:::theorem
     def-set["定義: 集合"]:::definition
+    def-intersection["定義: 共通部分"]:::definition
+    def-union["定義: 和集合"]:::definition
+    thm-de-morgan["定理: ド・モルガンの法則"]:::theorem
     thm-de-morgan --> def-intersection
     thm-de-morgan --> def-union
     thm-de-morgan --> def-set
     class thm-de-morgan current
-    click def-union "def-union.html" "和集合の定義へ"
-    click def-intersection "def-intersection.html" "共通部分の定義へ"
     click def-set "def-set.html" "集合の定義へ"
+    click def-intersection "def-intersection.html" "共通部分の定義へ"
+    click def-union "def-union.html" "和集合の定義へ"
 ```
 
 ## インタラクティブ可視化

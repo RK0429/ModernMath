@@ -70,7 +70,7 @@ graph TD
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
@@ -82,9 +82,9 @@ graph TD
     def-cardinality["定義: 濃度"]:::definition
     thm-cantor["定理: カントールの定理"]:::theorem
     thm-cantor --> def-power-set
-    def-cardinality --> thm-cantor
     thm-cantor --> def-cardinality
     thm-cantor --> def-set
+    def-cardinality --> thm-cantor
     class thm-cantor current
     click def-set "def-set.html" "集合の定義へ"
     click def-power-set "def-power-set.html" "べき集合の定義へ"

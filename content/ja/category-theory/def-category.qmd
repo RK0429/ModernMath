@@ -46,48 +46,48 @@ type: Definition
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-yoneda["定理：米田の補題"]:::theorem
-    def-natural-transformation["定義：自然変換"]:::definition
-    def-isomorphism["定義: 群同型"]:::definition
     def-set["定義: 集合"]:::definition
+    ex-set-category["例：集合の圏"]:::example
+    def-natural-transformation["定義：自然変換"]:::definition
+    def-morphism["定義: 射"]:::definition
+    def-isomorphism["定義: 群同型"]:::definition
+    thm-yoneda["定理：米田の補題"]:::theorem
+    def-epimorphism["定義：全射"]:::definition
     def-composition["定義: 合成"]:::definition
     def-category["定義: 圏"]:::definition
-    def-graph["定義: グラフ"]:::definition
-    def-monomorphism["定義：単射"]:::definition
     def-functor["定義: 関手"]:::definition
-    def-morphism["定義: 射"]:::definition
-    ex-set-category["例：集合の圏"]:::example
-    def-epimorphism["定義：全射"]:::definition
-    def-epimorphism --> def-category
-    def-natural-transformation --> def-category
-    def-category --> def-graph
-    def-category --> def-set
-    def-morphism --> def-category
+    def-monomorphism["定義：単射"]:::definition
+    def-graph["定義: グラフ"]:::definition
     def-functor --> def-category
-    def-isomorphism --> def-category
-    thm-yoneda --> def-category
+    def-natural-transformation --> def-category
     def-monomorphism --> def-category
+    def-category --> def-graph
+    def-epimorphism --> def-category
+    def-isomorphism --> def-category
+    def-category --> def-set
+    thm-yoneda --> def-category
     ex-set-category --> def-category
+    def-morphism --> def-category
     def-composition --> def-category
     class def-category current
-    click thm-yoneda "thm-yoneda.html" "定理：米田の補題へ"
-    click def-natural-transformation "def-natural-transformation.html" "定義：自然変換へ"
-    click def-isomorphism "def-isomorphism.html" "群同型の定義へ"
     click def-set "def-set.html" "集合の定義へ"
-    click def-composition "def-composition.html" "合成の定義へ"
-    click def-graph "def-graph.html" "グラフの定義へ"
-    click def-monomorphism "def-monomorphism.html" "定義：単射へ"
-    click def-functor "def-functor.html" "関手の定義へ"
-    click def-morphism "def-morphism.html" "射の定義へ"
     click ex-set-category "ex-set-category.html" "例：集合の圏へ"
+    click def-natural-transformation "def-natural-transformation.html" "定義：自然変換へ"
+    click def-morphism "def-morphism.html" "射の定義へ"
+    click def-isomorphism "def-isomorphism.html" "群同型の定義へ"
+    click thm-yoneda "thm-yoneda.html" "定理：米田の補題へ"
     click def-epimorphism "def-epimorphism.html" "定義：全射へ"
+    click def-composition "def-composition.html" "合成の定義へ"
+    click def-functor "def-functor.html" "関手の定義へ"
+    click def-monomorphism "def-monomorphism.html" "定義：単射へ"
+    click def-graph "def-graph.html" "グラフの定義へ"
 ```
 
 ## インタラクティブ可視化

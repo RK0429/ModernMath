@@ -98,25 +98,25 @@ $H$の連続性により、$f$から$g$へのこの変形は、飛躍や破れ�
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-topological-space["定義: 位相空間"]:::definition
+    def-homotopy["定義: ホモトピー"]:::definition
     def-homeomorphism["定義：同相写像"]:::definition
     def-fundamental-group["定義: 基本群"]:::definition
-    def-homotopy["定義: ホモトピー"]:::definition
-    def-topological-space["定義: 位相空間"]:::definition
     def-homotopy --> def-topological-space
     def-homeomorphism --> def-homotopy
-    def-homotopy --> def-homeomorphism
     def-fundamental-group --> def-homotopy
+    def-homotopy --> def-homeomorphism
     class def-homotopy current
+    click def-topological-space "def-topological-space.html" "位相空間の定義へ"
     click def-homeomorphism "def-homeomorphism.html" "定義：同相写像へ"
     click def-fundamental-group "def-fundamental-group.html" "基本群の定義へ"
-    click def-topological-space "def-topological-space.html" "位相空間の定義へ"
 ```
 
 ## インタラクティブ可視化

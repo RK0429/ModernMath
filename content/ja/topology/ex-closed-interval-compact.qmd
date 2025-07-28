@@ -53,24 +53,24 @@ $[a, b]$ のコンパクト性は、$[a, b]$ を被覆する開集合の任意�
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-heine-borel["定理: ハイネ・ボレルの定理"]:::theorem
-    ex-closed-interval-compact["例: 閉区間はコンパクト"]:::example
-    def-compact["定義: コンパクト空間"]:::definition
     def-topological-space["定義: 位相空間"]:::definition
-    ex-closed-interval-compact --> def-compact
+    def-compact["定義: コンパクト空間"]:::definition
+    ex-closed-interval-compact["例: 閉区間はコンパクト"]:::example
+    thm-heine-borel["定理: ハイネ・ボレルの定理"]:::theorem
     ex-closed-interval-compact --> thm-heine-borel
+    ex-closed-interval-compact --> def-compact
     ex-closed-interval-compact --> def-topological-space
     class ex-closed-interval-compact current
-    click thm-heine-borel "thm-heine-borel.html" "ハイネ・ボレルの定理の定理へ"
-    click def-compact "def-compact.html" "コンパクト空間の定義へ"
     click def-topological-space "def-topological-space.html" "位相空間の定義へ"
+    click def-compact "def-compact.html" "コンパクト空間の定義へ"
+    click thm-heine-borel "thm-heine-borel.html" "ハイネ・ボレルの定理の定理へ"
 ```
 
 ## インタラクティブ可視化

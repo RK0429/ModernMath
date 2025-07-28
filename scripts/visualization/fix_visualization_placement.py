@@ -273,9 +273,21 @@ def update_visualization_content(
         enhanced_diagram = add_click_directives(diagram_content, node_id, lang)
 
         if is_japanese:
-            dependency_section = f"## 依存関係グラフ\n\n```{{mermaid}}\n{enhanced_diagram}\n```"
+            dependency_section = (
+                f"## 依存関係グラフ\n\n"
+                f"```{{mermaid}}\n"
+                f'%%| fig-cap: "ローカル依存関係グラフ"\n'
+                f"{enhanced_diagram}\n"
+                f"```"
+            )
         else:
-            dependency_section = f"## Dependency Graph\n\n```{{mermaid}}\n{enhanced_diagram}\n```"
+            dependency_section = (
+                f"## Dependency Graph\n\n"
+                f"```{{mermaid}}\n"
+                f'%%| fig-cap: "Local dependency graph"\n'
+                f"{enhanced_diagram}\n"
+                f"```"
+            )
         sections_to_add.append(dependency_section)
 
     # Always add interactive visualization

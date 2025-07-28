@@ -87,36 +87,36 @@ $\gcd(3,5) = \gcd(3,7) = \gcd(5,7) = 1$ なので、定理を適用できます�
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-gcd["定義：最大公約数"]:::definition
-    def-congruence["定義: 合同（モジュラー演算）"]:::definition
-    thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
+    thm-euclidean-algorithm["定理：ユークリッドのアルゴリズム"]:::theorem
     def-lcm["定義：最小公倍数"]:::definition
     thm-fundamental-arithmetic["定理：算術の基本定理"]:::theorem
-    def-divisibility["定義: 整除性"]:::definition
-    thm-euclidean-algorithm["定理：ユークリッドのアルゴリズム"]:::theorem
+    def-congruence["定義: 合同（モジュラー演算）"]:::definition
     def-prime["定義：素数"]:::definition
-    thm-chinese-remainder --> def-prime
-    thm-chinese-remainder --> def-divisibility
-    thm-chinese-remainder --> def-gcd
-    thm-fundamental-arithmetic --> thm-chinese-remainder
+    def-gcd["定義：最大公約数"]:::definition
+    thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
+    def-divisibility["定義: 整除性"]:::definition
     def-lcm --> thm-chinese-remainder
+    thm-chinese-remainder --> def-divisibility
     thm-chinese-remainder --> def-congruence
+    thm-fundamental-arithmetic --> thm-chinese-remainder
+    thm-chinese-remainder --> def-gcd
     thm-chinese-remainder --> thm-euclidean-algorithm
+    thm-chinese-remainder --> def-prime
     class thm-chinese-remainder current
-    click def-gcd "def-gcd.html" "定義：最大公約数へ"
-    click def-congruence "def-congruence.html" "合同（モジュラー演算）の定義へ"
+    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "定理：ユークリッドのアルゴリズムへ"
     click def-lcm "def-lcm.html" "定義：最小公倍数へ"
     click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "定理：算術の基本定理へ"
-    click def-divisibility "def-divisibility.html" "整除性の定義へ"
-    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "定理：ユークリッドのアルゴリズムへ"
+    click def-congruence "def-congruence.html" "合同（モジュラー演算）の定義へ"
     click def-prime "def-prime.html" "定義：素数へ"
+    click def-gcd "def-gcd.html" "定義：最大公約数へ"
+    click def-divisibility "def-divisibility.html" "整除性の定義へ"
 ```
 
 ## インタラクティブ可視化

@@ -129,7 +129,7 @@ def generate_mermaid_diagram(g: Graph, node_id: str, lang: str = "en", max_nodes
         node_info[n] = info
 
     # Generate Mermaid code
-    lines = ['%%| fig-cap: "Local dependency graph"', "graph TD"]
+    lines = ["graph TD"]
 
     # Add class definitions for styling
     lines.extend(

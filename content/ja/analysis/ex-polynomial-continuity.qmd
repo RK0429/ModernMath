@@ -56,7 +56,7 @@ $p(x) = x^3 - 2x + 1$ を考える。$c = 1$ での連続性を確認：
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
@@ -64,10 +64,10 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-continuity["定義: 連続性"]:::definition
-    def-polynomial-ring["定義: 多項式環"]:::definition
     ex-polynomial-continuity["例：多項式の連続性"]:::example
-    ex-polynomial-continuity --> def-polynomial-ring
+    def-polynomial-ring["定義: 多項式環"]:::definition
     ex-polynomial-continuity --> def-continuity
+    ex-polynomial-continuity --> def-polynomial-ring
     class ex-polynomial-continuity current
     click def-continuity "def-continuity.html" "連続性の定義へ"
     click def-polynomial-ring "def-polynomial-ring.html" "多項式環の定義へ"

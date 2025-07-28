@@ -101,24 +101,24 @@ $$(a \star b) \star c = a \star (b \star c)$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-binary-operation["定義: 二項演算"]:::definition
-    def-semigroup["定義：半群"]:::definition
     def-associativity["結合性"]:::definition
     def-set["定義: 集合"]:::definition
+    def-semigroup["定義：半群"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
     def-semigroup --> def-associativity
     def-semigroup --> def-set
     def-semigroup --> def-binary-operation
     class def-semigroup current
-    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
     click def-associativity "def-associativity.html" "結合性へ"
     click def-set "def-set.html" "集合の定義へ"
+    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
 ```
 
 ## インタラクティブ可視化

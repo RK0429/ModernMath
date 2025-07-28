@@ -43,30 +43,30 @@ $$\overline{A} = \bigcap \{C : A \subseteq C \text{ かつ } C \text{ は閉集�
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-open-set["定義: 開集合"]:::definition
-    def-connected["定義: 連結空間"]:::definition
     def-set["定義: 集合"]:::definition
     def-topological-space["定義: 位相空間"]:::definition
     def-closed-set["定義: 閉集合"]:::definition
     thm-heine-borel["定理: ハイネ・ボレルの定理"]:::theorem
-    def-closed-set --> def-topological-space
-    def-closed-set --> def-set
-    def-connected --> def-closed-set
+    def-open-set["定義: 開集合"]:::definition
+    def-connected["定義: 連結空間"]:::definition
     def-closed-set --> def-open-set
     thm-heine-borel --> def-closed-set
+    def-connected --> def-closed-set
+    def-closed-set --> def-topological-space
+    def-closed-set --> def-set
     class def-closed-set current
-    click def-open-set "def-open-set.html" "開集合の定義へ"
-    click def-connected "def-connected.html" "連結空間の定義へ"
     click def-set "def-set.html" "集合の定義へ"
     click def-topological-space "def-topological-space.html" "位相空間の定義へ"
     click thm-heine-borel "thm-heine-borel.html" "ハイネ・ボレルの定理の定理へ"
+    click def-open-set "def-open-set.html" "開集合の定義へ"
+    click def-connected "def-connected.html" "連結空間の定義へ"
 ```
 
 ## インタラクティブ可視化

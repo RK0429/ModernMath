@@ -62,27 +62,27 @@ $\mathbb{Z}$ における2つのイデアル $(a)$ と $(b)$ に対して：
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-integers-ring["例: 整数は環を形成する"]:::example
-    def-gcd["定義：最大公約数"]:::definition
+    def-ideal["定義: イデアル"]:::definition
     def-ring["定義：環"]:::definition
     ex-principal-ideal["例: 整数における単項イデアル"]:::example
-    def-ideal["定義: イデアル"]:::definition
-    ex-principal-ideal --> def-ideal
+    def-gcd["定義：最大公約数"]:::definition
+    ex-integers-ring["例: 整数は環を形成する"]:::example
     ex-principal-ideal --> def-gcd
     ex-integers-ring --> ex-principal-ideal
     ex-principal-ideal --> def-ring
+    ex-principal-ideal --> def-ideal
     class ex-principal-ideal current
-    click ex-integers-ring "ex-integers-ring.html" "整数は環を形成するの例へ"
-    click def-gcd "def-gcd.html" "定義：最大公約数へ"
-    click def-ring "def-ring.html" "定義：環へ"
     click def-ideal "def-ideal.html" "イデアルの定義へ"
+    click def-ring "def-ring.html" "定義：環へ"
+    click def-gcd "def-gcd.html" "定義：最大公約数へ"
+    click ex-integers-ring "ex-integers-ring.html" "整数は環を形成するの例へ"
 ```
 
 ## インタラクティブ可視化

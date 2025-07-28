@@ -1,27 +1,26 @@
-%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["Definition: Set"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-cyclic-group["Definition: Cyclic Group"]:::definition
     def-order["Definition: Order"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
     def-direct-product["Definition: Direct Product of Groups"]:::definition
-    def-group["Definition: Group"]:::definition
     ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    def-direct-product --> def-homomorphism
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
     def-direct-product --> def-normal-subgroup
-    def-cyclic-group --> def-direct-product
-    def-direct-product --> def-group
-    def-direct-product --> def-cyclic-group
-    def-abelian-group --> def-direct-product
-    def-direct-product --> def-set
     ex-quotient-integers-mod-n --> def-direct-product
-    def-direct-product --> def-abelian-group
+    def-direct-product --> def-set
     def-direct-product --> def-order
+    def-cyclic-group --> def-direct-product
+    def-abelian-group --> def-direct-product
+    def-direct-product --> def-homomorphism
+    def-direct-product --> def-cyclic-group
+    def-direct-product --> def-group
+    def-direct-product --> def-abelian-group
     class def-direct-product current

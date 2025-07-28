@@ -76,7 +76,7 @@ $$k \cdot \omega = \omega \cdot e^{2\pi i k/n} \text{ ここで } \omega = e^{2\
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
@@ -85,24 +85,24 @@ graph TD
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-cyclic-group["定義: 巡回群"]:::definition
     def-order["定義：位数"]:::definition
-    def-group-action["群の作用"]:::definition
-    def-center-of-group["定義: 群の中心"]:::definition
-    def-automorphism["定義: 自己同型"]:::definition
     ex-group-action-examples["群作用の例"]:::example
+    def-automorphism["定義: 自己同型"]:::definition
     def-group["群"]:::definition
-    ex-group-action-examples --> def-order
-    ex-group-action-examples --> def-cyclic-group
-    ex-group-action-examples --> def-automorphism
-    ex-group-action-examples --> def-group-action
-    ex-group-action-examples --> def-group
+    def-center-of-group["定義: 群の中心"]:::definition
+    def-group-action["群の作用"]:::definition
     ex-group-action-examples --> def-center-of-group
+    ex-group-action-examples --> def-order
+    ex-group-action-examples --> def-group
+    ex-group-action-examples --> def-cyclic-group
+    ex-group-action-examples --> def-group-action
+    ex-group-action-examples --> def-automorphism
     class ex-group-action-examples current
     click def-cyclic-group "def-cyclic-group.html" "巡回群の定義へ"
     click def-order "def-order.html" "定義：位数へ"
-    click def-group-action "def-group-action.html" "群の作用へ"
-    click def-center-of-group "def-center-of-group.html" "群の中心の定義へ"
     click def-automorphism "def-automorphism.html" "自己同型の定義へ"
     click def-group "def-group.html" "群へ"
+    click def-center-of-group "def-center-of-group.html" "群の中心の定義へ"
+    click def-group-action "def-group-action.html" "群の作用へ"
 ```
 
 ## インタラクティブ可視化

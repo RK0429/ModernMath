@@ -81,7 +81,7 @@ $$\forall \varepsilon > 0, \exists N : \forall m,n > N, \quad d(a_m, a_n) < \var
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
@@ -89,17 +89,17 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-limit["定義：数列の極限"]:::definition
+    def-convergence["定義: 収束"]:::definition
     def-open-ball["定義：開球"]:::definition
     def-series["定義: 級数"]:::definition
-    def-convergence["定義: 収束"]:::definition
     def-sequence["定義：数列"]:::definition
     thm-taylor-series["定理: テイラー級数"]:::theorem
-    def-convergence --> def-open-ball
     def-convergence --> def-limit
-    def-convergence --> def-sequence
-    def-open-ball --> def-convergence
-    thm-taylor-series --> def-convergence
     def-series --> def-convergence
+    def-convergence --> def-sequence
+    def-convergence --> def-open-ball
+    thm-taylor-series --> def-convergence
+    def-open-ball --> def-convergence
     class def-convergence current
     click def-limit "def-limit.html" "定義：数列の極限へ"
     click def-open-ball "def-open-ball.html" "定義：開球へ"

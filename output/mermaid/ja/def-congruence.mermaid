@@ -1,36 +1,35 @@
-%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-gcd["定義：最大公約数"]:::definition
-    def-congruence["定義: 合同（モジュラー演算）"]:::definition
-    thm-euler["定理：オイラーの定理"]:::theorem
-    thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
-    ax-induction["公理: 数学的帰納法"]:::axiom
-    def-divisibility["定義: 整除性"]:::definition
     def-set["定義: 集合"]:::definition
     thm-euclidean-algorithm["定理：ユークリッドのアルゴリズム"]:::theorem
     thm-fermat-little["定理: フェルマーの小定理"]:::theorem
-    def-equivalence-relation["定義：同値関係"]:::definition
-    def-prime["定義：素数"]:::definition
+    thm-euler["定理：オイラーの定理"]:::theorem
+    def-congruence["定義: 合同（モジュラー演算）"]:::definition
     ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
-    thm-euler --> def-congruence
-    def-congruence --> def-set
-    ex-quotient-integers-mod-n --> def-congruence
-    def-gcd --> def-congruence
-    def-prime --> def-congruence
-    def-congruence --> thm-euclidean-algorithm
-    def-congruence --> def-divisibility
-    def-congruence --> def-gcd
+    def-equivalence-relation["定義：同値関係"]:::definition
+    ax-induction["公理: 数学的帰納法"]:::axiom
+    def-prime["定義：素数"]:::definition
+    def-gcd["定義：最大公約数"]:::definition
+    thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
+    def-divisibility["定義: 整除性"]:::definition
     def-congruence --> def-prime
-    def-congruence --> ex-quotient-integers-mod-n
     def-equivalence-relation --> def-congruence
-    def-congruence --> thm-fermat-little
     def-congruence --> thm-euler
+    ex-quotient-integers-mod-n --> def-congruence
+    def-congruence --> thm-euclidean-algorithm
+    def-congruence --> thm-fermat-little
+    def-gcd --> def-congruence
+    def-congruence --> ex-quotient-integers-mod-n
+    def-prime --> def-congruence
+    def-congruence --> def-divisibility
+    def-congruence --> def-set
     thm-chinese-remainder --> def-congruence
-    def-congruence --> ax-induction
     thm-fermat-little --> def-congruence
+    def-congruence --> ax-induction
+    def-congruence --> def-gcd
+    thm-euler --> def-congruence
     class def-congruence current

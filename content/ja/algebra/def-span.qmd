@@ -46,24 +46,24 @@ $$\text{span}(S) = \left\{ \sum_{i=1}^n a_i\mathbf{v}_i : n \in \mathbb{N}, \mat
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-span["定義：生成"]:::definition
-    def-basis["基底"]:::definition
     ex-standard-basis-rn["例: ℝⁿの標準基底"]:::example
+    def-span["定義：生成"]:::definition
     def-vector-space["定義: ベクトル空間"]:::definition
-    def-basis --> def-span
+    def-basis["基底"]:::definition
     def-span --> def-vector-space
     ex-standard-basis-rn --> def-span
+    def-basis --> def-span
     class def-span current
-    click def-basis "def-basis.html" "基底へ"
     click ex-standard-basis-rn "ex-standard-basis-rn.html" "ℝⁿの標準基底の例へ"
     click def-vector-space "def-vector-space.html" "ベクトル空間の定義へ"
+    click def-basis "def-basis.html" "基底へ"
 ```
 
 ## インタラクティブ可視化

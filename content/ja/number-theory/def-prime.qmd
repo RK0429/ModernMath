@@ -64,52 +64,52 @@ $$\forall a \in \mathbb{N}, \quad a \mid p \implies a = 1 \text{ または } a =
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-gcd["定義：最大公約数"]:::definition
-    def-prime["定義：素数"]:::definition
-    def-congruence["定義: 合同（モジュラー演算）"]:::definition
-    thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
-    thm-euler["定理：オイラーの定理"]:::theorem
-    thm-field-characteristic["定理: 体の標数"]:::theorem
     def-lcm["定義：最小公倍数"]:::definition
     thm-fundamental-arithmetic["定理：算術の基本定理"]:::theorem
-    ex-finite-field["例: 有限体"]:::example
-    thm-euclid-infinitude-primes["定理：素数の無限性に関するユークリッドの定理"]:::theorem
     thm-fermat-little["定理: フェルマーの小定理"]:::theorem
+    thm-field-characteristic["定理: 体の標数"]:::theorem
+    thm-euler["定理：オイラーの定理"]:::theorem
+    thm-euclid-infinitude-primes["定理：素数の無限性に関するユークリッドの定理"]:::theorem
+    def-congruence["定義: 合同（モジュラー演算）"]:::definition
+    ex-finite-field["例: 有限体"]:::example
+    def-prime["定義：素数"]:::definition
+    def-gcd["定義：最大公約数"]:::definition
+    thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
     def-divisibility["定義: 整除性"]:::definition
+    def-congruence --> def-prime
+    def-gcd --> def-prime
     thm-field-characteristic --> def-prime
     def-lcm --> def-prime
-    thm-euler --> def-prime
-    thm-chinese-remainder --> def-prime
-    def-prime --> def-divisibility
-    def-prime --> def-gcd
-    def-divisibility --> def-prime
-    def-prime --> def-congruence
-    def-gcd --> def-prime
-    def-congruence --> def-prime
-    def-prime --> thm-euclid-infinitude-primes
     thm-fermat-little --> def-prime
     thm-fundamental-arithmetic --> def-prime
+    def-divisibility --> def-prime
     def-prime --> thm-fundamental-arithmetic
-    ex-finite-field --> def-prime
+    def-prime --> def-divisibility
     thm-euclid-infinitude-primes --> def-prime
+    def-prime --> thm-euclid-infinitude-primes
+    thm-euler --> def-prime
+    def-prime --> def-congruence
+    def-prime --> def-gcd
+    ex-finite-field --> def-prime
+    thm-chinese-remainder --> def-prime
     class def-prime current
-    click def-gcd "def-gcd.html" "定義：最大公約数へ"
-    click def-congruence "def-congruence.html" "合同（モジュラー演算）の定義へ"
-    click thm-chinese-remainder "thm-chinese-remainder.html" "中国剰余定理の定理へ"
-    click thm-euler "thm-euler.html" "定理：オイラーの定理へ"
-    click thm-field-characteristic "thm-field-characteristic.html" "体の標数の定理へ"
     click def-lcm "def-lcm.html" "定義：最小公倍数へ"
     click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "定理：算術の基本定理へ"
-    click ex-finite-field "ex-finite-field.html" "有限体の例へ"
-    click thm-euclid-infinitude-primes "thm-euclid-infinitude-primes.html" "定理：素数の無限性に関するユークリッドの定理へ"
     click thm-fermat-little "thm-fermat-little.html" "フェルマーの小定理の定理へ"
+    click thm-field-characteristic "thm-field-characteristic.html" "体の標数の定理へ"
+    click thm-euler "thm-euler.html" "定理：オイラーの定理へ"
+    click thm-euclid-infinitude-primes "thm-euclid-infinitude-primes.html" "定理：素数の無限性に関するユークリッドの定理へ"
+    click def-congruence "def-congruence.html" "合同（モジュラー演算）の定義へ"
+    click ex-finite-field "ex-finite-field.html" "有限体の例へ"
+    click def-gcd "def-gcd.html" "定義：最大公約数へ"
+    click thm-chinese-remainder "thm-chinese-remainder.html" "中国剰余定理の定理へ"
     click def-divisibility "def-divisibility.html" "整除性の定義へ"
 ```
 

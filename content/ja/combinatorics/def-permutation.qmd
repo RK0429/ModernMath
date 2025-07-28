@@ -52,7 +52,7 @@ $S = \{1, 2, 3\}$ に対して：
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
@@ -60,19 +60,19 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-set["定義: 集合"]:::definition
+    def-function["定義: 関数"]:::definition
     def-binomial-coefficient["定義：二項係数"]:::definition
     def-permutation["定義：順列"]:::definition
     def-graph["定義: グラフ"]:::definition
-    def-function["定義: 関数"]:::definition
     def-permutation --> def-function
     def-binomial-coefficient --> def-permutation
     def-permutation --> def-set
     def-permutation --> def-graph
     class def-permutation current
     click def-set "def-set.html" "集合の定義へ"
+    click def-function "def-function.html" "関数の定義へ"
     click def-binomial-coefficient "def-binomial-coefficient.html" "定義：二項係数へ"
     click def-graph "def-graph.html" "グラフの定義へ"
-    click def-function "def-function.html" "関数の定義へ"
 ```
 
 ## インタラクティブ可視化

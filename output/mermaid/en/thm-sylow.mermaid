@@ -1,4 +1,3 @@
-%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
@@ -7,12 +6,12 @@ graph TD
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-subgroup["Definition: Subgroup"]:::definition
     def-order["Definition: Order"]:::definition
+    def-group["Definition: Group"]:::definition
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     thm-sylow["Sylow Theorems"]:::theorem
-    def-group["Definition: Group"]:::definition
-    thm-sylow --> def-order
-    thm-sylow --> thm-lagrange
     thm-sylow --> def-subgroup
+    thm-sylow --> thm-lagrange
     thm-sylow --> def-group
     def-order --> thm-sylow
+    thm-sylow --> def-order
     class thm-sylow current

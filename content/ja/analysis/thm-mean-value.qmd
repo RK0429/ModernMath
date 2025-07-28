@@ -78,24 +78,24 @@ $$\frac{f'(c)}{g'(c)} = \frac{f(b) - f(a)}{g(b) - g(a)}$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-continuity["定義: 連続性"]:::definition
-    def-derivative["定義: 導関数"]:::definition
     thm-taylor-series["定理: テイラー級数"]:::theorem
+    def-continuity["定義: 連続性"]:::definition
     thm-mean-value["定理：平均値の定理"]:::theorem
-    thm-mean-value --> def-continuity
+    def-derivative["定義: 導関数"]:::definition
     thm-taylor-series --> thm-mean-value
+    thm-mean-value --> def-continuity
     thm-mean-value --> def-derivative
     class thm-mean-value current
+    click thm-taylor-series "thm-taylor-series.html" "テイラー級数の定理へ"
     click def-continuity "def-continuity.html" "連続性の定義へ"
     click def-derivative "def-derivative.html" "導関数の定義へ"
-    click thm-taylor-series "thm-taylor-series.html" "テイラー級数の定理へ"
 ```
 
 ## インタラクティブ可視化

@@ -1,22 +1,21 @@
-%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-identity-element["定義: 単位元"]:::definition
-    def-isomorphism["定義: 群同型"]:::definition
-    def-center-of-group["定義: 群の中心"]:::definition
-    def-homomorphism["定義: 群準同型"]:::definition
-    def-automorphism["定義: 自己同型"]:::definition
     ex-group-action-examples["群作用の例"]:::example
+    def-isomorphism["定義: 群同型"]:::definition
+    def-automorphism["定義: 自己同型"]:::definition
+    def-homomorphism["定義: 群準同型"]:::definition
+    def-identity-element["定義: 単位元"]:::definition
     def-group["群"]:::definition
-    def-center-of-group --> def-automorphism
-    def-automorphism --> def-isomorphism
+    def-center-of-group["定義: 群の中心"]:::definition
     def-automorphism --> def-group
+    def-automorphism --> def-center-of-group
+    def-automorphism --> def-isomorphism
+    def-automorphism --> def-homomorphism
+    def-center-of-group --> def-automorphism
     ex-group-action-examples --> def-automorphism
     def-automorphism --> def-identity-element
-    def-automorphism --> def-center-of-group
-    def-automorphism --> def-homomorphism
     class def-automorphism current

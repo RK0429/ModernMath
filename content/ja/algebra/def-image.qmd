@@ -53,30 +53,30 @@ $$\text{im}(T_A) = \{A\mathbf{x} : \mathbf{x} \in \mathbb{R}^n\}$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-vector-space["定義: ベクトル空間"]:::definition
-    def-linear-transformation["定義: 線形変換"]:::definition
     thm-rank-nullity["定理: 階数・退化次数定理"]:::theorem
-    def-image["定義: 像"]:::definition
     def-exact-sequence["定義: 完全列"]:::definition
+    def-linear-transformation["定義: 線形変換"]:::definition
     thm-first-isomorphism["定理: 第一同型定理"]:::theorem
+    def-vector-space["定義: ベクトル空間"]:::definition
+    def-image["定義: 像"]:::definition
     def-image --> def-linear-transformation
-    def-exact-sequence --> def-image
-    def-image --> def-vector-space
-    thm-rank-nullity --> def-image
     thm-first-isomorphism --> def-image
+    def-image --> def-vector-space
+    def-exact-sequence --> def-image
+    thm-rank-nullity --> def-image
     class def-image current
-    click def-vector-space "def-vector-space.html" "ベクトル空間の定義へ"
-    click def-linear-transformation "def-linear-transformation.html" "線形変換の定義へ"
     click thm-rank-nullity "thm-rank-nullity.html" "階数・退化次数定理の定理へ"
     click def-exact-sequence "def-exact-sequence.html" "完全列の定義へ"
+    click def-linear-transformation "def-linear-transformation.html" "線形変換の定義へ"
     click thm-first-isomorphism "thm-first-isomorphism.html" "第一同型定理の定理へ"
+    click def-vector-space "def-vector-space.html" "ベクトル空間の定義へ"
 ```
 
 ## インタラクティブ可視化

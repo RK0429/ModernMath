@@ -1,35 +1,34 @@
-%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-simple-group["Definition: Simple Group"]:::definition
     def-subgroup["Definition: Subgroup"]:::definition
-    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-cyclic-group["Definition: Cyclic Group"]:::definition
     def-order["Definition: Order"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    thm-sylow["Sylow Theorems"]:::theorem
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-coset["Definition: Coset"]:::definition
     def-quotient-group["Definition: Quotient Group"]:::definition
+    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     def-group["Definition: Group"]:::definition
-    thm-lagrange --> def-cyclic-group
-    thm-orbit-stabilizer --> thm-lagrange
-    thm-lagrange --> def-group
-    thm-lagrange --> def-order
-    thm-lagrange --> def-coset
-    def-subgroup --> thm-lagrange
-    def-abelian-group --> thm-lagrange
-    def-coset --> thm-lagrange
-    thm-lagrange --> def-quotient-group
+    def-coset["Definition: Coset"]:::definition
+    thm-sylow["Sylow Theorems"]:::theorem
+    def-simple-group["Definition: Simple Group"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
     thm-lagrange --> def-subgroup
-    thm-sylow --> thm-lagrange
-    def-simple-group --> thm-lagrange
+    thm-orbit-stabilizer --> thm-lagrange
+    thm-lagrange --> def-order
+    thm-lagrange --> def-group
     def-order --> thm-lagrange
-    def-cyclic-group --> thm-lagrange
+    def-simple-group --> thm-lagrange
+    thm-sylow --> thm-lagrange
+    def-abelian-group --> thm-lagrange
+    thm-lagrange --> def-cyclic-group
     def-normal-subgroup --> thm-lagrange
+    thm-lagrange --> def-quotient-group
+    def-subgroup --> thm-lagrange
+    def-cyclic-group --> thm-lagrange
+    def-coset --> thm-lagrange
+    thm-lagrange --> def-coset
     class thm-lagrange current
