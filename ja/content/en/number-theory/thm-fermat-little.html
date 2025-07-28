@@ -372,21 +372,21 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-euler["Theorem: Euler's Theorem"]:::theorem
-    def-prime["Definition: Prime Number"]:::definition
-    thm-fermat-little["Theorem: Fermat's Little Theorem"]:::theorem
     def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
+    thm-fermat-little["Theorem: Fermat's Little Theorem"]:::theorem
+    def-prime["Definition: Prime Number"]:::definition
     def-divisibility["Definition: Divisibility"]:::definition
     def-gcd["Definition: Greatest Common Divisor"]:::definition
-    thm-fermat-little --&gt; def-gcd
-    thm-fermat-little --&gt; def-congruence
-    thm-euler --&gt; thm-fermat-little
-    def-congruence --&gt; thm-fermat-little
     thm-fermat-little --&gt; def-prime
     thm-fermat-little --&gt; def-divisibility
+    thm-euler --&gt; thm-fermat-little
+    thm-fermat-little --&gt; def-congruence
+    def-congruence --&gt; thm-fermat-little
+    thm-fermat-little --&gt; def-gcd
     class thm-fermat-little current
     click thm-euler "thm-euler.html" "Go to Euler's Theorem theorem"
-    click def-prime "def-prime.html" "Go to Prime Number definition"
     click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic) definition"
+    click def-prime "def-prime.html" "Go to Prime Number definition"
     click def-divisibility "def-divisibility.html" "Go to Divisibility definition"
     click def-gcd "def-gcd.html" "Go to Greatest Common Divisor definition"
 </pre>
@@ -399,7 +399,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-fermat-little-1753635993" class="graph-visualization-container">
+<div id="graph-viz-thm-fermat-little-1753671284" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -563,8 +563,22 @@ async function loadAndRenderGraph() {
     if (window.location.hostname.includes('github.io') && pathParts.length > 0) {
       // The first part is the project name (e.g., 'ModernMath')
       const projectName = pathParts[0];
-      // Remove project name and count remaining directories (excluding the HTML file)
-      const depthFromProjectRoot = pathParts.slice(1).length - 1;
+
+      // For multilingual sites, we need to account for the language directory
+      // Path structure: /ModernMath/en/domain/file.html or /ModernMath/ja/domain/file.html
+      // We need to go up to /ModernMath/ to access /ModernMath/output/
+      let depthFromProjectRoot;
+
+      // Check if the second part is a language code
+      if (pathParts.length > 1 && (pathParts[1] === 'en' || pathParts[1] === 'ja')) {
+        // Remove project name and language, count remaining directories (excluding the HTML file)
+        depthFromProjectRoot = pathParts.slice(2).length - 1;
+        // Add one more level to go up from the language directory
+        depthFromProjectRoot += 1;
+      } else {
+        // Original logic for non-multilingual setup
+        depthFromProjectRoot = pathParts.slice(1).length - 1;
+      }
 
       // Go up to the project root
       basePath = '../'.repeat(depthFromProjectRoot);
@@ -591,18 +605,22 @@ async function loadAndRenderGraph() {
     }
 
     console.log('Detected language:', lang, 'from path:', currentPath);
+    console.log('Base path calculated:', basePath);
 
-    const response = await fetch(basePath + 'output/d3-data/' + lang + '/thm-fermat-little.json');
+    const dataUrl = basePath + 'output/d3-data/' + lang + '/thm-fermat-little.json';
+    console.log('Fetching data from:', dataUrl);
+
+    const response = await fetch(dataUrl);
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-fermat-little-1753635993', {
+    createForceGraph(data, 'graph-viz-thm-fermat-little-1753671284', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-fermat-little-1753635993').innerHTML =
+    document.getElementById('graph-viz-thm-fermat-little-1753671284').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

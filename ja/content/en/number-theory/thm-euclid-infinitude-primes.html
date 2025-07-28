@@ -353,19 +353,19 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-divisibility["Definition: Divisibility"]:::definition
-    def-prime["Definition: Prime Number"]:::definition
-    thm-euclid-infinitude-primes["Theorem: Euclid's Theorem on the Infinitude of Primes"]:::theorem
     thm-fundamental-arithmetic["Theorem: Fundamental Theorem of Arithmetic"]:::theorem
-    thm-euclid-infinitude-primes --&gt; thm-fundamental-arithmetic
-    def-prime --&gt; thm-euclid-infinitude-primes
-    thm-fundamental-arithmetic --&gt; thm-euclid-infinitude-primes
-    thm-euclid-infinitude-primes --&gt; def-prime
+    thm-euclid-infinitude-primes["Theorem: Euclid's Theorem on the Infinitude of Primes"]:::theorem
+    def-prime["Definition: Prime Number"]:::definition
+    def-divisibility["Definition: Divisibility"]:::definition
     thm-euclid-infinitude-primes --&gt; def-divisibility
+    thm-euclid-infinitude-primes --&gt; def-prime
+    thm-fundamental-arithmetic --&gt; thm-euclid-infinitude-primes
+    def-prime --&gt; thm-euclid-infinitude-primes
+    thm-euclid-infinitude-primes --&gt; thm-fundamental-arithmetic
     class thm-euclid-infinitude-primes current
-    click def-divisibility "def-divisibility.html" "Go to Divisibility definition"
-    click def-prime "def-prime.html" "Go to Prime Number definition"
     click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "Go to Fundamental Theorem of Arithmetic theorem"
+    click def-prime "def-prime.html" "Go to Prime Number definition"
+    click def-divisibility "def-divisibility.html" "Go to Divisibility definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -376,7 +376,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-euclid-infinitude-primes-1753635991" class="graph-visualization-container">
+<div id="graph-viz-thm-euclid-infinitude-primes-1753671282" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -540,8 +540,22 @@ async function loadAndRenderGraph() {
     if (window.location.hostname.includes('github.io') && pathParts.length > 0) {
       // The first part is the project name (e.g., 'ModernMath')
       const projectName = pathParts[0];
-      // Remove project name and count remaining directories (excluding the HTML file)
-      const depthFromProjectRoot = pathParts.slice(1).length - 1;
+
+      // For multilingual sites, we need to account for the language directory
+      // Path structure: /ModernMath/en/domain/file.html or /ModernMath/ja/domain/file.html
+      // We need to go up to /ModernMath/ to access /ModernMath/output/
+      let depthFromProjectRoot;
+
+      // Check if the second part is a language code
+      if (pathParts.length > 1 && (pathParts[1] === 'en' || pathParts[1] === 'ja')) {
+        // Remove project name and language, count remaining directories (excluding the HTML file)
+        depthFromProjectRoot = pathParts.slice(2).length - 1;
+        // Add one more level to go up from the language directory
+        depthFromProjectRoot += 1;
+      } else {
+        // Original logic for non-multilingual setup
+        depthFromProjectRoot = pathParts.slice(1).length - 1;
+      }
 
       // Go up to the project root
       basePath = '../'.repeat(depthFromProjectRoot);
@@ -568,18 +582,22 @@ async function loadAndRenderGraph() {
     }
 
     console.log('Detected language:', lang, 'from path:', currentPath);
+    console.log('Base path calculated:', basePath);
 
-    const response = await fetch(basePath + 'output/d3-data/' + lang + '/thm-euclid-infinitude-primes.json');
+    const dataUrl = basePath + 'output/d3-data/' + lang + '/thm-euclid-infinitude-primes.json';
+    console.log('Fetching data from:', dataUrl);
+
+    const response = await fetch(dataUrl);
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-euclid-infinitude-primes-1753635991', {
+    createForceGraph(data, 'graph-viz-thm-euclid-infinitude-primes-1753671282', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-euclid-infinitude-primes-1753635991').innerHTML =
+    document.getElementById('graph-viz-thm-euclid-infinitude-primes-1753671282').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

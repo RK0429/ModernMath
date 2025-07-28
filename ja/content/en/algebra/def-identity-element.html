@@ -384,38 +384,38 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group["Definition: Group"]:::definition
     def-free-group["Definition: Free Group"]:::definition
-    def-inverse-element["Definition: Inverse Element"]:::definition
-    def-identity-element["Definition: Identity Element"]:::definition
-    def-zero-divisor["Definition: Zero Divisor"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
     def-automorphism["Definition: Automorphism"]:::definition
+    def-group-action["Group Action"]:::definition
     def-monoid["Definition: Monoid"]:::definition
+    def-group["Definition: Group"]:::definition
     def-order["Definition: Order"]:::definition
     def-cyclic-group["Definition: Cyclic Group"]:::definition
-    def-group-action["Group Action"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-identity-element --&gt; def-binary-operation
+    def-inverse-element["Definition: Inverse Element"]:::definition
+    def-zero-divisor["Definition: Zero Divisor"]:::definition
+    def-identity-element["Definition: Identity Element"]:::definition
+    def-automorphism --&gt; def-identity-element
     def-group-action --&gt; def-identity-element
-    def-inverse-element --&gt; def-identity-element
     def-order --&gt; def-identity-element
     def-monoid --&gt; def-identity-element
-    def-group --&gt; def-identity-element
     def-cyclic-group --&gt; def-identity-element
-    def-free-group --&gt; def-identity-element
+    def-identity-element --&gt; def-binary-operation
     def-zero-divisor --&gt; def-identity-element
-    def-automorphism --&gt; def-identity-element
+    def-group --&gt; def-identity-element
+    def-free-group --&gt; def-identity-element
+    def-inverse-element --&gt; def-identity-element
     class def-identity-element current
-    click def-group "def-group.html" "Go to Group definition"
     click def-free-group "def-free-group.html" "Go to Free Group definition"
-    click def-inverse-element "def-inverse-element.html" "Go to Inverse Element definition"
-    click def-zero-divisor "def-zero-divisor.html" "Go to Zero Divisor definition"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
     click def-automorphism "def-automorphism.html" "Go to Automorphism definition"
+    click def-group-action "def-group-action.html" "Go to Group Action"
     click def-monoid "def-monoid.html" "Go to Monoid definition"
+    click def-group "def-group.html" "Go to Group definition"
     click def-order "def-order.html" "Go to Order definition"
     click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
-    click def-group-action "def-group-action.html" "Go to Group Action"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click def-inverse-element "def-inverse-element.html" "Go to Inverse Element definition"
+    click def-zero-divisor "def-zero-divisor.html" "Go to Zero Divisor definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -426,7 +426,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-identity-element-1753635933" class="graph-visualization-container">
+<div id="graph-viz-def-identity-element-1753671223" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -590,8 +590,22 @@ async function loadAndRenderGraph() {
     if (window.location.hostname.includes('github.io') && pathParts.length > 0) {
       // The first part is the project name (e.g., 'ModernMath')
       const projectName = pathParts[0];
-      // Remove project name and count remaining directories (excluding the HTML file)
-      const depthFromProjectRoot = pathParts.slice(1).length - 1;
+
+      // For multilingual sites, we need to account for the language directory
+      // Path structure: /ModernMath/en/domain/file.html or /ModernMath/ja/domain/file.html
+      // We need to go up to /ModernMath/ to access /ModernMath/output/
+      let depthFromProjectRoot;
+
+      // Check if the second part is a language code
+      if (pathParts.length > 1 && (pathParts[1] === 'en' || pathParts[1] === 'ja')) {
+        // Remove project name and language, count remaining directories (excluding the HTML file)
+        depthFromProjectRoot = pathParts.slice(2).length - 1;
+        // Add one more level to go up from the language directory
+        depthFromProjectRoot += 1;
+      } else {
+        // Original logic for non-multilingual setup
+        depthFromProjectRoot = pathParts.slice(1).length - 1;
+      }
 
       // Go up to the project root
       basePath = '../'.repeat(depthFromProjectRoot);
@@ -618,18 +632,22 @@ async function loadAndRenderGraph() {
     }
 
     console.log('Detected language:', lang, 'from path:', currentPath);
+    console.log('Base path calculated:', basePath);
 
-    const response = await fetch(basePath + 'output/d3-data/' + lang + '/def-identity-element.json');
+    const dataUrl = basePath + 'output/d3-data/' + lang + '/def-identity-element.json';
+    console.log('Fetching data from:', dataUrl);
+
+    const response = await fetch(dataUrl);
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-identity-element-1753635933', {
+    createForceGraph(data, 'graph-viz-def-identity-element-1753671223', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-identity-element-1753635933').innerHTML =
+    document.getElementById('graph-viz-def-identity-element-1753671223').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

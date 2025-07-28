@@ -5,17 +5,17 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-vector-space["定義: ベクトル空間"]:::definition
     def-metric-space["定義：距離空間"]:::definition
     def-normed-vector-space["定義：ノルム空間"]:::definition
     def-banach-space["定義: バナッハ空間"]:::definition
-    def-vector-space["定義: ベクトル空間"]:::definition
     def-open-ball["定義：開球"]:::definition
     def-euclidean-space["定義: ユークリッド空間"]:::definition
     def-hilbert-space["定義: ヒルベルト空間"]:::definition
+    def-hilbert-space --> def-normed-vector-space
+    def-euclidean-space --> def-normed-vector-space
     def-banach-space --> def-normed-vector-space
     def-normed-vector-space --> def-vector-space
-    def-euclidean-space --> def-normed-vector-space
-    def-hilbert-space --> def-normed-vector-space
-    def-normed-vector-space --> def-metric-space
     def-normed-vector-space --> def-open-ball
+    def-normed-vector-space --> def-metric-space
     class def-normed-vector-space current

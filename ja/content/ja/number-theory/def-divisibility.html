@@ -386,37 +386,37 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-euclidean-algorithm["定理：ユークリッドのアルゴリズム"]:::theorem
-    def-lcm["定義：最小公倍数"]:::definition
     thm-fundamental-arithmetic["定理：算術の基本定理"]:::theorem
-    def-prime["定義：素数"]:::definition
-    def-partial-order["定義：半順序"]:::definition
-    thm-fermat-little["定理: フェルマーの小定理"]:::theorem
-    thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
     def-congruence["定義: 合同（モジュラー演算）"]:::definition
-    thm-euclid-infinitude-primes["定理：素数の無限性に関するユークリッドの定理"]:::theorem
+    thm-fermat-little["定理: フェルマーの小定理"]:::theorem
+    def-partial-order["定義：半順序"]:::definition
+    def-lcm["定義：最小公倍数"]:::definition
+    thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
+    def-prime["定義：素数"]:::definition
     def-divisibility["定義: 整除性"]:::definition
+    thm-euclid-infinitude-primes["定理：素数の無限性に関するユークリッドの定理"]:::theorem
     def-gcd["定義：最大公約数"]:::definition
-    def-lcm --&gt; def-divisibility
-    def-divisibility --&gt; def-prime
+    thm-euclid-infinitude-primes --&gt; def-divisibility
     def-gcd --&gt; def-divisibility
-    def-congruence --&gt; def-divisibility
     def-divisibility --&gt; def-gcd
+    def-lcm --&gt; def-divisibility
+    def-divisibility --&gt; def-partial-order
+    thm-fermat-little --&gt; def-divisibility
     thm-fundamental-arithmetic --&gt; def-divisibility
+    def-divisibility --&gt; def-prime
+    thm-euclidean-algorithm --&gt; def-divisibility
+    def-congruence --&gt; def-divisibility
     def-prime --&gt; def-divisibility
     thm-chinese-remainder --&gt; def-divisibility
-    thm-euclidean-algorithm --&gt; def-divisibility
-    thm-fermat-little --&gt; def-divisibility
-    def-divisibility --&gt; def-partial-order
-    thm-euclid-infinitude-primes --&gt; def-divisibility
     class def-divisibility current
     click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "定理：ユークリッドのアルゴリズムへ"
-    click def-lcm "def-lcm.html" "定義：最小公倍数へ"
     click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "定理：算術の基本定理へ"
-    click def-prime "def-prime.html" "定義：素数へ"
-    click def-partial-order "def-partial-order.html" "定義：半順序へ"
-    click thm-fermat-little "thm-fermat-little.html" "フェルマーの小定理の定理へ"
-    click thm-chinese-remainder "thm-chinese-remainder.html" "中国剰余定理の定理へ"
     click def-congruence "def-congruence.html" "合同（モジュラー演算）の定義へ"
+    click thm-fermat-little "thm-fermat-little.html" "フェルマーの小定理の定理へ"
+    click def-partial-order "def-partial-order.html" "定義：半順序へ"
+    click def-lcm "def-lcm.html" "定義：最小公倍数へ"
+    click thm-chinese-remainder "thm-chinese-remainder.html" "中国剰余定理の定理へ"
+    click def-prime "def-prime.html" "定義：素数へ"
     click thm-euclid-infinitude-primes "thm-euclid-infinitude-primes.html" "定理：素数の無限性に関するユークリッドの定理へ"
     click def-gcd "def-gcd.html" "定義：最大公約数へ"
 </pre>
@@ -429,7 +429,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-divisibility-1753635891" class="graph-visualization-container">
+<div id="graph-viz-def-divisibility-1753671182" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -593,8 +593,22 @@ async function loadAndRenderGraph() {
     if (window.location.hostname.includes('github.io') && pathParts.length > 0) {
       // The first part is the project name (e.g., 'ModernMath')
       const projectName = pathParts[0];
-      // Remove project name and count remaining directories (excluding the HTML file)
-      const depthFromProjectRoot = pathParts.slice(1).length - 1;
+
+      // For multilingual sites, we need to account for the language directory
+      // Path structure: /ModernMath/en/domain/file.html or /ModernMath/ja/domain/file.html
+      // We need to go up to /ModernMath/ to access /ModernMath/output/
+      let depthFromProjectRoot;
+
+      // Check if the second part is a language code
+      if (pathParts.length > 1 && (pathParts[1] === 'en' || pathParts[1] === 'ja')) {
+        // Remove project name and language, count remaining directories (excluding the HTML file)
+        depthFromProjectRoot = pathParts.slice(2).length - 1;
+        // Add one more level to go up from the language directory
+        depthFromProjectRoot += 1;
+      } else {
+        // Original logic for non-multilingual setup
+        depthFromProjectRoot = pathParts.slice(1).length - 1;
+      }
 
       // Go up to the project root
       basePath = '../'.repeat(depthFromProjectRoot);
@@ -621,18 +635,22 @@ async function loadAndRenderGraph() {
     }
 
     console.log('Detected language:', lang, 'from path:', currentPath);
+    console.log('Base path calculated:', basePath);
 
-    const response = await fetch(basePath + 'output/d3-data/' + lang + '/def-divisibility.json');
+    const dataUrl = basePath + 'output/d3-data/' + lang + '/def-divisibility.json';
+    console.log('Fetching data from:', dataUrl);
+
+    const response = await fetch(dataUrl);
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-divisibility-1753635891', {
+    createForceGraph(data, 'graph-viz-def-divisibility-1753671182', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-divisibility-1753635891').innerHTML =
+    document.getElementById('graph-viz-def-divisibility-1753671182').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -331,28 +331,28 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group["Definition: Group"]:::definition
-    def-coset["Definition: Coset"]:::definition
-    ex-integers-addition["Example: Integers under Addition"]:::example
     def-abelian-group["Definition: Abelian Group"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-coset["Definition: Coset"]:::definition
     ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    def-group --&gt; ex-even-integers-subgroup
-    ex-even-integers-subgroup --&gt; def-coset
-    ex-even-integers-subgroup --&gt; def-group
-    ex-even-integers-subgroup --&gt; def-subgroup
-    ex-even-integers-subgroup --&gt; ex-integers-addition
-    def-coset --&gt; ex-even-integers-subgroup
+    def-group["Definition: Group"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    ex-integers-addition["Example: Integers under Addition"]:::example
+    def-subgroup["Definition: Subgroup"]:::definition
     ex-even-integers-subgroup --&gt; def-abelian-group
+    def-group --&gt; ex-even-integers-subgroup
+    ex-even-integers-subgroup --&gt; ex-integers-addition
+    ex-even-integers-subgroup --&gt; def-group
     ex-even-integers-subgroup --&gt; def-normal-subgroup
+    def-coset --&gt; ex-even-integers-subgroup
+    ex-even-integers-subgroup --&gt; def-subgroup
+    ex-even-integers-subgroup --&gt; def-coset
     class ex-even-integers-subgroup current
-    click def-group "def-group.html" "Go to Group definition"
-    click def-coset "def-coset.html" "Go to Coset definition"
-    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
     click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
-    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
+    click def-coset "def-coset.html" "Go to Coset definition"
+    click def-group "def-group.html" "Go to Group definition"
     click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
+    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -363,7 +363,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-ex-even-integers-subgroup-1753635926" class="graph-visualization-container">
+<div id="graph-viz-ex-even-integers-subgroup-1753671216" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -527,8 +527,22 @@ async function loadAndRenderGraph() {
     if (window.location.hostname.includes('github.io') && pathParts.length > 0) {
       // The first part is the project name (e.g., 'ModernMath')
       const projectName = pathParts[0];
-      // Remove project name and count remaining directories (excluding the HTML file)
-      const depthFromProjectRoot = pathParts.slice(1).length - 1;
+
+      // For multilingual sites, we need to account for the language directory
+      // Path structure: /ModernMath/en/domain/file.html or /ModernMath/ja/domain/file.html
+      // We need to go up to /ModernMath/ to access /ModernMath/output/
+      let depthFromProjectRoot;
+
+      // Check if the second part is a language code
+      if (pathParts.length > 1 && (pathParts[1] === 'en' || pathParts[1] === 'ja')) {
+        // Remove project name and language, count remaining directories (excluding the HTML file)
+        depthFromProjectRoot = pathParts.slice(2).length - 1;
+        // Add one more level to go up from the language directory
+        depthFromProjectRoot += 1;
+      } else {
+        // Original logic for non-multilingual setup
+        depthFromProjectRoot = pathParts.slice(1).length - 1;
+      }
 
       // Go up to the project root
       basePath = '../'.repeat(depthFromProjectRoot);
@@ -555,18 +569,22 @@ async function loadAndRenderGraph() {
     }
 
     console.log('Detected language:', lang, 'from path:', currentPath);
+    console.log('Base path calculated:', basePath);
 
-    const response = await fetch(basePath + 'output/d3-data/' + lang + '/ex-even-integers-subgroup.json');
+    const dataUrl = basePath + 'output/d3-data/' + lang + '/ex-even-integers-subgroup.json';
+    console.log('Fetching data from:', dataUrl);
+
+    const response = await fetch(dataUrl);
     if (!response.ok) {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-even-integers-subgroup-1753635926', {
+    createForceGraph(data, 'graph-viz-ex-even-integers-subgroup-1753671216', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-even-integers-subgroup-1753635926').innerHTML =
+    document.getElementById('graph-viz-ex-even-integers-subgroup-1753671216').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
