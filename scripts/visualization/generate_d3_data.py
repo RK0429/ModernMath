@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 from typing import Dict, Set, Tuple, Any
 
-from rdflib import Graph, Namespace, RDF, RDFS
+from rdflib import Graph, Literal, Namespace, RDF, RDFS
 
 # Define namespaces
 MYMATH = Namespace("https://mathwiki.org/ontology#")
@@ -28,10 +28,8 @@ def get_node_info(g: Graph, node_uri: Any, lang: str = "en") -> Dict[str, Any]:
     # Get label with language preference
     labels = {}
     for label in g.objects(node_uri, RDFS.label):
-        if isinstance(label, str):
-            labels["default"] = str(label)
-        elif hasattr(label, "language") and getattr(label, "language", None):
-            labels[getattr(label, "language")] = str(label)
+        if isinstance(label, Literal) and hasattr(label, "language") and label.language:
+            labels[label.language] = str(label)
         else:
             labels["default"] = str(label)
 
