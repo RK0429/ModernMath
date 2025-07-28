@@ -13,72 +13,50 @@ Use Playwright MCP tools for debugging deployed sites:
 - `mcp__playwright__browser_navigate(url)` - Navigate to page
 - `mcp__playwright__browser_console_messages()` - View console errors
 - `mcp__playwright__browser_evaluate(function)` - Test JS in browser context
-- Browser navigation includes DOM snapshot for element inspection
 
 ## Essential Commands
 
 ### Development Setup
 
 ```bash
-# Install dependencies (requires Poetry)
-poetry install
-
-# Activate the virtual environment
-poetry shell
+poetry install  # Install dependencies
+poetry shell    # Activate virtual environment
 ```
 
 ### Building the Knowledge Graph
 
 ```bash
-# Build the RDF knowledge graph from content files
-poetry run python scripts/graph/build_graph.py
-
-# Validate all metadata before building
-poetry run python scripts/validation/validate_metadata.py
-
-# Validate the generated graph
-poetry run python scripts/graph/validate_graph.py
-
-# Generate comprehensive index pages for all domains
-poetry run python scripts/site/generate_index_pages.py
+poetry run python scripts/graph/build_graph.py              # Build RDF graph
+poetry run python scripts/validation/validate_metadata.py   # Validate metadata
+poetry run python scripts/graph/validate_graph.py          # Validate graph
+poetry run python scripts/site/generate_index_pages.py     # Generate indices
 ```
 
 ### Generating Visualizations
 
 ```bash
-# Generate all visualizations in sequence
+# Run in order:
 poetry run python scripts/visualization/generate_mermaid.py
 poetry run python scripts/visualization/generate_pyvis.py
 poetry run python scripts/visualization/generate_d3_data.py
-
-# Insert both Mermaid and D3.js visualizations with automatic hyperlinks
 poetry run python scripts/visualization/insert_diagrams.py
 ```
 
 ### Site Development
 
 ```bash
-# Preview the site locally
-quarto preview
-
-# Build the complete site
-quarto render
-
-# Build with language profiles (for multilingual support)
-quarto render --profile en  # Uses _quarto-en.yml automatically
-quarto render --profile ja  # Uses _quarto-ja.yml automatically
-
-# Build search index
+quarto preview                    # Preview locally
+quarto render                     # Build site
+quarto render --profile en        # Build English version
+quarto render --profile ja        # Build Japanese version
 poetry run python scripts/site/build_search_index.py
 ```
 
 ### Managing Translations
 
 ```bash
-# Update translation status for all files
 poetry run python scripts/translation/manage_translations.py update
-
-# Other commands: report, list --status=X, validate, stats
+# Commands: update, report, list --status=X, validate, stats
 ```
 
 Uses MD5 hashes to track status: `not_started`, `in_progress`, `completed`, `needs_update`
@@ -86,411 +64,214 @@ Uses MD5 hashes to track status: `not_started`, `in_progress`, `completed`, `nee
 ### Code Quality
 
 ```bash
-# Format code
-poetry run black scripts/
-
-# Run linting
+poetry run black scripts/                 # Format
 poetry run flake8 scripts/ --max-line-length=100 --extend-ignore=E203,W503,W293
-
-# Type checking
-poetry run mypy scripts/
+poetry run mypy scripts/                  # Type check
 ```
 
-#### Code Quality Requirements
-
-All Python scripts must pass pre-commit checks: proper type annotations from `typing`, flake8 (100-char limit, ignore E203,W503,W293), pylint complexity limits, strict mypy/pyright checks.
-
-**Pre-commit Hook Behavior**: Hooks automatically fix trailing whitespace and end-of-file issues in `.qmd` files. The translation status hook updates `translations-status.yml` on every commit involving content files. The cross-reference check validates ALL files in the repository, not just staged ones. **Important**: When hooks modify files, the commit will fail and require re-adding the modified files and retrying the commit. Use `git commit --no-verify` to bypass checks when warnings are unrelated to your changes.
-
-**Commit Staging Best Practice**: When the repository has many uncommitted changes, use `git add` with specific file paths rather than `git add -A` to stage only the files related to your current task. This prevents accidentally committing unrelated changes.
+**Pre-commit Hook Behavior**: Hooks fix whitespace/EOF issues, update translation status, validate cross-references. When hooks modify files, re-add and retry commit. Use `git commit --no-verify` to bypass.
 
 ### SPARQL and API
 
 ```bash
-# Start Fuseki SPARQL endpoint
-cd fuseki/scripts && ./start_fuseki.sh
-
-# Start REST API
-cd api && ./start_api.sh  # Runs on http://localhost:5001/
+cd fuseki/scripts && ./start_fuseki.sh    # Start SPARQL endpoint
+cd api && ./start_api.sh                  # Start REST API (port 5001)
 ```
 
 ## Architecture Overview
 
 ### Content Structure
 
-All mathematical content is in `content/` organized by domain. Each `.qmd` file represents a node in the knowledge graph with:
+Content in `content/` organized by domain. Each `.qmd` file has:
 
-- **YAML Front Matter**: Contains metadata (id, type, status, requires)
-  - **type**: Must be one of: `Corollary`, `Definition`, `Theorem`, `Example`, `Axiom`, `Proposition`, `Lemma` (capitalized)
-  - **status**: Must be one of: `verified`, `stub`, `complete`, `draft`
-  - **requires**: Must be a list (use `[]` for empty, not `null`)
-- **Cross-References**: Use `@label` syntax to create graph edges
+- **YAML Front Matter**: `id`, `type` (Corollary/Definition/Theorem/Example/Axiom/Proposition/Lemma), `status` (verified/stub/complete/draft), `requires` (list, use `[]` for empty)
+- **Cross-References**: Use `@label` syntax
 - **File Naming**: `def-*.qmd`, `thm-*.qmd`, `ex-*.qmd`, `ax-*.qmd`
 
-### Content Creation Workflow
+### Content Workflow
 
-When adding new mathematical content:
+When adding/enriching content:
 
-1. **Verify Accuracy**: Use web search to verify mathematical definitions, theorems, and properties before writing
-2. **Follow Style Guides**: Consult `/docs/style_guide/` for detailed templates and guidelines specific to axioms, definitions, theorems, and examples
-3. **Add Cross-References**: Link to required concepts using `@domain/concept-id` syntax
-4. **Update Existing References**: Search for mentions of your new concept and add cross-references from existing articles
-5. **Update Index**: Add the new article to the domain's index.qmd file in alphabetical order
-6. **Build and Validate**: Run `validate_metadata.py` after creating new content
-7. **Maintain Bilingual Consistency**: When updating cross-references, always update both English and Japanese versions together
-8. **Generate Assets**: Run the full visualization pipeline in order:
-
-   ```bash
-   poetry run python scripts/graph/build_graph.py
-   poetry run python scripts/visualization/generate_mermaid.py
-   poetry run python scripts/visualization/generate_pyvis.py
-   poetry run python scripts/visualization/insert_diagrams.py
-   ```
-
-### Content Enrichment Workflow
-
-When enriching the knowledge graph with missing mathematical content:
-
-1. **Identify Gaps**: Use grep/search to find concepts mentioned but not yet defined as articles
-2. **Verify Non-Duplication**: Ensure the content doesn't already exist in another form
-3. **Research Accuracy**: Use web searches to verify mathematical statements and theorems
-4. **Create Bilingual Content**: Always create both English and Japanese versions simultaneously
-5. **Update Cross-References**: Search for all mentions of the new concept and add links
-6. **Generate All Visualizations**: Run the complete pipeline (build_graph, mermaid, pyvis, insert_diagrams)
-7. **Commit Pattern**: Be prepared to re-add files and retry commits when pre-commit hooks make modifications
+1. **Verify Accuracy**: Web search to verify mathematical facts
+2. **Follow Style Guides**: See `/docs/style_guide/`
+3. **Add Cross-References**: Use `@domain/concept-id` syntax
+4. **Update References**: Search and update existing mentions
+5. **Update Index**: Add to domain's index.qmd alphabetically
+6. **Validate**: Run `validate_metadata.py`
+7. **Bilingual**: Always update both EN and JA versions
+8. **Generate Assets**: Run visualization pipeline in order
 
 ### Cross-Reference Management
 
-When adding fundamental concepts (e.g., quotient groups, isomorphisms, cyclic groups):
+For fundamental concepts:
 
-**Special Attention for Foundational Concepts**: Relations, equivalence relations, partial orders, and similar foundational concepts often have many existing text mentions that need to be converted to proper cross-references. These require systematic updates across multiple domains.
-
-1. **Search Comprehensively**: Use `grep` to find all articles mentioning related terms across domains
-2. **Update Systematically**: Add references in both YAML `requires` and article content where appropriate
-3. **Cross-Domain Awareness**: Mathematical concepts often appear in multiple domains (e.g., modular arithmetic in number theory relates to quotient groups in algebra)
-   - For cross-domain references in YAML `requires`, use simple ID syntax: `def-concept` (not path-based)
-   - The cross-reference resolution system handles paths automatically
-   - **Important**: Japanese files should use the same simple ID format, not `../domain/def-concept`
-4. **Bilingual Consistency**: Always update both English and Japanese versions together
-5. **Rebuild and Validate**: After updates, rebuild the knowledge graph to verify all cross-references resolve correctly
-
-**Creating Articles for Referenced Concepts**: When a theorem or definition is mentioned in multiple existing articles (e.g., "First Isomorphism Theorem"), create a dedicated article for it rather than leaving it as text-only references. This ensures proper knowledge graph connectivity.
-
-**Cross-Reference Update Pattern**: When creating a new definition that's already mentioned in existing articles:
-
-- Search for all mentions using grep (case-insensitive)
-- Update YAML `requires` lists to include the new definition
-- Add inline cross-references using `@id` or `[text](file.qmd)` syntax
-  - For cross-domain inline references: use `[@label](../other-domain/file.qmd)` (one level up)
-- Ensure special types sections (e.g., "Special Types of Groups") link to new definitions
-
-**Bidirectional Cross-Reference Pattern**: When creating a new article:
-
-- Update articles that mention the new concept to link to it (e.g., "abelian group" → "[abelian group](def-abelian-group.qmd)")
-- Use grep with `-i` flag for case-insensitive search to find all mentions
-- Focus on definition articles and "Special Types" sections for cross-reference opportunities
+- **Search**: Use `grep -i` to find all mentions
+- **Update**: Add to YAML `requires` and inline references
+- **Cross-Domain**: Use simple ID syntax `def-concept` in YAML
+- **Inline Refs**: Use `[@label](../domain/file.qmd)` for cross-domain
+- **Articles**: Create dedicated articles for multiply-referenced concepts
 
 ### Script Organization
 
-Python scripts are organized into functional subdirectories:
+Scripts in functional subdirectories:
 
-- **graph/**: Knowledge graph and RDF operations (build, validate, query)
-- **visualization/**: Diagram generation (Mermaid, PyVis, D3.js)
-- **translation/**: Multilingual support and translation management
-- **validation/**: Content validation and consistency checks
-- **site/**: Site building, index pages, and cross-reference resolution
-- **experimental/**: Experimental features (LLM integration, Lean support)
+- **graph/**: RDF operations
+- **visualization/**: Diagram generation
+- **translation/**: Multilingual support
+- **validation/**: Content checks
+- **site/**: Site building
+- **experimental/**: LLM/Lean features
 
-**Path Navigation**: Scripts in subdirectories must navigate correctly to project root. For example, scripts in `scripts/visualization/` need `Path(__file__).parent.parent.parent` to reach project root. **Important**: Never use hardcoded absolute paths in scripts - always use relative paths from the script location.
+**Path Navigation**: Use relative paths from script location, never hardcoded absolute paths.
 
 ### Processing Pipeline
 
-1. **Content Parsing** (`scripts/graph/build_graph.py`):
-   - Reads `.qmd` files using `python-frontmatter`
-   - Extracts metadata and cross-references
-   - Builds RDF triples using `rdflib`
-   - **Multilingual Support**:
-     - Detects language from file paths (`content/en/` or `content/ja/`)
-     - Stores labels with appropriate language tags (`lang="en"` or `lang="ja"`)
-     - Creates a single RDF graph containing labels in multiple languages for each node
-
-2. **Visualization Generation**:
-   - **Mermaid**: Static diagrams with clickable nodes in `output/mermaid/en/` and `output/mermaid/ja/`
-   - **PyVis**: Interactive HTML visualizations in language-specific directories
-   - **D3.js**: Language-specific JSON data in `output/d3-data/en/` and `output/d3-data/ja/`
-     - Must use `get_node_info(g, node_uri, lang=lang)` to extract correct language labels
-     - graph-viz extension detects language from URL path to load correct data files
-   - **Language Detection**: All visualization scripts must check for `/en/` or `/ja/` in paths
-   - **Hyperlink Integration**: Click directives automatically added during insertion
-   - **Generated Output**: The `output/` directory contains generated files and should be excluded from git tracking
-
-3. **Cross-Reference Resolution** (`scripts/site/resolve_cross_references.py`):
-   - Handles inter-domain references
-   - Updates relative paths in generated HTML
+1. **Content Parsing** (`build_graph.py`): Reads `.qmd`, extracts metadata, builds RDF triples, detects language from paths
+2. **Visualization**: Generates Mermaid/PyVis/D3.js in language-specific directories
+3. **Cross-Reference Resolution**: Handles inter-domain references in HTML
 
 ### Knowledge Graph Schema
 
-The ontology (`ontology/math-ontology.ttl`) defines:
+Ontology defines:
 
 - **Node Types**: Axiom, Definition, Theorem, Example
 - **Relationships**: uses, hasExample, generalizes, implies
-- **Mapped to**: OntoMathPRO and SKOS for interoperability
+- **Mapped to**: OntoMathPRO and SKOS
 
 ### Key Integration Points
 
-- **Quarto Filter**: `_extensions/graph-viz/` for embedding visualizations
-- **GitHub Actions**: Automated build/test/deploy pipeline
-- **Fuseki**: SPARQL endpoint for graph queries
-- **Flask API**: REST interface for common queries
-
-### Visualization Troubleshooting
-
-- **Language Detection in graph-viz Extension**:
-  - Must explicitly check for both `/en/` and `/ja/` in URL paths (not just default to English)
-  - Falls back to HTML `lang` attribute if URL doesn't indicate language
-  - Loads data from `output/d3-data/{lang}/` based on detected language
-- **D3 Data Generation**: `generate_d3_data.py` must generate separate JSON files in language directories
-- **Path Issues**: graph-viz extension handles relative paths dynamically for GitHub Pages
-  - **Multilingual Path Calculation**: For GitHub Pages with language directories (e.g., `/ModernMath/en/domain/file.html`), the extension must:
-    - Detect if the second path segment is a language code (`en` or `ja`)
-    - Add an extra level to the depth calculation to account for the language directory
-    - This ensures correct resolution to `/ModernMath/output/d3-data/{lang}/` from any page depth
-- **Mermaid Navigation**: Click directives are automatically added by `fix_visualization_placement.py`
-- **Placement Rules**: Visualizations must appear at end of articles (Dependency Graph, then Interactive)
+- **Quarto Filter**: `_extensions/graph-viz/`
+- **GitHub Actions**: Automated CI/CD
+- **Fuseki**: SPARQL endpoint
+- **Flask API**: REST interface
 
 ## Multilingual Support
 
-The project supports multiple languages (currently English and Japanese) with automatic language detection and routing.
-
 ### Content Structure
 
-- **Language Directories**: `content/en/` for English, `content/ja/` for Japanese
-- **Language Profiles**: `_quarto-en.yml` and `_quarto-ja.yml` define language-specific configurations
-- **Translation Links**: Each page includes `translations` field in YAML front matter linking to its translations
-- **Domain Metadata**: Each domain requires `_metadata.yml` with translated domain name (e.g., `domain: "代数学"` for algebra)
+- **Directories**: `content/en/`, `content/ja/`
+- **Profiles**: `_quarto-en.yml`, `_quarto-ja.yml`
+- **Translation Links**: `translations` field in YAML
+- **Domain Metadata**: `_metadata.yml` with translated names
 
 ### Translation Implementation
 
-- Japanese files need `translation_of: ../../en/path.qmd`
-- All files need `translations: {en: "path.html", ja: "path.html"}`
-- Standard mathematical term translations are maintained in a comprehensive mapping (e.g., Group→群, Field→体, Vector Space→ベクトル空間)
+- Japanese files: `translation_of: ../../en/path.qmd`
+- All files: `translations: {en: "path.html", ja: "path.html"}`
+- Standard term mappings: Group→群, Field→体, Vector Space→ベクトル空間
 
 ### Building Multilingual Sites
 
 ```bash
-# Build both language versions
 quarto render --profile en
 quarto render --profile ja
-
-# Fix Japanese index page (copies index-ja.html to index.html)
 poetry run python scripts/translation/fix_japanese_index.py
-
-# Or use the convenience script that includes all steps
-./build-multilingual.sh
-
-# Note: The CI/CD uses the unified build.yml workflow
+# Or: ./build-multilingual.sh
 ```
 
-**Important**: The Japanese site requires a post-build fix because Quarto generates `index.html` from `index.qmd` (English content) by default. The `translation/fix_japanese_index.py` script copies `index-ja.html` to `index.html` in the Japanese output directory to ensure the correct content is displayed.
+### Quarto Configuration
 
-### Quarto Configuration Merging
-
-**Important**: Quarto merges profile configurations with the base `_quarto.yml` rather than replacing them. To avoid duplicate navigation items in multilingual setups:
-
-- Keep the base `_quarto.yml` minimal (only shared configuration like favicon, GitHub links)
-- Define complete navbar configurations in each language profile (`_quarto-en.yml`, `_quarto-ja.yml`)
-- Do not include language-specific navigation items in the base configuration
-- Ensure all 9 mathematical domains are included in both language navbar configurations
-- Include `nav/en/` and `nav/ja/` in render patterns, while excluding the opposite language's nav directory
-
-### Python Script Compatibility
-
-All Python scripts handle multilingual paths automatically:
-
-- Scripts detect `content/lang/domain/` structure
-- Domain extraction logic accounts for language directories
-- Falls back to flat structure for backward compatibility
-- `content/generate_index_pages.py` generates language-specific content:
-  - Uses Japanese domain names and descriptions when `lang="ja"`
-  - Translates section headers (定義, 定理, 例) for Japanese
-  - Adjusts navigation links to language-specific pages
+Keep base `_quarto.yml` minimal. Define complete navbars in language profiles. Include `nav/en/` and `nav/ja/` in render patterns.
 
 ### CI/CD Pipeline
 
-The project uses a unified `build.yml` workflow:
+Unified `build.yml` workflow:
 
-1. Builds both language versions sequentially
-2. Fixes Japanese index page using `scripts/translation/fix_japanese_index.py`
-3. Creates a root `index.html` with automatic language detection
-4. Deploys both versions to `_site/en/` and `_site/ja/`
-5. Includes .nojekyll file for GitHub Pages compatibility
+1. Builds both languages
+2. Fixes Japanese index
+3. Creates root index with language detection
+4. Deploys to `_site/en/` and `_site/ja/`
 
-**Important**: Maintain a single workflow file to avoid redundancy. The build.yml workflow handles all multilingual builds - there's no need for separate language-specific workflows.
+**Workflow Timeouts**:
 
-**Workflow Timeouts**: All GitHub workflows have explicit timeout limits to prevent runaway builds:
+- `build.yml`: 30 min
+- `claude.yml`, `claude-code-review.yml`: 20 min
+- Other workflows: 10-30 min
 
-- `build.yml`: 30 minutes (comprehensive build and deploy)
-- `claude.yml`: 20 minutes (Claude Code assistant for issues/PRs)
-- `claude-code-review.yml`: 20 minutes (automated PR reviews)
-- `llm-review.yml`: 10 minutes (PR content analysis)
-- `translation-check.yml`: 10 minutes (translation validation)
-- `translation-report.yml`: 10 minutes (scheduled reports)
-- `auto-translate.yml`: 30 minutes (automatic article translation)
+### Language Features
 
-### Language Detection
+- **Auto-detection**: Browser preference redirect
+- **Manual selection**: Flag buttons (🇬🇧/🇯🇵)
+- **Dynamic switching**: Page-level language switcher
+- **Visual feedback**: Disabled state for unavailable translations
 
-Root index.html provides both automatic detection and manual selection:
+### Navigation Structure
 
-- Automatic redirect based on browser language preference
-- Manual language selection with flag buttons (🇬🇧/🇯🇵)
-- Saves user preference in localStorage for future visits
-- Provides visual loading feedback during auto-detection
+- English: `nav/en/about.qmd`, `nav/en/contributing.qmd`
+- Japanese: `nav/ja/about.qmd`, `nav/ja/contributing.qmd`
+- Exception: `index-ja.qmd` remains in root
 
-### Dynamic Language Switching
+### Japanese Consistency
 
-The project implements a page-level language switcher that redirects to the translated version of the current page:
+- Dependency Graph: "依存関係グラフ"
+- Interactive Visualization: "インタラクティブ可視化"
 
-**Implementation Components:**
+### Translation Management
 
-1. **JavaScript Language Switcher** (`js/language-switcher.js`):
-   - Detects current language from URL path or HTML lang attribute
-   - Reads translation metadata from HTML meta tags
-   - Falls back to path construction with existence checking
-   - Updates navbar language links dynamically
-   - Provides visual feedback for unavailable translations
-   - **Important**: Must replace language indicators in both main path AND content/nav subdirectories (e.g., `/ja/content/ja/` → `/en/content/en/`, `/ja/nav/ja/` → `/en/nav/en/`)
-
-2. **Quarto Filter** (`_extensions/translation-metadata/`):
-   - Extracts `translations` field from YAML front matter
-   - Converts translation links to HTML meta tags
-   - Makes metadata accessible to JavaScript
-
-3. **Visual Feedback for Unavailable Translations**:
-   - Disabled state with reduced opacity (0.5)
-   - Strikethrough text (e.g., "🌐 <s>日本語</s>")
-   - Tooltip explaining unavailability
-   - `cursor: not-allowed` styling
-
-**Key Configuration Notes:**
-
-- JavaScript loading uses language directory detection (`/en/` or `/ja/`) to find the correct base path on GitHub Pages
-- CSS files should use simple filenames (e.g., `styles.css`) without relative paths - Quarto handles resolution
-- Resources section must explicitly list JS files for proper deployment
-- The language switcher updates navbar links dynamically based on available translations
-
-### Navigation Page Structure
-
-To enable proper language switching, organize language-specific navigation pages in separate directories:
-
-- **English pages**: Place in `nav/en/` (e.g., `nav/en/about.qmd`, `nav/en/contributing.qmd`)
-- **Japanese pages**: Place in `nav/ja/` with same filenames (e.g., `nav/ja/about.qmd`, `nav/ja/contributing.qmd`)
-- **Exception**: `index-ja.qmd` remains in root due to Quarto's index page handling
-
-This structure allows the language switcher to work with simple path replacement (`/en/` ↔ `/ja/`).
-
-Update navbar references in `_quarto-en.yml` and `_quarto-ja.yml` to point to these directories.
-
-### Japanese Terminology Consistency
-
-To maintain consistency across all Japanese content:
-
-- **Dependency Graph Header**: Always use "依存関係グラフ" (not "依存グラフ")
-- **Interactive Visualization Header**: Always use "インタラクティブ可視化" (not "インタラクティブな可視化")
-- **Standardization Script**: Use `scripts/translation/standardize_dependency_headers.py` to fix any inconsistent headers
-- **Visualization Scripts**: The following scripts must use correct Japanese headers:
-  - `fix_visualization_placement.py` - Only includes "依存関係グラフ" in detection keywords
-  - `check_visualization_order.py` - Uses correct headers for validation
-  - `insert_diagrams.py` - Generates sections with standardized headers
-
-### Translation Management System
-
-Uses hash-based change detection to track translation status in `translations-status.yml`:
-
-- **Status Categories**: `not_started`, `in_progress`, `completed`, `needs_update`
-- **MD5 Hashing**: Detects content changes (excluding front matter)
-- **Management Commands**: `update`, `report`, `list --status=X`, `validate`, `stats`
-- **RDF Integration**: Adds `hasTranslation` relationships to the knowledge graph
-- **Pre-commit Hook**: Only updates timestamps when content actually changes
-
-### Automatic Translation Workflow
-
-The `auto-translate.yml` workflow automates bidirectional translation of articles between English and Japanese:
-
-- **Triggers**: On push to main when `.qmd` files change, or manual workflow dispatch
-- **Process**: Identifies up to 5 untranslated articles (in either language) and uses Claude Opus for high-quality mathematical translations
-- **Bidirectional**: Supports both EN→JA and JA→EN translations in a single workflow run
-- **Creates PRs**: Generates pull requests with translated content for human review
-- **Preserves**: LaTeX formulas, cross-references, and all metadata unchanged
-- **Standard Terms**: Automatically maps mathematical terminology correctly in both directions (Group↔群, Ring↔環, Field↔体, etc.)
+- **Status tracking**: MD5 hash-based change detection
+- **Auto-translate workflow**: Claude Opus for EN↔JA translations
+- **Creates PRs**: For human review
 
 ## Critical Implementation Details
 
 ### GitHub Pages Deployment
 
-- JavaScript files are deployed to language-specific directories (`/ModernMath/ja/js/`, `/ModernMath/en/js/`)
-- Path calculation must extract the language directory position to find the correct base path
-- CSS files should use simple names without relative paths for proper resolution
-- Test resource loading after deployment using Playwright MCP tools
-- **JavaScript Debugging Tips**:
-  - Use flexible selectors (e.g., `.navbar a` vs `.navbar-nav .nav-link`) as HTML structure may vary
-  - Avoid file existence checks via fetch() due to CORS - construct paths deterministically instead
-  - URL patterns must account for GitHub Pages subdirectory structure: `/ProjectName/lang/path/`
+- JS files in language directories: `/ModernMath/[en|ja]/js/`
+- Use flexible selectors, avoid CORS issues
+- Account for subdirectory structure
 
 ### CI/CD Script Exit Codes
 
-**Important**: Scripts in the CI/CD pipeline should return exit code 0 when no changes are needed. In CI/CD contexts, "no changes required" is a normal success case, not an error. For example, `visualization/fix_visualization_placement.py` correctly returns 0 whether files were modified or not.
+Scripts return 0 when no changes needed (success case).
 
 ### Quarto HTML Rendering
 
-When including raw HTML in Quarto documents:
+- HTML blocks: Use `{=html}` syntax
+- JS timing: Use `DOMContentLoaded`
+- Error handling: User-friendly messages
 
-- **HTML Blocks**: Use triple backticks with `{=html}` syntax to render raw HTML content. Without this, HTML will be displayed as code blocks.
-- **JavaScript Timing**: Always wrap DOM element access in `DOMContentLoaded` event listeners to avoid null reference errors.
-- **Error Handling**: Provide user-friendly error messages for missing dependencies (e.g., local API services) when deploying to GitHub Pages.
+### Mermaid Diagrams
 
-### Mermaid Diagram Syntax
+````markdown
+```{mermaid}
+%%| fig-cap: "Caption"
+graph TD
+...
+```
+````
 
-Mermaid diagrams in Quarto require specific syntax:
-
-- **Correct Format**: Wrap diagrams in proper code blocks:
-
-  ````markdown
-  ```{mermaid}
-  %%| fig-cap: "Local dependency graph"
-  graph TD
-  ...
-  ```
-  ````
-
-- **Common Error**: Using `%%|` without code block wrapper will display as raw text
-- **Integration Note**: `fix_visualization_placement.py` automatically wraps Mermaid content in proper code blocks when inserting diagrams
-
-### Cross-Reference Format
-
-When referencing concepts across domains, the resolver transforms paths:
-
-```text
-@algebra/def-group → ../algebra/def-group.html
 ```
 
-### Visualization Data Structure
+### Visualization
 
-PyVis graphs include:
+- **Order**: build_graph → mermaid → pyvis → d3_data → insert_diagrams → quarto render
+- **Language detection**: Check `/en/` or `/ja/` in paths
+- **Placement**: End of articles (Dependency Graph, then Interactive)
 
-- Node positioning via force-directed layout
-- Color coding by type (Definition=green, Theorem=blue, etc.)
-- Hover information with titles and types
+## Repository Management
 
-### Build Order Dependencies
+### Going Public Checklist
 
-The visualization pipeline must run in order: build_graph.py → visualization scripts → insert_diagrams.py → quarto render. See "Generate Assets" in Content Creation Workflow for details.
+1. Update LICENSE placeholders
+2. Review security (no hardcoded secrets)
+3. Check commit history
+4. Clean logs (deployment.log, api.log)
+5. Add SECURITY.md
+6. Verify .gitignore
+
+### Security Best Practices
+
+- Use `${{ secrets.* }}` in workflows
+- No absolute paths with usernames
+- Exclude logs and generated files
 
 ## Current Status
 
-- **Content**: 110+ nodes across 9 mathematical domains (algebra, analysis, category theory, combinatorics, geometry, logic/set theory, number theory, probability/statistics, topology)
-- **Translations**: 90%+ Japanese translations with automated status tracking
-- **Graph**: 1300+ RDF triples with full dependency tracking and translation edges
-- **Visualizations**: Interactive graphs automatically generated for all nodes
-- **API**: RESTful endpoints for node queries and dependencies
-- **CI/CD**: Full automation via GitHub Actions with translation validation
-- **Translation Management**: Fully implemented with MD5 hash-based change detection and pre-commit hooks
+- **Content**: 110+ nodes across 9 domains
+- **Translations**: 90%+ Japanese coverage
+- **Graph**: 1300+ RDF triples
+- **Visualizations**: Auto-generated for all nodes
+- **API**: RESTful endpoints
+- **CI/CD**: Full automation
+- **Translation Management**: MD5 hash-based tracking
+```
