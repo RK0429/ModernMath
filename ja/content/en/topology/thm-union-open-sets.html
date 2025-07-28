@@ -336,8 +336,8 @@ window.Quarto = {
     def-open-set["Definition: Open Set"]:::definition
     def-topological-space["Definition: Topological Space"]:::definition
     thm-union-open-sets["Theorem: Union of Open Sets"]:::theorem
-    thm-union-open-sets --&gt; def-topological-space
     thm-union-open-sets --&gt; def-open-set
+    thm-union-open-sets --&gt; def-topological-space
     class thm-union-open-sets current
     click def-open-set "def-open-set.html" "Go to Open Set definition"
     click def-topological-space "def-topological-space.html" "Go to Topological Space definition"
@@ -351,7 +351,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-union-open-sets-1753682234" class="graph-visualization-container">
+<div id="graph-viz-thm-union-open-sets-1753683659" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -567,12 +567,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-union-open-sets-1753682234', {
+    createForceGraph(data, 'graph-viz-thm-union-open-sets-1753683659', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-union-open-sets-1753682234').innerHTML =
+    document.getElementById('graph-viz-thm-union-open-sets-1753683659').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

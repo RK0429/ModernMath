@@ -320,16 +320,16 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
+    def-isomorphism["Definition: Isomorphism"]:::definition
     def-group["Definition: Group"]:::definition
     def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-isomorphism["Definition: Isomorphism"]:::definition
-    ex-exponential-homomorphism --&gt; def-isomorphism
     ex-exponential-homomorphism --&gt; def-homomorphism
+    ex-exponential-homomorphism --&gt; def-isomorphism
     ex-exponential-homomorphism --&gt; def-group
     class ex-exponential-homomorphism current
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
     click def-group "def-group.html" "Go to Group definition"
     click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
-    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -340,7 +340,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-ex-exponential-homomorphism-1753682186" class="graph-visualization-container">
+<div id="graph-viz-ex-exponential-homomorphism-1753683609" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -556,12 +556,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-exponential-homomorphism-1753682186', {
+    createForceGraph(data, 'graph-viz-ex-exponential-homomorphism-1753683609', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-exponential-homomorphism-1753682186').innerHTML =
+    document.getElementById('graph-viz-ex-exponential-homomorphism-1753683609').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

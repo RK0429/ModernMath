@@ -306,17 +306,6 @@ window.Quarto = {
 <li>Alternatively, since <span class="math inline">\([{\mathbb{Z} : 2\mathbb{Z}}] = 2\)</span>, any subgroup of index 2 is normal</li>
 </ul></li>
 </ul>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js"></pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
 </section>
 <section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
@@ -331,27 +320,27 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    ex-integers-addition["Example: Integers under Addition"]:::example
-    def-subgroup["Definition: Subgroup"]:::definition
     def-group["Definition: Group"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
+    ex-integers-addition["Example: Integers under Addition"]:::example
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
     def-coset["Definition: Coset"]:::definition
-    def-coset --&gt; ex-even-integers-subgroup
+    ex-even-integers-subgroup --&gt; def-normal-subgroup
     ex-even-integers-subgroup --&gt; ex-integers-addition
     def-group --&gt; ex-even-integers-subgroup
+    ex-even-integers-subgroup --&gt; def-group
+    def-coset --&gt; ex-even-integers-subgroup
+    ex-even-integers-subgroup --&gt; def-subgroup
     ex-even-integers-subgroup --&gt; def-coset
     ex-even-integers-subgroup --&gt; def-abelian-group
-    ex-even-integers-subgroup --&gt; def-normal-subgroup
-    ex-even-integers-subgroup --&gt; def-subgroup
-    ex-even-integers-subgroup --&gt; def-group
     class ex-even-integers-subgroup current
-    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
-    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
     click def-group "def-group.html" "Go to Group definition"
+    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
+    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
     click def-coset "def-coset.html" "Go to Coset definition"
 </pre>
 </div>
@@ -363,7 +352,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-ex-even-integers-subgroup-1753682180" class="graph-visualization-container">
+<div id="graph-viz-ex-even-integers-subgroup-1753683603" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -579,12 +568,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-even-integers-subgroup-1753682180', {
+    createForceGraph(data, 'graph-viz-ex-even-integers-subgroup-1753683603', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-even-integers-subgroup-1753682180').innerHTML =
+    document.getElementById('graph-viz-ex-even-integers-subgroup-1753683603').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

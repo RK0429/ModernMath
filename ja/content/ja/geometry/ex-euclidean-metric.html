@@ -310,17 +310,6 @@ window.Quarto = {
 <li><strong><span class="math inline">\(n = 2\)</span></strong>：平面における馴染みのある距離：<span class="math inline">\(d((x_1, y_1), (x_2, y_2)) = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}\)</span></li>
 <li><strong><span class="math inline">\(n = 3\)</span></strong>：物理学や工学で使用される3次元空間の距離</li>
 </ul>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js"></pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
 </section>
 <section id="依存関係グラフ" class="level2">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
@@ -335,11 +324,11 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-euclidean-metric["例: ℝⁿ上のユークリッド距離"]:::example
     def-metric-space["定義：距離空間"]:::definition
+    ex-euclidean-metric["例: ℝⁿ上のユークリッド距離"]:::example
     def-set["定義: 集合"]:::definition
-    ex-euclidean-metric --&gt; def-set
     ex-euclidean-metric --&gt; def-metric-space
+    ex-euclidean-metric --&gt; def-set
     class ex-euclidean-metric current
     click def-metric-space "def-metric-space.html" "定義：距離空間へ"
     click def-set "def-set.html" "集合の定義へ"
@@ -353,7 +342,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-euclidean-metric-1753682138" class="graph-visualization-container">
+<div id="graph-viz-ex-euclidean-metric-1753683558" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -569,12 +558,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-euclidean-metric-1753682138', {
+    createForceGraph(data, 'graph-viz-ex-euclidean-metric-1753683558', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-euclidean-metric-1753682138').innerHTML =
+    document.getElementById('graph-viz-ex-euclidean-metric-1753683558').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

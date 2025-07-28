@@ -4,32 +4,32 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-divisibility["定義: 整除性"]:::definition
-    def-lcm["定義：最小公倍数"]:::definition
-    thm-fermat-little["定理: フェルマーの小定理"]:::theorem
-    thm-euler["定理：オイラーの定理"]:::theorem
-    thm-euclid-infinitude-primes["定理：素数の無限性に関するユークリッドの定理"]:::theorem
-    def-prime["定義：素数"]:::definition
-    ex-finite-field["例: 有限体"]:::example
-    thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
-    def-gcd["定義：最大公約数"]:::definition
-    thm-fundamental-arithmetic["定理：算術の基本定理"]:::theorem
-    def-congruence["定義: 合同（モジュラー演算）"]:::definition
     thm-field-characteristic["定理: 体の標数"]:::theorem
-    thm-fermat-little --> def-prime
-    thm-field-characteristic --> def-prime
+    ex-finite-field["例: 有限体"]:::example
+    def-prime["定義：素数"]:::definition
+    thm-euclid-infinitude-primes["定理：素数の無限性に関するユークリッドの定理"]:::theorem
+    def-divisibility["定義: 整除性"]:::definition
+    thm-fermat-little["定理: フェルマーの小定理"]:::theorem
+    thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
+    def-lcm["定義：最小公倍数"]:::definition
+    thm-fundamental-arithmetic["定理：算術の基本定理"]:::theorem
+    def-gcd["定義：最大公約数"]:::definition
+    thm-euler["定理：オイラーの定理"]:::theorem
+    def-congruence["定義: 合同（モジュラー演算）"]:::definition
     def-divisibility --> def-prime
-    thm-fundamental-arithmetic --> def-prime
+    def-prime --> def-congruence
+    def-lcm --> def-prime
+    thm-chinese-remainder --> def-prime
+    thm-fermat-little --> def-prime
+    def-prime --> thm-euclid-infinitude-primes
+    thm-euclid-infinitude-primes --> def-prime
+    def-prime --> def-divisibility
+    def-gcd --> def-prime
+    def-prime --> def-gcd
     ex-finite-field --> def-prime
     def-congruence --> def-prime
-    def-gcd --> def-prime
-    def-prime --> thm-euclid-infinitude-primes
-    def-lcm --> def-prime
-    def-prime --> def-congruence
-    thm-chinese-remainder --> def-prime
-    def-prime --> def-divisibility
+    thm-field-characteristic --> def-prime
     def-prime --> thm-fundamental-arithmetic
     thm-euler --> def-prime
-    def-prime --> def-gcd
-    thm-euclid-infinitude-primes --> def-prime
+    thm-fundamental-arithmetic --> def-prime
     class def-prime current

@@ -327,17 +327,6 @@ window.Quarto = {
 <li><a href="../../../content/ja/combinatorics/def-generating-function.html">母関数</a> - 二項係数は通常母関数と指数母関数の両方に自然に現れる</li>
 <li><a href="../../../content/ja/combinatorics/thm-inclusion-exclusion.html">包含排除の原理</a> - その証明と応用で二項係数を使用</li>
 </ul>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js"></pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
 </section>
 <section id="依存関係グラフ" class="level2">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
@@ -352,21 +341,21 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-permutation["定義：順列"]:::definition
     ex-pascals-triangle["例：パスカルの三角形"]:::example
+    def-permutation["定義：順列"]:::definition
     def-combination["定義：組合せ"]:::definition
+    def-binomial-coefficient["定義：二項係数"]:::definition
     def-tree["定義: 木"]:::definition
     def-generating-function["定義: 母関数"]:::definition
-    def-binomial-coefficient["定義：二項係数"]:::definition
+    def-tree --&gt; def-binomial-coefficient
     def-binomial-coefficient --&gt; def-combination
+    def-generating-function --&gt; def-binomial-coefficient
     ex-pascals-triangle --&gt; def-binomial-coefficient
     def-binomial-coefficient --&gt; def-generating-function
-    def-tree --&gt; def-binomial-coefficient
-    def-generating-function --&gt; def-binomial-coefficient
     def-binomial-coefficient --&gt; def-permutation
     class def-binomial-coefficient current
-    click def-permutation "def-permutation.html" "定義：順列へ"
     click ex-pascals-triangle "ex-pascals-triangle.html" "例：パスカルの三角形へ"
+    click def-permutation "def-permutation.html" "定義：順列へ"
     click def-combination "def-combination.html" "定義：組合せへ"
     click def-tree "def-tree.html" "木の定義へ"
     click def-generating-function "def-generating-function.html" "母関数の定義へ"
@@ -380,7 +369,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-binomial-coefficient-1753682130" class="graph-visualization-container">
+<div id="graph-viz-def-binomial-coefficient-1753683551" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -596,12 +585,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-binomial-coefficient-1753682130', {
+    createForceGraph(data, 'graph-viz-def-binomial-coefficient-1753683551', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-binomial-coefficient-1753682130').innerHTML =
+    document.getElementById('graph-viz-def-binomial-coefficient-1753683551').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

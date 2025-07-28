@@ -4,32 +4,32 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-equivalence-relation["定義：同値関係"]:::definition
-    def-divisibility["定義: 整除性"]:::definition
-    ax-induction["公理: 数学的帰納法"]:::axiom
-    thm-euclidean-algorithm["定理：ユークリッドのアルゴリズム"]:::theorem
-    thm-fermat-little["定理: フェルマーの小定理"]:::theorem
-    thm-euler["定理：オイラーの定理"]:::theorem
     ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
     def-prime["定義：素数"]:::definition
-    def-set["定義: 集合"]:::definition
+    def-divisibility["定義: 整除性"]:::definition
+    thm-fermat-little["定理: フェルマーの小定理"]:::theorem
+    ax-induction["公理: 数学的帰納法"]:::axiom
     thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
+    thm-euclidean-algorithm["定理：ユークリッドのアルゴリズム"]:::theorem
+    def-set["定義: 集合"]:::definition
+    def-equivalence-relation["定義：同値関係"]:::definition
     def-gcd["定義：最大公約数"]:::definition
+    thm-euler["定理：オイラーの定理"]:::theorem
     def-congruence["定義: 合同（モジュラー演算）"]:::definition
-    def-congruence --> thm-fermat-little
-    def-congruence --> ax-induction
-    def-congruence --> ex-quotient-integers-mod-n
-    def-congruence --> def-prime
-    def-congruence --> thm-euclidean-algorithm
-    def-gcd --> def-congruence
-    thm-euler --> def-congruence
-    def-equivalence-relation --> def-congruence
-    thm-fermat-little --> def-congruence
     def-prime --> def-congruence
-    def-congruence --> def-divisibility
-    ex-quotient-integers-mod-n --> def-congruence
-    def-congruence --> thm-euler
+    def-congruence --> thm-fermat-little
+    def-congruence --> ex-quotient-integers-mod-n
+    thm-euler --> def-congruence
     thm-chinese-remainder --> def-congruence
+    thm-fermat-little --> def-congruence
     def-congruence --> def-set
     def-congruence --> def-gcd
+    ex-quotient-integers-mod-n --> def-congruence
+    def-congruence --> def-prime
+    def-congruence --> ax-induction
+    def-congruence --> def-divisibility
+    def-gcd --> def-congruence
+    def-congruence --> thm-euclidean-algorithm
+    def-equivalence-relation --> def-congruence
+    def-congruence --> thm-euler
     class def-congruence current
