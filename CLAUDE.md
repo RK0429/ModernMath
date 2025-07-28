@@ -250,6 +250,10 @@ The ontology (`ontology/math-ontology.ttl`) defines:
   - Loads data from `output/d3-data/{lang}/` based on detected language
 - **D3 Data Generation**: `generate_d3_data.py` must generate separate JSON files in language directories
 - **Path Issues**: graph-viz extension handles relative paths dynamically for GitHub Pages
+  - **Multilingual Path Calculation**: For GitHub Pages with language directories (e.g., `/ModernMath/en/domain/file.html`), the extension must:
+    - Detect if the second path segment is a language code (`en` or `ja`)
+    - Add an extra level to the depth calculation to account for the language directory
+    - This ensures correct resolution to `/ModernMath/output/d3-data/{lang}/` from any page depth
 - **Mermaid Navigation**: Click directives are automatically added by `fix_visualization_placement.py`
 - **Placement Rules**: Visualizations must appear at end of articles (Dependency Graph, then Interactive)
 
