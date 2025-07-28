@@ -201,7 +201,7 @@ Python scripts are organized into functional subdirectories:
 - **site/**: Site building, index pages, and cross-reference resolution
 - **experimental/**: Experimental features (LLM integration, Lean support)
 
-**Path Navigation**: Scripts in subdirectories must navigate correctly to project root. For example, scripts in `scripts/visualization/` need `Path(__file__).parent.parent.parent` to reach project root.
+**Path Navigation**: Scripts in subdirectories must navigate correctly to project root. For example, scripts in `scripts/visualization/` need `Path(__file__).parent.parent.parent` to reach project root. **Important**: Never use hardcoded absolute paths in scripts - always use relative paths from the script location.
 
 ### Processing Pipeline
 
@@ -222,6 +222,7 @@ Python scripts are organized into functional subdirectories:
      - graph-viz extension detects language from URL path to load correct data files
    - **Language Detection**: All visualization scripts must check for `/en/` or `/ja/` in paths
    - **Hyperlink Integration**: Click directives automatically added during insertion
+   - **Generated Output**: The `output/` directory contains generated files and should be excluded from git tracking
 
 3. **Cross-Reference Resolution** (`scripts/site/resolve_cross_references.py`):
    - Handles inter-domain references
