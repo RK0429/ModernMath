@@ -188,6 +188,16 @@ Unified `build.yml` workflow:
 - `claude.yml`, `claude-code-review.yml`: 20 min
 - Other workflows: 10-30 min
 
+### CI/CD Troubleshooting
+
+**Directory Creation**: Always use `parents=True` when creating directories in scripts:
+
+```python
+output_dir.mkdir(parents=True, exist_ok=True)  # Creates parent dirs if needed
+```
+
+This prevents FileNotFoundError in CI environments where parent directories may not exist.
+
 ### Language Features
 
 - **Auto-detection**: Browser preference redirect
