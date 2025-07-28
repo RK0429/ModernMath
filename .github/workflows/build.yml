@@ -182,15 +182,10 @@ jobs:
         poetry run python scripts/site/generate_index_pages.py
         echo "Index pages generated successfully!"
 
-    - name: Resolve cross-references for English content
+    - name: Resolve cross-references
       run: |
-        poetry run python scripts/site/resolve_cross_references.py --content-dir content/en
-        echo "English cross-references resolved successfully!"
-
-    - name: Resolve cross-references for Japanese content
-      run: |
-        poetry run python scripts/site/resolve_cross_references.py --content-dir content/ja
-        echo "Japanese cross-references resolved successfully!"
+        poetry run python scripts/site/resolve_cross_references.py
+        echo "Cross-references resolved successfully!"
 
     - name: Insert diagrams into content
       run: |
