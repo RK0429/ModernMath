@@ -239,6 +239,25 @@ function highlightFilter(filter) {
              
 
              
+             /* position absolute is important and the container has to be relative or absolute as well. */
+          div.popup {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 display:none;
+                 background-color:#f5f4ed;
+                 -moz-border-radius: 3px;
+                 -webkit-border-radius: 3px;
+                 border-radius: 3px;
+                 border: 1px solid #808074;
+                 box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+          }
+
+          /* hide the original tooltip */
+          .vis-tooltip {
+            display:none;
+          }
+             
         </style>
     </head>
 
@@ -282,7 +301,7 @@ function highlightFilter(filter) {
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-parallel", "label": "Definition: Parallel Lines", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Parallel Lines\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: def-parallel"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-line", "label": "Definition: Line", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Line\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: def-line"}, {"borderWidth": 3, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-point", "label": "Definition: Point", "shape": "box", "size": 30, "title": "\u003cb\u003eDefinition: Point\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: def-point"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-triangle", "label": "Definition: Triangle", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Triangle\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: def-triangle"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-angle-sum-triangle", "label": "Theorem: Angle Sum of a Triangle", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Angle Sum of a Triangle\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: thm-angle-sum-triangle"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-angle", "label": "Definition: Angle", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Angle\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: def-angle"}]);
+                  nodes = new vis.DataSet([{"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-line", "label": "Definition: Line", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Line\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: def-line\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-line.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-parallel", "label": "Definition: Parallel Lines", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Parallel Lines\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: def-parallel\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-parallel.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 3, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-point", "label": "Definition: Point", "shape": "box", "size": 30, "title": "\u003cb\u003eDefinition: Point\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: def-point\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-point.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-angle", "label": "Definition: Angle", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Angle\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: def-angle\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-angle.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-angle-sum-triangle", "label": "Theorem: Angle Sum of a Triangle", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Angle Sum of a Triangle\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: thm-angle-sum-triangle\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027thm-angle-sum-triangle.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-triangle", "label": "Definition: Triangle", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Triangle\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: def-triangle\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-triangle.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}]);
                   edges = new vis.DataSet([{"arrows": "to", "color": "#999999", "from": "def-parallel", "title": "uses", "to": "def-point", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-triangle", "title": "uses", "to": "def-point", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-angle", "title": "uses", "to": "def-point", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-line", "title": "uses", "to": "def-point", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-parallel", "title": "uses", "to": "def-line", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-parallel", "title": "uses", "to": "def-point", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-triangle", "title": "uses", "to": "def-angle", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-triangle", "title": "uses", "to": "def-line", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-triangle", "title": "uses", "to": "def-point", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-angle-sum-triangle", "title": "uses", "to": "def-triangle", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-angle", "title": "uses", "to": "def-line", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-angle", "title": "uses", "to": "def-point", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-angle-sum-triangle", "title": "uses", "to": "def-angle", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-triangle", "title": "uses", "to": "def-angle", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-line", "title": "uses", "to": "def-point", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-parallel", "title": "uses", "to": "def-line", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-angle-sum-triangle", "title": "uses", "to": "def-line", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-triangle", "title": "uses", "to": "def-line", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-angle", "title": "uses", "to": "def-line", "width": 2}]);
 
                   nodeColors = {};
@@ -307,6 +326,68 @@ function highlightFilter(filter) {
 
                   
 
+                  
+                  // make a custom popup
+                      var popup = document.createElement("div");
+                      popup.className = 'popup';
+                      popupTimeout = null;
+                      popup.addEventListener('mouseover', function () {
+                          console.log(popup)
+                          if (popupTimeout !== null) {
+                              clearTimeout(popupTimeout);
+                              popupTimeout = null;
+                          }
+                      });
+                      popup.addEventListener('mouseout', function () {
+                          if (popupTimeout === null) {
+                              hidePopup();
+                          }
+                      });
+                      container.appendChild(popup);
+
+
+                      // use the popup event to show
+                      network.on("showPopup", function (params) {
+                          showPopup(params);
+                      });
+
+                      // use the hide event to hide it
+                      network.on("hidePopup", function (params) {
+                          hidePopup();
+                      });
+
+                      // hiding the popup through css
+                      function hidePopup() {
+                          popupTimeout = setTimeout(function () { popup.style.display = 'none'; }, 500);
+                      }
+
+                      // showing the popup
+                      function showPopup(nodeId) {
+                          // get the data from the vis.DataSet
+                          var nodeData = nodes.get([nodeId]);
+                          popup.innerHTML = nodeData[0].title;
+
+                          // get the position of the node
+                          var posCanvas = network.getPositions([nodeId])[nodeId];
+
+                          // get the bounding box of the node
+                          var boundingBox = network.getBoundingBox(nodeId);
+
+                          //position tooltip:
+                          posCanvas.x = posCanvas.x + 0.5 * (boundingBox.right - boundingBox.left);
+
+                          // convert coordinates to the DOM space
+                          var posDOM = network.canvasToDOM(posCanvas);
+
+                          // Give it an offset
+                          posDOM.x += 10;
+                          posDOM.y -= 20;
+
+                          // show and place the tooltip.
+                          popup.style.display = 'block';
+                          popup.style.top = posDOM.y + 'px';
+                          popup.style.left = posDOM.x + 'px';
+                      }
                   
 
 

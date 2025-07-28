@@ -4,30 +4,30 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-ideal["Definition: Ideal"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-exact-sequence["Definition: Exact Sequence"]:::definition
-    def-kernel["Definition: Kernel"]:::definition
-    def-ring-homomorphism["Definition: Ring Homomorphism"]:::definition
-    def-linear-transformation["Definition: Linear Transformation"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
-    def-quotient-ring["Definition: Quotient Ring"]:::definition
-    def-isomorphism["Definition: Isomorphism"]:::definition
-    def-quotient-group["Definition: Quotient Group"]:::definition
     thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    def-ring-homomorphism["Definition: Ring Homomorphism"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
     thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
+    def-vector-space["Definition: Vector Space"]:::definition
     def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-kernel --> def-ring-homomorphism
     def-kernel --> def-homomorphism
+    thm-rank-nullity --> def-kernel
+    def-exact-sequence --> def-kernel
+    def-kernel --> def-linear-transformation
+    def-kernel --> def-quotient-group
     def-kernel --> def-normal-subgroup
     def-kernel --> def-vector-space
-    def-kernel --> def-quotient-group
-    thm-first-isomorphism --> def-kernel
-    def-kernel --> def-ring-homomorphism
     def-kernel --> thm-first-isomorphism
-    def-kernel --> def-quotient-ring
-    def-kernel --> def-ideal
-    def-kernel --> def-linear-transformation
-    def-exact-sequence --> def-kernel
     def-kernel --> def-isomorphism
-    thm-rank-nullity --> def-kernel
+    def-kernel --> def-quotient-ring
+    thm-first-isomorphism --> def-kernel
+    def-kernel --> def-ideal
     class def-kernel current

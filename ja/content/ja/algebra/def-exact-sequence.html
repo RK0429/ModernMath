@@ -369,22 +369,22 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-exact-sequence["定義: 完全列"]:::definition
+    thm-first-isomorphism["定理: 第一同型定理"]:::theorem
+    def-quotient-group["定義: 商群"]:::definition
+    def-homomorphism["定義: 群準同型"]:::definition
     def-kernel["定義: 核"]:::definition
     def-image["定義: 像"]:::definition
-    def-quotient-group["定義: 商群"]:::definition
-    thm-first-isomorphism["定理: 第一同型定理"]:::theorem
-    def-homomorphism["定義: 群準同型"]:::definition
-    def-exact-sequence --&gt; def-image
-    def-quotient-group --&gt; def-exact-sequence
-    def-exact-sequence --&gt; def-homomorphism
     thm-first-isomorphism --&gt; def-exact-sequence
+    def-exact-sequence --&gt; def-image
     def-exact-sequence --&gt; def-kernel
+    def-exact-sequence --&gt; def-homomorphism
+    def-quotient-group --&gt; def-exact-sequence
     class def-exact-sequence current
+    click thm-first-isomorphism "thm-first-isomorphism.html" "第一同型定理の定理へ"
+    click def-quotient-group "def-quotient-group.html" "商群の定義へ"
+    click def-homomorphism "def-homomorphism.html" "群準同型の定義へ"
     click def-kernel "def-kernel.html" "核の定義へ"
     click def-image "def-image.html" "像の定義へ"
-    click def-quotient-group "def-quotient-group.html" "商群の定義へ"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "第一同型定理の定理へ"
-    click def-homomorphism "def-homomorphism.html" "群準同型の定義へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -395,7 +395,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-exact-sequence-1753698955" class="graph-visualization-container">
+<div id="graph-viz-def-exact-sequence-1753702155" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -611,12 +611,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-exact-sequence-1753698955', {
+    createForceGraph(data, 'graph-viz-def-exact-sequence-1753702155', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-exact-sequence-1753698955').innerHTML =
+    document.getElementById('graph-viz-def-exact-sequence-1753702155').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

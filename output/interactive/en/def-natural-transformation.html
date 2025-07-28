@@ -239,6 +239,25 @@ function highlightFilter(filter) {
              
 
              
+             /* position absolute is important and the container has to be relative or absolute as well. */
+          div.popup {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 display:none;
+                 background-color:#f5f4ed;
+                 -moz-border-radius: 3px;
+                 -webkit-border-radius: 3px;
+                 border-radius: 3px;
+                 border: 1px solid #808074;
+                 box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+          }
+
+          /* hide the original tooltip */
+          .vis-tooltip {
+            display:none;
+          }
+             
         </style>
     </head>
 
@@ -282,7 +301,7 @@ function highlightFilter(filter) {
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-morphism", "label": "Definition: Morphism", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Morphism\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: def-morphism"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-epimorphism", "label": "Definition: Epimorphism", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Epimorphism\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: def-epimorphism"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-yoneda", "label": "Theorem: Yoneda Lemma", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Yoneda Lemma\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: thm-yoneda"}, {"borderWidth": 3, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-natural-transformation", "label": "Definition: Natural Transformation", "shape": "box", "size": 30, "title": "\u003cb\u003eDefinition: Natural Transformation\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: def-natural-transformation"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-category", "label": "Definition: Category", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Category\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: def-category"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-set", "label": "Definition: Set", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Set\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Logic Set Theory\u003cbr\u003eID: def-set"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-isomorphism", "label": "Definition: Isomorphism", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Isomorphism\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-isomorphism"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-graph", "label": "Definition: Graph", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Graph\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Combinatorics\u003cbr\u003eID: def-graph"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-function", "label": "Definition: Function", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Function\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Logic Set Theory\u003cbr\u003eID: def-function"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-monomorphism", "label": "Definition: Monomorphism", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Monomorphism\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: def-monomorphism"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-composition", "label": "Definition: Composition", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Composition\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: def-composition"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-functor", "label": "Definition: Functor", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Functor\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: def-functor"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#9C27B0", "font": {"color": "black"}, "id": "ex-set-category", "label": "Example: The Category of Sets", "shape": "square", "size": 20, "title": "\u003cb\u003eExample: The Category of Sets\u003c/b\u003e\u003cbr\u003eType: Example\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: ex-set-category"}]);
+                  nodes = new vis.DataSet([{"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-functor", "label": "Definition: Functor", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Functor\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: def-functor\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-functor.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-morphism", "label": "Definition: Morphism", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Morphism\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: def-morphism\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-morphism.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-epimorphism", "label": "Definition: Epimorphism", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Epimorphism\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: def-epimorphism\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-epimorphism.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-function", "label": "Definition: Function", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Function\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Logic Set Theory\u003cbr\u003eID: def-function\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-function.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-isomorphism", "label": "Definition: Isomorphism", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Isomorphism\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-isomorphism\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-isomorphism.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-set", "label": "Definition: Set", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Set\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Logic Set Theory\u003cbr\u003eID: def-set\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-set.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-graph", "label": "Definition: Graph", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Graph\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Combinatorics\u003cbr\u003eID: def-graph\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-graph.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-yoneda", "label": "Theorem: Yoneda Lemma", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Yoneda Lemma\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: thm-yoneda\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027thm-yoneda.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 3, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-natural-transformation", "label": "Definition: Natural Transformation", "shape": "box", "size": 30, "title": "\u003cb\u003eDefinition: Natural Transformation\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: def-natural-transformation\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-natural-transformation.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-category", "label": "Definition: Category", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Category\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: def-category\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-category.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-monomorphism", "label": "Definition: Monomorphism", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Monomorphism\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: def-monomorphism\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-monomorphism.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-composition", "label": "Definition: Composition", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Composition\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: def-composition\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-composition.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#9C27B0", "font": {"color": "black"}, "id": "ex-set-category", "label": "Example: The Category of Sets", "shape": "square", "size": 20, "title": "\u003cb\u003eExample: The Category of Sets\u003c/b\u003e\u003cbr\u003eType: Example\u003cbr\u003eDomain: Category Theory\u003cbr\u003eID: ex-set-category\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027ex-set-category.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}]);
                   edges = new vis.DataSet([{"arrows": "to", "color": "#999999", "from": "def-natural-transformation", "title": "uses", "to": "def-category", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-natural-transformation", "title": "uses", "to": "def-functor", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-natural-transformation", "title": "uses", "to": "def-morphism", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-yoneda", "title": "uses", "to": "def-natural-transformation", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-category", "title": "uses", "to": "def-graph", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-category", "title": "uses", "to": "def-set", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-set-category", "title": "uses", "to": "def-category", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-yoneda", "title": "uses", "to": "def-category", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-epimorphism", "title": "uses", "to": "def-category", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-natural-transformation", "title": "uses", "to": "def-category", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-monomorphism", "title": "uses", "to": "def-category", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-composition", "title": "uses", "to": "def-category", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-functor", "title": "uses", "to": "def-category", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-morphism", "title": "uses", "to": "def-category", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-isomorphism", "title": "uses", "to": "def-category", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-functor", "title": "uses", "to": "def-category", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-functor", "title": "uses", "to": "def-function", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-functor", "title": "uses", "to": "def-graph", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-yoneda", "title": "uses", "to": "def-functor", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-epimorphism", "title": "uses", "to": "def-functor", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-natural-transformation", "title": "uses", "to": "def-functor", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-monomorphism", "title": "uses", "to": "def-functor", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-morphism", "title": "uses", "to": "def-category", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-morphism", "title": "uses", "to": "def-graph", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-set-category", "title": "uses", "to": "def-morphism", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-epimorphism", "title": "uses", "to": "def-morphism", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-natural-transformation", "title": "uses", "to": "def-morphism", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-monomorphism", "title": "uses", "to": "def-morphism", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-composition", "title": "uses", "to": "def-morphism", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-isomorphism", "title": "uses", "to": "def-morphism", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-yoneda", "title": "uses", "to": "def-category", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-yoneda", "title": "uses", "to": "def-functor", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-yoneda", "title": "uses", "to": "def-natural-transformation", "width": 2}]);
 
                   nodeColors = {};
@@ -307,6 +326,68 @@ function highlightFilter(filter) {
 
                   
 
+                  
+                  // make a custom popup
+                      var popup = document.createElement("div");
+                      popup.className = 'popup';
+                      popupTimeout = null;
+                      popup.addEventListener('mouseover', function () {
+                          console.log(popup)
+                          if (popupTimeout !== null) {
+                              clearTimeout(popupTimeout);
+                              popupTimeout = null;
+                          }
+                      });
+                      popup.addEventListener('mouseout', function () {
+                          if (popupTimeout === null) {
+                              hidePopup();
+                          }
+                      });
+                      container.appendChild(popup);
+
+
+                      // use the popup event to show
+                      network.on("showPopup", function (params) {
+                          showPopup(params);
+                      });
+
+                      // use the hide event to hide it
+                      network.on("hidePopup", function (params) {
+                          hidePopup();
+                      });
+
+                      // hiding the popup through css
+                      function hidePopup() {
+                          popupTimeout = setTimeout(function () { popup.style.display = 'none'; }, 500);
+                      }
+
+                      // showing the popup
+                      function showPopup(nodeId) {
+                          // get the data from the vis.DataSet
+                          var nodeData = nodes.get([nodeId]);
+                          popup.innerHTML = nodeData[0].title;
+
+                          // get the position of the node
+                          var posCanvas = network.getPositions([nodeId])[nodeId];
+
+                          // get the bounding box of the node
+                          var boundingBox = network.getBoundingBox(nodeId);
+
+                          //position tooltip:
+                          posCanvas.x = posCanvas.x + 0.5 * (boundingBox.right - boundingBox.left);
+
+                          // convert coordinates to the DOM space
+                          var posDOM = network.canvasToDOM(posCanvas);
+
+                          // Give it an offset
+                          posDOM.x += 10;
+                          posDOM.y -= 20;
+
+                          // show and place the tooltip.
+                          popup.style.display = 'block';
+                          popup.style.top = posDOM.y + 'px';
+                          popup.style.left = posDOM.x + 'px';
+                      }
                   
 
 

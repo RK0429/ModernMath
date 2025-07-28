@@ -239,6 +239,25 @@ function highlightFilter(filter) {
              
 
              
+             /* position absolute is important and the container has to be relative or absolute as well. */
+          div.popup {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 display:none;
+                 background-color:#f5f4ed;
+                 -moz-border-radius: 3px;
+                 -webkit-border-radius: 3px;
+                 border-radius: 3px;
+                 border: 1px solid #808074;
+                 box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+          }
+
+          /* hide the original tooltip */
+          .vis-tooltip {
+            display:none;
+          }
+             
         </style>
     </head>
 
@@ -282,7 +301,7 @@ function highlightFilter(filter) {
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"borderWidth": 3, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-derivative", "label": "Definition: Derivative", "shape": "box", "size": 30, "title": "\u003cb\u003eDefinition: Derivative\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-derivative"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-open-ball", "label": "Definition: Open Ball", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Open Ball\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-open-ball"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-mean-value", "label": "Theorem: Mean Value Theorem", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Mean Value Theorem\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: thm-mean-value"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-convergence", "label": "Definition: Convergence", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Convergence\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-convergence"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-cauchy-sequence", "label": "Definition: Cauchy Sequence", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Cauchy Sequence\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-cauchy-sequence"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-continuity", "label": "Definition: Continuity", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Continuity\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-continuity"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-complete-metric-space", "label": "Definition: Complete Metric Space", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Complete Metric Space\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-complete-metric-space"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-taylor-series", "label": "Theorem: Taylor Series", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Taylor Series\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: thm-taylor-series"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-fundamental-calculus", "label": "Theorem: Fundamental Theorem of Calculus", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Fundamental Theorem of Calculus\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: thm-fundamental-calculus"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-limit", "label": "Definition: Limit of a Sequence", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Limit of a Sequence\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-limit"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-limit-arithmetic", "label": "Theorem: Arithmetic of Limits", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Arithmetic of Limits\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: thm-limit-arithmetic"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-series", "label": "Definition: Series", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Series\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-series"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-chain-rule", "label": "Theorem: Chain Rule", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Chain Rule\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: thm-chain-rule"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-integral", "label": "Definition: Integral", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Integral\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-integral"}]);
+                  nodes = new vis.DataSet([{"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-cauchy-sequence", "label": "Definition: Cauchy Sequence", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Cauchy Sequence\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-cauchy-sequence\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-cauchy-sequence.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-mean-value", "label": "Theorem: Mean Value Theorem", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Mean Value Theorem\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: thm-mean-value\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027thm-mean-value.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-chain-rule", "label": "Theorem: Chain Rule", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Chain Rule\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: thm-chain-rule\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027thm-chain-rule.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 3, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-derivative", "label": "Definition: Derivative", "shape": "box", "size": 30, "title": "\u003cb\u003eDefinition: Derivative\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-derivative\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-derivative.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-taylor-series", "label": "Theorem: Taylor Series", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Taylor Series\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: thm-taylor-series\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027thm-taylor-series.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-open-ball", "label": "Definition: Open Ball", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Open Ball\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-open-ball\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-open-ball.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-continuity", "label": "Definition: Continuity", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Continuity\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-continuity\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-continuity.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-complete-metric-space", "label": "Definition: Complete Metric Space", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Complete Metric Space\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-complete-metric-space\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-complete-metric-space.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-convergence", "label": "Definition: Convergence", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Convergence\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-convergence\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-convergence.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-fundamental-calculus", "label": "Theorem: Fundamental Theorem of Calculus", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Fundamental Theorem of Calculus\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: thm-fundamental-calculus\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027thm-fundamental-calculus.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-integral", "label": "Definition: Integral", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Integral\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-integral\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-integral.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-limit-arithmetic", "label": "Theorem: Arithmetic of Limits", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Arithmetic of Limits\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: thm-limit-arithmetic\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027thm-limit-arithmetic.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-series", "label": "Definition: Series", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Series\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-series\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-series.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-limit", "label": "Definition: Limit of a Sequence", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Limit of a Sequence\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-limit\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-limit.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}]);
                   edges = new vis.DataSet([{"arrows": "to", "color": "#999999", "from": "def-derivative", "title": "uses", "to": "def-limit", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-chain-rule", "title": "uses", "to": "def-derivative", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-fundamental-calculus", "title": "uses", "to": "def-derivative", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-taylor-series", "title": "uses", "to": "def-derivative", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-mean-value", "title": "uses", "to": "def-derivative", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-limit-arithmetic", "title": "uses", "to": "def-limit", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-series", "title": "uses", "to": "def-limit", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-integral", "title": "uses", "to": "def-limit", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-cauchy-sequence", "title": "uses", "to": "def-limit", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-complete-metric-space", "title": "uses", "to": "def-limit", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-convergence", "title": "uses", "to": "def-limit", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-derivative", "title": "uses", "to": "def-limit", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-continuity", "title": "uses", "to": "def-limit", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-chain-rule", "title": "uses", "to": "def-continuity", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-chain-rule", "title": "uses", "to": "def-derivative", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-fundamental-calculus", "title": "uses", "to": "def-continuity", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-fundamental-calculus", "title": "uses", "to": "def-derivative", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-fundamental-calculus", "title": "uses", "to": "def-integral", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-taylor-series", "title": "uses", "to": "def-continuity", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-taylor-series", "title": "uses", "to": "def-convergence", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-taylor-series", "title": "uses", "to": "def-derivative", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-taylor-series", "title": "uses", "to": "def-open-ball", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-taylor-series", "title": "uses", "to": "def-series", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-taylor-series", "title": "uses", "to": "thm-mean-value", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-mean-value", "title": "uses", "to": "def-continuity", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-mean-value", "title": "uses", "to": "def-derivative", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-taylor-series", "title": "uses", "to": "thm-mean-value", "width": 2}]);
 
                   nodeColors = {};
@@ -307,6 +326,68 @@ function highlightFilter(filter) {
 
                   
 
+                  
+                  // make a custom popup
+                      var popup = document.createElement("div");
+                      popup.className = 'popup';
+                      popupTimeout = null;
+                      popup.addEventListener('mouseover', function () {
+                          console.log(popup)
+                          if (popupTimeout !== null) {
+                              clearTimeout(popupTimeout);
+                              popupTimeout = null;
+                          }
+                      });
+                      popup.addEventListener('mouseout', function () {
+                          if (popupTimeout === null) {
+                              hidePopup();
+                          }
+                      });
+                      container.appendChild(popup);
+
+
+                      // use the popup event to show
+                      network.on("showPopup", function (params) {
+                          showPopup(params);
+                      });
+
+                      // use the hide event to hide it
+                      network.on("hidePopup", function (params) {
+                          hidePopup();
+                      });
+
+                      // hiding the popup through css
+                      function hidePopup() {
+                          popupTimeout = setTimeout(function () { popup.style.display = 'none'; }, 500);
+                      }
+
+                      // showing the popup
+                      function showPopup(nodeId) {
+                          // get the data from the vis.DataSet
+                          var nodeData = nodes.get([nodeId]);
+                          popup.innerHTML = nodeData[0].title;
+
+                          // get the position of the node
+                          var posCanvas = network.getPositions([nodeId])[nodeId];
+
+                          // get the bounding box of the node
+                          var boundingBox = network.getBoundingBox(nodeId);
+
+                          //position tooltip:
+                          posCanvas.x = posCanvas.x + 0.5 * (boundingBox.right - boundingBox.left);
+
+                          // convert coordinates to the DOM space
+                          var posDOM = network.canvasToDOM(posCanvas);
+
+                          // Give it an offset
+                          posDOM.x += 10;
+                          posDOM.y -= 20;
+
+                          // show and place the tooltip.
+                          popup.style.display = 'block';
+                          popup.style.top = posDOM.y + 'px';
+                          popup.style.left = posDOM.x + 'px';
+                      }
                   
 
 

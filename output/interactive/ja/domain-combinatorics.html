@@ -239,6 +239,25 @@ function highlightFilter(filter) {
              
 
              
+             /* position absolute is important and the container has to be relative or absolute as well. */
+          div.popup {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 display:none;
+                 background-color:#f5f4ed;
+                 -moz-border-radius: 3px;
+                 -webkit-border-radius: 3px;
+                 border-radius: 3px;
+                 border: 1px solid #808074;
+                 box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+          }
+
+          /* hide the original tooltip */
+          .vis-tooltip {
+            display:none;
+          }
+             
         </style>
     </head>
 
@@ -282,8 +301,8 @@ function highlightFilter(filter) {
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#2196F3", "font": {"color": "black"}, "id": "thm-pigeonhole-principle", "label": "\u5b9a\u7406\uff1a\u9ce9\u306e\u5de3\u539f\u7406", "shape": "ellipse", "size": 25, "title": "\u003cb\u003e\u5b9a\u7406\uff1a\u9ce9\u306e\u5de3\u539f\u7406\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eID: thm-pigeonhole-principle"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-tree", "label": "\u5b9a\u7fa9: \u6728", "shape": "box", "size": 25, "title": "\u003cb\u003e\u5b9a\u7fa9: \u6728\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-tree"}, {"color": "#9C27B0", "font": {"color": "black"}, "id": "ex-pascals-triangle", "label": "\u4f8b\uff1a\u30d1\u30b9\u30ab\u30eb\u306e\u4e09\u89d2\u5f62", "shape": "square", "size": 25, "title": "\u003cb\u003e\u4f8b\uff1a\u30d1\u30b9\u30ab\u30eb\u306e\u4e09\u89d2\u5f62\u003c/b\u003e\u003cbr\u003eType: Example\u003cbr\u003eID: ex-pascals-triangle"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-permutation", "label": "\u5b9a\u7fa9\uff1a\u9806\u5217", "shape": "box", "size": 25, "title": "\u003cb\u003e\u5b9a\u7fa9\uff1a\u9806\u5217\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-permutation"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-combination", "label": "\u5b9a\u7fa9\uff1a\u7d44\u5408\u305b", "shape": "box", "size": 25, "title": "\u003cb\u003e\u5b9a\u7fa9\uff1a\u7d44\u5408\u305b\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-combination"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-graph", "label": "\u5b9a\u7fa9: \u30b0\u30e9\u30d5", "shape": "box", "size": 25, "title": "\u003cb\u003e\u5b9a\u7fa9: \u30b0\u30e9\u30d5\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-graph"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-generating-function", "label": "\u5b9a\u7fa9: \u6bcd\u95a2\u6570", "shape": "box", "size": 25, "title": "\u003cb\u003e\u5b9a\u7fa9: \u6bcd\u95a2\u6570\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-generating-function"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-binomial-coefficient", "label": "\u5b9a\u7fa9\uff1a\u4e8c\u9805\u4fc2\u6570", "shape": "box", "size": 25, "title": "\u003cb\u003e\u5b9a\u7fa9\uff1a\u4e8c\u9805\u4fc2\u6570\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-binomial-coefficient"}, {"color": "#2196F3", "font": {"color": "black"}, "id": "thm-inclusion-exclusion", "label": "\u5b9a\u7406: \u5305\u9664\u539f\u7406", "shape": "ellipse", "size": 25, "title": "\u003cb\u003e\u5b9a\u7406: \u5305\u9664\u539f\u7406\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eID: thm-inclusion-exclusion"}]);
-                  edges = new vis.DataSet([{"arrows": "to", "color": "#999999", "from": "def-tree", "to": "def-binomial-coefficient", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-tree", "to": "def-graph", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-pascals-triangle", "to": "def-binomial-coefficient", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-pascals-triangle", "to": "def-generating-function", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-permutation", "to": "def-graph", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-generating-function", "to": "def-binomial-coefficient", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-binomial-coefficient", "to": "def-combination", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-binomial-coefficient", "to": "def-generating-function", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-binomial-coefficient", "to": "def-permutation", "width": 2}]);
+                  nodes = new vis.DataSet([{"color": "#4CAF50", "font": {"color": "black"}, "id": "def-tree", "label": "\u5b9a\u7fa9: \u6728", "shape": "box", "size": 25, "title": "\u003cb\u003e\u5b9a\u7fa9: \u6728\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-tree\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-tree.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#2196F3", "font": {"color": "black"}, "id": "thm-inclusion-exclusion", "label": "\u5b9a\u7406: \u5305\u9664\u539f\u7406", "shape": "ellipse", "size": 25, "title": "\u003cb\u003e\u5b9a\u7406: \u5305\u9664\u539f\u7406\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eID: thm-inclusion-exclusion\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027thm-inclusion-exclusion.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#9C27B0", "font": {"color": "black"}, "id": "ex-pascals-triangle", "label": "\u4f8b\uff1a\u30d1\u30b9\u30ab\u30eb\u306e\u4e09\u89d2\u5f62", "shape": "square", "size": 25, "title": "\u003cb\u003e\u4f8b\uff1a\u30d1\u30b9\u30ab\u30eb\u306e\u4e09\u89d2\u5f62\u003c/b\u003e\u003cbr\u003eType: Example\u003cbr\u003eID: ex-pascals-triangle\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027ex-pascals-triangle.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-generating-function", "label": "\u5b9a\u7fa9: \u6bcd\u95a2\u6570", "shape": "box", "size": 25, "title": "\u003cb\u003e\u5b9a\u7fa9: \u6bcd\u95a2\u6570\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-generating-function\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-generating-function.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-graph", "label": "\u5b9a\u7fa9: \u30b0\u30e9\u30d5", "shape": "box", "size": 25, "title": "\u003cb\u003e\u5b9a\u7fa9: \u30b0\u30e9\u30d5\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-graph\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-graph.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-combination", "label": "\u5b9a\u7fa9\uff1a\u7d44\u5408\u305b", "shape": "box", "size": 25, "title": "\u003cb\u003e\u5b9a\u7fa9\uff1a\u7d44\u5408\u305b\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-combination\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-combination.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#2196F3", "font": {"color": "black"}, "id": "thm-pigeonhole-principle", "label": "\u5b9a\u7406\uff1a\u9ce9\u306e\u5de3\u539f\u7406", "shape": "ellipse", "size": 25, "title": "\u003cb\u003e\u5b9a\u7406\uff1a\u9ce9\u306e\u5de3\u539f\u7406\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eID: thm-pigeonhole-principle\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027thm-pigeonhole-principle.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-permutation", "label": "\u5b9a\u7fa9\uff1a\u9806\u5217", "shape": "box", "size": 25, "title": "\u003cb\u003e\u5b9a\u7fa9\uff1a\u9806\u5217\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-permutation\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-permutation.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-binomial-coefficient", "label": "\u5b9a\u7fa9\uff1a\u4e8c\u9805\u4fc2\u6570", "shape": "box", "size": 25, "title": "\u003cb\u003e\u5b9a\u7fa9\uff1a\u4e8c\u9805\u4fc2\u6570\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-binomial-coefficient\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-binomial-coefficient.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "color": "#999999", "from": "def-tree", "to": "def-binomial-coefficient", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-tree", "to": "def-graph", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-pascals-triangle", "to": "def-binomial-coefficient", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-pascals-triangle", "to": "def-generating-function", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-generating-function", "to": "def-binomial-coefficient", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-permutation", "to": "def-graph", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-binomial-coefficient", "to": "def-combination", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-binomial-coefficient", "to": "def-generating-function", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-binomial-coefficient", "to": "def-permutation", "width": 2}]);
 
                   nodeColors = {};
                   allNodes = nodes.get({ returnType: "Object" });
@@ -307,6 +326,68 @@ function highlightFilter(filter) {
 
                   
 
+                  
+                  // make a custom popup
+                      var popup = document.createElement("div");
+                      popup.className = 'popup';
+                      popupTimeout = null;
+                      popup.addEventListener('mouseover', function () {
+                          console.log(popup)
+                          if (popupTimeout !== null) {
+                              clearTimeout(popupTimeout);
+                              popupTimeout = null;
+                          }
+                      });
+                      popup.addEventListener('mouseout', function () {
+                          if (popupTimeout === null) {
+                              hidePopup();
+                          }
+                      });
+                      container.appendChild(popup);
+
+
+                      // use the popup event to show
+                      network.on("showPopup", function (params) {
+                          showPopup(params);
+                      });
+
+                      // use the hide event to hide it
+                      network.on("hidePopup", function (params) {
+                          hidePopup();
+                      });
+
+                      // hiding the popup through css
+                      function hidePopup() {
+                          popupTimeout = setTimeout(function () { popup.style.display = 'none'; }, 500);
+                      }
+
+                      // showing the popup
+                      function showPopup(nodeId) {
+                          // get the data from the vis.DataSet
+                          var nodeData = nodes.get([nodeId]);
+                          popup.innerHTML = nodeData[0].title;
+
+                          // get the position of the node
+                          var posCanvas = network.getPositions([nodeId])[nodeId];
+
+                          // get the bounding box of the node
+                          var boundingBox = network.getBoundingBox(nodeId);
+
+                          //position tooltip:
+                          posCanvas.x = posCanvas.x + 0.5 * (boundingBox.right - boundingBox.left);
+
+                          // convert coordinates to the DOM space
+                          var posDOM = network.canvasToDOM(posCanvas);
+
+                          // Give it an offset
+                          posDOM.x += 10;
+                          posDOM.y -= 20;
+
+                          // show and place the tooltip.
+                          popup.style.display = 'block';
+                          popup.style.top = posDOM.y + 'px';
+                          popup.style.left = posDOM.x + 'px';
+                      }
                   
 
 

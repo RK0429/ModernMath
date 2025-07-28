@@ -239,6 +239,25 @@ function highlightFilter(filter) {
              
 
              
+             /* position absolute is important and the container has to be relative or absolute as well. */
+          div.popup {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 display:none;
+                 background-color:#f5f4ed;
+                 -moz-border-radius: 3px;
+                 -webkit-border-radius: 3px;
+                 border-radius: 3px;
+                 border: 1px solid #808074;
+                 box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+          }
+
+          /* hide the original tooltip */
+          .vis-tooltip {
+            display:none;
+          }
+             
         </style>
     </head>
 
@@ -282,7 +301,7 @@ function highlightFilter(filter) {
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-linear-transformation", "label": "Definition: Linear Transformation", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Linear Transformation\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-linear-transformation"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-image", "label": "Definition: Image", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Image\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-image"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-determinant", "label": "Definition: Determinant", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Determinant\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-determinant"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-kernel", "label": "Definition: Kernel", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Kernel\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-kernel"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-field", "label": "Definition: Field", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Field\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-field"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-isomorphism", "label": "Definition: Isomorphism", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Isomorphism\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-isomorphism"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-linear-transformation-basis", "label": "Theorem: Linear Transformation Determined by Basis", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Linear Transformation Determined by Basis\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: thm-linear-transformation-basis"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-function", "label": "Definition: Function", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Function\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Logic Set Theory\u003cbr\u003eID: def-function"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-rank-nullity", "label": "Theorem: Rank-Nullity Theorem", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Rank-Nullity Theorem\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: thm-rank-nullity"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-normal-subgroup", "label": "Definition: Normal Subgroup", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Normal Subgroup\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-normal-subgroup"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-vector-space", "label": "Definition: Vector Space", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Vector Space\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-vector-space"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-matrix", "label": "Definition: Matrix", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Matrix\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-matrix"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-eigenvalue-eigenvector", "label": "Definition: Eigenvalue and Eigenvector", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Eigenvalue and Eigenvector\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-eigenvalue-eigenvector"}, {"borderWidth": 3, "borderWidthSelected": 5, "color": "#9C27B0", "font": {"color": "black"}, "id": "ex-matrix-transformation", "label": "Example: Matrix Transformation", "shape": "square", "size": 30, "title": "\u003cb\u003eExample: Matrix Transformation\u003c/b\u003e\u003cbr\u003eType: Example\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: ex-matrix-transformation"}]);
+                  nodes = new vis.DataSet([{"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-normal-subgroup", "label": "Definition: Normal Subgroup", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Normal Subgroup\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-normal-subgroup\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-normal-subgroup.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-linear-transformation-basis", "label": "Theorem: Linear Transformation Determined by Basis", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Linear Transformation Determined by Basis\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: thm-linear-transformation-basis\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027thm-linear-transformation-basis.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-function", "label": "Definition: Function", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Function\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Logic Set Theory\u003cbr\u003eID: def-function\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-function.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-rank-nullity", "label": "Theorem: Rank-Nullity Theorem", "shape": "ellipse", "size": 20, "title": "\u003cb\u003eTheorem: Rank-Nullity Theorem\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: thm-rank-nullity\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027thm-rank-nullity.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-vector-space", "label": "Definition: Vector Space", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Vector Space\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-vector-space\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-vector-space.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-isomorphism", "label": "Definition: Isomorphism", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Isomorphism\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-isomorphism\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-isomorphism.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-image", "label": "Definition: Image", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Image\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-image\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-image.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-kernel", "label": "Definition: Kernel", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Kernel\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-kernel\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-kernel.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-field", "label": "Definition: Field", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Field\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-field\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-field.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-eigenvalue-eigenvector", "label": "Definition: Eigenvalue and Eigenvector", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Eigenvalue and Eigenvector\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-eigenvalue-eigenvector\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-eigenvalue-eigenvector.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-determinant", "label": "Definition: Determinant", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Determinant\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-determinant\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-determinant.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 3, "borderWidthSelected": 5, "color": "#9C27B0", "font": {"color": "black"}, "id": "ex-matrix-transformation", "label": "Example: Matrix Transformation", "shape": "square", "size": 30, "title": "\u003cb\u003eExample: Matrix Transformation\u003c/b\u003e\u003cbr\u003eType: Example\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: ex-matrix-transformation\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027ex-matrix-transformation.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-matrix", "label": "Definition: Matrix", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Matrix\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-matrix\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-matrix.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-linear-transformation", "label": "Definition: Linear Transformation", "shape": "box", "size": 20, "title": "\u003cb\u003eDefinition: Linear Transformation\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-linear-transformation\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-linear-transformation.html\u0027 target=\u0027_blank\u0027\u003eView Article \u2192\u003c/a\u003e"}]);
                   edges = new vis.DataSet([{"arrows": "to", "color": "#999999", "from": "ex-matrix-transformation", "title": "uses", "to": "def-linear-transformation", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-matrix-transformation", "title": "uses", "to": "def-matrix", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-linear-transformation", "title": "uses", "to": "def-function", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-linear-transformation", "title": "uses", "to": "def-isomorphism", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-linear-transformation", "title": "uses", "to": "def-vector-space", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-eigenvalue-eigenvector", "title": "uses", "to": "def-linear-transformation", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-matrix-transformation", "title": "uses", "to": "def-linear-transformation", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-linear-transformation-basis", "title": "uses", "to": "def-linear-transformation", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-rank-nullity", "title": "uses", "to": "def-linear-transformation", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-image", "title": "uses", "to": "def-linear-transformation", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-kernel", "title": "uses", "to": "def-linear-transformation", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-matrix", "title": "uses", "to": "def-field", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-eigenvalue-eigenvector", "title": "uses", "to": "def-matrix", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-matrix-transformation", "title": "uses", "to": "def-matrix", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-determinant", "title": "uses", "to": "def-matrix", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-normal-subgroup", "title": "uses", "to": "def-matrix", "width": 2}]);
 
                   nodeColors = {};
@@ -307,6 +326,68 @@ function highlightFilter(filter) {
 
                   
 
+                  
+                  // make a custom popup
+                      var popup = document.createElement("div");
+                      popup.className = 'popup';
+                      popupTimeout = null;
+                      popup.addEventListener('mouseover', function () {
+                          console.log(popup)
+                          if (popupTimeout !== null) {
+                              clearTimeout(popupTimeout);
+                              popupTimeout = null;
+                          }
+                      });
+                      popup.addEventListener('mouseout', function () {
+                          if (popupTimeout === null) {
+                              hidePopup();
+                          }
+                      });
+                      container.appendChild(popup);
+
+
+                      // use the popup event to show
+                      network.on("showPopup", function (params) {
+                          showPopup(params);
+                      });
+
+                      // use the hide event to hide it
+                      network.on("hidePopup", function (params) {
+                          hidePopup();
+                      });
+
+                      // hiding the popup through css
+                      function hidePopup() {
+                          popupTimeout = setTimeout(function () { popup.style.display = 'none'; }, 500);
+                      }
+
+                      // showing the popup
+                      function showPopup(nodeId) {
+                          // get the data from the vis.DataSet
+                          var nodeData = nodes.get([nodeId]);
+                          popup.innerHTML = nodeData[0].title;
+
+                          // get the position of the node
+                          var posCanvas = network.getPositions([nodeId])[nodeId];
+
+                          // get the bounding box of the node
+                          var boundingBox = network.getBoundingBox(nodeId);
+
+                          //position tooltip:
+                          posCanvas.x = posCanvas.x + 0.5 * (boundingBox.right - boundingBox.left);
+
+                          // convert coordinates to the DOM space
+                          var posDOM = network.canvasToDOM(posCanvas);
+
+                          // Give it an offset
+                          posDOM.x += 10;
+                          posDOM.y -= 20;
+
+                          // show and place the tooltip.
+                          popup.style.display = 'block';
+                          popup.style.top = posDOM.y + 'px';
+                          popup.style.left = posDOM.x + 'px';
+                      }
                   
 
 

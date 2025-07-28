@@ -239,6 +239,25 @@ function highlightFilter(filter) {
              
 
              
+             /* position absolute is important and the container has to be relative or absolute as well. */
+          div.popup {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 display:none;
+                 background-color:#f5f4ed;
+                 -moz-border-radius: 3px;
+                 -webkit-border-radius: 3px;
+                 border-radius: 3px;
+                 border: 1px solid #808074;
+                 box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+          }
+
+          /* hide the original tooltip */
+          .vis-tooltip {
+            display:none;
+          }
+             
         </style>
     </head>
 
@@ -282,7 +301,7 @@ function highlightFilter(filter) {
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-normed-vector-space", "label": "\u5b9a\u7fa9\uff1a\u30ce\u30eb\u30e0\u7a7a\u9593", "shape": "box", "size": 20, "title": "\u003cb\u003e\u5b9a\u7fa9\uff1a\u30ce\u30eb\u30e0\u7a7a\u9593\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-normed-vector-space"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-euclidean-space", "label": "\u5b9a\u7fa9: \u30e6\u30fc\u30af\u30ea\u30c3\u30c9\u7a7a\u9593", "shape": "box", "size": 20, "title": "\u003cb\u003e\u5b9a\u7fa9: \u30e6\u30fc\u30af\u30ea\u30c3\u30c9\u7a7a\u9593\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: def-euclidean-space"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-vector-space", "label": "\u5b9a\u7fa9: \u30d9\u30af\u30c8\u30eb\u7a7a\u9593", "shape": "box", "size": 20, "title": "\u003cb\u003e\u5b9a\u7fa9: \u30d9\u30af\u30c8\u30eb\u7a7a\u9593\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-vector-space"}, {"borderWidth": 3, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-pythagorean", "label": "\u5b9a\u7406: \u30d4\u30bf\u30b4\u30e9\u30b9\u306e\u5b9a\u7406", "shape": "ellipse", "size": 30, "title": "\u003cb\u003e\u5b9a\u7406: \u30d4\u30bf\u30b4\u30e9\u30b9\u306e\u5b9a\u7406\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: thm-pythagorean"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-metric-space", "label": "\u5b9a\u7fa9\uff1a\u8ddd\u96e2\u7a7a\u9593", "shape": "box", "size": 20, "title": "\u003cb\u003e\u5b9a\u7fa9\uff1a\u8ddd\u96e2\u7a7a\u9593\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-metric-space"}]);
+                  nodes = new vis.DataSet([{"borderWidth": 3, "borderWidthSelected": 5, "color": "#2196F3", "font": {"color": "black"}, "id": "thm-pythagorean", "label": "\u5b9a\u7406: \u30d4\u30bf\u30b4\u30e9\u30b9\u306e\u5b9a\u7406", "shape": "ellipse", "size": 30, "title": "\u003cb\u003e\u5b9a\u7406: \u30d4\u30bf\u30b4\u30e9\u30b9\u306e\u5b9a\u7406\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: thm-pythagorean\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027thm-pythagorean.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-euclidean-space", "label": "\u5b9a\u7fa9: \u30e6\u30fc\u30af\u30ea\u30c3\u30c9\u7a7a\u9593", "shape": "box", "size": 20, "title": "\u003cb\u003e\u5b9a\u7fa9: \u30e6\u30fc\u30af\u30ea\u30c3\u30c9\u7a7a\u9593\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Geometry\u003cbr\u003eID: def-euclidean-space\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-euclidean-space.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-vector-space", "label": "\u5b9a\u7fa9: \u30d9\u30af\u30c8\u30eb\u7a7a\u9593", "shape": "box", "size": 20, "title": "\u003cb\u003e\u5b9a\u7fa9: \u30d9\u30af\u30c8\u30eb\u7a7a\u9593\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Algebra\u003cbr\u003eID: def-vector-space\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-vector-space.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-normed-vector-space", "label": "\u5b9a\u7fa9\uff1a\u30ce\u30eb\u30e0\u7a7a\u9593", "shape": "box", "size": 20, "title": "\u003cb\u003e\u5b9a\u7fa9\uff1a\u30ce\u30eb\u30e0\u7a7a\u9593\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-normed-vector-space\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-normed-vector-space.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"borderWidth": 1, "borderWidthSelected": 5, "color": "#4CAF50", "font": {"color": "black"}, "id": "def-metric-space", "label": "\u5b9a\u7fa9\uff1a\u8ddd\u96e2\u7a7a\u9593", "shape": "box", "size": 20, "title": "\u003cb\u003e\u5b9a\u7fa9\uff1a\u8ddd\u96e2\u7a7a\u9593\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eDomain: Analysis\u003cbr\u003eID: def-metric-space\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-metric-space.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}]);
                   edges = new vis.DataSet([{"arrows": "to", "color": "#999999", "from": "thm-pythagorean", "title": "uses", "to": "def-euclidean-space", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-euclidean-space", "title": "uses", "to": "def-metric-space", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-euclidean-space", "title": "uses", "to": "def-normed-vector-space", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-euclidean-space", "title": "uses", "to": "def-vector-space", "width": 2}, {"arrows": "to", "color": "#999999", "from": "thm-pythagorean", "title": "uses", "to": "def-euclidean-space", "width": 2}]);
 
                   nodeColors = {};
@@ -307,6 +326,68 @@ function highlightFilter(filter) {
 
                   
 
+                  
+                  // make a custom popup
+                      var popup = document.createElement("div");
+                      popup.className = 'popup';
+                      popupTimeout = null;
+                      popup.addEventListener('mouseover', function () {
+                          console.log(popup)
+                          if (popupTimeout !== null) {
+                              clearTimeout(popupTimeout);
+                              popupTimeout = null;
+                          }
+                      });
+                      popup.addEventListener('mouseout', function () {
+                          if (popupTimeout === null) {
+                              hidePopup();
+                          }
+                      });
+                      container.appendChild(popup);
+
+
+                      // use the popup event to show
+                      network.on("showPopup", function (params) {
+                          showPopup(params);
+                      });
+
+                      // use the hide event to hide it
+                      network.on("hidePopup", function (params) {
+                          hidePopup();
+                      });
+
+                      // hiding the popup through css
+                      function hidePopup() {
+                          popupTimeout = setTimeout(function () { popup.style.display = 'none'; }, 500);
+                      }
+
+                      // showing the popup
+                      function showPopup(nodeId) {
+                          // get the data from the vis.DataSet
+                          var nodeData = nodes.get([nodeId]);
+                          popup.innerHTML = nodeData[0].title;
+
+                          // get the position of the node
+                          var posCanvas = network.getPositions([nodeId])[nodeId];
+
+                          // get the bounding box of the node
+                          var boundingBox = network.getBoundingBox(nodeId);
+
+                          //position tooltip:
+                          posCanvas.x = posCanvas.x + 0.5 * (boundingBox.right - boundingBox.left);
+
+                          // convert coordinates to the DOM space
+                          var posDOM = network.canvasToDOM(posCanvas);
+
+                          // Give it an offset
+                          posDOM.x += 10;
+                          posDOM.y -= 20;
+
+                          // show and place the tooltip.
+                          popup.style.display = 'block';
+                          popup.style.top = posDOM.y + 'px';
+                          popup.style.left = posDOM.x + 'px';
+                      }
                   
 
 
