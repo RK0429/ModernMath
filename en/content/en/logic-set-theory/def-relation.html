@@ -369,10 +369,10 @@ window.Quarto = {
 <section id="see-also" class="level2">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
-<li><a href="../../../content/en/logic-set-theory/def-function.html">関数</a></li>
-<li><a href="../../../content/en/logic-set-theory/def-subset.html">部分集合</a></li>
-<li><a href="../../../content/en/logic-set-theory/def-equivalence-relation.html">定義：同値関係</a></li>
-<li><a href="../../../content/en/logic-set-theory/def-partial-order.html">定義：半順序</a></li>
+<li><a href="../../../content/en/logic-set-theory/def-function.html">Function</a></li>
+<li><a href="../../../content/en/logic-set-theory/def-subset.html">Subset</a></li>
+<li><a href="../../../content/en/logic-set-theory/def-equivalence-relation.html">Equivalence Relation</a></li>
+<li><a href="../../../content/en/logic-set-theory/def-partial-order.html">Partial Order</a></li>
 </ul>
 </section>
 <section id="dependency-graph" class="level2">
@@ -388,26 +388,26 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-partial-order["Definition: Partial Order"]:::definition
     def-function["Definition: Function"]:::definition
-    def-subset["Definition: Subset"]:::definition
     def-relation["Definition: Relation"]:::definition
+    def-partial-order["Definition: Partial Order"]:::definition
     def-set["Definition: Set"]:::definition
+    def-subset["Definition: Subset"]:::definition
     def-equivalence-relation["Definition: Equivalence Relation"]:::definition
-    def-equivalence-relation --&gt; def-relation
-    def-function --&gt; def-relation
-    def-relation --&gt; def-set
-    def-partial-order --&gt; def-relation
-    def-relation --&gt; def-subset
-    def-relation --&gt; def-partial-order
     def-subset --&gt; def-relation
     def-relation --&gt; def-equivalence-relation
     def-relation --&gt; def-function
+    def-function --&gt; def-relation
+    def-equivalence-relation --&gt; def-relation
+    def-partial-order --&gt; def-relation
+    def-relation --&gt; def-set
+    def-relation --&gt; def-partial-order
+    def-relation --&gt; def-subset
     class def-relation current
-    click def-partial-order "def-partial-order.html" "Go to Partial Order definition"
     click def-function "def-function.html" "Go to Function definition"
-    click def-subset "def-subset.html" "Go to Subset definition"
+    click def-partial-order "def-partial-order.html" "Go to Partial Order definition"
     click def-set "def-set.html" "Go to Set definition"
+    click def-subset "def-subset.html" "Go to Subset definition"
     click def-equivalence-relation "def-equivalence-relation.html" "Go to Equivalence Relation definition"
 </pre>
 </div>
@@ -419,7 +419,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-relation-1753702026" class="graph-visualization-container">
+<div id="graph-viz-def-relation-1753703024" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -635,12 +635,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-relation-1753702026', {
+    createForceGraph(data, 'graph-viz-def-relation-1753703024', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-relation-1753702026').innerHTML =
+    document.getElementById('graph-viz-def-relation-1753703024').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

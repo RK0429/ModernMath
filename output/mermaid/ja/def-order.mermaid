@@ -5,33 +5,33 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-group["群"]:::definition
+    thm-sylow["シローの定理"]:::theorem
+    def-cyclic-group["定義: 巡回群"]:::definition
     def-subgroup["定義：部分群"]:::definition
-    def-direct-product["定義：群の直積"]:::definition
+    def-order["定義：位数"]:::definition
     def-identity-element["定義: 単位元"]:::definition
+    def-direct-product["定義：群の直積"]:::definition
+    def-simple-group["定義: 単純群"]:::definition
     ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
     ex-group-action-examples["群作用の例"]:::example
-    def-quotient-group["定義: 商群"]:::definition
-    def-simple-group["定義: 単純群"]:::definition
     def-group-action["群の作用"]:::definition
     thm-lagrange["定理: ラグランジュの定理"]:::theorem
-    thm-sylow["シローの定理"]:::theorem
-    def-order["定義：位数"]:::definition
-    def-cyclic-group["定義: 巡回群"]:::definition
-    def-order --> def-quotient-group
-    def-order --> thm-sylow
-    ex-quotient-integers-mod-n --> def-order
+    def-quotient-group["定義: 商群"]:::definition
     def-order --> thm-lagrange
-    thm-lagrange --> def-order
-    def-order --> def-cyclic-group
-    def-order --> def-subgroup
-    def-subgroup --> def-order
-    def-order --> def-group
-    def-order --> def-identity-element
     thm-sylow --> def-order
+    ex-quotient-integers-mod-n --> def-order
+    def-cyclic-group --> def-order
+    def-order --> def-quotient-group
+    def-order --> def-cyclic-group
+    ex-group-action-examples --> def-order
+    def-subgroup --> def-order
     def-order --> def-group-action
     def-simple-group --> def-order
+    thm-lagrange --> def-order
+    def-order --> def-subgroup
     def-quotient-group --> def-order
+    def-order --> def-identity-element
     def-direct-product --> def-order
-    def-cyclic-group --> def-order
-    ex-group-action-examples --> def-order
+    def-order --> thm-sylow
+    def-order --> def-group
     class def-order current

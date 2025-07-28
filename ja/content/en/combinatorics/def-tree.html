@@ -417,8 +417,8 @@ window.Quarto = {
 <section id="see-also" class="level2">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
-<li><a href="../../../content/en/combinatorics/def-graph.html">グラフ</a></li>
-<li><a href="../../../content/en/combinatorics/def-binomial-coefficient.html">定義：二項係数</a> (for counting labeled trees)</li>
+<li><a href="../../../content/en/combinatorics/def-graph.html">Graph</a></li>
+<li><a href="../../../content/en/combinatorics/def-binomial-coefficient.html">Binomial Coefficient</a> (for counting labeled trees)</li>
 <li>Graph connectivity and paths</li>
 </ul>
 </section>
@@ -435,16 +435,16 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-graph["Definition: Graph"]:::definition
     def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
+    def-graph["Definition: Graph"]:::definition
     def-tree["Definition: Tree"]:::definition
     def-set["Definition: Set"]:::definition
+    def-tree --&gt; def-graph
     def-tree --&gt; def-set
     def-tree --&gt; def-binomial-coefficient
-    def-tree --&gt; def-graph
     class def-tree current
-    click def-graph "def-graph.html" "Go to Graph definition"
     click def-binomial-coefficient "def-binomial-coefficient.html" "Go to Binomial Coefficient definition"
+    click def-graph "def-graph.html" "Go to Graph definition"
     click def-set "def-set.html" "Go to Set definition"
 </pre>
 </div>
@@ -456,7 +456,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-tree-1753702314" class="graph-visualization-container">
+<div id="graph-viz-def-tree-1753703306" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -672,12 +672,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-tree-1753702314', {
+    createForceGraph(data, 'graph-viz-def-tree-1753703306', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-tree-1753702314').innerHTML =
+    document.getElementById('graph-viz-def-tree-1753703306').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

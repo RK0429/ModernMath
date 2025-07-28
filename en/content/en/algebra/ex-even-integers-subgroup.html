@@ -299,7 +299,7 @@ window.Quarto = {
 <li>This is a proper subgroup since <span class="math inline">\(1 \in \mathbb{Z}\)</span> but <span class="math inline">\(1 \notin 2\mathbb{Z}\)</span>.</li>
 <li>This subgroup has index 2 in <span class="math inline">\(\mathbb{Z}\)</span>, meaning there are exactly 2 <a href="../../../content/en/algebra/def-coset.html">cosets</a>.</li>
 <li>The <a href="../../../content/en/algebra/def-coset.html">cosets</a> are <span class="math inline">\(2\mathbb{Z}\)</span> (even integers) and <span class="math inline">\(1 + 2\mathbb{Z}\)</span> (odd integers).</li>
-<li><strong>Important</strong>: <span class="math inline">\(2\mathbb{Z}\)</span> is actually a <a href="../../../content/en/algebra/def-normal-subgroup.html">正規部分群</a> of <span class="math inline">\(\mathbb{Z}\)</span>. This is because:
+<li><strong>Important</strong>: <span class="math inline">\(2\mathbb{Z}\)</span> is actually a <a href="../../../content/en/algebra/def-normal-subgroup.html">Normal Subgroup</a> of <span class="math inline">\(\mathbb{Z}\)</span>. This is because:
 <ul>
 <li><span class="math inline">\(\mathbb{Z}\)</span> is <a href="../../../content/en/algebra/def-abelian-group.html">abelian</a> (addition is commutative)</li>
 <li>Every subgroup of an <a href="../../../content/en/algebra/def-abelian-group.html">abelian group</a> is normal</li>
@@ -321,27 +321,27 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-group["Definition: Group"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
     def-abelian-group["Definition: Abelian Group"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
+    def-coset["Definition: Coset"]:::definition
     ex-integers-addition["Example: Integers under Addition"]:::example
     ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    def-coset["Definition: Coset"]:::definition
-    ex-even-integers-subgroup --&gt; def-subgroup
-    ex-even-integers-subgroup --&gt; def-group
-    ex-even-integers-subgroup --&gt; def-abelian-group
     ex-even-integers-subgroup --&gt; def-normal-subgroup
-    ex-even-integers-subgroup --&gt; ex-integers-addition
+    ex-even-integers-subgroup --&gt; def-abelian-group
     def-coset --&gt; ex-even-integers-subgroup
-    ex-even-integers-subgroup --&gt; def-coset
+    ex-even-integers-subgroup --&gt; def-group
+    ex-even-integers-subgroup --&gt; def-subgroup
     def-group --&gt; ex-even-integers-subgroup
+    ex-even-integers-subgroup --&gt; def-coset
+    ex-even-integers-subgroup --&gt; ex-integers-addition
     class ex-even-integers-subgroup current
     click def-group "def-group.html" "Go to Group definition"
+    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
     click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
     click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
-    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
     click def-coset "def-coset.html" "Go to Coset definition"
+    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -352,7 +352,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-ex-even-integers-subgroup-1753701989" class="graph-visualization-container">
+<div id="graph-viz-ex-even-integers-subgroup-1753702988" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -568,12 +568,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-even-integers-subgroup-1753701989', {
+    createForceGraph(data, 'graph-viz-ex-even-integers-subgroup-1753702988', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-even-integers-subgroup-1753701989').innerHTML =
+    document.getElementById('graph-viz-ex-even-integers-subgroup-1753702988').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

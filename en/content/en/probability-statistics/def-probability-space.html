@@ -334,25 +334,25 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-probability-distribution["Definition: Probability Distribution"]:::definition
-    def-random-variable["Definition: Random Variable"]:::definition
-    def-conditional-probability["Definition: Conditional Probability"]:::definition
-    def-independence["Definition: Independence"]:::definition
-    def-set["Definition: Set"]:::definition
     def-expectation["Definition: Expected Value"]:::definition
     def-probability-space["Definition: Probability Space"]:::definition
+    def-random-variable["Definition: Random Variable"]:::definition
+    def-conditional-probability["Definition: Conditional Probability"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-independence["Definition: Independence"]:::definition
     def-expectation --&gt; def-probability-space
+    def-probability-distribution --&gt; def-probability-space
     def-random-variable --&gt; def-probability-space
     def-independence --&gt; def-probability-space
     def-probability-space --&gt; def-set
-    def-probability-distribution --&gt; def-probability-space
     def-conditional-probability --&gt; def-probability-space
     class def-probability-space current
     click def-probability-distribution "def-probability-distribution.html" "Go to Probability Distribution definition"
+    click def-expectation "def-expectation.html" "Go to Expected Value definition"
     click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
     click def-conditional-probability "def-conditional-probability.html" "Go to Conditional Probability definition"
-    click def-independence "def-independence.html" "Go to Independence definition"
     click def-set "def-set.html" "Go to Set definition"
-    click def-expectation "def-expectation.html" "Go to Expected Value definition"
+    click def-independence "def-independence.html" "Go to Independence definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -363,7 +363,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-probability-space-1753702038" class="graph-visualization-container">
+<div id="graph-viz-def-probability-space-1753703036" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -579,12 +579,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-probability-space-1753702038', {
+    createForceGraph(data, 'graph-viz-def-probability-space-1753703036', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-probability-space-1753702038').innerHTML =
+    document.getElementById('graph-viz-def-probability-space-1753703036').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

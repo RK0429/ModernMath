@@ -356,26 +356,26 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-field["Definition: Field"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-isomorphism["Definition: Isomorphism"]:::definition
-    def-function["Definition: Function"]:::definition
-    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
     def-determinant["Definition: Determinant"]:::definition
+    def-function["Definition: Function"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-matrix["Definition: Matrix"]:::definition
-    def-determinant --&gt; def-function
-    def-eigenvalue-eigenvector --&gt; def-determinant
+    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    def-field["Definition: Field"]:::definition
     def-determinant --&gt; def-matrix
-    def-determinant --&gt; def-field
+    def-eigenvalue-eigenvector --&gt; def-determinant
     def-normal-subgroup --&gt; def-determinant
+    def-determinant --&gt; def-function
     def-determinant --&gt; def-isomorphism
+    def-determinant --&gt; def-field
     class def-determinant current
-    click def-field "def-field.html" "Go to Field definition"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
     click def-function "def-function.html" "Go to Function definition"
-    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector definition"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
     click def-matrix "def-matrix.html" "Go to Matrix definition"
+    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector definition"
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
+    click def-field "def-field.html" "Go to Field definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -386,7 +386,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-determinant-1753701971" class="graph-visualization-container">
+<div id="graph-viz-def-determinant-1753702971" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -602,12 +602,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-determinant-1753701971', {
+    createForceGraph(data, 'graph-viz-def-determinant-1753702971', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-determinant-1753701971').innerHTML =
+    document.getElementById('graph-viz-def-determinant-1753702971').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
