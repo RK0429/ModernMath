@@ -1,4 +1,3 @@
-%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
@@ -7,15 +6,15 @@ graph TD
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-probability-distribution["定義: 確率分布"]:::definition
     thm-central-limit["定理: 中心極限定理"]:::theorem
+    def-variance["定義: 分散"]:::definition
+    def-random-variable["定義: 確率変数"]:::definition
+    def-normal-distribution["定義: 正規分布"]:::definition
     def-expectation["定義: 期待値"]:::definition
     def-independence["定義: 独立性"]:::definition
-    def-variance["定義: 分散"]:::definition
-    def-normal-distribution["定義: 正規分布"]:::definition
-    def-random-variable["定義: 確率変数"]:::definition
-    thm-central-limit --> def-random-variable
-    thm-central-limit --> def-expectation
-    thm-central-limit --> def-independence
-    thm-central-limit --> def-probability-distribution
     thm-central-limit --> def-variance
+    thm-central-limit --> def-expectation
+    thm-central-limit --> def-probability-distribution
+    thm-central-limit --> def-independence
+    thm-central-limit --> def-random-variable
     thm-central-limit --> def-normal-distribution
     class thm-central-limit current

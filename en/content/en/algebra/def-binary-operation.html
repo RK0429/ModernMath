@@ -331,8 +331,8 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-set["Definition: Set"]:::definition
-    def-function["Definition: Function"]:::definition
     def-binary-operation["Definition: Binary Operation"]:::definition
+    def-function["Definition: Function"]:::definition
     def-binary-operation --&gt; def-set
     def-binary-operation --&gt; def-function
     class def-binary-operation current
@@ -348,7 +348,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-binary-operation-1753676540" class="graph-visualization-container">
+<div id="graph-viz-def-binary-operation-1753678610" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -564,12 +564,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-binary-operation-1753676540', {
+    createForceGraph(data, 'graph-viz-def-binary-operation-1753678610', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-binary-operation-1753676540').innerHTML =
+    document.getElementById('graph-viz-def-binary-operation-1753678610').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

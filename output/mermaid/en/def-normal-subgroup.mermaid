@@ -1,50 +1,49 @@
-%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-coset["Definition: Coset"]:::definition
-    def-kernel["Definition: Kernel"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
     thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
-    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    def-group-action["Group Action"]:::definition
-    def-simple-group["Definition: Simple Group"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-direct-product["Definition: Direct Product of Groups"]:::definition
-    def-center-of-group["Definition: Center of a Group"]:::definition
-    def-matrix["Definition: Matrix"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-coset["Definition: Coset"]:::definition
     def-determinant["Definition: Determinant"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     def-quotient-group["Definition: Quotient Group"]:::definition
-    def-normal-subgroup --> def-homomorphism
-    def-normal-subgroup --> def-group
-    def-normal-subgroup --> thm-first-isomorphism
-    def-simple-group --> def-normal-subgroup
-    def-normal-subgroup --> def-center-of-group
-    ex-even-integers-subgroup --> def-normal-subgroup
-    def-normal-subgroup --> def-subgroup
-    def-group --> def-normal-subgroup
-    def-center-of-group --> def-normal-subgroup
+    def-direct-product["Definition: Direct Product of Groups"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-group-action["Group Action"]:::definition
+    def-matrix["Definition: Matrix"]:::definition
+    def-center-of-group["Definition: Center of a Group"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
+    def-group["Definition: Group"]:::definition
+    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-simple-group["Definition: Simple Group"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
     def-normal-subgroup --> def-matrix
-    def-kernel --> def-normal-subgroup
-    def-normal-subgroup --> def-determinant
-    def-normal-subgroup --> def-abelian-group
-    def-normal-subgroup --> thm-lagrange
+    def-normal-subgroup --> def-coset
+    def-center-of-group --> def-normal-subgroup
+    def-normal-subgroup --> def-group
     def-abelian-group --> def-normal-subgroup
     def-subgroup --> def-normal-subgroup
-    def-direct-product --> def-normal-subgroup
-    ex-quotient-integers-mod-n --> def-normal-subgroup
+    def-normal-subgroup --> def-abelian-group
+    def-normal-subgroup --> def-center-of-group
     thm-first-isomorphism --> def-normal-subgroup
+    def-simple-group --> def-normal-subgroup
+    def-normal-subgroup --> def-homomorphism
+    def-normal-subgroup --> def-subgroup
+    def-direct-product --> def-normal-subgroup
     def-normal-subgroup --> def-quotient-group
     def-coset --> def-normal-subgroup
     def-quotient-group --> def-normal-subgroup
-    def-normal-subgroup --> def-coset
+    def-kernel --> def-normal-subgroup
+    def-group --> def-normal-subgroup
+    def-normal-subgroup --> thm-lagrange
+    ex-even-integers-subgroup --> def-normal-subgroup
     def-normal-subgroup --> def-group-action
+    ex-quotient-integers-mod-n --> def-normal-subgroup
+    def-normal-subgroup --> def-determinant
+    def-normal-subgroup --> thm-first-isomorphism
     class def-normal-subgroup current

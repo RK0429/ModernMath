@@ -1,4 +1,3 @@
-%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
@@ -9,15 +8,15 @@ graph TD
     def-set["定義: 集合"]:::definition
     thm-cantor["定理: カントールの定理"]:::theorem
     def-power-set["定義: べき集合"]:::definition
-    def-union["定義: 和集合"]:::definition
     def-function["定義: 関数"]:::definition
+    def-union["定義: 和集合"]:::definition
     def-intersection["定義: 共通部分"]:::definition
-    def-cardinality --> def-set
-    def-power-set --> def-cardinality
-    def-intersection --> def-cardinality
-    def-cardinality --> def-function
     def-cardinality --> def-power-set
-    def-cardinality --> thm-cantor
     thm-cantor --> def-cardinality
     def-union --> def-cardinality
+    def-power-set --> def-cardinality
+    def-intersection --> def-cardinality
+    def-cardinality --> thm-cantor
+    def-cardinality --> def-function
+    def-cardinality --> def-set
     class def-cardinality current

@@ -1,4 +1,3 @@
-%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
@@ -6,28 +5,28 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-commutativity["定義: 可換性"]:::definition
-    ex-integers-ring["例: 整数は環を形成する"]:::example
-    def-polynomial-ring["定義: 多項式環"]:::definition
-    def-ring["定義：環"]:::definition
     def-subring["定義: 部分環"]:::definition
+    ex-integers-ring["例: 整数は環を形成する"]:::example
     def-field["定義: 体"]:::definition
-    def-prime-ideal["定義: 素イデアル"]:::definition
-    def-ideal["定義: イデアル"]:::definition
-    def-integral-domain["定義：整域"]:::definition
-    def-zero-divisor["定義: 零因子"]:::definition
     def-quotient-ring["定義: 剰余環"]:::definition
-    def-integral-domain --> def-field
-    def-integral-domain --> def-ideal
-    def-integral-domain --> def-polynomial-ring
+    def-prime-ideal["定義: 素イデアル"]:::definition
+    def-polynomial-ring["定義: 多項式環"]:::definition
+    def-integral-domain["定義：整域"]:::definition
+    def-ideal["定義: イデアル"]:::definition
+    def-zero-divisor["定義: 零因子"]:::definition
+    def-ring["定義：環"]:::definition
     def-integral-domain --> def-zero-divisor
-    def-integral-domain --> ex-integers-ring
-    def-zero-divisor --> def-integral-domain
-    def-integral-domain --> def-ring
-    def-prime-ideal --> def-integral-domain
     def-quotient-ring --> def-integral-domain
-    def-polynomial-ring --> def-integral-domain
+    def-integral-domain --> def-subring
+    def-integral-domain --> ex-integers-ring
+    def-integral-domain --> def-polynomial-ring
+    def-integral-domain --> def-field
     ex-integers-ring --> def-integral-domain
+    def-polynomial-ring --> def-integral-domain
+    def-prime-ideal --> def-integral-domain
+    def-integral-domain --> def-ring
     def-field --> def-integral-domain
     def-integral-domain --> def-commutativity
-    def-integral-domain --> def-subring
+    def-integral-domain --> def-ideal
+    def-zero-divisor --> def-integral-domain
     class def-integral-domain current

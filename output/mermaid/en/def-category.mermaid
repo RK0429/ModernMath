@@ -1,31 +1,30 @@
-%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Definition: Set"]:::definition
-    def-composition["Definition: Composition"]:::definition
-    def-category["Definition: Category"]:::definition
     def-morphism["Definition: Morphism"]:::definition
-    def-functor["Definition: Functor"]:::definition
-    ex-set-category["Example: The Category of Sets"]:::example
     thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
-    def-graph["Definition: Graph"]:::definition
-    def-natural-transformation["Definition: Natural Transformation"]:::definition
-    def-monomorphism["Definition: Monomorphism"]:::definition
-    def-isomorphism["Definition: Isomorphism"]:::definition
+    def-set["Definition: Set"]:::definition
     def-epimorphism["Definition: Epimorphism"]:::definition
-    def-category --> def-set
-    thm-yoneda --> def-category
-    def-composition --> def-category
-    def-natural-transformation --> def-category
-    def-functor --> def-category
-    def-isomorphism --> def-category
-    def-morphism --> def-category
-    ex-set-category --> def-category
-    def-epimorphism --> def-category
+    def-composition["Definition: Composition"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    def-natural-transformation["Definition: Natural Transformation"]:::definition
+    ex-set-category["Example: The Category of Sets"]:::example
+    def-category["Definition: Category"]:::definition
+    def-monomorphism["Definition: Monomorphism"]:::definition
+    def-functor["Definition: Functor"]:::definition
+    def-graph["Definition: Graph"]:::definition
     def-monomorphism --> def-category
+    thm-yoneda --> def-category
+    def-morphism --> def-category
+    def-isomorphism --> def-category
+    def-category --> def-set
+    def-epimorphism --> def-category
+    def-functor --> def-category
+    def-natural-transformation --> def-category
+    ex-set-category --> def-category
     def-category --> def-graph
+    def-composition --> def-category
     class def-category current

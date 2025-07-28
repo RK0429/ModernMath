@@ -1,29 +1,28 @@
-%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-composition["Definition: Composition"]:::definition
-    def-category["Definition: Category"]:::definition
     def-morphism["Definition: Morphism"]:::definition
+    def-composition["Definition: Composition"]:::definition
     def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-homeomorphism["Definition: Homeomorphism"]:::definition
     def-group["Definition: Group"]:::definition
     def-isomorphism["Definition: Isomorphism"]:::definition
-    def-monomorphism["Definition: Monomorphism"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-category["Definition: Category"]:::definition
     def-function["Definition: Function"]:::definition
-    def-isomorphism --> def-binary-operation
-    def-isomorphism --> def-homeomorphism
-    def-homeomorphism --> def-isomorphism
-    def-isomorphism --> def-homomorphism
-    def-isomorphism --> def-category
-    def-isomorphism --> def-monomorphism
-    def-monomorphism --> def-isomorphism
+    def-homeomorphism["Definition: Homeomorphism"]:::definition
+    def-monomorphism["Definition: Monomorphism"]:::definition
     def-isomorphism --> def-group
-    def-isomorphism --> def-composition
+    def-isomorphism --> def-monomorphism
     def-isomorphism --> def-morphism
+    def-isomorphism --> def-binary-operation
     def-isomorphism --> def-function
+    def-homeomorphism --> def-isomorphism
+    def-monomorphism --> def-isomorphism
+    def-isomorphism --> def-category
+    def-isomorphism --> def-composition
+    def-isomorphism --> def-homeomorphism
+    def-isomorphism --> def-homomorphism
     class def-isomorphism current

@@ -1,34 +1,33 @@
-%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
-    thm-fundamental-calculus["Theorem: Fundamental Theorem of Calculus"]:::theorem
-    def-uniform-continuity["Definition: Uniform Continuity"]:::definition
-    def-limit["Definition: Limit of a Sequence"]:::definition
-    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
-    def-homeomorphism["Definition: Homeomorphism"]:::definition
-    def-continuity["Definition: Continuity"]:::definition
     thm-taylor-series["Theorem: Taylor Series"]:::theorem
-    thm-chain-rule["Theorem: Chain Rule"]:::theorem
-    def-open-ball["Definition: Open Ball"]:::definition
+    def-uniform-continuity["Definition: Uniform Continuity"]:::definition
     def-integral["Definition: Integral"]:::definition
     thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
+    def-limit["Definition: Limit of a Sequence"]:::definition
+    thm-fundamental-calculus["Theorem: Fundamental Theorem of Calculus"]:::theorem
+    def-continuity["Definition: Continuity"]:::definition
+    def-open-ball["Definition: Open Ball"]:::definition
+    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
     def-function["Definition: Function"]:::definition
-    def-integral --> def-continuity
-    thm-fundamental-calculus --> def-continuity
-    def-homeomorphism --> def-continuity
-    def-continuity --> def-open-ball
+    def-homeomorphism["Definition: Homeomorphism"]:::definition
+    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
+    thm-chain-rule["Theorem: Chain Rule"]:::theorem
     def-open-ball --> def-continuity
-    ex-polynomial-continuity --> def-continuity
-    def-continuity --> def-function
-    thm-intermediate-value --> def-continuity
-    thm-chain-rule --> def-continuity
-    thm-taylor-series --> def-continuity
     thm-mean-value --> def-continuity
-    def-uniform-continuity --> def-continuity
+    def-integral --> def-continuity
+    thm-chain-rule --> def-continuity
     def-continuity --> def-limit
+    thm-intermediate-value --> def-continuity
+    ex-polynomial-continuity --> def-continuity
+    def-continuity --> def-open-ball
+    def-uniform-continuity --> def-continuity
+    thm-taylor-series --> def-continuity
+    def-continuity --> def-function
+    def-homeomorphism --> def-continuity
+    thm-fundamental-calculus --> def-continuity
     class def-continuity current

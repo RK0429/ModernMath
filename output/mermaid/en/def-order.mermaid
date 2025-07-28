@@ -1,38 +1,37 @@
-%%| fig-cap: "Local dependency graph"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    def-identity-element["Definition: Identity Element"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-order["Definition: Order"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
-    thm-sylow["Sylow Theorems"]:::theorem
-    def-direct-product["Definition: Direct Product of Groups"]:::definition
-    def-group-action["Group Action"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-simple-group["Definition: Simple Group"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     ex-group-action-examples["Examples of Group Actions"]:::example
+    thm-sylow["Sylow Theorems"]:::theorem
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     def-quotient-group["Definition: Quotient Group"]:::definition
-    def-order --> def-group
-    def-order --> def-identity-element
-    thm-lagrange --> def-order
+    def-direct-product["Definition: Direct Product of Groups"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-group-action["Group Action"]:::definition
+    def-identity-element["Definition: Identity Element"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-order["Definition: Order"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
+    def-simple-group["Definition: Simple Group"]:::definition
     def-order --> def-quotient-group
     def-order --> def-cyclic-group
-    thm-sylow --> def-order
+    ex-group-action-examples --> def-order
     def-order --> thm-lagrange
-    def-cyclic-group --> def-order
-    def-order --> thm-sylow
-    def-subgroup --> def-order
     def-order --> def-subgroup
     def-direct-product --> def-order
-    ex-quotient-integers-mod-n --> def-order
-    ex-group-action-examples --> def-order
-    def-quotient-group --> def-order
-    def-simple-group --> def-order
+    def-subgroup --> def-order
     def-order --> def-group-action
+    def-order --> def-group
+    thm-lagrange --> def-order
+    def-order --> thm-sylow
+    def-order --> def-identity-element
+    ex-quotient-integers-mod-n --> def-order
+    def-simple-group --> def-order
+    def-cyclic-group --> def-order
+    thm-sylow --> def-order
+    def-quotient-group --> def-order
     class def-order current
