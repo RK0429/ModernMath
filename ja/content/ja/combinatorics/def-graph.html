@@ -388,22 +388,22 @@ window.Quarto = {
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-permutation["定義：順列"]:::definition
     def-morphism["定義: 射"]:::definition
-    def-tree["定義: 木"]:::definition
     def-category["定義: 圏"]:::definition
-    def-graph["定義: グラフ"]:::definition
+    def-tree["定義: 木"]:::definition
     def-functor["定義: 関手"]:::definition
     def-set["定義: 集合"]:::definition
-    def-graph --&gt; def-set
-    def-tree --&gt; def-graph
+    def-graph["定義: グラフ"]:::definition
+    def-functor --&gt; def-graph
     def-category --&gt; def-graph
     def-permutation --&gt; def-graph
+    def-tree --&gt; def-graph
+    def-graph --&gt; def-set
     def-morphism --&gt; def-graph
-    def-functor --&gt; def-graph
     class def-graph current
     click def-permutation "def-permutation.html" "定義：順列へ"
     click def-morphism "def-morphism.html" "射の定義へ"
-    click def-tree "def-tree.html" "木の定義へ"
     click def-category "def-category.html" "圏の定義へ"
+    click def-tree "def-tree.html" "木の定義へ"
     click def-functor "def-functor.html" "関手の定義へ"
     click def-set "def-set.html" "集合の定義へ"
 </pre>
@@ -416,7 +416,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-graph-1753694043" class="graph-visualization-container">
+<div id="graph-viz-def-graph-1753698995" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -632,12 +632,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-graph-1753694043', {
+    createForceGraph(data, 'graph-viz-def-graph-1753698995', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-graph-1753694043').innerHTML =
+    document.getElementById('graph-viz-def-graph-1753698995').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

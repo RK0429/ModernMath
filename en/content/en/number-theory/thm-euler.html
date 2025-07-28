@@ -328,29 +328,29 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-prime["Definition: Prime Number"]:::definition
-    thm-fermat-little["Theorem: Fermat's Little Theorem"]:::theorem
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
     def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
     ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
-    def-group["Definition: Group"]:::definition
-    def-gcd["Definition: Greatest Common Divisor"]:::definition
     def-quotient-group["Definition: Quotient Group"]:::definition
-    def-gcd --&gt; thm-euler
-    thm-euler --&gt; def-congruence
-    thm-euler --&gt; thm-fermat-little
-    thm-euler --&gt; def-prime
+    thm-fermat-little["Theorem: Fermat's Little Theorem"]:::theorem
+    def-gcd["Definition: Greatest Common Divisor"]:::definition
+    def-group["Definition: Group"]:::definition
     thm-euler --&gt; ex-quotient-integers-mod-n
-    thm-euler --&gt; def-quotient-group
+    def-gcd --&gt; thm-euler
+    thm-euler --&gt; def-prime
     thm-euler --&gt; def-group
+    thm-euler --&gt; thm-fermat-little
     def-congruence --&gt; thm-euler
+    thm-euler --&gt; def-quotient-group
+    thm-euler --&gt; def-congruence
     class thm-euler current
     click def-prime "def-prime.html" "Go to Prime Number definition"
-    click thm-fermat-little "thm-fermat-little.html" "Go to Fermat's Little Theorem theorem"
     click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic) definition"
     click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
-    click def-group "def-group.html" "Go to Group definition"
-    click def-gcd "def-gcd.html" "Go to Greatest Common Divisor definition"
     click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click thm-fermat-little "thm-fermat-little.html" "Go to Fermat's Little Theorem theorem"
+    click def-gcd "def-gcd.html" "Go to Greatest Common Divisor definition"
+    click def-group "def-group.html" "Go to Group definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -361,7 +361,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-euler-1753693886" class="graph-visualization-container">
+<div id="graph-viz-thm-euler-1753698836" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -577,12 +577,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-euler-1753693886', {
+    createForceGraph(data, 'graph-viz-thm-euler-1753698836', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-euler-1753693886').innerHTML =
+    document.getElementById('graph-viz-thm-euler-1753698836').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

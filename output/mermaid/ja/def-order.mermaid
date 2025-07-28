@@ -4,34 +4,34 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-simple-group["定義: 単純群"]:::definition
     def-subgroup["定義：部分群"]:::definition
-    def-cyclic-group["定義: 巡回群"]:::definition
-    thm-lagrange["定理: ラグランジュの定理"]:::theorem
-    ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
-    def-group["群"]:::definition
-    def-group-action["群の作用"]:::definition
-    thm-sylow["シローの定理"]:::theorem
-    def-order["定義：位数"]:::definition
-    def-quotient-group["定義: 商群"]:::definition
-    def-direct-product["定義：群の直積"]:::definition
     ex-group-action-examples["群作用の例"]:::example
+    thm-sylow["シローの定理"]:::theorem
+    thm-lagrange["定理: ラグランジュの定理"]:::theorem
+    def-direct-product["定義：群の直積"]:::definition
+    def-order["定義：位数"]:::definition
+    ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
     def-identity-element["定義: 単位元"]:::definition
+    def-cyclic-group["定義: 巡回群"]:::definition
+    def-simple-group["定義: 単純群"]:::definition
+    def-quotient-group["定義: 商群"]:::definition
+    def-group-action["群の作用"]:::definition
+    def-group["群"]:::definition
+    def-simple-group --> def-order
     def-quotient-group --> def-order
-    def-order --> def-cyclic-group
-    ex-quotient-integers-mod-n --> def-order
-    thm-sylow --> def-order
     def-order --> def-group-action
-    def-order --> def-subgroup
-    def-order --> thm-sylow
+    def-order --> def-identity-element
+    thm-lagrange --> def-order
     def-order --> def-group
     ex-group-action-examples --> def-order
+    thm-sylow --> def-order
+    ex-quotient-integers-mod-n --> def-order
     def-order --> def-quotient-group
-    def-simple-group --> def-order
-    thm-lagrange --> def-order
-    def-order --> def-identity-element
-    def-subgroup --> def-order
-    def-cyclic-group --> def-order
-    def-direct-product --> def-order
+    def-order --> def-subgroup
     def-order --> thm-lagrange
+    def-order --> thm-sylow
+    def-subgroup --> def-order
+    def-direct-product --> def-order
+    def-cyclic-group --> def-order
+    def-order --> def-cyclic-group
     class def-order current
