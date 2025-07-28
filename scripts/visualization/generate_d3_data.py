@@ -6,7 +6,7 @@ These files will be used by Observable JS in Quarto pages.
 
 import json
 from pathlib import Path
-from typing import Dict, Set, Tuple, Any
+from typing import Dict, Set, Tuple, Any, Optional
 
 from rdflib import Graph, Literal, Namespace, RDF, RDFS
 
@@ -16,18 +16,8 @@ BASE_URI = "https://mathwiki.org/resource/"
 BASE_NS = Namespace(BASE_URI)
 
 
-def get_node_info(g: Graph, node_uri: Any, lang: str = "en") -> Dict[str, Any]:
-    """Get basic information about a node with language preference."""
-    node_id = str(node_uri).replace(BASE_URI, "")
-    info = {
-        "id": node_id,
-        "uri": str(node_uri),
-        "label": None,
-        "type": None,
-        "url": None,  # Add URL field
-    }
-
-    # Get label with language preference
+def _get_node_label(g: Graph, node_uri: Any, lang: str) -> Optional[str]:
+    """Extract node label with language preference."""
     labels = {}
     for label in g.objects(node_uri, RDFS.label):
         if isinstance(label, Literal) and hasattr(label, "language") and label.language:
@@ -37,28 +27,68 @@ def get_node_info(g: Graph, node_uri: Any, lang: str = "en") -> Dict[str, Any]:
 
     # Select appropriate label
     if lang in labels:
-        info["label"] = labels[lang]
-    elif "en" in labels:
-        info["label"] = labels["en"]
-    elif "default" in labels:
-        info["label"] = labels["default"]
-    elif labels:
-        info["label"] = next(iter(labels.values()))
+        return labels[lang]
+    if "en" in labels:
+        return labels["en"]
+    if "default" in labels:
+        return labels["default"]
+    if labels:
+        return next(iter(labels.values()))
+    return None
 
-    # Get type
+
+def _get_node_type(g: Graph, node_uri: Any) -> Optional[str]:
+    """Extract node type from RDF graph."""
     for node_type in g.objects(node_uri, RDF.type):
         if str(node_type).startswith(str(MYMATH)):
-            info["type"] = str(node_type).replace(str(MYMATH), "")
-            break
+            return str(node_type).replace(str(MYMATH), "")
+    return None
 
-    # Generate article URL if the node ID matches expected patterns
-    if node_id and any(
-        node_id.startswith(prefix)
-        for prefix in ["def-", "thm-", "ex-", "ax-", "prop-", "lem-", "cor-"]
-    ):
-        info["url"] = f"{node_id}.html"
 
-    return info
+def _get_node_domain(g: Graph, node_uri: Any) -> Optional[str]:
+    """Extract node domain from RDF graph."""
+    for domain in g.objects(node_uri, MYMATH.hasDomain):
+        domain_str = str(domain).lower().replace(" ", "-")
+        # Handle special case for "Logic and Set Theory"
+        if domain_str == "logic-and-set-theory":
+            return "logic-set-theory"
+        return domain_str
+    return None
+
+
+def _generate_node_url(node_id: str, domain: Optional[str]) -> Optional[str]:
+    """Generate article URL for a node if applicable."""
+    prefixes = ["def-", "thm-", "ex-", "ax-", "prop-", "lem-", "cor-"]
+    if node_id and any(node_id.startswith(prefix) for prefix in prefixes):
+        # For cross-domain navigation, we need to go up to the language directory
+        # From: /ModernMath/en/content/en/algebra/def-vector-space.html
+        # To:   /ModernMath/en/content/en/logic-set-theory/def-set.html
+        # Path: ../../logic-set-theory/def-set.html
+        if domain:
+            return f"../../{domain}/{node_id}.html"
+        # For nodes without domain (shouldn't happen), stay in current directory
+        return f"{node_id}.html"
+    return None
+
+
+def get_node_info(g: Graph, node_uri: Any, lang: str = "en") -> Dict[str, Any]:
+    """Get basic information about a node with language preference."""
+    node_id = str(node_uri).replace(BASE_URI, "")
+
+    # Extract node information using helper functions
+    label = _get_node_label(g, node_uri, lang)
+    node_type = _get_node_type(g, node_uri)
+    domain = _get_node_domain(g, node_uri)
+    url = _generate_node_url(node_id, domain)
+
+    return {
+        "id": node_id,
+        "uri": str(node_uri),
+        "label": label,
+        "type": node_type,
+        "url": url,
+        "domain": domain,
+    }
 
 
 def get_node_neighbors(
