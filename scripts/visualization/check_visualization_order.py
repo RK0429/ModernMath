@@ -102,7 +102,10 @@ def check_visualization_order(file_path: Path) -> Optional[str]:
 def main() -> None:
     """Find all .qmd files with visualization sections not at the end."""
 
-    content_dir = Path("/Users/r-kobayashi/Documents/WritePapers/ModernMath/content")
+    # Get the project root relative to this script
+    script_path = Path(__file__).resolve()
+    project_root = script_path.parent.parent.parent
+    content_dir = project_root / "content"
 
     if not content_dir.exists():
         print(f"Content directory not found: {content_dir}")
