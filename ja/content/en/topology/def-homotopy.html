@@ -364,17 +364,17 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-homeomorphism["Homeomorphism"]:::definition
-    def-fundamental-group["Fundamental Group"]:::definition
-    def-topological-space["Topological Space"]:::definition
     def-homotopy["Homotopy"]:::definition
+    def-fundamental-group["Fundamental Group"]:::definition
+    def-homeomorphism["Homeomorphism"]:::definition
+    def-topological-space["Topological Space"]:::definition
     def-homotopy --&gt; def-homeomorphism
     def-fundamental-group --&gt; def-homotopy
-    def-homeomorphism --&gt; def-homotopy
     def-homotopy --&gt; def-topological-space
+    def-homeomorphism --&gt; def-homotopy
     class def-homotopy current
-    click def-homeomorphism "def-homeomorphism.html" "Go to Homeomorphism"
     click def-fundamental-group "def-fundamental-group.html" "Go to Fundamental Group"
+    click def-homeomorphism "def-homeomorphism.html" "Go to Homeomorphism"
     click def-topological-space "def-topological-space.html" "Go to Topological Space"
 </pre>
 </div>
@@ -386,7 +386,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-homotopy-1753717550" class="graph-visualization-container">
+<div id="graph-viz-def-homotopy-1753718070" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -634,12 +634,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-homotopy-1753717550', {
+    createForceGraph(data, 'graph-viz-def-homotopy-1753718070', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-homotopy-1753717550').innerHTML =
+    document.getElementById('graph-viz-def-homotopy-1753718070').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
