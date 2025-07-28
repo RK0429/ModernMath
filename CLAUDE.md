@@ -89,6 +89,18 @@ Content in `content/` organized by domain. Each `.qmd` file has:
 - **YAML Front Matter**: `id`, `type` (Corollary/Definition/Theorem/Example/Axiom/Proposition/Lemma), `status` (verified/stub/complete/draft), `requires` (list, use `[]` for empty)
 - **Cross-References**: Use `@label` syntax
 - **File Naming**: `def-*.qmd`, `thm-*.qmd`, `ex-*.qmd`, `ax-*.qmd`
+- **Titles**: No type prefixes in titles (e.g., use "Group" not "Definition: Group")
+- **YAML Quoting**: Use double quotes for titles with apostrophes (e.g., `title: "Lagrange's Theorem"`)
+
+### Article Type Display
+
+Articles automatically display colored type badges based on YAML `type` field:
+
+- **Implementation**: Quarto filter `_extensions/article-type/`
+- **Title Processing**: `scripts/site/remove_title_prefixes.py` removes prefixes from both YAML and content headers
+- **Badge Colors**: Definition (blue), Theorem (purple), Example (green), Axiom (orange), etc.
+- **Bilingual Support**: Script handles Japanese type prefixes (定義, 定理, 例, 公理, 命題, 補題, 系)
+- **Punctuation**: Handles multiple formats: `:`, `：` (full-width Japanese colon)
 
 ### Content Workflow
 
@@ -182,8 +194,9 @@ Unified `build.yml` workflow:
 1. Code quality and validation checks
 2. Knowledge graph generation with optional Lean integration
 3. Visualization generation (prevents empty content)
-4. Multilingual site rendering (EN/JA)
-5. Post-processing and deployment to GitHub Pages
+4. Title prefix removal from all articles
+5. Multilingual site rendering (EN/JA)
+6. Post-processing and deployment to GitHub Pages
 
 **Build Indicators**: Uses ✓ for success and ⚠ for warnings in CI logs.
 

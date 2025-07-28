@@ -197,6 +197,10 @@ jobs:
         poetry run python scripts/site/build_search_index.py
         echo "Search index built successfully!"
 
+    - name: Remove title prefixes from articles
+      run: |
+        poetry run python scripts/site/remove_title_prefixes.py
+        echo "Title prefixes removed successfully!"
 
     # Step 7: Render Quarto site for multiple languages
     - name: Render English site
