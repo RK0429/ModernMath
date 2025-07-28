@@ -352,11 +352,11 @@ Row 5: 1   5  10  10   5   1</code></pre>
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-pascals-triangle["Example: Pascal's Triangle"]:::example
     def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
+    ex-pascals-triangle["Example: Pascal's Triangle"]:::example
     def-generating-function["Definition: Generating Function"]:::definition
-    ex-pascals-triangle --&gt; def-generating-function
     ex-pascals-triangle --&gt; def-binomial-coefficient
+    ex-pascals-triangle --&gt; def-generating-function
     class ex-pascals-triangle current
     click def-binomial-coefficient "def-binomial-coefficient.html" "Go to Binomial Coefficient definition"
     click def-generating-function "def-generating-function.html" "Go to Generating Function definition"
@@ -370,7 +370,7 @@ Row 5: 1   5  10  10   5   1</code></pre>
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-ex-pascals-triangle-1753672876" class="graph-visualization-container">
+<div id="graph-viz-ex-pascals-triangle-1753673080" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -586,12 +586,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-pascals-triangle-1753672876', {
+    createForceGraph(data, 'graph-viz-ex-pascals-triangle-1753673080', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-pascals-triangle-1753672876').innerHTML =
+    document.getElementById('graph-viz-ex-pascals-triangle-1753673080').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

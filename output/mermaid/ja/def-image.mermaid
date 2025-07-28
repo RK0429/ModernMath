@@ -5,15 +5,15 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-exact-sequence["定義: 完全列"]:::definition
     thm-first-isomorphism["定理: 第一同型定理"]:::theorem
-    def-image["定義: 像"]:::definition
     def-linear-transformation["定義: 線形変換"]:::definition
     def-vector-space["定義: ベクトル空間"]:::definition
-    def-exact-sequence["定義: 完全列"]:::definition
     thm-rank-nullity["定理: 階数・退化次数定理"]:::theorem
+    def-image["定義: 像"]:::definition
+    def-image --> def-linear-transformation
     thm-first-isomorphism --> def-image
     thm-rank-nullity --> def-image
     def-image --> def-vector-space
     def-exact-sequence --> def-image
-    def-image --> def-linear-transformation
     class def-image current

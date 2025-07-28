@@ -5,19 +5,19 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-functor["Definition: Functor"]:::definition
-    def-natural-transformation["Definition: Natural Transformation"]:::definition
     def-function["Definition: Function"]:::definition
-    def-category["Definition: Category"]:::definition
     def-graph["Definition: Graph"]:::definition
+    thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
     def-epimorphism["Definition: Epimorphism"]:::definition
     def-monomorphism["Definition: Monomorphism"]:::definition
-    thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
-    def-functor --> def-category
+    def-functor["Definition: Functor"]:::definition
+    def-natural-transformation["Definition: Natural Transformation"]:::definition
+    def-category["Definition: Category"]:::definition
+    thm-yoneda --> def-functor
     def-functor --> def-function
-    def-functor --> def-graph
-    def-epimorphism --> def-functor
+    def-functor --> def-category
     def-monomorphism --> def-functor
     def-natural-transformation --> def-functor
-    thm-yoneda --> def-functor
+    def-functor --> def-graph
+    def-epimorphism --> def-functor
     class def-functor current

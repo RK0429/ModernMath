@@ -371,23 +371,23 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-fermat-little["定理: フェルマーの小定理"]:::theorem
     thm-euler["定理：オイラーの定理"]:::theorem
     def-prime["定義：素数"]:::definition
-    def-gcd["定義：最大公約数"]:::definition
     def-congruence["定義: 合同（モジュラー演算）"]:::definition
-    thm-fermat-little["定理: フェルマーの小定理"]:::theorem
+    def-gcd["定義：最大公約数"]:::definition
     def-divisibility["定義: 整除性"]:::definition
+    thm-fermat-little --&gt; def-divisibility
     thm-fermat-little --&gt; def-congruence
+    thm-fermat-little --&gt; def-prime
     def-congruence --&gt; thm-fermat-little
     thm-euler --&gt; thm-fermat-little
-    thm-fermat-little --&gt; def-divisibility
-    thm-fermat-little --&gt; def-prime
     thm-fermat-little --&gt; def-gcd
     class thm-fermat-little current
     click thm-euler "thm-euler.html" "定理：オイラーの定理へ"
     click def-prime "def-prime.html" "定義：素数へ"
-    click def-gcd "def-gcd.html" "定義：最大公約数へ"
     click def-congruence "def-congruence.html" "合同（モジュラー演算）の定義へ"
+    click def-gcd "def-gcd.html" "定義：最大公約数へ"
     click def-divisibility "def-divisibility.html" "整除性の定義へ"
 </pre>
 </div>
@@ -399,7 +399,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-fermat-little-1753672686" class="graph-visualization-container">
+<div id="graph-viz-thm-fermat-little-1753672888" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -615,12 +615,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-fermat-little-1753672686', {
+    createForceGraph(data, 'graph-viz-thm-fermat-little-1753672888', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-fermat-little-1753672686').innerHTML =
+    document.getElementById('graph-viz-thm-fermat-little-1753672888').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

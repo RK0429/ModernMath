@@ -350,21 +350,21 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-eigenvalue-eigenvector["定義: 固有値と固有ベクトル"]:::definition
-    def-determinant["定義: 行列式"]:::definition
     def-linear-transformation["定義: 線形変換"]:::definition
-    def-vector-space["定義: ベクトル空間"]:::definition
     def-polynomial-ring["定義: 多項式環"]:::definition
+    def-vector-space["定義: ベクトル空間"]:::definition
+    def-determinant["定義: 行列式"]:::definition
     def-matrix["定義：行列"]:::definition
+    def-eigenvalue-eigenvector --&gt; def-linear-transformation
+    def-eigenvalue-eigenvector --&gt; def-determinant
     def-eigenvalue-eigenvector --&gt; def-vector-space
     def-eigenvalue-eigenvector --&gt; def-matrix
     def-eigenvalue-eigenvector --&gt; def-polynomial-ring
-    def-eigenvalue-eigenvector --&gt; def-determinant
-    def-eigenvalue-eigenvector --&gt; def-linear-transformation
     class def-eigenvalue-eigenvector current
-    click def-determinant "def-determinant.html" "行列式の定義へ"
     click def-linear-transformation "def-linear-transformation.html" "線形変換の定義へ"
-    click def-vector-space "def-vector-space.html" "ベクトル空間の定義へ"
     click def-polynomial-ring "def-polynomial-ring.html" "多項式環の定義へ"
+    click def-vector-space "def-vector-space.html" "ベクトル空間の定義へ"
+    click def-determinant "def-determinant.html" "行列式の定義へ"
     click def-matrix "def-matrix.html" "定義：行列へ"
 </pre>
 </div>
@@ -376,7 +376,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-eigenvalue-eigenvector-1753672714" class="graph-visualization-container">
+<div id="graph-viz-def-eigenvalue-eigenvector-1753672917" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -592,12 +592,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-eigenvalue-eigenvector-1753672714', {
+    createForceGraph(data, 'graph-viz-def-eigenvalue-eigenvector-1753672917', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-eigenvalue-eigenvector-1753672714').innerHTML =
+    document.getElementById('graph-viz-def-eigenvalue-eigenvector-1753672917').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
