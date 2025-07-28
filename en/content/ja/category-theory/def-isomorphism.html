@@ -387,37 +387,37 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-morphism["射"]:::definition
-    def-binary-operation["二項演算"]:::definition
-    def-monomorphism["単射"]:::definition
-    def-isomorphism["群同型"]:::definition
-    def-category["圏"]:::definition
     def-homomorphism["群準同型"]:::definition
-    def-function["関数"]:::definition
-    def-homeomorphism["同相写像"]:::definition
-    def-group["群"]:::definition
     def-composition["合成"]:::definition
+    def-group["群"]:::definition
+    def-homeomorphism["同相写像"]:::definition
+    def-function["関数"]:::definition
+    def-monomorphism["単射"]:::definition
+    def-binary-operation["二項演算"]:::definition
+    def-category["圏"]:::definition
+    def-isomorphism["群同型"]:::definition
+    def-morphism["射"]:::definition
+    def-isomorphism --&gt; def-homeomorphism
+    def-isomorphism --&gt; def-category
+    def-homeomorphism --&gt; def-isomorphism
+    def-monomorphism --&gt; def-isomorphism
+    def-isomorphism --&gt; def-function
+    def-isomorphism --&gt; def-morphism
+    def-isomorphism --&gt; def-composition
+    def-isomorphism --&gt; def-homomorphism
     def-isomorphism --&gt; def-binary-operation
     def-isomorphism --&gt; def-monomorphism
     def-isomorphism --&gt; def-group
-    def-isomorphism --&gt; def-homeomorphism
-    def-isomorphism --&gt; def-homomorphism
-    def-isomorphism --&gt; def-function
-    def-isomorphism --&gt; def-category
-    def-homeomorphism --&gt; def-isomorphism
-    def-isomorphism --&gt; def-morphism
-    def-isomorphism --&gt; def-composition
-    def-monomorphism --&gt; def-isomorphism
     class def-isomorphism current
-    click def-morphism "def-morphism.html" "射へ"
-    click def-binary-operation "def-binary-operation.html" "二項演算へ"
-    click def-monomorphism "def-monomorphism.html" "単射へ"
-    click def-category "def-category.html" "圏へ"
     click def-homomorphism "def-homomorphism.html" "群準同型へ"
-    click def-function "def-function.html" "関数へ"
-    click def-homeomorphism "def-homeomorphism.html" "同相写像へ"
-    click def-group "def-group.html" "群へ"
     click def-composition "def-composition.html" "合成へ"
+    click def-group "def-group.html" "群へ"
+    click def-homeomorphism "def-homeomorphism.html" "同相写像へ"
+    click def-function "def-function.html" "関数へ"
+    click def-monomorphism "def-monomorphism.html" "単射へ"
+    click def-binary-operation "def-binary-operation.html" "二項演算へ"
+    click def-category "def-category.html" "圏へ"
+    click def-morphism "def-morphism.html" "射へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -428,7 +428,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-isomorphism-1753717897" class="graph-visualization-container">
+<div id="graph-viz-def-isomorphism-1753719150" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -676,12 +676,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-isomorphism-1753717897', {
+    createForceGraph(data, 'graph-viz-def-isomorphism-1753719150', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-isomorphism-1753717897').innerHTML =
+    document.getElementById('graph-viz-def-isomorphism-1753719150').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

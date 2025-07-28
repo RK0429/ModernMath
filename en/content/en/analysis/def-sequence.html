@@ -369,20 +369,20 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-series["Series"]:::definition
-    def-cauchy-sequence["Cauchy Sequence"]:::definition
     def-function["Function"]:::definition
-    def-set["Set"]:::definition
+    def-cauchy-sequence["Cauchy Sequence"]:::definition
     def-sequence["Sequence"]:::definition
+    def-set["Set"]:::definition
     def-convergence["Convergence"]:::definition
-    def-convergence --&gt; def-sequence
-    def-cauchy-sequence --&gt; def-sequence
-    def-sequence --&gt; def-function
-    def-series --&gt; def-sequence
     def-sequence --&gt; def-set
+    def-series --&gt; def-sequence
+    def-sequence --&gt; def-function
+    def-cauchy-sequence --&gt; def-sequence
+    def-convergence --&gt; def-sequence
     class def-sequence current
     click def-series "def-series.html" "Go to Series"
-    click def-cauchy-sequence "def-cauchy-sequence.html" "Go to Cauchy Sequence"
     click def-function "def-function.html" "Go to Function"
+    click def-cauchy-sequence "def-cauchy-sequence.html" "Go to Cauchy Sequence"
     click def-set "def-set.html" "Go to Set"
     click def-convergence "def-convergence.html" "Go to Convergence"
 </pre>
@@ -395,7 +395,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-sequence-1753717779" class="graph-visualization-container">
+<div id="graph-viz-def-sequence-1753719029" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -643,12 +643,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-sequence-1753717779', {
+    createForceGraph(data, 'graph-viz-def-sequence-1753719029', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-sequence-1753717779').innerHTML =
+    document.getElementById('graph-viz-def-sequence-1753719029').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

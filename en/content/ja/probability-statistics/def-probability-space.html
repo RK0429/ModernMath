@@ -333,26 +333,26 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-expectation["期待値"]:::definition
-    def-probability-distribution["確率分布"]:::definition
     def-conditional-probability["条件付き確率"]:::definition
     def-independence["独立性"]:::definition
     def-random-variable["確率変数"]:::definition
-    def-probability-space["確率空間"]:::definition
     def-set["集合"]:::definition
-    def-independence --&gt; def-probability-space
-    def-probability-space --&gt; def-set
+    def-probability-space["確率空間"]:::definition
+    def-probability-distribution["確率分布"]:::definition
+    def-expectation["期待値"]:::definition
     def-probability-distribution --&gt; def-probability-space
-    def-expectation --&gt; def-probability-space
-    def-conditional-probability --&gt; def-probability-space
     def-random-variable --&gt; def-probability-space
+    def-independence --&gt; def-probability-space
+    def-conditional-probability --&gt; def-probability-space
+    def-expectation --&gt; def-probability-space
+    def-probability-space --&gt; def-set
     class def-probability-space current
-    click def-expectation "def-expectation.html" "期待値へ"
-    click def-probability-distribution "def-probability-distribution.html" "確率分布へ"
     click def-conditional-probability "def-conditional-probability.html" "条件付き確率へ"
     click def-independence "def-independence.html" "独立性へ"
     click def-random-variable "def-random-variable.html" "確率変数へ"
     click def-set "def-set.html" "集合へ"
+    click def-probability-distribution "def-probability-distribution.html" "確率分布へ"
+    click def-expectation "def-expectation.html" "期待値へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -363,7 +363,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-probability-space-1753717882" class="graph-visualization-container">
+<div id="graph-viz-def-probability-space-1753719134" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -611,12 +611,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-probability-space-1753717882', {
+    createForceGraph(data, 'graph-viz-def-probability-space-1753719134', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-probability-space-1753717882').innerHTML =
+    document.getElementById('graph-viz-def-probability-space-1753719134').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

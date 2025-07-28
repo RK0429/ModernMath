@@ -4,19 +4,19 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
-    def-ideal["Ideal"]:::definition
     def-field["Field"]:::definition
-    ex-finite-field["Finite Field"]:::example
-    def-quotient-group["Quotient Group"]:::definition
     def-quotient-ring["Quotient Ring"]:::definition
     def-group["Group"]:::definition
+    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
+    def-quotient-group["Quotient Group"]:::definition
     def-prime["Prime Number"]:::definition
+    def-ideal["Ideal"]:::definition
+    ex-finite-field["Finite Field"]:::example
     def-group --> ex-finite-field
+    ex-finite-field --> def-ideal
+    ex-finite-field --> ex-quotient-integers-mod-n
     ex-finite-field --> def-quotient-ring
     ex-finite-field --> def-prime
-    ex-finite-field --> ex-quotient-integers-mod-n
-    ex-finite-field --> def-quotient-group
     ex-finite-field --> def-field
-    ex-finite-field --> def-ideal
+    ex-finite-field --> def-quotient-group
     class ex-finite-field current
