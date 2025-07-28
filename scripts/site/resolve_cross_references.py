@@ -219,7 +219,7 @@ def pluralize_word(word: str) -> str:
     # Common irregular plurals
     irregular = {
         "matrix": "matrices",
-        "vertex": "vertices", 
+        "vertex": "vertices",
         "basis": "bases",
         "hypothesis": "hypotheses",
         "analysis": "analyses",
