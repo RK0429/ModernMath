@@ -329,41 +329,41 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-natural-transformation["定義：自然変換"]:::definition
     def-epimorphism["定義：全射"]:::definition
+    def-functor["定義: 関手"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-category["定義: 圏"]:::definition
+    def-natural-transformation["定義：自然変換"]:::definition
     def-monomorphism["定義：単射"]:::definition
-    ex-set-category["例：集合の圏"]:::example
     def-composition["定義: 合成"]:::definition
     def-morphism["定義: 射"]:::definition
-    def-set["定義: 集合"]:::definition
     thm-yoneda["定理：米田の補題"]:::theorem
-    def-category["定義: 圏"]:::definition
-    def-isomorphism["定義: 群同型"]:::definition
     def-graph["定義: グラフ"]:::definition
-    def-functor["定義: 関手"]:::definition
-    def-monomorphism --&gt; def-category
-    def-morphism --&gt; def-category
-    def-functor --&gt; def-category
-    def-composition --&gt; def-category
+    def-isomorphism["定義: 群同型"]:::definition
+    ex-set-category["例：集合の圏"]:::example
+    def-isomorphism --&gt; def-category
     thm-yoneda --&gt; def-category
-    ex-set-category --&gt; def-category
     def-category --&gt; def-set
+    def-category --&gt; def-graph
+    def-composition --&gt; def-category
     def-natural-transformation --&gt; def-category
     def-epimorphism --&gt; def-category
-    def-category --&gt; def-graph
-    def-isomorphism --&gt; def-category
+    def-morphism --&gt; def-category
+    def-functor --&gt; def-category
+    def-monomorphism --&gt; def-category
+    ex-set-category --&gt; def-category
     class def-category current
-    click def-natural-transformation "def-natural-transformation.html" "定義：自然変換へ"
     click def-epimorphism "def-epimorphism.html" "定義：全射へ"
+    click def-functor "def-functor.html" "関手の定義へ"
+    click def-set "def-set.html" "集合の定義へ"
+    click def-natural-transformation "def-natural-transformation.html" "定義：自然変換へ"
     click def-monomorphism "def-monomorphism.html" "定義：単射へ"
-    click ex-set-category "ex-set-category.html" "例：集合の圏へ"
     click def-composition "def-composition.html" "合成の定義へ"
     click def-morphism "def-morphism.html" "射の定義へ"
-    click def-set "def-set.html" "集合の定義へ"
     click thm-yoneda "thm-yoneda.html" "定理：米田の補題へ"
-    click def-isomorphism "def-isomorphism.html" "群同型の定義へ"
     click def-graph "def-graph.html" "グラフの定義へ"
-    click def-functor "def-functor.html" "関手の定義へ"
+    click def-isomorphism "def-isomorphism.html" "群同型の定義へ"
+    click ex-set-category "ex-set-category.html" "例：集合の圏へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -374,7 +374,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-category-1753703118" class="graph-visualization-container">
+<div id="graph-viz-def-category-1753715721" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -461,11 +461,43 @@ function createForceGraph(data, containerId, options = {}) {
       .on("drag", dragged)
       .on("end", dragended));
 
+  // Add click handler for navigation
+  node
+    .on("click", function(event, d) {
+      if (d.url) {
+        // Navigate to the article in the same tab
+        window.location.href = d.url;
+      }
+    })
+    .on("auxclick", function(event, d) {
+      // Middle-click or right-click to open in new tab
+      if (d.url && event.button === 1) {
+        // Middle mouse button
+        window.open(d.url, "_blank");
+      }
+    });
+
   node.append("circle")
     .attr("r", d => d.is_focus ? nodeRadius * 1.5 : nodeRadius)
     .attr("fill", d => nodeColors[d.type] || "#888")
     .attr("stroke", d => d.is_focus ? "#333" : "#fff")
-    .attr("stroke-width", d => d.is_focus ? 3 : 1.5);
+    .attr("stroke-width", d => d.is_focus ? 3 : 1.5)
+    .style("cursor", d => d.url ? "pointer" : "default");
+
+  // Add hover effects for clickable nodes
+  node.on("mouseover", function(event, d) {
+    if (d.url) {
+      d3.select(this).select("circle")
+        .style("stroke-width", 3)
+        .style("filter", "drop-shadow(0 0 3px rgba(0,0,0,0.3))");
+    }
+  }).on("mouseout", function(event, d) {
+    if (d.url) {
+      d3.select(this).select("circle")
+        .style("stroke-width", d.is_focus ? 3 : 1.5)
+        .style("filter", "none");
+    }
+  });
 
   node.append("text")
     .text(d => d.label || d.id)
@@ -476,7 +508,7 @@ function createForceGraph(data, containerId, options = {}) {
     .attr("font-family", "system-ui, sans-serif");
 
   node.append("title")
-    .text(d => `${d.type}: ${d.label || d.id}`);
+    .text(d => d.url ? `${d.type}: ${d.label || d.id}\n(Click to view article)` : `${d.type}: ${d.label || d.id}`);
 
   // Tick function
   simulation.on("tick", () => {
@@ -590,12 +622,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-category-1753703118', {
+    createForceGraph(data, 'graph-viz-def-category-1753715721', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-category-1753703118').innerHTML =
+    document.getElementById('graph-viz-def-category-1753715721').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

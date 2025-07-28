@@ -460,31 +460,31 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-power-set["Definition: Power Set"]:::definition
-    def-function["Definition: Function"]:::definition
-    def-relation["Definition: Relation"]:::definition
-    def-partial-order["Definition: Partial Order"]:::definition
     def-set["Definition: Set"]:::definition
-    def-subset["Definition: Subset"]:::definition
+    def-power-set["Definition: Power Set"]:::definition
+    def-relation["Definition: Relation"]:::definition
+    def-function["Definition: Function"]:::definition
     def-divisibility["Definition: Divisibility"]:::definition
+    def-partial-order["Definition: Partial Order"]:::definition
+    def-subset["Definition: Subset"]:::definition
     def-equivalence-relation["Definition: Equivalence Relation"]:::definition
+    def-partial-order --&gt; def-relation
+    def-power-set --&gt; def-partial-order
+    def-divisibility --&gt; def-partial-order
+    def-partial-order --&gt; def-equivalence-relation
     def-partial-order --&gt; def-power-set
     def-partial-order --&gt; def-subset
     def-partial-order --&gt; def-set
-    def-partial-order --&gt; def-relation
-    def-partial-order --&gt; def-equivalence-relation
     def-subset --&gt; def-partial-order
-    def-divisibility --&gt; def-partial-order
-    def-relation --&gt; def-partial-order
     def-partial-order --&gt; def-function
-    def-power-set --&gt; def-partial-order
+    def-relation --&gt; def-partial-order
     class def-partial-order current
-    click def-power-set "def-power-set.html" "Go to Power Set definition"
-    click def-function "def-function.html" "Go to Function definition"
-    click def-relation "def-relation.html" "Go to Relation definition"
     click def-set "def-set.html" "Go to Set definition"
-    click def-subset "def-subset.html" "Go to Subset definition"
+    click def-power-set "def-power-set.html" "Go to Power Set definition"
+    click def-relation "def-relation.html" "Go to Relation definition"
+    click def-function "def-function.html" "Go to Function definition"
     click def-divisibility "def-divisibility.html" "Go to Divisibility definition"
+    click def-subset "def-subset.html" "Go to Subset definition"
     click def-equivalence-relation "def-equivalence-relation.html" "Go to Equivalence Relation definition"
 </pre>
 </div>
@@ -496,7 +496,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-partial-order-1753703285" class="graph-visualization-container">
+<div id="graph-viz-def-partial-order-1753715891" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -583,11 +583,43 @@ function createForceGraph(data, containerId, options = {}) {
       .on("drag", dragged)
       .on("end", dragended));
 
+  // Add click handler for navigation
+  node
+    .on("click", function(event, d) {
+      if (d.url) {
+        // Navigate to the article in the same tab
+        window.location.href = d.url;
+      }
+    })
+    .on("auxclick", function(event, d) {
+      // Middle-click or right-click to open in new tab
+      if (d.url && event.button === 1) {
+        // Middle mouse button
+        window.open(d.url, "_blank");
+      }
+    });
+
   node.append("circle")
     .attr("r", d => d.is_focus ? nodeRadius * 1.5 : nodeRadius)
     .attr("fill", d => nodeColors[d.type] || "#888")
     .attr("stroke", d => d.is_focus ? "#333" : "#fff")
-    .attr("stroke-width", d => d.is_focus ? 3 : 1.5);
+    .attr("stroke-width", d => d.is_focus ? 3 : 1.5)
+    .style("cursor", d => d.url ? "pointer" : "default");
+
+  // Add hover effects for clickable nodes
+  node.on("mouseover", function(event, d) {
+    if (d.url) {
+      d3.select(this).select("circle")
+        .style("stroke-width", 3)
+        .style("filter", "drop-shadow(0 0 3px rgba(0,0,0,0.3))");
+    }
+  }).on("mouseout", function(event, d) {
+    if (d.url) {
+      d3.select(this).select("circle")
+        .style("stroke-width", d.is_focus ? 3 : 1.5)
+        .style("filter", "none");
+    }
+  });
 
   node.append("text")
     .text(d => d.label || d.id)
@@ -598,7 +630,7 @@ function createForceGraph(data, containerId, options = {}) {
     .attr("font-family", "system-ui, sans-serif");
 
   node.append("title")
-    .text(d => `${d.type}: ${d.label || d.id}`);
+    .text(d => d.url ? `${d.type}: ${d.label || d.id}\n(Click to view article)` : `${d.type}: ${d.label || d.id}`);
 
   // Tick function
   simulation.on("tick", () => {
@@ -712,12 +744,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-partial-order-1753703285', {
+    createForceGraph(data, 'graph-viz-def-partial-order-1753715891', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-partial-order-1753703285').innerHTML =
+    document.getElementById('graph-viz-def-partial-order-1753715891').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

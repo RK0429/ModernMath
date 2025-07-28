@@ -382,39 +382,39 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
-    def-order["Definition: Order"]:::definition
-    def-abelian-group["Definition: Abelian Group"]:::definition
     def-simple-group["Definition: Simple Group"]:::definition
+    def-order["Definition: Order"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
+    def-group["Definition: Group"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-center-of-group["Definition: Center of a Group"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     def-quotient-group["Definition: Quotient Group"]:::definition
-    def-simple-group --&gt; thm-lagrange
-    def-center-of-group --&gt; def-simple-group
-    def-simple-group --&gt; def-homomorphism
-    def-simple-group --&gt; def-normal-subgroup
+    def-simple-group --&gt; thm-first-isomorphism
     def-simple-group --&gt; def-cyclic-group
     def-simple-group --&gt; def-abelian-group
     def-simple-group --&gt; def-quotient-group
-    def-simple-group --&gt; def-order
     def-simple-group --&gt; def-group
-    def-simple-group --&gt; thm-first-isomorphism
-    def-simple-group --&gt; def-center-of-group
+    def-center-of-group --&gt; def-simple-group
     def-group --&gt; def-simple-group
+    def-simple-group --&gt; def-center-of-group
+    def-simple-group --&gt; def-homomorphism
+    def-simple-group --&gt; thm-lagrange
+    def-simple-group --&gt; def-order
+    def-simple-group --&gt; def-normal-subgroup
     class def-simple-group current
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
-    click def-group "def-group.html" "Go to Group definition"
-    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem theorem"
     click def-order "def-order.html" "Go to Order definition"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
+    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
+    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem theorem"
+    click def-group "def-group.html" "Go to Group definition"
     click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
     click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
     click def-center-of-group "def-center-of-group.html" "Go to Center of a Group definition"
-    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
     click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
 </pre>
 </div>
@@ -426,7 +426,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-simple-group-1753703257" class="graph-visualization-container">
+<div id="graph-viz-def-simple-group-1753715862" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -513,11 +513,43 @@ function createForceGraph(data, containerId, options = {}) {
       .on("drag", dragged)
       .on("end", dragended));
 
+  // Add click handler for navigation
+  node
+    .on("click", function(event, d) {
+      if (d.url) {
+        // Navigate to the article in the same tab
+        window.location.href = d.url;
+      }
+    })
+    .on("auxclick", function(event, d) {
+      // Middle-click or right-click to open in new tab
+      if (d.url && event.button === 1) {
+        // Middle mouse button
+        window.open(d.url, "_blank");
+      }
+    });
+
   node.append("circle")
     .attr("r", d => d.is_focus ? nodeRadius * 1.5 : nodeRadius)
     .attr("fill", d => nodeColors[d.type] || "#888")
     .attr("stroke", d => d.is_focus ? "#333" : "#fff")
-    .attr("stroke-width", d => d.is_focus ? 3 : 1.5);
+    .attr("stroke-width", d => d.is_focus ? 3 : 1.5)
+    .style("cursor", d => d.url ? "pointer" : "default");
+
+  // Add hover effects for clickable nodes
+  node.on("mouseover", function(event, d) {
+    if (d.url) {
+      d3.select(this).select("circle")
+        .style("stroke-width", 3)
+        .style("filter", "drop-shadow(0 0 3px rgba(0,0,0,0.3))");
+    }
+  }).on("mouseout", function(event, d) {
+    if (d.url) {
+      d3.select(this).select("circle")
+        .style("stroke-width", d.is_focus ? 3 : 1.5)
+        .style("filter", "none");
+    }
+  });
 
   node.append("text")
     .text(d => d.label || d.id)
@@ -528,7 +560,7 @@ function createForceGraph(data, containerId, options = {}) {
     .attr("font-family", "system-ui, sans-serif");
 
   node.append("title")
-    .text(d => `${d.type}: ${d.label || d.id}`);
+    .text(d => d.url ? `${d.type}: ${d.label || d.id}\n(Click to view article)` : `${d.type}: ${d.label || d.id}`);
 
   // Tick function
   simulation.on("tick", () => {
@@ -642,12 +674,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-simple-group-1753703257', {
+    createForceGraph(data, 'graph-viz-def-simple-group-1753715862', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-simple-group-1753703257').innerHTML =
+    document.getElementById('graph-viz-def-simple-group-1753715862').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

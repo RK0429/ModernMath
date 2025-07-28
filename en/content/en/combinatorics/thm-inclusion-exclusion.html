@@ -362,7 +362,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-inclusion-exclusion-1753703015" class="graph-visualization-container">
+<div id="graph-viz-thm-inclusion-exclusion-1753715615" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -449,11 +449,43 @@ function createForceGraph(data, containerId, options = {}) {
       .on("drag", dragged)
       .on("end", dragended));
 
+  // Add click handler for navigation
+  node
+    .on("click", function(event, d) {
+      if (d.url) {
+        // Navigate to the article in the same tab
+        window.location.href = d.url;
+      }
+    })
+    .on("auxclick", function(event, d) {
+      // Middle-click or right-click to open in new tab
+      if (d.url && event.button === 1) {
+        // Middle mouse button
+        window.open(d.url, "_blank");
+      }
+    });
+
   node.append("circle")
     .attr("r", d => d.is_focus ? nodeRadius * 1.5 : nodeRadius)
     .attr("fill", d => nodeColors[d.type] || "#888")
     .attr("stroke", d => d.is_focus ? "#333" : "#fff")
-    .attr("stroke-width", d => d.is_focus ? 3 : 1.5);
+    .attr("stroke-width", d => d.is_focus ? 3 : 1.5)
+    .style("cursor", d => d.url ? "pointer" : "default");
+
+  // Add hover effects for clickable nodes
+  node.on("mouseover", function(event, d) {
+    if (d.url) {
+      d3.select(this).select("circle")
+        .style("stroke-width", 3)
+        .style("filter", "drop-shadow(0 0 3px rgba(0,0,0,0.3))");
+    }
+  }).on("mouseout", function(event, d) {
+    if (d.url) {
+      d3.select(this).select("circle")
+        .style("stroke-width", d.is_focus ? 3 : 1.5)
+        .style("filter", "none");
+    }
+  });
 
   node.append("text")
     .text(d => d.label || d.id)
@@ -464,7 +496,7 @@ function createForceGraph(data, containerId, options = {}) {
     .attr("font-family", "system-ui, sans-serif");
 
   node.append("title")
-    .text(d => `${d.type}: ${d.label || d.id}`);
+    .text(d => d.url ? `${d.type}: ${d.label || d.id}\n(Click to view article)` : `${d.type}: ${d.label || d.id}`);
 
   // Tick function
   simulation.on("tick", () => {
@@ -578,12 +610,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-inclusion-exclusion-1753703015', {
+    createForceGraph(data, 'graph-viz-thm-inclusion-exclusion-1753715615', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-inclusion-exclusion-1753703015').innerHTML =
+    document.getElementById('graph-viz-thm-inclusion-exclusion-1753715615').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

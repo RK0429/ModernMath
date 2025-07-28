@@ -4,32 +4,32 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-fundamental-arithmetic["定理：算術の基本定理"]:::theorem
-    ex-principal-ideal["例: 整数における単項イデアル"]:::example
-    def-gcd["定義：最大公約数"]:::definition
-    def-congruence["定義: 合同（モジュラー演算）"]:::definition
-    def-prime["定義：素数"]:::definition
-    thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
     def-set["定義: 集合"]:::definition
     thm-fermat-little["定理: フェルマーの小定理"]:::theorem
-    def-lcm["定義：最小公倍数"]:::definition
-    thm-euler["定理：オイラーの定理"]:::theorem
-    def-divisibility["定義: 整除性"]:::definition
     thm-euclidean-algorithm["定理：ユークリッドのアルゴリズム"]:::theorem
-    thm-chinese-remainder --> def-gcd
-    ex-principal-ideal --> def-gcd
-    def-gcd --> def-set
+    def-gcd["定義：最大公約数"]:::definition
+    ex-principal-ideal["例: 整数における単項イデアル"]:::example
+    thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
+    def-divisibility["定義: 整除性"]:::definition
+    def-prime["定義：素数"]:::definition
+    thm-fundamental-arithmetic["定理：算術の基本定理"]:::theorem
+    def-congruence["定義: 合同（モジュラー演算）"]:::definition
+    thm-euler["定理：オイラーの定理"]:::theorem
+    def-lcm["定義：最小公倍数"]:::definition
+    thm-fermat-little --> def-gcd
+    def-congruence --> def-gcd
+    def-gcd --> def-prime
+    thm-fundamental-arithmetic --> def-gcd
+    thm-euclidean-algorithm --> def-gcd
+    def-divisibility --> def-gcd
+    def-prime --> def-gcd
     def-gcd --> thm-euclidean-algorithm
     def-gcd --> thm-euler
-    thm-fermat-little --> def-gcd
-    thm-euclidean-algorithm --> def-gcd
-    thm-fundamental-arithmetic --> def-gcd
-    def-congruence --> def-gcd
-    def-divisibility --> def-gcd
-    def-gcd --> def-divisibility
-    def-gcd --> def-lcm
-    def-gcd --> def-prime
-    def-prime --> def-gcd
+    thm-chinese-remainder --> def-gcd
     def-gcd --> def-congruence
+    def-gcd --> def-set
+    def-gcd --> def-divisibility
+    ex-principal-ideal --> def-gcd
+    def-gcd --> def-lcm
     def-lcm --> def-gcd
     class def-gcd current

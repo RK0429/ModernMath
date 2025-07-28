@@ -400,48 +400,48 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-group-action-examples["群作用の例"]:::example
+    def-simple-group["定義: 単純群"]:::definition
+    def-cyclic-group["定義: 巡回群"]:::definition
+    thm-lagrange["定理: ラグランジュの定理"]:::theorem
+    def-direct-product["定義：群の直積"]:::definition
+    ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
+    def-group-action["群の作用"]:::definition
+    def-identity-element["定義: 単位元"]:::definition
+    def-subgroup["定義：部分群"]:::definition
     def-group["群"]:::definition
     thm-sylow["シローの定理"]:::theorem
-    def-cyclic-group["定義: 巡回群"]:::definition
-    def-subgroup["定義：部分群"]:::definition
     def-order["定義：位数"]:::definition
-    def-identity-element["定義: 単位元"]:::definition
-    def-direct-product["定義：群の直積"]:::definition
-    def-simple-group["定義: 単純群"]:::definition
-    ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
-    ex-group-action-examples["群作用の例"]:::example
-    def-group-action["群の作用"]:::definition
-    thm-lagrange["定理: ラグランジュの定理"]:::theorem
     def-quotient-group["定義: 商群"]:::definition
-    def-order --&gt; thm-lagrange
-    thm-sylow --&gt; def-order
-    ex-quotient-integers-mod-n --&gt; def-order
-    def-cyclic-group --&gt; def-order
-    def-order --&gt; def-quotient-group
     def-order --&gt; def-cyclic-group
     ex-group-action-examples --&gt; def-order
-    def-subgroup --&gt; def-order
+    def-order --&gt; def-identity-element
+    thm-sylow --&gt; def-order
     def-order --&gt; def-group-action
+    def-order --&gt; thm-sylow
+    def-order --&gt; def-subgroup
+    def-direct-product --&gt; def-order
     def-simple-group --&gt; def-order
     thm-lagrange --&gt; def-order
-    def-order --&gt; def-subgroup
+    def-subgroup --&gt; def-order
+    ex-quotient-integers-mod-n --&gt; def-order
     def-quotient-group --&gt; def-order
-    def-order --&gt; def-identity-element
-    def-direct-product --&gt; def-order
-    def-order --&gt; thm-sylow
+    def-order --&gt; def-quotient-group
     def-order --&gt; def-group
+    def-cyclic-group --&gt; def-order
+    def-order --&gt; thm-lagrange
     class def-order current
+    click ex-group-action-examples "ex-group-action-examples.html" "群作用の例へ"
+    click def-simple-group "def-simple-group.html" "単純群の定義へ"
+    click def-cyclic-group "def-cyclic-group.html" "巡回群の定義へ"
+    click thm-lagrange "thm-lagrange.html" "ラグランジュの定理の定理へ"
+    click def-direct-product "def-direct-product.html" "定義：群の直積へ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余の例へ"
+    click def-group-action "def-group-action.html" "群の作用へ"
+    click def-identity-element "def-identity-element.html" "単位元の定義へ"
+    click def-subgroup "def-subgroup.html" "定義：部分群へ"
     click def-group "def-group.html" "群へ"
     click thm-sylow "thm-sylow.html" "シローの定理へ"
-    click def-cyclic-group "def-cyclic-group.html" "巡回群の定義へ"
-    click def-subgroup "def-subgroup.html" "定義：部分群へ"
-    click def-identity-element "def-identity-element.html" "単位元の定義へ"
-    click def-direct-product "def-direct-product.html" "定義：群の直積へ"
-    click def-simple-group "def-simple-group.html" "単純群の定義へ"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余の例へ"
-    click ex-group-action-examples "ex-group-action-examples.html" "群作用の例へ"
-    click def-group-action "def-group-action.html" "群の作用へ"
-    click thm-lagrange "thm-lagrange.html" "ラグランジュの定理の定理へ"
     click def-quotient-group "def-quotient-group.html" "商群の定義へ"
 </pre>
 </div>
@@ -453,7 +453,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-order-1753703055" class="graph-visualization-container">
+<div id="graph-viz-def-order-1753715656" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -540,11 +540,43 @@ function createForceGraph(data, containerId, options = {}) {
       .on("drag", dragged)
       .on("end", dragended));
 
+  // Add click handler for navigation
+  node
+    .on("click", function(event, d) {
+      if (d.url) {
+        // Navigate to the article in the same tab
+        window.location.href = d.url;
+      }
+    })
+    .on("auxclick", function(event, d) {
+      // Middle-click or right-click to open in new tab
+      if (d.url && event.button === 1) {
+        // Middle mouse button
+        window.open(d.url, "_blank");
+      }
+    });
+
   node.append("circle")
     .attr("r", d => d.is_focus ? nodeRadius * 1.5 : nodeRadius)
     .attr("fill", d => nodeColors[d.type] || "#888")
     .attr("stroke", d => d.is_focus ? "#333" : "#fff")
-    .attr("stroke-width", d => d.is_focus ? 3 : 1.5);
+    .attr("stroke-width", d => d.is_focus ? 3 : 1.5)
+    .style("cursor", d => d.url ? "pointer" : "default");
+
+  // Add hover effects for clickable nodes
+  node.on("mouseover", function(event, d) {
+    if (d.url) {
+      d3.select(this).select("circle")
+        .style("stroke-width", 3)
+        .style("filter", "drop-shadow(0 0 3px rgba(0,0,0,0.3))");
+    }
+  }).on("mouseout", function(event, d) {
+    if (d.url) {
+      d3.select(this).select("circle")
+        .style("stroke-width", d.is_focus ? 3 : 1.5)
+        .style("filter", "none");
+    }
+  });
 
   node.append("text")
     .text(d => d.label || d.id)
@@ -555,7 +587,7 @@ function createForceGraph(data, containerId, options = {}) {
     .attr("font-family", "system-ui, sans-serif");
 
   node.append("title")
-    .text(d => `${d.type}: ${d.label || d.id}`);
+    .text(d => d.url ? `${d.type}: ${d.label || d.id}\n(Click to view article)` : `${d.type}: ${d.label || d.id}`);
 
   // Tick function
   simulation.on("tick", () => {
@@ -669,12 +701,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-order-1753703055', {
+    createForceGraph(data, 'graph-viz-def-order-1753715656', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-order-1753703055').innerHTML =
+    document.getElementById('graph-viz-def-order-1753715656').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
