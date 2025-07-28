@@ -19,10 +19,10 @@ import yaml
 def detect_language(file_path: Path) -> Optional[str]:
     """
     Detect the language of a file based on its path.
-    
+
     Args:
         file_path: Path to the file
-    
+
     Returns:
         Language code ('en' or 'ja') or None if not detectable
     """
@@ -76,25 +76,25 @@ def load_node_index(content_dir: Path) -> Dict[str, Path]:
 def load_language_aware_node_index(content_dir: Path) -> Dict[str, Dict[str, Path]]:
     """
     Build language-aware indices of node IDs to their file paths.
-    
+
     Args:
         content_dir: Root content directory
-    
+
     Returns:
         Dictionary mapping language codes to node indices
     """
-    language_indices = {'en': {}, 'ja': {}}
-    
+    language_indices = {"en": {}, "ja": {}}
+
     for qmd_file in content_dir.rglob("*.qmd"):
         # Skip index files
         if qmd_file.name == "index.qmd":
             continue
-        
+
         # Detect language
         lang = detect_language(qmd_file)
         if lang not in language_indices:
             continue
-            
+
         try:
             # Read YAML front matter
             with open(qmd_file, "r", encoding="utf-8") as f:
@@ -113,7 +113,7 @@ def load_language_aware_node_index(content_dir: Path) -> Dict[str, Dict[str, Pat
 
         except (IOError, OSError, yaml.YAMLError) as e:
             print(f"Warning: Error reading {qmd_file}: {e}", file=sys.stderr)
-    
+
     return language_indices
 
 
@@ -240,7 +240,9 @@ def pluralize_word(word: str) -> str:
 
 
 def resolve_references_in_file(
-    file_path: Path, language_indices: Dict[str, Dict[str, Path]], dry_run: bool = False
+    file_path: Path,
+    language_indices: Dict[str, Dict[str, Path]],
+    dry_run: bool = False,
 ) -> int:
     """
     Resolve cross-references in a single file using language-aware indices.
@@ -258,10 +260,10 @@ def resolve_references_in_file(
     if file_lang not in language_indices:
         print(f"Warning: Cannot detect language for {file_path}")
         return 0
-    
+
     # Use the appropriate language index
     node_index = language_indices[file_lang]
-    
+
     with open(file_path, "r", encoding="utf-8") as f:
         original_content = f.read()
 
