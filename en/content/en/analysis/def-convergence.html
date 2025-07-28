@@ -372,22 +372,22 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-limit["Definition: Limit of a Sequence"]:::definition
-    def-convergence["Definition: Convergence"]:::definition
-    thm-taylor-series["Theorem: Taylor Series"]:::theorem
-    def-series["Definition: Series"]:::definition
     def-open-ball["Definition: Open Ball"]:::definition
+    def-convergence["Definition: Convergence"]:::definition
+    def-series["Definition: Series"]:::definition
+    thm-taylor-series["Theorem: Taylor Series"]:::theorem
     def-sequence["Definition: Sequence"]:::definition
-    thm-taylor-series --&gt; def-convergence
     def-convergence --&gt; def-limit
-    def-open-ball --&gt; def-convergence
     def-convergence --&gt; def-open-ball
-    def-convergence --&gt; def-sequence
+    def-open-ball --&gt; def-convergence
     def-series --&gt; def-convergence
+    thm-taylor-series --&gt; def-convergence
+    def-convergence --&gt; def-sequence
     class def-convergence current
     click def-limit "def-limit.html" "Go to Limit of a Sequence definition"
-    click thm-taylor-series "thm-taylor-series.html" "Go to Taylor Series theorem"
-    click def-series "def-series.html" "Go to Series definition"
     click def-open-ball "def-open-ball.html" "Go to Open Ball definition"
+    click def-series "def-series.html" "Go to Series definition"
+    click thm-taylor-series "thm-taylor-series.html" "Go to Taylor Series theorem"
     click def-sequence "def-sequence.html" "Go to Sequence definition"
 </pre>
 </div>
@@ -399,7 +399,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-convergence-1753672755" class="graph-visualization-container">
+<div id="graph-viz-def-convergence-1753675071" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -615,12 +615,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-convergence-1753672755', {
+    createForceGraph(data, 'graph-viz-def-convergence-1753675071', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-convergence-1753672755').innerHTML =
+    document.getElementById('graph-viz-def-convergence-1753675071').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

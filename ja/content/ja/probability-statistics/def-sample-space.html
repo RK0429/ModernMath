@@ -352,16 +352,16 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-event["定義: 事象"]:::definition
     def-sample-space["定義: 標本空間"]:::definition
     def-probability-distribution["定義: 確率分布"]:::definition
+    def-event["定義: 事象"]:::definition
     def-set["定義: 集合"]:::definition
     def-probability-distribution --&gt; def-sample-space
     def-event --&gt; def-sample-space
     def-sample-space --&gt; def-set
     class def-sample-space current
-    click def-event "def-event.html" "事象の定義へ"
     click def-probability-distribution "def-probability-distribution.html" "確率分布の定義へ"
+    click def-event "def-event.html" "事象の定義へ"
     click def-set "def-set.html" "集合の定義へ"
 </pre>
 </div>
@@ -373,7 +373,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-sample-space-1753672984" class="graph-visualization-container">
+<div id="graph-viz-def-sample-space-1753675305" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -589,12 +589,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-sample-space-1753672984', {
+    createForceGraph(data, 'graph-viz-def-sample-space-1753675305', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-sample-space-1753672984').innerHTML =
+    document.getElementById('graph-viz-def-sample-space-1753675305').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

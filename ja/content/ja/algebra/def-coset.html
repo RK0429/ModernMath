@@ -434,49 +434,49 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    ex-even-integers-subgroup["例: 偶数整数は部分群を成す"]:::example
+    ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
+    def-subgroup["定義：部分群"]:::definition
+    def-quotient-group["定義: 商群"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-coset["定義: 剰余類"]:::definition
+    thm-orbit-stabilizer["軌道・固定化部分群定理"]:::theorem
+    def-normal-subgroup["定義: 正規部分群"]:::definition
+    def-quotient-ring["定義: 剰余環"]:::definition
+    thm-lagrange["定理: ラグランジュの定理"]:::theorem
     def-abelian-group["定義: アーベル群"]:::definition
     def-group["群"]:::definition
     def-group-action["群の作用"]:::definition
-    def-binary-operation["定義: 二項演算"]:::definition
-    def-quotient-ring["定義: 剰余環"]:::definition
-    def-coset["定義: 剰余類"]:::definition
-    thm-orbit-stabilizer["軌道・固定化部分群定理"]:::theorem
-    def-quotient-group["定義: 商群"]:::definition
-    ex-even-integers-subgroup["例: 偶数整数は部分群を成す"]:::example
-    def-normal-subgroup["定義: 正規部分群"]:::definition
-    ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
-    thm-lagrange["定理: ラグランジュの定理"]:::theorem
-    def-subgroup["定義：部分群"]:::definition
-    def-coset --&gt; ex-even-integers-subgroup
-    def-coset --&gt; def-group
-    ex-even-integers-subgroup --&gt; def-coset
-    def-coset --&gt; def-normal-subgroup
-    def-coset --&gt; def-binary-operation
-    def-coset --&gt; def-subgroup
-    def-coset --&gt; ex-quotient-integers-mod-n
-    def-quotient-ring --&gt; def-coset
+    def-coset --&gt; def-quotient-group
     thm-lagrange --&gt; def-coset
+    def-coset --&gt; def-subgroup
+    def-coset --&gt; def-normal-subgroup
+    def-coset --&gt; ex-even-integers-subgroup
+    ex-even-integers-subgroup --&gt; def-coset
+    def-coset --&gt; def-binary-operation
+    def-coset --&gt; ex-quotient-integers-mod-n
     ex-quotient-integers-mod-n --&gt; def-coset
     def-normal-subgroup --&gt; def-coset
-    def-coset --&gt; thm-lagrange
+    def-coset --&gt; def-group
     def-quotient-group --&gt; def-coset
-    def-coset --&gt; def-quotient-group
-    def-coset --&gt; def-abelian-group
+    def-coset --&gt; thm-lagrange
     def-coset --&gt; def-group-action
+    def-quotient-ring --&gt; def-coset
     thm-orbit-stabilizer --&gt; def-coset
+    def-coset --&gt; def-abelian-group
     class def-coset current
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "偶数整数は部分群を成すの例へ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余の例へ"
+    click def-subgroup "def-subgroup.html" "定義：部分群へ"
+    click def-quotient-group "def-quotient-group.html" "商群の定義へ"
+    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
+    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "軌道・固定化部分群定理へ"
+    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群の定義へ"
+    click def-quotient-ring "def-quotient-ring.html" "剰余環の定義へ"
+    click thm-lagrange "thm-lagrange.html" "ラグランジュの定理の定理へ"
     click def-abelian-group "def-abelian-group.html" "アーベル群の定義へ"
     click def-group "def-group.html" "群へ"
     click def-group-action "def-group-action.html" "群の作用へ"
-    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
-    click def-quotient-ring "def-quotient-ring.html" "剰余環の定義へ"
-    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "軌道・固定化部分群定理へ"
-    click def-quotient-group "def-quotient-group.html" "商群の定義へ"
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "偶数整数は部分群を成すの例へ"
-    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群の定義へ"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余の例へ"
-    click thm-lagrange "thm-lagrange.html" "ラグランジュの定理の定理へ"
-    click def-subgroup "def-subgroup.html" "定義：部分群へ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -487,7 +487,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-coset-1753672914" class="graph-visualization-container">
+<div id="graph-viz-def-coset-1753675234" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -703,12 +703,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-coset-1753672914', {
+    createForceGraph(data, 'graph-viz-def-coset-1753675234', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-coset-1753672914').innerHTML =
+    document.getElementById('graph-viz-def-coset-1753675234').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

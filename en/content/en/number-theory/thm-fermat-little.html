@@ -371,23 +371,23 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-fermat-little["Theorem: Fermat's Little Theorem"]:::theorem
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
-    def-prime["Definition: Prime Number"]:::definition
     def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
     def-gcd["Definition: Greatest Common Divisor"]:::definition
+    def-prime["Definition: Prime Number"]:::definition
+    thm-euler["Theorem: Euler's Theorem"]:::theorem
     def-divisibility["Definition: Divisibility"]:::definition
-    thm-fermat-little --&gt; def-divisibility
-    thm-fermat-little --&gt; def-congruence
-    thm-fermat-little --&gt; def-prime
+    thm-fermat-little["Theorem: Fermat's Little Theorem"]:::theorem
     def-congruence --&gt; thm-fermat-little
-    thm-euler --&gt; thm-fermat-little
+    thm-fermat-little --&gt; def-divisibility
     thm-fermat-little --&gt; def-gcd
+    thm-fermat-little --&gt; def-congruence
+    thm-euler --&gt; thm-fermat-little
+    thm-fermat-little --&gt; def-prime
     class thm-fermat-little current
-    click thm-euler "thm-euler.html" "Go to Euler's Theorem theorem"
-    click def-prime "def-prime.html" "Go to Prime Number definition"
     click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic) definition"
     click def-gcd "def-gcd.html" "Go to Greatest Common Divisor definition"
+    click def-prime "def-prime.html" "Go to Prime Number definition"
+    click thm-euler "thm-euler.html" "Go to Euler's Theorem theorem"
     click def-divisibility "def-divisibility.html" "Go to Divisibility definition"
 </pre>
 </div>
@@ -399,7 +399,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-fermat-little-1753672791" class="graph-visualization-container">
+<div id="graph-viz-thm-fermat-little-1753675108" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -615,12 +615,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-fermat-little-1753672791', {
+    createForceGraph(data, 'graph-viz-thm-fermat-little-1753675108', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-fermat-little-1753672791').innerHTML =
+    document.getElementById('graph-viz-thm-fermat-little-1753675108').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

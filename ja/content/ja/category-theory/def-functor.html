@@ -335,28 +335,28 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-function["定義: 関数"]:::definition
-    def-graph["定義: グラフ"]:::definition
     thm-yoneda["定理：米田の補題"]:::theorem
-    def-epimorphism["定義：全射"]:::definition
     def-monomorphism["定義：単射"]:::definition
-    def-functor["定義: 関手"]:::definition
+    def-function["定義: 関数"]:::definition
     def-natural-transformation["定義：自然変換"]:::definition
+    def-graph["定義: グラフ"]:::definition
+    def-functor["定義: 関手"]:::definition
+    def-epimorphism["定義：全射"]:::definition
     def-category["定義: 圏"]:::definition
-    thm-yoneda --&gt; def-functor
-    def-functor --&gt; def-function
     def-functor --&gt; def-category
-    def-monomorphism --&gt; def-functor
-    def-natural-transformation --&gt; def-functor
-    def-functor --&gt; def-graph
     def-epimorphism --&gt; def-functor
+    def-natural-transformation --&gt; def-functor
+    def-functor --&gt; def-function
+    def-functor --&gt; def-graph
+    thm-yoneda --&gt; def-functor
+    def-monomorphism --&gt; def-functor
     class def-functor current
-    click def-function "def-function.html" "関数の定義へ"
-    click def-graph "def-graph.html" "グラフの定義へ"
     click thm-yoneda "thm-yoneda.html" "定理：米田の補題へ"
-    click def-epimorphism "def-epimorphism.html" "定義：全射へ"
     click def-monomorphism "def-monomorphism.html" "定義：単射へ"
+    click def-function "def-function.html" "関数の定義へ"
     click def-natural-transformation "def-natural-transformation.html" "定義：自然変換へ"
+    click def-graph "def-graph.html" "グラフの定義へ"
+    click def-epimorphism "def-epimorphism.html" "定義：全射へ"
     click def-category "def-category.html" "圏の定義へ"
 </pre>
 </div>
@@ -368,7 +368,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-functor-1753672954" class="graph-visualization-container">
+<div id="graph-viz-def-functor-1753675274" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -584,12 +584,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-functor-1753672954', {
+    createForceGraph(data, 'graph-viz-def-functor-1753675274', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-functor-1753672954').innerHTML =
+    document.getElementById('graph-viz-def-functor-1753675274').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

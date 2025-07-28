@@ -404,46 +404,46 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-fermat-little["定理: フェルマーの小定理"]:::theorem
-    thm-euler["定理：オイラーの定理"]:::theorem
-    thm-euclidean-algorithm["定理：ユークリッドのアルゴリズム"]:::theorem
-    def-equivalence-relation["定義：同値関係"]:::definition
-    thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
-    def-prime["定義：素数"]:::definition
-    ax-induction["公理: 数学的帰納法"]:::axiom
-    def-congruence["定義: 合同（モジュラー演算）"]:::definition
     ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
+    def-congruence["定義: 合同（モジュラー演算）"]:::definition
+    thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
     def-gcd["定義：最大公約数"]:::definition
-    def-divisibility["定義: 整除性"]:::definition
+    def-equivalence-relation["定義：同値関係"]:::definition
     def-set["定義: 集合"]:::definition
-    def-equivalence-relation --&gt; def-congruence
+    def-prime["定義：素数"]:::definition
+    thm-euclidean-algorithm["定理：ユークリッドのアルゴリズム"]:::theorem
+    thm-euler["定理：オイラーの定理"]:::theorem
+    def-divisibility["定義: 整除性"]:::definition
+    thm-fermat-little["定理: フェルマーの小定理"]:::theorem
+    ax-induction["公理: 数学的帰納法"]:::axiom
+    ex-quotient-integers-mod-n --&gt; def-congruence
+    def-congruence --&gt; thm-fermat-little
+    def-congruence --&gt; def-prime
+    def-congruence --&gt; thm-euclidean-algorithm
     def-congruence --&gt; ex-quotient-integers-mod-n
-    thm-euler --&gt; def-congruence
-    def-congruence --&gt; def-set
+    thm-chinese-remainder --&gt; def-congruence
+    thm-fermat-little --&gt; def-congruence
+    def-prime --&gt; def-congruence
     def-congruence --&gt; def-divisibility
+    def-congruence --&gt; thm-euler
+    def-congruence --&gt; def-set
+    def-congruence --&gt; ax-induction
     def-gcd --&gt; def-congruence
     def-congruence --&gt; def-gcd
-    def-congruence --&gt; def-prime
-    thm-fermat-little --&gt; def-congruence
-    def-congruence --&gt; thm-euler
-    def-congruence --&gt; thm-fermat-little
-    def-congruence --&gt; thm-euclidean-algorithm
-    thm-chinese-remainder --&gt; def-congruence
-    def-prime --&gt; def-congruence
-    def-congruence --&gt; ax-induction
-    ex-quotient-integers-mod-n --&gt; def-congruence
+    thm-euler --&gt; def-congruence
+    def-equivalence-relation --&gt; def-congruence
     class def-congruence current
-    click thm-fermat-little "thm-fermat-little.html" "フェルマーの小定理の定理へ"
-    click thm-euler "thm-euler.html" "定理：オイラーの定理へ"
-    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "定理：ユークリッドのアルゴリズムへ"
-    click def-equivalence-relation "def-equivalence-relation.html" "定義：同値関係へ"
-    click thm-chinese-remainder "thm-chinese-remainder.html" "中国剰余定理の定理へ"
-    click def-prime "def-prime.html" "定義：素数へ"
-    click ax-induction "ax-induction.html" "数学的帰納法の公理へ"
     click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余の例へ"
+    click thm-chinese-remainder "thm-chinese-remainder.html" "中国剰余定理の定理へ"
     click def-gcd "def-gcd.html" "定義：最大公約数へ"
-    click def-divisibility "def-divisibility.html" "整除性の定義へ"
+    click def-equivalence-relation "def-equivalence-relation.html" "定義：同値関係へ"
     click def-set "def-set.html" "集合の定義へ"
+    click def-prime "def-prime.html" "定義：素数へ"
+    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "定理：ユークリッドのアルゴリズムへ"
+    click thm-euler "thm-euler.html" "定理：オイラーの定理へ"
+    click def-divisibility "def-divisibility.html" "整除性の定義へ"
+    click thm-fermat-little "thm-fermat-little.html" "フェルマーの小定理の定理へ"
+    click ax-induction "ax-induction.html" "数学的帰納法の公理へ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -454,7 +454,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-congruence-1753672974" class="graph-visualization-container">
+<div id="graph-viz-def-congruence-1753675294" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -670,12 +670,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-congruence-1753672974', {
+    createForceGraph(data, 'graph-viz-def-congruence-1753675294', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-congruence-1753672974').innerHTML =
+    document.getElementById('graph-viz-def-congruence-1753675294').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

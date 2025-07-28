@@ -384,38 +384,38 @@ window.Quarto = {
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
     def-exact-sequence["Definition: Exact Sequence"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-simple-group["Definition: Simple Group"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-abelian-group["Definition: Abelian Group"]:::definition
+    def-image["Definition: Image"]:::definition
     def-group["Definition: Group"]:::definition
     def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-quotient-group["Definition: Quotient Group"]:::definition
     def-kernel["Definition: Kernel"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-simple-group["Definition: Simple Group"]:::definition
-    def-image["Definition: Image"]:::definition
-    thm-first-isomorphism --&gt; def-group
     thm-first-isomorphism --&gt; def-image
-    thm-first-isomorphism --&gt; def-kernel
-    thm-first-isomorphism --&gt; def-quotient-group
-    def-normal-subgroup --&gt; thm-first-isomorphism
-    def-quotient-group --&gt; thm-first-isomorphism
-    thm-first-isomorphism --&gt; def-homomorphism
-    thm-first-isomorphism --&gt; def-exact-sequence
-    thm-first-isomorphism --&gt; def-abelian-group
-    thm-first-isomorphism --&gt; def-normal-subgroup
-    def-simple-group --&gt; thm-first-isomorphism
-    def-homomorphism --&gt; thm-first-isomorphism
     def-kernel --&gt; thm-first-isomorphism
+    thm-first-isomorphism --&gt; def-quotient-group
+    thm-first-isomorphism --&gt; def-exact-sequence
+    thm-first-isomorphism --&gt; def-kernel
+    def-homomorphism --&gt; thm-first-isomorphism
+    def-quotient-group --&gt; thm-first-isomorphism
+    def-simple-group --&gt; thm-first-isomorphism
+    thm-first-isomorphism --&gt; def-abelian-group
+    thm-first-isomorphism --&gt; def-group
+    def-normal-subgroup --&gt; thm-first-isomorphism
+    thm-first-isomorphism --&gt; def-normal-subgroup
     def-abelian-group --&gt; thm-first-isomorphism
+    thm-first-isomorphism --&gt; def-homomorphism
     class thm-first-isomorphism current
     click def-exact-sequence "def-exact-sequence.html" "Go to Exact Sequence definition"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click def-simple-group "def-simple-group.html" "Go to Simple Group definition"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
     click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
+    click def-image "def-image.html" "Go to Image definition"
     click def-group "def-group.html" "Go to Group definition"
     click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
     click def-kernel "def-kernel.html" "Go to Kernel definition"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-    click def-simple-group "def-simple-group.html" "Go to Simple Group definition"
-    click def-image "def-image.html" "Go to Image definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -426,7 +426,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-first-isomorphism-1753672750" class="graph-visualization-container">
+<div id="graph-viz-thm-first-isomorphism-1753675066" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -642,12 +642,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-first-isomorphism-1753672750', {
+    createForceGraph(data, 'graph-viz-thm-first-isomorphism-1753675066', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-first-isomorphism-1753672750').innerHTML =
+    document.getElementById('graph-viz-thm-first-isomorphism-1753675066').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
