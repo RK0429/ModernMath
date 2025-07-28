@@ -335,6 +335,7 @@ network.add_node(
 **Implementation Details**:
 
 - D3.js nodes include `url` field in data: `{id: "def-group", url: "def-group.html"}`
+- Cross-domain URLs use relative paths: `../../domain/file.html` (e.g., `../../logic-set-theory/def-set.html`)
 - The Lua filter embeds JavaScript directly in HTML, overriding any external JS files
 - PyVis tooltips show language-appropriate link text
 - Visual feedback: pointer cursor, hover effects with drop shadow
