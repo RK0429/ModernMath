@@ -206,6 +206,12 @@ jobs:
         # List the contents to verify
         echo "Contents of _site/output/:"
         ls -la _site/output/ || echo "No output directory in _site"
+        echo "Contents of _site/output/d3-data/:"
+        ls -la _site/output/d3-data/ || echo "No d3-data directory"
+        echo "Contents of _site/output/d3-data/en/ (first 5 files):"
+        ls -la _site/output/d3-data/en/ | head -n 6 || echo "No en directory"
+        echo "Contents of _site/output/d3-data/ja/ (first 5 files):"
+        ls -la _site/output/d3-data/ja/ | head -n 6 || echo "No ja directory"
 
     # Step 7a: Fix Japanese index page
     - name: Fix Japanese index page
