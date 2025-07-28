@@ -263,6 +263,70 @@ graph TD
 - **Language detection**: Check `/en/` or `/ja/` in paths
 - **Placement**: End of articles (Dependency Graph, then Interactive)
 
+### Interactive Visualization Implementation
+
+**Libraries Used**:
+
+- **D3.js**: Force-directed graphs in Observable/Quarto (`assets/js/graph-viz.js`)
+- **PyVis**: Network visualizations with vis.js backend (`viz/pyvis_graphs.py`)
+
+**Making Nodes Clickable**:
+
+D3.js implementation:
+
+```javascript
+// Click event with visual feedback
+node
+  .on("click", function (event, d) {
+    if (d.url) {
+      window.location.href = d.url;
+    }
+  })
+  .on("auxclick", function (event, d) {
+    // Middle-click opens in new tab
+    if (d.url && event.button === 1) {
+      window.open(d.url, "_blank");
+    }
+  });
+
+// Visual indicators
+node.append("circle").style("cursor", (d) => (d.url ? "pointer" : "default"));
+
+// Hover effects for clickable nodes
+node.on("mouseover", function (event, d) {
+  if (d.url) {
+    d3.select(this)
+      .select("circle")
+      .style("stroke-width", 3)
+      .style("filter", "drop-shadow(0 0 3px rgba(0,0,0,0.3))");
+  }
+});
+```
+
+PyVis implementation with language support:
+
+```python
+# Language-aware clickable links
+has_article = any(node_id.startswith(prefix) for prefix in ["def-", "thm-", "ex-", "ax-", "prop-", "lem-", "cor-"])
+
+if has_article:
+    link_text = "記事を見る →" if lang == "ja" else "View Article →"
+    title_parts.append(f"<a href='{node_id}.html' target='_blank'>{link_text}</a>")
+
+network.add_node(
+    node_id,
+    title="<br>".join(title_parts)
+)
+```
+
+**Implementation Details**:
+
+- D3.js nodes include `url` field in data: `{id: "def-group", url: "def-group.html"}`
+- PyVis tooltips show language-appropriate link text
+- Visual feedback: pointer cursor, hover effects with drop shadow
+- Tooltips indicate clickability: "(Click to view article)"
+- Middle-click support for opening in new tabs (D3.js)
+
 ## Repository Management
 
 ### Going Public Checklist

@@ -18,11 +18,13 @@ BASE_NS = Namespace(BASE_URI)
 
 def get_node_info(g: Graph, node_uri: Any, lang: str = "en") -> Dict[str, Any]:
     """Get basic information about a node with language preference."""
+    node_id = str(node_uri).replace(BASE_URI, "")
     info = {
-        "id": str(node_uri).replace(BASE_URI, ""),
+        "id": node_id,
         "uri": str(node_uri),
         "label": None,
         "type": None,
+        "url": None,  # Add URL field
     }
 
     # Get label with language preference
@@ -48,6 +50,13 @@ def get_node_info(g: Graph, node_uri: Any, lang: str = "en") -> Dict[str, Any]:
         if str(node_type).startswith(str(MYMATH)):
             info["type"] = str(node_type).replace(str(MYMATH), "")
             break
+
+    # Generate article URL if the node ID matches expected patterns
+    if node_id and any(
+        node_id.startswith(prefix)
+        for prefix in ["def-", "thm-", "ex-", "ax-", "prop-", "lem-", "cor-"]
+    ):
+        info["url"] = f"{node_id}.html"
 
     return info
 

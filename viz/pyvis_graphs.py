@@ -202,6 +202,26 @@ def create_local_graph(
         # Determine if this is the central node
         is_central = node_uri == node_id
 
+        # Determine if this node should have a link
+        has_article = any(
+            node_uri.startswith(prefix)
+            for prefix in ["def-", "thm-", "ex-", "ax-", "prop-", "lem-", "cor-"]
+        )
+
+        # Create title with optional link
+        title_parts = [
+            f"<b>{node_info['label']}</b>",
+            f"Type: {node_info['type']}",
+            f"Domain: {node_info.get('domain', 'N/A')}",
+            f"ID: {node_uri}",
+        ]
+
+        if has_article:
+            # Add clickable link with appropriate language
+            link_text = "記事を見る →" if lang == "ja" else "View Article →"
+            title_parts.append("")  # Empty line for spacing
+            title_parts.append(f"<a href='{node_uri}.html' target='_blank'>{link_text}</a>")
+
         # Add node with styling
         network.add_node(
             node_uri,
@@ -211,10 +231,7 @@ def create_local_graph(
             size=30 if is_central else 20,
             borderWidth=3 if is_central else 1,
             borderWidthSelected=5,
-            title=(
-                f"<b>{node_info['label']}</b><br>Type: {node_info['type']}<br>"
-                f"Domain: {node_info.get('domain', 'N/A')}<br>ID: {node_uri}"
-            ),
+            title="<br>".join(title_parts),
         )
 
     # Add edges
@@ -350,13 +367,31 @@ def create_domain_overview(
     for node_id in domain_nodes:
         node_info = get_node_info(g, node_id, lang)
 
+        # Check if node has an article
+        has_article = any(
+            node_id.startswith(prefix)
+            for prefix in ["def-", "thm-", "ex-", "ax-", "prop-", "lem-", "cor-"]
+        )
+
+        # Build title with optional link
+        title_parts = [
+            f"<b>{node_info['label']}</b>",
+            f"Type: {node_info['type']}",
+            f"ID: {node_id}",
+        ]
+
+        if has_article:
+            link_text = "記事を見る →" if lang == "ja" else "View Article →"
+            title_parts.append("")  # Empty line
+            title_parts.append(f"<a href='{node_id}.html' target='_blank'>{link_text}</a>")
+
         net.add_node(
             node_id,
             label=node_info["label"],
             color=NODE_COLORS.get(node_info["type"], "#808080"),
             shape=NODE_SHAPES.get(node_info["type"], "ellipse"),
             size=25,
-            title=f"<b>{node_info['label']}</b><br>Type: {node_info['type']}<br>ID: {node_id}",
+            title="<br>".join(title_parts),
         )
 
         # Get edges within the domain
