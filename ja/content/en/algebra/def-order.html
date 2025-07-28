@@ -375,47 +375,47 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-order["Order"]:::definition
-    def-group["Group"]:::definition
-    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
+    ex-group-action-examples["Examples of Group Actions"]:::example
     def-group-action["Group Action"]:::definition
+    def-identity-element["Identity Element"]:::definition
+    def-simple-group["Simple Group"]:::definition
+    def-subgroup["Subgroup"]:::definition
+    thm-sylow["Sylow Theorems"]:::theorem
+    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
+    def-group["Group"]:::definition
+    def-direct-product["Direct Product of Groups"]:::definition
     def-quotient-group["Quotient Group"]:::definition
     def-cyclic-group["Cyclic Group"]:::definition
-    def-identity-element["Identity Element"]:::definition
-    ex-group-action-examples["Examples of Group Actions"]:::example
-    thm-sylow["Sylow Theorems"]:::theorem
-    def-subgroup["Subgroup"]:::definition
-    def-simple-group["Simple Group"]:::definition
-    def-direct-product["Direct Product of Groups"]:::definition
     thm-lagrange["Lagrange's Theorem"]:::theorem
-    thm-lagrange --&gt; def-order
-    def-simple-group --&gt; def-order
-    def-order --&gt; thm-sylow
-    def-order --&gt; def-cyclic-group
     def-order --&gt; def-group-action
-    ex-quotient-integers-mod-n --&gt; def-order
+    def-order --&gt; thm-sylow
     ex-group-action-examples --&gt; def-order
-    def-quotient-group --&gt; def-order
-    def-order --&gt; def-group
-    thm-sylow --&gt; def-order
-    def-cyclic-group --&gt; def-order
-    def-order --&gt; def-quotient-group
-    def-order --&gt; thm-lagrange
-    def-subgroup --&gt; def-order
-    def-direct-product --&gt; def-order
     def-order --&gt; def-subgroup
+    def-simple-group --&gt; def-order
+    thm-lagrange --&gt; def-order
+    thm-sylow --&gt; def-order
+    ex-quotient-integers-mod-n --&gt; def-order
+    def-order --&gt; thm-lagrange
+    def-direct-product --&gt; def-order
+    def-order --&gt; def-quotient-group
+    def-order --&gt; def-cyclic-group
     def-order --&gt; def-identity-element
+    def-order --&gt; def-group
+    def-quotient-group --&gt; def-order
+    def-subgroup --&gt; def-order
+    def-cyclic-group --&gt; def-order
     class def-order current
-    click def-group "def-group.html" "Go to Group"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n"
+    click ex-group-action-examples "ex-group-action-examples.html" "Go to Examples of Group Actions"
     click def-group-action "def-group-action.html" "Go to Group Action"
+    click def-identity-element "def-identity-element.html" "Go to Identity Element"
+    click def-simple-group "def-simple-group.html" "Go to Simple Group"
+    click def-subgroup "def-subgroup.html" "Go to Subgroup"
+    click thm-sylow "thm-sylow.html" "Go to Sylow Theorems"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n"
+    click def-group "def-group.html" "Go to Group"
+    click def-direct-product "def-direct-product.html" "Go to Direct Product of Groups"
     click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
     click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group"
-    click def-identity-element "def-identity-element.html" "Go to Identity Element"
-    click ex-group-action-examples "ex-group-action-examples.html" "Go to Examples of Group Actions"
-    click thm-sylow "thm-sylow.html" "Go to Sylow Theorems"
-    click def-subgroup "def-subgroup.html" "Go to Subgroup"
-    click def-simple-group "def-simple-group.html" "Go to Simple Group"
-    click def-direct-product "def-direct-product.html" "Go to Direct Product of Groups"
     click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem"
 </pre>
 </div>
@@ -427,7 +427,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-order-1753719267" class="graph-visualization-container">
+<div id="graph-viz-def-order-1753719368" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -675,12 +675,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-order-1753719267', {
+    createForceGraph(data, 'graph-viz-def-order-1753719368', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-order-1753719267').innerHTML =
+    document.getElementById('graph-viz-def-order-1753719368').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
