@@ -267,12 +267,12 @@ graph TD
 
 **Libraries Used**:
 
-- **D3.js**: Force-directed graphs in Observable/Quarto (`assets/js/graph-viz.js`)
+- **D3.js**: Force-directed graphs embedded via Quarto filter (`_extensions/graph-viz/graph-viz.lua`)
 - **PyVis**: Network visualizations with vis.js backend (`viz/pyvis_graphs.py`)
 
 **Making Nodes Clickable**:
 
-D3.js implementation:
+D3.js implementation (IMPORTANT: This code must be in `_extensions/graph-viz/graph-viz.lua`, NOT in external JS files):
 
 ```javascript
 // Click event with visual feedback
@@ -322,6 +322,7 @@ network.add_node(
 **Implementation Details**:
 
 - D3.js nodes include `url` field in data: `{id: "def-group", url: "def-group.html"}`
+- The Lua filter embeds JavaScript directly in HTML, overriding any external JS files
 - PyVis tooltips show language-appropriate link text
 - Visual feedback: pointer cursor, hover effects with drop shadow
 - Tooltips indicate clickability: "(Click to view article)"
