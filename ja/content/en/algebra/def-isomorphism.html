@@ -412,37 +412,37 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-morphism["Definition: Morphism"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    def-composition["Definition: Composition"]:::definition
+    def-category["Definition: Category"]:::definition
+    def-monomorphism["Definition: Monomorphism"]:::definition
+    def-homeomorphism["Definition: Homeomorphism"]:::definition
     def-group["Definition: Group"]:::definition
     def-function["Definition: Function"]:::definition
-    def-composition["Definition: Composition"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-category["Definition: Category"]:::definition
-    def-isomorphism["Definition: Isomorphism"]:::definition
-    def-homeomorphism["Definition: Homeomorphism"]:::definition
-    def-monomorphism["Definition: Monomorphism"]:::definition
-    def-morphism["Definition: Morphism"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-isomorphism --&gt; def-homomorphism
-    def-isomorphism --&gt; def-morphism
-    def-isomorphism --&gt; def-binary-operation
-    def-isomorphism --&gt; def-category
-    def-isomorphism --&gt; def-function
-    def-isomorphism --&gt; def-homeomorphism
-    def-isomorphism --&gt; def-monomorphism
     def-homeomorphism --&gt; def-isomorphism
+    def-isomorphism --&gt; def-monomorphism
+    def-isomorphism --&gt; def-function
+    def-isomorphism --&gt; def-morphism
     def-isomorphism --&gt; def-composition
     def-isomorphism --&gt; def-group
+    def-isomorphism --&gt; def-homomorphism
     def-monomorphism --&gt; def-isomorphism
+    def-isomorphism --&gt; def-category
+    def-isomorphism --&gt; def-binary-operation
+    def-isomorphism --&gt; def-homeomorphism
     class def-isomorphism current
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
+    click def-morphism "def-morphism.html" "Go to Morphism definition"
+    click def-composition "def-composition.html" "Go to Composition definition"
+    click def-category "def-category.html" "Go to Category definition"
+    click def-monomorphism "def-monomorphism.html" "Go to Monomorphism definition"
+    click def-homeomorphism "def-homeomorphism.html" "Go to Homeomorphism definition"
     click def-group "def-group.html" "Go to Group definition"
     click def-function "def-function.html" "Go to Function definition"
-    click def-composition "def-composition.html" "Go to Composition definition"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
-    click def-category "def-category.html" "Go to Category definition"
-    click def-homeomorphism "def-homeomorphism.html" "Go to Homeomorphism definition"
-    click def-monomorphism "def-monomorphism.html" "Go to Monomorphism definition"
-    click def-morphism "def-morphism.html" "Go to Morphism definition"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -453,7 +453,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-isomorphism-1753683596" class="graph-visualization-container">
+<div id="graph-viz-def-isomorphism-1753694085" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -669,12 +669,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-isomorphism-1753683596', {
+    createForceGraph(data, 'graph-viz-def-isomorphism-1753694085', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-isomorphism-1753683596').innerHTML =
+    document.getElementById('graph-viz-def-isomorphism-1753694085').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -4,18 +4,18 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-prime-ideal["定義: 素イデアル"]:::definition
-    def-ideal["定義: イデアル"]:::definition
-    def-integral-domain["定義：整域"]:::definition
     def-zero-divisor["定義: 零因子"]:::definition
     def-ring["定義：環"]:::definition
     def-field["定義: 体"]:::definition
+    def-integral-domain["定義：整域"]:::definition
+    def-prime-ideal["定義: 素イデアル"]:::definition
+    def-ideal["定義: イデアル"]:::definition
     def-identity-element["定義: 単位元"]:::definition
     def-zero-divisor --> def-identity-element
-    def-zero-divisor --> def-prime-ideal
-    def-zero-divisor --> def-field
-    def-zero-divisor --> def-ideal
-    def-integral-domain --> def-zero-divisor
-    def-zero-divisor --> def-integral-domain
     def-zero-divisor --> def-ring
+    def-zero-divisor --> def-integral-domain
+    def-integral-domain --> def-zero-divisor
+    def-zero-divisor --> def-field
+    def-zero-divisor --> def-prime-ideal
+    def-zero-divisor --> def-ideal
     class def-zero-divisor current
