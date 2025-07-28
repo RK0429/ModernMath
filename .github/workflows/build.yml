@@ -167,7 +167,13 @@ jobs:
       run: |
         poetry run python scripts/visualization/insert_diagrams.py
 
-    # Step 6i: Build search index
+    # Step 6i: Fix empty Mermaid blocks
+    - name: Fix empty Mermaid blocks
+      run: |
+        poetry run python scripts/validation/fix_empty_mermaid_blocks.py
+        echo "Empty Mermaid blocks fixed successfully!"
+
+    # Step 6j: Build search index
     - name: Build search index
       run: |
         poetry run python scripts/site/build_search_index.py

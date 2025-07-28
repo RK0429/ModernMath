@@ -40,6 +40,7 @@ poetry run python scripts/visualization/generate_mermaid.py
 poetry run python scripts/visualization/generate_pyvis.py
 poetry run python scripts/visualization/generate_d3_data.py
 poetry run python scripts/visualization/insert_diagrams.py
+poetry run python scripts/validation/fix_empty_mermaid_blocks.py  # Fix empty blocks
 ```
 
 ### Site Development
@@ -178,9 +179,10 @@ Keep base `_quarto.yml` minimal. Define complete navbars in language profiles. I
 Unified `build.yml` workflow:
 
 1. Builds both languages
-2. Fixes Japanese index
-3. Creates root index with language detection
-4. Deploys to `_site/en/` and `_site/ja/`
+2. Fixes empty Mermaid blocks
+3. Fixes Japanese index
+4. Creates root index with language detection
+5. Deploys to `_site/en/` and `_site/ja/`
 
 **Workflow Timeouts**:
 
@@ -250,7 +252,7 @@ graph TD
 ```
 ````
 
-```
+**Empty Block Issue**: Empty Mermaid blocks cause trust errors. Run `fix_empty_mermaid_blocks.py` to remove them.
 
 ### Visualization
 
@@ -284,4 +286,3 @@ graph TD
 - **API**: RESTful endpoints
 - **CI/CD**: Full automation
 - **Translation Management**: MD5 hash-based tracking
-```
