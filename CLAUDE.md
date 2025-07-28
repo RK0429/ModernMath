@@ -36,12 +36,13 @@ poetry run python scripts/site/generate_index_pages.py     # Generate indices
 
 ```bash
 # Run in order:
-poetry run python scripts/visualization/generate_mermaid.py
-poetry run python scripts/visualization/generate_pyvis.py
+poetry run python scripts/visualization/generate_mermaid.py         # Skips isolated nodes
+poetry run python scripts/visualization/generate_pyvis_with_fix.py  # Includes CSS fix
 poetry run python scripts/visualization/generate_d3_data.py
-poetry run python scripts/visualization/insert_diagrams.py
-poetry run python scripts/validation/fix_empty_mermaid_blocks.py  # Fix empty blocks
+poetry run python scripts/visualization/insert_diagrams.py          # Validates content
 ```
+
+**Note**: Scripts validate content before creation to prevent empty blocks.
 
 ### Site Development
 
@@ -178,11 +179,13 @@ Keep base `_quarto.yml` minimal. Define complete navbars in language profiles. I
 
 Unified `build.yml` workflow:
 
-1. Builds both languages
-2. Fixes empty Mermaid blocks
-3. Fixes Japanese index
-4. Creates root index with language detection
-5. Deploys to `_site/en/` and `_site/ja/`
+1. Code quality and validation checks
+2. Knowledge graph generation with optional Lean integration
+3. Visualization generation (prevents empty content)
+4. Multilingual site rendering (EN/JA)
+5. Post-processing and deployment to GitHub Pages
+
+**Build Indicators**: Uses ✓ for success and ⚠ for warnings in CI logs.
 
 **Workflow Timeouts**:
 
@@ -252,11 +255,11 @@ graph TD
 ```
 ````
 
-**Empty Block Issue**: Empty Mermaid blocks cause trust errors. Run `fix_empty_mermaid_blocks.py` to remove them.
+**Content Validation**: Visualization scripts validate content before creation, preventing empty or invalid blocks.
 
 ### Visualization
 
-- **Order**: build_graph → mermaid → pyvis → d3_data → insert_diagrams → quarto render
+- **Order**: build_graph → mermaid → pyvis_with_fix → d3_data → insert_diagrams → quarto render
 - **Language detection**: Check `/en/` or `/ja/` in paths
 - **Placement**: End of articles (Dependency Graph, then Interactive)
 

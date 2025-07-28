@@ -185,23 +185,49 @@ def generate_all_diagrams(ttl_file: Path, output_dir: Path) -> None:
 
     print(f"Generating Mermaid diagrams for {len(nodes)} nodes...")
 
+    # Track statistics
+    stats = {"total": len(nodes), "generated": 0, "skipped": 0}
+
     # Generate diagrams for each language
     for lang in ["en", "ja"]:
         lang_dir = output_dir / lang
         lang_dir.mkdir(parents=True, exist_ok=True)
+        lang_generated = 0
+        lang_skipped = 0
 
         # Generate diagram for each node
         for node_id in sorted(nodes):
+            # Get neighborhood to check if diagram will have content
+            local_nodes, local_edges = get_local_neighborhood(g, node_id)
+
+            # Skip if node has no connections (only itself in the neighborhood)
+            if len(local_nodes) <= 1 or len(local_edges) == 0:
+                lang_skipped += 1
+                continue
+
             diagram = generate_mermaid_diagram(g, node_id, lang=lang)
-            output_file = lang_dir / f"{node_id}.mermaid"
 
-            with open(output_file, "w", encoding="utf-8") as f:
-                f.write(diagram)
+            # Additional validation: check if diagram has meaningful content
+            # (not just class definitions and a single node)
+            if diagram and len(diagram.strip()) > 0:
+                output_file = lang_dir / f"{node_id}.mermaid"
+                with open(output_file, "w", encoding="utf-8") as f:
+                    f.write(diagram)
+                lang_generated += 1
+            else:
+                lang_skipped += 1
 
-        print(f"Generated {len(nodes)} Mermaid diagrams for {lang} in {lang_dir}")
+        print(
+            f"Generated {lang_generated} Mermaid diagrams for {lang} in {lang_dir} "
+            f"(skipped {lang_skipped} isolated nodes)"
+        )
+
+        if lang == "en":  # Count only once
+            stats["generated"] = lang_generated
+            stats["skipped"] = lang_skipped
 
     # Also generate a JSON index for easy lookup
-    index = {"nodes": list(sorted(nodes)), "generated": True}
+    index = {"nodes": list(sorted(nodes)), "generated": True, "stats": stats}
 
     with open(output_dir / "index.json", "w", encoding="utf-8") as f:
         json.dump(index, f, indent=2)
