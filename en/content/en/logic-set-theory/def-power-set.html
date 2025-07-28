@@ -347,20 +347,20 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-cardinality["Definition: Cardinality"]:::definition
-    def-set["Definition: Set"]:::definition
     thm-cantor["Theorem: Cantor's Theorem"]:::theorem
-    def-power-set["Definition: Power Set"]:::definition
+    def-set["Definition: Set"]:::definition
     def-partial-order["Definition: Partial Order"]:::definition
-    def-cardinality --&gt; def-power-set
-    def-partial-order --&gt; def-power-set
-    def-power-set --&gt; def-partial-order
-    def-power-set --&gt; def-cardinality
+    def-power-set["Definition: Power Set"]:::definition
     def-power-set --&gt; def-set
+    def-partial-order --&gt; def-power-set
+    def-cardinality --&gt; def-power-set
+    def-power-set --&gt; def-cardinality
+    def-power-set --&gt; def-partial-order
     thm-cantor --&gt; def-power-set
     class def-power-set current
     click def-cardinality "def-cardinality.html" "Go to Cardinality definition"
-    click def-set "def-set.html" "Go to Set definition"
     click thm-cantor "thm-cantor.html" "Go to Cantor's Theorem theorem"
+    click def-set "def-set.html" "Go to Set definition"
     click def-partial-order "def-partial-order.html" "Go to Partial Order definition"
 </pre>
 </div>
@@ -372,7 +372,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-power-set-1753678669" class="graph-visualization-container">
+<div id="graph-viz-def-power-set-1753681963" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -588,12 +588,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-power-set-1753678669', {
+    createForceGraph(data, 'graph-viz-def-power-set-1753681963', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-power-set-1753678669').innerHTML =
+    document.getElementById('graph-viz-def-power-set-1753681963').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

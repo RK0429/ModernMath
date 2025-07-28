@@ -5,21 +5,21 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-divisibility["定義: 整除性"]:::definition
-    thm-euclid-infinitude-primes["定理：素数の無限性に関するユークリッドの定理"]:::theorem
-    def-gcd["定義：最大公約数"]:::definition
+    def-lcm["定義：最小公倍数"]:::definition
     thm-euclidean-algorithm["定理：ユークリッドのアルゴリズム"]:::theorem
-    thm-fundamental-arithmetic["定理：算術の基本定理"]:::theorem
+    thm-euclid-infinitude-primes["定理：素数の無限性に関するユークリッドの定理"]:::theorem
     def-prime["定義：素数"]:::definition
     thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
-    def-lcm["定義：最小公倍数"]:::definition
-    thm-euclid-infinitude-primes --> thm-fundamental-arithmetic
+    def-gcd["定義：最大公約数"]:::definition
+    thm-fundamental-arithmetic["定理：算術の基本定理"]:::theorem
+    thm-fundamental-arithmetic --> thm-chinese-remainder
+    thm-fundamental-arithmetic --> def-gcd
+    def-lcm --> thm-fundamental-arithmetic
     thm-fundamental-arithmetic --> def-lcm
     thm-fundamental-arithmetic --> def-divisibility
-    thm-fundamental-arithmetic --> def-gcd
-    def-prime --> thm-fundamental-arithmetic
     thm-fundamental-arithmetic --> thm-euclidean-algorithm
+    thm-euclid-infinitude-primes --> thm-fundamental-arithmetic
     thm-fundamental-arithmetic --> thm-euclid-infinitude-primes
-    def-lcm --> thm-fundamental-arithmetic
-    thm-fundamental-arithmetic --> thm-chinese-remainder
+    def-prime --> thm-fundamental-arithmetic
     thm-fundamental-arithmetic --> def-prime
     class thm-fundamental-arithmetic current

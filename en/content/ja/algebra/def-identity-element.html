@@ -384,38 +384,38 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-group["群"]:::definition
     def-automorphism["定義: 自己同型"]:::definition
-    def-inverse-element["定義: 逆元"]:::definition
+    def-zero-divisor["定義: 零因子"]:::definition
     def-identity-element["定義: 単位元"]:::definition
     def-group-action["群の作用"]:::definition
-    def-order["定義：位数"]:::definition
-    def-group["群"]:::definition
     def-cyclic-group["定義: 巡回群"]:::definition
+    def-order["定義：位数"]:::definition
     def-binary-operation["定義: 二項演算"]:::definition
-    def-zero-divisor["定義: 零因子"]:::definition
-    def-monoid["定義: モノイド"]:::definition
     def-free-group["定義：自由群"]:::definition
-    def-identity-element --&gt; def-binary-operation
-    def-cyclic-group --&gt; def-identity-element
+    def-monoid["定義: モノイド"]:::definition
+    def-inverse-element["定義: 逆元"]:::definition
+    def-group-action --&gt; def-identity-element
     def-zero-divisor --&gt; def-identity-element
+    def-group --&gt; def-identity-element
+    def-identity-element --&gt; def-binary-operation
+    def-free-group --&gt; def-identity-element
+    def-order --&gt; def-identity-element
+    def-cyclic-group --&gt; def-identity-element
     def-monoid --&gt; def-identity-element
     def-automorphism --&gt; def-identity-element
     def-inverse-element --&gt; def-identity-element
-    def-order --&gt; def-identity-element
-    def-group-action --&gt; def-identity-element
-    def-group --&gt; def-identity-element
-    def-free-group --&gt; def-identity-element
     class def-identity-element current
-    click def-automorphism "def-automorphism.html" "自己同型の定義へ"
-    click def-inverse-element "def-inverse-element.html" "逆元の定義へ"
-    click def-group-action "def-group-action.html" "群の作用へ"
-    click def-order "def-order.html" "定義：位数へ"
     click def-group "def-group.html" "群へ"
-    click def-cyclic-group "def-cyclic-group.html" "巡回群の定義へ"
-    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
+    click def-automorphism "def-automorphism.html" "自己同型の定義へ"
     click def-zero-divisor "def-zero-divisor.html" "零因子の定義へ"
-    click def-monoid "def-monoid.html" "モノイドの定義へ"
+    click def-group-action "def-group-action.html" "群の作用へ"
+    click def-cyclic-group "def-cyclic-group.html" "巡回群の定義へ"
+    click def-order "def-order.html" "定義：位数へ"
+    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
     click def-free-group "def-free-group.html" "定義：自由群へ"
+    click def-monoid "def-monoid.html" "モノイドの定義へ"
+    click def-inverse-element "def-inverse-element.html" "逆元の定義へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -426,7 +426,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-identity-element-1753678715" class="graph-visualization-container">
+<div id="graph-viz-def-identity-element-1753682007" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -642,12 +642,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-identity-element-1753678715', {
+    createForceGraph(data, 'graph-viz-def-identity-element-1753682007', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-identity-element-1753678715').innerHTML =
+    document.getElementById('graph-viz-def-identity-element-1753682007').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

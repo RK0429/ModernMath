@@ -4,30 +4,30 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-first-isomorphism["定理: 第一同型定理"]:::theorem
-    def-quotient-group["定義: 商群"]:::definition
-    def-quotient-ring["定義: 剰余環"]:::definition
-    def-vector-space["定義: ベクトル空間"]:::definition
-    def-homomorphism["定義: 群準同型"]:::definition
-    def-kernel["定義: 核"]:::definition
-    def-isomorphism["定義: 群同型"]:::definition
-    thm-rank-nullity["定理: 階数・退化次数定理"]:::theorem
     def-ideal["定義: イデアル"]:::definition
     def-linear-transformation["定義: 線形変換"]:::definition
+    thm-rank-nullity["定理: 階数・退化次数定理"]:::theorem
+    def-quotient-group["定義: 商群"]:::definition
+    def-kernel["定義: 核"]:::definition
     def-normal-subgroup["定義: 正規部分群"]:::definition
-    def-exact-sequence["定義: 完全列"]:::definition
     def-ring-homomorphism["定義: 環準同型"]:::definition
-    thm-first-isomorphism --> def-kernel
-    def-exact-sequence --> def-kernel
-    def-kernel --> def-quotient-group
-    def-kernel --> def-linear-transformation
+    def-quotient-ring["定義: 剰余環"]:::definition
+    thm-first-isomorphism["定理: 第一同型定理"]:::theorem
+    def-homomorphism["定義: 群準同型"]:::definition
+    def-exact-sequence["定義: 完全列"]:::definition
+    def-vector-space["定義: ベクトル空間"]:::definition
+    def-isomorphism["定義: 群同型"]:::definition
     def-kernel --> def-isomorphism
-    def-kernel --> def-quotient-ring
-    def-kernel --> def-homomorphism
+    def-kernel --> def-quotient-group
+    def-kernel --> def-ring-homomorphism
     thm-rank-nullity --> def-kernel
-    def-kernel --> thm-first-isomorphism
+    def-exact-sequence --> def-kernel
+    def-kernel --> def-linear-transformation
+    def-kernel --> def-homomorphism
+    def-kernel --> def-quotient-ring
+    thm-first-isomorphism --> def-kernel
     def-kernel --> def-vector-space
     def-kernel --> def-normal-subgroup
     def-kernel --> def-ideal
-    def-kernel --> def-ring-homomorphism
+    def-kernel --> thm-first-isomorphism
     class def-kernel current
