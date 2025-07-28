@@ -174,7 +174,7 @@ def generate_mermaid_diagram(g: Graph, node_id: str, lang: str = "en", max_nodes
 def generate_all_diagrams(ttl_file: Path, output_dir: Path) -> None:
     """Generate Mermaid diagrams for all nodes."""
     g = load_knowledge_graph(ttl_file)
-    output_dir.mkdir(exist_ok=True)
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     # Get all nodes
     nodes = set()
@@ -188,7 +188,7 @@ def generate_all_diagrams(ttl_file: Path, output_dir: Path) -> None:
     # Generate diagrams for each language
     for lang in ["en", "ja"]:
         lang_dir = output_dir / lang
-        lang_dir.mkdir(exist_ok=True)
+        lang_dir.mkdir(parents=True, exist_ok=True)
 
         # Generate diagram for each node
         for node_id in sorted(nodes):
