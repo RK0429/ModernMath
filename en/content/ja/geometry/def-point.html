@@ -323,18 +323,18 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-angle["定義: 角"]:::definition
-    def-triangle["定義: 三角形"]:::definition
     def-line["定義: 直線"]:::definition
+    def-triangle["定義: 三角形"]:::definition
     def-point["定義: 点"]:::definition
     def-parallel["定義: 平行線"]:::definition
     def-angle --&gt; def-point
-    def-triangle --&gt; def-point
-    def-parallel --&gt; def-point
     def-line --&gt; def-point
+    def-parallel --&gt; def-point
+    def-triangle --&gt; def-point
     class def-point current
     click def-angle "def-angle.html" "角の定義へ"
-    click def-triangle "def-triangle.html" "三角形の定義へ"
     click def-line "def-line.html" "直線の定義へ"
+    click def-triangle "def-triangle.html" "三角形の定義へ"
     click def-parallel "def-parallel.html" "平行線の定義へ"
 </pre>
 </div>
@@ -346,7 +346,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-point-1753675173" class="graph-visualization-container">
+<div id="graph-viz-def-point-1753676672" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -562,12 +562,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-point-1753675173', {
+    createForceGraph(data, 'graph-viz-def-point-1753676672', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-point-1753675173').innerHTML =
+    document.getElementById('graph-viz-def-point-1753676672').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

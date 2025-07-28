@@ -354,17 +354,17 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-set-category["例：集合の圏"]:::example
-    def-morphism["定義: 射"]:::definition
-    def-set["定義: 集合"]:::definition
     def-category["定義: 圏"]:::definition
-    ex-set-category --&gt; def-morphism
-    ex-set-category --&gt; def-category
+    def-morphism["定義: 射"]:::definition
+    ex-set-category["例：集合の圏"]:::example
+    def-set["定義: 集合"]:::definition
     ex-set-category --&gt; def-set
+    ex-set-category --&gt; def-category
+    ex-set-category --&gt; def-morphism
     class ex-set-category current
+    click def-category "def-category.html" "圏の定義へ"
     click def-morphism "def-morphism.html" "射の定義へ"
     click def-set "def-set.html" "集合の定義へ"
-    click def-category "def-category.html" "圏の定義へ"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -375,7 +375,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-set-category-1753675276" class="graph-visualization-container">
+<div id="graph-viz-ex-set-category-1753676774" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -591,12 +591,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-set-category-1753675276', {
+    createForceGraph(data, 'graph-viz-ex-set-category-1753676774', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-set-category-1753675276').innerHTML =
+    document.getElementById('graph-viz-ex-set-category-1753676774').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

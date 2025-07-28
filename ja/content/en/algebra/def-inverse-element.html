@@ -393,22 +393,22 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-monoid["Definition: Monoid"]:::definition
     def-binary-operation["Definition: Binary Operation"]:::definition
     def-identity-element["Definition: Identity Element"]:::definition
-    def-inverse-element["Definition: Inverse Element"]:::definition
     def-group["Definition: Group"]:::definition
-    def-monoid["Definition: Monoid"]:::definition
     def-free-group["Definition: Free Group"]:::definition
+    def-inverse-element["Definition: Inverse Element"]:::definition
     def-free-group --&gt; def-inverse-element
+    def-group --&gt; def-inverse-element
     def-inverse-element --&gt; def-monoid
     def-inverse-element --&gt; def-identity-element
-    def-group --&gt; def-inverse-element
     def-inverse-element --&gt; def-binary-operation
     class def-inverse-element current
+    click def-monoid "def-monoid.html" "Go to Monoid definition"
     click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
     click def-identity-element "def-identity-element.html" "Go to Identity Element definition"
     click def-group "def-group.html" "Go to Group definition"
-    click def-monoid "def-monoid.html" "Go to Monoid definition"
     click def-free-group "def-free-group.html" "Go to Free Group definition"
 </pre>
 </div>
@@ -420,7 +420,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-inverse-element-1753675341" class="graph-visualization-container">
+<div id="graph-viz-def-inverse-element-1753676839" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -636,12 +636,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-inverse-element-1753675341', {
+    createForceGraph(data, 'graph-viz-def-inverse-element-1753676839', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-inverse-element-1753675341').innerHTML =
+    document.getElementById('graph-viz-def-inverse-element-1753676839').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
