@@ -423,13 +423,13 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-hilbert-space["定義: ヒルベルト空間"]:::definition
     def-banach-space["定義: バナッハ空間"]:::definition
+    def-hilbert-space["定義: ヒルベルト空間"]:::definition
     def-complete-metric-space["定義: 完備距離空間"]:::definition
     def-normed-vector-space["定義：ノルム空間"]:::definition
+    def-banach-space --&gt; def-complete-metric-space
     def-hilbert-space --&gt; def-banach-space
     def-banach-space --&gt; def-normed-vector-space
-    def-banach-space --&gt; def-complete-metric-space
     class def-banach-space current
     click def-hilbert-space "def-hilbert-space.html" "ヒルベルト空間の定義へ"
     click def-complete-metric-space "def-complete-metric-space.html" "完備距離空間の定義へ"
@@ -444,7 +444,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-banach-space-1753671149" class="graph-visualization-container">
+<div id="graph-viz-def-banach-space-1753672738" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -660,12 +660,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-banach-space-1753671149', {
+    createForceGraph(data, 'graph-viz-def-banach-space-1753672738', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-banach-space-1753671149').innerHTML =
+    document.getElementById('graph-viz-def-banach-space-1753672738').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

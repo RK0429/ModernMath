@@ -342,17 +342,17 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-group-action["Group Action"]:::definition
     def-coset["Definition: Coset"]:::definition
-    thm-orbit-stabilizer --&gt; thm-lagrange
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
+    def-group-action["Group Action"]:::definition
     thm-orbit-stabilizer --&gt; def-coset
+    thm-orbit-stabilizer --&gt; thm-lagrange
     thm-orbit-stabilizer --&gt; def-group-action
     class thm-orbit-stabilizer current
+    click def-coset "def-coset.html" "Go to Coset definition"
     click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
     click def-group-action "def-group-action.html" "Go to Group Action"
-    click def-coset "def-coset.html" "Go to Coset definition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -363,7 +363,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-orbit-stabilizer-1753671217" class="graph-visualization-container">
+<div id="graph-viz-thm-orbit-stabilizer-1753672805" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -579,12 +579,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-orbit-stabilizer-1753671217', {
+    createForceGraph(data, 'graph-viz-thm-orbit-stabilizer-1753672805', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-orbit-stabilizer-1753671217').innerHTML =
+    document.getElementById('graph-viz-thm-orbit-stabilizer-1753672805').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
