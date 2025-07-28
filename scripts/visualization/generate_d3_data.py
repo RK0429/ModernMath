@@ -60,12 +60,13 @@ def _generate_node_url(node_id: str, domain: Optional[str]) -> Optional[str]:
     """Generate article URL for a node if applicable."""
     prefixes = ["def-", "thm-", "ex-", "ax-", "prop-", "lem-", "cor-"]
     if node_id and any(node_id.startswith(prefix) for prefix in prefixes):
-        # For cross-domain navigation, we need to go up to the language directory
-        # From: /ModernMath/en/content/en/algebra/def-vector-space.html
-        # To:   /ModernMath/en/content/en/logic-set-theory/def-set.html
-        # Path: ../../logic-set-theory/def-set.html
+        # For cross-domain navigation within the same language
+        # From: /ModernMath/ja/content/ja/algebra/def-abelian-group.html
+        # To:   /ModernMath/ja/content/ja/logic-set-theory/def-set.html
+        # Path: ../logic-set-theory/def-set.html
+        # (go up one level from algebra to ja, then into logic-set-theory)
         if domain:
-            return f"../../{domain}/{node_id}.html"
+            return f"../{domain}/{node_id}.html"
         # For nodes without domain (shouldn't happen), stay in current directory
         return f"{node_id}.html"
     return None
