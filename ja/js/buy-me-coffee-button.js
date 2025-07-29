@@ -20,7 +20,7 @@
     img.src = "https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png";
     img.alt = "Buy Me a Coffee";
     img.style.cssText =
-      "height: 16px !important; width: auto !important; margin: 0;";
+      "height: 36px !important; width: auto !important; margin: 0;";
 
     button.appendChild(img);
 

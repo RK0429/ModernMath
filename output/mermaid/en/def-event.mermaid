@@ -5,14 +5,14 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-bayes["Bayes' Theorem"]:::theorem
-    def-subset["Subset"]:::definition
-    def-conditional-probability["Conditional Probability"]:::definition
     def-sample-space["Sample Space"]:::definition
-    def-independence["Independence"]:::definition
+    def-subset["Subset"]:::definition
     def-event["Event"]:::definition
-    thm-bayes --> def-event
-    def-conditional-probability --> def-event
+    def-conditional-probability["Conditional Probability"]:::definition
+    def-independence["Independence"]:::definition
+    def-event --> def-subset
     def-event --> def-sample-space
     def-independence --> def-event
-    def-event --> def-subset
+    def-conditional-probability --> def-event
+    thm-bayes --> def-event
     class def-event current

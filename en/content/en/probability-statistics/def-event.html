@@ -354,21 +354,21 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-bayes["Bayes' Theorem"]:::theorem
-    def-subset["Subset"]:::definition
-    def-conditional-probability["Conditional Probability"]:::definition
     def-sample-space["Sample Space"]:::definition
-    def-independence["Independence"]:::definition
+    def-subset["Subset"]:::definition
     def-event["Event"]:::definition
-    thm-bayes --&gt; def-event
-    def-conditional-probability --&gt; def-event
+    def-conditional-probability["Conditional Probability"]:::definition
+    def-independence["Independence"]:::definition
+    def-event --&gt; def-subset
     def-event --&gt; def-sample-space
     def-independence --&gt; def-event
-    def-event --&gt; def-subset
+    def-conditional-probability --&gt; def-event
+    thm-bayes --&gt; def-event
     class def-event current
     click thm-bayes "thm-bayes.html" "Go to Bayes' Theorem"
+    click def-sample-space "def-sample-space.html" "Go to Sample Space"
     click def-subset "def-subset.html" "Go to Subset"
     click def-conditional-probability "def-conditional-probability.html" "Go to Conditional Probability"
-    click def-sample-space "def-sample-space.html" "Go to Sample Space"
     click def-independence "def-independence.html" "Go to Independence"
 </pre>
 </div>
@@ -380,7 +380,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-event-1753768721" class="graph-visualization-container">
+<div id="graph-viz-def-event-1753775130" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -628,12 +628,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-event-1753768721', {
+    createForceGraph(data, 'graph-viz-def-event-1753775130', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-event-1753768721').innerHTML =
+    document.getElementById('graph-viz-def-event-1753775130').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
