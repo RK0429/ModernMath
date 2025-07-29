@@ -224,6 +224,12 @@ jobs:
         poetry run python scripts/translation/fix_japanese_index.py
         echo "Japanese index page fixed"
 
+    - name: Inject Buy Me a Coffee button
+      run: |
+        echo "Injecting Buy Me a Coffee button into all pages..."
+        poetry run python scripts/site/inject_buy_me_coffee.py
+        echo "Buy Me a Coffee button injection completed"
+
     - name: Copy shared resources to site root
       run: |
         echo "Copying shared resources to root..."
