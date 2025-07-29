@@ -5,23 +5,23 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-subring["Subring"]:::definition
-    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
-    def-ring["Ring"]:::definition
-    def-field["Field"]:::definition
-    def-eigenvalue-eigenvector["Eigenvalue and Eigenvector"]:::definition
-    thm-intermediate-value["Intermediate Value Theorem"]:::theorem
-    def-binary-operation["Binary Operation"]:::definition
-    def-integral-domain["Integral Domain"]:::definition
-    ex-polynomial-continuity["Polynomial Continuity"]:::example
     def-polynomial-ring["Polynomial Ring"]:::definition
-    thm-intermediate-value --> def-polynomial-ring
-    def-eigenvalue-eigenvector --> def-polynomial-ring
-    def-polynomial-ring --> def-ring
-    def-polynomial-ring --> def-binary-operation
+    def-ring["Ring"]:::definition
+    ex-polynomial-continuity["Polynomial Continuity"]:::example
+    def-eigenvalue-eigenvector["Eigenvalue and Eigenvector"]:::definition
+    def-binary-operation["Binary Operation"]:::definition
+    def-field["Field"]:::definition
+    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
+    thm-intermediate-value["Intermediate Value Theorem"]:::theorem
+    def-integral-domain["Integral Domain"]:::definition
+    def-subring --> def-polynomial-ring
+    ex-polynomial-continuity --> def-polynomial-ring
     ex-quotient-integers-mod-n --> def-polynomial-ring
     def-polynomial-ring --> def-field
-    def-polynomial-ring --> def-integral-domain
-    ex-polynomial-continuity --> def-polynomial-ring
+    def-polynomial-ring --> def-binary-operation
+    def-polynomial-ring --> def-ring
+    thm-intermediate-value --> def-polynomial-ring
     def-integral-domain --> def-polynomial-ring
-    def-subring --> def-polynomial-ring
+    def-polynomial-ring --> def-integral-domain
+    def-eigenvalue-eigenvector --> def-polynomial-ring
     class def-polynomial-ring current

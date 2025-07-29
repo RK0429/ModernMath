@@ -347,46 +347,46 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-gcd["最大公約数"]:::definition
     def-congruence["合同（モジュラー演算）"]:::definition
-    thm-fermat-little["フェルマーの小定理"]:::theorem
-    ex-finite-field["有限体"]:::example
-    def-prime["素数"]:::definition
-    thm-euclid-infinitude-primes["素数の無限性に関するユークリッドの定理"]:::theorem
+    thm-fundamental-arithmetic["算術の基本定理"]:::theorem
     thm-field-characteristic["体の標数"]:::theorem
-    def-lcm["最小公倍数"]:::definition
+    def-gcd["最大公約数"]:::definition
     thm-euler["オイラーの定理"]:::theorem
     def-divisibility["整除性"]:::definition
     thm-chinese-remainder["中国剰余定理"]:::theorem
-    thm-fundamental-arithmetic["算術の基本定理"]:::theorem
-    thm-fundamental-arithmetic --&gt; def-prime
+    ex-finite-field["有限体"]:::example
+    def-prime["素数"]:::definition
+    def-lcm["最小公倍数"]:::definition
+    thm-euclid-infinitude-primes["素数の無限性に関するユークリッドの定理"]:::theorem
+    thm-fermat-little["フェルマーの小定理"]:::theorem
     def-prime --&gt; thm-euclid-infinitude-primes
-    thm-field-characteristic --&gt; def-prime
-    def-gcd --&gt; def-prime
-    ex-finite-field --&gt; def-prime
-    def-prime --&gt; def-congruence
-    def-divisibility --&gt; def-prime
-    thm-euclid-infinitude-primes --&gt; def-prime
-    def-lcm --&gt; def-prime
-    def-congruence --&gt; def-prime
-    def-prime --&gt; thm-fundamental-arithmetic
-    def-prime --&gt; def-divisibility
     thm-fermat-little --&gt; def-prime
+    def-lcm --&gt; def-prime
+    thm-field-characteristic --&gt; def-prime
+    def-prime --&gt; def-divisibility
+    thm-fundamental-arithmetic --&gt; def-prime
+    ex-finite-field --&gt; def-prime
+    def-divisibility --&gt; def-prime
+    def-prime --&gt; thm-fundamental-arithmetic
+    def-prime --&gt; def-congruence
+    def-gcd --&gt; def-prime
     thm-euler --&gt; def-prime
+    thm-euclid-infinitude-primes --&gt; def-prime
     def-prime --&gt; def-gcd
+    def-congruence --&gt; def-prime
     thm-chinese-remainder --&gt; def-prime
     class def-prime current
-    click def-gcd "def-gcd.html" "最大公約数へ"
     click def-congruence "def-congruence.html" "合同（モジュラー演算）へ"
-    click thm-fermat-little "thm-fermat-little.html" "フェルマーの小定理へ"
-    click ex-finite-field "ex-finite-field.html" "有限体へ"
-    click thm-euclid-infinitude-primes "thm-euclid-infinitude-primes.html" "素数の無限性に関するユークリッドの定理へ"
+    click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "算術の基本定理へ"
     click thm-field-characteristic "thm-field-characteristic.html" "体の標数へ"
-    click def-lcm "def-lcm.html" "最小公倍数へ"
+    click def-gcd "def-gcd.html" "最大公約数へ"
     click thm-euler "thm-euler.html" "オイラーの定理へ"
     click def-divisibility "def-divisibility.html" "整除性へ"
     click thm-chinese-remainder "thm-chinese-remainder.html" "中国剰余定理へ"
-    click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "算術の基本定理へ"
+    click ex-finite-field "ex-finite-field.html" "有限体へ"
+    click def-lcm "def-lcm.html" "最小公倍数へ"
+    click thm-euclid-infinitude-primes "thm-euclid-infinitude-primes.html" "素数の無限性に関するユークリッドの定理へ"
+    click thm-fermat-little "thm-fermat-little.html" "フェルマーの小定理へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -397,7 +397,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-prime-1753775403" class="graph-visualization-container">
+<div id="graph-viz-def-prime-1753785802" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -645,12 +645,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-prime-1753775403', {
+    createForceGraph(data, 'graph-viz-def-prime-1753785802', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-prime-1753775403').innerHTML =
+    document.getElementById('graph-viz-def-prime-1753785802').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

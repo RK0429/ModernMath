@@ -327,13 +327,13 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-angle-sum-triangle["三角形の内角の和"]:::theorem
-    def-angle["角"]:::definition
     def-line["直線"]:::definition
+    def-angle["角"]:::definition
     def-point["点"]:::definition
     def-triangle["三角形"]:::definition
     def-angle --&gt; def-point
-    def-angle --&gt; def-line
     def-triangle --&gt; def-angle
+    def-angle --&gt; def-line
     thm-angle-sum-triangle --&gt; def-angle
     class def-angle current
     click thm-angle-sum-triangle "thm-angle-sum-triangle.html" "三角形の内角の和へ"
@@ -350,7 +350,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-angle-1753775375" class="graph-visualization-container">
+<div id="graph-viz-def-angle-1753785775" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -598,12 +598,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-angle-1753775375', {
+    createForceGraph(data, 'graph-viz-def-angle-1753785775', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-angle-1753775375').innerHTML =
+    document.getElementById('graph-viz-def-angle-1753785775').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

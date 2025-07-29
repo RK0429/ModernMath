@@ -406,49 +406,49 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-order["位数"]:::definition
-    def-group["群"]:::definition
-    thm-sylow["シローの定理"]:::theorem
     def-cyclic-group["巡回群"]:::definition
-    def-identity-element["単位元"]:::definition
-    def-quotient-group["商群"]:::definition
-    def-subgroup["部分群"]:::definition
-    ex-quotient-integers-mod-n["整数の n による剰余"]:::example
+    def-direct-product["群の直積"]:::definition
+    def-order["位数"]:::definition
     thm-lagrange["ラグランジュの定理"]:::theorem
+    def-subgroup["部分群"]:::definition
+    ex-group-action-examples["群作用の例"]:::example
+    def-identity-element["単位元"]:::definition
+    def-group["群"]:::definition
+    ex-quotient-integers-mod-n["整数の n による剰余"]:::example
+    def-quotient-group["商群"]:::definition
+    thm-sylow["シローの定理"]:::theorem
     def-simple-group["単純群"]:::definition
     def-group-action["群の作用"]:::definition
-    def-direct-product["群の直積"]:::definition
-    ex-group-action-examples["群作用の例"]:::example
-    def-order --&gt; def-group-action
-    def-order --&gt; def-quotient-group
-    def-cyclic-group --&gt; def-order
-    def-subgroup --&gt; def-order
-    def-order --&gt; def-identity-element
-    thm-lagrange --&gt; def-order
-    def-quotient-group --&gt; def-order
-    def-order --&gt; thm-lagrange
     def-order --&gt; def-group
-    thm-sylow --&gt; def-order
     def-simple-group --&gt; def-order
-    def-direct-product --&gt; def-order
-    ex-quotient-integers-mod-n --&gt; def-order
-    def-order --&gt; def-subgroup
-    ex-group-action-examples --&gt; def-order
+    def-quotient-group --&gt; def-order
+    thm-sylow --&gt; def-order
+    def-subgroup --&gt; def-order
     def-order --&gt; def-cyclic-group
+    def-order --&gt; def-quotient-group
+    def-order --&gt; def-group-action
+    def-order --&gt; def-subgroup
+    thm-lagrange --&gt; def-order
+    def-order --&gt; def-identity-element
+    def-order --&gt; thm-lagrange
     def-order --&gt; thm-sylow
+    def-direct-product --&gt; def-order
+    def-cyclic-group --&gt; def-order
+    ex-group-action-examples --&gt; def-order
+    ex-quotient-integers-mod-n --&gt; def-order
     class def-order current
-    click def-group "def-group.html" "群へ"
-    click thm-sylow "thm-sylow.html" "シローの定理へ"
     click def-cyclic-group "def-cyclic-group.html" "巡回群へ"
-    click def-identity-element "def-identity-element.html" "単位元へ"
-    click def-quotient-group "def-quotient-group.html" "商群へ"
-    click def-subgroup "def-subgroup.html" "部分群へ"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余へ"
+    click def-direct-product "def-direct-product.html" "群の直積へ"
     click thm-lagrange "thm-lagrange.html" "ラグランジュの定理へ"
+    click def-subgroup "def-subgroup.html" "部分群へ"
+    click ex-group-action-examples "ex-group-action-examples.html" "群作用の例へ"
+    click def-identity-element "def-identity-element.html" "単位元へ"
+    click def-group "def-group.html" "群へ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余へ"
+    click def-quotient-group "def-quotient-group.html" "商群へ"
+    click thm-sylow "thm-sylow.html" "シローの定理へ"
     click def-simple-group "def-simple-group.html" "単純群へ"
     click def-group-action "def-group-action.html" "群の作用へ"
-    click def-direct-product "def-direct-product.html" "群の直積へ"
-    click ex-group-action-examples "ex-group-action-examples.html" "群作用の例へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -459,7 +459,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-order-1753775331" class="graph-visualization-container">
+<div id="graph-viz-def-order-1753785733" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -707,12 +707,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-order-1753775331', {
+    createForceGraph(data, 'graph-viz-def-order-1753785733', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-order-1753775331').innerHTML =
+    document.getElementById('graph-viz-def-order-1753785733').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

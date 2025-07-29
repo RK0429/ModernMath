@@ -379,28 +379,28 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-union["和集合"]:::definition
-    def-cardinality["濃度"]:::definition
-    def-set["集合"]:::definition
-    def-power-set["べき集合"]:::definition
     def-function["関数"]:::definition
+    def-set["集合"]:::definition
+    def-cardinality["濃度"]:::definition
     def-intersection["共通部分"]:::definition
     thm-cantor["カントールの定理"]:::theorem
-    thm-cantor --&gt; def-cardinality
-    def-cardinality --&gt; thm-cantor
-    def-cardinality --&gt; def-function
-    def-cardinality --&gt; def-power-set
-    def-union --&gt; def-cardinality
-    def-cardinality --&gt; def-set
+    def-power-set["べき集合"]:::definition
+    def-union["和集合"]:::definition
     def-intersection --&gt; def-cardinality
+    def-union --&gt; def-cardinality
+    def-cardinality --&gt; def-power-set
+    def-cardinality --&gt; def-set
+    def-cardinality --&gt; thm-cantor
     def-power-set --&gt; def-cardinality
+    thm-cantor --&gt; def-cardinality
+    def-cardinality --&gt; def-function
     class def-cardinality current
-    click def-union "def-union.html" "和集合へ"
-    click def-set "def-set.html" "集合へ"
-    click def-power-set "def-power-set.html" "べき集合へ"
     click def-function "def-function.html" "関数へ"
+    click def-set "def-set.html" "集合へ"
     click def-intersection "def-intersection.html" "共通部分へ"
     click thm-cantor "thm-cantor.html" "カントールの定理へ"
+    click def-power-set "def-power-set.html" "べき集合へ"
+    click def-union "def-union.html" "和集合へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -411,7 +411,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-cardinality-1753775390" class="graph-visualization-container">
+<div id="graph-viz-def-cardinality-1753785790" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -659,12 +659,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-cardinality-1753775390', {
+    createForceGraph(data, 'graph-viz-def-cardinality-1753785790', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-cardinality-1753775390').innerHTML =
+    document.getElementById('graph-viz-def-cardinality-1753785790').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
