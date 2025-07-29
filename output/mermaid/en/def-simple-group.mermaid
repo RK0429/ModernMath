@@ -4,27 +4,27 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-cyclic-group["Cyclic Group"]:::definition
-    def-homomorphism["Group Homomorphism"]:::definition
-    def-order["Order"]:::definition
-    thm-lagrange["Lagrange's Theorem"]:::theorem
-    thm-first-isomorphism["First Isomorphism Theorem"]:::theorem
+    def-simple-group["Simple Group"]:::definition
     def-normal-subgroup["Normal Subgroup"]:::definition
     def-group["Group"]:::definition
-    def-quotient-group["Quotient Group"]:::definition
+    def-order["Order"]:::definition
+    thm-lagrange["Lagrange's Theorem"]:::theorem
+    def-homomorphism["Group Homomorphism"]:::definition
     def-abelian-group["Abelian Group"]:::definition
+    def-cyclic-group["Cyclic Group"]:::definition
+    thm-first-isomorphism["First Isomorphism Theorem"]:::theorem
     def-center-of-group["Center of a Group"]:::definition
-    def-simple-group["Simple Group"]:::definition
+    def-quotient-group["Quotient Group"]:::definition
     def-simple-group --> def-order
+    def-simple-group --> def-quotient-group
+    def-simple-group --> def-homomorphism
+    def-group --> def-simple-group
+    def-simple-group --> def-center-of-group
     def-simple-group --> thm-first-isomorphism
     def-simple-group --> def-group
-    def-simple-group --> def-center-of-group
     def-center-of-group --> def-simple-group
-    def-simple-group --> def-quotient-group
-    def-group --> def-simple-group
-    def-simple-group --> def-abelian-group
-    def-simple-group --> thm-lagrange
-    def-simple-group --> def-homomorphism
-    def-simple-group --> def-normal-subgroup
     def-simple-group --> def-cyclic-group
+    def-simple-group --> def-normal-subgroup
+    def-simple-group --> thm-lagrange
+    def-simple-group --> def-abelian-group
     class def-simple-group current

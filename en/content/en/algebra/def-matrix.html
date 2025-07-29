@@ -346,23 +346,23 @@ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-matrix["Matrix"]:::definition
-    ex-matrix-transformation["Matrix Transformation"]:::example
+    def-field["Field"]:::definition
+    def-eigenvalue-eigenvector["Eigenvalue and Eigenvector"]:::definition
     def-normal-subgroup["Normal Subgroup"]:::definition
     def-determinant["Determinant"]:::definition
-    def-eigenvalue-eigenvector["Eigenvalue and Eigenvector"]:::definition
-    def-field["Field"]:::definition
-    def-eigenvalue-eigenvector --&gt; def-matrix
-    def-normal-subgroup --&gt; def-matrix
+    ex-matrix-transformation["Matrix Transformation"]:::example
+    def-matrix["Matrix"]:::definition
     ex-matrix-transformation --&gt; def-matrix
+    def-normal-subgroup --&gt; def-matrix
+    def-eigenvalue-eigenvector --&gt; def-matrix
     def-matrix --&gt; def-field
     def-determinant --&gt; def-matrix
     class def-matrix current
-    click ex-matrix-transformation "ex-matrix-transformation.html" "Go to Matrix Transformation"
+    click def-field "def-field.html" "Go to Field"
+    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector"
     click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
     click def-determinant "def-determinant.html" "Go to Determinant"
-    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector"
-    click def-field "def-field.html" "Go to Field"
+    click ex-matrix-transformation "ex-matrix-transformation.html" "Go to Matrix Transformation"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -373,7 +373,7 @@ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-matrix-1753785654" class="graph-visualization-container">
+<div id="graph-viz-def-matrix-1753787028" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -621,12 +621,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-matrix-1753785654', {
+    createForceGraph(data, 'graph-viz-def-matrix-1753787028', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-matrix-1753785654').innerHTML =
+    document.getElementById('graph-viz-def-matrix-1753787028').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

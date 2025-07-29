@@ -338,18 +338,18 @@ G(X) --G(f)--&gt; G(Y)</code></pre>
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-natural-transformation["自然変換"]:::definition
+    thm-yoneda["米田の補題"]:::theorem
     def-functor["関手"]:::definition
     def-category["圏"]:::definition
-    thm-yoneda["米田の補題"]:::theorem
     def-morphism["射"]:::definition
-    def-natural-transformation --&gt; def-functor
-    thm-yoneda --&gt; def-natural-transformation
-    def-natural-transformation --&gt; def-category
     def-natural-transformation --&gt; def-morphism
+    def-natural-transformation --&gt; def-category
+    thm-yoneda --&gt; def-natural-transformation
+    def-natural-transformation --&gt; def-functor
     class def-natural-transformation current
+    click thm-yoneda "thm-yoneda.html" "米田の補題へ"
     click def-functor "def-functor.html" "関手へ"
     click def-category "def-category.html" "圏へ"
-    click thm-yoneda "thm-yoneda.html" "米田の補題へ"
     click def-morphism "def-morphism.html" "射へ"
 </pre>
 </div>
@@ -361,7 +361,7 @@ G(X) --G(f)--&gt; G(Y)</code></pre>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-natural-transformation-1753785800" class="graph-visualization-container">
+<div id="graph-viz-def-natural-transformation-1753787174" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -609,12 +609,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-natural-transformation-1753785800', {
+    createForceGraph(data, 'graph-viz-def-natural-transformation-1753787174', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-natural-transformation-1753785800').innerHTML =
+    document.getElementById('graph-viz-def-natural-transformation-1753787174').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

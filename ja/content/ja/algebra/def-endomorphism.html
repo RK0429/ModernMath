@@ -387,22 +387,22 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-homomorphism["群準同型"]:::definition
-    def-ring["環"]:::definition
-    def-vector-space["ベクトル空間"]:::definition
     def-group["群"]:::definition
-    def-monoid["モノイド"]:::definition
     def-endomorphism["自己準同型"]:::definition
-    def-endomorphism --&gt; def-ring
-    def-endomorphism --&gt; def-group
-    def-endomorphism --&gt; def-homomorphism
+    def-homomorphism["群準同型"]:::definition
+    def-vector-space["ベクトル空間"]:::definition
+    def-ring["環"]:::definition
+    def-monoid["モノイド"]:::definition
     def-endomorphism --&gt; def-monoid
+    def-endomorphism --&gt; def-homomorphism
+    def-endomorphism --&gt; def-ring
     def-endomorphism --&gt; def-vector-space
+    def-endomorphism --&gt; def-group
     class def-endomorphism current
-    click def-homomorphism "def-homomorphism.html" "群準同型へ"
-    click def-ring "def-ring.html" "環へ"
-    click def-vector-space "def-vector-space.html" "ベクトル空間へ"
     click def-group "def-group.html" "群へ"
+    click def-homomorphism "def-homomorphism.html" "群準同型へ"
+    click def-vector-space "def-vector-space.html" "ベクトル空間へ"
+    click def-ring "def-ring.html" "環へ"
     click def-monoid "def-monoid.html" "モノイドへ"
 </pre>
 </div>
@@ -414,7 +414,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-endomorphism-1753785830" class="graph-visualization-container">
+<div id="graph-viz-def-endomorphism-1753787205" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -662,12 +662,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-endomorphism-1753785830', {
+    createForceGraph(data, 'graph-viz-def-endomorphism-1753787205', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-endomorphism-1753785830').innerHTML =
+    document.getElementById('graph-viz-def-endomorphism-1753787205').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

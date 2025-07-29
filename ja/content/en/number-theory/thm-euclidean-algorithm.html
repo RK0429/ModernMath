@@ -369,26 +369,26 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-congruence["Congruence (Modular Arithmetic)"]:::definition
     thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
     def-gcd["Greatest Common Divisor"]:::definition
     def-divisibility["Divisibility"]:::definition
     thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
     thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
+    def-congruence["Congruence (Modular Arithmetic)"]:::definition
     ex-quotient-integers-mod-n["Integers Modulo n"]:::example
-    thm-euclidean-algorithm --&gt; ex-quotient-integers-mod-n
-    thm-euclidean-algorithm --&gt; def-gcd
-    thm-euclidean-algorithm --&gt; def-divisibility
-    thm-fundamental-arithmetic --&gt; thm-euclidean-algorithm
-    thm-chinese-remainder --&gt; thm-euclidean-algorithm
     def-gcd --&gt; thm-euclidean-algorithm
     def-congruence --&gt; thm-euclidean-algorithm
+    thm-euclidean-algorithm --&gt; def-gcd
+    thm-chinese-remainder --&gt; thm-euclidean-algorithm
+    thm-fundamental-arithmetic --&gt; thm-euclidean-algorithm
+    thm-euclidean-algorithm --&gt; def-divisibility
+    thm-euclidean-algorithm --&gt; ex-quotient-integers-mod-n
     class thm-euclidean-algorithm current
-    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic)"
     click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "Go to Fundamental Theorem of Arithmetic"
     click def-gcd "def-gcd.html" "Go to Greatest Common Divisor"
     click def-divisibility "def-divisibility.html" "Go to Divisibility"
     click thm-chinese-remainder "thm-chinese-remainder.html" "Go to Chinese Remainder Theorem"
+    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic)"
     click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n"
 </pre>
 </div>
@@ -400,7 +400,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-euclidean-algorithm-1753785982" class="graph-visualization-container">
+<div id="graph-viz-thm-euclidean-algorithm-1753787361" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -648,12 +648,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-euclidean-algorithm-1753785982', {
+    createForceGraph(data, 'graph-viz-thm-euclidean-algorithm-1753787361', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-euclidean-algorithm-1753785982').innerHTML =
+    document.getElementById('graph-viz-thm-euclidean-algorithm-1753787361').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

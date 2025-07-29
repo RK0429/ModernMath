@@ -195,10 +195,12 @@
       /* Mobile responsive */
       @media (max-width: 768px) {
         .issue-button {
-          bottom: 10px;
+          bottom: 60px;
           right: 10px;
           padding: 8px 12px;
           font-size: 13px;
+          height: 44px;
+          min-width: 110px;
         }
 
         .issue-button i {
