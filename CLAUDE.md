@@ -376,6 +376,30 @@ Site uses two fixed-position action buttons with consistent JavaScript implement
 
 **Implementation**: Both buttons are injected via JavaScript during page load, loaded through Quarto's include-in-header configuration in language profiles (`_quarto-en.yml`, `_quarto-ja.yml`). The Buy Me a Coffee button was migrated from Python post-processing to JavaScript for consistency.
 
+### Mobile Footer Implementation
+
+**Mobile Footer** (`js/mobile-footer.js`):
+
+- **Display**: Fixed horizontal footer that only appears on mobile devices (≤768px)
+- **Components**: Report Issue, Language Switch, and Buy Me a Coffee buttons in a row
+- **Layout**: Flexbox with `justify-content: space-around` for even spacing
+- **Behavior**: Hides original floating buttons on mobile to avoid duplication
+- **Button Styling**:
+  - Height: 50px, min-width: 80px
+  - Issue button: Blue (#0366d6)
+  - Language button: Green (#28a745), disabled state: Gray (#6c757d)
+  - Coffee button: Yellow (#FFDD00)
+- **Z-index**: 1100 (above other elements)
+- **Language Support**: Automatically detects current language and adjusts button text
+- **Translation Path Detection**: Constructs translation paths dynamically, handles special cases for index pages
+
+**Key Implementation Details**:
+
+- Uses `isMobile()` function to detect mobile devices via viewport width and user agent
+- Adds 70px bottom padding to body/content to prevent overlap
+- Language switch button becomes disabled with strikethrough when translation unavailable
+- All three buttons load via the same script injection pattern in Quarto configs
+
 ## Repository Management
 
 ### Going Public Checklist
