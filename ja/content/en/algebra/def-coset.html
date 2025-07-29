@@ -125,6 +125,12 @@ ul.task-list li input[type="checkbox"] {
     bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
     bmcScript.defer = true;
     document.head.appendChild(bmcScript);
+
+    // Load Mobile Footer
+    var mobileScript = document.createElement('script');
+    mobileScript.src = basePath + 'js/mobile-footer.js';
+    mobileScript.defer = true;
+    document.head.appendChild(mobileScript);
   })();
 </script>
 
@@ -440,49 +446,49 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
     def-quotient-ring["Quotient Ring"]:::definition
+    def-group["Group"]:::definition
+    ex-even-integers-subgroup["Even Integers Form a Subgroup"]:::example
     def-coset["Coset"]:::definition
+    def-quotient-group["Quotient Group"]:::definition
     def-abelian-group["Abelian Group"]:::definition
     thm-lagrange["Lagrange's Theorem"]:::theorem
-    def-group-action["Group Action"]:::definition
-    ex-even-integers-subgroup["Even Integers Form a Subgroup"]:::example
-    def-subgroup["Subgroup"]:::definition
-    def-quotient-group["Quotient Group"]:::definition
-    def-group["Group"]:::definition
-    def-normal-subgroup["Normal Subgroup"]:::definition
     def-binary-operation["Binary Operation"]:::definition
     thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
-    def-coset --&gt; thm-lagrange
-    def-coset --&gt; def-group
-    thm-orbit-stabilizer --&gt; def-coset
-    def-coset --&gt; def-subgroup
-    def-coset --&gt; def-group-action
-    ex-even-integers-subgroup --&gt; def-coset
-    def-coset --&gt; def-normal-subgroup
-    def-quotient-ring --&gt; def-coset
+    def-group-action["Group Action"]:::definition
+    def-normal-subgroup["Normal Subgroup"]:::definition
+    def-subgroup["Subgroup"]:::definition
+    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
     ex-quotient-integers-mod-n --&gt; def-coset
-    def-quotient-group --&gt; def-coset
-    def-coset --&gt; ex-even-integers-subgroup
-    def-normal-subgroup --&gt; def-coset
-    def-coset --&gt; def-binary-operation
-    def-coset --&gt; def-quotient-group
+    def-coset --&gt; def-group
     def-coset --&gt; ex-quotient-integers-mod-n
-    thm-lagrange --&gt; def-coset
+    def-coset --&gt; def-binary-operation
+    def-coset --&gt; def-normal-subgroup
+    def-coset --&gt; def-group-action
+    def-coset --&gt; ex-even-integers-subgroup
+    def-quotient-group --&gt; def-coset
+    def-coset --&gt; def-subgroup
+    ex-even-integers-subgroup --&gt; def-coset
+    def-normal-subgroup --&gt; def-coset
+    def-coset --&gt; def-quotient-group
+    def-quotient-ring --&gt; def-coset
     def-coset --&gt; def-abelian-group
+    thm-lagrange --&gt; def-coset
+    def-coset --&gt; thm-lagrange
+    thm-orbit-stabilizer --&gt; def-coset
     class def-coset current
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n"
     click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring"
+    click def-group "def-group.html" "Go to Group"
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Go to Even Integers Form a Subgroup"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
     click def-abelian-group "def-abelian-group.html" "Go to Abelian Group"
     click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem"
-    click def-group-action "def-group-action.html" "Go to Group Action"
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Go to Even Integers Form a Subgroup"
-    click def-subgroup "def-subgroup.html" "Go to Subgroup"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
-    click def-group "def-group.html" "Go to Group"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
     click def-binary-operation "def-binary-operation.html" "Go to Binary Operation"
     click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "Go to Orbit-Stabilizer Theorem"
+    click def-group-action "def-group-action.html" "Go to Group Action"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
+    click def-subgroup "def-subgroup.html" "Go to Subgroup"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -493,7 +499,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-coset-1753797620" class="graph-visualization-container">
+<div id="graph-viz-def-coset-1753798957" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -741,12 +747,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-coset-1753797620', {
+    createForceGraph(data, 'graph-viz-def-coset-1753798957', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-coset-1753797620').innerHTML =
+    document.getElementById('graph-viz-def-coset-1753798957').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

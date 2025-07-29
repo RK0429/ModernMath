@@ -4,34 +4,34 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
     def-quotient-ring["Quotient Ring"]:::definition
+    def-group["Group"]:::definition
+    ex-even-integers-subgroup["Even Integers Form a Subgroup"]:::example
     def-coset["Coset"]:::definition
+    def-quotient-group["Quotient Group"]:::definition
     def-abelian-group["Abelian Group"]:::definition
     thm-lagrange["Lagrange's Theorem"]:::theorem
-    def-group-action["Group Action"]:::definition
-    ex-even-integers-subgroup["Even Integers Form a Subgroup"]:::example
-    def-subgroup["Subgroup"]:::definition
-    def-quotient-group["Quotient Group"]:::definition
-    def-group["Group"]:::definition
-    def-normal-subgroup["Normal Subgroup"]:::definition
     def-binary-operation["Binary Operation"]:::definition
     thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
-    def-coset --> thm-lagrange
-    def-coset --> def-group
-    thm-orbit-stabilizer --> def-coset
-    def-coset --> def-subgroup
-    def-coset --> def-group-action
-    ex-even-integers-subgroup --> def-coset
-    def-coset --> def-normal-subgroup
-    def-quotient-ring --> def-coset
+    def-group-action["Group Action"]:::definition
+    def-normal-subgroup["Normal Subgroup"]:::definition
+    def-subgroup["Subgroup"]:::definition
+    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
     ex-quotient-integers-mod-n --> def-coset
-    def-quotient-group --> def-coset
-    def-coset --> ex-even-integers-subgroup
-    def-normal-subgroup --> def-coset
-    def-coset --> def-binary-operation
-    def-coset --> def-quotient-group
+    def-coset --> def-group
     def-coset --> ex-quotient-integers-mod-n
-    thm-lagrange --> def-coset
+    def-coset --> def-binary-operation
+    def-coset --> def-normal-subgroup
+    def-coset --> def-group-action
+    def-coset --> ex-even-integers-subgroup
+    def-quotient-group --> def-coset
+    def-coset --> def-subgroup
+    ex-even-integers-subgroup --> def-coset
+    def-normal-subgroup --> def-coset
+    def-coset --> def-quotient-group
+    def-quotient-ring --> def-coset
     def-coset --> def-abelian-group
+    thm-lagrange --> def-coset
+    def-coset --> thm-lagrange
+    thm-orbit-stabilizer --> def-coset
     class def-coset current

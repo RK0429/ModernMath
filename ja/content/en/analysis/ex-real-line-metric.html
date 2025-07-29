@@ -125,6 +125,12 @@ ul.task-list li input[type="checkbox"] {
     bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
     bmcScript.defer = true;
     document.head.appendChild(bmcScript);
+
+    // Load Mobile Footer
+    var mobileScript = document.createElement('script');
+    mobileScript.src = basePath + 'js/mobile-footer.js';
+    mobileScript.defer = true;
+    document.head.appendChild(mobileScript);
   })();
 </script>
 
@@ -350,8 +356,8 @@ window.Quarto = {
     def-metric-space["Metric Space"]:::definition
     def-open-ball["Open Ball"]:::definition
     ex-real-line-metric["Real Line with Standard Metric"]:::example
-    ex-real-line-metric --&gt; def-open-ball
     ex-real-line-metric --&gt; def-metric-space
+    ex-real-line-metric --&gt; def-open-ball
     class ex-real-line-metric current
     click def-metric-space "def-metric-space.html" "Go to Metric Space"
     click def-open-ball "def-open-ball.html" "Go to Open Ball"
@@ -365,7 +371,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-ex-real-line-metric-1753797636" class="graph-visualization-container">
+<div id="graph-viz-ex-real-line-metric-1753798975" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -613,12 +619,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-real-line-metric-1753797636', {
+    createForceGraph(data, 'graph-viz-ex-real-line-metric-1753798975', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-real-line-metric-1753797636').innerHTML =
+    document.getElementById('graph-viz-ex-real-line-metric-1753798975').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

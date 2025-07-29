@@ -125,6 +125,12 @@ ul.task-list li input[type="checkbox"] {
     bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
     bmcScript.defer = true;
     document.head.appendChild(bmcScript);
+
+    // Load Mobile Footer
+    var mobileScript = document.createElement('script');
+    mobileScript.src = basePath + 'js/mobile-footer.js';
+    mobileScript.defer = true;
+    document.head.appendChild(mobileScript);
   })();
 </script>
 
@@ -355,22 +361,22 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-matrix["行列"]:::definition
-    def-polynomial-ring["多項式環"]:::definition
-    def-determinant["行列式"]:::definition
-    def-eigenvalue-eigenvector["固有値と固有ベクトル"]:::definition
     def-vector-space["ベクトル空間"]:::definition
+    def-determinant["行列式"]:::definition
+    def-polynomial-ring["多項式環"]:::definition
+    def-matrix["行列"]:::definition
     def-linear-transformation["線形変換"]:::definition
+    def-eigenvalue-eigenvector["固有値と固有ベクトル"]:::definition
+    def-eigenvalue-eigenvector --&gt; def-vector-space
     def-eigenvalue-eigenvector --&gt; def-polynomial-ring
+    def-eigenvalue-eigenvector --&gt; def-determinant
     def-eigenvalue-eigenvector --&gt; def-matrix
     def-eigenvalue-eigenvector --&gt; def-linear-transformation
-    def-eigenvalue-eigenvector --&gt; def-determinant
-    def-eigenvalue-eigenvector --&gt; def-vector-space
     class def-eigenvalue-eigenvector current
-    click def-matrix "def-matrix.html" "行列へ"
-    click def-polynomial-ring "def-polynomial-ring.html" "多項式環へ"
-    click def-determinant "def-determinant.html" "行列式へ"
     click def-vector-space "def-vector-space.html" "ベクトル空間へ"
+    click def-determinant "def-determinant.html" "行列式へ"
+    click def-polynomial-ring "def-polynomial-ring.html" "多項式環へ"
+    click def-matrix "def-matrix.html" "行列へ"
     click def-linear-transformation "def-linear-transformation.html" "線形変換へ"
 </pre>
 </div>
@@ -382,7 +388,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-eigenvalue-eigenvector-1753797520" class="graph-visualization-container">
+<div id="graph-viz-def-eigenvalue-eigenvector-1753798853" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -630,12 +636,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-eigenvalue-eigenvector-1753797520', {
+    createForceGraph(data, 'graph-viz-def-eigenvalue-eigenvector-1753798853', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-eigenvalue-eigenvector-1753797520').innerHTML =
+    document.getElementById('graph-viz-def-eigenvalue-eigenvector-1753798853').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

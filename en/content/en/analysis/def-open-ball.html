@@ -125,6 +125,12 @@ ul.task-list li input[type="checkbox"] {
     bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
     bmcScript.defer = true;
     document.head.appendChild(bmcScript);
+
+    // Load Mobile Footer
+    var mobileScript = document.createElement('script');
+    mobileScript.src = basePath + 'js/mobile-footer.js';
+    mobileScript.defer = true;
+    document.head.appendChild(mobileScript);
   })();
 </script>
 
@@ -380,40 +386,40 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-taylor-series["Taylor Series"]:::theorem
-    def-cauchy-sequence["Cauchy Sequence"]:::definition
-    def-continuity["Continuity"]:::definition
-    def-open-set["Open Set"]:::definition
-    def-complete-metric-space["Complete Metric Space"]:::definition
-    def-convergence["Convergence"]:::definition
-    def-metric-space["Metric Space"]:::definition
     def-normed-vector-space["Normed Vector Space"]:::definition
     def-set["Set"]:::definition
-    ex-real-line-metric["Real Line with Standard Metric"]:::example
+    def-cauchy-sequence["Cauchy Sequence"]:::definition
+    def-open-set["Open Set"]:::definition
+    def-metric-space["Metric Space"]:::definition
+    def-continuity["Continuity"]:::definition
+    thm-taylor-series["Taylor Series"]:::theorem
+    def-convergence["Convergence"]:::definition
     def-open-ball["Open Ball"]:::definition
+    def-complete-metric-space["Complete Metric Space"]:::definition
+    ex-real-line-metric["Real Line with Standard Metric"]:::example
+    def-open-ball --&gt; def-continuity
+    def-metric-space --&gt; def-open-ball
+    def-open-ball --&gt; def-set
     def-open-ball --&gt; def-convergence
-    def-open-ball --&gt; def-metric-space
+    ex-real-line-metric --&gt; def-open-ball
     def-normed-vector-space --&gt; def-open-ball
+    def-open-ball --&gt; def-complete-metric-space
+    def-open-ball --&gt; def-metric-space
+    thm-taylor-series --&gt; def-open-ball
     def-continuity --&gt; def-open-ball
+    def-open-ball --&gt; def-open-set
     def-open-ball --&gt; def-cauchy-sequence
     def-convergence --&gt; def-open-ball
-    def-open-ball --&gt; def-set
-    def-metric-space --&gt; def-open-ball
-    thm-taylor-series --&gt; def-open-ball
-    ex-real-line-metric --&gt; def-open-ball
-    def-open-ball --&gt; def-complete-metric-space
-    def-open-ball --&gt; def-continuity
-    def-open-ball --&gt; def-open-set
     class def-open-ball current
-    click thm-taylor-series "thm-taylor-series.html" "Go to Taylor Series"
-    click def-cauchy-sequence "def-cauchy-sequence.html" "Go to Cauchy Sequence"
-    click def-continuity "def-continuity.html" "Go to Continuity"
-    click def-open-set "def-open-set.html" "Go to Open Set"
-    click def-complete-metric-space "def-complete-metric-space.html" "Go to Complete Metric Space"
-    click def-convergence "def-convergence.html" "Go to Convergence"
-    click def-metric-space "def-metric-space.html" "Go to Metric Space"
     click def-normed-vector-space "def-normed-vector-space.html" "Go to Normed Vector Space"
     click def-set "def-set.html" "Go to Set"
+    click def-cauchy-sequence "def-cauchy-sequence.html" "Go to Cauchy Sequence"
+    click def-open-set "def-open-set.html" "Go to Open Set"
+    click def-metric-space "def-metric-space.html" "Go to Metric Space"
+    click def-continuity "def-continuity.html" "Go to Continuity"
+    click thm-taylor-series "thm-taylor-series.html" "Go to Taylor Series"
+    click def-convergence "def-convergence.html" "Go to Convergence"
+    click def-complete-metric-space "def-complete-metric-space.html" "Go to Complete Metric Space"
     click ex-real-line-metric "ex-real-line-metric.html" "Go to Real Line with Standard Metric"
 </pre>
 </div>
@@ -425,7 +431,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-open-ball-1753797367" class="graph-visualization-container">
+<div id="graph-viz-def-open-ball-1753798702" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -673,12 +679,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-open-ball-1753797367', {
+    createForceGraph(data, 'graph-viz-def-open-ball-1753798702', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-open-ball-1753797367').innerHTML =
+    document.getElementById('graph-viz-def-open-ball-1753798702').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -125,6 +125,12 @@ ul.task-list li input[type="checkbox"] {
     bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
     bmcScript.defer = true;
     document.head.appendChild(bmcScript);
+
+    // Load Mobile Footer
+    var mobileScript = document.createElement('script');
+    mobileScript.src = basePath + 'js/mobile-footer.js';
+    mobileScript.defer = true;
+    document.head.appendChild(mobileScript);
   })();
 </script>
 
@@ -410,46 +416,46 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
-    def-divisibility["Divisibility"]:::definition
-    thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
-    thm-fermat-little["Fermat's Little Theorem"]:::theorem
-    thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
-    ax-induction["Mathematical Induction"]:::axiom
-    def-gcd["Greatest Common Divisor"]:::definition
-    def-congruence["Congruence (Modular Arithmetic)"]:::definition
-    def-prime["Prime Number"]:::definition
-    def-equivalence-relation["Equivalence Relation"]:::definition
     def-set["Set"]:::definition
+    thm-fermat-little["Fermat's Little Theorem"]:::theorem
+    def-gcd["Greatest Common Divisor"]:::definition
+    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
+    thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
+    def-equivalence-relation["Equivalence Relation"]:::definition
+    def-divisibility["Divisibility"]:::definition
+    def-congruence["Congruence (Modular Arithmetic)"]:::definition
+    ax-induction["Mathematical Induction"]:::axiom
     thm-euler["Euler's Theorem"]:::theorem
-    def-congruence --&gt; def-prime
-    def-equivalence-relation --&gt; def-congruence
+    thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
+    def-prime["Prime Number"]:::definition
+    def-congruence --&gt; ex-quotient-integers-mod-n
     def-congruence --&gt; def-set
-    def-congruence --&gt; thm-euclidean-algorithm
-    thm-fermat-little --&gt; def-congruence
-    def-congruence --&gt; ax-induction
-    thm-chinese-remainder --&gt; def-congruence
-    thm-euler --&gt; def-congruence
-    def-prime --&gt; def-congruence
-    def-congruence --&gt; def-gcd
     def-congruence --&gt; thm-fermat-little
-    def-congruence --&gt; thm-euler
+    thm-chinese-remainder --&gt; def-congruence
+    def-prime --&gt; def-congruence
     ex-quotient-integers-mod-n --&gt; def-congruence
+    def-equivalence-relation --&gt; def-congruence
+    def-congruence --&gt; def-gcd
+    def-congruence --&gt; def-prime
+    def-congruence --&gt; ax-induction
     def-gcd --&gt; def-congruence
     def-congruence --&gt; def-divisibility
-    def-congruence --&gt; ex-quotient-integers-mod-n
+    thm-fermat-little --&gt; def-congruence
+    def-congruence --&gt; thm-euler
+    def-congruence --&gt; thm-euclidean-algorithm
+    thm-euler --&gt; def-congruence
     class def-congruence current
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n"
-    click def-divisibility "def-divisibility.html" "Go to Divisibility"
-    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Go to Euclidean Algorithm"
-    click thm-fermat-little "thm-fermat-little.html" "Go to Fermat's Little Theorem"
-    click thm-chinese-remainder "thm-chinese-remainder.html" "Go to Chinese Remainder Theorem"
-    click ax-induction "ax-induction.html" "Go to Mathematical Induction"
-    click def-gcd "def-gcd.html" "Go to Greatest Common Divisor"
-    click def-prime "def-prime.html" "Go to Prime Number"
-    click def-equivalence-relation "def-equivalence-relation.html" "Go to Equivalence Relation"
     click def-set "def-set.html" "Go to Set"
+    click thm-fermat-little "thm-fermat-little.html" "Go to Fermat's Little Theorem"
+    click def-gcd "def-gcd.html" "Go to Greatest Common Divisor"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n"
+    click thm-chinese-remainder "thm-chinese-remainder.html" "Go to Chinese Remainder Theorem"
+    click def-equivalence-relation "def-equivalence-relation.html" "Go to Equivalence Relation"
+    click def-divisibility "def-divisibility.html" "Go to Divisibility"
+    click ax-induction "ax-induction.html" "Go to Mathematical Induction"
     click thm-euler "thm-euler.html" "Go to Euler's Theorem"
+    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Go to Euclidean Algorithm"
+    click def-prime "def-prime.html" "Go to Prime Number"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -460,7 +466,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-congruence-1753797394" class="graph-visualization-container">
+<div id="graph-viz-def-congruence-1753798729" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -708,12 +714,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-congruence-1753797394', {
+    createForceGraph(data, 'graph-viz-def-congruence-1753798729', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-congruence-1753797394').innerHTML =
+    document.getElementById('graph-viz-def-congruence-1753798729').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -125,6 +125,12 @@ ul.task-list li input[type="checkbox"] {
     bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
     bmcScript.defer = true;
     document.head.appendChild(bmcScript);
+
+    // Load Mobile Footer
+    var mobileScript = document.createElement('script');
+    mobileScript.src = basePath + 'js/mobile-footer.js';
+    mobileScript.defer = true;
+    document.head.appendChild(mobileScript);
   })();
 </script>
 
@@ -398,27 +404,27 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-homomorphism["Group Homomorphism"]:::definition
+    def-center-of-group["Center of a Group"]:::definition
+    def-group["Group"]:::definition
     def-isomorphism["Isomorphism"]:::definition
     def-identity-element["Identity Element"]:::definition
-    def-group["Group"]:::definition
-    def-automorphism["Automorphism"]:::definition
     ex-group-action-examples["Examples of Group Actions"]:::example
-    def-center-of-group["Center of a Group"]:::definition
+    def-automorphism["Automorphism"]:::definition
+    def-homomorphism["Group Homomorphism"]:::definition
+    def-automorphism --&gt; def-center-of-group
+    ex-group-action-examples --&gt; def-automorphism
     def-center-of-group --&gt; def-automorphism
     def-automorphism --&gt; def-homomorphism
-    def-automorphism --&gt; def-group
-    ex-group-action-examples --&gt; def-automorphism
-    def-automorphism --&gt; def-center-of-group
-    def-automorphism --&gt; def-identity-element
     def-automorphism --&gt; def-isomorphism
+    def-automorphism --&gt; def-group
+    def-automorphism --&gt; def-identity-element
     class def-automorphism current
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism"
+    click def-center-of-group "def-center-of-group.html" "Go to Center of a Group"
+    click def-group "def-group.html" "Go to Group"
     click def-isomorphism "def-isomorphism.html" "Go to Isomorphism"
     click def-identity-element "def-identity-element.html" "Go to Identity Element"
-    click def-group "def-group.html" "Go to Group"
     click ex-group-action-examples "ex-group-action-examples.html" "Go to Examples of Group Actions"
-    click def-center-of-group "def-center-of-group.html" "Go to Center of a Group"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -429,7 +435,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-automorphism-1753797332" class="graph-visualization-container">
+<div id="graph-viz-def-automorphism-1753798667" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -677,12 +683,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-automorphism-1753797332', {
+    createForceGraph(data, 'graph-viz-def-automorphism-1753798667', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-automorphism-1753797332').innerHTML =
+    document.getElementById('graph-viz-def-automorphism-1753798667').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

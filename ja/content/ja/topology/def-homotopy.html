@@ -125,6 +125,12 @@ ul.task-list li input[type="checkbox"] {
     bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
     bmcScript.defer = true;
     document.head.appendChild(bmcScript);
+
+    // Load Mobile Footer
+    var mobileScript = document.createElement('script');
+    mobileScript.src = basePath + 'js/mobile-footer.js';
+    mobileScript.defer = true;
+    document.head.appendChild(mobileScript);
   })();
 </script>
 
@@ -370,13 +376,13 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-topological-space["位相空間"]:::definition
     def-homotopy["ホモトピー"]:::definition
+    def-topological-space["位相空間"]:::definition
     def-homeomorphism["同相写像"]:::definition
     def-fundamental-group["基本群"]:::definition
-    def-homotopy --&gt; def-topological-space
-    def-fundamental-group --&gt; def-homotopy
     def-homotopy --&gt; def-homeomorphism
+    def-fundamental-group --&gt; def-homotopy
+    def-homotopy --&gt; def-topological-space
     def-homeomorphism --&gt; def-homotopy
     class def-homotopy current
     click def-topological-space "def-topological-space.html" "位相空間へ"
@@ -392,7 +398,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-homotopy-1753797592" class="graph-visualization-container">
+<div id="graph-viz-def-homotopy-1753798928" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -640,12 +646,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-homotopy-1753797592', {
+    createForceGraph(data, 'graph-viz-def-homotopy-1753798928', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-homotopy-1753797592').innerHTML =
+    document.getElementById('graph-viz-def-homotopy-1753798928').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

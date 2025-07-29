@@ -125,6 +125,12 @@ ul.task-list li input[type="checkbox"] {
     bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
     bmcScript.defer = true;
     document.head.appendChild(bmcScript);
+
+    // Load Mobile Footer
+    var mobileScript = document.createElement('script');
+    mobileScript.src = basePath + 'js/mobile-footer.js';
+    mobileScript.defer = true;
+    document.head.appendChild(mobileScript);
   })();
 </script>
 
@@ -377,36 +383,36 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
-    def-ring["Ring"]:::definition
-    def-polynomial-ring["Polynomial Ring"]:::definition
-    ex-polynomial-continuity["Polynomial Continuity"]:::example
     thm-intermediate-value["Intermediate Value Theorem"]:::theorem
+    def-integral-domain["Integral Domain"]:::definition
+    ex-polynomial-continuity["Polynomial Continuity"]:::example
+    def-ring["Ring"]:::definition
     def-subring["Subring"]:::definition
+    def-polynomial-ring["Polynomial Ring"]:::definition
+    def-binary-operation["Binary Operation"]:::definition
     def-eigenvalue-eigenvector["Eigenvalue and Eigenvector"]:::definition
     def-field["Field"]:::definition
-    def-integral-domain["Integral Domain"]:::definition
-    def-binary-operation["Binary Operation"]:::definition
-    def-polynomial-ring --&gt; def-ring
+    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
+    def-integral-domain --&gt; def-polynomial-ring
     def-eigenvalue-eigenvector --&gt; def-polynomial-ring
     def-polynomial-ring --&gt; def-integral-domain
-    def-polynomial-ring --&gt; def-binary-operation
-    def-polynomial-ring --&gt; def-field
     ex-quotient-integers-mod-n --&gt; def-polynomial-ring
     def-subring --&gt; def-polynomial-ring
     thm-intermediate-value --&gt; def-polynomial-ring
+    def-polynomial-ring --&gt; def-binary-operation
     ex-polynomial-continuity --&gt; def-polynomial-ring
-    def-integral-domain --&gt; def-polynomial-ring
+    def-polynomial-ring --&gt; def-field
+    def-polynomial-ring --&gt; def-ring
     class def-polynomial-ring current
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n"
-    click def-ring "def-ring.html" "Go to Ring"
-    click ex-polynomial-continuity "ex-polynomial-continuity.html" "Go to Polynomial Continuity"
     click thm-intermediate-value "thm-intermediate-value.html" "Go to Intermediate Value Theorem"
+    click def-integral-domain "def-integral-domain.html" "Go to Integral Domain"
+    click ex-polynomial-continuity "ex-polynomial-continuity.html" "Go to Polynomial Continuity"
+    click def-ring "def-ring.html" "Go to Ring"
     click def-subring "def-subring.html" "Go to Subring"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation"
     click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector"
     click def-field "def-field.html" "Go to Field"
-    click def-integral-domain "def-integral-domain.html" "Go to Integral Domain"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -417,7 +423,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-polynomial-ring-1753797605" class="graph-visualization-container">
+<div id="graph-viz-def-polynomial-ring-1753798941" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -665,12 +671,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-polynomial-ring-1753797605', {
+    createForceGraph(data, 'graph-viz-def-polynomial-ring-1753798941', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-polynomial-ring-1753797605').innerHTML =
+    document.getElementById('graph-viz-def-polynomial-ring-1753798941').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

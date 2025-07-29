@@ -4,21 +4,21 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-maximal-ideal["極大イデアル"]:::definition
     def-subset["部分集合"]:::definition
-    def-event["事象"]:::definition
-    def-relation["関係"]:::definition
+    def-set["集合"]:::definition
     def-partial-order["半順序"]:::definition
     def-ideal["イデアル"]:::definition
+    def-maximal-ideal["極大イデアル"]:::definition
     def-prime-ideal["素イデアル"]:::definition
-    def-set["集合"]:::definition
+    def-relation["関係"]:::definition
+    def-event["事象"]:::definition
+    def-relation --> def-subset
+    def-subset --> def-relation
     def-event --> def-subset
+    def-partial-order --> def-subset
+    def-ideal --> def-subset
+    def-subset --> def-set
     def-maximal-ideal --> def-subset
     def-prime-ideal --> def-subset
-    def-ideal --> def-subset
-    def-relation --> def-subset
     def-subset --> def-partial-order
-    def-partial-order --> def-subset
-    def-subset --> def-relation
-    def-subset --> def-set
     class def-subset current

@@ -125,6 +125,12 @@ ul.task-list li input[type="checkbox"] {
     bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
     bmcScript.defer = true;
     document.head.appendChild(bmcScript);
+
+    // Load Mobile Footer
+    var mobileScript = document.createElement('script');
+    mobileScript.src = basePath + 'js/mobile-footer.js';
+    mobileScript.defer = true;
+    document.head.appendChild(mobileScript);
   })();
 </script>
 
@@ -377,23 +383,23 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-taylor-series["テイラー級数"]:::theorem
-    def-series["級数"]:::definition
-    def-open-ball["開球"]:::definition
-    def-convergence["収束"]:::definition
     def-sequence["数列"]:::definition
+    def-series["級数"]:::definition
+    thm-taylor-series["テイラー級数"]:::theorem
+    def-convergence["収束"]:::definition
+    def-open-ball["開球"]:::definition
     def-limit["数列の極限"]:::definition
-    def-open-ball --&gt; def-convergence
-    def-convergence --&gt; def-open-ball
     def-convergence --&gt; def-sequence
-    def-convergence --&gt; def-limit
+    def-open-ball --&gt; def-convergence
     thm-taylor-series --&gt; def-convergence
     def-series --&gt; def-convergence
+    def-convergence --&gt; def-limit
+    def-convergence --&gt; def-open-ball
     class def-convergence current
-    click thm-taylor-series "thm-taylor-series.html" "テイラー級数へ"
-    click def-series "def-series.html" "級数へ"
-    click def-open-ball "def-open-ball.html" "開球へ"
     click def-sequence "def-sequence.html" "数列へ"
+    click def-series "def-series.html" "級数へ"
+    click thm-taylor-series "thm-taylor-series.html" "テイラー級数へ"
+    click def-open-ball "def-open-ball.html" "開球へ"
     click def-limit "def-limit.html" "数列の極限へ"
 </pre>
 </div>
@@ -405,7 +411,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-convergence-1753797458" class="graph-visualization-container">
+<div id="graph-viz-def-convergence-1753798793" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -653,12 +659,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-convergence-1753797458', {
+    createForceGraph(data, 'graph-viz-def-convergence-1753798793', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-convergence-1753797458').innerHTML =
+    document.getElementById('graph-viz-def-convergence-1753798793').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

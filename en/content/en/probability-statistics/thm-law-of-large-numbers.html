@@ -125,6 +125,12 @@ ul.task-list li input[type="checkbox"] {
     bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
     bmcScript.defer = true;
     document.head.appendChild(bmcScript);
+
+    // Load Mobile Footer
+    var mobileScript = document.createElement('script');
+    mobileScript.src = basePath + 'js/mobile-footer.js';
+    mobileScript.defer = true;
+    document.head.appendChild(mobileScript);
   })();
 </script>
 
@@ -363,21 +369,21 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-random-variable["Random Variable"]:::definition
-    thm-law-of-large-numbers["Law of Large Numbers"]:::theorem
-    def-probability-distribution["Probability Distribution"]:::definition
     def-independence["Independence"]:::definition
+    thm-law-of-large-numbers["Law of Large Numbers"]:::theorem
+    def-random-variable["Random Variable"]:::definition
+    def-probability-distribution["Probability Distribution"]:::definition
     def-variance["Variance"]:::definition
     def-expectation["Expected Value"]:::definition
     thm-law-of-large-numbers --&gt; def-random-variable
     thm-law-of-large-numbers --&gt; def-expectation
+    thm-law-of-large-numbers --&gt; def-independence
     thm-law-of-large-numbers --&gt; def-variance
     thm-law-of-large-numbers --&gt; def-probability-distribution
-    thm-law-of-large-numbers --&gt; def-independence
     class thm-law-of-large-numbers current
+    click def-independence "def-independence.html" "Go to Independence"
     click def-random-variable "def-random-variable.html" "Go to Random Variable"
     click def-probability-distribution "def-probability-distribution.html" "Go to Probability Distribution"
-    click def-independence "def-independence.html" "Go to Independence"
     click def-variance "def-variance.html" "Go to Variance"
     click def-expectation "def-expectation.html" "Go to Expected Value"
 </pre>
@@ -390,7 +396,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-law-of-large-numbers-1753797407" class="graph-visualization-container">
+<div id="graph-viz-thm-law-of-large-numbers-1753798742" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -638,12 +644,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-law-of-large-numbers-1753797407', {
+    createForceGraph(data, 'graph-viz-thm-law-of-large-numbers-1753798742', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-law-of-large-numbers-1753797407').innerHTML =
+    document.getElementById('graph-viz-thm-law-of-large-numbers-1753798742').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

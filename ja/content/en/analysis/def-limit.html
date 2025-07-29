@@ -125,6 +125,12 @@ ul.task-list li input[type="checkbox"] {
     bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
     bmcScript.defer = true;
     document.head.appendChild(bmcScript);
+
+    // Load Mobile Footer
+    var mobileScript = document.createElement('script');
+    mobileScript.src = basePath + 'js/mobile-footer.js';
+    mobileScript.defer = true;
+    document.head.appendChild(mobileScript);
   })();
 </script>
 
@@ -327,32 +333,32 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-limit-arithmetic["Arithmetic of Limits"]:::theorem
     def-cauchy-sequence["Cauchy Sequence"]:::definition
     def-integral["Integral"]:::definition
-    def-continuity["Continuity"]:::definition
     def-series["Series"]:::definition
-    def-complete-metric-space["Complete Metric Space"]:::definition
+    thm-limit-arithmetic["Arithmetic of Limits"]:::theorem
+    def-continuity["Continuity"]:::definition
     def-convergence["Convergence"]:::definition
     def-derivative["Derivative"]:::definition
+    def-complete-metric-space["Complete Metric Space"]:::definition
     def-limit["Limit of a Sequence"]:::definition
-    def-continuity --&gt; def-limit
     def-derivative --&gt; def-limit
+    def-continuity --&gt; def-limit
     def-integral --&gt; def-limit
     thm-limit-arithmetic --&gt; def-limit
-    def-convergence --&gt; def-limit
-    def-series --&gt; def-limit
     def-complete-metric-space --&gt; def-limit
+    def-convergence --&gt; def-limit
     def-cauchy-sequence --&gt; def-limit
+    def-series --&gt; def-limit
     class def-limit current
-    click thm-limit-arithmetic "thm-limit-arithmetic.html" "Go to Arithmetic of Limits"
     click def-cauchy-sequence "def-cauchy-sequence.html" "Go to Cauchy Sequence"
     click def-integral "def-integral.html" "Go to Integral"
-    click def-continuity "def-continuity.html" "Go to Continuity"
     click def-series "def-series.html" "Go to Series"
-    click def-complete-metric-space "def-complete-metric-space.html" "Go to Complete Metric Space"
+    click thm-limit-arithmetic "thm-limit-arithmetic.html" "Go to Arithmetic of Limits"
+    click def-continuity "def-continuity.html" "Go to Continuity"
     click def-convergence "def-convergence.html" "Go to Convergence"
     click def-derivative "def-derivative.html" "Go to Derivative"
+    click def-complete-metric-space "def-complete-metric-space.html" "Go to Complete Metric Space"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -363,7 +369,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-limit-1753797631" class="graph-visualization-container">
+<div id="graph-viz-def-limit-1753798969" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -611,12 +617,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-limit-1753797631', {
+    createForceGraph(data, 'graph-viz-def-limit-1753798969', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-limit-1753797631').innerHTML =
+    document.getElementById('graph-viz-def-limit-1753798969').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

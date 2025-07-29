@@ -125,6 +125,12 @@ ul.task-list li input[type="checkbox"] {
     bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
     bmcScript.defer = true;
     document.head.appendChild(bmcScript);
+
+    // Load Mobile Footer
+    var mobileScript = document.createElement('script');
+    mobileScript.src = basePath + 'js/mobile-footer.js';
+    mobileScript.defer = true;
+    document.head.appendChild(mobileScript);
   })();
 </script>
 
@@ -441,8 +447,8 @@ window.Quarto = {
     thm-fundamental-calculus["微積分学の基本定理"]:::theorem
     def-integral["積分"]:::definition
     thm-fundamental-calculus --&gt; def-continuity
-    thm-fundamental-calculus --&gt; def-integral
     thm-fundamental-calculus --&gt; def-derivative
+    thm-fundamental-calculus --&gt; def-integral
     class thm-fundamental-calculus current
     click def-continuity "def-continuity.html" "連続性へ"
     click def-derivative "def-derivative.html" "導関数へ"
@@ -457,7 +463,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-fundamental-calculus-1753797553" class="graph-visualization-container">
+<div id="graph-viz-thm-fundamental-calculus-1753798887" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -705,12 +711,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-fundamental-calculus-1753797553', {
+    createForceGraph(data, 'graph-viz-thm-fundamental-calculus-1753798887', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-fundamental-calculus-1753797553').innerHTML =
+    document.getElementById('graph-viz-thm-fundamental-calculus-1753798887').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

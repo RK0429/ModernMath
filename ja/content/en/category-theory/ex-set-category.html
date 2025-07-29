@@ -125,6 +125,12 @@ ul.task-list li input[type="checkbox"] {
     bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
     bmcScript.defer = true;
     document.head.appendChild(bmcScript);
+
+    // Load Mobile Footer
+    var mobileScript = document.createElement('script');
+    mobileScript.src = basePath + 'js/mobile-footer.js';
+    mobileScript.defer = true;
+    document.head.appendChild(mobileScript);
   })();
 </script>
 
@@ -349,17 +355,17 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Set"]:::definition
     def-morphism["Morphism"]:::definition
     def-category["Category"]:::definition
     ex-set-category["The Category of Sets"]:::example
+    def-set["Set"]:::definition
     ex-set-category --&gt; def-category
     ex-set-category --&gt; def-set
     ex-set-category --&gt; def-morphism
     class ex-set-category current
-    click def-set "def-set.html" "Go to Set"
     click def-morphism "def-morphism.html" "Go to Morphism"
     click def-category "def-category.html" "Go to Category"
+    click def-set "def-set.html" "Go to Set"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -370,7 +376,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-ex-set-category-1753797671" class="graph-visualization-container">
+<div id="graph-viz-ex-set-category-1753799011" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -618,12 +624,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-set-category-1753797671', {
+    createForceGraph(data, 'graph-viz-ex-set-category-1753799011', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-set-category-1753797671').innerHTML =
+    document.getElementById('graph-viz-ex-set-category-1753799011').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

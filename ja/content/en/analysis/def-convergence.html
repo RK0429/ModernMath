@@ -125,6 +125,12 @@ ul.task-list li input[type="checkbox"] {
     bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
     bmcScript.defer = true;
     document.head.appendChild(bmcScript);
+
+    // Load Mobile Footer
+    var mobileScript = document.createElement('script');
+    mobileScript.src = basePath + 'js/mobile-footer.js';
+    mobileScript.defer = true;
+    document.head.appendChild(mobileScript);
   })();
 </script>
 
@@ -377,23 +383,23 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-taylor-series["Taylor Series"]:::theorem
-    def-series["Series"]:::definition
-    def-open-ball["Open Ball"]:::definition
-    def-convergence["Convergence"]:::definition
     def-sequence["Sequence"]:::definition
+    def-series["Series"]:::definition
+    thm-taylor-series["Taylor Series"]:::theorem
+    def-convergence["Convergence"]:::definition
+    def-open-ball["Open Ball"]:::definition
     def-limit["Limit of a Sequence"]:::definition
-    def-open-ball --&gt; def-convergence
-    def-convergence --&gt; def-open-ball
     def-convergence --&gt; def-sequence
-    def-convergence --&gt; def-limit
+    def-open-ball --&gt; def-convergence
     thm-taylor-series --&gt; def-convergence
     def-series --&gt; def-convergence
+    def-convergence --&gt; def-limit
+    def-convergence --&gt; def-open-ball
     class def-convergence current
-    click thm-taylor-series "thm-taylor-series.html" "Go to Taylor Series"
-    click def-series "def-series.html" "Go to Series"
-    click def-open-ball "def-open-ball.html" "Go to Open Ball"
     click def-sequence "def-sequence.html" "Go to Sequence"
+    click def-series "def-series.html" "Go to Series"
+    click thm-taylor-series "thm-taylor-series.html" "Go to Taylor Series"
+    click def-open-ball "def-open-ball.html" "Go to Open Ball"
     click def-limit "def-limit.html" "Go to Limit of a Sequence"
 </pre>
 </div>
@@ -405,7 +411,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-convergence-1753797639" class="graph-visualization-container">
+<div id="graph-viz-def-convergence-1753798977" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -653,12 +659,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-convergence-1753797639', {
+    createForceGraph(data, 'graph-viz-def-convergence-1753798977', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-convergence-1753797639').innerHTML =
+    document.getElementById('graph-viz-def-convergence-1753798977').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
