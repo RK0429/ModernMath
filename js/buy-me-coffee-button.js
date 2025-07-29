@@ -40,7 +40,6 @@
         right: 20px;
         background-color: #FFDD00;
         color: #000000;
-        padding: 8px 12px;
         border-radius: 6px;
         text-decoration: none;
         font-size: 14px;
