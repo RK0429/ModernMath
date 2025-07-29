@@ -75,9 +75,8 @@
       /* Mobile responsive */
       @media (max-width: 768px) {
         .bmc-custom-button {
-          bottom: 60px;
+          bottom: 10px;
           right: 10px;
-          padding: 8px 12px;
           font-size: 13px;
         }
       }
