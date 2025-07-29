@@ -224,11 +224,8 @@ jobs:
         poetry run python scripts/translation/fix_japanese_index.py
         echo "Japanese index page fixed"
 
-    - name: Inject Buy Me a Coffee button
-      run: |
-        echo "Injecting Buy Me a Coffee button into all pages..."
-        poetry run python scripts/site/inject_buy_me_coffee.py
-        echo "Buy Me a Coffee button injection completed"
+    # Buy Me a Coffee button is now injected via JavaScript (js/buy-me-coffee-button.js)
+    # No longer need the Python post-processing step
 
     - name: Copy shared resources to site root
       run: |
