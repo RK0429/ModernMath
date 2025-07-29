@@ -9,6 +9,7 @@ as part of the build process.
 import sys
 from pathlib import Path
 from typing import List
+
 from bs4 import BeautifulSoup, Tag
 
 
@@ -42,7 +43,7 @@ def inject_buy_me_coffee_button(html_file: Path) -> None:
             right: 20px;
             background-color: #FFDD00;
             color: #000000;
-            padding: 10px 16px;
+            padding: 4px 4px;
             border-radius: 6px;
             text-decoration: none;
             font-size: 14px;

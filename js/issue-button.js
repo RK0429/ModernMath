@@ -159,7 +159,7 @@
         right: 20px;
         background-color: #0366d6;
         color: white;
-        padding: 10px 16px;
+        padding: 10px 20.865px;
         border-radius: 6px;
         text-decoration: none;
         font-size: 14px;
