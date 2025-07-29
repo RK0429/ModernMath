@@ -4,15 +4,15 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-vector-space["ベクトル空間"]:::definition
-    thm-rank-nullity["階数・退化次数定理"]:::theorem
-    def-linear-transformation["線形変換"]:::definition
-    thm-first-isomorphism["第一同型定理"]:::theorem
     def-exact-sequence["完全列"]:::definition
+    thm-rank-nullity["階数・退化次数定理"]:::theorem
+    thm-first-isomorphism["第一同型定理"]:::theorem
+    def-vector-space["ベクトル空間"]:::definition
     def-image["像"]:::definition
-    thm-first-isomorphism --> def-image
-    def-image --> def-linear-transformation
+    def-linear-transformation["線形変換"]:::definition
+    thm-rank-nullity --> def-image
     def-image --> def-vector-space
     def-exact-sequence --> def-image
-    thm-rank-nullity --> def-image
+    def-image --> def-linear-transformation
+    thm-first-isomorphism --> def-image
     class def-image current

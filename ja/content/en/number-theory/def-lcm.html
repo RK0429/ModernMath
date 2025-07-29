@@ -378,28 +378,28 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
     def-set["Set"]:::definition
-    def-gcd["Greatest Common Divisor"]:::definition
+    thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
+    def-prime["Prime Number"]:::definition
     def-divisibility["Divisibility"]:::definition
     thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
-    def-prime["Prime Number"]:::definition
     def-lcm["Least Common Multiple"]:::definition
-    def-lcm --&gt; thm-fundamental-arithmetic
+    def-gcd["Greatest Common Divisor"]:::definition
     def-lcm --&gt; def-divisibility
-    thm-fundamental-arithmetic --&gt; def-lcm
-    def-gcd --&gt; def-lcm
+    def-lcm --&gt; thm-fundamental-arithmetic
     def-lcm --&gt; def-gcd
-    def-lcm --&gt; def-prime
-    def-lcm --&gt; def-set
+    def-gcd --&gt; def-lcm
     def-lcm --&gt; thm-chinese-remainder
+    thm-fundamental-arithmetic --&gt; def-lcm
+    def-lcm --&gt; def-set
+    def-lcm --&gt; def-prime
     class def-lcm current
-    click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "Go to Fundamental Theorem of Arithmetic"
     click def-set "def-set.html" "Go to Set"
-    click def-gcd "def-gcd.html" "Go to Greatest Common Divisor"
+    click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "Go to Fundamental Theorem of Arithmetic"
+    click def-prime "def-prime.html" "Go to Prime Number"
     click def-divisibility "def-divisibility.html" "Go to Divisibility"
     click thm-chinese-remainder "thm-chinese-remainder.html" "Go to Chinese Remainder Theorem"
-    click def-prime "def-prime.html" "Go to Prime Number"
+    click def-gcd "def-gcd.html" "Go to Greatest Common Divisor"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -410,7 +410,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-lcm-1753810779" class="graph-visualization-container">
+<div id="graph-viz-def-lcm-1753812574" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -658,12 +658,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-lcm-1753810779', {
+    createForceGraph(data, 'graph-viz-def-lcm-1753812574', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-lcm-1753810779').innerHTML =
+    document.getElementById('graph-viz-def-lcm-1753812574').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

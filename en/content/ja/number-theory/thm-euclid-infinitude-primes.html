@@ -366,18 +366,18 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-divisibility["整除性"]:::definition
-    thm-euclid-infinitude-primes["素数の無限性に関するユークリッドの定理"]:::theorem
     def-prime["素数"]:::definition
+    thm-euclid-infinitude-primes["素数の無限性に関するユークリッドの定理"]:::theorem
+    def-divisibility["整除性"]:::definition
     thm-fundamental-arithmetic["算術の基本定理"]:::theorem
     thm-fundamental-arithmetic --&gt; thm-euclid-infinitude-primes
     thm-euclid-infinitude-primes --&gt; def-prime
-    def-prime --&gt; thm-euclid-infinitude-primes
     thm-euclid-infinitude-primes --&gt; thm-fundamental-arithmetic
+    def-prime --&gt; thm-euclid-infinitude-primes
     thm-euclid-infinitude-primes --&gt; def-divisibility
     class thm-euclid-infinitude-primes current
-    click def-divisibility "def-divisibility.html" "整除性へ"
     click def-prime "def-prime.html" "素数へ"
+    click def-divisibility "def-divisibility.html" "整除性へ"
     click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "算術の基本定理へ"
 </pre>
 </div>
@@ -389,7 +389,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-euclid-infinitude-primes-1753810592" class="graph-visualization-container">
+<div id="graph-viz-thm-euclid-infinitude-primes-1753812387" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -637,12 +637,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-euclid-infinitude-primes-1753810592', {
+    createForceGraph(data, 'graph-viz-thm-euclid-infinitude-primes-1753812387', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-euclid-infinitude-primes-1753810592').innerHTML =
+    document.getElementById('graph-viz-thm-euclid-infinitude-primes-1753812387').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -5,26 +5,26 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-fundamental-arithmetic["算術の基本定理"]:::theorem
-    thm-euclid-infinitude-primes["素数の無限性に関するユークリッドの定理"]:::theorem
-    def-gcd["最大公約数"]:::definition
-    def-divisibility["整除性"]:::definition
-    thm-euclidean-algorithm["ユークリッドのアルゴリズム"]:::theorem
     thm-fermat-little["フェルマーの小定理"]:::theorem
-    thm-chinese-remainder["中国剰余定理"]:::theorem
-    def-partial-order["半順序"]:::definition
     def-prime["素数"]:::definition
-    def-congruence["合同（モジュラー演算）"]:::definition
+    def-divisibility["整除性"]:::definition
+    thm-chinese-remainder["中国剰余定理"]:::theorem
     def-lcm["最小公倍数"]:::definition
+    thm-euclid-infinitude-primes["素数の無限性に関するユークリッドの定理"]:::theorem
+    def-partial-order["半順序"]:::definition
+    thm-euclidean-algorithm["ユークリッドのアルゴリズム"]:::theorem
+    def-gcd["最大公約数"]:::definition
+    def-congruence["合同（モジュラー演算）"]:::definition
     def-lcm --> def-divisibility
-    def-prime --> def-divisibility
-    def-divisibility --> def-prime
-    thm-fermat-little --> def-divisibility
-    def-congruence --> def-divisibility
     thm-fundamental-arithmetic --> def-divisibility
     def-gcd --> def-divisibility
-    def-divisibility --> def-partial-order
-    thm-euclidean-algorithm --> def-divisibility
-    def-divisibility --> def-gcd
+    def-divisibility --> def-prime
+    thm-fermat-little --> def-divisibility
     thm-chinese-remainder --> def-divisibility
+    def-divisibility --> def-partial-order
+    def-congruence --> def-divisibility
+    def-divisibility --> def-gcd
+    def-prime --> def-divisibility
+    thm-euclidean-algorithm --> def-divisibility
     thm-euclid-infinitude-primes --> def-divisibility
     class def-divisibility current
