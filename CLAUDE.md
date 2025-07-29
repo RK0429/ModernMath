@@ -371,6 +371,8 @@ Site uses two fixed-position action buttons with consistent JavaScript implement
 
 **Design Principle**: Both buttons maintain identical sizing for visual consistency across languages. Icon sizes: 16px, font size: 14px.
 
+**Mobile Dimensions**: Both buttons use height: 44px, min-width: 110px on screens ≤768px to ensure consistent appearance across devices.
+
 **Implementation**: Both buttons are injected via JavaScript during page load, loaded through Quarto's include-in-header configuration in language profiles (`_quarto-en.yml`, `_quarto-ja.yml`). The Buy Me a Coffee button was migrated from Python post-processing to JavaScript for consistency.
 
 ## Repository Management
