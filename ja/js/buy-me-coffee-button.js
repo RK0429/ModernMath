@@ -79,7 +79,7 @@
           right: 10px;
           font-size: 13px;
           height: 44px;
-          min-width: 110px;
+          min-width: 130px;
         }
       }
 

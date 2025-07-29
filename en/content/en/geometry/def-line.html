@@ -328,23 +328,23 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-angle-sum-triangle["Angle Sum of a Triangle"]:::theorem
-    def-parallel["Parallel Lines"]:::definition
-    def-point["Point"]:::definition
     def-triangle["Triangle"]:::definition
-    def-angle["Angle"]:::definition
     def-line["Line"]:::definition
-    def-triangle --&gt; def-line
-    thm-angle-sum-triangle --&gt; def-line
+    def-parallel["Parallel Lines"]:::definition
+    thm-angle-sum-triangle["Angle Sum of a Triangle"]:::theorem
+    def-angle["Angle"]:::definition
+    def-point["Point"]:::definition
     def-angle --&gt; def-line
+    thm-angle-sum-triangle --&gt; def-line
     def-line --&gt; def-point
     def-parallel --&gt; def-line
+    def-triangle --&gt; def-line
     class def-line current
-    click thm-angle-sum-triangle "thm-angle-sum-triangle.html" "Go to Angle Sum of a Triangle"
-    click def-parallel "def-parallel.html" "Go to Parallel Lines"
-    click def-point "def-point.html" "Go to Point"
     click def-triangle "def-triangle.html" "Go to Triangle"
+    click def-parallel "def-parallel.html" "Go to Parallel Lines"
+    click thm-angle-sum-triangle "thm-angle-sum-triangle.html" "Go to Angle Sum of a Triangle"
     click def-angle "def-angle.html" "Go to Angle"
+    click def-point "def-point.html" "Go to Point"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -355,7 +355,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-line-1753787067" class="graph-visualization-container">
+<div id="graph-viz-def-line-1753788159" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -603,12 +603,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-line-1753787067', {
+    createForceGraph(data, 'graph-viz-def-line-1753788159', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-line-1753787067').innerHTML =
+    document.getElementById('graph-viz-def-line-1753788159').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -335,27 +335,27 @@ window.Quarto = {
     ex-principal-ideal["Principal Ideals in Integers"]:::example
     ex-integers-ring["Integers Form a Ring"]:::example
     def-group["Group"]:::definition
+    def-ring["Ring"]:::definition
     def-binary-operation["Binary Operation"]:::definition
-    def-abelian-group["Abelian Group"]:::definition
     def-integral-domain["Integral Domain"]:::definition
     def-ideal["Ideal"]:::definition
-    def-ring["Ring"]:::definition
+    def-abelian-group["Abelian Group"]:::definition
     ex-integers-ring --&gt; def-binary-operation
-    ex-integers-ring --&gt; def-ideal
-    ex-integers-ring --&gt; def-group
-    ex-integers-ring --&gt; def-ring
-    def-integral-domain --&gt; ex-integers-ring
-    ex-integers-ring --&gt; def-integral-domain
     ex-integers-ring --&gt; ex-principal-ideal
     ex-integers-ring --&gt; def-abelian-group
+    ex-integers-ring --&gt; def-integral-domain
+    ex-integers-ring --&gt; def-ring
+    ex-integers-ring --&gt; def-ideal
+    ex-integers-ring --&gt; def-group
+    def-integral-domain --&gt; ex-integers-ring
     class ex-integers-ring current
     click ex-principal-ideal "ex-principal-ideal.html" "Go to Principal Ideals in Integers"
     click def-group "def-group.html" "Go to Group"
+    click def-ring "def-ring.html" "Go to Ring"
     click def-binary-operation "def-binary-operation.html" "Go to Binary Operation"
-    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group"
     click def-integral-domain "def-integral-domain.html" "Go to Integral Domain"
     click def-ideal "def-ideal.html" "Go to Ideal"
-    click def-ring "def-ring.html" "Go to Ring"
+    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -366,7 +366,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-ex-integers-ring-1753787315" class="graph-visualization-container">
+<div id="graph-viz-ex-integers-ring-1753788404" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -614,12 +614,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-integers-ring-1753787315', {
+    createForceGraph(data, 'graph-viz-ex-integers-ring-1753788404', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-integers-ring-1753787315').innerHTML =
+    document.getElementById('graph-viz-ex-integers-ring-1753788404').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

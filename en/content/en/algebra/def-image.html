@@ -331,22 +331,22 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-rank-nullity["Rank-Nullity Theorem"]:::theorem
-    def-linear-transformation["Linear Transformation"]:::definition
-    def-image["Image"]:::definition
     def-vector-space["Vector Space"]:::definition
+    def-image["Image"]:::definition
+    thm-rank-nullity["Rank-Nullity Theorem"]:::theorem
     def-exact-sequence["Exact Sequence"]:::definition
+    def-linear-transformation["Linear Transformation"]:::definition
     thm-first-isomorphism["First Isomorphism Theorem"]:::theorem
     thm-first-isomorphism --&gt; def-image
-    def-image --&gt; def-vector-space
-    thm-rank-nullity --&gt; def-image
-    def-image --&gt; def-linear-transformation
     def-exact-sequence --&gt; def-image
+    def-image --&gt; def-vector-space
+    def-image --&gt; def-linear-transformation
+    thm-rank-nullity --&gt; def-image
     class def-image current
-    click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem"
-    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation"
     click def-vector-space "def-vector-space.html" "Go to Vector Space"
+    click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem"
     click def-exact-sequence "def-exact-sequence.html" "Go to Exact Sequence"
+    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation"
     click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem"
 </pre>
 </div>
@@ -358,7 +358,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-image-1753787025" class="graph-visualization-container">
+<div id="graph-viz-def-image-1753788119" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -606,12 +606,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-image-1753787025', {
+    createForceGraph(data, 'graph-viz-def-image-1753788119', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-image-1753787025').innerHTML =
+    document.getElementById('graph-viz-def-image-1753788119').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
