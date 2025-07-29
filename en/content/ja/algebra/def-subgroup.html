@@ -330,50 +330,50 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-order["位数"]:::definition
-    ex-even-integers-subgroup["偶数整数は部分群を成す"]:::example
-    def-normal-subgroup["正規部分群"]:::definition
-    def-center-of-group["群の中心"]:::definition
-    def-subgroup["部分群"]:::definition
-    thm-sylow["シローの定理"]:::theorem
-    def-subring["部分環"]:::definition
-    def-group["群"]:::definition
     def-quotient-group["商群"]:::definition
+    def-normal-subgroup["正規部分群"]:::definition
     def-cyclic-group["巡回群"]:::definition
-    thm-lagrange["ラグランジュの定理"]:::theorem
-    def-coset["剰余類"]:::definition
+    def-order["位数"]:::definition
     def-set["集合"]:::definition
-    def-center-of-group --&gt; def-subgroup
-    ex-even-integers-subgroup --&gt; def-subgroup
-    def-group --&gt; def-subgroup
-    def-subgroup --&gt; def-normal-subgroup
+    def-center-of-group["群の中心"]:::definition
+    ex-even-integers-subgroup["偶数整数は部分群を成す"]:::example
+    def-group["群"]:::definition
+    thm-lagrange["ラグランジュの定理"]:::theorem
+    thm-sylow["シローの定理"]:::theorem
+    def-coset["剰余類"]:::definition
+    def-subring["部分環"]:::definition
+    def-subgroup["部分群"]:::definition
     thm-sylow --&gt; def-subgroup
-    def-subring --&gt; def-subgroup
-    thm-lagrange --&gt; def-subgroup
-    def-subgroup --&gt; def-set
-    def-subgroup --&gt; thm-lagrange
-    def-subgroup --&gt; def-cyclic-group
-    def-subgroup --&gt; def-quotient-group
-    def-normal-subgroup --&gt; def-subgroup
-    def-order --&gt; def-subgroup
-    def-subgroup --&gt; def-group
     def-coset --&gt; def-subgroup
+    def-subring --&gt; def-subgroup
+    def-normal-subgroup --&gt; def-subgroup
     def-quotient-group --&gt; def-subgroup
     def-subgroup --&gt; def-order
+    def-order --&gt; def-subgroup
+    def-group --&gt; def-subgroup
     def-cyclic-group --&gt; def-subgroup
+    def-subgroup --&gt; def-group
+    ex-even-integers-subgroup --&gt; def-subgroup
+    def-subgroup --&gt; def-set
+    def-subgroup --&gt; def-cyclic-group
+    def-subgroup --&gt; def-normal-subgroup
+    thm-lagrange --&gt; def-subgroup
+    def-subgroup --&gt; def-quotient-group
+    def-subgroup --&gt; thm-lagrange
+    def-center-of-group --&gt; def-subgroup
     class def-subgroup current
-    click def-order "def-order.html" "位数へ"
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "偶数整数は部分群を成すへ"
-    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群へ"
-    click def-center-of-group "def-center-of-group.html" "群の中心へ"
-    click thm-sylow "thm-sylow.html" "シローの定理へ"
-    click def-subring "def-subring.html" "部分環へ"
-    click def-group "def-group.html" "群へ"
     click def-quotient-group "def-quotient-group.html" "商群へ"
+    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群へ"
     click def-cyclic-group "def-cyclic-group.html" "巡回群へ"
-    click thm-lagrange "thm-lagrange.html" "ラグランジュの定理へ"
-    click def-coset "def-coset.html" "剰余類へ"
+    click def-order "def-order.html" "位数へ"
     click def-set "def-set.html" "集合へ"
+    click def-center-of-group "def-center-of-group.html" "群の中心へ"
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "偶数整数は部分群を成すへ"
+    click def-group "def-group.html" "群へ"
+    click thm-lagrange "thm-lagrange.html" "ラグランジュの定理へ"
+    click thm-sylow "thm-sylow.html" "シローの定理へ"
+    click def-coset "def-coset.html" "剰余類へ"
+    click def-subring "def-subring.html" "部分環へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -384,7 +384,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-subgroup-1753719183" class="graph-visualization-container">
+<div id="graph-viz-def-subgroup-1753761074" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -632,12 +632,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-subgroup-1753719183', {
+    createForceGraph(data, 'graph-viz-def-subgroup-1753761074', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-subgroup-1753719183').innerHTML =
+    document.getElementById('graph-viz-def-subgroup-1753761074').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
