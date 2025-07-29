@@ -407,26 +407,26 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-monomorphism["単射"]:::definition
-    def-composition["合成"]:::definition
-    def-isomorphism["群同型"]:::definition
-    def-category["圏"]:::definition
-    def-epimorphism["全射"]:::definition
     def-morphism["射"]:::definition
+    def-composition["合成"]:::definition
+    def-epimorphism["全射"]:::definition
+    def-category["圏"]:::definition
+    def-isomorphism["群同型"]:::definition
+    def-monomorphism["単射"]:::definition
     def-functor["関手"]:::definition
     def-epimorphism --&gt; def-morphism
+    def-epimorphism --&gt; def-monomorphism
     def-epimorphism --&gt; def-composition
     def-epimorphism --&gt; def-isomorphism
-    def-epimorphism --&gt; def-monomorphism
-    def-epimorphism --&gt; def-functor
     def-epimorphism --&gt; def-category
     def-monomorphism --&gt; def-epimorphism
+    def-epimorphism --&gt; def-functor
     class def-epimorphism current
-    click def-monomorphism "def-monomorphism.html" "単射へ"
-    click def-composition "def-composition.html" "合成へ"
-    click def-isomorphism "def-isomorphism.html" "群同型へ"
-    click def-category "def-category.html" "圏へ"
     click def-morphism "def-morphism.html" "射へ"
+    click def-composition "def-composition.html" "合成へ"
+    click def-category "def-category.html" "圏へ"
+    click def-isomorphism "def-isomorphism.html" "群同型へ"
+    click def-monomorphism "def-monomorphism.html" "単射へ"
     click def-functor "def-functor.html" "関手へ"
 </pre>
 </div>
@@ -438,7 +438,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-epimorphism-1753807642" class="graph-visualization-container">
+<div id="graph-viz-def-epimorphism-1753809223" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -686,12 +686,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-epimorphism-1753807642', {
+    createForceGraph(data, 'graph-viz-def-epimorphism-1753809223', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-epimorphism-1753807642').innerHTML =
+    document.getElementById('graph-viz-def-epimorphism-1753809223').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

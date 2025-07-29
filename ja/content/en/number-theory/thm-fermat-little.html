@@ -384,24 +384,24 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-gcd["Greatest Common Divisor"]:::definition
-    def-congruence["Congruence (Modular Arithmetic)"]:::definition
-    thm-fermat-little["Fermat's Little Theorem"]:::theorem
     thm-euler["Euler's Theorem"]:::theorem
-    def-divisibility["Divisibility"]:::definition
     def-prime["Prime Number"]:::definition
+    def-congruence["Congruence (Modular Arithmetic)"]:::definition
+    def-divisibility["Divisibility"]:::definition
+    thm-fermat-little["Fermat's Little Theorem"]:::theorem
+    def-gcd["Greatest Common Divisor"]:::definition
+    thm-fermat-little --&gt; def-divisibility
     thm-fermat-little --&gt; def-congruence
     thm-fermat-little --&gt; def-gcd
-    thm-euler --&gt; thm-fermat-little
-    def-congruence --&gt; thm-fermat-little
-    thm-fermat-little --&gt; def-divisibility
     thm-fermat-little --&gt; def-prime
+    def-congruence --&gt; thm-fermat-little
+    thm-euler --&gt; thm-fermat-little
     class thm-fermat-little current
-    click def-gcd "def-gcd.html" "Go to Greatest Common Divisor"
-    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic)"
     click thm-euler "thm-euler.html" "Go to Euler's Theorem"
-    click def-divisibility "def-divisibility.html" "Go to Divisibility"
     click def-prime "def-prime.html" "Go to Prime Number"
+    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic)"
+    click def-divisibility "def-divisibility.html" "Go to Divisibility"
+    click def-gcd "def-gcd.html" "Go to Greatest Common Divisor"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -412,7 +412,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-fermat-little-1753807827" class="graph-visualization-container">
+<div id="graph-viz-thm-fermat-little-1753809407" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -660,12 +660,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-fermat-little-1753807827', {
+    createForceGraph(data, 'graph-viz-thm-fermat-little-1753809407', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-fermat-little-1753807827').innerHTML =
+    document.getElementById('graph-viz-thm-fermat-little-1753809407').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
