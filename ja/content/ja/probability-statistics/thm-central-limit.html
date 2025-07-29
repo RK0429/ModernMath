@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>中心極限定理 – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,195 +157,159 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">数学ナレッジグラフ</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="サーチ"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">数学ナレッジグラフ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="サーチ"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index-ja.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index-ja.html"> 
 <span class="menu-text">ホーム</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
 <span class="menu-text">代数学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
 <span class="menu-text">解析学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
 <span class="menu-text">位相空間論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
 <span class="menu-text">幾何学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
 <span class="menu-text">圏論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
 <span class="menu-text">組合せ論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
 <span class="menu-text">論理学・集合論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
 <span class="menu-text">数論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
 <span class="menu-text">確率統計</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/about.html"> 
 <span class="menu-text">概要</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
 <span class="menu-text">貢献</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../en/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../en/index.html"> 
 <span class="menu-text">🌐 English</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">目次</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#thm-central-limit" href="#thm-central-limit" id="toc-thm-central-limit">中心極限定理</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#主張" href="#主張" id="toc-主張">主張</a></li>
-<li><a class="nav-link" data-scroll-target="#同値な表現" href="#同値な表現" id="toc-同値な表現">同値な表現</a></li>
-<li><a class="nav-link" data-scroll-target="#証明の概略" href="#証明の概略" id="toc-証明の概略">証明の概略</a></li>
-<li><a class="nav-link" data-scroll-target="#応用" href="#応用" id="toc-応用">応用</a></li>
-<li><a class="nav-link" data-scroll-target="#例" href="#例" id="toc-例">例</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#例1コイン投げ" href="#例1コイン投げ" id="toc-例1コイン投げ">例1：コイン投げ</a></li>
-<li><a class="nav-link" data-scroll-target="#例2サイコロ投げ" href="#例2サイコロ投げ" id="toc-例2サイコロ投げ">例2：サイコロ投げ</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#実用的な経験則" href="#実用的な経験則" id="toc-実用的な経験則">実用的な経験則</a></li>
-<li><a class="nav-link" data-scroll-target="#mermaidダイアグラム" href="#mermaidダイアグラム" id="toc-mermaidダイアグラム">Mermaidダイアグラム</a></li>
-<li><a class="nav-link" data-scroll-target="#依存関係グラフ" href="#依存関係グラフ" id="toc-依存関係グラフ">依存関係グラフ</a></li>
-<li><a class="nav-link" data-scroll-target="#インタラクティブ可視化" href="#インタラクティブ可視化" id="toc-インタラクティブ可視化">インタラクティブ可視化</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#thm-central-limit" id="toc-thm-central-limit" class="nav-link active" data-scroll-target="#thm-central-limit">中心極限定理</a>
+  <ul class="collapse">
+  <li><a href="#主張" id="toc-主張" class="nav-link" data-scroll-target="#主張">主張</a></li>
+  <li><a href="#同値な表現" id="toc-同値な表現" class="nav-link" data-scroll-target="#同値な表現">同値な表現</a></li>
+  <li><a href="#証明の概略" id="toc-証明の概略" class="nav-link" data-scroll-target="#証明の概略">証明の概略</a></li>
+  <li><a href="#応用" id="toc-応用" class="nav-link" data-scroll-target="#応用">応用</a></li>
+  <li><a href="#例" id="toc-例" class="nav-link" data-scroll-target="#例">例</a>
+  <ul class="collapse">
+  <li><a href="#例1コイン投げ" id="toc-例1コイン投げ" class="nav-link" data-scroll-target="#例1コイン投げ">例1：コイン投げ</a></li>
+  <li><a href="#例2サイコロ投げ" id="toc-例2サイコロ投げ" class="nav-link" data-scroll-target="#例2サイコロ投げ">例2：サイコロ投げ</a></li>
+  </ul></li>
+  <li><a href="#実用的な経験則" id="toc-実用的な経験則" class="nav-link" data-scroll-target="#実用的な経験則">実用的な経験則</a></li>
+  <li><a href="#mermaidダイアグラム" id="toc-mermaidダイアグラム" class="nav-link" data-scroll-target="#mermaidダイアグラム">Mermaidダイアグラム</a></li>
+  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
+  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">中心極限定理</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="thm-central-limit">
+
+
+<section id="thm-central-limit" class="level1">
 <h1>中心極限定理</h1>
 <p><strong>中心極限定理（CLT）</strong>は確率論における最も基本的な結果の一つであり、<a href="../../../content/ja/probability-statistics/def-independence.html">独立な</a><a href="../../../content/ja/probability-statistics/def-random-variable.html">確率変数</a>の正規化された和の<a href="../../../content/ja/probability-statistics/def-probability-distribution.html">分布</a>が<a href="../../../content/ja/probability-statistics/def-normal-distribution.html">正規分布</a>に収束することを述べています。</p>
-<section class="level2" id="主張">
+<section id="主張" class="level2">
 <h2 class="anchored" data-anchor-id="主張">主張</h2>
 <p><span class="math inline">\(X_1, X_2, \ldots, X_n\)</span>を<a href="../../../content/ja/probability-statistics/def-independence.html">独立</a>かつ同一に<a href="../../../content/ja/probability-statistics/def-probability-distribution.html">分布</a>した（i.i.d.）確率変数とし、以下を満たすものとする： - 有限の<a href="../../../content/ja/probability-statistics/def-expectation.html">期待値</a>：<span class="math inline">\(\mu = E[X_i] &lt; \infty\)</span> - 有限の<a href="../../../content/ja/probability-statistics/def-variance.html">分散</a>：<span class="math inline">\(\sigma^2 = \text{Var}(X_i) &lt; \infty\)</span>、ただし<span class="math inline">\(\sigma &gt; 0\)</span></p>
 <p>以下を定義する： - 標本平均：<span class="math inline">\(\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i\)</span> - 標準化和：<span class="math inline">\(Z_n = \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} = \frac{\sum_{i=1}^n X_i - n\mu}{\sigma\sqrt{n}}\)</span></p>
 <p>このとき、任意の<span class="math inline">\(z \in \mathbb{R}\)</span>に対して： <span class="math display">\[\lim_{n \to \infty} P(Z_n \leq z) = \Phi(z)\]</span></p>
 <p>ここで、<span class="math inline">\(\Phi(z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-t^2/2} dt\)</span>は標準<a href="../../../content/ja/probability-statistics/def-normal-distribution.html">正規分布</a>の累積分布関数である。</p>
 </section>
-<section class="level2" id="同値な表現">
+<section id="同値な表現" class="level2">
 <h2 class="anchored" data-anchor-id="同値な表現">同値な表現</h2>
 <p><span class="math inline">\(n\)</span>が大きいとき、<span class="math inline">\(\bar{X}_n\)</span>の<a href="../../../content/ja/probability-statistics/def-probability-distribution.html">分布</a>は近似的に<a href="../../../content/ja/probability-statistics/def-normal-distribution.html">正規分布</a>となる： <span class="math display">\[\bar{X}_n \stackrel{d}{\approx} N\left(\mu, \frac{\sigma^2}{n}\right)\]</span></p>
 </section>
-<section class="level2" id="証明の概略">
+<section id="証明の概略" class="level2">
 <h2 class="anchored" data-anchor-id="証明の概略">証明の概略</h2>
 <p>古典的な証明は特性関数を用いる：</p>
 <ol type="1">
@@ -343,7 +320,7 @@ window.Quarto = {
 </ol>
 <p>これは<span class="math inline">\(N(0,1)\)</span>の特性関数であり、連続性定理により証明が完成する。</p>
 </section>
-<section class="level2" id="応用">
+<section id="応用" class="level2">
 <h2 class="anchored" data-anchor-id="応用">応用</h2>
 <ol type="1">
 <li><strong>統計的推論</strong>：信頼区間と仮説検定の正当化</li>
@@ -353,22 +330,22 @@ window.Quarto = {
 <li><strong>モンテカルロ法</strong>：収束率の推定</li>
 </ol>
 </section>
-<section class="level2" id="例">
+<section id="例" class="level2">
 <h2 class="anchored" data-anchor-id="例">例</h2>
-<section class="level3" id="例1コイン投げ">
+<section id="例1コイン投げ" class="level3">
 <h3 class="anchored" data-anchor-id="例1コイン投げ">例1：コイン投げ</h3>
 <p><span class="math inline">\(n\)</span>回の公平なコイン投げ（ベルヌーイ(1/2)、<a href="../../../content/ja/probability-statistics/def-binomial-distribution.html">二項分布</a>を参照）： - <span class="math inline">\(\mu = 0.5\)</span>、<span class="math inline">\(\sigma^2 = 0.25\)</span> - 表の出る割合は<span class="math inline">\(n\)</span>が大きいとき<span class="math inline">\(\approx N(0.5, 0.25/n)\)</span></p>
 </section>
-<section class="level3" id="例2サイコロ投げ">
+<section id="例2サイコロ投げ" class="level3">
 <h3 class="anchored" data-anchor-id="例2サイコロ投げ">例2：サイコロ投げ</h3>
 <p><span class="math inline">\(n\)</span>回の公平なサイコロ投げの和： - 各投げ：<span class="math inline">\(\mu = 3.5\)</span>、<span class="math inline">\(\sigma^2 = 35/12\)</span> - 平均は<span class="math inline">\(n\)</span>が大きいとき<span class="math inline">\(\approx N(3.5, 35/(12n))\)</span></p>
 </section>
 </section>
-<section class="level2" id="実用的な経験則">
+<section id="実用的な経験則" class="level2">
 <h2 class="anchored" data-anchor-id="実用的な経験則">実用的な経験則</h2>
 <p>定理は<span class="math inline">\(n \to \infty\)</span>で適用されるが、実際には： - <span class="math inline">\(n \geq 30\)</span>はしばしば良い近似のために十分とされる - 歪度の大きい分布に対しては、より大きい<span class="math inline">\(n\)</span>が必要となる場合がある</p>
 </section>
-<section class="level2" id="mermaidダイアグラム">
+<section id="mermaidダイアグラム" class="level2">
 <h2 class="anchored" data-anchor-id="mermaidダイアグラム">Mermaidダイアグラム</h2>
 <pre class="mermaid"><code>graph TD
     A[中心極限定理] --&gt; B[標本平均 X̄ₙ]
@@ -388,7 +365,7 @@ window.Quarto = {
     style F fill:#bfb,stroke:#333,stroke-width:2px
     style G fill:#bfb,stroke:#333,stroke-width:2px</code></pre>
 </section>
-<section class="level2" id="依存関係グラフ">
+<section id="依存関係グラフ" class="level2">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -401,26 +378,26 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-independence["独立性"]:::definition
-    def-probability-distribution["確率分布"]:::definition
+    def-variance["分散"]:::definition
     thm-central-limit["中心極限定理"]:::theorem
+    def-probability-distribution["確率分布"]:::definition
     def-random-variable["確率変数"]:::definition
+    def-independence["独立性"]:::definition
     def-normal-distribution["正規分布"]:::definition
     def-expectation["期待値"]:::definition
-    def-variance["分散"]:::definition
-    thm-central-limit --&gt; def-variance
-    thm-central-limit --&gt; def-expectation
     thm-central-limit --&gt; def-random-variable
     thm-central-limit --&gt; def-probability-distribution
-    thm-central-limit --&gt; def-normal-distribution
+    thm-central-limit --&gt; def-expectation
     thm-central-limit --&gt; def-independence
+    thm-central-limit --&gt; def-variance
+    thm-central-limit --&gt; def-normal-distribution
     class thm-central-limit current
-    click def-independence "def-independence.html" "独立性へ"
+    click def-variance "def-variance.html" "分散へ"
     click def-probability-distribution "def-probability-distribution.html" "確率分布へ"
     click def-random-variable "def-random-variable.html" "確率変数へ"
+    click def-independence "def-independence.html" "独立性へ"
     click def-normal-distribution "def-normal-distribution.html" "正規分布へ"
     click def-expectation "def-expectation.html" "期待値へ"
-    click def-variance "def-variance.html" "分散へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -428,12 +405,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="インタラクティブ可視化">
+<section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div class="graph-visualization-container" id="graph-viz-thm-central-limit-1753765041">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-thm-central-limit-1753768905" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -678,12 +656,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-central-limit-1753765041', {
+    createForceGraph(data, 'graph-viz-thm-central-limit-1753768905', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-central-limit-1753765041').innerHTML =
+    document.getElementById('graph-viz-thm-central-limit-1753768905').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -695,6 +673,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -743,9 +722,13 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/ja/thm-central-limit.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1148,16 +1131,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

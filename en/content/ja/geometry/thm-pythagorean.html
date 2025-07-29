@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>ピタゴラスの定理 – Math Knowledge Graph</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'en';
   window.alternateLanguage = 'ja';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,183 +157,147 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">Math Knowledge Graph</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="Search"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Math Knowledge Graph</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/algebra/index.html"> 
 <span class="menu-text">Algebra</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/analysis/index.html"> 
 <span class="menu-text">Analysis</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/topology/index.html"> 
 <span class="menu-text">Topology</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/geometry/index.html"> 
 <span class="menu-text">Geometry</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/category-theory/index.html"> 
 <span class="menu-text">Category Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/combinatorics/index.html"> 
 <span class="menu-text">Combinatorics</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/logic-set-theory/index.html"> 
 <span class="menu-text">Logic &amp; Set Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/number-theory/index.html"> 
 <span class="menu-text">Number Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/probability-statistics/index.html"> 
 <span class="menu-text">Probability &amp; Statistics</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/en/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/en/about.html"> 
 <span class="menu-text">About</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/en/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/en/contributing.html"> 
 <span class="menu-text">Contributing</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../ja/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../ja/index.html"> 
 <span class="menu-text">🌐 日本語</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">On this page</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#thm-pythagorean" href="#thm-pythagorean" id="toc-thm-pythagorean">ピタゴラスの定理</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#主張" href="#主張" id="toc-主張">主張</a></li>
-<li><a class="nav-link" data-scroll-target="#証明" href="#証明" id="toc-証明">証明</a></li>
-<li><a class="nav-link" data-scroll-target="#古典的形式" href="#古典的形式" id="toc-古典的形式">古典的形式</a></li>
-<li><a class="nav-link" data-scroll-target="#一般化" href="#一般化" id="toc-一般化">一般化</a></li>
-<li><a class="nav-link" data-scroll-target="#mermaidダイアグラム" href="#mermaidダイアグラム" id="toc-mermaidダイアグラム">Mermaidダイアグラム</a></li>
-<li><a class="nav-link" data-scroll-target="#依存関係グラフ" href="#依存関係グラフ" id="toc-依存関係グラフ">依存関係グラフ</a></li>
-<li><a class="nav-link" data-scroll-target="#インタラクティブ可視化" href="#インタラクティブ可視化" id="toc-インタラクティブ可視化">インタラクティブ可視化</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#thm-pythagorean" id="toc-thm-pythagorean" class="nav-link active" data-scroll-target="#thm-pythagorean">ピタゴラスの定理</a>
+  <ul class="collapse">
+  <li><a href="#主張" id="toc-主張" class="nav-link" data-scroll-target="#主張">主張</a></li>
+  <li><a href="#証明" id="toc-証明" class="nav-link" data-scroll-target="#証明">証明</a></li>
+  <li><a href="#古典的形式" id="toc-古典的形式" class="nav-link" data-scroll-target="#古典的形式">古典的形式</a></li>
+  <li><a href="#一般化" id="toc-一般化" class="nav-link" data-scroll-target="#一般化">一般化</a></li>
+  <li><a href="#mermaidダイアグラム" id="toc-mermaidダイアグラム" class="nav-link" data-scroll-target="#mermaidダイアグラム">Mermaidダイアグラム</a></li>
+  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
+  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">ピタゴラスの定理</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="thm-pythagorean">
+
+
+<section id="thm-pythagorean" class="level1">
 <h1>ピタゴラスの定理</h1>
 <p><a href="../../../content/ja/geometry/def-euclidean-space.html">ユークリッド空間</a>において、2つのベクトルが直交するのは、それらの和のノルムの平方がそれらのノルムの平方の和に等しい場合に限る。</p>
-<section class="level2" id="主張">
+<section id="主張" class="level2">
 <h2 class="anchored" data-anchor-id="主張">主張</h2>
 <p><span class="math inline">\(\mathbf{x}, \mathbf{y} \in \mathbb{E}^n\)</span> とする。このとき：</p>
 <p><span class="math display">\[\langle \mathbf{x}, \mathbf{y} \rangle = 0 \quad \text{ならば、かつそのときに限り} \quad \|\mathbf{x} + \mathbf{y}\|^2 = \|\mathbf{x}\|^2 + \|\mathbf{y}\|^2\]</span></p>
 </section>
-<section class="level2" id="証明">
+<section id="証明" class="level2">
 <h2 class="anchored" data-anchor-id="証明">証明</h2>
 <p>(<span class="math inline">\(\Rightarrow\)</span>) <span class="math inline">\(\langle \mathbf{x}, \mathbf{y} \rangle = 0\)</span> と仮定する。このとき： <span class="math display">\[\begin{align}
 \|\mathbf{x} + \mathbf{y}\|^2 &amp;= \langle \mathbf{x} + \mathbf{y}, \mathbf{x} + \mathbf{y} \rangle \\
@@ -334,15 +311,15 @@ window.Quarto = {
 <p>与えられた等式と比較すると： <span class="math display">\[\|\mathbf{x}\|^2 + 2\langle \mathbf{x}, \mathbf{y} \rangle + \|\mathbf{y}\|^2 = \|\mathbf{x}\|^2 + \|\mathbf{y}\|^2\]</span></p>
 <p>したがって、<span class="math inline">\(2\langle \mathbf{x}, \mathbf{y} \rangle = 0\)</span> となり、これは <span class="math inline">\(\langle \mathbf{x}, \mathbf{y} \rangle = 0\)</span> を意味する。</p>
 </section>
-<section class="level2" id="古典的形式">
+<section id="古典的形式" class="level2">
 <h2 class="anchored" data-anchor-id="古典的形式">古典的形式</h2>
 <p><span class="math inline">\(\mathbb{E}^2\)</span> において、長さ <span class="math inline">\(a\)</span> と <span class="math inline">\(b\)</span> の脚と長さ <span class="math inline">\(c\)</span> の斜辺を持つ直角三角形に対して： <span class="math display">\[a^2 + b^2 = c^2\]</span></p>
 </section>
-<section class="level2" id="一般化">
+<section id="一般化" class="level2">
 <h2 class="anchored" data-anchor-id="一般化">一般化</h2>
 <p>この定理は任意の<a href="../../../content/ja/analysis/def-hilbert-space.html">ヒルベルト空間</a>に拡張される：ベクトル <span class="math inline">\(x\)</span> と <span class="math inline">\(y\)</span> が直交するのは <span class="math inline">\(\|x + y\|^2 = \|x\|^2 + \|y\|^2\)</span> となる場合に限る。</p>
 </section>
-<section class="level2" id="mermaidダイアグラム">
+<section id="mermaidダイアグラム" class="level2">
 <h2 class="anchored" data-anchor-id="mermaidダイアグラム">Mermaidダイアグラム</h2>
 <pre class="mermaid"><code>graph TD
     A[ピタゴラスの定理] --&gt; B[直交性]
@@ -358,7 +335,7 @@ window.Quarto = {
     style D fill:#bfb,stroke:#333,stroke-width:2px
     style E fill:#bfb,stroke:#333,stroke-width:2px</code></pre>
 </section>
-<section class="level2" id="依存関係グラフ">
+<section id="依存関係グラフ" class="level2">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -371,8 +348,8 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-euclidean-space["ユークリッド空間"]:::definition
     thm-pythagorean["ピタゴラスの定理"]:::theorem
+    def-euclidean-space["ユークリッド空間"]:::definition
     thm-pythagorean --&gt; def-euclidean-space
     class thm-pythagorean current
     click def-euclidean-space "def-euclidean-space.html" "ユークリッド空間へ"
@@ -383,12 +360,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="インタラクティブ可視化">
+<section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div class="graph-visualization-container" id="graph-viz-thm-pythagorean-1753764919">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-thm-pythagorean-1753768783" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -633,12 +611,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-pythagorean-1753764919', {
+    createForceGraph(data, 'graph-viz-thm-pythagorean-1753768783', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-pythagorean-1753764919').innerHTML =
+    document.getElementById('graph-viz-thm-pythagorean-1753768783').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -650,6 +628,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -698,9 +677,13 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/ja/thm-pythagorean.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1103,16 +1086,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>Mathematics Knowledge Graph Wiki - Built with Quarto and RDF</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

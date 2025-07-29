@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>巡回群 – Math Knowledge Graph</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'en';
   window.alternateLanguage = 'ja';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,199 +157,163 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">Math Knowledge Graph</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="Search"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Math Knowledge Graph</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/algebra/index.html"> 
 <span class="menu-text">Algebra</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/analysis/index.html"> 
 <span class="menu-text">Analysis</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/topology/index.html"> 
 <span class="menu-text">Topology</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/geometry/index.html"> 
 <span class="menu-text">Geometry</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/category-theory/index.html"> 
 <span class="menu-text">Category Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/combinatorics/index.html"> 
 <span class="menu-text">Combinatorics</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/logic-set-theory/index.html"> 
 <span class="menu-text">Logic &amp; Set Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/number-theory/index.html"> 
 <span class="menu-text">Number Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/probability-statistics/index.html"> 
 <span class="menu-text">Probability &amp; Statistics</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/en/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/en/about.html"> 
 <span class="menu-text">About</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/en/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/en/contributing.html"> 
 <span class="menu-text">Contributing</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../ja/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../ja/index.html"> 
 <span class="menu-text">🌐 日本語</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">On this page</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#def-cyclic-group" href="#def-cyclic-group" id="toc-def-cyclic-group">巡回群</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#正式な定義" href="#正式な定義" id="toc-正式な定義">正式な定義</a></li>
-<li><a class="nav-link" data-scroll-target="#べき乗の記法" href="#べき乗の記法" id="toc-べき乗の記法">べき乗の記法</a></li>
-<li><a class="nav-link" data-scroll-target="#巡回群の位数" href="#巡回群の位数" id="toc-巡回群の位数">巡回群の位数</a></li>
-<li><a class="nav-link" data-scroll-target="#重要な性質" href="#重要な性質" id="toc-重要な性質">重要な性質</a></li>
-<li><a class="nav-link" data-scroll-target="#例" href="#例" id="toc-例">例</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#有限巡回群" href="#有限巡回群" id="toc-有限巡回群">有限巡回群</a></li>
-<li><a class="nav-link" data-scroll-target="#無限巡回群" href="#無限巡回群" id="toc-無限巡回群">無限巡回群</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#分類" href="#分類" id="toc-分類">分類</a></li>
-<li><a class="nav-link" data-scroll-target="#巡回群の直積" href="#巡回群の直積" id="toc-巡回群の直積">巡回群の直積</a></li>
-<li><a class="nav-link" data-scroll-target="#関連項目" href="#関連項目" id="toc-関連項目">関連項目</a></li>
-<li><a class="nav-link" data-scroll-target="#依存関係グラフ" href="#依存関係グラフ" id="toc-依存関係グラフ">依存関係グラフ</a></li>
-<li><a class="nav-link" data-scroll-target="#インタラクティブ可視化" href="#インタラクティブ可視化" id="toc-インタラクティブ可視化">インタラクティブ可視化</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#def-cyclic-group" id="toc-def-cyclic-group" class="nav-link active" data-scroll-target="#def-cyclic-group">巡回群</a>
+  <ul class="collapse">
+  <li><a href="#正式な定義" id="toc-正式な定義" class="nav-link" data-scroll-target="#正式な定義">正式な定義</a></li>
+  <li><a href="#べき乗の記法" id="toc-べき乗の記法" class="nav-link" data-scroll-target="#べき乗の記法">べき乗の記法</a></li>
+  <li><a href="#巡回群の位数" id="toc-巡回群の位数" class="nav-link" data-scroll-target="#巡回群の位数">巡回群の位数</a></li>
+  <li><a href="#重要な性質" id="toc-重要な性質" class="nav-link" data-scroll-target="#重要な性質">重要な性質</a></li>
+  <li><a href="#例" id="toc-例" class="nav-link" data-scroll-target="#例">例</a>
+  <ul class="collapse">
+  <li><a href="#有限巡回群" id="toc-有限巡回群" class="nav-link" data-scroll-target="#有限巡回群">有限巡回群</a></li>
+  <li><a href="#無限巡回群" id="toc-無限巡回群" class="nav-link" data-scroll-target="#無限巡回群">無限巡回群</a></li>
+  </ul></li>
+  <li><a href="#分類" id="toc-分類" class="nav-link" data-scroll-target="#分類">分類</a></li>
+  <li><a href="#巡回群の直積" id="toc-巡回群の直積" class="nav-link" data-scroll-target="#巡回群の直積">巡回群の直積</a></li>
+  <li><a href="#関連項目" id="toc-関連項目" class="nav-link" data-scroll-target="#関連項目">関連項目</a></li>
+  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
+  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">巡回群</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="def-cyclic-group">
+
+
+<section id="def-cyclic-group" class="level1">
 <h1>巡回群</h1>
 <p><strong>巡回群</strong>は、単一の元によって生成される<a href="../../../content/ja/algebra/def-group.html">群</a> <span class="math inline">\(G\)</span> である。すなわち、<span class="math inline">\(G\)</span> のすべての元が <span class="math inline">\(g\)</span> のべき乗として表現できるような元 <span class="math inline">\(g \in G\)</span> が存在する。</p>
-<section class="level2" id="正式な定義">
+<section id="正式な定義" class="level2">
 <h2 class="anchored" data-anchor-id="正式な定義">正式な定義</h2>
 <p>群 <span class="math inline">\((G, \cdot)\)</span> が巡回群であるとは、ある <span class="math inline">\(g \in G\)</span> が存在して <span class="math display">\[G = \{g^n : n \in \mathbb{Z}\}\]</span> となることである。</p>
 <p><span class="math inline">\(G = \langle g \rangle\)</span> と書き、<span class="math inline">\(g\)</span> が <span class="math inline">\(G\)</span> を<strong>生成する</strong>、または <span class="math inline">\(g\)</span> が <span class="math inline">\(G\)</span> の<strong>生成元</strong>であるという。</p>
 </section>
-<section class="level2" id="べき乗の記法">
+<section id="べき乗の記法" class="level2">
 <h2 class="anchored" data-anchor-id="べき乗の記法">べき乗の記法</h2>
 <p>巡回群 <span class="math inline">\(G = \langle g \rangle\)</span> において： - <span class="math inline">\(g^0 = e\)</span>（<a href="../../../content/ja/algebra/def-identity-element.html">単位元</a>） - 正の <span class="math inline">\(n\)</span> に対して <span class="math inline">\(g^n = \underbrace{g \cdot g \cdot \ldots \cdot g}_{n \text{ 個}}\)</span> - 正の <span class="math inline">\(n\)</span> に対して <span class="math inline">\(g^{-n} = (g^{-1})^n\)</span></p>
 <p>加法群に対しては、以下を使用する： - <span class="math inline">\(g^n\)</span> の代わりに <span class="math inline">\(ng\)</span> - <span class="math inline">\(0g = 0\)</span>（加法単位元） - 正の <span class="math inline">\(n\)</span> に対して <span class="math inline">\((-n)g = n(-g)\)</span></p>
 </section>
-<section class="level2" id="巡回群の位数">
+<section id="巡回群の位数" class="level2">
 <h2 class="anchored" data-anchor-id="巡回群の位数">巡回群の<a href="../../../content/ja/algebra/def-order.html">位数</a></h2>
 <p>巡回群は以下のいずれかである： - <strong>有限</strong>：ある正整数 <span class="math inline">\(n\)</span> に対して<a href="../../../content/ja/logic-set-theory/def-cardinality.html">濃度</a> <span class="math inline">\(|G| = n\)</span> の場合、<span class="math inline">\(G = \{e, g, g^2, \ldots, g^{n-1}\}\)</span> - <strong>無限</strong>：<span class="math inline">\(g\)</span> のどの正のべき乗も単位元にならない場合</p>
 </section>
-<section class="level2" id="重要な性質">
+<section id="重要な性質" class="level2">
 <h2 class="anchored" data-anchor-id="重要な性質">重要な性質</h2>
 <ol type="1">
 <li><p><strong>アーベル性</strong>：すべての巡回群は<a href="../../../content/ja/algebra/def-abelian-group.html">アーベル群</a>（可換）である</p>
@@ -357,9 +334,9 @@ window.Quarto = {
 </ul></li>
 </ol>
 </section>
-<section class="level2" id="例">
+<section id="例" class="level2">
 <h2 class="anchored" data-anchor-id="例">例</h2>
-<section class="level3" id="有限巡回群">
+<section id="有限巡回群" class="level3">
 <h3 class="anchored" data-anchor-id="有限巡回群">有限巡回群</h3>
 <ul>
 <li>加法における <span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span>、<span class="math inline">\(\overline{1}\)</span> によって生成される</li>
@@ -367,7 +344,7 @@ window.Quarto = {
 <li>正 <span class="math inline">\(n\)</span> 角形の回転群</li>
 </ul>
 </section>
-<section class="level3" id="無限巡回群">
+<section id="無限巡回群" class="level3">
 <h3 class="anchored" data-anchor-id="無限巡回群">無限巡回群</h3>
 <ul>
 <li><span class="math inline">\((\mathbb{Z}, +)\)</span>、<span class="math inline">\(1\)</span>（または <span class="math inline">\(-1\)</span>）によって生成される</li>
@@ -375,15 +352,15 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section class="level2" id="分類">
+<section id="分類" class="level2">
 <h2 class="anchored" data-anchor-id="分類">分類</h2>
 <p>巡回群の分類は特に単純である： - <a href="../../../content/ja/algebra/def-isomorphism.html">同型</a>を除いて、各<a href="../../../content/ja/algebra/def-order.html">位数</a>（有限または無限）の巡回群はちょうど一つ存在する - 二つの巡回群が<a href="../../../content/ja/algebra/def-isomorphism.html">同型</a>であるのは、それらが同じ<a href="../../../content/ja/algebra/def-order.html">位数</a>を持つときかつそのときに限る</p>
 </section>
-<section class="level2" id="巡回群の直積">
+<section id="巡回群の直積" class="level2">
 <h2 class="anchored" data-anchor-id="巡回群の直積">巡回群の直積</h2>
 <p>巡回群の<a href="../../../content/ja/algebra/def-direct-product.html">直積</a>には特別な性質がある： - <span class="math inline">\(\mathbb{Z}_m \times \mathbb{Z}_n\)</span> が巡回群となるのは <span class="math inline">\(\gcd(m,n) = 1\)</span> のときかつそのときに限る - <span class="math inline">\(\gcd(m,n) = 1\)</span> のとき、<span class="math inline">\(\mathbb{Z}_m \times \mathbb{Z}_n \cong \mathbb{Z}_{mn}\)</span>（<a href="../../../content/ja/algebra/def-isomorphism.html">同型</a>） - 一般に、<span class="math inline">\(\mathbb{Z}_m \times \mathbb{Z}_n \cong \mathbb{Z}_{\gcd(m,n)} \times \mathbb{Z}_{\text{lcm}(m,n)}\)</span>（<a href="../../../content/ja/algebra/def-isomorphism.html">同型</a>）(参照：@../number-theory/def-lcm)</p>
 </section>
-<section class="level2" id="関連項目">
+<section id="関連項目" class="level2">
 <h2 class="anchored" data-anchor-id="関連項目">関連項目</h2>
 <ul>
 <li><a href="../../../content/ja/algebra/def-group.html">群</a></li>
@@ -394,7 +371,7 @@ window.Quarto = {
 <li><a href="../../../content/ja/algebra/def-direct-product.html">群の直積</a></li>
 </ul>
 </section>
-<section class="level2" id="依存関係グラフ">
+<section id="依存関係グラフ" class="level2">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -407,55 +384,55 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-isomorphism["群同型"]:::definition
-    def-group["群"]:::definition
     def-abelian-group["アーベル群"]:::definition
-    def-direct-product["群の直積"]:::definition
-    def-identity-element["単位元"]:::definition
-    def-simple-group["単純群"]:::definition
-    ex-quotient-integers-mod-n["整数の n による剰余"]:::example
     ex-group-action-examples["群作用の例"]:::example
-    def-cyclic-group["巡回群"]:::definition
-    def-subgroup["部分群"]:::definition
-    def-quotient-group["商群"]:::definition
     thm-lagrange["ラグランジュの定理"]:::theorem
-    ex-integers-addition["加法における整数"]:::example
+    def-subgroup["部分群"]:::definition
+    def-cyclic-group["巡回群"]:::definition
+    def-group["群"]:::definition
+    def-isomorphism["群同型"]:::definition
+    def-quotient-group["商群"]:::definition
+    def-direct-product["群の直積"]:::definition
     def-order["位数"]:::definition
-    def-order --&gt; def-cyclic-group
-    ex-quotient-integers-mod-n --&gt; def-cyclic-group
-    def-cyclic-group --&gt; def-abelian-group
-    thm-lagrange --&gt; def-cyclic-group
-    def-cyclic-group --&gt; thm-lagrange
-    ex-group-action-examples --&gt; def-cyclic-group
+    ex-quotient-integers-mod-n["整数の n による剰余"]:::example
+    def-identity-element["単位元"]:::definition
+    ex-integers-addition["加法における整数"]:::example
+    def-simple-group["単純群"]:::definition
     ex-integers-addition --&gt; def-cyclic-group
-    def-abelian-group --&gt; def-cyclic-group
-    def-simple-group --&gt; def-cyclic-group
-    def-cyclic-group --&gt; def-order
-    def-quotient-group --&gt; def-cyclic-group
-    def-cyclic-group --&gt; def-isomorphism
-    def-cyclic-group --&gt; ex-integers-addition
-    def-group --&gt; def-cyclic-group
-    def-subgroup --&gt; def-cyclic-group
-    def-cyclic-group --&gt; def-group
-    def-cyclic-group --&gt; def-identity-element
-    def-cyclic-group --&gt; ex-quotient-integers-mod-n
     def-cyclic-group --&gt; def-subgroup
+    def-cyclic-group --&gt; def-group
+    def-subgroup --&gt; def-cyclic-group
+    def-cyclic-group --&gt; thm-lagrange
+    def-cyclic-group --&gt; ex-integers-addition
+    def-cyclic-group --&gt; def-order
+    def-abelian-group --&gt; def-cyclic-group
+    def-cyclic-group --&gt; def-identity-element
+    ex-quotient-integers-mod-n --&gt; def-cyclic-group
+    def-cyclic-group --&gt; def-isomorphism
+    def-group --&gt; def-cyclic-group
+    thm-lagrange --&gt; def-cyclic-group
     def-cyclic-group --&gt; def-direct-product
+    ex-group-action-examples --&gt; def-cyclic-group
+    def-cyclic-group --&gt; ex-quotient-integers-mod-n
     def-direct-product --&gt; def-cyclic-group
+    def-quotient-group --&gt; def-cyclic-group
+    def-simple-group --&gt; def-cyclic-group
+    def-cyclic-group --&gt; def-abelian-group
+    def-order --&gt; def-cyclic-group
     class def-cyclic-group current
-    click def-isomorphism "def-isomorphism.html" "群同型へ"
-    click def-group "def-group.html" "群へ"
     click def-abelian-group "def-abelian-group.html" "アーベル群へ"
-    click def-direct-product "def-direct-product.html" "群の直積へ"
-    click def-identity-element "def-identity-element.html" "単位元へ"
-    click def-simple-group "def-simple-group.html" "単純群へ"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余へ"
     click ex-group-action-examples "ex-group-action-examples.html" "群作用の例へ"
-    click def-subgroup "def-subgroup.html" "部分群へ"
-    click def-quotient-group "def-quotient-group.html" "商群へ"
     click thm-lagrange "thm-lagrange.html" "ラグランジュの定理へ"
-    click ex-integers-addition "ex-integers-addition.html" "加法における整数へ"
+    click def-subgroup "def-subgroup.html" "部分群へ"
+    click def-group "def-group.html" "群へ"
+    click def-isomorphism "def-isomorphism.html" "群同型へ"
+    click def-quotient-group "def-quotient-group.html" "商群へ"
+    click def-direct-product "def-direct-product.html" "群の直積へ"
     click def-order "def-order.html" "位数へ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余へ"
+    click def-identity-element "def-identity-element.html" "単位元へ"
+    click ex-integers-addition "ex-integers-addition.html" "加法における整数へ"
+    click def-simple-group "def-simple-group.html" "単純群へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -463,12 +440,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="インタラクティブ可視化">
+<section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div class="graph-visualization-container" id="graph-viz-def-cyclic-group-1753764876">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-def-cyclic-group-1753768740" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -713,12 +691,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-cyclic-group-1753764876', {
+    createForceGraph(data, 'graph-viz-def-cyclic-group-1753768740', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-cyclic-group-1753764876').innerHTML =
+    document.getElementById('graph-viz-def-cyclic-group-1753768740').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -730,6 +708,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -778,9 +757,13 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/ja/def-cyclic-group.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1183,16 +1166,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>Mathematics Knowledge Graph Wiki - Built with Quarto and RDF</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

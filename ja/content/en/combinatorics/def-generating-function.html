@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>Generating Function – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,215 +157,179 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">数学ナレッジグラフ</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="サーチ"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">数学ナレッジグラフ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="サーチ"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index-ja.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index-ja.html"> 
 <span class="menu-text">ホーム</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
 <span class="menu-text">代数学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
 <span class="menu-text">解析学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
 <span class="menu-text">位相空間論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
 <span class="menu-text">幾何学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
 <span class="menu-text">圏論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
 <span class="menu-text">組合せ論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
 <span class="menu-text">論理学・集合論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
 <span class="menu-text">数論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
 <span class="menu-text">確率統計</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/about.html"> 
 <span class="menu-text">概要</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
 <span class="menu-text">貢献</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../en/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../en/index.html"> 
 <span class="menu-text">🌐 English</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">目次</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#generating-function" href="#generating-function" id="toc-generating-function">Generating Function</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#formal-definition" href="#formal-definition" id="toc-formal-definition">Formal Definition</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#ordinary-generating-function-ogf" href="#ordinary-generating-function-ogf" id="toc-ordinary-generating-function-ogf">Ordinary Generating Function (OGF)</a></li>
-<li><a class="nav-link" data-scroll-target="#exponential-generating-function-egf" href="#exponential-generating-function-egf" id="toc-exponential-generating-function-egf">Exponential Generating Function (EGF)</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#key-properties" href="#key-properties" id="toc-key-properties">Key Properties</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#formal-power-series" href="#formal-power-series" id="toc-formal-power-series">Formal Power Series</a></li>
-<li><a class="nav-link" data-scroll-target="#when-to-use-each-type" href="#when-to-use-each-type" id="toc-when-to-use-each-type">When to Use Each Type</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#operations-on-generating-functions" href="#operations-on-generating-functions" id="toc-operations-on-generating-functions">Operations on Generating Functions</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#for-ordinary-generating-functions" href="#for-ordinary-generating-functions" id="toc-for-ordinary-generating-functions">For Ordinary Generating Functions</a></li>
-<li><a class="nav-link" data-scroll-target="#for-exponential-generating-functions" href="#for-exponential-generating-functions" id="toc-for-exponential-generating-functions">For Exponential Generating Functions</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#examples" href="#examples" id="toc-examples">Examples</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#example-1-geometric-series" href="#example-1-geometric-series" id="toc-example-1-geometric-series">Example 1: Geometric Series</a></li>
-<li><a class="nav-link" data-scroll-target="#example-2-fibonacci-numbers" href="#example-2-fibonacci-numbers" id="toc-example-2-fibonacci-numbers">Example 2: Fibonacci Numbers</a></li>
-<li><a class="nav-link" data-scroll-target="#example-3-factorials" href="#example-3-factorials" id="toc-example-3-factorials">Example 3: Factorials</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#applications" href="#applications" id="toc-applications">Applications</a></li>
-<li><a class="nav-link" data-scroll-target="#connection-to-binomial-coefficients" href="#connection-to-binomial-coefficients" id="toc-connection-to-binomial-coefficients">Connection to Binomial Coefficients</a></li>
-<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
-<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#generating-function" id="toc-generating-function" class="nav-link active" data-scroll-target="#generating-function">Generating Function</a>
+  <ul class="collapse">
+  <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link" data-scroll-target="#formal-definition">Formal Definition</a>
+  <ul class="collapse">
+  <li><a href="#ordinary-generating-function-ogf" id="toc-ordinary-generating-function-ogf" class="nav-link" data-scroll-target="#ordinary-generating-function-ogf">Ordinary Generating Function (OGF)</a></li>
+  <li><a href="#exponential-generating-function-egf" id="toc-exponential-generating-function-egf" class="nav-link" data-scroll-target="#exponential-generating-function-egf">Exponential Generating Function (EGF)</a></li>
+  </ul></li>
+  <li><a href="#key-properties" id="toc-key-properties" class="nav-link" data-scroll-target="#key-properties">Key Properties</a>
+  <ul class="collapse">
+  <li><a href="#formal-power-series" id="toc-formal-power-series" class="nav-link" data-scroll-target="#formal-power-series">Formal Power Series</a></li>
+  <li><a href="#when-to-use-each-type" id="toc-when-to-use-each-type" class="nav-link" data-scroll-target="#when-to-use-each-type">When to Use Each Type</a></li>
+  </ul></li>
+  <li><a href="#operations-on-generating-functions" id="toc-operations-on-generating-functions" class="nav-link" data-scroll-target="#operations-on-generating-functions">Operations on Generating Functions</a>
+  <ul class="collapse">
+  <li><a href="#for-ordinary-generating-functions" id="toc-for-ordinary-generating-functions" class="nav-link" data-scroll-target="#for-ordinary-generating-functions">For Ordinary Generating Functions</a></li>
+  <li><a href="#for-exponential-generating-functions" id="toc-for-exponential-generating-functions" class="nav-link" data-scroll-target="#for-exponential-generating-functions">For Exponential Generating Functions</a></li>
+  </ul></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
+  <ul class="collapse">
+  <li><a href="#example-1-geometric-series" id="toc-example-1-geometric-series" class="nav-link" data-scroll-target="#example-1-geometric-series">Example 1: Geometric Series</a></li>
+  <li><a href="#example-2-fibonacci-numbers" id="toc-example-2-fibonacci-numbers" class="nav-link" data-scroll-target="#example-2-fibonacci-numbers">Example 2: Fibonacci Numbers</a></li>
+  <li><a href="#example-3-factorials" id="toc-example-3-factorials" class="nav-link" data-scroll-target="#example-3-factorials">Example 3: Factorials</a></li>
+  </ul></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
+  <li><a href="#connection-to-binomial-coefficients" id="toc-connection-to-binomial-coefficients" class="nav-link" data-scroll-target="#connection-to-binomial-coefficients">Connection to Binomial Coefficients</a></li>
+  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
+  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Generating Function</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="generating-function">
+
+
+<section id="generating-function" class="level1">
 <h1>Generating Function</h1>
 <p>A <strong>generating function</strong> is a formal power series whose coefficients encode information about a sequence of numbers, often arising from counting problems in combinatorics.</p>
-<section class="level2" id="formal-definition">
+<section id="formal-definition" class="level2">
 <h2 class="anchored" data-anchor-id="formal-definition">Formal Definition</h2>
-<section class="level3" id="ordinary-generating-function-ogf">
+<section id="ordinary-generating-function-ogf" class="level3">
 <h3 class="anchored" data-anchor-id="ordinary-generating-function-ogf">Ordinary Generating Function (OGF)</h3>
 <p>Given a sequence <span class="math inline">\((a_n)_{n \geq 0}\)</span> of complex numbers, the <strong>ordinary generating function</strong> is the formal power <a href="../../../content/en/analysis/def-series.html">Series</a>:</p>
 <p><span class="math display">\[G(x) = \sum_{n=0}^{\infty} a_n x^n = a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \cdots\]</span></p>
 </section>
-<section class="level3" id="exponential-generating-function-egf">
+<section id="exponential-generating-function-egf" class="level3">
 <h3 class="anchored" data-anchor-id="exponential-generating-function-egf">Exponential Generating Function (EGF)</h3>
 <p>The <strong>exponential generating function</strong> of the same sequence is:</p>
 <p><span class="math display">\[E(x) = \sum_{n=0}^{\infty} a_n \frac{x^n}{n!} = a_0 + a_1 x + a_2 \frac{x^2}{2!} + a_3 \frac{x^3}{3!} + \cdots\]</span></p>
 </section>
 </section>
-<section class="level2" id="key-properties">
+<section id="key-properties" class="level2">
 <h2 class="anchored" data-anchor-id="key-properties">Key Properties</h2>
-<section class="level3" id="formal-power-series">
+<section id="formal-power-series" class="level3">
 <h3 class="anchored" data-anchor-id="formal-power-series">Formal Power Series</h3>
 <p>Generating functions are treated as <strong>formal power series</strong>, meaning: - The variable <span class="math inline">\(x\)</span> is an indeterminate (not assigned a numerical value) - Convergence is not required for combinatorial applications - Operations are performed algebraically on coefficients</p>
 </section>
-<section class="level3" id="when-to-use-each-type">
+<section id="when-to-use-each-type" class="level3">
 <h3 class="anchored" data-anchor-id="when-to-use-each-type">When to Use Each Type</h3>
 <ol type="1">
 <li><strong>Ordinary Generating Functions</strong>: Best for counting unlabeled objects or when order doesn’t matter</li>
@@ -360,9 +337,9 @@ window.Quarto = {
 </ol>
 </section>
 </section>
-<section class="level2" id="operations-on-generating-functions">
+<section id="operations-on-generating-functions" class="level2">
 <h2 class="anchored" data-anchor-id="operations-on-generating-functions">Operations on Generating Functions</h2>
-<section class="level3" id="for-ordinary-generating-functions">
+<section id="for-ordinary-generating-functions" class="level3">
 <h3 class="anchored" data-anchor-id="for-ordinary-generating-functions">For Ordinary Generating Functions</h3>
 <p>If <span class="math inline">\(F(x) = \sum_{n=0}^{\infty} a_n x^n\)</span> and <span class="math inline">\(G(x) = \sum_{n=0}^{\infty} b_n x^n\)</span>, then:</p>
 <ol type="1">
@@ -371,27 +348,27 @@ window.Quarto = {
 <li><p><strong>Differentiation</strong>: <span class="math inline">\(F'(x) = \sum_{n=1}^{\infty} n a_n x^{n-1}\)</span></p></li>
 </ol>
 </section>
-<section class="level3" id="for-exponential-generating-functions">
+<section id="for-exponential-generating-functions" class="level3">
 <h3 class="anchored" data-anchor-id="for-exponential-generating-functions">For Exponential Generating Functions</h3>
 <p>Multiplication gives the binomial convolution: <span class="math display">\[(E \cdot F)(x) = \sum_{n=0}^{\infty} \left(\sum_{k=0}^{n} \binom{n}{k} a_k b_{n-k}\right) \frac{x^n}{n!}\]</span></p>
 </section>
 </section>
-<section class="level2" id="examples">
+<section id="examples" class="level2">
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<section class="level3" id="example-1-geometric-series">
+<section id="example-1-geometric-series" class="level3">
 <h3 class="anchored" data-anchor-id="example-1-geometric-series">Example 1: Geometric Series</h3>
 <p>The sequence <span class="math inline">\((1, 1, 1, \ldots)\)</span> has OGF: <span class="math display">\[\frac{1}{1-x} = \sum_{n=0}^{\infty} x^n\]</span></p>
 </section>
-<section class="level3" id="example-2-fibonacci-numbers">
+<section id="example-2-fibonacci-numbers" class="level3">
 <h3 class="anchored" data-anchor-id="example-2-fibonacci-numbers">Example 2: Fibonacci Numbers</h3>
 <p>The Fibonacci sequence <span class="math inline">\((F_n)\)</span> with <span class="math inline">\(F_0 = 0, F_1 = 1\)</span> has OGF: <span class="math display">\[F(x) = \frac{x}{1 - x - x^2}\]</span></p>
 </section>
-<section class="level3" id="example-3-factorials">
+<section id="example-3-factorials" class="level3">
 <h3 class="anchored" data-anchor-id="example-3-factorials">Example 3: Factorials</h3>
 <p>The sequence <span class="math inline">\((n!)_{n \geq 0}\)</span> has EGF: <span class="math display">\[E(x) = \sum_{n=0}^{\infty} n! \frac{x^n}{n!} = \sum_{n=0}^{\infty} x^n = \frac{1}{1-x}\]</span></p>
 </section>
 </section>
-<section class="level2" id="applications">
+<section id="applications" class="level2">
 <h2 class="anchored" data-anchor-id="applications">Applications</h2>
 <ol type="1">
 <li><strong>Solving Recurrence Relations</strong>: Converting recurrences to functional equations</li>
@@ -400,11 +377,11 @@ window.Quarto = {
 <li><strong>Probability Theory</strong>: Moment generating functions and probability generating functions</li>
 </ol>
 </section>
-<section class="level2" id="connection-to-binomial-coefficients">
+<section id="connection-to-binomial-coefficients" class="level2">
 <h2 class="anchored" data-anchor-id="connection-to-binomial-coefficients">Connection to Binomial Coefficients</h2>
 <p>The <a href="../../../content/en/combinatorics/def-binomial-coefficient.html">Binomial Coefficient</a> appears naturally in many generating functions: - <span class="math inline">\((1 + x)^n = \sum_{k=0}^{n} \binom{n}{k} x^k\)</span> (finite OGF) - <span class="math inline">\(e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!}\)</span> (EGF for the all-ones sequence)</p>
 </section>
-<section class="level2" id="dependency-graph">
+<section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -417,15 +394,15 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-pascals-triangle["Pascal's Triangle"]:::example
-    def-generating-function["Generating Function"]:::definition
     def-binomial-coefficient["Binomial Coefficient"]:::definition
-    def-generating-function --&gt; def-binomial-coefficient
+    def-generating-function["Generating Function"]:::definition
+    ex-pascals-triangle["Pascal's Triangle"]:::example
     ex-pascals-triangle --&gt; def-generating-function
     def-binomial-coefficient --&gt; def-generating-function
+    def-generating-function --&gt; def-binomial-coefficient
     class def-generating-function current
-    click ex-pascals-triangle "ex-pascals-triangle.html" "Go to Pascal's Triangle"
     click def-binomial-coefficient "def-binomial-coefficient.html" "Go to Binomial Coefficient"
+    click ex-pascals-triangle "ex-pascals-triangle.html" "Go to Pascal's Triangle"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -433,12 +410,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="interactive-visualization">
+<section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div class="graph-visualization-container" id="graph-viz-def-generating-function-1753765134">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-def-generating-function-1753768997" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -683,12 +661,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-generating-function-1753765134', {
+    createForceGraph(data, 'graph-viz-def-generating-function-1753768997', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-generating-function-1753765134').innerHTML =
+    document.getElementById('graph-viz-def-generating-function-1753768997').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -700,6 +678,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -748,9 +727,13 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/def-generating-function.html" target="_blank">full interactive version</a></p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1153,16 +1136,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

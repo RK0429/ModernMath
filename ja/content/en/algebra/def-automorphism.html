@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>Automorphism – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,196 +157,160 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">数学ナレッジグラフ</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="サーチ"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">数学ナレッジグラフ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="サーチ"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index-ja.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index-ja.html"> 
 <span class="menu-text">ホーム</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
 <span class="menu-text">代数学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
 <span class="menu-text">解析学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
 <span class="menu-text">位相空間論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
 <span class="menu-text">幾何学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
 <span class="menu-text">圏論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
 <span class="menu-text">組合せ論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
 <span class="menu-text">論理学・集合論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
 <span class="menu-text">数論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
 <span class="menu-text">確率統計</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/about.html"> 
 <span class="menu-text">概要</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
 <span class="menu-text">貢献</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../en/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../en/index.html"> 
 <span class="menu-text">🌐 English</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">目次</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#def-automorphism" href="#def-automorphism" id="toc-def-automorphism">Automorphism</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#formal-definition" href="#formal-definition" id="toc-formal-definition">Formal Definition</a></li>
-<li><a class="nav-link" data-scroll-target="#properties" href="#properties" id="toc-properties">Properties</a></li>
-<li><a class="nav-link" data-scroll-target="#the-automorphism-group" href="#the-automorphism-group" id="toc-the-automorphism-group">The Automorphism Group</a></li>
-<li><a class="nav-link" data-scroll-target="#types-of-automorphisms" href="#types-of-automorphisms" id="toc-types-of-automorphisms">Types of Automorphisms</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#inner-automorphisms" href="#inner-automorphisms" id="toc-inner-automorphisms">Inner Automorphisms</a></li>
-<li><a class="nav-link" data-scroll-target="#outer-automorphisms" href="#outer-automorphisms" id="toc-outer-automorphisms">Outer Automorphisms</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#examples" href="#examples" id="toc-examples">Examples</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#groups" href="#groups" id="toc-groups">Groups</a></li>
-<li><a class="nav-link" data-scroll-target="#fields" href="#fields" id="toc-fields">Fields</a></li>
-<li><a class="nav-link" data-scroll-target="#vector-spaces" href="#vector-spaces" id="toc-vector-spaces">Vector Spaces</a></li>
-<li><a class="nav-link" data-scroll-target="#graphs" href="#graphs" id="toc-graphs">Graphs</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#relationship-to-group-actions" href="#relationship-to-group-actions" id="toc-relationship-to-group-actions">Relationship to Group Actions</a></li>
-<li><a class="nav-link" data-scroll-target="#applications" href="#applications" id="toc-applications">Applications</a></li>
-<li><a class="nav-link" data-scroll-target="#complete-groups" href="#complete-groups" id="toc-complete-groups">Complete Groups</a></li>
-<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
-<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#def-automorphism" id="toc-def-automorphism" class="nav-link active" data-scroll-target="#def-automorphism">Automorphism</a>
+  <ul class="collapse">
+  <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link" data-scroll-target="#formal-definition">Formal Definition</a></li>
+  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
+  <li><a href="#the-automorphism-group" id="toc-the-automorphism-group" class="nav-link" data-scroll-target="#the-automorphism-group">The Automorphism Group</a></li>
+  <li><a href="#types-of-automorphisms" id="toc-types-of-automorphisms" class="nav-link" data-scroll-target="#types-of-automorphisms">Types of Automorphisms</a>
+  <ul class="collapse">
+  <li><a href="#inner-automorphisms" id="toc-inner-automorphisms" class="nav-link" data-scroll-target="#inner-automorphisms">Inner Automorphisms</a></li>
+  <li><a href="#outer-automorphisms" id="toc-outer-automorphisms" class="nav-link" data-scroll-target="#outer-automorphisms">Outer Automorphisms</a></li>
+  </ul></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
+  <ul class="collapse">
+  <li><a href="#groups" id="toc-groups" class="nav-link" data-scroll-target="#groups">Groups</a></li>
+  <li><a href="#fields" id="toc-fields" class="nav-link" data-scroll-target="#fields">Fields</a></li>
+  <li><a href="#vector-spaces" id="toc-vector-spaces" class="nav-link" data-scroll-target="#vector-spaces">Vector Spaces</a></li>
+  <li><a href="#graphs" id="toc-graphs" class="nav-link" data-scroll-target="#graphs">Graphs</a></li>
+  </ul></li>
+  <li><a href="#relationship-to-group-actions" id="toc-relationship-to-group-actions" class="nav-link" data-scroll-target="#relationship-to-group-actions">Relationship to Group Actions</a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
+  <li><a href="#complete-groups" id="toc-complete-groups" class="nav-link" data-scroll-target="#complete-groups">Complete Groups</a></li>
+  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
+  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Automorphism</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="def-automorphism">
+
+
+<section id="def-automorphism" class="level1">
 <h1>Automorphism</h1>
 <p>An <strong>automorphism</strong> is an <a href="../../../content/en/category-theory/def-isomorphism.html">isomorphism</a> from a mathematical object to itself. It represents a structure-preserving transformation that maps an object onto itself in a way that can be reversed.</p>
-<section class="level2" id="formal-definition">
+<section id="formal-definition" class="level2">
 <h2 class="anchored" data-anchor-id="formal-definition">Formal Definition</h2>
 <p>For a <a href="../../../content/en/algebra/def-group.html">Group</a> <span class="math inline">\((G, \cdot)\)</span>, an automorphism is a <a href="../../../content/en/algebra/def-homomorphism.html">homomorphism</a> <span class="math inline">\(\phi: G \to G\)</span> that is bijective (both injective and surjective).</p>
 <p>More generally, in any category, an automorphism of an object <span class="math inline">\(X\)</span> is an isomorphism <span class="math inline">\(f: X \to X\)</span>.</p>
 </section>
-<section class="level2" id="properties">
+<section id="properties" class="level2">
 <h2 class="anchored" data-anchor-id="properties">Properties</h2>
 <p>For any automorphism <span class="math inline">\(\phi\)</span> of a group <span class="math inline">\(G\)</span>:</p>
 <ol type="1">
@@ -343,7 +320,7 @@ window.Quarto = {
 <li><strong>Bijection</strong>: <span class="math inline">\(\phi\)</span> is both one-to-one and onto</li>
 </ol>
 </section>
-<section class="level2" id="the-automorphism-group">
+<section id="the-automorphism-group" class="level2">
 <h2 class="anchored" data-anchor-id="the-automorphism-group">The Automorphism Group</h2>
 <p>The set of all automorphisms of an object <span class="math inline">\(X\)</span> forms a group under composition, denoted <span class="math inline">\(\text{Aut}(X)\)</span>:</p>
 <ul>
@@ -353,21 +330,21 @@ window.Quarto = {
 <li><strong>Associativity</strong>: Function composition is associative</li>
 </ul>
 </section>
-<section class="level2" id="types-of-automorphisms">
+<section id="types-of-automorphisms" class="level2">
 <h2 class="anchored" data-anchor-id="types-of-automorphisms">Types of Automorphisms</h2>
-<section class="level3" id="inner-automorphisms">
+<section id="inner-automorphisms" class="level3">
 <h3 class="anchored" data-anchor-id="inner-automorphisms">Inner Automorphisms</h3>
 <p>For a group <span class="math inline">\(G\)</span>, an <strong>inner automorphism</strong> is defined by conjugation by an element <span class="math inline">\(g \in G\)</span>: <span class="math display">\[\phi_g(x) = gxg^{-1}\]</span></p>
 <p>The set of inner automorphisms forms a normal subgroup of <span class="math inline">\(\text{Aut}(G)\)</span>, denoted <span class="math inline">\(\text{Inn}(G)\)</span>.</p>
 </section>
-<section class="level3" id="outer-automorphisms">
+<section id="outer-automorphisms" class="level3">
 <h3 class="anchored" data-anchor-id="outer-automorphisms">Outer Automorphisms</h3>
 <p>An <strong>outer automorphism</strong> is an automorphism that is not inner. The quotient group <span class="math inline">\(\text{Out}(G) = \text{Aut}(G)/\text{Inn}(G)\)</span> is called the outer automorphism group.</p>
 </section>
 </section>
-<section class="level2" id="examples">
+<section id="examples" class="level2">
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<section class="level3" id="groups">
+<section id="groups" class="level3">
 <h3 class="anchored" data-anchor-id="groups">Groups</h3>
 <ol type="1">
 <li><strong>Cyclic groups</strong>: For <span class="math inline">\(\mathbb{Z}_n\)</span>, we have <span class="math inline">\(\text{Aut}(\mathbb{Z}_n) \cong (\mathbb{Z}/n\mathbb{Z})^*\)</span></li>
@@ -375,27 +352,27 @@ window.Quarto = {
 <li><strong>Abelian groups</strong>: For abelian groups, all conjugations are trivial, so <span class="math inline">\(\text{Inn}(G) = \{e\}\)</span></li>
 </ol>
 </section>
-<section class="level3" id="fields">
+<section id="fields" class="level3">
 <h3 class="anchored" data-anchor-id="fields">Fields</h3>
 <ol type="1">
 <li><strong>Complex numbers</strong>: Complex conjugation <span class="math inline">\(z \mapsto \bar{z}\)</span> is an automorphism of <span class="math inline">\(\mathbb{C}\)</span></li>
 <li><strong>Field extensions</strong>: The Galois group consists of all automorphisms of a field extension</li>
 </ol>
 </section>
-<section class="level3" id="vector-spaces">
+<section id="vector-spaces" class="level3">
 <h3 class="anchored" data-anchor-id="vector-spaces">Vector Spaces</h3>
 <p>For a finite-dimensional vector space <span class="math inline">\(V\)</span>, <span class="math inline">\(\text{Aut}(V)\)</span> is the general linear group <span class="math inline">\(GL(V)\)</span> of invertible linear transformations.</p>
 </section>
-<section class="level3" id="graphs">
+<section id="graphs" class="level3">
 <h3 class="anchored" data-anchor-id="graphs">Graphs</h3>
 <p>A graph automorphism is a permutation of vertices that preserves adjacency relations.</p>
 </section>
 </section>
-<section class="level2" id="relationship-to-group-actions">
+<section id="relationship-to-group-actions" class="level2">
 <h2 class="anchored" data-anchor-id="relationship-to-group-actions">Relationship to Group Actions</h2>
 <p>The automorphism group <span class="math inline">\(\text{Aut}(X)\)</span> naturally <a href="../../../content/en/algebra/def-group-action.html">acts</a> on <span class="math inline">\(X\)</span>: - For each <span class="math inline">\(\phi \in \text{Aut}(X)\)</span> and <span class="math inline">\(x \in X\)</span>, the action is given by <span class="math inline">\(\phi \cdot x = \phi(x)\)</span> - This action satisfies all group action axioms</p>
 </section>
-<section class="level2" id="applications">
+<section id="applications" class="level2">
 <h2 class="anchored" data-anchor-id="applications">Applications</h2>
 <ol type="1">
 <li><strong>Galois Theory</strong>: Field automorphisms are fundamental to understanding polynomial equations</li>
@@ -404,11 +381,11 @@ window.Quarto = {
 <li><strong>Cryptography</strong>: Certain cryptographic protocols rely on the difficulty of computing automorphisms</li>
 </ol>
 </section>
-<section class="level2" id="complete-groups">
+<section id="complete-groups" class="level2">
 <h2 class="anchored" data-anchor-id="complete-groups">Complete Groups</h2>
 <p>A group <span class="math inline">\(G\)</span> is called <strong>complete</strong> if: - Its <a href="../../../content/en/algebra/def-center-of-group.html">center</a> <span class="math inline">\(Z(G)\)</span> is trivial - Every automorphism of <span class="math inline">\(G\)</span> is inner (i.e., <span class="math inline">\(\text{Aut}(G) = \text{Inn}(G)\)</span>)</p>
 </section>
-<section class="level2" id="dependency-graph">
+<section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -421,27 +398,27 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-isomorphism["Isomorphism"]:::definition
-    def-group["Group"]:::definition
-    def-identity-element["Identity Element"]:::definition
-    def-homomorphism["Group Homomorphism"]:::definition
     ex-group-action-examples["Examples of Group Actions"]:::example
     def-automorphism["Automorphism"]:::definition
+    def-group["Group"]:::definition
+    def-isomorphism["Isomorphism"]:::definition
     def-center-of-group["Center of a Group"]:::definition
-    def-center-of-group --&gt; def-automorphism
-    def-automorphism --&gt; def-isomorphism
+    def-identity-element["Identity Element"]:::definition
+    def-homomorphism["Group Homomorphism"]:::definition
+    def-automorphism --&gt; def-center-of-group
+    def-automorphism --&gt; def-group
+    def-automorphism --&gt; def-identity-element
     ex-group-action-examples --&gt; def-automorphism
     def-automorphism --&gt; def-homomorphism
-    def-automorphism --&gt; def-identity-element
-    def-automorphism --&gt; def-group
-    def-automorphism --&gt; def-center-of-group
+    def-automorphism --&gt; def-isomorphism
+    def-center-of-group --&gt; def-automorphism
     class def-automorphism current
-    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism"
+    click ex-group-action-examples "ex-group-action-examples.html" "Go to Examples of Group Actions"
     click def-group "def-group.html" "Go to Group"
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism"
+    click def-center-of-group "def-center-of-group.html" "Go to Center of a Group"
     click def-identity-element "def-identity-element.html" "Go to Identity Element"
     click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism"
-    click ex-group-action-examples "ex-group-action-examples.html" "Go to Examples of Group Actions"
-    click def-center-of-group "def-center-of-group.html" "Go to Center of a Group"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -449,12 +426,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="interactive-visualization">
+<section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div class="graph-visualization-container" id="graph-viz-def-automorphism-1753765078">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-def-automorphism-1753768943" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -699,12 +677,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-automorphism-1753765078', {
+    createForceGraph(data, 'graph-viz-def-automorphism-1753768943', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-automorphism-1753765078').innerHTML =
+    document.getElementById('graph-viz-def-automorphism-1753768943').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -716,6 +694,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -764,9 +743,13 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/def-automorphism.html" target="_blank">full interactive version</a></p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1169,16 +1152,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

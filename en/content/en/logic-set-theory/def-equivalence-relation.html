@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>Equivalence Relation – Math Knowledge Graph</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'en';
   window.alternateLanguage = 'ja';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,220 +157,184 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">Math Knowledge Graph</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="Search"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Math Knowledge Graph</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/algebra/index.html"> 
 <span class="menu-text">Algebra</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/analysis/index.html"> 
 <span class="menu-text">Analysis</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/topology/index.html"> 
 <span class="menu-text">Topology</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/geometry/index.html"> 
 <span class="menu-text">Geometry</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/category-theory/index.html"> 
 <span class="menu-text">Category Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/combinatorics/index.html"> 
 <span class="menu-text">Combinatorics</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/logic-set-theory/index.html"> 
 <span class="menu-text">Logic &amp; Set Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/number-theory/index.html"> 
 <span class="menu-text">Number Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/probability-statistics/index.html"> 
 <span class="menu-text">Probability &amp; Statistics</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/en/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/en/about.html"> 
 <span class="menu-text">About</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/en/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/en/contributing.html"> 
 <span class="menu-text">Contributing</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../ja/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../ja/index.html"> 
 <span class="menu-text">🌐 日本語</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">On this page</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#def-equivalence-relation" href="#def-equivalence-relation" id="toc-def-equivalence-relation">Equivalence Relation</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#formal-definition" href="#formal-definition" id="toc-formal-definition">Formal Definition</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#reflexive-property" href="#reflexive-property" id="toc-reflexive-property">1. Reflexive Property</a></li>
-<li><a class="nav-link" data-scroll-target="#symmetric-property" href="#symmetric-property" id="toc-symmetric-property">2. Symmetric Property</a></li>
-<li><a class="nav-link" data-scroll-target="#transitive-property" href="#transitive-property" id="toc-transitive-property">3. Transitive Property</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#equivalence-classes" href="#equivalence-classes" id="toc-equivalence-classes">Equivalence Classes</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#properties-of-equivalence-classes" href="#properties-of-equivalence-classes" id="toc-properties-of-equivalence-classes">Properties of Equivalence Classes</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#quotient-set" href="#quotient-set" id="toc-quotient-set">Quotient Set</a></li>
-<li><a class="nav-link" data-scroll-target="#examples" href="#examples" id="toc-examples">Examples</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#equality" href="#equality" id="toc-equality">1. Equality</a></li>
-<li><a class="nav-link" data-scroll-target="#congruence-modulo-n" href="#congruence-modulo-n" id="toc-congruence-modulo-n">2. Congruence Modulo n</a></li>
-<li><a class="nav-link" data-scroll-target="#similar-matrices" href="#similar-matrices" id="toc-similar-matrices">3. Similar Matrices</a></li>
-<li><a class="nav-link" data-scroll-target="#parallel-lines" href="#parallel-lines" id="toc-parallel-lines">4. Parallel Lines</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#important-theorems" href="#important-theorems" id="toc-important-theorems">Important Theorems</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#fundamental-theorem-of-equivalence-relations" href="#fundamental-theorem-of-equivalence-relations" id="toc-fundamental-theorem-of-equivalence-relations">Fundamental Theorem of Equivalence Relations</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#applications" href="#applications" id="toc-applications">Applications</a></li>
-<li><a class="nav-link" data-scroll-target="#see-also" href="#see-also" id="toc-see-also">See Also</a></li>
-<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
-<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#def-equivalence-relation" id="toc-def-equivalence-relation" class="nav-link active" data-scroll-target="#def-equivalence-relation">Equivalence Relation</a>
+  <ul class="collapse">
+  <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link" data-scroll-target="#formal-definition">Formal Definition</a>
+  <ul class="collapse">
+  <li><a href="#reflexive-property" id="toc-reflexive-property" class="nav-link" data-scroll-target="#reflexive-property">1. Reflexive Property</a></li>
+  <li><a href="#symmetric-property" id="toc-symmetric-property" class="nav-link" data-scroll-target="#symmetric-property">2. Symmetric Property</a></li>
+  <li><a href="#transitive-property" id="toc-transitive-property" class="nav-link" data-scroll-target="#transitive-property">3. Transitive Property</a></li>
+  </ul></li>
+  <li><a href="#equivalence-classes" id="toc-equivalence-classes" class="nav-link" data-scroll-target="#equivalence-classes">Equivalence Classes</a>
+  <ul class="collapse">
+  <li><a href="#properties-of-equivalence-classes" id="toc-properties-of-equivalence-classes" class="nav-link" data-scroll-target="#properties-of-equivalence-classes">Properties of Equivalence Classes</a></li>
+  </ul></li>
+  <li><a href="#quotient-set" id="toc-quotient-set" class="nav-link" data-scroll-target="#quotient-set">Quotient Set</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
+  <ul class="collapse">
+  <li><a href="#equality" id="toc-equality" class="nav-link" data-scroll-target="#equality">1. Equality</a></li>
+  <li><a href="#congruence-modulo-n" id="toc-congruence-modulo-n" class="nav-link" data-scroll-target="#congruence-modulo-n">2. Congruence Modulo n</a></li>
+  <li><a href="#similar-matrices" id="toc-similar-matrices" class="nav-link" data-scroll-target="#similar-matrices">3. Similar Matrices</a></li>
+  <li><a href="#parallel-lines" id="toc-parallel-lines" class="nav-link" data-scroll-target="#parallel-lines">4. Parallel Lines</a></li>
+  </ul></li>
+  <li><a href="#important-theorems" id="toc-important-theorems" class="nav-link" data-scroll-target="#important-theorems">Important Theorems</a>
+  <ul class="collapse">
+  <li><a href="#fundamental-theorem-of-equivalence-relations" id="toc-fundamental-theorem-of-equivalence-relations" class="nav-link" data-scroll-target="#fundamental-theorem-of-equivalence-relations">Fundamental Theorem of Equivalence Relations</a></li>
+  </ul></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
+  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
+  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
+  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Equivalence Relation</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="def-equivalence-relation">
+
+
+<section id="def-equivalence-relation" class="level1">
 <h1>Equivalence Relation</h1>
 <p>An <strong>equivalence relation</strong> on a <a href="../../../content/en/logic-set-theory/def-set.html">set</a> <span class="math inline">\(A\)</span> is a <a href="../../../content/en/logic-set-theory/def-relation.html">relation</a> <span class="math inline">\(\sim\)</span> on <span class="math inline">\(A\)</span> that is reflexive, symmetric, and transitive.</p>
-<section class="level2" id="formal-definition">
+<section id="formal-definition" class="level2">
 <h2 class="anchored" data-anchor-id="formal-definition">Formal Definition</h2>
 <p>A relation <span class="math inline">\(\sim\)</span> on a set <span class="math inline">\(A\)</span> is an equivalence relation if and only if it satisfies the following three properties:</p>
-<section class="level3" id="reflexive-property">
+<section id="reflexive-property" class="level3">
 <h3 class="anchored" data-anchor-id="reflexive-property">1. Reflexive Property</h3>
 <p>For all <span class="math inline">\(a \in A\)</span>: <span class="math display">\[a \sim a\]</span></p>
 <p>Every element is related to itself.</p>
 </section>
-<section class="level3" id="symmetric-property">
+<section id="symmetric-property" class="level3">
 <h3 class="anchored" data-anchor-id="symmetric-property">2. Symmetric Property</h3>
 <p>For all <span class="math inline">\(a, b \in A\)</span>: <span class="math display">\[a \sim b \implies b \sim a\]</span></p>
 <p>If <span class="math inline">\(a\)</span> is related to <span class="math inline">\(b\)</span>, then <span class="math inline">\(b\)</span> is related to <span class="math inline">\(a\)</span>.</p>
 </section>
-<section class="level3" id="transitive-property">
+<section id="transitive-property" class="level3">
 <h3 class="anchored" data-anchor-id="transitive-property">3. Transitive Property</h3>
 <p>For all <span class="math inline">\(a, b, c \in A\)</span>: <span class="math display">\[(a \sim b \text{ and } b \sim c) \implies a \sim c\]</span></p>
 <p>If <span class="math inline">\(a\)</span> is related to <span class="math inline">\(b\)</span> and <span class="math inline">\(b\)</span> is related to <span class="math inline">\(c\)</span>, then <span class="math inline">\(a\)</span> is related to <span class="math inline">\(c\)</span>.</p>
 </section>
 </section>
-<section class="level2" id="equivalence-classes">
+<section id="equivalence-classes" class="level2">
 <h2 class="anchored" data-anchor-id="equivalence-classes">Equivalence Classes</h2>
 <p>Given an equivalence relation <span class="math inline">\(\sim\)</span> on a set <span class="math inline">\(A\)</span>, for each element <span class="math inline">\(a \in A\)</span>, the <strong>equivalence class</strong> of <span class="math inline">\(a\)</span> is:</p>
 <p><span class="math display">\[[a] = \{x \in A : x \sim a\}\]</span></p>
-<section class="level3" id="properties-of-equivalence-classes">
+<section id="properties-of-equivalence-classes" class="level3">
 <h3 class="anchored" data-anchor-id="properties-of-equivalence-classes">Properties of Equivalence Classes</h3>
 <ol type="1">
 <li><strong>Non-empty</strong>: <span class="math inline">\(a \in [a]\)</span> for all <span class="math inline">\(a \in A\)</span> (by reflexivity)</li>
@@ -366,41 +343,41 @@ window.Quarto = {
 </ol>
 </section>
 </section>
-<section class="level2" id="quotient-set">
+<section id="quotient-set" class="level2">
 <h2 class="anchored" data-anchor-id="quotient-set">Quotient Set</h2>
 <p>The <strong>quotient set</strong> of <span class="math inline">\(A\)</span> by <span class="math inline">\(\sim\)</span>, denoted <span class="math inline">\(A/\sim\)</span>, is the set of all equivalence classes:</p>
 <p><span class="math display">\[A/\sim = \{[a] : a \in A\}\]</span></p>
 </section>
-<section class="level2" id="examples">
+<section id="examples" class="level2">
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<section class="level3" id="equality">
+<section id="equality" class="level3">
 <h3 class="anchored" data-anchor-id="equality">1. Equality</h3>
 <p>The relation <span class="math inline">\(=\)</span> on any set is an equivalence relation: - Reflexive: <span class="math inline">\(a = a\)</span> - Symmetric: <span class="math inline">\(a = b \implies b = a\)</span> - Transitive: <span class="math inline">\(a = b\)</span> and <span class="math inline">\(b = c \implies a = c\)</span></p>
 </section>
-<section class="level3" id="congruence-modulo-n">
+<section id="congruence-modulo-n" class="level3">
 <h3 class="anchored" data-anchor-id="congruence-modulo-n">2. Congruence Modulo n</h3>
 <p>For a fixed positive integer <span class="math inline">\(n\)</span>, the relation <span class="math inline">\(\equiv_n\)</span> on <span class="math inline">\(\mathbb{Z}\)</span> defined by: <span class="math display">\[a \equiv_n b \iff n \mid (a - b)\]</span></p>
 <p>is an equivalence relation. The equivalence classes are the residue classes modulo <span class="math inline">\(n\)</span>.</p>
 </section>
-<section class="level3" id="similar-matrices">
+<section id="similar-matrices" class="level3">
 <h3 class="anchored" data-anchor-id="similar-matrices">3. Similar Matrices</h3>
 <p>On the set of <span class="math inline">\(n \times n\)</span> matrices, the relation “is similar to” defined by: <span class="math display">\[A \sim B \iff \exists \text{ invertible } P \text{ such that } B = P^{-1}AP\]</span></p>
 <p>is an equivalence relation.</p>
 </section>
-<section class="level3" id="parallel-lines">
+<section id="parallel-lines" class="level3">
 <h3 class="anchored" data-anchor-id="parallel-lines">4. Parallel Lines</h3>
 <p>On the set of lines in a plane, the relation “is parallel to” is an equivalence relation (where we consider a line parallel to itself).</p>
 </section>
 </section>
-<section class="level2" id="important-theorems">
+<section id="important-theorems" class="level2">
 <h2 class="anchored" data-anchor-id="important-theorems">Important Theorems</h2>
-<section class="level3" id="fundamental-theorem-of-equivalence-relations">
+<section id="fundamental-theorem-of-equivalence-relations" class="level3">
 <h3 class="anchored" data-anchor-id="fundamental-theorem-of-equivalence-relations">Fundamental Theorem of Equivalence Relations</h3>
 <p>There is a bijective correspondence between: 1. Equivalence relations on a set <span class="math inline">\(A\)</span> 2. Partitions of the set <span class="math inline">\(A\)</span></p>
 <p>Every equivalence relation induces a partition, and every partition defines an equivalence relation.</p>
 </section>
 </section>
-<section class="level2" id="applications">
+<section id="applications" class="level2">
 <h2 class="anchored" data-anchor-id="applications">Applications</h2>
 <ul>
 <li><strong>Modular arithmetic</strong>: Congruence classes form the foundation of modular arithmetic</li>
@@ -409,7 +386,7 @@ window.Quarto = {
 <li><strong>Computer science</strong>: Union-find data structures, type equivalence</li>
 </ul>
 </section>
-<section class="level2" id="see-also">
+<section id="see-also" class="level2">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
 <li><a href="../../../content/en/logic-set-theory/def-relation.html">Relation</a></li>
@@ -418,7 +395,7 @@ window.Quarto = {
 <li><a href="../../../content/en/logic-set-theory/def-function.html">Function</a></li>
 </ul>
 </section>
-<section class="level2" id="dependency-graph">
+<section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -431,33 +408,33 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Set"]:::definition
-    def-equivalence-relation["Equivalence Relation"]:::definition
-    def-relation["Relation"]:::definition
-    def-congruence["Congruence (Modular Arithmetic)"]:::definition
     def-function["Function"]:::definition
+    def-quotient-ring["Quotient Ring"]:::definition
+    def-relation["Relation"]:::definition
+    def-set["Set"]:::definition
+    def-partial-order["Partial Order"]:::definition
+    def-congruence["Congruence (Modular Arithmetic)"]:::definition
+    def-equivalence-relation["Equivalence Relation"]:::definition
     def-quotient-group["Quotient Group"]:::definition
     def-fundamental-group["Fundamental Group"]:::definition
-    def-quotient-ring["Quotient Ring"]:::definition
-    def-partial-order["Partial Order"]:::definition
-    def-equivalence-relation --&gt; def-function
-    def-equivalence-relation --&gt; def-relation
-    def-equivalence-relation --&gt; def-congruence
     def-relation --&gt; def-equivalence-relation
-    def-quotient-ring --&gt; def-equivalence-relation
-    def-fundamental-group --&gt; def-equivalence-relation
-    def-equivalence-relation --&gt; def-quotient-group
+    def-equivalence-relation --&gt; def-function
     def-equivalence-relation --&gt; def-set
     def-partial-order --&gt; def-equivalence-relation
+    def-quotient-ring --&gt; def-equivalence-relation
+    def-equivalence-relation --&gt; def-quotient-group
+    def-equivalence-relation --&gt; def-congruence
+    def-fundamental-group --&gt; def-equivalence-relation
+    def-equivalence-relation --&gt; def-relation
     class def-equivalence-relation current
-    click def-set "def-set.html" "Go to Set"
-    click def-relation "def-relation.html" "Go to Relation"
-    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic)"
     click def-function "def-function.html" "Go to Function"
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring"
+    click def-relation "def-relation.html" "Go to Relation"
+    click def-set "def-set.html" "Go to Set"
+    click def-partial-order "def-partial-order.html" "Go to Partial Order"
+    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic)"
     click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
     click def-fundamental-group "def-fundamental-group.html" "Go to Fundamental Group"
-    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring"
-    click def-partial-order "def-partial-order.html" "Go to Partial Order"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -465,12 +442,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="interactive-visualization">
+<section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div class="graph-visualization-container" id="graph-viz-def-equivalence-relation-1753764844">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-def-equivalence-relation-1753768708" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -715,12 +693,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-equivalence-relation-1753764844', {
+    createForceGraph(data, 'graph-viz-def-equivalence-relation-1753768708', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-equivalence-relation-1753764844').innerHTML =
+    document.getElementById('graph-viz-def-equivalence-relation-1753768708').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -732,6 +710,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -780,9 +759,13 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/def-equivalence-relation.html" target="_blank">full interactive version</a></p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1185,16 +1168,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>Mathematics Knowledge Graph Wiki - Built with Quarto and RDF</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

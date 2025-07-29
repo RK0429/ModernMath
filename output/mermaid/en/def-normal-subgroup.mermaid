@@ -4,46 +4,46 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group["Group"]:::definition
     def-abelian-group["Abelian Group"]:::definition
-    def-determinant["Determinant"]:::definition
-    def-simple-group["Simple Group"]:::definition
-    def-direct-product["Direct Product of Groups"]:::definition
-    def-homomorphism["Group Homomorphism"]:::definition
-    thm-first-isomorphism["First Isomorphism Theorem"]:::theorem
-    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
+    thm-lagrange["Lagrange's Theorem"]:::theorem
     def-kernel["Kernel"]:::definition
-    def-matrix["Matrix"]:::definition
-    ex-even-integers-subgroup["Even Integers Form a Subgroup"]:::example
     def-subgroup["Subgroup"]:::definition
+    def-determinant["Determinant"]:::definition
+    def-group["Group"]:::definition
+    def-center-of-group["Center of a Group"]:::definition
     def-quotient-group["Quotient Group"]:::definition
+    thm-first-isomorphism["First Isomorphism Theorem"]:::theorem
+    def-direct-product["Direct Product of Groups"]:::definition
+    def-normal-subgroup["Normal Subgroup"]:::definition
     def-coset["Coset"]:::definition
     def-group-action["Group Action"]:::definition
-    thm-lagrange["Lagrange's Theorem"]:::theorem
-    def-normal-subgroup["Normal Subgroup"]:::definition
-    def-center-of-group["Center of a Group"]:::definition
-    ex-quotient-integers-mod-n --> def-normal-subgroup
-    def-normal-subgroup --> def-matrix
-    def-coset --> def-normal-subgroup
-    def-center-of-group --> def-normal-subgroup
-    ex-even-integers-subgroup --> def-normal-subgroup
-    def-abelian-group --> def-normal-subgroup
+    def-homomorphism["Group Homomorphism"]:::definition
+    ex-even-integers-subgroup["Even Integers Form a Subgroup"]:::example
+    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
+    def-matrix["Matrix"]:::definition
+    def-simple-group["Simple Group"]:::definition
+    def-normal-subgroup --> def-coset
     def-normal-subgroup --> def-group-action
+    def-normal-subgroup --> def-abelian-group
+    ex-quotient-integers-mod-n --> def-normal-subgroup
+    def-direct-product --> def-normal-subgroup
+    def-center-of-group --> def-normal-subgroup
     def-quotient-group --> def-normal-subgroup
-    def-simple-group --> def-normal-subgroup
+    def-normal-subgroup --> def-subgroup
+    def-coset --> def-normal-subgroup
     def-normal-subgroup --> def-group
-    def-normal-subgroup --> def-homomorphism
+    def-normal-subgroup --> def-determinant
+    def-normal-subgroup --> thm-lagrange
+    def-normal-subgroup --> def-center-of-group
     def-group --> def-normal-subgroup
-    def-subgroup --> def-normal-subgroup
+    def-simple-group --> def-normal-subgroup
+    def-normal-subgroup --> def-homomorphism
+    def-normal-subgroup --> def-matrix
     def-kernel --> def-normal-subgroup
     def-normal-subgroup --> thm-first-isomorphism
-    def-normal-subgroup --> def-subgroup
+    def-subgroup --> def-normal-subgroup
     def-normal-subgroup --> def-quotient-group
+    def-abelian-group --> def-normal-subgroup
+    ex-even-integers-subgroup --> def-normal-subgroup
     thm-first-isomorphism --> def-normal-subgroup
-    def-normal-subgroup --> def-coset
-    def-normal-subgroup --> def-abelian-group
-    def-normal-subgroup --> thm-lagrange
-    def-direct-product --> def-normal-subgroup
-    def-normal-subgroup --> def-determinant
-    def-normal-subgroup --> def-center-of-group
     class def-normal-subgroup current

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>Fundamental Theorem of Calculus – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,229 +157,193 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">数学ナレッジグラフ</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="サーチ"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">数学ナレッジグラフ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="サーチ"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index-ja.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index-ja.html"> 
 <span class="menu-text">ホーム</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
 <span class="menu-text">代数学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
 <span class="menu-text">解析学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
 <span class="menu-text">位相空間論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
 <span class="menu-text">幾何学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
 <span class="menu-text">圏論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
 <span class="menu-text">組合せ論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
 <span class="menu-text">論理学・集合論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
 <span class="menu-text">数論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
 <span class="menu-text">確率統計</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/about.html"> 
 <span class="menu-text">概要</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
 <span class="menu-text">貢献</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../en/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../en/index.html"> 
 <span class="menu-text">🌐 English</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">目次</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#statement" href="#statement" id="toc-statement">Statement</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#part-i-first-fundamental-theorem" href="#part-i-first-fundamental-theorem" id="toc-part-i-first-fundamental-theorem">Part I (First Fundamental Theorem)</a></li>
-<li><a class="nav-link" data-scroll-target="#part-ii-second-fundamental-theorem" href="#part-ii-second-fundamental-theorem" id="toc-part-ii-second-fundamental-theorem">Part II (Second Fundamental Theorem)</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#interpretation" href="#interpretation" id="toc-interpretation">Interpretation</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#part-i-interpretation" href="#part-i-interpretation" id="toc-part-i-interpretation">Part I Interpretation</a></li>
-<li><a class="nav-link" data-scroll-target="#part-ii-interpretation" href="#part-ii-interpretation" id="toc-part-ii-interpretation">Part II Interpretation</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#proof-sketch" href="#proof-sketch" id="toc-proof-sketch">Proof Sketch</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#proof-of-part-i" href="#proof-of-part-i" id="toc-proof-of-part-i">Proof of Part I</a></li>
-<li><a class="nav-link" data-scroll-target="#proof-of-part-ii" href="#proof-of-part-ii" id="toc-proof-of-part-ii">Proof of Part II</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#historical-development" href="#historical-development" id="toc-historical-development">Historical Development</a></li>
-<li><a class="nav-link" data-scroll-target="#consequences-and-applications" href="#consequences-and-applications" id="toc-consequences-and-applications">Consequences and Applications</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#evaluation-of-definite-integrals" href="#evaluation-of-definite-integrals" id="toc-evaluation-of-definite-integrals">1. Evaluation of Definite Integrals</a></li>
-<li><a class="nav-link" data-scroll-target="#existence-of-antiderivatives" href="#existence-of-antiderivatives" id="toc-existence-of-antiderivatives">2. Existence of Antiderivatives</a></li>
-<li><a class="nav-link" data-scroll-target="#integration-by-parts" href="#integration-by-parts" id="toc-integration-by-parts">3. Integration by Parts</a></li>
-<li><a class="nav-link" data-scroll-target="#change-of-variables" href="#change-of-variables" id="toc-change-of-variables">4. Change of Variables</a></li>
-<li><a class="nav-link" data-scroll-target="#physical-applications" href="#physical-applications" id="toc-physical-applications">5. Physical Applications</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#relationship-to-other-theorems" href="#relationship-to-other-theorems" id="toc-relationship-to-other-theorems">Relationship to Other Theorems</a></li>
-<li><a class="nav-link" data-scroll-target="#examples" href="#examples" id="toc-examples">Examples</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#example-1-area-calculation" href="#example-1-area-calculation" id="toc-example-1-area-calculation">Example 1: Area Calculation</a></li>
-<li><a class="nav-link" data-scroll-target="#example-2-variable-upper-limit" href="#example-2-variable-upper-limit" id="toc-example-2-variable-upper-limit">Example 2: Variable Upper Limit</a></li>
-<li><a class="nav-link" data-scroll-target="#example-3-physics-application" href="#example-3-physics-application" id="toc-example-3-physics-application">Example 3: Physics Application</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#generalizations" href="#generalizations" id="toc-generalizations">Generalizations</a></li>
-<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
-<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#statement" id="toc-statement" class="nav-link active" data-scroll-target="#statement">Statement</a>
+  <ul class="collapse">
+  <li><a href="#part-i-first-fundamental-theorem" id="toc-part-i-first-fundamental-theorem" class="nav-link" data-scroll-target="#part-i-first-fundamental-theorem">Part I (First Fundamental Theorem)</a></li>
+  <li><a href="#part-ii-second-fundamental-theorem" id="toc-part-ii-second-fundamental-theorem" class="nav-link" data-scroll-target="#part-ii-second-fundamental-theorem">Part II (Second Fundamental Theorem)</a></li>
+  </ul></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">Interpretation</a>
+  <ul class="collapse">
+  <li><a href="#part-i-interpretation" id="toc-part-i-interpretation" class="nav-link" data-scroll-target="#part-i-interpretation">Part I Interpretation</a></li>
+  <li><a href="#part-ii-interpretation" id="toc-part-ii-interpretation" class="nav-link" data-scroll-target="#part-ii-interpretation">Part II Interpretation</a></li>
+  </ul></li>
+  <li><a href="#proof-sketch" id="toc-proof-sketch" class="nav-link" data-scroll-target="#proof-sketch">Proof Sketch</a>
+  <ul class="collapse">
+  <li><a href="#proof-of-part-i" id="toc-proof-of-part-i" class="nav-link" data-scroll-target="#proof-of-part-i">Proof of Part I</a></li>
+  <li><a href="#proof-of-part-ii" id="toc-proof-of-part-ii" class="nav-link" data-scroll-target="#proof-of-part-ii">Proof of Part II</a></li>
+  </ul></li>
+  <li><a href="#historical-development" id="toc-historical-development" class="nav-link" data-scroll-target="#historical-development">Historical Development</a></li>
+  <li><a href="#consequences-and-applications" id="toc-consequences-and-applications" class="nav-link" data-scroll-target="#consequences-and-applications">Consequences and Applications</a>
+  <ul class="collapse">
+  <li><a href="#evaluation-of-definite-integrals" id="toc-evaluation-of-definite-integrals" class="nav-link" data-scroll-target="#evaluation-of-definite-integrals">1. Evaluation of Definite Integrals</a></li>
+  <li><a href="#existence-of-antiderivatives" id="toc-existence-of-antiderivatives" class="nav-link" data-scroll-target="#existence-of-antiderivatives">2. Existence of Antiderivatives</a></li>
+  <li><a href="#integration-by-parts" id="toc-integration-by-parts" class="nav-link" data-scroll-target="#integration-by-parts">3. Integration by Parts</a></li>
+  <li><a href="#change-of-variables" id="toc-change-of-variables" class="nav-link" data-scroll-target="#change-of-variables">4. Change of Variables</a></li>
+  <li><a href="#physical-applications" id="toc-physical-applications" class="nav-link" data-scroll-target="#physical-applications">5. Physical Applications</a></li>
+  </ul></li>
+  <li><a href="#relationship-to-other-theorems" id="toc-relationship-to-other-theorems" class="nav-link" data-scroll-target="#relationship-to-other-theorems">Relationship to Other Theorems</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
+  <ul class="collapse">
+  <li><a href="#example-1-area-calculation" id="toc-example-1-area-calculation" class="nav-link" data-scroll-target="#example-1-area-calculation">Example 1: Area Calculation</a></li>
+  <li><a href="#example-2-variable-upper-limit" id="toc-example-2-variable-upper-limit" class="nav-link" data-scroll-target="#example-2-variable-upper-limit">Example 2: Variable Upper Limit</a></li>
+  <li><a href="#example-3-physics-application" id="toc-example-3-physics-application" class="nav-link" data-scroll-target="#example-3-physics-application">Example 3: Physics Application</a></li>
+  </ul></li>
+  <li><a href="#generalizations" id="toc-generalizations" class="nav-link" data-scroll-target="#generalizations">Generalizations</a></li>
+  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
+  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Fundamental Theorem of Calculus</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
+
+
 <p>The <strong>Fundamental Theorem of Calculus</strong> is the central theorem of calculus that establishes the profound connection between differentiation and integration, showing that these two operations are essentially inverses of one another.</p>
-<section class="level2" id="statement">
+<section id="statement" class="level2">
 <h2 class="anchored" data-anchor-id="statement">Statement</h2>
 <p>The theorem consists of two closely related parts:</p>
-<section class="level3" id="part-i-first-fundamental-theorem">
+<section id="part-i-first-fundamental-theorem" class="level3">
 <h3 class="anchored" data-anchor-id="part-i-first-fundamental-theorem">Part I (First Fundamental Theorem)</h3>
 <p>Let <span class="math inline">\(f\)</span> be a <a href="../../../content/en/analysis/def-continuity.html">continuous</a> function on <span class="math inline">\([a,b]\)</span>. Define the function <span class="math inline">\(F\)</span> on <span class="math inline">\([a,b]\)</span> by:</p>
 <p><span class="math display">\[F(x) = \int_a^x f(t) \, dt\]</span></p>
 <p>Then <span class="math inline">\(F\)</span> is differentiable on <span class="math inline">\((a,b)\)</span>, and: <span class="math display">\[F'(x) = f(x)\]</span></p>
 <p>for all <span class="math inline">\(x \in (a,b)\)</span>.</p>
 </section>
-<section class="level3" id="part-ii-second-fundamental-theorem">
+<section id="part-ii-second-fundamental-theorem" class="level3">
 <h3 class="anchored" data-anchor-id="part-ii-second-fundamental-theorem">Part II (Second Fundamental Theorem)</h3>
 <p>Let <span class="math inline">\(f\)</span> be a continuous function on <span class="math inline">\([a,b]\)</span>. If <span class="math inline">\(F\)</span> is any antiderivative of <span class="math inline">\(f\)</span> on <span class="math inline">\([a,b]\)</span> (i.e., <span class="math inline">\(F' = f\)</span>), then:</p>
 <p><span class="math display">\[\int_a^b f(x) \, dx = F(b) - F(a)\]</span></p>
 </section>
 </section>
-<section class="level2" id="interpretation">
+<section id="interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="interpretation">Interpretation</h2>
-<section class="level3" id="part-i-interpretation">
+<section id="part-i-interpretation" class="level3">
 <h3 class="anchored" data-anchor-id="part-i-interpretation">Part I Interpretation</h3>
 <p>Part I tells us that every continuous function has an antiderivative, namely the <a href="../../../content/en/analysis/def-integral.html">integral</a> function with variable upper limit. It also shows that differentiation undoes integration.</p>
 </section>
-<section class="level3" id="part-ii-interpretation">
+<section id="part-ii-interpretation" class="level3">
 <h3 class="anchored" data-anchor-id="part-ii-interpretation">Part II Interpretation</h3>
 <p>Part II provides a powerful method for evaluating definite integrals: instead of computing <a href="../../../content/en/analysis/def-limit.html">limits</a> of Riemann sums, we can find an antiderivative and evaluate it at the endpoints.</p>
 </section>
 </section>
-<section class="level2" id="proof-sketch">
+<section id="proof-sketch" class="level2">
 <h2 class="anchored" data-anchor-id="proof-sketch">Proof Sketch</h2>
-<section class="level3" id="proof-of-part-i">
+<section id="proof-of-part-i" class="level3">
 <h3 class="anchored" data-anchor-id="proof-of-part-i">Proof of Part I</h3>
 <p>Let <span class="math inline">\(h &gt; 0\)</span> be small. By the definition of <a href="../../../content/en/analysis/def-derivative.html">derivative</a>:</p>
 <p><span class="math display">\[F'(x) = \lim_{h \to 0} \frac{F(x+h) - F(x)}{h} = \lim_{h \to 0} \frac{1}{h} \int_x^{x+h} f(t) \, dt\]</span></p>
@@ -375,7 +352,7 @@ window.Quarto = {
 <p>Therefore: <span class="math display">\[F'(x) = \lim_{h \to 0} f(c)\]</span></p>
 <p>Since <span class="math inline">\(c \to x\)</span> as <span class="math inline">\(h \to 0\)</span> and <span class="math inline">\(f\)</span> is continuous, we get <span class="math inline">\(F'(x) = f(x)\)</span>.</p>
 </section>
-<section class="level3" id="proof-of-part-ii">
+<section id="proof-of-part-ii" class="level3">
 <h3 class="anchored" data-anchor-id="proof-of-part-ii">Proof of Part II</h3>
 <p>Let <span class="math inline">\(G(x) = \int_a^x f(t) \, dt\)</span> and let <span class="math inline">\(F\)</span> be any antiderivative of <span class="math inline">\(f\)</span>.</p>
 <p>By Part I, <span class="math inline">\(G'(x) = f(x) = F'(x)\)</span>, so <span class="math inline">\((F - G)'(x) = 0\)</span> on <span class="math inline">\((a,b)\)</span>.</p>
@@ -386,29 +363,29 @@ window.Quarto = {
 <p>Therefore: <span class="math inline">\(\int_a^b f(t) \, dt = F(b) - F(a)\)</span></p>
 </section>
 </section>
-<section class="level2" id="historical-development">
+<section id="historical-development" class="level2">
 <h2 class="anchored" data-anchor-id="historical-development">Historical Development</h2>
 <p>The theorem was developed independently by: - <strong>Isaac Newton</strong> (1642-1727): Focused on the relationship between velocities and distances - <strong>Gottfried Wilhelm Leibniz</strong> (1646-1716): Developed the notation and formal framework - <strong>Isaac Barrow</strong> (1630-1677): Newton’s teacher, proved a geometric version - <strong>James Gregory</strong> (1638-1675): Published an early version with geometric focus</p>
 </section>
-<section class="level2" id="consequences-and-applications">
+<section id="consequences-and-applications" class="level2">
 <h2 class="anchored" data-anchor-id="consequences-and-applications">Consequences and Applications</h2>
-<section class="level3" id="evaluation-of-definite-integrals">
+<section id="evaluation-of-definite-integrals" class="level3">
 <h3 class="anchored" data-anchor-id="evaluation-of-definite-integrals">1. Evaluation of Definite Integrals</h3>
 <p>Instead of computing limits of Riemann sums, we can use: <span class="math display">\[\int_0^{\pi} \sin x \, dx = [-\cos x]_0^{\pi} = -\cos(\pi) + \cos(0) = 2\]</span></p>
 </section>
-<section class="level3" id="existence-of-antiderivatives">
+<section id="existence-of-antiderivatives" class="level3">
 <h3 class="anchored" data-anchor-id="existence-of-antiderivatives">2. Existence of Antiderivatives</h3>
 <p>Every continuous function on an interval has an antiderivative.</p>
 </section>
-<section class="level3" id="integration-by-parts">
+<section id="integration-by-parts" class="level3">
 <h3 class="anchored" data-anchor-id="integration-by-parts">3. Integration by Parts</h3>
 <p>Derived from the product rule and FTC: <span class="math display">\[\int_a^b u \, dv = [uv]_a^b - \int_a^b v \, du\]</span></p>
 </section>
-<section class="level3" id="change-of-variables">
+<section id="change-of-variables" class="level3">
 <h3 class="anchored" data-anchor-id="change-of-variables">4. Change of Variables</h3>
 <p>The substitution rule follows from the chain rule and FTC: <span class="math display">\[\int_a^b f(g(x))g'(x) \, dx = \int_{g(a)}^{g(b)} f(u) \, du\]</span></p>
 </section>
-<section class="level3" id="physical-applications">
+<section id="physical-applications" class="level3">
 <h3 class="anchored" data-anchor-id="physical-applications">5. Physical Applications</h3>
 <ul>
 <li><strong>Kinematics</strong>: Position is the integral of velocity</li>
@@ -417,27 +394,27 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section class="level2" id="relationship-to-other-theorems">
+<section id="relationship-to-other-theorems" class="level2">
 <h2 class="anchored" data-anchor-id="relationship-to-other-theorems">Relationship to Other Theorems</h2>
 <p>The Fundamental Theorem of Calculus is closely related to: - <a href="../../../content/en/analysis/thm-mean-value.html">Mean Value Theorem</a>: Used in the proof of Part I - <a href="../../../content/en/analysis/thm-chain-rule.html">Chain Rule</a>: Generalizes to composition of functions - <a href="../../../content/en/analysis/thm-taylor-series.html">Taylor Series</a>: Higher-order version using repeated integration</p>
 </section>
-<section class="level2" id="examples">
+<section id="examples" class="level2">
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<section class="level3" id="example-1-area-calculation">
+<section id="example-1-area-calculation" class="level3">
 <h3 class="anchored" data-anchor-id="example-1-area-calculation">Example 1: Area Calculation</h3>
 <p>Find the area under <span class="math inline">\(f(x) = x^2\)</span> from 0 to 2: <span class="math display">\[\int_0^2 x^2 \, dx = \left[\frac{x^3}{3}\right]_0^2 = \frac{8}{3} - 0 = \frac{8}{3}\]</span></p>
 </section>
-<section class="level3" id="example-2-variable-upper-limit">
+<section id="example-2-variable-upper-limit" class="level3">
 <h3 class="anchored" data-anchor-id="example-2-variable-upper-limit">Example 2: Variable Upper Limit</h3>
 <p>If <span class="math inline">\(F(x) = \int_1^x \frac{1}{t} \, dt\)</span>, then by Part I: <span class="math display">\[F'(x) = \frac{1}{x}\]</span></p>
 <p>This shows that <span class="math inline">\(\ln x\)</span> is an antiderivative of <span class="math inline">\(1/x\)</span>.</p>
 </section>
-<section class="level3" id="example-3-physics-application">
+<section id="example-3-physics-application" class="level3">
 <h3 class="anchored" data-anchor-id="example-3-physics-application">Example 3: Physics Application</h3>
 <p>A particle moves with velocity <span class="math inline">\(v(t) = 3t^2 - 2t\)</span>. The displacement from <span class="math inline">\(t = 0\)</span> to <span class="math inline">\(t = 3\)</span> is: <span class="math display">\[s = \int_0^3 (3t^2 - 2t) \, dt = [t^3 - t^2]_0^3 = 27 - 9 = 18\]</span></p>
 </section>
 </section>
-<section class="level2" id="generalizations">
+<section id="generalizations" class="level2">
 <h2 class="anchored" data-anchor-id="generalizations">Generalizations</h2>
 <ol type="1">
 <li><strong>Lebesgue Integration</strong>: The theorem extends to more general integration theories</li>
@@ -446,7 +423,7 @@ window.Quarto = {
 <li><strong>Differential Forms</strong>: Stokes’ theorem generalizes FTC to higher dimensions</li>
 </ol>
 </section>
-<section class="level2" id="dependency-graph">
+<section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -460,16 +437,16 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-integral["Integral"]:::definition
+    def-continuity["Continuity"]:::definition
     def-derivative["Derivative"]:::definition
     thm-fundamental-calculus["Fundamental Theorem of Calculus"]:::theorem
-    def-continuity["Continuity"]:::definition
-    thm-fundamental-calculus --&gt; def-derivative
     thm-fundamental-calculus --&gt; def-integral
+    thm-fundamental-calculus --&gt; def-derivative
     thm-fundamental-calculus --&gt; def-continuity
     class thm-fundamental-calculus current
     click def-integral "def-integral.html" "Go to Integral"
-    click def-derivative "def-derivative.html" "Go to Derivative"
     click def-continuity "def-continuity.html" "Go to Continuity"
+    click def-derivative "def-derivative.html" "Go to Derivative"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -477,12 +454,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="interactive-visualization">
+<section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div class="graph-visualization-container" id="graph-viz-thm-fundamental-calculus-1753765085">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-thm-fundamental-calculus-1753768950" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -727,12 +705,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-fundamental-calculus-1753765085', {
+    createForceGraph(data, 'graph-viz-thm-fundamental-calculus-1753768950', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-fundamental-calculus-1753765085').innerHTML =
+    document.getElementById('graph-viz-thm-fundamental-calculus-1753768950').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -744,6 +722,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -792,8 +771,12 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/thm-fundamental-calculus.html" target="_blank">full interactive version</a></p>
+
+
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1196,16 +1179,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

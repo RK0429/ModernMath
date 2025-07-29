@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>Vector Space – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,173 +157,137 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">数学ナレッジグラフ</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="サーチ"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">数学ナレッジグラフ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="サーチ"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index-ja.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index-ja.html"> 
 <span class="menu-text">ホーム</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
 <span class="menu-text">代数学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
 <span class="menu-text">解析学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
 <span class="menu-text">位相空間論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
 <span class="menu-text">幾何学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
 <span class="menu-text">圏論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
 <span class="menu-text">組合せ論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
 <span class="menu-text">論理学・集合論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
 <span class="menu-text">数論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
 <span class="menu-text">確率統計</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/about.html"> 
 <span class="menu-text">概要</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
 <span class="menu-text">貢献</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../en/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../en/index.html"> 
 <span class="menu-text">🌐 English</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">目次</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#def-vector-space" href="#def-vector-space" id="toc-def-vector-space">Vector Space</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#addition-axioms" href="#addition-axioms" id="toc-addition-axioms">Addition Axioms</a></li>
-<li><a class="nav-link" data-scroll-target="#scalar-multiplication-axioms" href="#scalar-multiplication-axioms" id="toc-scalar-multiplication-axioms">Scalar Multiplication Axioms</a></li>
-<li><a class="nav-link" data-scroll-target="#remarks" href="#remarks" id="toc-remarks">Remarks</a></li>
-<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
-<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#def-vector-space" id="toc-def-vector-space" class="nav-link active" data-scroll-target="#def-vector-space">Vector Space</a>
+  <ul class="collapse">
+  <li><a href="#addition-axioms" id="toc-addition-axioms" class="nav-link" data-scroll-target="#addition-axioms">Addition Axioms</a></li>
+  <li><a href="#scalar-multiplication-axioms" id="toc-scalar-multiplication-axioms" class="nav-link" data-scroll-target="#scalar-multiplication-axioms">Scalar Multiplication Axioms</a></li>
+  <li><a href="#remarks" id="toc-remarks" class="nav-link" data-scroll-target="#remarks">Remarks</a></li>
+  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
+  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Vector Space</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="def-vector-space">
+
+
+<section id="def-vector-space" class="level1">
 <h1>Vector Space</h1>
 <p>A <strong>vector space</strong> (or linear space) over a field <span class="math inline">\(F\)</span> is a <a href="../../../content/en/logic-set-theory/def-set.html">Set</a> <span class="math inline">\(V\)</span> together with two <a href="../../../content/en/algebra/def-binary-operation.html">Binary Operations</a>:</p>
 <ol type="1">
@@ -318,7 +295,7 @@ window.Quarto = {
 <li><strong>Scalar multiplication</strong>: <span class="math inline">\(\cdot : F \times V \to V\)</span></li>
 </ol>
 <p>such that the following axioms are satisfied:</p>
-<section class="level2" id="addition-axioms">
+<section id="addition-axioms" class="level2">
 <h2 class="anchored" data-anchor-id="addition-axioms">Addition Axioms</h2>
 <p>For all <span class="math inline">\(\mathbf{u}, \mathbf{v}, \mathbf{w} \in V\)</span>:</p>
 <ol type="1">
@@ -328,7 +305,7 @@ window.Quarto = {
 <li><strong>Inverse elements</strong>: For each <span class="math inline">\(\mathbf{v} \in V\)</span>, there exists <span class="math inline">\(-\mathbf{v} \in V\)</span> such that <span class="math inline">\(\mathbf{v} + (-\mathbf{v}) = \mathbf{0}\)</span></li>
 </ol>
 </section>
-<section class="level2" id="scalar-multiplication-axioms">
+<section id="scalar-multiplication-axioms" class="level2">
 <h2 class="anchored" data-anchor-id="scalar-multiplication-axioms">Scalar Multiplication Axioms</h2>
 <p>For all <span class="math inline">\(a, b \in F\)</span> and <span class="math inline">\(\mathbf{u}, \mathbf{v} \in V\)</span>:</p>
 <ol start="5" type="1">
@@ -339,7 +316,7 @@ window.Quarto = {
 </ol>
 <p>Elements of <span class="math inline">\(V\)</span> are called <strong>vectors</strong>, and elements of <span class="math inline">\(F\)</span> are called <strong>scalars</strong>.</p>
 </section>
-<section class="level2" id="remarks">
+<section id="remarks" class="level2">
 <h2 class="anchored" data-anchor-id="remarks">Remarks</h2>
 <ul>
 <li>The vector space axioms ensure that <span class="math inline">\((V, +)\)</span> forms an <a href="../../../content/en/algebra/def-abelian-group.html">abelian</a> <a href="../../../content/en/algebra/def-group.html">Group</a></li>
@@ -348,7 +325,7 @@ window.Quarto = {
 <li>A vector space is precisely a <a href="../../../content/en/algebra/def-module.html">module</a> over a field—this perspective unifies linear algebra with ring theory</li>
 </ul>
 </section>
-<section class="level2" id="dependency-graph">
+<section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -361,62 +338,62 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group["Group"]:::definition
-    ex-standard-basis-rn["Standard Basis of ℝⁿ"]:::example
-    def-linear-independence["Linear Independence"]:::definition
-    def-kernel["Kernel"]:::definition
-    thm-linear-transformation-basis["Linear Transformation Determined by Basis"]:::theorem
-    def-linear-transformation["Linear Transformation"]:::definition
-    def-set["Set"]:::definition
-    def-binary-operation["Binary Operation"]:::definition
-    def-abelian-group["Abelian Group"]:::definition
-    def-eigenvalue-eigenvector["Eigenvalue and Eigenvector"]:::definition
-    def-basis["Basis"]:::definition
-    def-normed-vector-space["Normed Vector Space"]:::definition
-    def-endomorphism["Endomorphism"]:::definition
-    thm-rank-nullity["Rank-Nullity Theorem"]:::theorem
-    def-image["Image"]:::definition
-    def-field["Field"]:::definition
-    def-span["Span"]:::definition
-    def-euclidean-space["Euclidean Space"]:::definition
     def-vector-space["Vector Space"]:::definition
-    def-vector-space --&gt; def-set
-    def-normed-vector-space --&gt; def-vector-space
+    def-set["Set"]:::definition
+    def-normed-vector-space["Normed Vector Space"]:::definition
+    def-euclidean-space["Euclidean Space"]:::definition
+    def-linear-independence["Linear Independence"]:::definition
+    def-linear-transformation["Linear Transformation"]:::definition
+    ex-standard-basis-rn["Standard Basis of ℝⁿ"]:::example
+    def-span["Span"]:::definition
+    def-image["Image"]:::definition
+    def-basis["Basis"]:::definition
+    def-field["Field"]:::definition
+    def-group["Group"]:::definition
+    def-endomorphism["Endomorphism"]:::definition
+    def-eigenvalue-eigenvector["Eigenvalue and Eigenvector"]:::definition
+    def-abelian-group["Abelian Group"]:::definition
+    def-kernel["Kernel"]:::definition
+    thm-rank-nullity["Rank-Nullity Theorem"]:::theorem
+    thm-linear-transformation-basis["Linear Transformation Determined by Basis"]:::theorem
+    def-binary-operation["Binary Operation"]:::definition
+    def-vector-space --&gt; def-group
+    ex-standard-basis-rn --&gt; def-vector-space
+    def-linear-independence --&gt; def-vector-space
     def-vector-space --&gt; def-abelian-group
+    def-endomorphism --&gt; def-vector-space
+    def-normed-vector-space --&gt; def-vector-space
     def-span --&gt; def-vector-space
     def-kernel --&gt; def-vector-space
-    def-euclidean-space --&gt; def-vector-space
-    ex-standard-basis-rn --&gt; def-vector-space
-    def-eigenvalue-eigenvector --&gt; def-vector-space
-    def-vector-space --&gt; def-binary-operation
-    def-image --&gt; def-vector-space
-    thm-linear-transformation-basis --&gt; def-vector-space
+    def-vector-space --&gt; def-set
     thm-rank-nullity --&gt; def-vector-space
-    def-basis --&gt; def-vector-space
-    def-endomorphism --&gt; def-vector-space
-    def-linear-transformation --&gt; def-vector-space
     def-vector-space --&gt; def-field
-    def-linear-independence --&gt; def-vector-space
-    def-vector-space --&gt; def-group
+    def-linear-transformation --&gt; def-vector-space
+    def-euclidean-space --&gt; def-vector-space
+    def-basis --&gt; def-vector-space
+    def-image --&gt; def-vector-space
+    def-vector-space --&gt; def-binary-operation
+    thm-linear-transformation-basis --&gt; def-vector-space
+    def-eigenvalue-eigenvector --&gt; def-vector-space
     class def-vector-space current
-    click def-group "def-group.html" "Go to Group"
-    click ex-standard-basis-rn "ex-standard-basis-rn.html" "Go to Standard Basis of ℝⁿ"
-    click def-linear-independence "def-linear-independence.html" "Go to Linear Independence"
-    click def-kernel "def-kernel.html" "Go to Kernel"
-    click thm-linear-transformation-basis "thm-linear-transformation-basis.html" "Go to Linear Transformation Determined by Basis"
-    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation"
     click def-set "def-set.html" "Go to Set"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation"
-    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group"
-    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector"
-    click def-basis "def-basis.html" "Go to Basis"
     click def-normed-vector-space "def-normed-vector-space.html" "Go to Normed Vector Space"
-    click def-endomorphism "def-endomorphism.html" "Go to Endomorphism"
-    click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem"
-    click def-image "def-image.html" "Go to Image"
-    click def-field "def-field.html" "Go to Field"
-    click def-span "def-span.html" "Go to Span"
     click def-euclidean-space "def-euclidean-space.html" "Go to Euclidean Space"
+    click def-linear-independence "def-linear-independence.html" "Go to Linear Independence"
+    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation"
+    click ex-standard-basis-rn "ex-standard-basis-rn.html" "Go to Standard Basis of ℝⁿ"
+    click def-span "def-span.html" "Go to Span"
+    click def-image "def-image.html" "Go to Image"
+    click def-basis "def-basis.html" "Go to Basis"
+    click def-field "def-field.html" "Go to Field"
+    click def-group "def-group.html" "Go to Group"
+    click def-endomorphism "def-endomorphism.html" "Go to Endomorphism"
+    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector"
+    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group"
+    click def-kernel "def-kernel.html" "Go to Kernel"
+    click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem"
+    click thm-linear-transformation-basis "thm-linear-transformation-basis.html" "Go to Linear Transformation Determined by Basis"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -424,12 +401,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="interactive-visualization">
+<section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div class="graph-visualization-container" id="graph-viz-def-vector-space-1753765060">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-def-vector-space-1753768925" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -674,12 +652,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-vector-space-1753765060', {
+    createForceGraph(data, 'graph-viz-def-vector-space-1753768925', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-vector-space-1753765060').innerHTML =
+    document.getElementById('graph-viz-def-vector-space-1753768925').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -691,6 +669,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -739,9 +718,13 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/def-vector-space.html" target="_blank">full interactive version</a></p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1144,16 +1127,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

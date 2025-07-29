@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>Homeomorphism – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,188 +157,152 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">数学ナレッジグラフ</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="サーチ"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">数学ナレッジグラフ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="サーチ"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index-ja.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index-ja.html"> 
 <span class="menu-text">ホーム</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
 <span class="menu-text">代数学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
 <span class="menu-text">解析学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
 <span class="menu-text">位相空間論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
 <span class="menu-text">幾何学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
 <span class="menu-text">圏論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
 <span class="menu-text">組合せ論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
 <span class="menu-text">論理学・集合論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
 <span class="menu-text">数論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
 <span class="menu-text">確率統計</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/about.html"> 
 <span class="menu-text">概要</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
 <span class="menu-text">貢献</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../en/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../en/index.html"> 
 <span class="menu-text">🌐 English</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">目次</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#def-homeomorphism" href="#def-homeomorphism" id="toc-def-homeomorphism">Homeomorphism</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#formal-definition" href="#formal-definition" id="toc-formal-definition">Formal Definition</a></li>
-<li><a class="nav-link" data-scroll-target="#homeomorphic-spaces" href="#homeomorphic-spaces" id="toc-homeomorphic-spaces">Homeomorphic Spaces</a></li>
-<li><a class="nav-link" data-scroll-target="#key-properties" href="#key-properties" id="toc-key-properties">Key Properties</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#preservation-of-topological-properties" href="#preservation-of-topological-properties" id="toc-preservation-of-topological-properties">Preservation of Topological Properties</a></li>
-<li><a class="nav-link" data-scroll-target="#equivalence-relation" href="#equivalence-relation" id="toc-equivalence-relation">Equivalence Relation</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#examples" href="#examples" id="toc-examples">Examples</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#classic-examples" href="#classic-examples" id="toc-classic-examples">Classic Examples</a></li>
-<li><a class="nav-link" data-scroll-target="#non-examples" href="#non-examples" id="toc-non-examples">Non-Examples</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#topological-invariants" href="#topological-invariants" id="toc-topological-invariants">Topological Invariants</a></li>
-<li><a class="nav-link" data-scroll-target="#intuitive-understanding" href="#intuitive-understanding" id="toc-intuitive-understanding">Intuitive Understanding</a></li>
-<li><a class="nav-link" data-scroll-target="#see-also" href="#see-also" id="toc-see-also">See Also</a></li>
-<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
-<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#def-homeomorphism" id="toc-def-homeomorphism" class="nav-link active" data-scroll-target="#def-homeomorphism">Homeomorphism</a>
+  <ul class="collapse">
+  <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link" data-scroll-target="#formal-definition">Formal Definition</a></li>
+  <li><a href="#homeomorphic-spaces" id="toc-homeomorphic-spaces" class="nav-link" data-scroll-target="#homeomorphic-spaces">Homeomorphic Spaces</a></li>
+  <li><a href="#key-properties" id="toc-key-properties" class="nav-link" data-scroll-target="#key-properties">Key Properties</a>
+  <ul class="collapse">
+  <li><a href="#preservation-of-topological-properties" id="toc-preservation-of-topological-properties" class="nav-link" data-scroll-target="#preservation-of-topological-properties">Preservation of Topological Properties</a></li>
+  <li><a href="#equivalence-relation" id="toc-equivalence-relation" class="nav-link" data-scroll-target="#equivalence-relation">Equivalence Relation</a></li>
+  </ul></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
+  <ul class="collapse">
+  <li><a href="#classic-examples" id="toc-classic-examples" class="nav-link" data-scroll-target="#classic-examples">Classic Examples</a></li>
+  <li><a href="#non-examples" id="toc-non-examples" class="nav-link" data-scroll-target="#non-examples">Non-Examples</a></li>
+  </ul></li>
+  <li><a href="#topological-invariants" id="toc-topological-invariants" class="nav-link" data-scroll-target="#topological-invariants">Topological Invariants</a></li>
+  <li><a href="#intuitive-understanding" id="toc-intuitive-understanding" class="nav-link" data-scroll-target="#intuitive-understanding">Intuitive Understanding</a></li>
+  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
+  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
+  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Homeomorphism</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="def-homeomorphism">
+
+
+<section id="def-homeomorphism" class="level1">
 <h1>Homeomorphism</h1>
 <p>A <strong>homeomorphism</strong> is a bijective <a href="../../../content/en/logic-set-theory/def-function.html">function</a> between <a href="../../../content/en/topology/def-topological-space.html">topological spaces</a> that is continuous and has a continuous inverse. It represents the fundamental notion of topological equivalence.</p>
-<section class="level2" id="formal-definition">
+<section id="formal-definition" class="level2">
 <h2 class="anchored" data-anchor-id="formal-definition">Formal Definition</h2>
 <p>Let <span class="math inline">\((X, \tau_X)\)</span> and <span class="math inline">\((Y, \tau_Y)\)</span> be <a href="../../../content/en/topology/def-topological-space.html">topological spaces</a>. A function <span class="math inline">\(f: X \to Y\)</span> is a <strong>homeomorphism</strong> if:</p>
 <ol type="1">
@@ -334,24 +311,24 @@ window.Quarto = {
 <li><strong>Continuous inverse</strong>: The inverse function <span class="math inline">\(f^{-1}: Y \to X\)</span> exists and is continuous</li>
 </ol>
 </section>
-<section class="level2" id="homeomorphic-spaces">
+<section id="homeomorphic-spaces" class="level2">
 <h2 class="anchored" data-anchor-id="homeomorphic-spaces">Homeomorphic Spaces</h2>
 <p>Two topological spaces <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are said to be <strong>homeomorphic</strong> if there exists a homeomorphism between them. We denote this as: <span class="math display">\[X \cong Y\]</span></p>
 </section>
-<section class="level2" id="key-properties">
+<section id="key-properties" class="level2">
 <h2 class="anchored" data-anchor-id="key-properties">Key Properties</h2>
-<section class="level3" id="preservation-of-topological-properties">
+<section id="preservation-of-topological-properties" class="level3">
 <h3 class="anchored" data-anchor-id="preservation-of-topological-properties">Preservation of Topological Properties</h3>
 <p>Homeomorphisms preserve all topological properties: - <strong>Open and closed sets</strong>: <span class="math inline">\(U\)</span> is open in <span class="math inline">\(X\)</span> if and only if <span class="math inline">\(f(U)\)</span> is open in <span class="math inline">\(Y\)</span> - <strong>Connectedness</strong>: <span class="math inline">\(X\)</span> is connected if and only if <span class="math inline">\(Y\)</span> is connected - <strong>Compactness</strong>: <span class="math inline">\(X\)</span> is compact if and only if <span class="math inline">\(Y\)</span> is compact (see <a href="../../../content/en/topology/def-compact.html">Compact Space</a>) - <strong>Separation axioms</strong>: <span class="math inline">\(X\)</span> is Hausdorff if and only if <span class="math inline">\(Y\)</span> is Hausdorff (see <a href="../../../content/en/topology/def-hausdorff.html">Hausdorff Space</a>) - <strong>Convergence</strong>: A sequence converges in <span class="math inline">\(X\)</span> if and only if its image converges in <span class="math inline">\(Y\)</span></p>
 </section>
-<section class="level3" id="equivalence-relation">
+<section id="equivalence-relation" class="level3">
 <h3 class="anchored" data-anchor-id="equivalence-relation">Equivalence Relation</h3>
 <p>The relation “is homeomorphic to” forms an <a href="../../../content/en/logic-set-theory/def-equivalence-relation.html">equivalence relation</a> on the class of all topological spaces: - <strong>Reflexive</strong>: <span class="math inline">\(X \cong X\)</span> (the identity map is a homeomorphism) - <strong>Symmetric</strong>: If <span class="math inline">\(X \cong Y\)</span>, then <span class="math inline">\(Y \cong X\)</span> - <strong>Transitive</strong>: If <span class="math inline">\(X \cong Y\)</span> and <span class="math inline">\(Y \cong Z\)</span>, then <span class="math inline">\(X \cong Z\)</span></p>
 </section>
 </section>
-<section class="level2" id="examples">
+<section id="examples" class="level2">
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<section class="level3" id="classic-examples">
+<section id="classic-examples" class="level3">
 <h3 class="anchored" data-anchor-id="classic-examples">Classic Examples</h3>
 <ol type="1">
 <li><p><strong>Open interval and real line</strong>: <span class="math inline">\((0,1) \cong \mathbb{R}\)</span> via the homeomorphism <span class="math display">\[f(x) = \tan\left(\pi\left(x - \frac{1}{2}\right)\right)\]</span></p></li>
@@ -360,7 +337,7 @@ window.Quarto = {
 <li><p><strong>Stereographic projection</strong>: The sphere <span class="math inline">\(S^n\)</span> minus a point is homeomorphic to <span class="math inline">\(\mathbb{R}^n\)</span></p></li>
 </ol>
 </section>
-<section class="level3" id="non-examples">
+<section id="non-examples" class="level3">
 <h3 class="anchored" data-anchor-id="non-examples">Non-Examples</h3>
 <ol type="1">
 <li><p><strong>Closed and open intervals</strong>: <span class="math inline">\([0,1]\)</span> is not homeomorphic to <span class="math inline">\((0,1)\)</span> since one is compact and the other is not</p></li>
@@ -369,16 +346,16 @@ window.Quarto = {
 </ol>
 </section>
 </section>
-<section class="level2" id="topological-invariants">
+<section id="topological-invariants" class="level2">
 <h2 class="anchored" data-anchor-id="topological-invariants">Topological Invariants</h2>
 <p>Properties preserved by homeomorphisms are called <strong>topological invariants</strong>. These include: - Number of connected components - <a href="../../../content/en/topology/def-fundamental-group.html">Fundamental group</a> (in algebraic topology) - Euler characteristic (for suitable spaces) - Dimension (requires careful definition)</p>
 </section>
-<section class="level2" id="intuitive-understanding">
+<section id="intuitive-understanding" class="level2">
 <h2 class="anchored" data-anchor-id="intuitive-understanding">Intuitive Understanding</h2>
 <p>Homeomorphic spaces can be thought of as spaces that can be continuously deformed into each other without: - Tearing or cutting the space apart - Gluing or identifying previously separate points</p>
 <p>This leads to the famous example: a coffee mug and a donut (torus) are homeomorphic because each has exactly one hole.</p>
 </section>
-<section class="level2" id="see-also">
+<section id="see-also" class="level2">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
 <li><a href="../../../content/en/topology/def-topological-space.html">Topological Space</a></li>
@@ -390,7 +367,7 @@ window.Quarto = {
 <li><a href="../../../content/en/topology/def-hausdorff.html">Hausdorff Space</a></li>
 </ul>
 </section>
-<section class="level2" id="dependency-graph">
+<section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -403,43 +380,43 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-isomorphism["Isomorphism"]:::definition
-    def-set["Set"]:::definition
-    def-fundamental-group["Fundamental Group"]:::definition
-    def-hausdorff["Hausdorff Space"]:::definition
+    def-compact["Compact Space"]:::definition
+    def-function["Function"]:::definition
     def-connected["Connected Space"]:::definition
     def-homeomorphism["Homeomorphism"]:::definition
+    def-set["Set"]:::definition
+    def-isomorphism["Isomorphism"]:::definition
+    def-hausdorff["Hausdorff Space"]:::definition
     def-open-set["Open Set"]:::definition
-    def-continuity["Continuity"]:::definition
-    def-function["Function"]:::definition
-    def-topological-space["Topological Space"]:::definition
     def-homotopy["Homotopy"]:::definition
-    def-compact["Compact Space"]:::definition
-    def-homeomorphism --&gt; def-set
-    def-homeomorphism --&gt; def-function
-    def-homeomorphism --&gt; def-connected
-    def-homeomorphism --&gt; def-isomorphism
-    def-homeomorphism --&gt; def-homotopy
-    def-isomorphism --&gt; def-homeomorphism
-    def-homeomorphism --&gt; def-open-set
-    def-fundamental-group --&gt; def-homeomorphism
-    def-homeomorphism --&gt; def-compact
+    def-continuity["Continuity"]:::definition
+    def-topological-space["Topological Space"]:::definition
+    def-fundamental-group["Fundamental Group"]:::definition
     def-homeomorphism --&gt; def-hausdorff
+    def-homeomorphism --&gt; def-function
+    def-homeomorphism --&gt; def-open-set
     def-homeomorphism --&gt; def-topological-space
-    def-homeomorphism --&gt; def-continuity
+    def-homeomorphism --&gt; def-connected
+    def-fundamental-group --&gt; def-homeomorphism
     def-homotopy --&gt; def-homeomorphism
+    def-homeomorphism --&gt; def-continuity
+    def-homeomorphism --&gt; def-homotopy
+    def-homeomorphism --&gt; def-compact
+    def-homeomorphism --&gt; def-isomorphism
+    def-isomorphism --&gt; def-homeomorphism
+    def-homeomorphism --&gt; def-set
     class def-homeomorphism current
-    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism"
-    click def-set "def-set.html" "Go to Set"
-    click def-fundamental-group "def-fundamental-group.html" "Go to Fundamental Group"
-    click def-hausdorff "def-hausdorff.html" "Go to Hausdorff Space"
-    click def-connected "def-connected.html" "Go to Connected Space"
-    click def-open-set "def-open-set.html" "Go to Open Set"
-    click def-continuity "def-continuity.html" "Go to Continuity"
-    click def-function "def-function.html" "Go to Function"
-    click def-topological-space "def-topological-space.html" "Go to Topological Space"
-    click def-homotopy "def-homotopy.html" "Go to Homotopy"
     click def-compact "def-compact.html" "Go to Compact Space"
+    click def-function "def-function.html" "Go to Function"
+    click def-connected "def-connected.html" "Go to Connected Space"
+    click def-set "def-set.html" "Go to Set"
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism"
+    click def-hausdorff "def-hausdorff.html" "Go to Hausdorff Space"
+    click def-open-set "def-open-set.html" "Go to Open Set"
+    click def-homotopy "def-homotopy.html" "Go to Homotopy"
+    click def-continuity "def-continuity.html" "Go to Continuity"
+    click def-topological-space "def-topological-space.html" "Go to Topological Space"
+    click def-fundamental-group "def-fundamental-group.html" "Go to Fundamental Group"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -447,12 +424,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="interactive-visualization">
+<section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div class="graph-visualization-container" id="graph-viz-def-homeomorphism-1753765119">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-def-homeomorphism-1753768983" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -697,12 +675,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-homeomorphism-1753765119', {
+    createForceGraph(data, 'graph-viz-def-homeomorphism-1753768983', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-homeomorphism-1753765119').innerHTML =
+    document.getElementById('graph-viz-def-homeomorphism-1753768983').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -714,6 +692,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -762,9 +741,13 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/def-homeomorphism.html" target="_blank">full interactive version</a></p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1167,16 +1150,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

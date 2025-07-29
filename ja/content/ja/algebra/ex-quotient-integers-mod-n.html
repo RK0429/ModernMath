@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>整数の n による剰余 – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,225 +157,189 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">数学ナレッジグラフ</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="サーチ"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">数学ナレッジグラフ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="サーチ"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index-ja.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index-ja.html"> 
 <span class="menu-text">ホーム</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
 <span class="menu-text">代数学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
 <span class="menu-text">解析学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
 <span class="menu-text">位相空間論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
 <span class="menu-text">幾何学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
 <span class="menu-text">圏論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
 <span class="menu-text">組合せ論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
 <span class="menu-text">論理学・集合論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
 <span class="menu-text">数論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
 <span class="menu-text">確率統計</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/about.html"> 
 <span class="menu-text">概要</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
 <span class="menu-text">貢献</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../en/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../en/index.html"> 
 <span class="menu-text">🌐 English</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">目次</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#ex-quotient-integers-mod-n" href="#ex-quotient-integers-mod-n" id="toc-ex-quotient-integers-mod-n">整数の n による剰余</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#構成" href="#構成" id="toc-構成">構成</a></li>
-<li><a class="nav-link" data-scroll-target="#具体例-mathbbz6mathbbz" href="#具体例-mathbbz6mathbbz" id="toc-具体例-mathbbz6mathbbz">具体例: <span class="math inline">\(\mathbb{Z}/6\mathbb{Z}\)</span></a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#剰余類" href="#剰余類" id="toc-剰余類">剰余類</a></li>
-<li><a class="nav-link" data-scroll-target="#群演算" href="#群演算" id="toc-群演算">群演算</a></li>
-<li><a class="nav-link" data-scroll-target="#ケーリー表" href="#ケーリー表" id="toc-ケーリー表">ケーリー表</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#性質" href="#性質" id="toc-性質">性質</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#巡回構造" href="#巡回構造" id="toc-巡回構造">巡回構造</a></li>
-<li><a class="nav-link" data-scroll-target="#同型" href="#同型" id="toc-同型">同型</a></li>
-<li><a class="nav-link" data-scroll-target="#部分群" href="#部分群" id="toc-部分群">部分群</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#応用" href="#応用" id="toc-応用">応用</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#合同算術" href="#合同算術" id="toc-合同算術">合同算術</a></li>
-<li><a class="nav-link" data-scroll-target="#数論" href="#数論" id="toc-数論">数論</a></li>
-<li><a class="nav-link" data-scroll-target="#直積" href="#直積" id="toc-直積">直積</a></li>
-<li><a class="nav-link" data-scroll-target="#暗号理論" href="#暗号理論" id="toc-暗号理論">暗号理論</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#一般化" href="#一般化" id="toc-一般化">一般化</a></li>
-<li><a class="nav-link" data-scroll-target="#依存関係グラフ" href="#依存関係グラフ" id="toc-依存関係グラフ">依存関係グラフ</a></li>
-<li><a class="nav-link" data-scroll-target="#インタラクティブ可視化" href="#インタラクティブ可視化" id="toc-インタラクティブ可視化">インタラクティブ可視化</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#ex-quotient-integers-mod-n" id="toc-ex-quotient-integers-mod-n" class="nav-link active" data-scroll-target="#ex-quotient-integers-mod-n">整数の n による剰余</a>
+  <ul class="collapse">
+  <li><a href="#構成" id="toc-構成" class="nav-link" data-scroll-target="#構成">構成</a></li>
+  <li><a href="#具体例-mathbbz6mathbbz" id="toc-具体例-mathbbz6mathbbz" class="nav-link" data-scroll-target="#具体例-mathbbz6mathbbz">具体例: <span class="math inline">\(\mathbb{Z}/6\mathbb{Z}\)</span></a>
+  <ul class="collapse">
+  <li><a href="#剰余類" id="toc-剰余類" class="nav-link" data-scroll-target="#剰余類">剰余類</a></li>
+  <li><a href="#群演算" id="toc-群演算" class="nav-link" data-scroll-target="#群演算">群演算</a></li>
+  <li><a href="#ケーリー表" id="toc-ケーリー表" class="nav-link" data-scroll-target="#ケーリー表">ケーリー表</a></li>
+  </ul></li>
+  <li><a href="#性質" id="toc-性質" class="nav-link" data-scroll-target="#性質">性質</a>
+  <ul class="collapse">
+  <li><a href="#巡回構造" id="toc-巡回構造" class="nav-link" data-scroll-target="#巡回構造">巡回構造</a></li>
+  <li><a href="#同型" id="toc-同型" class="nav-link" data-scroll-target="#同型">同型</a></li>
+  <li><a href="#部分群" id="toc-部分群" class="nav-link" data-scroll-target="#部分群">部分群</a></li>
+  </ul></li>
+  <li><a href="#応用" id="toc-応用" class="nav-link" data-scroll-target="#応用">応用</a>
+  <ul class="collapse">
+  <li><a href="#合同算術" id="toc-合同算術" class="nav-link" data-scroll-target="#合同算術">合同算術</a></li>
+  <li><a href="#数論" id="toc-数論" class="nav-link" data-scroll-target="#数論">数論</a></li>
+  <li><a href="#直積" id="toc-直積" class="nav-link" data-scroll-target="#直積">直積</a></li>
+  <li><a href="#暗号理論" id="toc-暗号理論" class="nav-link" data-scroll-target="#暗号理論">暗号理論</a></li>
+  </ul></li>
+  <li><a href="#一般化" id="toc-一般化" class="nav-link" data-scroll-target="#一般化">一般化</a></li>
+  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
+  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">整数の n による剰余</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="ex-quotient-integers-mod-n">
+
+
+<section id="ex-quotient-integers-mod-n" class="level1">
 <h1>整数の n による剰余</h1>
 <p><a href="../../../content/ja/algebra/def-quotient-group.html">商群</a> <span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> は、商群が代数的構造をどのように簡潔化するかを示す基本的な例を提供します。</p>
-<section class="level2" id="構成">
+<section id="構成" class="level2">
 <h2 class="anchored" data-anchor-id="構成">構成</h2>
 <p><a href="../../../content/ja/algebra/ex-integers-addition.html">加法による整数群</a> <span class="math inline">\((\mathbb{Z}, +)\)</span> と、<span class="math inline">\(n\)</span> の倍数からなる部分群 <span class="math inline">\(n\mathbb{Z} = \{..., -2n, -n, 0, n, 2n, ...\}\)</span> を考えます。</p>
 <p><span class="math inline">\((\mathbb{Z}, +)\)</span> は<a href="../../../content/ja/algebra/def-abelian-group.html">アーベル群</a>なので、すべての部分群は<a href="../../../content/ja/algebra/def-normal-subgroup.html">正規</a>であり、商群を形成できます：</p>
 <p><span class="math display">\[\mathbb{Z}/n\mathbb{Z} = \{k + n\mathbb{Z} : k \in \mathbb{Z}\}\]</span></p>
 </section>
-<section class="level2" id="具体例-mathbbz6mathbbz">
+<section id="具体例-mathbbz6mathbbz" class="level2">
 <h2 class="anchored" data-anchor-id="具体例-mathbbz6mathbbz">具体例: <span class="math inline">\(\mathbb{Z}/6\mathbb{Z}\)</span></h2>
 <p><span class="math inline">\(n = 6\)</span> の場合を考えてみましょう。部分群は <span class="math inline">\(6\mathbb{Z} = \{..., -12, -6, 0, 6, 12, ...\}\)</span> です。</p>
-<section class="level3" id="剰余類">
+<section id="剰余類" class="level3">
 <h3 class="anchored" data-anchor-id="剰余類">剰余類</h3>
 <p><a href="../../../content/ja/algebra/def-coset.html">剰余類</a>の詳細については <a href="../../../content/ja/algebra/def-coset.html">剰余類</a> を参照してください。</p>
 <p>異なる<a href="../../../content/ja/algebra/def-coset.html">剰余類</a>は： - <span class="math inline">\(0 + 6\mathbb{Z} = \{..., -12, -6, 0, 6, 12, ...\}\)</span> - <span class="math inline">\(1 + 6\mathbb{Z} = \{..., -11, -5, 1, 7, 13, ...\}\)</span> - <span class="math inline">\(2 + 6\mathbb{Z} = \{..., -10, -4, 2, 8, 14, ...\}\)</span> - <span class="math inline">\(3 + 6\mathbb{Z} = \{..., -9, -3, 3, 9, 15, ...\}\)</span> - <span class="math inline">\(4 + 6\mathbb{Z} = \{..., -8, -2, 4, 10, 16, ...\}\)</span> - <span class="math inline">\(5 + 6\mathbb{Z} = \{..., -7, -1, 5, 11, 17, ...\}\)</span></p>
 <p><span class="math inline">\(6 + 6\mathbb{Z} = 0 + 6\mathbb{Z}\)</span>、<span class="math inline">\(7 + 6\mathbb{Z} = 1 + 6\mathbb{Z}\)</span> などとなることに注意してください。</p>
 </section>
-<section class="level3" id="群演算">
+<section id="群演算" class="level3">
 <h3 class="anchored" data-anchor-id="群演算">群演算</h3>
 <p><span class="math inline">\(\mathbb{Z}/6\mathbb{Z}\)</span> での演算は： <span class="math display">\[(a + 6\mathbb{Z}) + (b + 6\mathbb{Z}) = (a + b) + 6\mathbb{Z}\]</span></p>
 <p>例えば： - <span class="math inline">\((2 + 6\mathbb{Z}) + (3 + 6\mathbb{Z}) = 5 + 6\mathbb{Z}\)</span> - <span class="math inline">\((4 + 6\mathbb{Z}) + (5 + 6\mathbb{Z}) = 9 + 6\mathbb{Z} = 3 + 6\mathbb{Z}\)</span></p>
 </section>
-<section class="level3" id="ケーリー表">
+<section id="ケーリー表" class="level3">
 <h3 class="anchored" data-anchor-id="ケーリー表">ケーリー表</h3>
 <p>簡潔に <span class="math inline">\(k + 6\mathbb{Z}\)</span> を <span class="math inline">\(\bar{k}\)</span> と書くことがよくあります：</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 4%"/>
-<col style="width: 15%"/>
-<col style="width: 15%"/>
-<col style="width: 15%"/>
-<col style="width: 15%"/>
-<col style="width: 15%"/>
-<col style="width: 15%"/>
+<col style="width: 4%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -434,28 +411,28 @@ window.Quarto = {
 </table>
 </section>
 </section>
-<section class="level2" id="性質">
+<section id="性質" class="level2">
 <h2 class="anchored" data-anchor-id="性質">性質</h2>
-<section class="level3" id="巡回構造">
+<section id="巡回構造" class="level3">
 <h3 class="anchored" data-anchor-id="巡回構造">巡回構造</h3>
 <p><span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> は位数 <span class="math inline">\(n\)</span> の<a href="../../../content/ja/algebra/def-cyclic-group.html">巡回群</a>です： - <span class="math inline">\(\bar{1} = 1 + n\mathbb{Z}\)</span> によって生成されます - すべての要素はある <span class="math inline">\(k\)</span> に対して <span class="math inline">\(k \cdot \bar{1}\)</span> と書けます</p>
 </section>
-<section class="level3" id="同型">
+<section id="同型" class="level3">
 <h3 class="anchored" data-anchor-id="同型"><a href="../../../content/ja/algebra/def-isomorphism.html">同型</a></h3>
 <p><span class="math inline">\(\mathbb{Z}/n\mathbb{Z} \cong C_n\)</span>、位数 <span class="math inline">\(n\)</span> の<a href="../../../content/ja/algebra/def-cyclic-group.html">巡回群</a>。</p>
 </section>
-<section class="level3" id="部分群">
+<section id="部分群" class="level3">
 <h3 class="anchored" data-anchor-id="部分群">部分群</h3>
 <p><span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> の部分群は <span class="math inline">\(n\)</span> の約数に対応します。<span class="math inline">\(\mathbb{Z}/6\mathbb{Z}\)</span> の場合： - 位数 1: <span class="math inline">\(\{\bar{0}\}\)</span> - 位数 2: <span class="math inline">\(\{\bar{0}, \bar{3}\}\)</span> - 位数 3: <span class="math inline">\(\{\bar{0}, \bar{2}, \bar{4}\}\)</span> - 位数 6: <span class="math inline">\(\mathbb{Z}/6\mathbb{Z}\)</span> 自身</p>
 </section>
 </section>
-<section class="level2" id="応用">
+<section id="応用" class="level2">
 <h2 class="anchored" data-anchor-id="応用">応用</h2>
-<section class="level3" id="合同算術">
+<section id="合同算術" class="level3">
 <h3 class="anchored" data-anchor-id="合同算術">合同算術</h3>
 <p><span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> は合同算術の数学的基礎です： - 時計の算術（時間: <span class="math inline">\(\mathbb{Z}/12\mathbb{Z}\)</span>） - 曜日（<span class="math inline">\(\mathbb{Z}/7\mathbb{Z}\)</span>） - コンピュータサイエンス：ハッシュ関数、チェックサム</p>
 </section>
-<section class="level3" id="数論">
+<section id="数論" class="level3">
 <h3 class="anchored" data-anchor-id="数論">数論</h3>
 <ul>
 <li><a href="../../../content/ja/number-theory/def-congruence.html">合同式</a>の研究：<span class="math inline">\(a \equiv b \pmod{n}\)</span> は <span class="math inline">\(a + n\mathbb{Z} = b + n\mathbb{Z}\)</span> を意味する</li>
@@ -463,13 +440,13 @@ window.Quarto = {
 <li><a href="../../../content/ja/number-theory/thm-chinese-remainder.html">中国剰余定理</a></li>
 </ul>
 </section>
-<section class="level3" id="直積">
+<section id="直積" class="level3">
 <h3 class="anchored" data-anchor-id="直積">直積</h3>
 <p><span class="math inline">\(\gcd(m,n) = 1\)</span> のとき、<a href="../../../content/ja/algebra/def-isomorphism.html">同型</a>が存在します： <span class="math display">\[\mathbb{Z}/mn\mathbb{Z} \cong \mathbb{Z}/m\mathbb{Z} \times \mathbb{Z}/n\mathbb{Z}\]</span></p>
 <p>これは<a href="../../../content/ja/number-theory/thm-chinese-remainder.html">中国剰余定理</a>の特別な場合です。例えば： - <span class="math inline">\(\mathbb{Z}/6\mathbb{Z} \cong \mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/3\mathbb{Z}\)</span> - <span class="math inline">\(\mathbb{Z}/15\mathbb{Z} \cong \mathbb{Z}/3\mathbb{Z} \times \mathbb{Z}/5\mathbb{Z}\)</span></p>
 <p>詳細は<a href="../../../content/ja/algebra/def-direct-product.html">群の直積</a>を参照してください。</p>
 </section>
-<section class="level3" id="暗号理論">
+<section id="暗号理論" class="level3">
 <h3 class="anchored" data-anchor-id="暗号理論">暗号理論</h3>
 <ul>
 <li>RSA暗号は <span class="math inline">\(n = pq\)</span> の場合の <span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> の性質に依存</li>
@@ -477,11 +454,11 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section class="level2" id="一般化">
+<section id="一般化" class="level2">
 <h2 class="anchored" data-anchor-id="一般化">一般化</h2>
 <p>構成 <span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> は以下に一般化されます： - 環の商：<a href="../../../content/ja/algebra/def-polynomial-ring.html">多項式環</a>に対する <span class="math inline">\(\mathbb{Z}[x]/(p(x))\)</span> - 他の代数的構造の商 - 位相における商空間</p>
 </section>
-<section class="level2" id="依存関係グラフ">
+<section id="依存関係グラフ" class="level2">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -494,59 +471,59 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-isomorphism["群同型"]:::definition
-    def-congruence["合同（モジュラー演算）"]:::definition
-    def-group["群"]:::definition
     def-abelian-group["アーベル群"]:::definition
-    def-direct-product["群の直積"]:::definition
-    ex-integers-addition["加法における整数"]:::example
-    ex-quotient-integers-mod-n["整数の n による剰余"]:::example
+    thm-euler["オイラーの定理"]:::theorem
+    def-polynomial-ring["多項式環"]:::definition
+    def-quotient-ring["剰余環"]:::definition
     thm-euclidean-algorithm["ユークリッドのアルゴリズム"]:::theorem
     def-cyclic-group["巡回群"]:::definition
-    ex-finite-field["有限体"]:::example
+    def-congruence["合同（モジュラー演算）"]:::definition
+    def-group["群"]:::definition
+    def-isomorphism["群同型"]:::definition
     def-quotient-group["商群"]:::definition
-    def-coset["剰余類"]:::definition
-    def-polynomial-ring["多項式環"]:::definition
-    thm-euler["オイラーの定理"]:::theorem
-    def-quotient-ring["剰余環"]:::definition
-    def-normal-subgroup["正規部分群"]:::definition
+    ex-quotient-integers-mod-n["整数の n による剰余"]:::example
+    def-direct-product["群の直積"]:::definition
     def-order["位数"]:::definition
+    def-normal-subgroup["正規部分群"]:::definition
+    def-coset["剰余類"]:::definition
+    ex-finite-field["有限体"]:::example
+    ex-integers-addition["加法における整数"]:::example
     ex-quotient-integers-mod-n --&gt; ex-integers-addition
-    ex-quotient-integers-mod-n --&gt; def-normal-subgroup
-    ex-quotient-integers-mod-n --&gt; def-congruence
-    ex-quotient-integers-mod-n --&gt; def-isomorphism
     ex-quotient-integers-mod-n --&gt; def-group
-    ex-quotient-integers-mod-n --&gt; def-cyclic-group
-    thm-euclidean-algorithm --&gt; ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --&gt; def-congruence
+    ex-quotient-integers-mod-n --&gt; def-normal-subgroup
     ex-finite-field --&gt; ex-quotient-integers-mod-n
-    thm-euler --&gt; ex-quotient-integers-mod-n
-    ex-quotient-integers-mod-n --&gt; def-direct-product
-    ex-quotient-integers-mod-n --&gt; def-polynomial-ring
     ex-quotient-integers-mod-n --&gt; def-quotient-group
-    def-coset --&gt; ex-quotient-integers-mod-n
-    ex-quotient-integers-mod-n --&gt; def-coset
-    ex-quotient-integers-mod-n --&gt; def-abelian-group
-    ex-quotient-integers-mod-n --&gt; def-order
-    def-cyclic-group --&gt; ex-quotient-integers-mod-n
+    thm-euler --&gt; ex-quotient-integers-mod-n
     def-congruence --&gt; ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --&gt; def-isomorphism
+    ex-quotient-integers-mod-n --&gt; def-cyclic-group
+    ex-quotient-integers-mod-n --&gt; def-direct-product
+    ex-quotient-integers-mod-n --&gt; def-coset
     ex-quotient-integers-mod-n --&gt; def-quotient-ring
+    def-cyclic-group --&gt; ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --&gt; def-order
+    ex-quotient-integers-mod-n --&gt; def-abelian-group
+    thm-euclidean-algorithm --&gt; ex-quotient-integers-mod-n
+    def-coset --&gt; ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --&gt; def-polynomial-ring
     class ex-quotient-integers-mod-n current
-    click def-isomorphism "def-isomorphism.html" "群同型へ"
-    click def-congruence "def-congruence.html" "合同（モジュラー演算）へ"
-    click def-group "def-group.html" "群へ"
     click def-abelian-group "def-abelian-group.html" "アーベル群へ"
-    click def-direct-product "def-direct-product.html" "群の直積へ"
-    click ex-integers-addition "ex-integers-addition.html" "加法における整数へ"
+    click thm-euler "thm-euler.html" "オイラーの定理へ"
+    click def-polynomial-ring "def-polynomial-ring.html" "多項式環へ"
+    click def-quotient-ring "def-quotient-ring.html" "剰余環へ"
     click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "ユークリッドのアルゴリズムへ"
     click def-cyclic-group "def-cyclic-group.html" "巡回群へ"
-    click ex-finite-field "ex-finite-field.html" "有限体へ"
+    click def-congruence "def-congruence.html" "合同（モジュラー演算）へ"
+    click def-group "def-group.html" "群へ"
+    click def-isomorphism "def-isomorphism.html" "群同型へ"
     click def-quotient-group "def-quotient-group.html" "商群へ"
-    click def-coset "def-coset.html" "剰余類へ"
-    click def-polynomial-ring "def-polynomial-ring.html" "多項式環へ"
-    click thm-euler "thm-euler.html" "オイラーの定理へ"
-    click def-quotient-ring "def-quotient-ring.html" "剰余環へ"
-    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群へ"
+    click def-direct-product "def-direct-product.html" "群の直積へ"
     click def-order "def-order.html" "位数へ"
+    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群へ"
+    click def-coset "def-coset.html" "剰余類へ"
+    click ex-finite-field "ex-finite-field.html" "有限体へ"
+    click ex-integers-addition "ex-integers-addition.html" "加法における整数へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -554,12 +531,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="インタラクティブ可視化">
+<section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div class="graph-visualization-container" id="graph-viz-ex-quotient-integers-mod-n-1753764993">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-ex-quotient-integers-mod-n-1753768857" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -804,12 +782,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-quotient-integers-mod-n-1753764993', {
+    createForceGraph(data, 'graph-viz-ex-quotient-integers-mod-n-1753768857', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-quotient-integers-mod-n-1753764993').innerHTML =
+    document.getElementById('graph-viz-ex-quotient-integers-mod-n-1753768857').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -821,6 +799,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -869,9 +848,13 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/ja/ex-quotient-integers-mod-n.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1274,16 +1257,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

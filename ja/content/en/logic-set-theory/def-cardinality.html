@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>Cardinality – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,190 +157,154 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">数学ナレッジグラフ</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="サーチ"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">数学ナレッジグラフ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="サーチ"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index-ja.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index-ja.html"> 
 <span class="menu-text">ホーム</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
 <span class="menu-text">代数学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
 <span class="menu-text">解析学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
 <span class="menu-text">位相空間論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
 <span class="menu-text">幾何学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
 <span class="menu-text">圏論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
 <span class="menu-text">組合せ論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
 <span class="menu-text">論理学・集合論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
 <span class="menu-text">数論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
 <span class="menu-text">確率統計</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/about.html"> 
 <span class="menu-text">概要</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
 <span class="menu-text">貢献</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../en/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../en/index.html"> 
 <span class="menu-text">🌐 English</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">目次</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#def-cardinality" href="#def-cardinality" id="toc-def-cardinality">Cardinality</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#formal-definition" href="#formal-definition" id="toc-formal-definition">Formal Definition</a></li>
-<li><a class="nav-link" data-scroll-target="#finite-cardinality" href="#finite-cardinality" id="toc-finite-cardinality">Finite Cardinality</a></li>
-<li><a class="nav-link" data-scroll-target="#infinite-cardinality" href="#infinite-cardinality" id="toc-infinite-cardinality">Infinite Cardinality</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#countably-infinite-sets" href="#countably-infinite-sets" id="toc-countably-infinite-sets">Countably Infinite Sets</a></li>
-<li><a class="nav-link" data-scroll-target="#uncountable-sets" href="#uncountable-sets" id="toc-uncountable-sets">Uncountable Sets</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#cardinal-arithmetic" href="#cardinal-arithmetic" id="toc-cardinal-arithmetic">Cardinal Arithmetic</a></li>
-<li><a class="nav-link" data-scroll-target="#ordering-of-cardinals" href="#ordering-of-cardinals" id="toc-ordering-of-cardinals">Ordering of Cardinals</a></li>
-<li><a class="nav-link" data-scroll-target="#key-results" href="#key-results" id="toc-key-results">Key Results</a></li>
-<li><a class="nav-link" data-scroll-target="#properties" href="#properties" id="toc-properties">Properties</a></li>
-<li><a class="nav-link" data-scroll-target="#see-also" href="#see-also" id="toc-see-also">See Also</a></li>
-<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
-<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#def-cardinality" id="toc-def-cardinality" class="nav-link active" data-scroll-target="#def-cardinality">Cardinality</a>
+  <ul class="collapse">
+  <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link" data-scroll-target="#formal-definition">Formal Definition</a></li>
+  <li><a href="#finite-cardinality" id="toc-finite-cardinality" class="nav-link" data-scroll-target="#finite-cardinality">Finite Cardinality</a></li>
+  <li><a href="#infinite-cardinality" id="toc-infinite-cardinality" class="nav-link" data-scroll-target="#infinite-cardinality">Infinite Cardinality</a>
+  <ul class="collapse">
+  <li><a href="#countably-infinite-sets" id="toc-countably-infinite-sets" class="nav-link" data-scroll-target="#countably-infinite-sets">Countably Infinite Sets</a></li>
+  <li><a href="#uncountable-sets" id="toc-uncountable-sets" class="nav-link" data-scroll-target="#uncountable-sets">Uncountable Sets</a></li>
+  </ul></li>
+  <li><a href="#cardinal-arithmetic" id="toc-cardinal-arithmetic" class="nav-link" data-scroll-target="#cardinal-arithmetic">Cardinal Arithmetic</a></li>
+  <li><a href="#ordering-of-cardinals" id="toc-ordering-of-cardinals" class="nav-link" data-scroll-target="#ordering-of-cardinals">Ordering of Cardinals</a></li>
+  <li><a href="#key-results" id="toc-key-results" class="nav-link" data-scroll-target="#key-results">Key Results</a></li>
+  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
+  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
+  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
+  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Cardinality</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="def-cardinality">
+
+
+<section id="def-cardinality" class="level1">
 <h1>Cardinality</h1>
 <p>The <strong>cardinality</strong> of a <a href="../../../content/en/logic-set-theory/def-set.html">set</a> is a measure of the “number of elements” in the set. For finite sets, this is simply the count of elements. For infinite sets, cardinality provides a way to compare the “sizes” of different infinite sets.</p>
-<section class="level2" id="formal-definition">
+<section id="formal-definition" class="level2">
 <h2 class="anchored" data-anchor-id="formal-definition">Formal Definition</h2>
 <p>Two sets <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> have the same <strong>cardinality</strong> if there exists a bijective <a href="../../../content/en/logic-set-theory/def-function.html">function</a> (one-to-one correspondence) <span class="math inline">\(f: A \to B\)</span>. We write <span class="math inline">\(|A| = |B|\)</span> to denote that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> have the same cardinality.</p>
 <p>The cardinality of a set <span class="math inline">\(A\)</span> is denoted by <span class="math inline">\(|A|\)</span> or <span class="math inline">\(\text{card}(A)\)</span>.</p>
 </section>
-<section class="level2" id="finite-cardinality">
+<section id="finite-cardinality" class="level2">
 <h2 class="anchored" data-anchor-id="finite-cardinality">Finite Cardinality</h2>
 <p>For a finite set <span class="math inline">\(A\)</span>, the cardinality <span class="math inline">\(|A|\)</span> is the number of elements in <span class="math inline">\(A\)</span>:</p>
 <ul>
@@ -336,20 +313,20 @@ window.Quarto = {
 <li><span class="math inline">\(|\{a, b, c\}| = 3\)</span> (assuming <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, and <span class="math inline">\(c\)</span> are distinct)</li>
 </ul>
 </section>
-<section class="level2" id="infinite-cardinality">
+<section id="infinite-cardinality" class="level2">
 <h2 class="anchored" data-anchor-id="infinite-cardinality">Infinite Cardinality</h2>
 <p>For infinite sets, we distinguish between different “sizes” of infinity:</p>
-<section class="level3" id="countably-infinite-sets">
+<section id="countably-infinite-sets" class="level3">
 <h3 class="anchored" data-anchor-id="countably-infinite-sets">Countably Infinite Sets</h3>
 <p>A set <span class="math inline">\(A\)</span> is <strong>countably infinite</strong> if there exists a bijection between <span class="math inline">\(A\)</span> and the natural numbers <span class="math inline">\(\mathbb{N}\)</span>. The cardinality of countably infinite sets is denoted by <span class="math inline">\(\aleph_0\)</span> (aleph-null).</p>
 <p>Examples of countably infinite sets: - <span class="math inline">\(\mathbb{N}\)</span> (natural numbers) - <span class="math inline">\(\mathbb{Z}\)</span> (integers) - <span class="math inline">\(\mathbb{Q}\)</span> (rational numbers)</p>
 </section>
-<section class="level3" id="uncountable-sets">
+<section id="uncountable-sets" class="level3">
 <h3 class="anchored" data-anchor-id="uncountable-sets">Uncountable Sets</h3>
 <p>A set is <strong>uncountable</strong> if it is infinite but not countably infinite. The most common example is <span class="math inline">\(\mathbb{R}\)</span> (real numbers), whose cardinality is denoted by <span class="math inline">\(\mathfrak{c}\)</span> (the cardinality of the continuum) or <span class="math inline">\(2^{\aleph_0}\)</span>.</p>
 </section>
 </section>
-<section class="level2" id="cardinal-arithmetic">
+<section id="cardinal-arithmetic" class="level2">
 <h2 class="anchored" data-anchor-id="cardinal-arithmetic">Cardinal Arithmetic</h2>
 <p>For sets <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>:</p>
 <ol type="1">
@@ -358,12 +335,12 @@ window.Quarto = {
 <li><strong>Exponentiation</strong>: <span class="math inline">\(|B^A| = |B|^{|A|}\)</span> where <span class="math inline">\(B^A\)</span> is the set of all functions from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span></li>
 </ol>
 </section>
-<section class="level2" id="ordering-of-cardinals">
+<section id="ordering-of-cardinals" class="level2">
 <h2 class="anchored" data-anchor-id="ordering-of-cardinals">Ordering of Cardinals</h2>
 <p>We say <span class="math inline">\(|A| \leq |B|\)</span> if there exists an injective function <span class="math inline">\(f: A \to B\)</span>.</p>
 <p>The <strong>Cantor-Bernstein-Schröder theorem</strong> states that if <span class="math inline">\(|A| \leq |B|\)</span> and <span class="math inline">\(|B| \leq |A|\)</span>, then <span class="math inline">\(|A| = |B|\)</span>.</p>
 </section>
-<section class="level2" id="key-results">
+<section id="key-results" class="level2">
 <h2 class="anchored" data-anchor-id="key-results">Key Results</h2>
 <ol type="1">
 <li><strong>Cantor’s theorem</strong>: For any set <span class="math inline">\(A\)</span>, <span class="math inline">\(|A| &lt; |\mathcal{P}(A)|\)</span> where <span class="math inline">\(\mathcal{P}(A)\)</span> is the <a href="../../../content/en/logic-set-theory/def-power-set.html">power set</a> of <span class="math inline">\(A\)</span></li>
@@ -371,7 +348,7 @@ window.Quarto = {
 <li><strong>Continuum hypothesis</strong>: The statement that there is no set whose cardinality is strictly between <span class="math inline">\(\aleph_0\)</span> and <span class="math inline">\(\mathfrak{c}\)</span></li>
 </ol>
 </section>
-<section class="level2" id="properties">
+<section id="properties" class="level2">
 <h2 class="anchored" data-anchor-id="properties">Properties</h2>
 <ul>
 <li><strong>Reflexive</strong>: <span class="math inline">\(|A| = |A|\)</span> for any set <span class="math inline">\(A\)</span></li>
@@ -379,7 +356,7 @@ window.Quarto = {
 <li><strong>Transitive</strong>: If <span class="math inline">\(|A| = |B|\)</span> and <span class="math inline">\(|B| = |C|\)</span>, then <span class="math inline">\(|A| = |C|\)</span></li>
 </ul>
 </section>
-<section class="level2" id="see-also">
+<section id="see-also" class="level2">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
 <li><a href="../../../content/en/logic-set-theory/thm-cantor.html">Cantor’s Theorem</a></li>
@@ -389,7 +366,7 @@ window.Quarto = {
 <li>Definition: Continuum (coming soon)</li>
 </ul>
 </section>
-<section class="level2" id="dependency-graph">
+<section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -402,28 +379,28 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-function["Function"]:::definition
+    def-intersection["Intersection"]:::definition
     def-set["Set"]:::definition
     def-cardinality["Cardinality"]:::definition
-    def-intersection["Intersection"]:::definition
-    def-power-set["Power Set"]:::definition
-    def-function["Function"]:::definition
     def-union["Union"]:::definition
     thm-cantor["Cantor's Theorem"]:::theorem
-    def-union --&gt; def-cardinality
-    def-cardinality --&gt; def-power-set
+    def-power-set["Power Set"]:::definition
+    def-cardinality --&gt; def-function
+    def-intersection --&gt; def-cardinality
+    def-power-set --&gt; def-cardinality
     thm-cantor --&gt; def-cardinality
     def-cardinality --&gt; thm-cantor
-    def-power-set --&gt; def-cardinality
-    def-intersection --&gt; def-cardinality
+    def-union --&gt; def-cardinality
+    def-cardinality --&gt; def-power-set
     def-cardinality --&gt; def-set
-    def-cardinality --&gt; def-function
     class def-cardinality current
-    click def-set "def-set.html" "Go to Set"
-    click def-intersection "def-intersection.html" "Go to Intersection"
-    click def-power-set "def-power-set.html" "Go to Power Set"
     click def-function "def-function.html" "Go to Function"
+    click def-intersection "def-intersection.html" "Go to Intersection"
+    click def-set "def-set.html" "Go to Set"
     click def-union "def-union.html" "Go to Union"
     click thm-cantor "thm-cantor.html" "Go to Cantor's Theorem"
+    click def-power-set "def-power-set.html" "Go to Power Set"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -431,12 +408,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="interactive-visualization">
+<section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div class="graph-visualization-container" id="graph-viz-def-cardinality-1753765112">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-def-cardinality-1753768976" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -681,12 +659,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-cardinality-1753765112', {
+    createForceGraph(data, 'graph-viz-def-cardinality-1753768976', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-cardinality-1753765112').innerHTML =
+    document.getElementById('graph-viz-def-cardinality-1753768976').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -698,6 +676,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -746,9 +725,13 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/def-cardinality.html" target="_blank">full interactive version</a></p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1151,16 +1134,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>Taylor Series – Math Knowledge Graph</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'en';
   window.alternateLanguage = 'ja';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,211 +157,175 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">Math Knowledge Graph</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="Search"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Math Knowledge Graph</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/algebra/index.html"> 
 <span class="menu-text">Algebra</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/analysis/index.html"> 
 <span class="menu-text">Analysis</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/topology/index.html"> 
 <span class="menu-text">Topology</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/geometry/index.html"> 
 <span class="menu-text">Geometry</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/category-theory/index.html"> 
 <span class="menu-text">Category Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/combinatorics/index.html"> 
 <span class="menu-text">Combinatorics</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/logic-set-theory/index.html"> 
 <span class="menu-text">Logic &amp; Set Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/number-theory/index.html"> 
 <span class="menu-text">Number Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/probability-statistics/index.html"> 
 <span class="menu-text">Probability &amp; Statistics</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/en/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/en/about.html"> 
 <span class="menu-text">About</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/en/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/en/contributing.html"> 
 <span class="menu-text">Contributing</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../ja/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../ja/index.html"> 
 <span class="menu-text">🌐 日本語</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">On this page</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#thm-taylor-series" href="#thm-taylor-series" id="toc-thm-taylor-series">Taylor Series</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#statement" href="#statement" id="toc-statement">Statement</a></li>
-<li><a class="nav-link" data-scroll-target="#expanded-form" href="#expanded-form" id="toc-expanded-form">Expanded Form</a></li>
-<li><a class="nav-link" data-scroll-target="#maclaurin-series" href="#maclaurin-series" id="toc-maclaurin-series">Maclaurin Series</a></li>
-<li><a class="nav-link" data-scroll-target="#taylors-theorem-with-remainder" href="#taylors-theorem-with-remainder" id="toc-taylors-theorem-with-remainder">Taylor’s Theorem with Remainder</a></li>
-<li><a class="nav-link" data-scroll-target="#convergence-properties" href="#convergence-properties" id="toc-convergence-properties">Convergence Properties</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#radius-of-convergence" href="#radius-of-convergence" id="toc-radius-of-convergence">Radius of Convergence</a></li>
-<li><a class="nav-link" data-scroll-target="#analytic-functions" href="#analytic-functions" id="toc-analytic-functions">Analytic Functions</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#common-taylor-series" href="#common-taylor-series" id="toc-common-taylor-series">Common Taylor Series</a></li>
-<li><a class="nav-link" data-scroll-target="#applications" href="#applications" id="toc-applications">Applications</a></li>
-<li><a class="nav-link" data-scroll-target="#example-computing-e" href="#example-computing-e" id="toc-example-computing-e">Example: Computing <span class="math inline">\(e\)</span></a></li>
-<li><a class="nav-link" data-scroll-target="#warning-non-analytic-functions" href="#warning-non-analytic-functions" id="toc-warning-non-analytic-functions">Warning: Non-Analytic Functions</a></li>
-<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
-<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#thm-taylor-series" id="toc-thm-taylor-series" class="nav-link active" data-scroll-target="#thm-taylor-series">Taylor Series</a>
+  <ul class="collapse">
+  <li><a href="#statement" id="toc-statement" class="nav-link" data-scroll-target="#statement">Statement</a></li>
+  <li><a href="#expanded-form" id="toc-expanded-form" class="nav-link" data-scroll-target="#expanded-form">Expanded Form</a></li>
+  <li><a href="#maclaurin-series" id="toc-maclaurin-series" class="nav-link" data-scroll-target="#maclaurin-series">Maclaurin Series</a></li>
+  <li><a href="#taylors-theorem-with-remainder" id="toc-taylors-theorem-with-remainder" class="nav-link" data-scroll-target="#taylors-theorem-with-remainder">Taylor’s Theorem with Remainder</a></li>
+  <li><a href="#convergence-properties" id="toc-convergence-properties" class="nav-link" data-scroll-target="#convergence-properties">Convergence Properties</a>
+  <ul class="collapse">
+  <li><a href="#radius-of-convergence" id="toc-radius-of-convergence" class="nav-link" data-scroll-target="#radius-of-convergence">Radius of Convergence</a></li>
+  <li><a href="#analytic-functions" id="toc-analytic-functions" class="nav-link" data-scroll-target="#analytic-functions">Analytic Functions</a></li>
+  </ul></li>
+  <li><a href="#common-taylor-series" id="toc-common-taylor-series" class="nav-link" data-scroll-target="#common-taylor-series">Common Taylor Series</a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
+  <li><a href="#example-computing-e" id="toc-example-computing-e" class="nav-link" data-scroll-target="#example-computing-e">Example: Computing <span class="math inline">\(e\)</span></a></li>
+  <li><a href="#warning-non-analytic-functions" id="toc-warning-non-analytic-functions" class="nav-link" data-scroll-target="#warning-non-analytic-functions">Warning: Non-Analytic Functions</a></li>
+  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
+  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Taylor Series</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="thm-taylor-series">
+
+
+<section id="thm-taylor-series" class="level1">
 <h1>Taylor Series</h1>
 <p>Taylor series provides a representation of an infinitely differentiable function as an infinite <a href="../../../content/en/analysis/def-series.html">series</a> calculated from the values of the function’s <a href="../../../content/en/analysis/def-derivative.html">derivatives</a> at a single point.</p>
-<section class="level2" id="statement">
+<section id="statement" class="level2">
 <h2 class="anchored" data-anchor-id="statement">Statement</h2>
 <p>Let <span class="math inline">\(f: (a - r, a + r) \to \mathbb{R}\)</span> be infinitely differentiable at <span class="math inline">\(a\)</span>. The Taylor series of <span class="math inline">\(f\)</span> at <span class="math inline">\(a\)</span> is:</p>
 <p><span class="math display">\[f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x - a)^n\]</span></p>
 <p>where <span class="math inline">\(f^{(n)}(a)\)</span> denotes the <span class="math inline">\(n\)</span>-th derivative of <span class="math inline">\(f\)</span> evaluated at <span class="math inline">\(a\)</span>.</p>
 </section>
-<section class="level2" id="expanded-form">
+<section id="expanded-form" class="level2">
 <h2 class="anchored" data-anchor-id="expanded-form">Expanded Form</h2>
 <p>The Taylor series can be written explicitly as:</p>
 <p><span class="math display">\[f(x) = f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \frac{f'''(a)}{3!}(x-a)^3 + \cdots\]</span></p>
 </section>
-<section class="level2" id="maclaurin-series">
+<section id="maclaurin-series" class="level2">
 <h2 class="anchored" data-anchor-id="maclaurin-series">Maclaurin Series</h2>
 <p>When <span class="math inline">\(a = 0\)</span>, the Taylor series is called a Maclaurin series:</p>
 <p><span class="math display">\[f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(0)}{n!}x^n = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \frac{f'''(0)}{3!}x^3 + \cdots\]</span></p>
 </section>
-<section class="level2" id="taylors-theorem-with-remainder">
+<section id="taylors-theorem-with-remainder" class="level2">
 <h2 class="anchored" data-anchor-id="taylors-theorem-with-remainder">Taylor’s Theorem with Remainder</h2>
 <p>For any <span class="math inline">\(n \geq 0\)</span>, if <span class="math inline">\(f\)</span> is <span class="math inline">\((n+1)\)</span> times differentiable on <span class="math inline">\((a - r, a + r)\)</span>, then:</p>
 <p><span class="math display">\[f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x - a)^k + R_n(x)\]</span></p>
 <p>where <span class="math inline">\(R_n(x)\)</span> is the remainder term. By the <a href="../../../content/en/analysis/thm-mean-value.html">mean value theorem</a>, there exists <span class="math inline">\(c\)</span> between <span class="math inline">\(a\)</span> and <span class="math inline">\(x\)</span> such that:</p>
 <p><span class="math display">\[R_n(x) = \frac{f^{(n+1)}(c)}{(n+1)!}(x - a)^{n+1}\]</span> (Lagrange form)</p>
 </section>
-<section class="level2" id="convergence-properties">
+<section id="convergence-properties" class="level2">
 <h2 class="anchored" data-anchor-id="convergence-properties">Convergence Properties</h2>
-<section class="level3" id="radius-of-convergence">
+<section id="radius-of-convergence" class="level3">
 <h3 class="anchored" data-anchor-id="radius-of-convergence">Radius of Convergence</h3>
 <p>Every Taylor series has a radius of convergence <span class="math inline">\(R \geq 0\)</span> such that:</p>
 <ol type="1">
@@ -359,12 +336,12 @@ window.Quarto = {
 <p>The radius can be computed using: <span class="math display">\[\frac{1}{R} = \limsup_{n \to \infty} \sqrt[n]{|a_n|}\]</span></p>
 <p>where <span class="math inline">\(a_n = \frac{f^{(n)}(a)}{n!}\)</span>.</p>
 </section>
-<section class="level3" id="analytic-functions">
+<section id="analytic-functions" class="level3">
 <h3 class="anchored" data-anchor-id="analytic-functions">Analytic Functions</h3>
 <p>A function <span class="math inline">\(f\)</span> is <strong>analytic</strong> at <span class="math inline">\(a\)</span> if it equals its Taylor series in some neighborhood of <span class="math inline">\(a\)</span> (i.e., in some <a href="../../../content/en/analysis/def-open-ball.html">open ball</a> centered at <span class="math inline">\(a\)</span>). Not all infinitely differentiable functions are analytic.</p>
 </section>
 </section>
-<section class="level2" id="common-taylor-series">
+<section id="common-taylor-series" class="level2">
 <h2 class="anchored" data-anchor-id="common-taylor-series">Common Taylor Series</h2>
 <ol type="1">
 <li><p><strong>Exponential function</strong>: <span class="math inline">\(e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!}\)</span> (converges for all <span class="math inline">\(x\)</span>)</p></li>
@@ -374,7 +351,7 @@ window.Quarto = {
 <li><p><strong>Geometric series</strong>: <span class="math inline">\(\frac{1}{1-x} = \sum_{n=0}^{\infty} x^n\)</span> (converges for <span class="math inline">\(|x| &lt; 1\)</span>)</p></li>
 </ol>
 </section>
-<section class="level2" id="applications">
+<section id="applications" class="level2">
 <h2 class="anchored" data-anchor-id="applications">Applications</h2>
 <p>Taylor series are fundamental for:</p>
 <ul>
@@ -386,17 +363,17 @@ window.Quarto = {
 <li>Inspiring <a href="../../../content/en/combinatorics/def-generating-function.html">generating functions</a> in combinatorics</li>
 </ul>
 </section>
-<section class="level2" id="example-computing-e">
+<section id="example-computing-e" class="level2">
 <h2 class="anchored" data-anchor-id="example-computing-e">Example: Computing <span class="math inline">\(e\)</span></h2>
 <p>Using the Maclaurin series for <span class="math inline">\(e^x\)</span> with <span class="math inline">\(x = 1\)</span>:</p>
 <p><span class="math display">\[e = 1 + 1 + \frac{1}{2!} + \frac{1}{3!} + \frac{1}{4!} + \cdots\]</span></p>
 <p>The first few terms give: <span class="math inline">\(e \approx 1 + 1 + 0.5 + 0.167 + 0.042 = 2.709\)</span></p>
 </section>
-<section class="level2" id="warning-non-analytic-functions">
+<section id="warning-non-analytic-functions" class="level2">
 <h2 class="anchored" data-anchor-id="warning-non-analytic-functions">Warning: Non-Analytic Functions</h2>
 <p>The function <span class="math inline">\(f(x) = e^{-1/x^2}\)</span> for <span class="math inline">\(x \neq 0\)</span> and <span class="math inline">\(f(0) = 0\)</span> is infinitely differentiable everywhere, but its Taylor series at <span class="math inline">\(x = 0\)</span> is identically zero, while the function is non-zero for <span class="math inline">\(x \neq 0\)</span>.</p>
 </section>
-<section class="level2" id="dependency-graph">
+<section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -409,26 +386,26 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-series["Series"]:::definition
-    def-continuity["Continuity"]:::definition
-    def-open-ball["Open Ball"]:::definition
     thm-taylor-series["Taylor Series"]:::theorem
     def-derivative["Derivative"]:::definition
-    thm-mean-value["Mean Value Theorem"]:::theorem
+    def-open-ball["Open Ball"]:::definition
+    def-series["Series"]:::definition
     def-convergence["Convergence"]:::definition
-    thm-taylor-series --&gt; def-series
-    thm-taylor-series --&gt; def-continuity
+    thm-mean-value["Mean Value Theorem"]:::theorem
+    def-continuity["Continuity"]:::definition
     thm-taylor-series --&gt; def-derivative
     thm-taylor-series --&gt; def-open-ball
+    thm-taylor-series --&gt; def-continuity
     thm-taylor-series --&gt; def-convergence
     thm-taylor-series --&gt; thm-mean-value
+    thm-taylor-series --&gt; def-series
     class thm-taylor-series current
-    click def-series "def-series.html" "Go to Series"
-    click def-continuity "def-continuity.html" "Go to Continuity"
-    click def-open-ball "def-open-ball.html" "Go to Open Ball"
     click def-derivative "def-derivative.html" "Go to Derivative"
-    click thm-mean-value "thm-mean-value.html" "Go to Mean Value Theorem"
+    click def-open-ball "def-open-ball.html" "Go to Open Ball"
+    click def-series "def-series.html" "Go to Series"
     click def-convergence "def-convergence.html" "Go to Convergence"
+    click thm-mean-value "thm-mean-value.html" "Go to Mean Value Theorem"
+    click def-continuity "def-continuity.html" "Go to Continuity"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -436,12 +413,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="interactive-visualization">
+<section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div class="graph-visualization-container" id="graph-viz-thm-taylor-series-1753764828">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-thm-taylor-series-1753768693" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -686,12 +664,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-taylor-series-1753764828', {
+    createForceGraph(data, 'graph-viz-thm-taylor-series-1753768693', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-taylor-series-1753764828').innerHTML =
+    document.getElementById('graph-viz-thm-taylor-series-1753768693').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -703,6 +681,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -751,9 +730,13 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/thm-taylor-series.html" target="_blank">full interactive version</a></p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1156,16 +1139,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>Mathematics Knowledge Graph Wiki - Built with Quarto and RDF</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

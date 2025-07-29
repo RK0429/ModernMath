@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>Divisibility – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,194 +157,158 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">数学ナレッジグラフ</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="サーチ"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">数学ナレッジグラフ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="サーチ"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index-ja.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index-ja.html"> 
 <span class="menu-text">ホーム</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
 <span class="menu-text">代数学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
 <span class="menu-text">解析学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
 <span class="menu-text">位相空間論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
 <span class="menu-text">幾何学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
 <span class="menu-text">圏論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
 <span class="menu-text">組合せ論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
 <span class="menu-text">論理学・集合論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
 <span class="menu-text">数論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
 <span class="menu-text">確率統計</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/about.html"> 
 <span class="menu-text">概要</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
 <span class="menu-text">貢献</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../en/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../en/index.html"> 
 <span class="menu-text">🌐 English</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">目次</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#def-divisibility" href="#def-divisibility" id="toc-def-divisibility">Divisibility</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#notation" href="#notation" id="toc-notation">Notation</a></li>
-<li><a class="nav-link" data-scroll-target="#alternative-terminology" href="#alternative-terminology" id="toc-alternative-terminology">Alternative Terminology</a></li>
-<li><a class="nav-link" data-scroll-target="#important-properties" href="#important-properties" id="toc-important-properties">Important Properties</a></li>
-<li><a class="nav-link" data-scroll-target="#examples" href="#examples" id="toc-examples">Examples</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#positive-examples" href="#positive-examples" id="toc-positive-examples">Positive Examples</a></li>
-<li><a class="nav-link" data-scroll-target="#negative-examples" href="#negative-examples" id="toc-negative-examples">Negative Examples</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#special-cases" href="#special-cases" id="toc-special-cases">Special Cases</a></li>
-<li><a class="nav-link" data-scroll-target="#partial-order-structure" href="#partial-order-structure" id="toc-partial-order-structure">Partial Order Structure</a></li>
-<li><a class="nav-link" data-scroll-target="#connection-to-division-algorithm" href="#connection-to-division-algorithm" id="toc-connection-to-division-algorithm">Connection to Division Algorithm</a></li>
-<li><a class="nav-link" data-scroll-target="#applications" href="#applications" id="toc-applications">Applications</a></li>
-<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
-<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#def-divisibility" id="toc-def-divisibility" class="nav-link active" data-scroll-target="#def-divisibility">Divisibility</a>
+  <ul class="collapse">
+  <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
+  <li><a href="#alternative-terminology" id="toc-alternative-terminology" class="nav-link" data-scroll-target="#alternative-terminology">Alternative Terminology</a></li>
+  <li><a href="#important-properties" id="toc-important-properties" class="nav-link" data-scroll-target="#important-properties">Important Properties</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
+  <ul class="collapse">
+  <li><a href="#positive-examples" id="toc-positive-examples" class="nav-link" data-scroll-target="#positive-examples">Positive Examples</a></li>
+  <li><a href="#negative-examples" id="toc-negative-examples" class="nav-link" data-scroll-target="#negative-examples">Negative Examples</a></li>
+  </ul></li>
+  <li><a href="#special-cases" id="toc-special-cases" class="nav-link" data-scroll-target="#special-cases">Special Cases</a></li>
+  <li><a href="#partial-order-structure" id="toc-partial-order-structure" class="nav-link" data-scroll-target="#partial-order-structure">Partial Order Structure</a></li>
+  <li><a href="#connection-to-division-algorithm" id="toc-connection-to-division-algorithm" class="nav-link" data-scroll-target="#connection-to-division-algorithm">Connection to Division Algorithm</a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
+  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
+  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Divisibility</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="def-divisibility">
+
+
+<section id="def-divisibility" class="level1">
 <h1>Divisibility</h1>
 <p>Let <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> be integers with <span class="math inline">\(a \neq 0\)</span>. We say that <span class="math inline">\(a\)</span> <strong>divides</strong> <span class="math inline">\(b\)</span> (or <span class="math inline">\(b\)</span> is <strong>divisible by</strong> <span class="math inline">\(a\)</span>) if there exists an integer <span class="math inline">\(k\)</span> such that <span class="math inline">\(b = ak\)</span>.</p>
-<section class="level2" id="notation">
+<section id="notation" class="level2">
 <h2 class="anchored" data-anchor-id="notation">Notation</h2>
 <p>When <span class="math inline">\(a\)</span> divides <span class="math inline">\(b\)</span>, we write: <span class="math display">\[a \mid b\]</span></p>
 <p>When <span class="math inline">\(a\)</span> does not divide <span class="math inline">\(b\)</span>, we write: <span class="math display">\[a \nmid b\]</span></p>
 </section>
-<section class="level2" id="alternative-terminology">
+<section id="alternative-terminology" class="level2">
 <h2 class="anchored" data-anchor-id="alternative-terminology">Alternative Terminology</h2>
 <p>When <span class="math inline">\(a \mid b\)</span>, we also say: - <span class="math inline">\(a\)</span> is a <strong>divisor</strong> (or <strong>factor</strong>) of <span class="math inline">\(b\)</span> - <span class="math inline">\(b\)</span> is a <strong>multiple</strong> of <span class="math inline">\(a\)</span> - <span class="math inline">\(b\)</span> is <strong>divisible by</strong> <span class="math inline">\(a\)</span></p>
 </section>
-<section class="level2" id="important-properties">
+<section id="important-properties" class="level2">
 <h2 class="anchored" data-anchor-id="important-properties">Important Properties</h2>
 <ol type="1">
 <li><p><strong>Reflexivity</strong>: For any non-zero integer <span class="math inline">\(a\)</span>: <span class="math inline">\(a \mid a\)</span></p></li>
@@ -342,9 +319,9 @@ window.Quarto = {
 <li><p><strong>Product Rule</strong>: If <span class="math inline">\(a \mid b\)</span> and <span class="math inline">\(c \mid d\)</span>, then <span class="math inline">\(ac \mid bd\)</span></p></li>
 </ol>
 </section>
-<section class="level2" id="examples">
+<section id="examples" class="level2">
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<section class="level3" id="positive-examples">
+<section id="positive-examples" class="level3">
 <h3 class="anchored" data-anchor-id="positive-examples">Positive Examples</h3>
 <ul>
 <li><span class="math inline">\(3 \mid 12\)</span> because <span class="math inline">\(12 = 3 \times 4\)</span></li>
@@ -353,7 +330,7 @@ window.Quarto = {
 <li><span class="math inline">\(n \mid 0\)</span> for any non-zero integer <span class="math inline">\(n\)</span></li>
 </ul>
 </section>
-<section class="level3" id="negative-examples">
+<section id="negative-examples" class="level3">
 <h3 class="anchored" data-anchor-id="negative-examples">Negative Examples</h3>
 <ul>
 <li><span class="math inline">\(4 \nmid 7\)</span> because there is no integer <span class="math inline">\(k\)</span> such that <span class="math inline">\(7 = 4k\)</span></li>
@@ -361,7 +338,7 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section class="level2" id="special-cases">
+<section id="special-cases" class="level2">
 <h2 class="anchored" data-anchor-id="special-cases">Special Cases</h2>
 <ol type="1">
 <li><strong>Unity</strong>: <span class="math inline">\(1\)</span> divides every integer</li>
@@ -369,21 +346,21 @@ window.Quarto = {
 <li><strong>Self-divisibility</strong>: Every non-zero integer divides itself</li>
 </ol>
 </section>
-<section class="level2" id="partial-order-structure">
+<section id="partial-order-structure" class="level2">
 <h2 class="anchored" data-anchor-id="partial-order-structure">Partial Order Structure</h2>
 <p>The divisibility relation on positive integers forms a <a href="../../../content/en/logic-set-theory/def-partial-order.html">partial order</a>: - <strong>Reflexive</strong>: <span class="math inline">\(a \mid a\)</span> for all positive integers <span class="math inline">\(a\)</span> - <strong>Antisymmetric</strong>: If <span class="math inline">\(a \mid b\)</span> and <span class="math inline">\(b \mid a\)</span> for positive integers, then <span class="math inline">\(a = b\)</span> - <strong>Transitive</strong>: If <span class="math inline">\(a \mid b\)</span> and <span class="math inline">\(b \mid c\)</span>, then <span class="math inline">\(a \mid c\)</span></p>
 <p>Note that this is not a total order since not all pairs of positive integers are comparable under divisibility (e.g., neither <span class="math inline">\(2 \mid 3\)</span> nor <span class="math inline">\(3 \mid 2\)</span>).</p>
 </section>
-<section class="level2" id="connection-to-division-algorithm">
+<section id="connection-to-division-algorithm" class="level2">
 <h2 class="anchored" data-anchor-id="connection-to-division-algorithm">Connection to Division Algorithm</h2>
 <p>The divisibility <a href="../../../content/en/logic-set-theory/def-relation.html">relation</a> is closely connected to the division algorithm. Given integers <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> with <span class="math inline">\(b &gt; 0\)</span>, by the division algorithm: <span class="math display">\[a = bq + r \quad \text{where } 0 \leq r &lt; b\]</span></p>
 <p>Then <span class="math inline">\(b \mid a\)</span> if and only if <span class="math inline">\(r = 0\)</span>.</p>
 </section>
-<section class="level2" id="applications">
+<section id="applications" class="level2">
 <h2 class="anchored" data-anchor-id="applications">Applications</h2>
 <p>Divisibility is fundamental to: - Defining <a href="../../../content/en/number-theory/def-prime.html">prime numbers</a> - Computing the <a href="../../../content/en/number-theory/def-gcd.html">greatest common divisor</a> - Understanding <a href="../../../content/en/number-theory/def-congruence.html">congruences</a> - The <a href="../../../content/en/number-theory/thm-fundamental-arithmetic.html">Fundamental Theorem of Arithmetic</a></p>
 </section>
-<section class="level2" id="dependency-graph">
+<section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -396,40 +373,40 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-gcd["Greatest Common Divisor"]:::definition
+    thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
+    thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
+    def-partial-order["Partial Order"]:::definition
+    def-congruence["Congruence (Modular Arithmetic)"]:::definition
     def-prime["Prime Number"]:::definition
     def-divisibility["Divisibility"]:::definition
-    def-gcd["Greatest Common Divisor"]:::definition
-    thm-fermat-little["Fermat's Little Theorem"]:::theorem
-    def-congruence["Congruence (Modular Arithmetic)"]:::definition
-    thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
     thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
-    thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
     thm-euclid-infinitude-primes["Euclid's Theorem on the Infinitude of Primes"]:::theorem
+    thm-fermat-little["Fermat's Little Theorem"]:::theorem
     def-lcm["Least Common Multiple"]:::definition
-    def-partial-order["Partial Order"]:::definition
-    thm-euclidean-algorithm --&gt; def-divisibility
-    def-divisibility --&gt; def-prime
     thm-fermat-little --&gt; def-divisibility
+    def-divisibility --&gt; def-gcd
     thm-fundamental-arithmetic --&gt; def-divisibility
+    thm-euclid-infinitude-primes --&gt; def-divisibility
+    def-divisibility --&gt; def-prime
+    def-congruence --&gt; def-divisibility
+    thm-euclidean-algorithm --&gt; def-divisibility
+    thm-chinese-remainder --&gt; def-divisibility
     def-prime --&gt; def-divisibility
+    def-divisibility --&gt; def-partial-order
     def-gcd --&gt; def-divisibility
     def-lcm --&gt; def-divisibility
-    def-divisibility --&gt; def-partial-order
-    def-divisibility --&gt; def-gcd
-    thm-euclid-infinitude-primes --&gt; def-divisibility
-    def-congruence --&gt; def-divisibility
-    thm-chinese-remainder --&gt; def-divisibility
     class def-divisibility current
-    click def-prime "def-prime.html" "Go to Prime Number"
     click def-gcd "def-gcd.html" "Go to Greatest Common Divisor"
-    click thm-fermat-little "thm-fermat-little.html" "Go to Fermat's Little Theorem"
-    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic)"
-    click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "Go to Fundamental Theorem of Arithmetic"
-    click thm-chinese-remainder "thm-chinese-remainder.html" "Go to Chinese Remainder Theorem"
     click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Go to Euclidean Algorithm"
-    click thm-euclid-infinitude-primes "thm-euclid-infinitude-primes.html" "Go to Euclid's Theorem on the Infinitude of Primes"
-    click def-lcm "def-lcm.html" "Go to Least Common Multiple"
+    click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "Go to Fundamental Theorem of Arithmetic"
     click def-partial-order "def-partial-order.html" "Go to Partial Order"
+    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic)"
+    click def-prime "def-prime.html" "Go to Prime Number"
+    click thm-chinese-remainder "thm-chinese-remainder.html" "Go to Chinese Remainder Theorem"
+    click thm-euclid-infinitude-primes "thm-euclid-infinitude-primes.html" "Go to Euclid's Theorem on the Infinitude of Primes"
+    click thm-fermat-little "thm-fermat-little.html" "Go to Fermat's Little Theorem"
+    click def-lcm "def-lcm.html" "Go to Least Common Multiple"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -437,12 +414,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="interactive-visualization">
+<section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div class="graph-visualization-container" id="graph-viz-def-divisibility-1753765125">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-def-divisibility-1753768989" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -687,12 +665,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-divisibility-1753765125', {
+    createForceGraph(data, 'graph-viz-def-divisibility-1753768989', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-divisibility-1753765125').innerHTML =
+    document.getElementById('graph-viz-def-divisibility-1753768989').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -704,6 +682,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -752,9 +731,13 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/def-divisibility.html" target="_blank">full interactive version</a></p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1157,16 +1140,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

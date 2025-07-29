@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>Kernel – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,186 +157,150 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">数学ナレッジグラフ</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="サーチ"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">数学ナレッジグラフ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="サーチ"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index-ja.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index-ja.html"> 
 <span class="menu-text">ホーム</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
 <span class="menu-text">代数学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
 <span class="menu-text">解析学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
 <span class="menu-text">位相空間論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
 <span class="menu-text">幾何学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
 <span class="menu-text">圏論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
 <span class="menu-text">組合せ論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
 <span class="menu-text">論理学・集合論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
 <span class="menu-text">数論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
 <span class="menu-text">確率統計</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/about.html"> 
 <span class="menu-text">概要</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
 <span class="menu-text">貢献</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../en/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../en/index.html"> 
 <span class="menu-text">🌐 English</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">目次</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#def-kernel" href="#def-kernel" id="toc-def-kernel">Kernel</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#alternative-names" href="#alternative-names" id="toc-alternative-names">Alternative Names</a></li>
-<li><a class="nav-link" data-scroll-target="#properties" href="#properties" id="toc-properties">Properties</a></li>
-<li><a class="nav-link" data-scroll-target="#example" href="#example" id="toc-example">Example</a></li>
-<li><a class="nav-link" data-scroll-target="#kernel-in-group-theory" href="#kernel-in-group-theory" id="toc-kernel-in-group-theory">Kernel in Group Theory</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#quotient-groups-and-the-first-isomorphism-theorem" href="#quotient-groups-and-the-first-isomorphism-theorem" id="toc-quotient-groups-and-the-first-isomorphism-theorem">Quotient Groups and the First Isomorphism Theorem</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#kernel-in-ring-theory" href="#kernel-in-ring-theory" id="toc-kernel-in-ring-theory">Kernel in Ring Theory</a></li>
-<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
-<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#def-kernel" id="toc-def-kernel" class="nav-link active" data-scroll-target="#def-kernel">Kernel</a>
+  <ul class="collapse">
+  <li><a href="#alternative-names" id="toc-alternative-names" class="nav-link" data-scroll-target="#alternative-names">Alternative Names</a></li>
+  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#kernel-in-group-theory" id="toc-kernel-in-group-theory" class="nav-link" data-scroll-target="#kernel-in-group-theory">Kernel in Group Theory</a>
+  <ul class="collapse">
+  <li><a href="#quotient-groups-and-the-first-isomorphism-theorem" id="toc-quotient-groups-and-the-first-isomorphism-theorem" class="nav-link" data-scroll-target="#quotient-groups-and-the-first-isomorphism-theorem">Quotient Groups and the First Isomorphism Theorem</a></li>
+  </ul></li>
+  <li><a href="#kernel-in-ring-theory" id="toc-kernel-in-ring-theory" class="nav-link" data-scroll-target="#kernel-in-ring-theory">Kernel in Ring Theory</a></li>
+  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
+  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Kernel</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="def-kernel">
+
+
+<section id="def-kernel" class="level1">
 <h1>Kernel</h1>
 <p>Let <span class="math inline">\(T: V \to W\)</span> be a <a href="../../../content/en/algebra/def-linear-transformation.html">Linear Transformation</a> between <a href="../../../content/en/algebra/def-vector-space.html">s</a>. The <strong>kernel</strong> (or <strong>null space</strong>) of <span class="math inline">\(T\)</span> is the set of all vectors in <span class="math inline">\(V\)</span> that map to the zero vector in <span class="math inline">\(W\)</span>:</p>
 <p><span class="math display">\[\ker(T) = \{\mathbf{v} \in V : T(\mathbf{v}) = \mathbf{0}_W\}\]</span></p>
-<section class="level2" id="alternative-names">
+<section id="alternative-names" class="level2">
 <h2 class="anchored" data-anchor-id="alternative-names">Alternative Names</h2>
 <p>The kernel is also known as: - Null space (denoted <span class="math inline">\(\text{null}(T)\)</span> or <span class="math inline">\(N(T)\)</span>) - The pre-image of zero: <span class="math inline">\(T^{-1}(\{\mathbf{0}_W\})\)</span></p>
 </section>
-<section class="level2" id="properties">
+<section id="properties" class="level2">
 <h2 class="anchored" data-anchor-id="properties">Properties</h2>
 <ol type="1">
 <li><p><strong>Subspace</strong>: <span class="math inline">\(\ker(T)\)</span> is always a subspace of <span class="math inline">\(V\)</span></p>
@@ -336,12 +313,12 @@ window.Quarto = {
 <li><p><strong>Dimension</strong>: The dimension of <span class="math inline">\(\ker(T)\)</span> is called the <strong>nullity</strong> of <span class="math inline">\(T\)</span></p></li>
 </ol>
 </section>
-<section class="level2" id="example">
+<section id="example" class="level2">
 <h2 class="anchored" data-anchor-id="example">Example</h2>
 <p>For a matrix transformation <span class="math inline">\(T_A: \mathbb{R}^n \to \mathbb{R}^m\)</span> defined by <span class="math inline">\(T_A(\mathbf{x}) = A\mathbf{x}\)</span>: <span class="math display">\[\ker(T_A) = \{\mathbf{x} \in \mathbb{R}^n : A\mathbf{x} = \mathbf{0}\}\]</span></p>
 <p>This is precisely the solution set of the homogeneous linear system <span class="math inline">\(A\mathbf{x} = \mathbf{0}\)</span>.</p>
 </section>
-<section class="level2" id="kernel-in-group-theory">
+<section id="kernel-in-group-theory" class="level2">
 <h2 class="anchored" data-anchor-id="kernel-in-group-theory">Kernel in Group Theory</h2>
 <p>The concept of kernel extends to <a href="../../../content/en/algebra/def-homomorphism.html">Group Homomorphism</a> between groups. If <span class="math inline">\(\phi: G \to H\)</span> is a group homomorphism, then:</p>
 <p><span class="math display">\[\ker(\phi) = \{g \in G : \phi(g) = e_H\}\]</span></p>
@@ -349,20 +326,20 @@ window.Quarto = {
 <p><strong>Important</strong>: The kernel of a group homomorphism is always a <a href="../../../content/en/algebra/def-normal-subgroup.html">Normal Subgroup</a> of the domain. This is because for any <span class="math inline">\(g \in G\)</span> and <span class="math inline">\(k \in \ker(\phi)\)</span>:</p>
 <p><span class="math display">\[\phi(gkg^{-1}) = \phi(g)\phi(k)\phi(g^{-1}) = \phi(g)e_H\phi(g)^{-1} = \phi(g)\phi(g)^{-1} = e_H\]</span></p>
 <p>Therefore <span class="math inline">\(gkg^{-1} \in \ker(\phi)\)</span>, showing that <span class="math inline">\(\ker(\phi)\)</span> is invariant under conjugation.</p>
-<section class="level3" id="quotient-groups-and-the-first-isomorphism-theorem">
+<section id="quotient-groups-and-the-first-isomorphism-theorem" class="level3">
 <h3 class="anchored" data-anchor-id="quotient-groups-and-the-first-isomorphism-theorem">Quotient Groups and the First Isomorphism Theorem</h3>
 <p>Since the kernel is a normal subgroup, we can form the <a href="../../../content/en/algebra/def-quotient-group.html">Quotient Group</a> <span class="math inline">\(G/\ker(\phi)\)</span>. The <a href="../../../content/en/algebra/thm-first-isomorphism.html">First Isomorphism Theorem</a> states that:</p>
 <p><span class="math display">\[G/\ker(\phi) \cong \text{Im}(\phi)\]</span></p>
 <p>This fundamental result shows that every homomorphic image is <a href="../../../content/en/algebra/def-isomorphism.html">isomorphic</a> to a quotient group. See <a href="../../../content/en/algebra/thm-first-isomorphism.html">First Isomorphism Theorem</a> for the complete statement and proof.</p>
 </section>
 </section>
-<section class="level2" id="kernel-in-ring-theory">
+<section id="kernel-in-ring-theory" class="level2">
 <h2 class="anchored" data-anchor-id="kernel-in-ring-theory">Kernel in Ring Theory</h2>
 <p>For <a href="../../../content/en/algebra/def-ring-homomorphism.html">ring homomorphisms</a> (maps that preserve both addition and multiplication), the kernel takes on additional structure. If <span class="math inline">\(\phi: R \to S\)</span> is a <a href="../../../content/en/algebra/def-ring-homomorphism.html">ring homomorphism</a>, then:</p>
 <p><span class="math display">\[\ker(\phi) = \{r \in R : \phi(r) = 0_S\}\]</span></p>
 <p>The kernel of a <a href="../../../content/en/algebra/def-ring-homomorphism.html">ring homomorphism</a> is always an <a href="../../../content/en/algebra/def-ideal.html">Ideal</a> of the domain ring <span class="math inline">\(R\)</span>. This is the ring-theoretic analogue of the fact that kernels of group homomorphisms are normal subgroups. Just as normal subgroups allow us to form quotient groups, ideals allow us to form <a href="../../../content/en/algebra/def-quotient-ring.html">quotient rings</a>.</p>
 </section>
-<section class="level2" id="dependency-graph">
+<section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -375,45 +352,45 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-isomorphism["Isomorphism"]:::definition
-    def-vector-space["Vector Space"]:::definition
-    def-exact-sequence["Exact Sequence"]:::definition
-    def-homomorphism["Group Homomorphism"]:::definition
-    def-ring-homomorphism["Ring Homomorphism"]:::definition
-    thm-first-isomorphism["First Isomorphism Theorem"]:::theorem
-    def-kernel["Kernel"]:::definition
-    thm-rank-nullity["Rank-Nullity Theorem"]:::theorem
-    def-quotient-group["Quotient Group"]:::definition
-    def-ideal["Ideal"]:::definition
     def-quotient-ring["Quotient Ring"]:::definition
-    def-linear-transformation["Linear Transformation"]:::definition
+    def-kernel["Kernel"]:::definition
+    def-vector-space["Vector Space"]:::definition
+    thm-rank-nullity["Rank-Nullity Theorem"]:::theorem
+    def-isomorphism["Isomorphism"]:::definition
+    def-quotient-group["Quotient Group"]:::definition
+    thm-first-isomorphism["First Isomorphism Theorem"]:::theorem
+    def-exact-sequence["Exact Sequence"]:::definition
     def-normal-subgroup["Normal Subgroup"]:::definition
-    def-kernel --&gt; def-homomorphism
-    def-kernel --&gt; def-ring-homomorphism
-    def-kernel --&gt; def-vector-space
-    def-kernel --&gt; def-normal-subgroup
-    def-kernel --&gt; def-ideal
-    def-exact-sequence --&gt; def-kernel
-    thm-first-isomorphism --&gt; def-kernel
-    def-kernel --&gt; thm-first-isomorphism
-    def-kernel --&gt; def-isomorphism
-    def-kernel --&gt; def-quotient-group
+    def-homomorphism["Group Homomorphism"]:::definition
+    def-ideal["Ideal"]:::definition
+    def-ring-homomorphism["Ring Homomorphism"]:::definition
+    def-linear-transformation["Linear Transformation"]:::definition
     thm-rank-nullity --&gt; def-kernel
-    def-kernel --&gt; def-linear-transformation
+    def-kernel --&gt; def-ring-homomorphism
+    def-kernel --&gt; def-normal-subgroup
+    def-kernel --&gt; def-homomorphism
+    def-kernel --&gt; def-isomorphism
+    def-kernel --&gt; def-vector-space
+    def-kernel --&gt; def-ideal
     def-kernel --&gt; def-quotient-ring
+    thm-first-isomorphism --&gt; def-kernel
+    def-kernel --&gt; def-quotient-group
+    def-exact-sequence --&gt; def-kernel
+    def-kernel --&gt; thm-first-isomorphism
+    def-kernel --&gt; def-linear-transformation
     class def-kernel current
-    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism"
-    click def-vector-space "def-vector-space.html" "Go to Vector Space"
-    click def-exact-sequence "def-exact-sequence.html" "Go to Exact Sequence"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism"
-    click def-ring-homomorphism "def-ring-homomorphism.html" "Go to Ring Homomorphism"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem"
-    click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
-    click def-ideal "def-ideal.html" "Go to Ideal"
     click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring"
-    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation"
+    click def-vector-space "def-vector-space.html" "Go to Vector Space"
+    click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem"
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem"
+    click def-exact-sequence "def-exact-sequence.html" "Go to Exact Sequence"
     click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism"
+    click def-ideal "def-ideal.html" "Go to Ideal"
+    click def-ring-homomorphism "def-ring-homomorphism.html" "Go to Ring Homomorphism"
+    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -421,12 +398,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="interactive-visualization">
+<section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div class="graph-visualization-container" id="graph-viz-def-kernel-1753765063">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-def-kernel-1753768928" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -671,12 +649,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-kernel-1753765063', {
+    createForceGraph(data, 'graph-viz-def-kernel-1753768928', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-kernel-1753765063').innerHTML =
+    document.getElementById('graph-viz-def-kernel-1753768928').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -688,6 +666,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -736,9 +715,13 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/def-kernel.html" target="_blank">full interactive version</a></p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1141,16 +1124,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>アーベル群 – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,191 +157,155 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">数学ナレッジグラフ</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="サーチ"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">数学ナレッジグラフ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="サーチ"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index-ja.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index-ja.html"> 
 <span class="menu-text">ホーム</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
 <span class="menu-text">代数学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
 <span class="menu-text">解析学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
 <span class="menu-text">位相空間論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
 <span class="menu-text">幾何学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
 <span class="menu-text">圏論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
 <span class="menu-text">組合せ論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
 <span class="menu-text">論理学・集合論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
 <span class="menu-text">数論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
 <span class="menu-text">確率統計</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/about.html"> 
 <span class="menu-text">概要</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
 <span class="menu-text">貢献</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../en/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../en/index.html"> 
 <span class="menu-text">🌐 English</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">目次</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#def-abelian-group" href="#def-abelian-group" id="toc-def-abelian-group">アーベル群</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#形式的定義" href="#形式的定義" id="toc-形式的定義">形式的定義</a></li>
-<li><a class="nav-link" data-scroll-target="#記法" href="#記法" id="toc-記法">記法</a></li>
-<li><a class="nav-link" data-scroll-target="#例" href="#例" id="toc-例">例</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#数体系" href="#数体系" id="toc-数体系">数体系</a></li>
-<li><a class="nav-link" data-scroll-target="#ベクトル空間" href="#ベクトル空間" id="toc-ベクトル空間">ベクトル空間</a></li>
-<li><a class="nav-link" data-scroll-target="#その他の例" href="#その他の例" id="toc-その他の例">その他の例</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#反例" href="#反例" id="toc-反例">反例</a></li>
-<li><a class="nav-link" data-scroll-target="#性質" href="#性質" id="toc-性質">性質</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#基本的性質" href="#基本的性質" id="toc-基本的性質">基本的性質</a></li>
-<li><a class="nav-link" data-scroll-target="#構造定理" href="#構造定理" id="toc-構造定理">構造定理</a></li>
-<li><a class="nav-link" data-scroll-target="#準同型" href="#準同型" id="toc-準同型">準同型</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#歴史的記述" href="#歴史的記述" id="toc-歴史的記述">歴史的記述</a></li>
-<li><a class="nav-link" data-scroll-target="#応用" href="#応用" id="toc-応用">応用</a></li>
-<li><a class="nav-link" data-scroll-target="#関連項目" href="#関連項目" id="toc-関連項目">関連項目</a></li>
-<li><a class="nav-link" data-scroll-target="#依存関係グラフ" href="#依存関係グラフ" id="toc-依存関係グラフ">依存関係グラフ</a></li>
-<li><a class="nav-link" data-scroll-target="#インタラクティブ可視化" href="#インタラクティブ可視化" id="toc-インタラクティブ可視化">インタラクティブ可視化</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#def-abelian-group" id="toc-def-abelian-group" class="nav-link active" data-scroll-target="#def-abelian-group">アーベル群</a>
+  <ul class="collapse">
+  <li><a href="#形式的定義" id="toc-形式的定義" class="nav-link" data-scroll-target="#形式的定義">形式的定義</a></li>
+  <li><a href="#記法" id="toc-記法" class="nav-link" data-scroll-target="#記法">記法</a></li>
+  <li><a href="#例" id="toc-例" class="nav-link" data-scroll-target="#例">例</a>
+  <ul class="collapse">
+  <li><a href="#数体系" id="toc-数体系" class="nav-link" data-scroll-target="#数体系">数体系</a></li>
+  <li><a href="#ベクトル空間" id="toc-ベクトル空間" class="nav-link" data-scroll-target="#ベクトル空間">ベクトル空間</a></li>
+  <li><a href="#その他の例" id="toc-その他の例" class="nav-link" data-scroll-target="#その他の例">その他の例</a></li>
+  </ul></li>
+  <li><a href="#反例" id="toc-反例" class="nav-link" data-scroll-target="#反例">反例</a></li>
+  <li><a href="#性質" id="toc-性質" class="nav-link" data-scroll-target="#性質">性質</a>
+  <ul class="collapse">
+  <li><a href="#基本的性質" id="toc-基本的性質" class="nav-link" data-scroll-target="#基本的性質">基本的性質</a></li>
+  <li><a href="#構造定理" id="toc-構造定理" class="nav-link" data-scroll-target="#構造定理">構造定理</a></li>
+  <li><a href="#準同型" id="toc-準同型" class="nav-link" data-scroll-target="#準同型">準同型</a></li>
+  </ul></li>
+  <li><a href="#歴史的記述" id="toc-歴史的記述" class="nav-link" data-scroll-target="#歴史的記述">歴史的記述</a></li>
+  <li><a href="#応用" id="toc-応用" class="nav-link" data-scroll-target="#応用">応用</a></li>
+  <li><a href="#関連項目" id="toc-関連項目" class="nav-link" data-scroll-target="#関連項目">関連項目</a></li>
+  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
+  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">アーベル群</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="def-abelian-group">
+
+
+<section id="def-abelian-group" class="level1">
 <h1>アーベル群</h1>
 <p><strong>アーベル群</strong>（<strong>可換群</strong>とも呼ばれる）は、演算が<a href="../../../content/ja/algebra/def-commutativity.html">可換</a>である<a href="../../../content/ja/algebra/def-group.html">群</a> <span class="math inline">\((G, \star)\)</span> である。</p>
-<section class="level2" id="形式的定義">
+<section id="形式的定義" class="level2">
 <h2 class="anchored" data-anchor-id="形式的定義">形式的定義</h2>
 <p>群 <span class="math inline">\((G, \star)\)</span> が<strong>アーベル群</strong>であるとは、すべての群の公理に加えて以下を満たすときである：</p>
 <ol start="4" type="1">
@@ -336,7 +313,7 @@ window.Quarto = {
 </ol>
 <p>したがって、アーベル群は以下を満たす： 1. <strong>結合律</strong>: すべての <span class="math inline">\(a, b, c \in G\)</span> に対して <span class="math inline">\((a \star b) \star c = a \star (b \star c)\)</span> 2. <strong>単位元</strong>: すべての <span class="math inline">\(a \in G\)</span> に対して <span class="math inline">\(a \star e = e \star a = a\)</span> となる <span class="math inline">\(e \in G\)</span> が存在する 3. <strong>逆元</strong>: 各 <span class="math inline">\(a \in G\)</span> に対して、<span class="math inline">\(a \star a^{-1} = a^{-1} \star a = e\)</span> となる <span class="math inline">\(a^{-1} \in G\)</span> が存在する 4. <strong>可換性</strong>: すべての <span class="math inline">\(a, b \in G\)</span> に対して <span class="math inline">\(a \star b = b \star a\)</span></p>
 </section>
-<section class="level2" id="記法">
+<section id="記法" class="level2">
 <h2 class="anchored" data-anchor-id="記法">記法</h2>
 <ul>
 <li>アーベル群はしばしば加法的に書かれる：<span class="math inline">\((G, +)\)</span> で単位元は <span class="math inline">\(0\)</span>、逆元は <span class="math inline">\(-a\)</span></li>
@@ -344,9 +321,9 @@ window.Quarto = {
 <li>交換子 <span class="math inline">\([a,b] = aba^{-1}b^{-1}\)</span> はアーベル群では単位元に等しい</li>
 </ul>
 </section>
-<section class="level2" id="例">
+<section id="例" class="level2">
 <h2 class="anchored" data-anchor-id="例">例</h2>
-<section class="level3" id="数体系">
+<section id="数体系" class="level3">
 <h3 class="anchored" data-anchor-id="数体系">数体系</h3>
 <ul>
 <li><span class="math inline">\((\mathbb{Z}, +)\)</span>：整数の加法群</li>
@@ -355,14 +332,14 @@ window.Quarto = {
 <li><span class="math inline">\((\mathbb{Z}_n, +)\)</span>：<span class="math inline">\(n\)</span> を法とする整数の加法群</li>
 </ul>
 </section>
-<section class="level3" id="ベクトル空間">
+<section id="ベクトル空間" class="level3">
 <h3 class="anchored" data-anchor-id="ベクトル空間">ベクトル空間</h3>
 <ul>
 <li><span class="math inline">\((V, +)\)</span>：任意のベクトル空間のベクトル加法</li>
 <li><span class="math inline">\((\mathbb{R}^n, +)\)</span>：<span class="math inline">\(n\)</span> 次元ユークリッド空間の成分ごとの加法</li>
 </ul>
 </section>
-<section class="level3" id="その他の例">
+<section id="その他の例" class="level3">
 <h3 class="anchored" data-anchor-id="その他の例">その他の例</h3>
 <ul>
 <li>巡回群：すべての<a href="../../../content/ja/algebra/def-cyclic-group.html">巡回群</a>はアーベル群である</li>
@@ -371,7 +348,7 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section class="level2" id="反例">
+<section id="反例" class="level2">
 <h2 class="anchored" data-anchor-id="反例">反例</h2>
 <ul>
 <li><span class="math inline">\((GL_n(\mathbb{R}), \cdot)\)</span> (<span class="math inline">\(n \geq 2\)</span> のとき)：一般線形群（可逆行列）は非アーベル群</li>
@@ -379,9 +356,9 @@ window.Quarto = {
 <li>四元数群 <span class="math inline">\(Q_8 = \{\pm 1, \pm i, \pm j, \pm k\}\)</span> は非アーベル群</li>
 </ul>
 </section>
-<section class="level2" id="性質">
+<section id="性質" class="level2">
 <h2 class="anchored" data-anchor-id="性質">性質</h2>
-<section class="level3" id="基本的性質">
+<section id="基本的性質" class="level3">
 <h3 class="anchored" data-anchor-id="基本的性質">基本的性質</h3>
 <ul>
 <li>アーベル群のすべての部分群は<a href="../../../content/ja/algebra/def-normal-subgroup.html">正規部分群</a>である</li>
@@ -390,14 +367,14 @@ window.Quarto = {
 <li>すべてのアーベル群は自然に整数環 <span class="math inline">\(\mathbb{Z}\)</span> 上の<a href="../../../content/ja/algebra/def-module.html">加群</a>である</li>
 </ul>
 </section>
-<section class="level3" id="構造定理">
+<section id="構造定理" class="level3">
 <h3 class="anchored" data-anchor-id="構造定理">構造定理</h3>
 <ul>
 <li><strong>基本定理</strong>：有限生成アーベル群はすべて<a href="../../../content/ja/algebra/def-cyclic-group.html">巡回群</a>の<a href="../../../content/ja/algebra/def-direct-product.html">直積</a>に<a href="../../../content/ja/algebra/def-isomorphism.html">同型</a>である</li>
 <li><strong>分類</strong>：有限アーベル群は不変因子または初等因子によって<a href="../../../content/ja/algebra/def-isomorphism.html">同型</a>を除いて分類される</li>
 </ul>
 </section>
-<section class="level3" id="準同型">
+<section id="準同型" class="level3">
 <h3 class="anchored" data-anchor-id="準同型">準同型</h3>
 <ul>
 <li>アーベル群間の群準同型の集合 <span class="math inline">\(\text{Hom}(G, H)\)</span> はアーベル群をなす</li>
@@ -406,11 +383,11 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section class="level2" id="歴史的記述">
+<section id="歴史的記述" class="level2">
 <h2 class="anchored" data-anchor-id="歴史的記述">歴史的記述</h2>
 <p>ノルウェーの数学者ニールス・ヘンリック・アーベル（1802-1829）にちなんで名付けられた。アーベルは群の形式的概念が確立される前に群論への先駆的な貢献をした。「アーベル」という用語はカミーユ・ジョルダンによって導入された。</p>
 </section>
-<section class="level2" id="応用">
+<section id="応用" class="level2">
 <h2 class="anchored" data-anchor-id="応用">応用</h2>
 <ul>
 <li><strong>数論</strong>：環の単元の構造、イデアル類群</li>
@@ -419,7 +396,7 @@ window.Quarto = {
 <li><strong>暗号理論</strong>：楕円曲線群、ディフィー・ヘルマン鍵交換</li>
 </ul>
 </section>
-<section class="level2" id="関連項目">
+<section id="関連項目" class="level2">
 <h2 class="anchored" data-anchor-id="関連項目">関連項目</h2>
 <ul>
 <li><a href="../../../content/ja/algebra/def-group.html">群</a></li>
@@ -431,7 +408,7 @@ window.Quarto = {
 <li><a href="../../../content/ja/algebra/thm-first-isomorphism.html">第一同型定理</a></li>
 </ul>
 </section>
-<section class="level2" id="依存関係グラフ">
+<section id="依存関係グラフ" class="level2">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -444,45 +421,45 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-abelian-group["アーベル群"]:::definition
+    thm-lagrange["ラグランジュの定理"]:::theorem
+    def-commutativity["可換性"]:::definition
+    def-cyclic-group["巡回群"]:::definition
     def-isomorphism["群同型"]:::definition
     def-group["群"]:::definition
     def-center-of-group["群の中心"]:::definition
-    def-abelian-group["アーベル群"]:::definition
     def-direct-product["群の直積"]:::definition
-    thm-first-isomorphism["第一同型定理"]:::theorem
-    def-cyclic-group["巡回群"]:::definition
-    def-commutativity["可換性"]:::definition
     def-quotient-group["商群"]:::definition
-    thm-lagrange["ラグランジュの定理"]:::theorem
+    thm-first-isomorphism["第一同型定理"]:::theorem
     def-normal-subgroup["正規部分群"]:::definition
-    def-abelian-group --&gt; def-center-of-group
-    def-abelian-group --&gt; def-group
-    def-group --&gt; def-abelian-group
-    def-abelian-group --&gt; thm-first-isomorphism
-    def-normal-subgroup --&gt; def-abelian-group
-    thm-first-isomorphism --&gt; def-abelian-group
     def-quotient-group --&gt; def-abelian-group
+    def-abelian-group --&gt; def-group
+    def-direct-product --&gt; def-abelian-group
+    def-commutativity --&gt; def-abelian-group
     def-abelian-group --&gt; def-direct-product
     def-abelian-group --&gt; thm-lagrange
-    def-commutativity --&gt; def-abelian-group
-    def-abelian-group --&gt; def-commutativity
-    def-center-of-group --&gt; def-abelian-group
-    def-abelian-group --&gt; def-cyclic-group
+    def-abelian-group --&gt; def-center-of-group
     def-abelian-group --&gt; def-quotient-group
+    thm-first-isomorphism --&gt; def-abelian-group
+    def-group --&gt; def-abelian-group
+    def-abelian-group --&gt; def-cyclic-group
     def-abelian-group --&gt; def-normal-subgroup
-    def-cyclic-group --&gt; def-abelian-group
+    def-normal-subgroup --&gt; def-abelian-group
     def-abelian-group --&gt; def-isomorphism
-    def-direct-product --&gt; def-abelian-group
+    def-cyclic-group --&gt; def-abelian-group
+    def-abelian-group --&gt; thm-first-isomorphism
+    def-center-of-group --&gt; def-abelian-group
+    def-abelian-group --&gt; def-commutativity
     class def-abelian-group current
+    click thm-lagrange "thm-lagrange.html" "ラグランジュの定理へ"
+    click def-commutativity "def-commutativity.html" "可換性へ"
+    click def-cyclic-group "def-cyclic-group.html" "巡回群へ"
     click def-isomorphism "def-isomorphism.html" "群同型へ"
     click def-group "def-group.html" "群へ"
     click def-center-of-group "def-center-of-group.html" "群の中心へ"
     click def-direct-product "def-direct-product.html" "群の直積へ"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "第一同型定理へ"
-    click def-cyclic-group "def-cyclic-group.html" "巡回群へ"
-    click def-commutativity "def-commutativity.html" "可換性へ"
     click def-quotient-group "def-quotient-group.html" "商群へ"
-    click thm-lagrange "thm-lagrange.html" "ラグランジュの定理へ"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "第一同型定理へ"
     click def-normal-subgroup "def-normal-subgroup.html" "正規部分群へ"
 </pre>
 </div>
@@ -491,12 +468,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="インタラクティブ可視化">
+<section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div class="graph-visualization-container" id="graph-viz-def-abelian-group-1753764968">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-def-abelian-group-1753768833" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -741,12 +719,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-abelian-group-1753764968', {
+    createForceGraph(data, 'graph-viz-def-abelian-group-1753768833', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-abelian-group-1753764968').innerHTML =
+    document.getElementById('graph-viz-def-abelian-group-1753768833').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -758,6 +736,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -806,9 +785,13 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/ja/def-abelian-group.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1211,16 +1194,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>Banach Space – Math Knowledge Graph</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'en';
   window.alternateLanguage = 'ja';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,199 +157,163 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">Math Knowledge Graph</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="Search"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Math Knowledge Graph</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/algebra/index.html"> 
 <span class="menu-text">Algebra</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/analysis/index.html"> 
 <span class="menu-text">Analysis</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/topology/index.html"> 
 <span class="menu-text">Topology</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/geometry/index.html"> 
 <span class="menu-text">Geometry</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/category-theory/index.html"> 
 <span class="menu-text">Category Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/combinatorics/index.html"> 
 <span class="menu-text">Combinatorics</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/logic-set-theory/index.html"> 
 <span class="menu-text">Logic &amp; Set Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/number-theory/index.html"> 
 <span class="menu-text">Number Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/probability-statistics/index.html"> 
 <span class="menu-text">Probability &amp; Statistics</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/en/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/en/about.html"> 
 <span class="menu-text">About</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/en/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/en/contributing.html"> 
 <span class="menu-text">Contributing</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../ja/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../ja/index.html"> 
 <span class="menu-text">🌐 日本語</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">On this page</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#def-banach-space" href="#def-banach-space" id="toc-def-banach-space">Banach Space</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#formal-definition" href="#formal-definition" id="toc-formal-definition">Formal Definition</a></li>
-<li><a class="nav-link" data-scroll-target="#notation" href="#notation" id="toc-notation">Notation</a></li>
-<li><a class="nav-link" data-scroll-target="#intuitive-understanding" href="#intuitive-understanding" id="toc-intuitive-understanding">Intuitive Understanding</a></li>
-<li><a class="nav-link" data-scroll-target="#key-properties" href="#key-properties" id="toc-key-properties">Key Properties</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#fundamental-properties" href="#fundamental-properties" id="toc-fundamental-properties">Fundamental Properties</a></li>
-<li><a class="nav-link" data-scroll-target="#convergence-properties" href="#convergence-properties" id="toc-convergence-properties">Convergence Properties</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#examples" href="#examples" id="toc-examples">Examples</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#classical-banach-spaces" href="#classical-banach-spaces" id="toc-classical-banach-spaces">Classical Banach Spaces</a></li>
-<li><a class="nav-link" data-scroll-target="#non-examples-incomplete-normed-spaces" href="#non-examples-incomplete-normed-spaces" id="toc-non-examples-incomplete-normed-spaces">Non-Examples (Incomplete Normed Spaces)</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#special-types" href="#special-types" id="toc-special-types">Special Types</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#important-classes-of-banach-spaces" href="#important-classes-of-banach-spaces" id="toc-important-classes-of-banach-spaces">Important Classes of Banach Spaces</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#fundamental-theorems" href="#fundamental-theorems" id="toc-fundamental-theorems">Fundamental Theorems</a></li>
-<li><a class="nav-link" data-scroll-target="#applications" href="#applications" id="toc-applications">Applications</a></li>
-<li><a class="nav-link" data-scroll-target="#historical-note" href="#historical-note" id="toc-historical-note">Historical Note</a></li>
-<li><a class="nav-link" data-scroll-target="#related-concepts" href="#related-concepts" id="toc-related-concepts">Related Concepts</a></li>
-<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
-<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#def-banach-space" id="toc-def-banach-space" class="nav-link active" data-scroll-target="#def-banach-space">Banach Space</a>
+  <ul class="collapse">
+  <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link" data-scroll-target="#formal-definition">Formal Definition</a></li>
+  <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
+  <li><a href="#intuitive-understanding" id="toc-intuitive-understanding" class="nav-link" data-scroll-target="#intuitive-understanding">Intuitive Understanding</a></li>
+  <li><a href="#key-properties" id="toc-key-properties" class="nav-link" data-scroll-target="#key-properties">Key Properties</a>
+  <ul class="collapse">
+  <li><a href="#fundamental-properties" id="toc-fundamental-properties" class="nav-link" data-scroll-target="#fundamental-properties">Fundamental Properties</a></li>
+  <li><a href="#convergence-properties" id="toc-convergence-properties" class="nav-link" data-scroll-target="#convergence-properties">Convergence Properties</a></li>
+  </ul></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
+  <ul class="collapse">
+  <li><a href="#classical-banach-spaces" id="toc-classical-banach-spaces" class="nav-link" data-scroll-target="#classical-banach-spaces">Classical Banach Spaces</a></li>
+  <li><a href="#non-examples-incomplete-normed-spaces" id="toc-non-examples-incomplete-normed-spaces" class="nav-link" data-scroll-target="#non-examples-incomplete-normed-spaces">Non-Examples (Incomplete Normed Spaces)</a></li>
+  </ul></li>
+  <li><a href="#special-types" id="toc-special-types" class="nav-link" data-scroll-target="#special-types">Special Types</a>
+  <ul class="collapse">
+  <li><a href="#important-classes-of-banach-spaces" id="toc-important-classes-of-banach-spaces" class="nav-link" data-scroll-target="#important-classes-of-banach-spaces">Important Classes of Banach Spaces</a></li>
+  </ul></li>
+  <li><a href="#fundamental-theorems" id="toc-fundamental-theorems" class="nav-link" data-scroll-target="#fundamental-theorems">Fundamental Theorems</a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
+  <li><a href="#historical-note" id="toc-historical-note" class="nav-link" data-scroll-target="#historical-note">Historical Note</a></li>
+  <li><a href="#related-concepts" id="toc-related-concepts" class="nav-link" data-scroll-target="#related-concepts">Related Concepts</a></li>
+  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
+  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Banach Space</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="def-banach-space">
+
+
+<section id="def-banach-space" class="level1">
 <h1>Banach Space</h1>
 <p>A <strong>Banach space</strong> is a <a href="../../../content/en/analysis/def-normed-vector-space.html">Normed Vector Space</a> that is complete with respect to the metric induced by its norm. This fundamental concept in functional analysis combines the algebraic structure of a vector space with the metric property of completeness.</p>
-<section class="level2" id="formal-definition">
+<section id="formal-definition" class="level2">
 <h2 class="anchored" data-anchor-id="formal-definition">Formal Definition</h2>
 <p>A Banach space is a pair <span class="math inline">\((B, \|\cdot\|)\)</span> where: - <span class="math inline">\(B\)</span> is a <a href="../../../content/en/analysis/def-normed-vector-space.html">Normed Vector Space</a> over a field <span class="math inline">\(\mathbb{F}\)</span> (typically <span class="math inline">\(\mathbb{R}\)</span> or <span class="math inline">\(\mathbb{C}\)</span>) - <span class="math inline">\(B\)</span> is <a href="../../../content/en/analysis/def-complete-metric-space.html">Complete</a> with respect to the metric <span class="math inline">\(d(x,y) = \|x - y\|\)</span></p>
 <p>More explicitly, <span class="math inline">\((B, \|\cdot\|)\)</span> is a Banach space if and only if: 1. <span class="math inline">\((B, \|\cdot\|)\)</span> is a normed vector space 2. Every <a href="../../../content/en/analysis/def-cauchy-sequence.html">Cauchy Sequence</a> in <span class="math inline">\(B\)</span> converges to a limit in <span class="math inline">\(B\)</span></p>
 </section>
-<section class="level2" id="notation">
+<section id="notation" class="level2">
 <h2 class="anchored" data-anchor-id="notation">Notation</h2>
 <ul>
 <li>Standard notation: <span class="math inline">\((B, \|\cdot\|)\)</span> or simply <span class="math inline">\(B\)</span> when the norm is understood</li>
@@ -344,13 +321,13 @@ window.Quarto = {
 <li>For dual spaces: <span class="math inline">\(B^*\)</span> or <span class="math inline">\(B'\)</span></li>
 </ul>
 </section>
-<section class="level2" id="intuitive-understanding">
+<section id="intuitive-understanding" class="level2">
 <h2 class="anchored" data-anchor-id="intuitive-understanding">Intuitive Understanding</h2>
 <p>A Banach space is a “complete playground” for analysis. Just as the real numbers are complete (no “holes” in the number line), a Banach space has no “missing points” - every sequence that should converge to something actually converges to a point within the space. This completeness property is crucial for: - Ensuring that infinite processes (like solving differential equations) have solutions - Guaranteeing that approximation methods converge - Providing a robust framework for functional analysis</p>
 </section>
-<section class="level2" id="key-properties">
+<section id="key-properties" class="level2">
 <h2 class="anchored" data-anchor-id="key-properties">Key Properties</h2>
-<section class="level3" id="fundamental-properties">
+<section id="fundamental-properties" class="level3">
 <h3 class="anchored" data-anchor-id="fundamental-properties">Fundamental Properties</h3>
 <ul>
 <li><strong>Closed subspaces</strong>: A closed subspace of a Banach space is itself a Banach space</li>
@@ -358,14 +335,14 @@ window.Quarto = {
 <li><strong>Dual space</strong>: The dual space <span class="math inline">\(B^*\)</span> of continuous linear functionals is always a Banach space</li>
 </ul>
 </section>
-<section class="level3" id="convergence-properties">
+<section id="convergence-properties" class="level3">
 <h3 class="anchored" data-anchor-id="convergence-properties">Convergence Properties</h3>
 <p>For a sequence <span class="math inline">\((x_n)\)</span> in a Banach space <span class="math inline">\(B\)</span>: - <strong>Absolute convergence implies convergence</strong>: If <span class="math inline">\(\sum_{n=1}^\infty \|x_n\| &lt; \infty\)</span>, then <span class="math inline">\(\sum_{n=1}^\infty x_n\)</span> converges in <span class="math inline">\(B\)</span> - <strong>Completeness criterion</strong>: <span class="math inline">\(B\)</span> is complete if and only if every absolutely convergent series converges</p>
 </section>
 </section>
-<section class="level2" id="examples">
+<section id="examples" class="level2">
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<section class="level3" id="classical-banach-spaces">
+<section id="classical-banach-spaces" class="level3">
 <h3 class="anchored" data-anchor-id="classical-banach-spaces">Classical Banach Spaces</h3>
 <ol type="1">
 <li><p><strong>Euclidean spaces</strong>: <span class="math inline">\(\mathbb{R}^n\)</span> and <span class="math inline">\(\mathbb{C}^n\)</span> with any norm</p></li>
@@ -383,7 +360,7 @@ window.Quarto = {
 </ul></li>
 </ol>
 </section>
-<section class="level3" id="non-examples-incomplete-normed-spaces">
+<section id="non-examples-incomplete-normed-spaces" class="level3">
 <h3 class="anchored" data-anchor-id="non-examples-incomplete-normed-spaces">Non-Examples (Incomplete Normed Spaces)</h3>
 <ol type="1">
 <li>The space of polynomials on <span class="math inline">\([0,1]\)</span> with the supremum norm</li>
@@ -392,9 +369,9 @@ window.Quarto = {
 </ol>
 </section>
 </section>
-<section class="level2" id="special-types">
+<section id="special-types" class="level2">
 <h2 class="anchored" data-anchor-id="special-types">Special Types</h2>
-<section class="level3" id="important-classes-of-banach-spaces">
+<section id="important-classes-of-banach-spaces" class="level3">
 <h3 class="anchored" data-anchor-id="important-classes-of-banach-spaces">Important Classes of Banach Spaces</h3>
 <ul>
 <li><strong><a href="../../../content/en/analysis/def-hilbert-space.html">Hilbert spaces</a></strong>: Banach spaces where the norm comes from an inner product</li>
@@ -404,7 +381,7 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section class="level2" id="fundamental-theorems">
+<section id="fundamental-theorems" class="level2">
 <h2 class="anchored" data-anchor-id="fundamental-theorems">Fundamental Theorems</h2>
 <p>Several cornerstone theorems of functional analysis require the completeness of Banach spaces:</p>
 <ol type="1">
@@ -414,7 +391,7 @@ window.Quarto = {
 <li><strong>Uniform Boundedness Principle</strong>: Pointwise bounded families of operators are uniformly bounded</li>
 </ol>
 </section>
-<section class="level2" id="applications">
+<section id="applications" class="level2">
 <h2 class="anchored" data-anchor-id="applications">Applications</h2>
 <ol type="1">
 <li><strong>Differential Equations</strong>: Solutions exist in appropriate Banach spaces (Picard-Lindelöf theorem)</li>
@@ -424,11 +401,11 @@ window.Quarto = {
 <li><strong>Quantum Mechanics</strong>: States and observables live in Hilbert spaces (special Banach spaces)</li>
 </ol>
 </section>
-<section class="level2" id="historical-note">
+<section id="historical-note" class="level2">
 <h2 class="anchored" data-anchor-id="historical-note">Historical Note</h2>
 <p>Banach spaces are named after the Polish mathematician Stefan Banach (1892-1945), who together with his colleagues in the Lwów School of Mathematics, developed the theory systematically in the 1920s and 1930s. His 1932 book “Théorie des opérations linéaires” laid the foundation for modern functional analysis.</p>
 </section>
-<section class="level2" id="related-concepts">
+<section id="related-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="related-concepts">Related Concepts</h2>
 <ul>
 <li><a href="../../../content/en/analysis/def-normed-vector-space.html">Normed Vector Space</a>: The underlying structure before completeness</li>
@@ -439,7 +416,7 @@ window.Quarto = {
 <li><strong>Fréchet Space</strong>: A complete metrizable topological vector space</li>
 </ul>
 </section>
-<section class="level2" id="dependency-graph">
+<section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -452,17 +429,17 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-hilbert-space["Hilbert Space"]:::definition
     def-banach-space["Banach Space"]:::definition
     def-normed-vector-space["Normed Vector Space"]:::definition
     def-complete-metric-space["Complete Metric Space"]:::definition
-    def-hilbert-space["Hilbert Space"]:::definition
-    def-hilbert-space --&gt; def-banach-space
     def-banach-space --&gt; def-normed-vector-space
     def-banach-space --&gt; def-complete-metric-space
+    def-hilbert-space --&gt; def-banach-space
     class def-banach-space current
+    click def-hilbert-space "def-hilbert-space.html" "Go to Hilbert Space"
     click def-normed-vector-space "def-normed-vector-space.html" "Go to Normed Vector Space"
     click def-complete-metric-space "def-complete-metric-space.html" "Go to Complete Metric Space"
-    click def-hilbert-space "def-hilbert-space.html" "Go to Hilbert Space"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -470,12 +447,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="interactive-visualization">
+<section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div class="graph-visualization-container" id="graph-viz-def-banach-space-1753764818">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-def-banach-space-1753768682" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -720,12 +698,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-banach-space-1753764818', {
+    createForceGraph(data, 'graph-viz-def-banach-space-1753768682', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-banach-space-1753764818').innerHTML =
+    document.getElementById('graph-viz-def-banach-space-1753768682').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -737,6 +715,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -785,9 +764,13 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/def-banach-space.html" target="_blank">full interactive version</a></p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1190,16 +1173,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>Mathematics Knowledge Graph Wiki - Built with Quarto and RDF</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

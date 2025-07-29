@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>半順序 – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,233 +157,197 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">数学ナレッジグラフ</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="サーチ"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">数学ナレッジグラフ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="サーチ"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index-ja.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index-ja.html"> 
 <span class="menu-text">ホーム</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
 <span class="menu-text">代数学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
 <span class="menu-text">解析学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
 <span class="menu-text">位相空間論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
 <span class="menu-text">幾何学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
 <span class="menu-text">圏論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
 <span class="menu-text">組合せ論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
 <span class="menu-text">論理学・集合論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
 <span class="menu-text">数論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
 <span class="menu-text">確率統計</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/about.html"> 
 <span class="menu-text">概要</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
 <span class="menu-text">貢献</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../en/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../en/index.html"> 
 <span class="menu-text">🌐 English</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">目次</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#def-partial-order" href="#def-partial-order" id="toc-def-partial-order">半順序</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#形式的定義" href="#形式的定義" id="toc-形式的定義">形式的定義</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#反射的性質" href="#反射的性質" id="toc-反射的性質">1. 反射的性質</a></li>
-<li><a class="nav-link" data-scroll-target="#反対称的性質" href="#反対称的性質" id="toc-反対称的性質">2. 反対称的性質</a></li>
-<li><a class="nav-link" data-scroll-target="#推移的性質" href="#推移的性質" id="toc-推移的性質">3. 推移的性質</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#半順序集合poset" href="#半順序集合poset" id="toc-半順序集合poset">半順序集合（Poset）</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#記法" href="#記法" id="toc-記法">記法</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#比較可能な要素" href="#比較可能な要素" id="toc-比較可能な要素">比較可能な要素</a></li>
-<li><a class="nav-link" data-scroll-target="#例" href="#例" id="toc-例">例</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#部分集合関係" href="#部分集合関係" id="toc-部分集合関係">1. 部分集合関係</a></li>
-<li><a class="nav-link" data-scroll-target="#整除関係" href="#整除関係" id="toc-整除関係">2. 整除関係</a></li>
-<li><a class="nav-link" data-scroll-target="#実数の通常の順序" href="#実数の通常の順序" id="toc-実数の通常の順序">3. 実数の通常の順序</a></li>
-<li><a class="nav-link" data-scroll-target="#成分ごとの順序" href="#成分ごとの順序" id="toc-成分ごとの順序">4. 成分ごとの順序</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#特別な要素" href="#特別な要素" id="toc-特別な要素">特別な要素</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#極小要素と極大要素" href="#極小要素と極大要素" id="toc-極小要素と極大要素">極小要素と極大要素</a></li>
-<li><a class="nav-link" data-scroll-target="#最小要素と最大要素" href="#最小要素と最大要素" id="toc-最小要素と最大要素">最小要素と最大要素</a></li>
-<li><a class="nav-link" data-scroll-target="#上界と下界" href="#上界と下界" id="toc-上界と下界">上界と下界</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#ハッセ図" href="#ハッセ図" id="toc-ハッセ図">ハッセ図</a></li>
-<li><a class="nav-link" data-scroll-target="#特別な種類の半順序" href="#特別な種類の半順序" id="toc-特別な種類の半順序">特別な種類の半順序</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#全順序線形順序" href="#全順序線形順序" id="toc-全順序線形順序">全順序（線形順序）</a></li>
-<li><a class="nav-link" data-scroll-target="#整列順序" href="#整列順序" id="toc-整列順序">整列順序</a></li>
-<li><a class="nav-link" data-scroll-target="#束" href="#束" id="toc-束">束</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#重要な定理" href="#重要な定理" id="toc-重要な定理">重要な定理</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#双対原理" href="#双対原理" id="toc-双対原理">双対原理</a></li>
-<li><a class="nav-link" data-scroll-target="#鎖と反鎖" href="#鎖と反鎖" id="toc-鎖と反鎖">鎖と反鎖</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#応用" href="#応用" id="toc-応用">応用</a></li>
-<li><a class="nav-link" data-scroll-target="#関連項目" href="#関連項目" id="toc-関連項目">関連項目</a></li>
-<li><a class="nav-link" data-scroll-target="#依存関係グラフ" href="#依存関係グラフ" id="toc-依存関係グラフ">依存関係グラフ</a></li>
-<li><a class="nav-link" data-scroll-target="#インタラクティブ可視化" href="#インタラクティブ可視化" id="toc-インタラクティブ可視化">インタラクティブ可視化</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#def-partial-order" id="toc-def-partial-order" class="nav-link active" data-scroll-target="#def-partial-order">半順序</a>
+  <ul class="collapse">
+  <li><a href="#形式的定義" id="toc-形式的定義" class="nav-link" data-scroll-target="#形式的定義">形式的定義</a>
+  <ul class="collapse">
+  <li><a href="#反射的性質" id="toc-反射的性質" class="nav-link" data-scroll-target="#反射的性質">1. 反射的性質</a></li>
+  <li><a href="#反対称的性質" id="toc-反対称的性質" class="nav-link" data-scroll-target="#反対称的性質">2. 反対称的性質</a></li>
+  <li><a href="#推移的性質" id="toc-推移的性質" class="nav-link" data-scroll-target="#推移的性質">3. 推移的性質</a></li>
+  </ul></li>
+  <li><a href="#半順序集合poset" id="toc-半順序集合poset" class="nav-link" data-scroll-target="#半順序集合poset">半順序集合（Poset）</a>
+  <ul class="collapse">
+  <li><a href="#記法" id="toc-記法" class="nav-link" data-scroll-target="#記法">記法</a></li>
+  </ul></li>
+  <li><a href="#比較可能な要素" id="toc-比較可能な要素" class="nav-link" data-scroll-target="#比較可能な要素">比較可能な要素</a></li>
+  <li><a href="#例" id="toc-例" class="nav-link" data-scroll-target="#例">例</a>
+  <ul class="collapse">
+  <li><a href="#部分集合関係" id="toc-部分集合関係" class="nav-link" data-scroll-target="#部分集合関係">1. 部分集合関係</a></li>
+  <li><a href="#整除関係" id="toc-整除関係" class="nav-link" data-scroll-target="#整除関係">2. 整除関係</a></li>
+  <li><a href="#実数の通常の順序" id="toc-実数の通常の順序" class="nav-link" data-scroll-target="#実数の通常の順序">3. 実数の通常の順序</a></li>
+  <li><a href="#成分ごとの順序" id="toc-成分ごとの順序" class="nav-link" data-scroll-target="#成分ごとの順序">4. 成分ごとの順序</a></li>
+  </ul></li>
+  <li><a href="#特別な要素" id="toc-特別な要素" class="nav-link" data-scroll-target="#特別な要素">特別な要素</a>
+  <ul class="collapse">
+  <li><a href="#極小要素と極大要素" id="toc-極小要素と極大要素" class="nav-link" data-scroll-target="#極小要素と極大要素">極小要素と極大要素</a></li>
+  <li><a href="#最小要素と最大要素" id="toc-最小要素と最大要素" class="nav-link" data-scroll-target="#最小要素と最大要素">最小要素と最大要素</a></li>
+  <li><a href="#上界と下界" id="toc-上界と下界" class="nav-link" data-scroll-target="#上界と下界">上界と下界</a></li>
+  </ul></li>
+  <li><a href="#ハッセ図" id="toc-ハッセ図" class="nav-link" data-scroll-target="#ハッセ図">ハッセ図</a></li>
+  <li><a href="#特別な種類の半順序" id="toc-特別な種類の半順序" class="nav-link" data-scroll-target="#特別な種類の半順序">特別な種類の半順序</a>
+  <ul class="collapse">
+  <li><a href="#全順序線形順序" id="toc-全順序線形順序" class="nav-link" data-scroll-target="#全順序線形順序">全順序（線形順序）</a></li>
+  <li><a href="#整列順序" id="toc-整列順序" class="nav-link" data-scroll-target="#整列順序">整列順序</a></li>
+  <li><a href="#束" id="toc-束" class="nav-link" data-scroll-target="#束">束</a></li>
+  </ul></li>
+  <li><a href="#重要な定理" id="toc-重要な定理" class="nav-link" data-scroll-target="#重要な定理">重要な定理</a>
+  <ul class="collapse">
+  <li><a href="#双対原理" id="toc-双対原理" class="nav-link" data-scroll-target="#双対原理">双対原理</a></li>
+  <li><a href="#鎖と反鎖" id="toc-鎖と反鎖" class="nav-link" data-scroll-target="#鎖と反鎖">鎖と反鎖</a></li>
+  </ul></li>
+  <li><a href="#応用" id="toc-応用" class="nav-link" data-scroll-target="#応用">応用</a></li>
+  <li><a href="#関連項目" id="toc-関連項目" class="nav-link" data-scroll-target="#関連項目">関連項目</a></li>
+  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
+  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">半順序</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="def-partial-order">
+
+
+<section id="def-partial-order" class="level1">
 <h1>半順序</h1>
 <p><a href="../../../content/ja/logic-set-theory/def-set.html">集合</a> <span class="math inline">\(A\)</span> 上の<strong>半順序</strong>は、反射的、反対称的、推移的な<a href="../../../content/ja/logic-set-theory/def-relation.html">関係</a> <span class="math inline">\(\leq\)</span> である。</p>
-<section class="level2" id="形式的定義">
+<section id="形式的定義" class="level2">
 <h2 class="anchored" data-anchor-id="形式的定義">形式的定義</h2>
 <p>集合 <span class="math inline">\(A\)</span> 上の関係 <span class="math inline">\(\leq\)</span> が以下の3つの性質を満たすとき、かつそのときに限り、半順序である：</p>
-<section class="level3" id="反射的性質">
+<section id="反射的性質" class="level3">
 <h3 class="anchored" data-anchor-id="反射的性質">1. 反射的性質</h3>
 <p>すべての <span class="math inline">\(a \in A\)</span> に対して： <span class="math display">\[a \leq a\]</span></p>
 <p>すべての要素は自分自身と関係している。</p>
 </section>
-<section class="level3" id="反対称的性質">
+<section id="反対称的性質" class="level3">
 <h3 class="anchored" data-anchor-id="反対称的性質">2. 反対称的性質</h3>
 <p>すべての <span class="math inline">\(a, b \in A\)</span> に対して： <span class="math display">\[(a \leq b \text{ かつ } b \leq a) \implies a = b\]</span></p>
 <p><span class="math inline">\(a\)</span> が <span class="math inline">\(b\)</span> と関係し、<span class="math inline">\(b\)</span> が <span class="math inline">\(a\)</span> と関係しているならば、<span class="math inline">\(a\)</span> と <span class="math inline">\(b\)</span> は等しくなければならない。</p>
 </section>
-<section class="level3" id="推移的性質">
+<section id="推移的性質" class="level3">
 <h3 class="anchored" data-anchor-id="推移的性質">3. 推移的性質</h3>
 <p>すべての <span class="math inline">\(a, b, c \in A\)</span> に対して： <span class="math display">\[(a \leq b \text{ かつ } b \leq c) \implies a \leq c\]</span></p>
 <p><span class="math inline">\(a\)</span> が <span class="math inline">\(b\)</span> と関係し、<span class="math inline">\(b\)</span> が <span class="math inline">\(c\)</span> と関係しているならば、<span class="math inline">\(a\)</span> は <span class="math inline">\(c\)</span> と関係している。</p>
 </section>
 </section>
-<section class="level2" id="半順序集合poset">
+<section id="半順序集合poset" class="level2">
 <h2 class="anchored" data-anchor-id="半順序集合poset">半順序集合（Poset）</h2>
 <p><strong>半順序集合</strong>（または<strong>poset</strong>）は、集合 <span class="math inline">\(A\)</span> とその上の半順序関係 <span class="math inline">\(\leq\)</span> からなる順序対 <span class="math inline">\((A, \leq)\)</span> である。</p>
-<section class="level3" id="記法">
+<section id="記法" class="level3">
 <h3 class="anchored" data-anchor-id="記法">記法</h3>
 <ul>
 <li><span class="math inline">\(a &lt; b\)</span> は <span class="math inline">\(a \leq b\)</span> かつ <span class="math inline">\(a \neq b\)</span> を意味する（狭義半順序）</li>
@@ -379,77 +356,77 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section class="level2" id="比較可能な要素">
+<section id="比較可能な要素" class="level2">
 <h2 class="anchored" data-anchor-id="比較可能な要素">比較可能な要素</h2>
 <p>2つの要素 <span class="math inline">\(a, b \in A\)</span> が、<span class="math inline">\(a \leq b\)</span> または <span class="math inline">\(b \leq a\)</span>（またはその両方）のとき、<strong>比較可能</strong>であるという。半順序の「半」は、すべての要素の組が比較可能である必要がないことを示している。</p>
 </section>
-<section class="level2" id="例">
+<section id="例" class="level2">
 <h2 class="anchored" data-anchor-id="例">例</h2>
-<section class="level3" id="部分集合関係">
+<section id="部分集合関係" class="level3">
 <h3 class="anchored" data-anchor-id="部分集合関係">1. 部分集合関係</h3>
 <p>任意の集合 <span class="math inline">\(X\)</span> の<a href="../../../content/ja/logic-set-theory/def-power-set.html">べき集合</a> <span class="math inline">\(\mathcal{P}(X)\)</span> 上の<a href="../../../content/ja/logic-set-theory/def-subset.html">部分集合</a>関係 <span class="math inline">\(\subseteq\)</span> は半順序である： - 反射的：すべての <span class="math inline">\(A \in \mathcal{P}(X)\)</span> に対して <span class="math inline">\(A \subseteq A\)</span> - 反対称的：<span class="math inline">\((A \subseteq B \text{ かつ } B \subseteq A) \implies A = B\)</span> - 推移的：<span class="math inline">\((A \subseteq B \text{ かつ } B \subseteq C) \implies A \subseteq C\)</span></p>
 </section>
-<section class="level3" id="整除関係">
+<section id="整除関係" class="level3">
 <h3 class="anchored" data-anchor-id="整除関係">2. 整除関係</h3>
 <p>正の整数 <span class="math inline">\(\mathbb{Z}^+\)</span> 上の関係 <span class="math inline">\(a \mid b\)</span>（「<span class="math inline">\(a\)</span> は <span class="math inline">\(b\)</span> を割り切る」と読む）は半順序である： - 反射的：すべての <span class="math inline">\(a \in \mathbb{Z}^+\)</span> に対して <span class="math inline">\(a \mid a\)</span> - 反対称的：正の整数に対して <span class="math inline">\((a \mid b \text{ かつ } b \mid a) \implies a = b\)</span> - 推移的：<span class="math inline">\((a \mid b \text{ かつ } b \mid c) \implies a \mid c\)</span></p>
 </section>
-<section class="level3" id="実数の通常の順序">
+<section id="実数の通常の順序" class="level3">
 <h3 class="anchored" data-anchor-id="実数の通常の順序">3. 実数の通常の順序</h3>
 <p><span class="math inline">\(\mathbb{R}\)</span> 上の通常の <span class="math inline">\(\leq\)</span> 関係は半順序である（実際には全順序）： - 反射的：すべての <span class="math inline">\(a \in \mathbb{R}\)</span> に対して <span class="math inline">\(a \leq a\)</span> - 反対称的：<span class="math inline">\((a \leq b \text{ かつ } b \leq a) \implies a = b\)</span> - 推移的：<span class="math inline">\((a \leq b \text{ かつ } b \leq c) \implies a \leq c\)</span></p>
 </section>
-<section class="level3" id="成分ごとの順序">
+<section id="成分ごとの順序" class="level3">
 <h3 class="anchored" data-anchor-id="成分ごとの順序">4. 成分ごとの順序</h3>
 <p><span class="math inline">\(\mathbb{R}^n\)</span> 上で、すべての <span class="math inline">\(i\)</span> に対して <span class="math inline">\(x_i \leq y_i\)</span> のとき <span class="math inline">\((x_1, ..., x_n) \leq (y_1, ..., y_n)\)</span> と定義する。これは多くの組が比較不可能な半順序である。</p>
 </section>
 </section>
-<section class="level2" id="特別な要素">
+<section id="特別な要素" class="level2">
 <h2 class="anchored" data-anchor-id="特別な要素">特別な要素</h2>
 <p>半順序集合 <span class="math inline">\((A, \leq)\)</span> において：</p>
-<section class="level3" id="極小要素と極大要素">
+<section id="極小要素と極大要素" class="level3">
 <h3 class="anchored" data-anchor-id="極小要素と極大要素">極小要素と極大要素</h3>
 <ul>
 <li><span class="math inline">\(b &lt; a\)</span> となる <span class="math inline">\(b \in A\)</span> が存在しないとき、<span class="math inline">\(a \in A\)</span> は<strong>極小</strong>である</li>
 <li><span class="math inline">\(a &lt; b\)</span> となる <span class="math inline">\(b \in A\)</span> が存在しないとき、<span class="math inline">\(a \in A\)</span> は<strong>極大</strong>である</li>
 </ul>
 </section>
-<section class="level3" id="最小要素と最大要素">
+<section id="最小要素と最大要素" class="level3">
 <h3 class="anchored" data-anchor-id="最小要素と最大要素">最小要素と最大要素</h3>
 <ul>
 <li>すべての <span class="math inline">\(b \in A\)</span> に対して <span class="math inline">\(a \leq b\)</span> のとき、<span class="math inline">\(a \in A\)</span> は<strong>最小要素</strong>（または<strong>最小元</strong>）である</li>
 <li>すべての <span class="math inline">\(b \in A\)</span> に対して <span class="math inline">\(b \leq a\)</span> のとき、<span class="math inline">\(a \in A\)</span> は<strong>最大要素</strong>（または<strong>最大元</strong>）である</li>
 </ul>
 </section>
-<section class="level3" id="上界と下界">
+<section id="上界と下界" class="level3">
 <h3 class="anchored" data-anchor-id="上界と下界">上界と下界</h3>
 <p>部分集合 <span class="math inline">\(S \subseteq A\)</span> に対して： - すべての <span class="math inline">\(s \in S\)</span> に対して <span class="math inline">\(s \leq a\)</span> のとき、<span class="math inline">\(a \in A\)</span> は <span class="math inline">\(S\)</span> の<strong>上界</strong>である - すべての <span class="math inline">\(s \in S\)</span> に対して <span class="math inline">\(a \leq s\)</span> のとき、<span class="math inline">\(a \in A\)</span> は <span class="math inline">\(S\)</span> の<strong>下界</strong>である</p>
 </section>
 </section>
-<section class="level2" id="ハッセ図">
+<section id="ハッセ図" class="level2">
 <h2 class="anchored" data-anchor-id="ハッセ図">ハッセ図</h2>
 <p>有限半順序集合は<strong>ハッセ図</strong>を使って視覚化できる： - 要素を頂点として表す - <span class="math inline">\(a &lt; b\)</span> かつ <span class="math inline">\(a &lt; c &lt; b\)</span> となる <span class="math inline">\(c\)</span> が存在しないとき、<span class="math inline">\(a\)</span> から <span class="math inline">\(b\)</span> へ上向きに辺を描く - 自己ループと推移性によって暗示される辺は省略する</p>
 </section>
-<section class="level2" id="特別な種類の半順序">
+<section id="特別な種類の半順序" class="level2">
 <h2 class="anchored" data-anchor-id="特別な種類の半順序">特別な種類の半順序</h2>
-<section class="level3" id="全順序線形順序">
+<section id="全順序線形順序" class="level3">
 <h3 class="anchored" data-anchor-id="全順序線形順序">全順序（線形順序）</h3>
 <p><span class="math inline">\(A\)</span> 上の半順序 <span class="math inline">\(\leq\)</span> が、任意の2つの要素が比較可能なとき、<strong>全順序</strong>である： <span class="math display">\[\forall a, b \in A: (a \leq b \text{ または } b \leq a)\]</span></p>
 </section>
-<section class="level3" id="整列順序">
+<section id="整列順序" class="level3">
 <h3 class="anchored" data-anchor-id="整列順序">整列順序</h3>
 <p><span class="math inline">\(A\)</span> 上の全順序が、<span class="math inline">\(A\)</span> のすべての空でない部分集合が最小要素を持つとき、<strong>整列順序</strong>である。</p>
 </section>
-<section class="level3" id="束">
+<section id="束" class="level3">
 <h3 class="anchored" data-anchor-id="束">束</h3>
 <p>半順序集合 <span class="math inline">\((A, \leq)\)</span> が、任意の要素の組が最小上界（結び）と最大下界（交わり）の両方を持つとき、<strong>束</strong>である。</p>
 </section>
 </section>
-<section class="level2" id="重要な定理">
+<section id="重要な定理" class="level2">
 <h2 class="anchored" data-anchor-id="重要な定理">重要な定理</h2>
-<section class="level3" id="双対原理">
+<section id="双対原理" class="level3">
 <h3 class="anchored" data-anchor-id="双対原理">双対原理</h3>
 <p><span class="math inline">\(\leq\)</span> が <span class="math inline">\(A\)</span> 上の半順序ならば、以下で定義される<strong>双対関係</strong> <span class="math inline">\(\geq\)</span>： <span class="math display">\[a \geq b \iff b \leq a\]</span> も <span class="math inline">\(A\)</span> 上の半順序である。</p>
 </section>
-<section class="level3" id="鎖と反鎖">
+<section id="鎖と反鎖" class="level3">
 <h3 class="anchored" data-anchor-id="鎖と反鎖">鎖と反鎖</h3>
 <ul>
 <li>半順序集合の<strong>鎖</strong>は、すべての要素が対ごとに比較可能な部分集合である</li>
@@ -457,7 +434,7 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section class="level2" id="応用">
+<section id="応用" class="level2">
 <h2 class="anchored" data-anchor-id="応用">応用</h2>
 <ul>
 <li><strong>計算機科学</strong>：依存関係の解決、タスクスケジューリング、型階層</li>
@@ -466,7 +443,7 @@ window.Quarto = {
 <li><strong>組合せ論</strong>：シュペルナーの定理、ディルワースの定理</li>
 </ul>
 </section>
-<section class="level2" id="関連項目">
+<section id="関連項目" class="level2">
 <h2 class="anchored" data-anchor-id="関連項目">関連項目</h2>
 <ul>
 <li><a href="../../../content/ja/logic-set-theory/def-relation.html">関係</a></li>
@@ -476,7 +453,7 @@ window.Quarto = {
 <li><a href="../../../content/ja/logic-set-theory/def-power-set.html">べき集合</a></li>
 </ul>
 </section>
-<section class="level2" id="依存関係グラフ">
+<section id="依存関係グラフ" class="level2">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -489,32 +466,32 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["集合"]:::definition
-    def-equivalence-relation["同値関係"]:::definition
-    def-relation["関係"]:::definition
-    def-divisibility["整除性"]:::definition
-    def-subset["部分集合"]:::definition
-    def-power-set["べき集合"]:::definition
     def-function["関数"]:::definition
+    def-relation["関係"]:::definition
+    def-set["集合"]:::definition
     def-partial-order["半順序"]:::definition
-    def-partial-order --&gt; def-set
-    def-partial-order --&gt; def-function
+    def-subset["部分集合"]:::definition
+    def-equivalence-relation["同値関係"]:::definition
+    def-divisibility["整除性"]:::definition
+    def-power-set["べき集合"]:::definition
+    def-partial-order --&gt; def-subset
+    def-subset --&gt; def-partial-order
     def-relation --&gt; def-partial-order
     def-partial-order --&gt; def-relation
-    def-power-set --&gt; def-partial-order
-    def-subset --&gt; def-partial-order
-    def-partial-order --&gt; def-subset
-    def-partial-order --&gt; def-power-set
-    def-divisibility --&gt; def-partial-order
     def-partial-order --&gt; def-equivalence-relation
+    def-partial-order --&gt; def-power-set
+    def-partial-order --&gt; def-function
+    def-partial-order --&gt; def-set
+    def-power-set --&gt; def-partial-order
+    def-divisibility --&gt; def-partial-order
     class def-partial-order current
-    click def-set "def-set.html" "集合へ"
-    click def-equivalence-relation "def-equivalence-relation.html" "同値関係へ"
-    click def-relation "def-relation.html" "関係へ"
-    click def-divisibility "def-divisibility.html" "整除性へ"
-    click def-subset "def-subset.html" "部分集合へ"
-    click def-power-set "def-power-set.html" "べき集合へ"
     click def-function "def-function.html" "関数へ"
+    click def-relation "def-relation.html" "関係へ"
+    click def-set "def-set.html" "集合へ"
+    click def-subset "def-subset.html" "部分集合へ"
+    click def-equivalence-relation "def-equivalence-relation.html" "同値関係へ"
+    click def-divisibility "def-divisibility.html" "整除性へ"
+    click def-power-set "def-power-set.html" "べき集合へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -522,12 +499,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="インタラクティブ可視化">
+<section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div class="graph-visualization-container" id="graph-viz-def-partial-order-1753765024">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-def-partial-order-1753768889" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -772,12 +750,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-partial-order-1753765024', {
+    createForceGraph(data, 'graph-viz-def-partial-order-1753768889', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-partial-order-1753765024').innerHTML =
+    document.getElementById('graph-viz-def-partial-order-1753768889').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -789,6 +767,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -837,9 +816,13 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/ja/def-partial-order.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1242,16 +1225,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

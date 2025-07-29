@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>剰余環 – Math Knowledge Graph</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'en';
   window.alternateLanguage = 'ja';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,185 +157,149 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">Math Knowledge Graph</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="Search"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Math Knowledge Graph</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/algebra/index.html"> 
 <span class="menu-text">Algebra</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/analysis/index.html"> 
 <span class="menu-text">Analysis</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/topology/index.html"> 
 <span class="menu-text">Topology</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/geometry/index.html"> 
 <span class="menu-text">Geometry</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/category-theory/index.html"> 
 <span class="menu-text">Category Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/combinatorics/index.html"> 
 <span class="menu-text">Combinatorics</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/logic-set-theory/index.html"> 
 <span class="menu-text">Logic &amp; Set Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/number-theory/index.html"> 
 <span class="menu-text">Number Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/probability-statistics/index.html"> 
 <span class="menu-text">Probability &amp; Statistics</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/en/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/en/about.html"> 
 <span class="menu-text">About</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/en/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/en/contributing.html"> 
 <span class="menu-text">Contributing</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../ja/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../ja/index.html"> 
 <span class="menu-text">🌐 日本語</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">On this page</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#演算" href="#演算" id="toc-演算">演算</a></li>
-<li><a class="nav-link" data-scroll-target="#well-definedness" href="#well-definedness" id="toc-well-definedness">Well-definedness</a></li>
-<li><a class="nav-link" data-scroll-target="#性質" href="#性質" id="toc-性質">性質</a></li>
-<li><a class="nav-link" data-scroll-target="#特殊な場合" href="#特殊な場合" id="toc-特殊な場合">特殊な場合</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#極大イデアルによる剰余" href="#極大イデアルによる剰余" id="toc-極大イデアルによる剰余">極大イデアルによる剰余</a></li>
-<li><a class="nav-link" data-scroll-target="#素イデアルによる剰余" href="#素イデアルによる剰余" id="toc-素イデアルによる剰余">素イデアルによる剰余</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#例" href="#例" id="toc-例">例</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#mathbbznmathbbz" href="#mathbbznmathbbz" id="toc-mathbbznmathbbz"><span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span></a></li>
-<li><a class="nav-link" data-scroll-target="#多項式環の剰余" href="#多項式環の剰余" id="toc-多項式環の剰余">多項式環の剰余</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#準同型との関係" href="#準同型との関係" id="toc-準同型との関係">準同型との関係</a></li>
-<li><a class="nav-link" data-scroll-target="#関連概念" href="#関連概念" id="toc-関連概念">関連概念</a></li>
-<li><a class="nav-link" data-scroll-target="#依存関係グラフ" href="#依存関係グラフ" id="toc-依存関係グラフ">依存関係グラフ</a></li>
-<li><a class="nav-link" data-scroll-target="#インタラクティブ可視化" href="#インタラクティブ可視化" id="toc-インタラクティブ可視化">インタラクティブ可視化</a></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#演算" id="toc-演算" class="nav-link active" data-scroll-target="#演算">演算</a></li>
+  <li><a href="#well-definedness" id="toc-well-definedness" class="nav-link" data-scroll-target="#well-definedness">Well-definedness</a></li>
+  <li><a href="#性質" id="toc-性質" class="nav-link" data-scroll-target="#性質">性質</a></li>
+  <li><a href="#特殊な場合" id="toc-特殊な場合" class="nav-link" data-scroll-target="#特殊な場合">特殊な場合</a>
+  <ul class="collapse">
+  <li><a href="#極大イデアルによる剰余" id="toc-極大イデアルによる剰余" class="nav-link" data-scroll-target="#極大イデアルによる剰余">極大イデアルによる剰余</a></li>
+  <li><a href="#素イデアルによる剰余" id="toc-素イデアルによる剰余" class="nav-link" data-scroll-target="#素イデアルによる剰余">素イデアルによる剰余</a></li>
+  </ul></li>
+  <li><a href="#例" id="toc-例" class="nav-link" data-scroll-target="#例">例</a>
+  <ul class="collapse">
+  <li><a href="#mathbbznmathbbz" id="toc-mathbbznmathbbz" class="nav-link" data-scroll-target="#mathbbznmathbbz"><span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span></a></li>
+  <li><a href="#多項式環の剰余" id="toc-多項式環の剰余" class="nav-link" data-scroll-target="#多項式環の剰余">多項式環の剰余</a></li>
+  </ul></li>
+  <li><a href="#準同型との関係" id="toc-準同型との関係" class="nav-link" data-scroll-target="#準同型との関係">準同型との関係</a></li>
+  <li><a href="#関連概念" id="toc-関連概念" class="nav-link" data-scroll-target="#関連概念">関連概念</a></li>
+  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
+  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">剰余環</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
+
+
 <p><span class="math inline">\(R\)</span> を<a href="../../../content/ja/algebra/def-ring.html">環</a>、<span class="math inline">\(I\)</span> を <span class="math inline">\(R\)</span> の<a href="../../../content/ja/algebra/def-ideal.html">イデアル</a>とする。剰余環（factor ring または quotient ring とも呼ばれる）<span class="math inline">\(R/I\)</span> は、次のように定義される集合である：</p>
 <p><span class="math display">\[R/I = \{r + I : r \in R\}\]</span></p>
 <p>ここで <span class="math inline">\(r + I = \{r + i : i \in I\}\)</span> は <span class="math inline">\(I\)</span> による <span class="math inline">\(r\)</span> の<a href="../../../content/ja/algebra/def-coset.html">剰余類</a>である。</p>
-<section class="level2" id="演算">
+<section id="演算" class="level2">
 <h2 class="anchored" data-anchor-id="演算">演算</h2>
 <p>剰余環上の演算は次のように定義される：</p>
 <ol type="1">
@@ -330,12 +307,12 @@ window.Quarto = {
 <li><strong>乗法</strong>: <span class="math inline">\((r + I) \cdot (s + I) = (r \cdot s) + I\)</span></li>
 </ol>
 </section>
-<section class="level2" id="well-definedness">
+<section id="well-definedness" class="level2">
 <h2 class="anchored" data-anchor-id="well-definedness">Well-definedness</h2>
 <p>これらの演算が well-defined である（つまり、代表元の選び方に依存しない）ことは、<span class="math inline">\(I\)</span> が<a href="../../../content/ja/algebra/def-ideal.html">イデアル</a>であることから保証される。</p>
 <p><span class="math inline">\(r + I = r' + I\)</span> かつ <span class="math inline">\(s + I = s' + I\)</span> の場合、<span class="math inline">\(r - r' \in I\)</span> かつ <span class="math inline">\(s - s' \in I\)</span> である。すると： - <span class="math inline">\((r + s) - (r' + s') = (r - r') + (s - s') \in I\)</span>、よって加法は well-defined - <span class="math inline">\(rs - r's' = r(s - s') + (r - r')s' \in I\)</span>（<span class="math inline">\(I\)</span> が両側イデアルであるため）、よって乗法は well-defined</p>
 </section>
-<section class="level2" id="性質">
+<section id="性質" class="level2">
 <h2 class="anchored" data-anchor-id="性質">性質</h2>
 <ol type="1">
 <li><strong>環構造</strong>: <span class="math inline">\(R/I\)</span> は<a href="../../../content/ja/algebra/def-ring.html">環</a>の公理をすべて満たす</li>
@@ -344,35 +321,35 @@ window.Quarto = {
 <li><strong>自然な準同型</strong>: 写像 <span class="math inline">\(\pi: R \to R/I\)</span>（<span class="math inline">\(\pi(r) = r + I\)</span> で定義）は全射<a href="../../../content/ja/algebra/def-homomorphism.html">環準同型</a>である</li>
 </ol>
 </section>
-<section class="level2" id="特殊な場合">
+<section id="特殊な場合" class="level2">
 <h2 class="anchored" data-anchor-id="特殊な場合">特殊な場合</h2>
-<section class="level3" id="極大イデアルによる剰余">
+<section id="極大イデアルによる剰余" class="level3">
 <h3 class="anchored" data-anchor-id="極大イデアルによる剰余">極大イデアルによる剰余</h3>
 <p><span class="math inline">\(M\)</span> が<a href="../../../content/ja/algebra/def-maximal-ideal.html">極大イデアル</a>の場合、<span class="math inline">\(R/M\)</span> は<a href="../../../content/ja/algebra/def-field.html">体</a>である。</p>
 </section>
-<section class="level3" id="素イデアルによる剰余">
+<section id="素イデアルによる剰余" class="level3">
 <h3 class="anchored" data-anchor-id="素イデアルによる剰余">素イデアルによる剰余</h3>
 <p><span class="math inline">\(P\)</span> が<a href="../../../content/ja/algebra/def-prime-ideal.html">素イデアル</a>の場合、<span class="math inline">\(R/P\)</span> は<a href="../../../content/ja/algebra/def-integral-domain.html">整域</a>である。</p>
 </section>
 </section>
-<section class="level2" id="例">
+<section id="例" class="level2">
 <h2 class="anchored" data-anchor-id="例">例</h2>
-<section class="level3" id="mathbbznmathbbz">
+<section id="mathbbznmathbbz" class="level3">
 <h3 class="anchored" data-anchor-id="mathbbznmathbbz"><span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span></h3>
 <p>整数環 <span class="math inline">\(\mathbb{Z}\)</span> を <span class="math inline">\(n\)</span> で生成される主イデアル <span class="math inline">\(n\mathbb{Z}\)</span> で割った剰余環は、法 <span class="math inline">\(n\)</span> での整数環である。詳細は<a href="../../../content/ja/algebra/ex-quotient-integers-mod-n.html">例：<span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span></a>を参照。</p>
 </section>
-<section class="level3" id="多項式環の剰余">
+<section id="多項式環の剰余" class="level3">
 <h3 class="anchored" data-anchor-id="多項式環の剰余">多項式環の剰余</h3>
 <p><span class="math inline">\(F\)</span> を<a href="../../../content/ja/algebra/def-field.html">体</a>、<span class="math inline">\(F[x]\)</span> を <span class="math inline">\(F\)</span> 上の<a href="../../../content/ja/algebra/def-polynomial-ring.html">多項式環</a>とする。<span class="math inline">\(p(x) \in F[x]\)</span> が既約多項式の場合、<span class="math inline">\(F[x]/\langle p(x) \rangle\)</span> は体である。例えば： - <span class="math inline">\(\mathbb{R}[x]/\langle x^2 + 1 \rangle \cong \mathbb{C}\)</span>（複素数体） - <span class="math inline">\(\mathbb{F}_p[x]/\langle f(x) \rangle\)</span>（<span class="math inline">\(f(x)\)</span> が次数 <span class="math inline">\(n\)</span> の既約多項式）は位数 <span class="math inline">\(p^n\)</span> の<a href="../../../content/ja/algebra/ex-finite-field.html">有限体</a>を与える</p>
 </section>
 </section>
-<section class="level2" id="準同型との関係">
+<section id="準同型との関係" class="level2">
 <h2 class="anchored" data-anchor-id="準同型との関係">準同型との関係</h2>
 <p><a href="../../../content/ja/algebra/thm-first-isomorphism.html">環準同型の第一同型定理</a>により、任意の全射環準同型 <span class="math inline">\(\phi: R \to S\)</span> に対して：</p>
 <p><span class="math display">\[R/\ker(\phi) \cong S\]</span></p>
 <p>ここで <span class="math inline">\(\ker(\phi)\)</span> は <span class="math inline">\(\phi\)</span> の<a href="../../../content/ja/algebra/def-kernel.html">核</a>である。これは、すべての準同型像が適切な剰余環として実現できることを示している。</p>
 </section>
-<section class="level2" id="関連概念">
+<section id="関連概念" class="level2">
 <h2 class="anchored" data-anchor-id="関連概念">関連概念</h2>
 <ul>
 <li><a href="../../../content/ja/algebra/def-quotient-group.html">剰余群</a>：剰余環の群論的類似</li>
@@ -380,7 +357,7 @@ window.Quarto = {
 <li><a href="../../../content/ja/logic-set-theory/def-equivalence-relation.html">同値関係</a>：剰余類が形成する構造</li>
 </ul>
 </section>
-<section class="level2" id="依存関係グラフ">
+<section id="依存関係グラフ" class="level2">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -393,51 +370,51 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-equivalence-relation["同値関係"]:::definition
-    def-integral-domain["整域"]:::definition
-    def-homomorphism["群準同型"]:::definition
-    def-ring-homomorphism["環準同型"]:::definition
-    ex-quotient-integers-mod-n["整数の n による剰余"]:::example
-    def-kernel["核"]:::definition
     def-ring["環"]:::definition
-    def-subring["部分環"]:::definition
-    def-maximal-ideal["極大イデアル"]:::definition
-    ex-finite-field["有限体"]:::example
-    def-quotient-group["商群"]:::definition
-    def-coset["剰余類"]:::definition
-    def-ideal["イデアル"]:::definition
     def-quotient-ring["剰余環"]:::definition
     def-prime-ideal["素イデアル"]:::definition
-    def-quotient-ring --&gt; def-ring
-    def-subring --&gt; def-quotient-ring
-    def-quotient-group --&gt; def-quotient-ring
-    def-quotient-ring --&gt; def-equivalence-relation
-    def-quotient-ring --&gt; def-integral-domain
-    def-kernel --&gt; def-quotient-ring
+    def-kernel["核"]:::definition
+    def-subring["部分環"]:::definition
+    def-equivalence-relation["同値関係"]:::definition
+    def-quotient-group["商群"]:::definition
+    ex-quotient-integers-mod-n["整数の n による剰余"]:::example
+    def-integral-domain["整域"]:::definition
+    def-maximal-ideal["極大イデアル"]:::definition
+    def-coset["剰余類"]:::definition
+    ex-finite-field["有限体"]:::example
+    def-homomorphism["群準同型"]:::definition
+    def-ideal["イデアル"]:::definition
+    def-ring-homomorphism["環準同型"]:::definition
     def-quotient-ring --&gt; def-coset
-    def-quotient-ring --&gt; def-prime-ideal
-    def-quotient-ring --&gt; def-ideal
-    def-prime-ideal --&gt; def-quotient-ring
-    def-maximal-ideal --&gt; def-quotient-ring
     ex-quotient-integers-mod-n --&gt; def-quotient-ring
+    def-prime-ideal --&gt; def-quotient-ring
     def-quotient-ring --&gt; def-ring-homomorphism
     ex-finite-field --&gt; def-quotient-ring
+    def-quotient-ring --&gt; def-prime-ideal
+    def-quotient-ring --&gt; def-ring
+    def-maximal-ideal --&gt; def-quotient-ring
+    def-kernel --&gt; def-quotient-ring
+    def-quotient-group --&gt; def-quotient-ring
+    def-quotient-ring --&gt; def-equivalence-relation
+    def-subring --&gt; def-quotient-ring
     def-quotient-ring --&gt; def-homomorphism
+    def-quotient-ring --&gt; def-integral-domain
+    def-quotient-ring --&gt; def-ideal
     class def-quotient-ring current
-    click def-equivalence-relation "def-equivalence-relation.html" "同値関係へ"
-    click def-integral-domain "def-integral-domain.html" "整域へ"
-    click def-homomorphism "def-homomorphism.html" "群準同型へ"
-    click def-ring-homomorphism "def-ring-homomorphism.html" "環準同型へ"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余へ"
-    click def-kernel "def-kernel.html" "核へ"
     click def-ring "def-ring.html" "環へ"
-    click def-subring "def-subring.html" "部分環へ"
-    click def-maximal-ideal "def-maximal-ideal.html" "極大イデアルへ"
-    click ex-finite-field "ex-finite-field.html" "有限体へ"
-    click def-quotient-group "def-quotient-group.html" "商群へ"
-    click def-coset "def-coset.html" "剰余類へ"
-    click def-ideal "def-ideal.html" "イデアルへ"
     click def-prime-ideal "def-prime-ideal.html" "素イデアルへ"
+    click def-kernel "def-kernel.html" "核へ"
+    click def-subring "def-subring.html" "部分環へ"
+    click def-equivalence-relation "def-equivalence-relation.html" "同値関係へ"
+    click def-quotient-group "def-quotient-group.html" "商群へ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余へ"
+    click def-integral-domain "def-integral-domain.html" "整域へ"
+    click def-maximal-ideal "def-maximal-ideal.html" "極大イデアルへ"
+    click def-coset "def-coset.html" "剰余類へ"
+    click ex-finite-field "ex-finite-field.html" "有限体へ"
+    click def-homomorphism "def-homomorphism.html" "群準同型へ"
+    click def-ideal "def-ideal.html" "イデアルへ"
+    click def-ring-homomorphism "def-ring-homomorphism.html" "環準同型へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -445,12 +422,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="インタラクティブ可視化">
+<section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div class="graph-visualization-container" id="graph-viz-def-quotient-ring-1753764881">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-def-quotient-ring-1753768745" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -695,12 +673,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-quotient-ring-1753764881', {
+    createForceGraph(data, 'graph-viz-def-quotient-ring-1753768745', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-quotient-ring-1753764881').innerHTML =
+    document.getElementById('graph-viz-def-quotient-ring-1753768745').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -712,6 +690,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -760,8 +739,12 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/ja/def-quotient-ring.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
+
+
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1164,16 +1147,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>Mathematics Knowledge Graph Wiki - Built with Quarto and RDF</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>Integers Modulo n – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,225 +157,189 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">数学ナレッジグラフ</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="サーチ"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">数学ナレッジグラフ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="サーチ"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index-ja.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index-ja.html"> 
 <span class="menu-text">ホーム</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
 <span class="menu-text">代数学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
 <span class="menu-text">解析学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
 <span class="menu-text">位相空間論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
 <span class="menu-text">幾何学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
 <span class="menu-text">圏論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
 <span class="menu-text">組合せ論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
 <span class="menu-text">論理学・集合論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
 <span class="menu-text">数論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
 <span class="menu-text">確率統計</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/about.html"> 
 <span class="menu-text">概要</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
 <span class="menu-text">貢献</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../en/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../en/index.html"> 
 <span class="menu-text">🌐 English</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">目次</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#ex-quotient-integers-mod-n" href="#ex-quotient-integers-mod-n" id="toc-ex-quotient-integers-mod-n">Integers Modulo n</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#construction" href="#construction" id="toc-construction">Construction</a></li>
-<li><a class="nav-link" data-scroll-target="#concrete-example-mathbbz6mathbbz" href="#concrete-example-mathbbz6mathbbz" id="toc-concrete-example-mathbbz6mathbbz">Concrete Example: <span class="math inline">\(\mathbb{Z}/6\mathbb{Z}\)</span></a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#the-cosets" href="#the-cosets" id="toc-the-cosets">The Cosets</a></li>
-<li><a class="nav-link" data-scroll-target="#group-operation" href="#group-operation" id="toc-group-operation">Group Operation</a></li>
-<li><a class="nav-link" data-scroll-target="#cayley-table" href="#cayley-table" id="toc-cayley-table">Cayley Table</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#properties" href="#properties" id="toc-properties">Properties</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#cyclic-structure" href="#cyclic-structure" id="toc-cyclic-structure">Cyclic Structure</a></li>
-<li><a class="nav-link" data-scroll-target="#isomorphism" href="#isomorphism" id="toc-isomorphism">Isomorphism</a></li>
-<li><a class="nav-link" data-scroll-target="#subgroups" href="#subgroups" id="toc-subgroups">Subgroups</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#applications" href="#applications" id="toc-applications">Applications</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#modular-arithmetic" href="#modular-arithmetic" id="toc-modular-arithmetic">Modular Arithmetic</a></li>
-<li><a class="nav-link" data-scroll-target="#number-theory" href="#number-theory" id="toc-number-theory">Number Theory</a></li>
-<li><a class="nav-link" data-scroll-target="#direct-products" href="#direct-products" id="toc-direct-products">Direct Products</a></li>
-<li><a class="nav-link" data-scroll-target="#cryptography" href="#cryptography" id="toc-cryptography">Cryptography</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#generalizations" href="#generalizations" id="toc-generalizations">Generalizations</a></li>
-<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
-<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#ex-quotient-integers-mod-n" id="toc-ex-quotient-integers-mod-n" class="nav-link active" data-scroll-target="#ex-quotient-integers-mod-n">Integers Modulo n</a>
+  <ul class="collapse">
+  <li><a href="#construction" id="toc-construction" class="nav-link" data-scroll-target="#construction">Construction</a></li>
+  <li><a href="#concrete-example-mathbbz6mathbbz" id="toc-concrete-example-mathbbz6mathbbz" class="nav-link" data-scroll-target="#concrete-example-mathbbz6mathbbz">Concrete Example: <span class="math inline">\(\mathbb{Z}/6\mathbb{Z}\)</span></a>
+  <ul class="collapse">
+  <li><a href="#the-cosets" id="toc-the-cosets" class="nav-link" data-scroll-target="#the-cosets">The Cosets</a></li>
+  <li><a href="#group-operation" id="toc-group-operation" class="nav-link" data-scroll-target="#group-operation">Group Operation</a></li>
+  <li><a href="#cayley-table" id="toc-cayley-table" class="nav-link" data-scroll-target="#cayley-table">Cayley Table</a></li>
+  </ul></li>
+  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a>
+  <ul class="collapse">
+  <li><a href="#cyclic-structure" id="toc-cyclic-structure" class="nav-link" data-scroll-target="#cyclic-structure">Cyclic Structure</a></li>
+  <li><a href="#isomorphism" id="toc-isomorphism" class="nav-link" data-scroll-target="#isomorphism">Isomorphism</a></li>
+  <li><a href="#subgroups" id="toc-subgroups" class="nav-link" data-scroll-target="#subgroups">Subgroups</a></li>
+  </ul></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a>
+  <ul class="collapse">
+  <li><a href="#modular-arithmetic" id="toc-modular-arithmetic" class="nav-link" data-scroll-target="#modular-arithmetic">Modular Arithmetic</a></li>
+  <li><a href="#number-theory" id="toc-number-theory" class="nav-link" data-scroll-target="#number-theory">Number Theory</a></li>
+  <li><a href="#direct-products" id="toc-direct-products" class="nav-link" data-scroll-target="#direct-products">Direct Products</a></li>
+  <li><a href="#cryptography" id="toc-cryptography" class="nav-link" data-scroll-target="#cryptography">Cryptography</a></li>
+  </ul></li>
+  <li><a href="#generalizations" id="toc-generalizations" class="nav-link" data-scroll-target="#generalizations">Generalizations</a></li>
+  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
+  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Integers Modulo n</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="ex-quotient-integers-mod-n">
+
+
+<section id="ex-quotient-integers-mod-n" class="level1">
 <h1>Integers Modulo n</h1>
 <p>The <a href="../../../content/en/algebra/def-quotient-group.html">quotient group</a> <span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> provides a fundamental example of how quotient groups simplify algebraic structures.</p>
-<section class="level2" id="construction">
+<section id="construction" class="level2">
 <h2 class="anchored" data-anchor-id="construction">Construction</h2>
 <p>Consider the group <span class="math inline">\((\mathbb{Z}, +)\)</span> of <a href="../../../content/en/algebra/ex-integers-addition.html">integers under addition</a> and the subgroup <span class="math inline">\(n\mathbb{Z} = \{..., -2n, -n, 0, n, 2n, ...\}\)</span> of multiples of <span class="math inline">\(n\)</span>.</p>
 <p>Since <span class="math inline">\((\mathbb{Z}, +)\)</span> is <a href="../../../content/en/algebra/def-abelian-group.html">abelian</a>, every subgroup is <a href="../../../content/en/algebra/def-normal-subgroup.html">normal</a>, so we can form the quotient group:</p>
 <p><span class="math display">\[\mathbb{Z}/n\mathbb{Z} = \{k + n\mathbb{Z} : k \in \mathbb{Z}\}\]</span></p>
 </section>
-<section class="level2" id="concrete-example-mathbbz6mathbbz">
+<section id="concrete-example-mathbbz6mathbbz" class="level2">
 <h2 class="anchored" data-anchor-id="concrete-example-mathbbz6mathbbz">Concrete Example: <span class="math inline">\(\mathbb{Z}/6\mathbb{Z}\)</span></h2>
 <p>Let’s work with <span class="math inline">\(n = 6\)</span>. The subgroup is <span class="math inline">\(6\mathbb{Z} = \{..., -12, -6, 0, 6, 12, ...\}\)</span>.</p>
-<section class="level3" id="the-cosets">
+<section id="the-cosets" class="level3">
 <h3 class="anchored" data-anchor-id="the-cosets">The Cosets</h3>
 <p>See <a href="../../../content/en/algebra/def-coset.html">Coset</a> for more details on <a href="../../../content/en/algebra/def-coset.html">cosets</a>.</p>
 <p>The distinct <a href="../../../content/en/algebra/def-coset.html">cosets</a> are: - <span class="math inline">\(0 + 6\mathbb{Z} = \{..., -12, -6, 0, 6, 12, ...\}\)</span> - <span class="math inline">\(1 + 6\mathbb{Z} = \{..., -11, -5, 1, 7, 13, ...\}\)</span> - <span class="math inline">\(2 + 6\mathbb{Z} = \{..., -10, -4, 2, 8, 14, ...\}\)</span> - <span class="math inline">\(3 + 6\mathbb{Z} = \{..., -9, -3, 3, 9, 15, ...\}\)</span> - <span class="math inline">\(4 + 6\mathbb{Z} = \{..., -8, -2, 4, 10, 16, ...\}\)</span> - <span class="math inline">\(5 + 6\mathbb{Z} = \{..., -7, -1, 5, 11, 17, ...\}\)</span></p>
 <p>Note that <span class="math inline">\(6 + 6\mathbb{Z} = 0 + 6\mathbb{Z}\)</span>, <span class="math inline">\(7 + 6\mathbb{Z} = 1 + 6\mathbb{Z}\)</span>, and so on.</p>
 </section>
-<section class="level3" id="group-operation">
+<section id="group-operation" class="level3">
 <h3 class="anchored" data-anchor-id="group-operation">Group Operation</h3>
 <p>The operation on <span class="math inline">\(\mathbb{Z}/6\mathbb{Z}\)</span> is: <span class="math display">\[(a + 6\mathbb{Z}) + (b + 6\mathbb{Z}) = (a + b) + 6\mathbb{Z}\]</span></p>
 <p>For example: - <span class="math inline">\((2 + 6\mathbb{Z}) + (3 + 6\mathbb{Z}) = 5 + 6\mathbb{Z}\)</span> - <span class="math inline">\((4 + 6\mathbb{Z}) + (5 + 6\mathbb{Z}) = 9 + 6\mathbb{Z} = 3 + 6\mathbb{Z}\)</span></p>
 </section>
-<section class="level3" id="cayley-table">
+<section id="cayley-table" class="level3">
 <h3 class="anchored" data-anchor-id="cayley-table">Cayley Table</h3>
 <p>We often write <span class="math inline">\(\bar{k}\)</span> instead of <span class="math inline">\(k + 6\mathbb{Z}\)</span> for brevity:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 4%"/>
-<col style="width: 15%"/>
-<col style="width: 15%"/>
-<col style="width: 15%"/>
-<col style="width: 15%"/>
-<col style="width: 15%"/>
-<col style="width: 15%"/>
+<col style="width: 4%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -434,28 +411,28 @@ window.Quarto = {
 </table>
 </section>
 </section>
-<section class="level2" id="properties">
+<section id="properties" class="level2">
 <h2 class="anchored" data-anchor-id="properties">Properties</h2>
-<section class="level3" id="cyclic-structure">
+<section id="cyclic-structure" class="level3">
 <h3 class="anchored" data-anchor-id="cyclic-structure">Cyclic Structure</h3>
 <p><span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> is a <a href="../../../content/en/algebra/def-cyclic-group.html">cyclic group</a> of <a href="../../../content/en/algebra/def-order.html">order</a> <span class="math inline">\(n\)</span>: - It is generated by <span class="math inline">\(\bar{1} = 1 + n\mathbb{Z}\)</span> - Every element can be written as <span class="math inline">\(k \cdot \bar{1}\)</span> for some <span class="math inline">\(k\)</span></p>
 </section>
-<section class="level3" id="isomorphism">
+<section id="isomorphism" class="level3">
 <h3 class="anchored" data-anchor-id="isomorphism"><a href="../../../content/en/algebra/def-isomorphism.html">Isomorphism</a></h3>
 <p><span class="math inline">\(\mathbb{Z}/n\mathbb{Z} \cong C_n\)</span>, the <a href="../../../content/en/algebra/def-cyclic-group.html">cyclic group</a> of <a href="../../../content/en/algebra/def-order.html">order</a> <span class="math inline">\(n\)</span>.</p>
 </section>
-<section class="level3" id="subgroups">
+<section id="subgroups" class="level3">
 <h3 class="anchored" data-anchor-id="subgroups">Subgroups</h3>
 <p>The subgroups of <span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> correspond to divisors of <span class="math inline">\(n\)</span>. For <span class="math inline">\(\mathbb{Z}/6\mathbb{Z}\)</span>: - <a href="../../../content/en/algebra/def-order.html">Order</a> 1: <span class="math inline">\(\{\bar{0}\}\)</span> - <a href="../../../content/en/algebra/def-order.html">Order</a> 2: <span class="math inline">\(\{\bar{0}, \bar{3}\}\)</span> - <a href="../../../content/en/algebra/def-order.html">Order</a> 3: <span class="math inline">\(\{\bar{0}, \bar{2}, \bar{4}\}\)</span> - <a href="../../../content/en/algebra/def-order.html">Order</a> 6: <span class="math inline">\(\mathbb{Z}/6\mathbb{Z}\)</span> itself</p>
 </section>
 </section>
-<section class="level2" id="applications">
+<section id="applications" class="level2">
 <h2 class="anchored" data-anchor-id="applications">Applications</h2>
-<section class="level3" id="modular-arithmetic">
+<section id="modular-arithmetic" class="level3">
 <h3 class="anchored" data-anchor-id="modular-arithmetic">Modular Arithmetic</h3>
 <p><span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> is the mathematical foundation for modular arithmetic: - Clock arithmetic (hours: <span class="math inline">\(\mathbb{Z}/12\mathbb{Z}\)</span>) - Days of the week (<span class="math inline">\(\mathbb{Z}/7\mathbb{Z}\)</span>) - Computer science: hash functions, checksums</p>
 </section>
-<section class="level3" id="number-theory">
+<section id="number-theory" class="level3">
 <h3 class="anchored" data-anchor-id="number-theory">Number Theory</h3>
 <ul>
 <li>Studying <a href="../../../content/en/number-theory/def-congruence.html">congruences</a>: <span class="math inline">\(a \equiv b \pmod{n}\)</span> means <span class="math inline">\(a + n\mathbb{Z} = b + n\mathbb{Z}\)</span></li>
@@ -463,13 +440,13 @@ window.Quarto = {
 <li><a href="../../../content/en/number-theory/thm-chinese-remainder.html">Chinese remainder theorem</a></li>
 </ul>
 </section>
-<section class="level3" id="direct-products">
+<section id="direct-products" class="level3">
 <h3 class="anchored" data-anchor-id="direct-products">Direct Products</h3>
 <p>When <span class="math inline">\(\gcd(m,n) = 1\)</span>, there is an <a href="../../../content/en/algebra/def-isomorphism.html">isomorphism</a>: <span class="math display">\[\mathbb{Z}/mn\mathbb{Z} \cong \mathbb{Z}/m\mathbb{Z} \times \mathbb{Z}/n\mathbb{Z}\]</span></p>
 <p>This is a special case of the <a href="../../../content/en/number-theory/thm-chinese-remainder.html">Chinese Remainder Theorem</a>. For example: - <span class="math inline">\(\mathbb{Z}/6\mathbb{Z} \cong \mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/3\mathbb{Z}\)</span> - <span class="math inline">\(\mathbb{Z}/15\mathbb{Z} \cong \mathbb{Z}/3\mathbb{Z} \times \mathbb{Z}/5\mathbb{Z}\)</span></p>
 <p>See <a href="../../../content/en/algebra/def-direct-product.html">Direct Product of Groups</a> for more details.</p>
 </section>
-<section class="level3" id="cryptography">
+<section id="cryptography" class="level3">
 <h3 class="anchored" data-anchor-id="cryptography">Cryptography</h3>
 <ul>
 <li>RSA encryption relies on properties of <span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> where <span class="math inline">\(n = pq\)</span></li>
@@ -477,11 +454,11 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section class="level2" id="generalizations">
+<section id="generalizations" class="level2">
 <h2 class="anchored" data-anchor-id="generalizations">Generalizations</h2>
 <p>The construction <span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> generalizes to: - <a href="../../../content/en/algebra/def-quotient-ring.html">Quotient rings</a>: <span class="math inline">\(\mathbb{Z}[x]/(p(x))\)</span> for <a href="../../../content/en/algebra/def-polynomial-ring.html">polynomial rings</a> - Quotients of other algebraic structures - Quotient spaces in topology</p>
 </section>
-<section class="level2" id="dependency-graph">
+<section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -494,59 +471,59 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-isomorphism["Isomorphism"]:::definition
-    def-congruence["Congruence (Modular Arithmetic)"]:::definition
-    def-group["Group"]:::definition
     def-abelian-group["Abelian Group"]:::definition
-    def-direct-product["Direct Product of Groups"]:::definition
-    ex-integers-addition["Integers under Addition"]:::example
-    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
+    thm-euler["Euler's Theorem"]:::theorem
+    def-polynomial-ring["Polynomial Ring"]:::definition
+    def-quotient-ring["Quotient Ring"]:::definition
     thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
     def-cyclic-group["Cyclic Group"]:::definition
-    ex-finite-field["Finite Field"]:::example
+    def-congruence["Congruence (Modular Arithmetic)"]:::definition
+    def-group["Group"]:::definition
+    def-isomorphism["Isomorphism"]:::definition
     def-quotient-group["Quotient Group"]:::definition
-    def-coset["Coset"]:::definition
-    def-polynomial-ring["Polynomial Ring"]:::definition
-    thm-euler["Euler's Theorem"]:::theorem
-    def-quotient-ring["Quotient Ring"]:::definition
-    def-normal-subgroup["Normal Subgroup"]:::definition
+    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
+    def-direct-product["Direct Product of Groups"]:::definition
     def-order["Order"]:::definition
+    def-normal-subgroup["Normal Subgroup"]:::definition
+    def-coset["Coset"]:::definition
+    ex-finite-field["Finite Field"]:::example
+    ex-integers-addition["Integers under Addition"]:::example
     ex-quotient-integers-mod-n --&gt; ex-integers-addition
-    ex-quotient-integers-mod-n --&gt; def-normal-subgroup
-    ex-quotient-integers-mod-n --&gt; def-congruence
-    ex-quotient-integers-mod-n --&gt; def-isomorphism
     ex-quotient-integers-mod-n --&gt; def-group
-    ex-quotient-integers-mod-n --&gt; def-cyclic-group
-    thm-euclidean-algorithm --&gt; ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --&gt; def-congruence
+    ex-quotient-integers-mod-n --&gt; def-normal-subgroup
     ex-finite-field --&gt; ex-quotient-integers-mod-n
-    thm-euler --&gt; ex-quotient-integers-mod-n
-    ex-quotient-integers-mod-n --&gt; def-direct-product
-    ex-quotient-integers-mod-n --&gt; def-polynomial-ring
     ex-quotient-integers-mod-n --&gt; def-quotient-group
-    def-coset --&gt; ex-quotient-integers-mod-n
-    ex-quotient-integers-mod-n --&gt; def-coset
-    ex-quotient-integers-mod-n --&gt; def-abelian-group
-    ex-quotient-integers-mod-n --&gt; def-order
-    def-cyclic-group --&gt; ex-quotient-integers-mod-n
+    thm-euler --&gt; ex-quotient-integers-mod-n
     def-congruence --&gt; ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --&gt; def-isomorphism
+    ex-quotient-integers-mod-n --&gt; def-cyclic-group
+    ex-quotient-integers-mod-n --&gt; def-direct-product
+    ex-quotient-integers-mod-n --&gt; def-coset
     ex-quotient-integers-mod-n --&gt; def-quotient-ring
+    def-cyclic-group --&gt; ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --&gt; def-order
+    ex-quotient-integers-mod-n --&gt; def-abelian-group
+    thm-euclidean-algorithm --&gt; ex-quotient-integers-mod-n
+    def-coset --&gt; ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --&gt; def-polynomial-ring
     class ex-quotient-integers-mod-n current
-    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism"
-    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic)"
-    click def-group "def-group.html" "Go to Group"
     click def-abelian-group "def-abelian-group.html" "Go to Abelian Group"
-    click def-direct-product "def-direct-product.html" "Go to Direct Product of Groups"
-    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition"
+    click thm-euler "thm-euler.html" "Go to Euler's Theorem"
+    click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring"
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring"
     click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Go to Euclidean Algorithm"
     click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group"
-    click ex-finite-field "ex-finite-field.html" "Go to Finite Field"
+    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic)"
+    click def-group "def-group.html" "Go to Group"
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism"
     click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
-    click def-coset "def-coset.html" "Go to Coset"
-    click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring"
-    click thm-euler "thm-euler.html" "Go to Euler's Theorem"
-    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
+    click def-direct-product "def-direct-product.html" "Go to Direct Product of Groups"
     click def-order "def-order.html" "Go to Order"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
+    click def-coset "def-coset.html" "Go to Coset"
+    click ex-finite-field "ex-finite-field.html" "Go to Finite Field"
+    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -554,12 +531,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="interactive-visualization">
+<section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div class="graph-visualization-container" id="graph-viz-ex-quotient-integers-mod-n-1753765055">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-ex-quotient-integers-mod-n-1753768919" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -804,12 +782,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-quotient-integers-mod-n-1753765055', {
+    createForceGraph(data, 'graph-viz-ex-quotient-integers-mod-n-1753768919', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-quotient-integers-mod-n-1753765055').innerHTML =
+    document.getElementById('graph-viz-ex-quotient-integers-mod-n-1753768919').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -821,6 +799,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -869,9 +848,13 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/ex-quotient-integers-mod-n.html" target="_blank">full interactive version</a></p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1274,16 +1257,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

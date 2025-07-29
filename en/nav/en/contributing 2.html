@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>Contributing to Math Knowledge Graph – Math Knowledge Graph</title>
 <style>
 code{white-space: pre-wrap;}
@@ -53,25 +56,27 @@ div.sourceCode
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
+
+
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../" name="quarto:offset"/>
-<link href="../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.ico" rel="icon">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -99,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'en';
   window.alternateLanguage = 'ja';
@@ -146,204 +151,175 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<link href="../../styles.css" rel="stylesheet"/>
-<link href="../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../index.html">
-<span class="navbar-title">Math Knowledge Graph</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="Search"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Math Knowledge Graph</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../index.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../content/en/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../content/en/algebra/index.html"> 
 <span class="menu-text">Algebra</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../content/en/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../content/en/analysis/index.html"> 
 <span class="menu-text">Analysis</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../content/en/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../content/en/topology/index.html"> 
 <span class="menu-text">Topology</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../content/en/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../content/en/geometry/index.html"> 
 <span class="menu-text">Geometry</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../content/en/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../content/en/category-theory/index.html"> 
 <span class="menu-text">Category Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../content/en/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../content/en/combinatorics/index.html"> 
 <span class="menu-text">Combinatorics</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../content/en/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../content/en/logic-set-theory/index.html"> 
 <span class="menu-text">Logic &amp; Set Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../content/en/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../content/en/number-theory/index.html"> 
 <span class="menu-text">Number Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../content/en/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../content/en/probability-statistics/index.html"> 
 <span class="menu-text">Probability &amp; Statistics</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../nav/en/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../nav/en/about.html"> 
 <span class="menu-text">About</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../nav/en/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../nav/en/contributing.html"> 
 <span class="menu-text">Contributing</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../ja/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../ja/index.html"> 
 <span class="menu-text">🌐 日本語</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">On this page</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#contributing-to-the-mathematics-knowledge-graph-wiki" href="#contributing-to-the-mathematics-knowledge-graph-wiki" id="toc-contributing-to-the-mathematics-knowledge-graph-wiki">Contributing to the Mathematics Knowledge Graph Wiki</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#how-to-contribute" href="#how-to-contribute" id="toc-how-to-contribute">🎯 How to Contribute</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#types-of-contributions" href="#types-of-contributions" id="toc-types-of-contributions">Types of Contributions</a></li>
-<li><a class="nav-link" data-scroll-target="#getting-started" href="#getting-started" id="toc-getting-started">Getting Started</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#content-guidelines" href="#content-guidelines" id="toc-content-guidelines">📝 Content Guidelines</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#file-structure" href="#file-structure" id="toc-file-structure">File Structure</a></li>
-<li><a class="nav-link" data-scroll-target="#required-metadata" href="#required-metadata" id="toc-required-metadata">Required Metadata</a></li>
-<li><a class="nav-link" data-scroll-target="#content-format" href="#content-format" id="toc-content-format">Content Format</a></li>
-<li><a class="nav-link" data-scroll-target="#cross-reference-guidelines" href="#cross-reference-guidelines" id="toc-cross-reference-guidelines">Cross-Reference Guidelines</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#technical-guidelines" href="#technical-guidelines" id="toc-technical-guidelines">🔧 Technical Guidelines</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#building-the-knowledge-graph" href="#building-the-knowledge-graph" id="toc-building-the-knowledge-graph">Building the Knowledge Graph</a></li>
-<li><a class="nav-link" data-scroll-target="#code-quality" href="#code-quality" id="toc-code-quality">Code Quality</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#automated-checks" href="#automated-checks" id="toc-automated-checks">🤖 Automated Checks</a></li>
-<li><a class="nav-link" data-scroll-target="#mathematical-domains" href="#mathematical-domains" id="toc-mathematical-domains">📊 Mathematical Domains</a></li>
-<li><a class="nav-link" data-scroll-target="#submission-process" href="#submission-process" id="toc-submission-process">🚀 Submission Process</a></li>
-<li><a class="nav-link" data-scroll-target="#style-guide" href="#style-guide" id="toc-style-guide">🎓 Style Guide</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#mathematical-notation" href="#mathematical-notation" id="toc-mathematical-notation">Mathematical Notation</a></li>
-<li><a class="nav-link" data-scroll-target="#writing-style" href="#writing-style" id="toc-writing-style">Writing Style</a></li>
-<li><a class="nav-link" data-scroll-target="#theorem-environments" href="#theorem-environments" id="toc-theorem-environments">Theorem Environments</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#community-guidelines" href="#community-guidelines" id="toc-community-guidelines">🤝 Community Guidelines</a></li>
-<li><a class="nav-link" data-scroll-target="#resources" href="#resources" id="toc-resources">📚 Resources</a></li>
-<li><a class="nav-link" data-scroll-target="#getting-help" href="#getting-help" id="toc-getting-help">❓ Getting Help</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#contributing-to-the-mathematics-knowledge-graph-wiki" id="toc-contributing-to-the-mathematics-knowledge-graph-wiki" class="nav-link active" data-scroll-target="#contributing-to-the-mathematics-knowledge-graph-wiki">Contributing to the Mathematics Knowledge Graph Wiki</a>
+  <ul class="collapse">
+  <li><a href="#how-to-contribute" id="toc-how-to-contribute" class="nav-link" data-scroll-target="#how-to-contribute">🎯 How to Contribute</a>
+  <ul class="collapse">
+  <li><a href="#types-of-contributions" id="toc-types-of-contributions" class="nav-link" data-scroll-target="#types-of-contributions">Types of Contributions</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a></li>
+  </ul></li>
+  <li><a href="#content-guidelines" id="toc-content-guidelines" class="nav-link" data-scroll-target="#content-guidelines">📝 Content Guidelines</a>
+  <ul class="collapse">
+  <li><a href="#file-structure" id="toc-file-structure" class="nav-link" data-scroll-target="#file-structure">File Structure</a></li>
+  <li><a href="#required-metadata" id="toc-required-metadata" class="nav-link" data-scroll-target="#required-metadata">Required Metadata</a></li>
+  <li><a href="#content-format" id="toc-content-format" class="nav-link" data-scroll-target="#content-format">Content Format</a></li>
+  <li><a href="#cross-reference-guidelines" id="toc-cross-reference-guidelines" class="nav-link" data-scroll-target="#cross-reference-guidelines">Cross-Reference Guidelines</a></li>
+  </ul></li>
+  <li><a href="#technical-guidelines" id="toc-technical-guidelines" class="nav-link" data-scroll-target="#technical-guidelines">🔧 Technical Guidelines</a>
+  <ul class="collapse">
+  <li><a href="#building-the-knowledge-graph" id="toc-building-the-knowledge-graph" class="nav-link" data-scroll-target="#building-the-knowledge-graph">Building the Knowledge Graph</a></li>
+  <li><a href="#code-quality" id="toc-code-quality" class="nav-link" data-scroll-target="#code-quality">Code Quality</a></li>
+  </ul></li>
+  <li><a href="#automated-checks" id="toc-automated-checks" class="nav-link" data-scroll-target="#automated-checks">🤖 Automated Checks</a></li>
+  <li><a href="#mathematical-domains" id="toc-mathematical-domains" class="nav-link" data-scroll-target="#mathematical-domains">📊 Mathematical Domains</a></li>
+  <li><a href="#submission-process" id="toc-submission-process" class="nav-link" data-scroll-target="#submission-process">🚀 Submission Process</a></li>
+  <li><a href="#style-guide" id="toc-style-guide" class="nav-link" data-scroll-target="#style-guide">🎓 Style Guide</a>
+  <ul class="collapse">
+  <li><a href="#mathematical-notation" id="toc-mathematical-notation" class="nav-link" data-scroll-target="#mathematical-notation">Mathematical Notation</a></li>
+  <li><a href="#writing-style" id="toc-writing-style" class="nav-link" data-scroll-target="#writing-style">Writing Style</a></li>
+  <li><a href="#theorem-environments" id="toc-theorem-environments" class="nav-link" data-scroll-target="#theorem-environments">Theorem Environments</a></li>
+  </ul></li>
+  <li><a href="#community-guidelines" id="toc-community-guidelines" class="nav-link" data-scroll-target="#community-guidelines">🤝 Community Guidelines</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">📚 Resources</a></li>
+  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">❓ Getting Help</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Contributing to Math Knowledge Graph</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="contributing-to-the-mathematics-knowledge-graph-wiki">
+
+
+<section id="contributing-to-the-mathematics-knowledge-graph-wiki" class="level1">
 <h1>Contributing to the Mathematics Knowledge Graph Wiki</h1>
 <p>Thank you for your interest in contributing to the Mathematics Knowledge Graph Wiki! This project aims to create a comprehensive, interconnected representation of mathematical knowledge. Your contributions help make mathematics more accessible and understandable to everyone.</p>
-<section class="level2" id="how-to-contribute">
+<section id="how-to-contribute" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-contribute">🎯 How to Contribute</h2>
-<section class="level3" id="types-of-contributions">
+<section id="types-of-contributions" class="level3">
 <h3 class="anchored" data-anchor-id="types-of-contributions">Types of Contributions</h3>
 <ol type="1">
 <li><strong>Content Creation</strong>: Write new mathematical concepts (definitions, theorems, examples)</li>
@@ -354,81 +330,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Feature Requests</strong>: Suggest new features or improvements</li>
 </ol>
 </section>
-<section class="level3" id="getting-started">
+<section id="getting-started" class="level3">
 <h3 class="anchored" data-anchor-id="getting-started">Getting Started</h3>
 <ol type="1">
 <li><p><strong>Fork the Repository</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/RK0429/ModernMath.git</span>
-<span id="cb1-2"><a aria-hidden="true" href="#cb1-2" tabindex="-1"></a><span class="bu">cd</span> ModernMath</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/RK0429/ModernMath.git</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ModernMath</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>Set Up Development Environment</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" href="#cb2-1" tabindex="-1"></a><span class="ex">poetry</span> install</span>
-<span id="cb2-2"><a aria-hidden="true" href="#cb2-2" tabindex="-1"></a><span class="ex">quarto</span> check</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> install</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>Create a New Branch</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> feature/your-feature-name</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> feature/your-feature-name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 </section>
 </section>
-<section class="level2" id="content-guidelines">
+<section id="content-guidelines" class="level2">
 <h2 class="anchored" data-anchor-id="content-guidelines">📝 Content Guidelines</h2>
-<section class="level3" id="file-structure">
+<section id="file-structure" class="level3">
 <h3 class="anchored" data-anchor-id="file-structure">File Structure</h3>
 <p>Each mathematical concept should have its own <code>.qmd</code> file: - Definitions: <code>content/{domain}/def-{concept}.qmd</code> - Theorems: <code>content/{domain}/thm-{theorem-name}.qmd</code> - Examples: <code>content/{domain}/ex-{example-name}.qmd</code> - Axioms: <code>content/{domain}/ax-{axiom-name}.qmd</code></p>
 </section>
-<section class="level3" id="required-metadata">
+<section id="required-metadata" class="level3">
 <h3 class="anchored" data-anchor-id="required-metadata">Required Metadata</h3>
 <p>Every <code>.qmd</code> file must include YAML front matter:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb4-2"><a aria-hidden="true" href="#cb4-2" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Definition: Group"</span></span>
-<span id="cb4-3"><a aria-hidden="true" href="#cb4-3" tabindex="-1"></a><span class="fu">id</span><span class="kw">:</span><span class="at"> </span><span class="st">"def-group"</span></span>
-<span id="cb4-4"><a aria-hidden="true" href="#cb4-4" tabindex="-1"></a><span class="fu">type</span><span class="kw">:</span><span class="at"> </span><span class="st">"Definition"</span></span>
-<span id="cb4-5"><a aria-hidden="true" href="#cb4-5" tabindex="-1"></a><span class="fu">status</span><span class="kw">:</span><span class="at"> </span><span class="st">"draft|complete|verified"</span></span>
-<span id="cb4-6"><a aria-hidden="true" href="#cb4-6" tabindex="-1"></a><span class="fu">requires</span><span class="kw">:</span></span>
-<span id="cb4-7"><a aria-hidden="true" href="#cb4-7" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="st">"def-set"</span></span>
-<span id="cb4-8"><a aria-hidden="true" href="#cb4-8" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="st">"def-binary-operation"</span></span>
-<span id="cb4-9"><a aria-hidden="true" href="#cb4-9" tabindex="-1"></a><span class="fu">lean_id</span><span class="kw">:</span><span class="at"> </span><span class="st">"Mathlib.Algebra.Group.Defs.Group"</span><span class="co"> # Optional</span></span>
-<span id="cb4-10"><a aria-hidden="true" href="#cb4-10" tabindex="-1"></a><span class="pp">---</span></span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Definition: Group"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">id</span><span class="kw">:</span><span class="at"> </span><span class="st">"def-group"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">type</span><span class="kw">:</span><span class="at"> </span><span class="st">"Definition"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">status</span><span class="kw">:</span><span class="at"> </span><span class="st">"draft|complete|verified"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">requires</span><span class="kw">:</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="st">"def-set"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="st">"def-binary-operation"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">lean_id</span><span class="kw">:</span><span class="at"> </span><span class="st">"Mathlib.Algebra.Group.Defs.Group"</span><span class="co"> # Optional</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section class="level3" id="content-format">
+<section id="content-format" class="level3">
 <h3 class="anchored" data-anchor-id="content-format">Content Format</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a aria-hidden="true" href="#cb5-1" tabindex="-1"></a><span class="fu"># Definition: Group {#def-group}</span></span>
-<span id="cb5-2"><a aria-hidden="true" href="#cb5-2" tabindex="-1"></a></span>
-<span id="cb5-3"><a aria-hidden="true" href="#cb5-3" tabindex="-1"></a>A **group** is a @def-set $G$ together with a @def-binary-operation...</span>
-<span id="cb5-4"><a aria-hidden="true" href="#cb5-4" tabindex="-1"></a></span>
-<span id="cb5-5"><a aria-hidden="true" href="#cb5-5" tabindex="-1"></a><span class="fu">## Properties</span></span>
-<span id="cb5-6"><a aria-hidden="true" href="#cb5-6" tabindex="-1"></a></span>
-<span id="cb5-7"><a aria-hidden="true" href="#cb5-7" tabindex="-1"></a><span class="ss">1. </span>**Closure**: For all $a, b \in G$, we have $a \cdot b \in G$</span>
-<span id="cb5-8"><a aria-hidden="true" href="#cb5-8" tabindex="-1"></a><span class="ss">2. </span>**Associativity**: For all $a, b, c \in G$, $(a \cdot b) \cdot c = a \cdot (b \cdot c)$</span>
-<span id="cb5-9"><a aria-hidden="true" href="#cb5-9" tabindex="-1"></a>...</span>
-<span id="cb5-10"><a aria-hidden="true" href="#cb5-10" tabindex="-1"></a></span>
-<span id="cb5-11"><a aria-hidden="true" href="#cb5-11" tabindex="-1"></a><span class="fu">## Examples</span></span>
-<span id="cb5-12"><a aria-hidden="true" href="#cb5-12" tabindex="-1"></a></span>
-<span id="cb5-13"><a aria-hidden="true" href="#cb5-13" tabindex="-1"></a><span class="ss">- </span>The integers $\mathbb{Z}$ under addition form a group (see @ex-integers-addition)</span>
-<span id="cb5-14"><a aria-hidden="true" href="#cb5-14" tabindex="-1"></a><span class="ss">- </span>The set of $n \times n$ invertible matrices forms a group under multiplication</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Definition: Group {#def-group}</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>A **group** is a @def-set $G$ together with a @def-binary-operation...</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Properties</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Closure**: For all $a, b \in G$, we have $a \cdot b \in G$</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Associativity**: For all $a, b, c \in G$, $(a \cdot b) \cdot c = a \cdot (b \cdot c)$</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Examples</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The integers $\mathbb{Z}$ under addition form a group (see @ex-integers-addition)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The set of $n \times n$ invertible matrices forms a group under multiplication</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section class="level3" id="cross-reference-guidelines">
+<section id="cross-reference-guidelines" class="level3">
 <h3 class="anchored" data-anchor-id="cross-reference-guidelines">Cross-Reference Guidelines</h3>
 <p>Always link to other concepts using the <code>@</code> syntax: - <code>@def-group</code> - links to the group definition - <code>@thm-lagrange</code> - links to Lagrange’s theorem - <code>@ex-integers-addition</code> - links to an example</p>
 <p><strong>Important</strong>: When mentioning any mathematical concept that has its own page, you must link to it.</p>
 </section>
 </section>
-<section class="level2" id="technical-guidelines">
+<section id="technical-guidelines" class="level2">
 <h2 class="anchored" data-anchor-id="technical-guidelines">🔧 Technical Guidelines</h2>
-<section class="level3" id="building-the-knowledge-graph">
+<section id="building-the-knowledge-graph" class="level3">
 <h3 class="anchored" data-anchor-id="building-the-knowledge-graph">Building the Knowledge Graph</h3>
 <p>Before submitting:</p>
 <ol type="1">
 <li><p><strong>Validate Metadata</strong></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a aria-hidden="true" href="#cb6-1" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/validate_metadata.py</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/validate_metadata.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>Build the Graph</strong></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a aria-hidden="true" href="#cb7-1" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/build_graph.py</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/build_graph.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>Generate Visualizations</strong></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a aria-hidden="true" href="#cb8-1" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/generate_pyvis.py</span>
-<span id="cb8-2"><a aria-hidden="true" href="#cb8-2" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/fix_pyvis_css.py</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/generate_pyvis.py</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/fix_pyvis_css.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>Preview Your Changes</strong></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a aria-hidden="true" href="#cb9-1" tabindex="-1"></a><span class="ex">quarto</span> preview</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 </section>
-<section class="level3" id="code-quality">
+<section id="code-quality" class="level3">
 <h3 class="anchored" data-anchor-id="code-quality">Code Quality</h3>
 <ul>
 <li>Run linting: <code>poetry run flake8 scripts/</code></li>
@@ -437,18 +413,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section class="level2" id="automated-checks">
+<section id="automated-checks" class="level2">
 <h2 class="anchored" data-anchor-id="automated-checks">🤖 Automated Checks</h2>
 <p>Our CI/CD pipeline automatically: - Validates all YAML metadata - Checks for broken cross-references - Builds the knowledge graph - Generates visualizations - Runs an LLM review for missing cross-references</p>
 </section>
-<section class="level2" id="mathematical-domains">
+<section id="mathematical-domains" class="level2">
 <h2 class="anchored" data-anchor-id="mathematical-domains">📊 Mathematical Domains</h2>
 <p>Content is organized by domain:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%"/>
-<col style="width: 34%"/>
-<col style="width: 40%"/>
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 40%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -506,7 +482,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </section>
-<section class="level2" id="submission-process">
+<section id="submission-process" class="level2">
 <h2 class="anchored" data-anchor-id="submission-process">🚀 Submission Process</h2>
 <ol type="1">
 <li><p><strong>Test Your Changes Locally</strong></p>
@@ -516,10 +492,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Check that the site builds without errors</li>
 </ul></li>
 <li><p><strong>Commit Your Changes</strong></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a aria-hidden="true" href="#cb10-1" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb10-2"><a aria-hidden="true" href="#cb10-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"feat: Add definition of compact space"</span></span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"feat: Add definition of compact space"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>Push and Create Pull Request</strong></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a aria-hidden="true" href="#cb11-1" tabindex="-1"></a><span class="fu">git</span> push origin feature/your-feature-name</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin feature/your-feature-name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Then create a pull request on GitHub.</p></li>
 <li><p><strong>Pull Request Guidelines</strong></p>
 <ul>
@@ -530,9 +506,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ol>
 </section>
-<section class="level2" id="style-guide">
+<section id="style-guide" class="level2">
 <h2 class="anchored" data-anchor-id="style-guide">🎓 Style Guide</h2>
-<section class="level3" id="mathematical-notation">
+<section id="mathematical-notation" class="level3">
 <h3 class="anchored" data-anchor-id="mathematical-notation">Mathematical Notation</h3>
 <ul>
 <li>Use LaTeX for all mathematical expressions</li>
@@ -540,7 +516,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Be consistent with standard mathematical conventions</li>
 </ul>
 </section>
-<section class="level3" id="writing-style">
+<section id="writing-style" class="level3">
 <h3 class="anchored" data-anchor-id="writing-style">Writing Style</h3>
 <ul>
 <li>Write in clear, accessible language</li>
@@ -549,21 +525,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Include examples to illustrate abstract concepts</li>
 </ul>
 </section>
-<section class="level3" id="theorem-environments">
+<section id="theorem-environments" class="level3">
 <h3 class="anchored" data-anchor-id="theorem-environments">Theorem Environments</h3>
 <p>Use Quarto’s theorem environments:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a aria-hidden="true" href="#cb12-1" tabindex="-1"></a>::: {.theorem #thm-unique-identity}</span>
-<span id="cb12-2"><a aria-hidden="true" href="#cb12-2" tabindex="-1"></a>**Uniqueness of Identity**</span>
-<span id="cb12-3"><a aria-hidden="true" href="#cb12-3" tabindex="-1"></a></span>
-<span id="cb12-4"><a aria-hidden="true" href="#cb12-4" tabindex="-1"></a>In any group $(G, \cdot)$, the identity element is unique.</span>
-<span id="cb12-5"><a aria-hidden="true" href="#cb12-5" tabindex="-1"></a>:::</span>
-<span id="cb12-6"><a aria-hidden="true" href="#cb12-6" tabindex="-1"></a></span>
-<span id="cb12-7"><a aria-hidden="true" href="#cb12-7" tabindex="-1"></a>::: {.proof}</span>
-<span id="cb12-8"><a aria-hidden="true" href="#cb12-8" tabindex="-1"></a>Suppose $e$ and $e'$ are both identity elements...</span>
-<span id="cb12-9"><a aria-hidden="true" href="#cb12-9" tabindex="-1"></a>:::</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>::: {.theorem #thm-unique-identity}</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>**Uniqueness of Identity**</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>In any group $(G, \cdot)$, the identity element is unique.</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>::: {.proof}</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>Suppose $e$ and $e'$ are both identity elements...</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section class="level2" id="community-guidelines">
+<section id="community-guidelines" class="level2">
 <h2 class="anchored" data-anchor-id="community-guidelines">🤝 Community Guidelines</h2>
 <ul>
 <li>Be respectful and constructive in discussions</li>
@@ -572,7 +548,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Focus on mathematical accuracy and clarity</li>
 </ul>
 </section>
-<section class="level2" id="resources">
+<section id="resources" class="level2">
 <h2 class="anchored" data-anchor-id="resources">📚 Resources</h2>
 <ul>
 <li><a href="https://quarto.org/docs/">Quarto Documentation</a></li>
@@ -581,7 +557,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="design_EN/knowledge_graph.md">Project Architecture</a></li>
 </ul>
 </section>
-<section class="level2" id="getting-help">
+<section id="getting-help" class="level2">
 <h2 class="anchored" data-anchor-id="getting-help">❓ Getting Help</h2>
 <ul>
 <li><strong>Questions</strong>: Open a <a href="https://github.com/RK0429/ModernMath/discussions">GitHub Discussion</a></li>
@@ -589,8 +565,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Chat</strong>: Join our community (coming soon)</li>
 </ul>
 <p>Thank you for helping build a comprehensive, accessible resource for mathematical knowledge!</p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -993,16 +972,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>Mathematics Knowledge Graph Wiki - Built with Quarto and RDF</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

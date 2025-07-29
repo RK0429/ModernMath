@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>バナッハ空間 – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,199 +157,163 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">数学ナレッジグラフ</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="サーチ"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">数学ナレッジグラフ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="サーチ"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index-ja.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index-ja.html"> 
 <span class="menu-text">ホーム</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
 <span class="menu-text">代数学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
 <span class="menu-text">解析学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
 <span class="menu-text">位相空間論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
 <span class="menu-text">幾何学</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
 <span class="menu-text">圏論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
 <span class="menu-text">組合せ論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
 <span class="menu-text">論理学・集合論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
 <span class="menu-text">数論</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
 <span class="menu-text">確率統計</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/about.html"> 
 <span class="menu-text">概要</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/ja/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
 <span class="menu-text">貢献</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../en/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../en/index.html"> 
 <span class="menu-text">🌐 English</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">目次</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#def-banach-space" href="#def-banach-space" id="toc-def-banach-space">バナッハ空間</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#形式的定義" href="#形式的定義" id="toc-形式的定義">形式的定義</a></li>
-<li><a class="nav-link" data-scroll-target="#記法" href="#記法" id="toc-記法">記法</a></li>
-<li><a class="nav-link" data-scroll-target="#直感的理解" href="#直感的理解" id="toc-直感的理解">直感的理解</a></li>
-<li><a class="nav-link" data-scroll-target="#主要な性質" href="#主要な性質" id="toc-主要な性質">主要な性質</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#基本的性質" href="#基本的性質" id="toc-基本的性質">基本的性質</a></li>
-<li><a class="nav-link" data-scroll-target="#収束性に関する性質" href="#収束性に関する性質" id="toc-収束性に関する性質">収束性に関する性質</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#例" href="#例" id="toc-例">例</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#古典的なバナッハ空間" href="#古典的なバナッハ空間" id="toc-古典的なバナッハ空間">古典的なバナッハ空間</a></li>
-<li><a class="nav-link" data-scroll-target="#非例不完備ノルム空間" href="#非例不完備ノルム空間" id="toc-非例不完備ノルム空間">非例（不完備ノルム空間）</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#特殊なタイプ" href="#特殊なタイプ" id="toc-特殊なタイプ">特殊なタイプ</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#バナッハ空間の重要なクラス" href="#バナッハ空間の重要なクラス" id="toc-バナッハ空間の重要なクラス">バナッハ空間の重要なクラス</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#基本定理" href="#基本定理" id="toc-基本定理">基本定理</a></li>
-<li><a class="nav-link" data-scroll-target="#応用" href="#応用" id="toc-応用">応用</a></li>
-<li><a class="nav-link" data-scroll-target="#歴史的注記" href="#歴史的注記" id="toc-歴史的注記">歴史的注記</a></li>
-<li><a class="nav-link" data-scroll-target="#関連概念" href="#関連概念" id="toc-関連概念">関連概念</a></li>
-<li><a class="nav-link" data-scroll-target="#依存関係グラフ" href="#依存関係グラフ" id="toc-依存関係グラフ">依存関係グラフ</a></li>
-<li><a class="nav-link" data-scroll-target="#インタラクティブ可視化" href="#インタラクティブ可視化" id="toc-インタラクティブ可視化">インタラクティブ可視化</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#def-banach-space" id="toc-def-banach-space" class="nav-link active" data-scroll-target="#def-banach-space">バナッハ空間</a>
+  <ul class="collapse">
+  <li><a href="#形式的定義" id="toc-形式的定義" class="nav-link" data-scroll-target="#形式的定義">形式的定義</a></li>
+  <li><a href="#記法" id="toc-記法" class="nav-link" data-scroll-target="#記法">記法</a></li>
+  <li><a href="#直感的理解" id="toc-直感的理解" class="nav-link" data-scroll-target="#直感的理解">直感的理解</a></li>
+  <li><a href="#主要な性質" id="toc-主要な性質" class="nav-link" data-scroll-target="#主要な性質">主要な性質</a>
+  <ul class="collapse">
+  <li><a href="#基本的性質" id="toc-基本的性質" class="nav-link" data-scroll-target="#基本的性質">基本的性質</a></li>
+  <li><a href="#収束性に関する性質" id="toc-収束性に関する性質" class="nav-link" data-scroll-target="#収束性に関する性質">収束性に関する性質</a></li>
+  </ul></li>
+  <li><a href="#例" id="toc-例" class="nav-link" data-scroll-target="#例">例</a>
+  <ul class="collapse">
+  <li><a href="#古典的なバナッハ空間" id="toc-古典的なバナッハ空間" class="nav-link" data-scroll-target="#古典的なバナッハ空間">古典的なバナッハ空間</a></li>
+  <li><a href="#非例不完備ノルム空間" id="toc-非例不完備ノルム空間" class="nav-link" data-scroll-target="#非例不完備ノルム空間">非例（不完備ノルム空間）</a></li>
+  </ul></li>
+  <li><a href="#特殊なタイプ" id="toc-特殊なタイプ" class="nav-link" data-scroll-target="#特殊なタイプ">特殊なタイプ</a>
+  <ul class="collapse">
+  <li><a href="#バナッハ空間の重要なクラス" id="toc-バナッハ空間の重要なクラス" class="nav-link" data-scroll-target="#バナッハ空間の重要なクラス">バナッハ空間の重要なクラス</a></li>
+  </ul></li>
+  <li><a href="#基本定理" id="toc-基本定理" class="nav-link" data-scroll-target="#基本定理">基本定理</a></li>
+  <li><a href="#応用" id="toc-応用" class="nav-link" data-scroll-target="#応用">応用</a></li>
+  <li><a href="#歴史的注記" id="toc-歴史的注記" class="nav-link" data-scroll-target="#歴史的注記">歴史的注記</a></li>
+  <li><a href="#関連概念" id="toc-関連概念" class="nav-link" data-scroll-target="#関連概念">関連概念</a></li>
+  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
+  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">バナッハ空間</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="def-banach-space">
+
+
+<section id="def-banach-space" class="level1">
 <h1>バナッハ空間</h1>
 <p><strong>バナッハ空間</strong>は、そのノルムによって誘導される距離に関して完備な<a href="../../../content/ja/analysis/def-normed-vector-space.html">ノルム空間</a>である。この関数解析における基本概念は、ベクトル空間の代数構造と完備性の距離的性質を組み合わせたものである。</p>
-<section class="level2" id="形式的定義">
+<section id="形式的定義" class="level2">
 <h2 class="anchored" data-anchor-id="形式的定義">形式的定義</h2>
 <p>バナッハ空間は次の組 <span class="math inline">\((B, \|\cdot\|)\)</span> である： - <span class="math inline">\(B\)</span> は体 <span class="math inline">\(\mathbb{F}\)</span> （通常は <span class="math inline">\(\mathbb{R}\)</span> または <span class="math inline">\(\mathbb{C}\)</span>）上の<a href="../../../content/ja/analysis/def-normed-vector-space.html">ノルム空間</a> - <span class="math inline">\(B\)</span> は距離 <span class="math inline">\(d(x,y) = \|x - y\|\)</span> に関して<a href="../../../content/ja/analysis/def-complete-metric-space.html">完備</a>である</p>
 <p>より明示的に言えば、<span class="math inline">\((B, \|\cdot\|)\)</span> がバナッハ空間であるとは、次が成り立つことである： 1. <span class="math inline">\((B, \|\cdot\|)\)</span> はノルム空間である 2. <span class="math inline">\(B\)</span> 内のすべての<a href="../../../content/ja/analysis/def-cauchy-sequence.html">コーシー列</a>は <span class="math inline">\(B\)</span> 内の極限に収束する</p>
 </section>
-<section class="level2" id="記法">
+<section id="記法" class="level2">
 <h2 class="anchored" data-anchor-id="記法">記法</h2>
 <ul>
 <li>標準的な記法：<span class="math inline">\((B, \|\cdot\|)\)</span> またはノルムが文脈から明らかな場合は単に <span class="math inline">\(B\)</span></li>
@@ -344,13 +321,13 @@ window.Quarto = {
 <li>双対空間の場合：<span class="math inline">\(B^*\)</span> または <span class="math inline">\(B'\)</span></li>
 </ul>
 </section>
-<section class="level2" id="直感的理解">
+<section id="直感的理解" class="level2">
 <h2 class="anchored" data-anchor-id="直感的理解">直感的理解</h2>
 <p>バナッハ空間は解析のための「完全な遊び場」である。実数が完備である（数直線に「穴」がない）のと同様に、バナッハ空間には「欠けている点」がない - 収束すべき数列はすべて、その空間内の点に実際に収束する。この完備性の性質は以下の点で重要である： - 無限過程（微分方程式の解法など）が解を持つことを保証する - 近似手法が収束することを保証する - 関数解析のための強固な枠組みを提供する</p>
 </section>
-<section class="level2" id="主要な性質">
+<section id="主要な性質" class="level2">
 <h2 class="anchored" data-anchor-id="主要な性質">主要な性質</h2>
-<section class="level3" id="基本的性質">
+<section id="基本的性質" class="level3">
 <h3 class="anchored" data-anchor-id="基本的性質">基本的性質</h3>
 <ul>
 <li><strong>閉部分空間</strong>：バナッハ空間の閉部分空間はそれ自身バナッハ空間である</li>
@@ -358,14 +335,14 @@ window.Quarto = {
 <li><strong>双対空間</strong>：連続線形汎関数の双対空間 <span class="math inline">\(B^*\)</span> は常にバナッハ空間である</li>
 </ul>
 </section>
-<section class="level3" id="収束性に関する性質">
+<section id="収束性に関する性質" class="level3">
 <h3 class="anchored" data-anchor-id="収束性に関する性質">収束性に関する性質</h3>
 <p>バナッハ空間 <span class="math inline">\(B\)</span> 内の数列 <span class="math inline">\((x_n)\)</span> について： - <strong>絶対収束は収束を意味する</strong>：<span class="math inline">\(\sum_{n=1}^\infty \|x_n\| &lt; \infty\)</span> ならば、<span class="math inline">\(\sum_{n=1}^\infty x_n\)</span> は <span class="math inline">\(B\)</span> 内で収束する - <strong>完備性の判定条件</strong>：<span class="math inline">\(B\)</span> が完備であることと、すべての絶対収束級数が収束することは同値である</p>
 </section>
 </section>
-<section class="level2" id="例">
+<section id="例" class="level2">
 <h2 class="anchored" data-anchor-id="例">例</h2>
-<section class="level3" id="古典的なバナッハ空間">
+<section id="古典的なバナッハ空間" class="level3">
 <h3 class="anchored" data-anchor-id="古典的なバナッハ空間">古典的なバナッハ空間</h3>
 <ol type="1">
 <li><p><strong>ユークリッド空間</strong>：任意のノルムを持つ <span class="math inline">\(\mathbb{R}^n\)</span> と <span class="math inline">\(\mathbb{C}^n\)</span></p></li>
@@ -383,7 +360,7 @@ window.Quarto = {
 </ul></li>
 </ol>
 </section>
-<section class="level3" id="非例不完備ノルム空間">
+<section id="非例不完備ノルム空間" class="level3">
 <h3 class="anchored" data-anchor-id="非例不完備ノルム空間">非例（不完備ノルム空間）</h3>
 <ol type="1">
 <li>上限ノルムを持つ <span class="math inline">\([0,1]\)</span> 上の多項式の空間</li>
@@ -392,9 +369,9 @@ window.Quarto = {
 </ol>
 </section>
 </section>
-<section class="level2" id="特殊なタイプ">
+<section id="特殊なタイプ" class="level2">
 <h2 class="anchored" data-anchor-id="特殊なタイプ">特殊なタイプ</h2>
-<section class="level3" id="バナッハ空間の重要なクラス">
+<section id="バナッハ空間の重要なクラス" class="level3">
 <h3 class="anchored" data-anchor-id="バナッハ空間の重要なクラス">バナッハ空間の重要なクラス</h3>
 <ul>
 <li><strong><a href="../../../content/ja/analysis/def-hilbert-space.html">ヒルベルト空間</a></strong>：ノルムが内積から導かれるバナッハ空間</li>
@@ -404,7 +381,7 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section class="level2" id="基本定理">
+<section id="基本定理" class="level2">
 <h2 class="anchored" data-anchor-id="基本定理">基本定理</h2>
 <p>関数解析のいくつかの基礎定理はバナッハ空間の完備性を必要とする：</p>
 <ol type="1">
@@ -414,7 +391,7 @@ window.Quarto = {
 <li><strong>一様有界性原理</strong>：点ごとに有界な作用素の族は一様に有界である</li>
 </ol>
 </section>
-<section class="level2" id="応用">
+<section id="応用" class="level2">
 <h2 class="anchored" data-anchor-id="応用">応用</h2>
 <ol type="1">
 <li><strong>微分方程式</strong>：解は適切なバナッハ空間に存在する（ピカール・リンデレーフの定理）</li>
@@ -424,11 +401,11 @@ window.Quarto = {
 <li><strong>量子力学</strong>：状態と観測量はヒルベルト空間（特殊なバナッハ空間）に存在する</li>
 </ol>
 </section>
-<section class="level2" id="歴史的注記">
+<section id="歴史的注記" class="level2">
 <h2 class="anchored" data-anchor-id="歴史的注記">歴史的注記</h2>
 <p>バナッハ空間は、ポーランドの数学者ステファン・バナッハ（Stefan Banach、1892-1945）にちなんで名付けられた。彼はルヴフ数学学派の同僚とともに、1920年代から1930年代にかけてこの理論を体系的に発展させた。彼の1932年の著書「Théorie des opérations linéaires」は現代関数解析の基礎を築いた。</p>
 </section>
-<section class="level2" id="関連概念">
+<section id="関連概念" class="level2">
 <h2 class="anchored" data-anchor-id="関連概念">関連概念</h2>
 <ul>
 <li><a href="../../../content/ja/analysis/def-normed-vector-space.html">ノルム空間</a>：完備性の前の基礎構造</li>
@@ -439,7 +416,7 @@ window.Quarto = {
 <li><strong>フレシェ空間</strong>：完備な距離化可能位相ベクトル空間</li>
 </ul>
 </section>
-<section class="level2" id="依存関係グラフ">
+<section id="依存関係グラフ" class="level2">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -452,17 +429,17 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-hilbert-space["ヒルベルト空間"]:::definition
     def-banach-space["バナッハ空間"]:::definition
     def-normed-vector-space["ノルム空間"]:::definition
     def-complete-metric-space["完備距離空間"]:::definition
-    def-hilbert-space["ヒルベルト空間"]:::definition
-    def-hilbert-space --&gt; def-banach-space
     def-banach-space --&gt; def-normed-vector-space
     def-banach-space --&gt; def-complete-metric-space
+    def-hilbert-space --&gt; def-banach-space
     class def-banach-space current
+    click def-hilbert-space "def-hilbert-space.html" "ヒルベルト空間へ"
     click def-normed-vector-space "def-normed-vector-space.html" "ノルム空間へ"
     click def-complete-metric-space "def-complete-metric-space.html" "完備距離空間へ"
-    click def-hilbert-space "def-hilbert-space.html" "ヒルベルト空間へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -470,12 +447,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="インタラクティブ可視化">
+<section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div class="graph-visualization-container" id="graph-viz-def-banach-space-1753764997">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-def-banach-space-1753768862" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -720,12 +698,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-banach-space-1753764997', {
+    createForceGraph(data, 'graph-viz-def-banach-space-1753768862', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-banach-space-1753764997').innerHTML =
+    document.getElementById('graph-viz-def-banach-space-1753768862').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -737,6 +715,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -785,9 +764,13 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/ja/def-banach-space.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1190,16 +1173,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

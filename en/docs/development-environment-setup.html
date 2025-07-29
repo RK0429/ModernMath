@@ -1,11 +1,14 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
-<meta content="Math Knowledge Graph Team" name="author"/>
-<meta content="2025-07-20" name="dcterms.date"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Math Knowledge Graph Team">
+<meta name="dcterms.date" content="2025-07-20">
+
 <title>Development Environment Setup Guide – Math Knowledge Graph</title>
 <style>
 code{white-space: pre-wrap;}
@@ -55,25 +58,27 @@ div.sourceCode
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
+
+
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../" name="quarto:offset"/>
-<link href="../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../">
+<link href="../favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -101,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'en';
   window.alternateLanguage = 'ja';
@@ -148,234 +153,205 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<link href="../styles.css" rel="stylesheet"/>
-<link href="../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../index.html">
-<span class="navbar-title">Math Knowledge Graph</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="Search"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Math Knowledge Graph</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../index.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../content/en/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/en/algebra/index.html"> 
 <span class="menu-text">Algebra</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../content/en/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/en/analysis/index.html"> 
 <span class="menu-text">Analysis</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../content/en/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/en/topology/index.html"> 
 <span class="menu-text">Topology</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../content/en/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/en/geometry/index.html"> 
 <span class="menu-text">Geometry</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../content/en/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/en/category-theory/index.html"> 
 <span class="menu-text">Category Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../content/en/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/en/combinatorics/index.html"> 
 <span class="menu-text">Combinatorics</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../content/en/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/en/logic-set-theory/index.html"> 
 <span class="menu-text">Logic &amp; Set Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../content/en/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/en/number-theory/index.html"> 
 <span class="menu-text">Number Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../content/en/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/en/probability-statistics/index.html"> 
 <span class="menu-text">Probability &amp; Statistics</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../nav/en/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../nav/en/about.html"> 
 <span class="menu-text">About</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../nav/en/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../nav/en/contributing.html"> 
 <span class="menu-text">Contributing</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../ja/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../ja/index.html"> 
 <span class="menu-text">🌐 日本語</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">On this page</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#development-environment-setup-guide" href="#development-environment-setup-guide" id="toc-development-environment-setup-guide">Development Environment Setup Guide</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#prerequisites" href="#prerequisites" id="toc-prerequisites">Prerequisites</a></li>
-<li><a class="nav-link" data-scroll-target="#step-1-clone-the-repository" href="#step-1-clone-the-repository" id="toc-step-1-clone-the-repository">Step 1: Clone the Repository</a></li>
-<li><a class="nav-link" data-scroll-target="#step-2-python-environment-setup" href="#step-2-python-environment-setup" id="toc-step-2-python-environment-setup">Step 2: Python Environment Setup</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#install-poetry" href="#install-poetry" id="toc-install-poetry">Install Poetry</a></li>
-<li><a class="nav-link" data-scroll-target="#configure-poetry" href="#configure-poetry" id="toc-configure-poetry">Configure Poetry</a></li>
-<li><a class="nav-link" data-scroll-target="#install-python-dependencies" href="#install-python-dependencies" id="toc-install-python-dependencies">Install Python Dependencies</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#step-3-install-quarto" href="#step-3-install-quarto" id="toc-step-3-install-quarto">Step 3: Install Quarto</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#macos" href="#macos" id="toc-macos">macOS</a></li>
-<li><a class="nav-link" data-scroll-target="#linuxwindows" href="#linuxwindows" id="toc-linuxwindows">Linux/Windows</a></li>
-<li><a class="nav-link" data-scroll-target="#verify-installation" href="#verify-installation" id="toc-verify-installation">Verify Installation</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#step-4-apache-jena-fuseki-setup" href="#step-4-apache-jena-fuseki-setup" id="toc-step-4-apache-jena-fuseki-setup">Step 4: Apache Jena Fuseki Setup</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#download-and-install" href="#download-and-install" id="toc-download-and-install">Download and Install</a></li>
-<li><a class="nav-link" data-scroll-target="#load-initial-data" href="#load-initial-data" id="toc-load-initial-data">Load Initial Data</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#step-5-start-the-rest-api" href="#step-5-start-the-rest-api" id="toc-step-5-start-the-rest-api">Step 5: Start the REST API</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#api-endpoints" href="#api-endpoints" id="toc-api-endpoints">API Endpoints</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#step-6-build-the-knowledge-graph" href="#step-6-build-the-knowledge-graph" id="toc-step-6-build-the-knowledge-graph">Step 6: Build the Knowledge Graph</a></li>
-<li><a class="nav-link" data-scroll-target="#step-7-generate-visualizations" href="#step-7-generate-visualizations" id="toc-step-7-generate-visualizations">Step 7: Generate Visualizations</a></li>
-<li><a class="nav-link" data-scroll-target="#step-8-preview-the-site-locally" href="#step-8-preview-the-site-locally" id="toc-step-8-preview-the-site-locally">Step 8: Preview the Site Locally</a></li>
-<li><a class="nav-link" data-scroll-target="#optional-lean-4-setup" href="#optional-lean-4-setup" id="toc-optional-lean-4-setup">Optional: Lean 4 Setup</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#install-lean-4" href="#install-lean-4" id="toc-install-lean-4">Install Lean 4</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#development-workflow" href="#development-workflow" id="toc-development-workflow">Development Workflow</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#adding-new-content" href="#adding-new-content" id="toc-adding-new-content">1. Adding New Content</a></li>
-<li><a class="nav-link" data-scroll-target="#testing-changes" href="#testing-changes" id="toc-testing-changes">2. Testing Changes</a></li>
-<li><a class="nav-link" data-scroll-target="#code-quality" href="#code-quality" id="toc-code-quality">3. Code Quality</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#troubleshooting" href="#troubleshooting" id="toc-troubleshooting">Troubleshooting</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#common-issues" href="#common-issues" id="toc-common-issues">Common Issues</a></li>
-<li><a class="nav-link" data-scroll-target="#checking-services" href="#checking-services" id="toc-checking-services">Checking Services</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#environment-variables" href="#environment-variables" id="toc-environment-variables">Environment Variables</a></li>
-<li><a class="nav-link" data-scroll-target="#ide-setup" href="#ide-setup" id="toc-ide-setup">IDE Setup</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#vs-code" href="#vs-code" id="toc-vs-code">VS Code</a></li>
-<li><a class="nav-link" data-scroll-target="#settings" href="#settings" id="toc-settings">Settings</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#next-steps" href="#next-steps" id="toc-next-steps">Next Steps</a></li>
-<li><a class="nav-link" data-scroll-target="#getting-help" href="#getting-help" id="toc-getting-help">Getting Help</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#development-environment-setup-guide" id="toc-development-environment-setup-guide" class="nav-link active" data-scroll-target="#development-environment-setup-guide">Development Environment Setup Guide</a>
+  <ul class="collapse">
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
+  <li><a href="#step-1-clone-the-repository" id="toc-step-1-clone-the-repository" class="nav-link" data-scroll-target="#step-1-clone-the-repository">Step 1: Clone the Repository</a></li>
+  <li><a href="#step-2-python-environment-setup" id="toc-step-2-python-environment-setup" class="nav-link" data-scroll-target="#step-2-python-environment-setup">Step 2: Python Environment Setup</a>
+  <ul class="collapse">
+  <li><a href="#install-poetry" id="toc-install-poetry" class="nav-link" data-scroll-target="#install-poetry">Install Poetry</a></li>
+  <li><a href="#configure-poetry" id="toc-configure-poetry" class="nav-link" data-scroll-target="#configure-poetry">Configure Poetry</a></li>
+  <li><a href="#install-python-dependencies" id="toc-install-python-dependencies" class="nav-link" data-scroll-target="#install-python-dependencies">Install Python Dependencies</a></li>
+  </ul></li>
+  <li><a href="#step-3-install-quarto" id="toc-step-3-install-quarto" class="nav-link" data-scroll-target="#step-3-install-quarto">Step 3: Install Quarto</a>
+  <ul class="collapse">
+  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos">macOS</a></li>
+  <li><a href="#linuxwindows" id="toc-linuxwindows" class="nav-link" data-scroll-target="#linuxwindows">Linux/Windows</a></li>
+  <li><a href="#verify-installation" id="toc-verify-installation" class="nav-link" data-scroll-target="#verify-installation">Verify Installation</a></li>
+  </ul></li>
+  <li><a href="#step-4-apache-jena-fuseki-setup" id="toc-step-4-apache-jena-fuseki-setup" class="nav-link" data-scroll-target="#step-4-apache-jena-fuseki-setup">Step 4: Apache Jena Fuseki Setup</a>
+  <ul class="collapse">
+  <li><a href="#download-and-install" id="toc-download-and-install" class="nav-link" data-scroll-target="#download-and-install">Download and Install</a></li>
+  <li><a href="#load-initial-data" id="toc-load-initial-data" class="nav-link" data-scroll-target="#load-initial-data">Load Initial Data</a></li>
+  </ul></li>
+  <li><a href="#step-5-start-the-rest-api" id="toc-step-5-start-the-rest-api" class="nav-link" data-scroll-target="#step-5-start-the-rest-api">Step 5: Start the REST API</a>
+  <ul class="collapse">
+  <li><a href="#api-endpoints" id="toc-api-endpoints" class="nav-link" data-scroll-target="#api-endpoints">API Endpoints</a></li>
+  </ul></li>
+  <li><a href="#step-6-build-the-knowledge-graph" id="toc-step-6-build-the-knowledge-graph" class="nav-link" data-scroll-target="#step-6-build-the-knowledge-graph">Step 6: Build the Knowledge Graph</a></li>
+  <li><a href="#step-7-generate-visualizations" id="toc-step-7-generate-visualizations" class="nav-link" data-scroll-target="#step-7-generate-visualizations">Step 7: Generate Visualizations</a></li>
+  <li><a href="#step-8-preview-the-site-locally" id="toc-step-8-preview-the-site-locally" class="nav-link" data-scroll-target="#step-8-preview-the-site-locally">Step 8: Preview the Site Locally</a></li>
+  <li><a href="#optional-lean-4-setup" id="toc-optional-lean-4-setup" class="nav-link" data-scroll-target="#optional-lean-4-setup">Optional: Lean 4 Setup</a>
+  <ul class="collapse">
+  <li><a href="#install-lean-4" id="toc-install-lean-4" class="nav-link" data-scroll-target="#install-lean-4">Install Lean 4</a></li>
+  </ul></li>
+  <li><a href="#development-workflow" id="toc-development-workflow" class="nav-link" data-scroll-target="#development-workflow">Development Workflow</a>
+  <ul class="collapse">
+  <li><a href="#adding-new-content" id="toc-adding-new-content" class="nav-link" data-scroll-target="#adding-new-content">1. Adding New Content</a></li>
+  <li><a href="#testing-changes" id="toc-testing-changes" class="nav-link" data-scroll-target="#testing-changes">2. Testing Changes</a></li>
+  <li><a href="#code-quality" id="toc-code-quality" class="nav-link" data-scroll-target="#code-quality">3. Code Quality</a></li>
+  </ul></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a>
+  <ul class="collapse">
+  <li><a href="#common-issues" id="toc-common-issues" class="nav-link" data-scroll-target="#common-issues">Common Issues</a></li>
+  <li><a href="#checking-services" id="toc-checking-services" class="nav-link" data-scroll-target="#checking-services">Checking Services</a></li>
+  </ul></li>
+  <li><a href="#environment-variables" id="toc-environment-variables" class="nav-link" data-scroll-target="#environment-variables">Environment Variables</a></li>
+  <li><a href="#ide-setup" id="toc-ide-setup" class="nav-link" data-scroll-target="#ide-setup">IDE Setup</a>
+  <ul class="collapse">
+  <li><a href="#vs-code" id="toc-vs-code" class="nav-link" data-scroll-target="#vs-code">VS Code</a></li>
+  <li><a href="#settings" id="toc-settings" class="nav-link" data-scroll-target="#settings">Settings</a></li>
+  </ul></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
+  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting Help</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Development Environment Setup Guide</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-<div>
-<div class="quarto-title-meta-heading">Author</div>
-<div class="quarto-title-meta-contents">
-<p>Math Knowledge Graph Team </p>
-</div>
-</div>
-<div>
-<div class="quarto-title-meta-heading">Published</div>
-<div class="quarto-title-meta-contents">
-<p class="date">July 20, 2025</p>
-</div>
-</div>
-</div>
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Math Knowledge Graph Team </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 20, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="development-environment-setup-guide">
+
+
+<section id="development-environment-setup-guide" class="level1">
 <h1>Development Environment Setup Guide</h1>
 <p>This guide will walk you through setting up your local development environment for the Mathematics Knowledge Graph Wiki project.</p>
-<section class="level2" id="prerequisites">
+<section id="prerequisites" class="level2">
 <h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
 <p>Before you begin, ensure you have the following installed on your system:</p>
 <ul>
@@ -386,81 +362,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Java</strong>: OpenJDK 11 or higher (for Apache Jena Fuseki)</li>
 </ul>
 </section>
-<section class="level2" id="step-1-clone-the-repository">
+<section id="step-1-clone-the-repository" class="level2">
 <h2 class="anchored" data-anchor-id="step-1-clone-the-repository">Step 1: Clone the Repository</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/RK0429/ModernMath.git</span>
-<span id="cb1-2"><a aria-hidden="true" href="#cb1-2" tabindex="-1"></a><span class="bu">cd</span> ModernMath</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/RK0429/ModernMath.git</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ModernMath</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section class="level2" id="step-2-python-environment-setup">
+<section id="step-2-python-environment-setup" class="level2">
 <h2 class="anchored" data-anchor-id="step-2-python-environment-setup">Step 2: Python Environment Setup</h2>
-<section class="level3" id="install-poetry">
+<section id="install-poetry" class="level3">
 <h3 class="anchored" data-anchor-id="install-poetry">Install Poetry</h3>
 <p>Poetry is our dependency management tool. Install it globally:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" href="#cb2-1" tabindex="-1"></a><span class="co"># On macOS/Linux</span></span>
-<span id="cb2-2"><a aria-hidden="true" href="#cb2-2" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sSL</span> https://install.python-poetry.org <span class="kw">|</span> <span class="ex">python3</span> <span class="at">-</span></span>
-<span id="cb2-3"><a aria-hidden="true" href="#cb2-3" tabindex="-1"></a></span>
-<span id="cb2-4"><a aria-hidden="true" href="#cb2-4" tabindex="-1"></a><span class="co"># Or using pip</span></span>
-<span id="cb2-5"><a aria-hidden="true" href="#cb2-5" tabindex="-1"></a><span class="ex">pip</span> install poetry</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># On macOS/Linux</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sSL</span> https://install.python-poetry.org <span class="kw">|</span> <span class="ex">python3</span> <span class="at">-</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Or using pip</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install poetry</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section class="level3" id="configure-poetry">
+<section id="configure-poetry" class="level3">
 <h3 class="anchored" data-anchor-id="configure-poetry">Configure Poetry</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a><span class="co"># Configure poetry to create virtual environments in the project directory</span></span>
-<span id="cb3-2"><a aria-hidden="true" href="#cb3-2" tabindex="-1"></a><span class="ex">poetry</span> config virtualenvs.in-project true</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Configure poetry to create virtual environments in the project directory</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> config virtualenvs.in-project true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section class="level3" id="install-python-dependencies">
+<section id="install-python-dependencies" class="level3">
 <h3 class="anchored" data-anchor-id="install-python-dependencies">Install Python Dependencies</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a><span class="co"># Install all dependencies</span></span>
-<span id="cb4-2"><a aria-hidden="true" href="#cb4-2" tabindex="-1"></a><span class="ex">poetry</span> install</span>
-<span id="cb4-3"><a aria-hidden="true" href="#cb4-3" tabindex="-1"></a></span>
-<span id="cb4-4"><a aria-hidden="true" href="#cb4-4" tabindex="-1"></a><span class="co"># Activate the virtual environment</span></span>
-<span id="cb4-5"><a aria-hidden="true" href="#cb4-5" tabindex="-1"></a><span class="ex">poetry</span> shell</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install all dependencies</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> install</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate the virtual environment</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> shell</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section class="level2" id="step-3-install-quarto">
+<section id="step-3-install-quarto" class="level2">
 <h2 class="anchored" data-anchor-id="step-3-install-quarto">Step 3: Install Quarto</h2>
 <p>Quarto is used for content authoring and site generation.</p>
-<section class="level3" id="macos">
+<section id="macos" class="level3">
 <h3 class="anchored" data-anchor-id="macos">macOS</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a aria-hidden="true" href="#cb5-1" tabindex="-1"></a><span class="ex">brew</span> install quarto</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install quarto</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section class="level3" id="linuxwindows">
+<section id="linuxwindows" class="level3">
 <h3 class="anchored" data-anchor-id="linuxwindows">Linux/Windows</h3>
 <p>Download from <a href="https://quarto.org/docs/get-started/">https://quarto.org/docs/get-started/</a></p>
 </section>
-<section class="level3" id="verify-installation">
+<section id="verify-installation" class="level3">
 <h3 class="anchored" data-anchor-id="verify-installation">Verify Installation</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a aria-hidden="true" href="#cb6-1" tabindex="-1"></a><span class="ex">quarto</span> <span class="at">--version</span></span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section class="level2" id="step-4-apache-jena-fuseki-setup">
+<section id="step-4-apache-jena-fuseki-setup" class="level2">
 <h2 class="anchored" data-anchor-id="step-4-apache-jena-fuseki-setup">Step 4: Apache Jena Fuseki Setup</h2>
 <p>Fuseki provides our SPARQL endpoint for querying the knowledge graph.</p>
-<section class="level3" id="download-and-install">
+<section id="download-and-install" class="level3">
 <h3 class="anchored" data-anchor-id="download-and-install">Download and Install</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a aria-hidden="true" href="#cb7-1" tabindex="-1"></a><span class="co"># Navigate to fuseki directory</span></span>
-<span id="cb7-2"><a aria-hidden="true" href="#cb7-2" tabindex="-1"></a><span class="bu">cd</span> fuseki/scripts</span>
-<span id="cb7-3"><a aria-hidden="true" href="#cb7-3" tabindex="-1"></a></span>
-<span id="cb7-4"><a aria-hidden="true" href="#cb7-4" tabindex="-1"></a><span class="co"># Download Fuseki (if not already present)</span></span>
-<span id="cb7-5"><a aria-hidden="true" href="#cb7-5" tabindex="-1"></a><span class="ex">./download_fuseki.sh</span></span>
-<span id="cb7-6"><a aria-hidden="true" href="#cb7-6" tabindex="-1"></a></span>
-<span id="cb7-7"><a aria-hidden="true" href="#cb7-7" tabindex="-1"></a><span class="co"># Start Fuseki</span></span>
-<span id="cb7-8"><a aria-hidden="true" href="#cb7-8" tabindex="-1"></a><span class="ex">./start_fuseki.sh</span></span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Navigate to fuseki directory</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> fuseki/scripts</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Download Fuseki (if not already present)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./download_fuseki.sh</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Start Fuseki</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="ex">./start_fuseki.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Fuseki will be available at http://localhost:3030</p>
 </section>
-<section class="level3" id="load-initial-data">
+<section id="load-initial-data" class="level3">
 <h3 class="anchored" data-anchor-id="load-initial-data">Load Initial Data</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a aria-hidden="true" href="#cb8-1" tabindex="-1"></a><span class="co"># Load the knowledge graph data</span></span>
-<span id="cb8-2"><a aria-hidden="true" href="#cb8-2" tabindex="-1"></a><span class="ex">./load_data.sh</span></span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the knowledge graph data</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./load_data.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section class="level2" id="step-5-start-the-rest-api">
+<section id="step-5-start-the-rest-api" class="level2">
 <h2 class="anchored" data-anchor-id="step-5-start-the-rest-api">Step 5: Start the REST API</h2>
 <p>The REST API provides a convenient interface to the knowledge graph.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a aria-hidden="true" href="#cb9-1" tabindex="-1"></a><span class="co"># From the project root</span></span>
-<span id="cb9-2"><a aria-hidden="true" href="#cb9-2" tabindex="-1"></a><span class="bu">cd</span> api</span>
-<span id="cb9-3"><a aria-hidden="true" href="#cb9-3" tabindex="-1"></a><span class="ex">./start_api.sh</span></span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From the project root</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> api</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">./start_api.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The API will be available at http://localhost:5001</p>
-<section class="level3" id="api-endpoints">
+<section id="api-endpoints" class="level3">
 <h3 class="anchored" data-anchor-id="api-endpoints">API Endpoints</h3>
 <ul>
 <li>Health check: <code>GET http://localhost:5001/</code></li>
@@ -470,50 +446,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section class="level2" id="step-6-build-the-knowledge-graph">
+<section id="step-6-build-the-knowledge-graph" class="level2">
 <h2 class="anchored" data-anchor-id="step-6-build-the-knowledge-graph">Step 6: Build the Knowledge Graph</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a aria-hidden="true" href="#cb10-1" tabindex="-1"></a><span class="co"># From the project root</span></span>
-<span id="cb10-2"><a aria-hidden="true" href="#cb10-2" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/build_graph.py</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From the project root</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/build_graph.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will: - Parse all <code>.qmd</code> files in the <code>content/</code> directory - Extract metadata and cross-references - Generate <code>knowledge_graph.ttl</code></p>
 </section>
-<section class="level2" id="step-7-generate-visualizations">
+<section id="step-7-generate-visualizations" class="level2">
 <h2 class="anchored" data-anchor-id="step-7-generate-visualizations">Step 7: Generate Visualizations</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a aria-hidden="true" href="#cb11-1" tabindex="-1"></a><span class="co"># Generate Mermaid diagrams</span></span>
-<span id="cb11-2"><a aria-hidden="true" href="#cb11-2" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/generate_mermaid.py</span>
-<span id="cb11-3"><a aria-hidden="true" href="#cb11-3" tabindex="-1"></a></span>
-<span id="cb11-4"><a aria-hidden="true" href="#cb11-4" tabindex="-1"></a><span class="co"># Generate PyVis interactive graphs</span></span>
-<span id="cb11-5"><a aria-hidden="true" href="#cb11-5" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/generate_pyvis.py</span>
-<span id="cb11-6"><a aria-hidden="true" href="#cb11-6" tabindex="-1"></a></span>
-<span id="cb11-7"><a aria-hidden="true" href="#cb11-7" tabindex="-1"></a><span class="co"># Generate D3.js data</span></span>
-<span id="cb11-8"><a aria-hidden="true" href="#cb11-8" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/generate_d3_data.py</span>
-<span id="cb11-9"><a aria-hidden="true" href="#cb11-9" tabindex="-1"></a></span>
-<span id="cb11-10"><a aria-hidden="true" href="#cb11-10" tabindex="-1"></a><span class="co"># Insert diagrams into content files</span></span>
-<span id="cb11-11"><a aria-hidden="true" href="#cb11-11" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/insert_diagrams.py</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate Mermaid diagrams</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/generate_mermaid.py</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate PyVis interactive graphs</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/generate_pyvis.py</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate D3.js data</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/generate_d3_data.py</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Insert diagrams into content files</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/insert_diagrams.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section class="level2" id="step-8-preview-the-site-locally">
+<section id="step-8-preview-the-site-locally" class="level2">
 <h2 class="anchored" data-anchor-id="step-8-preview-the-site-locally">Step 8: Preview the Site Locally</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a aria-hidden="true" href="#cb12-1" tabindex="-1"></a><span class="co"># From the project root</span></span>
-<span id="cb12-2"><a aria-hidden="true" href="#cb12-2" tabindex="-1"></a><span class="ex">quarto</span> preview</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From the project root</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The site will be available at http://localhost:4000 (or similar port)</p>
 </section>
-<section class="level2" id="optional-lean-4-setup">
+<section id="optional-lean-4-setup" class="level2">
 <h2 class="anchored" data-anchor-id="optional-lean-4-setup">Optional: Lean 4 Setup</h2>
 <p>If you want to work with formal verification:</p>
-<section class="level3" id="install-lean-4">
+<section id="install-lean-4" class="level3">
 <h3 class="anchored" data-anchor-id="install-lean-4">Install Lean 4</h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a aria-hidden="true" href="#cb13-1" tabindex="-1"></a><span class="co"># Install elan (Lean version manager)</span></span>
-<span id="cb13-2"><a aria-hidden="true" href="#cb13-2" tabindex="-1"></a><span class="ex">curl</span> https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh <span class="at">-sSf</span> <span class="kw">|</span> <span class="fu">sh</span></span>
-<span id="cb13-3"><a aria-hidden="true" href="#cb13-3" tabindex="-1"></a></span>
-<span id="cb13-4"><a aria-hidden="true" href="#cb13-4" tabindex="-1"></a><span class="co"># Navigate to formal directory</span></span>
-<span id="cb13-5"><a aria-hidden="true" href="#cb13-5" tabindex="-1"></a><span class="bu">cd</span> formal</span>
-<span id="cb13-6"><a aria-hidden="true" href="#cb13-6" tabindex="-1"></a></span>
-<span id="cb13-7"><a aria-hidden="true" href="#cb13-7" tabindex="-1"></a><span class="co"># Build the Lean project</span></span>
-<span id="cb13-8"><a aria-hidden="true" href="#cb13-8" tabindex="-1"></a><span class="ex">lake</span> build</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install elan (Lean version manager)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh <span class="at">-sSf</span> <span class="kw">|</span> <span class="fu">sh</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Navigate to formal directory</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> formal</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the Lean project</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="ex">lake</span> build</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section class="level2" id="development-workflow">
+<section id="development-workflow" class="level2">
 <h2 class="anchored" data-anchor-id="development-workflow">Development Workflow</h2>
-<section class="level3" id="adding-new-content">
+<section id="adding-new-content" class="level3">
 <h3 class="anchored" data-anchor-id="adding-new-content">1. Adding New Content</h3>
 <ol type="1">
 <li>Create a new <code>.qmd</code> file in the appropriate <code>content/</code> subdirectory</li>
@@ -522,32 +498,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Run the build pipeline to update the graph</li>
 </ol>
 </section>
-<section class="level3" id="testing-changes">
+<section id="testing-changes" class="level3">
 <h3 class="anchored" data-anchor-id="testing-changes">2. Testing Changes</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a aria-hidden="true" href="#cb14-1" tabindex="-1"></a><span class="co"># Run Python tests</span></span>
-<span id="cb14-2"><a aria-hidden="true" href="#cb14-2" tabindex="-1"></a><span class="ex">poetry</span> run pytest</span>
-<span id="cb14-3"><a aria-hidden="true" href="#cb14-3" tabindex="-1"></a></span>
-<span id="cb14-4"><a aria-hidden="true" href="#cb14-4" tabindex="-1"></a><span class="co"># Validate metadata</span></span>
-<span id="cb14-5"><a aria-hidden="true" href="#cb14-5" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/validate_metadata.py</span>
-<span id="cb14-6"><a aria-hidden="true" href="#cb14-6" tabindex="-1"></a></span>
-<span id="cb14-7"><a aria-hidden="true" href="#cb14-7" tabindex="-1"></a><span class="co"># Validate the graph</span></span>
-<span id="cb14-8"><a aria-hidden="true" href="#cb14-8" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/validate_graph.py</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run Python tests</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> run pytest</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Validate metadata</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/validate_metadata.py</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Validate the graph</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> run python scripts/validate_graph.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section class="level3" id="code-quality">
+<section id="code-quality" class="level3">
 <h3 class="anchored" data-anchor-id="code-quality">3. Code Quality</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a aria-hidden="true" href="#cb15-1" tabindex="-1"></a><span class="co"># Format code</span></span>
-<span id="cb15-2"><a aria-hidden="true" href="#cb15-2" tabindex="-1"></a><span class="ex">poetry</span> run black scripts/</span>
-<span id="cb15-3"><a aria-hidden="true" href="#cb15-3" tabindex="-1"></a></span>
-<span id="cb15-4"><a aria-hidden="true" href="#cb15-4" tabindex="-1"></a><span class="co"># Run linting</span></span>
-<span id="cb15-5"><a aria-hidden="true" href="#cb15-5" tabindex="-1"></a><span class="ex">poetry</span> run flake8 scripts/ <span class="at">--max-line-length</span><span class="op">=</span>100</span>
-<span id="cb15-6"><a aria-hidden="true" href="#cb15-6" tabindex="-1"></a></span>
-<span id="cb15-7"><a aria-hidden="true" href="#cb15-7" tabindex="-1"></a><span class="co"># Type checking</span></span>
-<span id="cb15-8"><a aria-hidden="true" href="#cb15-8" tabindex="-1"></a><span class="ex">poetry</span> run mypy scripts/</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Format code</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> run black scripts/</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run linting</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> run flake8 scripts/ <span class="at">--max-line-length</span><span class="op">=</span>100</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Type checking</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> run mypy scripts/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section class="level2" id="troubleshooting">
+<section id="troubleshooting" class="level2">
 <h2 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h2>
-<section class="level3" id="common-issues">
+<section id="common-issues" class="level3">
 <h3 class="anchored" data-anchor-id="common-issues">Common Issues</h3>
 <ol type="1">
 <li><strong>Poetry not found</strong>: Ensure Poetry is in your PATH after installation</li>
@@ -556,43 +532,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Quarto rendering errors</strong>: Check for syntax errors in <code>.qmd</code> files</li>
 </ol>
 </section>
-<section class="level3" id="checking-services">
+<section id="checking-services" class="level3">
 <h3 class="anchored" data-anchor-id="checking-services">Checking Services</h3>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a aria-hidden="true" href="#cb16-1" tabindex="-1"></a><span class="co"># Check if Fuseki is running</span></span>
-<span id="cb16-2"><a aria-hidden="true" href="#cb16-2" tabindex="-1"></a><span class="ex">curl</span> http://localhost:3030/$/ping</span>
-<span id="cb16-3"><a aria-hidden="true" href="#cb16-3" tabindex="-1"></a></span>
-<span id="cb16-4"><a aria-hidden="true" href="#cb16-4" tabindex="-1"></a><span class="co"># Check if API is running</span></span>
-<span id="cb16-5"><a aria-hidden="true" href="#cb16-5" tabindex="-1"></a><span class="ex">curl</span> http://localhost:5001/</span>
-<span id="cb16-6"><a aria-hidden="true" href="#cb16-6" tabindex="-1"></a></span>
-<span id="cb16-7"><a aria-hidden="true" href="#cb16-7" tabindex="-1"></a><span class="co"># Check Python environment</span></span>
-<span id="cb16-8"><a aria-hidden="true" href="#cb16-8" tabindex="-1"></a><span class="ex">poetry</span> env info</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if Fuseki is running</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> http://localhost:3030/$/ping</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if API is running</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> http://localhost:5001/</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check Python environment</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> env info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section class="level2" id="environment-variables">
+<section id="environment-variables" class="level2">
 <h2 class="anchored" data-anchor-id="environment-variables">Environment Variables</h2>
 <p>Create a <code>.env</code> file in the project root for any configuration:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a aria-hidden="true" href="#cb17-1" tabindex="-1"></a><span class="co"># Example .env file</span></span>
-<span id="cb17-2"><a aria-hidden="true" href="#cb17-2" tabindex="-1"></a><span class="va">FUSEKI_ENDPOINT</span><span class="op">=</span>http://localhost:3030/mathwiki/query</span>
-<span id="cb17-3"><a aria-hidden="true" href="#cb17-3" tabindex="-1"></a><span class="va">API_PORT</span><span class="op">=</span>5001</span>
-<span id="cb17-4"><a aria-hidden="true" href="#cb17-4" tabindex="-1"></a><span class="va">DEBUG</span><span class="op">=</span>True</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example .env file</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="va">FUSEKI_ENDPOINT</span><span class="op">=</span>http://localhost:3030/mathwiki/query</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="va">API_PORT</span><span class="op">=</span>5001</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="va">DEBUG</span><span class="op">=</span>True</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section class="level2" id="ide-setup">
+<section id="ide-setup" class="level2">
 <h2 class="anchored" data-anchor-id="ide-setup">IDE Setup</h2>
-<section class="level3" id="vs-code">
+<section id="vs-code" class="level3">
 <h3 class="anchored" data-anchor-id="vs-code">VS Code</h3>
 <p>Recommended extensions: - Python - Quarto - Markdown All in One - YAML</p>
 </section>
-<section class="level3" id="settings">
+<section id="settings" class="level3">
 <h3 class="anchored" data-anchor-id="settings">Settings</h3>
-<div class="sourceCode" id="cb18"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb18-1"><a aria-hidden="true" href="#cb18-1" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb18-2"><a aria-hidden="true" href="#cb18-2" tabindex="-1"></a>  <span class="dt">"python.linting.enabled"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
-<span id="cb18-3"><a aria-hidden="true" href="#cb18-3" tabindex="-1"></a>  <span class="dt">"python.linting.flake8Enabled"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
-<span id="cb18-4"><a aria-hidden="true" href="#cb18-4" tabindex="-1"></a>  <span class="dt">"python.formatting.provider"</span><span class="fu">:</span> <span class="st">"black"</span><span class="fu">,</span></span>
-<span id="cb18-5"><a aria-hidden="true" href="#cb18-5" tabindex="-1"></a>  <span class="dt">"python.defaultInterpreterPath"</span><span class="fu">:</span> <span class="st">".venv/bin/python"</span></span>
-<span id="cb18-6"><a aria-hidden="true" href="#cb18-6" tabindex="-1"></a><span class="fu">}</span></span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"python.linting.enabled"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"python.linting.flake8Enabled"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"python.formatting.provider"</span><span class="fu">:</span> <span class="st">"black"</span><span class="fu">,</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"python.defaultInterpreterPath"</span><span class="fu">:</span> <span class="st">".venv/bin/python"</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section class="level2" id="next-steps">
+<section id="next-steps" class="level2">
 <h2 class="anchored" data-anchor-id="next-steps">Next Steps</h2>
 <ul>
 <li>Read the <a href="../docs/content-authoring-tutorial.html">Content Authoring Tutorial</a></li>
@@ -601,15 +577,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Join the development discussion on GitHub</li>
 </ul>
 </section>
-<section class="level2" id="getting-help">
+<section id="getting-help" class="level2">
 <h2 class="anchored" data-anchor-id="getting-help">Getting Help</h2>
 <ul>
 <li>GitHub Issues: <a href="https://github.com/RK0429/ModernMath/issues">https://github.com/RK0429/ModernMath/issues</a></li>
 <li>Documentation: Available in the <code>docs/</code> directory</li>
 <li>API Documentation: http://localhost:5001/api/docs when running locally</li>
 </ul>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1012,16 +991,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>Mathematics Knowledge Graph Wiki - Built with Quarto and RDF</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>

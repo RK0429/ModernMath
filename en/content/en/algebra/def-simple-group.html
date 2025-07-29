@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta charset="utf-8"/>
-<meta content="quarto-1.7.32" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>Simple Group – Math Knowledge Graph</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,25 +21,27 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta content="../../../" name="quarto:offset"/>
-<link href="../../../favicon.ico" rel="icon"/>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
-<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'en';
   window.alternateLanguage = 'ja';
@@ -114,10 +119,18 @@ ul.task-list li input[type="checkbox"] {
     issueScript.src = basePath + 'js/issue-button.js';
     issueScript.defer = true;
     document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
   })();
 </script>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -144,207 +157,171 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<link href="../../../styles.css" rel="stylesheet"/>
-<link href="../../../styles-multilingual.css" rel="stylesheet"/>
-<style>
-        .bmc-custom-button {
-            position: fixed;
-            bottom: 70px; /* Positioned above Report Issue button */
-            right: 20px;
-            background-color: #FFDD00;
-            color: #000000;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            z-index: 999; /* Slightly below Report Issue button */
-        }
 
-        .bmc-custom-button:hover {
-            background-color: #FFD814;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles-multilingual.css">
+</head>
 
-        .bmc-custom-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .bmc-custom-button img {
-            height: 16px !important;
-            width: auto !important;
-            margin: 0;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .bmc-custom-button {
-                bottom: 60px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Hide on print */
-        @media print {
-            .bmc-custom-button {
-                display: none;
-            }
-        }
-        </style></head>
 <body class="nav-fixed quarto-light">
+
 <div id="quarto-search-results"></div>
-<header class="headroom fixed-top" id="quarto-header">
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-<div class="navbar-container container-fluid">
-<div class="navbar-brand-container mx-auto">
-<a class="navbar-brand" href="../../../index.html">
-<span class="navbar-title">Math Knowledge Graph</span>
-</a>
-</div>
-<div class="" id="quarto-search" title="Search"></div>
-<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
-<span class="navbar-toggler-icon"></span>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Math Knowledge Graph</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-<ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-<a class="nav-link" href="../../../index.html">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/algebra/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/algebra/index.html"> 
 <span class="menu-text">Algebra</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/analysis/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/analysis/index.html"> 
 <span class="menu-text">Analysis</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/topology/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/topology/index.html"> 
 <span class="menu-text">Topology</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/geometry/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/geometry/index.html"> 
 <span class="menu-text">Geometry</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/category-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/category-theory/index.html"> 
 <span class="menu-text">Category Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/combinatorics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/combinatorics/index.html"> 
 <span class="menu-text">Combinatorics</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/logic-set-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/logic-set-theory/index.html"> 
 <span class="menu-text">Logic &amp; Set Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/number-theory/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/number-theory/index.html"> 
 <span class="menu-text">Number Theory</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../content/en/probability-statistics/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/en/probability-statistics/index.html"> 
 <span class="menu-text">Probability &amp; Statistics</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/en/about.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/en/about.html"> 
 <span class="menu-text">About</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../nav/en/contributing.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../nav/en/contributing.html"> 
 <span class="menu-text">Contributing</span></a>
-</li>
+  </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
-</i>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
 <span class="menu-text"></span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="../../../../ja/index.html">
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../ja/index.html"> 
 <span class="menu-text">🌐 日本語</span></a>
-</li>
+  </li>  
 </ul>
-</div> <!-- /navcollapse -->
-<div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div> <!-- /container-fluid -->
-</nav>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
-<nav class="toc-active" id="TOC" role="doc-toc">
-<h2 id="toc-title">On this page</h2>
-<ul>
-<li><a class="nav-link active" data-scroll-target="#def-simple-group" href="#def-simple-group" id="toc-def-simple-group">Simple Group</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#formal-definition" href="#formal-definition" id="toc-formal-definition">Formal Definition</a></li>
-<li><a class="nav-link" data-scroll-target="#equivalent-characterizations" href="#equivalent-characterizations" id="toc-equivalent-characterizations">Equivalent Characterizations</a></li>
-<li><a class="nav-link" data-scroll-target="#importance" href="#importance" id="toc-importance">Importance</a></li>
-<li><a class="nav-link" data-scroll-target="#classification" href="#classification" id="toc-classification">Classification</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#abelian-simple-groups" href="#abelian-simple-groups" id="toc-abelian-simple-groups">Abelian Simple Groups</a></li>
-<li><a class="nav-link" data-scroll-target="#non-abelian-simple-groups" href="#non-abelian-simple-groups" id="toc-non-abelian-simple-groups">Non-Abelian Simple Groups</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#examples" href="#examples" id="toc-examples">Examples</a>
-<ul class="collapse">
-<li><a class="nav-link" data-scroll-target="#simple-groups" href="#simple-groups" id="toc-simple-groups">Simple Groups</a></li>
-<li><a class="nav-link" data-scroll-target="#non-simple-groups" href="#non-simple-groups" id="toc-non-simple-groups">Non-Simple Groups</a></li>
-</ul></li>
-<li><a class="nav-link" data-scroll-target="#properties" href="#properties" id="toc-properties">Properties</a></li>
-<li><a class="nav-link" data-scroll-target="#see-also" href="#see-also" id="toc-see-also">See Also</a></li>
-<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
-<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
-</ul></li>
-</ul>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#def-simple-group" id="toc-def-simple-group" class="nav-link active" data-scroll-target="#def-simple-group">Simple Group</a>
+  <ul class="collapse">
+  <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link" data-scroll-target="#formal-definition">Formal Definition</a></li>
+  <li><a href="#equivalent-characterizations" id="toc-equivalent-characterizations" class="nav-link" data-scroll-target="#equivalent-characterizations">Equivalent Characterizations</a></li>
+  <li><a href="#importance" id="toc-importance" class="nav-link" data-scroll-target="#importance">Importance</a></li>
+  <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification">Classification</a>
+  <ul class="collapse">
+  <li><a href="#abelian-simple-groups" id="toc-abelian-simple-groups" class="nav-link" data-scroll-target="#abelian-simple-groups">Abelian Simple Groups</a></li>
+  <li><a href="#non-abelian-simple-groups" id="toc-non-abelian-simple-groups" class="nav-link" data-scroll-target="#non-abelian-simple-groups">Non-Abelian Simple Groups</a></li>
+  </ul></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
+  <ul class="collapse">
+  <li><a href="#simple-groups" id="toc-simple-groups" class="nav-link" data-scroll-target="#simple-groups">Simple Groups</a></li>
+  <li><a href="#non-simple-groups" id="toc-non-simple-groups" class="nav-link" data-scroll-target="#non-simple-groups">Non-Simple Groups</a></li>
+  </ul></li>
+  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
+  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
+  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
+  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
+  </ul></li>
+  </ul>
 </nav>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header class="quarto-title-block default" id="title-block-header">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Simple Group</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
-</div>
+
+    
+  
+    
+  </div>
+  
+
+
 </header>
-<section class="level1" id="def-simple-group">
+
+
+<section id="def-simple-group" class="level1">
 <h1>Simple Group</h1>
 <p>A <strong>simple group</strong> is a non-trivial <a href="../../../content/en/algebra/def-group.html">group</a> whose only <a href="../../../content/en/algebra/def-normal-subgroup.html">normal subgroups</a> are the trivial subgroup <span class="math inline">\(\{e\}\)</span> and the group itself <span class="math inline">\(G\)</span>.</p>
-<section class="level2" id="formal-definition">
+<section id="formal-definition" class="level2">
 <h2 class="anchored" data-anchor-id="formal-definition">Formal Definition</h2>
 <p>A group <span class="math inline">\(G\)</span> is simple if: 1. <span class="math inline">\(G \neq \{e\}\)</span> (the group is non-trivial) 2. The only normal subgroups of <span class="math inline">\(G\)</span> are <span class="math inline">\(\{e\}\)</span> and <span class="math inline">\(G\)</span></p>
 </section>
-<section class="level2" id="equivalent-characterizations">
+<section id="equivalent-characterizations" class="level2">
 <h2 class="anchored" data-anchor-id="equivalent-characterizations">Equivalent Characterizations</h2>
 <p>A group <span class="math inline">\(G\)</span> is simple if and only if: - <span class="math inline">\(G\)</span> has no proper non-trivial normal subgroups - For any normal subgroup <span class="math inline">\(N \triangleleft G\)</span>, either <span class="math inline">\(N = \{e\}\)</span> or <span class="math inline">\(N = G\)</span> - The only <a href="../../../content/en/algebra/def-quotient-group.html">quotient groups</a> of <span class="math inline">\(G\)</span> are <span class="math inline">\(G/\{e\} \cong G\)</span> and <span class="math inline">\(G/G \cong \{e\}\)</span></p>
 </section>
-<section class="level2" id="importance">
+<section id="importance" class="level2">
 <h2 class="anchored" data-anchor-id="importance">Importance</h2>
 <p>Simple groups are fundamental in group theory because: - They serve as the “building blocks” of all finite groups - The Jordan-Hölder theorem shows that every finite group can be broken down into a composition series of simple groups - They cannot be decomposed into smaller groups via the quotient construction</p>
 </section>
-<section class="level2" id="classification">
+<section id="classification" class="level2">
 <h2 class="anchored" data-anchor-id="classification">Classification</h2>
-<section class="level3" id="abelian-simple-groups">
+<section id="abelian-simple-groups" class="level3">
 <h3 class="anchored" data-anchor-id="abelian-simple-groups">Abelian Simple Groups</h3>
 <p>The only <a href="../../../content/en/algebra/def-abelian-group.html">abelian</a> simple groups are the <a href="../../../content/en/algebra/def-cyclic-group.html">cyclic groups</a> of prime <a href="../../../content/en/algebra/def-order.html">order</a>: - <span class="math inline">\(\mathbb{Z}_p\)</span> where <span class="math inline">\(p\)</span> is prime</p>
 <p>This follows from <a href="../../../content/en/algebra/thm-lagrange.html">Lagrange’s theorem</a>: a group of prime <a href="../../../content/en/algebra/def-order.html">order</a> has no proper non-trivial subgroups.</p>
 </section>
-<section class="level3" id="non-abelian-simple-groups">
+<section id="non-abelian-simple-groups" class="level3">
 <h3 class="anchored" data-anchor-id="non-abelian-simple-groups">Non-Abelian Simple Groups</h3>
 <p>The complete classification of finite simple groups includes:</p>
 <ol type="1">
@@ -355,9 +332,9 @@ window.Quarto = {
 </ol>
 </section>
 </section>
-<section class="level2" id="examples">
+<section id="examples" class="level2">
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<section class="level3" id="simple-groups">
+<section id="simple-groups" class="level3">
 <h3 class="anchored" data-anchor-id="simple-groups">Simple Groups</h3>
 <ul>
 <li><span class="math inline">\(\mathbb{Z}_2, \mathbb{Z}_3, \mathbb{Z}_5, \ldots\)</span> (cyclic groups of prime <a href="../../../content/en/algebra/def-order.html">order</a>)</li>
@@ -366,7 +343,7 @@ window.Quarto = {
 <li><span class="math inline">\(PSL(2, 7)\)</span> (projective special linear group with 168 elements)</li>
 </ul>
 </section>
-<section class="level3" id="non-simple-groups">
+<section id="non-simple-groups" class="level3">
 <h3 class="anchored" data-anchor-id="non-simple-groups">Non-Simple Groups</h3>
 <ul>
 <li><span class="math inline">\(\mathbb{Z}_4\)</span> has <span class="math inline">\(\{0, 2\}\)</span> as a proper normal subgroup</li>
@@ -375,7 +352,7 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section class="level2" id="properties">
+<section id="properties" class="level2">
 <h2 class="anchored" data-anchor-id="properties">Properties</h2>
 <ol type="1">
 <li><p><strong>Simplicity and Homomorphisms</strong>: If <span class="math inline">\(\phi: G \to H\)</span> is a <a href="../../../content/en/algebra/def-homomorphism.html">homomorphism</a> from a simple group <span class="math inline">\(G\)</span>, then either:</p>
@@ -387,7 +364,7 @@ window.Quarto = {
 <li><p><strong>Minimal Normal Subgroups</strong>: A simple group is a minimal normal subgroup of any group containing it</p></li>
 </ol>
 </section>
-<section class="level2" id="see-also">
+<section id="see-also" class="level2">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
 <li><a href="../../../content/en/algebra/def-group.html">Group</a></li>
@@ -398,7 +375,7 @@ window.Quarto = {
 <li><a href="../../../content/en/algebra/thm-first-isomorphism.html">First Isomorphism Theorem</a></li>
 </ul>
 </section>
-<section class="level2" id="dependency-graph">
+<section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -411,40 +388,40 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group["Group"]:::definition
-    def-simple-group["Simple Group"]:::definition
     def-abelian-group["Abelian Group"]:::definition
-    def-homomorphism["Group Homomorphism"]:::definition
-    thm-first-isomorphism["First Isomorphism Theorem"]:::theorem
-    def-cyclic-group["Cyclic Group"]:::definition
-    def-quotient-group["Quotient Group"]:::definition
     thm-lagrange["Lagrange's Theorem"]:::theorem
-    def-normal-subgroup["Normal Subgroup"]:::definition
+    def-cyclic-group["Cyclic Group"]:::definition
+    def-group["Group"]:::definition
     def-center-of-group["Center of a Group"]:::definition
     def-order["Order"]:::definition
-    def-center-of-group --&gt; def-simple-group
-    def-simple-group --&gt; def-center-of-group
-    def-simple-group --&gt; thm-first-isomorphism
-    def-simple-group --&gt; def-abelian-group
-    def-simple-group --&gt; def-order
-    def-group --&gt; def-simple-group
+    def-quotient-group["Quotient Group"]:::definition
+    thm-first-isomorphism["First Isomorphism Theorem"]:::theorem
+    def-normal-subgroup["Normal Subgroup"]:::definition
+    def-homomorphism["Group Homomorphism"]:::definition
+    def-simple-group["Simple Group"]:::definition
     def-simple-group --&gt; def-normal-subgroup
     def-simple-group --&gt; def-homomorphism
+    def-center-of-group --&gt; def-simple-group
+    def-simple-group --&gt; def-order
     def-simple-group --&gt; def-quotient-group
-    def-simple-group --&gt; thm-lagrange
-    def-simple-group --&gt; def-group
     def-simple-group --&gt; def-cyclic-group
+    def-simple-group --&gt; thm-first-isomorphism
+    def-simple-group --&gt; def-group
+    def-group --&gt; def-simple-group
+    def-simple-group --&gt; def-abelian-group
+    def-simple-group --&gt; thm-lagrange
+    def-simple-group --&gt; def-center-of-group
     class def-simple-group current
-    click def-group "def-group.html" "Go to Group"
     click def-abelian-group "def-abelian-group.html" "Go to Abelian Group"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem"
-    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
     click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
+    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group"
+    click def-group "def-group.html" "Go to Group"
     click def-center-of-group "def-center-of-group.html" "Go to Center of a Group"
     click def-order "def-order.html" "Go to Order"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -452,12 +429,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section class="level2" id="interactive-visualization">
+<section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div class="graph-visualization-container" id="graph-viz-def-simple-group-1753764807">
-<div class="graph-loading">Loading visualization...</div>
+<div id="graph-viz-def-simple-group-1753768671" class="graph-visualization-container">
+  <div class="graph-loading">Loading visualization...</div>
 </div>
+
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -702,12 +680,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-simple-group-1753764807', {
+    createForceGraph(data, 'graph-viz-def-simple-group-1753768671', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-simple-group-1753764807').innerHTML =
+    document.getElementById('graph-viz-def-simple-group-1753768671').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -719,6 +697,7 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
+
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -767,9 +746,13 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
+
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/def-simple-group.html" target="_blank">full interactive version</a></p>
+
+
 </section>
 </section>
+
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1172,16 +1155,20 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-<div class="nav-footer">
-<div class="nav-footer-left">
-       
-    </div>
-<div class="nav-footer-center">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
 <p>Mathematics Knowledge Graph Wiki - Built with Quarto and RDF</p>
 </div>
-<div class="nav-footer-right">
-       
+    <div class="nav-footer-right">
+      &nbsp;
     </div>
-</div>
+  </div>
 </footer>
-<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
+
+
+
+
+</body></html>
