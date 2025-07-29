@@ -4,9 +4,12 @@ requires:
 - def-morphism
 - def-composition
 - def-category
+- def-monomorphism
 - def-homeomorphism
+- ../logic-set-theory/def-equivalence-relation
+- ../logic-set-theory/def-cardinality
 status: complete
-title: '定義: 同型射'
+title: 同型射
 translation_of: ../../en/category-theory/def-isomorphism.qmd
 translations:
   en: ../en/category-theory/def-isomorphism.html
@@ -31,12 +34,13 @@ type: Definition
 3. **合成**: 同型射の[合成](def-composition.qmd)は同型射：
    - $f: A \to B$ と $g: B \to C$ が同型射なら
    - $g \circ f: A \to C$ は同型射で $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$
+4. **単射かつ全射**: すべての同型射は[単射](def-monomorphism.qmd)かつ[全射](def-epimorphism.qmd)である
 
 ## 同型な対象
 
 対象 $A$ と $B$ が**同型**であるとは、同型射 $f: A \to B$ が存在することで、$A \cong B$ と書きます。
 
-同型は同値関係です：
+同型は[同値関係](../logic-set-theory/def-equivalence-relation.qmd)です：
 - **反射律**: $\text{id}_A$ により $A \cong A$
 - **対称律**: $A \cong B$ ならば $B \cong A$
 - **推移律**: $A \cong B$ かつ $B \cong C$ ならば $A \cong C$
@@ -45,7 +49,7 @@ type: Definition
 
 ### Set
 - 同型射は全単射関数
-- 2つの集合が同型 ⟺ 同じ濃度を持つ
+- 2つの集合が同型 ⟺ 同じ[濃度](../logic-set-theory/def-cardinality.qmd)を持つ
 
 ### Group
 - 同型射は全単射群準同型
@@ -61,7 +65,7 @@ type: Definition
 
 ## 特殊な種類
 
-### 自己同型射
+### [自己同型射](../algebra/def-automorphism.qmd)
 対象から自分自身への同型射: $f: A \to A$
 
 ### 自然同型
@@ -82,28 +86,44 @@ type: Definition
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-isomorphism["Definition: Isomorphism"]:::definition
-    def-morphism["Definition: Morphism"]:::definition
-    def-composition["Definition: Composition"]:::definition
-    def-category["Definition: Category"]:::definition
-    def-homeomorphism["Definition: Homeomorphism"]:::definition
+    def-homeomorphism["定義：同相写像"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-morphism["定義: 射"]:::definition
+    def-isomorphism["定義: 群同型"]:::definition
+    def-function["定義: 関数"]:::definition
+    def-composition["定義: 合成"]:::definition
+    def-homomorphism["定義: 群準同型"]:::definition
+    def-group["群"]:::definition
+    def-category["定義: 圏"]:::definition
+    def-monomorphism["定義：単射"]:::definition
+    def-isomorphism --> def-binary-operation
+    def-isomorphism --> def-monomorphism
+    def-isomorphism --> def-group
     def-isomorphism --> def-category
     def-homeomorphism --> def-isomorphism
     def-isomorphism --> def-morphism
-    def-isomorphism --> def-homeomorphism
+    def-monomorphism --> def-isomorphism
     def-isomorphism --> def-composition
+    def-isomorphism --> def-function
+    def-isomorphism --> def-homeomorphism
+    def-isomorphism --> def-homomorphism
     class def-isomorphism current
-    click def-morphism "def-morphism.html" "Definition: Morphismへ"
-    click def-composition "def-composition.html" "Definition: Compositionへ"
-    click def-category "def-category.html" "Definition: Categoryへ"
-    click def-homeomorphism "def-homeomorphism.html" "Definition: Homeomorphismへ"
+    click def-homeomorphism "def-homeomorphism.html" "定義：同相写像へ"
+    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
+    click def-morphism "def-morphism.html" "射の定義へ"
+    click def-function "def-function.html" "関数の定義へ"
+    click def-composition "def-composition.html" "合成の定義へ"
+    click def-homomorphism "def-homomorphism.html" "群準同型の定義へ"
+    click def-group "def-group.html" "群へ"
+    click def-category "def-category.html" "圏の定義へ"
+    click def-monomorphism "def-monomorphism.html" "定義：単射へ"
 ```
 
 ## インタラクティブ可視化
@@ -117,4 +137,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-isomorphism.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-isomorphism.html){target="_blank"}で完全なインタラクティブ版を表示

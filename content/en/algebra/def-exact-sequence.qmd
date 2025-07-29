@@ -1,0 +1,143 @@
+---
+id: def-exact-sequence
+requires:
+- def-homomorphism
+- def-kernel
+- def-image
+- ../category-theory/def-morphism
+status: complete
+title: Exact Sequence
+translations:
+  en: ../en/algebra/def-exact-sequence.html
+  ja: ../ja/algebra/def-exact-sequence.html
+type: Definition
+---
+
+# Exact Sequence {#def-exact-sequence}
+
+An **exact sequence** is a sequence of [morphisms](../category-theory/def-morphism.qmd) between objects (typically groups, modules, or vector spaces) such that the [image](def-image.qmd) of each morphism equals the [kernel](def-kernel.qmd) of the next morphism.
+
+## Formal Definition
+
+Given a sequence of objects and morphisms:
+
+$$\cdots \xrightarrow{f_{i-1}} A_{i-1} \xrightarrow{f_i} A_i \xrightarrow{f_{i+1}} A_{i+1} \xrightarrow{f_{i+2}} \cdots$$
+
+The sequence is **exact at $A_i$** if:
+
+$$\text{im}(f_i) = \ker(f_{i+1})$$
+
+The sequence is called **exact** if it is exact at every object where both an incoming and outgoing morphism exist.
+
+## Notation
+
+- The morphisms are often [homomorphisms](def-homomorphism.qmd) when dealing with groups
+- For modules or vector spaces, they are [linear transformations](def-linear-transformation.qmd)
+- The zero object is denoted as $0$ (the trivial group, zero module, etc.)
+
+## Short Exact Sequences
+
+A **short exact sequence** is an exact sequence of the form:
+
+$$0 \xrightarrow{} A \xrightarrow{\alpha} B \xrightarrow{\beta} C \xrightarrow{} 0$$
+
+This means:
+1. $\alpha$ is injective (since $\ker(\alpha) = \{0\}$)
+2. $\beta$ is surjective (since $\text{im}(\beta) = C$)
+3. $\text{im}(\alpha) = \ker(\beta)$
+
+## Intuitive Understanding
+
+A short exact sequence captures a fundamental decomposition pattern in algebra:
+- $A$ embeds into $B$ via $\alpha$
+- $C$ is the "quotient" $B/A$ in an appropriate sense
+- The kernel of $\beta$ is precisely the image of $\alpha$
+
+This generalizes the relationship between a subgroup, a group, and their quotient to many other algebraic structures.
+
+## Key Properties
+
+1. **Splitting**: A short exact sequence $0 \to A \xrightarrow{\alpha} B \xrightarrow{\beta} C \to 0$ **splits** if there exists $\gamma: C \to B$ such that $\beta \circ \gamma = \text{id}_C$. When this happens (in the category of abelian groups or modules), $B \cong A \oplus C$.
+
+2. **Long Exact Sequences**: Any long exact sequence can be decomposed into overlapping short exact sequences.
+
+3. **Exactness and Isomorphism**: In a short exact sequence, if any two of $A$, $B$, $C$ are zero, then all three are zero.
+
+## Examples
+
+Common examples include:
+
+1. **Quotient Groups**: For a [normal subgroup](def-normal-subgroup.qmd) $N$ of $G$:
+   $$0 \to N \xrightarrow{i} G \xrightarrow{\pi} G/N \to 0$$
+   where $i$ is inclusion and $\pi$ is the quotient map.
+
+2. **First Isomorphism Theorem**: For any homomorphism $f: G \to H$:
+   $$0 \to \ker(f) \xrightarrow{i} G \xrightarrow{f} \text{im}(f) \to 0$$
+   This relates to the [First Isomorphism Theorem](thm-first-isomorphism.qmd).
+
+3. **Direct Sum Decomposition**: For a [direct product](def-direct-product.qmd) $A \oplus B$:
+   $$0 \to A \xrightarrow{\iota_1} A \oplus B \xrightarrow{\pi_2} B \to 0$$
+   where $\iota_1(a) = (a,0)$ and $\pi_2(a,b) = b$.
+
+## Special Types
+
+- **Split exact sequence**: An exact sequence that admits a splitting homomorphism
+- **Pure exact sequence**: An exact sequence that remains exact after tensoring with any module
+- **Weakly exact sequence**: Where only $\text{im}(f_i) \subseteq \ker(f_{i+1})$
+
+## Applications
+
+Exact sequences are fundamental in:
+- **Homological algebra**: Computing derived functors and cohomology
+- **Algebraic topology**: The Mayer-Vietoris sequence, long exact sequence of a pair
+- **Module theory**: Understanding module extensions and Ext functors
+- **K-theory**: Defining K-groups via exact sequences
+
+## Related Concepts
+
+- **[Homomorphism](def-homomorphism.qmd)**: The morphisms in exact sequences of groups
+- **[Kernel](def-kernel.qmd)** and **[Image](def-image.qmd)**: The key concepts defining exactness
+- **[Quotient Group](def-quotient-group.qmd)**: Short exact sequences generalize the subgroup-quotient relationship
+- **[Isomorphism](def-isomorphism.qmd)**: Split exact sequences lead to direct sum decompositions
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-exact-sequence["Definition: Exact Sequence"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
+    def-image["Definition: Image"]:::definition
+    def-exact-sequence --> def-kernel
+    def-exact-sequence --> def-image
+    thm-first-isomorphism --> def-exact-sequence
+    def-exact-sequence --> def-homomorphism
+    def-quotient-group --> def-exact-sequence
+    class def-exact-sequence current
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem theorem"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
+    click def-kernel "def-kernel.html" "Go to Kernel definition"
+    click def-image "def-image.html" "Go to Image definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-exact-sequence" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/en/def-exact-sequence.html){target="_blank"}

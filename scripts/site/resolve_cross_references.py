@@ -16,6 +16,24 @@ from typing import Dict, List, Optional, Tuple
 import yaml
 
 
+def detect_language(file_path: Path) -> Optional[str]:
+    """
+    Detect the language of a file based on its path.
+
+    Args:
+        file_path: Path to the file
+
+    Returns:
+        Language code ('en' or 'ja') or None if not detectable
+    """
+    path_parts = file_path.parts
+    if "en" in path_parts:
+        return "en"
+    elif "ja" in path_parts:
+        return "ja"
+    return None
+
+
 def load_node_index(content_dir: Path) -> Dict[str, Path]:
     """
     Build an index of all node IDs to their file paths.
@@ -53,6 +71,50 @@ def load_node_index(content_dir: Path) -> Dict[str, Path]:
             print(f"Warning: Error reading {qmd_file}: {e}", file=sys.stderr)
 
     return node_index
+
+
+def load_language_aware_node_index(content_dir: Path) -> Dict[str, Dict[str, Path]]:
+    """
+    Build language-aware indices of node IDs to their file paths.
+
+    Args:
+        content_dir: Root content directory
+
+    Returns:
+        Dictionary mapping language codes to node indices
+    """
+    language_indices = {"en": {}, "ja": {}}
+
+    for qmd_file in content_dir.rglob("*.qmd"):
+        # Skip index files
+        if qmd_file.name == "index.qmd":
+            continue
+
+        # Detect language
+        lang = detect_language(qmd_file)
+        if lang not in language_indices:
+            continue
+
+        try:
+            # Read YAML front matter
+            with open(qmd_file, "r", encoding="utf-8") as f:
+                content = f.read()
+
+            # Extract YAML front matter
+            if content.startswith("---"):
+                yaml_end = content.find("---", 3)
+                if yaml_end != -1:
+                    yaml_content = content[3:yaml_end]
+                    metadata = yaml.safe_load(yaml_content)
+
+                    if metadata and "id" in metadata:
+                        node_id = metadata["id"]
+                        language_indices[lang][node_id] = qmd_file
+
+        except (IOError, OSError, yaml.YAMLError) as e:
+            print(f"Warning: Error reading {qmd_file}: {e}", file=sys.stderr)
+
+    return language_indices
 
 
 def find_cross_references(content: str) -> List[Tuple[str, Optional[str], int, int]]:
@@ -178,19 +240,30 @@ def pluralize_word(word: str) -> str:
 
 
 def resolve_references_in_file(
-    file_path: Path, node_index: Dict[str, Path], dry_run: bool = False
+    file_path: Path,
+    language_indices: Dict[str, Dict[str, Path]],
+    dry_run: bool = False,
 ) -> int:
     """
-    Resolve cross-references in a single file.
+    Resolve cross-references in a single file using language-aware indices.
 
     Args:
         file_path: Path to the .qmd file to process
-        node_index: Dictionary mapping node IDs to file paths
+        language_indices: Dictionary mapping language codes to node indices
         dry_run: If True, don't write changes, just report them
 
     Returns:
         Number of references resolved
     """
+    # Detect the language of the current file
+    file_lang = detect_language(file_path)
+    if file_lang not in language_indices:
+        print(f"Warning: Cannot detect language for {file_path}")
+        return 0
+
+    # Use the appropriate language index
+    node_index = language_indices[file_lang]
+
     with open(file_path, "r", encoding="utf-8") as f:
         original_content = f.read()
 
@@ -230,7 +303,7 @@ def resolve_references_in_file(
                     else:
                         clean_title = title
 
-                    # If bracketed text is 's' or 'es', pluralize the title
+                    # If bracketed text is "s" or "es", pluralize the title
                     if bracket_text and bracket_text.strip() in ["s", "es"]:
                         link_text = pluralize_word(clean_title)
                     else:
@@ -284,9 +357,12 @@ def main() -> None:
         print(f"Error: Content directory '{content_dir}' does not exist", file=sys.stderr)
         sys.exit(1)
 
-    print(f"Building node index from {content_dir}...")
-    node_index = load_node_index(content_dir)
-    print(f"Found {len(node_index)} nodes in the knowledge graph")
+    print(f"Building language-aware node indices from {content_dir}...")
+    language_indices = load_language_aware_node_index(content_dir)
+    total_nodes = sum(len(idx) for idx in language_indices.values())
+    print(f"Found {total_nodes} nodes in the knowledge graph")
+    for lang, idx in language_indices.items():
+        print(f"  {lang.upper()}: {len(idx)} nodes")
 
     if args.dry_run:
         print("\n--- DRY RUN MODE ---")
@@ -308,7 +384,7 @@ def main() -> None:
             continue
 
         print(f"\nProcessing: {qmd_file.relative_to(content_dir.parent)}")
-        resolved = resolve_references_in_file(qmd_file, node_index, args.dry_run)
+        resolved = resolve_references_in_file(qmd_file, language_indices, args.dry_run)
 
         if resolved > 0:
             total_resolved += resolved

@@ -3,8 +3,9 @@ id: def-homomorphism
 requires:
 - def-group
 - def-binary-operation
+- ../logic-set-theory/def-function
 status: complete
-title: 'Definition: Group Homomorphism'
+title: Group Homomorphism
 translations:
   en: ../en/algebra/def-homomorphism.html
   ja: ../ja/algebra/def-homomorphism.html
@@ -13,7 +14,7 @@ type: Definition
 
 # Group Homomorphism {#def-homomorphism}
 
-A **group homomorphism** is a function between two [Group](def-group.qmd) structures that preserves the group [Binary Operation](def-binary-operation.qmd).
+A **group homomorphism** is a [function](../logic-set-theory/def-function.qmd) between two [Group](def-group.qmd) structures that preserves the group [Binary Operation](def-binary-operation.qmd).
 
 ## Formal Definition
 
@@ -33,11 +34,11 @@ For any group homomorphism $f: G \to H$:
 
 ## Special Types
 
-- **Monomorphism**: An injective homomorphism
-- **Epimorphism**: A surjective homomorphism
-- **Isomorphism**: A bijective homomorphism
-- **Endomorphism**: A homomorphism from a group to itself
-- **Automorphism**: A bijective endomorphism (the set of all automorphisms forms a group that [acts](def-group-action.qmd) on $G$)
+- **[Monomorphism](../category-theory/def-monomorphism.qmd)**: An injective homomorphism
+- **[Epimorphism](../category-theory/def-epimorphism.qmd)**: A surjective homomorphism
+- **[Isomorphism](def-isomorphism.qmd)**: A bijective homomorphism
+- **[Endomorphism](def-endomorphism.qmd)**: A homomorphism from a group to itself
+- **[Automorphism](def-automorphism.qmd)**: A bijective endomorphism (the set of all automorphisms forms a group that [acts](def-group-action.qmd) on $G$)
 
 ## Kernel and Image
 
@@ -66,34 +67,58 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
-    def-quotient-group["Definition: Quotient Group"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
-    def-kernel["Definition: Kernel"]:::definition
-    def-direct-product["Definition: Direct Product of Groups"]:::definition
-    def-group["Definition: Group"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
     def-binary-operation["Definition: Binary Operation"]:::definition
-    def-homomorphism --> def-quotient-group
-    def-group --> def-homomorphism
-    def-homomorphism --> thm-first-isomorphism
+    def-exact-sequence["Definition: Exact Sequence"]:::definition
+    def-direct-product["Definition: Direct Product of Groups"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    def-function["Definition: Function"]:::definition
+    def-automorphism["Definition: Automorphism"]:::definition
+    def-endomorphism["Definition: Endomorphism"]:::definition
+    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
+    ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-free-group["Definition: Free Group"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-simple-group["Definition: Simple Group"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
     thm-first-isomorphism --> def-homomorphism
-    def-kernel --> def-homomorphism
-    def-normal-subgroup --> def-homomorphism
     ex-exponential-homomorphism --> def-homomorphism
-    def-homomorphism --> def-binary-operation
+    def-normal-subgroup --> def-homomorphism
+    def-quotient-ring --> def-homomorphism
+    def-homomorphism --> def-quotient-group
     def-homomorphism --> def-group
     def-direct-product --> def-homomorphism
+    def-kernel --> def-homomorphism
+    def-homomorphism --> def-binary-operation
+    def-free-group --> def-homomorphism
+    def-isomorphism --> def-homomorphism
+    def-automorphism --> def-homomorphism
+    def-homomorphism --> thm-first-isomorphism
+    def-endomorphism --> def-homomorphism
+    def-group --> def-homomorphism
+    def-homomorphism --> def-function
+    def-simple-group --> def-homomorphism
+    def-exact-sequence --> def-homomorphism
     class def-homomorphism current
-    click ex-exponential-homomorphism "ex-exponential-homomorphism.html" "Go to Exponential Homomorphism example"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
     click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem theorem"
-    click def-kernel "def-kernel.html" "Go to Kernel definition"
-    click def-direct-product "def-direct-product.html" "Go to Direct Product of Groups definition"
-    click def-group "def-group.html" "Go to Group definition"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
     click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click def-exact-sequence "def-exact-sequence.html" "Go to Exact Sequence definition"
+    click def-direct-product "def-direct-product.html" "Go to Direct Product of Groups definition"
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
+    click def-function "def-function.html" "Go to Function definition"
+    click def-automorphism "def-automorphism.html" "Go to Automorphism definition"
+    click def-endomorphism "def-endomorphism.html" "Go to Endomorphism definition"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem theorem"
+    click ex-exponential-homomorphism "ex-exponential-homomorphism.html" "Go to Exponential Homomorphism example"
+    click def-free-group "def-free-group.html" "Go to Free Group definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring definition"
+    click def-simple-group "def-simple-group.html" "Go to Simple Group definition"
+    click def-kernel "def-kernel.html" "Go to Kernel definition"
 ```
 
 ## Interactive Visualization
@@ -107,4 +132,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-homomorphism.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-homomorphism.html){target="_blank"}

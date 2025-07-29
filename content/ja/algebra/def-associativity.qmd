@@ -74,8 +74,8 @@ $$(a * b) * c = a * (b * c)$$
 ## 重要性
 
 1. **代数構造**：結合性は以下に必要：
-   - 半群
-   - モノイド
+   - [半群](def-semigroup.qmd)
+   - [モノイド](def-monoid.qmd)
    - [群](def-group.qmd)
    - 環（両演算に対して）
 
@@ -99,21 +99,27 @@ $$(a * b) * c = a * (b * c)$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-associativity["Definition: Associativity"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-group["Definition: Group"]:::definition
+    def-semigroup["定義：半群"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-monoid["定義: モノイド"]:::definition
+    def-group["群"]:::definition
+    def-associativity["結合性"]:::definition
+    def-semigroup --> def-associativity
     def-associativity --> def-binary-operation
     def-group --> def-associativity
+    def-monoid --> def-associativity
     class def-associativity current
-    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
-    click def-group "def-group.html" "Definition: Groupへ"
+    click def-semigroup "def-semigroup.html" "定義：半群へ"
+    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
+    click def-monoid "def-monoid.html" "モノイドの定義へ"
+    click def-group "def-group.html" "群へ"
 ```
 
 ## インタラクティブ可視化
@@ -127,4 +133,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-associativity.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-associativity.html){target="_blank"}で完全なインタラクティブ版を表示

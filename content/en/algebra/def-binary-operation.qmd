@@ -3,17 +3,18 @@ id: def-binary-operation
 lean_id: MathKnowledgeGraph.Algebra.BinaryOp
 requires:
 - def-set
+- ../logic-set-theory/def-function
 status: complete
-title: 'Definition: Binary Operation'
+title: Binary Operation
 translations:
   en: ../en/algebra/def-binary-operation.html
   ja: ../ja/algebra/def-binary-operation.html
 type: Definition
 ---
 
-# Definition: Binary Operation {#def-binary-operation}
+# Binary Operation {#def-binary-operation}
 
-Let $S$ be a [Set](../logic-set-theory/def-set.qmd). A **binary operation** on $S$ is a function $\star: S \times S \to S$.
+Let $S$ be a [Set](../logic-set-theory/def-set.qmd). A **binary operation** on $S$ is a [function](../logic-set-theory/def-function.qmd) $\star: S \times S \to S$.
 
 ## Explanation
 
@@ -25,7 +26,7 @@ A binary operation $\star$ on a set $S$ may satisfy various properties:
 
 1. **Closure**: By definition, $a \star b \in S$ for all $a, b \in S$
 
-2. **Associativity**: $(a \star b) \star c = a \star (b \star c)$ for all $a, b, c \in S$
+2. **[Associativity](def-associativity.qmd)**: $(a \star b) \star c = a \star (b \star c)$ for all $a, b, c \in S$ (see [semigroup](def-semigroup.qmd))
 
 3. **Commutativity**: $a \star b = b \star a$ for all $a, b \in S$
 
@@ -57,56 +58,14 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-inverse-element["Definition: Inverse Element"]:::definition
-    def-commutativity["Definition: Commutativity"]:::definition
-    def-associativity["Definition: Associativity"]:::definition
-    ex-integers-addition["Example: Integers under Addition"]:::example
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-coset["Definition: Coset"]:::definition
-    def-ideal["Definition: Ideal"]:::definition
-    def-module["Definition: Module"]:::definition
     def-set["Definition: Set"]:::definition
-    def-identity-element["Definition: Identity Element"]:::definition
-    def-distributivity["Definition: Distributivity"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
-    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-ring["Definition: Ring"]:::definition
+    def-function["Definition: Function"]:::definition
     def-binary-operation["Definition: Binary Operation"]:::definition
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-binary-operation --> def-function
     def-binary-operation --> def-set
-    def-distributivity --> def-binary-operation
-    ex-integers-ring --> def-binary-operation
-    def-commutativity --> def-binary-operation
-    def-group --> def-binary-operation
-    def-module --> def-binary-operation
-    def-associativity --> def-binary-operation
-    def-identity-element --> def-binary-operation
-    def-coset --> def-binary-operation
-    ex-integers-addition --> def-binary-operation
-    def-ring --> def-binary-operation
-    def-ideal --> def-binary-operation
-    def-homomorphism --> def-binary-operation
-    def-inverse-element --> def-binary-operation
-    def-polynomial-ring --> def-binary-operation
-    def-vector-space --> def-binary-operation
     class def-binary-operation current
-    click def-inverse-element "def-inverse-element.html" "Go to Inverse Element definition"
-    click def-commutativity "def-commutativity.html" "Go to Commutativity definition"
-    click def-associativity "def-associativity.html" "Go to Associativity definition"
-    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
-    click def-coset "def-coset.html" "Go to Coset definition"
-    click def-ideal "def-ideal.html" "Go to Ideal definition"
-    click def-module "def-module.html" "Go to Module definition"
     click def-set "def-set.html" "Go to Set definition"
-    click def-identity-element "def-identity-element.html" "Go to Identity Element definition"
-    click def-distributivity "def-distributivity.html" "Go to Distributivity definition"
-    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
-    click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring definition"
-    click def-group "def-group.html" "Go to Group definition"
-    click def-ring "def-ring.html" "Go to Ring definition"
-    click ex-integers-ring "ex-integers-ring.html" "Go to Integers Form a Ring example"
+    click def-function "def-function.html" "Go to Function definition"
 ```
 
 ## Interactive Visualization
@@ -120,4 +79,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-binary-operation.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-binary-operation.html){target="_blank"}

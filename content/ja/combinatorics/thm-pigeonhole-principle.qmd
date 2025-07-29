@@ -2,8 +2,10 @@
 id: thm-pigeonhole-principle
 requires:
 - def-set
+- def-function
+- ../logic-set-theory/def-cardinality
 status: complete
-title: 定理：鳩の巣原理
+title: 鳩の巣原理
 translation_of: ../../en/combinatorics/thm-pigeonhole-principle.qmd
 translations:
   en: ../en/combinatorics/thm-pigeonhole-principle.html
@@ -11,7 +13,7 @@ translations:
 type: Theorem
 ---
 
-# 定理：鳩の巣原理
+# 鳩の巣原理
 
 **鳩の巣原理**は、容器よりも多くのアイテムを配分する場合、少なくとも1つの容器に複数のアイテムが含まれることを述べる基本的な数え上げ原理です。
 
@@ -23,7 +25,7 @@ type: Theorem
 
 ## 形式的命題
 
-$f: A \to B$ を関数とし、$A$ と $B$ は $|A| > |B|$ となる有限[集合](../logic-set-theory/def-set.qmd)とします。このとき $f$ は単射ではありません。つまり、$f(a_1) = f(a_2)$ となる異なる要素 $a_1, a_2 \in A$ が存在します。
+$f: A \to B$ を関数とし、$A$ と $B$ は[濃度](../logic-set-theory/def-cardinality.qmd)が $|A| > |B|$ を満たす有限[集合](../logic-set-theory/def-set.qmd)とします。このとき $f$ は単射ではありません。つまり、$f(a_1) = f(a_2)$ となる異なる要素 $a_1, a_2 \in A$ が存在します。
 
 ## 証明
 
@@ -50,24 +52,28 @@ $f: A \to B$ を関数とし、$A$ と $B$ は $|A| > |B|$ となる有限[集�
 - 任意の6人の中で、3人が互いに友人であるか、3人が互いに他人です
 - $n^2 + 1$ 個の異なる実数の列には、長さ $n + 1$ の増加部分列または減少部分列が存在します
 
-```{mermaid}
-```
+## 関連する数え上げ原理
 
+- [包含排除の原理](thm-inclusion-exclusion.qmd)：集合の和集合の大きさを求めるもう一つの基本的な数え上げ原理
+- [二項係数](def-binomial-coefficient.qmd)：組み合わせと部分集合の数え上げのため
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Definition: Set"]:::definition
-    thm-pigeonhole-principle["Theorem: Pigeonhole Principle"]:::theorem
+    def-set["定義: 集合"]:::definition
+    def-function["定義: 関数"]:::definition
+    thm-pigeonhole-principle["定理：鳩の巣原理"]:::theorem
     thm-pigeonhole-principle --> def-set
+    thm-pigeonhole-principle --> def-function
     class thm-pigeonhole-principle current
-    click def-set "def-set.html" "Definition: Setへ"
+    click def-set "def-set.html" "集合の定義へ"
+    click def-function "def-function.html" "関数の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -81,4 +87,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/thm-pigeonhole-principle.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/thm-pigeonhole-principle.html){target="_blank"}で完全なインタラクティブ版を表示

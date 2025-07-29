@@ -1,0 +1,159 @@
+---
+id: def-probability-distribution
+requires:
+- def-probability-space
+- def-random-variable
+- def-sample-space
+- ../logic-set-theory/def-function
+- ../analysis/def-integral
+status: complete
+title: Probability Distribution
+translations:
+  en: ../en/probability-statistics/def-probability-distribution.html
+  ja: ../ja/probability-statistics/def-probability-distribution.html
+type: Definition
+---
+
+# Probability Distribution {#def-probability-distribution}
+
+A **probability distribution** is a mathematical function that describes the likelihood of different outcomes for a [Random Variable](def-random-variable.qmd). It provides a complete characterization of the probabilistic behavior of the random variable.
+
+## Formal Definition
+
+Given a [Probability Space](def-probability-space.qmd) $(\Omega, \mathcal{F}, P)$ and a random variable $X: \Omega \to \mathbb{R}$, the **probability distribution** of $X$ is the probability measure $P_X$ on $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$ defined by:
+
+$$P_X(B) = P(X^{-1}(B)) = P(\{\omega \in \Omega : X(\omega) \in B\})$$
+
+for all Borel sets $B \in \mathcal{B}(\mathbb{R})$.
+
+## Types of Distributions
+
+### Discrete Probability Distribution
+
+For a discrete random variable $X$ taking values in a countable set $\{x_1, x_2, x_3, \ldots\}$, the distribution is characterized by the **probability mass function (PMF)**:
+
+$$p_X(x_i) = P(X = x_i)$$
+
+Properties:
+- $p_X(x_i) \geq 0$ for all $i$
+- $\sum_{i} p_X(x_i) = 1$
+
+### Continuous Probability Distribution
+
+For a continuous random variable $X$, the distribution is characterized by the **probability density function (PDF)** $f_X(x)$ such that:
+
+$$P(a \leq X \leq b) = \int_a^b f_X(x) \, dx$$
+
+Properties:
+- $f_X(x) \geq 0$ for all $x \in \mathbb{R}$
+- $\int_{-\infty}^{\infty} f_X(x) \, dx = 1$
+
+## Cumulative Distribution Function
+
+The **cumulative distribution function (CDF)** of a random variable $X$ is defined as:
+
+$$F_X(x) = P(X \leq x) = P_X((-\infty, x])$$
+
+Properties:
+1. **Monotonicity**: $F_X$ is non-decreasing
+2. **Limits**: $\lim_{x \to -\infty} F_X(x) = 0$ and $\lim_{x \to \infty} F_X(x) = 1$
+3. **Right-continuity**: $F_X$ is right-continuous at every point
+
+## Relationship Between PDF and CDF
+
+For a continuous distribution with density $f_X$:
+- $F_X(x) = \int_{-\infty}^x f_X(t) \, dt$
+- $f_X(x) = \frac{d}{dx} F_X(x)$ (where the derivative exists)
+
+For a discrete distribution:
+- $F_X(x) = \sum_{x_i \leq x} p_X(x_i)$
+
+## Common Probability Distributions
+
+### Discrete Distributions
+- **Bernoulli**: Single trial with probability $p$ of success
+- **[Binomial](def-binomial-distribution.qmd)**: Number of successes in $n$ independent Bernoulli trials
+- **Poisson**: Number of events in a fixed interval
+- **Geometric**: Number of trials until first success
+
+### Continuous Distributions
+- **Uniform**: Equal probability over an interval $[a, b]$
+- **[Normal (Gaussian)](def-normal-distribution.qmd)**: Bell-shaped curve with parameters $\mu$ (mean) and $\sigma^2$ (variance)
+- **Exponential**: Time between events in a Poisson process
+- **Gamma**: Generalization of exponential distribution
+
+## Moments and Characteristics
+
+Key characteristics of a distribution include:
+- **[Expectation](def-expectation.qmd)**: $E[X] = \int x \, dP_X(x)$
+- **[Variance](def-variance.qmd)**: $\text{Var}(X) = E[(X - E[X])^2]$
+- **Moment generating function**: $M_X(t) = E[e^{tX}]$ (when it exists)
+
+## See Also
+- [Central Limit Theorem](thm-central-limit.qmd) - Convergence to [normal distribution](def-normal-distribution.qmd)
+- [Law of Large Numbers](thm-law-of-large-numbers.qmd) - Convergence of sample averages
+- [Independence](def-independence.qmd) - For joint distributions
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-normal-distribution["Definition: Normal Distribution"]:::definition
+    def-probability-space["Definition: Probability Space"]:::definition
+    def-binomial-distribution["Definition: Binomial Distribution"]:::definition
+    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
+    def-independence["Definition: Independence"]:::definition
+    def-expectation["Definition: Expected Value"]:::definition
+    def-function["Definition: Function"]:::definition
+    def-probability-distribution["Definition: Probability Distribution"]:::definition
+    def-sample-space["Definition: Sample Space"]:::definition
+    thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
+    def-variance["Definition: Variance"]:::definition
+    def-random-variable["Definition: Random Variable"]:::definition
+    def-integral["Definition: Integral"]:::definition
+    def-probability-distribution --> def-sample-space
+    def-expectation --> def-probability-distribution
+    def-independence --> def-probability-distribution
+    def-probability-distribution --> def-random-variable
+    thm-central-limit --> def-probability-distribution
+    def-variance --> def-probability-distribution
+    def-probability-distribution --> def-integral
+    thm-law-of-large-numbers --> def-probability-distribution
+    def-random-variable --> def-probability-distribution
+    def-binomial-distribution --> def-probability-distribution
+    def-probability-distribution --> def-function
+    def-normal-distribution --> def-probability-distribution
+    def-probability-distribution --> def-probability-space
+    class def-probability-distribution current
+    click def-normal-distribution "def-normal-distribution.html" "Go to Normal Distribution definition"
+    click def-probability-space "def-probability-space.html" "Go to Probability Space definition"
+    click def-binomial-distribution "def-binomial-distribution.html" "Go to Binomial Distribution definition"
+    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "Go to Law of Large Numbers theorem"
+    click def-independence "def-independence.html" "Go to Independence definition"
+    click def-expectation "def-expectation.html" "Go to Expected Value definition"
+    click def-function "def-function.html" "Go to Function definition"
+    click def-sample-space "def-sample-space.html" "Go to Sample Space definition"
+    click thm-central-limit "thm-central-limit.html" "Go to Central Limit Theorem theorem"
+    click def-variance "def-variance.html" "Go to Variance definition"
+    click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
+    click def-integral "def-integral.html" "Go to Integral definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-probability-distribution" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/en/def-probability-distribution.html){target="_blank"}

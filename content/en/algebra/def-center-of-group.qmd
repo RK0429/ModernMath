@@ -1,0 +1,164 @@
+---
+id: def-center-of-group
+lean_id: null
+requires:
+- def-group
+- def-abelian-group
+- def-subgroup
+- def-normal-subgroup
+- def-automorphism
+- def-simple-group
+- def-quotient-group
+status: complete
+title: Center of a Group
+translations:
+  en: ../en/algebra/def-center-of-group.html
+  ja: ../ja/algebra/def-center-of-group.html
+type: Definition
+---
+
+# Center of a Group {#def-center-of-group}
+
+The **center of a group** is the set of all elements that commute with every element of the group.
+
+## Formal Definition
+
+Let $(G, \cdot)$ be a @def-group. The **center** of $G$, denoted $Z(G)$, is defined as:
+
+$$Z(G) = \{z \in G : zg = gz \text{ for all } g \in G\}$$
+
+The notation $Z(G)$ comes from the German word "Zentrum" meaning center. The elements of $Z(G)$ are called **central elements** of $G$.
+
+## Properties
+
+### Subgroup Structure
+
+The center $Z(G)$ is always a @def-subgroup of $G$:
+
+1. **Non-empty**: The identity element $e \in Z(G)$ since $eg = ge$ for all $g \in G$
+2. **Closure**: If $x, y \in Z(G)$, then $(xy)g = x(yg) = x(gy) = (xg)y = (gx)y = g(xy)$ for all $g \in G$
+3. **Inverses**: If $x \in Z(G)$, then $gx = xg$ implies $x^{-1}g = gx^{-1}$ for all $g \in G$
+
+### Normal and Abelian
+
+The center has two important structural properties:
+
+1. **Normal Subgroup**: $Z(G)$ is always a @def-normal-subgroup of $G$. For any $g \in G$ and $z \in Z(G)$:
+   $$gzg^{-1} = gg^{-1}z = z \in Z(G)$$
+
+2. **Abelian Subgroup**: $Z(G)$ is always an @def-abelian-group since all its elements commute with each other by definition.
+
+### Relationship to Group Structure
+
+1. **Abelian Groups**: A group $G$ is abelian if and only if $Z(G) = G$
+
+2. **Centerless Groups**: A group is called **centerless** if $Z(G) = \{e\}$ (contains only the identity)
+
+3. **Quotient Structure**: The quotient $G/Z(G)$ measures how "non-abelian" $G$ is. If $G/Z(G)$ is cyclic, then $G$ must be abelian
+
+4. **Inner Automorphisms**: There is a homomorphism $\phi: G \to \text{Aut}(G)$ given by $\phi(g)(x) = gxg^{-1}$. The kernel of $\phi$ is exactly $Z(G)$, and its image is the group of inner @def-automorphism, denoted $\text{Inn}(G)$. This gives us:
+   $$G/Z(G) \cong \text{Inn}(G)$$
+
+## Examples
+
+### Specific Groups
+
+1. **Abelian Groups**: For any abelian group $G$, we have $Z(G) = G$
+
+2. **Trivial Group**: $Z(\{e\}) = \{e\}$
+
+3. **Symmetric Group**: $Z(S_n) = \{e\}$ for $n \geq 3$
+
+4. **Alternating Group**: $Z(A_n) = \{e\}$ for $n \geq 4$
+
+5. **Dihedral Group**: For the dihedral group $D_n$ of order $2n$:
+   - If $n$ is odd: $Z(D_n) = \{e\}$
+   - If $n$ is even: $Z(D_n) = \{e, r^{n/2}\}$ where $r$ is the rotation generator
+
+6. **Quaternion Group**: For $Q_8 = \{1, -1, i, -i, j, -j, k, -k\}$, we have $Z(Q_8) = \{1, -1\}$
+
+### Matrix Groups
+
+1. **General Linear Group**: $Z(GL_n(\mathbb{F})) = \{cI_n : c \in \mathbb{F}^*\}$ (scalar matrices)
+
+2. **Special Linear Group**: $Z(SL_n(\mathbb{F})) = \{cI_n : c^n = 1\}$ (scalar matrices with determinant 1)
+
+3. **Orthogonal Group**: $Z(O_n(\mathbb{F})) = \{I_n, -I_n\}$ when the characteristic of $\mathbb{F}$ is not 2
+
+## Applications
+
+The center of a group appears in many important contexts:
+
+1. **Classification**: Non-abelian @def-simple-group are always centerless
+
+2. **Central Extensions**: The center plays a key role in the theory of group extensions and cohomology
+
+3. **Representation Theory**: Central elements act as scalar multiples in irreducible representations
+
+4. **Nilpotent Groups**: A group is nilpotent if and only if its upper central series reaches the whole group
+
+## See Also
+
+- @def-group
+- @def-abelian-group
+- @def-normal-subgroup
+- @def-quotient-group
+- @def-automorphism
+- @def-simple-group
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    ex-group-action-examples["Examples of Group Actions"]:::example
+    def-automorphism["Definition: Automorphism"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-center-of-group["Definition: Center of a Group"]:::definition
+    def-simple-group["Definition: Simple Group"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    def-center-of-group --> def-group
+    ex-group-action-examples --> def-center-of-group
+    def-quotient-group --> def-center-of-group
+    def-center-of-group --> def-subgroup
+    def-group --> def-center-of-group
+    def-automorphism --> def-center-of-group
+    def-center-of-group --> def-abelian-group
+    def-simple-group --> def-center-of-group
+    def-center-of-group --> def-normal-subgroup
+    def-abelian-group --> def-center-of-group
+    def-center-of-group --> def-automorphism
+    def-normal-subgroup --> def-center-of-group
+    def-center-of-group --> def-simple-group
+    def-center-of-group --> def-quotient-group
+    class def-center-of-group current
+    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click ex-group-action-examples "ex-group-action-examples.html" "Go to Examples of Group Actions"
+    click def-automorphism "def-automorphism.html" "Go to Automorphism definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click def-simple-group "def-simple-group.html" "Go to Simple Group definition"
+    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-center-of-group" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/en/def-center-of-group.html){target="_blank"}

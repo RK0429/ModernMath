@@ -78,6 +78,25 @@ class KnowledgeGraphBuilder:  # pylint: disable=too-few-public-methods
         # Save the graph
         self._save_graph()
 
+    def _get_language_from_path(self, qmd_path: Path) -> str:
+        """
+        Detect the language of a file from its path.
+
+        Args:
+            qmd_path: Path to the .qmd file
+
+        Returns:
+            Language code ('en' or 'ja')
+        """
+        relative_path = qmd_path.relative_to(self.content_dir)
+
+        # Check if path contains language directory
+        if len(relative_path.parts) > 0 and relative_path.parts[0] in ["en", "ja"]:
+            return str(relative_path.parts[0])
+
+        # Default to English if no language directory found
+        return "en"
+
     def _process_file_first_pass(self, qmd_path: Path) -> None:
         """
         First pass: Extract node information and register in the graph.
@@ -98,17 +117,23 @@ class KnowledgeGraphBuilder:  # pylint: disable=too-few-public-methods
 
             node_id = metadata["id"]
             node_uri = URIRef(BASE_URI + str(node_id))
-            self.node_registry[node_id] = node_uri
-
-            # Add node type
             node_type = metadata["type"]
-            self.graph.add((node_uri, RDF.type, MYMATH[node_type]))
 
-            # Add label
+            # Detect the language of this file
+            lang = self._get_language_from_path(qmd_path)
+
+            # Register node only if not already registered
+            if node_id not in self.node_registry:
+                self.node_registry[node_id] = node_uri
+
+                # Add node type (only needs to be added once)
+                self.graph.add((node_uri, RDF.type, MYMATH[node_type]))
+
+            # Add label with appropriate language tag
             if "title" in metadata:
-                self.graph.add((node_uri, RDFS.label, Literal(metadata["title"], lang="en")))
+                self.graph.add((node_uri, RDFS.label, Literal(metadata["title"], lang=lang)))
 
-            # Add description from content (first paragraph)
+            # Add description from content (first paragraph) with language tag
             content_lines = post.content.strip().split("\n\n")
             if content_lines:
                 first_paragraph = content_lines[0].strip()
@@ -117,7 +142,7 @@ class KnowledgeGraphBuilder:  # pylint: disable=too-few-public-methods
                     r"^#+\s+.*$", "", first_paragraph, flags=re.MULTILINE
                 ).strip()
                 if first_paragraph:
-                    self.graph.add((node_uri, RDFS.comment, Literal(first_paragraph, lang="en")))
+                    self.graph.add((node_uri, RDFS.comment, Literal(first_paragraph, lang=lang)))
 
             # Add domain if available (from directory metadata)
             domain = self._get_domain_from_path(qmd_path)
@@ -132,7 +157,7 @@ class KnowledgeGraphBuilder:  # pylint: disable=too-few-public-methods
             if "lean_id" in metadata:
                 self.graph.add((node_uri, MYMATH.hasLeanId, Literal(metadata["lean_id"])))
 
-            logger.info("Registered node: %s (%s)", node_id, node_type)
+            logger.info("Processed node: %s (%s) in %s", node_id, node_type, lang)
 
         except (KeyError, ValueError, TypeError) as e:
             logger.error("Error processing %s in first pass: %s", qmd_path, e)

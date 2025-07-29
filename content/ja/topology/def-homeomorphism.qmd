@@ -5,8 +5,11 @@ requires:
 - def-open-set
 - def-continuity
 - def-set
+- def-function
+- ../logic-set-theory/def-equivalence-relation
+- ../analysis/def-open-ball
 status: complete
-title: 定義：同相写像
+title: 同相写像
 translation_of: ../../en/topology/def-homeomorphism.qmd
 translations:
   en: ../en/topology/def-homeomorphism.html
@@ -14,9 +17,9 @@ translations:
 type: Definition
 ---
 
-# 定義：同相写像 {#def-homeomorphism}
+# 同相写像 {#def-homeomorphism}
 
-**同相写像**（どうそうしゃぞう）は、[位相空間](def-topological-space.qmd)の間の全単射で、連続かつその逆写像も連続であるものである。位相的同値性の基本概念を表す。
+**同相写像**（どうそうしゃぞう）は、[位相空間](def-topological-space.qmd)の間の全単射[関数](../logic-set-theory/def-function.qmd)で、連続かつその逆写像も連続であるものである。位相的同値性の基本概念を表す。
 
 ## 形式的定義
 
@@ -44,7 +47,7 @@ $$X \cong Y$$
 
 ### 同値関係
 
-「同相である」という関係は、すべての位相空間のクラス上の同値関係を成す：
+「同相である」という関係は、すべての位相空間のクラス上の[同値関係](../logic-set-theory/def-equivalence-relation.qmd)を成す：
 - **反射律**：$X \cong X$（恒等写像は同相写像）
 - **対称律**：$X \cong Y$ ならば $Y \cong X$
 - **推移律**：$X \cong Y$ かつ $Y \cong Z$ ならば $X \cong Z$
@@ -58,7 +61,7 @@ $$X \cong Y$$
 
 2. **1点を除いた円と直線**：$S^1 \setminus \{p\} \cong \mathbb{R}$（$S^1$ は単位円、$p$ はその上の任意の点）
 
-3. **開球**：$\mathbb{R}^n$ の任意の2つの開球は、その半径や中心によらず同相である
+3. **開球**：$\mathbb{R}^n$ の任意の2つの[開球](../analysis/def-open-ball.qmd)は、その半径や中心によらず同相である
 
 4. **立体射影**：球面 $S^n$ から1点を除いたものは $\mathbb{R}^n$ と同相
 
@@ -74,7 +77,7 @@ $$X \cong Y$$
 
 同相写像によって保存される性質を**位相不変量**という。これには以下が含まれる：
 - 連結成分の個数
-- 基本群（代数的位相幾何学において）
+- [基本群](def-fundamental-group.qmd)（代数的位相幾何学において）
 - オイラー標数（適切な空間に対して）
 - 次元（慎重な定義が必要）
 
@@ -91,6 +94,7 @@ $$X \cong Y$$
 - @def-topological-space
 - @def-continuity
 - @def-isomorphism （数学の他の分野における類似概念）
+- @def-homotopy （連続変形によるより弱い同値概念）
 - @def-compact
 - @def-connected
 - @def-hausdorff
@@ -98,40 +102,50 @@ $$X \cong Y$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-open-set["Definition: Open Set"]:::definition
-    def-topological-space["Definition: Topological Space"]:::definition
-    def-isomorphism["Definition: Isomorphism"]:::definition
-    def-compact["Definition: Compact Space"]:::definition
-    def-hausdorff["Definition: Hausdorff Space"]:::definition
-    def-connected["Definition: Connected Space"]:::definition
-    def-homeomorphism["Definition: Homeomorphism"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-continuity["Definition: Continuity"]:::definition
-    def-homeomorphism --> def-isomorphism
-    def-homeomorphism --> def-continuity
-    def-homeomorphism --> def-open-set
-    def-homeomorphism --> def-connected
+    def-set["定義: 集合"]:::definition
+    def-topological-space["定義: 位相空間"]:::definition
+    def-compact["定義: コンパクト空間"]:::definition
+    def-homeomorphism["定義：同相写像"]:::definition
+    def-isomorphism["定義: 群同型"]:::definition
+    def-function["定義: 関数"]:::definition
+    def-homotopy["定義: ホモトピー"]:::definition
+    def-open-set["定義: 開集合"]:::definition
+    def-fundamental-group["定義: 基本群"]:::definition
+    def-continuity["定義: 連続性"]:::definition
+    def-hausdorff["定義: ハウスドルフ空間"]:::definition
+    def-connected["定義: 連結空間"]:::definition
+    def-homeomorphism --> def-homotopy
     def-homeomorphism --> def-set
-    def-homeomorphism --> def-topological-space
     def-isomorphism --> def-homeomorphism
-    def-homeomorphism --> def-compact
+    def-homeomorphism --> def-connected
+    def-homeomorphism --> def-topological-space
+    def-homeomorphism --> def-isomorphism
+    def-homeomorphism --> def-open-set
     def-homeomorphism --> def-hausdorff
+    def-fundamental-group --> def-homeomorphism
+    def-homeomorphism --> def-compact
+    def-homotopy --> def-homeomorphism
+    def-homeomorphism --> def-function
+    def-homeomorphism --> def-continuity
     class def-homeomorphism current
-    click def-open-set "def-open-set.html" "Definition: Open Setへ"
-    click def-topological-space "def-topological-space.html" "Definition: Topological Spaceへ"
-    click def-isomorphism "def-isomorphism.html" "Definition: Isomorphismへ"
-    click def-compact "def-compact.html" "Definition: Compact Spaceへ"
-    click def-hausdorff "def-hausdorff.html" "Definition: Hausdorff Spaceへ"
-    click def-connected "def-connected.html" "Definition: Connected Spaceへ"
-    click def-set "def-set.html" "Definition: Setへ"
-    click def-continuity "def-continuity.html" "Definition: Continuityへ"
+    click def-set "def-set.html" "集合の定義へ"
+    click def-topological-space "def-topological-space.html" "位相空間の定義へ"
+    click def-compact "def-compact.html" "コンパクト空間の定義へ"
+    click def-isomorphism "def-isomorphism.html" "群同型の定義へ"
+    click def-function "def-function.html" "関数の定義へ"
+    click def-homotopy "def-homotopy.html" "ホモトピーの定義へ"
+    click def-open-set "def-open-set.html" "開集合の定義へ"
+    click def-fundamental-group "def-fundamental-group.html" "基本群の定義へ"
+    click def-continuity "def-continuity.html" "連続性の定義へ"
+    click def-hausdorff "def-hausdorff.html" "ハウスドルフ空間の定義へ"
+    click def-connected "def-connected.html" "連結空間の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -145,4 +159,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-homeomorphism.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-homeomorphism.html){target="_blank"}で完全なインタラクティブ版を表示

@@ -1,0 +1,135 @@
+---
+id: def-semigroup
+requires:
+- def-set
+- def-binary-operation
+- def-associativity
+status: complete
+title: 半群
+translation_of: ../../en/algebra/def-semigroup.qmd
+translations:
+  en: ../en/algebra/def-semigroup.html
+  ja: ../ja/algebra/def-semigroup.html
+type: Definition
+---
+
+# 半群 {#def-semigroup}
+
+**半群**（はんぐん、semigroup）とは、[集合](../logic-set-theory/def-set.qmd) $S$ と[二項演算](def-binary-operation.qmd) $\star: S \times S \to S$ の組で、一つの基本的な公理を満たすものである。
+
+## 半群の公理
+
+**[結合法則](def-associativity.qmd)**：すべての $a, b, c \in S$ に対して、
+$$(a \star b) \star c = a \star (b \star c)$$
+
+## 記法
+
+- 半群は集合と演算を明示的に示すために $(S, \star)$ と表記されることが多い
+- 文脈から演算が明らかな場合は、単に $S$ と書くこともある
+- 演算記号はしばしば省略される：$a \star b$ の代わりに $ab$
+- 一般的な演算記号には $\cdot$（乗法）、$+$（加法）、$\circ$（合成）などがある
+
+## 重要な性質
+
+結合法則から導かれる性質：
+
+- 複数の要素の積を括弧なしで明確に書ける：$a_1 a_2 \cdots a_n$
+- 半群はその演算について閉じている（二項演算の定義より）
+- 演算について閉じた部分集合から部分半群を形成できる
+- 任意の対象の[自己準同型](def-endomorphism.qmd)の集合は合成について半群を成す
+
+## 他の構造との関係
+
+- **[モノイド](def-monoid.qmd)**：[単位元](def-identity-element.qmd)を持つ半群
+- **[群](def-group.qmd)**：すべての元が[逆元](def-inverse-element.qmd)を持つモノイド
+- **可換半群**：演算が[可換](def-commutativity.qmd)である半群
+- **帯（band）**：すべての元が冪等である半群（$a \star a = a$）
+
+## 例
+
+### 数の半群
+- $(\mathbb{N} \setminus \{0\}, +)$：正の整数の加法（単位元 0 がない）
+- $(\mathbb{Z}, \cdot)$：すべての整数の乗法
+- $(\mathbb{R}^+, \cdot)$：正の実数の乗法
+- $(2\mathbb{N}, +)$：偶数の正の整数の加法
+
+### 関数の半群
+- 集合の変換の合成（すべてが全単射とは限らない）
+- 集合から自身への部分関数の合成
+- 集合上の二項関係の合成
+
+### 行列の半群
+- 固定サイズの正方[行列](def-matrix.qmd)の乗法
+- 非負成分を持つ行列の乗法
+- 上三角行列の乗法
+
+### その他の例
+- アルファベット上の文字列の連結（自由半群を形成）
+- 集合 $\{0\}$ の乗法（自明な半群）
+- [環](def-ring.qmd)のすべての[イデアル](def-ideal.qmd)の集合の乗法
+
+## 特殊な半群の種類
+
+### 正則半群
+半群 $S$ が**正則**であるとは、すべての $a \in S$ に対して、$a = axa$ を満たす $x \in S$ が存在することである。
+
+### 逆半群
+すべての元が特定の条件を満たす一意の「擬逆元」を持つ半群。
+
+### 消約半群
+消約法則を満たす半群：
+- 左消約的：$ab = ac \implies b = c$
+- 右消約的：$ba = ca \implies b = c$
+
+### 有限半群
+有限個の元を持つ半群で、オートマトン理論や計算機科学で重要。
+
+## 応用
+
+半群は数学とその応用全般に現れる：
+
+- **代数学**：より複雑な代数構造の基礎
+- **計算機科学**：有限半群は有限オートマトンに対応；形式言語理論で使用
+- **解析学**：関数解析や偏微分方程式における作用素半群
+- **確率論**：確率過程におけるマルコフ半群
+- **組合せ論**：結合的演算を含む数え上げ問題
+
+## 歴史的注記
+
+半群の概念は、数学者が代数構造を体系的に研究し始めた20世紀初頭に現れた。「半群」という用語は、群の公理の一部のみ―具体的には結合法則―を満たすことを反映している。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-associativity["結合性"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-semigroup["定義：半群"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-semigroup --> def-associativity
+    def-semigroup --> def-set
+    def-semigroup --> def-binary-operation
+    class def-semigroup current
+    click def-associativity "def-associativity.html" "結合性へ"
+    click def-set "def-set.html" "集合の定義へ"
+    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-semigroup" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/ja/def-semigroup.html){target="_blank"}で完全なインタラクティブ版を表示

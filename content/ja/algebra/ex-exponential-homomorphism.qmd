@@ -3,8 +3,9 @@ id: ex-exponential-homomorphism
 requires:
 - def-homomorphism
 - def-group
+- def-isomorphism
 status: complete
-title: '例: 指数準同型'
+title: 指数準同型
 translation_of: ../../en/algebra/ex-exponential-homomorphism.qmd
 translations:
   en: ../en/algebra/ex-exponential-homomorphism.html
@@ -12,7 +13,7 @@ translations:
 type: Example
 ---
 
-# 例: 指数準同型 {#ex-exponential-homomorphism}
+# 指数準同型 {#ex-exponential-homomorphism}
 
 指数関数は[群](def-group.qmd)構造間の[群準同型](def-homomorphism.qmd)の古典的な例を提供する。
 
@@ -33,31 +34,34 @@ $$\exp(x + y) = e^{x+y} = e^x \cdot e^y = \exp(x) \cdot \exp(y)$$
 
 - **単射**: はい、$e^x = e^y$ ならば $x = y$ となるため
 - **全射**: はい、任意の $a \in \mathbb{R}^+$ に対して、$\exp(\ln a) = a$ となるため
-- **全単射**: したがって、$\exp$ は同型写像である
+- **全単射**: したがって、$\exp$ は[同型写像](def-isomorphism.qmd)である
 
 ## 逆写像
 
-自然対数 $\ln: (\mathbb{R}^+, \cdot) \to (\mathbb{R}, +)$ は逆同型写像である：
+自然対数 $\ln: (\mathbb{R}^+, \cdot) \to (\mathbb{R}, +)$ は逆[同型写像](def-isomorphism.qmd)である：
 $$\ln(xy) = \ln(x) + \ln(y)$$
 
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-exponential-homomorphism["Example: Exponential Homomorphism"]:::example
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-group["Definition: Group"]:::definition
+    ex-exponential-homomorphism["例: 指数準同型"]:::example
+    def-homomorphism["定義: 群準同型"]:::definition
+    def-group["群"]:::definition
+    def-isomorphism["定義: 群同型"]:::definition
+    ex-exponential-homomorphism --> def-isomorphism
     ex-exponential-homomorphism --> def-group
     ex-exponential-homomorphism --> def-homomorphism
     class ex-exponential-homomorphism current
-    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
-    click def-group "def-group.html" "Definition: Groupへ"
+    click def-homomorphism "def-homomorphism.html" "群準同型の定義へ"
+    click def-group "def-group.html" "群へ"
+    click def-isomorphism "def-isomorphism.html" "群同型の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -71,4 +75,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/ex-exponential-homomorphism.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/ex-exponential-homomorphism.html){target="_blank"}で完全なインタラクティブ版を表示

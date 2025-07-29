@@ -4,11 +4,12 @@ requires:
 - def-field
 - def-prime
 - def-quotient-group
+- def-quotient-ring
 - ex-quotient-integers-mod-n
 - def-ideal
 - ../number-theory/thm-fermat-little
 status: complete
-title: '例: 有限体'
+title: 有限体
 translation_of: ../../en/algebra/ex-finite-field.qmd
 translations:
   en: ../en/algebra/ex-finite-field.html
@@ -16,11 +17,11 @@ translations:
 type: Example
 ---
 
-# 例: 有限体 $\mathbb{F}_5$ {#ex-finite-field}
+# 有限体 $\mathbb{F}_5$ {#ex-finite-field}
 
 5を法とする整数は[体](def-field.qmd)を形成し、$\mathbb{F}_5$ または $\mathbb{Z}/5\mathbb{Z}$ と表記されます。この記法は $\mathbb{F}_5$ が以下の両方であることを反映しています：
 - $\mathbb{Z}$ の部分群 $5\mathbb{Z}$ による[商群](def-quotient-group.qmd)（[例：整数の法 n](ex-quotient-integers-mod-n.qmd)を参照）
-- $\mathbb{Z}$ の単項[イデアル](def-ideal.qmd) $(5) = 5\mathbb{Z}$ による剰余環
+- $\mathbb{Z}$ の単項[イデアル](def-ideal.qmd) $(5) = 5\mathbb{Z}$ による[剰余環](def-quotient-ring.qmd)
 
 ## 元と演算
 
@@ -59,38 +60,41 @@ type: Example
 
 任意の[素数](../number-theory/def-prime.qmd) $p$ に対して、集合 $\mathbb{F}_p = \{0, 1, ..., p-1\}$ は $p$ を法とする算術演算で体を形成します。これは以下の理由によります：
 - すべての非零元は乗法逆元を持つ（[フェルマーの小定理](../number-theory/thm-fermat-little.qmd)による）
-- $p$ が素数のとき、零因子は存在しない
+- $p$ が素数のとき、[零因子](def-zero-divisor.qmd)は存在しない
 
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    def-ideal["Definition: Ideal"]:::definition
-    def-field["Definition: Field"]:::definition
-    ex-finite-field["Example: Finite Field"]:::example
-    def-prime["Definition: Prime Number"]:::definition
-    def-group["Definition: Group"]:::definition
-    ex-finite-field --> def-ideal
-    ex-finite-field --> def-prime
-    def-group --> ex-finite-field
-    ex-finite-field --> def-field
+    def-quotient-group["定義: 商群"]:::definition
+    ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
+    def-quotient-ring["定義: 剰余環"]:::definition
+    def-ideal["定義: イデアル"]:::definition
+    def-prime["定義：素数"]:::definition
+    def-group["群"]:::definition
+    def-field["定義: 体"]:::definition
+    ex-finite-field["例: 有限体"]:::example
     ex-finite-field --> ex-quotient-integers-mod-n
     ex-finite-field --> def-quotient-group
+    def-group --> ex-finite-field
+    ex-finite-field --> def-field
+    ex-finite-field --> def-quotient-ring
+    ex-finite-field --> def-ideal
+    ex-finite-field --> def-prime
     class ex-finite-field current
-    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
-    click def-ideal "def-ideal.html" "Definition: Idealへ"
-    click def-field "def-field.html" "Definition: Fieldへ"
-    click def-prime "def-prime.html" "Definition: Prime Numberへ"
-    click def-group "def-group.html" "Definition: Groupへ"
+    click def-quotient-group "def-quotient-group.html" "商群の定義へ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余の例へ"
+    click def-quotient-ring "def-quotient-ring.html" "剰余環の定義へ"
+    click def-ideal "def-ideal.html" "イデアルの定義へ"
+    click def-prime "def-prime.html" "定義：素数へ"
+    click def-group "def-group.html" "群へ"
+    click def-field "def-field.html" "体の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -104,4 +108,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/ex-finite-field.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/ex-finite-field.html){target="_blank"}で完全なインタラクティブ版を表示

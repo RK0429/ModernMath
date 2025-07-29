@@ -4,15 +4,16 @@ requires:
 - def-metric-space
 - def-hausdorff
 - def-topological-space
+- ../analysis/def-open-ball
 status: complete
-title: 'Theorem: Every Metric Space is Hausdorff'
+title: Every Metric Space is Hausdorff
 translations:
   en: ../en/topology/thm-metric-hausdorff.html
   ja: ../ja/topology/thm-metric-hausdorff.html
 type: Theorem
 ---
 
-# Theorem: Every Metric Space is Hausdorff {#thm-metric-hausdorff}
+# Every Metric Space is Hausdorff {#thm-metric-hausdorff}
 
 **Statement**: Every [Metric Space](../geometry/def-metric-space.qmd) $(X, d)$ with the metric topology is a [Hausdorff Space](def-hausdorff.qmd) space.
 
@@ -24,7 +25,7 @@ Since $x \neq y$, by the identity of indiscernibles property of metrics, we have
 
 Let $r = \frac{d(x, y)}{2} > 0$.
 
-Consider the open balls:
+Consider the [open balls](../analysis/def-open-ball.qmd):
 - $U = B(x, r) = \{z \in X : d(x, z) < r\}$
 - $V = B(y, r) = \{z \in X : d(y, z) < r\}$
 
@@ -67,17 +68,17 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-metric-space["Definition: Metric Space"]:::definition
-    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
-    def-hausdorff["Definition: Hausdorff Space"]:::definition
     def-topological-space["Definition: Topological Space"]:::definition
+    def-hausdorff["Definition: Hausdorff Space"]:::definition
+    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
+    def-metric-space["Definition: Metric Space"]:::definition
     thm-metric-hausdorff --> def-hausdorff
-    thm-metric-hausdorff --> def-metric-space
     thm-metric-hausdorff --> def-topological-space
+    thm-metric-hausdorff --> def-metric-space
     class thm-metric-hausdorff current
-    click def-metric-space "def-metric-space.html" "Go to Metric Space definition"
-    click def-hausdorff "def-hausdorff.html" "Go to Hausdorff Space definition"
     click def-topological-space "def-topological-space.html" "Go to Topological Space definition"
+    click def-hausdorff "def-hausdorff.html" "Go to Hausdorff Space definition"
+    click def-metric-space "def-metric-space.html" "Go to Metric Space definition"
 ```
 
 ## Interactive Visualization
@@ -91,4 +92,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/thm-metric-hausdorff.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/thm-metric-hausdorff.html){target="_blank"}

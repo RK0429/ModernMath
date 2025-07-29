@@ -1,0 +1,129 @@
+---
+id: def-cardinality
+requires:
+- def-set
+- def-function
+status: complete
+title: 濃度
+translation_of: ../../en/logic-set-theory/def-cardinality.qmd
+translations:
+  en: ../en/logic-set-theory/def-cardinality.html
+  ja: ../ja/logic-set-theory/def-cardinality.html
+type: Definition
+---
+
+# 濃度 {#def-cardinality}
+
+[集合](def-set.qmd)の**濃度**（cardinality）は、集合に含まれる「要素の個数」を表す尺度である。有限集合の場合、これは単に要素の個数である。無限集合の場合、濃度は異なる無限集合の「大きさ」を比較する方法を提供する。
+
+## 形式的定義
+
+二つの集合 $A$ と $B$ が同じ**濃度**を持つとは、全単射[関数](def-function.qmd)（一対一対応）$f: A \to B$ が存在することである。$A$ と $B$ が同じ濃度を持つことを $|A| = |B|$ と表記する。
+
+集合 $A$ の濃度は $|A|$ または $\text{card}(A)$ で表される。
+
+## 有限濃度
+
+有限集合 $A$ に対して、濃度 $|A|$ は $A$ の要素数である：
+
+- $|\emptyset| = 0$
+- $|\{a\}| = 1$
+- $|\{a, b, c\}| = 3$（ただし $a$、$b$、$c$ は互いに異なるとする）
+
+## 無限濃度
+
+無限集合については、異なる「大きさ」の無限を区別する：
+
+### 可算無限集合
+
+集合 $A$ が**可算無限**であるとは、$A$ と自然数の集合 $\mathbb{N}$ の間に全単射が存在することである。可算無限集合の濃度は $\aleph_0$（アレフゼロ）で表される。
+
+可算無限集合の例：
+- $\mathbb{N}$（自然数）
+- $\mathbb{Z}$（整数）
+- $\mathbb{Q}$（有理数）
+
+### 非可算集合
+
+集合が無限であるが可算無限でない場合、**非可算**という。最も一般的な例は $\mathbb{R}$（実数）であり、その濃度は $\mathfrak{c}$（連続体の濃度）または $2^{\aleph_0}$ で表される。
+
+## 基数演算
+
+集合 $A$ と $B$ に対して：
+
+1. **加法**: $A \cap B = \emptyset$ のとき $|A \cup B| = |A| + |B|$
+2. **乗法**: $|A \times B| = |A| \cdot |B|$
+3. **冪**: $|B^A| = |B|^{|A|}$（ここで $B^A$ は $A$ から $B$ へのすべての関数の集合）
+
+## 基数の順序
+
+$A$ から $B$ への単射関数 $f: A \to B$ が存在するとき、$|A| \leq |B|$ と定義する。
+
+**カントル・ベルンシュタイン・シュレーダーの定理**は、$|A| \leq |B|$ かつ $|B| \leq |A|$ ならば $|A| = |B|$ であることを述べる。
+
+## 主要な結果
+
+1. **カントルの定理**: 任意の集合 $A$ に対して、$|A| < |\mathcal{P}(A)|$（ここで $\mathcal{P}(A)$ は $A$ の[冪集合](def-power-set.qmd)）
+2. **可算和**: 可算個の可算集合の和集合は可算である
+3. **連続体仮説**: $\aleph_0$ と $\mathfrak{c}$ の間に厳密に位置する濃度を持つ集合は存在しないという命題
+
+## 性質
+
+- **反射性**: 任意の集合 $A$ に対して $|A| = |A|$
+- **対称性**: $|A| = |B|$ ならば $|B| = |A|$
+- **推移性**: $|A| = |B|$ かつ $|B| = |C|$ ならば $|A| = |C|$
+
+## 関連項目
+
+- @thm-cantor
+- @def-power-set
+- @def-function
+- 定義: 可算集合（準備中）
+- 定義: 連続体（準備中）
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["定義: 集合"]:::definition
+    def-power-set["定義: べき集合"]:::definition
+    thm-cantor["定理: カントールの定理"]:::theorem
+    def-intersection["定義: 共通部分"]:::definition
+    def-union["定義: 和集合"]:::definition
+    def-function["定義: 関数"]:::definition
+    def-cardinality["定義: 濃度"]:::definition
+    def-power-set --> def-cardinality
+    def-cardinality --> def-set
+    def-cardinality --> def-power-set
+    def-intersection --> def-cardinality
+    thm-cantor --> def-cardinality
+    def-union --> def-cardinality
+    def-cardinality --> def-function
+    def-cardinality --> thm-cantor
+    class def-cardinality current
+    click def-set "def-set.html" "集合の定義へ"
+    click def-power-set "def-power-set.html" "べき集合の定義へ"
+    click thm-cantor "thm-cantor.html" "カントールの定理の定理へ"
+    click def-intersection "def-intersection.html" "共通部分の定義へ"
+    click def-union "def-union.html" "和集合の定義へ"
+    click def-function "def-function.html" "関数の定義へ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-cardinality" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/ja/def-cardinality.html){target="_blank"}で完全なインタラクティブ版を表示

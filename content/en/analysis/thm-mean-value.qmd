@@ -4,7 +4,7 @@ requires:
 - def-continuity
 - def-derivative
 status: complete
-title: 'Theorem: Mean Value Theorem'
+title: Mean Value Theorem
 translations:
   en: ../en/analysis/thm-mean-value.html
   ja: ../ja/analysis/thm-mean-value.html
@@ -58,7 +58,7 @@ $$\frac{f'(c)}{g'(c)} = \frac{f(b) - f(a)}{g(b) - g(a)}$$
 Used in the proof for evaluating limits of indeterminate forms
 
 ### Taylor's Theorem
-MVT generalizes to higher derivatives, leading to Taylor approximations and Taylor [series](def-series.qmd)
+MVT generalizes to higher derivatives, leading to Taylor approximations and [Taylor series](thm-taylor-series.qmd)
 
 ### Numerical Analysis
 - Error bounds for numerical differentiation
@@ -84,14 +84,17 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-derivative["Definition: Derivative"]:::definition
-    thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
+    thm-taylor-series["Theorem: Taylor Series"]:::theorem
     def-continuity["Definition: Continuity"]:::definition
-    thm-mean-value --> def-derivative
+    thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
+    def-derivative["Definition: Derivative"]:::definition
+    thm-taylor-series --> thm-mean-value
     thm-mean-value --> def-continuity
+    thm-mean-value --> def-derivative
     class thm-mean-value current
-    click def-derivative "def-derivative.html" "Go to Derivative definition"
+    click thm-taylor-series "thm-taylor-series.html" "Go to Taylor Series theorem"
     click def-continuity "def-continuity.html" "Go to Continuity definition"
+    click def-derivative "def-derivative.html" "Go to Derivative definition"
 ```
 
 ## Interactive Visualization
@@ -105,4 +108,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/thm-mean-value.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/thm-mean-value.html){target="_blank"}

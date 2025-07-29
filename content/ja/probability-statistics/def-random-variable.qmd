@@ -2,8 +2,10 @@
 id: def-random-variable
 requires:
 - def-probability-space
+- def-function
+- def-probability-distribution
 status: complete
-title: '定義: 確率変数'
+title: 確率変数
 translation_of: ../../en/probability-statistics/def-random-variable.qmd
 translations:
   en: ../en/probability-statistics/def-random-variable.html
@@ -13,7 +15,7 @@ type: Definition
 
 # 確率変数 {#def-random-variable}
 
-**確率変数**は、[確率空間](def-probability-space.qmd)から可測空間への可測関数です。
+**確率変数**は、[確率空間](def-probability-space.qmd)から可測空間への可測[関数](../logic-set-theory/def-function.qmd)です。
 
 ## 形式的定義
 
@@ -33,46 +35,59 @@ $$X^{-1}(B) = \{\omega \in \Omega : X(\omega) \in B\} \in \mathcal{F}$$
 
 ## 性質
 
-- **累積分布関数（CDF）**：$F_X(x) = P(X \leq x)$
+- **累積[分布](def-probability-distribution.qmd)関数（CDF）**：$F_X(x) = P(X \leq x)$
 - **期待値**：$E[X] = \int_{\Omega} X(\omega) dP(\omega)$
 - **[分散](def-variance.qmd)**：$\text{Var}(X) = E[(X - E[X])^2]$
 
 ## 例
 
-- ベルヌーイ分布：$X \in \{0, 1\}$ で $P(X = 1) = p$
-- 正規分布：$X \sim N(\mu, \sigma^2)$ （ここで $\sigma^2$ は[分散](def-variance.qmd)）
-- ポアソン分布：$P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}$
+- ベルヌーイ[分布](def-probability-distribution.qmd)（$n=1$ の[二項分布](def-binomial-distribution.qmd)を参照）：$X \in \{0, 1\}$ で $P(X = 1) = p$
+- 正規[分布](def-probability-distribution.qmd)：$X \sim N(\mu, \sigma^2)$ （ここで $\sigma^2$ は[分散](def-variance.qmd)）
+- ポアソン[分布](def-probability-distribution.qmd)：$P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}$
 
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-probability-space["Definition: Probability Space"]:::definition
-    def-expectation["Definition: Expected Value"]:::definition
-    def-random-variable["Definition: Random Variable"]:::definition
-    def-independence["Definition: Independence"]:::definition
-    thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
-    def-variance["Definition: Variance"]:::definition
-    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
-    def-random-variable --> def-probability-space
+    def-normal-distribution["定義: 正規分布"]:::definition
+    def-probability-space["定義: 確率空間"]:::definition
+    def-binomial-distribution["定義: 二項分布"]:::definition
+    thm-law-of-large-numbers["定理: 大数の法則"]:::theorem
+    def-independence["定義: 独立性"]:::definition
+    def-expectation["定義: 期待値"]:::definition
+    def-function["定義: 関数"]:::definition
+    def-probability-distribution["定義: 確率分布"]:::definition
+    thm-central-limit["定理: 中心極限定理"]:::theorem
+    def-variance["定義: 分散"]:::definition
+    def-random-variable["定義: 確率変数"]:::definition
     def-variance --> def-random-variable
-    thm-law-of-large-numbers --> def-random-variable
-    def-independence --> def-random-variable
-    def-expectation --> def-random-variable
+    def-normal-distribution --> def-random-variable
     thm-central-limit --> def-random-variable
+    def-binomial-distribution --> def-random-variable
+    def-probability-distribution --> def-random-variable
+    def-random-variable --> def-function
+    def-random-variable --> def-probability-distribution
+    def-independence --> def-random-variable
+    def-random-variable --> def-probability-space
+    thm-law-of-large-numbers --> def-random-variable
+    def-expectation --> def-random-variable
     class def-random-variable current
-    click def-probability-space "def-probability-space.html" "Definition: Probability Spaceへ"
-    click def-expectation "def-expectation.html" "Definition: Expected Valueへ"
-    click def-independence "def-independence.html" "Definition: Independenceへ"
-    click thm-central-limit "thm-central-limit.html" "Theorem: Central Limit Theoremへ"
-    click def-variance "def-variance.html" "Definition: Varianceへ"
-    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "Theorem: Law of Large Numbersへ"
+    click def-normal-distribution "def-normal-distribution.html" "正規分布の定義へ"
+    click def-probability-space "def-probability-space.html" "確率空間の定義へ"
+    click def-binomial-distribution "def-binomial-distribution.html" "二項分布の定義へ"
+    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "大数の法則の定理へ"
+    click def-independence "def-independence.html" "独立性の定義へ"
+    click def-expectation "def-expectation.html" "期待値の定義へ"
+    click def-function "def-function.html" "関数の定義へ"
+    click def-probability-distribution "def-probability-distribution.html" "確率分布の定義へ"
+    click thm-central-limit "thm-central-limit.html" "中心極限定理の定理へ"
+    click def-variance "def-variance.html" "分散の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -86,4 +101,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-random-variable.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-random-variable.html){target="_blank"}で完全なインタラクティブ版を表示

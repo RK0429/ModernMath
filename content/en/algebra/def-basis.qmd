@@ -5,14 +5,14 @@ requires:
 - def-linear-independence
 - def-span
 status: complete
-title: 'Definition: Basis'
+title: Basis
 translations:
   en: ../en/algebra/def-basis.html
   ja: ../ja/algebra/def-basis.html
 type: Definition
 ---
 
-# Definition: Basis {#def-basis}
+# Basis {#def-basis}
 
 Let $V$ be a [Vector Space](def-vector-space.qmd) over a field $F$. A subset $B \subseteq V$ is called a **basis** for $V$ if:
 
@@ -32,7 +32,7 @@ The following are equivalent for a subset $B$ of a vector space $V$:
 
 - **Standard basis**: For $\mathbb{R}^n$, the standard basis is $\{\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n\}$ where $\mathbf{e}_i$ has 1 in the $i$-th position and 0 elsewhere
 - **Ordered basis**: A basis with a specified ordering of its elements
-- **Orthonormal basis**: In an inner product space, a basis where all vectors have unit length and are mutually orthogonal
+- **Orthonormal basis**: In an inner product space (especially [Hilbert spaces](../analysis/def-hilbert-space.qmd)), a basis where all vectors have unit length and are mutually orthogonal
 
 ## Dimension
 
@@ -53,23 +53,23 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-basis["Definition: Basis"]:::definition
     def-span["Definition: Span"]:::definition
-    thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
-    def-vector-space["Definition: Vector Space"]:::definition
-    ex-standard-basis-rn["Example: Standard Basis of ℝⁿ"]:::example
     def-linear-independence["Definition: Linear Independence"]:::definition
+    ex-standard-basis-rn["Example: Standard Basis of ℝⁿ"]:::example
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-basis["Definition: Basis"]:::definition
+    thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
     def-basis --> def-span
     def-basis --> def-linear-independence
-    thm-linear-transformation-basis --> def-basis
     ex-standard-basis-rn --> def-basis
     def-basis --> def-vector-space
+    thm-linear-transformation-basis --> def-basis
     class def-basis current
     click def-span "def-span.html" "Go to Span definition"
-    click thm-linear-transformation-basis "thm-linear-transformation-basis.html" "Go to Linear Transformation Determined by Basis theorem"
-    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
-    click ex-standard-basis-rn "ex-standard-basis-rn.html" "Go to Standard Basis of ℝⁿ example"
     click def-linear-independence "def-linear-independence.html" "Go to Linear Independence definition"
+    click ex-standard-basis-rn "ex-standard-basis-rn.html" "Go to Standard Basis of ℝⁿ example"
+    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
+    click thm-linear-transformation-basis "thm-linear-transformation-basis.html" "Go to Linear Transformation Determined by Basis theorem"
 ```
 
 ## Interactive Visualization
@@ -83,4 +83,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-basis.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-basis.html){target="_blank"}

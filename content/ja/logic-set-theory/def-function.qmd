@@ -1,0 +1,105 @@
+---
+id: def-function
+requires:
+- def-set
+- def-relation
+status: complete
+title: 関数
+translation_of: ../../en/logic-set-theory/def-function.qmd
+translations:
+  en: ../en/logic-set-theory/def-function.html
+  ja: ../ja/logic-set-theory/def-function.html
+type: Definition
+---
+
+# 関数 {#def-function}
+
+**関数**は[集合](def-set.qmd) $A$ から[集合](def-set.qmd) $B$ への[関係](def-relation.qmd)で、$A$ の各要素に対して $B$ の要素をちょうど一つ割り当てるものです。
+
+## 形式的定義
+
+$A$ から $B$ への関数 $f$（$f: A \to B$ と表記）は、直積 $A \times B$ の部分集合で、以下を満たすものです：
+
+1. **存在性**: すべての $a \in A$ に対して、$(a, b) \in f$ となる $b \in B$ が少なくとも一つ存在する
+2. **一意性**: すべての $a \in A$ に対して、$(a, b_1) \in f$ かつ $(a, b_2) \in f$ ならば、$b_1 = b_2$
+
+## 記法と用語
+
+- **定義域**: 集合 $A$ を $f$ の定義域といい、$\text{dom}(f) = A$ と表記する
+- **終域**: 集合 $B$ を $f$ の終域という
+- **値**: $(a, b) \in f$ のとき、$f(a) = b$ と書き、「$b$ は $a$ における $f$ の値」という
+- **像/値域**: 集合 $\{f(a) : a \in A\} = \{b \in B : \exists a \in A, f(a) = b\}$ を $f$ の像または値域といい、$\text{im}(f)$ または $\text{range}(f)$ と表記する
+
+## 関数の種類
+
+### 単射（One-to-One）
+
+関数 $f: A \to B$ が**単射**であるとは、$A$ の異なる要素が $B$ の異なる要素に対応することをいう：
+
+$$\forall a_1, a_2 \in A: f(a_1) = f(a_2) \implies a_1 = a_2$$
+
+圏論では、単射関数の概念は[単射](../category-theory/def-monomorphism.qmd)に一般化されます。
+
+### 全射（Onto）
+
+関数 $f: A \to B$ が**全射**であるとは、$B$ のすべての要素が $A$ の少なくとも一つの要素の像であることをいう：
+
+$$\forall b \in B: \exists a \in A \text{ such that } f(a) = b$$
+
+同値な条件として、$f$ が全射であることは $\text{im}(f) = B$ と同じです。
+
+### 全単射（One-to-One Correspondence）
+
+関数 $f: A \to B$ が**全単射**であるとは、単射かつ全射であることをいう。全単射関数は逆関数 $f^{-1}: B \to A$ を持つ。
+
+## 特殊な関数
+
+- **恒等関数**: $\text{id}_A: A \to A$ で、すべての $a \in A$ に対して $\text{id}_A(a) = a$ で定義される
+- **定値関数**: ある固定された $b_0 \in B$ に対して、すべての $a \in A$ で $f(a) = b_0$ となる関数 $f: A \to B$
+- **包含関数**: $A \subseteq B$ のとき、すべての $a \in A$ に対して $i(a) = a$ で定義される包含写像 $i: A \to B$
+
+## 性質
+
+- **合成**: $f: A \to B$ と $g: B \to C$ のとき、$g \circ f: A \to C$ が $(g \circ f)(a) = g(f(a))$ で定義される
+- **相等**: 二つの関数 $f, g: A \to B$ が等しいとは、すべての $a \in A$ に対して $f(a) = g(a)$ が成り立つときをいう
+
+## 関連項目
+
+- @def-relation
+- 定義: 準同型（構造を保つ関数）（近日公開）
+- 定義: 線形変換（ベクトル空間間の関数）（近日公開）
+- 例: 指数関数（近日公開）
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["定義: 集合"]:::definition
+    def-function["定義: 関数"]:::definition
+    def-relation["定義：関係"]:::definition
+    def-function --> def-relation
+    def-function --> def-set
+    def-relation --> def-function
+    class def-function current
+    click def-set "def-set.html" "集合の定義へ"
+    click def-relation "def-relation.html" "定義：関係へ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-function" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/ja/def-function.html){target="_blank"}で完全なインタラクティブ版を表示

@@ -5,15 +5,17 @@ requires:
 - def-group
 - def-commutativity
 - def-direct-product
+- def-isomorphism
+- def-center-of-group
 status: complete
-title: 'Definition: Abelian Group'
+title: Abelian Group
 translations:
   en: ../en/algebra/def-abelian-group.html
   ja: ../ja/algebra/def-abelian-group.html
 type: Definition
 ---
 
-# Definition: Abelian Group {#def-abelian-group}
+# Abelian Group {#def-abelian-group}
 
 An **abelian group** (also called a **commutative group**) is a [group](def-group.qmd) $(G, \star)$ where the operation $\star$ is [commutative](def-commutativity.qmd).
 
@@ -64,12 +66,12 @@ Thus, an abelian group satisfies:
 ### Basic Properties
 - Every subgroup of an abelian group is [normal](def-normal-subgroup.qmd)
 - Every [quotient group](def-quotient-group.qmd) of an abelian group is abelian
-- The center of any group $Z(G) = \{g \in G : gx = xg \text{ for all } x \in G\}$ is abelian
+- The [center of any group](def-center-of-group.qmd) $Z(G) = \{g \in G : gx = xg \text{ for all } x \in G\}$ is abelian
 - Every abelian group is naturally a [module](def-module.qmd) over the integers $\mathbb{Z}$
 
 ### Structure Theorems
-- **Fundamental Theorem**: Every finitely generated abelian group is isomorphic to a [direct product](def-direct-product.qmd) of [cyclic groups](def-cyclic-group.qmd)
-- **Classification**: Finite abelian groups are classified up to isomorphism by their invariant factors or elementary divisors
+- **Fundamental Theorem**: Every finitely generated abelian group is [isomorphic](def-isomorphism.qmd) to a [direct product](def-direct-product.qmd) of [cyclic groups](def-cyclic-group.qmd)
+- **Classification**: Finite abelian groups are classified up to [isomorphism](def-isomorphism.qmd) by their invariant factors or elementary divisors
 
 ### Homomorphisms
 - The set $\text{Hom}(G, H)$ of group homomorphisms between abelian groups forms an abelian group
@@ -83,7 +85,7 @@ Named after Niels Henrik Abel (1802-1829), a Norwegian mathematician who made pi
 ## Applications
 
 - **Number Theory**: Structure of units in rings, ideal class groups
-- **Topology**: Fundamental groups of many spaces, homology groups
+- **Topology**: [Fundamental groups](../topology/def-fundamental-group.qmd) of many spaces, homology groups
 - **Physics**: Symmetry groups in quantum mechanics, gauge theories
 - **Cryptography**: Elliptic curve groups, Diffie-Hellman key exchange
 
@@ -108,65 +110,45 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
-    ex-integers-addition["Example: Integers under Addition"]:::example
-    def-coset["Definition: Coset"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    def-field["Definition: Field"]:::definition
-    def-module["Definition: Module"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
     def-cyclic-group["Definition: Cyclic Group"]:::definition
     def-direct-product["Definition: Direct Product of Groups"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-ring["Definition: Ring"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
     def-commutativity["Definition: Commutativity"]:::definition
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
+    def-group["Definition: Group"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-center-of-group["Definition: Center of a Group"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    def-group --> def-abelian-group
+    def-abelian-group --> thm-first-isomorphism
+    def-abelian-group --> def-cyclic-group
+    thm-first-isomorphism --> def-abelian-group
     def-cyclic-group --> def-abelian-group
     def-abelian-group --> def-group
-    def-direct-product --> def-abelian-group
-    ex-even-integers-subgroup --> def-abelian-group
-    def-ring --> def-abelian-group
-    def-abelian-group --> def-quotient-group
-    def-field --> def-abelian-group
-    def-vector-space --> def-abelian-group
-    def-abelian-group --> def-commutativity
-    thm-first-isomorphism --> def-abelian-group
-    ex-quotient-integers-mod-n --> def-abelian-group
-    def-abelian-group --> def-cyclic-group
-    def-coset --> def-abelian-group
-    def-module --> def-abelian-group
-    def-commutativity --> def-abelian-group
-    def-normal-subgroup --> def-abelian-group
-    def-group --> def-abelian-group
-    ex-integers-ring --> def-abelian-group
-    ex-integers-addition --> def-abelian-group
-    def-abelian-group --> def-direct-product
-    def-abelian-group --> thm-first-isomorphism
-    def-quotient-group --> def-abelian-group
-    def-abelian-group --> def-normal-subgroup
     def-abelian-group --> thm-lagrange
+    def-abelian-group --> def-normal-subgroup
+    def-abelian-group --> def-direct-product
+    def-abelian-group --> def-center-of-group
+    def-center-of-group --> def-abelian-group
+    def-quotient-group --> def-abelian-group
+    def-abelian-group --> def-isomorphism
+    def-commutativity --> def-abelian-group
+    def-abelian-group --> def-quotient-group
+    def-abelian-group --> def-commutativity
+    def-normal-subgroup --> def-abelian-group
+    def-direct-product --> def-abelian-group
     class def-abelian-group current
     click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Go to Even Integers Form a Subgroup example"
-    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem theorem"
-    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
-    click def-coset "def-coset.html" "Go to Coset definition"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
-    click def-field "def-field.html" "Go to Field definition"
-    click def-module "def-module.html" "Go to Module definition"
-    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
     click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
     click def-direct-product "def-direct-product.html" "Go to Direct Product of Groups definition"
-    click def-group "def-group.html" "Go to Group definition"
-    click def-ring "def-ring.html" "Go to Ring definition"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
     click def-commutativity "def-commutativity.html" "Go to Commutativity definition"
-    click ex-integers-ring "ex-integers-ring.html" "Go to Integers Form a Ring example"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem theorem"
+    click def-group "def-group.html" "Go to Group definition"
+    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
+    click def-center-of-group "def-center-of-group.html" "Go to Center of a Group definition"
 ```
 
 ## Interactive Visualization
@@ -180,4 +162,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-abelian-group.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-abelian-group.html){target="_blank"}

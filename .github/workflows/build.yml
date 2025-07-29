@@ -66,6 +66,26 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+    # Step 3a: Build summary
+    - name: Display build configuration
+      run: |
+        echo "=== Build Configuration ==="
+        echo "Python version: ${{ matrix.python-version }}"
+        echo "Branch: ${{ github.ref_name }}"
+        echo "Event: ${{ github.event_name }}"
+        echo "Runner: ${{ runner.os }}"
+        echo ""
+        echo "=== Build Steps ==="
+        echo "1. Code quality checks (linting)"
+        echo "2. Content validation"
+        echo "3. Knowledge graph generation"
+        echo "4. Visualization generation (Mermaid, PyVis, D3.js)"
+        echo "5. Site content generation"
+        echo "6. Multilingual site rendering (EN/JA)"
+        echo "7. Post-processing and deployment preparation"
+        [ "${{ github.ref }}" == "refs/heads/main" ] && echo "8. Deploy to GitHub Pages ✓" || echo "8. Deploy to GitHub Pages (skipped - not main branch)"
+        echo "=========================="
+
     # Step 4: Run linting
     - name: Run flake8
       run: |
@@ -89,6 +109,9 @@ jobs:
       run: |
         if [ -f "knowledge_graph.ttl" ]; then
           poetry run python scripts/graph/validate_graph.py
+          echo "Existing graph validated successfully!"
+        else
+          echo "No existing graph to validate, skipping..."
         fi
 
     # Step 6: Build knowledge graph
@@ -103,76 +126,81 @@ jobs:
           wc -l knowledge_graph.ttl
         fi
 
-    # Step 6a: Formal verification integration
-    - name: Extract Lean dependencies (if available)
+    # Step 6a: Formal verification integration (optional)
+    - name: Process formal verification (if available)
       run: |
         if [ -d "formal/" ]; then
-          poetry run python scripts/experimental/extract_lean_deps.py || echo "Lean dependency extraction skipped"
+          echo "Formal verification directory found, processing..."
+
+          # Extract Lean dependencies
+          if poetry run python scripts/experimental/extract_lean_deps.py; then
+            echo "✓ Lean dependencies extracted"
+          else
+            echo "⚠ Lean dependency extraction failed or not applicable"
+          fi
+
+          # Extract Lean mappings
+          if poetry run python scripts/experimental/extract_lean_mappings.py; then
+            echo "✓ Lean mappings extracted"
+          else
+            echo "⚠ Lean mapping extraction failed or not applicable"
+          fi
+
+          # Verify consistency and add triples if mappings exist
+          if [ -f "lean_mappings.json" ]; then
+            poetry run python scripts/validation/verify_consistency.py
+            echo "✓ Formal verification report generated"
+
+            poetry run python scripts/graph/add_verification_triples.py
+            echo "✓ Verification triples added to knowledge graph"
+          else
+            echo "⚠ No Lean mappings found, skipping verification"
+          fi
+        else
+          echo "No formal verification directory found, skipping..."
         fi
 
-    - name: Extract Lean mappings
-      run: |
-        if [ -d "formal/" ]; then
-          poetry run python scripts/experimental/extract_lean_mappings.py || echo "Lean mapping extraction skipped"
-        fi
-
-    - name: Verify consistency with formal proofs
-      run: |
-        if [ -f "lean_mappings.json" ]; then
-          poetry run python scripts/validation/verify_consistency.py
-          echo "Formal verification report generated"
-        fi
-
-    - name: Add verification triples to graph
-      run: |
-        if [ -f "lean_mappings.json" ]; then
-          poetry run python scripts/graph/add_verification_triples.py
-          echo "Verification triples added to knowledge graph"
-        fi
-
-    # Step 6b: Generate Mermaid diagrams
+    # Step 6b: Generate all visualizations
     - name: Generate Mermaid diagrams
       run: |
         poetry run python scripts/visualization/generate_mermaid.py
+        echo "Mermaid diagrams generated (isolated nodes skipped)"
 
-    # Step 6c: Generate PyVis interactive visualizations
-    - name: Generate PyVis interactive visualizations
+    - name: Generate PyVis visualizations with CSS fix
       run: |
-        poetry run python scripts/visualization/generate_pyvis.py
+        poetry run python scripts/visualization/generate_pyvis_with_fix.py
+        echo "PyVis visualizations generated and CSS paths fixed"
 
-    # Step 6d: Fix PyVis CSS paths
-    - name: Fix PyVis CSS paths
-      run: |
-        poetry run python scripts/visualization/fix_pyvis_css.py
-
-    # Step 6e: Generate D3.js data files
     - name: Generate D3.js data files
       run: |
         poetry run python scripts/visualization/generate_d3_data.py
+        echo "D3.js data files generated"
 
-    # Step 6f: Generate comprehensive index pages
+    # Step 6c: Generate site content
     - name: Generate index pages for all domains
       run: |
         poetry run python scripts/site/generate_index_pages.py
         echo "Index pages generated successfully!"
 
-    # Step 6g: Resolve cross-references
     - name: Resolve cross-references
       run: |
         poetry run python scripts/site/resolve_cross_references.py
         echo "Cross-references resolved successfully!"
 
-    # Step 6h: Insert diagrams into content
     - name: Insert diagrams into content
       run: |
         poetry run python scripts/visualization/insert_diagrams.py
+        echo "Diagrams inserted (only nodes with valid diagrams)"
 
-    # Step 6i: Build search index
     - name: Build search index
       run: |
         poetry run python scripts/site/build_search_index.py
         echo "Search index built successfully!"
 
+    - name: Remove title prefixes from articles
+      run: |
+        poetry run python scripts/site/remove_title_prefixes.py
+        echo "Title prefixes removed successfully!"
 
     # Step 7: Render Quarto site for multiple languages
     - name: Render English site
@@ -189,33 +217,40 @@ jobs:
         echo "Building Japanese version..."
         quarto render --profile ja
 
-    # Step 7: Copy shared resources to root
-    - name: Copy shared resources to root
+    # Step 8: Post-processing and finalization
+    - name: Fix Japanese index page
+      run: |
+        echo "Fixing Japanese index page..."
+        poetry run python scripts/translation/fix_japanese_index.py
+        echo "Japanese index page fixed"
+
+    - name: Copy shared resources to site root
       run: |
         echo "Copying shared resources to root..."
         # Copy output directories to the root _site directory
         if [ -d "output" ]; then
           cp -r output _site/
-          echo "Copied output directory to _site/"
+          echo "✓ Copied output directory to _site/"
+        else
+          echo "⚠ No output directory to copy"
         fi
+
         # Copy knowledge graph and other shared resources
         if [ -f "knowledge_graph.ttl" ]; then
           cp knowledge_graph.ttl _site/
-          echo "Copied knowledge_graph.ttl to _site/"
+          echo "✓ Copied knowledge_graph.ttl to _site/"
         fi
-        # List the contents to verify
-        echo "Contents of _site/output/:"
-        ls -la _site/output/ || echo "No output directory in _site"
 
-    # Step 7a: Fix Japanese index page
-    - name: Fix Japanese index page
-      run: |
-        echo "Fixing Japanese index page..."
-        poetry run python scripts/translation/fix_japanese_index.py
+        # Verify key directories exist
+        echo "Verifying site structure:"
+        [ -d "_site/output/d3-data/en" ] && echo "✓ D3 data (EN) present" || echo "⚠ D3 data (EN) missing"
+        [ -d "_site/output/d3-data/ja" ] && echo "✓ D3 data (JA) present" || echo "⚠ D3 data (JA) missing"
+        [ -d "_site/output/interactive/en" ] && echo "✓ Interactive viz (EN) present" || echo "⚠ Interactive viz (EN) missing"
+        [ -d "_site/output/interactive/ja" ] && echo "✓ Interactive viz (JA) present" || echo "⚠ Interactive viz (JA) missing"
 
-    # Step 7b: Create root index.html for language detection
-    - name: Create language redirect page
+    - name: Create language detection and routing
       run: |
+        # Create root index.html for language detection
         cat > _site/index.html << 'EOF'
         <!DOCTYPE html>
         <html>
@@ -239,13 +274,13 @@ jobs:
         </body>
         </html>
         EOF
+        echo "✓ Language detection page created"
 
-    # Step 7d: Create .nojekyll file for GitHub Pages
-    - name: Create .nojekyll file
-      run: |
+        # Create .nojekyll file for GitHub Pages
         touch _site/.nojekyll
+        echo "✓ .nojekyll file created"
 
-    # Step 8: Upload artifacts
+    # Step 9: Upload artifacts
     - name: Upload knowledge graph
       uses: actions/upload-artifact@v4
       with:
@@ -274,7 +309,7 @@ jobs:
         path: _site/
         retention-days: 30
 
-    # Optional: Deploy to GitHub Pages (only on main branch, Python 3.12)
+    # Step 10: Deploy to GitHub Pages (only on main branch push with Python 3.12)
     - name: Deploy to GitHub Pages
       if: github.ref == 'refs/heads/main' && matrix.python-version == '3.12' && github.event_name == 'push'
       uses: peaceiris/actions-gh-pages@v3
@@ -284,3 +319,9 @@ jobs:
         publish_branch: gh-pages
         # Uncomment and update if you have a custom domain:
         # cname: mathwiki.yourdomain.com
+
+    - name: Report deployment status
+      if: github.ref == 'refs/heads/main' && matrix.python-version == '3.12' && github.event_name == 'push'
+      run: |
+        echo "✅ Site deployed to GitHub Pages"
+        echo "Visit: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"

@@ -5,8 +5,9 @@ requires:
 - def-event
 - def-conditional-probability
 - def-random-variable
+- def-probability-distribution
 status: complete
-title: '定義: 独立性'
+title: 独立性
 translation_of: ../../en/probability-statistics/def-independence.qmd
 translations:
   en: ../en/probability-statistics/def-independence.html
@@ -42,7 +43,7 @@ $$P(A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k}) = P(A_{i_1}) \cdot P(A_{i_2})
 
 $$P(X \in A, Y \in B) = P(X \in A) \cdot P(Y \in B)$$
 
-同値な条件として、それらの同時分布関数が因数分解されます：
+同値な条件として、それらの同時[分布](def-probability-distribution.qmd)関数が因数分解されます：
 
 $$F_{X,Y}(x,y) = F_X(x) \cdot F_Y(y)$$
 
@@ -112,33 +113,39 @@ $$F_{X,Y}(x,y) = F_X(x) \cdot F_Y(y)$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-conditional-probability["Definition: Conditional Probability"]:::definition
-    def-event["Definition: Event"]:::definition
-    def-probability-space["Definition: Probability Space"]:::definition
-    def-random-variable["Definition: Random Variable"]:::definition
-    def-independence["Definition: Independence"]:::definition
-    thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
-    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
-    thm-central-limit --> def-independence
+    def-probability-space["定義: 確率空間"]:::definition
+    def-binomial-distribution["定義: 二項分布"]:::definition
+    def-independence["定義: 独立性"]:::definition
+    thm-law-of-large-numbers["定理: 大数の法則"]:::theorem
+    def-event["定義: 事象"]:::definition
+    def-probability-distribution["定義: 確率分布"]:::definition
+    thm-central-limit["定理: 中心極限定理"]:::theorem
+    def-conditional-probability["定義: 条件付き確率"]:::definition
+    def-random-variable["定義: 確率変数"]:::definition
     def-independence --> def-event
-    def-independence --> def-random-variable
+    def-binomial-distribution --> def-independence
     def-independence --> def-conditional-probability
+    def-independence --> def-probability-distribution
     def-independence --> def-probability-space
+    def-independence --> def-random-variable
     thm-law-of-large-numbers --> def-independence
+    thm-central-limit --> def-independence
     class def-independence current
-    click def-conditional-probability "def-conditional-probability.html" "Definition: Conditional Probabilityへ"
-    click def-event "def-event.html" "Definition: Eventへ"
-    click def-probability-space "def-probability-space.html" "Definition: Probability Spaceへ"
-    click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
-    click thm-central-limit "thm-central-limit.html" "Theorem: Central Limit Theoremへ"
-    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "Theorem: Law of Large Numbersへ"
+    click def-probability-space "def-probability-space.html" "確率空間の定義へ"
+    click def-binomial-distribution "def-binomial-distribution.html" "二項分布の定義へ"
+    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "大数の法則の定理へ"
+    click def-event "def-event.html" "事象の定義へ"
+    click def-probability-distribution "def-probability-distribution.html" "確率分布の定義へ"
+    click thm-central-limit "thm-central-limit.html" "中心極限定理の定理へ"
+    click def-conditional-probability "def-conditional-probability.html" "条件付き確率の定義へ"
+    click def-random-variable "def-random-variable.html" "確率変数の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -152,4 +159,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-independence.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-independence.html){target="_blank"}で完全なインタラクティブ版を表示

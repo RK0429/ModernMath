@@ -4,7 +4,7 @@ requires:
 - def-category
 - def-morphism
 status: complete
-title: '定義: 合成'
+title: 合成
 translation_of: ../../en/category-theory/def-composition.qmd
 translations:
   en: ../en/category-theory/def-composition.html
@@ -85,30 +85,36 @@ C ---k---> D
 ## 関連概念
 
 - [同型射](def-isomorphism.qmd): 合成に関して両側逆射を持つ射
-- 自己射: 自分自身と合成可能な射
+- [自己射](../algebra/def-endomorphism.qmd): 自分自身と合成可能な射
 - モノイド: すべての射が合成可能な単一対象圏
 
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-category["Definition: Category"]:::definition
-    def-isomorphism["Definition: Isomorphism"]:::definition
-    def-composition["Definition: Composition"]:::definition
-    def-morphism["Definition: Morphism"]:::definition
-    def-isomorphism --> def-composition
+    def-morphism["定義: 射"]:::definition
+    def-isomorphism["定義: 群同型"]:::definition
+    def-epimorphism["定義：全射"]:::definition
+    def-composition["定義: 合成"]:::definition
+    def-category["定義: 圏"]:::definition
+    def-monomorphism["定義：単射"]:::definition
+    def-monomorphism --> def-composition
+    def-epimorphism --> def-composition
     def-composition --> def-morphism
+    def-isomorphism --> def-composition
     def-composition --> def-category
     class def-composition current
-    click def-category "def-category.html" "Definition: Categoryへ"
-    click def-isomorphism "def-isomorphism.html" "Definition: Isomorphismへ"
-    click def-morphism "def-morphism.html" "Definition: Morphismへ"
+    click def-morphism "def-morphism.html" "射の定義へ"
+    click def-isomorphism "def-isomorphism.html" "群同型の定義へ"
+    click def-epimorphism "def-epimorphism.html" "定義：全射へ"
+    click def-category "def-category.html" "圏の定義へ"
+    click def-monomorphism "def-monomorphism.html" "定義：単射へ"
 ```
 
 ## インタラクティブ可視化
@@ -122,4 +128,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-composition.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-composition.html){target="_blank"}で完全なインタラクティブ版を表示

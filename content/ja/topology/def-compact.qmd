@@ -5,7 +5,7 @@ requires:
 - def-open-set
 - def-set
 status: complete
-title: '定義: コンパクト空間'
+title: コンパクト空間
 translation_of: ../../en/topology/def-compact.qmd
 translations:
   en: ../en/topology/def-compact.html
@@ -47,33 +47,33 @@ type: Definition
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-heine-borel["Theorem: Heine-Borel Theorem"]:::theorem
-    def-open-set["Definition: Open Set"]:::definition
-    def-topological-space["Definition: Topological Space"]:::definition
-    def-compact["Definition: Compact Space"]:::definition
-    def-homeomorphism["Definition: Homeomorphism"]:::definition
-    ex-closed-interval-compact["Example: Closed Interval is Compact"]:::example
-    def-set["Definition: Set"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-topological-space["定義: 位相空間"]:::definition
+    def-compact["定義: コンパクト空間"]:::definition
+    def-homeomorphism["定義：同相写像"]:::definition
+    ex-closed-interval-compact["例: 閉区間はコンパクト"]:::example
+    thm-heine-borel["定理: ハイネ・ボレルの定理"]:::theorem
+    def-open-set["定義: 開集合"]:::definition
     def-compact --> def-open-set
-    ex-closed-interval-compact --> def-compact
-    thm-heine-borel --> def-compact
     def-compact --> def-set
     def-homeomorphism --> def-compact
+    ex-closed-interval-compact --> def-compact
     def-compact --> def-topological-space
+    thm-heine-borel --> def-compact
     class def-compact current
-    click thm-heine-borel "thm-heine-borel.html" "Theorem: Heine-Borel Theoremへ"
-    click def-open-set "def-open-set.html" "Definition: Open Setへ"
-    click def-topological-space "def-topological-space.html" "Definition: Topological Spaceへ"
-    click def-homeomorphism "def-homeomorphism.html" "Definition: Homeomorphismへ"
-    click ex-closed-interval-compact "ex-closed-interval-compact.html" "Example: Closed Interval is Compactへ"
-    click def-set "def-set.html" "Definition: Setへ"
+    click def-set "def-set.html" "集合の定義へ"
+    click def-topological-space "def-topological-space.html" "位相空間の定義へ"
+    click def-homeomorphism "def-homeomorphism.html" "定義：同相写像へ"
+    click ex-closed-interval-compact "ex-closed-interval-compact.html" "閉区間はコンパクトの例へ"
+    click thm-heine-borel "thm-heine-borel.html" "ハイネ・ボレルの定理の定理へ"
+    click def-open-set "def-open-set.html" "開集合の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -87,4 +87,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-compact.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-compact.html){target="_blank"}で完全なインタラクティブ版を表示

@@ -6,15 +6,18 @@ requires:
 - def-homomorphism
 - def-normal-subgroup
 - def-ideal
+- def-quotient-ring
+- def-isomorphism
+- def-ring-homomorphism
 status: complete
-title: 'Definition: Kernel'
+title: Kernel
 translations:
   en: ../en/algebra/def-kernel.html
   ja: ../ja/algebra/def-kernel.html
 type: Definition
 ---
 
-# Definition: Kernel {#def-kernel}
+# Kernel {#def-kernel}
 
 Let $T: V \to W$ be a [Linear Transformation](def-linear-transformation.qmd) between [s](def-vector-space.qmd). The **kernel** (or **null space**) of $T$ is the set of all vectors in $V$ that map to the zero vector in $W$:
 
@@ -33,7 +36,7 @@ The kernel is also known as:
    - Closed under addition: if $\mathbf{u}, \mathbf{v} \in \ker(T)$, then $T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v}) = \mathbf{0} + \mathbf{0} = \mathbf{0}$
    - Closed under scalar multiplication: if $\mathbf{v} \in \ker(T)$ and $a \in F$, then $T(a\mathbf{v}) = aT(\mathbf{v}) = a\mathbf{0} = \mathbf{0}$
 
-2. **Injectivity criterion**: $T$ is injective (one-to-one) if and only if $\ker(T) = \{\mathbf{0}_V\}$
+2. **Injectivity criterion**: $T$ is injective (one-to-one) if and only if $\ker(T) = \{\mathbf{0}_V\}$. In categorical terms, this means $T$ is a [monomorphism](../category-theory/def-monomorphism.qmd)
 
 3. **Dimension**: The dimension of $\ker(T)$ is called the **nullity** of $T$
 
@@ -64,15 +67,15 @@ Since the kernel is a normal subgroup, we can form the @def-quotient-group $G/\k
 
 $$G/\ker(\phi) \cong \text{Im}(\phi)$$
 
-This fundamental result shows that every homomorphic image is isomorphic to a quotient group. See @thm-first-isomorphism for the complete statement and proof.
+This fundamental result shows that every homomorphic image is [isomorphic](def-isomorphism.qmd) to a quotient group. See @thm-first-isomorphism for the complete statement and proof.
 
 ## Kernel in Ring Theory
 
-For ring homomorphisms (maps that preserve both addition and multiplication), the kernel takes on additional structure. If $\phi: R \to S$ is a ring homomorphism, then:
+For [ring homomorphisms](def-ring-homomorphism.qmd) (maps that preserve both addition and multiplication), the kernel takes on additional structure. If $\phi: R \to S$ is a [ring homomorphism](def-ring-homomorphism.qmd), then:
 
 $$\ker(\phi) = \{r \in R : \phi(r) = 0_S\}$$
 
-The kernel of a ring homomorphism is always an [Ideal](def-ideal.qmd) of the domain ring $R$. This is the ring-theoretic analogue of the fact that kernels of group homomorphisms are normal subgroups. Just as normal subgroups allow us to form quotient groups, ideals allow us to form quotient rings.
+The kernel of a [ring homomorphism](def-ring-homomorphism.qmd) is always an [Ideal](def-ideal.qmd) of the domain ring $R$. This is the ring-theoretic analogue of the fact that kernels of group homomorphisms are normal subgroups. Just as normal subgroups allow us to form quotient groups, ideals allow us to form [quotient rings](def-quotient-ring.qmd).
 
 ## Dependency Graph
 
@@ -85,32 +88,44 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-kernel["Definition: Kernel"]:::definition
-    def-ideal["Definition: Ideal"]:::definition
-    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
     thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
-    def-vector-space["Definition: Vector Space"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-exact-sequence["Definition: Exact Sequence"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    def-ring-homomorphism["Definition: Ring Homomorphism"]:::definition
     def-linear-transformation["Definition: Linear Transformation"]:::definition
+    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-kernel --> thm-first-isomorphism
+    def-kernel --> def-isomorphism
+    thm-first-isomorphism --> def-kernel
     def-kernel --> def-vector-space
+    def-exact-sequence --> def-kernel
+    thm-rank-nullity --> def-kernel
     def-kernel --> def-homomorphism
     def-kernel --> def-normal-subgroup
-    def-kernel --> def-quotient-group
-    thm-first-isomorphism --> def-kernel
-    def-kernel --> def-ideal
-    def-kernel --> thm-first-isomorphism
-    thm-rank-nullity --> def-kernel
     def-kernel --> def-linear-transformation
+    def-kernel --> def-quotient-ring
+    def-kernel --> def-ideal
+    def-kernel --> def-quotient-group
+    def-kernel --> def-ring-homomorphism
     class def-kernel current
     click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem theorem"
     click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click def-exact-sequence "def-exact-sequence.html" "Go to Exact Sequence definition"
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
+    click def-ring-homomorphism "def-ring-homomorphism.html" "Go to Ring Homomorphism definition"
+    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation definition"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem theorem"
     click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
     click def-ideal "def-ideal.html" "Go to Ideal definition"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem theorem"
-    click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem theorem"
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring definition"
     click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
-    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation definition"
 ```
 
 ## Interactive Visualization
@@ -124,4 +139,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-kernel.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-kernel.html){target="_blank"}

@@ -3,17 +3,18 @@ id: def-expectation
 requires:
 - def-probability-space
 - def-random-variable
+- def-probability-distribution
 status: complete
-title: 'Definition: Expected Value'
+title: Expected Value
 translations:
   en: ../en/probability-statistics/def-expectation.html
   ja: ../ja/probability-statistics/def-expectation.html
 type: Definition
 ---
 
-# Definition: Expected Value {#def-expectation}
+# Expected Value {#def-expectation}
 
-The **expected value** (or **expectation**) of a [random variable](def-random-variable.qmd) is a measure of the central tendency of its distribution, representing the average value the random variable takes over many trials.
+The **expected value** (or **expectation**) of a [random variable](def-random-variable.qmd) is a measure of the central tendency of its [distribution](def-probability-distribution.qmd), representing the average value the random variable takes over many trials.
 
 ## Discrete Case
 
@@ -52,9 +53,9 @@ $$\int_{\Omega} |X(\omega)| \, dP(\omega) < \infty$$
 
 ## Examples
 
-1. **Bernoulli**: If $X \sim \text{Bernoulli}(p)$, then $E[X] = p$
-2. **Binomial**: If $X \sim \text{Binomial}(n, p)$, then $E[X] = np$
-3. **Normal**: If $X \sim \mathcal{N}(\mu, \sigma^2)$, then $E[X] = \mu$ (where $\sigma^2$ is the [variance](def-variance.qmd))
+1. **Bernoulli**: If $X \sim \text{Bernoulli}(p)$, then $E[X] = p$ (see [Binomial Distribution](def-binomial-distribution.qmd) for $n=1$)
+2. **[Binomial](def-binomial-distribution.qmd)**: If $X \sim \text{Binomial}(n, p)$, then $E[X] = np$
+3. **[Normal](def-normal-distribution.qmd)**: If $X \sim \mathcal{N}(\mu, \sigma^2)$, then $E[X] = \mu$ (where $\sigma^2$ is the [variance](def-variance.qmd))
 4. **Exponential**: If $X \sim \text{Exp}(\lambda)$, then $E[X] = 1/\lambda$
 
 ## Role in Limit Theorems
@@ -91,23 +92,32 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-normal-distribution["Definition: Normal Distribution"]:::definition
     def-probability-space["Definition: Probability Space"]:::definition
+    def-binomial-distribution["Definition: Binomial Distribution"]:::definition
+    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
     def-expectation["Definition: Expected Value"]:::definition
-    def-random-variable["Definition: Random Variable"]:::definition
+    def-probability-distribution["Definition: Probability Distribution"]:::definition
     thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
     def-variance["Definition: Variance"]:::definition
-    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
-    thm-law-of-large-numbers --> def-expectation
+    def-random-variable["Definition: Random Variable"]:::definition
+    def-expectation --> def-probability-distribution
+    def-binomial-distribution --> def-expectation
+    def-expectation --> def-probability-space
+    def-normal-distribution --> def-expectation
     def-variance --> def-expectation
+    thm-law-of-large-numbers --> def-expectation
     def-expectation --> def-random-variable
     thm-central-limit --> def-expectation
-    def-expectation --> def-probability-space
     class def-expectation current
+    click def-normal-distribution "def-normal-distribution.html" "Go to Normal Distribution definition"
     click def-probability-space "def-probability-space.html" "Go to Probability Space definition"
-    click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
+    click def-binomial-distribution "def-binomial-distribution.html" "Go to Binomial Distribution definition"
+    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "Go to Law of Large Numbers theorem"
+    click def-probability-distribution "def-probability-distribution.html" "Go to Probability Distribution definition"
     click thm-central-limit "thm-central-limit.html" "Go to Central Limit Theorem theorem"
     click def-variance "def-variance.html" "Go to Variance definition"
-    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "Go to Law of Large Numbers theorem"
+    click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
 ```
 
 ## Interactive Visualization
@@ -121,4 +131,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-expectation.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-expectation.html){target="_blank"}

@@ -2,8 +2,9 @@
 id: def-union
 requires:
 - def-set
+- def-cardinality
 status: complete
-title: 'Definition: Union'
+title: Union
 translations:
   en: ../en/logic-set-theory/def-union.html
   ja: ../ja/logic-set-theory/def-union.html
@@ -46,7 +47,7 @@ Special cases:
 
 - De Morgan's Laws: $(A \cup B)^c = A^c \cap B^c$ (see [De Morgan's Laws](thm-de-morgan.qmd))
 - Distributivity: $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
-- Cardinality: $|A \cup B| = |A| + |B| - |A \cap B|$ (inclusion-exclusion)
+- [Cardinality](def-cardinality.qmd): $|A \cup B| = |A| + |B| - |A \cap B|$ (see [Inclusion-Exclusion Principle](../combinatorics/thm-inclusion-exclusion.qmd))
 
 ## Dependency Graph
 
@@ -59,13 +60,16 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-set["Definition: Set"]:::definition
-    def-union["Definition: Union"]:::definition
     thm-de-morgan["Theorem: De Morgan's Laws"]:::theorem
-    def-union --> def-set
+    def-union["Definition: Union"]:::definition
+    def-cardinality["Definition: Cardinality"]:::definition
     thm-de-morgan --> def-union
+    def-union --> def-set
+    def-union --> def-cardinality
     class def-union current
     click def-set "def-set.html" "Go to Set definition"
     click thm-de-morgan "thm-de-morgan.html" "Go to De Morgan's Laws theorem"
+    click def-cardinality "def-cardinality.html" "Go to Cardinality definition"
 ```
 
 ## Interactive Visualization
@@ -79,4 +83,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-union.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-union.html){target="_blank"}

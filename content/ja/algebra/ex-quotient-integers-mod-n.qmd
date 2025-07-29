@@ -10,8 +10,9 @@ requires:
 - def-congruence
 - def-abelian-group
 - def-direct-product
+- def-isomorphism
 status: complete
-title: '例: 整数の n による剰余'
+title: 整数の n による剰余
 translation_of: ../../en/algebra/ex-quotient-integers-mod-n.qmd
 translations:
   en: ../en/algebra/ex-quotient-integers-mod-n.html
@@ -19,7 +20,7 @@ translations:
 type: Example
 ---
 
-# 例: 整数の n による剰余 {#ex-quotient-integers-mod-n}
+# 整数の n による剰余 {#ex-quotient-integers-mod-n}
 
 [商群](def-quotient-group.qmd) $\mathbb{Z}/n\mathbb{Z}$ は、商群が代数的構造をどのように簡潔化するかを示す基本的な例を提供します。
 
@@ -79,7 +80,7 @@ $\mathbb{Z}/n\mathbb{Z}$ は位数 $n$ の[巡回群](def-cyclic-group.qmd)で�
 - $\bar{1} = 1 + n\mathbb{Z}$ によって生成されます
 - すべての要素はある $k$ に対して $k \cdot \bar{1}$ と書けます
 
-### 同型
+### [同型](def-isomorphism.qmd)
 
 $\mathbb{Z}/n\mathbb{Z} \cong C_n$、位数 $n$ の[巡回群](def-cyclic-group.qmd)。
 
@@ -108,7 +109,7 @@ $\mathbb{Z}/n\mathbb{Z}$ は合同算術の数学的基礎です：
 
 ### 直積
 
-$\gcd(m,n) = 1$ のとき、同型が存在します：
+$\gcd(m,n) = 1$ のとき、[同型](def-isomorphism.qmd)が存在します：
 $$\mathbb{Z}/mn\mathbb{Z} \cong \mathbb{Z}/m\mathbb{Z} \times \mathbb{Z}/n\mathbb{Z}$$
 
 これは[中国剰余定理](../number-theory/thm-chinese-remainder.qmd)の特別な場合です。例えば：
@@ -132,54 +133,66 @@ $$\mathbb{Z}/mn\mathbb{Z} \cong \mathbb{Z}/m\mathbb{Z} \times \mathbb{Z}/n\mathb
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    ex-integers-addition["Example: Integers under Addition"]:::example
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    def-coset["Definition: Coset"]:::definition
-    ex-finite-field["Example: Finite Field"]:::example
-    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    def-direct-product["Definition: Direct Product of Groups"]:::definition
-    def-group["Definition: Group"]:::definition
-    thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
-    ex-quotient-integers-mod-n --> ex-integers-addition
-    def-congruence --> ex-quotient-integers-mod-n
-    ex-quotient-integers-mod-n --> def-cyclic-group
-    ex-quotient-integers-mod-n --> def-coset
+    thm-euclidean-algorithm["定理：ユークリッドのアルゴリズム"]:::theorem
+    def-normal-subgroup["定義: 正規部分群"]:::definition
+    def-cyclic-group["定義: 巡回群"]:::definition
+    def-order["定義：位数"]:::definition
+    def-direct-product["定義：群の直積"]:::definition
+    def-quotient-group["定義: 商群"]:::definition
+    ex-integers-addition["例: 加法における整数"]:::example
+    thm-euler["定理：オイラーの定理"]:::theorem
+    def-isomorphism["定義: 群同型"]:::definition
+    ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
+    def-congruence["定義: 合同（モジュラー演算）"]:::definition
+    def-polynomial-ring["定義: 多項式環"]:::definition
+    def-group["群"]:::definition
+    def-coset["定義: 剰余類"]:::definition
+    def-quotient-ring["定義: 剰余環"]:::definition
+    ex-finite-field["例: 有限体"]:::example
+    def-abelian-group["定義: アーベル群"]:::definition
+    ex-quotient-integers-mod-n --> def-isomorphism
     ex-quotient-integers-mod-n --> def-normal-subgroup
-    def-cyclic-group --> ex-quotient-integers-mod-n
     ex-quotient-integers-mod-n --> def-direct-product
-    ex-finite-field --> ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --> def-cyclic-group
     thm-euler --> ex-quotient-integers-mod-n
-    thm-euclidean-algorithm --> ex-quotient-integers-mod-n
-    def-coset --> ex-quotient-integers-mod-n
-    ex-quotient-integers-mod-n --> def-congruence
-    ex-quotient-integers-mod-n --> def-quotient-group
+    ex-quotient-integers-mod-n --> def-quotient-ring
+    ex-quotient-integers-mod-n --> def-order
+    ex-quotient-integers-mod-n --> def-polynomial-ring
+    def-cyclic-group --> ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --> def-coset
     ex-quotient-integers-mod-n --> def-abelian-group
+    ex-finite-field --> ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --> def-quotient-group
+    ex-quotient-integers-mod-n --> def-congruence
+    thm-euclidean-algorithm --> ex-quotient-integers-mod-n
+    ex-quotient-integers-mod-n --> ex-integers-addition
+    def-coset --> ex-quotient-integers-mod-n
+    def-congruence --> ex-quotient-integers-mod-n
     ex-quotient-integers-mod-n --> def-group
     class ex-quotient-integers-mod-n current
-    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
-    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
-    click thm-euler "thm-euler.html" "Theorem: Euler's Theoremへ"
-    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
-    click ex-integers-addition "ex-integers-addition.html" "Example: Integers under Additionへ"
-    click def-coset "def-coset.html" "Definition: Cosetへ"
-    click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
-    click def-congruence "def-congruence.html" "Definition: Congruence (Modular Arithmetic)へ"
-    click def-cyclic-group "def-cyclic-group.html" "Definition: Cyclic Groupへ"
-    click def-direct-product "def-direct-product.html" "Definition: Direct Product of Groupsへ"
-    click def-group "def-group.html" "Definition: Groupへ"
-    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Theorem: Euclidean Algorithmへ"
+    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "定理：ユークリッドのアルゴリズムへ"
+    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群の定義へ"
+    click def-cyclic-group "def-cyclic-group.html" "巡回群の定義へ"
+    click def-order "def-order.html" "定義：位数へ"
+    click def-direct-product "def-direct-product.html" "定義：群の直積へ"
+    click def-quotient-group "def-quotient-group.html" "商群の定義へ"
+    click ex-integers-addition "ex-integers-addition.html" "加法における整数の例へ"
+    click thm-euler "thm-euler.html" "定理：オイラーの定理へ"
+    click def-isomorphism "def-isomorphism.html" "群同型の定義へ"
+    click def-congruence "def-congruence.html" "合同（モジュラー演算）の定義へ"
+    click def-polynomial-ring "def-polynomial-ring.html" "多項式環の定義へ"
+    click def-group "def-group.html" "群へ"
+    click def-coset "def-coset.html" "剰余類の定義へ"
+    click def-quotient-ring "def-quotient-ring.html" "剰余環の定義へ"
+    click ex-finite-field "ex-finite-field.html" "有限体の例へ"
+    click def-abelian-group "def-abelian-group.html" "アーベル群の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -193,4 +206,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/ex-quotient-integers-mod-n.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/ex-quotient-integers-mod-n.html){target="_blank"}で完全なインタラクティブ版を表示

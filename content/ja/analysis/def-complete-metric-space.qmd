@@ -3,8 +3,9 @@ id: def-complete-metric-space
 requires:
 - def-metric-space
 - def-limit
+- def-cauchy-sequence
 status: complete
-title: '定義: 完備距離空間'
+title: 完備距離空間
 translation_of: ../../en/analysis/def-complete-metric-space.qmd
 translations:
   en: ../en/analysis/def-complete-metric-space.html
@@ -12,23 +13,15 @@ translations:
 type: Definition
 ---
 
-# 定義: 完備距離空間 {#def-complete-metric-space}
+# 完備距離空間 {#def-complete-metric-space}
 
-[距離空間](../geometry/def-metric-space.qmd) $(X, d)$ が**完備**であるとは、$X$ のすべてのコーシー列が $X$ 内の[数列の極限](def-limit.qmd)に収束することをいう。
-
-## コーシー列
-
-距離空間 $(X, d)$ における数列 $(x_n)_{n=1}^{\infty}$ が**コーシー列**であるとは、任意の $\varepsilon > 0$ に対して、ある $N \in \mathbb{N}$ が存在して、すべての $m, n \geq N$ に対して次が成り立つことをいう：
-
-$$d(x_m, x_n) < \varepsilon$$
-
-直感的には、コーシー列の項は、数列が進むにつれて互いに任意に近くなる。
+[距離空間](../geometry/def-metric-space.qmd) $(X, d)$ が**完備**であるとは、$X$ のすべての[コーシー列](def-cauchy-sequence.qmd)が $X$ 内の[数列の極限](def-limit.qmd)に収束することをいう。
 
 ## 収束性との関係
 
-- すべての収束列はコーシー列である
-- 完備距離空間において、すべてのコーシー列は収束する
-- 距離空間が完備であることの必要十分条件は、逆が成り立つこと、すなわちすべてのコーシー列が収束することである
+- すべての収束列は[コーシー列](def-cauchy-sequence.qmd)である
+- 完備距離空間において、すべての[コーシー列](def-cauchy-sequence.qmd)は収束する
+- 距離空間が完備であることの必要十分条件は、逆が成り立つこと、すなわちすべての[コーシー列](def-cauchy-sequence.qmd)が収束することである
 
 ## 例
 
@@ -36,10 +29,10 @@ $$d(x_m, x_n) < \varepsilon$$
 - 標準的な距離を持つ $\mathbb{R}$（[標準的な距離を持つ実数直線](ex-real-line-metric.qmd)を参照）
 - 標準的な距離を持つ $\mathbb{C}$
 - 完備距離空間の任意の閉部分集合
-- 上限距離を持つ $C[a,b]$（$[a,b]$ 上の連続関数）
+- 上限距離を持つ $C[a,b]$（$[a,b]$ 上の連続関数）（[ノルム空間](def-normed-vector-space.qmd)参照）
 
 **非完備距離空間：**
-- 標準的な距離を持つ $\mathbb{Q}$（例えば、$x_n$ を $\sqrt{2}$ の $n$ 番目の小数近似とする数列 $(x_n)$ はコーシー列だが $\mathbb{Q}$ では収束しない）
+- 標準的な距離を持つ $\mathbb{Q}$（例えば、$x_n$ を $\sqrt{2}$ の $n$ 番目の小数近似とする数列 $(x_n)$ は[コーシー列](def-cauchy-sequence.qmd)だが $\mathbb{Q}$ では収束しない）
 - 標準的な距離を持つ $(0, 1)$
 - $L^1$ 距離を持つ $C[a,b]$
 
@@ -48,32 +41,44 @@ $$d(x_m, x_n) < \varepsilon$$
 完備性は以下にとって重要である：
 - **不動点定理**：バナッハの不動点定理は完備性を必要とする
 - **存在定理**：解析学における多くの存在結果は完備性に依存している
-- **$\mathbb{R}$ の構成**：実数は $\mathbb{Q}$ の完備化として構成できる
+- **$\mathbb{R}$ の構成**：実数は $\mathbb{Q}$ の[コーシー列](def-cauchy-sequence.qmd)を用いた完備化として構成できる
 
 ## 関連項目
 
 - @thm-banach-fixed-point - 完備性を必要とする基本定理
-- @def-banach-space - 完備ノルム空間
+- [バナッハ空間](def-banach-space.qmd) - 完備[ノルム空間](def-normed-vector-space.qmd)
 - @thm-baire-category - 完備距離空間に関する重要な定理
 
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-limit["Definition: Limit of a Sequence"]:::definition
-    def-metric-space["Definition: Metric Space"]:::definition
-    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
+    def-cauchy-sequence["定義: コーシー列"]:::definition
+    def-limit["定義：数列の極限"]:::definition
+    def-metric-space["定義：距離空間"]:::definition
+    def-hilbert-space["定義: ヒルベルト空間"]:::definition
+    def-open-ball["定義：開球"]:::definition
+    def-complete-metric-space["定義: 完備距離空間"]:::definition
+    def-banach-space["定義: バナッハ空間"]:::definition
     def-complete-metric-space --> def-limit
+    def-hilbert-space --> def-complete-metric-space
+    def-open-ball --> def-complete-metric-space
+    def-banach-space --> def-complete-metric-space
+    def-complete-metric-space --> def-cauchy-sequence
     def-complete-metric-space --> def-metric-space
     class def-complete-metric-space current
-    click def-limit "def-limit.html" "Definition: Limit of a Sequenceへ"
-    click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
+    click def-cauchy-sequence "def-cauchy-sequence.html" "コーシー列の定義へ"
+    click def-limit "def-limit.html" "定義：数列の極限へ"
+    click def-metric-space "def-metric-space.html" "定義：距離空間へ"
+    click def-hilbert-space "def-hilbert-space.html" "ヒルベルト空間の定義へ"
+    click def-open-ball "def-open-ball.html" "定義：開球へ"
+    click def-banach-space "def-banach-space.html" "バナッハ空間の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -87,4 +92,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-complete-metric-space.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-complete-metric-space.html){target="_blank"}で完全なインタラクティブ版を表示

@@ -5,7 +5,7 @@ requires:
 - def-convergence
 - def-limit
 status: complete
-title: 'Definition: Series'
+title: Series
 translations:
   en: ../en/analysis/def-series.html
   ja: ../ja/analysis/def-series.html
@@ -16,7 +16,7 @@ A **series** is the sum of the terms of a sequence. More precisely, given a sequ
 
 ## Formal Definition
 
-Given a sequence $(a_n)_{n=1}^{\infty}$ in a normed space, the **series** $\sum_{n=1}^{\infty} a_n$ is defined through its sequence of partial sums:
+Given a sequence $(a_n)_{n=1}^{\infty}$ in a [Normed Vector Space](def-normed-vector-space.qmd), the **series** $\sum_{n=1}^{\infty} a_n$ is defined through its sequence of partial sums:
 
 $$S_N = \sum_{n=1}^{N} a_n = a_1 + a_2 + \cdots + a_N$$
 
@@ -44,7 +44,7 @@ A series $\sum_{n=1}^{\infty} a_n$ **converges conditionally** if:
 
 1. **Necessary Condition for Convergence**: If $\sum_{n=1}^{\infty} a_n$ converges, then $\lim_{n \to \infty} a_n = 0$
 
-2. **Cauchy Criterion**: A series converges if and only if for every $\varepsilon > 0$, there exists $N$ such that for all $n > m \geq N$:
+2. **Cauchy Criterion**: A series converges if and only if for every $\varepsilon > 0$, there exists $N$ such that for all $n > m \geq N$ (related to [Cauchy Sequences](def-cauchy-sequence.qmd)):
    $$\left|\sum_{k=m+1}^{n} a_k\right| < \varepsilon$$
 
 3. **Rearrangement Property**:
@@ -81,8 +81,9 @@ $$\sum_{n=1}^{\infty} \frac{1}{n^p} \begin{cases}
 - [Sequence](def-sequence.qmd): The ordered list of terms being summed
 - [Convergence](def-convergence.qmd): The fundamental concept of approaching a limit
 - [Limit](def-limit.qmd): The value that partial sums approach
-- Power Series: Series involving powers of a variable
+- [Power Series](thm-taylor-series.qmd): Series involving powers of a variable (Taylor series is a specific type)
 - Fourier Series: Representation of functions as trigonometric series
+- [Generating Functions](../combinatorics/def-generating-function.qmd): Formal power series used in combinatorics to encode sequences
 
 ## Dependency Graph
 
@@ -94,17 +95,20 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-limit["Definition: Limit of a Sequence"]:::definition
     def-convergence["Definition: Convergence"]:::definition
     def-series["Definition: Series"]:::definition
     def-sequence["Definition: Sequence"]:::definition
-    def-limit["Definition: Limit of a Sequence"]:::definition
+    thm-taylor-series["Theorem: Taylor Series"]:::theorem
     def-series --> def-limit
-    def-series --> def-convergence
     def-series --> def-sequence
+    thm-taylor-series --> def-series
+    def-series --> def-convergence
     class def-series current
+    click def-limit "def-limit.html" "Go to Limit of a Sequence definition"
     click def-convergence "def-convergence.html" "Go to Convergence definition"
     click def-sequence "def-sequence.html" "Go to Sequence definition"
-    click def-limit "def-limit.html" "Go to Limit of a Sequence definition"
+    click thm-taylor-series "thm-taylor-series.html" "Go to Taylor Series theorem"
 ```
 
 ## Interactive Visualization
@@ -118,4 +122,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-series.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-series.html){target="_blank"}

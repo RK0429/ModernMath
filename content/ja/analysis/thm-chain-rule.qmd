@@ -4,7 +4,7 @@ requires:
 - def-derivative
 - def-continuity
 status: complete
-title: 定理：連鎖律
+title: 連鎖律
 translation_of: ../../en/analysis/thm-chain-rule.qmd
 translations:
   en: ../en/analysis/thm-chain-rule.html
@@ -12,7 +12,7 @@ translations:
 type: Theorem
 ---
 
-# 定理：連鎖律 {#thm-chain-rule}
+# 連鎖律 {#thm-chain-rule}
 
 連鎖律は、合成関数の[導関数](def-derivative.qmd)を計算するための公式を与える。
 
@@ -52,6 +52,13 @@ $n$ 個の関数の合成 $f_1 \circ f_2 \circ \cdots \circ f_n$ に対して：
 
 $$(f_1 \circ f_2 \circ \cdots \circ f_n)' = f_1'(f_2 \circ \cdots \circ f_n) \cdot f_2'(f_3 \circ \cdots \circ f_n) \cdots f_n'$$
 
+## 応用
+
+連鎖律は以下の場面で不可欠である：
+- 合成関数の微分
+- 陰関数微分
+- 積分における置換積分法（[微積分学の基本定理](thm-fundamental-calculus.qmd)を通じて）
+
 ## 例
 
 1. $h(x) = \sin(x^2)$ ならば、$h'(x) = \cos(x^2) \cdot 2x$
@@ -81,21 +88,21 @@ graph TD
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-chain-rule["Theorem: Chain Rule"]:::theorem
-    def-derivative["Definition: Derivative"]:::definition
-    def-continuity["Definition: Continuity"]:::definition
-    thm-chain-rule --> def-derivative
+    def-continuity["定義: 連続性"]:::definition
+    thm-chain-rule["定理：連鎖律"]:::theorem
+    def-derivative["定義: 導関数"]:::definition
     thm-chain-rule --> def-continuity
+    thm-chain-rule --> def-derivative
     class thm-chain-rule current
-    click def-derivative "def-derivative.html" "Definition: Derivativeへ"
-    click def-continuity "def-continuity.html" "Definition: Continuityへ"
+    click def-continuity "def-continuity.html" "連続性の定義へ"
+    click def-derivative "def-derivative.html" "導関数の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -109,4 +116,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/thm-chain-rule.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/thm-chain-rule.html){target="_blank"}で完全なインタラクティブ版を表示

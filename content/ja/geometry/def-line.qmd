@@ -3,7 +3,7 @@ id: def-line
 requires:
 - def-point
 status: complete
-title: '定義: 直線'
+title: 直線
 translation_of: ../../en/geometry/def-line.qmd
 translations:
   en: ../en/geometry/def-line.html
@@ -44,30 +44,30 @@ type: Definition
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-angle-sum-triangle["Theorem: Angle Sum of a Triangle"]:::theorem
-    def-triangle["Definition: Triangle"]:::definition
-    def-angle["Definition: Angle"]:::definition
-    def-parallel["Definition: Parallel Lines"]:::definition
-    def-point["Definition: Point"]:::definition
-    def-line["Definition: Line"]:::definition
-    def-parallel --> def-line
+    def-line["定義: 直線"]:::definition
+    def-triangle["定義: 三角形"]:::definition
+    def-parallel["定義: 平行線"]:::definition
+    def-point["定義: 点"]:::definition
+    def-angle["定義: 角"]:::definition
+    thm-angle-sum-triangle["定理: 三角形の内角の和"]:::theorem
     def-angle --> def-line
+    def-parallel --> def-line
     def-triangle --> def-line
-    thm-angle-sum-triangle --> def-line
     def-line --> def-point
+    thm-angle-sum-triangle --> def-line
     class def-line current
-    click thm-angle-sum-triangle "thm-angle-sum-triangle.html" "Theorem: Angle Sum of a Triangleへ"
-    click def-triangle "def-triangle.html" "Definition: Triangleへ"
-    click def-angle "def-angle.html" "Definition: Angleへ"
-    click def-parallel "def-parallel.html" "Definition: Parallel Linesへ"
-    click def-point "def-point.html" "Definition: Pointへ"
+    click def-triangle "def-triangle.html" "三角形の定義へ"
+    click def-parallel "def-parallel.html" "平行線の定義へ"
+    click def-point "def-point.html" "点の定義へ"
+    click def-angle "def-angle.html" "角の定義へ"
+    click thm-angle-sum-triangle "thm-angle-sum-triangle.html" "三角形の内角の和の定理へ"
 ```
 
 ## インタラクティブ可視化
@@ -81,4 +81,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-line.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-line.html){target="_blank"}で完全なインタラクティブ版を表示

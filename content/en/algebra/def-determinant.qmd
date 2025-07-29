@@ -1,0 +1,122 @@
+---
+id: def-determinant
+requires:
+- def-matrix
+- def-field
+- ../logic-set-theory/def-function
+- def-isomorphism
+status: complete
+title: Determinant
+translations:
+  en: ../en/algebra/def-determinant.html
+  ja: ../ja/algebra/def-determinant.html
+type: Definition
+---
+
+# Determinant {#def-determinant}
+
+The **determinant** is a scalar-valued [function](../logic-set-theory/def-function.qmd) defined on square matrices that encodes important properties of the matrix and its associated linear transformation.
+
+## Formal Definition
+
+For an $n \times n$ matrix $A$ over a field $F$, the determinant, denoted $\det(A)$ or $|A|$, is the unique function from $M_{n \times n}(F)$ to $F$ satisfying:
+
+1. $\det(I_n) = 1$ (where $I_n$ is the $n \times n$ identity matrix)
+2. The determinant is multilinear in the rows of the matrix
+3. Swapping two rows multiplies the determinant by $-1$
+
+## Calculation Methods
+
+### For $2 \times 2$ Matrices
+
+For $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$:
+$$\det(A) = ad - bc$$
+
+### For $3 \times 3$ Matrices
+
+For $A = \begin{pmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{pmatrix}$:
+
+Using cofactor expansion along the first row:
+$$\det(A) = a_{11}\begin{vmatrix} a_{22} & a_{23} \\ a_{32} & a_{33} \end{vmatrix} - a_{12}\begin{vmatrix} a_{21} & a_{23} \\ a_{31} & a_{33} \end{vmatrix} + a_{13}\begin{vmatrix} a_{21} & a_{22} \\ a_{31} & a_{32} \end{vmatrix}$$
+
+### General Case: Cofactor Expansion
+
+For an $n \times n$ matrix, the determinant can be computed by cofactor expansion along any row $i$ or column $j$:
+
+$$\det(A) = \sum_{k=1}^n a_{ik}(-1)^{i+k}M_{ik}$$
+
+where $M_{ik}$ is the minor (determinant of the $(n-1) \times (n-1)$ matrix obtained by deleting row $i$ and column $k$).
+
+## Key Properties
+
+1. **Multiplicativity**: $\det(AB) = \det(A)\det(B)$
+2. **Transpose invariance**: $\det(A^T) = \det(A)$
+3. **Scalar multiplication**: $\det(cA) = c^n\det(A)$ for $n \times n$ matrices
+4. **Triangular matrices**: For triangular matrices, $\det(A) = \prod_{i=1}^n a_{ii}$ (product of diagonal entries)
+5. **Row operations**:
+   - Swapping rows: multiplies determinant by $-1$
+   - Multiplying a row by $c$: multiplies determinant by $c$
+   - Adding a multiple of one row to another: determinant unchanged
+6. **Zero determinant**: $\det(A) = 0$ if and only if the rows (or columns) are linearly dependent
+
+## Geometric Interpretation
+
+For matrices with real entries:
+- In 2D: $|\det(A)|$ represents the area of the parallelogram formed by the column vectors
+- In 3D: $|\det(A)|$ represents the volume of the parallelepiped formed by the column vectors
+- The sign indicates orientation (positive for preserving, negative for reversing)
+
+## Relation to Matrix Properties
+
+A square matrix $A$ has the following equivalent properties:
+- $\det(A) \neq 0$
+- $A$ is invertible
+- The columns (and rows) of $A$ are linearly independent
+- The linear transformation represented by $A$ is an [isomorphism](def-isomorphism.qmd)
+
+The determinant is a fundamental tool in linear algebra, appearing in Cramer's rule for solving linear systems, the characteristic polynomial for finding [eigenvalues](def-eigenvalue-eigenvector.qmd), and the computation of matrix inverses.
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-determinant["Definition: Determinant"]:::definition
+    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    def-function["Definition: Function"]:::definition
+    def-matrix["Definition: Matrix"]:::definition
+    def-field["Definition: Field"]:::definition
+    def-normal-subgroup --> def-determinant
+    def-determinant --> def-isomorphism
+    def-determinant --> def-field
+    def-determinant --> def-function
+    def-determinant --> def-matrix
+    def-eigenvalue-eigenvector --> def-determinant
+    class def-determinant current
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector definition"
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
+    click def-function "def-function.html" "Go to Function definition"
+    click def-matrix "def-matrix.html" "Go to Matrix definition"
+    click def-field "def-field.html" "Go to Field definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-determinant" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/en/def-determinant.html){target="_blank"}

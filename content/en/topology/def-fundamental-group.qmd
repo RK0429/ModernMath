@@ -1,0 +1,117 @@
+---
+id: def-fundamental-group
+requires:
+- def-topological-space
+- ../algebra/def-group
+- ../logic-set-theory/def-equivalence-relation
+- ../logic-set-theory/def-function
+- def-homeomorphism
+- def-homotopy
+status: complete
+title: Fundamental Group
+translations:
+  en: ../en/topology/def-fundamental-group.html
+  ja: ../ja/topology/def-fundamental-group.html
+type: Definition
+---
+
+# Fundamental Group {#def-fundamental-group}
+
+The **fundamental group** of a [topological space](def-topological-space.qmd) is the [group](../algebra/def-group.qmd) of equivalence classes of loops based at a fixed point, where two loops are considered equivalent if one can be continuously deformed into the other.
+
+## Formal Definition
+
+Let $(X, \tau)$ be a topological space and $x_0 \in X$ a basepoint. A **loop** based at $x_0$ is a continuous [function](../logic-set-theory/def-function.qmd) $\gamma: [0,1] \to X$ such that $\gamma(0) = \gamma(1) = x_0$.
+
+Two loops $\gamma_0, \gamma_1$ based at $x_0$ are **[homotopic](def-homotopy.qmd)** (written $\gamma_0 \simeq \gamma_1$) if there exists a continuous function $H: [0,1] \times [0,1] \to X$ such that:
+- $H(s,0) = \gamma_0(s)$ for all $s \in [0,1]$
+- $H(s,1) = \gamma_1(s)$ for all $s \in [0,1]$
+- $H(0,t) = H(1,t) = x_0$ for all $t \in [0,1]$
+
+The **fundamental group** $\pi_1(X, x_0)$ is the set of [equivalence classes](../logic-set-theory/def-equivalence-relation.qmd) of loops based at $x_0$ under [homotopy](def-homotopy.qmd).
+
+## Group Structure
+
+The group operation on $\pi_1(X, x_0)$ is given by **concatenation** of loops:
+
+For loops $\gamma_1, \gamma_2$ based at $x_0$, their concatenation $\gamma_1 * \gamma_2$ is defined by:
+
+$$(\gamma_1 * \gamma_2)(s) = \begin{cases}
+\gamma_1(2s) & \text{if } 0 \leq s \leq 1/2 \\
+\gamma_2(2s-1) & \text{if } 1/2 \leq s \leq 1
+\end{cases}$$
+
+This operation is well-defined on [homotopy](def-homotopy.qmd) classes and makes $\pi_1(X, x_0)$ into a group with:
+- **Identity**: The constant loop $e(s) = x_0$ for all $s \in [0,1]$
+- **Inverse**: For a loop $\gamma$, its inverse $\gamma^{-1}(s) = \gamma(1-s)$
+
+## Properties
+
+1. **Topological Invariant**: If $f: X \to Y$ is a [homeomorphism](def-homeomorphism.qmd), then $\pi_1(X, x_0) \cong \pi_1(Y, f(x_0))$
+
+2. **Path-Connected Spaces**: For path-connected spaces, the fundamental group is independent of basepoint up to isomorphism
+
+3. **Simply Connected**: A space $X$ is called **simply connected** if it is path-connected and $\pi_1(X, x_0) = \{e\}$ (the trivial group)
+
+4. **Abelianization**: The abelianization of $\pi_1(X, x_0)$ is isomorphic to the first homology group $H_1(X)$
+
+## Examples
+
+- $\pi_1(\mathbb{R}^n, x_0) = \{e\}$ for all $n \geq 1$
+- $\pi_1(S^1, x_0) \cong \mathbb{Z}$, where $S^1$ is the circle (this is the [@free group](../algebra/def-free-group.qmd) on one generator)
+- $\pi_1(S^n, x_0) = \{e\}$ for $n \geq 2$, where $S^n$ is the n-sphere
+- $\pi_1(T^2, x_0) \cong \mathbb{Z} \times \mathbb{Z}$, where $T^2$ is the 2-torus
+- The figure-eight (wedge of two circles) has $\pi_1 \cong F_2$, the free group on two generators
+
+## Applications
+
+The fundamental group is a powerful tool for:
+- Distinguishing non-homeomorphic spaces
+- Classifying covering spaces
+- Understanding the structure of fiber bundles
+- Connecting topology with group theory
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-topological-space["Definition: Topological Space"]:::definition
+    def-homeomorphism["Definition: Homeomorphism"]:::definition
+    def-function["Definition: Function"]:::definition
+    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
+    def-homotopy["Definition: Homotopy"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-fundamental-group["Definition: Fundamental Group"]:::definition
+    def-fundamental-group --> def-topological-space
+    def-fundamental-group --> def-function
+    def-fundamental-group --> def-homeomorphism
+    def-fundamental-group --> def-homotopy
+    def-fundamental-group --> def-equivalence-relation
+    def-fundamental-group --> def-group
+    class def-fundamental-group current
+    click def-topological-space "def-topological-space.html" "Go to Topological Space definition"
+    click def-homeomorphism "def-homeomorphism.html" "Go to Homeomorphism definition"
+    click def-function "def-function.html" "Go to Function definition"
+    click def-equivalence-relation "def-equivalence-relation.html" "Go to Equivalence Relation definition"
+    click def-homotopy "def-homotopy.html" "Go to Homotopy definition"
+    click def-group "def-group.html" "Go to Group definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-fundamental-group" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/en/def-fundamental-group.html){target="_blank"}

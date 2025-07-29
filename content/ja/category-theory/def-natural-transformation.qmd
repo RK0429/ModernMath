@@ -5,7 +5,7 @@ requires:
 - def-category
 - def-morphism
 status: complete
-title: 定義：自然変換
+title: 自然変換
 translation_of: ../../en/category-theory/def-natural-transformation.qmd
 translations:
   en: ../en/category-theory/def-natural-transformation.html
@@ -13,7 +13,7 @@ translations:
 type: Definition
 ---
 
-# 定義：自然変換
+# 自然変換
 
 **自然変換**は、関係する圏の内部構造を尊重しながら、ある[関手](def-functor.qmd)を別の関手に変換する方法を提供します。
 
@@ -51,34 +51,30 @@ G(X) --G(f)--> G(Y)
 自然変換は合成可能です：
 - **垂直合成**：$\eta: F \Rightarrow G$ かつ $\mu: G \Rightarrow H$ ならば、$\mu \circ \eta: F \Rightarrow H$
 - **水平合成**：自然変換は関手とも合成できます
-
-```{mermaid}
-```
-
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
-    def-natural-transformation["Definition: Natural Transformation"]:::definition
-    def-morphism["Definition: Morphism"]:::definition
-    def-category["Definition: Category"]:::definition
-    def-functor["Definition: Functor"]:::definition
+    def-natural-transformation["定義：自然変換"]:::definition
+    def-morphism["定義: 射"]:::definition
+    thm-yoneda["定理：米田の補題"]:::theorem
+    def-category["定義: 圏"]:::definition
+    def-functor["定義: 関手"]:::definition
     def-natural-transformation --> def-morphism
-    def-natural-transformation --> def-functor
     thm-yoneda --> def-natural-transformation
+    def-natural-transformation --> def-functor
     def-natural-transformation --> def-category
     class def-natural-transformation current
-    click thm-yoneda "thm-yoneda.html" "Theorem: Yoneda Lemmaへ"
-    click def-morphism "def-morphism.html" "Definition: Morphismへ"
-    click def-category "def-category.html" "Definition: Categoryへ"
-    click def-functor "def-functor.html" "Definition: Functorへ"
+    click def-morphism "def-morphism.html" "射の定義へ"
+    click thm-yoneda "thm-yoneda.html" "定理：米田の補題へ"
+    click def-category "def-category.html" "圏の定義へ"
+    click def-functor "def-functor.html" "関手の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -92,4 +88,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-natural-transformation.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-natural-transformation.html){target="_blank"}で完全なインタラクティブ版を表示

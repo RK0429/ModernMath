@@ -1,0 +1,133 @@
+---
+id: def-homotopy
+requires:
+- def-topological-space
+- ../logic-set-theory/def-function
+- ../analysis/def-continuity
+- def-homeomorphism
+status: complete
+title: ホモトピー
+translation_of: ../../en/topology/def-homotopy.qmd
+translations:
+  en: ../en/topology/def-homotopy.html
+  ja: ../ja/topology/def-homotopy.html
+type: Definition
+---
+
+# ホモトピー {#def-homotopy}
+
+**ホモトピー**は、2つの連続[関数](../logic-set-theory/def-function.qmd)の間の[連続的](../analysis/def-continuity.qmd)な変形である。この代数的位相幾何学の基本概念は、ある写像を別の写像へ連続的に変形するという直観的なアイデアを形式化したものである。
+
+## 形式的定義
+
+$X$と$Y$を[位相空間](def-topological-space.qmd)とし、$f, g: X \to Y$を連続関数とする。$f$から$g$への**ホモトピー**とは、次を満たす連続関数である：
+
+$$H: X \times [0,1] \to Y$$
+
+ただし：
+- すべての$x \in X$に対して$H(x,0) = f(x)$
+- すべての$x \in X$に対して$H(x,1) = g(x)$
+
+このようなホモトピーが存在するとき、$f$と$g$は**ホモトピック**であるといい、$f \simeq g$と書く。
+
+## 直観的理解
+
+パラメータ$t \in [0,1]$を時間と考える：
+- 時刻$t = 0$では、関数$f$を持つ
+- 時刻$t = 1$では、関数$g$を持つ
+- 中間の$t$の値に対して、$H(x,t)$は時刻$t$における「中間の」関数を与える
+
+$H$の連続性により、$f$から$g$へのこの変形は、飛躍や破れなく滑らかに起こることが保証される。
+
+## 性質
+
+1. **同値関係**：ホモトピックであることは、$X$から$Y$への連続関数の集合上の[同値関係](../logic-set-theory/def-equivalence-relation.qmd)である：
+   - **反射律**：$f \simeq f$（$H(x,t) = f(x)$による）
+   - **対称律**：$f \simeq g$ならば$g \simeq f$（$H'(x,t) = H(x,1-t)$による）
+   - **推移律**：$f \simeq g$かつ$g \simeq h$ならば$f \simeq h$
+
+2. **合成**：$f_0 \simeq f_1: X \to Y$かつ$g_0 \simeq g_1: Y \to Z$ならば、$g_0 \circ f_0 \simeq g_1 \circ f_1$
+
+3. **保存性**：ホモトピーは多くの位相的性質を保存するが、[同相写像](def-homeomorphism.qmd)より弱い
+
+## 特殊なホモトピーの型
+
+### 相対ホモトピー
+
+ホモトピー$H$が部分集合$A \subseteq X$に**相対的**であるとは、すべての$a \in A$とすべての$t \in [0,1]$に対して$H(a,t) = f(a) = g(a)$が成り立つときをいう。これは関数が変形を通じて$A$上で一致することを意味する。
+
+### 道のホモトピー
+
+同じ端点を持つ道$\gamma_0, \gamma_1: [0,1] \to Y$に対して、**道のホモトピー**は$\{0,1\}$に相対的なホモトピーである。これは変形中に端点を固定し、[基本群](def-fundamental-group.qmd)の定義に不可欠である。
+
+### 零ホモトピック
+
+写像$f: X \to Y$が**零ホモトピック**であるとは、定数写像とホモトピックであることをいう。つまり、ある$y_0 \in Y$が存在して、$f \simeq c_{y_0}$となる。ここで、すべての$x \in X$に対して$c_{y_0}(x) = y_0$である。
+
+## 例
+
+1. **直線ホモトピー**：$\mathbb{R}^n$において、任意の2つの写像$f,g: X \to \mathbb{R}^n$は次によりホモトピックである：
+   $$H(x,t) = (1-t)f(x) + tg(x)$$
+
+2. **円周の写像**：2つの連続写像$f,g: S^1 \to \mathbb{R}^2 \setminus \{0\}$がホモトピックであることと、原点の周りの回転数が同じであることは同値である。
+
+3. **変形レトラクト**：部分空間$A \subseteq X$が変形レトラクトであるとは、$X$上の恒等写像が$A$へのレトラクションに（$A$に相対的に）ホモトピックであることをいう。
+
+## ホモトピー同値
+
+2つの空間$X$と$Y$が**ホモトピー同値**である（$X \simeq Y$と書く）とは、次を満たす連続関数が存在するときをいう：
+- $f: X \to Y$と$g: Y \to X$
+
+ただし：
+- $g \circ f \simeq \text{id}_X$
+- $f \circ g \simeq \text{id}_Y$
+
+ホモトピー同値な空間は多くの位相不変量を共有する：
+- [基本群](def-fundamental-group.qmd)
+- ホモロジー群
+- コホモロジー群
+
+## 応用
+
+ホモトピーは以下で基本的である：
+- **代数的位相幾何学**：ホモトピー群、特に基本群の定義
+- **分類**：連続写像と空間のホモトピーによる分類
+- **不動点理論**：ブラウワーの不動点定理はホモトピー法を使用
+- **障害理論**：連続写像がいつ拡張または持ち上げられるかの決定
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-topological-space["定義: 位相空間"]:::definition
+    def-homotopy["定義: ホモトピー"]:::definition
+    def-homeomorphism["定義：同相写像"]:::definition
+    def-fundamental-group["定義: 基本群"]:::definition
+    def-homotopy --> def-topological-space
+    def-homeomorphism --> def-homotopy
+    def-fundamental-group --> def-homotopy
+    def-homotopy --> def-homeomorphism
+    class def-homotopy current
+    click def-topological-space "def-topological-space.html" "位相空間の定義へ"
+    click def-homeomorphism "def-homeomorphism.html" "定義：同相写像へ"
+    click def-fundamental-group "def-fundamental-group.html" "基本群の定義へ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-homotopy" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/ja/def-homotopy.html){target="_blank"}で完全なインタラクティブ版を表示

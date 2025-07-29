@@ -1,0 +1,130 @@
+---
+id: def-prime-ideal
+requires:
+- def-ideal
+- def-ring
+- def-integral-domain
+- def-quotient-ring
+- def-subset
+status: complete
+title: Prime Ideal
+translations:
+  en: ../en/algebra/def-prime-ideal.html
+  ja: ../ja/algebra/def-prime-ideal.html
+type: Definition
+---
+
+# Prime Ideal {#def-prime-ideal}
+
+A **prime ideal** is an [ideal](def-ideal.qmd) that generalizes the notion of prime numbers to arbitrary [rings](def-ring.qmd). It is characterized by the property that whenever a product belongs to the ideal, at least one of the factors must belong to the ideal.
+
+## Formal Definition
+
+Let $R$ be a [ring](def-ring.qmd). An [ideal](def-ideal.qmd) $P \subseteq R$ is called a **prime ideal** if:
+
+1. $P \neq R$ (proper ideal)
+2. For all $a, b \in R$: if $ab \in P$, then $a \in P$ or $b \in P$
+
+## Equivalent Characterizations
+
+### Quotient Ring Characterization
+
+An ideal $P$ in a ring $R$ is prime if and only if the [quotient ring](def-quotient-ring.qmd) $R/P$ is an [integral domain](def-integral-domain.qmd).
+
+**Proof**:
+- ($\Rightarrow$) Suppose $P$ is prime. Let $(a + P)(b + P) = 0 + P$ in $R/P$. Then $ab \in P$, so either $a \in P$ or $b \in P$, meaning either $a + P = 0 + P$ or $b + P = 0 + P$.
+- ($\Leftarrow$) Suppose $R/P$ is an integral domain. If $ab \in P$, then $(a + P)(b + P) = ab + P = 0 + P$. Since $R/P$ has no [zero divisors](def-zero-divisor.qmd), either $a + P = 0 + P$ or $b + P = 0 + P$, so either $a \in P$ or $b \in P$.
+
+### Complement Characterization
+
+An ideal $P$ is prime if and only if its complement $R \setminus P$ is multiplicatively closed:
+- If $a, b \in R \setminus P$, then $ab \in R \setminus P$
+
+## Properties
+
+- Every [maximal ideal](def-maximal-ideal.qmd) is prime (but not every prime ideal is maximal)
+- The zero ideal $(0)$ is prime if and only if $R$ is an [integral domain](def-integral-domain.qmd)
+- The intersection of all prime ideals containing an ideal $I$ is called the radical of $I$
+- In a commutative ring with unity, every nonzero prime ideal contains at least one prime element
+
+## Examples
+
+### In the Integers
+
+In $\mathbb{Z}$:
+- The ideal $(p) = p\mathbb{Z}$ is prime if and only if $p$ is a prime number or $p = 0$
+- $(0)$ is prime since $\mathbb{Z}$ is an integral domain
+- $(4)$ is not prime since $2 \cdot 2 \in (4)$ but $2 \notin (4)$
+
+### In Polynomial Rings
+
+In $\mathbb{R}[x]$:
+- $(x)$ is prime: if $f(x)g(x) \in (x)$, then $f(0)g(0) = 0$, so $f(0) = 0$ or $g(0) = 0$
+- $(x^2 + 1)$ is prime since $\mathbb{R}[x]/(x^2 + 1) \cong \mathbb{C}$ is a field
+- $(x^2 - 1) = (x-1)(x+1)$ is not prime
+
+### In Matrix Rings
+
+In the ring $M_2(\mathbb{R})$ of $2 \times 2$ matrices:
+- There are no prime ideals except the zero ideal
+- This is because $M_2(\mathbb{R})$ is a simple ring (has no proper two-sided ideals)
+
+## Connection to Geometry
+
+In algebraic geometry, prime ideals correspond to irreducible algebraic varieties:
+- Points correspond to [maximal ideals](def-maximal-ideal.qmd)
+- Irreducible curves, surfaces, etc. correspond to prime ideals of various heights
+- The Zariski topology on the spectrum of prime ideals provides a bridge between algebra and geometry
+
+## Historical Note
+
+The concept of prime ideals was introduced by Richard Dedekind as a way to restore unique factorization in rings of algebraic integers where ordinary prime factorization fails. This innovation was crucial for the development of algebraic number theory and modern commutative algebra.
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-integral-domain["Definition: Integral Domain"]:::definition
+    def-maximal-ideal["Definition: Maximal Ideal"]:::definition
+    def-subset["Definition: Subset"]:::definition
+    def-prime-ideal["Definition: Prime Ideal"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-zero-divisor["Definition: Zero Divisor"]:::definition
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-maximal-ideal --> def-prime-ideal
+    def-prime-ideal --> def-subset
+    def-prime-ideal --> def-quotient-ring
+    def-prime-ideal --> def-integral-domain
+    def-prime-ideal --> def-ideal
+    def-quotient-ring --> def-prime-ideal
+    def-prime-ideal --> def-ring
+    def-zero-divisor --> def-prime-ideal
+    class def-prime-ideal current
+    click def-integral-domain "def-integral-domain.html" "Go to Integral Domain definition"
+    click def-maximal-ideal "def-maximal-ideal.html" "Go to Maximal Ideal definition"
+    click def-subset "def-subset.html" "Go to Subset definition"
+    click def-ideal "def-ideal.html" "Go to Ideal definition"
+    click def-ring "def-ring.html" "Go to Ring definition"
+    click def-zero-divisor "def-zero-divisor.html" "Go to Zero Divisor definition"
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-prime-ideal" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/en/def-prime-ideal.html){target="_blank"}

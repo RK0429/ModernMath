@@ -2,17 +2,18 @@
 id: def-linear-transformation
 requires:
 - def-vector-space
+- ../logic-set-theory/def-function
 status: complete
-title: 'Definition: Linear Transformation'
+title: Linear Transformation
 translations:
   en: ../en/algebra/def-linear-transformation.html
   ja: ../ja/algebra/def-linear-transformation.html
 type: Definition
 ---
 
-# Definition: Linear Transformation {#def-linear-transformation}
+# Linear Transformation {#def-linear-transformation}
 
-Let $V$ and $W$ be [s](def-vector-space.qmd) over the same field $F$. A function $T: V \to W$ is called a **linear transformation** (or **linear map**) if it satisfies the following two properties:
+Let $V$ and $W$ be [vector spaces](def-vector-space.qmd) over the same field $F$. A [function](../logic-set-theory/def-function.qmd) $T: V \to W$ is called a **linear transformation** (or **linear map**) if it satisfies the following two properties:
 
 ## Linearity Conditions
 
@@ -35,8 +36,8 @@ If $T: V \to W$ is a linear transformation, then:
 ## Special Types
 
 - **Linear functional**: When $W = F$ (the field of scalars)
-- **Linear operator**: When $V = W$ (transformation from a space to itself). For linear operators, we can study [eigenvalues and eigenvectors](def-eigenvalue-eigenvector.qmd)
-- **Isomorphism**: When $T$ is bijective (one-to-one and onto)
+- **Linear operator**: When $V = W$ (transformation from a space to itself), also called an [endomorphism](def-endomorphism.qmd). For linear operators, we can study [eigenvalues and eigenvectors](def-eigenvalue-eigenvector.qmd)
+- **[Isomorphism](def-isomorphism.qmd)**: When $T$ is bijective (one-to-one and onto)
 
 Linear transformations preserve the vector space structure and are the morphisms in the category of vector spaces. The set of all invertible linear operators on a vector space forms a group under composition, which naturally [acts](def-group-action.qmd) on the vector space.
 
@@ -50,29 +51,35 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
     thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
-    def-kernel["Definition: Kernel"]:::definition
     def-image["Definition: Image"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
-    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
     ex-matrix-transformation["Example: Matrix Transformation"]:::example
+    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    def-function["Definition: Function"]:::definition
     def-linear-transformation["Definition: Linear Transformation"]:::definition
-    ex-matrix-transformation --> def-linear-transformation
-    def-image --> def-linear-transformation
+    def-kernel["Definition: Kernel"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
+    def-linear-transformation --> def-isomorphism
     thm-rank-nullity --> def-linear-transformation
-    def-linear-transformation --> def-vector-space
-    thm-linear-transformation-basis --> def-linear-transformation
-    def-kernel --> def-linear-transformation
     def-eigenvalue-eigenvector --> def-linear-transformation
+    def-image --> def-linear-transformation
+    thm-linear-transformation-basis --> def-linear-transformation
+    def-linear-transformation --> def-function
+    def-kernel --> def-linear-transformation
+    ex-matrix-transformation --> def-linear-transformation
+    def-linear-transformation --> def-vector-space
     class def-linear-transformation current
-    click thm-linear-transformation-basis "thm-linear-transformation-basis.html" "Go to Linear Transformation Determined by Basis theorem"
     click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem theorem"
-    click def-kernel "def-kernel.html" "Go to Kernel definition"
     click def-image "def-image.html" "Go to Image definition"
-    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
-    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector definition"
     click ex-matrix-transformation "ex-matrix-transformation.html" "Go to Matrix Transformation example"
+    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector definition"
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
+    click def-function "def-function.html" "Go to Function definition"
+    click def-kernel "def-kernel.html" "Go to Kernel definition"
+    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
+    click thm-linear-transformation-basis "thm-linear-transformation-basis.html" "Go to Linear Transformation Determined by Basis theorem"
 ```
 
 ## Interactive Visualization
@@ -86,4 +93,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-linear-transformation.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-linear-transformation.html){target="_blank"}

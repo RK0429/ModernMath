@@ -1,0 +1,151 @@
+name: "🌐 Page Issue"
+description: "Report a problem with a deployed page from the Math Knowledge Graph"
+title: "[Page Issue]: <page title>"
+labels: ["page-issue", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Report a Problem with a Deployed Page
+
+        Thank you for taking the time to report an issue with one of our deployed pages.
+        This template is designed to capture information about problems you encounter
+        on the live Math Knowledge Graph website.
+
+  - type: input
+    id: page_url
+    attributes:
+      label: Page URL
+      description: "The full URL of the page where you encountered the issue"
+      placeholder: "https://example.github.io/ModernMath/en/algebra/def-group.html"
+    validations:
+      required: true
+
+  - type: input
+    id: page_title
+    attributes:
+      label: Page Title
+      description: "The title of the page (as shown in the browser tab or page header)"
+      placeholder: "Definition: Group"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: page_language
+    attributes:
+      label: Page Language
+      description: "The language version of the page"
+      options:
+        - "English (en)"
+        - "Japanese (ja)"
+        - "Other"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Issue Type
+      description: "What kind of problem are you experiencing?"
+      multiple: true
+      options:
+        - "Page not loading"
+        - "Broken visualization (Mermaid/D3.js)"
+        - "Mathematical content error"
+        - "Broken cross-reference link"
+        - "Display/formatting issue"
+        - "Navigation problem"
+        - "Translation issue"
+        - "Search functionality issue"
+        - "Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue_description
+    attributes:
+      label: Issue Description
+      description: "Please describe the problem in detail"
+      placeholder: |
+        Describe what's wrong with the page. For example:
+        - What you expected to see vs. what you actually see
+        - Error messages in the browser console (if any)
+        - Steps to reproduce the issue
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser
+      description: "Which browser are you using?"
+      placeholder: "Chrome 120, Firefox 121, Safari 17, etc."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device_type
+    attributes:
+      label: Device Type
+      options:
+        - "Desktop"
+        - "Mobile"
+        - "Tablet"
+    validations:
+      required: true
+
+  - type: input
+    id: screen_resolution
+    attributes:
+      label: Screen Resolution
+      description: "Your screen resolution (optional but helpful)"
+      placeholder: "1920x1080"
+    validations:
+      required: false
+
+  - type: textarea
+    id: console_errors
+    attributes:
+      label: Browser Console Errors
+      description: "If there are JavaScript errors, please paste them here"
+      render: javascript
+      placeholder: |
+        To open browser console:
+        - Chrome/Firefox: Press F12 or right-click → Inspect → Console
+        - Safari: Develop menu → Show JavaScript Console
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: "Drag and drop screenshots here to help illustrate the issue"
+      placeholder: "Attach screenshots by dragging and dropping or clicking to select files"
+
+  - type: input
+    id: last_working
+    attributes:
+      label: Last Known Working Date
+      description: "If you know when this was last working correctly (optional)"
+      placeholder: "YYYY-MM-DD or 'Never worked' or 'Unknown'"
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I have cleared my browser cache and the issue persists
+          required: false
+        - label: I have checked this issue occurs in multiple browsers
+          required: false
+        - label: I have searched existing issues and this is not a duplicate
+          required: true
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: "Any other information that might be helpful"
+      placeholder: |
+        - Related pages that work correctly
+        - Workarounds you've found
+        - Impact on your usage

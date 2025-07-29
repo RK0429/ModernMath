@@ -3,15 +3,16 @@ id: def-variance
 requires:
 - def-expectation
 - def-random-variable
+- def-probability-distribution
 status: complete
-title: 'Definition: Variance'
+title: Variance
 translations:
   en: ../en/probability-statistics/def-variance.html
   ja: ../ja/probability-statistics/def-variance.html
 type: Definition
 ---
 
-# Definition: Variance {#def-variance}
+# Variance {#def-variance}
 
 The **variance** of a [random variable](def-random-variable.qmd) is a measure of its dispersion or spread, quantifying how far the values of the random variable typically deviate from their [expected value](def-expectation.qmd).
 
@@ -59,9 +60,9 @@ The variance exists if and only if $E[X^2] < \infty$, which implies that both $E
 
 ## Examples
 
-1. **Bernoulli**: If $X \sim \text{Bernoulli}(p)$, then $\text{Var}(X) = p(1-p)$
-2. **Binomial**: If $X \sim \text{Binomial}(n, p)$, then $\text{Var}(X) = np(1-p)$
-3. **Normal**: If $X \sim \mathcal{N}(\mu, \sigma^2)$, then $\text{Var}(X) = \sigma^2$
+1. **Bernoulli**: If $X \sim \text{Bernoulli}(p)$, then $\text{Var}(X) = p(1-p)$ (see [Binomial Distribution](def-binomial-distribution.qmd) for $n=1$)
+2. **[Binomial](def-binomial-distribution.qmd)**: If $X \sim \text{Binomial}(n, p)$, then $\text{Var}(X) = np(1-p)$
+3. **[Normal](def-normal-distribution.qmd)**: If $X \sim \mathcal{N}(\mu, \sigma^2)$, then $\text{Var}(X) = \sigma^2$
 4. **Exponential**: If $X \sim \text{Exp}(\lambda)$, then $\text{Var}(X) = 1/\lambda^2$
 5. **Poisson**: If $X \sim \text{Poisson}(\lambda)$, then $\text{Var}(X) = \lambda$
 
@@ -76,7 +77,7 @@ The variance exists if and only if $E[X^2] < \infty$, which implies that both $E
 
 Variance plays a crucial role in:
 - [Law of Large Numbers](thm-law-of-large-numbers.qmd): The rate of convergence depends on the variance
-- [Central Limit Theorem](thm-central-limit.qmd): The limiting normal distribution has variance σ²/n for sample means
+- [Central Limit Theorem](thm-central-limit.qmd): The limiting [normal distribution](def-normal-distribution.qmd) has variance σ²/n for sample means
 
 ## Mermaid Diagram
 
@@ -106,20 +107,29 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-normal-distribution["Definition: Normal Distribution"]:::definition
+    def-binomial-distribution["Definition: Binomial Distribution"]:::definition
+    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
     def-expectation["Definition: Expected Value"]:::definition
-    def-random-variable["Definition: Random Variable"]:::definition
+    def-probability-distribution["Definition: Probability Distribution"]:::definition
     thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
     def-variance["Definition: Variance"]:::definition
-    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
-    def-variance --> def-expectation
+    def-random-variable["Definition: Random Variable"]:::definition
+    def-variance --> def-random-variable
+    def-variance --> def-probability-distribution
+    def-binomial-distribution --> def-variance
     thm-central-limit --> def-variance
     thm-law-of-large-numbers --> def-variance
-    def-variance --> def-random-variable
+    def-variance --> def-expectation
+    def-normal-distribution --> def-variance
     class def-variance current
-    click def-expectation "def-expectation.html" "Go to Expected Value definition"
-    click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
-    click thm-central-limit "thm-central-limit.html" "Go to Central Limit Theorem theorem"
+    click def-normal-distribution "def-normal-distribution.html" "Go to Normal Distribution definition"
+    click def-binomial-distribution "def-binomial-distribution.html" "Go to Binomial Distribution definition"
     click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "Go to Law of Large Numbers theorem"
+    click def-expectation "def-expectation.html" "Go to Expected Value definition"
+    click def-probability-distribution "def-probability-distribution.html" "Go to Probability Distribution definition"
+    click thm-central-limit "thm-central-limit.html" "Go to Central Limit Theorem theorem"
+    click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
 ```
 
 ## Interactive Visualization
@@ -133,4 +143,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-variance.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-variance.html){target="_blank"}

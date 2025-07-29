@@ -4,7 +4,7 @@ requires:
 - def-graph
 - def-set
 status: complete
-title: '定義: 木'
+title: 木
 translation_of: ../../en/combinatorics/def-tree.qmd
 translations:
   en: ../en/combinatorics/def-tree.html
@@ -12,7 +12,7 @@ translations:
 type: Definition
 ---
 
-# 定義: 木 {#def-tree}
+# 木 {#def-tree}
 
 **木**は、閉路のない連結[グラフ](def-graph.qmd)である。グラフ理論における最も基本的な構造の一つであり、数学やコンピュータサイエンスで数多くの応用がある。
 
@@ -103,6 +103,7 @@ $n$ 個の頂点を持つグラフ $T$ について、以下の命題は同値�
 
 2. **数学**：
    - 組合せ的列挙（ケイリーの公式：$n$ 個の頂点上のラベル付き木は $n^{n-2}$ 個）
+   - [母関数](def-generating-function.qmd)による木の数え上げ
    - 最適化（最小全域木）
    - 代数的構造（木分解）
 
@@ -134,24 +135,24 @@ $n$ 個の頂点を持つグラフ $T$ について、以下の命題は同値�
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-tree["Definition: Tree"]:::definition
-    def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
-    def-graph["Definition: Graph"]:::definition
-    def-set["Definition: Set"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-tree["定義: 木"]:::definition
+    def-binomial-coefficient["定義：二項係数"]:::definition
+    def-graph["定義: グラフ"]:::definition
     def-tree --> def-binomial-coefficient
-    def-tree --> def-graph
     def-tree --> def-set
+    def-tree --> def-graph
     class def-tree current
-    click def-binomial-coefficient "def-binomial-coefficient.html" "Definition: Binomial Coefficientへ"
-    click def-graph "def-graph.html" "Definition: Graphへ"
-    click def-set "def-set.html" "Definition: Setへ"
+    click def-set "def-set.html" "集合の定義へ"
+    click def-binomial-coefficient "def-binomial-coefficient.html" "定義：二項係数へ"
+    click def-graph "def-graph.html" "グラフの定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -165,4 +166,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-tree.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-tree.html){target="_blank"}で完全なインタラクティブ版を表示

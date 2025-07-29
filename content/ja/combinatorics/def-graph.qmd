@@ -2,8 +2,10 @@
 id: def-graph
 requires:
 - def-set
+- ../algebra/def-automorphism
+- ../logic-set-theory/def-cardinality
 status: complete
-title: '定義: グラフ'
+title: グラフ
 translation_of: ../../en/combinatorics/def-graph.qmd
 translations:
   en: ../en/combinatorics/def-graph.html
@@ -45,11 +47,12 @@ type: Definition
 ## 性質
 
 ### 無向グラフの場合
-- すべての頂点の次数の和は辺の数の2倍に等しい：$\sum_{v \in V} \deg(v) = 2|E|$
+- すべての頂点の次数の和は辺の集合の[濃度](../logic-set-theory/def-cardinality.qmd)の2倍に等しい：$\sum_{v \in V} \deg(v) = 2|E|$
 - 奇数次数の頂点の数は偶数
+- グラフ[自己同型](../algebra/def-automorphism.qmd)は隣接性を保つ頂点の置換である
 
 ### 有向グラフの場合
-- すべての入次数の和はすべての出次数の和に等しい：$\sum_{v \in V} \deg^-(v) = \sum_{v \in V} \deg^+(v) = |E|$
+- すべての入次数の和はすべての出次数の和に等しい：$\sum_{v \in V} \deg^-(v) = \sum_{v \in V} \deg^+(v) = |E|$（辺の集合の[濃度](../logic-set-theory/def-cardinality.qmd)）
 
 ## グラフの種類
 
@@ -89,33 +92,33 @@ $G = (V, E)$ ただし：
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-morphism["Definition: Morphism"]:::definition
-    def-functor["Definition: Functor"]:::definition
-    def-category["Definition: Category"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-tree["Definition: Tree"]:::definition
-    def-graph["Definition: Graph"]:::definition
-    def-permutation["Definition: Permutation"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-tree["定義: 木"]:::definition
+    def-morphism["定義: 射"]:::definition
+    def-permutation["定義：順列"]:::definition
+    def-category["定義: 圏"]:::definition
+    def-functor["定義: 関手"]:::definition
+    def-graph["定義: グラフ"]:::definition
+    def-graph --> def-set
+    def-category --> def-graph
     def-morphism --> def-graph
     def-permutation --> def-graph
     def-tree --> def-graph
-    def-category --> def-graph
     def-functor --> def-graph
-    def-graph --> def-set
     class def-graph current
-    click def-morphism "def-morphism.html" "Definition: Morphismへ"
-    click def-functor "def-functor.html" "Definition: Functorへ"
-    click def-category "def-category.html" "Definition: Categoryへ"
-    click def-set "def-set.html" "Definition: Setへ"
-    click def-tree "def-tree.html" "Definition: Treeへ"
-    click def-permutation "def-permutation.html" "Definition: Permutationへ"
+    click def-set "def-set.html" "集合の定義へ"
+    click def-tree "def-tree.html" "木の定義へ"
+    click def-morphism "def-morphism.html" "射の定義へ"
+    click def-permutation "def-permutation.html" "定義：順列へ"
+    click def-category "def-category.html" "圏の定義へ"
+    click def-functor "def-functor.html" "関手の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -129,4 +132,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-graph.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-graph.html){target="_blank"}で完全なインタラクティブ版を表示

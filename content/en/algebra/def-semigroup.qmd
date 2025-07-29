@@ -1,0 +1,134 @@
+---
+id: def-semigroup
+requires:
+- def-set
+- def-binary-operation
+- def-associativity
+status: complete
+title: Semigroup
+translations:
+  en: ../en/algebra/def-semigroup.html
+  ja: ../ja/algebra/def-semigroup.html
+type: Definition
+---
+
+# Semigroup {#def-semigroup}
+
+A **semigroup** is a [set](../logic-set-theory/def-set.qmd) $S$ together with a [binary operation](def-binary-operation.qmd) $\star: S \times S \to S$ that satisfies a single fundamental axiom.
+
+## Semigroup Axiom
+
+**[Associativity](def-associativity.qmd)**: For all $a, b, c \in S$,
+$$(a \star b) \star c = a \star (b \star c)$$
+
+## Notation
+
+- A semigroup is often denoted as $(S, \star)$ to explicitly show the set and operation
+- When the operation is clear from context, we may simply write $S$
+- The operation symbol is often omitted: $ab$ instead of $a \star b$
+- Common operation symbols include $\cdot$ (multiplication), $+$ (addition), $\circ$ (composition)
+
+## Important Properties
+
+From the associativity axiom:
+
+- We can unambiguously write products of multiple elements without parentheses: $a_1 a_2 \cdots a_n$
+- Semigroups are closed under their operation (by definition of binary operation)
+- Subsemigroups can be formed from subsets closed under the operation
+- The set of [endomorphisms](def-endomorphism.qmd) of any object forms a semigroup under composition
+
+## Relationship to Other Structures
+
+- **[Monoid](def-monoid.qmd)**: A semigroup with an [identity element](def-identity-element.qmd)
+- **[Group](def-group.qmd)**: A monoid where every element has an [inverse](def-inverse-element.qmd)
+- **Commutative semigroup**: A semigroup whose operation is [commutative](def-commutativity.qmd)
+- **Band**: A semigroup where every element is idempotent ($a \star a = a$)
+
+## Examples
+
+### Numeric Semigroups
+- $(\mathbb{N} \setminus \{0\}, +)$: Positive integers under addition (no identity 0)
+- $(\mathbb{Z}, \cdot)$: All integers under multiplication
+- $(\mathbb{R}^+, \cdot)$: Positive real numbers under multiplication
+- $(2\mathbb{N}, +)$: Even positive integers under addition
+
+### Function Semigroups
+- Transformations of a set under composition (not all bijective)
+- Partial functions from a set to itself under composition
+- Binary relations on a set under composition
+
+### Matrix Semigroups
+- Square [matrices](def-matrix.qmd) of fixed size under multiplication
+- Matrices with non-negative entries under multiplication
+- Upper triangular matrices under multiplication
+
+### Other Examples
+- Strings over an alphabet under concatenation (forms the free semigroup)
+- The set $\{0\}$ under multiplication (trivial semigroup)
+- The set of all [ideals](def-ideal.qmd) in a [ring](def-ring.qmd) under multiplication
+
+## Special Types of Semigroups
+
+### Regular Semigroups
+A semigroup $S$ is **regular** if for every $a \in S$, there exists $x \in S$ such that $a = axa$.
+
+### Inverse Semigroups
+A semigroup where every element has a unique "pseudo-inverse" satisfying certain conditions.
+
+### Cancellative Semigroups
+A semigroup satisfying the cancellation laws:
+- Left cancellative: $ab = ac \implies b = c$
+- Right cancellative: $ba = ca \implies b = c$
+
+### Finite Semigroups
+Semigroups with finitely many elements, important in automata theory and computer science.
+
+## Applications
+
+Semigroups appear throughout mathematics and its applications:
+
+- **Algebra**: Foundation for more complex algebraic structures
+- **Computer Science**: Finite semigroups correspond to finite automata; used in formal language theory
+- **Analysis**: Operator semigroups in functional analysis and PDEs
+- **Probability**: Markov semigroups in stochastic processes
+- **Combinatorics**: Counting problems involving associative operations
+
+## Historical Note
+
+The concept of a semigroup emerged in the early 20th century as mathematicians began studying algebraic structures systematically. The term "semi-group" reflects that it satisfies only part of the group axioms—specifically, associativity.
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-associativity["Definition: Associativity"]:::definition
+    def-set["Definition: Set"]:::definition
+    def-semigroup["Definition: Semigroup"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-semigroup --> def-associativity
+    def-semigroup --> def-set
+    def-semigroup --> def-binary-operation
+    class def-semigroup current
+    click def-associativity "def-associativity.html" "Go to Associativity definition"
+    click def-set "def-set.html" "Go to Set definition"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-semigroup" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/en/def-semigroup.html){target="_blank"}

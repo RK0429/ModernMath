@@ -2,8 +2,10 @@
 id: def-subset
 requires:
 - def-set
+- def-relation
+- def-partial-order
 status: complete
-title: 'Definition: Subset'
+title: Subset
 translations:
   en: ../en/logic-set-theory/def-subset.html
   ja: ../ja/logic-set-theory/def-subset.html
@@ -42,7 +44,7 @@ In words: $A$ is a subset of $B$ if and only if for all $x$, if $x$ is in $A$, t
 
 - [Power Set](def-power-set.qmd): The set of all subsets of a given set
 - Set equality can be proven by showing mutual subset relations
-- The subset relation defines a partial order on the power set
+- The subset [relation](def-relation.qmd) defines a [partial order](def-partial-order.qmd) on the power set
 
 ## Dependency Graph
 
@@ -54,17 +56,31 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-subset["Definition: Subset"]:::definition
     def-set["Definition: Set"]:::definition
+    def-partial-order["Definition: Partial Order"]:::definition
+    def-maximal-ideal["Definition: Maximal Ideal"]:::definition
     def-event["Definition: Event"]:::definition
+    def-subset["Definition: Subset"]:::definition
+    def-prime-ideal["Definition: Prime Ideal"]:::definition
     def-ideal["Definition: Ideal"]:::definition
-    def-event --> def-subset
-    def-subset --> def-set
+    def-relation["Definition: Relation"]:::definition
+    def-partial-order --> def-subset
     def-ideal --> def-subset
+    def-prime-ideal --> def-subset
+    def-maximal-ideal --> def-subset
+    def-subset --> def-partial-order
+    def-relation --> def-subset
+    def-subset --> def-set
+    def-subset --> def-relation
+    def-event --> def-subset
     class def-subset current
     click def-set "def-set.html" "Go to Set definition"
+    click def-partial-order "def-partial-order.html" "Go to Partial Order definition"
+    click def-maximal-ideal "def-maximal-ideal.html" "Go to Maximal Ideal definition"
     click def-event "def-event.html" "Go to Event definition"
+    click def-prime-ideal "def-prime-ideal.html" "Go to Prime Ideal definition"
     click def-ideal "def-ideal.html" "Go to Ideal definition"
+    click def-relation "def-relation.html" "Go to Relation definition"
 ```
 
 ## Interactive Visualization
@@ -78,4 +94,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-subset.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-subset.html){target="_blank"}

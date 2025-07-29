@@ -6,8 +6,11 @@ requires:
 - def-homomorphism
 - def-normal-subgroup
 - def-ideal
+- def-quotient-ring
+- def-isomorphism
+- def-ring-homomorphism
 status: complete
-title: '定義: 核'
+title: 核
 translation_of: ../../en/algebra/def-kernel.qmd
 translations:
   en: ../en/algebra/def-kernel.html
@@ -15,7 +18,7 @@ translations:
 type: Definition
 ---
 
-# 定義: 核 {#def-kernel}
+# 核 {#def-kernel}
 
 $T: V \to W$ を[ベクトル空間](def-vector-space.qmd)の間の[線形変換](def-linear-transformation.qmd)とします。$T$ の**核**（または**零空間**）とは、$V$ の中で $W$ の零ベクトルに写されるすべてのベクトルの集合です：
 
@@ -34,7 +37,7 @@ $$\ker(T) = \{\mathbf{v} \in V : T(\mathbf{v}) = \mathbf{0}_W\}$$
    - 加法について閉じている：$\mathbf{u}, \mathbf{v} \in \ker(T)$ ならば、$T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v}) = \mathbf{0} + \mathbf{0} = \mathbf{0}$
    - スカラー倍について閉じている：$\mathbf{v} \in \ker(T)$ かつ $a \in F$ ならば、$T(a\mathbf{v}) = aT(\mathbf{v}) = a\mathbf{0} = \mathbf{0}$
 
-2. **単射性の判定条件**：$T$ が単射（一対一）であることと $\ker(T) = \{\mathbf{0}_V\}$ は同値
+2. **単射性の判定条件**：$T$ が単射（一対一）であることと $\ker(T) = \{\mathbf{0}_V\}$ は同値。圏論的には、これは $T$ が[単射](../category-theory/def-monomorphism.qmd)であることを意味する
 
 3. **次元**：$\ker(T)$ の次元を $T$ の**退化次数**という
 
@@ -65,7 +68,7 @@ $$\phi(gkg^{-1}) = \phi(g)\phi(k)\phi(g^{-1}) = \phi(g)e_H\phi(g)^{-1} = \phi(g)
 
 $$G/\ker(\phi) \cong \text{Im}(\phi)$$
 
-この基本的な結果は、すべての準同型像が商群と同型であることを示しています。完全な主張と証明については @thm-first-isomorphism を参照してください。
+この基本的な結果は、すべての準同型像が商群と[同型](def-isomorphism.qmd)であることを示しています。完全な主張と証明については @thm-first-isomorphism を参照してください。
 
 ## 環論における核
 
@@ -78,40 +81,52 @@ $$\ker(\phi) = \{r \in R : \phi(r) = 0_S\}$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-kernel["Definition: Kernel"]:::definition
-    def-ideal["Definition: Ideal"]:::definition
-    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
-    thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
-    def-vector-space["Definition: Vector Space"]:::definition
-    def-linear-transformation["Definition: Linear Transformation"]:::definition
+    def-normal-subgroup["定義: 正規部分群"]:::definition
+    thm-rank-nullity["定理: 階数・退化次数定理"]:::theorem
+    def-quotient-group["定義: 商群"]:::definition
+    def-exact-sequence["定義: 完全列"]:::definition
+    def-isomorphism["定義: 群同型"]:::definition
+    def-ring-homomorphism["定義: 環準同型"]:::definition
+    def-linear-transformation["定義: 線形変換"]:::definition
+    thm-first-isomorphism["定理: 第一同型定理"]:::theorem
+    def-homomorphism["定義: 群準同型"]:::definition
+    def-ideal["定義: イデアル"]:::definition
+    def-quotient-ring["定義: 剰余環"]:::definition
+    def-kernel["定義: 核"]:::definition
+    def-vector-space["定義: ベクトル空間"]:::definition
+    def-kernel --> thm-first-isomorphism
+    def-kernel --> def-isomorphism
+    thm-first-isomorphism --> def-kernel
     def-kernel --> def-vector-space
+    def-exact-sequence --> def-kernel
+    thm-rank-nullity --> def-kernel
     def-kernel --> def-homomorphism
     def-kernel --> def-normal-subgroup
-    def-kernel --> def-quotient-group
-    thm-first-isomorphism --> def-kernel
-    def-kernel --> def-ideal
-    def-kernel --> thm-first-isomorphism
-    thm-rank-nullity --> def-kernel
     def-kernel --> def-linear-transformation
+    def-kernel --> def-quotient-ring
+    def-kernel --> def-ideal
+    def-kernel --> def-quotient-group
+    def-kernel --> def-ring-homomorphism
     class def-kernel current
-    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
-    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
-    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
-    click def-ideal "def-ideal.html" "Definition: Idealへ"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Theorem: First Isomorphism Theoremへ"
-    click thm-rank-nullity "thm-rank-nullity.html" "Theorem: Rank-Nullity Theoremへ"
-    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
-    click def-linear-transformation "def-linear-transformation.html" "Definition: Linear Transformationへ"
+    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群の定義へ"
+    click thm-rank-nullity "thm-rank-nullity.html" "階数・退化次数定理の定理へ"
+    click def-quotient-group "def-quotient-group.html" "商群の定義へ"
+    click def-exact-sequence "def-exact-sequence.html" "完全列の定義へ"
+    click def-isomorphism "def-isomorphism.html" "群同型の定義へ"
+    click def-ring-homomorphism "def-ring-homomorphism.html" "環準同型の定義へ"
+    click def-linear-transformation "def-linear-transformation.html" "線形変換の定義へ"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "第一同型定理の定理へ"
+    click def-homomorphism "def-homomorphism.html" "群準同型の定義へ"
+    click def-ideal "def-ideal.html" "イデアルの定義へ"
+    click def-quotient-ring "def-quotient-ring.html" "剰余環の定義へ"
+    click def-vector-space "def-vector-space.html" "ベクトル空間の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -125,4 +140,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-kernel.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-kernel.html){target="_blank"}で完全なインタラクティブ版を表示

@@ -4,6 +4,8 @@ requires:
 - def-group-action
 - def-group
 - def-cyclic-group
+- def-order
+- def-automorphism
 sidebar: true
 status: verified
 title: 群作用の例
@@ -37,10 +39,12 @@ $$g \cdot h = gh \text{ ただし } g, h \in G$$
 群 $G$ は共役により自分自身に作用します：
 $$g \cdot h = ghg^{-1} \text{ ただし } g, h \in G$$
 
+この作用は $G$ の内部[自己同型](def-automorphism.qmd)を定義します。
+
 性質：
 - $h$ の軌道はその共役類：$\{ghg^{-1} : g \in G\}$
 - $h$ の固定化部分群はその中心化群：$C_G(h) = \{g \in G : gh = hg\}$
-- 固定点はちょうど中心 $Z(G)$ の元
+- 固定点はちょうど[中心](def-center-of-group.qmd) $Z(G)$ の元
 
 ## 集合への対称群の作用
 
@@ -72,24 +76,33 @@ $$k \cdot \omega = \omega \cdot e^{2\pi i k/n} \text{ ここで } \omega = e^{2\
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group-action["Group Action"]:::definition
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    ex-group-action-examples["Examples of Group Actions"]:::example
-    def-group["Definition: Group"]:::definition
+    def-cyclic-group["定義: 巡回群"]:::definition
+    def-order["定義：位数"]:::definition
+    ex-group-action-examples["群作用の例"]:::example
+    def-automorphism["定義: 自己同型"]:::definition
+    def-group["群"]:::definition
+    def-center-of-group["定義: 群の中心"]:::definition
+    def-group-action["群の作用"]:::definition
+    ex-group-action-examples --> def-center-of-group
+    ex-group-action-examples --> def-order
+    ex-group-action-examples --> def-group
     ex-group-action-examples --> def-cyclic-group
     ex-group-action-examples --> def-group-action
-    ex-group-action-examples --> def-group
+    ex-group-action-examples --> def-automorphism
     class ex-group-action-examples current
-    click def-group-action "def-group-action.html" "Group Actionへ"
-    click def-cyclic-group "def-cyclic-group.html" "Definition: Cyclic Groupへ"
-    click def-group "def-group.html" "Definition: Groupへ"
+    click def-cyclic-group "def-cyclic-group.html" "巡回群の定義へ"
+    click def-order "def-order.html" "定義：位数へ"
+    click def-automorphism "def-automorphism.html" "自己同型の定義へ"
+    click def-group "def-group.html" "群へ"
+    click def-center-of-group "def-center-of-group.html" "群の中心の定義へ"
+    click def-group-action "def-group-action.html" "群の作用へ"
 ```
 
 ## インタラクティブ可視化
@@ -103,4 +116,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/ex-group-action-examples.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/ex-group-action-examples.html){target="_blank"}で完全なインタラクティブ版を表示

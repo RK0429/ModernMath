@@ -29,7 +29,7 @@ This project creates an evolving, queryable wiki covering all fields of mathemat
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/ModernMath.git
+   git clone https://github.com/RK0429/ModernMath.git
    cd ModernMath
    ```
 

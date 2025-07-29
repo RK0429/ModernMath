@@ -3,15 +3,16 @@ id: def-uniform-continuity
 requires:
 - def-continuity
 - def-metric-space
+- def-cauchy-sequence
 status: complete
-title: 'Definition: Uniform Continuity'
+title: Uniform Continuity
 translations:
   en: ../en/analysis/def-uniform-continuity.html
   ja: ../ja/analysis/def-uniform-continuity.html
 type: Definition
 ---
 
-# Definition: Uniform Continuity {#def-uniform-continuity}
+# Uniform Continuity {#def-uniform-continuity}
 
 A function $f: (X, d_X) \to (Y, d_Y)$ between [metric spaces](def-metric-space.qmd) is **uniformly continuous** if the choice of $\delta$ in the definition of [continuity](def-continuity.qmd) depends only on $\varepsilon$ and not on the specific point.
 
@@ -36,6 +37,7 @@ In uniform continuity, we choose $\delta$ first (depending only on $\varepsilon$
 1. **Uniform continuity implies continuity**: Every uniformly continuous function is continuous, but not conversely
 2. **Preservation under composition**: The composition of uniformly continuous functions is uniformly continuous
 3. **Extension property**: A uniformly continuous function on a dense subset can be uniquely extended to the closure
+4. **Preservation of Cauchy sequences**: Uniformly continuous functions map [Cauchy sequences](def-cauchy-sequence.qmd) to Cauchy sequences
 
 ## Important Theorems
 
@@ -72,14 +74,17 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-metric-space["Definition: Metric Space"]:::definition
-    def-uniform-continuity["Definition: Uniform Continuity"]:::definition
+    def-cauchy-sequence["Definition: Cauchy Sequence"]:::definition
     def-continuity["Definition: Continuity"]:::definition
-    def-uniform-continuity --> def-continuity
+    def-uniform-continuity["Definition: Uniform Continuity"]:::definition
+    def-metric-space["Definition: Metric Space"]:::definition
     def-uniform-continuity --> def-metric-space
+    def-uniform-continuity --> def-continuity
+    def-uniform-continuity --> def-cauchy-sequence
     class def-uniform-continuity current
-    click def-metric-space "def-metric-space.html" "Go to Metric Space definition"
+    click def-cauchy-sequence "def-cauchy-sequence.html" "Go to Cauchy Sequence definition"
     click def-continuity "def-continuity.html" "Go to Continuity definition"
+    click def-metric-space "def-metric-space.html" "Go to Metric Space definition"
 ```
 
 ## Interactive Visualization
@@ -93,4 +98,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-uniform-continuity.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-uniform-continuity.html){target="_blank"}

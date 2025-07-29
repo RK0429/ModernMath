@@ -4,14 +4,14 @@ requires:
 - def-derivative
 - def-continuity
 status: complete
-title: 'Theorem: Chain Rule'
+title: Chain Rule
 translations:
   en: ../en/analysis/thm-chain-rule.html
   ja: ../ja/analysis/thm-chain-rule.html
 type: Theorem
 ---
 
-# Theorem: Chain Rule {#thm-chain-rule}
+# Chain Rule {#thm-chain-rule}
 
 The chain rule provides a formula for computing the [derivative](def-derivative.qmd) of a composition of functions.
 
@@ -51,6 +51,13 @@ For a composition of $n$ functions $f_1 \circ f_2 \circ \cdots \circ f_n$:
 
 $$(f_1 \circ f_2 \circ \cdots \circ f_n)' = f_1'(f_2 \circ \cdots \circ f_n) \cdot f_2'(f_3 \circ \cdots \circ f_n) \cdots f_n'$$
 
+## Applications
+
+The chain rule is essential for:
+- Differentiation of composite functions
+- Implicit differentiation
+- The substitution rule in integration (via the [Fundamental Theorem of Calculus](thm-fundamental-calculus.qmd))
+
 ## Examples
 
 1. If $h(x) = \sin(x^2)$, then $h'(x) = \cos(x^2) \cdot 2x$
@@ -87,14 +94,14 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-continuity["Definition: Continuity"]:::definition
     thm-chain-rule["Theorem: Chain Rule"]:::theorem
     def-derivative["Definition: Derivative"]:::definition
-    def-continuity["Definition: Continuity"]:::definition
-    thm-chain-rule --> def-derivative
     thm-chain-rule --> def-continuity
+    thm-chain-rule --> def-derivative
     class thm-chain-rule current
-    click def-derivative "def-derivative.html" "Go to Derivative definition"
     click def-continuity "def-continuity.html" "Go to Continuity definition"
+    click def-derivative "def-derivative.html" "Go to Derivative definition"
 ```
 
 ## Interactive Visualization
@@ -108,4 +115,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/thm-chain-rule.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/thm-chain-rule.html){target="_blank"}

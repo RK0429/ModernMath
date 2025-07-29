@@ -3,7 +3,7 @@ id: def-derivative
 requires:
 - def-limit
 status: complete
-title: '定義: 導関数'
+title: 導関数
 translation_of: ../../en/analysis/def-derivative.qmd
 translations:
   en: ../en/analysis/def-derivative.html
@@ -11,7 +11,7 @@ translations:
 type: Definition
 ---
 
-# 定義: 導関数 {#def-derivative}
+# 導関数 {#def-derivative}
 
 関数の**導関数**は、ある点における関数の瞬間変化率を測るものである。これは差分商の[極限](def-limit.qmd)として定義される。
 
@@ -53,6 +53,12 @@ $f$ が $c$ で微分可能ならば：
 1. $f$ は $c$ で連続である
 2. $(c, f(c))$ における接線の方程式は：$y - f(c) = f'(c)(x - c)$
 
+## 積分との関係
+
+[微積分学の基本定理](thm-fundamental-calculus.qmd)は、微分と積分が逆演算であることを確立している。具体的には：
+- 積分関数の導関数は元の関数を与える
+- すべての連続関数は積分として表現できる原始関数を持つ
+
 ## 例
 
 1. **定数関数**：$f(x) = k$ ならば $f'(x) = 0$
@@ -81,24 +87,30 @@ graph TD
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-limit["Definition: Limit of a Sequence"]:::definition
-    def-derivative["Definition: Derivative"]:::definition
-    thm-chain-rule["Theorem: Chain Rule"]:::theorem
-    thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
+    def-limit["定義：数列の極限"]:::definition
+    thm-mean-value["定理：平均値の定理"]:::theorem
+    def-derivative["定義: 導関数"]:::definition
+    thm-fundamental-calculus["定理: 微積分学の基本定理"]:::theorem
+    thm-taylor-series["定理: テイラー級数"]:::theorem
+    thm-chain-rule["定理：連鎖律"]:::theorem
     def-derivative --> def-limit
+    thm-fundamental-calculus --> def-derivative
     thm-chain-rule --> def-derivative
+    thm-taylor-series --> def-derivative
     thm-mean-value --> def-derivative
     class def-derivative current
-    click def-limit "def-limit.html" "Definition: Limit of a Sequenceへ"
-    click thm-chain-rule "thm-chain-rule.html" "Theorem: Chain Ruleへ"
-    click thm-mean-value "thm-mean-value.html" "Theorem: Mean Value Theoremへ"
+    click def-limit "def-limit.html" "定義：数列の極限へ"
+    click thm-mean-value "thm-mean-value.html" "定理：平均値の定理へ"
+    click thm-fundamental-calculus "thm-fundamental-calculus.html" "微積分学の基本定理の定理へ"
+    click thm-taylor-series "thm-taylor-series.html" "テイラー級数の定理へ"
+    click thm-chain-rule "thm-chain-rule.html" "定理：連鎖律へ"
 ```
 
 ## インタラクティブ可視化
@@ -112,4 +124,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-derivative.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-derivative.html){target="_blank"}で完全なインタラクティブ版を表示

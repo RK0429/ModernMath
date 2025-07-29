@@ -1,0 +1,152 @@
+---
+id: def-integral-domain
+requires:
+- def-ring
+- def-commutativity
+- def-field
+- def-subring
+- def-zero-divisor
+status: complete
+title: 整域
+translation_of: ../../en/algebra/def-integral-domain.qmd
+translations:
+  en: ../en/algebra/def-integral-domain.html
+  ja: ../ja/algebra/def-integral-domain.html
+type: Definition
+---
+
+# 整域 {#def-integral-domain}
+
+**整域**（せいいき、integral domain）は、単位元（乗法単位元）を持つ[可換](def-commutativity.qmd)[環](def-ring.qmd)で、[零因子](def-zero-divisor.qmd)を持たないものである。
+
+## 形式的定義
+
+環 $(R, +, \cdot)$ が整域であるとは：
+
+1. **可換性**：すべての $a, b \in R$ に対して、
+   $$a \cdot b = b \cdot a$$
+
+2. **単位元**：ある元 $1 \in R$ が存在して、すべての $a \in R$ に対して、
+   $$1 \cdot a = a \cdot 1 = a$$
+
+3. **[零因子](def-zero-divisor.qmd)なし**：すべての $a, b \in R$ に対して、
+   $$a \cdot b = 0 \implies a = 0 \text{ または } b = 0$$
+
+## 重要な性質
+
+### 簡約法則
+
+整域では簡約法則が成り立つ：$a \neq 0$ かつ $ab = ac$ ならば、$b = c$ である。
+
+**証明**：$ab = ac$ ならば、$ab - ac = 0$ なので、$a(b - c) = 0$ となる。$a \neq 0$ で[零因子](def-zero-divisor.qmd)がないので、$b - c = 0$ でなければならず、したがって $b = c$ である。
+
+### 他の構造との関係
+
+- すべての[体](def-field.qmd)は整域である
+- すべての有限整域は体である
+- すべての整域が体であるわけではない（例：$\mathbb{Z}$）
+- 整域のすべての[部分環](def-subring.qmd)は整域である
+
+### 素イデアルによる特徴付け
+
+可換環 $R$ が整域であることと、零[イデアル](def-ideal.qmd) $(0)$ が[素イデアル](def-prime-ideal.qmd)であることは同値である。
+
+## 例
+
+### 整域の例
+
+1. **整数** $\mathbb{Z}$ （通常の加法と乗法）
+2. **任意の体**：$\mathbb{Q}$、$\mathbb{R}$、$\mathbb{C}$、または $\mathbb{Z}_p$（$p$ は素数）など
+3. **多項式環** $R[x]$（ただし $R$ は整域）
+4. **ガウス整数** $\mathbb{Z}[i] = \{a + bi : a, b \in \mathbb{Z}\}$（$\mathbb{C}$ の[部分環](def-subring.qmd)）
+
+### 整域でない例
+
+1. **$\mathbb{Z}_6$**（6を法とする整数）：$2 \cdot 3 = 0 \pmod{6}$ だが $2 \neq 0$ かつ $3 \neq 0$
+2. **行列環** $M_n(R)$（$n > 1$）：零でない行列の積が零行列になりうる
+3. **$\mathbb{Z} \times \mathbb{Z}$**（成分ごとの演算）：$(1,0) \cdot (0,1) = (0,0)$
+
+## 分数体
+
+すべての整域 $D$ は、その**分数体**または**商体**と呼ばれる体 $\text{Frac}(D)$ に埋め込むことができる。元の整域 $D$ は自然に $\text{Frac}(D)$ の[部分環](def-subring.qmd)となる。
+
+- $\mathbb{Z}$ の分数体は $\mathbb{Q}$ である（そして $\mathbb{Z}$ は $\mathbb{Q}$ の部分環である）
+- 体 $F$ 上の多項式環 $F[x]$ の分数体は有理関数体 $F(x)$ である
+
+## 応用
+
+整域は以下の適切な設定を提供する：
+
+1. **整除性理論**：最大公約数や一意分解などの概念
+2. **多項式方程式**：整域において次数 $n$ の多項式は高々 $n$ 個の根を持つ
+3. **代数的整数論**：代数的整数の研究
+4. **代数幾何学**：既約代数多様体の座標環
+
+## 関連項目
+
+- @def-ring
+- @def-field
+- @def-ideal
+- @def-polynomial-ring
+- @ex-integers-ring
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-integral-domain["定義：整域"]:::definition
+    def-commutativity["定義: 可換性"]:::definition
+    def-subring["定義: 部分環"]:::definition
+    def-prime-ideal["定義: 素イデアル"]:::definition
+    def-quotient-ring["定義: 剰余環"]:::definition
+    def-ideal["定義: イデアル"]:::definition
+    def-polynomial-ring["定義: 多項式環"]:::definition
+    def-ring["定義：環"]:::definition
+    def-zero-divisor["定義: 零因子"]:::definition
+    def-field["定義: 体"]:::definition
+    ex-integers-ring["例: 整数は環を形成する"]:::example
+    def-integral-domain --> def-subring
+    def-polynomial-ring --> def-integral-domain
+    def-quotient-ring --> def-integral-domain
+    def-zero-divisor --> def-integral-domain
+    def-integral-domain --> def-field
+    def-integral-domain --> def-polynomial-ring
+    def-integral-domain --> ex-integers-ring
+    def-integral-domain --> def-commutativity
+    def-prime-ideal --> def-integral-domain
+    def-integral-domain --> def-ideal
+    ex-integers-ring --> def-integral-domain
+    def-field --> def-integral-domain
+    def-integral-domain --> def-ring
+    def-integral-domain --> def-zero-divisor
+    class def-integral-domain current
+    click def-commutativity "def-commutativity.html" "可換性の定義へ"
+    click def-subring "def-subring.html" "部分環の定義へ"
+    click def-prime-ideal "def-prime-ideal.html" "素イデアルの定義へ"
+    click def-quotient-ring "def-quotient-ring.html" "剰余環の定義へ"
+    click def-ideal "def-ideal.html" "イデアルの定義へ"
+    click def-polynomial-ring "def-polynomial-ring.html" "多項式環の定義へ"
+    click def-ring "def-ring.html" "定義：環へ"
+    click def-zero-divisor "def-zero-divisor.html" "零因子の定義へ"
+    click def-field "def-field.html" "体の定義へ"
+    click ex-integers-ring "ex-integers-ring.html" "整数は環を形成するの例へ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-integral-domain" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/ja/def-integral-domain.html){target="_blank"}で完全なインタラクティブ版を表示

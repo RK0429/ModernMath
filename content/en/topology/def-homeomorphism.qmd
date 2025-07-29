@@ -5,17 +5,20 @@ requires:
 - def-open-set
 - def-continuity
 - def-set
+- ../logic-set-theory/def-function
+- ../logic-set-theory/def-equivalence-relation
+- ../analysis/def-open-ball
 status: complete
-title: 'Definition: Homeomorphism'
+title: Homeomorphism
 translations:
   en: ../en/topology/def-homeomorphism.html
   ja: ../ja/topology/def-homeomorphism.html
 type: Definition
 ---
 
-# Definition: Homeomorphism {#def-homeomorphism}
+# Homeomorphism {#def-homeomorphism}
 
-A **homeomorphism** is a bijective function between [topological spaces](def-topological-space.qmd) that is continuous and has a continuous inverse. It represents the fundamental notion of topological equivalence.
+A **homeomorphism** is a bijective [function](../logic-set-theory/def-function.qmd) between [topological spaces](def-topological-space.qmd) that is continuous and has a continuous inverse. It represents the fundamental notion of topological equivalence.
 
 ## Formal Definition
 
@@ -43,7 +46,7 @@ Homeomorphisms preserve all topological properties:
 
 ### Equivalence Relation
 
-The relation "is homeomorphic to" forms an equivalence relation on the class of all topological spaces:
+The relation "is homeomorphic to" forms an [equivalence relation](../logic-set-theory/def-equivalence-relation.qmd) on the class of all topological spaces:
 - **Reflexive**: $X \cong X$ (the identity map is a homeomorphism)
 - **Symmetric**: If $X \cong Y$, then $Y \cong X$
 - **Transitive**: If $X \cong Y$ and $Y \cong Z$, then $X \cong Z$
@@ -57,7 +60,7 @@ The relation "is homeomorphic to" forms an equivalence relation on the class of 
 
 2. **Circle minus a point and line**: $S^1 \setminus \{p\} \cong \mathbb{R}$ where $S^1$ is the unit circle and $p$ is any point on it
 
-3. **Open balls**: Any two open balls in $\mathbb{R}^n$ are homeomorphic, regardless of their radius or center
+3. **[Open balls](../analysis/def-open-ball.qmd)**: Any two open balls in $\mathbb{R}^n$ are homeomorphic, regardless of their radius or center
 
 4. **Stereographic projection**: The sphere $S^n$ minus a point is homeomorphic to $\mathbb{R}^n$
 
@@ -73,7 +76,7 @@ The relation "is homeomorphic to" forms an equivalence relation on the class of 
 
 Properties preserved by homeomorphisms are called **topological invariants**. These include:
 - Number of connected components
-- Fundamental group (in algebraic topology)
+- [Fundamental group](def-fundamental-group.qmd) (in algebraic topology)
 - Euler characteristic (for suitable spaces)
 - Dimension (requires careful definition)
 
@@ -90,6 +93,7 @@ This leads to the famous example: a coffee mug and a donut (torus) are homeomorp
 - @def-topological-space
 - @def-continuity
 - @def-isomorphism (the analogous concept in other areas of mathematics)
+- @def-homotopy (a weaker notion of equivalence via continuous deformation)
 - @def-compact
 - @def-connected
 - @def-hausdorff
@@ -104,33 +108,43 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-open-set["Definition: Open Set"]:::definition
+    def-set["Definition: Set"]:::definition
     def-topological-space["Definition: Topological Space"]:::definition
-    def-isomorphism["Definition: Isomorphism"]:::definition
     def-compact["Definition: Compact Space"]:::definition
+    def-homeomorphism["Definition: Homeomorphism"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    def-function["Definition: Function"]:::definition
+    def-homotopy["Definition: Homotopy"]:::definition
+    def-open-set["Definition: Open Set"]:::definition
+    def-fundamental-group["Definition: Fundamental Group"]:::definition
+    def-continuity["Definition: Continuity"]:::definition
     def-hausdorff["Definition: Hausdorff Space"]:::definition
     def-connected["Definition: Connected Space"]:::definition
-    def-homeomorphism["Definition: Homeomorphism"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-continuity["Definition: Continuity"]:::definition
-    def-homeomorphism --> def-isomorphism
-    def-homeomorphism --> def-continuity
-    def-homeomorphism --> def-open-set
-    def-homeomorphism --> def-connected
+    def-homeomorphism --> def-homotopy
     def-homeomorphism --> def-set
-    def-homeomorphism --> def-topological-space
     def-isomorphism --> def-homeomorphism
-    def-homeomorphism --> def-compact
+    def-homeomorphism --> def-connected
+    def-homeomorphism --> def-topological-space
+    def-homeomorphism --> def-isomorphism
+    def-homeomorphism --> def-open-set
     def-homeomorphism --> def-hausdorff
+    def-fundamental-group --> def-homeomorphism
+    def-homeomorphism --> def-compact
+    def-homotopy --> def-homeomorphism
+    def-homeomorphism --> def-function
+    def-homeomorphism --> def-continuity
     class def-homeomorphism current
-    click def-open-set "def-open-set.html" "Go to Open Set definition"
+    click def-set "def-set.html" "Go to Set definition"
     click def-topological-space "def-topological-space.html" "Go to Topological Space definition"
-    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
     click def-compact "def-compact.html" "Go to Compact Space definition"
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
+    click def-function "def-function.html" "Go to Function definition"
+    click def-homotopy "def-homotopy.html" "Go to Homotopy definition"
+    click def-open-set "def-open-set.html" "Go to Open Set definition"
+    click def-fundamental-group "def-fundamental-group.html" "Go to Fundamental Group definition"
+    click def-continuity "def-continuity.html" "Go to Continuity definition"
     click def-hausdorff "def-hausdorff.html" "Go to Hausdorff Space definition"
     click def-connected "def-connected.html" "Go to Connected Space definition"
-    click def-set "def-set.html" "Go to Set definition"
-    click def-continuity "def-continuity.html" "Go to Continuity definition"
 ```
 
 ## Interactive Visualization
@@ -144,4 +158,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-homeomorphism.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-homeomorphism.html){target="_blank"}

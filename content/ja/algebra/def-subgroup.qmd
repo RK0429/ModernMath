@@ -6,7 +6,7 @@ requires:
 - def-set
 - def-cyclic-group
 status: complete
-title: 定義：部分群
+title: 部分群
 translation_of: ../../en/algebra/def-subgroup.qmd
 translations:
   en: ../en/algebra/def-subgroup.html
@@ -51,44 +51,57 @@ $(G, \cdot)$ を群とする。空でない部分集合 $H \subseteq G$ が $G$ 
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-coset["Definition: Coset"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
-    def-group --> def-subgroup
-    def-subgroup --> def-quotient-group
-    ex-even-integers-subgroup --> def-subgroup
+    def-subgroup["定義：部分群"]:::definition
+    def-normal-subgroup["定義: 正規部分群"]:::definition
+    def-cyclic-group["定義: 巡回群"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-coset["定義: 剰余類"]:::definition
+    def-order["定義：位数"]:::definition
+    def-quotient-group["定義: 商群"]:::definition
+    def-subring["定義: 部分環"]:::definition
+    def-group["群"]:::definition
+    thm-lagrange["定理: ラグランジュの定理"]:::theorem
+    def-center-of-group["定義: 群の中心"]:::definition
+    thm-sylow["シローの定理"]:::theorem
+    ex-even-integers-subgroup["例: 偶数整数は部分群を成す"]:::example
     thm-lagrange --> def-subgroup
-    def-coset --> def-subgroup
-    def-subgroup --> def-normal-subgroup
-    def-cyclic-group --> def-subgroup
     def-quotient-group --> def-subgroup
-    def-subgroup --> def-group
-    def-subgroup --> def-cyclic-group
-    def-subgroup --> thm-lagrange
+    def-subgroup --> def-quotient-group
     def-subgroup --> def-set
+    def-center-of-group --> def-subgroup
+    thm-sylow --> def-subgroup
+    def-subgroup --> def-order
+    ex-even-integers-subgroup --> def-subgroup
+    def-order --> def-subgroup
     def-normal-subgroup --> def-subgroup
+    def-subgroup --> def-cyclic-group
+    def-cyclic-group --> def-subgroup
+    def-subring --> def-subgroup
+    def-coset --> def-subgroup
+    def-subgroup --> def-group
+    def-subgroup --> def-normal-subgroup
+    def-group --> def-subgroup
+    def-subgroup --> thm-lagrange
     class def-subgroup current
-    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
-    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Example: Even Integers Form a Subgroupへ"
-    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
-    click def-coset "def-coset.html" "Definition: Cosetへ"
-    click def-set "def-set.html" "Definition: Setへ"
-    click def-cyclic-group "def-cyclic-group.html" "Definition: Cyclic Groupへ"
-    click def-group "def-group.html" "Definition: Groupへ"
+    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群の定義へ"
+    click def-cyclic-group "def-cyclic-group.html" "巡回群の定義へ"
+    click def-set "def-set.html" "集合の定義へ"
+    click def-coset "def-coset.html" "剰余類の定義へ"
+    click def-order "def-order.html" "定義：位数へ"
+    click def-quotient-group "def-quotient-group.html" "商群の定義へ"
+    click def-subring "def-subring.html" "部分環の定義へ"
+    click def-group "def-group.html" "群へ"
+    click thm-lagrange "thm-lagrange.html" "ラグランジュの定理の定理へ"
+    click def-center-of-group "def-center-of-group.html" "群の中心の定義へ"
+    click thm-sylow "thm-sylow.html" "シローの定理へ"
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "偶数整数は部分群を成すの例へ"
 ```
 
 ## インタラクティブ可視化
@@ -102,4 +115,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-subgroup.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-subgroup.html){target="_blank"}で完全なインタラクティブ版を表示

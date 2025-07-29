@@ -4,8 +4,9 @@ requires:
 - def-metric-space
 - def-hausdorff
 - def-topological-space
+- ../analysis/def-open-ball
 status: complete
-title: '定理: すべての距離空間はハウスドルフ空間'
+title: すべての距離空間はハウスドルフ空間
 translation_of: ../../en/topology/thm-metric-hausdorff.qmd
 translations:
   en: ../en/topology/thm-metric-hausdorff.html
@@ -13,7 +14,7 @@ translations:
 type: Theorem
 ---
 
-# 定理: すべての距離空間はハウスドルフ空間 {#thm-metric-hausdorff}
+# すべての距離空間はハウスドルフ空間 {#thm-metric-hausdorff}
 
 **主張**: 距離位相を持つすべての[距離空間](../geometry/def-metric-space.qmd) $(X, d)$ は[ハウスドルフ空間](def-hausdorff.qmd)である。
 
@@ -25,7 +26,7 @@ $x \neq y$ なので、距離の非退化性により $d(x, y) > 0$ である。
 
 $r = \frac{d(x, y)}{2} > 0$ とする。
 
-以下の開球を考える：
+以下の[開球](../analysis/def-open-ball.qmd)を考える：
 - $U = B(x, r) = \{z \in X : d(x, z) < r\}$
 - $V = B(y, r) = \{z \in X : d(y, z) < r\}$
 
@@ -61,24 +62,24 @@ $x$ と $y$ は任意の異なる点だったので、$(X, d)$ はハウスド�
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-metric-space["Definition: Metric Space"]:::definition
-    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
-    def-hausdorff["Definition: Hausdorff Space"]:::definition
-    def-topological-space["Definition: Topological Space"]:::definition
+    def-topological-space["定義: 位相空間"]:::definition
+    def-hausdorff["定義: ハウスドルフ空間"]:::definition
+    thm-metric-hausdorff["定理: すべての距離空間はハウスドルフ空間"]:::theorem
+    def-metric-space["定義：距離空間"]:::definition
     thm-metric-hausdorff --> def-hausdorff
-    thm-metric-hausdorff --> def-metric-space
     thm-metric-hausdorff --> def-topological-space
+    thm-metric-hausdorff --> def-metric-space
     class thm-metric-hausdorff current
-    click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
-    click def-hausdorff "def-hausdorff.html" "Definition: Hausdorff Spaceへ"
-    click def-topological-space "def-topological-space.html" "Definition: Topological Spaceへ"
+    click def-topological-space "def-topological-space.html" "位相空間の定義へ"
+    click def-hausdorff "def-hausdorff.html" "ハウスドルフ空間の定義へ"
+    click def-metric-space "def-metric-space.html" "定義：距離空間へ"
 ```
 
 ## インタラクティブ可視化
@@ -92,4 +93,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/thm-metric-hausdorff.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/thm-metric-hausdorff.html){target="_blank"}で完全なインタラクティブ版を表示

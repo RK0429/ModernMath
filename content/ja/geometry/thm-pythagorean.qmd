@@ -3,7 +3,7 @@ id: thm-pythagorean
 requires:
 - def-euclidean-space
 status: complete
-title: '定理: ピタゴラスの定理'
+title: ピタゴラスの定理
 translation_of: ../../en/geometry/thm-pythagorean.qmd
 translations:
   en: ../en/geometry/thm-pythagorean.html
@@ -11,7 +11,7 @@ translations:
 type: Theorem
 ---
 
-# 定理: ピタゴラスの定理 {#thm-pythagorean}
+# ピタゴラスの定理 {#thm-pythagorean}
 
 [ユークリッド空間](def-euclidean-space.qmd)において、2つのベクトルが直交するのは、それらの和のノルムの平方がそれらのノルムの平方の和に等しい場合に限る。
 
@@ -46,6 +46,10 @@ $$\|\mathbf{x}\|^2 + 2\langle \mathbf{x}, \mathbf{y} \rangle + \|\mathbf{y}\|^2 
 $\mathbb{E}^2$ において、長さ $a$ と $b$ の脚と長さ $c$ の斜辺を持つ直角三角形に対して：
 $$a^2 + b^2 = c^2$$
 
+## 一般化
+
+この定理は任意の[ヒルベルト空間](../analysis/def-hilbert-space.qmd)に拡張される：ベクトル $x$ と $y$ が直交するのは $\|x + y\|^2 = \|x\|^2 + \|y\|^2$ となる場合に限る。
+
 ## Mermaidダイアグラム
 
 ```mermaid
@@ -67,18 +71,18 @@ graph TD
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-pythagorean["Theorem: Pythagorean Theorem"]:::theorem
-    def-euclidean-space["Definition: Euclidean Space"]:::definition
+    thm-pythagorean["定理: ピタゴラスの定理"]:::theorem
+    def-euclidean-space["定義: ユークリッド空間"]:::definition
     thm-pythagorean --> def-euclidean-space
     class thm-pythagorean current
-    click def-euclidean-space "def-euclidean-space.html" "Definition: Euclidean Spaceへ"
+    click def-euclidean-space "def-euclidean-space.html" "ユークリッド空間の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -92,4 +96,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/thm-pythagorean.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/thm-pythagorean.html){target="_blank"}で完全なインタラクティブ版を表示

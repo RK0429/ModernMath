@@ -1,0 +1,129 @@
+---
+id: thm-inclusion-exclusion
+requires:
+- def-set
+- ../logic-set-theory/def-union
+- ../logic-set-theory/def-intersection
+- ../logic-set-theory/def-cardinality
+status: complete
+title: 包除原理
+translation_of: ../../en/combinatorics/thm-inclusion-exclusion.qmd
+translations:
+  en: ../en/combinatorics/thm-inclusion-exclusion.html
+  ja: ../ja/combinatorics/thm-inclusion-exclusion.html
+type: Theorem
+---
+
+# 包除原理
+
+**包除原理**（包含排除の原理）は、組合せ論における基本的な数え上げ原理で、複数の集合の和集合の[濃度](../logic-set-theory/def-cardinality.qmd)を、それらの共通部分を考慮して求める公式を提供します。
+
+## 命題
+
+有限[集合](../logic-set-theory/def-set.qmd) $A_1, A_2, \ldots, A_n$ に対して、それらの[和集合](../logic-set-theory/def-union.qmd)の[濃度](../logic-set-theory/def-cardinality.qmd)は次のように与えられます：
+
+$$\left|\bigcup_{i=1}^{n} A_i\right| = \sum_{k=1}^{n} (-1)^{k+1} \sum_{1 \leq i_1 < i_2 < \cdots < i_k \leq n} \left|A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k}\right|$$
+
+## 特殊な場合
+
+**2つの集合の場合：**
+$$|A \cup B| = |A| + |B| - |A \cap B|$$
+
+**3つの集合の場合：**
+$$|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|$$
+
+## 直観的な説明
+
+$n$ 個の集合の和集合の濃度を求めるには：
+1. すべての個々の集合の濃度を加える
+2. すべての2つずつの[共通部分](../logic-set-theory/def-intersection.qmd)の濃度を引く
+3. すべての3つずつの共通部分の濃度を加える
+4. $n$ 個すべての集合の共通部分まで符号を交互に変えながら続ける
+
+## 証明
+
+和集合内の各要素が正確に1回数えられることを示すことで証明します。
+
+$x$ を $\bigcup_{i=1}^{n} A_i$ の任意の要素とし、$m$ を $A_1, \ldots, A_n$ のうち $x$ を含む集合の個数とします（ここで $m \geq 1$）。
+
+左辺では、$x$ は正確に1回数えられます。
+
+右辺では、$x$ は次のように数えられます：
+- 単一集合の項で $\binom{m}{1}$ 回
+- 2つの集合の共通部分の項で $-\binom{m}{2}$ 回
+- 3つの集合の共通部分の項で $+\binom{m}{3}$ 回
+- 以下同様に続く...
+
+総計は：
+$$\sum_{k=1}^{m} (-1)^{k+1} \binom{m}{k}$$
+
+二項定理により、次が成り立ちます：
+$$(1-1)^m = 0 = \sum_{k=0}^{m} (-1)^k \binom{m}{k} = 1 + \sum_{k=1}^{m} (-1)^k \binom{m}{k}$$
+
+したがって：
+$$\sum_{k=1}^{m} (-1)^{k+1} \binom{m}{k} = \sum_{k=1}^{m} (-1)^k \binom{m}{k} \cdot (-1) = -\left(\sum_{k=1}^{m} (-1)^k \binom{m}{k}\right) = -(-1) = 1$$
+
+よって、各要素は正確に1回数えられ、原理が証明されます。
+
+## 応用
+
+1. **完全順列**：固定点を持たない順列の数え上げ
+2. **オイラーのトーシェント関数**：与えられた整数と互いに素な整数の数え上げ
+3. **篩法**：数論における素数の数え上げ
+4. **確率論**：事象の和集合の確率の計算
+5. **グラフ理論**：特定の性質を持つグラフの数え上げ
+
+## 例：整数の数え上げ
+
+1から1000までの整数のうち、2、3、または5で割り切れるものは何個あるか？
+
+次のように定義します：
+- $A$ = 2で割り切れる整数
+- $B$ = 3で割り切れる整数
+- $C$ = 5で割り切れる整数
+
+すると：
+- $|A| = \lfloor 1000/2 \rfloor = 500$
+- $|B| = \lfloor 1000/3 \rfloor = 333$
+- $|C| = \lfloor 1000/5 \rfloor = 200$
+- $|A \cap B| = \lfloor 1000/6 \rfloor = 166$
+- $|A \cap C| = \lfloor 1000/10 \rfloor = 100$
+- $|B \cap C| = \lfloor 1000/15 \rfloor = 66$
+- $|A \cap B \cap C| = \lfloor 1000/30 \rfloor = 33$
+
+包除原理により：
+$$|A \cup B \cup C| = 500 + 333 + 200 - 166 - 100 - 66 + 33 = 734$$
+
+## 歴史的注記
+
+この原理はアブラハム・ド・モアブル（1718年）に帰属されますが、明示的に現れるのはダニエル・ダ・シルバ（1854年）とJ. J. シルベスター（1883年）の論文が最初です。ジャン＝カルロ・ロータが述べたように、「離散確率論と組合せ論における列挙の最も有用な原理の一つが、有名な包除原理である」とされています。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["定義: 集合"]:::definition
+    thm-inclusion-exclusion["定理: 包除原理"]:::theorem
+    thm-inclusion-exclusion --> def-set
+    class thm-inclusion-exclusion current
+    click def-set "def-set.html" "集合の定義へ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="thm-inclusion-exclusion" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/ja/thm-inclusion-exclusion.html){target="_blank"}で完全なインタラクティブ版を表示

@@ -40,7 +40,7 @@ $V$ を体 $F$ 上の[ベクトル空間](def-vector-space.qmd)とする。部�
 
 - **標準基底**：$\mathbb{R}^n$ に対して、標準基底は $\{\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n\}$ であり、$\mathbf{e}_i$ は第 $i$ 成分が 1 で他が 0
 - **順序付き基底**：要素に特定の順序を指定した基底
-- **正規直交基底**：内積空間において、すべてのベクトルが単位長で互いに直交する基底
+- **正規直交基底**：内積空間（特に[ヒルベルト空間](../analysis/def-hilbert-space.qmd)）において、すべてのベクトルが単位長で互いに直交する基底
 
 ## 次元
 
@@ -54,30 +54,30 @@ $V$ が $n$ 個の要素を持つ有限基底を持つなら：
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-basis["Definition: Basis"]:::definition
-    def-span["Definition: Span"]:::definition
-    thm-linear-transformation-basis["Theorem: Linear Transformation Determined by Basis"]:::theorem
-    def-vector-space["Definition: Vector Space"]:::definition
-    ex-standard-basis-rn["Example: Standard Basis of ℝⁿ"]:::example
-    def-linear-independence["Definition: Linear Independence"]:::definition
+    def-span["定義：生成"]:::definition
+    def-linear-independence["定義: 線形独立"]:::definition
+    ex-standard-basis-rn["例: ℝⁿの標準基底"]:::example
+    def-vector-space["定義: ベクトル空間"]:::definition
+    def-basis["基底"]:::definition
+    thm-linear-transformation-basis["定理: 基底による線形変換の決定"]:::theorem
     def-basis --> def-span
     def-basis --> def-linear-independence
-    thm-linear-transformation-basis --> def-basis
     ex-standard-basis-rn --> def-basis
     def-basis --> def-vector-space
+    thm-linear-transformation-basis --> def-basis
     class def-basis current
-    click def-span "def-span.html" "Definition: Spanへ"
-    click thm-linear-transformation-basis "thm-linear-transformation-basis.html" "Theorem: Linear Transformation Determined by Basisへ"
-    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
-    click ex-standard-basis-rn "ex-standard-basis-rn.html" "Example: Standard Basis of ℝⁿへ"
-    click def-linear-independence "def-linear-independence.html" "Definition: Linear Independenceへ"
+    click def-span "def-span.html" "定義：生成へ"
+    click def-linear-independence "def-linear-independence.html" "線形独立の定義へ"
+    click ex-standard-basis-rn "ex-standard-basis-rn.html" "ℝⁿの標準基底の例へ"
+    click def-vector-space "def-vector-space.html" "ベクトル空間の定義へ"
+    click thm-linear-transformation-basis "thm-linear-transformation-basis.html" "基底による線形変換の決定の定理へ"
 ```
 
 ## インタラクティブ可視化
@@ -91,4 +91,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-basis.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-basis.html){target="_blank"}で完全なインタラクティブ版を表示

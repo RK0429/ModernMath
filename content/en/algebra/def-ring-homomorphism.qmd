@@ -1,0 +1,124 @@
+---
+id: def-ring-homomorphism
+requires:
+- def-ring
+- def-binary-operation
+- ../logic-set-theory/def-function
+status: complete
+title: Ring Homomorphism
+translations:
+  en: ../en/algebra/def-ring-homomorphism.html
+  ja: ../ja/algebra/def-ring-homomorphism.html
+type: Definition
+---
+
+# Ring Homomorphism {#def-ring-homomorphism}
+
+A **ring homomorphism** is a [function](../logic-set-theory/def-function.qmd) between two [rings](def-ring.qmd) that preserves both ring [binary operations](def-binary-operation.qmd) (addition and multiplication).
+
+## Formal Definition
+
+Let $(R, +, \cdot)$ and $(S, \oplus, \odot)$ be rings. A function $f: R \to S$ is a ring homomorphism if:
+
+1. **Addition preservation**: $f(a + b) = f(a) \oplus f(b)$ for all $a, b \in R$
+2. **Multiplication preservation**: $f(a \cdot b) = f(a) \odot f(b)$ for all $a, b \in R$
+3. **Unity preservation**: $f(1_R) = 1_S$ (if $R$ and $S$ have multiplicative identities)
+
+## Notation
+
+- Standard notation: $f: R \to S$ or $f: R \rightarrow S$
+- For the image of an element: $f(r)$ or sometimes $r^f$
+- Kernel notation: $\ker(f) = \{r \in R : f(r) = 0_S\}$
+
+## Intuitive Understanding
+
+A ring homomorphism is a way to "translate" between two rings while preserving their algebraic structure. Just as a translator preserves the meaning of sentences when converting between languages, a ring homomorphism preserves the arithmetic relationships when mapping elements from one ring to another. If $a + b = c$ in the first ring, then $f(a) + f(b) = f(c)$ in the second ring.
+
+## Key Properties
+
+Ring homomorphisms automatically preserve several important elements and structures:
+
+- **Zero preservation**: $f(0_R) = 0_S$ (the additive identity)
+- **Additive inverse preservation**: $f(-a) = -f(a)$ for all $a \in R$
+- **Powers preservation**: $f(a^n) = f(a)^n$ for all $a \in R$ and $n \in \mathbb{N}$
+- **Subring preservation**: If $T$ is a [subring](def-subring.qmd) of $R$, then $f(T)$ is a subring of $S$
+
+## Examples
+
+Common examples include:
+- The natural map $\mathbb{Z} \to \mathbb{Z}/n\mathbb{Z}$ sending integers to their residue classes modulo $n$
+- The evaluation map from a [polynomial ring](def-polynomial-ring.qmd) $R[x]$ to $R$ given by evaluating at a fixed element
+- The inclusion map from any subring to its parent ring
+
+## Special Types
+
+- **[Monomorphism](../category-theory/def-monomorphism.qmd)**: An injective ring homomorphism
+- **[Epimorphism](../category-theory/def-epimorphism.qmd)**: A surjective ring homomorphism
+- **[Isomorphism](def-isomorphism.qmd)**: A bijective ring homomorphism (note: the inverse is automatically a ring homomorphism)
+- **[Endomorphism](def-endomorphism.qmd)**: A ring homomorphism from a ring to itself
+- **[Automorphism](def-automorphism.qmd)**: A bijective endomorphism
+
+## Kernel and Image
+
+For a ring homomorphism $f: R \to S$:
+
+- The **kernel** is $\ker(f) = \{r \in R : f(r) = 0_S\}$, which is always a two-sided [ideal](def-ideal.qmd) of $R$
+- The **image** is $\text{Im}(f) = \{f(r) : r \in R\}$, which is always a subring of $S$
+
+The kernel completely determines whether the homomorphism is injective: $f$ is injective if and only if $\ker(f) = \{0_R\}$.
+
+## First Isomorphism Theorem for Rings
+
+The fundamental relationship between ring homomorphisms and quotient rings is given by the [First Isomorphism Theorem](thm-first-isomorphism.qmd):
+
+$$R/\ker(f) \cong \text{Im}(f)$$
+
+This shows that every homomorphic image of a ring is isomorphic to a [quotient ring](def-quotient-ring.qmd), establishing a deep connection between ring homomorphisms and ideal theory.
+
+## Related Concepts
+
+- **Generalizations**: Module homomorphisms preserve module structure over a ring
+- **Specializations**: [Group homomorphisms](def-homomorphism.qmd) (considering only the additive group structure)
+- **Similar structures**: Linear transformations between vector spaces, which are homomorphisms of vector space structures
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-ring-homomorphism["Definition: Ring Homomorphism"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-kernel["Definition: Kernel"]:::definition
+    def-ring-homomorphism --> def-binary-operation
+    def-ideal --> def-ring-homomorphism
+    def-ring-homomorphism --> def-ring
+    def-quotient-ring --> def-ring-homomorphism
+    def-kernel --> def-ring-homomorphism
+    class def-ring-homomorphism current
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click def-ideal "def-ideal.html" "Go to Ideal definition"
+    click def-ring "def-ring.html" "Go to Ring definition"
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring definition"
+    click def-kernel "def-kernel.html" "Go to Kernel definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-ring-homomorphism" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/en/def-ring-homomorphism.html){target="_blank"}

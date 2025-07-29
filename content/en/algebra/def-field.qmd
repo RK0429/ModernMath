@@ -5,8 +5,10 @@ requires:
 - def-group
 - def-ideal
 - def-abelian-group
+- def-integral-domain
+- def-subring
 status: complete
-title: 'Definition: Field'
+title: Field
 translations:
   en: ../en/algebra/def-field.html
   ja: ../ja/algebra/def-field.html
@@ -30,9 +32,9 @@ Explicitly, a field satisfies:
 
 ## Properties
 
-- Every field is an integral domain
-- Every finite integral domain is a field
-- Fields have no zero divisors: if $ab = 0$, then $a = 0$ or $b = 0$
+- Every field is an [integral domain](def-integral-domain.qmd)
+- Every finite [integral domain](def-integral-domain.qmd) is a field
+- Fields have no [zero divisors](def-zero-divisor.qmd): if $ab = 0$, then $a = 0$ or $b = 0$
 - Every non-zero element $a$ has a unique inverse $a^{-1}$ such that $a \cdot a^{-1} = 1$
 - Fields have only trivial [Ideals](def-ideal.qmd): the only ideals are $\{0\}$ and $F$ itself
 
@@ -42,12 +44,12 @@ Explicitly, a field satisfies:
 - $\mathbb{R}$ - real numbers
 - $\mathbb{C}$ - complex numbers
 - $\mathbb{F}_p = \mathbb{Z}/p\mathbb{Z}$ - integers modulo prime $p$ (quotient by the principal ideal $(p)$)
-- $\mathbb{Q}(\sqrt{2}) = \{a + b\sqrt{2} : a, b \in \mathbb{Q}\}$ - field extension
+- $\mathbb{Q}(\sqrt{2}) = \{a + b\sqrt{2} : a, b \in \mathbb{Q}\}$ - field extension (contains $\mathbb{Q}$ as a [subring](def-subring.qmd))
 
 ## Non-Examples
 
 - $\mathbb{Z}$ is not a field (no multiplicative inverse for 2)
-- $\mathbb{Z}/6\mathbb{Z}$ is not a field (has zero divisors)
+- $\mathbb{Z}/6\mathbb{Z}$ is not a field (has [zero divisors](def-zero-divisor.qmd))
 
 ## Dependency Graph
 
@@ -60,31 +62,50 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
-    def-abelian-group["Definition: Abelian Group"]:::definition
+    def-determinant["Definition: Determinant"]:::definition
+    def-integral-domain["Definition: Integral Domain"]:::definition
+    def-subring["Definition: Subring"]:::definition
+    def-maximal-ideal["Definition: Maximal Ideal"]:::definition
+    def-matrix["Definition: Matrix"]:::definition
     def-ideal["Definition: Ideal"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-zero-divisor["Definition: Zero Divisor"]:::definition
     def-field["Definition: Field"]:::definition
     ex-finite-field["Example: Finite Field"]:::example
-    def-vector-space["Definition: Vector Space"]:::definition
     def-polynomial-ring["Definition: Polynomial Ring"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    def-vector-space --> def-field
-    def-field --> def-abelian-group
-    ex-finite-field --> def-field
-    def-field --> def-ideal
-    thm-field-characteristic --> def-field
-    def-field --> def-ring
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
     def-field --> def-group
+    def-field --> def-ring
+    def-integral-domain --> def-field
+    def-maximal-ideal --> def-field
+    def-determinant --> def-field
+    def-field --> def-ideal
+    def-zero-divisor --> def-field
+    ex-finite-field --> def-field
+    def-matrix --> def-field
+    def-field --> def-subring
+    def-field --> def-integral-domain
+    def-field --> def-abelian-group
+    thm-field-characteristic --> def-field
+    def-vector-space --> def-field
     def-polynomial-ring --> def-field
     class def-field current
     click thm-field-characteristic "thm-field-characteristic.html" "Go to Field Characteristic theorem"
-    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
+    click def-determinant "def-determinant.html" "Go to Determinant definition"
+    click def-integral-domain "def-integral-domain.html" "Go to Integral Domain definition"
+    click def-subring "def-subring.html" "Go to Subring definition"
+    click def-maximal-ideal "def-maximal-ideal.html" "Go to Maximal Ideal definition"
+    click def-matrix "def-matrix.html" "Go to Matrix definition"
     click def-ideal "def-ideal.html" "Go to Ideal definition"
-    click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
-    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
-    click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring definition"
-    click def-group "def-group.html" "Go to Group definition"
     click def-ring "def-ring.html" "Go to Ring definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click def-zero-divisor "def-zero-divisor.html" "Go to Zero Divisor definition"
+    click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
+    click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring definition"
+    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
+    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
 ```
 
 ## Interactive Visualization
@@ -98,4 +119,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-field.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-field.html){target="_blank"}

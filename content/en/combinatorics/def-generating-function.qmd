@@ -1,0 +1,124 @@
+---
+id: def-generating-function
+requires:
+- ../analysis/def-series
+- def-binomial-coefficient
+status: complete
+title: Generating Function
+translations:
+  en: ../en/combinatorics/def-generating-function.html
+  ja: ../ja/combinatorics/def-generating-function.html
+type: Definition
+---
+
+# Generating Function
+
+A **generating function** is a formal power series whose coefficients encode information about a sequence of numbers, often arising from counting problems in combinatorics.
+
+## Formal Definition
+
+### Ordinary Generating Function (OGF)
+
+Given a sequence $(a_n)_{n \geq 0}$ of complex numbers, the **ordinary generating function** is the formal power [Series](../analysis/def-series.qmd):
+
+$$G(x) = \sum_{n=0}^{\infty} a_n x^n = a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \cdots$$
+
+### Exponential Generating Function (EGF)
+
+The **exponential generating function** of the same sequence is:
+
+$$E(x) = \sum_{n=0}^{\infty} a_n \frac{x^n}{n!} = a_0 + a_1 x + a_2 \frac{x^2}{2!} + a_3 \frac{x^3}{3!} + \cdots$$
+
+## Key Properties
+
+### Formal Power Series
+
+Generating functions are treated as **formal power series**, meaning:
+- The variable $x$ is an indeterminate (not assigned a numerical value)
+- Convergence is not required for combinatorial applications
+- Operations are performed algebraically on coefficients
+
+### When to Use Each Type
+
+1. **Ordinary Generating Functions**: Best for counting unlabeled objects or when order doesn't matter
+2. **Exponential Generating Functions**: Best for counting labeled objects or when order matters
+
+## Operations on Generating Functions
+
+### For Ordinary Generating Functions
+
+If $F(x) = \sum_{n=0}^{\infty} a_n x^n$ and $G(x) = \sum_{n=0}^{\infty} b_n x^n$, then:
+
+1. **Addition**: $(F + G)(x) = \sum_{n=0}^{\infty} (a_n + b_n) x^n$
+
+2. **Multiplication (Convolution)**: $(F \cdot G)(x) = \sum_{n=0}^{\infty} \left(\sum_{k=0}^{n} a_k b_{n-k}\right) x^n$
+
+3. **Differentiation**: $F'(x) = \sum_{n=1}^{\infty} n a_n x^{n-1}$
+
+### For Exponential Generating Functions
+
+Multiplication gives the binomial convolution:
+$$(E \cdot F)(x) = \sum_{n=0}^{\infty} \left(\sum_{k=0}^{n} \binom{n}{k} a_k b_{n-k}\right) \frac{x^n}{n!}$$
+
+## Examples
+
+### Example 1: Geometric Series
+
+The sequence $(1, 1, 1, \ldots)$ has OGF:
+$$\frac{1}{1-x} = \sum_{n=0}^{\infty} x^n$$
+
+### Example 2: Fibonacci Numbers
+
+The Fibonacci sequence $(F_n)$ with $F_0 = 0, F_1 = 1$ has OGF:
+$$F(x) = \frac{x}{1 - x - x^2}$$
+
+### Example 3: Factorials
+
+The sequence $(n!)_{n \geq 0}$ has EGF:
+$$E(x) = \sum_{n=0}^{\infty} n! \frac{x^n}{n!} = \sum_{n=0}^{\infty} x^n = \frac{1}{1-x}$$
+
+## Applications
+
+1. **Solving Recurrence Relations**: Converting recurrences to functional equations
+2. **Counting Combinatorial Objects**: Encoding counting sequences
+3. **Asymptotic Analysis**: Extracting asymptotic behavior of coefficients
+4. **Probability Theory**: Moment generating functions and probability generating functions
+
+## Connection to Binomial Coefficients
+
+The [Binomial Coefficient](def-binomial-coefficient.qmd) appears naturally in many generating functions:
+- $(1 + x)^n = \sum_{k=0}^{n} \binom{n}{k} x^k$ (finite OGF)
+- $e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!}$ (EGF for the all-ones sequence)
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-generating-function["Definition: Generating Function"]:::definition
+    def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
+    ex-pascals-triangle["Example: Pascal's Triangle"]:::example
+    def-binomial-coefficient --> def-generating-function
+    def-generating-function --> def-binomial-coefficient
+    ex-pascals-triangle --> def-generating-function
+    class def-generating-function current
+    click def-binomial-coefficient "def-binomial-coefficient.html" "Go to Binomial Coefficient definition"
+    click ex-pascals-triangle "ex-pascals-triangle.html" "Go to Pascal's Triangle example"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-generating-function" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/en/def-generating-function.html){target="_blank"}

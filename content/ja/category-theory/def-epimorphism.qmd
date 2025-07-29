@@ -1,0 +1,139 @@
+---
+id: def-epimorphism
+requires:
+- def-morphism
+- def-category
+- def-composition
+status: complete
+title: 全射
+translation_of: ../../en/category-theory/def-epimorphism.qmd
+translations:
+  en: ../en/category-theory/def-epimorphism.html
+  ja: ../ja/category-theory/def-epimorphism.html
+type: Definition
+---
+
+# 全射 {#def-epimorphism}
+
+**全射**（エピ射、エピック射、またはepiとも呼ばれる）は、[圏](def-category.qmd)における[射](def-morphism.qmd)で、右簡約性を満たすものです。
+
+## 形式的定義
+
+[圏](def-category.qmd) $\mathcal{C}$ において、射 $f: A \to B$ が**全射**であるとは、任意の対象 $C$ と任意の射の対 $g, h: B \to C$ に対して、次の含意が成り立つことです：
+
+$$g \circ f = h \circ f \implies g = h$$
+
+言い換えれば、$f$ は右簡約的です：等式の右側から「取り除く」ことができます。
+
+## 特徴付け
+
+射 $f: A \to B$ が全射であることと、すべての対象 $C$ に対して、誘導される関数
+$$f^*: \text{Hom}(B, C) \to \text{Hom}(A, C)$$
+を $f^*(g) = g \circ f$ で定義したときに単射であることは同値です。
+
+## 例
+
+### 馴染みのある圏において
+
+1. **Set**：集合の圏では、全射はまさに全射関数です
+2. **Grp**：群の圏では、全射は全射群準同型です
+3. **Top**：位相空間の圏では、全射は稠密な像を持つ連続写像です
+4. **Vect**：体上のベクトル空間の圏では、全射は全射線形変換です
+5. **Ab**：アーベル群の圏では、全射は全射群準同型です
+
+### 全射でない全射
+
+すべての全射が通常の意味で全射であるわけではありません：
+
+- **Ring**：環の圏では、包含写像 $\mathbb{Z} \hookrightarrow \mathbb{Q}$ は全射（[環準同型](../algebra/def-ring-homomorphism.qmd)として）ですが全射関数ではありません
+- **Haus**：ハウスドルフ空間の圏では、包含写像 $\mathbb{Q} \hookrightarrow \mathbb{R}$ は全射（稠密な像）ですが全射関数ではありません
+- **Mon**：[モノイド](../algebra/def-monoid.qmd)の圏では、全射でない全射が存在します
+
+## 性質
+
+### 基本的性質
+
+1. **合成**：二つの全射の[合成](def-composition.qmd)は全射です
+2. **恒等射**：すべての恒等射は全射です
+3. **分解**：$g \circ f$ が全射なら、$g$ は全射です
+
+### 他の概念との関係
+
+1. **レトラクション**：すべてのレトラクション（右逆射）は全射です
+2. **同型射**：すべての[同型射](def-isomorphism.qmd)は[単射](def-monomorphism.qmd)かつ全射です
+3. **余等化子**：すべての余等化子は全射です
+
+## 全射の種類
+
+追加構造を持つ圏では、特別な種類の全射を定義できます：
+
+1. **正則全射**：平行射の対の余等化子
+2. **強全射**：単射に対して右持ち上げ性質を持つ全射
+3. **極大全射**：真の単射を通して分解しない全射
+4. **分裂全射**：右逆射（レトラクション）を持つ全射
+
+## 圏論的重要性
+
+全射は圏論において基本的です：
+
+1. 任意の圏に対して「全射」の概念を一般化します
+2. 多くの圏論的構成（例：プッシュアウト）で保存されます
+3. 商対象の研究に自然に現れます
+4. 多くの圏で分解系の半分を形成します
+
+## 双対概念
+
+全射の圏論的双対は**[単射](def-monomorphism.qmd)**です。つまり、圏 $\mathcal{C}$ における全射は、反対圏 $\mathcal{C}^{\text{op}}$ における単射です。
+
+## 関連項目
+
+- @def-monomorphism
+- @def-isomorphism
+- @def-morphism
+- @def-functor
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-morphism["定義: 射"]:::definition
+    def-isomorphism["定義: 群同型"]:::definition
+    def-epimorphism["定義：全射"]:::definition
+    def-composition["定義: 合成"]:::definition
+    def-category["定義: 圏"]:::definition
+    def-functor["定義: 関手"]:::definition
+    def-monomorphism["定義：単射"]:::definition
+    def-epimorphism --> def-monomorphism
+    def-epimorphism --> def-isomorphism
+    def-epimorphism --> def-composition
+    def-epimorphism --> def-category
+    def-epimorphism --> def-morphism
+    def-epimorphism --> def-functor
+    def-monomorphism --> def-epimorphism
+    class def-epimorphism current
+    click def-morphism "def-morphism.html" "射の定義へ"
+    click def-isomorphism "def-isomorphism.html" "群同型の定義へ"
+    click def-composition "def-composition.html" "合成の定義へ"
+    click def-category "def-category.html" "圏の定義へ"
+    click def-functor "def-functor.html" "関手の定義へ"
+    click def-monomorphism "def-monomorphism.html" "定義：単射へ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-epimorphism" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/ja/def-epimorphism.html){target="_blank"}で完全なインタラクティブ版を表示

@@ -3,8 +3,9 @@ id: def-convergence
 requires:
 - def-sequence
 - def-limit
+- def-open-ball
 status: complete
-title: 'Definition: Convergence'
+title: Convergence
 translations:
   en: ../en/analysis/def-convergence.html
   ja: ../ja/analysis/def-convergence.html
@@ -18,6 +19,8 @@ type: Definition
 A sequence $(a_n)$ in a metric space $(X, d)$ **converges** to a [Limit of a Sequence](def-limit.qmd) $L \in X$ if:
 
 $$\forall \varepsilon > 0, \exists N \in \mathbb{N} : \forall n > N, \quad d(a_n, L) < \varepsilon$$
+
+In other words, for every [open ball](def-open-ball.qmd) $B_\varepsilon(L)$ centered at $L$, all terms $a_n$ with $n > N$ lie within this ball.
 
 We write:
 - $\lim_{n \to \infty} a_n = L$
@@ -52,6 +55,9 @@ $$f_n \to f \text{ uniformly if } \sup_{x \in X} |f_n(x) - f(x)| \to 0$$
 ### Absolute Convergence
 For [series](def-series.qmd): $\sum_{n=1}^{\infty} a_n$ converges absolutely if $\sum_{n=1}^{\infty} |a_n|$ converges
 
+### Convergence in Hilbert Spaces
+In [Hilbert spaces](def-hilbert-space.qmd), convergence can be characterized in terms of the inner product: $x_n \to x$ if and only if $\|x_n - x\| \to 0$, where $\|x\| = \sqrt{\langle x, x \rangle}$
+
 ## Examples
 
 1. **Convergent**: $a_n = \frac{1}{n} \to 0$
@@ -61,7 +67,7 @@ For [series](def-series.qmd): $\sum_{n=1}^{\infty} a_n$ converges absolutely if 
 
 ## Cauchy Criterion
 
-In [Complete Metric Spaces](def-complete-metric-space.qmd), a sequence converges if and only if it is a Cauchy sequence:
+In [Complete Metric Spaces](def-complete-metric-space.qmd), a sequence converges if and only if it is a [Cauchy Sequence](def-cauchy-sequence.qmd):
 $$\forall \varepsilon > 0, \exists N : \forall m,n > N, \quad d(a_m, a_n) < \varepsilon$$
 
 ## Applications
@@ -81,17 +87,24 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-limit["Definition: Limit of a Sequence"]:::definition
     def-convergence["Definition: Convergence"]:::definition
+    def-open-ball["Definition: Open Ball"]:::definition
     def-series["Definition: Series"]:::definition
     def-sequence["Definition: Sequence"]:::definition
-    def-limit["Definition: Limit of a Sequence"]:::definition
+    thm-taylor-series["Theorem: Taylor Series"]:::theorem
     def-convergence --> def-limit
     def-series --> def-convergence
     def-convergence --> def-sequence
+    def-convergence --> def-open-ball
+    thm-taylor-series --> def-convergence
+    def-open-ball --> def-convergence
     class def-convergence current
+    click def-limit "def-limit.html" "Go to Limit of a Sequence definition"
+    click def-open-ball "def-open-ball.html" "Go to Open Ball definition"
     click def-series "def-series.html" "Go to Series definition"
     click def-sequence "def-sequence.html" "Go to Sequence definition"
-    click def-limit "def-limit.html" "Go to Limit of a Sequence definition"
+    click thm-taylor-series "thm-taylor-series.html" "Go to Taylor Series theorem"
 ```
 
 ## Interactive Visualization
@@ -105,4 +118,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-convergence.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-convergence.html){target="_blank"}

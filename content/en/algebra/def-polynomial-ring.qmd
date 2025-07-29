@@ -4,8 +4,9 @@ requires:
 - def-ring
 - def-field
 - def-binary-operation
+- def-integral-domain
 status: complete
-title: 'Definition: Polynomial Ring'
+title: Polynomial Ring
 translations:
   en: ../en/algebra/def-polynomial-ring.html
   ja: ../ja/algebra/def-polynomial-ring.html
@@ -42,13 +43,13 @@ $$c_k = \sum_{i+j=k} a_ib_j$$
 
 1. If $R$ has unity $1_R$, then $R[x]$ has unity (the constant polynomial $1_R$)
 2. If $R$ is commutative, then $R[x]$ is commutative
-3. If $R$ is an integral domain, then $R[x]$ is an integral domain
+3. If $R$ is an [integral domain](def-integral-domain.qmd), then $R[x]$ is an [integral domain](def-integral-domain.qmd)
 
 ### Degree Properties
 
 For non-zero polynomials $f, g \in R[x]$:
 - $\deg(f + g) \leq \max(\deg(f), \deg(g))$
-- If $R$ is an integral domain: $\deg(fg) = \deg(f) + \deg(g)$
+- If $R$ is an [integral domain](def-integral-domain.qmd): $\deg(fg) = \deg(f) + \deg(g)$
 
 ### Division Algorithm
 
@@ -71,11 +72,11 @@ If $R$ is a unique factorization domain (UFD), then $R[x]$ is also a UFD. In par
 
 ### Root Theorem
 
-For a field $F$ and $f \in F[x]$: $c \in F$ is a root of $f$ if and only if $(x - c)$ divides $f(x)$.
+For a field $F$ and $f \in F[x]$: $c \in F$ is a root of $f$ if and only if $(x - c)$ [divides](../number-theory/def-divisibility.qmd) $f(x)$.
 
 ## Examples
 
-- $\mathbb{Z}[x]$ - polynomials with integer coefficients
+- $\mathbb{Z}[x]$ - polynomials with integer coefficients (forms a [subring](def-subring.qmd) of $\mathbb{Q}[x]$)
 - $\mathbb{R}[x]$ - polynomials with real coefficients
 - $\mathbb{C}[x, y]$ - polynomials in two variables over complex numbers
 - $\mathbb{Z}_p[x]$ - polynomials over the finite field of $p$ elements
@@ -99,25 +100,35 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
-    def-field["Definition: Field"]:::definition
-    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
+    def-binary-operation["Definition: Binary Operation"]:::definition
     def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    def-integral-domain["Definition: Integral Domain"]:::definition
+    def-subring["Definition: Subring"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     def-polynomial-ring["Definition: Polynomial Ring"]:::definition
     def-ring["Definition: Ring"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-eigenvalue-eigenvector --> def-polynomial-ring
-    def-polynomial-ring --> def-ring
-    ex-polynomial-continuity --> def-polynomial-ring
+    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
+    def-field["Definition: Field"]:::definition
+    def-polynomial-ring --> def-integral-domain
     thm-intermediate-value --> def-polynomial-ring
     def-polynomial-ring --> def-binary-operation
+    def-eigenvalue-eigenvector --> def-polynomial-ring
+    def-integral-domain --> def-polynomial-ring
+    ex-quotient-integers-mod-n --> def-polynomial-ring
+    def-subring --> def-polynomial-ring
+    def-polynomial-ring --> def-ring
+    ex-polynomial-continuity --> def-polynomial-ring
     def-polynomial-ring --> def-field
     class def-polynomial-ring current
     click ex-polynomial-continuity "ex-polynomial-continuity.html" "Go to Polynomial Continuity example"
-    click def-field "def-field.html" "Go to Field definition"
-    click thm-intermediate-value "thm-intermediate-value.html" "Go to Intermediate Value Theorem theorem"
-    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector definition"
-    click def-ring "def-ring.html" "Go to Ring definition"
     click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector definition"
+    click def-integral-domain "def-integral-domain.html" "Go to Integral Domain definition"
+    click def-subring "def-subring.html" "Go to Subring definition"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
+    click def-ring "def-ring.html" "Go to Ring definition"
+    click thm-intermediate-value "thm-intermediate-value.html" "Go to Intermediate Value Theorem theorem"
+    click def-field "def-field.html" "Go to Field definition"
 ```
 
 ## Interactive Visualization
@@ -131,4 +142,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-polynomial-ring.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-polynomial-ring.html){target="_blank"}

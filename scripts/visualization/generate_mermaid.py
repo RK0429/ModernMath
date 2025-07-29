@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 from typing import Dict, Set, Tuple, Any
 import frontmatter
-from rdflib import Graph, Namespace, RDF, RDFS
+from rdflib import Graph, Namespace, RDF, RDFS, Literal
 
 
 # Define namespaces
@@ -23,14 +23,29 @@ def load_knowledge_graph(ttl_file: Path) -> Graph:
     return g
 
 
-def get_node_info(g: Graph, node_uri: Any) -> Dict[str, Any]:
-    """Get information about a node."""
+def get_node_info(g: Graph, node_uri: Any, lang: str = "en") -> Dict[str, Any]:
+    """Get information about a node with language preference."""
     info = {"id": str(node_uri).replace(BASE_URI, ""), "label": None, "type": None}
 
-    # Get label
+    # Get label with language preference
+    labels = {}
     for label in g.objects(node_uri, RDFS.label):
-        info["label"] = str(label)
-        break
+        # Extract language from literal
+        if isinstance(label, Literal) and label.language:
+            labels[label.language] = str(label)
+        else:
+            labels["default"] = str(label)
+
+    # Select appropriate label
+    if lang in labels:
+        info["label"] = labels[lang]
+    elif "en" in labels:
+        info["label"] = labels["en"]
+    elif "default" in labels:
+        info["label"] = labels["default"]
+    elif labels:
+        # Take any available label
+        info["label"] = next(iter(labels.values()))
 
     # Get type
     for node_type in g.objects(node_uri, RDF.type):
@@ -90,8 +105,8 @@ def get_node_style(node_type: str) -> str:
     return styles.get(node_type, "")
 
 
-def generate_mermaid_diagram(g: Graph, node_id: str, max_nodes: int = 20) -> str:
-    """Generate Mermaid diagram for a node's neighborhood."""
+def generate_mermaid_diagram(g: Graph, node_id: str, lang: str = "en", max_nodes: int = 20) -> str:
+    """Generate Mermaid diagram for a node's neighborhood with language support."""
     nodes, edges = get_local_neighborhood(g, node_id)
 
     # Limit the number of nodes for readability
@@ -107,14 +122,14 @@ def generate_mermaid_diagram(g: Graph, node_id: str, max_nodes: int = 20) -> str
         nodes = nodes_to_keep
         edges = {e for e in edges if e[0] in nodes and e[1] in nodes}
 
-    # Build node info
+    # Build node info with language preference
     node_info = {}
     for n in nodes:
-        info = get_node_info(g, BASE[n])
+        info = get_node_info(g, BASE[n], lang)
         node_info[n] = info
 
     # Generate Mermaid code
-    lines = ['%%| fig-cap: "Local dependency graph"', "graph TD"]
+    lines = ["graph TD"]
 
     # Add class definitions for styling
     lines.extend(
@@ -159,7 +174,7 @@ def generate_mermaid_diagram(g: Graph, node_id: str, max_nodes: int = 20) -> str
 def generate_all_diagrams(ttl_file: Path, output_dir: Path) -> None:
     """Generate Mermaid diagrams for all nodes."""
     g = load_knowledge_graph(ttl_file)
-    output_dir.mkdir(exist_ok=True)
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     # Get all nodes
     nodes = set()
@@ -170,18 +185,49 @@ def generate_all_diagrams(ttl_file: Path, output_dir: Path) -> None:
 
     print(f"Generating Mermaid diagrams for {len(nodes)} nodes...")
 
-    # Generate diagram for each node
-    for node_id in sorted(nodes):
-        diagram = generate_mermaid_diagram(g, node_id)
-        output_file = output_dir / f"{node_id}.mermaid"
+    # Track statistics
+    stats = {"total": len(nodes), "generated": 0, "skipped": 0}
 
-        with open(output_file, "w", encoding="utf-8") as f:
-            f.write(diagram)
+    # Generate diagrams for each language
+    for lang in ["en", "ja"]:
+        lang_dir = output_dir / lang
+        lang_dir.mkdir(parents=True, exist_ok=True)
+        lang_generated = 0
+        lang_skipped = 0
 
-    print(f"Generated {len(nodes)} Mermaid diagrams in {output_dir}")
+        # Generate diagram for each node
+        for node_id in sorted(nodes):
+            # Get neighborhood to check if diagram will have content
+            local_nodes, local_edges = get_local_neighborhood(g, node_id)
+
+            # Skip if node has no connections (only itself in the neighborhood)
+            if len(local_nodes) <= 1 or len(local_edges) == 0:
+                lang_skipped += 1
+                continue
+
+            diagram = generate_mermaid_diagram(g, node_id, lang=lang)
+
+            # Additional validation: check if diagram has meaningful content
+            # (not just class definitions and a single node)
+            if diagram and len(diagram.strip()) > 0:
+                output_file = lang_dir / f"{node_id}.mermaid"
+                with open(output_file, "w", encoding="utf-8") as f:
+                    f.write(diagram)
+                lang_generated += 1
+            else:
+                lang_skipped += 1
+
+        print(
+            f"Generated {lang_generated} Mermaid diagrams for {lang} in {lang_dir} "
+            f"(skipped {lang_skipped} isolated nodes)"
+        )
+
+        if lang == "en":  # Count only once
+            stats["generated"] = lang_generated
+            stats["skipped"] = lang_skipped
 
     # Also generate a JSON index for easy lookup
-    index = {"nodes": list(sorted(nodes)), "generated": True}
+    index = {"nodes": list(sorted(nodes)), "generated": True, "stats": stats}
 
     with open(output_dir / "index.json", "w", encoding="utf-8") as f:
         json.dump(index, f, indent=2)

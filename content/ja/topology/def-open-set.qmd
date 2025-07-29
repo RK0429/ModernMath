@@ -2,8 +2,9 @@
 id: def-open-set
 requires:
 - def-topological-space
+- ../analysis/def-open-ball
 status: complete
-title: '定義: 開集合'
+title: 開集合
 translation_of: ../../en/topology/def-open-set.qmd
 translations:
   en: ../en/topology/def-open-set.html
@@ -11,7 +12,7 @@ translations:
 type: Definition
 ---
 
-# 定義: 開集合 {#def-open-set}
+# 開集合 {#def-open-set}
 
 $(X, \tau)$を[位相空間](def-topological-space.qmd)とします。部分集合$U \subseteq X$が**開集合**であるとは、$U \in \tau$であるときをいいます。
 
@@ -40,7 +41,7 @@ $(X, \tau)$を[位相空間](def-topological-space.qmd)とします。部分集�
 
 ## 直観的理解
 
-開集合は、各点の周りにその集合内に留まる「余裕」があるような集合と考えることができます。この直観は距離空間において形式化され、集合が開であるとは、各点の周りにその集合に含まれる開球が存在するときです。
+開集合は、各点の周りにその集合内に留まる「余裕」があるような集合と考えることができます。この直観は距離空間において形式化され、集合が開であるとは、各点の周りにその集合に含まれる[開球](../analysis/def-open-ball.qmd)が存在するときです。
 
 ## 関連概念
 
@@ -52,36 +53,39 @@ $(X, \tau)$を[位相空間](def-topological-space.qmd)とします。部分集�
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-open-set["Definition: Open Set"]:::definition
-    def-topological-space["Definition: Topological Space"]:::definition
-    def-closed-set["Definition: Closed Set"]:::definition
-    def-hausdorff["Definition: Hausdorff Space"]:::definition
-    def-compact["Definition: Compact Space"]:::definition
-    def-homeomorphism["Definition: Homeomorphism"]:::definition
-    def-connected["Definition: Connected Space"]:::definition
-    thm-union-open-sets["Theorem: Union of Open Sets"]:::theorem
-    def-hausdorff --> def-open-set
+    def-topological-space["定義: 位相空間"]:::definition
+    def-compact["定義: コンパクト空間"]:::definition
+    def-homeomorphism["定義：同相写像"]:::definition
+    def-open-ball["定義：開球"]:::definition
+    def-closed-set["定義: 閉集合"]:::definition
+    def-hausdorff["定義: ハウスドルフ空間"]:::definition
+    thm-union-open-sets["定理: 開集合の和集合"]:::theorem
+    def-open-set["定義: 開集合"]:::definition
+    def-connected["定義: 連結空間"]:::definition
     def-closed-set --> def-open-set
-    def-homeomorphism --> def-open-set
     def-compact --> def-open-set
-    def-open-set --> def-topological-space
     def-connected --> def-open-set
+    def-homeomorphism --> def-open-set
+    def-open-set --> def-topological-space
+    def-open-ball --> def-open-set
+    def-hausdorff --> def-open-set
     thm-union-open-sets --> def-open-set
     class def-open-set current
-    click def-topological-space "def-topological-space.html" "Definition: Topological Spaceへ"
-    click def-closed-set "def-closed-set.html" "Definition: Closed Setへ"
-    click def-hausdorff "def-hausdorff.html" "Definition: Hausdorff Spaceへ"
-    click def-compact "def-compact.html" "Definition: Compact Spaceへ"
-    click def-homeomorphism "def-homeomorphism.html" "Definition: Homeomorphismへ"
-    click def-connected "def-connected.html" "Definition: Connected Spaceへ"
-    click thm-union-open-sets "thm-union-open-sets.html" "Theorem: Union of Open Setsへ"
+    click def-topological-space "def-topological-space.html" "位相空間の定義へ"
+    click def-compact "def-compact.html" "コンパクト空間の定義へ"
+    click def-homeomorphism "def-homeomorphism.html" "定義：同相写像へ"
+    click def-open-ball "def-open-ball.html" "定義：開球へ"
+    click def-closed-set "def-closed-set.html" "閉集合の定義へ"
+    click def-hausdorff "def-hausdorff.html" "ハウスドルフ空間の定義へ"
+    click thm-union-open-sets "thm-union-open-sets.html" "開集合の和集合の定理へ"
+    click def-connected "def-connected.html" "連結空間の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -95,4 +99,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-open-set.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-open-set.html){target="_blank"}で完全なインタラクティブ版を表示

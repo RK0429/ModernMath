@@ -5,17 +5,20 @@ requires:
 - def-expectation
 - def-variance
 - def-independence
+- def-probability-distribution
+- def-normal-distribution
+- ../analysis/thm-taylor-series
 status: complete
-title: 'Theorem: Central Limit Theorem'
+title: Central Limit Theorem
 translations:
   en: ../en/probability-statistics/thm-central-limit.html
   ja: ../ja/probability-statistics/thm-central-limit.html
 type: Theorem
 ---
 
-# Theorem: Central Limit Theorem {#thm-central-limit}
+# Central Limit Theorem {#thm-central-limit}
 
-The **Central Limit Theorem (CLT)** is one of the most fundamental results in probability theory, stating that the distribution of the normalized sum of [independent](def-independence.qmd) [random variables](def-random-variable.qmd) converges to a normal distribution.
+The **Central Limit Theorem (CLT)** is one of the most fundamental results in probability theory, stating that the [distribution](def-probability-distribution.qmd) of the normalized sum of [independent](def-independence.qmd) [random variables](def-random-variable.qmd) converges to a [normal distribution](def-normal-distribution.qmd).
 
 ## Statement
 
@@ -30,11 +33,11 @@ Define:
 Then for any $z \in \mathbb{R}$:
 $$\lim_{n \to \infty} P(Z_n \leq z) = \Phi(z)$$
 
-where $\Phi(z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-t^2/2} dt$ is the cumulative distribution function of the standard normal distribution.
+where $\Phi(z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-t^2/2} dt$ is the cumulative distribution function of the standard [normal distribution](def-normal-distribution.qmd).
 
 ## Equivalently
 
-The distribution of $\bar{X}_n$ is approximately normal for large $n$:
+The [distribution](def-probability-distribution.qmd) of $\bar{X}_n$ is approximately [normal](def-normal-distribution.qmd) for large $n$:
 $$\bar{X}_n \stackrel{d}{\approx} N\left(\mu, \frac{\sigma^2}{n}\right)$$
 
 ## Proof Sketch
@@ -44,7 +47,7 @@ The classical proof uses characteristic functions:
 1. The characteristic function of $Z_n$ is:
    $$\phi_{Z_n}(t) = \left[\phi_X\left(\frac{t}{\sigma\sqrt{n}}\right) \cdot e^{-it\mu/(\sigma\sqrt{n})}\right]^n$$
 
-2. Using Taylor expansion of $\phi_X$ around 0:
+2. Using [Taylor expansion](../analysis/thm-taylor-series.qmd) of $\phi_X$ around 0:
    $$\phi_X(s) = 1 + is\mu - \frac{s^2(\mu^2 + \sigma^2)}{2} + o(s^2)$$
 
 3. After substitution and simplification:
@@ -66,7 +69,7 @@ This is the characteristic function of $N(0,1)$, completing the proof by the con
 ## Examples
 
 ### Example 1: Coin Flips
-For $n$ fair coin flips (Bernoulli(1/2)):
+For $n$ fair coin flips (Bernoulli(1/2), see [Binomial Distribution](def-binomial-distribution.qmd)):
 - $\mu = 0.5$, $\sigma^2 = 0.25$
 - The proportion of heads $\approx N(0.5, 0.25/n)$ for large $n$
 
@@ -113,20 +116,26 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-expectation["Definition: Expected Value"]:::definition
-    def-random-variable["Definition: Random Variable"]:::definition
+    def-normal-distribution["Definition: Normal Distribution"]:::definition
     def-independence["Definition: Independence"]:::definition
+    def-expectation["Definition: Expected Value"]:::definition
+    def-probability-distribution["Definition: Probability Distribution"]:::definition
     thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
     def-variance["Definition: Variance"]:::definition
-    thm-central-limit --> def-independence
-    thm-central-limit --> def-variance
-    thm-central-limit --> def-expectation
+    def-random-variable["Definition: Random Variable"]:::definition
     thm-central-limit --> def-random-variable
+    thm-central-limit --> def-probability-distribution
+    thm-central-limit --> def-variance
+    thm-central-limit --> def-normal-distribution
+    thm-central-limit --> def-independence
+    thm-central-limit --> def-expectation
     class thm-central-limit current
-    click def-expectation "def-expectation.html" "Go to Expected Value definition"
-    click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
+    click def-normal-distribution "def-normal-distribution.html" "Go to Normal Distribution definition"
     click def-independence "def-independence.html" "Go to Independence definition"
+    click def-expectation "def-expectation.html" "Go to Expected Value definition"
+    click def-probability-distribution "def-probability-distribution.html" "Go to Probability Distribution definition"
     click def-variance "def-variance.html" "Go to Variance definition"
+    click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
 ```
 
 ## Interactive Visualization
@@ -140,4 +149,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/thm-central-limit.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/thm-central-limit.html){target="_blank"}

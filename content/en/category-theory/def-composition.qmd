@@ -4,7 +4,7 @@ requires:
 - def-category
 - def-morphism
 status: complete
-title: 'Definition: Composition'
+title: Composition
 translations:
   en: ../en/category-theory/def-composition.html
   ja: ../ja/category-theory/def-composition.html
@@ -84,7 +84,7 @@ This diagram commutes if $k \circ h = g \circ f$
 ## Related Concepts
 
 - [Isomorphism](def-isomorphism.qmd): Morphisms with two-sided inverses under composition
-- Endomorphisms: Morphisms that can be composed with themselves
+- [Endomorphisms](../algebra/def-endomorphism.qmd): Morphisms that can be composed with themselves
 - Monoids: Single-object categories where all morphisms compose
 
 ## Dependency Graph
@@ -97,17 +97,23 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-category["Definition: Category"]:::definition
-    def-isomorphism["Definition: Isomorphism"]:::definition
-    def-composition["Definition: Composition"]:::definition
     def-morphism["Definition: Morphism"]:::definition
-    def-isomorphism --> def-composition
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    def-epimorphism["Definition: Epimorphism"]:::definition
+    def-composition["Definition: Composition"]:::definition
+    def-category["Definition: Category"]:::definition
+    def-monomorphism["Definition: Monomorphism"]:::definition
+    def-monomorphism --> def-composition
+    def-epimorphism --> def-composition
     def-composition --> def-morphism
+    def-isomorphism --> def-composition
     def-composition --> def-category
     class def-composition current
-    click def-category "def-category.html" "Go to Category definition"
-    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
     click def-morphism "def-morphism.html" "Go to Morphism definition"
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
+    click def-epimorphism "def-epimorphism.html" "Go to Epimorphism definition"
+    click def-category "def-category.html" "Go to Category definition"
+    click def-monomorphism "def-monomorphism.html" "Go to Monomorphism definition"
 ```
 
 ## Interactive Visualization
@@ -121,4 +127,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-composition.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-composition.html){target="_blank"}

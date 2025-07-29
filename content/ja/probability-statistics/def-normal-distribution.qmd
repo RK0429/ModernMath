@@ -1,0 +1,168 @@
+---
+id: def-normal-distribution
+requires:
+- def-probability-distribution
+- def-random-variable
+- def-expectation
+- def-variance
+- ../analysis/def-integral
+- ../logic-set-theory/def-function
+status: complete
+title: 正規分布
+translation_of: ../../en/probability-statistics/def-normal-distribution.qmd
+translations:
+  en: ../en/probability-statistics/def-normal-distribution.html
+  ja: ../ja/probability-statistics/def-normal-distribution.html
+type: Definition
+---
+
+# 正規分布 {#def-normal-distribution}
+
+**正規分布**（**ガウス分布**とも呼ばれる）は、釣鐘型の確率密度関数によって特徴づけられる連続[確率分布](def-probability-distribution.qmd)です。確率論と統計学において最も重要な分布の一つです。
+
+## 形式的定義
+
+連続[確率変数](def-random-variable.qmd) $X$ がパラメータ $\mu \in \mathbb{R}$ と $\sigma^2 > 0$ を持つ**正規分布**に従う（$X \sim N(\mu, \sigma^2)$ と表記）とは、その確率密度[関数](../logic-set-theory/def-function.qmd)が次の式で与えられるときをいいます：
+
+$$f_X(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$
+
+ただし、$x \in \mathbb{R}$ です。
+
+## パラメータ
+
+正規分布は次の2つのパラメータによって完全に特徴づけられます：
+
+- **平均** $\mu$：分布の[期待値](def-expectation.qmd)で、中心の位置を決定します
+- **分散** $\sigma^2$：分布の[分散](def-variance.qmd)で、広がりを決定します
+- **標準偏差** $\sigma = \sqrt{\sigma^2}$：分散の平方根
+
+## 標準正規分布
+
+**標準正規分布**は $\mu = 0$ かつ $\sigma^2 = 1$ の特別な場合で、$Z \sim N(0,1)$ と表記されます。その確率密度関数は次のように簡略化されます：
+
+$$\phi(z) = \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{z^2}{2}\right)$$
+
+標準正規分布の累積分布関数は通常 $\Phi$ で表されます：
+
+$$\Phi(z) = \int_{-\infty}^z \phi(t) \, dt = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{t^2}{2}\right) dt$$
+
+## 性質
+
+### 基本的性質
+
+1. **対称性**：分布は平均 $\mu$ に関して対称です
+2. **最頻値**：PDFの最大値（最頻値）は $x = \mu$ で生じます
+3. **変曲点**：$x = \mu \pm \sigma$ に位置します
+4. **全確率**：$\int_{-\infty}^{\infty} f_X(x) \, dx = 1$
+
+### 統計的性質
+
+$X \sim N(\mu, \sigma^2)$ のとき：
+
+- **期待値**：$E[X] = \mu$
+- **分散**：$\text{Var}(X) = \sigma^2$
+- **モーメント母関数**：$M_X(t) = \exp(\mu t + \frac{\sigma^2 t^2}{2})$
+- **特性関数**：$\phi_X(t) = \exp(i\mu t - \frac{\sigma^2 t^2}{2})$
+
+### 68-95-99.7の法則
+
+正規分布では：
+- 約68%の値が $\mu \pm \sigma$ の範囲内にあります
+- 約95%の値が $\mu \pm 2\sigma$ の範囲内にあります
+- 約99.7%の値が $\mu \pm 3\sigma$ の範囲内にあります
+
+## 標準化
+
+任意の正規確率変数 $X \sim N(\mu, \sigma^2)$ は、標準正規変数に標準化できます：
+
+$$Z = \frac{X - \mu}{\sigma} \sim N(0,1)$$
+
+この変換は以下の場合に重要です：
+- 標準正規分布表を使用した確率の計算
+- 異なる正規分布からの値の比較
+
+## 線形変換
+
+$X \sim N(\mu, \sigma^2)$ かつ $Y = aX + b$ （ただし $a \neq 0$）のとき：
+
+$$Y \sim N(a\mu + b, a^2\sigma^2)$$
+
+## 独立な正規変数の和
+
+$X_1 \sim N(\mu_1, \sigma_1^2)$ と $X_2 \sim N(\mu_2, \sigma_2^2)$ が[独立](def-independence.qmd)のとき：
+
+$$X_1 + X_2 \sim N(\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2)$$
+
+より一般的に、独立な $X_i \sim N(\mu_i, \sigma_i^2)$ に対して：
+
+$$\sum_{i=1}^n X_i \sim N\left(\sum_{i=1}^n \mu_i, \sum_{i=1}^n \sigma_i^2\right)$$
+
+## 他の分布との関係
+
+### 中心極限定理
+
+[中心極限定理](thm-central-limit.qmd)は、独立な確率変数の正規化された和が正規分布に収束することを示し、自然界における正規分布の偏在性を説明します。
+
+### 関連する分布
+
+- **カイ二乗分布**：$Z \sim N(0,1)$ のとき、$Z^2 \sim \chi^2_1$
+- **対数正規分布**：$X \sim N(\mu, \sigma^2)$ のとき、$e^X$ は対数正規分布に従います
+- **多変量正規分布**：多次元への一般化
+
+## 応用
+
+正規分布は多くの場面で現れます：
+
+1. **自然現象**：身長、体重、測定誤差
+2. **統計的推論**：信頼区間、仮説検定
+3. **金融**：資産収益率（特定のモデルの下で）
+4. **工学**：信号処理、品質管理
+5. **物理学**：ブラウン運動、拡散過程
+
+## 関連項目
+
+- [中心極限定理](thm-central-limit.qmd) - 正規性への収束
+- [大数の法則](thm-law-of-large-numbers.qmd) - 平均の収束
+- [ベイズの定理](thm-bayes.qmd) - 正規事前分布の使用
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-normal-distribution["定義: 正規分布"]:::definition
+    def-expectation["定義: 期待値"]:::definition
+    def-probability-distribution["定義: 確率分布"]:::definition
+    thm-central-limit["定理: 中心極限定理"]:::theorem
+    def-variance["定義: 分散"]:::definition
+    def-random-variable["定義: 確率変数"]:::definition
+    def-normal-distribution --> def-random-variable
+    def-normal-distribution --> def-expectation
+    thm-central-limit --> def-normal-distribution
+    def-normal-distribution --> def-probability-distribution
+    def-normal-distribution --> def-variance
+    class def-normal-distribution current
+    click def-expectation "def-expectation.html" "期待値の定義へ"
+    click def-probability-distribution "def-probability-distribution.html" "確率分布の定義へ"
+    click thm-central-limit "thm-central-limit.html" "中心極限定理の定理へ"
+    click def-variance "def-variance.html" "分散の定義へ"
+    click def-random-variable "def-random-variable.html" "確率変数の定義へ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-normal-distribution" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/ja/def-normal-distribution.html){target="_blank"}で完全なインタラクティブ版を表示

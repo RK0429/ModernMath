@@ -2,8 +2,9 @@
 id: def-intersection
 requires:
 - def-set
+- def-cardinality
 status: complete
-title: '定義: 共通部分'
+title: 共通部分
 translation_of: ../../en/logic-set-theory/def-intersection.qmd
 translations:
   en: ../en/logic-set-theory/def-intersection.html
@@ -55,25 +56,29 @@ $$A \cap B = \emptyset$$
 - ド・モルガンの法則: $(A \cap B)^c = A^c \cup B^c$（[ド・モルガンの法則](thm-de-morgan.qmd)を参照）
 - 分配律: $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
 - [部分集合](def-subset.qmd)との関係: $A \cap B = A \iff A \subseteq B$
+- 包含排除: [濃度](def-cardinality.qmd)について $|A \cup B| = |A| + |B| - |A \cap B|$（[包含排除の原理](../combinatorics/thm-inclusion-exclusion.qmd)を参照）
 
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Definition: Set"]:::definition
-    def-intersection["Definition: Intersection"]:::definition
-    thm-de-morgan["Theorem: De Morgan's Laws"]:::theorem
-    def-intersection --> def-set
+    def-set["定義: 集合"]:::definition
+    thm-de-morgan["定理: ド・モルガンの法則"]:::theorem
+    def-intersection["定義: 共通部分"]:::definition
+    def-cardinality["定義: 濃度"]:::definition
+    def-intersection --> def-cardinality
     thm-de-morgan --> def-intersection
+    def-intersection --> def-set
     class def-intersection current
-    click def-set "def-set.html" "Definition: Setへ"
-    click thm-de-morgan "thm-de-morgan.html" "Theorem: De Morgan's Lawsへ"
+    click def-set "def-set.html" "集合の定義へ"
+    click thm-de-morgan "thm-de-morgan.html" "ド・モルガンの法則の定理へ"
+    click def-cardinality "def-cardinality.html" "濃度の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -87,4 +92,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-intersection.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-intersection.html){target="_blank"}で完全なインタラクティブ版を表示

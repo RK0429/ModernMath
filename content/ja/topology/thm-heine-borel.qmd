@@ -5,7 +5,7 @@ requires:
 - def-closed-set
 - def-metric-space
 status: complete
-title: '定理: ハイネ・ボレルの定理'
+title: ハイネ・ボレルの定理
 translation_of: ../../en/topology/thm-heine-borel.qmd
 translations:
   en: ../en/topology/thm-heine-borel.html
@@ -47,27 +47,27 @@ $K$ が $\mathbb{R}^n$ で閉かつ有界ならば、$K$ はコンパクトで�
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-metric-space["Definition: Metric Space"]:::definition
-    thm-heine-borel["Theorem: Heine-Borel Theorem"]:::theorem
-    def-closed-set["Definition: Closed Set"]:::definition
-    def-compact["Definition: Compact Space"]:::definition
-    ex-closed-interval-compact["Example: Closed Interval is Compact"]:::example
-    thm-heine-borel --> def-metric-space
-    ex-closed-interval-compact --> thm-heine-borel
+    def-compact["定義: コンパクト空間"]:::definition
+    def-metric-space["定義：距離空間"]:::definition
+    def-closed-set["定義: 閉集合"]:::definition
+    ex-closed-interval-compact["例: 閉区間はコンパクト"]:::example
+    thm-heine-borel["定理: ハイネ・ボレルの定理"]:::theorem
     thm-heine-borel --> def-closed-set
+    ex-closed-interval-compact --> thm-heine-borel
+    thm-heine-borel --> def-metric-space
     thm-heine-borel --> def-compact
     class thm-heine-borel current
-    click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
-    click def-closed-set "def-closed-set.html" "Definition: Closed Setへ"
-    click def-compact "def-compact.html" "Definition: Compact Spaceへ"
-    click ex-closed-interval-compact "ex-closed-interval-compact.html" "Example: Closed Interval is Compactへ"
+    click def-compact "def-compact.html" "コンパクト空間の定義へ"
+    click def-metric-space "def-metric-space.html" "定義：距離空間へ"
+    click def-closed-set "def-closed-set.html" "閉集合の定義へ"
+    click ex-closed-interval-compact "ex-closed-interval-compact.html" "閉区間はコンパクトの例へ"
 ```
 
 ## インタラクティブ可視化
@@ -81,4 +81,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/thm-heine-borel.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/thm-heine-borel.html){target="_blank"}で完全なインタラクティブ版を表示

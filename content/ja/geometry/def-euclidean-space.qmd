@@ -3,8 +3,10 @@ id: def-euclidean-space
 requires:
 - def-vector-space
 - def-metric-space
+- def-normed-vector-space
+- ../analysis/def-hilbert-space
 status: complete
-title: '定義: ユークリッド空間'
+title: ユークリッド空間
 translation_of: ../../en/geometry/def-euclidean-space.qmd
 translations:
   en: ../en/geometry/def-euclidean-space.html
@@ -12,9 +14,9 @@ translations:
 type: Definition
 ---
 
-# 定義: ユークリッド空間 {#def-euclidean-space}
+# ユークリッド空間 {#def-euclidean-space}
 
-**$n$次元ユークリッド空間** $\mathbb{E}^n$ は、標準内積とそれから誘導される[計量](def-metric-space.qmd)を備えた[ベクトル空間](../algebra/def-vector-space.qmd) $\mathbb{R}^n$ です。
+**$n$次元ユークリッド空間** $\mathbb{E}^n$ は、標準内積とそれから誘導される[計量](def-metric-space.qmd)を備えた[ベクトル空間](../algebra/def-vector-space.qmd) $\mathbb{R}^n$ です。これにより有限次元[ヒルベルト空間](../analysis/def-hilbert-space.qmd)となります。
 
 ## 形式的定義
 
@@ -25,7 +27,7 @@ $n$次元ユークリッド空間は以下で構成されます：
 2. **標準内積**: $\mathbf{x} = (x_1, \ldots, x_n)$ と $\mathbf{y} = (y_1, \ldots, y_n)$ に対して、
    $$\langle \mathbf{x}, \mathbf{y} \rangle = \sum_{i=1}^n x_i y_i$$
 
-3. **ユークリッドノルム**:
+3. **ユークリッドノルム**（[ノルム空間](../analysis/def-normed-vector-space.qmd)参照）:
    $$\|\mathbf{x}\| = \sqrt{\langle \mathbf{x}, \mathbf{x} \rangle} = \sqrt{\sum_{i=1}^n x_i^2}$$
 
 4. **ユークリッド計量**:
@@ -33,8 +35,8 @@ $n$次元ユークリッド空間は以下で構成されます：
 
 ## 性質
 
-- **完備距離空間**: すべてのコーシー列が収束する
-- **有限次元**: ベクトル空間として次元 $n$ を持つ
+- **完備距離空間**: すべての[コーシー列](../analysis/def-cauchy-sequence.qmd)が収束する
+- **有限次元[ヒルベルト空間](../analysis/def-hilbert-space.qmd)**: ベクトル空間として次元 $n$ を持つ
 - **局所コンパクト**: すべての点がコンパクトな近傍を持つ
 - **単連結**: $n \geq 2$ の場合
 - **等質**: どの点でも同じに見える（ユークリッド群が推移的に[作用](../algebra/def-group-action.qmd)する）
@@ -66,24 +68,27 @@ graph TD
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-metric-space["Definition: Metric Space"]:::definition
-    thm-pythagorean["Theorem: Pythagorean Theorem"]:::theorem
-    def-vector-space["Definition: Vector Space"]:::definition
-    def-euclidean-space["Definition: Euclidean Space"]:::definition
+    thm-pythagorean["定理: ピタゴラスの定理"]:::theorem
+    def-metric-space["定義：距離空間"]:::definition
+    def-normed-vector-space["定義：ノルム空間"]:::definition
+    def-vector-space["定義: ベクトル空間"]:::definition
+    def-euclidean-space["定義: ユークリッド空間"]:::definition
+    thm-pythagorean --> def-euclidean-space
     def-euclidean-space --> def-vector-space
     def-euclidean-space --> def-metric-space
-    thm-pythagorean --> def-euclidean-space
+    def-euclidean-space --> def-normed-vector-space
     class def-euclidean-space current
-    click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
-    click thm-pythagorean "thm-pythagorean.html" "Theorem: Pythagorean Theoremへ"
-    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
+    click thm-pythagorean "thm-pythagorean.html" "ピタゴラスの定理の定理へ"
+    click def-metric-space "def-metric-space.html" "定義：距離空間へ"
+    click def-normed-vector-space "def-normed-vector-space.html" "定義：ノルム空間へ"
+    click def-vector-space "def-vector-space.html" "ベクトル空間の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -97,4 +102,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-euclidean-space.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-euclidean-space.html){target="_blank"}で完全なインタラクティブ版を表示

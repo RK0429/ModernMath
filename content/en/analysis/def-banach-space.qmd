@@ -1,0 +1,148 @@
+---
+id: def-banach-space
+requires:
+- def-normed-vector-space
+- def-complete-metric-space
+- ../logic-set-theory/def-cardinality
+status: complete
+title: Banach Space
+type: Definition
+---
+
+# Banach Space {#def-banach-space}
+
+A **Banach space** is a [Normed Vector Space](def-normed-vector-space.qmd) that is complete with respect to the metric induced by its norm. This fundamental concept in functional analysis combines the algebraic structure of a vector space with the metric property of completeness.
+
+## Formal Definition
+
+A Banach space is a pair $(B, \|\cdot\|)$ where:
+- $B$ is a [Normed Vector Space](def-normed-vector-space.qmd) over a field $\mathbb{F}$ (typically $\mathbb{R}$ or $\mathbb{C}$)
+- $B$ is [Complete](def-complete-metric-space.qmd) with respect to the metric $d(x,y) = \|x - y\|$
+
+More explicitly, $(B, \|\cdot\|)$ is a Banach space if and only if:
+1. $(B, \|\cdot\|)$ is a normed vector space
+2. Every [Cauchy Sequence](def-cauchy-sequence.qmd) in $B$ converges to a limit in $B$
+
+## Notation
+
+- Standard notation: $(B, \|\cdot\|)$ or simply $B$ when the norm is understood
+- The norm is often denoted with subscripts: $\|\cdot\|_B$, $\|\cdot\|_p$, $\|\cdot\|_\infty$
+- For dual spaces: $B^*$ or $B'$
+
+## Intuitive Understanding
+
+A Banach space is a "complete playground" for analysis. Just as the real numbers are complete (no "holes" in the number line), a Banach space has no "missing points" - every sequence that should converge to something actually converges to a point within the space. This completeness property is crucial for:
+- Ensuring that infinite processes (like solving differential equations) have solutions
+- Guaranteeing that approximation methods converge
+- Providing a robust framework for functional analysis
+
+## Key Properties
+
+### Fundamental Properties
+
+- **Closed subspaces**: A closed subspace of a Banach space is itself a Banach space
+- **Product spaces**: The product of finitely many Banach spaces is a Banach space
+- **Dual space**: The dual space $B^*$ of continuous linear functionals is always a Banach space
+
+### Convergence Properties
+
+For a sequence $(x_n)$ in a Banach space $B$:
+- **Absolute convergence implies convergence**: If $\sum_{n=1}^\infty \|x_n\| < \infty$, then $\sum_{n=1}^\infty x_n$ converges in $B$
+- **Completeness criterion**: $B$ is complete if and only if every absolutely convergent series converges
+
+## Examples
+
+### Classical Banach Spaces
+
+1. **Euclidean spaces**: $\mathbb{R}^n$ and $\mathbb{C}^n$ with any norm
+
+2. **Sequence spaces**:
+   - $\ell^p = \{(x_n) : \sum_{n=1}^\infty |x_n|^p < \infty\}$ with $\|(x_n)\|_p = \left(\sum_{n=1}^\infty |x_n|^p\right)^{1/p}$ for $1 \leq p < \infty$
+   - $\ell^\infty = \{(x_n) : \sup_n |x_n| < \infty\}$ with $\|(x_n)\|_\infty = \sup_n |x_n|$
+   - $c_0 = \{(x_n) : \lim_{n \to \infty} x_n = 0\}$ with the supremum norm
+
+3. **Function spaces**:
+   - $C[a,b]$: Continuous functions on $[a,b]$ with $\|f\|_\infty = \sup_{x \in [a,b]} |f(x)|$
+   - $C^k[a,b]$: $k$-times continuously differentiable functions with appropriate norms
+   - $L^p(\mu)$: Measurable functions with $\|f\|_p = \left(\int |f|^p \, d\mu\right)^{1/p} < \infty$ for $1 \leq p < \infty$
+
+### Non-Examples (Incomplete Normed Spaces)
+
+1. The space of polynomials on $[0,1]$ with the supremum norm
+2. $C[0,1]$ with the $L^1$ norm $\|f\|_1 = \int_0^1 |f(x)| \, dx$
+3. The space of sequences with finitely many non-zero terms with any $\ell^p$ norm
+
+## Special Types
+
+### Important Classes of Banach Spaces
+
+- **[Hilbert spaces](def-hilbert-space.qmd)**: Banach spaces where the norm comes from an inner product
+- **Reflexive spaces**: Banach spaces naturally isomorphic to their double dual
+- **Separable spaces**: Banach spaces containing a [countable](../logic-set-theory/def-cardinality.qmd) dense subset
+- **Uniformly convex spaces**: Spaces with strong geometric properties
+
+## Fundamental Theorems
+
+Several cornerstone theorems of functional analysis require the completeness of Banach spaces:
+
+1. **Banach Fixed-Point Theorem**: Contraction mappings on Banach spaces have unique fixed points
+2. **Open Mapping Theorem**: Surjective bounded linear operators between Banach spaces are open maps
+3. **Closed Graph Theorem**: A linear operator between Banach spaces is bounded if its graph is closed
+4. **Uniform Boundedness Principle**: Pointwise bounded families of operators are uniformly bounded
+
+## Applications
+
+1. **Differential Equations**: Solutions exist in appropriate Banach spaces (Picard-Lindelöf theorem)
+2. **Optimization**: Many optimization problems are formulated in Banach spaces
+3. **Approximation Theory**: Best approximation problems in Banach spaces
+4. **Numerical Analysis**: Convergence analysis of iterative methods
+5. **Quantum Mechanics**: States and observables live in Hilbert spaces (special Banach spaces)
+
+## Historical Note
+
+Banach spaces are named after the Polish mathematician Stefan Banach (1892-1945), who together with his colleagues in the Lwów School of Mathematics, developed the theory systematically in the 1920s and 1930s. His 1932 book "Théorie des opérations linéaires" laid the foundation for modern functional analysis.
+
+## Related Concepts
+
+- [Normed Vector Space](def-normed-vector-space.qmd): The underlying structure before completeness
+- [Complete Metric Space](def-complete-metric-space.qmd): The metric completeness property
+- [Cauchy Sequence](def-cauchy-sequence.qmd): The sequences that must converge in a Banach space
+- [Linear Transformation](../algebra/def-linear-transformation.qmd): Structure-preserving maps between Banach spaces
+- [Hilbert Space](def-hilbert-space.qmd): A Banach space with additional inner product structure
+- **Fréchet Space**: A complete metrizable topological vector space
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-normed-vector-space["Definition: Normed Vector Space"]:::definition
+    def-banach-space["Definition: Banach Space"]:::definition
+    def-hilbert-space["Definition: Hilbert Space"]:::definition
+    def-complete-metric-space["Definition: Complete Metric Space"]:::definition
+    def-hilbert-space --> def-banach-space
+    def-banach-space --> def-normed-vector-space
+    def-banach-space --> def-complete-metric-space
+    class def-banach-space current
+    click def-normed-vector-space "def-normed-vector-space.html" "Go to Normed Vector Space definition"
+    click def-hilbert-space "def-hilbert-space.html" "Go to Hilbert Space definition"
+    click def-complete-metric-space "def-complete-metric-space.html" "Go to Complete Metric Space definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-banach-space" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/en/def-banach-space.html){target="_blank"}

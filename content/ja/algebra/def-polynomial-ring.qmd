@@ -5,7 +5,7 @@ requires:
 - def-field
 - def-binary-operation
 status: complete
-title: '定義: 多項式環'
+title: 多項式環
 translation_of: ../../en/algebra/def-polynomial-ring.qmd
 translations:
   en: ../en/algebra/def-polynomial-ring.html
@@ -43,13 +43,13 @@ $$c_k = \sum_{i+j=k} a_ib_j$$
 
 1. $R$ が単位元 $1_R$ を持つなら、$R[x]$ も単位元（定数多項式 $1_R$）を持つ
 2. $R$ が可換なら、$R[x]$ も可換
-3. $R$ が整域なら、$R[x]$ も整域
+3. $R$ が[整域](def-integral-domain.qmd)なら、$R[x]$ も[整域](def-integral-domain.qmd)
 
 ### 次数の性質
 
 非零多項式 $f, g \in R[x]$ に対して：
 - $\deg(f + g) \leq \max(\deg(f), \deg(g))$
-- $R$ が整域の場合：$\deg(fg) = \deg(f) + \deg(g)$
+- $R$ が[整域](def-integral-domain.qmd)の場合：$\deg(fg) = \deg(f) + \deg(g)$
 
 ### 除法アルゴリズム
 
@@ -66,17 +66,17 @@ $$R[x_1, \ldots, x_n] = (R[x_1, \ldots, x_{n-1}])[x_n]$$
 
 ### 一意分解性
 
-$R$ が一意分解整域（UFD）なら、$R[x]$ も UFD である。特に：
+$R$ が一意分解[整域](def-integral-domain.qmd)（UFD）なら、$R[x]$ も UFD である。特に：
 - $F$ が体なら、$F[x]$ は UFD
 - $F[x]$ 内のすべての非零多項式は既約多項式に一意的に分解される
 
 ### 根の定理
 
-体 $F$ と $f \in F[x]$ に対して：$c \in F$ が $f$ の根である必要十分条件は $(x - c)$ が $f(x)$ を割り切ることである。
+体 $F$ と $f \in F[x]$ に対して：$c \in F$ が $f$ の根である必要十分条件は $(x - c)$ が $f(x)$ を[割り切る](../number-theory/def-divisibility.qmd)ことである。
 
 ## 例
 
-- $\mathbb{Z}[x]$ - 整数係数の多項式
+- $\mathbb{Z}[x]$ - 整数係数の多項式（$\mathbb{Q}[x]$ の[部分環](def-subring.qmd)をなす）
 - $\mathbb{R}[x]$ - 実数係数の多項式
 - $\mathbb{C}[x, y]$ - 複素数上の2変数多項式
 - $\mathbb{Z}_p[x]$ - $p$ 個の元を持つ有限体上の多項式
@@ -92,33 +92,43 @@ $R$ が一意分解整域（UFD）なら、$R[x]$ も UFD である。特に：
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
-    def-field["Definition: Field"]:::definition
-    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
-    def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
-    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-eigenvalue-eigenvector --> def-polynomial-ring
-    def-polynomial-ring --> def-ring
-    ex-polynomial-continuity --> def-polynomial-ring
+    ex-polynomial-continuity["例：多項式の連続性"]:::example
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-eigenvalue-eigenvector["定義: 固有値と固有ベクトル"]:::definition
+    def-integral-domain["定義：整域"]:::definition
+    def-subring["定義: 部分環"]:::definition
+    ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
+    def-polynomial-ring["定義: 多項式環"]:::definition
+    def-ring["定義：環"]:::definition
+    thm-intermediate-value["定理: 中間値の定理"]:::theorem
+    def-field["定義: 体"]:::definition
+    def-polynomial-ring --> def-integral-domain
     thm-intermediate-value --> def-polynomial-ring
     def-polynomial-ring --> def-binary-operation
+    def-eigenvalue-eigenvector --> def-polynomial-ring
+    def-integral-domain --> def-polynomial-ring
+    ex-quotient-integers-mod-n --> def-polynomial-ring
+    def-subring --> def-polynomial-ring
+    def-polynomial-ring --> def-ring
+    ex-polynomial-continuity --> def-polynomial-ring
     def-polynomial-ring --> def-field
     class def-polynomial-ring current
-    click ex-polynomial-continuity "ex-polynomial-continuity.html" "Example: Polynomial Continuityへ"
-    click def-field "def-field.html" "Definition: Fieldへ"
-    click thm-intermediate-value "thm-intermediate-value.html" "Theorem: Intermediate Value Theoremへ"
-    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Definition: Eigenvalue and Eigenvectorへ"
-    click def-ring "def-ring.html" "Definition: Ringへ"
-    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
+    click ex-polynomial-continuity "ex-polynomial-continuity.html" "例：多項式の連続性へ"
+    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
+    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "固有値と固有ベクトルの定義へ"
+    click def-integral-domain "def-integral-domain.html" "定義：整域へ"
+    click def-subring "def-subring.html" "部分環の定義へ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余の例へ"
+    click def-ring "def-ring.html" "定義：環へ"
+    click thm-intermediate-value "thm-intermediate-value.html" "中間値の定理の定理へ"
+    click def-field "def-field.html" "体の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -132,4 +142,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-polynomial-ring.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-polynomial-ring.html){target="_blank"}で完全なインタラクティブ版を表示

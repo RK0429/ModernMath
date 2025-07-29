@@ -4,6 +4,9 @@ requires:
 - def-group-action
 - def-group
 - def-cyclic-group
+- def-order
+- def-automorphism
+- def-center-of-group
 sidebar: true
 status: verified
 title: Examples of Group Actions
@@ -36,10 +39,12 @@ This action is:
 A group $G$ acts on itself by conjugation:
 $$g \cdot h = ghg^{-1} \text{ for } g, h \in G$$
 
+This action defines inner [automorphisms](def-automorphism.qmd) of $G$.
+
 Properties:
 - The orbit of $h$ is its conjugacy class: $\{ghg^{-1} : g \in G\}$
 - The stabilizer of $h$ is its centralizer: $C_G(h) = \{g \in G : gh = hg\}$
-- Fixed points are exactly the elements of the center $Z(G)$
+- Fixed points are exactly the elements of the [center](def-center-of-group.qmd) $Z(G)$
 
 ## Symmetric Group on a Set
 
@@ -57,7 +62,7 @@ The dihedral group $D_n$ acts on the vertices of a regular $n$-gon:
 - Reflections flip vertices across axes of symmetry
 
 For a square ($n = 4$):
-- The stabilizer of any vertex has order 2 (identity and one reflection)
+- The stabilizer of any vertex has [order](def-order.qmd) 2 (identity and one reflection)
 - Each orbit is the entire set of vertices (transitive action)
 - By the orbit-stabilizer theorem: $|D_4| = |orbit| \times |stabilizer| = 4 \times 2 = 8$
 
@@ -78,17 +83,26 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group-action["Group Action"]:::definition
     def-cyclic-group["Definition: Cyclic Group"]:::definition
+    def-order["Definition: Order"]:::definition
     ex-group-action-examples["Examples of Group Actions"]:::example
+    def-automorphism["Definition: Automorphism"]:::definition
     def-group["Definition: Group"]:::definition
+    def-center-of-group["Definition: Center of a Group"]:::definition
+    def-group-action["Group Action"]:::definition
+    ex-group-action-examples --> def-center-of-group
+    ex-group-action-examples --> def-order
+    ex-group-action-examples --> def-group
     ex-group-action-examples --> def-cyclic-group
     ex-group-action-examples --> def-group-action
-    ex-group-action-examples --> def-group
+    ex-group-action-examples --> def-automorphism
     class ex-group-action-examples current
-    click def-group-action "def-group-action.html" "Go to Group Action"
     click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
+    click def-order "def-order.html" "Go to Order definition"
+    click def-automorphism "def-automorphism.html" "Go to Automorphism definition"
     click def-group "def-group.html" "Go to Group definition"
+    click def-center-of-group "def-center-of-group.html" "Go to Center of a Group definition"
+    click def-group-action "def-group-action.html" "Go to Group Action"
 ```
 
 ## Interactive Visualization
@@ -102,4 +116,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/ex-group-action-examples.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/ex-group-action-examples.html){target="_blank"}

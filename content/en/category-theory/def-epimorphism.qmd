@@ -1,0 +1,138 @@
+---
+id: def-epimorphism
+requires:
+- def-morphism
+- def-category
+- def-composition
+status: complete
+title: Epimorphism
+translations:
+  en: ../en/category-theory/def-epimorphism.html
+  ja: ../ja/category-theory/def-epimorphism.html
+type: Definition
+---
+
+# Epimorphism {#def-epimorphism}
+
+An **epimorphism** (also called an epic morphism or simply epi) is a [morphism](def-morphism.qmd) in a [category](def-category.qmd) that satisfies the right-cancellation property.
+
+## Formal Definition
+
+In a [category](def-category.qmd) $\mathcal{C}$, a morphism $f: A \to B$ is an **epimorphism** if for any object $C$ and any pair of morphisms $g, h: B \to C$, the following implication holds:
+
+$$g \circ f = h \circ f \implies g = h$$
+
+In other words, $f$ is right-cancellative: it can be "cancelled" from the right side of an equation.
+
+## Characterization
+
+A morphism $f: A \to B$ is an epimorphism if and only if for every object $C$, the induced function
+$$f^*: \text{Hom}(B, C) \to \text{Hom}(A, C)$$
+defined by $f^*(g) = g \circ f$ is injective.
+
+## Examples
+
+### In Familiar Categories
+
+1. **Set**: In the category of sets, epimorphisms are exactly the surjective functions
+2. **Grp**: In the category of groups, epimorphisms are the surjective group homomorphisms
+3. **Top**: In the category of topological spaces, epimorphisms are the continuous maps with dense image
+4. **Vect**: In the category of vector spaces over a field, epimorphisms are the surjective linear transformations
+5. **Ab**: In the category of abelian groups, epimorphisms are the surjective group homomorphisms
+
+### Non-surjective Epimorphisms
+
+Not all epimorphisms are surjective in the usual sense:
+
+- **Ring**: In the category of rings, the inclusion $\mathbb{Z} \hookrightarrow \mathbb{Q}$ is an epimorphism (as a [ring homomorphism](../algebra/def-ring-homomorphism.qmd)) but not surjective
+- **Haus**: In the category of Hausdorff spaces, the inclusion $\mathbb{Q} \hookrightarrow \mathbb{R}$ is an epimorphism (dense image) but not surjective
+- **Mon**: In the category of [monoids](../algebra/def-monoid.qmd), there exist non-surjective epimorphisms
+
+## Properties
+
+### Basic Properties
+
+1. **Composition**: The [composition](def-composition.qmd) of two epimorphisms is an epimorphism
+2. **Identity**: Every identity morphism is an epimorphism
+3. **Decomposition**: If $g \circ f$ is an epimorphism, then $g$ is an epimorphism
+
+### Relationship to Other Concepts
+
+1. **Retractions**: Every retraction (right inverse) is an epimorphism
+2. **Isomorphisms**: Every [isomorphism](def-isomorphism.qmd) is both a [monomorphism](def-monomorphism.qmd) and an epimorphism
+3. **Coequalizers**: Every coequalizer is an epimorphism
+
+## Types of Epimorphisms
+
+In categories with additional structure, we can define special types of epimorphisms:
+
+1. **Regular epimorphism**: A coequalizer of some pair of parallel morphisms
+2. **Strong epimorphism**: An epimorphism that has the right lifting property with respect to monomorphisms
+3. **Extremal epimorphism**: An epimorphism that doesn't factor through any proper monomorphism
+4. **Split epimorphism**: An epimorphism that has a right inverse (i.e., a retraction)
+
+## Categorical Importance
+
+Epimorphisms are fundamental in category theory because:
+
+1. They generalize the notion of "surjective" to arbitrary categories
+2. They are preserved by many categorical constructions (e.g., pushouts)
+3. They appear naturally in the study of quotient objects
+4. They form one half of the factorization systems in many categories
+
+## Dual Concept
+
+The categorical dual of an epimorphism is a **[monomorphism](def-monomorphism.qmd)**. That is, an epimorphism in a category $\mathcal{C}$ is a monomorphism in the opposite category $\mathcal{C}^{\text{op}}$.
+
+## See Also
+
+- @def-monomorphism
+- @def-isomorphism
+- @def-morphism
+- @def-functor
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-morphism["Definition: Morphism"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    def-epimorphism["Definition: Epimorphism"]:::definition
+    def-composition["Definition: Composition"]:::definition
+    def-category["Definition: Category"]:::definition
+    def-functor["Definition: Functor"]:::definition
+    def-monomorphism["Definition: Monomorphism"]:::definition
+    def-epimorphism --> def-monomorphism
+    def-epimorphism --> def-isomorphism
+    def-epimorphism --> def-composition
+    def-epimorphism --> def-category
+    def-epimorphism --> def-morphism
+    def-epimorphism --> def-functor
+    def-monomorphism --> def-epimorphism
+    class def-epimorphism current
+    click def-morphism "def-morphism.html" "Go to Morphism definition"
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
+    click def-composition "def-composition.html" "Go to Composition definition"
+    click def-category "def-category.html" "Go to Category definition"
+    click def-functor "def-functor.html" "Go to Functor definition"
+    click def-monomorphism "def-monomorphism.html" "Go to Monomorphism definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-epimorphism" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/en/def-epimorphism.html){target="_blank"}

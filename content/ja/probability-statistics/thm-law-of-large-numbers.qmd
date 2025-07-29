@@ -5,8 +5,9 @@ requires:
 - def-expectation
 - def-variance
 - def-independence
+- def-probability-distribution
 status: complete
-title: '定理: 大数の法則'
+title: 大数の法則
 translation_of: ../../en/probability-statistics/thm-law-of-large-numbers.qmd
 translations:
   en: ../en/probability-statistics/thm-law-of-large-numbers.html
@@ -14,13 +15,13 @@ translations:
 type: Theorem
 ---
 
-# 定理: 大数の法則 {#thm-law-of-large-numbers}
+# 大数の法則 {#thm-law-of-large-numbers}
 
-**大数の法則**は、[独立](def-independence.qmd)同一分布に従う[確率変数](def-random-variable.qmd)の標本平均が、標本数が増加するにつれてそれらの[期待値](def-expectation.qmd)に収束することを述べています。
+**大数の法則**は、[独立](def-independence.qmd)同一[分布](def-probability-distribution.qmd)に従う[確率変数](def-random-variable.qmd)の標本平均が、標本数が増加するにつれてそれらの[期待値](def-expectation.qmd)に収束することを述べています。
 
 ## 大数の弱法則
 
-$X_1, X_2, \ldots$ を有限の期待値 $\mu = E[X_i]$ と有限の[分散](def-variance.qmd) $\sigma^2 = \text{Var}(X_i)$ を持つ[独立](def-independence.qmd)同一分布の確率変数とします。
+$X_1, X_2, \ldots$ を有限の期待値 $\mu = E[X_i]$ と有限の[分散](def-variance.qmd) $\sigma^2 = \text{Var}(X_i)$ を持つ[独立](def-independence.qmd)同一[分布](def-probability-distribution.qmd)の確率変数とします。
 
 標本平均を以下のように定義します：
 $$\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i$$
@@ -57,11 +58,11 @@ $$P(|\bar{X}_n - \mu| > \epsilon) \leq \frac{\sigma^2}{n\epsilon^2} \to 0 \text{
 
 ## 例
 
-公正なコイン投げ（ベルヌーイ(1/2)）では、投げる回数が増加するにつれて、表の割合は1/2に収束します。
+公正なコイン投げ（ベルヌーイ(1/2)、$n=1$ の[二項分布](def-binomial-distribution.qmd)を参照）では、投げる回数が増加するにつれて、表の割合は1/2に収束します。
 
 ## 関連概念
 
-- [中心極限定理](thm-central-limit.qmd)：標本平均の分布を記述し、単なる収束だけでなくその分布を示す
+- [中心極限定理](thm-central-limit.qmd)：標本平均の[分布](def-probability-distribution.qmd)を記述し、単なる収束だけでなくその[分布](def-probability-distribution.qmd)を示す
 - 集中不等式：収束率の限界を与える
 
 ## Mermaidダイアグラム
@@ -87,27 +88,30 @@ graph TD
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-expectation["Definition: Expected Value"]:::definition
-    def-random-variable["Definition: Random Variable"]:::definition
-    def-independence["Definition: Independence"]:::definition
-    def-variance["Definition: Variance"]:::definition
-    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
+    def-independence["定義: 独立性"]:::definition
+    def-expectation["定義: 期待値"]:::definition
+    def-probability-distribution["定義: 確率分布"]:::definition
+    def-variance["定義: 分散"]:::definition
+    thm-law-of-large-numbers["定理: 大数の法則"]:::theorem
+    def-random-variable["定義: 確率変数"]:::definition
+    thm-law-of-large-numbers --> def-probability-distribution
     thm-law-of-large-numbers --> def-variance
-    thm-law-of-large-numbers --> def-expectation
     thm-law-of-large-numbers --> def-independence
+    thm-law-of-large-numbers --> def-expectation
     thm-law-of-large-numbers --> def-random-variable
     class thm-law-of-large-numbers current
-    click def-expectation "def-expectation.html" "Definition: Expected Valueへ"
-    click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
-    click def-independence "def-independence.html" "Definition: Independenceへ"
-    click def-variance "def-variance.html" "Definition: Varianceへ"
+    click def-independence "def-independence.html" "独立性の定義へ"
+    click def-expectation "def-expectation.html" "期待値の定義へ"
+    click def-probability-distribution "def-probability-distribution.html" "確率分布の定義へ"
+    click def-variance "def-variance.html" "分散の定義へ"
+    click def-random-variable "def-random-variable.html" "確率変数の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -121,4 +125,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/thm-law-of-large-numbers.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/thm-law-of-large-numbers.html){target="_blank"}で完全なインタラクティブ版を表示

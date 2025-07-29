@@ -5,14 +5,14 @@ requires:
 - def-morphism
 - def-set
 status: complete
-title: 'Example: The Category of Sets'
+title: The Category of Sets
 translations:
   en: ../en/category-theory/ex-set-category.html
   ja: ../ja/category-theory/ex-set-category.html
 type: Example
 ---
 
-# Example: The Category of Sets
+# The Category of Sets
 
 The category **Set** is one of the most fundamental examples in [Category](def-category.qmd) theory, with sets as objects and functions as morphisms.
 
@@ -47,9 +47,9 @@ For each set $A$, the identity function $\text{id}_A: A \to A$ defined by $\text
 1. **Size**: Set is a **large category** - its collection of objects forms a proper class, not a set
 
 2. **Special Morphisms**:
-   - Monomorphisms in Set are exactly the injective functions
-   - Epimorphisms in Set are exactly the surjective functions
-   - Isomorphisms in Set are exactly the bijective functions
+   - [Monomorphisms](def-monomorphism.qmd) in Set are exactly the injective functions
+   - [Epimorphisms](def-epimorphism.qmd) in Set are exactly the surjective functions
+   - [Isomorphisms](def-isomorphism.qmd) in Set are exactly the bijective functions
 
 3. **Initial and Terminal Objects**:
    - The empty set $\emptyset$ is the initial object (unique function from $\emptyset$ to any set)
@@ -59,10 +59,6 @@ For each set $A$, the identity function $\text{id}_A: A \to A$ defined by $\text
 
 - **FinSet**: The category of finite sets
 - **Set*** The category of pointed sets (sets with a distinguished element)
-
-```{mermaid}
-```
-
 ## Dependency Graph
 
 ```{mermaid}
@@ -73,17 +69,17 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-category["Definition: Category"]:::definition
-    def-set["Definition: Set"]:::definition
     ex-set-category["Example: The Category of Sets"]:::example
     def-morphism["Definition: Morphism"]:::definition
-    ex-set-category --> def-set
+    def-set["Definition: Set"]:::definition
+    def-category["Definition: Category"]:::definition
     ex-set-category --> def-category
+    ex-set-category --> def-set
     ex-set-category --> def-morphism
     class ex-set-category current
-    click def-category "def-category.html" "Go to Category definition"
-    click def-set "def-set.html" "Go to Set definition"
     click def-morphism "def-morphism.html" "Go to Morphism definition"
+    click def-set "def-set.html" "Go to Set definition"
+    click def-category "def-category.html" "Go to Category definition"
 ```
 
 ## Interactive Visualization
@@ -97,4 +93,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/ex-set-category.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/ex-set-category.html){target="_blank"}

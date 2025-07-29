@@ -4,14 +4,14 @@ requires:
 - def-linear-transformation
 - def-vector-space
 status: complete
-title: 'Definition: Image'
+title: Image
 translations:
   en: ../en/algebra/def-image.html
   ja: ../ja/algebra/def-image.html
 type: Definition
 ---
 
-# Definition: Image {#def-image}
+# Image {#def-image}
 
 Let $T: V \to W$ be a [Linear Transformation](def-linear-transformation.qmd) between [s](def-vector-space.qmd). The **image** (or **range**) of $T$ is the set of all vectors in $W$ that are outputs of $T$:
 
@@ -30,7 +30,7 @@ The image is also known as:
    - Closed under addition: if $\mathbf{w}_1 = T(\mathbf{v}_1)$ and $\mathbf{w}_2 = T(\mathbf{v}_2)$, then $\mathbf{w}_1 + \mathbf{w}_2 = T(\mathbf{v}_1) + T(\mathbf{v}_2) = T(\mathbf{v}_1 + \mathbf{v}_2) \in \text{im}(T)$
    - Closed under scalar multiplication: if $\mathbf{w} = T(\mathbf{v})$ and $a \in F$, then $a\mathbf{w} = aT(\mathbf{v}) = T(a\mathbf{v}) \in \text{im}(T)$
 
-2. **Surjectivity criterion**: $T$ is surjective (onto) if and only if $\text{im}(T) = W$
+2. **Surjectivity criterion**: $T$ is surjective (onto) if and only if $\text{im}(T) = W$ (see [epimorphism](../category-theory/def-epimorphism.qmd) for categorical perspective)
 
 3. **Dimension**: The dimension of $\text{im}(T)$ is called the **rank** of $T$
 
@@ -56,20 +56,23 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
     thm-rank-nullity["Theorem: Rank-Nullity Theorem"]:::theorem
-    def-image["Definition: Image"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
+    def-exact-sequence["Definition: Exact Sequence"]:::definition
     def-linear-transformation["Definition: Linear Transformation"]:::definition
-    def-image --> def-vector-space
+    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-image["Definition: Image"]:::definition
     def-image --> def-linear-transformation
-    thm-rank-nullity --> def-image
     thm-first-isomorphism --> def-image
+    def-image --> def-vector-space
+    def-exact-sequence --> def-image
+    thm-rank-nullity --> def-image
     class def-image current
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem theorem"
     click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem theorem"
-    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
+    click def-exact-sequence "def-exact-sequence.html" "Go to Exact Sequence definition"
     click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation definition"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem theorem"
+    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
 ```
 
 ## Interactive Visualization
@@ -83,4 +86,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-image.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-image.html){target="_blank"}

@@ -1,0 +1,151 @@
+---
+id: def-free-group
+requires:
+- def-group
+- def-set
+- def-function
+- def-homomorphism
+- def-identity-element
+- def-inverse-element
+- def-binary-operation
+status: complete
+title: 自由群
+translation_of: ../../en/algebra/def-free-group.qmd
+translations:
+  en: ../../en/algebra/def-free-group.html
+  ja: def-free-group.html
+type: Definition
+---
+
+# 自由群 {#def-free-group}
+
+[@集合](../logic-set-theory/def-set.qmd) $S$ 上の**自由群**とは、[@群](def-group.qmd) $F(S)$ と[@関数](../logic-set-theory/def-function.qmd) $i: S \to F(S)$ の組であって、次の普遍性を満たすものである：
+
+## 形式的定義
+
+任意の[@群](def-group.qmd) $G$ と任意の関数 $f: S \to G$ に対して、$\phi \circ i = f$ を満たす[@群準同型](def-homomorphism.qmd) $\phi: F(S) \to G$ が一意に存在する。
+
+すなわち、次の図式が可換である：
+
+$$
+\begin{array}{ccc}
+S & \xrightarrow{i} & F(S) \\
+& \searrow^{f} & \downarrow^{\exists! \phi} \\
+& & G
+\end{array}
+$$
+
+## 具体的構成
+
+自由群 $F(S)$ は次のように明示的に構成できる：
+
+1. **アルファベット**：集合 $S \cup S^{-1}$ を考える。ここで $S^{-1} = \{s^{-1} : s \in S\}$ は $S$ の互いに素なコピー（形式的逆元）である。
+
+2. **語**：語とは有限列 $(x_1, x_2, \ldots, x_n)$ であり、各 $x_i \in S \cup S^{-1}$ である。
+
+3. **簡約語**：語が簡約されているとは、任意の $s \in S$ に対して $ss^{-1}$ または $s^{-1}s$ の形の隣接対を含まないことをいう。
+
+4. **群演算**：二つの簡約語の積は、連結の後に簡約（隣接する逆元対の除去）を行うことで得られる。
+
+5. [@単位元](def-identity-element.qmd)は空語であり、語 $(x_1, x_2, \ldots, x_n)$ の[@逆元](def-inverse-element.qmd)は $(x_n^{-1}, \ldots, x_2^{-1}, x_1^{-1})$ である。
+
+## 記法
+
+- 標準的記法：集合 $S$ 上の自由群を $F(S)$ または $F_S$ と表す
+- $n$ 個の元を持つ有限集合の場合：$F_n$ は $n$ 個の生成元上の自由群を表す
+- $F(S)$ に埋め込まれた $S$ の元を**自由生成元**と呼ぶ
+- 集合 $S$ を $F(S)$ の**基底**と呼ぶ
+
+## 直観的理解
+
+自由群は集合 $S$ によって生成される「最も一般的な」群である。これは $S$ の元とその逆元からなるすべての可能な積を含み、群の公理が要求する関係以外の関係を持たない。次のように考えることができる：
+
+- **代数的には**：アルファベット $S$ と形式的逆元 $S^{-1}$ から作ることができるすべての「語」の群であり、連結が演算で、隣接する逆元対を消去できる。
+
+- **圏論的には**：自由群関手は群から集合への忘却関手の左随伴であり、集合を群に変換する「最適な」方法である。
+
+- **制約がない**：生成元が関係式（$a^2 = e$ や $ab = ba$ など）を満たすかもしれない他の群とは異なり、自由群では群の公理によって強制される関係のみが存在する。
+
+## 主要な性質
+
+- **一意性**：自由群 $F(S)$ は同型を除いて一意である
+- **非可換**：$|S| \geq 2$ のとき、自由群 $F(S)$ は非可換である
+- **階数**：濃度 $|S|$ を自由群の階数と呼ぶ
+- **部分群**：自由群のすべての部分群は自由である（ニールセン・シュライアーの定理）
+- **表示**：すべての群はある自由群の商と同型である
+
+## 例
+
+一般的な例には以下がある：
+- $F_1 = F(\{a\}) \cong \mathbb{Z}$：一つの生成元上の自由群は整数と同型である
+- $F_2 = F(\{a, b\})$：二つの生成元上の自由群、非可換群である
+- 8の字の基本群は $F_2$ と同型である
+
+## 特殊な型
+
+- **自由アーベル群**：自由群のアーベル化、可換性の関係を加えることで得られる
+- **自由積**：複数の群を自由に結合する一般化
+
+以下を参照：
+- アーベルの場合については @def-abelian-group
+- 群が自由群の商として生じる方法については @def-quotient-group
+
+## 関連概念
+
+- **一般化**：自由対象は多くの圏に存在する（自由加群、自由代数）
+- **応用**：位相幾何学（基本群）、組合せ論（語の問題）、幾何学的群論で使用される
+- **表示**：生成元と関係式で定義される群は自由群から始まる
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-inverse-element["定義: 逆元"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-quotient-group["定義: 商群"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-function["定義: 関数"]:::definition
+    def-homomorphism["定義: 群準同型"]:::definition
+    def-free-group["定義：自由群"]:::definition
+    def-group["群"]:::definition
+    def-identity-element["定義: 単位元"]:::definition
+    def-abelian-group["定義: アーベル群"]:::definition
+    def-free-group --> def-function
+    def-free-group --> def-inverse-element
+    def-free-group --> def-quotient-group
+    def-free-group --> def-group
+    def-free-group --> def-identity-element
+    def-free-group --> def-set
+    def-free-group --> def-binary-operation
+    def-free-group --> def-homomorphism
+    def-free-group --> def-abelian-group
+    class def-free-group current
+    click def-inverse-element "def-inverse-element.html" "逆元の定義へ"
+    click def-set "def-set.html" "集合の定義へ"
+    click def-quotient-group "def-quotient-group.html" "商群の定義へ"
+    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
+    click def-function "def-function.html" "関数の定義へ"
+    click def-homomorphism "def-homomorphism.html" "群準同型の定義へ"
+    click def-group "def-group.html" "群へ"
+    click def-identity-element "def-identity-element.html" "単位元の定義へ"
+    click def-abelian-group "def-abelian-group.html" "アーベル群の定義へ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-free-group" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/ja/def-free-group.html){target="_blank"}で完全なインタラクティブ版を表示

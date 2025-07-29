@@ -1,0 +1,131 @@
+---
+id: def-prime-ideal
+requires:
+- def-ideal
+- def-ring
+- def-integral-domain
+- def-quotient-ring
+- def-subset
+status: complete
+title: 素イデアル
+translation_of: ../../en/algebra/def-prime-ideal.qmd
+translations:
+  en: ../en/algebra/def-prime-ideal.html
+  ja: ../ja/algebra/def-prime-ideal.html
+type: Definition
+---
+
+# 素イデアル {#def-prime-ideal}
+
+**素イデアル**は、素数の概念を任意の[環](def-ring.qmd)に一般化した[イデアル](def-ideal.qmd)です。積がイデアルに属するとき、少なくとも一方の因子がイデアルに属するという性質で特徴づけられます。
+
+## 形式的定義
+
+$R$を[環](def-ring.qmd)とする。[イデアル](def-ideal.qmd) $P \subseteq R$が**素イデアル**であるとは：
+
+1. $P \neq R$（真のイデアル）
+2. すべての$a, b \in R$に対して：$ab \in P$ならば、$a \in P$または$b \in P$
+
+## 同値な特徴づけ
+
+### 剰余環による特徴づけ
+
+環$R$のイデアル$P$が素イデアルであることと、[剰余環](def-quotient-ring.qmd) $R/P$が[整域](def-integral-domain.qmd)であることは同値である。
+
+**証明**：
+- ($\Rightarrow$) $P$を素イデアルとする。$R/P$において$(a + P)(b + P) = 0 + P$とすると、$ab \in P$となり、$a \in P$または$b \in P$が成り立つ。つまり$a + P = 0 + P$または$b + P = 0 + P$となる。
+- ($\Leftarrow$) $R/P$を整域とする。$ab \in P$ならば、$(a + P)(b + P) = ab + P = 0 + P$となる。$R/P$には[零因子](def-zero-divisor.qmd)がないので、$a + P = 0 + P$または$b + P = 0 + P$となり、$a \in P$または$b \in P$が成り立つ。
+
+### 補集合による特徴づけ
+
+イデアル$P$が素イデアルであることと、その補集合$R \setminus P$が積に関して閉じていることは同値である：
+- $a, b \in R \setminus P$ならば、$ab \in R \setminus P$
+
+## 性質
+
+- すべての[極大イデアル](def-maximal-ideal.qmd)は素イデアルである（しかし、すべての素イデアルが極大であるわけではない）
+- 零イデアル$(0)$が素イデアルであることと、$R$が[整域](def-integral-domain.qmd)であることは同値
+- イデアル$I$を含むすべての素イデアルの共通部分を$I$の根基という
+- 単位元を持つ可換環において、零でない素イデアルは少なくとも1つの素元を含む
+
+## 例
+
+### 整数環において
+
+$\mathbb{Z}$において：
+- イデアル$(p) = p\mathbb{Z}$が素イデアルであることと、$p$が素数または$p = 0$であることは同値
+- $(0)$は素イデアル（$\mathbb{Z}$は整域であるため）
+- $(4)$は素イデアルではない（$2 \cdot 2 \in (4)$だが$2 \notin (4)$）
+
+### 多項式環において
+
+$\mathbb{R}[x]$において：
+- $(x)$は素イデアル：$f(x)g(x) \in (x)$ならば$f(0)g(0) = 0$なので、$f(0) = 0$または$g(0) = 0$
+- $(x^2 + 1)$は素イデアル（$\mathbb{R}[x]/(x^2 + 1) \cong \mathbb{C}$は体であるため）
+- $(x^2 - 1) = (x-1)(x+1)$は素イデアルではない
+
+### 行列環において
+
+$2 \times 2$行列環$M_2(\mathbb{R})$において：
+- 零イデアル以外に素イデアルは存在しない
+- これは$M_2(\mathbb{R})$が単純環（真の両側イデアルを持たない）であるため
+
+## 幾何学との関係
+
+代数幾何学において、素イデアルは既約代数多様体に対応する：
+- 点は[極大イデアル](def-maximal-ideal.qmd)に対応
+- 既約曲線、曲面などは様々な高さの素イデアルに対応
+- 素イデアルのスペクトラム上のザリスキ位相は代数と幾何学の橋渡しをする
+
+## 歴史的注記
+
+素イデアルの概念は、通常の素因数分解が成立しない代数的整数環において一意分解を回復する方法として、リヒャルト・デデキントによって導入されました。この革新は代数的数論と現代可換代数の発展にとって決定的に重要でした。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-integral-domain["定義：整域"]:::definition
+    def-maximal-ideal["定義: 極大イデアル"]:::definition
+    def-subset["定義: 部分集合"]:::definition
+    def-prime-ideal["定義: 素イデアル"]:::definition
+    def-ideal["定義: イデアル"]:::definition
+    def-ring["定義：環"]:::definition
+    def-zero-divisor["定義: 零因子"]:::definition
+    def-quotient-ring["定義: 剰余環"]:::definition
+    def-maximal-ideal --> def-prime-ideal
+    def-prime-ideal --> def-subset
+    def-prime-ideal --> def-quotient-ring
+    def-prime-ideal --> def-integral-domain
+    def-prime-ideal --> def-ideal
+    def-quotient-ring --> def-prime-ideal
+    def-prime-ideal --> def-ring
+    def-zero-divisor --> def-prime-ideal
+    class def-prime-ideal current
+    click def-integral-domain "def-integral-domain.html" "定義：整域へ"
+    click def-maximal-ideal "def-maximal-ideal.html" "極大イデアルの定義へ"
+    click def-subset "def-subset.html" "部分集合の定義へ"
+    click def-ideal "def-ideal.html" "イデアルの定義へ"
+    click def-ring "def-ring.html" "定義：環へ"
+    click def-zero-divisor "def-zero-divisor.html" "零因子の定義へ"
+    click def-quotient-ring "def-quotient-ring.html" "剰余環の定義へ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-prime-ideal" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/ja/def-prime-ideal.html){target="_blank"}で完全なインタラクティブ版を表示

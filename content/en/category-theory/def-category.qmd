@@ -4,7 +4,7 @@ requires:
 - def-set
 - def-graph
 status: complete
-title: 'Definition: Category'
+title: Category
 translations:
   en: ../en/category-theory/def-category.html
   ja: ../ja/category-theory/def-category.html
@@ -52,35 +52,41 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
-    def-composition["Definition: Composition"]:::definition
-    def-isomorphism["Definition: Isomorphism"]:::definition
-    def-category["Definition: Category"]:::definition
+    def-set["Definition: Set"]:::definition
+    ex-set-category["Example: The Category of Sets"]:::example
     def-natural-transformation["Definition: Natural Transformation"]:::definition
     def-morphism["Definition: Morphism"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-graph["Definition: Graph"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
+    def-epimorphism["Definition: Epimorphism"]:::definition
+    def-composition["Definition: Composition"]:::definition
+    def-category["Definition: Category"]:::definition
     def-functor["Definition: Functor"]:::definition
-    ex-set-category["Example: The Category of Sets"]:::example
-    ex-set-category --> def-category
-    def-isomorphism --> def-category
-    def-morphism --> def-category
-    thm-yoneda --> def-category
-    def-natural-transformation --> def-category
-    def-category --> def-set
-    def-category --> def-graph
+    def-monomorphism["Definition: Monomorphism"]:::definition
+    def-graph["Definition: Graph"]:::definition
     def-functor --> def-category
+    def-natural-transformation --> def-category
+    def-monomorphism --> def-category
+    def-category --> def-graph
+    def-epimorphism --> def-category
+    def-isomorphism --> def-category
+    def-category --> def-set
+    thm-yoneda --> def-category
+    ex-set-category --> def-category
+    def-morphism --> def-category
     def-composition --> def-category
     class def-category current
-    click thm-yoneda "thm-yoneda.html" "Go to Yoneda Lemma theorem"
-    click def-composition "def-composition.html" "Go to Composition definition"
-    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
+    click def-set "def-set.html" "Go to Set definition"
+    click ex-set-category "ex-set-category.html" "Go to The Category of Sets example"
     click def-natural-transformation "def-natural-transformation.html" "Go to Natural Transformation definition"
     click def-morphism "def-morphism.html" "Go to Morphism definition"
-    click def-set "def-set.html" "Go to Set definition"
-    click def-graph "def-graph.html" "Go to Graph definition"
+    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
+    click thm-yoneda "thm-yoneda.html" "Go to Yoneda Lemma theorem"
+    click def-epimorphism "def-epimorphism.html" "Go to Epimorphism definition"
+    click def-composition "def-composition.html" "Go to Composition definition"
     click def-functor "def-functor.html" "Go to Functor definition"
-    click ex-set-category "ex-set-category.html" "Go to The Category of Sets example"
+    click def-monomorphism "def-monomorphism.html" "Go to Monomorphism definition"
+    click def-graph "def-graph.html" "Go to Graph definition"
 ```
 
 ## Interactive Visualization
@@ -94,4 +100,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-category.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-category.html){target="_blank"}

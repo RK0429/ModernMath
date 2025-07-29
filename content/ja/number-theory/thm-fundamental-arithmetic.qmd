@@ -2,8 +2,9 @@
 id: thm-fundamental-arithmetic
 requires:
 - def-prime
+- thm-euclid-infinitude-primes
 status: complete
-title: 定理：算術の基本定理
+title: 算術の基本定理
 translation_of: ../../en/number-theory/thm-fundamental-arithmetic.qmd
 translations:
   en: ../en/number-theory/thm-fundamental-arithmetic.html
@@ -11,7 +12,7 @@ translations:
 type: Theorem
 ---
 
-# 定理：算術の基本定理 {#thm-fundamental-arithmetic}
+# 算術の基本定理 {#thm-fundamental-arithmetic}
 
 1より大きいすべての自然数は、因子の順序を除いて、[素数](def-prime.qmd)の積として一意的に表すことができます。
 
@@ -53,28 +54,56 @@ $$n = p_1^{a_1} \cdot p_2^{a_2} \cdot \ldots \cdot p_k^{a_k}$$
 ## 応用
 
 基本定理により以下が可能になります：
-- 最大公約数（GCD）の計算
-- 最小公倍数（LCM）の計算
+- 最大公約数（GCD）の計算 (参照：@def-gcd)
+- 最小公倍数（LCM）の計算 (参照：@def-lcm)
 - 有理数の算術
 - 代数的数論における多くの結果
 
 この定理は素数を自然数の「構成要素」と呼ぶことを正当化します。
 
+## 参照
+
+- @thm-euclid-infinitude-primes
+- @def-divisibility
+- @thm-euclidean-algorithm
+- @thm-chinese-remainder
+
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-prime["Definition: Prime Number"]:::definition
-    thm-fundamental-arithmetic["Theorem: Fundamental Theorem of Arithmetic"]:::theorem
+    thm-euclidean-algorithm["定理：ユークリッドのアルゴリズム"]:::theorem
+    def-lcm["定義：最小公倍数"]:::definition
+    def-gcd["定義：最大公約数"]:::definition
+    thm-euclid-infinitude-primes["定理：素数の無限性に関するユークリッドの定理"]:::theorem
+    def-prime["定義：素数"]:::definition
+    thm-fundamental-arithmetic["定理：算術の基本定理"]:::theorem
+    thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
+    def-divisibility["定義: 整除性"]:::definition
+    thm-euclid-infinitude-primes --> thm-fundamental-arithmetic
     thm-fundamental-arithmetic --> def-prime
+    thm-fundamental-arithmetic --> def-lcm
+    thm-fundamental-arithmetic --> def-gcd
+    def-prime --> thm-fundamental-arithmetic
+    thm-fundamental-arithmetic --> thm-euclidean-algorithm
+    thm-fundamental-arithmetic --> thm-euclid-infinitude-primes
+    def-lcm --> thm-fundamental-arithmetic
+    thm-fundamental-arithmetic --> def-divisibility
+    thm-fundamental-arithmetic --> thm-chinese-remainder
     class thm-fundamental-arithmetic current
-    click def-prime "def-prime.html" "Definition: Prime Numberへ"
+    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "定理：ユークリッドのアルゴリズムへ"
+    click def-lcm "def-lcm.html" "定義：最小公倍数へ"
+    click def-gcd "def-gcd.html" "定義：最大公約数へ"
+    click thm-euclid-infinitude-primes "thm-euclid-infinitude-primes.html" "定理：素数の無限性に関するユークリッドの定理へ"
+    click def-prime "def-prime.html" "定義：素数へ"
+    click thm-chinese-remainder "thm-chinese-remainder.html" "中国剰余定理の定理へ"
+    click def-divisibility "def-divisibility.html" "整除性の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -88,4 +117,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/thm-fundamental-arithmetic.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/thm-fundamental-arithmetic.html){target="_blank"}で完全なインタラクティブ版を表示

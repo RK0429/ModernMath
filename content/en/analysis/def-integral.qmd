@@ -4,7 +4,7 @@ requires:
 - def-limit
 - def-continuity
 status: complete
-title: 'Definition: Integral'
+title: Integral
 translations:
   en: ../en/analysis/def-integral.html
   ja: ../ja/analysis/def-integral.html
@@ -33,6 +33,8 @@ $$\int_a^b f(x) \, dx = \lim_{||P|| \to 0} S(f, P)$$
 exists and is independent of the choice of sample points, where $||P|| = \max_i (x_i - x_{i-1})$.
 
 ## Fundamental Theorem of Calculus
+
+The [Fundamental Theorem of Calculus](thm-fundamental-calculus.qmd) establishes the profound connection between integration and differentiation:
 
 ### Part I
 If $f$ is continuous on $[a,b]$ and $F(x) = \int_a^x f(t) \, dt$, then:
@@ -85,12 +87,18 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-limit["Definition: Limit of a Sequence"]:::definition
-    def-integral["Definition: Integral"]:::definition
+    thm-fundamental-calculus["Theorem: Fundamental Theorem of Calculus"]:::theorem
+    def-probability-distribution["Definition: Probability Distribution"]:::definition
     def-continuity["Definition: Continuity"]:::definition
+    def-integral["Definition: Integral"]:::definition
+    thm-fundamental-calculus --> def-integral
     def-integral --> def-limit
     def-integral --> def-continuity
+    def-probability-distribution --> def-integral
     class def-integral current
     click def-limit "def-limit.html" "Go to Limit of a Sequence definition"
+    click thm-fundamental-calculus "thm-fundamental-calculus.html" "Go to Fundamental Theorem of Calculus theorem"
+    click def-probability-distribution "def-probability-distribution.html" "Go to Probability Distribution definition"
     click def-continuity "def-continuity.html" "Go to Continuity definition"
 ```
 
@@ -105,4 +113,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-integral.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-integral.html){target="_blank"}

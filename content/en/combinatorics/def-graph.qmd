@@ -2,8 +2,10 @@
 id: def-graph
 requires:
 - def-set
+- ../algebra/def-automorphism
+- ../logic-set-theory/def-cardinality
 status: complete
-title: 'Definition: Graph'
+title: Graph
 translations:
   en: ../en/combinatorics/def-graph.html
   ja: ../ja/combinatorics/def-graph.html
@@ -44,11 +46,12 @@ In a directed graph, edges have direction. Formally:
 ## Properties
 
 ### For Undirected Graphs
-- The sum of all vertex degrees equals twice the number of edges: $\sum_{v \in V} \deg(v) = 2|E|$
+- The sum of all vertex degrees equals twice the [cardinality](../logic-set-theory/def-cardinality.qmd) of the edge set: $\sum_{v \in V} \deg(v) = 2|E|$
 - The number of vertices with odd degree is even
+- Graph [automorphisms](../algebra/def-automorphism.qmd) are permutations of vertices that preserve adjacency
 
 ### For Directed Graphs
-- The sum of all in-degrees equals the sum of all out-degrees: $\sum_{v \in V} \deg^-(v) = \sum_{v \in V} \deg^+(v) = |E|$
+- The sum of all in-degrees equals the sum of all out-degrees: $\sum_{v \in V} \deg^-(v) = \sum_{v \in V} \deg^+(v) = |E|$ (the [cardinality](../logic-set-theory/def-cardinality.qmd) of the edge set)
 
 ## Types of Graphs
 
@@ -95,26 +98,26 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-morphism["Definition: Morphism"]:::definition
-    def-functor["Definition: Functor"]:::definition
-    def-category["Definition: Category"]:::definition
     def-set["Definition: Set"]:::definition
     def-tree["Definition: Tree"]:::definition
-    def-graph["Definition: Graph"]:::definition
+    def-morphism["Definition: Morphism"]:::definition
     def-permutation["Definition: Permutation"]:::definition
+    def-category["Definition: Category"]:::definition
+    def-functor["Definition: Functor"]:::definition
+    def-graph["Definition: Graph"]:::definition
+    def-graph --> def-set
+    def-category --> def-graph
     def-morphism --> def-graph
     def-permutation --> def-graph
     def-tree --> def-graph
-    def-category --> def-graph
     def-functor --> def-graph
-    def-graph --> def-set
     class def-graph current
-    click def-morphism "def-morphism.html" "Go to Morphism definition"
-    click def-functor "def-functor.html" "Go to Functor definition"
-    click def-category "def-category.html" "Go to Category definition"
     click def-set "def-set.html" "Go to Set definition"
     click def-tree "def-tree.html" "Go to Tree definition"
+    click def-morphism "def-morphism.html" "Go to Morphism definition"
     click def-permutation "def-permutation.html" "Go to Permutation definition"
+    click def-category "def-category.html" "Go to Category definition"
+    click def-functor "def-functor.html" "Go to Functor definition"
 ```
 
 ## Interactive Visualization
@@ -128,4 +131,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-graph.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-graph.html){target="_blank"}

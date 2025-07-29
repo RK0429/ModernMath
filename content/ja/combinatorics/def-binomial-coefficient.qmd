@@ -3,8 +3,9 @@ id: def-binomial-coefficient
 requires:
 - def-combination
 - def-permutation
+- def-generating-function
 status: complete
-title: 定義：二項係数
+title: 二項係数
 translation_of: ../../en/combinatorics/def-binomial-coefficient.qmd
 translations:
   en: ../en/combinatorics/def-binomial-coefficient.html
@@ -12,7 +13,7 @@ translations:
 type: Definition
 ---
 
-# 定義：二項係数
+# 二項係数
 
 **二項係数** $\binom{n}{k}$（「n個からk個を選ぶ」と読む）は、順序を考慮せずにn個の対象からk個の対象を選ぶ方法の数を数えます。
 
@@ -55,34 +56,36 @@ $$\binom{n}{k} = \frac{n!}{k!(n-k)!}$$
 - 二項式の展開
 - 離散分布における確率計算
 - パスカルの三角形の構成
-
-```{mermaid}
-```
-
+- [母関数](def-generating-function.qmd) - 二項係数は通常母関数と指数母関数の両方に自然に現れる
+- [包含排除の原理](thm-inclusion-exclusion.qmd) - その証明と応用で二項係数を使用
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-permutation["Definition: Permutation"]:::definition
-    def-tree["Definition: Tree"]:::definition
-    def-combination["Definition: Combination"]:::definition
-    ex-pascals-triangle["Example: Pascal's Triangle"]:::example
-    def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
-    def-tree --> def-binomial-coefficient
+    def-tree["定義: 木"]:::definition
+    def-generating-function["定義: 母関数"]:::definition
+    ex-pascals-triangle["例：パスカルの三角形"]:::example
+    def-combination["定義：組合せ"]:::definition
+    def-binomial-coefficient["定義：二項係数"]:::definition
+    def-permutation["定義：順列"]:::definition
     def-binomial-coefficient --> def-combination
-    ex-pascals-triangle --> def-binomial-coefficient
+    def-tree --> def-binomial-coefficient
+    def-generating-function --> def-binomial-coefficient
+    def-binomial-coefficient --> def-generating-function
     def-binomial-coefficient --> def-permutation
+    ex-pascals-triangle --> def-binomial-coefficient
     class def-binomial-coefficient current
-    click def-permutation "def-permutation.html" "Definition: Permutationへ"
-    click def-tree "def-tree.html" "Definition: Treeへ"
-    click def-combination "def-combination.html" "Definition: Combinationへ"
-    click ex-pascals-triangle "ex-pascals-triangle.html" "Example: Pascal's Triangleへ"
+    click def-tree "def-tree.html" "木の定義へ"
+    click def-generating-function "def-generating-function.html" "母関数の定義へ"
+    click ex-pascals-triangle "ex-pascals-triangle.html" "例：パスカルの三角形へ"
+    click def-combination "def-combination.html" "定義：組合せへ"
+    click def-permutation "def-permutation.html" "定義：順列へ"
 ```
 
 ## インタラクティブ可視化
@@ -96,4 +99,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-binomial-coefficient.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-binomial-coefficient.html){target="_blank"}で完全なインタラクティブ版を表示

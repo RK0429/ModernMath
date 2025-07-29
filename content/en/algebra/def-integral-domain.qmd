@@ -1,0 +1,152 @@
+---
+id: def-integral-domain
+requires:
+- def-ring
+- def-commutativity
+- def-field
+- def-subring
+- def-zero-divisor
+status: complete
+title: Integral Domain
+translations:
+  en: ../en/algebra/def-integral-domain.html
+  ja: ../ja/algebra/def-integral-domain.html
+type: Definition
+---
+
+# Integral Domain {#def-integral-domain}
+
+An **integral domain** is a [commutative](def-commutativity.qmd) [ring](def-ring.qmd) with unity (multiplicative identity) that has no [zero divisors](def-zero-divisor.qmd).
+
+## Formal Definition
+
+A ring $(R, +, \cdot)$ is an integral domain if:
+
+1. **Commutativity**: For all $a, b \in R$,
+   $$a \cdot b = b \cdot a$$
+
+2. **Unity**: There exists an element $1 \in R$ such that for all $a \in R$,
+   $$1 \cdot a = a \cdot 1 = a$$
+
+3. **No [zero divisors](def-zero-divisor.qmd)**: For all $a, b \in R$,
+   $$a \cdot b = 0 \implies a = 0 \text{ or } b = 0$$
+
+## Important Properties
+
+### Cancellation Law
+
+In an integral domain, the cancellation law holds: if $a \neq 0$ and $ab = ac$, then $b = c$.
+
+**Proof**: If $ab = ac$, then $ab - ac = 0$, so $a(b - c) = 0$. Since $a \neq 0$ and there are no [zero divisors](def-zero-divisor.qmd), we must have $b - c = 0$, hence $b = c$.
+
+### Relationship to Other Structures
+
+- Every [field](def-field.qmd) is an integral domain
+- Every finite integral domain is a field
+- Not every integral domain is a field (e.g., $\mathbb{Z}$)
+- Every [subring](def-subring.qmd) of an integral domain is an integral domain
+
+### Prime Ideal Characterization
+
+A commutative ring $R$ is an integral domain if and only if the zero [ideal](def-ideal.qmd) $(0)$ is a [prime ideal](def-prime-ideal.qmd).
+
+## Examples
+
+### Examples of Integral Domains
+
+1. **The integers** $\mathbb{Z}$ under usual addition and multiplication
+2. **Any field** such as $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$, or $\mathbb{Z}_p$ (where $p$ is prime)
+3. **Polynomial rings** $R[x]$ where $R$ is an integral domain
+4. **Gaussian integers** $\mathbb{Z}[i] = \{a + bi : a, b \in \mathbb{Z}\}$ (a [subring](def-subring.qmd) of $\mathbb{C}$)
+
+### Non-Examples
+
+1. **$\mathbb{Z}_6$** (integers modulo 6): Since $2 \cdot 3 = 0 \pmod{6}$ but $2 \neq 0$ and $3 \neq 0$
+2. **Matrix rings** $M_n(R)$ for $n > 1$: Non-zero matrices can multiply to give the zero matrix
+3. **$\mathbb{Z} \times \mathbb{Z}$** with componentwise operations: $(1,0) \cdot (0,1) = (0,0)$
+
+## Field of Fractions
+
+Every integral domain $D$ can be embedded in a field called its **field of fractions** or **quotient field**, denoted $\text{Frac}(D)$. The original domain $D$ is naturally a [subring](def-subring.qmd) of $\text{Frac}(D)$.
+
+- For $\mathbb{Z}$, the field of fractions is $\mathbb{Q}$ (and $\mathbb{Z}$ is a subring of $\mathbb{Q}$)
+- For a polynomial ring $F[x]$ over a field $F$, the field of fractions is the field of rational functions $F(x)$
+
+## Applications
+
+Integral domains provide the appropriate setting for:
+
+1. **Divisibility theory**: Concepts like greatest common divisor and unique factorization
+2. **Polynomial equations**: A polynomial of degree $n$ has at most $n$ roots in an integral domain
+3. **Algebraic number theory**: Study of algebraic integers
+4. **Algebraic geometry**: Coordinate rings of irreducible algebraic varieties
+
+## See Also
+
+- @def-ring
+- @def-field
+- @def-ideal
+- @def-polynomial-ring
+- @ex-integers-ring
+- @def-zero-divisor
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-integral-domain["Definition: Integral Domain"]:::definition
+    def-commutativity["Definition: Commutativity"]:::definition
+    def-subring["Definition: Subring"]:::definition
+    def-prime-ideal["Definition: Prime Ideal"]:::definition
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-ideal["Definition: Ideal"]:::definition
+    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-zero-divisor["Definition: Zero Divisor"]:::definition
+    def-field["Definition: Field"]:::definition
+    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-integral-domain --> def-subring
+    def-polynomial-ring --> def-integral-domain
+    def-quotient-ring --> def-integral-domain
+    def-zero-divisor --> def-integral-domain
+    def-integral-domain --> def-field
+    def-integral-domain --> def-polynomial-ring
+    def-integral-domain --> ex-integers-ring
+    def-integral-domain --> def-commutativity
+    def-prime-ideal --> def-integral-domain
+    def-integral-domain --> def-ideal
+    ex-integers-ring --> def-integral-domain
+    def-field --> def-integral-domain
+    def-integral-domain --> def-ring
+    def-integral-domain --> def-zero-divisor
+    class def-integral-domain current
+    click def-commutativity "def-commutativity.html" "Go to Commutativity definition"
+    click def-subring "def-subring.html" "Go to Subring definition"
+    click def-prime-ideal "def-prime-ideal.html" "Go to Prime Ideal definition"
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring definition"
+    click def-ideal "def-ideal.html" "Go to Ideal definition"
+    click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring definition"
+    click def-ring "def-ring.html" "Go to Ring definition"
+    click def-zero-divisor "def-zero-divisor.html" "Go to Zero Divisor definition"
+    click def-field "def-field.html" "Go to Field definition"
+    click ex-integers-ring "ex-integers-ring.html" "Go to Integers Form a Ring example"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-integral-domain" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/en/def-integral-domain.html){target="_blank"}

@@ -7,15 +7,17 @@ requires:
 - def-binary-operation
 - def-abelian-group
 - def-group-action
+- ../logic-set-theory/def-equivalence-relation
+- ../logic-set-theory/def-cardinality
 status: complete
-title: 'Definition: Coset'
+title: Coset
 translations:
   en: ../en/algebra/def-coset.html
   ja: ../ja/algebra/def-coset.html
 type: Definition
 ---
 
-# Definition: Coset {#def-coset}
+# Coset {#def-coset}
 
 A **coset** is a fundamental concept in group theory that arises when we translate a [subgroup](def-subgroup.qmd) by a fixed element of the parent [group](def-group.qmd). Cosets partition a group into equal-sized disjoint subsets.
 
@@ -45,7 +47,7 @@ $$Hg = \{h \star g : h \in H\}$$
 
 ### 1. Equal Cardinality
 
-Every coset of $H$ has the same number of elements as $H$:
+Every coset of $H$ has the same [cardinality](../logic-set-theory/def-cardinality.qmd) as $H$:
 $$|gH| = |H| = |Hg|$$
 
 This follows from the fact that the map $h \mapsto gh$ is a bijection from $H$ to $gH$.
@@ -55,6 +57,8 @@ This follows from the fact that the map $h \mapsto gh$ is a bijection from $H$ t
 The left cosets (and separately, the right cosets) of $H$ partition $G$:
 - Every element of $G$ belongs to exactly one left coset
 - Two left cosets are either identical or disjoint: $g_1H = g_2H$ or $g_1H \cap g_2H = \emptyset$
+
+This partition arises from an [equivalence relation](../logic-set-theory/def-equivalence-relation.qmd): $g_1 \sim g_2$ if and only if $g_1^{-1}g_2 \in H$.
 
 ### 3. Coset Equality Criterion
 
@@ -131,7 +135,7 @@ This operation is well-defined precisely because left and right cosets coincide 
 
 ### Lagrange's Theorem
 
-The concept of cosets is central to [Lagrange's theorem](thm-lagrange.qmd), which states that for a finite group $G$:
+The concept of cosets is central to [Lagrange's theorem](thm-lagrange.qmd), which states that for a finite group $G$, the [cardinality](../logic-set-theory/def-cardinality.qmd) of $G$ is:
 $$|G| = |H| \cdot [G:H]$$
 
 ### Group Actions
@@ -142,7 +146,7 @@ Cosets naturally arise in the study of [group actions](def-group-action.qmd):
 
 ### Counting Arguments
 
-Cosets provide a powerful tool for counting in finite groups and proving divisibility results.
+Cosets provide a powerful tool for counting in finite groups and proving [divisibility](../number-theory/def-divisibility.qmd) results.
 
 ## See Also
 
@@ -163,46 +167,49 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-subgroup["Definition: Subgroup"]:::definition
     def-normal-subgroup["Definition: Normal Subgroup"]:::definition
     def-quotient-group["Definition: Quotient Group"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
     ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
     thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
-    def-abelian-group["Definition: Abelian Group"]:::definition
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    def-coset["Definition: Coset"]:::definition
-    def-group-action["Group Action"]:::definition
     def-group["Definition: Group"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
-    def-normal-subgroup --> def-coset
-    def-quotient-group --> def-coset
-    ex-quotient-integers-mod-n --> def-coset
-    def-coset --> def-quotient-group
-    def-coset --> def-abelian-group
-    def-coset --> def-group-action
-    ex-even-integers-subgroup --> def-coset
-    def-coset --> thm-lagrange
-    def-coset --> def-binary-operation
+    def-coset["Definition: Coset"]:::definition
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-group-action["Group Action"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
+    def-coset --> ex-even-integers-subgroup
     thm-orbit-stabilizer --> def-coset
-    def-coset --> def-subgroup
+    def-coset --> ex-quotient-integers-mod-n
     thm-lagrange --> def-coset
     def-coset --> def-normal-subgroup
-    def-coset --> ex-even-integers-subgroup
+    def-coset --> def-subgroup
+    def-quotient-ring --> def-coset
+    def-coset --> def-binary-operation
+    def-quotient-group --> def-coset
+    def-coset --> def-abelian-group
+    def-normal-subgroup --> def-coset
+    ex-quotient-integers-mod-n --> def-coset
+    ex-even-integers-subgroup --> def-coset
+    def-coset --> def-group-action
+    def-coset --> def-quotient-group
     def-coset --> def-group
-    def-coset --> ex-quotient-integers-mod-n
+    def-coset --> thm-lagrange
     class def-coset current
+    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
     click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
     click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
     click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Go to Even Integers Form a Subgroup example"
     click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "Go to Orbit-Stabilizer Theorem"
-    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
     click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n example"
-    click def-group-action "def-group-action.html" "Go to Group Action"
     click def-group "def-group.html" "Go to Group definition"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
-    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring definition"
+    click def-group-action "def-group-action.html" "Go to Group Action"
+    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
 ```
 
 ## Interactive Visualization
@@ -216,4 +223,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-coset.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-coset.html){target="_blank"}

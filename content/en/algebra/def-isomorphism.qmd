@@ -1,0 +1,164 @@
+---
+id: def-isomorphism
+requires:
+- def-homomorphism
+- def-group
+- def-binary-operation
+- ../logic-set-theory/def-function
+status: complete
+title: Group Isomorphism
+translations:
+  en: ../en/algebra/def-isomorphism.html
+  ja: ../ja/algebra/def-isomorphism.html
+type: Definition
+---
+
+# Group Isomorphism {#def-isomorphism}
+
+A **group isomorphism** is a bijective [group homomorphism](def-homomorphism.qmd). It establishes that two [groups](def-group.qmd) have exactly the same structure, making them algebraically indistinguishable.
+
+## Formal Definition
+
+Let $(G, \cdot)$ and $(H, *)$ be groups. A [function](../logic-set-theory/def-function.qmd) $\phi: G \to H$ is a group isomorphism if:
+
+1. **Homomorphism**: $\phi(a \cdot b) = \phi(a) * \phi(b)$ for all $a, b \in G$
+2. **Bijection**: $\phi$ is both injective (one-to-one) and surjective (onto)
+
+When such an isomorphism exists, we say $G$ and $H$ are **isomorphic** and write $G \cong H$.
+
+## Properties
+
+Every group isomorphism $\phi: G \to H$ satisfies:
+
+1. **Identity preservation**: $\phi(e_G) = e_H$ where $e_G$ and $e_H$ are the identity elements
+2. **Inverse preservation**: $\phi(a^{-1}) = \phi(a)^{-1}$ for all $a \in G$
+3. **Order preservation**: $|a| = |\phi(a)|$ for all $a \in G$ (where $|a|$ denotes the [order](def-order.qmd) of element $a$)
+4. **Subgroup preservation**: If $K \leq G$, then $\phi(K) \leq H$
+5. **Normal subgroup preservation**: If $N \trianglelefteq G$, then $\phi(N) \trianglelefteq H$
+
+## The Inverse Isomorphism
+
+If $\phi: G \to H$ is an isomorphism, then its inverse function $\phi^{-1}: H \to G$ is also an isomorphism:
+
+- $\phi^{-1}(x * y) = \phi^{-1}(x) \cdot \phi^{-1}(y)$ for all $x, y \in H$
+- $\phi^{-1} \circ \phi = \text{id}_G$ and $\phi \circ \phi^{-1} = \text{id}_H$
+
+## Isomorphism as an Equivalence Relation
+
+The relation "is isomorphic to" ($\cong$) is an equivalence relation on the class of all groups:
+
+- **Reflexive**: $G \cong G$ via the identity map
+- **Symmetric**: If $G \cong H$, then $H \cong G$ via the inverse isomorphism
+- **Transitive**: If $G \cong H$ and $H \cong K$, then $G \cong K$ via composition
+
+## Group Invariants
+
+Properties preserved by isomorphisms are called **group invariants**:
+
+- **Cardinality**: $|G| = |H|$
+- **Abelianness**: $G$ is [abelian](def-abelian-group.qmd) if and only if $H$ is abelian
+- **Cyclicity**: $G$ is [cyclic](def-cyclic-group.qmd) if and only if $H$ is cyclic
+- **Simplicity**: $G$ is [simple](def-simple-group.qmd) if and only if $H$ is simple
+- **Number of elements of each order**: The number of elements of order $n$ is the same in both groups
+
+## Examples
+
+### Concrete Examples
+
+1. **Integers under addition and even integers**: $(\mathbb{Z}, +) \cong (2\mathbb{Z}, +)$ via $\phi(n) = 2n$
+
+2. **Cyclic groups**: All cyclic groups of the same order are isomorphic:
+   - $\mathbb{Z}_n \cong C_n$ for any cyclic group $C_n$ of order $n$
+
+3. **Logarithm as isomorphism**: $(\mathbb{R}^+, \times) \cong (\mathbb{R}, +)$ via $\phi(x) = \ln(x)$
+
+4. **Symmetric groups**: $S_3 \cong D_3$ (the dihedral group of order 6)
+
+### Non-Examples
+
+1. $\mathbb{Z}_4 \not\cong \mathbb{Z}_2 \times \mathbb{Z}_2$ (different group structures despite same cardinality)
+2. $S_n \not\cong A_n$ for $n \geq 3$ (different cardinalities)
+
+## Special Cases
+
+### [Automorphism](def-automorphism.qmd)
+An isomorphism from a group to itself: $\phi: G \to G$
+
+### Isomorphism Theorems
+The fundamental connections between homomorphisms, kernels, and quotient groups:
+- [First Isomorphism Theorem](thm-first-isomorphism.qmd): $G/\ker(\phi) \cong \text{Im}(\phi)$
+
+## Classification Results
+
+Many classification theorems in group theory state results "up to isomorphism":
+
+1. **Finite cyclic groups**: Every cyclic group of order $n$ is isomorphic to $\mathbb{Z}_n$
+2. **Finite abelian groups**: Classified completely up to isomorphism by the Fundamental Theorem of Finite Abelian Groups
+3. **Simple groups**: The classification of finite simple groups lists all such groups up to isomorphism
+
+## Constructing Isomorphisms
+
+To prove two groups are isomorphic:
+
+1. **Define a candidate function** $\phi: G \to H$
+2. **Verify homomorphism**: Show $\phi(ab) = \phi(a)\phi(b)$
+3. **Verify injection**: Show $\ker(\phi) = \{e_G\}$ or directly show one-to-one (i.e., $\phi$ is a [monomorphism](../category-theory/def-monomorphism.qmd))
+4. **Verify surjection**: Show every element of $H$ has a preimage
+
+To prove groups are NOT isomorphic, find a group invariant they don't share.
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-homeomorphism["Definition: Homeomorphism"]:::definition
+    def-binary-operation["Definition: Binary Operation"]:::definition
+    def-morphism["Definition: Morphism"]:::definition
+    def-isomorphism["Definition: Isomorphism"]:::definition
+    def-function["Definition: Function"]:::definition
+    def-composition["Definition: Composition"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-category["Definition: Category"]:::definition
+    def-monomorphism["Definition: Monomorphism"]:::definition
+    def-isomorphism --> def-binary-operation
+    def-isomorphism --> def-monomorphism
+    def-isomorphism --> def-group
+    def-isomorphism --> def-category
+    def-homeomorphism --> def-isomorphism
+    def-isomorphism --> def-morphism
+    def-monomorphism --> def-isomorphism
+    def-isomorphism --> def-composition
+    def-isomorphism --> def-function
+    def-isomorphism --> def-homeomorphism
+    def-isomorphism --> def-homomorphism
+    class def-isomorphism current
+    click def-homeomorphism "def-homeomorphism.html" "Go to Homeomorphism definition"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation definition"
+    click def-morphism "def-morphism.html" "Go to Morphism definition"
+    click def-function "def-function.html" "Go to Function definition"
+    click def-composition "def-composition.html" "Go to Composition definition"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click def-category "def-category.html" "Go to Category definition"
+    click def-monomorphism "def-monomorphism.html" "Go to Monomorphism definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-isomorphism" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/en/def-isomorphism.html){target="_blank"}

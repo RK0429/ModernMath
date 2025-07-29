@@ -3,8 +3,9 @@ id: def-uniform-continuity
 requires:
 - def-continuity
 - def-metric-space
+- def-cauchy-sequence
 status: complete
-title: '定義: 一様連続性'
+title: 一様連続性
 translation_of: ../../en/analysis/def-uniform-continuity.qmd
 translations:
   en: ../en/analysis/def-uniform-continuity.html
@@ -12,7 +13,7 @@ translations:
 type: Definition
 ---
 
-# 定義: 一様連続性 {#def-uniform-continuity}
+# 一様連続性 {#def-uniform-continuity}
 
 [距離空間](def-metric-space.qmd) $(X, d_X)$ から $(Y, d_Y)$ への関数 $f$ が**一様連続**であるとは、[連続性](def-continuity.qmd)の定義における $\delta$ の選び方が $\varepsilon$ のみに依存し、特定の点に依存しない場合をいう。
 
@@ -37,6 +38,7 @@ $$d_X(x, y) < \delta \implies d_Y(f(x), f(y)) < \varepsilon$$
 1. **一様連続性は連続性を含意する**: すべての一様連続関数は連続であるが、逆は成り立たない
 2. **合成による保存**: 一様連続関数の合成は一様連続である
 3. **拡張性**: 稠密部分集合上の一様連続関数は閉包へ一意的に拡張できる
+4. **コーシー列の保存**: 一様連続関数は[コーシー列](def-cauchy-sequence.qmd)をコーシー列に写す
 
 ## 重要な定理
 
@@ -66,21 +68,24 @@ $$d_X(x, y) < \delta \implies d_Y(f(x), f(y)) < \varepsilon$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-metric-space["Definition: Metric Space"]:::definition
-    def-uniform-continuity["Definition: Uniform Continuity"]:::definition
-    def-continuity["Definition: Continuity"]:::definition
-    def-uniform-continuity --> def-continuity
+    def-cauchy-sequence["定義: コーシー列"]:::definition
+    def-continuity["定義: 連続性"]:::definition
+    def-uniform-continuity["定義: 一様連続性"]:::definition
+    def-metric-space["定義：距離空間"]:::definition
     def-uniform-continuity --> def-metric-space
+    def-uniform-continuity --> def-continuity
+    def-uniform-continuity --> def-cauchy-sequence
     class def-uniform-continuity current
-    click def-metric-space "def-metric-space.html" "Definition: Metric Spaceへ"
-    click def-continuity "def-continuity.html" "Definition: Continuityへ"
+    click def-cauchy-sequence "def-cauchy-sequence.html" "コーシー列の定義へ"
+    click def-continuity "def-continuity.html" "連続性の定義へ"
+    click def-metric-space "def-metric-space.html" "定義：距離空間へ"
 ```
 
 ## インタラクティブ可視化
@@ -94,4 +99,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-uniform-continuity.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-uniform-continuity.html){target="_blank"}で完全なインタラクティブ版を表示

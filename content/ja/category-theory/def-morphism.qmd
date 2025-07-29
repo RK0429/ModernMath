@@ -4,7 +4,7 @@ requires:
 - def-category
 - def-graph
 status: complete
-title: '定義: 射'
+title: 射
 translation_of: ../../en/category-theory/def-morphism.qmd
 translations:
   en: ../en/category-theory/def-morphism.html
@@ -12,7 +12,7 @@ translations:
 type: Definition
 ---
 
-# 定義: 射
+# 射
 
 **射**（矢印とも呼ばれる）は、[圏](def-category.qmd)論における基本概念で、対象間の構造を保存する写像を表します。圏を[有向グラフ](../combinatorics/def-graph.qmd)として見るとき、射は頂点（対象）間の有向辺です。
 
@@ -45,43 +45,45 @@ type: Definition
 ## 射の種類
 
 特殊な射には以下が含まれます：
-- **単射**: 単射関数の圏論的一般化
-- **全射**: 全射関数の圏論的一般化
-- **同型射**: 両側逆射を持つ射
-
-```{mermaid}
-```
-
+- **[単射](def-monomorphism.qmd)**: 単射関数の圏論的一般化
+- **[全射](def-epimorphism.qmd)**: 全射関数の圏論的一般化
+- **[同型射](def-isomorphism.qmd)**: 両側逆射を持つ射
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-composition["Definition: Composition"]:::definition
-    def-morphism["Definition: Morphism"]:::definition
-    def-isomorphism["Definition: Isomorphism"]:::definition
-    def-category["Definition: Category"]:::definition
-    def-natural-transformation["Definition: Natural Transformation"]:::definition
-    def-graph["Definition: Graph"]:::definition
-    ex-set-category["Example: The Category of Sets"]:::example
+    ex-set-category["例：集合の圏"]:::example
+    def-natural-transformation["定義：自然変換"]:::definition
+    def-morphism["定義: 射"]:::definition
+    def-isomorphism["定義: 群同型"]:::definition
+    def-epimorphism["定義：全射"]:::definition
+    def-composition["定義: 合成"]:::definition
+    def-category["定義: 圏"]:::definition
+    def-monomorphism["定義：単射"]:::definition
+    def-graph["定義: グラフ"]:::definition
+    def-monomorphism --> def-morphism
+    def-natural-transformation --> def-morphism
     def-morphism --> def-graph
+    ex-set-category --> def-morphism
+    def-epimorphism --> def-morphism
+    def-composition --> def-morphism
     def-isomorphism --> def-morphism
     def-morphism --> def-category
-    def-natural-transformation --> def-morphism
-    def-composition --> def-morphism
-    ex-set-category --> def-morphism
     class def-morphism current
-    click def-composition "def-composition.html" "Definition: Compositionへ"
-    click def-isomorphism "def-isomorphism.html" "Definition: Isomorphismへ"
-    click def-category "def-category.html" "Definition: Categoryへ"
-    click def-natural-transformation "def-natural-transformation.html" "Definition: Natural Transformationへ"
-    click def-graph "def-graph.html" "Definition: Graphへ"
-    click ex-set-category "ex-set-category.html" "Example: The Category of Setsへ"
+    click ex-set-category "ex-set-category.html" "例：集合の圏へ"
+    click def-natural-transformation "def-natural-transformation.html" "定義：自然変換へ"
+    click def-isomorphism "def-isomorphism.html" "群同型の定義へ"
+    click def-epimorphism "def-epimorphism.html" "定義：全射へ"
+    click def-composition "def-composition.html" "合成の定義へ"
+    click def-category "def-category.html" "圏の定義へ"
+    click def-monomorphism "def-monomorphism.html" "定義：単射へ"
+    click def-graph "def-graph.html" "グラフの定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -95,4 +97,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-morphism.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-morphism.html){target="_blank"}で完全なインタラクティブ版を表示

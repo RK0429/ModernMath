@@ -3,8 +3,9 @@ id: def-functor
 requires:
 - def-category
 - def-graph
+- ../logic-set-theory/def-function
 status: complete
-title: 'Definition: Functor'
+title: Functor
 translations:
   en: ../en/category-theory/def-functor.html
   ja: ../ja/category-theory/def-functor.html
@@ -33,7 +34,7 @@ satisfying:
 
 - **Covariant functor**: As defined above
 - **Contravariant functor**: Reverses the direction of morphisms
-- **Faithful functor**: Injective on morphism sets
+- **Faithful functor**: Injective on morphism sets (preserves [monomorphisms](def-monomorphism.qmd))
 - **Full functor**: Surjective on morphism sets
 - **Fully faithful functor**: Both faithful and full
 - **Essentially surjective**: Every object in $\mathcal{D}$ is isomorphic to $F(A)$ for some $A$
@@ -41,8 +42,8 @@ satisfying:
 ## Examples
 
 - The forgetful functor from **Grp** to **Set**
-- The free group functor from **Set** to **Grp**
-- The fundamental group functor from **Top** to **Grp**
+- The [@free group](../algebra/def-free-group.qmd) functor from **Set** to **Grp**
+- The [fundamental group](../topology/def-fundamental-group.qmd) functor from **Top** to **Grp**
 
 ## Dependency Graph
 
@@ -54,19 +55,28 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
     def-natural-transformation["Definition: Natural Transformation"]:::definition
+    def-function["Definition: Function"]:::definition
+    thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
+    def-epimorphism["Definition: Epimorphism"]:::definition
     def-category["Definition: Category"]:::definition
-    def-graph["Definition: Graph"]:::definition
     def-functor["Definition: Functor"]:::definition
-    def-functor --> def-graph
+    def-monomorphism["Definition: Monomorphism"]:::definition
+    def-graph["Definition: Graph"]:::definition
     def-functor --> def-category
-    thm-yoneda --> def-functor
+    def-functor --> def-function
     def-natural-transformation --> def-functor
+    def-epimorphism --> def-functor
+    thm-yoneda --> def-functor
+    def-monomorphism --> def-functor
+    def-functor --> def-graph
     class def-functor current
-    click thm-yoneda "thm-yoneda.html" "Go to Yoneda Lemma theorem"
     click def-natural-transformation "def-natural-transformation.html" "Go to Natural Transformation definition"
+    click def-function "def-function.html" "Go to Function definition"
+    click thm-yoneda "thm-yoneda.html" "Go to Yoneda Lemma theorem"
+    click def-epimorphism "def-epimorphism.html" "Go to Epimorphism definition"
     click def-category "def-category.html" "Go to Category definition"
+    click def-monomorphism "def-monomorphism.html" "Go to Monomorphism definition"
     click def-graph "def-graph.html" "Go to Graph definition"
 ```
 
@@ -81,4 +91,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-functor.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-functor.html){target="_blank"}

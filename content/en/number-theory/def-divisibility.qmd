@@ -1,0 +1,143 @@
+---
+id: def-divisibility
+requires:
+- def-partial-order
+status: complete
+title: Divisibility
+type: Definition
+---
+
+# Divisibility {#def-divisibility}
+
+Let $a$ and $b$ be integers with $a \neq 0$. We say that $a$ **divides** $b$ (or $b$ is **divisible by** $a$) if there exists an integer $k$ such that $b = ak$.
+
+## Notation
+
+When $a$ divides $b$, we write:
+$$a \mid b$$
+
+When $a$ does not divide $b$, we write:
+$$a \nmid b$$
+
+## Alternative Terminology
+
+When $a \mid b$, we also say:
+- $a$ is a **divisor** (or **factor**) of $b$
+- $b$ is a **multiple** of $a$
+- $b$ is **divisible by** $a$
+
+## Important Properties
+
+1. **Reflexivity**: For any non-zero integer $a$: $a \mid a$
+
+2. **Transitivity**: If $a \mid b$ and $b \mid c$, then $a \mid c$
+
+3. **Linear Combination**: If $a \mid b$ and $a \mid c$, then for any integers $x, y$:
+   $$a \mid (bx + cy)$$
+
+4. **Antisymmetry**: If $a \mid b$ and $b \mid a$, then $a = \pm b$
+
+5. **Ordering**: If $a \mid b$ and both $a, b > 0$, then $a \leq b$
+
+6. **Product Rule**: If $a \mid b$ and $c \mid d$, then $ac \mid bd$
+
+## Examples
+
+### Positive Examples
+- $3 \mid 12$ because $12 = 3 \times 4$
+- $-5 \mid 20$ because $20 = (-5) \times (-4)$
+- $1 \mid n$ for any integer $n$
+- $n \mid 0$ for any non-zero integer $n$
+
+### Negative Examples
+- $4 \nmid 7$ because there is no integer $k$ such that $7 = 4k$
+- $0 \nmid 5$ (division by zero is undefined)
+
+## Special Cases
+
+1. **Unity**: $1$ divides every integer
+2. **Zero**: Every non-zero integer divides $0$
+3. **Self-divisibility**: Every non-zero integer divides itself
+
+## Partial Order Structure
+
+The divisibility relation on positive integers forms a [partial order](../logic-set-theory/def-partial-order.qmd):
+- **Reflexive**: $a \mid a$ for all positive integers $a$
+- **Antisymmetric**: If $a \mid b$ and $b \mid a$ for positive integers, then $a = b$
+- **Transitive**: If $a \mid b$ and $b \mid c$, then $a \mid c$
+
+Note that this is not a total order since not all pairs of positive integers are comparable under divisibility (e.g., neither $2 \mid 3$ nor $3 \mid 2$).
+
+## Connection to Division Algorithm
+
+The divisibility [relation](../logic-set-theory/def-relation.qmd) is closely connected to the division algorithm. Given integers $a$ and $b$ with $b > 0$, by the division algorithm:
+$$a = bq + r \quad \text{where } 0 \leq r < b$$
+
+Then $b \mid a$ if and only if $r = 0$.
+
+## Applications
+
+Divisibility is fundamental to:
+- Defining [prime numbers](def-prime.qmd)
+- Computing the [greatest common divisor](def-gcd.qmd)
+- Understanding [congruences](def-congruence.qmd)
+- The [Fundamental Theorem of Arithmetic](thm-fundamental-arithmetic.qmd)
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
+    def-lcm["Definition: Least Common Multiple"]:::definition
+    thm-fermat-little["Theorem: Fermat's Little Theorem"]:::theorem
+    thm-fundamental-arithmetic["Theorem: Fundamental Theorem of Arithmetic"]:::theorem
+    def-partial-order["Definition: Partial Order"]:::definition
+    thm-euclid-infinitude-primes["Theorem: Euclid's Theorem on the Infinitude of Primes"]:::theorem
+    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
+    def-prime["Definition: Prime Number"]:::definition
+    def-gcd["Definition: Greatest Common Divisor"]:::definition
+    thm-chinese-remainder["Theorem: Chinese Remainder Theorem"]:::theorem
+    def-divisibility["Definition: Divisibility"]:::definition
+    def-lcm --> def-divisibility
+    thm-euclid-infinitude-primes --> def-divisibility
+    def-divisibility --> def-prime
+    thm-euclidean-algorithm --> def-divisibility
+    def-prime --> def-divisibility
+    def-divisibility --> def-partial-order
+    thm-fundamental-arithmetic --> def-divisibility
+    thm-chinese-remainder --> def-divisibility
+    def-congruence --> def-divisibility
+    def-divisibility --> def-gcd
+    thm-fermat-little --> def-divisibility
+    def-gcd --> def-divisibility
+    class def-divisibility current
+    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Go to Euclidean Algorithm theorem"
+    click def-lcm "def-lcm.html" "Go to Least Common Multiple definition"
+    click thm-fermat-little "thm-fermat-little.html" "Go to Fermat's Little Theorem theorem"
+    click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "Go to Fundamental Theorem of Arithmetic theorem"
+    click def-partial-order "def-partial-order.html" "Go to Partial Order definition"
+    click thm-euclid-infinitude-primes "thm-euclid-infinitude-primes.html" "Go to Euclid's Theorem on the Infinitude of Primes theorem"
+    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic) definition"
+    click def-prime "def-prime.html" "Go to Prime Number definition"
+    click def-gcd "def-gcd.html" "Go to Greatest Common Divisor definition"
+    click thm-chinese-remainder "thm-chinese-remainder.html" "Go to Chinese Remainder Theorem theorem"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-divisibility" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/en/def-divisibility.html){target="_blank"}

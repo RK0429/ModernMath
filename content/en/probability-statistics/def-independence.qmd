@@ -5,8 +5,9 @@ requires:
 - def-event
 - def-conditional-probability
 - def-random-variable
+- def-probability-distribution
 status: complete
-title: 'Definition: Independence'
+title: Independence
 translations:
   en: ../en/probability-statistics/def-independence.html
   ja: ../ja/probability-statistics/def-independence.html
@@ -41,7 +42,7 @@ Two [random variables](def-random-variable.qmd) $X$ and $Y$ are **independent** 
 
 $$P(X \in A, Y \in B) = P(X \in A) \cdot P(Y \in B)$$
 
-Equivalently, their joint distribution function factorizes:
+Equivalently, their joint [distribution](def-probability-distribution.qmd) function factorizes:
 
 $$F_{X,Y}(x,y) = F_X(x) \cdot F_Y(y)$$
 
@@ -118,26 +119,32 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-conditional-probability["Definition: Conditional Probability"]:::definition
-    def-event["Definition: Event"]:::definition
     def-probability-space["Definition: Probability Space"]:::definition
-    def-random-variable["Definition: Random Variable"]:::definition
+    def-binomial-distribution["Definition: Binomial Distribution"]:::definition
     def-independence["Definition: Independence"]:::definition
-    thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
     thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
-    thm-central-limit --> def-independence
+    def-event["Definition: Event"]:::definition
+    def-probability-distribution["Definition: Probability Distribution"]:::definition
+    thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
+    def-conditional-probability["Definition: Conditional Probability"]:::definition
+    def-random-variable["Definition: Random Variable"]:::definition
     def-independence --> def-event
-    def-independence --> def-random-variable
+    def-binomial-distribution --> def-independence
     def-independence --> def-conditional-probability
+    def-independence --> def-probability-distribution
     def-independence --> def-probability-space
+    def-independence --> def-random-variable
     thm-law-of-large-numbers --> def-independence
+    thm-central-limit --> def-independence
     class def-independence current
-    click def-conditional-probability "def-conditional-probability.html" "Go to Conditional Probability definition"
-    click def-event "def-event.html" "Go to Event definition"
     click def-probability-space "def-probability-space.html" "Go to Probability Space definition"
-    click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
-    click thm-central-limit "thm-central-limit.html" "Go to Central Limit Theorem theorem"
+    click def-binomial-distribution "def-binomial-distribution.html" "Go to Binomial Distribution definition"
     click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "Go to Law of Large Numbers theorem"
+    click def-event "def-event.html" "Go to Event definition"
+    click def-probability-distribution "def-probability-distribution.html" "Go to Probability Distribution definition"
+    click thm-central-limit "thm-central-limit.html" "Go to Central Limit Theorem theorem"
+    click def-conditional-probability "def-conditional-probability.html" "Go to Conditional Probability definition"
+    click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
 ```
 
 ## Interactive Visualization
@@ -151,4 +158,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-independence.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-independence.html){target="_blank"}

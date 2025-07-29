@@ -4,7 +4,7 @@ requires:
 - def-limit
 - def-continuity
 status: complete
-title: '定義: 積分'
+title: 積分
 translation_of: ../../en/analysis/def-integral.qmd
 translations:
   en: ../en/analysis/def-integral.html
@@ -34,6 +34,8 @@ $$\int_a^b f(x) \, dx = \lim_{||P|| \to 0} S(f, P)$$
 が存在し、標本点の選び方に依存しないことをいう。ここで $||P|| = \max_i (x_i - x_{i-1})$ である。
 
 ## 微積分学の基本定理
+
+[微積分学の基本定理](thm-fundamental-calculus.qmd)は、積分と微分の間の深い関係を確立している：
 
 ### 第一部
 $f$ が $[a,b]$ で連続で、$F(x) = \int_a^x f(t) \, dt$ ならば：
@@ -78,21 +80,27 @@ $$\int_a^b f(x) \, dx = F(b) - F(a)$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-limit["Definition: Limit of a Sequence"]:::definition
-    def-integral["Definition: Integral"]:::definition
-    def-continuity["Definition: Continuity"]:::definition
+    def-limit["定義：数列の極限"]:::definition
+    thm-fundamental-calculus["定理: 微積分学の基本定理"]:::theorem
+    def-probability-distribution["定義: 確率分布"]:::definition
+    def-continuity["定義: 連続性"]:::definition
+    def-integral["定義: 積分"]:::definition
+    thm-fundamental-calculus --> def-integral
     def-integral --> def-limit
     def-integral --> def-continuity
+    def-probability-distribution --> def-integral
     class def-integral current
-    click def-limit "def-limit.html" "Definition: Limit of a Sequenceへ"
-    click def-continuity "def-continuity.html" "Definition: Continuityへ"
+    click def-limit "def-limit.html" "定義：数列の極限へ"
+    click thm-fundamental-calculus "thm-fundamental-calculus.html" "微積分学の基本定理の定理へ"
+    click def-probability-distribution "def-probability-distribution.html" "確率分布の定義へ"
+    click def-continuity "def-continuity.html" "連続性の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -106,4 +114,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-integral.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-integral.html){target="_blank"}で完全なインタラクティブ版を表示

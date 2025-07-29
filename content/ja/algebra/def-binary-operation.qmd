@@ -5,12 +5,13 @@ lang: ja
 lean_id: MathKnowledgeGraph.Algebra.BinaryOp
 requires:
 - def-set
+- def-function
 status: complete
 tags:
 - 二項演算
 - 代数学
 - 演算
-title: '定義: 二項演算'
+title: 二項演算
 translation_of: ../../en/algebra/def-binary-operation.qmd
 translations:
   en: ../en/algebra/def-binary-operation.html
@@ -19,9 +20,9 @@ type: Definition
 updated: 2024-01-20
 ---
 
-# 定義: 二項演算 {#def-binary-operation}
+# 二項演算 {#def-binary-operation}
 
-$S$ を[集合](../logic-set-theory/def-set.qmd)とする。$S$ 上の**二項演算**とは、関数 $\star: S \times S \to S$ のことである。
+$S$ を[集合](../logic-set-theory/def-set.qmd)とする。$S$ 上の**二項演算**とは、[関数](../logic-set-theory/def-function.qmd) $\star: S \times S \to S$ のことである。
 
 ## 説明
 
@@ -33,7 +34,7 @@ $S$ を[集合](../logic-set-theory/def-set.qmd)とする。$S$ 上の**二項�
 
 1. **閉性**: 定義により、すべての $a, b \in S$ に対して $a \star b \in S$ である
 
-2. **結合性**: すべての $a, b, c \in S$ に対して $(a \star b) \star c = a \star (b \star c)$ である
+2. **[結合性](def-associativity.qmd)**: すべての $a, b, c \in S$ に対して $(a \star b) \star c = a \star (b \star c)$ である（[半群](def-semigroup.qmd)を参照）
 
 3. **可換性**: すべての $a, b \in S$ に対して $a \star b = b \star a$ である
 
@@ -58,63 +59,21 @@ $S$ を[集合](../logic-set-theory/def-set.qmd)とする。$S$ 上の**二項�
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-inverse-element["Definition: Inverse Element"]:::definition
-    def-commutativity["Definition: Commutativity"]:::definition
-    def-associativity["Definition: Associativity"]:::definition
-    ex-integers-addition["Example: Integers under Addition"]:::example
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-coset["Definition: Coset"]:::definition
-    def-ideal["Definition: Ideal"]:::definition
-    def-module["Definition: Module"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-identity-element["Definition: Identity Element"]:::definition
-    def-distributivity["Definition: Distributivity"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
-    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-set["定義: 集合"]:::definition
+    def-function["定義: 関数"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-binary-operation --> def-function
     def-binary-operation --> def-set
-    def-distributivity --> def-binary-operation
-    ex-integers-ring --> def-binary-operation
-    def-commutativity --> def-binary-operation
-    def-group --> def-binary-operation
-    def-module --> def-binary-operation
-    def-associativity --> def-binary-operation
-    def-identity-element --> def-binary-operation
-    def-coset --> def-binary-operation
-    ex-integers-addition --> def-binary-operation
-    def-ring --> def-binary-operation
-    def-ideal --> def-binary-operation
-    def-homomorphism --> def-binary-operation
-    def-inverse-element --> def-binary-operation
-    def-polynomial-ring --> def-binary-operation
-    def-vector-space --> def-binary-operation
     class def-binary-operation current
-    click def-inverse-element "def-inverse-element.html" "Definition: Inverse Elementへ"
-    click def-commutativity "def-commutativity.html" "Definition: Commutativityへ"
-    click def-associativity "def-associativity.html" "Definition: Associativityへ"
-    click ex-integers-addition "ex-integers-addition.html" "Example: Integers under Additionへ"
-    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
-    click def-coset "def-coset.html" "Definition: Cosetへ"
-    click def-ideal "def-ideal.html" "Definition: Idealへ"
-    click def-module "def-module.html" "Definition: Moduleへ"
-    click def-set "def-set.html" "Definition: Setへ"
-    click def-identity-element "def-identity-element.html" "Definition: Identity Elementへ"
-    click def-distributivity "def-distributivity.html" "Definition: Distributivityへ"
-    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
-    click def-polynomial-ring "def-polynomial-ring.html" "Definition: Polynomial Ringへ"
-    click def-group "def-group.html" "Definition: Groupへ"
-    click def-ring "def-ring.html" "Definition: Ringへ"
-    click ex-integers-ring "ex-integers-ring.html" "Example: Integers Form a Ringへ"
+    click def-set "def-set.html" "集合の定義へ"
+    click def-function "def-function.html" "関数の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -128,4 +87,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-binary-operation.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-binary-operation.html){target="_blank"}で完全なインタラクティブ版を表示

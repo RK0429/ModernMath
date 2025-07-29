@@ -1,0 +1,123 @@
+---
+id: def-determinant
+requires:
+- def-matrix
+- def-field
+- def-function
+- def-isomorphism
+status: complete
+title: 行列式
+translation_of: ../../en/algebra/def-determinant.qmd
+translations:
+  en: ../en/algebra/def-determinant.html
+  ja: ../ja/algebra/def-determinant.html
+type: Definition
+---
+
+# 行列式 {#def-determinant}
+
+**行列式**（ぎょうれつしき）は、正方行列に定義されるスカラー値関数で、行列とそれに対応する線形変換の重要な性質を符号化する。
+
+## 形式的定義
+
+体 $F$ 上の $n \times n$ 行列 $A$ に対して、行列式（$\det(A)$ または $|A|$ と表記）は、$M_{n \times n}(F)$ から $F$ への唯一の関数で、以下を満たす：
+
+1. $\det(I_n) = 1$（ここで $I_n$ は $n \times n$ 単位行列）
+2. 行列式は行列の行に関して多重線形である
+3. 2つの行を入れ替えると、行列式は $-1$ 倍される
+
+## 計算方法
+
+### $2 \times 2$ 行列の場合
+
+$A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$ に対して：
+$$\det(A) = ad - bc$$
+
+### $3 \times 3$ 行列の場合
+
+$A = \begin{pmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{pmatrix}$ に対して：
+
+第1行に沿った余因子展開を使用：
+$$\det(A) = a_{11}\begin{vmatrix} a_{22} & a_{23} \\ a_{32} & a_{33} \end{vmatrix} - a_{12}\begin{vmatrix} a_{21} & a_{23} \\ a_{31} & a_{33} \end{vmatrix} + a_{13}\begin{vmatrix} a_{21} & a_{22} \\ a_{31} & a_{32} \end{vmatrix}$$
+
+### 一般の場合：余因子展開
+
+$n \times n$ 行列に対して、行列式は任意の行 $i$ または列 $j$ に沿った余因子展開で計算できる：
+
+$$\det(A) = \sum_{k=1}^n a_{ik}(-1)^{i+k}M_{ik}$$
+
+ここで $M_{ik}$ は小行列式（行 $i$ と列 $k$ を削除して得られる $(n-1) \times (n-1)$ 行列の行列式）である。
+
+## 主要な性質
+
+1. **積の性質**: $\det(AB) = \det(A)\det(B)$
+2. **転置不変性**: $\det(A^T) = \det(A)$
+3. **スカラー倍**: $n \times n$ 行列に対して $\det(cA) = c^n\det(A)$
+4. **三角行列**: 三角行列に対して、$\det(A) = \prod_{i=1}^n a_{ii}$（対角成分の積）
+5. **行の操作**:
+   - 行の交換：行列式を $-1$ 倍する
+   - 行を $c$ 倍：行列式を $c$ 倍する
+   - ある行に他の行の定数倍を加える：行列式は不変
+6. **零行列式**: $\det(A) = 0$ となるのは、行（または列）が線形従属である場合に限る
+
+## 幾何学的解釈
+
+実数成分の行列に対して：
+- 2次元：$|\det(A)|$ は列ベクトルが作る平行四辺形の面積を表す
+- 3次元：$|\det(A)|$ は列ベクトルが作る平行六面体の体積を表す
+- 符号は向きを示す（正は保存、負は反転）
+
+## 行列の性質との関係
+
+正方行列 $A$ について、以下は同値である：
+- $\det(A) \neq 0$
+- $A$ は可逆である
+- $A$ の列（および行）は線形独立である
+- $A$ が表す線形変換は[同型写像](def-isomorphism.qmd)である
+
+行列式は線形代数の基本的なツールであり、連立一次方程式を解くためのクラメルの公式、[固有値](def-eigenvalue-eigenvector.qmd)を求めるための特性多項式、逆行列の計算などに現れる。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-normal-subgroup["定義: 正規部分群"]:::definition
+    def-determinant["定義: 行列式"]:::definition
+    def-eigenvalue-eigenvector["定義: 固有値と固有ベクトル"]:::definition
+    def-isomorphism["定義: 群同型"]:::definition
+    def-function["定義: 関数"]:::definition
+    def-matrix["定義：行列"]:::definition
+    def-field["定義: 体"]:::definition
+    def-normal-subgroup --> def-determinant
+    def-determinant --> def-isomorphism
+    def-determinant --> def-field
+    def-determinant --> def-function
+    def-determinant --> def-matrix
+    def-eigenvalue-eigenvector --> def-determinant
+    class def-determinant current
+    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群の定義へ"
+    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "固有値と固有ベクトルの定義へ"
+    click def-isomorphism "def-isomorphism.html" "群同型の定義へ"
+    click def-function "def-function.html" "関数の定義へ"
+    click def-matrix "def-matrix.html" "定義：行列へ"
+    click def-field "def-field.html" "体の定義へ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-determinant" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/ja/def-determinant.html){target="_blank"}で完全なインタラクティブ版を表示

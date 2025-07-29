@@ -1,0 +1,133 @@
+---
+id: def-relation
+requires:
+- def-set
+status: complete
+title: 関係
+translation_of: ../../en/logic-set-theory/def-relation.qmd
+translations:
+  en: ../en/logic-set-theory/def-relation.html
+  ja: ../ja/logic-set-theory/def-relation.html
+type: Definition
+---
+
+# 関係 {#def-relation}
+
+[集合](def-set.qmd) $A$ から[集合](def-set.qmd) $B$ への**関係**は、直積 $A \times B$ の[部分集合](def-subset.qmd)である。
+
+## 形式的定義
+
+2つの集合 $A$ と $B$ が与えられたとき、**直積** $A \times B$ は以下のように定義される：
+
+$$A \times B = \{(a, b) : a \in A \text{ かつ } b \in B\}$$
+
+$A$ から $B$ への**関係** $R$ は、$A \times B$ の任意の部分集合である：
+
+$$R \subseteq A \times B$$
+
+## 記法
+
+- $(a, b) \in R$ のとき、$aRb$ と書き、「$a$ は $R$ によって $b$ と関係している」という
+- $(a, b) \notin R$ のとき、$a \cancel{R} b$ と書く
+- $A$ から $A$ 自身への関係（つまり、$R \subseteq A \times A$）を **$A$ 上の関係**という
+
+## 関係の種類
+
+### 定義域と値域
+
+関係 $R \subseteq A \times B$ に対して：
+
+- **定義域**：$\text{dom}(R) = \{a \in A : \exists b \in B, (a, b) \in R\}$
+- **値域**：$\text{range}(R) = \{b \in B : \exists a \in A, (a, b) \in R\}$
+
+### 逆関係
+
+関係 $R \subseteq A \times B$ の**逆関係**は、以下で定義される関係 $R^{-1} \subseteq B \times A$ である：
+
+$$R^{-1} = \{(b, a) : (a, b) \in R\}$$
+
+## 集合上の関係の性質
+
+集合 $A$ 上の関係 $R$（つまり、$R \subseteq A \times A$）に対して：
+
+### 反射的
+
+すべての $a \in A$ に対して $aRa$ が成り立つとき、$R$ は**反射的**である
+
+### 対称的
+
+すべての $a, b \in A$ に対して、$aRb$ ならば $bRa$ が成り立つとき、$R$ は**対称的**である
+
+### 推移的
+
+すべての $a, b, c \in A$ に対して、$aRb$ かつ $bRc$ ならば $aRc$ が成り立つとき、$R$ は**推移的**である
+
+### 反対称的
+
+すべての $a, b \in A$ に対して、$aRb$ かつ $bRa$ ならば $a = b$ が成り立つとき、$R$ は**反対称的**である
+
+## 例
+
+1. **小なり関係**：$\mathbb{R}$ 上の関係 $<$ で、$a < b$ のとき $aRb$
+2. **整除関係**：$\mathbb{Z}$ 上の関係で、$a$ が $b$ を割り切るとき $aRb$
+3. **部分集合関係**：集合の[べき集合](def-power-set.qmd)上の関係 $\subseteq$
+4. **関数**：すべての[関数](def-function.qmd) $f: A \to B$ は特別な種類の関係である
+
+## 特別な種類の関係
+
+- **同値関係**：反射的、対称的、推移的な関係
+- **[半順序](def-partial-order.qmd)**：反射的、反対称的、推移的な関係
+- **全順序**：任意の2つの要素が比較可能な[半順序](def-partial-order.qmd)
+
+## 関連項目
+
+- @def-function
+- @def-subset
+- @def-equivalence-relation
+- @def-partial-order
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["定義: 集合"]:::definition
+    def-partial-order["定義：半順序"]:::definition
+    def-function["定義: 関数"]:::definition
+    def-subset["定義: 部分集合"]:::definition
+    def-equivalence-relation["定義：同値関係"]:::definition
+    def-relation["定義：関係"]:::definition
+    def-relation --> def-equivalence-relation
+    def-equivalence-relation --> def-relation
+    def-relation --> def-function
+    def-relation --> def-subset
+    def-relation --> def-partial-order
+    def-relation --> def-set
+    def-subset --> def-relation
+    def-partial-order --> def-relation
+    def-function --> def-relation
+    class def-relation current
+    click def-set "def-set.html" "集合の定義へ"
+    click def-partial-order "def-partial-order.html" "定義：半順序へ"
+    click def-function "def-function.html" "関数の定義へ"
+    click def-subset "def-subset.html" "部分集合の定義へ"
+    click def-equivalence-relation "def-equivalence-relation.html" "定義：同値関係へ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="def-relation" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/ja/def-relation.html){target="_blank"}で完全なインタラクティブ版を表示

@@ -5,7 +5,7 @@ requires:
 - def-angle
 - def-line
 status: complete
-title: '定理: 三角形の内角の和'
+title: 三角形の内角の和
 translation_of: ../../en/geometry/thm-angle-sum-triangle.qmd
 translations:
   en: ../en/geometry/thm-angle-sum-triangle.html
@@ -56,24 +56,24 @@ $$\alpha + \beta + \gamma = 180°$$
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-angle-sum-triangle["Theorem: Angle Sum of a Triangle"]:::theorem
-    def-line["Definition: Line"]:::definition
-    def-angle["Definition: Angle"]:::definition
-    def-triangle["Definition: Triangle"]:::definition
+    def-triangle["定義: 三角形"]:::definition
+    def-line["定義: 直線"]:::definition
+    thm-angle-sum-triangle["定理: 三角形の内角の和"]:::theorem
+    def-angle["定義: 角"]:::definition
+    thm-angle-sum-triangle --> def-triangle
     thm-angle-sum-triangle --> def-angle
     thm-angle-sum-triangle --> def-line
-    thm-angle-sum-triangle --> def-triangle
     class thm-angle-sum-triangle current
-    click def-line "def-line.html" "Definition: Lineへ"
-    click def-angle "def-angle.html" "Definition: Angleへ"
-    click def-triangle "def-triangle.html" "Definition: Triangleへ"
+    click def-triangle "def-triangle.html" "三角形の定義へ"
+    click def-line "def-line.html" "直線の定義へ"
+    click def-angle "def-angle.html" "角の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -87,4 +87,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/thm-angle-sum-triangle.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/thm-angle-sum-triangle.html){target="_blank"}で完全なインタラクティブ版を表示

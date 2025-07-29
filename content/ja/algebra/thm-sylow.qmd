@@ -1,0 +1,122 @@
+---
+id: thm-sylow
+requires:
+- def-group
+- def-subgroup
+- thm-lagrange
+- def-order
+- ../number-theory/def-prime
+- ../number-theory/def-divisibility
+- ../logic-set-theory/def-cardinality
+status: verified
+title: シローの定理
+translation_of: ../../en/algebra/thm-sylow.qmd
+translations:
+  en: thm-sylow.html
+  ja: thm-sylow.html
+type: Theorem
+---
+
+**シローの定理**は、有限[群論](def-group.qmd)における基本的な結果で、[素数](../number-theory/def-prime.qmd)べき[位数](def-order.qmd)の[部分群](def-subgroup.qmd)の存在と性質についての詳細な情報を提供します。
+
+## 準備
+
+$G$ を有限[群](def-group.qmd)とし、その[位数](def-order.qmd)を $|G| = p^k m$ とする。ここで $p$ は[素数](../number-theory/def-prime.qmd)、$k \geq 1$、$\gcd(p, m) = 1$ とし、$|G|$ は $G$ の[濃度](../logic-set-theory/def-cardinality.qmd)を表す。
+
+$G$ の **Sylow $p$-部分群**とは、[位数](def-order.qmd) $p^k$（$|G|$ を[割る](../number-theory/def-divisibility.qmd) $p$ の最高べき）の[部分群](def-subgroup.qmd)である。
+
+## 3つのシローの定理
+
+### 第一シローの定理（存在定理）
+
+$0 \leq r \leq k$ を満たす任意の整数 $r$ に対して、$G$ には[位数](def-order.qmd) $p^r$ の[部分群](def-subgroup.qmd)が存在する。特に：
+- $G$ は $|G|$ の各[素因数](../number-theory/def-prime.qmd)に対して少なくとも1つの Sylow $p$-部分群を含む
+
+### 第二シローの定理（共役性）
+
+$G$ のすべての Sylow $p$-部分群は互いに共役である。すなわち、$P$ と $Q$ が $G$ の Sylow $p$-部分群ならば、ある $g \in G$ が存在して：
+$$Q = gPg^{-1}$$
+
+### 第三シローの定理（個数）
+
+$G$ の Sylow $p$-部分群の個数を $n_p$ とする。このとき：
+
+1. $n_p \equiv 1 \pmod{p}$
+2. $n_p$ は $m$（$|G|$ の $p$ と互いに素な部分）を[割る](../number-theory/def-divisibility.qmd)
+3. $n_p = [G : N_G(P)]$ ここで $N_G(P)$ は任意の Sylow $p$-部分群 $P$ の正規化群
+
+## 重要な帰結
+
+### 正規 Sylow 部分群
+
+$n_p = 1$ ならば、唯一の Sylow $p$-部分群は[正規](def-normal-subgroup.qmd)である。
+
+### 整除関係
+
+第三定理の条件を組み合わせると：$n_p$ は $n_p \equiv 1 \pmod{p}$ かつ $n_p | m$ を満たさなければならない。これにより $n_p$ の可能な値は厳しく制限される。
+
+### コーシーの定理
+
+$r = 1$ の特別な場合として：[素数](../number-theory/def-prime.qmd) $p$ が $|G|$ を[割る](../number-theory/def-divisibility.qmd)ならば、$G$ は位数 $p$ の元を含む。
+
+## 応用
+
+シローの定理には多くの応用がある：
+
+1. **有限群の分類**：特定の位数の群が特定の構造を持つことを証明するために使用
+2. **非単純性の結果**：特定の位数の群が[単純](def-simple-group.qmd)でないことを示すためによく使用される
+3. **構造解析**：[正規部分群](def-normal-subgroup.qmd)構造についての情報を提供
+4. **ラグランジュの部分的逆**：[ラグランジュの定理](thm-lagrange.qmd)は部分群の位数が群の位数を割ることを述べるが、シローの第一定理は素数べきに対する部分的な逆を提供する
+
+## 例：位数15の群
+
+$|G| = 15 = 3 \cdot 5$ とする。シローの定理により：
+
+- $n_3 \equiv 1 \pmod{3}$ かつ $n_3 | 5$ なので、$n_3 \in \{1, 5\}$。しかし 5 ≢ 1 (mod 3) なので、$n_3 = 1$
+- $n_5 \equiv 1 \pmod{5}$ かつ $n_5 | 3$ なので、$n_5 \in \{1, 3\}$。しかし 3 ≢ 1 (mod 5) なので、$n_5 = 1$
+
+両方の Sylow 部分群が唯一なので、それらは[正規](def-normal-subgroup.qmd)であり、$G$ は[アーベル群](def-abelian-group.qmd)（実際、[巡回群](def-cyclic-group.qmd)）でなければならない。
+
+## 歴史的注記
+
+これらの定理は、1872年にこれらを証明したノルウェーの数学者ペーテル・ルートヴィヒ・シロー（Peter Ludwig Sylow, 1832-1918）にちなんで名付けられた。これらは有限群論において最も強力な道具の一つであり続けている。
+
+## 依存関係グラフ
+
+```{mermaid}
+%%| fig-cap: "ローカル依存関係グラフ"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-subgroup["定義：部分群"]:::definition
+    def-order["定義：位数"]:::definition
+    def-group["群"]:::definition
+    thm-lagrange["定理: ラグランジュの定理"]:::theorem
+    thm-sylow["シローの定理"]:::theorem
+    thm-sylow --> def-subgroup
+    thm-sylow --> thm-lagrange
+    thm-sylow --> def-group
+    def-order --> thm-sylow
+    thm-sylow --> def-order
+    class thm-sylow current
+    click def-subgroup "def-subgroup.html" "定義：部分群へ"
+    click def-order "def-order.html" "定義：位数へ"
+    click def-group "def-group.html" "群へ"
+    click thm-lagrange "thm-lagrange.html" "ラグランジュの定理の定理へ"
+```
+
+## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {.graph-viz data-id="thm-sylow" data-width="700" data-height="500"}
+:::
+
+次のことができます：
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+- [別ウィンドウ](../../output/interactive/ja/thm-sylow.html){target="_blank"}で完全なインタラクティブ版を表示

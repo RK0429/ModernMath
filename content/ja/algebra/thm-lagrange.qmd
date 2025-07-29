@@ -5,9 +5,11 @@ requires:
 - def-subgroup
 - def-cyclic-group
 - def-coset
+- def-order
 - ../number-theory/thm-fermat-little
+- ../logic-set-theory/def-cardinality
 status: complete
-title: '定理: ラグランジュの定理'
+title: ラグランジュの定理
 translation_of: ../../en/algebra/thm-lagrange.qmd
 translations:
   en: ../en/algebra/thm-lagrange.html
@@ -17,68 +19,86 @@ type: Theorem
 
 # ラグランジュの定理 {#thm-lagrange}
 
-有限[群](def-group.qmd)$G$とその[部分群](def-subgroup.qmd)$H$に対して、$H$の位数は$G$の位数を割り切る。
+有限[群](def-group.qmd)$G$とその[部分群](def-subgroup.qmd)$H$に対して、$H$の[位数](def-order.qmd)は$G$の[位数](def-order.qmd)を[割り切る](../number-theory/def-divisibility.qmd)。
 
 ## 主張
 
 $G$が有限群で$H \leq G$ならば：
 $$|G| = |H| \cdot [G:H]$$
 
-ここで、$|G|$は$G$の位数（元の個数）を表し、$[G:H]$は$H$の$G$における指数（$H$の$G$における異なる左[剰余類](def-coset.qmd)の個数）を表す。
+ここで、$|G|$は$G$の[位数](def-order.qmd)（[濃度](../logic-set-theory/def-cardinality.qmd)）を表し、$[G:H]$は$H$の$G$における指数（$H$の$G$における異なる左[剰余類](def-coset.qmd)の個数）を表す。
+
+### 商群との関係
+
+$H$が$G$の正規部分群のとき、指数$[G:H]$は @def-quotient-group $G/H$の[位数](def-order.qmd)に等しい：
+$$[G:H] = |G/H|$$
+
+これはラグランジュの定理の別の解釈を与える：商群の[位数](def-order.qmd)は元の群の[位数](def-order.qmd)を[割り切る](../number-theory/def-divisibility.qmd)。
 
 ## 系
 
-1. $G$の任意の元$a \in G$の位数は$G$の位数を割り切る
+1. $G$の任意の元$a \in G$の[位数](def-order.qmd)は$G$の[位数](def-order.qmd)を[割り切る](../number-theory/def-divisibility.qmd)
 2. $|G|$が素数ならば、$G$は[巡回群](def-cyclic-group.qmd)であり、自明でない真部分群を持たない
-3. 素数位数の群はすべて、ある素数$p$に対して$\mathbb{Z}_p$と同型である
+3. 素数[位数](def-order.qmd)の群はすべて、ある素数$p$に対して$\mathbb{Z}_p$と同型である
+4. 素数べきに対しては、部分的な逆を与える[シローの定理](thm-sylow.qmd)を参照
 
 ## 応用
 
 ラグランジュの定理は群論において基本的であり、多くの応用がある：
 - 可能な部分群構造の決定
 - [フェルマーの小定理](../number-theory/thm-fermat-little.qmd)の証明
-- 小さい位数の群の分類
-- @def-quotient-group の構成において、商群の位数が$|G/N| = |G|/|N|$となることを保証
+- 小さい[位数](def-order.qmd)の群の分類
+- @def-quotient-group の構成において、商群の[位数](def-order.qmd)が$|G/N| = |G|/|N|$となることを保証
 
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-coset["Definition: Coset"]:::definition
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
-    thm-lagrange --> def-cyclic-group
-    def-cyclic-group --> thm-lagrange
-    thm-orbit-stabilizer --> thm-lagrange
-    def-normal-subgroup --> thm-lagrange
-    thm-lagrange --> def-group
+    def-subgroup["定義：部分群"]:::definition
+    def-normal-subgroup["定義: 正規部分群"]:::definition
+    def-cyclic-group["定義: 巡回群"]:::definition
+    def-order["定義：位数"]:::definition
+    def-quotient-group["定義: 商群"]:::definition
+    thm-orbit-stabilizer["軌道・固定化部分群定理"]:::theorem
+    thm-lagrange["定理: ラグランジュの定理"]:::theorem
+    def-group["群"]:::definition
+    def-coset["定義: 剰余類"]:::definition
+    thm-sylow["シローの定理"]:::theorem
+    def-simple-group["定義: 単純群"]:::definition
+    def-abelian-group["定義: アーベル群"]:::definition
     thm-lagrange --> def-subgroup
-    thm-lagrange --> def-coset
+    thm-orbit-stabilizer --> thm-lagrange
+    thm-lagrange --> def-order
+    thm-lagrange --> def-group
+    def-order --> thm-lagrange
+    def-simple-group --> thm-lagrange
+    thm-sylow --> thm-lagrange
     def-abelian-group --> thm-lagrange
+    thm-lagrange --> def-cyclic-group
+    def-normal-subgroup --> thm-lagrange
     thm-lagrange --> def-quotient-group
-    def-coset --> thm-lagrange
     def-subgroup --> thm-lagrange
+    def-cyclic-group --> thm-lagrange
+    def-coset --> thm-lagrange
+    thm-lagrange --> def-coset
     class thm-lagrange current
-    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
-    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
-    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "Orbit-Stabilizer Theoremへ"
-    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
-    click def-coset "def-coset.html" "Definition: Cosetへ"
-    click def-cyclic-group "def-cyclic-group.html" "Definition: Cyclic Groupへ"
-    click def-group "def-group.html" "Definition: Groupへ"
-    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
+    click def-subgroup "def-subgroup.html" "定義：部分群へ"
+    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群の定義へ"
+    click def-cyclic-group "def-cyclic-group.html" "巡回群の定義へ"
+    click def-order "def-order.html" "定義：位数へ"
+    click def-quotient-group "def-quotient-group.html" "商群の定義へ"
+    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "軌道・固定化部分群定理へ"
+    click def-group "def-group.html" "群へ"
+    click def-coset "def-coset.html" "剰余類の定義へ"
+    click thm-sylow "thm-sylow.html" "シローの定理へ"
+    click def-simple-group "def-simple-group.html" "単純群の定義へ"
+    click def-abelian-group "def-abelian-group.html" "アーベル群の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -92,4 +112,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/thm-lagrange.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/thm-lagrange.html){target="_blank"}で完全なインタラクティブ版を表示

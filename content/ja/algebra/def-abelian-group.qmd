@@ -5,8 +5,9 @@ requires:
 - def-group
 - def-commutativity
 - def-direct-product
+- def-isomorphism
 status: complete
-title: '定義: アーベル群'
+title: アーベル群
 translation_of: ../../en/algebra/def-abelian-group.qmd
 translations:
   en: ../en/algebra/def-abelian-group.html
@@ -14,7 +15,7 @@ translations:
 type: Definition
 ---
 
-# 定義: アーベル群 {#def-abelian-group}
+# アーベル群 {#def-abelian-group}
 
 **アーベル群**（**可換群**とも呼ばれる）は、演算が[可換](def-commutativity.qmd)である[群](def-group.qmd) $(G, \star)$ である。
 
@@ -65,12 +66,12 @@ type: Definition
 ### 基本的性質
 - アーベル群のすべての部分群は[正規部分群](def-normal-subgroup.qmd)である
 - アーベル群のすべての[商群](def-quotient-group.qmd)はアーベル群である
-- 任意の群の中心 $Z(G) = \{g \in G : gx = xg \text{ すべての } x \in G \text{ に対して}\}$ はアーベル群である
+- 任意の群の[中心](def-center-of-group.qmd) $Z(G) = \{g \in G : gx = xg \text{ すべての } x \in G \text{ に対して}\}$ はアーベル群である
 - すべてのアーベル群は自然に整数環 $\mathbb{Z}$ 上の[加群](def-module.qmd)である
 
 ### 構造定理
-- **基本定理**：有限生成アーベル群はすべて[巡回群](def-cyclic-group.qmd)の[直積](def-direct-product.qmd)に同型である
-- **分類**：有限アーベル群は不変因子または初等因子によって同型を除いて分類される
+- **基本定理**：有限生成アーベル群はすべて[巡回群](def-cyclic-group.qmd)の[直積](def-direct-product.qmd)に[同型](def-isomorphism.qmd)である
+- **分類**：有限アーベル群は不変因子または初等因子によって[同型](def-isomorphism.qmd)を除いて分類される
 
 ### 準同型
 - アーベル群間の群準同型の集合 $\text{Hom}(G, H)$ はアーベル群をなす
@@ -84,7 +85,7 @@ type: Definition
 ## 応用
 
 - **数論**：環の単元の構造、イデアル類群
-- **位相幾何学**：多くの空間の基本群、ホモロジー群
+- **位相幾何学**：多くの空間の[基本群](../topology/def-fundamental-group.qmd)、ホモロジー群
 - **物理学**：量子力学における対称群、ゲージ理論
 - **暗号理論**：楕円曲線群、ディフィー・ヘルマン鍵交換
 
@@ -101,73 +102,53 @@ type: Definition
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
-    ex-integers-addition["Example: Integers under Addition"]:::example
-    def-coset["Definition: Coset"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    def-field["Definition: Field"]:::definition
-    def-module["Definition: Module"]:::definition
-    def-vector-space["Definition: Vector Space"]:::definition
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    def-direct-product["Definition: Direct Product of Groups"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    def-commutativity["Definition: Commutativity"]:::definition
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-normal-subgroup["定義: 正規部分群"]:::definition
+    def-cyclic-group["定義: 巡回群"]:::definition
+    def-direct-product["定義：群の直積"]:::definition
+    def-quotient-group["定義: 商群"]:::definition
+    def-isomorphism["定義: 群同型"]:::definition
+    def-commutativity["定義: 可換性"]:::definition
+    thm-first-isomorphism["定理: 第一同型定理"]:::theorem
+    def-group["群"]:::definition
+    thm-lagrange["定理: ラグランジュの定理"]:::theorem
+    def-center-of-group["定義: 群の中心"]:::definition
+    def-abelian-group["定義: アーベル群"]:::definition
+    def-group --> def-abelian-group
+    def-abelian-group --> thm-first-isomorphism
+    def-abelian-group --> def-cyclic-group
+    thm-first-isomorphism --> def-abelian-group
     def-cyclic-group --> def-abelian-group
     def-abelian-group --> def-group
-    def-direct-product --> def-abelian-group
-    ex-even-integers-subgroup --> def-abelian-group
-    def-ring --> def-abelian-group
-    def-abelian-group --> def-quotient-group
-    def-field --> def-abelian-group
-    def-vector-space --> def-abelian-group
-    def-abelian-group --> def-commutativity
-    thm-first-isomorphism --> def-abelian-group
-    ex-quotient-integers-mod-n --> def-abelian-group
-    def-abelian-group --> def-cyclic-group
-    def-coset --> def-abelian-group
-    def-module --> def-abelian-group
-    def-commutativity --> def-abelian-group
-    def-normal-subgroup --> def-abelian-group
-    def-group --> def-abelian-group
-    ex-integers-ring --> def-abelian-group
-    ex-integers-addition --> def-abelian-group
-    def-abelian-group --> def-direct-product
-    def-abelian-group --> thm-first-isomorphism
-    def-quotient-group --> def-abelian-group
-    def-abelian-group --> def-normal-subgroup
     def-abelian-group --> thm-lagrange
+    def-abelian-group --> def-normal-subgroup
+    def-abelian-group --> def-direct-product
+    def-abelian-group --> def-center-of-group
+    def-center-of-group --> def-abelian-group
+    def-quotient-group --> def-abelian-group
+    def-abelian-group --> def-isomorphism
+    def-commutativity --> def-abelian-group
+    def-abelian-group --> def-quotient-group
+    def-abelian-group --> def-commutativity
+    def-normal-subgroup --> def-abelian-group
+    def-direct-product --> def-abelian-group
     class def-abelian-group current
-    click def-normal-subgroup "def-normal-subgroup.html" "Definition: Normal Subgroupへ"
-    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Example: Even Integers Form a Subgroupへ"
-    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Theorem: First Isomorphism Theoremへ"
-    click ex-integers-addition "ex-integers-addition.html" "Example: Integers under Additionへ"
-    click def-coset "def-coset.html" "Definition: Cosetへ"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
-    click def-field "def-field.html" "Definition: Fieldへ"
-    click def-module "def-module.html" "Definition: Moduleへ"
-    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
-    click def-cyclic-group "def-cyclic-group.html" "Definition: Cyclic Groupへ"
-    click def-direct-product "def-direct-product.html" "Definition: Direct Product of Groupsへ"
-    click def-group "def-group.html" "Definition: Groupへ"
-    click def-ring "def-ring.html" "Definition: Ringへ"
-    click def-commutativity "def-commutativity.html" "Definition: Commutativityへ"
-    click ex-integers-ring "ex-integers-ring.html" "Example: Integers Form a Ringへ"
+    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群の定義へ"
+    click def-cyclic-group "def-cyclic-group.html" "巡回群の定義へ"
+    click def-direct-product "def-direct-product.html" "定義：群の直積へ"
+    click def-quotient-group "def-quotient-group.html" "商群の定義へ"
+    click def-isomorphism "def-isomorphism.html" "群同型の定義へ"
+    click def-commutativity "def-commutativity.html" "可換性の定義へ"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "第一同型定理の定理へ"
+    click def-group "def-group.html" "群へ"
+    click thm-lagrange "thm-lagrange.html" "ラグランジュの定理の定理へ"
+    click def-center-of-group "def-center-of-group.html" "群の中心の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -181,4 +162,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-abelian-group.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-abelian-group.html){target="_blank"}で完全なインタラクティブ版を表示

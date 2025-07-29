@@ -1,0 +1,128 @@
+---
+id: thm-euclid-infinitude-primes
+requires:
+- def-prime
+- def-divisibility
+- thm-fundamental-arithmetic
+status: complete
+title: "Euclid's Theorem on the Infinitude of Primes"
+translations:
+  en: ../en/number-theory/thm-euclid-infinitude-primes.html
+  ja: ../ja/number-theory/thm-euclid-infinitude-primes.html
+type: Theorem
+---
+
+# Euclid's Theorem on the Infinitude of Primes {#thm-euclid-infinitude-primes}
+
+There are infinitely many [prime numbers](def-prime.qmd).
+
+## Statement
+
+For any finite list of prime numbers $p_1, p_2, \ldots, p_n$, there exists a prime number not in this list. Therefore, the set of prime numbers is infinite.
+
+## Historical Note
+
+Euclid's original formulation (circa 300 BCE) was: "Prime numbers are more than any assigned multitude of prime numbers." The ancient Greeks did not have our modern concept of infinity, so Euclid could not have written "there are infinitely many primes."
+
+## Proof
+
+**Euclid's Original Proof:**
+
+Let $p_1, p_2, \ldots, p_n$ be any finite list of prime numbers. Consider the number:
+$$P = p_1 \cdot p_2 \cdot \ldots \cdot p_n + 1$$
+
+Now we consider two cases:
+
+**Case 1:** $P$ is prime.
+Then $P$ is a prime number that is not in our original list (since $P > p_i$ for all $i$).
+
+**Case 2:** $P$ is composite.
+By the [Fundamental Theorem of Arithmetic](thm-fundamental-arithmetic.qmd), $P$ has a prime divisor, say $p$. We claim that $p$ cannot be any of $p_1, p_2, \ldots, p_n$.
+
+If $p = p_i$ for some $i$, then $p_i$ [divides](def-divisibility.qmd) both $P$ and $p_1 \cdot p_2 \cdot \ldots \cdot p_n$. Therefore, $p_i$ would divide their difference:
+$$P - p_1 \cdot p_2 \cdot \ldots \cdot p_n = 1$$
+
+But no prime divides 1, which is a contradiction.
+
+Therefore, $p$ is a prime not in our original list.
+
+In both cases, we have found a prime not in the original list, proving that any finite list of primes is incomplete.
+
+## Common Misconception
+
+It is often mistakenly thought that Euclid's proof shows that $P = p_1 \cdot p_2 \cdot \ldots \cdot p_n + 1$ is always prime. This is false. For example:
+- $2 \cdot 3 + 1 = 7$ (prime)
+- $2 \cdot 3 \cdot 5 + 1 = 31$ (prime)
+- $2 \cdot 3 \cdot 5 \cdot 7 + 1 = 211$ (prime)
+- $2 \cdot 3 \cdot 5 \cdot 7 \cdot 11 + 1 = 2311$ (prime)
+- $2 \cdot 3 \cdot 5 \cdot 7 \cdot 11 \cdot 13 + 1 = 30031 = 59 \times 509$ (composite)
+
+The proof only requires that $P$ has a prime divisor not in the original list.
+
+## Alternative Proofs
+
+**Factorial Proof:**
+
+For any positive integer $n$, consider $n! + 1$. This number is not divisible by any integer from 2 to $n$ (it leaves remainder 1 when divided by each). Therefore, $n! + 1$ is either:
+- Prime (and greater than $n$), or
+- Divisible by a prime greater than $n$
+
+Either way, for every $n$, there exists a prime greater than $n$, proving infinitude.
+
+## Significance
+
+Euclid's theorem is one of the most elegant proofs in mathematics and has inspired numerous variations:
+- Over 200 different proofs have been discovered
+- It exemplifies the power of proof by contradiction
+- It motivates deeper questions about prime distribution (Prime Number Theorem, Riemann Hypothesis)
+- The construction $p_1 \cdot p_2 \cdot \ldots \cdot p_n + 1$ appears in various areas of number theory
+
+## Related Results
+
+- **Dirichlet's Theorem**: There are infinitely many primes in any arithmetic progression $a + nd$ where $\gcd(a,d) = 1$
+- **Prime Number Theorem**: The number of primes less than $x$ is approximately $x/\ln(x)$
+- **Bertrand's Postulate**: For every $n > 1$, there exists a prime $p$ such that $n < p < 2n$
+
+## See Also
+
+- @def-prime
+- @thm-fundamental-arithmetic
+- @def-divisibility
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-fundamental-arithmetic["Theorem: Fundamental Theorem of Arithmetic"]:::theorem
+    thm-euclid-infinitude-primes["Theorem: Euclid's Theorem on the Infinitude of Primes"]:::theorem
+    def-divisibility["Definition: Divisibility"]:::definition
+    def-prime["Definition: Prime Number"]:::definition
+    thm-euclid-infinitude-primes --> thm-fundamental-arithmetic
+    thm-euclid-infinitude-primes --> def-divisibility
+    thm-euclid-infinitude-primes --> def-prime
+    def-prime --> thm-euclid-infinitude-primes
+    thm-fundamental-arithmetic --> thm-euclid-infinitude-primes
+    class thm-euclid-infinitude-primes current
+    click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "Go to Fundamental Theorem of Arithmetic theorem"
+    click def-divisibility "def-divisibility.html" "Go to Divisibility definition"
+    click def-prime "def-prime.html" "Go to Prime Number definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="thm-euclid-infinitude-primes" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/en/thm-euclid-infinitude-primes.html){target="_blank"}

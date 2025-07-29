@@ -1,0 +1,163 @@
+---
+id: def-equivalence-relation
+requires:
+- def-relation
+- def-set
+status: complete
+title: Equivalence Relation
+translations:
+  en: ../en/logic-set-theory/def-equivalence-relation.html
+  ja: ../ja/logic-set-theory/def-equivalence-relation.html
+type: Definition
+---
+
+# Equivalence Relation {#def-equivalence-relation}
+
+An **equivalence relation** on a [set](def-set.qmd) $A$ is a [relation](def-relation.qmd) $\sim$ on $A$ that is reflexive, symmetric, and transitive.
+
+## Formal Definition
+
+A relation $\sim$ on a set $A$ is an equivalence relation if and only if it satisfies the following three properties:
+
+### 1. Reflexive Property
+
+For all $a \in A$:
+$$a \sim a$$
+
+Every element is related to itself.
+
+### 2. Symmetric Property
+
+For all $a, b \in A$:
+$$a \sim b \implies b \sim a$$
+
+If $a$ is related to $b$, then $b$ is related to $a$.
+
+### 3. Transitive Property
+
+For all $a, b, c \in A$:
+$$(a \sim b \text{ and } b \sim c) \implies a \sim c$$
+
+If $a$ is related to $b$ and $b$ is related to $c$, then $a$ is related to $c$.
+
+## Equivalence Classes
+
+Given an equivalence relation $\sim$ on a set $A$, for each element $a \in A$, the **equivalence class** of $a$ is:
+
+$$[a] = \{x \in A : x \sim a\}$$
+
+### Properties of Equivalence Classes
+
+1. **Non-empty**: $a \in [a]$ for all $a \in A$ (by reflexivity)
+2. **Equal or disjoint**: For any $a, b \in A$, either $[a] = [b]$ or $[a] \cap [b] = \emptyset$
+3. **Partition**: The set of all equivalence classes forms a partition of $A$:
+   $$A = \bigcup_{a \in A} [a]$$
+
+## Quotient Set
+
+The **quotient set** of $A$ by $\sim$, denoted $A/\sim$, is the set of all equivalence classes:
+
+$$A/\sim = \{[a] : a \in A\}$$
+
+## Examples
+
+### 1. Equality
+
+The relation $=$ on any set is an equivalence relation:
+- Reflexive: $a = a$
+- Symmetric: $a = b \implies b = a$
+- Transitive: $a = b$ and $b = c \implies a = c$
+
+### 2. Congruence Modulo n
+
+For a fixed positive integer $n$, the relation $\equiv_n$ on $\mathbb{Z}$ defined by:
+$$a \equiv_n b \iff n \mid (a - b)$$
+
+is an equivalence relation. The equivalence classes are the residue classes modulo $n$.
+
+### 3. Similar Matrices
+
+On the set of $n \times n$ matrices, the relation "is similar to" defined by:
+$$A \sim B \iff \exists \text{ invertible } P \text{ such that } B = P^{-1}AP$$
+
+is an equivalence relation.
+
+### 4. Parallel Lines
+
+On the set of lines in a plane, the relation "is parallel to" is an equivalence relation (where we consider a line parallel to itself).
+
+## Important Theorems
+
+### Fundamental Theorem of Equivalence Relations
+
+There is a bijective correspondence between:
+1. Equivalence relations on a set $A$
+2. Partitions of the set $A$
+
+Every equivalence relation induces a partition, and every partition defines an equivalence relation.
+
+## Applications
+
+- **Modular arithmetic**: Congruence classes form the foundation of modular arithmetic
+- **Abstract algebra**: Quotient groups, quotient rings, and quotient spaces
+- **Topology**: Quotient topologies and identification spaces
+- **Computer science**: Union-find data structures, type equivalence
+
+## See Also
+
+- @def-relation
+- @def-congruence
+- @def-quotient-group
+- @def-function
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-set["Definition: Set"]:::definition
+    def-partial-order["Definition: Partial Order"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    def-function["Definition: Function"]:::definition
+    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
+    def-equivalence-relation["Definition: Equivalence Relation"]:::definition
+    def-relation["Definition: Relation"]:::definition
+    def-fundamental-group["Definition: Fundamental Group"]:::definition
+    def-quotient-ring["Definition: Quotient Ring"]:::definition
+    def-relation --> def-equivalence-relation
+    def-equivalence-relation --> def-relation
+    def-quotient-ring --> def-equivalence-relation
+    def-equivalence-relation --> def-congruence
+    def-equivalence-relation --> def-set
+    def-partial-order --> def-equivalence-relation
+    def-equivalence-relation --> def-quotient-group
+    def-fundamental-group --> def-equivalence-relation
+    def-equivalence-relation --> def-function
+    class def-equivalence-relation current
+    click def-set "def-set.html" "Go to Set definition"
+    click def-partial-order "def-partial-order.html" "Go to Partial Order definition"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click def-function "def-function.html" "Go to Function definition"
+    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic) definition"
+    click def-relation "def-relation.html" "Go to Relation definition"
+    click def-fundamental-group "def-fundamental-group.html" "Go to Fundamental Group definition"
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-equivalence-relation" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/en/def-equivalence-relation.html){target="_blank"}

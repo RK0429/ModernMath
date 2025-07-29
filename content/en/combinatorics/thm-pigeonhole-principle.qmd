@@ -2,15 +2,17 @@
 id: thm-pigeonhole-principle
 requires:
 - def-set
+- ../logic-set-theory/def-function
+- ../logic-set-theory/def-cardinality
 status: complete
-title: 'Theorem: Pigeonhole Principle'
+title: Pigeonhole Principle
 translations:
   en: ../en/combinatorics/thm-pigeonhole-principle.html
   ja: ../ja/combinatorics/thm-pigeonhole-principle.html
 type: Theorem
 ---
 
-# Theorem: Pigeonhole Principle
+# Pigeonhole Principle
 
 The **Pigeonhole Principle** is a fundamental counting principle stating that if you distribute more items than containers, at least one container must contain more than one item.
 
@@ -22,7 +24,7 @@ The **Pigeonhole Principle** is a fundamental counting principle stating that if
 
 ## Formal Statement
 
-Let $f: A \to B$ be a function where $A$ and $B$ are finite [Set](../logic-set-theory/def-set.qmd) s with $|A| > |B|$. Then $f$ is not injective; that is, there exist distinct elements $a_1, a_2 \in A$ such that $f(a_1) = f(a_2)$.
+Let $f: A \to B$ be a [function](../logic-set-theory/def-function.qmd) where $A$ and $B$ are finite [Set](../logic-set-theory/def-set.qmd)s with [cardinalities](../logic-set-theory/def-cardinality.qmd) satisfying $|A| > |B|$. Then $f$ is not injective; that is, there exist distinct elements $a_1, a_2 \in A$ such that $f(a_1) = f(a_2)$.
 
 ## Proof
 
@@ -49,9 +51,10 @@ By contradiction. Suppose $f$ is injective. Then each element of $A$ maps to a d
 - Among any 6 people, either 3 are mutual friends or 3 are mutual strangers
 - In any sequence of $n^2 + 1$ distinct real numbers, there is either an increasing subsequence or a decreasing subsequence of length $n + 1$
 
-```{mermaid}
-```
+## Related Counting Principles
 
+- [Inclusion-Exclusion Principle](thm-inclusion-exclusion.qmd): Another fundamental counting principle for finding the size of unions of sets
+- [Binomial Coefficient](def-binomial-coefficient.qmd): For counting combinations and subsets
 ## Dependency Graph
 
 ```{mermaid}
@@ -63,10 +66,13 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-set["Definition: Set"]:::definition
+    def-function["Definition: Function"]:::definition
     thm-pigeonhole-principle["Theorem: Pigeonhole Principle"]:::theorem
     thm-pigeonhole-principle --> def-set
+    thm-pigeonhole-principle --> def-function
     class thm-pigeonhole-principle current
     click def-set "def-set.html" "Go to Set definition"
+    click def-function "def-function.html" "Go to Function definition"
 ```
 
 ## Interactive Visualization
@@ -80,4 +86,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/thm-pigeonhole-principle.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/thm-pigeonhole-principle.html){target="_blank"}

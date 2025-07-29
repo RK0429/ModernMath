@@ -5,8 +5,11 @@ requires:
 - def-expectation
 - def-variance
 - def-independence
+- def-probability-distribution
+- def-normal-distribution
+- ../analysis/thm-taylor-series
 status: complete
-title: '定理: 中心極限定理'
+title: 中心極限定理
 translation_of: ../../en/probability-statistics/thm-central-limit.qmd
 translations:
   en: ../en/probability-statistics/thm-central-limit.html
@@ -14,13 +17,13 @@ translations:
 type: Theorem
 ---
 
-# 定理: 中心極限定理 {#thm-central-limit}
+# 中心極限定理 {#thm-central-limit}
 
-**中心極限定理（CLT）**は確率論における最も基本的な結果の一つであり、[独立な](def-independence.qmd)[確率変数](def-random-variable.qmd)の正規化された和の分布が正規分布に収束することを述べています。
+**中心極限定理（CLT）**は確率論における最も基本的な結果の一つであり、[独立な](def-independence.qmd)[確率変数](def-random-variable.qmd)の正規化された和の[分布](def-probability-distribution.qmd)が[正規分布](def-normal-distribution.qmd)に収束することを述べています。
 
 ## 主張
 
-$X_1, X_2, \ldots, X_n$を[独立](def-independence.qmd)かつ同一に分布した（i.i.d.）確率変数とし、以下を満たすものとする：
+$X_1, X_2, \ldots, X_n$を[独立](def-independence.qmd)かつ同一に[分布](def-probability-distribution.qmd)した（i.i.d.）確率変数とし、以下を満たすものとする：
 - 有限の[期待値](def-expectation.qmd)：$\mu = E[X_i] < \infty$
 - 有限の[分散](def-variance.qmd)：$\sigma^2 = \text{Var}(X_i) < \infty$、ただし$\sigma > 0$
 
@@ -31,11 +34,11 @@ $X_1, X_2, \ldots, X_n$を[独立](def-independence.qmd)かつ同一に分布し
 このとき、任意の$z \in \mathbb{R}$に対して：
 $$\lim_{n \to \infty} P(Z_n \leq z) = \Phi(z)$$
 
-ここで、$\Phi(z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-t^2/2} dt$は標準正規分布の累積分布関数である。
+ここで、$\Phi(z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-t^2/2} dt$は標準[正規分布](def-normal-distribution.qmd)の累積分布関数である。
 
 ## 同値な表現
 
-$n$が大きいとき、$\bar{X}_n$の分布は近似的に正規分布となる：
+$n$が大きいとき、$\bar{X}_n$の[分布](def-probability-distribution.qmd)は近似的に[正規分布](def-normal-distribution.qmd)となる：
 $$\bar{X}_n \stackrel{d}{\approx} N\left(\mu, \frac{\sigma^2}{n}\right)$$
 
 ## 証明の概略
@@ -45,7 +48,7 @@ $$\bar{X}_n \stackrel{d}{\approx} N\left(\mu, \frac{\sigma^2}{n}\right)$$
 1. $Z_n$の特性関数は：
    $$\phi_{Z_n}(t) = \left[\phi_X\left(\frac{t}{\sigma\sqrt{n}}\right) \cdot e^{-it\mu/(\sigma\sqrt{n})}\right]^n$$
 
-2. $\phi_X$の0の周りでのテイラー展開を用いると：
+2. $\phi_X$の0の周りでの[テイラー展開](../analysis/thm-taylor-series.qmd)を用いると：
    $$\phi_X(s) = 1 + is\mu - \frac{s^2(\mu^2 + \sigma^2)}{2} + o(s^2)$$
 
 3. 代入と簡略化の後：
@@ -67,7 +70,7 @@ $$\bar{X}_n \stackrel{d}{\approx} N\left(\mu, \frac{\sigma^2}{n}\right)$$
 ## 例
 
 ### 例1：コイン投げ
-$n$回の公平なコイン投げ（ベルヌーイ(1/2)）：
+$n$回の公平なコイン投げ（ベルヌーイ(1/2)、[二項分布](def-binomial-distribution.qmd)を参照）：
 - $\mu = 0.5$、$\sigma^2 = 0.25$
 - 表の出る割合は$n$が大きいとき$\approx N(0.5, 0.25/n)$
 
@@ -107,27 +110,33 @@ graph TD
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-expectation["Definition: Expected Value"]:::definition
-    def-random-variable["Definition: Random Variable"]:::definition
-    def-independence["Definition: Independence"]:::definition
-    thm-central-limit["Theorem: Central Limit Theorem"]:::theorem
-    def-variance["Definition: Variance"]:::definition
-    thm-central-limit --> def-independence
-    thm-central-limit --> def-variance
-    thm-central-limit --> def-expectation
+    def-normal-distribution["定義: 正規分布"]:::definition
+    def-independence["定義: 独立性"]:::definition
+    def-expectation["定義: 期待値"]:::definition
+    def-probability-distribution["定義: 確率分布"]:::definition
+    thm-central-limit["定理: 中心極限定理"]:::theorem
+    def-variance["定義: 分散"]:::definition
+    def-random-variable["定義: 確率変数"]:::definition
     thm-central-limit --> def-random-variable
+    thm-central-limit --> def-probability-distribution
+    thm-central-limit --> def-variance
+    thm-central-limit --> def-normal-distribution
+    thm-central-limit --> def-independence
+    thm-central-limit --> def-expectation
     class thm-central-limit current
-    click def-expectation "def-expectation.html" "Definition: Expected Valueへ"
-    click def-random-variable "def-random-variable.html" "Definition: Random Variableへ"
-    click def-independence "def-independence.html" "Definition: Independenceへ"
-    click def-variance "def-variance.html" "Definition: Varianceへ"
+    click def-normal-distribution "def-normal-distribution.html" "正規分布の定義へ"
+    click def-independence "def-independence.html" "独立性の定義へ"
+    click def-expectation "def-expectation.html" "期待値の定義へ"
+    click def-probability-distribution "def-probability-distribution.html" "確率分布の定義へ"
+    click def-variance "def-variance.html" "分散の定義へ"
+    click def-random-variable "def-random-variable.html" "確率変数の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -141,4 +150,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/thm-central-limit.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/thm-central-limit.html){target="_blank"}で完全なインタラクティブ版を表示

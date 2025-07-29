@@ -4,8 +4,11 @@ requires:
 - def-ring
 - def-subset
 - def-binary-operation
+- def-isomorphism
+- def-subring
+- def-ring-homomorphism
 status: complete
-title: '定義: イデアル'
+title: イデアル
 translation_of: ../../en/algebra/def-ideal.qmd
 translations:
   en: ../en/algebra/def-ideal.html
@@ -46,6 +49,7 @@ $(R, +, \cdot)$ を環とする。部分集合 $I \subseteq R$ は以下の場�
 - イデアルは有限和と差について閉じている
 - イデアルの任意の族の共通部分はイデアル
 - 単位元を持つ環では、$I = R$ と $1 \in I$ は同値
+- すべてのイデアルが[部分環](def-subring.qmd)であるわけではない：イデアル $I$ が部分環であるための必要十分条件は $1 \in I$（これは $I = R$ を意味する）
 
 ## 加群との関係
 
@@ -55,9 +59,9 @@ $(R, +, \cdot)$ を環とする。部分集合 $I \subseteq R$ は以下の場�
 
 ## イデアルの種類
 
-- **単項イデアル**：単一の元 $a$ によって生成される、$(a)$ と表記
-- **素イデアル**：$P$ で $ab \in P$ ならば $a \in P$ または $b \in P$
-- **極大イデアル**：他の真のイデアルに含まれない真のイデアル
+- **単項イデアル**：単一の元 $a$ によって生成される、$(a)$ と表記（[例](ex-principal-ideal.qmd)を参照）
+- **[素イデアル](def-prime-ideal.qmd)**：$P$ で $ab \in P$ ならば $a \in P$ または $b \in P$
+- **[極大イデアル](def-maximal-ideal.qmd)**：他の真のイデアルに含まれない真のイデアル
 
 ## 例
 
@@ -67,53 +71,78 @@ $(R, +, \cdot)$ を環とする。部分集合 $I \subseteq R$ は以下の場�
 
 ## 剰余環と第一同型定理
 
-[正規部分群](def-normal-subgroup.qmd)が[商群](def-quotient-group.qmd)を形成させるように、イデアルは剰余環を形成させます。環 $R$ とイデアル $I$ に対して：
+[正規部分群](def-normal-subgroup.qmd)が[商群](def-quotient-group.qmd)を形成させるように、イデアルは[剰余環](def-quotient-ring.qmd)を形成させます。環 $R$ とイデアル $I$ に対して：
 
 - 剰余環 $R/I$ は剰余類 $\{r + I : r \in R\}$ から構成される
 - 環演算：$(r + I) + (s + I) = (r + s) + I$ および $(r + I)(s + I) = rs + I$
-- 環準同型の核は常にイデアルである
+- [環準同型](def-ring-homomorphism.qmd)の核は常にイデアルである
 
-[第一同型定理](thm-first-isomorphism.qmd)は環にも拡張されます：$\phi: R \to S$ が環準同型ならば、$R/\ker(\phi) \cong \text{Im}(\phi)$ が環として成り立ちます。この基本的な結果は、環のすべての準同型像が剰余環と同型であることを示しています。
+[第一同型定理](thm-first-isomorphism.qmd)は環にも拡張されます：$\phi: R \to S$ が[環準同型](def-ring-homomorphism.qmd)ならば、$R/\ker(\phi) \cong \text{Im}(\phi)$ が環として成り立ちます。この基本的な結果は、環のすべての準同型像が剰余環と[同型](def-isomorphism.qmd)であることを示しています。
 
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    def-ideal["Definition: Ideal"]:::definition
-    def-kernel["Definition: Kernel"]:::definition
-    ex-finite-field["Example: Finite Field"]:::example
-    def-field["Definition: Field"]:::definition
-    def-subset["Definition: Subset"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
+    def-quotient-group["定義: 商群"]:::definition
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-isomorphism["定義: 群同型"]:::definition
+    def-subring["定義: 部分環"]:::definition
+    def-maximal-ideal["定義: 極大イデアル"]:::definition
+    def-integral-domain["定義：整域"]:::definition
+    def-ring-homomorphism["定義: 環準同型"]:::definition
+    def-subset["定義: 部分集合"]:::definition
+    def-prime-ideal["定義: 素イデアル"]:::definition
+    def-ideal["定義: イデアル"]:::definition
+    def-ring["定義：環"]:::definition
+    def-zero-divisor["定義: 零因子"]:::definition
+    ex-principal-ideal["例: 整数における単項イデアル"]:::example
+    def-quotient-ring["定義: 剰余環"]:::definition
+    ex-finite-field["例: 有限体"]:::example
+    def-field["定義: 体"]:::definition
+    def-kernel["定義: 核"]:::definition
+    ex-integers-ring["例: 整数は環を形成する"]:::example
+    def-ideal --> def-subset
+    def-quotient-ring --> def-ideal
+    def-quotient-group --> def-ideal
+    def-ideal --> def-binary-operation
+    def-ideal --> def-ring-homomorphism
+    ex-principal-ideal --> def-ideal
+    def-maximal-ideal --> def-ideal
+    def-kernel --> def-ideal
+    def-prime-ideal --> def-ideal
+    def-integral-domain --> def-ideal
+    def-zero-divisor --> def-ideal
+    def-subring --> def-ideal
+    def-field --> def-ideal
     ex-integers-ring --> def-ideal
     ex-finite-field --> def-ideal
-    def-ideal --> def-subset
     def-ideal --> def-ring
-    def-field --> def-ideal
-    def-quotient-group --> def-ideal
-    def-kernel --> def-ideal
-    def-ideal --> def-binary-operation
-    ex-principal-ideal --> def-ideal
+    def-ideal --> def-subring
+    def-ideal --> def-isomorphism
     class def-ideal current
-    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
-    click def-kernel "def-kernel.html" "Definition: Kernelへ"
-    click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
-    click def-field "def-field.html" "Definition: Fieldへ"
-    click def-subset "def-subset.html" "Definition: Subsetへ"
-    click def-ring "def-ring.html" "Definition: Ringへ"
-    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
-    click ex-principal-ideal "ex-principal-ideal.html" "Example: Principal Ideals in Integersへ"
-    click ex-integers-ring "ex-integers-ring.html" "Example: Integers Form a Ringへ"
+    click def-quotient-group "def-quotient-group.html" "商群の定義へ"
+    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
+    click def-isomorphism "def-isomorphism.html" "群同型の定義へ"
+    click def-subring "def-subring.html" "部分環の定義へ"
+    click def-maximal-ideal "def-maximal-ideal.html" "極大イデアルの定義へ"
+    click def-integral-domain "def-integral-domain.html" "定義：整域へ"
+    click def-ring-homomorphism "def-ring-homomorphism.html" "環準同型の定義へ"
+    click def-subset "def-subset.html" "部分集合の定義へ"
+    click def-prime-ideal "def-prime-ideal.html" "素イデアルの定義へ"
+    click def-ring "def-ring.html" "定義：環へ"
+    click def-zero-divisor "def-zero-divisor.html" "零因子の定義へ"
+    click ex-principal-ideal "ex-principal-ideal.html" "整数における単項イデアルの例へ"
+    click def-quotient-ring "def-quotient-ring.html" "剰余環の定義へ"
+    click ex-finite-field "ex-finite-field.html" "有限体の例へ"
+    click def-field "def-field.html" "体の定義へ"
+    click def-kernel "def-kernel.html" "核の定義へ"
+    click ex-integers-ring "ex-integers-ring.html" "整数は環を形成するの例へ"
 ```
 
 ## インタラクティブ可視化
@@ -127,4 +156,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-ideal.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-ideal.html){target="_blank"}で完全なインタラクティブ版を表示

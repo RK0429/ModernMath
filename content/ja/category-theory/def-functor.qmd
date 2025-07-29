@@ -3,8 +3,9 @@ id: def-functor
 requires:
 - def-category
 - def-graph
+- def-function
 status: complete
-title: '定義: 関手'
+title: 関手
 translation_of: ../../en/category-theory/def-functor.qmd
 translations:
   en: ../en/category-theory/def-functor.html
@@ -34,7 +35,7 @@ $\mathcal{C}$ と $\mathcal{D}$ を圏とします。関手 $F: \mathcal{C} \to 
 
 - **共変関手**: 上記で定義したもの
 - **反変関手**: 射の向きを逆にする
-- **忠実関手**: 射集合上で単射
+- **忠実関手**: 射集合上で単射（[単射](def-monomorphism.qmd)を保存）
 - **充満関手**: 射集合上で全射
 - **充満忠実関手**: 忠実かつ充満
 - **本質的全射**: $\mathcal{D}$ のすべての対象が、ある $A$ に対する $F(A)$ と同型
@@ -42,33 +43,42 @@ $\mathcal{C}$ と $\mathcal{D}$ を圏とします。関手 $F: \mathcal{C} \to 
 ## 例
 
 - **Grp** から **Set** への忘却関手
-- **Set** から **Grp** への自由群関手
-- **Top** から **Grp** への基本群関手
+- **Set** から **Grp** への[@自由群](../algebra/def-free-group.qmd)関手
+- **Top** から **Grp** への[基本群](../topology/def-fundamental-group.qmd)関手
 
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-yoneda["Theorem: Yoneda Lemma"]:::theorem
-    def-natural-transformation["Definition: Natural Transformation"]:::definition
-    def-category["Definition: Category"]:::definition
-    def-graph["Definition: Graph"]:::definition
-    def-functor["Definition: Functor"]:::definition
-    def-functor --> def-graph
+    def-natural-transformation["定義：自然変換"]:::definition
+    def-function["定義: 関数"]:::definition
+    thm-yoneda["定理：米田の補題"]:::theorem
+    def-epimorphism["定義：全射"]:::definition
+    def-category["定義: 圏"]:::definition
+    def-functor["定義: 関手"]:::definition
+    def-monomorphism["定義：単射"]:::definition
+    def-graph["定義: グラフ"]:::definition
     def-functor --> def-category
-    thm-yoneda --> def-functor
+    def-functor --> def-function
     def-natural-transformation --> def-functor
+    def-epimorphism --> def-functor
+    thm-yoneda --> def-functor
+    def-monomorphism --> def-functor
+    def-functor --> def-graph
     class def-functor current
-    click thm-yoneda "thm-yoneda.html" "Theorem: Yoneda Lemmaへ"
-    click def-natural-transformation "def-natural-transformation.html" "Definition: Natural Transformationへ"
-    click def-category "def-category.html" "Definition: Categoryへ"
-    click def-graph "def-graph.html" "Definition: Graphへ"
+    click def-natural-transformation "def-natural-transformation.html" "定義：自然変換へ"
+    click def-function "def-function.html" "関数の定義へ"
+    click thm-yoneda "thm-yoneda.html" "定理：米田の補題へ"
+    click def-epimorphism "def-epimorphism.html" "定義：全射へ"
+    click def-category "def-category.html" "圏の定義へ"
+    click def-monomorphism "def-monomorphism.html" "定義：単射へ"
+    click def-graph "def-graph.html" "グラフの定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -82,4 +92,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-functor.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-functor.html){target="_blank"}で完全なインタラクティブ版を表示

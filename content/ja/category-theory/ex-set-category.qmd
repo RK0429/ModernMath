@@ -5,7 +5,7 @@ requires:
 - def-morphism
 - def-set
 status: complete
-title: 例：集合の圏
+title: 集合の圏
 translation_of: ../../en/category-theory/ex-set-category.qmd
 translations:
   en: ../en/category-theory/ex-set-category.html
@@ -13,7 +13,7 @@ translations:
 type: Example
 ---
 
-# 例：集合の圏
+# 集合の圏
 
 圏 **Set** は[圏](def-category.qmd)論における最も基本的な例の一つで、集合を対象とし、関数を射とします。
 
@@ -48,9 +48,9 @@ $$((h \circ g) \circ f)(x) = h(g(f(x))) = (h \circ (g \circ f))(x)$$
 1. **サイズ**：Set は**大きな圏**です - その対象の集まりは集合ではなく真クラスを形成します
 
 2. **特殊な射**：
-   - Set における単射は単射関数と正確に一致します
-   - Set における全射は全射関数と正確に一致します
-   - Set における同型射は全単射関数と正確に一致します
+   - Set における[単射](def-monomorphism.qmd)は単射関数と正確に一致します
+   - Set における[全射](def-epimorphism.qmd)は全射関数と正確に一致します
+   - Set における[同型射](def-isomorphism.qmd)は全単射関数と正確に一致します
 
 3. **始対象と終対象**：
    - 空集合 $\emptyset$ は始対象です（$\emptyset$ から任意の集合への一意な関数が存在）
@@ -60,31 +60,27 @@ $$((h \circ g) \circ f)(x) = h(g(f(x))) = (h \circ (g \circ f))(x)$$
 
 - **FinSet**：有限集合の圏
 - **Set***：点付き集合（特別な要素を持つ集合）の圏
-
-```{mermaid}
-```
-
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-category["Definition: Category"]:::definition
-    def-set["Definition: Set"]:::definition
-    ex-set-category["Example: The Category of Sets"]:::example
-    def-morphism["Definition: Morphism"]:::definition
-    ex-set-category --> def-set
+    ex-set-category["例：集合の圏"]:::example
+    def-morphism["定義: 射"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-category["定義: 圏"]:::definition
     ex-set-category --> def-category
+    ex-set-category --> def-set
     ex-set-category --> def-morphism
     class ex-set-category current
-    click def-category "def-category.html" "Definition: Categoryへ"
-    click def-set "def-set.html" "Definition: Setへ"
-    click def-morphism "def-morphism.html" "Definition: Morphismへ"
+    click def-morphism "def-morphism.html" "射の定義へ"
+    click def-set "def-set.html" "集合の定義へ"
+    click def-category "def-category.html" "圏の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -98,4 +94,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/ex-set-category.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/ex-set-category.html){target="_blank"}で完全なインタラクティブ版を表示

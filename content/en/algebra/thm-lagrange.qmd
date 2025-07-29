@@ -5,8 +5,10 @@ requires:
 - def-subgroup
 - def-cyclic-group
 - def-coset
+- def-order
+- ../logic-set-theory/def-cardinality
 status: complete
-title: 'Theorem: Lagrange''s Theorem'
+title: "Lagrange's Theorem"
 translations:
   en: ../en/algebra/thm-lagrange.html
   ja: ../ja/algebra/thm-lagrange.html
@@ -15,27 +17,28 @@ type: Theorem
 
 # Lagrange's Theorem {#thm-lagrange}
 
-For a finite [Group](def-group.qmd) $G$ and a [Subgroup](def-subgroup.qmd) $H$ of $G$, the order of $H$ divides the order of $G$.
+For a finite [Group](def-group.qmd) $G$ and a [Subgroup](def-subgroup.qmd) $H$ of $G$, the order of $H$ [divides](../number-theory/def-divisibility.qmd) the order of $G$.
 
 ## Statement
 
 If $G$ is a finite group and $H \leq G$, then:
 $$|G| = |H| \cdot [G:H]$$
 
-where $|G|$ denotes the order (number of elements) of $G$, and $[G:H]$ is the index of $H$ in $G$ (the number of distinct left [cosets](def-coset.qmd) of $H$ in $G$).
+where $|G|$ denotes the [order](def-order.qmd) ([cardinality](../logic-set-theory/def-cardinality.qmd)) of $G$, and $[G:H]$ is the index of $H$ in $G$ (the number of distinct left [cosets](def-coset.qmd) of $H$ in $G$).
 
 ### Connection to Quotient Groups
 
 When $H$ is a normal subgroup of $G$, the index $[G:H]$ equals the order of the @def-quotient-group $G/H$:
 $$[G:H] = |G/H|$$
 
-This provides another interpretation of Lagrange's theorem: the order of a quotient group divides the order of the original group.
+This provides another interpretation of Lagrange's theorem: the order of a quotient group [divides](../number-theory/def-divisibility.qmd) the order of the original group.
 
 ## Corollaries
 
-1. The order of any element $a \in G$ divides the order of $G$
+1. The [order](def-order.qmd) of any element $a \in G$ [divides](../number-theory/def-divisibility.qmd) the [order](def-order.qmd) of $G$
 2. If $|G|$ is prime, then $G$ is [cyclic](def-cyclic-group.qmd) and has no proper non-trivial subgroups
 3. Any group of prime order is isomorphic to $\mathbb{Z}_p$ for some prime $p$
+4. For prime powers, see the [Sylow theorems](thm-sylow.qmd) which provide a partial converse
 
 ## Applications
 
@@ -54,35 +57,45 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-coset["Definition: Coset"]:::definition
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    def-group["Definition: Group"]:::definition
     def-subgroup["Definition: Subgroup"]:::definition
-    thm-lagrange --> def-cyclic-group
-    def-cyclic-group --> thm-lagrange
-    thm-orbit-stabilizer --> thm-lagrange
-    def-normal-subgroup --> thm-lagrange
-    thm-lagrange --> def-group
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-cyclic-group["Definition: Cyclic Group"]:::definition
+    def-order["Definition: Order"]:::definition
+    def-quotient-group["Definition: Quotient Group"]:::definition
+    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    def-group["Definition: Group"]:::definition
+    def-coset["Definition: Coset"]:::definition
+    thm-sylow["Sylow Theorems"]:::theorem
+    def-simple-group["Definition: Simple Group"]:::definition
+    def-abelian-group["Definition: Abelian Group"]:::definition
     thm-lagrange --> def-subgroup
-    thm-lagrange --> def-coset
+    thm-orbit-stabilizer --> thm-lagrange
+    thm-lagrange --> def-order
+    thm-lagrange --> def-group
+    def-order --> thm-lagrange
+    def-simple-group --> thm-lagrange
+    thm-sylow --> thm-lagrange
     def-abelian-group --> thm-lagrange
+    thm-lagrange --> def-cyclic-group
+    def-normal-subgroup --> thm-lagrange
     thm-lagrange --> def-quotient-group
-    def-coset --> thm-lagrange
     def-subgroup --> thm-lagrange
+    def-cyclic-group --> thm-lagrange
+    def-coset --> thm-lagrange
+    thm-lagrange --> def-coset
     class thm-lagrange current
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "Go to Orbit-Stabilizer Theorem"
-    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
-    click def-coset "def-coset.html" "Go to Coset definition"
-    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
-    click def-group "def-group.html" "Go to Group definition"
     click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
+    click def-order "def-order.html" "Go to Order definition"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
+    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "Go to Orbit-Stabilizer Theorem"
+    click def-group "def-group.html" "Go to Group definition"
+    click def-coset "def-coset.html" "Go to Coset definition"
+    click thm-sylow "thm-sylow.html" "Go to Sylow Theorems"
+    click def-simple-group "def-simple-group.html" "Go to Simple Group definition"
+    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
 ```
 
 ## Interactive Visualization
@@ -96,4 +109,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/thm-lagrange.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/thm-lagrange.html){target="_blank"}

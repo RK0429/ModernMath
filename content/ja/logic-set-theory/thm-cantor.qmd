@@ -3,8 +3,9 @@ id: thm-cantor
 requires:
 - def-set
 - def-power-set
+- def-cardinality
 status: complete
-title: '定理: カントールの定理'
+title: カントールの定理
 translation_of: ../../en/logic-set-theory/thm-cantor.qmd
 translations:
   en: ../en/logic-set-theory/thm-cantor.html
@@ -12,9 +13,9 @@ translations:
 type: Theorem
 ---
 
-# 定理: カントールの定理 {#thm-cantor}
+# カントールの定理 {#thm-cantor}
 
-任意の[集合](def-set.qmd) $A$ に対して、$A$ からその[べき集合](def-power-set.qmd) $\mathcal{P}(A)$ への全射は存在しない。特に、$|A| < |\mathcal{P}(A)|$ が成り立つ。
+任意の[集合](def-set.qmd) $A$ に対して、$A$ からその[べき集合](def-power-set.qmd) $\mathcal{P}(A)$ への全射は存在しない。特に、[濃度](def-cardinality.qmd)について $|A| < |\mathcal{P}(A)|$ が成り立つ。
 
 ## 主張
 
@@ -69,21 +70,25 @@ graph TD
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Definition: Set"]:::definition
-    thm-cantor["Theorem: Cantor's Theorem"]:::theorem
-    def-power-set["Definition: Power Set"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-power-set["定義: べき集合"]:::definition
+    def-cardinality["定義: 濃度"]:::definition
+    thm-cantor["定理: カントールの定理"]:::theorem
     thm-cantor --> def-power-set
+    thm-cantor --> def-cardinality
     thm-cantor --> def-set
+    def-cardinality --> thm-cantor
     class thm-cantor current
-    click def-set "def-set.html" "Definition: Setへ"
-    click def-power-set "def-power-set.html" "Definition: Power Setへ"
+    click def-set "def-set.html" "集合の定義へ"
+    click def-power-set "def-power-set.html" "べき集合の定義へ"
+    click def-cardinality "def-cardinality.html" "濃度の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -97,4 +102,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/thm-cantor.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/thm-cantor.html){target="_blank"}で完全なインタラクティブ版を表示

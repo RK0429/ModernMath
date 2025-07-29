@@ -3,14 +3,14 @@ id: def-topological-space
 requires:
 - def-set
 status: complete
-title: 'Definition: Topological Space'
+title: Topological Space
 translations:
   en: ../en/topology/def-topological-space.html
   ja: ../ja/topology/def-topological-space.html
 type: Definition
 ---
 
-# Definition: Topological Space {#def-topological-space}
+# Topological Space {#def-topological-space}
 
 A **topological space** is a [Set](../logic-set-theory/def-set.qmd) $X$ together with a collection $\tau$ of subsets of $X$ satisfying the following axioms:
 
@@ -52,6 +52,7 @@ Key properties that follow from these axioms:
 - Definition: Open Set
 - Definition: Continuous Function (coming soon)
 - [Definition: Homeomorphism](def-homeomorphism.qmd)
+- [Definition: Fundamental Group](def-fundamental-group.qmd)
 - Definition: Basis for a Topology (coming soon)
 
 ## Dependency Graph
@@ -64,38 +65,44 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
-    def-open-set["Definition: Open Set"]:::definition
+    def-set["Definition: Set"]:::definition
     def-topological-space["Definition: Topological Space"]:::definition
-    def-closed-set["Definition: Closed Set"]:::definition
-    def-hausdorff["Definition: Hausdorff Space"]:::definition
     def-compact["Definition: Compact Space"]:::definition
     def-homeomorphism["Definition: Homeomorphism"]:::definition
-    def-connected["Definition: Connected Space"]:::definition
-    def-set["Definition: Set"]:::definition
-    ex-closed-interval-compact["Example: Closed Interval is Compact"]:::example
+    def-closed-set["Definition: Closed Set"]:::definition
+    thm-metric-hausdorff["Theorem: Every Metric Space is Hausdorff"]:::theorem
     thm-union-open-sets["Theorem: Union of Open Sets"]:::theorem
-    def-closed-set --> def-topological-space
-    def-topological-space --> def-set
-    thm-union-open-sets --> def-topological-space
-    ex-closed-interval-compact --> def-topological-space
-    def-open-set --> def-topological-space
-    def-hausdorff --> def-topological-space
-    def-homeomorphism --> def-topological-space
-    thm-metric-hausdorff --> def-topological-space
+    def-homotopy["Definition: Homotopy"]:::definition
+    ex-closed-interval-compact["Example: Closed Interval is Compact"]:::example
+    def-open-set["Definition: Open Set"]:::definition
+    def-fundamental-group["Definition: Fundamental Group"]:::definition
+    def-hausdorff["Definition: Hausdorff Space"]:::definition
+    def-connected["Definition: Connected Space"]:::definition
     def-connected --> def-topological-space
+    def-homotopy --> def-topological-space
+    thm-union-open-sets --> def-topological-space
+    def-fundamental-group --> def-topological-space
+    def-topological-space --> def-set
+    def-homeomorphism --> def-topological-space
+    def-open-set --> def-topological-space
+    thm-metric-hausdorff --> def-topological-space
+    def-hausdorff --> def-topological-space
     def-compact --> def-topological-space
+    def-closed-set --> def-topological-space
+    ex-closed-interval-compact --> def-topological-space
     class def-topological-space current
-    click thm-metric-hausdorff "thm-metric-hausdorff.html" "Go to Every Metric Space is Hausdorff theorem"
-    click def-open-set "def-open-set.html" "Go to Open Set definition"
-    click def-closed-set "def-closed-set.html" "Go to Closed Set definition"
-    click def-hausdorff "def-hausdorff.html" "Go to Hausdorff Space definition"
+    click def-set "def-set.html" "Go to Set definition"
     click def-compact "def-compact.html" "Go to Compact Space definition"
     click def-homeomorphism "def-homeomorphism.html" "Go to Homeomorphism definition"
-    click def-connected "def-connected.html" "Go to Connected Space definition"
-    click def-set "def-set.html" "Go to Set definition"
-    click ex-closed-interval-compact "ex-closed-interval-compact.html" "Go to Closed Interval is Compact example"
+    click def-closed-set "def-closed-set.html" "Go to Closed Set definition"
+    click thm-metric-hausdorff "thm-metric-hausdorff.html" "Go to Every Metric Space is Hausdorff theorem"
     click thm-union-open-sets "thm-union-open-sets.html" "Go to Union of Open Sets theorem"
+    click def-homotopy "def-homotopy.html" "Go to Homotopy definition"
+    click ex-closed-interval-compact "ex-closed-interval-compact.html" "Go to Closed Interval is Compact example"
+    click def-open-set "def-open-set.html" "Go to Open Set definition"
+    click def-fundamental-group "def-fundamental-group.html" "Go to Fundamental Group definition"
+    click def-hausdorff "def-hausdorff.html" "Go to Hausdorff Space definition"
+    click def-connected "def-connected.html" "Go to Connected Space definition"
 ```
 
 ## Interactive Visualization
@@ -109,4 +116,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-topological-space.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-topological-space.html){target="_blank"}

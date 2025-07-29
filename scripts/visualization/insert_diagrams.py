@@ -20,16 +20,31 @@ def process_file(qmd_file: Path, diagrams_dir: Path) -> Optional[str]:
         return None
 
     node_id = post.metadata["id"]
-    diagram_file = diagrams_dir / f"{node_id}.mermaid"
 
     # Determine language from path
     is_japanese = "/ja/" in str(qmd_file)
+    lang = "ja" if is_japanese else "en"
+
+    # Look for language-specific diagram file in language subdirectory
+    diagram_file = diagrams_dir / lang / f"{node_id}.mermaid"
 
     # Read diagram content if available
     diagram_content = None
     if diagram_file.exists():
         with open(diagram_file, "r", encoding="utf-8") as f:
             diagram_content = f.read()
+
+        # Validate diagram content has meaningful data
+        if not diagram_content or not diagram_content.strip():
+            # Empty or whitespace-only diagram file, skip
+            return None
+
+        # Additional validation: check if diagram has actual nodes
+        lines = diagram_content.strip().split("\n")
+        has_nodes = any("[" in line and "]" in line for line in lines if line.strip())
+        if not has_nodes:
+            # No actual nodes in diagram, skip
+            return None
     else:
         # No diagram file, skip this file
         return None

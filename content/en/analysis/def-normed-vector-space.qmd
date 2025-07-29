@@ -1,0 +1,173 @@
+---
+id: def-normed-vector-space
+requires:
+- def-vector-space
+- def-metric-space
+- def-open-ball
+status: complete
+title: Normed Vector Space
+translations:
+  en: ../en/analysis/def-normed-vector-space.html
+  ja: ../ja/analysis/def-normed-vector-space.html
+type: Definition
+---
+
+A **normed vector space** (or normed space) is a [Vector Space](../algebra/def-vector-space.qmd) equipped with a function that measures the "size" or "length" of its vectors, generalizing the notion of length from Euclidean space.
+
+## Formal Definition
+
+A normed vector space is a pair $(V, \|\cdot\|)$ where:
+- $V$ is a [Vector Space](../algebra/def-vector-space.qmd) over a field $\mathbb{F}$ (typically $\mathbb{R}$ or $\mathbb{C}$)
+- $\|\cdot\|: V \to [0, \infty)$ is a function called a **norm** satisfying:
+
+### Norm Axioms
+
+For all $\mathbf{x}, \mathbf{y} \in V$ and all scalars $\alpha \in \mathbb{F}$:
+
+1. **Positive definiteness**: $\|\mathbf{x}\| = 0$ if and only if $\mathbf{x} = \mathbf{0}$
+
+2. **Positive homogeneity**: $\|\alpha \mathbf{x}\| = |\alpha| \|\mathbf{x}\|$
+
+3. **Triangle inequality**: $\|\mathbf{x} + \mathbf{y}\| \leq \|\mathbf{x}\| + \|\mathbf{y}\|$
+
+## Induced Metric
+
+Every normed space $(V, \|\cdot\|)$ naturally becomes a [Metric Space](def-metric-space.qmd) with the metric:
+
+$$d(\mathbf{x}, \mathbf{y}) = \|\mathbf{x} - \mathbf{y}\|$$
+
+This allows us to discuss [Convergence](def-convergence.qmd), [Continuity](def-continuity.qmd), and completeness in normed spaces.
+
+## Properties
+
+### Basic Properties
+
+1. **Non-negativity**: $\|\mathbf{x}\| \geq 0$ for all $\mathbf{x} \in V$ (follows from axioms)
+
+2. **Reverse triangle inequality**: $|\|\mathbf{x}\| - \|\mathbf{y}\|| \leq \|\mathbf{x} - \mathbf{y}\|$
+
+3. **Continuity of the norm**: The norm function $\|\cdot\|: V \to [0, \infty)$ is continuous with respect to the induced metric
+
+### Topological Properties
+
+The norm induces a topology on $V$ where:
+- [Open balls](def-open-ball.qmd): $B_r(\mathbf{x}) = \{\mathbf{y} \in V : \|\mathbf{y} - \mathbf{x}\| < r\}$
+- The vector operations (addition and scalar multiplication) are continuous
+
+## Examples
+
+### Finite-Dimensional Examples
+
+1. **Euclidean norm on $\mathbb{R}^n$**: $\|\mathbf{x}\|_2 = \sqrt{\sum_{i=1}^n x_i^2}$
+
+2. **$p$-norms on $\mathbb{R}^n$** (for $1 \leq p < \infty$): $\|\mathbf{x}\|_p = \left(\sum_{i=1}^n |x_i|^p\right)^{1/p}$
+
+3. **Maximum norm on $\mathbb{R}^n$**: $\|\mathbf{x}\|_\infty = \max_{1 \leq i \leq n} |x_i|$
+
+4. **Weighted norms**: For positive weights $w_i > 0$: $\|\mathbf{x}\|_w = \sqrt{\sum_{i=1}^n w_i x_i^2}$
+
+### Infinite-Dimensional Examples
+
+1. **$\ell^p$ spaces**: Sequences $(x_n)$ with $\|(x_n)\|_p = \left(\sum_{n=1}^\infty |x_n|^p\right)^{1/p} < \infty$
+
+2. **$C[a,b]$ with supremum norm**: Continuous functions with $\|f\|_\infty = \sup_{x \in [a,b]} |f(x)|$
+
+3. **$L^p$ spaces**: Measurable functions with $\|f\|_p = \left(\int |f|^p \, d\mu\right)^{1/p} < \infty$
+
+4. **Sobolev spaces**: Functions with derivatives in $L^p$
+
+## Equivalent Norms
+
+Two norms $\|\cdot\|_1$ and $\|\cdot\|_2$ on a vector space $V$ are **equivalent** if there exist constants $c, C > 0$ such that:
+
+$$c\|\mathbf{x}\|_1 \leq \|\mathbf{x}\|_2 \leq C\|\mathbf{x}\|_1 \quad \text{for all } \mathbf{x} \in V$$
+
+### Key Theorem
+On a finite-dimensional vector space, all norms are equivalent. This is not true in infinite dimensions.
+
+## Complete Normed Spaces
+
+A normed space $(V, \|\cdot\|)$ is called **complete** if it is complete as a metric space, i.e., every [Cauchy Sequence](def-cauchy-sequence.qmd) converges. A complete normed space is called a **[Banach space](def-banach-space.qmd)**.
+
+### Examples of Complete Normed Spaces
+- $\mathbb{R}^n$ with any norm
+- $\ell^p$ spaces for $1 \leq p \leq \infty$
+- $C[a,b]$ with the supremum norm
+- $L^p$ spaces for $1 \leq p \leq \infty$
+
+### Examples of Incomplete Normed Spaces
+- $C[a,b]$ with the $L^1$ norm
+- The space of polynomials with the supremum norm on $[0,1]$
+- The space of sequences with finitely many non-zero terms with the $\ell^p$ norm
+
+## Continuous Linear Functionals
+
+A linear functional $f: V \to \mathbb{F}$ is continuous if and only if it is bounded:
+
+$$\|f\| = \sup_{\|\mathbf{x}\| = 1} |f(\mathbf{x})| < \infty$$
+
+The set of all continuous linear functionals forms the **dual space** $V^*$, which is itself a normed space with the operator norm.
+
+## Applications
+
+1. **Functional Analysis**: Normed spaces provide the foundation for studying linear operators, spectral theory, and differential equations
+
+2. **Approximation Theory**: Best approximation problems in normed spaces
+
+3. **Optimization**: Many optimization problems are naturally formulated in normed spaces
+
+4. **Numerical Analysis**: Error analysis and convergence of numerical methods
+
+## Related Concepts
+
+- [Complete Metric Space](def-complete-metric-space.qmd): When the induced metric is complete
+- [Vector Space](../algebra/def-vector-space.qmd): The underlying algebraic structure
+- [Linear Transformation](../algebra/def-linear-transformation.qmd): Structure-preserving maps between normed spaces
+- [Banach Space](def-banach-space.qmd): A complete normed vector space
+- **Inner Product Space**: A normed space where the norm comes from an inner product
+- [Hilbert Space](def-hilbert-space.qmd): A complete inner product space
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-metric-space["Definition: Metric Space"]:::definition
+    def-hilbert-space["Definition: Hilbert Space"]:::definition
+    def-open-ball["Definition: Open Ball"]:::definition
+    def-normed-vector-space["Definition: Normed Vector Space"]:::definition
+    def-banach-space["Definition: Banach Space"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-euclidean-space["Definition: Euclidean Space"]:::definition
+    def-banach-space --> def-normed-vector-space
+    def-normed-vector-space --> def-open-ball
+    def-normed-vector-space --> def-vector-space
+    def-hilbert-space --> def-normed-vector-space
+    def-euclidean-space --> def-normed-vector-space
+    def-normed-vector-space --> def-metric-space
+    class def-normed-vector-space current
+    click def-metric-space "def-metric-space.html" "Go to Metric Space definition"
+    click def-hilbert-space "def-hilbert-space.html" "Go to Hilbert Space definition"
+    click def-open-ball "def-open-ball.html" "Go to Open Ball definition"
+    click def-banach-space "def-banach-space.html" "Go to Banach Space definition"
+    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
+    click def-euclidean-space "def-euclidean-space.html" "Go to Euclidean Space definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-normed-vector-space" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/en/def-normed-vector-space.html){target="_blank"}

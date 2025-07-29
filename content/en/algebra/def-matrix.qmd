@@ -1,14 +1,16 @@
 ---
 id: def-matrix
+requires:
+- def-field
 status: complete
-title: 'Definition: Matrix'
+title: Matrix
 translations:
   en: ../en/algebra/def-matrix.html
   ja: ../ja/algebra/def-matrix.html
 type: Definition
 ---
 
-# Definition: Matrix {#def-matrix}
+# Matrix {#def-matrix}
 
 A **matrix** over a field $F$ is a rectangular array of elements from $F$ arranged in rows and columns.
 
@@ -32,7 +34,7 @@ where $a_{ij} \in F$ is the entry in the $i$-th row and $j$-th column.
 
 ## Special Types of Matrices
 
-- **Square matrix**: When $m = n$. For square matrices, we can study [eigenvalues and eigenvectors](def-eigenvalue-eigenvector.qmd)
+- **Square matrix**: When $m = n$. For square matrices, we can compute the [determinant](def-determinant.qmd) and study [eigenvalues and eigenvectors](def-eigenvalue-eigenvector.qmd)
 - **Row vector**: A $1 \times n$ matrix
 - **Column vector**: An $m \times 1$ matrix
 - **Zero matrix**: All entries are 0, denoted $O$ or $0_{m \times n}$
@@ -62,13 +64,22 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-matrix["Definition: Matrix"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-determinant["Definition: Determinant"]:::definition
     def-eigenvalue-eigenvector["Definition: Eigenvalue and Eigenvector"]:::definition
+    def-matrix["Definition: Matrix"]:::definition
+    def-field["Definition: Field"]:::definition
     ex-matrix-transformation["Example: Matrix Transformation"]:::example
-    ex-matrix-transformation --> def-matrix
     def-eigenvalue-eigenvector --> def-matrix
+    def-matrix --> def-field
+    def-normal-subgroup --> def-matrix
+    def-determinant --> def-matrix
+    ex-matrix-transformation --> def-matrix
     class def-matrix current
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click def-determinant "def-determinant.html" "Go to Determinant definition"
     click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "Go to Eigenvalue and Eigenvector definition"
+    click def-field "def-field.html" "Go to Field definition"
     click ex-matrix-transformation "ex-matrix-transformation.html" "Go to Matrix Transformation example"
 ```
 
@@ -83,4 +94,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-matrix.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-matrix.html){target="_blank"}

@@ -3,15 +3,16 @@ id: def-binomial-coefficient
 requires:
 - def-combination
 - def-permutation
+- def-generating-function
 status: complete
-title: 'Definition: Binomial Coefficient'
+title: Binomial Coefficient
 translations:
   en: ../en/combinatorics/def-binomial-coefficient.html
   ja: ../ja/combinatorics/def-binomial-coefficient.html
 type: Definition
 ---
 
-# Definition: Binomial Coefficient
+# Binomial Coefficient
 
 The **binomial coefficient** $\binom{n}{k}$ (read "n choose k") counts the number of ways to choose $k$ objects from $n$ objects without regard to order.
 
@@ -54,10 +55,8 @@ where $n!$ denotes the factorial of $n$.
 - Expansion of binomial expressions
 - Probability calculations in discrete distributions
 - Pascal's triangle construction
-
-```{mermaid}
-```
-
+- [Generating Functions](def-generating-function.qmd) - binomial coefficients appear naturally in both ordinary and exponential generating functions
+- [Inclusion-Exclusion Principle](thm-inclusion-exclusion.qmd) - uses binomial coefficients in its proof and applications
 ## Dependency Graph
 
 ```{mermaid}
@@ -68,20 +67,24 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-permutation["Definition: Permutation"]:::definition
     def-tree["Definition: Tree"]:::definition
-    def-combination["Definition: Combination"]:::definition
+    def-generating-function["Definition: Generating Function"]:::definition
     ex-pascals-triangle["Example: Pascal's Triangle"]:::example
+    def-combination["Definition: Combination"]:::definition
     def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
-    def-tree --> def-binomial-coefficient
+    def-permutation["Definition: Permutation"]:::definition
     def-binomial-coefficient --> def-combination
-    ex-pascals-triangle --> def-binomial-coefficient
+    def-tree --> def-binomial-coefficient
+    def-generating-function --> def-binomial-coefficient
+    def-binomial-coefficient --> def-generating-function
     def-binomial-coefficient --> def-permutation
+    ex-pascals-triangle --> def-binomial-coefficient
     class def-binomial-coefficient current
-    click def-permutation "def-permutation.html" "Go to Permutation definition"
     click def-tree "def-tree.html" "Go to Tree definition"
-    click def-combination "def-combination.html" "Go to Combination definition"
+    click def-generating-function "def-generating-function.html" "Go to Generating Function definition"
     click ex-pascals-triangle "ex-pascals-triangle.html" "Go to Pascal's Triangle example"
+    click def-combination "def-combination.html" "Go to Combination definition"
+    click def-permutation "def-permutation.html" "Go to Permutation definition"
 ```
 
 ## Interactive Visualization
@@ -95,4 +98,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-binomial-coefficient.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-binomial-coefficient.html){target="_blank"}

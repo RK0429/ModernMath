@@ -265,18 +265,41 @@ def update_visualization_content(
     # Create new visualization sections
     sections_to_add = []
 
-    if diagram_content:
-        # Determine language
-        lang = "ja" if is_japanese else "en"
+    # Validate diagram content before using it
+    if diagram_content and diagram_content.strip():
+        # Check if diagram has meaningful content beyond just the graph declaration
+        # A minimal diagram would have at least: graph TD, class defs, and a node
+        lines = diagram_content.strip().split("\n")
+        non_empty_lines = [line for line in lines if line.strip()]
 
-        # Add click directives to the diagram content
-        enhanced_diagram = add_click_directives(diagram_content, node_id, lang)
+        # Check for actual nodes (not just class definitions)
+        has_nodes = any("[" in line and "]" in line for line in non_empty_lines)
 
-        if is_japanese:
-            dependency_section = f"## 依存関係グラフ\n\n```{{mermaid}}\n{enhanced_diagram}\n```"
-        else:
-            dependency_section = f"## Dependency Graph\n\n```{{mermaid}}\n{enhanced_diagram}\n```"
-        sections_to_add.append(dependency_section)
+        # Only add diagram if it has nodes (edges are optional for isolated nodes)
+        if has_nodes:
+            # Determine language
+            lang = "ja" if is_japanese else "en"
+
+            # Add click directives to the diagram content
+            enhanced_diagram = add_click_directives(diagram_content, node_id, lang)
+
+            if is_japanese:
+                dependency_section = (
+                    f"## 依存関係グラフ\n\n"
+                    f"```{{mermaid}}\n"
+                    f'%%| fig-cap: "ローカル依存関係グラフ"\n'
+                    f"{enhanced_diagram}\n"
+                    f"```"
+                )
+            else:
+                dependency_section = (
+                    f"## Dependency Graph\n\n"
+                    f"```{{mermaid}}\n"
+                    f'%%| fig-cap: "Local dependency graph"\n'
+                    f"{enhanced_diagram}\n"
+                    f"```"
+                )
+            sections_to_add.append(dependency_section)
 
     # Always add interactive visualization
     if is_japanese:
@@ -291,7 +314,7 @@ def update_visualization_content(
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/{node_id}.html){{target="_blank"}}で完全なインタラクティブ版を表示"""
+- [別ウィンドウ](../../output/interactive/ja/{node_id}.html){{target="_blank"}}で完全なインタラクティブ版を表示"""
     else:
         interactive_section = f"""## Interactive Visualization
 
@@ -304,7 +327,8 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/{node_id}.html){{target="_blank"}}"""
+- View the [full interactive version](../../output/interactive/en/{node_id}.html){{target="_blank"}}
+"""
 
     sections_to_add.append(interactive_section)
 

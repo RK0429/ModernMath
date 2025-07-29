@@ -1,0 +1,126 @@
+---
+id: def-endomorphism
+requires:
+- def-homomorphism
+- def-group
+- def-ring
+- def-vector-space
+- def-monoid
+status: complete
+title: Endomorphism
+translations:
+  en: ../en/algebra/def-endomorphism.html
+  ja: ../ja/algebra/def-endomorphism.html
+type: Definition
+---
+
+# Endomorphism {#def-endomorphism}
+
+An **endomorphism** is a [homomorphism](def-homomorphism.qmd) from a mathematical structure to itself. It preserves the structure while mapping elements within the same object.
+
+## Formal Definition
+
+For any algebraic structure $X$ (such as a [Group](def-group.qmd), [Ring](def-ring.qmd), or [Vector Space](def-vector-space.qmd)), an endomorphism is a homomorphism $f: X \to X$.
+
+Specifically:
+
+1. **Group endomorphism**: For a group $(G, \cdot)$, a function $f: G \to G$ such that $f(xy) = f(x)f(y)$ for all $x, y \in G$
+2. **Ring endomorphism**: For a ring $(R, +, \cdot)$, a function $f: R \to R$ that preserves both operations
+3. **Vector space endomorphism**: For a vector space $V$ over a field $F$, a linear map $f: V \to V$
+
+## Notation
+
+- The set of all endomorphisms of a structure $X$ is denoted $\text{End}(X)$
+- In the context of vector spaces, endomorphisms are also called **linear operators**
+- Composition of endomorphisms is written as $f \circ g$ or simply $fg$
+
+## The Endomorphism Monoid and Ring
+
+### Monoid Structure
+
+The set $\text{End}(X)$ forms a [monoid](def-monoid.qmd) under composition:
+
+- **Closure**: The composition of two endomorphisms is an endomorphism
+- **Associativity**: $(f \circ g) \circ h = f \circ (g \circ h)$
+- **Identity**: The identity map $\text{id}_X$ is the identity element
+
+### Ring Structure (Abelian Groups)
+
+For an abelian group $(A, +)$, the set $\text{End}(A)$ forms a ring:
+
+- **Addition**: $(f + g)(x) = f(x) + g(x)$ for all $x \in A$
+- **Multiplication**: $(f \cdot g)(x) = f(g(x))$ for all $x \in A$
+- **Additive identity**: The zero map $0(x) = 0$ for all $x$
+- **Multiplicative identity**: The identity map $\text{id}_A$
+
+Note: The endomorphism ring is generally non-commutative.
+
+## Key Properties
+
+1. **Preservation of Identity**: Every endomorphism preserves the identity element (if it exists)
+2. **Substructure Preservation**: Endomorphisms map substructures to substructures
+3. **Non-commutativity**: In general, $f \circ g \neq g \circ f$ for endomorphisms $f, g$
+
+## Examples
+
+Common examples include:
+
+- **Identity map**: The trivial endomorphism $\text{id}_X: X \to X$
+- **Scalar multiplication**: On a vector space $V$, the map $v \mapsto \lambda v$ for fixed $\lambda$
+- **Conjugation**: In a group $G$, the map $x \mapsto gxg^{-1}$ for fixed $g \in G$ (inner automorphism)
+- **Frobenius endomorphism**: In characteristic $p$, the map $x \mapsto x^p$
+
+## Special Types
+
+- **[Automorphism](def-automorphism.qmd)**: A bijective endomorphism (isomorphism from $X$ to itself)
+- **Idempotent endomorphism**: An endomorphism $f$ such that $f \circ f = f$
+- **Nilpotent endomorphism**: An endomorphism $f$ such that $f^n = 0$ for some $n$
+- **Involution**: An endomorphism $f$ such that $f \circ f = \text{id}$
+
+## Related Concepts
+
+- **Generalizations**: [Homomorphism](def-homomorphism.qmd) (between different structures)
+- **Specializations**: [Automorphism](def-automorphism.qmd) (bijective endomorphism)
+- **Applications**: Representation theory, module theory, dynamical systems
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-monoid["Definition: Monoid"]:::definition
+    def-endomorphism["Definition: Endomorphism"]:::definition
+    def-homomorphism["Definition: Group Homomorphism"]:::definition
+    def-ring["Definition: Ring"]:::definition
+    def-group["Definition: Group"]:::definition
+    def-vector-space["Definition: Vector Space"]:::definition
+    def-endomorphism --> def-group
+    def-endomorphism --> def-ring
+    def-endomorphism --> def-monoid
+    def-endomorphism --> def-homomorphism
+    def-endomorphism --> def-vector-space
+    class def-endomorphism current
+    click def-monoid "def-monoid.html" "Go to Monoid definition"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
+    click def-ring "def-ring.html" "Go to Ring definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click def-vector-space "def-vector-space.html" "Go to Vector Space definition"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="def-endomorphism" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/en/def-endomorphism.html){target="_blank"}

@@ -3,8 +3,9 @@ id: def-permutation
 requires:
 - def-set
 - def-graph
+- ../logic-set-theory/def-function
 status: complete
-title: 'Definition: Permutation'
+title: Permutation
 translations:
   en: ../en/combinatorics/def-permutation.html
   ja: ../ja/combinatorics/def-permutation.html
@@ -13,7 +14,7 @@ type: Definition
 
 # Permutation {#def-permutation}
 
-A **permutation** of a [Set](../logic-set-theory/def-set.qmd) is a bijective function from the set to itself.
+A **permutation** of a [Set](../logic-set-theory/def-set.qmd) is a bijective [function](../logic-set-theory/def-function.qmd) from the set to itself.
 
 ## Formal Definition
 
@@ -58,14 +59,17 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-set["Definition: Set"]:::definition
-    def-permutation["Definition: Permutation"]:::definition
+    def-function["Definition: Function"]:::definition
     def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
+    def-permutation["Definition: Permutation"]:::definition
     def-graph["Definition: Graph"]:::definition
+    def-permutation --> def-function
+    def-binomial-coefficient --> def-permutation
     def-permutation --> def-set
     def-permutation --> def-graph
-    def-binomial-coefficient --> def-permutation
     class def-permutation current
     click def-set "def-set.html" "Go to Set definition"
+    click def-function "def-function.html" "Go to Function definition"
     click def-binomial-coefficient "def-binomial-coefficient.html" "Go to Binomial Coefficient definition"
     click def-graph "def-graph.html" "Go to Graph definition"
 ```
@@ -81,4 +85,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/def-permutation.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/def-permutation.html){target="_blank"}

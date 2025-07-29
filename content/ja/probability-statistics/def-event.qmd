@@ -4,7 +4,7 @@ requires:
 - def-sample-space
 - def-subset
 status: complete
-title: '定義: 事象'
+title: 事象
 translation_of: ../../en/probability-statistics/def-event.qmd
 translations:
   en: ../en/probability-statistics/def-event.html
@@ -68,30 +68,30 @@ $\Omega = \{1, 2, 3, 4, 5, 6\}$ のサイコロの場合：
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-bayes["Theorem: Bayes' Theorem"]:::theorem
-    def-conditional-probability["Definition: Conditional Probability"]:::definition
-    def-sample-space["Definition: Sample Space"]:::definition
-    def-event["Definition: Event"]:::definition
-    def-independence["Definition: Independence"]:::definition
-    def-subset["Definition: Subset"]:::definition
-    thm-bayes --> def-event
+    thm-bayes["定理: ベイズの定理"]:::theorem
+    def-independence["定義: 独立性"]:::definition
+    def-sample-space["定義: 標本空間"]:::definition
+    def-event["定義: 事象"]:::definition
+    def-subset["定義: 部分集合"]:::definition
+    def-conditional-probability["定義: 条件付き確率"]:::definition
     def-independence --> def-event
-    def-conditional-probability --> def-event
+    thm-bayes --> def-event
     def-event --> def-sample-space
+    def-conditional-probability --> def-event
     def-event --> def-subset
     class def-event current
-    click thm-bayes "thm-bayes.html" "Theorem: Bayes' Theoremへ"
-    click def-conditional-probability "def-conditional-probability.html" "Definition: Conditional Probabilityへ"
-    click def-sample-space "def-sample-space.html" "Definition: Sample Spaceへ"
-    click def-independence "def-independence.html" "Definition: Independenceへ"
-    click def-subset "def-subset.html" "Definition: Subsetへ"
+    click thm-bayes "thm-bayes.html" "ベイズの定理の定理へ"
+    click def-independence "def-independence.html" "独立性の定義へ"
+    click def-sample-space "def-sample-space.html" "標本空間の定義へ"
+    click def-subset "def-subset.html" "部分集合の定義へ"
+    click def-conditional-probability "def-conditional-probability.html" "条件付き確率の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -105,4 +105,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-event.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-event.html){target="_blank"}で完全なインタラクティブ版を表示

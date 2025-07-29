@@ -6,7 +6,7 @@ requires:
 - def-group
 - def-abelian-group
 status: complete
-title: 定義：環
+title: 環
 translation_of: ../../en/algebra/def-ring.qmd
 translations:
   en: ../en/algebra/def-ring.html
@@ -31,6 +31,7 @@ type: Definition
 
 ### 乗法の公理
 2. 乗法は結合的である：$(a \cdot b) \cdot c = a \cdot (b \cdot c)$
+   （すなわち、$(R, \cdot)$ は[半群](def-semigroup.qmd)を成す）
 
 ### 分配法則
 3. 左分配法則：$a \cdot (b + c) = a \cdot b + a \cdot c$
@@ -40,7 +41,7 @@ type: Definition
 
 - **可換環**：すべての $a, b$ に対して $a \cdot b = b \cdot a$
 - **単位的環**：$1 \cdot a = a \cdot 1 = a$ となる $1 \in R$ が存在する
-- **整域**：単位的可換環で零因子を持たない
+- **[整域](def-integral-domain.qmd)**：単位的可換環で[零因子](def-zero-divisor.qmd)を持たない
 - **体**：すべての非零元が乗法逆元を持つ可換環
 
 ## 例
@@ -52,56 +53,80 @@ type: Definition
 ## 重要な環の構造
 
 - **[イデアル](def-ideal.qmd)**：乗法を吸収する特別な部分集合、群論における正規部分群に類似
-- **部分環**：両方の環演算について閉じている部分集合
-- **剰余環**：イデアルで割ることによって形成される、合同算術を一般化
-- **環準同型**：環の間の構造を保つ写像
+- **[部分環](def-subring.qmd)**：両方の環演算について閉じている部分集合
+- **[剰余環](def-quotient-ring.qmd)**：イデアルで割ることによって形成される、合同算術を一般化
+- **[環準同型](def-ring-homomorphism.qmd)**：環の間の構造を保つ写像
 - **[加群](def-module.qmd)**：スカラーが体ではなく環から来るベクトル空間の一般化
 
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    def-ideal["Definition: Ideal"]:::definition
-    def-field["Definition: Field"]:::definition
-    def-module["Definition: Module"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    def-binary-operation["Definition: Binary Operation"]:::definition
-    ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
-    ex-integers-ring["Example: Integers Form a Ring"]:::example
-    def-ring --> def-abelian-group
-    thm-field-characteristic --> def-ring
-    def-ideal --> def-ring
-    def-module --> def-ring
-    def-ring --> def-group
-    def-ring --> def-binary-operation
+    def-module["定義: 加群"]:::definition
+    def-maximal-ideal["定義: 極大イデアル"]:::definition
+    def-endomorphism["定義: 自己準同型"]:::definition
+    def-prime-ideal["定義: 素イデアル"]:::definition
+    def-polynomial-ring["定義: 多項式環"]:::definition
+    def-ring["定義：環"]:::definition
+    ex-principal-ideal["例: 整数における単項イデアル"]:::example
+    def-field["定義: 体"]:::definition
+    def-set["定義: 集合"]:::definition
+    def-ideal["定義: イデアル"]:::definition
+    ex-integers-ring["例: 整数は環を形成する"]:::example
+    def-subring["定義: 部分環"]:::definition
+    def-integral-domain["定義：整域"]:::definition
+    def-ring-homomorphism["定義: 環準同型"]:::definition
+    def-zero-divisor["定義: 零因子"]:::definition
+    def-quotient-ring["定義: 剰余環"]:::definition
+    def-abelian-group["定義: アーベル群"]:::definition
+    thm-field-characteristic["定理: 体の標数"]:::theorem
+    def-binary-operation["定義: 二項演算"]:::definition
+    def-group["群"]:::definition
+    def-quotient-ring --> def-ring
     ex-integers-ring --> def-ring
     def-polynomial-ring --> def-ring
-    def-ring --> def-set
-    def-field --> def-ring
+    def-ring --> def-group
+    def-module --> def-ring
+    def-zero-divisor --> def-ring
+    def-ring-homomorphism --> def-ring
+    def-ideal --> def-ring
+    def-integral-domain --> def-ring
+    def-ring --> def-binary-operation
     ex-principal-ideal --> def-ring
+    def-ring --> def-set
+    def-endomorphism --> def-ring
+    def-maximal-ideal --> def-ring
+    def-field --> def-ring
+    def-subring --> def-ring
+    def-ring --> def-abelian-group
+    thm-field-characteristic --> def-ring
+    def-prime-ideal --> def-ring
     class def-ring current
-    click thm-field-characteristic "thm-field-characteristic.html" "Theorem: Field Characteristicへ"
-    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
-    click def-ideal "def-ideal.html" "Definition: Idealへ"
-    click def-field "def-field.html" "Definition: Fieldへ"
-    click def-module "def-module.html" "Definition: Moduleへ"
-    click def-set "def-set.html" "Definition: Setへ"
-    click def-polynomial-ring "def-polynomial-ring.html" "Definition: Polynomial Ringへ"
-    click def-group "def-group.html" "Definition: Groupへ"
-    click def-binary-operation "def-binary-operation.html" "Definition: Binary Operationへ"
-    click ex-principal-ideal "ex-principal-ideal.html" "Example: Principal Ideals in Integersへ"
-    click ex-integers-ring "ex-integers-ring.html" "Example: Integers Form a Ringへ"
+    click def-module "def-module.html" "加群の定義へ"
+    click def-maximal-ideal "def-maximal-ideal.html" "極大イデアルの定義へ"
+    click def-endomorphism "def-endomorphism.html" "自己準同型の定義へ"
+    click def-prime-ideal "def-prime-ideal.html" "素イデアルの定義へ"
+    click def-polynomial-ring "def-polynomial-ring.html" "多項式環の定義へ"
+    click ex-principal-ideal "ex-principal-ideal.html" "整数における単項イデアルの例へ"
+    click def-field "def-field.html" "体の定義へ"
+    click def-set "def-set.html" "集合の定義へ"
+    click def-ideal "def-ideal.html" "イデアルの定義へ"
+    click ex-integers-ring "ex-integers-ring.html" "整数は環を形成するの例へ"
+    click def-subring "def-subring.html" "部分環の定義へ"
+    click def-integral-domain "def-integral-domain.html" "定義：整域へ"
+    click def-ring-homomorphism "def-ring-homomorphism.html" "環準同型の定義へ"
+    click def-zero-divisor "def-zero-divisor.html" "零因子の定義へ"
+    click def-quotient-ring "def-quotient-ring.html" "剰余環の定義へ"
+    click def-abelian-group "def-abelian-group.html" "アーベル群の定義へ"
+    click thm-field-characteristic "thm-field-characteristic.html" "体の標数の定理へ"
+    click def-binary-operation "def-binary-operation.html" "二項演算の定義へ"
+    click def-group "def-group.html" "群へ"
 ```
 
 ## インタラクティブ可視化
@@ -115,4 +140,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-ring.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-ring.html){target="_blank"}で完全なインタラクティブ版を表示

@@ -6,8 +6,9 @@ requires:
 - def-prime
 - ../algebra/ex-quotient-integers-mod-n
 - thm-euclidean-algorithm
+- def-divisibility
 status: complete
-title: 'Theorem: Chinese Remainder Theorem'
+title: Chinese Remainder Theorem
 translations:
   en: ../en/number-theory/thm-chinese-remainder.html
   ja: ../ja/number-theory/thm-chinese-remainder.html
@@ -60,7 +61,7 @@ Since $\gcd(3,5) = \gcd(3,7) = \gcd(5,7) = 1$, we can apply the theorem:
 
 ## Proof Outline
 
-**Uniqueness**: If $x$ and $y$ are both solutions, then $x \equiv y \pmod{m_i}$ for all $i$. Thus $m_i$ divides $x - y$ for all $i$. Since the $m_i$ are pairwise coprime, their product $M$ divides $x - y$, so $x \equiv y \pmod{M}$.
+**Uniqueness**: If $x$ and $y$ are both solutions, then $x \equiv y \pmod{m_i}$ for all $i$. Thus $m_i$ [divides](def-divisibility.qmd) $x - y$ for all $i$. Since the $m_i$ are pairwise coprime, their product $M$ [divides](def-divisibility.qmd) $x - y$, so $x \equiv y \pmod{M}$.
 
 **Existence**: The constructed solution satisfies all congruences because:
 - $M_i \equiv 0 \pmod{m_j}$ for $j \neq i$
@@ -92,20 +93,29 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-chinese-remainder["Theorem: Chinese Remainder Theorem"]:::theorem
-    def-prime["Definition: Prime Number"]:::definition
-    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
     thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
+    def-lcm["Definition: Least Common Multiple"]:::definition
+    thm-fundamental-arithmetic["Theorem: Fundamental Theorem of Arithmetic"]:::theorem
+    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
+    def-prime["Definition: Prime Number"]:::definition
     def-gcd["Definition: Greatest Common Divisor"]:::definition
-    thm-chinese-remainder --> thm-euclidean-algorithm
-    thm-chinese-remainder --> def-gcd
-    thm-chinese-remainder --> def-prime
+    thm-chinese-remainder["Theorem: Chinese Remainder Theorem"]:::theorem
+    def-divisibility["Definition: Divisibility"]:::definition
+    def-lcm --> thm-chinese-remainder
+    thm-chinese-remainder --> def-divisibility
     thm-chinese-remainder --> def-congruence
+    thm-fundamental-arithmetic --> thm-chinese-remainder
+    thm-chinese-remainder --> def-gcd
+    thm-chinese-remainder --> thm-euclidean-algorithm
+    thm-chinese-remainder --> def-prime
     class thm-chinese-remainder current
-    click def-prime "def-prime.html" "Go to Prime Number definition"
-    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic) definition"
     click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Go to Euclidean Algorithm theorem"
+    click def-lcm "def-lcm.html" "Go to Least Common Multiple definition"
+    click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "Go to Fundamental Theorem of Arithmetic theorem"
+    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic) definition"
+    click def-prime "def-prime.html" "Go to Prime Number definition"
     click def-gcd "def-gcd.html" "Go to Greatest Common Divisor definition"
+    click def-divisibility "def-divisibility.html" "Go to Divisibility definition"
 ```
 
 ## Interactive Visualization
@@ -119,4 +129,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/thm-chinese-remainder.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/thm-chinese-remainder.html){target="_blank"}

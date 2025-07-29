@@ -4,6 +4,7 @@ requires:
 - def-group-action
 - def-coset
 - thm-lagrange
+- ../logic-set-theory/def-cardinality
 sidebar: true
 status: verified
 title: Orbit-Stabilizer Theorem
@@ -19,6 +20,8 @@ The **Orbit-Stabilizer Theorem** relates the size of a group to the sizes of orb
 
 Let $G$ be a finite [group](def-group.qmd) acting on a set $X$, and let $x \in X$. Then:
 $$|G| = |G \cdot x| \times |G_x|$$
+
+where $|\cdot|$ denotes [cardinality](../logic-set-theory/def-cardinality.qmd).
 
 where:
 - $G \cdot x$ is the orbit of $x$
@@ -38,8 +41,8 @@ where:
 
 ### Corollary 1: Divisibility
 For any group action of a finite group $G$ on a set $X$:
-- The size of every orbit divides $|G|$
-- The size of every stabilizer divides $|G|$
+- The size of every orbit [divides](../number-theory/def-divisibility.qmd) $|G|$
+- The size of every stabilizer [divides](../number-theory/def-divisibility.qmd) $|G|$
 
 ### Corollary 2: Transitive Actions
 If the action is transitive (single orbit), then for any $x \in X$:
@@ -50,9 +53,9 @@ The number of fixed points of an element $g \in G$ equals the number of orbits u
 
 ## Applications
 
-1. **Counting symmetries**: Used to count automorphisms of graphs and other structures
+1. **Counting symmetries**: Used to count [automorphisms](def-automorphism.qmd) of graphs and other structures
 2. **Burnside's lemma**: Counts orbits using fixed points
-3. **Sylow theorems**: Analyzes conjugation actions on subgroups
+3. **[Sylow theorems](thm-sylow.qmd)**: Analyzes conjugation actions on subgroups
 4. **Classification**: Helps classify groups by their actions on various sets
 
 ## Dependency Graph
@@ -65,10 +68,10 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
     def-group-action["Group Action"]:::definition
     thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
     def-coset["Definition: Coset"]:::definition
-    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
     thm-orbit-stabilizer --> def-group-action
     thm-orbit-stabilizer --> def-coset
     thm-orbit-stabilizer --> thm-lagrange
@@ -89,4 +92,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/thm-orbit-stabilizer.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/thm-orbit-stabilizer.html){target="_blank"}

@@ -1,0 +1,121 @@
+---
+id: thm-sylow
+requires:
+- def-group
+- def-subgroup
+- thm-lagrange
+- ../number-theory/def-prime
+- ../number-theory/def-divisibility
+- def-order
+- ../logic-set-theory/def-cardinality
+status: verified
+title: Sylow Theorems
+translations:
+  en: thm-sylow.html
+  ja: thm-sylow.html
+type: Theorem
+---
+
+The **Sylow Theorems** are fundamental results in finite [group theory](def-group.qmd) that provide detailed information about the existence and properties of [subgroups](def-subgroup.qmd) of [prime](../number-theory/def-prime.qmd) power order.
+
+## Preliminaries
+
+Let $G$ be a finite [group](def-group.qmd) with [order](def-order.qmd) $|G| = p^k m$ where $p$ is a [prime](../number-theory/def-prime.qmd), $k \geq 1$, and $\gcd(p, m) = 1$, and $|G|$ denotes the [cardinality](../logic-set-theory/def-cardinality.qmd) of $G$.
+
+A **Sylow $p$-subgroup** of $G$ is a [subgroup](def-subgroup.qmd) of [order](def-order.qmd) $p^k$ (the highest power of $p$ [dividing](../number-theory/def-divisibility.qmd) $|G|$).
+
+## The Three Sylow Theorems
+
+### First Sylow Theorem (Existence)
+
+For any integer $r$ with $0 \leq r \leq k$, there exists a [subgroup](def-subgroup.qmd) of $G$ of [order](def-order.qmd) $p^r$. In particular:
+- $G$ contains at least one Sylow $p$-subgroup for each [prime](../number-theory/def-prime.qmd) factor of $|G|$
+
+### Second Sylow Theorem (Conjugacy)
+
+All Sylow $p$-subgroups of $G$ are conjugate to each other. That is, if $P$ and $Q$ are Sylow $p$-subgroups of $G$, then there exists $g \in G$ such that:
+$$Q = gPg^{-1}$$
+
+### Third Sylow Theorem (Counting)
+
+Let $n_p$ denote the number of Sylow $p$-subgroups of $G$. Then:
+
+1. $n_p \equiv 1 \pmod{p}$
+2. $n_p$ [divides](../number-theory/def-divisibility.qmd) $m$ (the part of $|G|$ coprime to $p$)
+3. $n_p = [G : N_G(P)]$ where $N_G(P)$ is the normalizer of any Sylow $p$-subgroup $P$
+
+## Key Consequences
+
+### Normal Sylow Subgroups
+
+If $n_p = 1$, then the unique Sylow $p$-subgroup is [normal](def-normal-subgroup.qmd) in $G$.
+
+### Divisibility Relations
+
+Combining the conditions from the third theorem: $n_p$ must satisfy both $n_p \equiv 1 \pmod{p}$ and $n_p | m$. This severely restricts the possible values of $n_p$.
+
+### Cauchy's Theorem
+
+As a special case when $r = 1$: If a [prime](../number-theory/def-prime.qmd) $p$ [divides](../number-theory/def-divisibility.qmd) $|G|$, then $G$ contains an element of [order](def-order.qmd) $p$.
+
+## Applications
+
+The Sylow theorems have numerous applications:
+
+1. **Classification of finite groups**: Used to prove that groups of certain orders must have specific structures
+2. **Non-simplicity results**: Often used to show that groups of particular orders cannot be [simple](def-simple-group.qmd)
+3. **Structural analysis**: Provides information about the [normal subgroup](def-normal-subgroup.qmd) structure
+4. **Partial converse to Lagrange**: While [Lagrange's theorem](thm-lagrange.qmd) states that subgroup orders divide the group order, Sylow's first theorem provides a partial converse for prime powers
+
+## Example: Groups of [Order](def-order.qmd) 15
+
+Let $|G| = 15 = 3 \cdot 5$. By the Sylow theorems:
+
+- $n_3 \equiv 1 \pmod{3}$ and $n_3 | 5$, so $n_3 \in \{1, 5\}$. But 5 ≢ 1 (mod 3), so $n_3 = 1$
+- $n_5 \equiv 1 \pmod{5}$ and $n_5 | 3$, so $n_5 \in \{1, 3\}$. But 3 ≢ 1 (mod 5), so $n_5 = 1$
+
+Since both Sylow subgroups are unique, they are [normal](def-normal-subgroup.qmd), and $G$ must be [abelian](def-abelian-group.qmd) (in fact, [cyclic](def-cyclic-group.qmd)).
+
+## Historical Note
+
+The theorems are named after Peter Ludwig Sylow (1832-1918), a Norwegian mathematician who proved them in 1872. They remain among the most powerful tools in finite group theory.
+
+## Dependency Graph
+
+```{mermaid}
+%%| fig-cap: "Local dependency graph"
+graph TD
+    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-subgroup["Definition: Subgroup"]:::definition
+    def-order["Definition: Order"]:::definition
+    def-group["Definition: Group"]:::definition
+    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
+    thm-sylow["Sylow Theorems"]:::theorem
+    thm-sylow --> def-subgroup
+    thm-sylow --> thm-lagrange
+    thm-sylow --> def-group
+    def-order --> thm-sylow
+    thm-sylow --> def-order
+    class thm-sylow current
+    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
+    click def-order "def-order.html" "Go to Order definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem theorem"
+```
+
+## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {.graph-viz data-id="thm-sylow" data-width="700" data-height="500"}
+:::
+
+You can:
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+- View the [full interactive version](../../output/interactive/en/thm-sylow.html){target="_blank"}

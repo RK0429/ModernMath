@@ -2,15 +2,16 @@
 id: ex-pascals-triangle
 requires:
 - def-binomial-coefficient
+- def-generating-function
 status: complete
-title: 'Example: Pascal''s Triangle'
+title: "Pascal's Triangle"
 translations:
   en: ../en/combinatorics/ex-pascals-triangle.html
   ja: ../ja/combinatorics/ex-pascals-triangle.html
 type: Example
 ---
 
-# Example: Pascal's Triangle
+# Pascal's Triangle
 
 Pascal's Triangle is a triangular array of [Binomial Coefficient](def-binomial-coefficient.qmd) s that provides a visual representation of many combinatorial properties.
 
@@ -56,16 +57,12 @@ The entry in row $n$ and position $k$ (counting from 0) is exactly $\binom{n}{k}
 1. **Binomial Expansion**: Row $n$ gives the coefficients of $(x+y)^n$
 2. **Probability**: Used in calculating binomial probabilities
 3. **Combinatorial Identities**: Visual proofs of many identities
-4. **Number Theory**: Connections to divisibility properties
+4. **Number Theory**: Connections to [divisibility](../number-theory/def-divisibility.qmd) properties
 
-## Generating Function
+## [Generating Function](def-generating-function.qmd)
 
 The entries in Pascal's Triangle can be generated using a power [series](../analysis/def-series.qmd):
 $$\frac{1}{(1-x)^{n+1}} = \sum_{k=0}^{\infty} \binom{n+k}{k} x^k$$
-
-```{mermaid}
-```
-
 ## Dependency Graph
 
 ```{mermaid}
@@ -76,10 +73,13 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-pascals-triangle["Example: Pascal's Triangle"]:::example
+    def-generating-function["Definition: Generating Function"]:::definition
     def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
+    ex-pascals-triangle["Example: Pascal's Triangle"]:::example
+    ex-pascals-triangle --> def-generating-function
     ex-pascals-triangle --> def-binomial-coefficient
     class ex-pascals-triangle current
+    click def-generating-function "def-generating-function.html" "Go to Generating Function definition"
     click def-binomial-coefficient "def-binomial-coefficient.html" "Go to Binomial Coefficient definition"
 ```
 
@@ -94,4 +94,4 @@ You can:
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/ex-pascals-triangle.html){target="_blank"}
+- View the [full interactive version](../../output/interactive/en/ex-pascals-triangle.html){target="_blank"}

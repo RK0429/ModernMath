@@ -7,8 +7,10 @@ requires:
 - def-group
 - def-ideal
 - def-abelian-group
+- def-integral-domain
+- def-subring
 status: complete
-title: '定義: 体'
+title: 体
 translation_of: ../../en/algebra/def-field.qmd
 translations:
   en: ../en/algebra/def-field.html
@@ -34,9 +36,9 @@ updated: 2024-01-20
 
 ## 性質
 
-- すべての体は整域である
-- すべての有限整域は体である
-- 体には零因子が存在しない：$ab = 0$ ならば、$a = 0$ または $b = 0$ である
+- すべての体は[整域](def-integral-domain.qmd)である
+- すべての有限[整域](def-integral-domain.qmd)は体である
+- 体には[零因子](def-zero-divisor.qmd)が存在しない：$ab = 0$ ならば、$a = 0$ または $b = 0$ である
 - ゼロでないすべての元 $a$ は、$a \cdot a^{-1} = 1$ を満たす唯一の逆元 $a^{-1}$ を持つ
 - 体は自明な[イデアル](def-ideal.qmd)のみを持つ：イデアルは $\{0\}$ と $F$ 自身のみ
 
@@ -46,49 +48,68 @@ updated: 2024-01-20
 - $\mathbb{R}$ - 実数
 - $\mathbb{C}$ - 複素数
 - $\mathbb{F}_p = \mathbb{Z}/p\mathbb{Z}$ - 素数 $p$ を法とする整数（単項イデアル $(p)$ による剰余）
-- $\mathbb{Q}(\sqrt{2}) = \{a + b\sqrt{2} : a, b \in \mathbb{Q}\}$ - 体の拡大
+- $\mathbb{Q}(\sqrt{2}) = \{a + b\sqrt{2} : a, b \in \mathbb{Q}\}$ - 体の拡大（$\mathbb{Q}$ を[部分環](def-subring.qmd)として含む）
 
 ## 非例
 
 - $\mathbb{Z}$ は体ではない（2 に乗法逆元が存在しない）
-- $\mathbb{Z}/6\mathbb{Z}$ は体ではない（零因子を持つ）
+- $\mathbb{Z}/6\mathbb{Z}$ は体ではない（[零因子](def-zero-divisor.qmd)を持つ）
 
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-field-characteristic["Theorem: Field Characteristic"]:::theorem
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    def-ideal["Definition: Ideal"]:::definition
-    def-field["Definition: Field"]:::definition
-    ex-finite-field["Example: Finite Field"]:::example
-    def-vector-space["Definition: Vector Space"]:::definition
-    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-ring["Definition: Ring"]:::definition
-    def-vector-space --> def-field
-    def-field --> def-abelian-group
-    ex-finite-field --> def-field
-    def-field --> def-ideal
-    thm-field-characteristic --> def-field
-    def-field --> def-ring
+    thm-field-characteristic["定理: 体の標数"]:::theorem
+    def-determinant["定義: 行列式"]:::definition
+    def-integral-domain["定義：整域"]:::definition
+    def-subring["定義: 部分環"]:::definition
+    def-maximal-ideal["定義: 極大イデアル"]:::definition
+    def-matrix["定義：行列"]:::definition
+    def-ideal["定義: イデアル"]:::definition
+    def-ring["定義：環"]:::definition
+    def-group["群"]:::definition
+    def-zero-divisor["定義: 零因子"]:::definition
+    def-field["定義: 体"]:::definition
+    ex-finite-field["例: 有限体"]:::example
+    def-polynomial-ring["定義: 多項式環"]:::definition
+    def-vector-space["定義: ベクトル空間"]:::definition
+    def-abelian-group["定義: アーベル群"]:::definition
     def-field --> def-group
+    def-field --> def-ring
+    def-integral-domain --> def-field
+    def-maximal-ideal --> def-field
+    def-determinant --> def-field
+    def-field --> def-ideal
+    def-zero-divisor --> def-field
+    ex-finite-field --> def-field
+    def-matrix --> def-field
+    def-field --> def-subring
+    def-field --> def-integral-domain
+    def-field --> def-abelian-group
+    thm-field-characteristic --> def-field
+    def-vector-space --> def-field
     def-polynomial-ring --> def-field
     class def-field current
-    click thm-field-characteristic "thm-field-characteristic.html" "Theorem: Field Characteristicへ"
-    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
-    click def-ideal "def-ideal.html" "Definition: Idealへ"
-    click ex-finite-field "ex-finite-field.html" "Example: Finite Fieldへ"
-    click def-vector-space "def-vector-space.html" "Definition: Vector Spaceへ"
-    click def-polynomial-ring "def-polynomial-ring.html" "Definition: Polynomial Ringへ"
-    click def-group "def-group.html" "Definition: Groupへ"
-    click def-ring "def-ring.html" "Definition: Ringへ"
+    click thm-field-characteristic "thm-field-characteristic.html" "体の標数の定理へ"
+    click def-determinant "def-determinant.html" "行列式の定義へ"
+    click def-integral-domain "def-integral-domain.html" "定義：整域へ"
+    click def-subring "def-subring.html" "部分環の定義へ"
+    click def-maximal-ideal "def-maximal-ideal.html" "極大イデアルの定義へ"
+    click def-matrix "def-matrix.html" "定義：行列へ"
+    click def-ideal "def-ideal.html" "イデアルの定義へ"
+    click def-ring "def-ring.html" "定義：環へ"
+    click def-group "def-group.html" "群へ"
+    click def-zero-divisor "def-zero-divisor.html" "零因子の定義へ"
+    click ex-finite-field "ex-finite-field.html" "有限体の例へ"
+    click def-polynomial-ring "def-polynomial-ring.html" "多項式環の定義へ"
+    click def-vector-space "def-vector-space.html" "ベクトル空間の定義へ"
+    click def-abelian-group "def-abelian-group.html" "アーベル群の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -102,4 +123,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-field.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-field.html){target="_blank"}で完全なインタラクティブ版を表示

@@ -8,8 +8,10 @@ requires:
 - def-coset
 - def-abelian-group
 - def-group-action
+- def-matrix
+- def-determinant
 status: complete
-title: '定義: 正規部分群'
+title: 正規部分群
 translation_of: ../../en/algebra/def-normal-subgroup.qmd
 translations:
   en: ../en/algebra/def-normal-subgroup.html
@@ -27,7 +29,7 @@ $(G, \cdot)$ を群、$H \leq G$ を部分群とします。$H$ が $G$ の**正
 
 $$gHg^{-1} = H \text{ すべての } g \in G \text{ に対して}$$
 
-ここで $gHg^{-1} = \{ghg^{-1} : h \in H\}$ は $g$ による $H$ の共役です。これは[群の作用](def-group-action.qmd)の特別な場合で、特に $G$ がその部分群に作用する共役作用です。
+ここで $gHg^{-1} = \{ghg^{-1} : h \in H\}$ は $g$ による $H$ の共役です。これは[群の作用](def-group-action.qmd)の特別な場合で、特に $G$ がその部分群に作用する共役作用です。写像 $h \mapsto ghg^{-1}$ は $G$ の内部[自己同型](def-automorphism.qmd)です。
 
 ## 同値な特徴付け
 
@@ -47,6 +49,8 @@ $$gHg^{-1} = H \text{ すべての } g \in G \text{ に対して}$$
 - 自明な部分群 $\{e\} \triangleleft G$
 - 真でない部分群 $G \triangleleft G$
 
+これら2つの自明な正規部分群のみを持つ群を[単純群](def-simple-group.qmd)といいます。
+
 ### アーベル群における正規部分群
 
 $G$ が[アーベル群](def-abelian-group.qmd)ならば、$G$ のすべての部分群は正規です。これは、[アーベル群](def-abelian-group.qmd)では：
@@ -63,13 +67,13 @@ $H$ が $G$ の部分群で指数 $[G:H] = 2$ ならば、$H$ は $G$ の正規�
 
 ## 例
 
-1. **群の中心**：中心 $Z(G) = \{g \in G : gx = xg \text{ すべての } x \in G \text{ に対して}\}$ は常に $G$ の正規部分群です。
+1. **群の中心**：[中心](def-center-of-group.qmd) $Z(G) = \{g \in G : gx = xg \text{ すべての } x \in G \text{ に対して}\}$ は常に $G$ の正規部分群です。
 
 2. **交代群**：交代群 $A_n$ は、すべての $n \geq 2$ に対して対称群 $S_n$ の正規部分群です。これは $[S_n : A_n] = 2$ だからです。
 
 3. **偶数整数**：偶数整数の部分群 $2\mathbb{Z}$ は $(\mathbb{Z}, +)$ の正規部分群です。
 
-4. **特殊線形群**：$SL_n(\mathbb{R}) = \{A \in GL_n(\mathbb{R}) : \det(A) = 1\}$ は $GL_n(\mathbb{R})$ の正規部分群です。
+4. **特殊線形群**：$SL_n(\mathbb{R}) = \{A \in GL_n(\mathbb{R}) : \det(A) = 1\}$ は $GL_n(\mathbb{R})$ の正規部分群です。ここで $\det$ は[行列式](def-determinant.qmd)を表します。
 
 ## 応用
 
@@ -77,6 +81,7 @@ $H$ が $G$ の部分群で指数 $[G:H] = 2$ ならば、$H$ は $G$ の正規�
 - 商群を構成するために使用できる部分群はまさに正規部分群だけです
 - 群準同型の核は正規部分群です
 - 群の分類において重要な役割を果たします
+- [シローの定理](thm-sylow.qmd)は、特定の部分群がいつ正規であるかを特定するのに役立ちます
 
 ## 関連項目
 
@@ -90,60 +95,73 @@ $H$ が $G$ の部分群で指数 $[G:H] = 2$ ならば、$H$ は $G$ の正規�
 ## 依存関係グラフ
 
 ```{mermaid}
-%%| fig-cap: "Local dependency graph"
+%%| fig-cap: "ローカル依存関係グラフ"
 graph TD
     classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    thm-lagrange["Theorem: Lagrange's Theorem"]:::theorem
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-coset["Definition: Coset"]:::definition
-    thm-first-isomorphism["Theorem: First Isomorphism Theorem"]:::theorem
-    def-kernel["Definition: Kernel"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    def-group-action["Group Action"]:::definition
-    def-direct-product["Definition: Direct Product of Groups"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-subgroup["Definition: Subgroup"]:::definition
-    def-normal-subgroup --> def-coset
+    def-subgroup["定義：部分群"]:::definition
+    def-normal-subgroup["定義: 正規部分群"]:::definition
+    def-quotient-group["定義: 商群"]:::definition
+    def-direct-product["定義：群の直積"]:::definition
+    def-determinant["定義: 行列式"]:::definition
+    ex-quotient-integers-mod-n["例: 整数の n による剰余"]:::example
+    def-matrix["定義：行列"]:::definition
+    ex-even-integers-subgroup["例: 偶数整数は部分群を成す"]:::example
+    thm-first-isomorphism["定理: 第一同型定理"]:::theorem
+    def-homomorphism["定義: 群準同型"]:::definition
+    thm-lagrange["定理: ラグランジュの定理"]:::theorem
+    def-group["群"]:::definition
+    def-coset["定義: 剰余類"]:::definition
+    def-center-of-group["定義: 群の中心"]:::definition
+    def-simple-group["定義: 単純群"]:::definition
+    def-kernel["定義: 核"]:::definition
+    def-group-action["群の作用"]:::definition
+    def-abelian-group["定義: アーベル群"]:::definition
     ex-quotient-integers-mod-n --> def-normal-subgroup
-    def-normal-subgroup --> thm-first-isomorphism
-    def-kernel --> def-normal-subgroup
-    def-coset --> def-normal-subgroup
-    def-normal-subgroup --> def-group
-    def-group --> def-normal-subgroup
-    def-normal-subgroup --> thm-lagrange
-    def-quotient-group --> def-normal-subgroup
-    def-normal-subgroup --> def-quotient-group
-    def-normal-subgroup --> def-abelian-group
-    def-direct-product --> def-normal-subgroup
+    def-normal-subgroup --> def-determinant
     def-normal-subgroup --> def-group-action
-    ex-even-integers-subgroup --> def-normal-subgroup
-    def-normal-subgroup --> def-homomorphism
-    def-abelian-group --> def-normal-subgroup
     thm-first-isomorphism --> def-normal-subgroup
     def-subgroup --> def-normal-subgroup
+    def-normal-subgroup --> def-group
+    def-direct-product --> def-normal-subgroup
+    def-normal-subgroup --> thm-lagrange
+    def-normal-subgroup --> thm-first-isomorphism
+    def-normal-subgroup --> def-homomorphism
     def-normal-subgroup --> def-subgroup
+    def-abelian-group --> def-normal-subgroup
+    ex-even-integers-subgroup --> def-normal-subgroup
+    def-normal-subgroup --> def-matrix
+    def-normal-subgroup --> def-center-of-group
+    def-group --> def-normal-subgroup
+    def-kernel --> def-normal-subgroup
+    def-normal-subgroup --> def-coset
+    def-quotient-group --> def-normal-subgroup
+    def-normal-subgroup --> def-abelian-group
+    def-normal-subgroup --> def-quotient-group
+    def-simple-group --> def-normal-subgroup
+    def-center-of-group --> def-normal-subgroup
+    def-coset --> def-normal-subgroup
     class def-normal-subgroup current
-    click def-quotient-group "def-quotient-group.html" "Definition: Quotient Groupへ"
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Example: Even Integers Form a Subgroupへ"
-    click def-abelian-group "def-abelian-group.html" "Definition: Abelian Groupへ"
-    click thm-lagrange "thm-lagrange.html" "Theorem: Lagrange's Theoremへ"
-    click def-homomorphism "def-homomorphism.html" "Definition: Group Homomorphismへ"
-    click def-coset "def-coset.html" "Definition: Cosetへ"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Theorem: First Isomorphism Theoremへ"
-    click def-kernel "def-kernel.html" "Definition: Kernelへ"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Example: Integers Modulo nへ"
-    click def-group-action "def-group-action.html" "Group Actionへ"
-    click def-direct-product "def-direct-product.html" "Definition: Direct Product of Groupsへ"
-    click def-group "def-group.html" "Definition: Groupへ"
-    click def-subgroup "def-subgroup.html" "Definition: Subgroupへ"
+    click def-subgroup "def-subgroup.html" "定義：部分群へ"
+    click def-quotient-group "def-quotient-group.html" "商群の定義へ"
+    click def-direct-product "def-direct-product.html" "定義：群の直積へ"
+    click def-determinant "def-determinant.html" "行列式の定義へ"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余の例へ"
+    click def-matrix "def-matrix.html" "定義：行列へ"
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "偶数整数は部分群を成すの例へ"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "第一同型定理の定理へ"
+    click def-homomorphism "def-homomorphism.html" "群準同型の定義へ"
+    click thm-lagrange "thm-lagrange.html" "ラグランジュの定理の定理へ"
+    click def-group "def-group.html" "群へ"
+    click def-coset "def-coset.html" "剰余類の定義へ"
+    click def-center-of-group "def-center-of-group.html" "群の中心の定義へ"
+    click def-simple-group "def-simple-group.html" "単純群の定義へ"
+    click def-kernel "def-kernel.html" "核の定義へ"
+    click def-group-action "def-group-action.html" "群の作用へ"
+    click def-abelian-group "def-abelian-group.html" "アーベル群の定義へ"
 ```
 
 ## インタラクティブ可視化
@@ -157,4 +175,4 @@ graph TD
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/def-normal-subgroup.html){target="_blank"}で完全なインタラクティブ版を表示
+- [別ウィンドウ](../../output/interactive/ja/def-normal-subgroup.html){target="_blank"}で完全なインタラクティブ版を表示
