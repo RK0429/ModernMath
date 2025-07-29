@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.7.32" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <title>第一同型定理 – Math Knowledge Graph</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,27 +18,25 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
-
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../favicon.ico" rel="icon">
+<meta content="../../../" name="quarto:offset"/>
+<link href="../../../favicon.ico" rel="icon"/>
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
+<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,8 +66,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
 <script>
   window.siteLanguage = 'en';
   window.alternateLanguage = 'ja';
@@ -121,10 +116,8 @@ ul.task-list li input[type="checkbox"] {
     document.head.appendChild(issueScript);
   })();
 </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -151,166 +144,149 @@ window.Quarto = {
   typesetMath
 };
 </script>
-
-<link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../../styles-multilingual.css">
+<link href="../../../styles.css" rel="stylesheet"/>
+<link href="../../../styles-multilingual.css" rel="stylesheet"/>
 </head>
-
 <body class="nav-fixed quarto-light">
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">Math Knowledge Graph</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../../index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/en/algebra/index.html"> 
-<span class="menu-text">Algebra</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/en/analysis/index.html"> 
-<span class="menu-text">Analysis</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/en/topology/index.html"> 
-<span class="menu-text">Topology</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/en/geometry/index.html"> 
-<span class="menu-text">Geometry</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/en/category-theory/index.html"> 
-<span class="menu-text">Category Theory</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/en/combinatorics/index.html"> 
-<span class="menu-text">Combinatorics</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/en/logic-set-theory/index.html"> 
-<span class="menu-text">Logic &amp; Set Theory</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/en/number-theory/index.html"> 
-<span class="menu-text">Number Theory</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/en/probability-statistics/index.html"> 
-<span class="menu-text">Probability &amp; Statistics</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/en/about.html"> 
-<span class="menu-text">About</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/en/contributing.html"> 
-<span class="menu-text">Contributing</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../../ja/index.html"> 
-<span class="menu-text">🌐 日本語</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+<header class="headroom fixed-top" id="quarto-header">
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+<div class="navbar-container container-fluid">
+<div class="navbar-brand-container mx-auto">
+<a class="navbar-brand" href="../../../index.html">
+<span class="navbar-title">Math Knowledge Graph</span>
+</a>
 </div>
-      </div> <!-- /container-fluid -->
-    </nav>
+<div class="" id="quarto-search" title="Search"></div>
+<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+<ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+<a class="nav-link" href="../../../index.html">
+<span class="menu-text">Home</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/en/algebra/index.html">
+<span class="menu-text">Algebra</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/en/analysis/index.html">
+<span class="menu-text">Analysis</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/en/topology/index.html">
+<span class="menu-text">Topology</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/en/geometry/index.html">
+<span class="menu-text">Geometry</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/en/category-theory/index.html">
+<span class="menu-text">Category Theory</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/en/combinatorics/index.html">
+<span class="menu-text">Combinatorics</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/en/logic-set-theory/index.html">
+<span class="menu-text">Logic &amp; Set Theory</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/en/number-theory/index.html">
+<span class="menu-text">Number Theory</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/en/probability-statistics/index.html">
+<span class="menu-text">Probability &amp; Statistics</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/en/about.html">
+<span class="menu-text">About</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/en/contributing.html">
+<span class="menu-text">Contributing</span></a>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
+</i>
+<span class="menu-text"></span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../../ja/index.html">
+<span class="menu-text">🌐 日本語</span></a>
+</li>
+</ul>
+</div> <!-- /navcollapse -->
+<div class="quarto-navbar-tools">
+</div>
+</div> <!-- /container-fluid -->
+</nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#thm-first-isomorphism" id="toc-thm-first-isomorphism" class="nav-link active" data-scroll-target="#thm-first-isomorphism">第一同型定理</a>
-  <ul class="collapse">
-  <li><a href="#定理の主張" id="toc-定理の主張" class="nav-link" data-scroll-target="#定理の主張">定理の主張</a></li>
-  <li><a href="#形式的な主張" id="toc-形式的な主張" class="nav-link" data-scroll-target="#形式的な主張">形式的な主張</a></li>
-  <li><a href="#重要な洞察" id="toc-重要な洞察" class="nav-link" data-scroll-target="#重要な洞察">重要な洞察</a></li>
-  <li><a href="#証明の概要" id="toc-証明の概要" class="nav-link" data-scroll-target="#証明の概要">証明の概要</a>
-  <ul class="collapse">
-  <li><a href="#ステップ1-良定義性" id="toc-ステップ1-良定義性" class="nav-link" data-scroll-target="#ステップ1-良定義性">ステップ1: 良定義性</a></li>
-  <li><a href="#ステップ2-準同型性" id="toc-ステップ2-準同型性" class="nav-link" data-scroll-target="#ステップ2-準同型性">ステップ2: 準同型性</a></li>
-  <li><a href="#ステップ3-全射性" id="toc-ステップ3-全射性" class="nav-link" data-scroll-target="#ステップ3-全射性">ステップ3: 全射性</a></li>
-  <li><a href="#ステップ4-単射性" id="toc-ステップ4-単射性" class="nav-link" data-scroll-target="#ステップ4-単射性">ステップ4: 単射性</a></li>
-  </ul></li>
-  <li><a href="#応用" id="toc-応用" class="nav-link" data-scroll-target="#応用">応用</a>
-  <ul class="collapse">
-  <li><a href="#応用例" id="toc-応用例" class="nav-link" data-scroll-target="#応用例">応用例</a></li>
-  </ul></li>
-  <li><a href="#完全列との関連" id="toc-完全列との関連" class="nav-link" data-scroll-target="#完全列との関連">完全列との関連</a></li>
-  <li><a href="#関連定理" id="toc-関連定理" class="nav-link" data-scroll-target="#関連定理">関連定理</a></li>
-  <li><a href="#歴史的注記" id="toc-歴史的注記" class="nav-link" data-scroll-target="#歴史的注記">歴史的注記</a></li>
-  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
-  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
-  </ul></li>
-  </ul>
+<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
+<nav class="toc-active" id="TOC" role="doc-toc">
+<h2 id="toc-title">On this page</h2>
+<ul>
+<li><a class="nav-link active" data-scroll-target="#thm-first-isomorphism" href="#thm-first-isomorphism" id="toc-thm-first-isomorphism">第一同型定理</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#定理の主張" href="#定理の主張" id="toc-定理の主張">定理の主張</a></li>
+<li><a class="nav-link" data-scroll-target="#形式的な主張" href="#形式的な主張" id="toc-形式的な主張">形式的な主張</a></li>
+<li><a class="nav-link" data-scroll-target="#重要な洞察" href="#重要な洞察" id="toc-重要な洞察">重要な洞察</a></li>
+<li><a class="nav-link" data-scroll-target="#証明の概要" href="#証明の概要" id="toc-証明の概要">証明の概要</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#ステップ1-良定義性" href="#ステップ1-良定義性" id="toc-ステップ1-良定義性">ステップ1: 良定義性</a></li>
+<li><a class="nav-link" data-scroll-target="#ステップ2-準同型性" href="#ステップ2-準同型性" id="toc-ステップ2-準同型性">ステップ2: 準同型性</a></li>
+<li><a class="nav-link" data-scroll-target="#ステップ3-全射性" href="#ステップ3-全射性" id="toc-ステップ3-全射性">ステップ3: 全射性</a></li>
+<li><a class="nav-link" data-scroll-target="#ステップ4-単射性" href="#ステップ4-単射性" id="toc-ステップ4-単射性">ステップ4: 単射性</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#応用" href="#応用" id="toc-応用">応用</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#応用例" href="#応用例" id="toc-応用例">応用例</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#完全列との関連" href="#完全列との関連" id="toc-完全列との関連">完全列との関連</a></li>
+<li><a class="nav-link" data-scroll-target="#関連定理" href="#関連定理" id="toc-関連定理">関連定理</a></li>
+<li><a class="nav-link" data-scroll-target="#歴史的注記" href="#歴史的注記" id="toc-歴史的注記">歴史的注記</a></li>
+<li><a class="nav-link" data-scroll-target="#依存関係グラフ" href="#依存関係グラフ" id="toc-依存関係グラフ">依存関係グラフ</a></li>
+<li><a class="nav-link" data-scroll-target="#インタラクティブ可視化" href="#インタラクティブ可視化" id="toc-インタラクティブ可視化">インタラクティブ可視化</a></li>
+</ul></li>
+</ul>
 </nav>
-    </div>
+</div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
+<header class="quarto-title-block default" id="title-block-header">
 <div class="quarto-title">
 <h1 class="title">第一同型定理</h1>
 </div>
-
-
-
 <div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
+</div>
 </header>
-
-
-<section id="thm-first-isomorphism" class="level1">
+<section class="level1" id="thm-first-isomorphism">
 <h1>第一同型定理</h1>
 <p><strong>第一同型定理</strong>（だいいちどうけいていり、<strong>準同型基本定理</strong>とも呼ばれる）は、<a href="../../../content/ja/algebra/def-homomorphism.html">群準同型</a>、<a href="../../../content/ja/algebra/def-kernel.html">核</a>、<a href="../../../content/ja/algebra/def-quotient-group.html">商群</a>の間の基本的な関係を確立する。これは、すべての準同型像が商群と同型であることを述べている。</p>
-<section id="定理の主張" class="level2">
+<section class="level2" id="定理の主張">
 <h2 class="anchored" data-anchor-id="定理の主張">定理の主張</h2>
 <p><span class="math inline">\(\phi: G \to H\)</span> を群準同型とする。このとき：</p>
 <p><span class="math display">\[G/\ker(\phi) \cong \text{Im}(\phi)\]</span></p>
 <p>ここで： - <span class="math inline">\(\ker(\phi) = \{g \in G : \phi(g) = e_H\}\)</span> は <span class="math inline">\(\phi\)</span> の核 - <span class="math inline">\(\text{Im}(\phi) = \{\phi(g) : g \in G\}\)</span> は <span class="math inline">\(\phi\)</span> の像 - <span class="math inline">\(G/\ker(\phi)\)</span> は <span class="math inline">\(\ker(\phi)\)</span> による <span class="math inline">\(G\)</span> の商群</p>
 </section>
-<section id="形式的な主張" class="level2">
+<section class="level2" id="形式的な主張">
 <h2 class="anchored" data-anchor-id="形式的な主張">形式的な主張</h2>
 <p>より正確には、同型写像 <span class="math inline">\(\bar{\phi}: G/\ker(\phi) \to \text{Im}(\phi)\)</span> が存在し、次で定義される：</p>
 <p><span class="math display">\[\bar{\phi}(g\ker(\phi)) = \phi(g)\]</span></p>
 <p>すべての <span class="math inline">\(g \in G\)</span> に対して。</p>
 </section>
-<section id="重要な洞察" class="level2">
+<section class="level2" id="重要な洞察">
 <h2 class="anchored" data-anchor-id="重要な洞察">重要な洞察</h2>
 <ol type="1">
 <li><p><strong>自然な分割</strong>: 準同型 <span class="math inline">\(\phi\)</span> は <span class="math inline">\(G\)</span> を <span class="math inline">\(\ker(\phi)\)</span> の剰余類に自然に分割し、同じ剰余類の元は <span class="math inline">\(H\)</span> の同じ元に写される。</p></li>
@@ -318,27 +294,27 @@ window.Quarto = {
 <li><p><strong>構造の保存</strong>: この定理は、準同型が核を「潰し」ながら、像において群構造を保存することを示している。</p></li>
 </ol>
 </section>
-<section id="証明の概要" class="level2">
+<section class="level2" id="証明の概要">
 <h2 class="anchored" data-anchor-id="証明の概要">証明の概要</h2>
 <p>証明は4つの主要なステップから成る：</p>
-<section id="ステップ1-良定義性" class="level3">
+<section class="level3" id="ステップ1-良定義性">
 <h3 class="anchored" data-anchor-id="ステップ1-良定義性">ステップ1: 良定義性</h3>
 <p><span class="math inline">\(g\ker(\phi) = g'\ker(\phi)\)</span> ならば、ある <span class="math inline">\(k \in \ker(\phi)\)</span> に対して <span class="math inline">\(g' = gk\)</span> となる。従って： <span class="math display">\[\phi(g') = \phi(gk) = \phi(g)\phi(k) = \phi(g)e_H = \phi(g)\]</span></p>
 </section>
-<section id="ステップ2-準同型性" class="level3">
+<section class="level3" id="ステップ2-準同型性">
 <h3 class="anchored" data-anchor-id="ステップ2-準同型性">ステップ2: 準同型性</h3>
 <p>任意の <span class="math inline">\(g_1, g_2 \in G\)</span> に対して： <span class="math display">\[\bar{\phi}(g_1\ker(\phi) \cdot g_2\ker(\phi)) = \bar{\phi}(g_1g_2\ker(\phi)) = \phi(g_1g_2) = \phi(g_1)\phi(g_2) = \bar{\phi}(g_1\ker(\phi)) \cdot \bar{\phi}(g_2\ker(\phi))\]</span></p>
 </section>
-<section id="ステップ3-全射性" class="level3">
+<section class="level3" id="ステップ3-全射性">
 <h3 class="anchored" data-anchor-id="ステップ3-全射性">ステップ3: 全射性</h3>
 <p>任意の <span class="math inline">\(h \in \text{Im}(\phi)\)</span> に対して、<span class="math inline">\(\phi(g) = h\)</span> となる <span class="math inline">\(g \in G\)</span> が存在する。このとき <span class="math inline">\(\bar{\phi}(g\ker(\phi)) = h\)</span>。</p>
 </section>
-<section id="ステップ4-単射性" class="level3">
+<section class="level3" id="ステップ4-単射性">
 <h3 class="anchored" data-anchor-id="ステップ4-単射性">ステップ4: 単射性</h3>
 <p><span class="math inline">\(\bar{\phi}(g\ker(\phi)) = e_H\)</span> ならば、<span class="math inline">\(\phi(g) = e_H\)</span> となり、<span class="math inline">\(g \in \ker(\phi)\)</span> である。これは <span class="math inline">\(g\ker(\phi) = \ker(\phi)\)</span>（<span class="math inline">\(G/\ker(\phi)\)</span> の単位元）を意味する。</p>
 </section>
 </section>
-<section id="応用" class="level2">
+<section class="level2" id="応用">
 <h2 class="anchored" data-anchor-id="応用">応用</h2>
 <p>第一同型定理には多くの重要な応用がある：</p>
 <ol type="1">
@@ -346,7 +322,7 @@ window.Quarto = {
 <li><p><strong>群論的性質の証明</strong>: 多くの群論的結果は、適切な準同型を構成してこの定理を適用することで証明できる。</p></li>
 <li><p><strong>商群の計算</strong>: この定理は準同型像を通じて商群を理解する具体的な方法を提供する。</p></li>
 </ol>
-<section id="応用例" class="level3">
+<section class="level3" id="応用例">
 <h3 class="anchored" data-anchor-id="応用例">応用例</h3>
 <ul>
 <li><p><strong>整数の剰余類</strong>: 自然な射影 <span class="math inline">\(\pi: \mathbb{Z} \to \mathbb{Z}/n\mathbb{Z}\)</span> は核 <span class="math inline">\(n\mathbb{Z}\)</span> を持つので、<span class="math inline">\(\mathbb{Z}/n\mathbb{Z} \cong \mathbb{Z}_n\)</span> である。</p></li>
@@ -354,22 +330,22 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="完全列との関連" class="level2">
+<section class="level2" id="完全列との関連">
 <h2 class="anchored" data-anchor-id="完全列との関連">完全列との関連</h2>
 <p>第一同型定理は<a href="../../../content/ja/algebra/def-exact-sequence.html">完全列</a>を用いてエレガントに表現できる。任意の群準同型 <span class="math inline">\(\phi: G \to H\)</span> に対して、次の短完全列を持つ：</p>
 <p><span class="math display">\[0 \to \ker(\phi) \xrightarrow{i} G \xrightarrow{\phi} \text{Im}(\phi) \to 0\]</span></p>
 <p>ここで <span class="math inline">\(i\)</span> は包含写像である。第一同型定理は、この完全列が同型 <span class="math inline">\(G/\ker(\phi) \cong \text{Im}(\phi)\)</span> を誘導することを述べている。</p>
 </section>
-<section id="関連定理" class="level2">
+<section class="level2" id="関連定理">
 <h2 class="anchored" data-anchor-id="関連定理">関連定理</h2>
 <p>第一同型定理は同型定理の族の一部である： - <strong>第二同型定理</strong>（ダイヤモンド同型定理） - <strong>第三同型定理</strong>（対応定理） - <strong>第四同型定理</strong>（束同型定理）</p>
 <p>これらの定理は共に、部分群、正規部分群、商群の間の関係を理解するための包括的な枠組みを提供する。</p>
 </section>
-<section id="歴史的注記" class="level2">
+<section class="level2" id="歴史的注記">
 <h2 class="anchored" data-anchor-id="歴史的注記">歴史的注記</h2>
 <p>同型定理は、エミー・ネーターによって1927年の論文「Abstrakter Aufbau der Idealtheorie in algebraischen Zahl- und Funktionenkörpern」で現代的な一般性で定式化された。より一般的でない版は、リヒャルト・デデキントの作品やネーターの以前の論文に現れている。</p>
 </section>
-<section id="依存関係グラフ" class="level2">
+<section class="level2" id="依存関係グラフ">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -382,40 +358,40 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-image["像"]:::definition
-    def-quotient-group["商群"]:::definition
-    def-normal-subgroup["正規部分群"]:::definition
-    def-kernel["核"]:::definition
-    def-simple-group["単純群"]:::definition
-    def-group["群"]:::definition
-    def-homomorphism["群準同型"]:::definition
-    def-abelian-group["アーベル群"]:::definition
-    thm-first-isomorphism["第一同型定理"]:::theorem
     def-exact-sequence["完全列"]:::definition
-    thm-first-isomorphism --&gt; def-group
-    thm-first-isomorphism --&gt; def-exact-sequence
-    def-kernel --&gt; thm-first-isomorphism
-    thm-first-isomorphism --&gt; def-abelian-group
-    def-simple-group --&gt; thm-first-isomorphism
-    thm-first-isomorphism --&gt; def-homomorphism
-    def-abelian-group --&gt; thm-first-isomorphism
-    thm-first-isomorphism --&gt; def-image
+    def-group["群"]:::definition
+    def-abelian-group["アーベル群"]:::definition
+    def-kernel["核"]:::definition
+    thm-first-isomorphism["第一同型定理"]:::theorem
+    def-image["像"]:::definition
+    def-homomorphism["群準同型"]:::definition
+    def-simple-group["単純群"]:::definition
+    def-normal-subgroup["正規部分群"]:::definition
+    def-quotient-group["商群"]:::definition
     thm-first-isomorphism --&gt; def-kernel
-    thm-first-isomorphism --&gt; def-normal-subgroup
-    def-quotient-group --&gt; thm-first-isomorphism
+    def-kernel --&gt; thm-first-isomorphism
     def-homomorphism --&gt; thm-first-isomorphism
+    thm-first-isomorphism --&gt; def-abelian-group
+    thm-first-isomorphism --&gt; def-normal-subgroup
     def-normal-subgroup --&gt; thm-first-isomorphism
+    def-abelian-group --&gt; thm-first-isomorphism
+    thm-first-isomorphism --&gt; def-exact-sequence
+    thm-first-isomorphism --&gt; def-group
+    thm-first-isomorphism --&gt; def-homomorphism
     thm-first-isomorphism --&gt; def-quotient-group
+    def-quotient-group --&gt; thm-first-isomorphism
+    def-simple-group --&gt; thm-first-isomorphism
+    thm-first-isomorphism --&gt; def-image
     class thm-first-isomorphism current
-    click def-image "def-image.html" "像へ"
-    click def-quotient-group "def-quotient-group.html" "商群へ"
-    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群へ"
-    click def-kernel "def-kernel.html" "核へ"
-    click def-simple-group "def-simple-group.html" "単純群へ"
-    click def-group "def-group.html" "群へ"
-    click def-homomorphism "def-homomorphism.html" "群準同型へ"
-    click def-abelian-group "def-abelian-group.html" "アーベル群へ"
     click def-exact-sequence "def-exact-sequence.html" "完全列へ"
+    click def-group "def-group.html" "群へ"
+    click def-abelian-group "def-abelian-group.html" "アーベル群へ"
+    click def-kernel "def-kernel.html" "核へ"
+    click def-image "def-image.html" "像へ"
+    click def-homomorphism "def-homomorphism.html" "群準同型へ"
+    click def-simple-group "def-simple-group.html" "単純群へ"
+    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群へ"
+    click def-quotient-group "def-quotient-group.html" "商群へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -423,13 +399,12 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="インタラクティブ可視化" class="level2">
+<section class="level2" id="インタラクティブ可視化">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-first-isomorphism-1753761102" class="graph-visualization-container">
-  <div class="graph-loading">Loading visualization...</div>
+<div class="graph-visualization-container" id="graph-viz-thm-first-isomorphism-1753763735">
+<div class="graph-loading">Loading visualization...</div>
 </div>
-
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -674,12 +649,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-first-isomorphism-1753761102', {
+    createForceGraph(data, 'graph-viz-thm-first-isomorphism-1753763735', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-first-isomorphism-1753761102').innerHTML =
+    document.getElementById('graph-viz-thm-first-isomorphism-1753763735').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -691,7 +666,6 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
-
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -740,13 +714,9 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
-
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/ja/thm-first-isomorphism.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
-
-
 </section>
 </section>
-
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1149,20 +1119,16 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
+<div class="nav-footer">
+<div class="nav-footer-left">
+       
+    </div>
+<div class="nav-footer-center">
 <p>Mathematics Knowledge Graph Wiki - Built with Quarto and RDF</p>
 </div>
-    <div class="nav-footer-right">
-      &nbsp;
+<div class="nav-footer-right">
+       
     </div>
-  </div>
+</div>
 </footer>
-
-
-
-
-</body></html>
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>

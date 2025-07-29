@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.7.32" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <title>シローの定理 – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,27 +18,25 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
-
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../favicon.ico" rel="icon">
+<meta content="../../../" name="quarto:offset"/>
+<link href="../../../favicon.ico" rel="icon"/>
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
+<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,8 +66,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -121,10 +116,8 @@ ul.task-list li input[type="checkbox"] {
     document.head.appendChild(issueScript);
   })();
 </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -151,163 +144,146 @@ window.Quarto = {
   typesetMath
 };
 </script>
-
-<link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../../styles-multilingual.css">
+<link href="../../../styles.css" rel="stylesheet"/>
+<link href="../../../styles-multilingual.css" rel="stylesheet"/>
 </head>
-
 <body class="nav-fixed quarto-light">
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">数学ナレッジグラフ</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="サーチ"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../../index-ja.html"> 
-<span class="menu-text">ホーム</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
-<span class="menu-text">代数学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
-<span class="menu-text">解析学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
-<span class="menu-text">位相空間論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
-<span class="menu-text">幾何学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
-<span class="menu-text">圏論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
-<span class="menu-text">組合せ論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
-<span class="menu-text">論理学・集合論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
-<span class="menu-text">数論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
-<span class="menu-text">確率統計</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/about.html"> 
-<span class="menu-text">概要</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
-<span class="menu-text">貢献</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../../en/index.html"> 
-<span class="menu-text">🌐 English</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+<header class="headroom fixed-top" id="quarto-header">
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+<div class="navbar-container container-fluid">
+<div class="navbar-brand-container mx-auto">
+<a class="navbar-brand" href="../../../index.html">
+<span class="navbar-title">数学ナレッジグラフ</span>
+</a>
 </div>
-      </div> <!-- /container-fluid -->
-    </nav>
+<div class="" id="quarto-search" title="サーチ"></div>
+<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+<ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+<a class="nav-link" href="../../../index-ja.html">
+<span class="menu-text">ホーム</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/algebra/index.html">
+<span class="menu-text">代数学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/analysis/index.html">
+<span class="menu-text">解析学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/topology/index.html">
+<span class="menu-text">位相空間論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/geometry/index.html">
+<span class="menu-text">幾何学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+<span class="menu-text">圏論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+<span class="menu-text">組合せ論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+<span class="menu-text">論理学・集合論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+<span class="menu-text">数論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+<span class="menu-text">確率統計</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/about.html">
+<span class="menu-text">概要</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/contributing.html">
+<span class="menu-text">貢献</span></a>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
+</i>
+<span class="menu-text"></span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../../en/index.html">
+<span class="menu-text">🌐 English</span></a>
+</li>
+</ul>
+</div> <!-- /navcollapse -->
+<div class="quarto-navbar-tools">
+</div>
+</div> <!-- /container-fluid -->
+</nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">目次</h2>
-   
-  <ul>
-  <li><a href="#準備" id="toc-準備" class="nav-link active" data-scroll-target="#準備">準備</a></li>
-  <li><a href="#つのシローの定理" id="toc-つのシローの定理" class="nav-link" data-scroll-target="#つのシローの定理">3つのシローの定理</a>
-  <ul class="collapse">
-  <li><a href="#第一シローの定理存在定理" id="toc-第一シローの定理存在定理" class="nav-link" data-scroll-target="#第一シローの定理存在定理">第一シローの定理（存在定理）</a></li>
-  <li><a href="#第二シローの定理共役性" id="toc-第二シローの定理共役性" class="nav-link" data-scroll-target="#第二シローの定理共役性">第二シローの定理（共役性）</a></li>
-  <li><a href="#第三シローの定理個数" id="toc-第三シローの定理個数" class="nav-link" data-scroll-target="#第三シローの定理個数">第三シローの定理（個数）</a></li>
-  </ul></li>
-  <li><a href="#重要な帰結" id="toc-重要な帰結" class="nav-link" data-scroll-target="#重要な帰結">重要な帰結</a>
-  <ul class="collapse">
-  <li><a href="#正規-sylow-部分群" id="toc-正規-sylow-部分群" class="nav-link" data-scroll-target="#正規-sylow-部分群">正規 Sylow 部分群</a></li>
-  <li><a href="#整除関係" id="toc-整除関係" class="nav-link" data-scroll-target="#整除関係">整除関係</a></li>
-  <li><a href="#コーシーの定理" id="toc-コーシーの定理" class="nav-link" data-scroll-target="#コーシーの定理">コーシーの定理</a></li>
-  </ul></li>
-  <li><a href="#応用" id="toc-応用" class="nav-link" data-scroll-target="#応用">応用</a></li>
-  <li><a href="#例位数15の群" id="toc-例位数15の群" class="nav-link" data-scroll-target="#例位数15の群">例：位数15の群</a></li>
-  <li><a href="#歴史的注記" id="toc-歴史的注記" class="nav-link" data-scroll-target="#歴史的注記">歴史的注記</a></li>
-  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
-  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
-  </ul>
+<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
+<nav class="toc-active" id="TOC" role="doc-toc">
+<h2 id="toc-title">目次</h2>
+<ul>
+<li><a class="nav-link active" data-scroll-target="#準備" href="#準備" id="toc-準備">準備</a></li>
+<li><a class="nav-link" data-scroll-target="#つのシローの定理" href="#つのシローの定理" id="toc-つのシローの定理">3つのシローの定理</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#第一シローの定理存在定理" href="#第一シローの定理存在定理" id="toc-第一シローの定理存在定理">第一シローの定理（存在定理）</a></li>
+<li><a class="nav-link" data-scroll-target="#第二シローの定理共役性" href="#第二シローの定理共役性" id="toc-第二シローの定理共役性">第二シローの定理（共役性）</a></li>
+<li><a class="nav-link" data-scroll-target="#第三シローの定理個数" href="#第三シローの定理個数" id="toc-第三シローの定理個数">第三シローの定理（個数）</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#重要な帰結" href="#重要な帰結" id="toc-重要な帰結">重要な帰結</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#正規-sylow-部分群" href="#正規-sylow-部分群" id="toc-正規-sylow-部分群">正規 Sylow 部分群</a></li>
+<li><a class="nav-link" data-scroll-target="#整除関係" href="#整除関係" id="toc-整除関係">整除関係</a></li>
+<li><a class="nav-link" data-scroll-target="#コーシーの定理" href="#コーシーの定理" id="toc-コーシーの定理">コーシーの定理</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#応用" href="#応用" id="toc-応用">応用</a></li>
+<li><a class="nav-link" data-scroll-target="#例位数15の群" href="#例位数15の群" id="toc-例位数15の群">例：位数15の群</a></li>
+<li><a class="nav-link" data-scroll-target="#歴史的注記" href="#歴史的注記" id="toc-歴史的注記">歴史的注記</a></li>
+<li><a class="nav-link" data-scroll-target="#依存関係グラフ" href="#依存関係グラフ" id="toc-依存関係グラフ">依存関係グラフ</a></li>
+<li><a class="nav-link" data-scroll-target="#インタラクティブ可視化" href="#インタラクティブ可視化" id="toc-インタラクティブ可視化">インタラクティブ可視化</a></li>
+</ul>
 </nav>
-    </div>
+</div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
+<header class="quarto-title-block default" id="title-block-header">
 <div class="quarto-title">
 <h1 class="title">シローの定理</h1>
 </div>
-
-
-
 <div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
+</div>
 </header>
-
-
 <p><strong>シローの定理</strong>は、有限<a href="../../../content/ja/algebra/def-group.html">群論</a>における基本的な結果で、<a href="../../../content/ja/number-theory/def-prime.html">素数</a>べき<a href="../../../content/ja/algebra/def-order.html">位数</a>の<a href="../../../content/ja/algebra/def-subgroup.html">部分群</a>の存在と性質についての詳細な情報を提供します。</p>
-<section id="準備" class="level2">
+<section class="level2" id="準備">
 <h2 class="anchored" data-anchor-id="準備">準備</h2>
 <p><span class="math inline">\(G\)</span> を有限<a href="../../../content/ja/algebra/def-group.html">群</a>とし、その<a href="../../../content/ja/algebra/def-order.html">位数</a>を <span class="math inline">\(|G| = p^k m\)</span> とする。ここで <span class="math inline">\(p\)</span> は<a href="../../../content/ja/number-theory/def-prime.html">素数</a>、<span class="math inline">\(k \geq 1\)</span>、<span class="math inline">\(\gcd(p, m) = 1\)</span> とし、<span class="math inline">\(|G|\)</span> は <span class="math inline">\(G\)</span> の<a href="../../../content/ja/logic-set-theory/def-cardinality.html">濃度</a>を表す。</p>
 <p><span class="math inline">\(G\)</span> の <strong>Sylow <span class="math inline">\(p\)</span>-部分群</strong>とは、<a href="../../../content/ja/algebra/def-order.html">位数</a> <span class="math inline">\(p^k\)</span>（<span class="math inline">\(|G|\)</span> を<a href="../../../content/ja/number-theory/def-divisibility.html">割る</a> <span class="math inline">\(p\)</span> の最高べき）の<a href="../../../content/ja/algebra/def-subgroup.html">部分群</a>である。</p>
 </section>
-<section id="つのシローの定理" class="level2">
+<section class="level2" id="つのシローの定理">
 <h2 class="anchored" data-anchor-id="つのシローの定理">3つのシローの定理</h2>
-<section id="第一シローの定理存在定理" class="level3">
+<section class="level3" id="第一シローの定理存在定理">
 <h3 class="anchored" data-anchor-id="第一シローの定理存在定理">第一シローの定理（存在定理）</h3>
 <p><span class="math inline">\(0 \leq r \leq k\)</span> を満たす任意の整数 <span class="math inline">\(r\)</span> に対して、<span class="math inline">\(G\)</span> には<a href="../../../content/ja/algebra/def-order.html">位数</a> <span class="math inline">\(p^r\)</span> の<a href="../../../content/ja/algebra/def-subgroup.html">部分群</a>が存在する。特に： - <span class="math inline">\(G\)</span> は <span class="math inline">\(|G|\)</span> の各<a href="../../../content/ja/number-theory/def-prime.html">素因数</a>に対して少なくとも1つの Sylow <span class="math inline">\(p\)</span>-部分群を含む</p>
 </section>
-<section id="第二シローの定理共役性" class="level3">
+<section class="level3" id="第二シローの定理共役性">
 <h3 class="anchored" data-anchor-id="第二シローの定理共役性">第二シローの定理（共役性）</h3>
 <p><span class="math inline">\(G\)</span> のすべての Sylow <span class="math inline">\(p\)</span>-部分群は互いに共役である。すなわち、<span class="math inline">\(P\)</span> と <span class="math inline">\(Q\)</span> が <span class="math inline">\(G\)</span> の Sylow <span class="math inline">\(p\)</span>-部分群ならば、ある <span class="math inline">\(g \in G\)</span> が存在して： <span class="math display">\[Q = gPg^{-1}\]</span></p>
 </section>
-<section id="第三シローの定理個数" class="level3">
+<section class="level3" id="第三シローの定理個数">
 <h3 class="anchored" data-anchor-id="第三シローの定理個数">第三シローの定理（個数）</h3>
 <p><span class="math inline">\(G\)</span> の Sylow <span class="math inline">\(p\)</span>-部分群の個数を <span class="math inline">\(n_p\)</span> とする。このとき：</p>
 <ol type="1">
@@ -317,22 +293,22 @@ window.Quarto = {
 </ol>
 </section>
 </section>
-<section id="重要な帰結" class="level2">
+<section class="level2" id="重要な帰結">
 <h2 class="anchored" data-anchor-id="重要な帰結">重要な帰結</h2>
-<section id="正規-sylow-部分群" class="level3">
+<section class="level3" id="正規-sylow-部分群">
 <h3 class="anchored" data-anchor-id="正規-sylow-部分群">正規 Sylow 部分群</h3>
 <p><span class="math inline">\(n_p = 1\)</span> ならば、唯一の Sylow <span class="math inline">\(p\)</span>-部分群は<a href="../../../content/ja/algebra/def-normal-subgroup.html">正規</a>である。</p>
 </section>
-<section id="整除関係" class="level3">
+<section class="level3" id="整除関係">
 <h3 class="anchored" data-anchor-id="整除関係">整除関係</h3>
 <p>第三定理の条件を組み合わせると：<span class="math inline">\(n_p\)</span> は <span class="math inline">\(n_p \equiv 1 \pmod{p}\)</span> かつ <span class="math inline">\(n_p | m\)</span> を満たさなければならない。これにより <span class="math inline">\(n_p\)</span> の可能な値は厳しく制限される。</p>
 </section>
-<section id="コーシーの定理" class="level3">
+<section class="level3" id="コーシーの定理">
 <h3 class="anchored" data-anchor-id="コーシーの定理">コーシーの定理</h3>
 <p><span class="math inline">\(r = 1\)</span> の特別な場合として：<a href="../../../content/ja/number-theory/def-prime.html">素数</a> <span class="math inline">\(p\)</span> が <span class="math inline">\(|G|\)</span> を<a href="../../../content/ja/number-theory/def-divisibility.html">割る</a>ならば、<span class="math inline">\(G\)</span> は位数 <span class="math inline">\(p\)</span> の元を含む。</p>
 </section>
 </section>
-<section id="応用" class="level2">
+<section class="level2" id="応用">
 <h2 class="anchored" data-anchor-id="応用">応用</h2>
 <p>シローの定理には多くの応用がある：</p>
 <ol type="1">
@@ -342,7 +318,7 @@ window.Quarto = {
 <li><strong>ラグランジュの部分的逆</strong>：<a href="../../../content/ja/algebra/thm-lagrange.html">ラグランジュの定理</a>は部分群の位数が群の位数を割ることを述べるが、シローの第一定理は素数べきに対する部分的な逆を提供する</li>
 </ol>
 </section>
-<section id="例位数15の群" class="level2">
+<section class="level2" id="例位数15の群">
 <h2 class="anchored" data-anchor-id="例位数15の群">例：位数15の群</h2>
 <p><span class="math inline">\(|G| = 15 = 3 \cdot 5\)</span> とする。シローの定理により：</p>
 <ul>
@@ -351,11 +327,11 @@ window.Quarto = {
 </ul>
 <p>両方の Sylow 部分群が唯一なので、それらは<a href="../../../content/ja/algebra/def-normal-subgroup.html">正規</a>であり、<span class="math inline">\(G\)</span> は<a href="../../../content/ja/algebra/def-abelian-group.html">アーベル群</a>（実際、<a href="../../../content/ja/algebra/def-cyclic-group.html">巡回群</a>）でなければならない。</p>
 </section>
-<section id="歴史的注記" class="level2">
+<section class="level2" id="歴史的注記">
 <h2 class="anchored" data-anchor-id="歴史的注記">歴史的注記</h2>
 <p>これらの定理は、1872年にこれらを証明したノルウェーの数学者ペーテル・ルートヴィヒ・シロー（Peter Ludwig Sylow, 1832-1918）にちなんで名付けられた。これらは有限群論において最も強力な道具の一つであり続けている。</p>
 </section>
-<section id="依存関係グラフ" class="level2">
+<section class="level2" id="依存関係グラフ">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -368,20 +344,20 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    thm-lagrange["ラグランジュの定理"]:::theorem
     def-order["位数"]:::definition
     def-group["群"]:::definition
-    thm-lagrange["ラグランジュの定理"]:::theorem
-    thm-sylow["シローの定理"]:::theorem
     def-subgroup["部分群"]:::definition
+    thm-sylow["シローの定理"]:::theorem
+    thm-sylow --&gt; def-order
     thm-sylow --&gt; def-subgroup
     thm-sylow --&gt; def-group
     thm-sylow --&gt; thm-lagrange
     def-order --&gt; thm-sylow
-    thm-sylow --&gt; def-order
     class thm-sylow current
+    click thm-lagrange "thm-lagrange.html" "ラグランジュの定理へ"
     click def-order "def-order.html" "位数へ"
     click def-group "def-group.html" "群へ"
-    click thm-lagrange "thm-lagrange.html" "ラグランジュの定理へ"
     click def-subgroup "def-subgroup.html" "部分群へ"
 </pre>
 </div>
@@ -390,13 +366,12 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="インタラクティブ可視化" class="level2">
+<section class="level2" id="インタラクティブ可視化">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-sylow-1753761196" class="graph-visualization-container">
-  <div class="graph-loading">Loading visualization...</div>
+<div class="graph-visualization-container" id="graph-viz-thm-sylow-1753763828">
+<div class="graph-loading">Loading visualization...</div>
 </div>
-
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -641,12 +616,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-sylow-1753761196', {
+    createForceGraph(data, 'graph-viz-thm-sylow-1753763828', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-sylow-1753761196').innerHTML =
+    document.getElementById('graph-viz-thm-sylow-1753763828').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -658,7 +633,6 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
-
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -707,12 +681,8 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
-
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/ja/thm-sylow.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
-
-
 </section>
-
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1115,20 +1085,16 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
+<div class="nav-footer">
+<div class="nav-footer-left">
+       
+    </div>
+<div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-    <div class="nav-footer-right">
-      &nbsp;
+<div class="nav-footer-right">
+       
     </div>
-  </div>
+</div>
 </footer>
-
-
-
-
-</body></html>
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>

@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.7.32" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <title>Maximal Ideal – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,27 +18,25 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
-
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../favicon.ico" rel="icon">
+<meta content="../../../" name="quarto:offset"/>
+<link href="../../../favicon.ico" rel="icon"/>
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
+<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,8 +66,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -121,10 +116,8 @@ ul.task-list li input[type="checkbox"] {
     document.head.appendChild(issueScript);
   })();
 </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -151,153 +144,136 @@ window.Quarto = {
   typesetMath
 };
 </script>
-
-<link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../../styles-multilingual.css">
+<link href="../../../styles.css" rel="stylesheet"/>
+<link href="../../../styles-multilingual.css" rel="stylesheet"/>
 </head>
-
 <body class="nav-fixed quarto-light">
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">数学ナレッジグラフ</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="サーチ"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../../index-ja.html"> 
-<span class="menu-text">ホーム</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
-<span class="menu-text">代数学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
-<span class="menu-text">解析学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
-<span class="menu-text">位相空間論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
-<span class="menu-text">幾何学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
-<span class="menu-text">圏論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
-<span class="menu-text">組合せ論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
-<span class="menu-text">論理学・集合論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
-<span class="menu-text">数論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
-<span class="menu-text">確率統計</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/about.html"> 
-<span class="menu-text">概要</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
-<span class="menu-text">貢献</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../../en/index.html"> 
-<span class="menu-text">🌐 English</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+<header class="headroom fixed-top" id="quarto-header">
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+<div class="navbar-container container-fluid">
+<div class="navbar-brand-container mx-auto">
+<a class="navbar-brand" href="../../../index.html">
+<span class="navbar-title">数学ナレッジグラフ</span>
+</a>
 </div>
-      </div> <!-- /container-fluid -->
-    </nav>
+<div class="" id="quarto-search" title="サーチ"></div>
+<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+<ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+<a class="nav-link" href="../../../index-ja.html">
+<span class="menu-text">ホーム</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/algebra/index.html">
+<span class="menu-text">代数学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/analysis/index.html">
+<span class="menu-text">解析学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/topology/index.html">
+<span class="menu-text">位相空間論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/geometry/index.html">
+<span class="menu-text">幾何学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+<span class="menu-text">圏論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+<span class="menu-text">組合せ論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+<span class="menu-text">論理学・集合論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+<span class="menu-text">数論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+<span class="menu-text">確率統計</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/about.html">
+<span class="menu-text">概要</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/contributing.html">
+<span class="menu-text">貢献</span></a>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
+</i>
+<span class="menu-text"></span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../../en/index.html">
+<span class="menu-text">🌐 English</span></a>
+</li>
+</ul>
+</div> <!-- /navcollapse -->
+<div class="quarto-navbar-tools">
+</div>
+</div> <!-- /container-fluid -->
+</nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">目次</h2>
-   
-  <ul>
-  <li><a href="#def-maximal-ideal" id="toc-def-maximal-ideal" class="nav-link active" data-scroll-target="#def-maximal-ideal">Maximal Ideal</a>
-  <ul class="collapse">
-  <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link" data-scroll-target="#formal-definition">Formal Definition</a></li>
-  <li><a href="#equivalent-characterizations" id="toc-equivalent-characterizations" class="nav-link" data-scroll-target="#equivalent-characterizations">Equivalent Characterizations</a>
-  <ul class="collapse">
-  <li><a href="#quotient-ring-characterization" id="toc-quotient-ring-characterization" class="nav-link" data-scroll-target="#quotient-ring-characterization">Quotient Ring Characterization</a></li>
-  <li><a href="#zorns-lemma-characterization" id="toc-zorns-lemma-characterization" class="nav-link" data-scroll-target="#zorns-lemma-characterization">Zorn’s Lemma Characterization</a></li>
-  </ul></li>
-  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
-  <ul class="collapse">
-  <li><a href="#in-the-integers" id="toc-in-the-integers" class="nav-link" data-scroll-target="#in-the-integers">In the Integers</a></li>
-  <li><a href="#in-polynomial-rings" id="toc-in-polynomial-rings" class="nav-link" data-scroll-target="#in-polynomial-rings">In Polynomial Rings</a></li>
-  <li><a href="#in-function-rings" id="toc-in-function-rings" class="nav-link" data-scroll-target="#in-function-rings">In Function Rings</a></li>
-  </ul></li>
-  <li><a href="#connection-to-algebraic-geometry" id="toc-connection-to-algebraic-geometry" class="nav-link" data-scroll-target="#connection-to-algebraic-geometry">Connection to Algebraic Geometry</a></li>
-  <li><a href="#the-jacobson-radical" id="toc-the-jacobson-radical" class="nav-link" data-scroll-target="#the-jacobson-radical">The Jacobson Radical</a></li>
-  <li><a href="#historical-note" id="toc-historical-note" class="nav-link" data-scroll-target="#historical-note">Historical Note</a></li>
-  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
-  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
-  </ul></li>
-  </ul>
+<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
+<nav class="toc-active" id="TOC" role="doc-toc">
+<h2 id="toc-title">目次</h2>
+<ul>
+<li><a class="nav-link active" data-scroll-target="#def-maximal-ideal" href="#def-maximal-ideal" id="toc-def-maximal-ideal">Maximal Ideal</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#formal-definition" href="#formal-definition" id="toc-formal-definition">Formal Definition</a></li>
+<li><a class="nav-link" data-scroll-target="#equivalent-characterizations" href="#equivalent-characterizations" id="toc-equivalent-characterizations">Equivalent Characterizations</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#quotient-ring-characterization" href="#quotient-ring-characterization" id="toc-quotient-ring-characterization">Quotient Ring Characterization</a></li>
+<li><a class="nav-link" data-scroll-target="#zorns-lemma-characterization" href="#zorns-lemma-characterization" id="toc-zorns-lemma-characterization">Zorn’s Lemma Characterization</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#properties" href="#properties" id="toc-properties">Properties</a></li>
+<li><a class="nav-link" data-scroll-target="#examples" href="#examples" id="toc-examples">Examples</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#in-the-integers" href="#in-the-integers" id="toc-in-the-integers">In the Integers</a></li>
+<li><a class="nav-link" data-scroll-target="#in-polynomial-rings" href="#in-polynomial-rings" id="toc-in-polynomial-rings">In Polynomial Rings</a></li>
+<li><a class="nav-link" data-scroll-target="#in-function-rings" href="#in-function-rings" id="toc-in-function-rings">In Function Rings</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#connection-to-algebraic-geometry" href="#connection-to-algebraic-geometry" id="toc-connection-to-algebraic-geometry">Connection to Algebraic Geometry</a></li>
+<li><a class="nav-link" data-scroll-target="#the-jacobson-radical" href="#the-jacobson-radical" id="toc-the-jacobson-radical">The Jacobson Radical</a></li>
+<li><a class="nav-link" data-scroll-target="#historical-note" href="#historical-note" id="toc-historical-note">Historical Note</a></li>
+<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
+<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
+</ul></li>
+</ul>
 </nav>
-    </div>
+</div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
+<header class="quarto-title-block default" id="title-block-header">
 <div class="quarto-title">
 <h1 class="title">Maximal Ideal</h1>
 </div>
-
-
-
 <div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
+</div>
 </header>
-
-
-<section id="def-maximal-ideal" class="level1">
+<section class="level1" id="def-maximal-ideal">
 <h1>Maximal Ideal</h1>
 <p>A <strong>maximal ideal</strong> is an <a href="../../../content/en/algebra/def-ideal.html">ideal</a> that is maximal with respect to set inclusion among all proper ideals. In other words, it is a proper ideal that is not properly contained in any other proper ideal.</p>
-<section id="formal-definition" class="level2">
+<section class="level2" id="formal-definition">
 <h2 class="anchored" data-anchor-id="formal-definition">Formal Definition</h2>
 <p>Let <span class="math inline">\(R\)</span> be a <a href="../../../content/en/algebra/def-ring.html">ring</a>. An <a href="../../../content/en/algebra/def-ideal.html">ideal</a> <span class="math inline">\(M \subseteq R\)</span> is called a <strong>maximal ideal</strong> if:</p>
 <ol type="1">
@@ -306,19 +282,19 @@ window.Quarto = {
 </ol>
 <p>Equivalently, <span class="math inline">\(M\)</span> is maximal if there is no ideal strictly between <span class="math inline">\(M\)</span> and <span class="math inline">\(R\)</span>.</p>
 </section>
-<section id="equivalent-characterizations" class="level2">
+<section class="level2" id="equivalent-characterizations">
 <h2 class="anchored" data-anchor-id="equivalent-characterizations">Equivalent Characterizations</h2>
-<section id="quotient-ring-characterization" class="level3">
+<section class="level3" id="quotient-ring-characterization">
 <h3 class="anchored" data-anchor-id="quotient-ring-characterization">Quotient Ring Characterization</h3>
 <p>An ideal <span class="math inline">\(M\)</span> in a ring <span class="math inline">\(R\)</span> is maximal if and only if the <a href="../../../content/en/algebra/def-quotient-ring.html">quotient ring</a> <span class="math inline">\(R/M\)</span> is a <a href="../../../content/en/algebra/def-field.html">field</a>.</p>
 <p><strong>Proof</strong>: - (<span class="math inline">\(\Rightarrow\)</span>) Suppose <span class="math inline">\(M\)</span> is maximal. Let <span class="math inline">\(a + M \neq 0 + M\)</span> in <span class="math inline">\(R/M\)</span>. Then <span class="math inline">\(a \notin M\)</span>, so the ideal <span class="math inline">\((M, a) = M + (a)\)</span> properly contains <span class="math inline">\(M\)</span>. By maximality, <span class="math inline">\((M, a) = R\)</span>, so <span class="math inline">\(1 = m + ra\)</span> for some <span class="math inline">\(m \in M\)</span> and <span class="math inline">\(r \in R\)</span>. Thus <span class="math inline">\((r + M)(a + M) = 1 + M\)</span>, showing <span class="math inline">\(a + M\)</span> has an inverse. - (<span class="math inline">\(\Leftarrow\)</span>) Suppose <span class="math inline">\(R/M\)</span> is a field. Let <span class="math inline">\(I\)</span> be an ideal with <span class="math inline">\(M \subset I \subseteq R\)</span>. Take <span class="math inline">\(a \in I \setminus M\)</span>. Since <span class="math inline">\(a + M \neq 0 + M\)</span> and <span class="math inline">\(R/M\)</span> is a field, there exists <span class="math inline">\(r \in R\)</span> with <span class="math inline">\((r + M)(a + M) = 1 + M\)</span>. Thus <span class="math inline">\(1 - ra \in M \subset I\)</span>, so <span class="math inline">\(1 = (1 - ra) + ra \in I\)</span>, which implies <span class="math inline">\(I = R\)</span>.</p>
 </section>
-<section id="zorns-lemma-characterization" class="level3">
+<section class="level3" id="zorns-lemma-characterization">
 <h3 class="anchored" data-anchor-id="zorns-lemma-characterization">Zorn’s Lemma Characterization</h3>
 <p>Every proper ideal is contained in a maximal ideal. This follows from Zorn’s lemma applied to the partially ordered set of proper ideals containing a given ideal.</p>
 </section>
 </section>
-<section id="properties" class="level2">
+<section class="level2" id="properties">
 <h2 class="anchored" data-anchor-id="properties">Properties</h2>
 <ul>
 <li>Every maximal ideal is a <a href="../../../content/en/algebra/def-prime-ideal.html">prime ideal</a></li>
@@ -327,34 +303,34 @@ window.Quarto = {
 <li>Krull’s theorem: Every ring with identity has at least one maximal left ideal (and similarly for right and two-sided ideals)</li>
 </ul>
 </section>
-<section id="examples" class="level2">
+<section class="level2" id="examples">
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<section id="in-the-integers" class="level3">
+<section class="level3" id="in-the-integers">
 <h3 class="anchored" data-anchor-id="in-the-integers">In the Integers</h3>
 <p>In <span class="math inline">\(\mathbb{Z}\)</span>: - The ideal <span class="math inline">\((p) = p\mathbb{Z}\)</span> is maximal if and only if <span class="math inline">\(p\)</span> is a prime number - This is because <span class="math inline">\(\mathbb{Z}/(p) \cong \mathbb{Z}_p\)</span> is a field if and only if <span class="math inline">\(p\)</span> is prime - <span class="math inline">\((0)\)</span> is prime but not maximal since <span class="math inline">\((0) \subset (p) \subset \mathbb{Z}\)</span> for any prime <span class="math inline">\(p\)</span></p>
 </section>
-<section id="in-polynomial-rings" class="level3">
+<section class="level3" id="in-polynomial-rings">
 <h3 class="anchored" data-anchor-id="in-polynomial-rings">In Polynomial Rings</h3>
 <p>In <span class="math inline">\(\mathbb{R}[x]\)</span>: - <span class="math inline">\((x - a)\)</span> is maximal for any <span class="math inline">\(a \in \mathbb{R}\)</span> since <span class="math inline">\(\mathbb{R}[x]/(x - a) \cong \mathbb{R}\)</span> is a field - <span class="math inline">\((x^2 + 1)\)</span> is maximal since <span class="math inline">\(\mathbb{R}[x]/(x^2 + 1) \cong \mathbb{C}\)</span> is a field - <span class="math inline">\((x)\)</span> is not maximal in <span class="math inline">\(\mathbb{Z}[x]\)</span> since <span class="math inline">\(\mathbb{Z}[x]/(x) \cong \mathbb{Z}\)</span> is not a field</p>
 </section>
-<section id="in-function-rings" class="level3">
+<section class="level3" id="in-function-rings">
 <h3 class="anchored" data-anchor-id="in-function-rings">In Function Rings</h3>
 <p>In <span class="math inline">\(C[a,b]\)</span>, the ring of continuous real-valued functions on <span class="math inline">\([a,b]\)</span>: - For any <span class="math inline">\(x_0 \in [a,b]\)</span>, the ideal <span class="math inline">\(M_{x_0} = \{f \in C[a,b] : f(x_0) = 0\}\)</span> is maximal - The quotient <span class="math inline">\(C[a,b]/M_{x_0} \cong \mathbb{R}\)</span> via the evaluation map <span class="math inline">\(f + M_{x_0} \mapsto f(x_0)\)</span></p>
 </section>
 </section>
-<section id="connection-to-algebraic-geometry" class="level2">
+<section class="level2" id="connection-to-algebraic-geometry">
 <h2 class="anchored" data-anchor-id="connection-to-algebraic-geometry">Connection to Algebraic Geometry</h2>
 <p>In algebraic geometry: - Maximal ideals correspond to points in the spectrum of a ring - For <span class="math inline">\(k[x_1, \ldots, x_n]\)</span> where <span class="math inline">\(k\)</span> is algebraically closed, maximal ideals correspond to points in <span class="math inline">\(k^n\)</span> via Hilbert’s Nullstellensatz - The maximal spectrum <span class="math inline">\(\text{Specm}(R)\)</span> consists of all maximal ideals and forms a subspace of the prime spectrum</p>
 </section>
-<section id="the-jacobson-radical" class="level2">
+<section class="level2" id="the-jacobson-radical">
 <h2 class="anchored" data-anchor-id="the-jacobson-radical">The Jacobson Radical</h2>
 <p>The intersection of all maximal ideals in a ring <span class="math inline">\(R\)</span> is called the Jacobson radical <span class="math inline">\(J(R)\)</span>: - <span class="math inline">\(J(R) = \bigcap \{M : M \text{ is a maximal ideal of } R\}\)</span> - An element belongs to <span class="math inline">\(J(R)\)</span> if and only if <span class="math inline">\(1 - rx\)</span> is a unit for all <span class="math inline">\(r \in R\)</span> - The quotient <span class="math inline">\(R/J(R)\)</span> is a semisimple ring</p>
 </section>
-<section id="historical-note" class="level2">
+<section class="level2" id="historical-note">
 <h2 class="anchored" data-anchor-id="historical-note">Historical Note</h2>
 <p>The concept of maximal ideals emerged from Emmy Noether’s abstract approach to ideal theory in the 1920s. The existence of maximal ideals in rings with identity (Krull’s theorem, 1929) was one of the first significant applications of Zorn’s lemma in algebra, demonstrating the power of set-theoretic methods in ring theory.</p>
 </section>
-<section id="dependency-graph" class="level2">
+<section class="level2" id="dependency-graph">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -367,26 +343,26 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-field["Field"]:::definition
-    def-ring["Ring"]:::definition
-    def-quotient-ring["Quotient Ring"]:::definition
-    def-maximal-ideal["Maximal Ideal"]:::definition
-    def-subset["Subset"]:::definition
     def-prime-ideal["Prime Ideal"]:::definition
+    def-quotient-ring["Quotient Ring"]:::definition
+    def-ring["Ring"]:::definition
+    def-subset["Subset"]:::definition
+    def-maximal-ideal["Maximal Ideal"]:::definition
     def-ideal["Ideal"]:::definition
+    def-field["Field"]:::definition
+    def-maximal-ideal --&gt; def-ideal
     def-maximal-ideal --&gt; def-quotient-ring
     def-maximal-ideal --&gt; def-prime-ideal
-    def-maximal-ideal --&gt; def-ideal
     def-maximal-ideal --&gt; def-field
     def-maximal-ideal --&gt; def-subset
     def-maximal-ideal --&gt; def-ring
     class def-maximal-ideal current
-    click def-field "def-field.html" "Go to Field"
-    click def-ring "def-ring.html" "Go to Ring"
-    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring"
-    click def-subset "def-subset.html" "Go to Subset"
     click def-prime-ideal "def-prime-ideal.html" "Go to Prime Ideal"
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring"
+    click def-ring "def-ring.html" "Go to Ring"
+    click def-subset "def-subset.html" "Go to Subset"
     click def-ideal "def-ideal.html" "Go to Ideal"
+    click def-field "def-field.html" "Go to Field"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -394,13 +370,12 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="interactive-visualization" class="level2">
+<section class="level2" id="interactive-visualization">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-maximal-ideal-1753761277" class="graph-visualization-container">
-  <div class="graph-loading">Loading visualization...</div>
+<div class="graph-visualization-container" id="graph-viz-def-maximal-ideal-1753763907">
+<div class="graph-loading">Loading visualization...</div>
 </div>
-
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -645,12 +620,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-maximal-ideal-1753761277', {
+    createForceGraph(data, 'graph-viz-def-maximal-ideal-1753763907', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-maximal-ideal-1753761277').innerHTML =
+    document.getElementById('graph-viz-def-maximal-ideal-1753763907').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -662,7 +637,6 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
-
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -711,13 +685,9 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
-
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/def-maximal-ideal.html" target="_blank">full interactive version</a></p>
-
-
 </section>
 </section>
-
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1120,20 +1090,16 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
+<div class="nav-footer">
+<div class="nav-footer-left">
+       
+    </div>
+<div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-    <div class="nav-footer-right">
-      &nbsp;
+<div class="nav-footer-right">
+       
     </div>
-  </div>
+</div>
 </footer>
-
-
-
-
-</body></html>
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>

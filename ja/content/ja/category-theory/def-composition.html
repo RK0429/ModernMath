@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.7.32" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <title>合成 – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,27 +18,25 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
-
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../favicon.ico" rel="icon">
+<meta content="../../../" name="quarto:offset"/>
+<link href="../../../favicon.ico" rel="icon"/>
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
+<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,8 +66,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -121,10 +116,8 @@ ul.task-list li input[type="checkbox"] {
     document.head.appendChild(issueScript);
   })();
 </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -151,185 +144,168 @@ window.Quarto = {
   typesetMath
 };
 </script>
-
-<link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../../styles-multilingual.css">
+<link href="../../../styles.css" rel="stylesheet"/>
+<link href="../../../styles-multilingual.css" rel="stylesheet"/>
 </head>
-
 <body class="nav-fixed quarto-light">
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">数学ナレッジグラフ</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="サーチ"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../../index-ja.html"> 
-<span class="menu-text">ホーム</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
-<span class="menu-text">代数学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
-<span class="menu-text">解析学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
-<span class="menu-text">位相空間論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
-<span class="menu-text">幾何学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
-<span class="menu-text">圏論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
-<span class="menu-text">組合せ論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
-<span class="menu-text">論理学・集合論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
-<span class="menu-text">数論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
-<span class="menu-text">確率統計</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/about.html"> 
-<span class="menu-text">概要</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
-<span class="menu-text">貢献</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../../en/index.html"> 
-<span class="menu-text">🌐 English</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+<header class="headroom fixed-top" id="quarto-header">
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+<div class="navbar-container container-fluid">
+<div class="navbar-brand-container mx-auto">
+<a class="navbar-brand" href="../../../index.html">
+<span class="navbar-title">数学ナレッジグラフ</span>
+</a>
 </div>
-      </div> <!-- /container-fluid -->
-    </nav>
+<div class="" id="quarto-search" title="サーチ"></div>
+<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+<ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+<a class="nav-link" href="../../../index-ja.html">
+<span class="menu-text">ホーム</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/algebra/index.html">
+<span class="menu-text">代数学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/analysis/index.html">
+<span class="menu-text">解析学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/topology/index.html">
+<span class="menu-text">位相空間論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/geometry/index.html">
+<span class="menu-text">幾何学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+<span class="menu-text">圏論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+<span class="menu-text">組合せ論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+<span class="menu-text">論理学・集合論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+<span class="menu-text">数論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+<span class="menu-text">確率統計</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/about.html">
+<span class="menu-text">概要</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/contributing.html">
+<span class="menu-text">貢献</span></a>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
+</i>
+<span class="menu-text"></span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../../en/index.html">
+<span class="menu-text">🌐 English</span></a>
+</li>
+</ul>
+</div> <!-- /navcollapse -->
+<div class="quarto-navbar-tools">
+</div>
+</div> <!-- /container-fluid -->
+</nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">目次</h2>
-   
-  <ul>
-  <li><a href="#形式的定義" id="toc-形式的定義" class="nav-link active" data-scroll-target="#形式的定義">形式的定義</a></li>
-  <li><a href="#公理" id="toc-公理" class="nav-link" data-scroll-target="#公理">公理</a>
-  <ul class="collapse">
-  <li><a href="#結合律" id="toc-結合律" class="nav-link" data-scroll-target="#結合律">1. 結合律</a></li>
-  <li><a href="#恒等法則" id="toc-恒等法則" class="nav-link" data-scroll-target="#恒等法則">2. 恒等法則</a></li>
-  </ul></li>
-  <li><a href="#記法" id="toc-記法" class="nav-link" data-scroll-target="#記法">記法</a></li>
-  <li><a href="#例" id="toc-例" class="nav-link" data-scroll-target="#例">例</a>
-  <ul class="collapse">
-  <li><a href="#集合の圏" id="toc-集合の圏" class="nav-link" data-scroll-target="#集合の圏">集合の圏</a></li>
-  <li><a href="#線形変換" id="toc-線形変換" class="nav-link" data-scroll-target="#線形変換">線形変換</a></li>
-  <li><a href="#群準同型" id="toc-群準同型" class="nav-link" data-scroll-target="#群準同型">群準同型</a></li>
-  </ul></li>
-  <li><a href="#性質" id="toc-性質" class="nav-link" data-scroll-target="#性質">性質</a></li>
-  <li><a href="#可換図式" id="toc-可換図式" class="nav-link" data-scroll-target="#可換図式">可換図式</a></li>
-  <li><a href="#関連概念" id="toc-関連概念" class="nav-link" data-scroll-target="#関連概念">関連概念</a></li>
-  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
-  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
-  </ul>
+<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
+<nav class="toc-active" id="TOC" role="doc-toc">
+<h2 id="toc-title">目次</h2>
+<ul>
+<li><a class="nav-link active" data-scroll-target="#形式的定義" href="#形式的定義" id="toc-形式的定義">形式的定義</a></li>
+<li><a class="nav-link" data-scroll-target="#公理" href="#公理" id="toc-公理">公理</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#結合律" href="#結合律" id="toc-結合律">1. 結合律</a></li>
+<li><a class="nav-link" data-scroll-target="#恒等法則" href="#恒等法則" id="toc-恒等法則">2. 恒等法則</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#記法" href="#記法" id="toc-記法">記法</a></li>
+<li><a class="nav-link" data-scroll-target="#例" href="#例" id="toc-例">例</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#集合の圏" href="#集合の圏" id="toc-集合の圏">集合の圏</a></li>
+<li><a class="nav-link" data-scroll-target="#線形変換" href="#線形変換" id="toc-線形変換">線形変換</a></li>
+<li><a class="nav-link" data-scroll-target="#群準同型" href="#群準同型" id="toc-群準同型">群準同型</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#性質" href="#性質" id="toc-性質">性質</a></li>
+<li><a class="nav-link" data-scroll-target="#可換図式" href="#可換図式" id="toc-可換図式">可換図式</a></li>
+<li><a class="nav-link" data-scroll-target="#関連概念" href="#関連概念" id="toc-関連概念">関連概念</a></li>
+<li><a class="nav-link" data-scroll-target="#依存関係グラフ" href="#依存関係グラフ" id="toc-依存関係グラフ">依存関係グラフ</a></li>
+<li><a class="nav-link" data-scroll-target="#インタラクティブ可視化" href="#インタラクティブ可視化" id="toc-インタラクティブ可視化">インタラクティブ可視化</a></li>
+</ul>
 </nav>
-    </div>
+</div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
+<header class="quarto-title-block default" id="title-block-header">
 <div class="quarto-title">
 <h1 class="title">合成</h1>
 </div>
-
-
-
 <div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
+</div>
 </header>
-
-
 <p><strong>合成</strong>は<a href="../../../content/ja/category-theory/def-category.html">圏</a>における基本的な操作であり、互換性のある2つの<a href="../../../content/ja/category-theory/def-morphism.html">射</a>を結合して第3の射を生成します。</p>
-<section id="形式的定義" class="level2">
+<section class="level2" id="形式的定義">
 <h2 class="anchored" data-anchor-id="形式的定義">形式的定義</h2>
 <p>圏 <span class="math inline">\(\mathcal{C}\)</span> において、射が与えられたとき： - <span class="math inline">\(f: A \to B\)</span> - <span class="math inline">\(g: B \to C\)</span></p>
 <p>これらの<strong>合成</strong>は射： <span class="math display">\[g \circ f: A \to C\]</span></p>
 <p>合成は <span class="math inline">\(f\)</span> の余域が <span class="math inline">\(g\)</span> の域と等しいときに定義されます。</p>
 </section>
-<section id="公理" class="level2">
+<section class="level2" id="公理">
 <h2 class="anchored" data-anchor-id="公理">公理</h2>
 <p>合成は以下を満たさなければなりません：</p>
-<section id="結合律" class="level3">
+<section class="level3" id="結合律">
 <h3 class="anchored" data-anchor-id="結合律">1. 結合律</h3>
 <p>射 <span class="math inline">\(f: A \to B\)</span>、<span class="math inline">\(g: B \to C\)</span>、<span class="math inline">\(h: C \to D\)</span> に対して： <span class="math display">\[(h \circ g) \circ f = h \circ (g \circ f)\]</span></p>
 </section>
-<section id="恒等法則" class="level3">
+<section class="level3" id="恒等法則">
 <h3 class="anchored" data-anchor-id="恒等法則">2. 恒等法則</h3>
 <p>任意の射 <span class="math inline">\(f: A \to B\)</span> と恒等射 <span class="math inline">\(\text{id}_A\)</span>、<span class="math inline">\(\text{id}_B\)</span> に対して： - <strong>左恒等</strong>: <span class="math inline">\(\text{id}_B \circ f = f\)</span> - <strong>右恒等</strong>: <span class="math inline">\(f \circ \text{id}_A = f\)</span></p>
 </section>
 </section>
-<section id="記法" class="level2">
+<section class="level2" id="記法">
 <h2 class="anchored" data-anchor-id="記法">記法</h2>
 <p>合成のさまざまな記法： - <span class="math inline">\(g \circ f\)</span>（標準、「g after f」と読む） - <span class="math inline">\(gf\)</span>（短縮形） - <span class="math inline">\(f;g\)</span>（図式順序、「f then g」） - <span class="math inline">\(fg\)</span>（時々使用されるが、混乱を招く可能性がある）</p>
 </section>
-<section id="例" class="level2">
+<section class="level2" id="例">
 <h2 class="anchored" data-anchor-id="例">例</h2>
-<section id="集合の圏" class="level3">
+<section class="level3" id="集合の圏">
 <h3 class="anchored" data-anchor-id="集合の圏">集合の圏</h3>
 <p><strong>Set</strong> において、射は関数： - <span class="math inline">\(f: X \to Y\)</span> と <span class="math inline">\(g: Y \to Z\)</span> のとき - すべての <span class="math inline">\(x \in X\)</span> に対して <span class="math inline">\((g \circ f)(x) = g(f(x))\)</span></p>
 </section>
-<section id="線形変換" class="level3">
+<section class="level3" id="線形変換">
 <h3 class="anchored" data-anchor-id="線形変換">線形変換</h3>
 <p>ベクトル空間の圏において： - 射は線形写像 - 合成は（有限次元では）行列の積</p>
 </section>
-<section id="群準同型" class="level3">
+<section class="level3" id="群準同型">
 <h3 class="anchored" data-anchor-id="群準同型">群準同型</h3>
 <p><strong>Grp</strong>（群の圏）において： - <span class="math inline">\(\phi: G \to H\)</span> と <span class="math inline">\(\psi: H \to K\)</span> が準同型のとき - <span class="math inline">\((\psi \circ \phi)(g) = \psi(\phi(g))\)</span> も準同型</p>
 </section>
 </section>
-<section id="性質" class="level2">
+<section class="level2" id="性質">
 <h2 class="anchored" data-anchor-id="性質">性質</h2>
 <ol type="1">
 <li><strong>非可換性</strong>: 一般に <span class="math inline">\(g \circ f \neq f \circ g\)</span></li>
@@ -337,7 +313,7 @@ window.Quarto = {
 <li><strong>構造の保存</strong>: 合成は圏論的構造を保存する</li>
 </ol>
 </section>
-<section id="可換図式" class="level2">
+<section class="level2" id="可換図式">
 <h2 class="anchored" data-anchor-id="可換図式">可換図式</h2>
 <p>合成はしばしば可換図式を使って視覚化されます：</p>
 <pre><code>A ---f---&gt; B
@@ -348,7 +324,7 @@ v          v
 C ---k---&gt; D</code></pre>
 <p>この図式は <span class="math inline">\(k \circ h = g \circ f\)</span> のとき可換です</p>
 </section>
-<section id="関連概念" class="level2">
+<section class="level2" id="関連概念">
 <h2 class="anchored" data-anchor-id="関連概念">関連概念</h2>
 <ul>
 <li><a href="../../../content/ja/category-theory/def-isomorphism.html">同型射</a>: 合成に関して両側逆射を持つ射</li>
@@ -356,7 +332,7 @@ C ---k---&gt; D</code></pre>
 <li>モノイド: すべての射が合成可能な単一対象圏</li>
 </ul>
 </section>
-<section id="依存関係グラフ" class="level2">
+<section class="level2" id="依存関係グラフ">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -369,23 +345,23 @@ C ---k---&gt; D</code></pre>
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-composition["合成"]:::definition
+    def-morphism["射"]:::definition
+    def-epimorphism["全射"]:::definition
+    def-monomorphism["単射"]:::definition
     def-category["圏"]:::definition
     def-isomorphism["群同型"]:::definition
-    def-epimorphism["全射"]:::definition
-    def-composition["合成"]:::definition
-    def-monomorphism["単射"]:::definition
-    def-morphism["射"]:::definition
     def-epimorphism --&gt; def-composition
-    def-monomorphism --&gt; def-composition
     def-composition --&gt; def-category
-    def-isomorphism --&gt; def-composition
+    def-monomorphism --&gt; def-composition
     def-composition --&gt; def-morphism
+    def-isomorphism --&gt; def-composition
     class def-composition current
-    click def-category "def-category.html" "圏へ"
-    click def-isomorphism "def-isomorphism.html" "群同型へ"
+    click def-morphism "def-morphism.html" "射へ"
     click def-epimorphism "def-epimorphism.html" "全射へ"
     click def-monomorphism "def-monomorphism.html" "単射へ"
-    click def-morphism "def-morphism.html" "射へ"
+    click def-category "def-category.html" "圏へ"
+    click def-isomorphism "def-isomorphism.html" "群同型へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -393,13 +369,12 @@ C ---k---&gt; D</code></pre>
 </div>
 </div>
 </section>
-<section id="インタラクティブ可視化" class="level2">
+<section class="level2" id="インタラクティブ可視化">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-composition-1753761208" class="graph-visualization-container">
-  <div class="graph-loading">Loading visualization...</div>
+<div class="graph-visualization-container" id="graph-viz-def-composition-1753763840">
+<div class="graph-loading">Loading visualization...</div>
 </div>
-
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -644,12 +619,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-composition-1753761208', {
+    createForceGraph(data, 'graph-viz-def-composition-1753763840', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-composition-1753761208').innerHTML =
+    document.getElementById('graph-viz-def-composition-1753763840').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -661,7 +636,6 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
-
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -710,12 +684,8 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
-
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/ja/def-composition.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
-
-
 </section>
-
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1118,20 +1088,16 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
+<div class="nav-footer">
+<div class="nav-footer-left">
+       
+    </div>
+<div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-    <div class="nav-footer-right">
-      &nbsp;
+<div class="nav-footer-right">
+       
     </div>
-  </div>
+</div>
 </footer>
-
-
-
-
-</body></html>
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>

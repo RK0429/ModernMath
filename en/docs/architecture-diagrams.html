@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-<meta name="description" content="Technical architecture diagrams and component descriptions for the ModernMath Knowledge Graph">
-
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.7.32" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta content="Technical architecture diagrams and component descriptions for the ModernMath Knowledge Graph" name="description"/>
 <title>System Architecture Documentation – Math Knowledge Graph</title>
 <style>
 code{white-space: pre-wrap;}
@@ -22,27 +19,25 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
-
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../favicon.ico" rel="icon">
+<meta content="../" name="quarto:offset"/>
+<link href="../favicon.ico" rel="icon"/>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
+<link append-hash="true" data-mode="light" href="../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
+<link href="../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,8 +67,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
 <script>
   window.siteLanguage = 'en';
   window.alternateLanguage = 'ja';
@@ -122,190 +117,172 @@ ul.task-list li input[type="checkbox"] {
     document.head.appendChild(issueScript);
   })();
 </script>
-
-
-<link rel="stylesheet" href="../styles.css">
-<link rel="stylesheet" href="../styles-multilingual.css">
+<link href="../styles.css" rel="stylesheet"/>
+<link href="../styles-multilingual.css" rel="stylesheet"/>
 </head>
-
 <body class="nav-fixed quarto-light">
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Math Knowledge Graph</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../content/en/algebra/index.html"> 
-<span class="menu-text">Algebra</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../content/en/analysis/index.html"> 
-<span class="menu-text">Analysis</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../content/en/topology/index.html"> 
-<span class="menu-text">Topology</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../content/en/geometry/index.html"> 
-<span class="menu-text">Geometry</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../content/en/category-theory/index.html"> 
-<span class="menu-text">Category Theory</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../content/en/combinatorics/index.html"> 
-<span class="menu-text">Combinatorics</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../content/en/logic-set-theory/index.html"> 
-<span class="menu-text">Logic &amp; Set Theory</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../content/en/number-theory/index.html"> 
-<span class="menu-text">Number Theory</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../content/en/probability-statistics/index.html"> 
-<span class="menu-text">Probability &amp; Statistics</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../nav/en/about.html"> 
-<span class="menu-text">About</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../nav/en/contributing.html"> 
-<span class="menu-text">Contributing</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../ja/index.html"> 
-<span class="menu-text">🌐 日本語</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+<header class="headroom fixed-top" id="quarto-header">
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+<div class="navbar-container container-fluid">
+<div class="navbar-brand-container mx-auto">
+<a class="navbar-brand" href="../index.html">
+<span class="navbar-title">Math Knowledge Graph</span>
+</a>
 </div>
-      </div> <!-- /container-fluid -->
-    </nav>
+<div class="" id="quarto-search" title="Search"></div>
+<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+<ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+<a class="nav-link" href="../index.html">
+<span class="menu-text">Home</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../content/en/algebra/index.html">
+<span class="menu-text">Algebra</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../content/en/analysis/index.html">
+<span class="menu-text">Analysis</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../content/en/topology/index.html">
+<span class="menu-text">Topology</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../content/en/geometry/index.html">
+<span class="menu-text">Geometry</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../content/en/category-theory/index.html">
+<span class="menu-text">Category Theory</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../content/en/combinatorics/index.html">
+<span class="menu-text">Combinatorics</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../content/en/logic-set-theory/index.html">
+<span class="menu-text">Logic &amp; Set Theory</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../content/en/number-theory/index.html">
+<span class="menu-text">Number Theory</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../content/en/probability-statistics/index.html">
+<span class="menu-text">Probability &amp; Statistics</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../nav/en/about.html">
+<span class="menu-text">About</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../nav/en/contributing.html">
+<span class="menu-text">Contributing</span></a>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
+</i>
+<span class="menu-text"></span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../ja/index.html">
+<span class="menu-text">🌐 日本語</span></a>
+</li>
+</ul>
+</div> <!-- /navcollapse -->
+<div class="quarto-navbar-tools">
+</div>
+</div> <!-- /container-fluid -->
+</nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#system-overview" id="toc-system-overview" class="nav-link active" data-scroll-target="#system-overview"><span class="header-section-number">1</span> System Overview</a>
-  <ul class="collapse">
-  <li><a href="#high-level-architecture" id="toc-high-level-architecture" class="nav-link" data-scroll-target="#high-level-architecture"><span class="header-section-number">1.1</span> High-Level Architecture</a></li>
-  </ul></li>
-  <li><a href="#component-architecture" id="toc-component-architecture" class="nav-link" data-scroll-target="#component-architecture"><span class="header-section-number">2</span> Component Architecture</a>
-  <ul class="collapse">
-  <li><a href="#content-management-system" id="toc-content-management-system" class="nav-link" data-scroll-target="#content-management-system"><span class="header-section-number">2.1</span> Content Management System</a></li>
-  <li><a href="#data-processing-pipeline" id="toc-data-processing-pipeline" class="nav-link" data-scroll-target="#data-processing-pipeline"><span class="header-section-number">2.2</span> Data Processing Pipeline</a></li>
-  <li><a href="#rdf-knowledge-graph-structure" id="toc-rdf-knowledge-graph-structure" class="nav-link" data-scroll-target="#rdf-knowledge-graph-structure"><span class="header-section-number">2.3</span> RDF Knowledge Graph Structure</a></li>
-  </ul></li>
-  <li><a href="#service-architecture" id="toc-service-architecture" class="nav-link" data-scroll-target="#service-architecture"><span class="header-section-number">3</span> Service Architecture</a>
-  <ul class="collapse">
-  <li><a href="#api-service-design" id="toc-api-service-design" class="nav-link" data-scroll-target="#api-service-design"><span class="header-section-number">3.1</span> API Service Design</a></li>
-  <li><a href="#caching-strategy" id="toc-caching-strategy" class="nav-link" data-scroll-target="#caching-strategy"><span class="header-section-number">3.2</span> Caching Strategy</a></li>
-  </ul></li>
-  <li><a href="#visualization-architecture" id="toc-visualization-architecture" class="nav-link" data-scroll-target="#visualization-architecture"><span class="header-section-number">4</span> Visualization Architecture</a>
-  <ul class="collapse">
-  <li><a href="#visualization-generation-pipeline" id="toc-visualization-generation-pipeline" class="nav-link" data-scroll-target="#visualization-generation-pipeline"><span class="header-section-number">4.1</span> Visualization Generation Pipeline</a></li>
-  <li><a href="#interactive-visualization-architecture" id="toc-interactive-visualization-architecture" class="nav-link" data-scroll-target="#interactive-visualization-architecture"><span class="header-section-number">4.2</span> Interactive Visualization Architecture</a></li>
-  </ul></li>
-  <li><a href="#deployment-architecture" id="toc-deployment-architecture" class="nav-link" data-scroll-target="#deployment-architecture"><span class="header-section-number">5</span> Deployment Architecture</a>
-  <ul class="collapse">
-  <li><a href="#cicd-pipeline" id="toc-cicd-pipeline" class="nav-link" data-scroll-target="#cicd-pipeline"><span class="header-section-number">5.1</span> CI/CD Pipeline</a></li>
-  <li><a href="#production-infrastructure" id="toc-production-infrastructure" class="nav-link" data-scroll-target="#production-infrastructure"><span class="header-section-number">5.2</span> Production Infrastructure</a></li>
-  </ul></li>
-  <li><a href="#data-flow-diagrams" id="toc-data-flow-diagrams" class="nav-link" data-scroll-target="#data-flow-diagrams"><span class="header-section-number">6</span> Data Flow Diagrams</a>
-  <ul class="collapse">
-  <li><a href="#content-creation-flow" id="toc-content-creation-flow" class="nav-link" data-scroll-target="#content-creation-flow"><span class="header-section-number">6.1</span> Content Creation Flow</a></li>
-  <li><a href="#query-processing-flow" id="toc-query-processing-flow" class="nav-link" data-scroll-target="#query-processing-flow"><span class="header-section-number">6.2</span> Query Processing Flow</a></li>
-  </ul></li>
-  <li><a href="#technology-stack" id="toc-technology-stack" class="nav-link" data-scroll-target="#technology-stack"><span class="header-section-number">7</span> Technology Stack</a>
-  <ul class="collapse">
-  <li><a href="#component-technologies" id="toc-component-technologies" class="nav-link" data-scroll-target="#component-technologies"><span class="header-section-number">7.1</span> Component Technologies</a></li>
-  </ul></li>
-  <li><a href="#security-architecture" id="toc-security-architecture" class="nav-link" data-scroll-target="#security-architecture"><span class="header-section-number">8</span> Security Architecture</a>
-  <ul class="collapse">
-  <li><a href="#security-layers" id="toc-security-layers" class="nav-link" data-scroll-target="#security-layers"><span class="header-section-number">8.1</span> Security Layers</a></li>
-  </ul></li>
-  <li><a href="#performance-architecture" id="toc-performance-architecture" class="nav-link" data-scroll-target="#performance-architecture"><span class="header-section-number">9</span> Performance Architecture</a>
-  <ul class="collapse">
-  <li><a href="#optimization-points" id="toc-optimization-points" class="nav-link" data-scroll-target="#optimization-points"><span class="header-section-number">9.1</span> Optimization Points</a></li>
-  </ul></li>
-  <li><a href="#monitoring-architecture" id="toc-monitoring-architecture" class="nav-link" data-scroll-target="#monitoring-architecture"><span class="header-section-number">10</span> Monitoring Architecture</a>
-  <ul class="collapse">
-  <li><a href="#system-monitoring" id="toc-system-monitoring" class="nav-link" data-scroll-target="#system-monitoring"><span class="header-section-number">10.1</span> System Monitoring</a></li>
-  </ul></li>
-  <li><a href="#future-architecture-considerations" id="toc-future-architecture-considerations" class="nav-link" data-scroll-target="#future-architecture-considerations"><span class="header-section-number">11</span> Future Architecture Considerations</a>
-  <ul class="collapse">
-  <li><a href="#scalability-path" id="toc-scalability-path" class="nav-link" data-scroll-target="#scalability-path"><span class="header-section-number">11.1</span> Scalability Path</a></li>
-  </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">12</span> Summary</a></li>
-  </ul>
+<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
+<nav class="toc-active" id="TOC" role="doc-toc">
+<h2 id="toc-title">On this page</h2>
+<ul>
+<li><a class="nav-link active" data-scroll-target="#system-overview" href="#system-overview" id="toc-system-overview"><span class="header-section-number">1</span> System Overview</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#high-level-architecture" href="#high-level-architecture" id="toc-high-level-architecture"><span class="header-section-number">1.1</span> High-Level Architecture</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#component-architecture" href="#component-architecture" id="toc-component-architecture"><span class="header-section-number">2</span> Component Architecture</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#content-management-system" href="#content-management-system" id="toc-content-management-system"><span class="header-section-number">2.1</span> Content Management System</a></li>
+<li><a class="nav-link" data-scroll-target="#data-processing-pipeline" href="#data-processing-pipeline" id="toc-data-processing-pipeline"><span class="header-section-number">2.2</span> Data Processing Pipeline</a></li>
+<li><a class="nav-link" data-scroll-target="#rdf-knowledge-graph-structure" href="#rdf-knowledge-graph-structure" id="toc-rdf-knowledge-graph-structure"><span class="header-section-number">2.3</span> RDF Knowledge Graph Structure</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#service-architecture" href="#service-architecture" id="toc-service-architecture"><span class="header-section-number">3</span> Service Architecture</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#api-service-design" href="#api-service-design" id="toc-api-service-design"><span class="header-section-number">3.1</span> API Service Design</a></li>
+<li><a class="nav-link" data-scroll-target="#caching-strategy" href="#caching-strategy" id="toc-caching-strategy"><span class="header-section-number">3.2</span> Caching Strategy</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#visualization-architecture" href="#visualization-architecture" id="toc-visualization-architecture"><span class="header-section-number">4</span> Visualization Architecture</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#visualization-generation-pipeline" href="#visualization-generation-pipeline" id="toc-visualization-generation-pipeline"><span class="header-section-number">4.1</span> Visualization Generation Pipeline</a></li>
+<li><a class="nav-link" data-scroll-target="#interactive-visualization-architecture" href="#interactive-visualization-architecture" id="toc-interactive-visualization-architecture"><span class="header-section-number">4.2</span> Interactive Visualization Architecture</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#deployment-architecture" href="#deployment-architecture" id="toc-deployment-architecture"><span class="header-section-number">5</span> Deployment Architecture</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#cicd-pipeline" href="#cicd-pipeline" id="toc-cicd-pipeline"><span class="header-section-number">5.1</span> CI/CD Pipeline</a></li>
+<li><a class="nav-link" data-scroll-target="#production-infrastructure" href="#production-infrastructure" id="toc-production-infrastructure"><span class="header-section-number">5.2</span> Production Infrastructure</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#data-flow-diagrams" href="#data-flow-diagrams" id="toc-data-flow-diagrams"><span class="header-section-number">6</span> Data Flow Diagrams</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#content-creation-flow" href="#content-creation-flow" id="toc-content-creation-flow"><span class="header-section-number">6.1</span> Content Creation Flow</a></li>
+<li><a class="nav-link" data-scroll-target="#query-processing-flow" href="#query-processing-flow" id="toc-query-processing-flow"><span class="header-section-number">6.2</span> Query Processing Flow</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#technology-stack" href="#technology-stack" id="toc-technology-stack"><span class="header-section-number">7</span> Technology Stack</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#component-technologies" href="#component-technologies" id="toc-component-technologies"><span class="header-section-number">7.1</span> Component Technologies</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#security-architecture" href="#security-architecture" id="toc-security-architecture"><span class="header-section-number">8</span> Security Architecture</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#security-layers" href="#security-layers" id="toc-security-layers"><span class="header-section-number">8.1</span> Security Layers</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#performance-architecture" href="#performance-architecture" id="toc-performance-architecture"><span class="header-section-number">9</span> Performance Architecture</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#optimization-points" href="#optimization-points" id="toc-optimization-points"><span class="header-section-number">9.1</span> Optimization Points</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#monitoring-architecture" href="#monitoring-architecture" id="toc-monitoring-architecture"><span class="header-section-number">10</span> Monitoring Architecture</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#system-monitoring" href="#system-monitoring" id="toc-system-monitoring"><span class="header-section-number">10.1</span> System Monitoring</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#future-architecture-considerations" href="#future-architecture-considerations" id="toc-future-architecture-considerations"><span class="header-section-number">11</span> Future Architecture Considerations</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#scalability-path" href="#scalability-path" id="toc-scalability-path"><span class="header-section-number">11.1</span> Scalability Path</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#summary" href="#summary" id="toc-summary"><span class="header-section-number">12</span> Summary</a></li>
+</ul>
 </nav>
-    </div>
+</div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
+<header class="quarto-title-block default" id="title-block-header">
 <div class="quarto-title">
 <h1 class="title">System Architecture Documentation</h1>
 </div>
-
 <div>
-  <div class="description">
+<div class="description">
     Technical architecture diagrams and component descriptions for the ModernMath Knowledge Graph
   </div>
 </div>
-
-
 <div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
+</div>
 </header>
-
-
-<section id="system-overview" class="level1" data-number="1">
+<section class="level1" data-number="1" id="system-overview">
 <h1 data-number="1"><span class="header-section-number">1</span> System Overview</h1>
 <p>The ModernMath Knowledge Graph is a complex system that integrates multiple technologies to create, manage, and serve mathematical knowledge. This document provides architectural diagrams and technical descriptions of the system components.</p>
-<section id="high-level-architecture" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="high-level-architecture"><span class="header-section-number">1.1</span> High-Level Architecture</h2>
+<section class="level2" data-number="1.1" id="high-level-architecture">
+<h2 class="anchored" data-anchor-id="high-level-architecture" data-number="1.1"><span class="header-section-number">1.1</span> High-Level Architecture</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -371,10 +348,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 </section>
-<section id="component-architecture" class="level1" data-number="2">
+<section class="level1" data-number="2" id="component-architecture">
 <h1 data-number="2"><span class="header-section-number">2</span> Component Architecture</h1>
-<section id="content-management-system" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="content-management-system"><span class="header-section-number">2.1</span> Content Management System</h2>
+<section class="level2" data-number="2.1" id="content-management-system">
+<h2 class="anchored" data-anchor-id="content-management-system" data-number="2.1"><span class="header-section-number">2.1</span> Content Management System</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -418,8 +395,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="data-processing-pipeline" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="data-processing-pipeline"><span class="header-section-number">2.2</span> Data Processing Pipeline</h2>
+<section class="level2" data-number="2.2" id="data-processing-pipeline">
+<h2 class="anchored" data-anchor-id="data-processing-pipeline" data-number="2.2"><span class="header-section-number">2.2</span> Data Processing Pipeline</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -451,8 +428,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="rdf-knowledge-graph-structure" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="rdf-knowledge-graph-structure"><span class="header-section-number">2.3</span> RDF Knowledge Graph Structure</h2>
+<section class="level2" data-number="2.3" id="rdf-knowledge-graph-structure">
+<h2 class="anchored" data-anchor-id="rdf-knowledge-graph-structure" data-number="2.3"><span class="header-section-number">2.3</span> RDF Knowledge Graph Structure</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -488,10 +465,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 </section>
-<section id="service-architecture" class="level1" data-number="3">
+<section class="level1" data-number="3" id="service-architecture">
 <h1 data-number="3"><span class="header-section-number">3</span> Service Architecture</h1>
-<section id="api-service-design" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="api-service-design"><span class="header-section-number">3.1</span> API Service Design</h2>
+<section class="level2" data-number="3.1" id="api-service-design">
+<h2 class="anchored" data-anchor-id="api-service-design" data-number="3.1"><span class="header-section-number">3.1</span> API Service Design</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -533,8 +510,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="caching-strategy" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="caching-strategy"><span class="header-section-number">3.2</span> Caching Strategy</h2>
+<section class="level2" data-number="3.2" id="caching-strategy">
+<h2 class="anchored" data-anchor-id="caching-strategy" data-number="3.2"><span class="header-section-number">3.2</span> Caching Strategy</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -572,10 +549,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 </section>
-<section id="visualization-architecture" class="level1" data-number="4">
+<section class="level1" data-number="4" id="visualization-architecture">
 <h1 data-number="4"><span class="header-section-number">4</span> Visualization Architecture</h1>
-<section id="visualization-generation-pipeline" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="visualization-generation-pipeline"><span class="header-section-number">4.1</span> Visualization Generation Pipeline</h2>
+<section class="level2" data-number="4.1" id="visualization-generation-pipeline">
+<h2 class="anchored" data-anchor-id="visualization-generation-pipeline" data-number="4.1"><span class="header-section-number">4.1</span> Visualization Generation Pipeline</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -623,8 +600,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="interactive-visualization-architecture" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="interactive-visualization-architecture"><span class="header-section-number">4.2</span> Interactive Visualization Architecture</h2>
+<section class="level2" data-number="4.2" id="interactive-visualization-architecture">
+<h2 class="anchored" data-anchor-id="interactive-visualization-architecture" data-number="4.2"><span class="header-section-number">4.2</span> Interactive Visualization Architecture</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -666,10 +643,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 </section>
-<section id="deployment-architecture" class="level1" data-number="5">
+<section class="level1" data-number="5" id="deployment-architecture">
 <h1 data-number="5"><span class="header-section-number">5</span> Deployment Architecture</h1>
-<section id="cicd-pipeline" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="cicd-pipeline"><span class="header-section-number">5.1</span> CI/CD Pipeline</h2>
+<section class="level2" data-number="5.1" id="cicd-pipeline">
+<h2 class="anchored" data-anchor-id="cicd-pipeline" data-number="5.1"><span class="header-section-number">5.1</span> CI/CD Pipeline</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -720,8 +697,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="production-infrastructure" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="production-infrastructure"><span class="header-section-number">5.2</span> Production Infrastructure</h2>
+<section class="level2" data-number="5.2" id="production-infrastructure">
+<h2 class="anchored" data-anchor-id="production-infrastructure" data-number="5.2"><span class="header-section-number">5.2</span> Production Infrastructure</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -765,10 +742,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 </section>
-<section id="data-flow-diagrams" class="level1" data-number="6">
+<section class="level1" data-number="6" id="data-flow-diagrams">
 <h1 data-number="6"><span class="header-section-number">6</span> Data Flow Diagrams</h1>
-<section id="content-creation-flow" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="content-creation-flow"><span class="header-section-number">6.1</span> Content Creation Flow</h2>
+<section class="level2" data-number="6.1" id="content-creation-flow">
+<h2 class="anchored" data-anchor-id="content-creation-flow" data-number="6.1"><span class="header-section-number">6.1</span> Content Creation Flow</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -791,8 +768,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="query-processing-flow" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="query-processing-flow"><span class="header-section-number">6.2</span> Query Processing Flow</h2>
+<section class="level2" data-number="6.2" id="query-processing-flow">
+<h2 class="anchored" data-anchor-id="query-processing-flow" data-number="6.2"><span class="header-section-number">6.2</span> Query Processing Flow</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -822,10 +799,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 </section>
-<section id="technology-stack" class="level1" data-number="7">
+<section class="level1" data-number="7" id="technology-stack">
 <h1 data-number="7"><span class="header-section-number">7</span> Technology Stack</h1>
-<section id="component-technologies" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="component-technologies"><span class="header-section-number">7.1</span> Component Technologies</h2>
+<section class="level2" data-number="7.1" id="component-technologies">
+<h2 class="anchored" data-anchor-id="component-technologies" data-number="7.1"><span class="header-section-number">7.1</span> Component Technologies</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -866,10 +843,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 </section>
-<section id="security-architecture" class="level1" data-number="8">
+<section class="level1" data-number="8" id="security-architecture">
 <h1 data-number="8"><span class="header-section-number">8</span> Security Architecture</h1>
-<section id="security-layers" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="security-layers"><span class="header-section-number">8.1</span> Security Layers</h2>
+<section class="level2" data-number="8.1" id="security-layers">
+<h2 class="anchored" data-anchor-id="security-layers" data-number="8.1"><span class="header-section-number">8.1</span> Security Layers</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -913,10 +890,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 </section>
-<section id="performance-architecture" class="level1" data-number="9">
+<section class="level1" data-number="9" id="performance-architecture">
 <h1 data-number="9"><span class="header-section-number">9</span> Performance Architecture</h1>
-<section id="optimization-points" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="optimization-points"><span class="header-section-number">9.1</span> Optimization Points</h2>
+<section class="level2" data-number="9.1" id="optimization-points">
+<h2 class="anchored" data-anchor-id="optimization-points" data-number="9.1"><span class="header-section-number">9.1</span> Optimization Points</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -960,10 +937,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 </section>
-<section id="monitoring-architecture" class="level1" data-number="10">
+<section class="level1" data-number="10" id="monitoring-architecture">
 <h1 data-number="10"><span class="header-section-number">10</span> Monitoring Architecture</h1>
-<section id="system-monitoring" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="system-monitoring"><span class="header-section-number">10.1</span> System Monitoring</h2>
+<section class="level2" data-number="10.1" id="system-monitoring">
+<h2 class="anchored" data-anchor-id="system-monitoring" data-number="10.1"><span class="header-section-number">10.1</span> System Monitoring</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -1006,10 +983,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 </section>
-<section id="future-architecture-considerations" class="level1" data-number="11">
+<section class="level1" data-number="11" id="future-architecture-considerations">
 <h1 data-number="11"><span class="header-section-number">11</span> Future Architecture Considerations</h1>
-<section id="scalability-path" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="scalability-path"><span class="header-section-number">11.1</span> Scalability Path</h2>
+<section class="level2" data-number="11.1" id="scalability-path">
+<h2 class="anchored" data-anchor-id="scalability-path" data-number="11.1"><span class="header-section-number">11.1</span> Scalability Path</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -1049,7 +1026,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 </section>
-<section id="summary" class="level1" data-number="12">
+<section class="level1" data-number="12" id="summary">
 <h1 data-number="12"><span class="header-section-number">12</span> Summary</h1>
 <p>The ModernMath Knowledge Graph architecture is designed to be:</p>
 <ol type="1">
@@ -1060,10 +1037,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Reliable</strong>: Built-in validation and error handling</li>
 </ol>
 <p>The architecture supports the project’s goals of creating a comprehensive, queryable, and interactive mathematical knowledge repository while maintaining flexibility for future enhancements.</p>
-
-
 </section>
-
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1466,20 +1440,16 @@ ul.task-list li input[type="checkbox"] {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
+<div class="nav-footer">
+<div class="nav-footer-left">
+       
+    </div>
+<div class="nav-footer-center">
 <p>Mathematics Knowledge Graph Wiki - Built with Quarto and RDF</p>
 </div>
-    <div class="nav-footer-right">
-      &nbsp;
+<div class="nav-footer-right">
+       
     </div>
-  </div>
+</div>
 </footer>
-
-
-
-
-</body></html>
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>

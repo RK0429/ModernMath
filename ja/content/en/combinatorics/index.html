@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.7.32" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <title>Combinatorics – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,27 +18,25 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
-
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../favicon.ico" rel="icon">
+<meta content="../../../" name="quarto:offset"/>
+<link href="../../../favicon.ico" rel="icon"/>
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
+<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "サーチ"
   }
 }</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -118,146 +113,128 @@ ul.task-list li input[type="checkbox"] {
     document.head.appendChild(issueScript);
   })();
 </script>
-
-
-<link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../../styles-multilingual.css">
+<link href="../../../styles.css" rel="stylesheet"/>
+<link href="../../../styles-multilingual.css" rel="stylesheet"/>
 </head>
-
 <body class="nav-fixed quarto-light">
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">数学ナレッジグラフ</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="サーチ"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../../index-ja.html"> 
-<span class="menu-text">ホーム</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
-<span class="menu-text">代数学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
-<span class="menu-text">解析学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
-<span class="menu-text">位相空間論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
-<span class="menu-text">幾何学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
-<span class="menu-text">圏論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
-<span class="menu-text">組合せ論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
-<span class="menu-text">論理学・集合論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
-<span class="menu-text">数論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
-<span class="menu-text">確率統計</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/about.html"> 
-<span class="menu-text">概要</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
-<span class="menu-text">貢献</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../../en/index.html"> 
-<span class="menu-text">🌐 English</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+<header class="headroom fixed-top" id="quarto-header">
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+<div class="navbar-container container-fluid">
+<div class="navbar-brand-container mx-auto">
+<a class="navbar-brand" href="../../../index.html">
+<span class="navbar-title">数学ナレッジグラフ</span>
+</a>
 </div>
-      </div> <!-- /container-fluid -->
-    </nav>
+<div class="" id="quarto-search" title="サーチ"></div>
+<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+<ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+<a class="nav-link" href="../../../index-ja.html">
+<span class="menu-text">ホーム</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/algebra/index.html">
+<span class="menu-text">代数学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/analysis/index.html">
+<span class="menu-text">解析学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/topology/index.html">
+<span class="menu-text">位相空間論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/geometry/index.html">
+<span class="menu-text">幾何学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+<span class="menu-text">圏論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+<span class="menu-text">組合せ論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+<span class="menu-text">論理学・集合論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+<span class="menu-text">数論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+<span class="menu-text">確率統計</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/about.html">
+<span class="menu-text">概要</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/contributing.html">
+<span class="menu-text">貢献</span></a>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
+</i>
+<span class="menu-text"></span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../../en/index.html">
+<span class="menu-text">🌐 English</span></a>
+</li>
+</ul>
+</div> <!-- /navcollapse -->
+<div class="quarto-navbar-tools">
+</div>
+</div> <!-- /container-fluid -->
+</nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">目次</h2>
-   
-  <ul>
-  <li><a href="#combinatorics" id="toc-combinatorics" class="nav-link active" data-scroll-target="#combinatorics">Combinatorics</a>
-  <ul class="collapse">
-  <li><a href="#contents" id="toc-contents" class="nav-link" data-scroll-target="#contents">Contents</a>
-  <ul class="collapse">
-  <li><a href="#definitions" id="toc-definitions" class="nav-link" data-scroll-target="#definitions">Definitions</a></li>
-  <li><a href="#theorems" id="toc-theorems" class="nav-link" data-scroll-target="#theorems">Theorems</a></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
-  </ul></li>
-  <li><a href="#navigation" id="toc-navigation" class="nav-link" data-scroll-target="#navigation">Navigation</a></li>
-  <li><a href="#contributing" id="toc-contributing" class="nav-link" data-scroll-target="#contributing">Contributing</a></li>
-  </ul></li>
-  </ul>
+<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
+<nav class="toc-active" id="TOC" role="doc-toc">
+<h2 id="toc-title">目次</h2>
+<ul>
+<li><a class="nav-link active" data-scroll-target="#combinatorics" href="#combinatorics" id="toc-combinatorics">Combinatorics</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#contents" href="#contents" id="toc-contents">Contents</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#definitions" href="#definitions" id="toc-definitions">Definitions</a></li>
+<li><a class="nav-link" data-scroll-target="#theorems" href="#theorems" id="toc-theorems">Theorems</a></li>
+<li><a class="nav-link" data-scroll-target="#examples" href="#examples" id="toc-examples">Examples</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#navigation" href="#navigation" id="toc-navigation">Navigation</a></li>
+<li><a class="nav-link" data-scroll-target="#contributing" href="#contributing" id="toc-contributing">Contributing</a></li>
+</ul></li>
+</ul>
 </nav>
-    </div>
+</div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
+<header class="quarto-title-block default" id="title-block-header">
 <div class="quarto-title">
 <h1 class="title">Combinatorics</h1>
 </div>
-
-
-
 <div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
+</div>
 </header>
-
-
-<section id="combinatorics" class="level1">
+<section class="level1" id="combinatorics">
 <h1>Combinatorics</h1>
 <p>Combinatorics is the mathematics of counting, arranging, and analyzing discrete structures.</p>
-<section id="contents" class="level2">
+<section class="level2" id="contents">
 <h2 class="anchored" data-anchor-id="contents">Contents</h2>
-<section id="definitions" class="level3">
+<section class="level3" id="definitions">
 <h3 class="anchored" data-anchor-id="definitions">Definitions</h3>
 <ul>
 <li><a href="../../../content/en/combinatorics/def-binomial-coefficient.html">Binomial Coefficient</a></li>
@@ -268,21 +245,21 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="../../../content/en/combinatorics/def-tree.html">Tree</a></li>
 </ul>
 </section>
-<section id="theorems" class="level3">
+<section class="level3" id="theorems">
 <h3 class="anchored" data-anchor-id="theorems">Theorems</h3>
 <ul>
 <li><a href="../../../content/en/combinatorics/thm-inclusion-exclusion.html">Inclusion-Exclusion Principle</a></li>
 <li><a href="../../../content/en/combinatorics/thm-pigeonhole-principle.html">Pigeonhole Principle</a></li>
 </ul>
 </section>
-<section id="examples" class="level3">
+<section class="level3" id="examples">
 <h3 class="anchored" data-anchor-id="examples">Examples</h3>
 <ul>
 <li><a href="../../../content/en/combinatorics/ex-pascals-triangle.html">Pascal’s Triangle</a></li>
 </ul>
 </section>
 </section>
-<section id="navigation" class="level2">
+<section class="level2" id="navigation">
 <h2 class="anchored" data-anchor-id="navigation">Navigation</h2>
 <ul>
 <li>Use the sidebar to browse all topics in this domain</li>
@@ -290,14 +267,11 @@ ul.task-list li input[type="checkbox"] {
 <li>Use the search modal in the navigation bar to find specific concepts</li>
 </ul>
 </section>
-<section id="contributing" class="level2">
+<section class="level2" id="contributing">
 <h2 class="anchored" data-anchor-id="contributing">Contributing</h2>
 <p>This wiki is actively being developed. If you’d like to contribute or report issues, please visit our <a href="https://github.com/RK0429/ModernMath">GitHub repository</a>.</p>
-
-
 </section>
 </section>
-
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -700,20 +674,16 @@ ul.task-list li input[type="checkbox"] {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
+<div class="nav-footer">
+<div class="nav-footer-left">
+       
+    </div>
+<div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-    <div class="nav-footer-right">
-      &nbsp;
+<div class="nav-footer-right">
+       
     </div>
-  </div>
+</div>
 </footer>
-
-
-
-
-</body></html>
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>

@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.7.32" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <title>包除原理 – Math Knowledge Graph</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,27 +18,25 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
-
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../favicon.ico" rel="icon">
+<meta content="../../../" name="quarto:offset"/>
+<link href="../../../favicon.ico" rel="icon"/>
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
+<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,8 +66,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
 <script>
   window.siteLanguage = 'en';
   window.alternateLanguage = 'ja';
@@ -121,10 +116,8 @@ ul.task-list li input[type="checkbox"] {
     document.head.appendChild(issueScript);
   })();
 </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -151,158 +144,141 @@ window.Quarto = {
   typesetMath
 };
 </script>
-
-<link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../../styles-multilingual.css">
+<link href="../../../styles.css" rel="stylesheet"/>
+<link href="../../../styles-multilingual.css" rel="stylesheet"/>
 </head>
-
 <body class="nav-fixed quarto-light">
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">Math Knowledge Graph</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../../index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/en/algebra/index.html"> 
-<span class="menu-text">Algebra</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/en/analysis/index.html"> 
-<span class="menu-text">Analysis</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/en/topology/index.html"> 
-<span class="menu-text">Topology</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/en/geometry/index.html"> 
-<span class="menu-text">Geometry</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/en/category-theory/index.html"> 
-<span class="menu-text">Category Theory</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/en/combinatorics/index.html"> 
-<span class="menu-text">Combinatorics</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/en/logic-set-theory/index.html"> 
-<span class="menu-text">Logic &amp; Set Theory</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/en/number-theory/index.html"> 
-<span class="menu-text">Number Theory</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/en/probability-statistics/index.html"> 
-<span class="menu-text">Probability &amp; Statistics</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/en/about.html"> 
-<span class="menu-text">About</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/en/contributing.html"> 
-<span class="menu-text">Contributing</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../../ja/index.html"> 
-<span class="menu-text">🌐 日本語</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+<header class="headroom fixed-top" id="quarto-header">
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+<div class="navbar-container container-fluid">
+<div class="navbar-brand-container mx-auto">
+<a class="navbar-brand" href="../../../index.html">
+<span class="navbar-title">Math Knowledge Graph</span>
+</a>
 </div>
-      </div> <!-- /container-fluid -->
-    </nav>
+<div class="" id="quarto-search" title="Search"></div>
+<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+<ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+<a class="nav-link" href="../../../index.html">
+<span class="menu-text">Home</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/en/algebra/index.html">
+<span class="menu-text">Algebra</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/en/analysis/index.html">
+<span class="menu-text">Analysis</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/en/topology/index.html">
+<span class="menu-text">Topology</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/en/geometry/index.html">
+<span class="menu-text">Geometry</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/en/category-theory/index.html">
+<span class="menu-text">Category Theory</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/en/combinatorics/index.html">
+<span class="menu-text">Combinatorics</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/en/logic-set-theory/index.html">
+<span class="menu-text">Logic &amp; Set Theory</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/en/number-theory/index.html">
+<span class="menu-text">Number Theory</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/en/probability-statistics/index.html">
+<span class="menu-text">Probability &amp; Statistics</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/en/about.html">
+<span class="menu-text">About</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/en/contributing.html">
+<span class="menu-text">Contributing</span></a>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
+</i>
+<span class="menu-text"></span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../../ja/index.html">
+<span class="menu-text">🌐 日本語</span></a>
+</li>
+</ul>
+</div> <!-- /navcollapse -->
+<div class="quarto-navbar-tools">
+</div>
+</div> <!-- /container-fluid -->
+</nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#包除原理" id="toc-包除原理" class="nav-link active" data-scroll-target="#包除原理">包除原理</a>
-  <ul class="collapse">
-  <li><a href="#命題" id="toc-命題" class="nav-link" data-scroll-target="#命題">命題</a></li>
-  <li><a href="#特殊な場合" id="toc-特殊な場合" class="nav-link" data-scroll-target="#特殊な場合">特殊な場合</a></li>
-  <li><a href="#直観的な説明" id="toc-直観的な説明" class="nav-link" data-scroll-target="#直観的な説明">直観的な説明</a></li>
-  <li><a href="#証明" id="toc-証明" class="nav-link" data-scroll-target="#証明">証明</a></li>
-  <li><a href="#応用" id="toc-応用" class="nav-link" data-scroll-target="#応用">応用</a></li>
-  <li><a href="#例整数の数え上げ" id="toc-例整数の数え上げ" class="nav-link" data-scroll-target="#例整数の数え上げ">例：整数の数え上げ</a></li>
-  <li><a href="#歴史的注記" id="toc-歴史的注記" class="nav-link" data-scroll-target="#歴史的注記">歴史的注記</a></li>
-  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
-  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
-  </ul></li>
-  </ul>
+<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
+<nav class="toc-active" id="TOC" role="doc-toc">
+<h2 id="toc-title">On this page</h2>
+<ul>
+<li><a class="nav-link active" data-scroll-target="#包除原理" href="#包除原理" id="toc-包除原理">包除原理</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#命題" href="#命題" id="toc-命題">命題</a></li>
+<li><a class="nav-link" data-scroll-target="#特殊な場合" href="#特殊な場合" id="toc-特殊な場合">特殊な場合</a></li>
+<li><a class="nav-link" data-scroll-target="#直観的な説明" href="#直観的な説明" id="toc-直観的な説明">直観的な説明</a></li>
+<li><a class="nav-link" data-scroll-target="#証明" href="#証明" id="toc-証明">証明</a></li>
+<li><a class="nav-link" data-scroll-target="#応用" href="#応用" id="toc-応用">応用</a></li>
+<li><a class="nav-link" data-scroll-target="#例整数の数え上げ" href="#例整数の数え上げ" id="toc-例整数の数え上げ">例：整数の数え上げ</a></li>
+<li><a class="nav-link" data-scroll-target="#歴史的注記" href="#歴史的注記" id="toc-歴史的注記">歴史的注記</a></li>
+<li><a class="nav-link" data-scroll-target="#依存関係グラフ" href="#依存関係グラフ" id="toc-依存関係グラフ">依存関係グラフ</a></li>
+<li><a class="nav-link" data-scroll-target="#インタラクティブ可視化" href="#インタラクティブ可視化" id="toc-インタラクティブ可視化">インタラクティブ可視化</a></li>
+</ul></li>
+</ul>
 </nav>
-    </div>
+</div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
+<header class="quarto-title-block default" id="title-block-header">
 <div class="quarto-title">
 <h1 class="title">包除原理</h1>
 </div>
-
-
-
 <div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
+</div>
 </header>
-
-
-<section id="包除原理" class="level1">
+<section class="level1" id="包除原理">
 <h1>包除原理</h1>
 <p><strong>包除原理</strong>（包含排除の原理）は、組合せ論における基本的な数え上げ原理で、複数の集合の和集合の<a href="../../../content/ja/logic-set-theory/def-cardinality.html">濃度</a>を、それらの共通部分を考慮して求める公式を提供します。</p>
-<section id="命題" class="level2">
+<section class="level2" id="命題">
 <h2 class="anchored" data-anchor-id="命題">命題</h2>
 <p>有限<a href="../../../content/ja/logic-set-theory/def-set.html">集合</a> <span class="math inline">\(A_1, A_2, \ldots, A_n\)</span> に対して、それらの<a href="../../../content/ja/logic-set-theory/def-union.html">和集合</a>の<a href="../../../content/ja/logic-set-theory/def-cardinality.html">濃度</a>は次のように与えられます：</p>
 <p><span class="math display">\[\left|\bigcup_{i=1}^{n} A_i\right| = \sum_{k=1}^{n} (-1)^{k+1} \sum_{1 \leq i_1 &lt; i_2 &lt; \cdots &lt; i_k \leq n} \left|A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k}\right|\]</span></p>
 </section>
-<section id="特殊な場合" class="level2">
+<section class="level2" id="特殊な場合">
 <h2 class="anchored" data-anchor-id="特殊な場合">特殊な場合</h2>
 <p><strong>2つの集合の場合：</strong> <span class="math display">\[|A \cup B| = |A| + |B| - |A \cap B|\]</span></p>
 <p><strong>3つの集合の場合：</strong> <span class="math display">\[|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|\]</span></p>
 </section>
-<section id="直観的な説明" class="level2">
+<section class="level2" id="直観的な説明">
 <h2 class="anchored" data-anchor-id="直観的な説明">直観的な説明</h2>
 <p><span class="math inline">\(n\)</span> 個の集合の和集合の濃度を求めるには： 1. すべての個々の集合の濃度を加える 2. すべての2つずつの<a href="../../../content/ja/logic-set-theory/def-intersection.html">共通部分</a>の濃度を引く 3. すべての3つずつの共通部分の濃度を加える 4. <span class="math inline">\(n\)</span> 個すべての集合の共通部分まで符号を交互に変えながら続ける</p>
 </section>
-<section id="証明" class="level2">
+<section class="level2" id="証明">
 <h2 class="anchored" data-anchor-id="証明">証明</h2>
 <p>和集合内の各要素が正確に1回数えられることを示すことで証明します。</p>
 <p><span class="math inline">\(x\)</span> を <span class="math inline">\(\bigcup_{i=1}^{n} A_i\)</span> の任意の要素とし、<span class="math inline">\(m\)</span> を <span class="math inline">\(A_1, \ldots, A_n\)</span> のうち <span class="math inline">\(x\)</span> を含む集合の個数とします（ここで <span class="math inline">\(m \geq 1\)</span>）。</p>
@@ -313,7 +289,7 @@ window.Quarto = {
 <p>したがって： <span class="math display">\[\sum_{k=1}^{m} (-1)^{k+1} \binom{m}{k} = \sum_{k=1}^{m} (-1)^k \binom{m}{k} \cdot (-1) = -\left(\sum_{k=1}^{m} (-1)^k \binom{m}{k}\right) = -(-1) = 1\]</span></p>
 <p>よって、各要素は正確に1回数えられ、原理が証明されます。</p>
 </section>
-<section id="応用" class="level2">
+<section class="level2" id="応用">
 <h2 class="anchored" data-anchor-id="応用">応用</h2>
 <ol type="1">
 <li><strong>完全順列</strong>：固定点を持たない順列の数え上げ</li>
@@ -323,18 +299,18 @@ window.Quarto = {
 <li><strong>グラフ理論</strong>：特定の性質を持つグラフの数え上げ</li>
 </ol>
 </section>
-<section id="例整数の数え上げ" class="level2">
+<section class="level2" id="例整数の数え上げ">
 <h2 class="anchored" data-anchor-id="例整数の数え上げ">例：整数の数え上げ</h2>
 <p>1から1000までの整数のうち、2、3、または5で割り切れるものは何個あるか？</p>
 <p>次のように定義します： - <span class="math inline">\(A\)</span> = 2で割り切れる整数 - <span class="math inline">\(B\)</span> = 3で割り切れる整数 - <span class="math inline">\(C\)</span> = 5で割り切れる整数</p>
 <p>すると： - <span class="math inline">\(|A| = \lfloor 1000/2 \rfloor = 500\)</span> - <span class="math inline">\(|B| = \lfloor 1000/3 \rfloor = 333\)</span> - <span class="math inline">\(|C| = \lfloor 1000/5 \rfloor = 200\)</span> - <span class="math inline">\(|A \cap B| = \lfloor 1000/6 \rfloor = 166\)</span> - <span class="math inline">\(|A \cap C| = \lfloor 1000/10 \rfloor = 100\)</span> - <span class="math inline">\(|B \cap C| = \lfloor 1000/15 \rfloor = 66\)</span> - <span class="math inline">\(|A \cap B \cap C| = \lfloor 1000/30 \rfloor = 33\)</span></p>
 <p>包除原理により： <span class="math display">\[|A \cup B \cup C| = 500 + 333 + 200 - 166 - 100 - 66 + 33 = 734\]</span></p>
 </section>
-<section id="歴史的注記" class="level2">
+<section class="level2" id="歴史的注記">
 <h2 class="anchored" data-anchor-id="歴史的注記">歴史的注記</h2>
 <p>この原理はアブラハム・ド・モアブル（1718年）に帰属されますが、明示的に現れるのはダニエル・ダ・シルバ（1854年）とJ. J. シルベスター（1883年）の論文が最初です。ジャン＝カルロ・ロータが述べたように、「離散確率論と組合せ論における列挙の最も有用な原理の一つが、有名な包除原理である」とされています。</p>
 </section>
-<section id="依存関係グラフ" class="level2">
+<section class="level2" id="依存関係グラフ">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -359,13 +335,12 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="インタラクティブ可視化" class="level2">
+<section class="level2" id="インタラクティブ可視化">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-inclusion-exclusion-1753761154" class="graph-visualization-container">
-  <div class="graph-loading">Loading visualization...</div>
+<div class="graph-visualization-container" id="graph-viz-thm-inclusion-exclusion-1753763787">
+<div class="graph-loading">Loading visualization...</div>
 </div>
-
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -610,12 +585,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-inclusion-exclusion-1753761154', {
+    createForceGraph(data, 'graph-viz-thm-inclusion-exclusion-1753763787', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-inclusion-exclusion-1753761154').innerHTML =
+    document.getElementById('graph-viz-thm-inclusion-exclusion-1753763787').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -627,7 +602,6 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
-
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -676,13 +650,9 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
-
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/ja/thm-inclusion-exclusion.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
-
-
 </section>
 </section>
-
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1085,20 +1055,16 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
+<div class="nav-footer">
+<div class="nav-footer-left">
+       
+    </div>
+<div class="nav-footer-center">
 <p>Mathematics Knowledge Graph Wiki - Built with Quarto and RDF</p>
 </div>
-    <div class="nav-footer-right">
-      &nbsp;
+<div class="nav-footer-right">
+       
     </div>
-  </div>
+</div>
 </footer>
-
-
-
-
-</body></html>
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>

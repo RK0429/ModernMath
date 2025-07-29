@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.7.32" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <title>行列式 – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,27 +18,25 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
-
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../favicon.ico" rel="icon">
+<meta content="../../../" name="quarto:offset"/>
+<link href="../../../favicon.ico" rel="icon"/>
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
+<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,8 +66,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -121,10 +116,8 @@ ul.task-list li input[type="checkbox"] {
     document.head.appendChild(issueScript);
   })();
 </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -151,147 +144,130 @@ window.Quarto = {
   typesetMath
 };
 </script>
-
-<link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../../styles-multilingual.css">
+<link href="../../../styles.css" rel="stylesheet"/>
+<link href="../../../styles-multilingual.css" rel="stylesheet"/>
 </head>
-
 <body class="nav-fixed quarto-light">
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">数学ナレッジグラフ</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="サーチ"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../../index-ja.html"> 
-<span class="menu-text">ホーム</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
-<span class="menu-text">代数学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
-<span class="menu-text">解析学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
-<span class="menu-text">位相空間論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
-<span class="menu-text">幾何学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
-<span class="menu-text">圏論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
-<span class="menu-text">組合せ論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
-<span class="menu-text">論理学・集合論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
-<span class="menu-text">数論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
-<span class="menu-text">確率統計</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/about.html"> 
-<span class="menu-text">概要</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
-<span class="menu-text">貢献</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../../en/index.html"> 
-<span class="menu-text">🌐 English</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+<header class="headroom fixed-top" id="quarto-header">
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+<div class="navbar-container container-fluid">
+<div class="navbar-brand-container mx-auto">
+<a class="navbar-brand" href="../../../index.html">
+<span class="navbar-title">数学ナレッジグラフ</span>
+</a>
 </div>
-      </div> <!-- /container-fluid -->
-    </nav>
+<div class="" id="quarto-search" title="サーチ"></div>
+<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+<ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+<a class="nav-link" href="../../../index-ja.html">
+<span class="menu-text">ホーム</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/algebra/index.html">
+<span class="menu-text">代数学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/analysis/index.html">
+<span class="menu-text">解析学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/topology/index.html">
+<span class="menu-text">位相空間論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/geometry/index.html">
+<span class="menu-text">幾何学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+<span class="menu-text">圏論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+<span class="menu-text">組合せ論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+<span class="menu-text">論理学・集合論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+<span class="menu-text">数論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+<span class="menu-text">確率統計</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/about.html">
+<span class="menu-text">概要</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/contributing.html">
+<span class="menu-text">貢献</span></a>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
+</i>
+<span class="menu-text"></span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../../en/index.html">
+<span class="menu-text">🌐 English</span></a>
+</li>
+</ul>
+</div> <!-- /navcollapse -->
+<div class="quarto-navbar-tools">
+</div>
+</div> <!-- /container-fluid -->
+</nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">目次</h2>
-   
-  <ul>
-  <li><a href="#def-determinant" id="toc-def-determinant" class="nav-link active" data-scroll-target="#def-determinant">行列式</a>
-  <ul class="collapse">
-  <li><a href="#形式的定義" id="toc-形式的定義" class="nav-link" data-scroll-target="#形式的定義">形式的定義</a></li>
-  <li><a href="#計算方法" id="toc-計算方法" class="nav-link" data-scroll-target="#計算方法">計算方法</a>
-  <ul class="collapse">
-  <li><a href="#times-2-行列の場合" id="toc-times-2-行列の場合" class="nav-link" data-scroll-target="#times-2-行列の場合"><span class="math inline">\(2 \times 2\)</span> 行列の場合</a></li>
-  <li><a href="#times-3-行列の場合" id="toc-times-3-行列の場合" class="nav-link" data-scroll-target="#times-3-行列の場合"><span class="math inline">\(3 \times 3\)</span> 行列の場合</a></li>
-  <li><a href="#一般の場合余因子展開" id="toc-一般の場合余因子展開" class="nav-link" data-scroll-target="#一般の場合余因子展開">一般の場合：余因子展開</a></li>
-  </ul></li>
-  <li><a href="#主要な性質" id="toc-主要な性質" class="nav-link" data-scroll-target="#主要な性質">主要な性質</a></li>
-  <li><a href="#幾何学的解釈" id="toc-幾何学的解釈" class="nav-link" data-scroll-target="#幾何学的解釈">幾何学的解釈</a></li>
-  <li><a href="#行列の性質との関係" id="toc-行列の性質との関係" class="nav-link" data-scroll-target="#行列の性質との関係">行列の性質との関係</a></li>
-  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
-  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
-  </ul></li>
-  </ul>
+<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
+<nav class="toc-active" id="TOC" role="doc-toc">
+<h2 id="toc-title">目次</h2>
+<ul>
+<li><a class="nav-link active" data-scroll-target="#def-determinant" href="#def-determinant" id="toc-def-determinant">行列式</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#形式的定義" href="#形式的定義" id="toc-形式的定義">形式的定義</a></li>
+<li><a class="nav-link" data-scroll-target="#計算方法" href="#計算方法" id="toc-計算方法">計算方法</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#times-2-行列の場合" href="#times-2-行列の場合" id="toc-times-2-行列の場合"><span class="math inline">\(2 \times 2\)</span> 行列の場合</a></li>
+<li><a class="nav-link" data-scroll-target="#times-3-行列の場合" href="#times-3-行列の場合" id="toc-times-3-行列の場合"><span class="math inline">\(3 \times 3\)</span> 行列の場合</a></li>
+<li><a class="nav-link" data-scroll-target="#一般の場合余因子展開" href="#一般の場合余因子展開" id="toc-一般の場合余因子展開">一般の場合：余因子展開</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#主要な性質" href="#主要な性質" id="toc-主要な性質">主要な性質</a></li>
+<li><a class="nav-link" data-scroll-target="#幾何学的解釈" href="#幾何学的解釈" id="toc-幾何学的解釈">幾何学的解釈</a></li>
+<li><a class="nav-link" data-scroll-target="#行列の性質との関係" href="#行列の性質との関係" id="toc-行列の性質との関係">行列の性質との関係</a></li>
+<li><a class="nav-link" data-scroll-target="#依存関係グラフ" href="#依存関係グラフ" id="toc-依存関係グラフ">依存関係グラフ</a></li>
+<li><a class="nav-link" data-scroll-target="#インタラクティブ可視化" href="#インタラクティブ可視化" id="toc-インタラクティブ可視化">インタラクティブ可視化</a></li>
+</ul></li>
+</ul>
 </nav>
-    </div>
+</div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
+<header class="quarto-title-block default" id="title-block-header">
 <div class="quarto-title">
 <h1 class="title">行列式</h1>
 </div>
-
-
-
 <div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
+</div>
 </header>
-
-
-<section id="def-determinant" class="level1">
+<section class="level1" id="def-determinant">
 <h1>行列式</h1>
 <p><strong>行列式</strong>（ぎょうれつしき）は、正方行列に定義されるスカラー値関数で、行列とそれに対応する線形変換の重要な性質を符号化する。</p>
-<section id="形式的定義" class="level2">
+<section class="level2" id="形式的定義">
 <h2 class="anchored" data-anchor-id="形式的定義">形式的定義</h2>
 <p>体 <span class="math inline">\(F\)</span> 上の <span class="math inline">\(n \times n\)</span> 行列 <span class="math inline">\(A\)</span> に対して、行列式（<span class="math inline">\(\det(A)\)</span> または <span class="math inline">\(|A|\)</span> と表記）は、<span class="math inline">\(M_{n \times n}(F)\)</span> から <span class="math inline">\(F\)</span> への唯一の関数で、以下を満たす：</p>
 <ol type="1">
@@ -300,25 +276,25 @@ window.Quarto = {
 <li>2つの行を入れ替えると、行列式は <span class="math inline">\(-1\)</span> 倍される</li>
 </ol>
 </section>
-<section id="計算方法" class="level2">
+<section class="level2" id="計算方法">
 <h2 class="anchored" data-anchor-id="計算方法">計算方法</h2>
-<section id="times-2-行列の場合" class="level3">
+<section class="level3" id="times-2-行列の場合">
 <h3 class="anchored" data-anchor-id="times-2-行列の場合"><span class="math inline">\(2 \times 2\)</span> 行列の場合</h3>
 <p><span class="math inline">\(A = \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}\)</span> に対して： <span class="math display">\[\det(A) = ad - bc\]</span></p>
 </section>
-<section id="times-3-行列の場合" class="level3">
+<section class="level3" id="times-3-行列の場合">
 <h3 class="anchored" data-anchor-id="times-3-行列の場合"><span class="math inline">\(3 \times 3\)</span> 行列の場合</h3>
 <p><span class="math inline">\(A = \begin{pmatrix} a_{11} &amp; a_{12} &amp; a_{13} \\ a_{21} &amp; a_{22} &amp; a_{23} \\ a_{31} &amp; a_{32} &amp; a_{33} \end{pmatrix}\)</span> に対して：</p>
 <p>第1行に沿った余因子展開を使用： <span class="math display">\[\det(A) = a_{11}\begin{vmatrix} a_{22} &amp; a_{23} \\ a_{32} &amp; a_{33} \end{vmatrix} - a_{12}\begin{vmatrix} a_{21} &amp; a_{23} \\ a_{31} &amp; a_{33} \end{vmatrix} + a_{13}\begin{vmatrix} a_{21} &amp; a_{22} \\ a_{31} &amp; a_{32} \end{vmatrix}\]</span></p>
 </section>
-<section id="一般の場合余因子展開" class="level3">
+<section class="level3" id="一般の場合余因子展開">
 <h3 class="anchored" data-anchor-id="一般の場合余因子展開">一般の場合：余因子展開</h3>
 <p><span class="math inline">\(n \times n\)</span> 行列に対して、行列式は任意の行 <span class="math inline">\(i\)</span> または列 <span class="math inline">\(j\)</span> に沿った余因子展開で計算できる：</p>
 <p><span class="math display">\[\det(A) = \sum_{k=1}^n a_{ik}(-1)^{i+k}M_{ik}\]</span></p>
 <p>ここで <span class="math inline">\(M_{ik}\)</span> は小行列式（行 <span class="math inline">\(i\)</span> と列 <span class="math inline">\(k\)</span> を削除して得られる <span class="math inline">\((n-1) \times (n-1)\)</span> 行列の行列式）である。</p>
 </section>
 </section>
-<section id="主要な性質" class="level2">
+<section class="level2" id="主要な性質">
 <h2 class="anchored" data-anchor-id="主要な性質">主要な性質</h2>
 <ol type="1">
 <li><strong>積の性質</strong>: <span class="math inline">\(\det(AB) = \det(A)\det(B)\)</span></li>
@@ -334,16 +310,16 @@ window.Quarto = {
 <li><strong>零行列式</strong>: <span class="math inline">\(\det(A) = 0\)</span> となるのは、行（または列）が線形従属である場合に限る</li>
 </ol>
 </section>
-<section id="幾何学的解釈" class="level2">
+<section class="level2" id="幾何学的解釈">
 <h2 class="anchored" data-anchor-id="幾何学的解釈">幾何学的解釈</h2>
 <p>実数成分の行列に対して： - 2次元：<span class="math inline">\(|\det(A)|\)</span> は列ベクトルが作る平行四辺形の面積を表す - 3次元：<span class="math inline">\(|\det(A)|\)</span> は列ベクトルが作る平行六面体の体積を表す - 符号は向きを示す（正は保存、負は反転）</p>
 </section>
-<section id="行列の性質との関係" class="level2">
+<section class="level2" id="行列の性質との関係">
 <h2 class="anchored" data-anchor-id="行列の性質との関係">行列の性質との関係</h2>
 <p>正方行列 <span class="math inline">\(A\)</span> について、以下は同値である： - <span class="math inline">\(\det(A) \neq 0\)</span> - <span class="math inline">\(A\)</span> は可逆である - <span class="math inline">\(A\)</span> の列（および行）は線形独立である - <span class="math inline">\(A\)</span> が表す線形変換は<a href="../../../content/ja/algebra/def-isomorphism.html">同型写像</a>である</p>
 <p>行列式は線形代数の基本的なツールであり、連立一次方程式を解くためのクラメルの公式、<a href="../../../content/ja/algebra/def-eigenvalue-eigenvector.html">固有値</a>を求めるための特性多項式、逆行列の計算などに現れる。</p>
 </section>
-<section id="依存関係グラフ" class="level2">
+<section class="level2" id="依存関係グラフ">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -356,26 +332,26 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-function["関数"]:::definition
-    def-normal-subgroup["正規部分群"]:::definition
-    def-isomorphism["群同型"]:::definition
-    def-field["体"]:::definition
-    def-matrix["行列"]:::definition
     def-determinant["行列式"]:::definition
+    def-function["関数"]:::definition
     def-eigenvalue-eigenvector["固有値と固有ベクトル"]:::definition
-    def-eigenvalue-eigenvector --&gt; def-determinant
-    def-determinant --&gt; def-function
-    def-determinant --&gt; def-matrix
-    def-determinant --&gt; def-field
+    def-matrix["行列"]:::definition
+    def-isomorphism["群同型"]:::definition
+    def-normal-subgroup["正規部分群"]:::definition
+    def-field["体"]:::definition
     def-determinant --&gt; def-isomorphism
+    def-determinant --&gt; def-field
     def-normal-subgroup --&gt; def-determinant
+    def-determinant --&gt; def-function
+    def-eigenvalue-eigenvector --&gt; def-determinant
+    def-determinant --&gt; def-matrix
     class def-determinant current
     click def-function "def-function.html" "関数へ"
-    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群へ"
-    click def-isomorphism "def-isomorphism.html" "群同型へ"
-    click def-field "def-field.html" "体へ"
-    click def-matrix "def-matrix.html" "行列へ"
     click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "固有値と固有ベクトルへ"
+    click def-matrix "def-matrix.html" "行列へ"
+    click def-isomorphism "def-isomorphism.html" "群同型へ"
+    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群へ"
+    click def-field "def-field.html" "体へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -383,13 +359,12 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="インタラクティブ可視化" class="level2">
+<section class="level2" id="インタラクティブ可視化">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-determinant-1753761172" class="graph-visualization-container">
-  <div class="graph-loading">Loading visualization...</div>
+<div class="graph-visualization-container" id="graph-viz-def-determinant-1753763804">
+<div class="graph-loading">Loading visualization...</div>
 </div>
-
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -634,12 +609,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-determinant-1753761172', {
+    createForceGraph(data, 'graph-viz-def-determinant-1753763804', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-determinant-1753761172').innerHTML =
+    document.getElementById('graph-viz-def-determinant-1753763804').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -651,7 +626,6 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
-
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -700,13 +674,9 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
-
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/ja/def-determinant.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
-
-
 </section>
 </section>
-
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1109,20 +1079,16 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
+<div class="nav-footer">
+<div class="nav-footer-left">
+       
+    </div>
+<div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-    <div class="nav-footer-right">
-      &nbsp;
+<div class="nav-footer-right">
+       
     </div>
-  </div>
+</div>
 </footer>
-
-
-
-
-</body></html>
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>

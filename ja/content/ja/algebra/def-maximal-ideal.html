@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.7.32" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <title>極大イデアル – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,27 +18,25 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
-
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../favicon.ico" rel="icon">
+<meta content="../../../" name="quarto:offset"/>
+<link href="../../../favicon.ico" rel="icon"/>
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
+<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,8 +66,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -121,10 +116,8 @@ ul.task-list li input[type="checkbox"] {
     document.head.appendChild(issueScript);
   })();
 </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -151,153 +144,136 @@ window.Quarto = {
   typesetMath
 };
 </script>
-
-<link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../../styles-multilingual.css">
+<link href="../../../styles.css" rel="stylesheet"/>
+<link href="../../../styles-multilingual.css" rel="stylesheet"/>
 </head>
-
 <body class="nav-fixed quarto-light">
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">数学ナレッジグラフ</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="サーチ"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../../index-ja.html"> 
-<span class="menu-text">ホーム</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
-<span class="menu-text">代数学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
-<span class="menu-text">解析学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
-<span class="menu-text">位相空間論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
-<span class="menu-text">幾何学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
-<span class="menu-text">圏論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
-<span class="menu-text">組合せ論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
-<span class="menu-text">論理学・集合論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
-<span class="menu-text">数論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
-<span class="menu-text">確率統計</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/about.html"> 
-<span class="menu-text">概要</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
-<span class="menu-text">貢献</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../../en/index.html"> 
-<span class="menu-text">🌐 English</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+<header class="headroom fixed-top" id="quarto-header">
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+<div class="navbar-container container-fluid">
+<div class="navbar-brand-container mx-auto">
+<a class="navbar-brand" href="../../../index.html">
+<span class="navbar-title">数学ナレッジグラフ</span>
+</a>
 </div>
-      </div> <!-- /container-fluid -->
-    </nav>
+<div class="" id="quarto-search" title="サーチ"></div>
+<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+<ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+<a class="nav-link" href="../../../index-ja.html">
+<span class="menu-text">ホーム</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/algebra/index.html">
+<span class="menu-text">代数学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/analysis/index.html">
+<span class="menu-text">解析学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/topology/index.html">
+<span class="menu-text">位相空間論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/geometry/index.html">
+<span class="menu-text">幾何学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+<span class="menu-text">圏論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+<span class="menu-text">組合せ論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+<span class="menu-text">論理学・集合論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+<span class="menu-text">数論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+<span class="menu-text">確率統計</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/about.html">
+<span class="menu-text">概要</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/contributing.html">
+<span class="menu-text">貢献</span></a>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
+</i>
+<span class="menu-text"></span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../../en/index.html">
+<span class="menu-text">🌐 English</span></a>
+</li>
+</ul>
+</div> <!-- /navcollapse -->
+<div class="quarto-navbar-tools">
+</div>
+</div> <!-- /container-fluid -->
+</nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">目次</h2>
-   
-  <ul>
-  <li><a href="#def-maximal-ideal" id="toc-def-maximal-ideal" class="nav-link active" data-scroll-target="#def-maximal-ideal">極大イデアル</a>
-  <ul class="collapse">
-  <li><a href="#形式的定義" id="toc-形式的定義" class="nav-link" data-scroll-target="#形式的定義">形式的定義</a></li>
-  <li><a href="#同値な特徴づけ" id="toc-同値な特徴づけ" class="nav-link" data-scroll-target="#同値な特徴づけ">同値な特徴づけ</a>
-  <ul class="collapse">
-  <li><a href="#剰余環による特徴づけ" id="toc-剰余環による特徴づけ" class="nav-link" data-scroll-target="#剰余環による特徴づけ">剰余環による特徴づけ</a></li>
-  <li><a href="#ツォルンの補題による特徴づけ" id="toc-ツォルンの補題による特徴づけ" class="nav-link" data-scroll-target="#ツォルンの補題による特徴づけ">ツォルンの補題による特徴づけ</a></li>
-  </ul></li>
-  <li><a href="#性質" id="toc-性質" class="nav-link" data-scroll-target="#性質">性質</a></li>
-  <li><a href="#例" id="toc-例" class="nav-link" data-scroll-target="#例">例</a>
-  <ul class="collapse">
-  <li><a href="#整数環において" id="toc-整数環において" class="nav-link" data-scroll-target="#整数環において">整数環において</a></li>
-  <li><a href="#多項式環において" id="toc-多項式環において" class="nav-link" data-scroll-target="#多項式環において">多項式環において</a></li>
-  <li><a href="#関数環において" id="toc-関数環において" class="nav-link" data-scroll-target="#関数環において">関数環において</a></li>
-  </ul></li>
-  <li><a href="#代数幾何学との関係" id="toc-代数幾何学との関係" class="nav-link" data-scroll-target="#代数幾何学との関係">代数幾何学との関係</a></li>
-  <li><a href="#ヤコブソン根基" id="toc-ヤコブソン根基" class="nav-link" data-scroll-target="#ヤコブソン根基">ヤコブソン根基</a></li>
-  <li><a href="#歴史的注記" id="toc-歴史的注記" class="nav-link" data-scroll-target="#歴史的注記">歴史的注記</a></li>
-  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
-  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
-  </ul></li>
-  </ul>
+<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
+<nav class="toc-active" id="TOC" role="doc-toc">
+<h2 id="toc-title">目次</h2>
+<ul>
+<li><a class="nav-link active" data-scroll-target="#def-maximal-ideal" href="#def-maximal-ideal" id="toc-def-maximal-ideal">極大イデアル</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#形式的定義" href="#形式的定義" id="toc-形式的定義">形式的定義</a></li>
+<li><a class="nav-link" data-scroll-target="#同値な特徴づけ" href="#同値な特徴づけ" id="toc-同値な特徴づけ">同値な特徴づけ</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#剰余環による特徴づけ" href="#剰余環による特徴づけ" id="toc-剰余環による特徴づけ">剰余環による特徴づけ</a></li>
+<li><a class="nav-link" data-scroll-target="#ツォルンの補題による特徴づけ" href="#ツォルンの補題による特徴づけ" id="toc-ツォルンの補題による特徴づけ">ツォルンの補題による特徴づけ</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#性質" href="#性質" id="toc-性質">性質</a></li>
+<li><a class="nav-link" data-scroll-target="#例" href="#例" id="toc-例">例</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#整数環において" href="#整数環において" id="toc-整数環において">整数環において</a></li>
+<li><a class="nav-link" data-scroll-target="#多項式環において" href="#多項式環において" id="toc-多項式環において">多項式環において</a></li>
+<li><a class="nav-link" data-scroll-target="#関数環において" href="#関数環において" id="toc-関数環において">関数環において</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#代数幾何学との関係" href="#代数幾何学との関係" id="toc-代数幾何学との関係">代数幾何学との関係</a></li>
+<li><a class="nav-link" data-scroll-target="#ヤコブソン根基" href="#ヤコブソン根基" id="toc-ヤコブソン根基">ヤコブソン根基</a></li>
+<li><a class="nav-link" data-scroll-target="#歴史的注記" href="#歴史的注記" id="toc-歴史的注記">歴史的注記</a></li>
+<li><a class="nav-link" data-scroll-target="#依存関係グラフ" href="#依存関係グラフ" id="toc-依存関係グラフ">依存関係グラフ</a></li>
+<li><a class="nav-link" data-scroll-target="#インタラクティブ可視化" href="#インタラクティブ可視化" id="toc-インタラクティブ可視化">インタラクティブ可視化</a></li>
+</ul></li>
+</ul>
 </nav>
-    </div>
+</div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
+<header class="quarto-title-block default" id="title-block-header">
 <div class="quarto-title">
 <h1 class="title">極大イデアル</h1>
 </div>
-
-
-
 <div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
+</div>
 </header>
-
-
-<section id="def-maximal-ideal" class="level1">
+<section class="level1" id="def-maximal-ideal">
 <h1>極大イデアル</h1>
 <p><strong>極大イデアル</strong>は、すべての真のイデアルの中で集合の包含関係に関して極大である<a href="../../../content/ja/algebra/def-ideal.html">イデアル</a>です。言い換えれば、他のどの真のイデアルにも真に含まれない真のイデアルです。</p>
-<section id="形式的定義" class="level2">
+<section class="level2" id="形式的定義">
 <h2 class="anchored" data-anchor-id="形式的定義">形式的定義</h2>
 <p><span class="math inline">\(R\)</span>を<a href="../../../content/ja/algebra/def-ring.html">環</a>とする。<a href="../../../content/ja/algebra/def-ideal.html">イデアル</a> <span class="math inline">\(M \subseteq R\)</span>が<strong>極大イデアル</strong>であるとは：</p>
 <ol type="1">
@@ -306,19 +282,19 @@ window.Quarto = {
 </ol>
 <p>同値な表現として、<span class="math inline">\(M\)</span>と<span class="math inline">\(R\)</span>の間に厳密に存在するイデアルがないとき、<span class="math inline">\(M\)</span>は極大である。</p>
 </section>
-<section id="同値な特徴づけ" class="level2">
+<section class="level2" id="同値な特徴づけ">
 <h2 class="anchored" data-anchor-id="同値な特徴づけ">同値な特徴づけ</h2>
-<section id="剰余環による特徴づけ" class="level3">
+<section class="level3" id="剰余環による特徴づけ">
 <h3 class="anchored" data-anchor-id="剰余環による特徴づけ">剰余環による特徴づけ</h3>
 <p>環<span class="math inline">\(R\)</span>のイデアル<span class="math inline">\(M\)</span>が極大イデアルであることと、<a href="../../../content/ja/algebra/def-quotient-ring.html">剰余環</a> <span class="math inline">\(R/M\)</span>が<a href="../../../content/ja/algebra/def-field.html">体</a>であることは同値である。</p>
 <p><strong>証明</strong>： - (<span class="math inline">\(\Rightarrow\)</span>) <span class="math inline">\(M\)</span>を極大イデアルとする。<span class="math inline">\(R/M\)</span>において<span class="math inline">\(a + M \neq 0 + M\)</span>とする。このとき<span class="math inline">\(a \notin M\)</span>なので、イデアル<span class="math inline">\((M, a) = M + (a)\)</span>は<span class="math inline">\(M\)</span>を真に含む。極大性により<span class="math inline">\((M, a) = R\)</span>となり、ある<span class="math inline">\(m \in M\)</span>と<span class="math inline">\(r \in R\)</span>に対して<span class="math inline">\(1 = m + ra\)</span>となる。よって<span class="math inline">\((r + M)(a + M) = 1 + M\)</span>となり、<span class="math inline">\(a + M\)</span>は逆元を持つ。 - (<span class="math inline">\(\Leftarrow\)</span>) <span class="math inline">\(R/M\)</span>を体とする。<span class="math inline">\(M \subset I \subseteq R\)</span>となるイデアル<span class="math inline">\(I\)</span>を考える。<span class="math inline">\(a \in I \setminus M\)</span>を取る。<span class="math inline">\(a + M \neq 0 + M\)</span>かつ<span class="math inline">\(R/M\)</span>は体なので、ある<span class="math inline">\(r \in R\)</span>で<span class="math inline">\((r + M)(a + M) = 1 + M\)</span>となるものが存在する。よって<span class="math inline">\(1 - ra \in M \subset I\)</span>となり、<span class="math inline">\(1 = (1 - ra) + ra \in I\)</span>が成り立つ。これは<span class="math inline">\(I = R\)</span>を意味する。</p>
 </section>
-<section id="ツォルンの補題による特徴づけ" class="level3">
+<section class="level3" id="ツォルンの補題による特徴づけ">
 <h3 class="anchored" data-anchor-id="ツォルンの補題による特徴づけ">ツォルンの補題による特徴づけ</h3>
 <p>すべての真のイデアルは極大イデアルに含まれる。これは与えられたイデアルを含む真のイデアルの半順序集合にツォルンの補題を適用することで従う。</p>
 </section>
 </section>
-<section id="性質" class="level2">
+<section class="level2" id="性質">
 <h2 class="anchored" data-anchor-id="性質">性質</h2>
 <ul>
 <li>すべての極大イデアルは<a href="../../../content/ja/algebra/def-prime-ideal.html">素イデアル</a>である</li>
@@ -327,34 +303,34 @@ window.Quarto = {
 <li>クルルの定理：単位元を持つすべての環は少なくとも1つの極大左イデアルを持つ（右イデアル、両側イデアルについても同様）</li>
 </ul>
 </section>
-<section id="例" class="level2">
+<section class="level2" id="例">
 <h2 class="anchored" data-anchor-id="例">例</h2>
-<section id="整数環において" class="level3">
+<section class="level3" id="整数環において">
 <h3 class="anchored" data-anchor-id="整数環において">整数環において</h3>
 <p><span class="math inline">\(\mathbb{Z}\)</span>において： - イデアル<span class="math inline">\((p) = p\mathbb{Z}\)</span>が極大イデアルであることと、<span class="math inline">\(p\)</span>が素数であることは同値 - これは<span class="math inline">\(\mathbb{Z}/(p) \cong \mathbb{Z}_p\)</span>が体であることと<span class="math inline">\(p\)</span>が素数であることが同値であるため - <span class="math inline">\((0)\)</span>は素イデアルだが極大イデアルではない（任意の素数<span class="math inline">\(p\)</span>に対して<span class="math inline">\((0) \subset (p) \subset \mathbb{Z}\)</span>となるため）</p>
 </section>
-<section id="多項式環において" class="level3">
+<section class="level3" id="多項式環において">
 <h3 class="anchored" data-anchor-id="多項式環において">多項式環において</h3>
 <p><span class="math inline">\(\mathbb{R}[x]\)</span>において： - 任意の<span class="math inline">\(a \in \mathbb{R}\)</span>に対して<span class="math inline">\((x - a)\)</span>は極大イデアル（<span class="math inline">\(\mathbb{R}[x]/(x - a) \cong \mathbb{R}\)</span>は体であるため） - <span class="math inline">\((x^2 + 1)\)</span>は極大イデアル（<span class="math inline">\(\mathbb{R}[x]/(x^2 + 1) \cong \mathbb{C}\)</span>は体であるため） - <span class="math inline">\(\mathbb{Z}[x]\)</span>において<span class="math inline">\((x)\)</span>は極大イデアルではない（<span class="math inline">\(\mathbb{Z}[x]/(x) \cong \mathbb{Z}\)</span>は体ではないため）</p>
 </section>
-<section id="関数環において" class="level3">
+<section class="level3" id="関数環において">
 <h3 class="anchored" data-anchor-id="関数環において">関数環において</h3>
 <p><span class="math inline">\(C[a,b]\)</span>（<span class="math inline">\([a,b]\)</span>上の連続実数値関数の環）において： - 任意の<span class="math inline">\(x_0 \in [a,b]\)</span>に対して、イデアル<span class="math inline">\(M_{x_0} = \{f \in C[a,b] : f(x_0) = 0\}\)</span>は極大イデアル - 評価写像<span class="math inline">\(f + M_{x_0} \mapsto f(x_0)\)</span>により剰余<span class="math inline">\(C[a,b]/M_{x_0} \cong \mathbb{R}\)</span></p>
 </section>
 </section>
-<section id="代数幾何学との関係" class="level2">
+<section class="level2" id="代数幾何学との関係">
 <h2 class="anchored" data-anchor-id="代数幾何学との関係">代数幾何学との関係</h2>
 <p>代数幾何学において： - 極大イデアルは環のスペクトラムの点に対応する - <span class="math inline">\(k\)</span>が代数的閉体のとき、<span class="math inline">\(k[x_1, \ldots, x_n]\)</span>に対して、極大イデアルはヒルベルトの零点定理により<span class="math inline">\(k^n\)</span>の点に対応する - 極大スペクトラム<span class="math inline">\(\text{Specm}(R)\)</span>はすべての極大イデアルから成り、素スペクトラムの部分空間を形成する</p>
 </section>
-<section id="ヤコブソン根基" class="level2">
+<section class="level2" id="ヤコブソン根基">
 <h2 class="anchored" data-anchor-id="ヤコブソン根基">ヤコブソン根基</h2>
 <p>環<span class="math inline">\(R\)</span>のすべての極大イデアルの共通部分をヤコブソン根基<span class="math inline">\(J(R)\)</span>という： - <span class="math inline">\(J(R) = \bigcap \{M : M \text{ は } R \text{ の極大イデアル}\}\)</span> - 元が<span class="math inline">\(J(R)\)</span>に属することと、すべての<span class="math inline">\(r \in R\)</span>に対して<span class="math inline">\(1 - rx\)</span>が単元であることは同値 - 剰余<span class="math inline">\(R/J(R)\)</span>は半単純環である</p>
 </section>
-<section id="歴史的注記" class="level2">
+<section class="level2" id="歴史的注記">
 <h2 class="anchored" data-anchor-id="歴史的注記">歴史的注記</h2>
 <p>極大イデアルの概念は、1920年代のエミー・ネーターのイデアル理論への抽象的アプローチから生まれました。単位元を持つ環における極大イデアルの存在（クルルの定理、1929年）は、代数におけるツォルンの補題の最初の重要な応用の1つであり、環論における集合論的方法の威力を示しました。</p>
 </section>
-<section id="依存関係グラフ" class="level2">
+<section class="level2" id="依存関係グラフ">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -367,26 +343,26 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-field["体"]:::definition
-    def-ring["環"]:::definition
-    def-quotient-ring["剰余環"]:::definition
-    def-maximal-ideal["極大イデアル"]:::definition
-    def-subset["部分集合"]:::definition
     def-prime-ideal["素イデアル"]:::definition
+    def-quotient-ring["剰余環"]:::definition
+    def-ring["環"]:::definition
+    def-subset["部分集合"]:::definition
+    def-maximal-ideal["極大イデアル"]:::definition
     def-ideal["イデアル"]:::definition
+    def-field["体"]:::definition
+    def-maximal-ideal --&gt; def-ideal
     def-maximal-ideal --&gt; def-quotient-ring
     def-maximal-ideal --&gt; def-prime-ideal
-    def-maximal-ideal --&gt; def-ideal
     def-maximal-ideal --&gt; def-field
     def-maximal-ideal --&gt; def-subset
     def-maximal-ideal --&gt; def-ring
     class def-maximal-ideal current
-    click def-field "def-field.html" "体へ"
-    click def-ring "def-ring.html" "環へ"
-    click def-quotient-ring "def-quotient-ring.html" "剰余環へ"
-    click def-subset "def-subset.html" "部分集合へ"
     click def-prime-ideal "def-prime-ideal.html" "素イデアルへ"
+    click def-quotient-ring "def-quotient-ring.html" "剰余環へ"
+    click def-ring "def-ring.html" "環へ"
+    click def-subset "def-subset.html" "部分集合へ"
     click def-ideal "def-ideal.html" "イデアルへ"
+    click def-field "def-field.html" "体へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -394,13 +370,12 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="インタラクティブ可視化" class="level2">
+<section class="level2" id="インタラクティブ可視化">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-maximal-ideal-1753761181" class="graph-visualization-container">
-  <div class="graph-loading">Loading visualization...</div>
+<div class="graph-visualization-container" id="graph-viz-def-maximal-ideal-1753763813">
+<div class="graph-loading">Loading visualization...</div>
 </div>
-
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -645,12 +620,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-maximal-ideal-1753761181', {
+    createForceGraph(data, 'graph-viz-def-maximal-ideal-1753763813', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-maximal-ideal-1753761181').innerHTML =
+    document.getElementById('graph-viz-def-maximal-ideal-1753763813').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -662,7 +637,6 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
-
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -711,13 +685,9 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
-
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/ja/def-maximal-ideal.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
-
-
 </section>
 </section>
-
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1120,20 +1090,16 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
+<div class="nav-footer">
+<div class="nav-footer-left">
+       
+    </div>
+<div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-    <div class="nav-footer-right">
-      &nbsp;
+<div class="nav-footer-right">
+       
     </div>
-  </div>
+</div>
 </footer>
-
-
-
-
-</body></html>
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>

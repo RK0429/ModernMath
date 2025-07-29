@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.7.32" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <title>Tree – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,27 +18,25 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
-
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../favicon.ico" rel="icon">
+<meta content="../../../" name="quarto:offset"/>
+<link href="../../../favicon.ico" rel="icon"/>
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
+<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,8 +66,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -121,10 +116,8 @@ ul.task-list li input[type="checkbox"] {
     document.head.appendChild(issueScript);
   })();
 </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -151,168 +144,151 @@ window.Quarto = {
   typesetMath
 };
 </script>
-
-<link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../../styles-multilingual.css">
+<link href="../../../styles.css" rel="stylesheet"/>
+<link href="../../../styles-multilingual.css" rel="stylesheet"/>
 </head>
-
 <body class="nav-fixed quarto-light">
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">数学ナレッジグラフ</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="サーチ"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../../index-ja.html"> 
-<span class="menu-text">ホーム</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
-<span class="menu-text">代数学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
-<span class="menu-text">解析学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
-<span class="menu-text">位相空間論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
-<span class="menu-text">幾何学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
-<span class="menu-text">圏論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
-<span class="menu-text">組合せ論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
-<span class="menu-text">論理学・集合論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
-<span class="menu-text">数論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
-<span class="menu-text">確率統計</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/about.html"> 
-<span class="menu-text">概要</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
-<span class="menu-text">貢献</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../../en/index.html"> 
-<span class="menu-text">🌐 English</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+<header class="headroom fixed-top" id="quarto-header">
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+<div class="navbar-container container-fluid">
+<div class="navbar-brand-container mx-auto">
+<a class="navbar-brand" href="../../../index.html">
+<span class="navbar-title">数学ナレッジグラフ</span>
+</a>
 </div>
-      </div> <!-- /container-fluid -->
-    </nav>
+<div class="" id="quarto-search" title="サーチ"></div>
+<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+<ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+<a class="nav-link" href="../../../index-ja.html">
+<span class="menu-text">ホーム</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/algebra/index.html">
+<span class="menu-text">代数学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/analysis/index.html">
+<span class="menu-text">解析学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/topology/index.html">
+<span class="menu-text">位相空間論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/geometry/index.html">
+<span class="menu-text">幾何学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+<span class="menu-text">圏論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+<span class="menu-text">組合せ論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+<span class="menu-text">論理学・集合論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+<span class="menu-text">数論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+<span class="menu-text">確率統計</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/about.html">
+<span class="menu-text">概要</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/contributing.html">
+<span class="menu-text">貢献</span></a>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
+</i>
+<span class="menu-text"></span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../../en/index.html">
+<span class="menu-text">🌐 English</span></a>
+</li>
+</ul>
+</div> <!-- /navcollapse -->
+<div class="quarto-navbar-tools">
+</div>
+</div> <!-- /container-fluid -->
+</nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">目次</h2>
-   
-  <ul>
-  <li><a href="#def-tree" id="toc-def-tree" class="nav-link active" data-scroll-target="#def-tree">Tree</a>
-  <ul class="collapse">
-  <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link" data-scroll-target="#formal-definition">Formal Definition</a></li>
-  <li><a href="#equivalent-characterizations" id="toc-equivalent-characterizations" class="nav-link" data-scroll-target="#equivalent-characterizations">Equivalent Characterizations</a></li>
-  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a>
-  <ul class="collapse">
-  <li><a href="#fundamental-properties" id="toc-fundamental-properties" class="nav-link" data-scroll-target="#fundamental-properties">Fundamental Properties</a></li>
-  <li><a href="#structural-properties" id="toc-structural-properties" class="nav-link" data-scroll-target="#structural-properties">Structural Properties</a></li>
-  </ul></li>
-  <li><a href="#special-types-of-trees" id="toc-special-types-of-trees" class="nav-link" data-scroll-target="#special-types-of-trees">Special Types of Trees</a>
-  <ul class="collapse">
-  <li><a href="#rooted-tree" id="toc-rooted-tree" class="nav-link" data-scroll-target="#rooted-tree">Rooted Tree</a></li>
-  <li><a href="#binary-tree" id="toc-binary-tree" class="nav-link" data-scroll-target="#binary-tree">Binary Tree</a></li>
-  <li><a href="#spanning-tree" id="toc-spanning-tree" class="nav-link" data-scroll-target="#spanning-tree">Spanning Tree</a></li>
-  </ul></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
-  <ul class="collapse">
-  <li><a href="#example-1-path-graph" id="toc-example-1-path-graph" class="nav-link" data-scroll-target="#example-1-path-graph">Example 1: Path Graph</a></li>
-  <li><a href="#example-2-star-graph" id="toc-example-2-star-graph" class="nav-link" data-scroll-target="#example-2-star-graph">Example 2: Star Graph</a></li>
-  <li><a href="#example-3-binary-tree" id="toc-example-3-binary-tree" class="nav-link" data-scroll-target="#example-3-binary-tree">Example 3: Binary Tree</a></li>
-  </ul></li>
-  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
-  <li><a href="#related-concepts" id="toc-related-concepts" class="nav-link" data-scroll-target="#related-concepts">Related Concepts</a>
-  <ul class="collapse">
-  <li><a href="#forest" id="toc-forest" class="nav-link" data-scroll-target="#forest">Forest</a></li>
-  <li><a href="#tree-center" id="toc-tree-center" class="nav-link" data-scroll-target="#tree-center">Tree Center</a></li>
-  <li><a href="#tree-diameter" id="toc-tree-diameter" class="nav-link" data-scroll-target="#tree-diameter">Tree Diameter</a></li>
-  </ul></li>
-  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
-  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
-  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
-  </ul></li>
-  </ul>
+<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
+<nav class="toc-active" id="TOC" role="doc-toc">
+<h2 id="toc-title">目次</h2>
+<ul>
+<li><a class="nav-link active" data-scroll-target="#def-tree" href="#def-tree" id="toc-def-tree">Tree</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#formal-definition" href="#formal-definition" id="toc-formal-definition">Formal Definition</a></li>
+<li><a class="nav-link" data-scroll-target="#equivalent-characterizations" href="#equivalent-characterizations" id="toc-equivalent-characterizations">Equivalent Characterizations</a></li>
+<li><a class="nav-link" data-scroll-target="#properties" href="#properties" id="toc-properties">Properties</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#fundamental-properties" href="#fundamental-properties" id="toc-fundamental-properties">Fundamental Properties</a></li>
+<li><a class="nav-link" data-scroll-target="#structural-properties" href="#structural-properties" id="toc-structural-properties">Structural Properties</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#special-types-of-trees" href="#special-types-of-trees" id="toc-special-types-of-trees">Special Types of Trees</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#rooted-tree" href="#rooted-tree" id="toc-rooted-tree">Rooted Tree</a></li>
+<li><a class="nav-link" data-scroll-target="#binary-tree" href="#binary-tree" id="toc-binary-tree">Binary Tree</a></li>
+<li><a class="nav-link" data-scroll-target="#spanning-tree" href="#spanning-tree" id="toc-spanning-tree">Spanning Tree</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#examples" href="#examples" id="toc-examples">Examples</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#example-1-path-graph" href="#example-1-path-graph" id="toc-example-1-path-graph">Example 1: Path Graph</a></li>
+<li><a class="nav-link" data-scroll-target="#example-2-star-graph" href="#example-2-star-graph" id="toc-example-2-star-graph">Example 2: Star Graph</a></li>
+<li><a class="nav-link" data-scroll-target="#example-3-binary-tree" href="#example-3-binary-tree" id="toc-example-3-binary-tree">Example 3: Binary Tree</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#applications" href="#applications" id="toc-applications">Applications</a></li>
+<li><a class="nav-link" data-scroll-target="#related-concepts" href="#related-concepts" id="toc-related-concepts">Related Concepts</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#forest" href="#forest" id="toc-forest">Forest</a></li>
+<li><a class="nav-link" data-scroll-target="#tree-center" href="#tree-center" id="toc-tree-center">Tree Center</a></li>
+<li><a class="nav-link" data-scroll-target="#tree-diameter" href="#tree-diameter" id="toc-tree-diameter">Tree Diameter</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#see-also" href="#see-also" id="toc-see-also">See Also</a></li>
+<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
+<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
+</ul></li>
+</ul>
 </nav>
-    </div>
+</div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
+<header class="quarto-title-block default" id="title-block-header">
 <div class="quarto-title">
 <h1 class="title">Tree</h1>
 </div>
-
-
-
 <div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
+</div>
 </header>
-
-
-<section id="def-tree" class="level1">
+<section class="level1" id="def-tree">
 <h1>Tree</h1>
 <p>A <strong>tree</strong> is a connected <a href="../../../content/en/combinatorics/def-graph.html">graph</a> with no cycles. It is one of the most fundamental structures in graph theory and has numerous applications in mathematics and computer science.</p>
-<section id="formal-definition" class="level2">
+<section class="level2" id="formal-definition">
 <h2 class="anchored" data-anchor-id="formal-definition">Formal Definition</h2>
 <p>A graph <span class="math inline">\(T = (V, E)\)</span> is a tree if and only if: 1. <span class="math inline">\(T\)</span> is connected (there exists a path between any two vertices) 2. <span class="math inline">\(T\)</span> is acyclic (contains no cycles)</p>
 </section>
-<section id="equivalent-characterizations" class="level2">
+<section class="level2" id="equivalent-characterizations">
 <h2 class="anchored" data-anchor-id="equivalent-characterizations">Equivalent Characterizations</h2>
 <p>For a graph <span class="math inline">\(T\)</span> with <span class="math inline">\(n\)</span> vertices, the following statements are equivalent:</p>
 <ol type="1">
@@ -324,9 +300,9 @@ window.Quarto = {
 <li><span class="math inline">\(T\)</span> is acyclic, but adding any edge creates exactly one cycle</li>
 </ol>
 </section>
-<section id="properties" class="level2">
+<section class="level2" id="properties">
 <h2 class="anchored" data-anchor-id="properties">Properties</h2>
-<section id="fundamental-properties" class="level3">
+<section class="level3" id="fundamental-properties">
 <h3 class="anchored" data-anchor-id="fundamental-properties">Fundamental Properties</h3>
 <ol type="1">
 <li><p><strong>Edge Count</strong>: A tree with <span class="math inline">\(n\)</span> vertices has exactly <span class="math inline">\(n - 1\)</span> edges</p></li>
@@ -335,7 +311,7 @@ window.Quarto = {
 <li><p><strong>Bipartite</strong>: Every tree is a bipartite graph (vertices can be colored with two colors such that no adjacent vertices share the same color)</p></li>
 </ol>
 </section>
-<section id="structural-properties" class="level3">
+<section class="level3" id="structural-properties">
 <h3 class="anchored" data-anchor-id="structural-properties">Structural Properties</h3>
 <ol type="1">
 <li><p><strong>Deletion Property</strong>: Removing any edge from a tree disconnects it into exactly two components</p></li>
@@ -344,37 +320,37 @@ window.Quarto = {
 </ol>
 </section>
 </section>
-<section id="special-types-of-trees" class="level2">
+<section class="level2" id="special-types-of-trees">
 <h2 class="anchored" data-anchor-id="special-types-of-trees">Special Types of Trees</h2>
-<section id="rooted-tree" class="level3">
+<section class="level3" id="rooted-tree">
 <h3 class="anchored" data-anchor-id="rooted-tree">Rooted Tree</h3>
 <p>A <strong>rooted tree</strong> is a tree with one designated vertex called the <em>root</em>. This imposes a hierarchical structure where: - Each vertex has a unique <em>parent</em> (except the root) - Vertices may have zero or more <em>children</em> - Leaves are vertices with no children</p>
 </section>
-<section id="binary-tree" class="level3">
+<section class="level3" id="binary-tree">
 <h3 class="anchored" data-anchor-id="binary-tree">Binary Tree</h3>
 <p>A rooted tree where each vertex has at most two children, typically designated as left and right children.</p>
 </section>
-<section id="spanning-tree" class="level3">
+<section class="level3" id="spanning-tree">
 <h3 class="anchored" data-anchor-id="spanning-tree">Spanning Tree</h3>
 <p>Given a connected graph <span class="math inline">\(G\)</span>, a <strong>spanning tree</strong> is a subgraph that: - Includes all vertices of <span class="math inline">\(G\)</span> - Is a tree</p>
 </section>
 </section>
-<section id="examples" class="level2">
+<section class="level2" id="examples">
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<section id="example-1-path-graph" class="level3">
+<section class="level3" id="example-1-path-graph">
 <h3 class="anchored" data-anchor-id="example-1-path-graph">Example 1: Path Graph</h3>
 <p>The path graph <span class="math inline">\(P_n\)</span> with vertices <span class="math inline">\(\{1, 2, ..., n\}\)</span> and edges <span class="math inline">\(\{(i, i+1) : 1 \leq i &lt; n\}\)</span> is a tree.</p>
 </section>
-<section id="example-2-star-graph" class="level3">
+<section class="level3" id="example-2-star-graph">
 <h3 class="anchored" data-anchor-id="example-2-star-graph">Example 2: Star Graph</h3>
 <p>The star graph <span class="math inline">\(S_n\)</span> with: - Central vertex <span class="math inline">\(c\)</span> - <span class="math inline">\(n\)</span> other vertices <span class="math inline">\(v_1, v_2, ..., v_n\)</span> - Edges connecting <span class="math inline">\(c\)</span> to each <span class="math inline">\(v_i\)</span></p>
 </section>
-<section id="example-3-binary-tree" class="level3">
+<section class="level3" id="example-3-binary-tree">
 <h3 class="anchored" data-anchor-id="example-3-binary-tree">Example 3: Binary Tree</h3>
 <p>A complete binary tree of height <span class="math inline">\(h\)</span> has: - <span class="math inline">\(2^{h+1} - 1\)</span> vertices - <span class="math inline">\(2^h\)</span> leaves - Internal vertices with exactly two children (except possibly at the last level)</p>
 </section>
 </section>
-<section id="applications" class="level2">
+<section class="level2" id="applications">
 <h2 class="anchored" data-anchor-id="applications">Applications</h2>
 <p>Trees are fundamental in:</p>
 <ol type="1">
@@ -399,22 +375,22 @@ window.Quarto = {
 </ul></li>
 </ol>
 </section>
-<section id="related-concepts" class="level2">
+<section class="level2" id="related-concepts">
 <h2 class="anchored" data-anchor-id="related-concepts">Related Concepts</h2>
-<section id="forest" class="level3">
+<section class="level3" id="forest">
 <h3 class="anchored" data-anchor-id="forest">Forest</h3>
 <p>A <strong>forest</strong> is an acyclic graph, equivalently a disjoint union of trees.</p>
 </section>
-<section id="tree-center" class="level3">
+<section class="level3" id="tree-center">
 <h3 class="anchored" data-anchor-id="tree-center">Tree Center</h3>
 <p>The <strong>center</strong> of a tree consists of the vertex or vertices with minimum eccentricity (maximum distance to any other vertex).</p>
 </section>
-<section id="tree-diameter" class="level3">
+<section class="level3" id="tree-diameter">
 <h3 class="anchored" data-anchor-id="tree-diameter">Tree Diameter</h3>
 <p>The <strong>diameter</strong> of a tree is the length of the longest path between any two vertices.</p>
 </section>
 </section>
-<section id="see-also" class="level2">
+<section class="level2" id="see-also">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
 <li><a href="../../../content/en/combinatorics/def-graph.html">Graph</a></li>
@@ -422,7 +398,7 @@ window.Quarto = {
 <li>Graph connectivity and paths</li>
 </ul>
 </section>
-<section id="dependency-graph" class="level2">
+<section class="level2" id="dependency-graph">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -437,11 +413,11 @@ window.Quarto = {
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-binomial-coefficient["Binomial Coefficient"]:::definition
     def-set["Set"]:::definition
-    def-tree["Tree"]:::definition
     def-graph["Graph"]:::definition
+    def-tree["Tree"]:::definition
+    def-tree --&gt; def-set
     def-tree --&gt; def-binomial-coefficient
     def-tree --&gt; def-graph
-    def-tree --&gt; def-set
     class def-tree current
     click def-binomial-coefficient "def-binomial-coefficient.html" "Go to Binomial Coefficient"
     click def-set "def-set.html" "Go to Set"
@@ -453,13 +429,12 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="interactive-visualization" class="level2">
+<section class="level2" id="interactive-visualization">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-tree-1753761334" class="graph-visualization-container">
-  <div class="graph-loading">Loading visualization...</div>
+<div class="graph-visualization-container" id="graph-viz-def-tree-1753763963">
+<div class="graph-loading">Loading visualization...</div>
 </div>
-
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -704,12 +679,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-tree-1753761334', {
+    createForceGraph(data, 'graph-viz-def-tree-1753763963', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-tree-1753761334').innerHTML =
+    document.getElementById('graph-viz-def-tree-1753763963').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -721,7 +696,6 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
-
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -770,13 +744,9 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
-
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/def-tree.html" target="_blank">full interactive version</a></p>
-
-
 </section>
 </section>
-
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1179,20 +1149,16 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
+<div class="nav-footer">
+<div class="nav-footer-left">
+       
+    </div>
+<div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-    <div class="nav-footer-right">
-      &nbsp;
+<div class="nav-footer-right">
+       
     </div>
-  </div>
+</div>
 </footer>
-
-
-
-
-</body></html>
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>

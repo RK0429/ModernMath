@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.7.32" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <title>Direct Product of Groups – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,27 +18,25 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
-
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../favicon.ico" rel="icon">
+<meta content="../../../" name="quarto:offset"/>
+<link href="../../../favicon.ico" rel="icon"/>
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
+<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,8 +66,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -121,10 +116,8 @@ ul.task-list li input[type="checkbox"] {
     document.head.appendChild(issueScript);
   })();
 </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -151,167 +144,150 @@ window.Quarto = {
   typesetMath
 };
 </script>
-
-<link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../../styles-multilingual.css">
+<link href="../../../styles.css" rel="stylesheet"/>
+<link href="../../../styles-multilingual.css" rel="stylesheet"/>
 </head>
-
 <body class="nav-fixed quarto-light">
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">数学ナレッジグラフ</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="サーチ"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../../index-ja.html"> 
-<span class="menu-text">ホーム</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
-<span class="menu-text">代数学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
-<span class="menu-text">解析学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
-<span class="menu-text">位相空間論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
-<span class="menu-text">幾何学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
-<span class="menu-text">圏論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
-<span class="menu-text">組合せ論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
-<span class="menu-text">論理学・集合論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
-<span class="menu-text">数論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
-<span class="menu-text">確率統計</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/about.html"> 
-<span class="menu-text">概要</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
-<span class="menu-text">貢献</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../../en/index.html"> 
-<span class="menu-text">🌐 English</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+<header class="headroom fixed-top" id="quarto-header">
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+<div class="navbar-container container-fluid">
+<div class="navbar-brand-container mx-auto">
+<a class="navbar-brand" href="../../../index.html">
+<span class="navbar-title">数学ナレッジグラフ</span>
+</a>
 </div>
-      </div> <!-- /container-fluid -->
-    </nav>
+<div class="" id="quarto-search" title="サーチ"></div>
+<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+<ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+<a class="nav-link" href="../../../index-ja.html">
+<span class="menu-text">ホーム</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/algebra/index.html">
+<span class="menu-text">代数学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/analysis/index.html">
+<span class="menu-text">解析学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/topology/index.html">
+<span class="menu-text">位相空間論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/geometry/index.html">
+<span class="menu-text">幾何学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+<span class="menu-text">圏論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+<span class="menu-text">組合せ論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+<span class="menu-text">論理学・集合論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+<span class="menu-text">数論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+<span class="menu-text">確率統計</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/about.html">
+<span class="menu-text">概要</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/contributing.html">
+<span class="menu-text">貢献</span></a>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
+</i>
+<span class="menu-text"></span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../../en/index.html">
+<span class="menu-text">🌐 English</span></a>
+</li>
+</ul>
+</div> <!-- /navcollapse -->
+<div class="quarto-navbar-tools">
+</div>
+</div> <!-- /container-fluid -->
+</nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">目次</h2>
-   
-  <ul>
-  <li><a href="#def-direct-product" id="toc-def-direct-product" class="nav-link active" data-scroll-target="#def-direct-product">Direct Product of Groups</a>
-  <ul class="collapse">
-  <li><a href="#construction" id="toc-construction" class="nav-link" data-scroll-target="#construction">Construction</a></li>
-  <li><a href="#group-structure" id="toc-group-structure" class="nav-link" data-scroll-target="#group-structure">Group Structure</a></li>
-  <li><a href="#important-properties" id="toc-important-properties" class="nav-link" data-scroll-target="#important-properties">Important Properties</a>
-  <ul class="collapse">
-  <li><a href="#order" id="toc-order" class="nav-link" data-scroll-target="#order">Order</a></li>
-  <li><a href="#abelian-property" id="toc-abelian-property" class="nav-link" data-scroll-target="#abelian-property">Abelian Property</a></li>
-  <li><a href="#canonical-embeddings" id="toc-canonical-embeddings" class="nav-link" data-scroll-target="#canonical-embeddings">Canonical Embeddings</a></li>
-  <li><a href="#canonical-projections" id="toc-canonical-projections" class="nav-link" data-scroll-target="#canonical-projections">Canonical Projections</a></li>
-  </ul></li>
-  <li><a href="#universal-property" id="toc-universal-property" class="nav-link" data-scroll-target="#universal-property">Universal Property</a></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
-  <ul class="collapse">
-  <li><a href="#klein-four-group" id="toc-klein-four-group" class="nav-link" data-scroll-target="#klein-four-group">Klein Four-Group</a></li>
-  <li><a href="#integer-plane" id="toc-integer-plane" class="nav-link" data-scroll-target="#integer-plane">Integer Plane</a></li>
-  <li><a href="#cyclic-group-products" id="toc-cyclic-group-products" class="nav-link" data-scroll-target="#cyclic-group-products">Cyclic Group Products</a></li>
-  </ul></li>
-  <li><a href="#generalizations" id="toc-generalizations" class="nav-link" data-scroll-target="#generalizations">Generalizations</a>
-  <ul class="collapse">
-  <li><a href="#finite-products" id="toc-finite-products" class="nav-link" data-scroll-target="#finite-products">Finite Products</a></li>
-  <li><a href="#infinite-products" id="toc-infinite-products" class="nav-link" data-scroll-target="#infinite-products">Infinite Products</a></li>
-  </ul></li>
-  <li><a href="#related-concepts" id="toc-related-concepts" class="nav-link" data-scroll-target="#related-concepts">Related Concepts</a></li>
-  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
-  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
-  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
-  </ul></li>
-  </ul>
+<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
+<nav class="toc-active" id="TOC" role="doc-toc">
+<h2 id="toc-title">目次</h2>
+<ul>
+<li><a class="nav-link active" data-scroll-target="#def-direct-product" href="#def-direct-product" id="toc-def-direct-product">Direct Product of Groups</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#construction" href="#construction" id="toc-construction">Construction</a></li>
+<li><a class="nav-link" data-scroll-target="#group-structure" href="#group-structure" id="toc-group-structure">Group Structure</a></li>
+<li><a class="nav-link" data-scroll-target="#important-properties" href="#important-properties" id="toc-important-properties">Important Properties</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#order" href="#order" id="toc-order">Order</a></li>
+<li><a class="nav-link" data-scroll-target="#abelian-property" href="#abelian-property" id="toc-abelian-property">Abelian Property</a></li>
+<li><a class="nav-link" data-scroll-target="#canonical-embeddings" href="#canonical-embeddings" id="toc-canonical-embeddings">Canonical Embeddings</a></li>
+<li><a class="nav-link" data-scroll-target="#canonical-projections" href="#canonical-projections" id="toc-canonical-projections">Canonical Projections</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#universal-property" href="#universal-property" id="toc-universal-property">Universal Property</a></li>
+<li><a class="nav-link" data-scroll-target="#examples" href="#examples" id="toc-examples">Examples</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#klein-four-group" href="#klein-four-group" id="toc-klein-four-group">Klein Four-Group</a></li>
+<li><a class="nav-link" data-scroll-target="#integer-plane" href="#integer-plane" id="toc-integer-plane">Integer Plane</a></li>
+<li><a class="nav-link" data-scroll-target="#cyclic-group-products" href="#cyclic-group-products" id="toc-cyclic-group-products">Cyclic Group Products</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#generalizations" href="#generalizations" id="toc-generalizations">Generalizations</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#finite-products" href="#finite-products" id="toc-finite-products">Finite Products</a></li>
+<li><a class="nav-link" data-scroll-target="#infinite-products" href="#infinite-products" id="toc-infinite-products">Infinite Products</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#related-concepts" href="#related-concepts" id="toc-related-concepts">Related Concepts</a></li>
+<li><a class="nav-link" data-scroll-target="#see-also" href="#see-also" id="toc-see-also">See Also</a></li>
+<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
+<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
+</ul></li>
+</ul>
 </nav>
-    </div>
+</div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
+<header class="quarto-title-block default" id="title-block-header">
 <div class="quarto-title">
 <h1 class="title">Direct Product of Groups</h1>
 </div>
-
-
-
 <div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
+</div>
 </header>
-
-
-<section id="def-direct-product" class="level1">
+<section class="level1" id="def-direct-product">
 <h1>Direct Product of Groups</h1>
 <p>The <strong>direct product</strong> (or <strong>external direct product</strong>) of two <a href="../../../content/en/algebra/def-group.html">groups</a> <span class="math inline">\((G, \cdot_G)\)</span> and <span class="math inline">\((H, \cdot_H)\)</span> is the <a href="../../../content/en/algebra/def-group.html">group</a> <span class="math inline">\((G \times H, \cdot)\)</span> where:</p>
-<section id="construction" class="level2">
+<section class="level2" id="construction">
 <h2 class="anchored" data-anchor-id="construction">Construction</h2>
 <ol type="1">
 <li><p><strong>Underlying set</strong>: The <a href="../../../content/en/logic-set-theory/def-set.html">set</a> <span class="math inline">\(G \times H\)</span> is the Cartesian product of sets <span class="math display">\[G \times H = \{(g, h) : g \in G, h \in H\}\]</span></p></li>
 <li><p><strong>Group operation</strong>: The operation <span class="math inline">\(\cdot\)</span> is defined component-wise: <span class="math display">\[(g_1, h_1) \cdot (g_2, h_2) = (g_1 \cdot_G g_2, h_1 \cdot_H h_2)\]</span></p></li>
 </ol>
 </section>
-<section id="group-structure" class="level2">
+<section class="level2" id="group-structure">
 <h2 class="anchored" data-anchor-id="group-structure">Group Structure</h2>
 <p>The direct product <span class="math inline">\(G \times H\)</span> forms a group:</p>
 <ul>
@@ -320,58 +296,58 @@ window.Quarto = {
 <li><strong>Associativity</strong>: Inherited from the component groups</li>
 </ul>
 </section>
-<section id="important-properties" class="level2">
+<section class="level2" id="important-properties">
 <h2 class="anchored" data-anchor-id="important-properties">Important Properties</h2>
-<section id="order" class="level3">
+<section class="level3" id="order">
 <h3 class="anchored" data-anchor-id="order">Order</h3>
 <p>If <span class="math inline">\(G\)</span> and <span class="math inline">\(H\)</span> are finite groups, then the <a href="../../../content/en/algebra/def-order.html">order</a> of the direct product is: <span class="math display">\[|G \times H| = |G| \cdot |H|\]</span></p>
 <p>where <span class="math inline">\(|G|\)</span> denotes the <a href="../../../content/en/logic-set-theory/def-cardinality.html">cardinality</a> of <span class="math inline">\(G\)</span>.</p>
 </section>
-<section id="abelian-property" class="level3">
+<section class="level3" id="abelian-property">
 <h3 class="anchored" data-anchor-id="abelian-property">Abelian Property</h3>
 <p>If <span class="math inline">\(G\)</span> and <span class="math inline">\(H\)</span> are <a href="../../../content/en/algebra/def-abelian-group.html">abelian</a>, then <span class="math inline">\(G \times H\)</span> is abelian.</p>
 </section>
-<section id="canonical-embeddings" class="level3">
+<section class="level3" id="canonical-embeddings">
 <h3 class="anchored" data-anchor-id="canonical-embeddings">Canonical Embeddings</h3>
 <p>There are natural injective <a href="../../../content/en/algebra/def-homomorphism.html">homomorphisms</a>: - <span class="math inline">\(\iota_G: G \to G \times H\)</span> defined by <span class="math inline">\(\iota_G(g) = (g, e_H)\)</span> - <span class="math inline">\(\iota_H: H \to G \times H\)</span> defined by <span class="math inline">\(\iota_H(h) = (e_G, h)\)</span></p>
 </section>
-<section id="canonical-projections" class="level3">
+<section class="level3" id="canonical-projections">
 <h3 class="anchored" data-anchor-id="canonical-projections">Canonical Projections</h3>
 <p>There are natural surjective <a href="../../../content/en/algebra/def-homomorphism.html">homomorphisms</a> (i.e., <a href="../../../content/en/category-theory/def-epimorphism.html">epimorphisms</a>): - <span class="math inline">\(\pi_G: G \times H \to G\)</span> defined by <span class="math inline">\(\pi_G(g, h) = g\)</span> - <span class="math inline">\(\pi_H: G \times H \to H\)</span> defined by <span class="math inline">\(\pi_H(g, h) = h\)</span></p>
 </section>
 </section>
-<section id="universal-property" class="level2">
+<section class="level2" id="universal-property">
 <h2 class="anchored" data-anchor-id="universal-property">Universal Property</h2>
 <p>For any group <span class="math inline">\(K\)</span> and <a href="../../../content/en/algebra/def-homomorphism.html">homomorphisms</a> <span class="math inline">\(f: K \to G\)</span> and <span class="math inline">\(g: K \to H\)</span>, there exists a unique homomorphism <span class="math inline">\(h: K \to G \times H\)</span> such that: - <span class="math inline">\(\pi_G \circ h = f\)</span> - <span class="math inline">\(\pi_H \circ h = g\)</span></p>
 <p>Specifically, <span class="math inline">\(h(k) = (f(k), g(k))\)</span>.</p>
 </section>
-<section id="examples" class="level2">
+<section class="level2" id="examples">
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<section id="klein-four-group" class="level3">
+<section class="level3" id="klein-four-group">
 <h3 class="anchored" data-anchor-id="klein-four-group">Klein Four-Group</h3>
 <p>The Klein four-group is isomorphic to <span class="math inline">\(\mathbb{Z}_2 \times \mathbb{Z}_2\)</span>: <span class="math display">\[V_4 \cong \mathbb{Z}_2 \times \mathbb{Z}_2 = \{(0,0), (1,0), (0,1), (1,1)\}\]</span></p>
 </section>
-<section id="integer-plane" class="level3">
+<section class="level3" id="integer-plane">
 <h3 class="anchored" data-anchor-id="integer-plane">Integer Plane</h3>
 <p><span class="math inline">\(\mathbb{Z} \times \mathbb{Z}\)</span> forms the additive group of integer lattice points in the plane.</p>
 </section>
-<section id="cyclic-group-products" class="level3">
+<section class="level3" id="cyclic-group-products">
 <h3 class="anchored" data-anchor-id="cyclic-group-products">Cyclic Group Products</h3>
 <p>For positive integers <span class="math inline">\(m\)</span> and <span class="math inline">\(n\)</span>: - <span class="math inline">\(\mathbb{Z}_m \times \mathbb{Z}_n \cong \mathbb{Z}_{mn}\)</span> if and only if <span class="math inline">\(\gcd(m,n) = 1\)</span> - When <span class="math inline">\(\gcd(m,n) &gt; 1\)</span>, the product is not <a href="../../../content/en/algebra/def-cyclic-group.html">cyclic</a></p>
 </section>
 </section>
-<section id="generalizations" class="level2">
+<section class="level2" id="generalizations">
 <h2 class="anchored" data-anchor-id="generalizations">Generalizations</h2>
-<section id="finite-products" class="level3">
+<section class="level3" id="finite-products">
 <h3 class="anchored" data-anchor-id="finite-products">Finite Products</h3>
 <p>For groups <span class="math inline">\(G_1, G_2, \ldots, G_n\)</span>, the direct product is: <span class="math display">\[G_1 \times G_2 \times \cdots \times G_n = \{(g_1, g_2, \ldots, g_n) : g_i \in G_i\}\]</span></p>
 </section>
-<section id="infinite-products" class="level3">
+<section class="level3" id="infinite-products">
 <h3 class="anchored" data-anchor-id="infinite-products">Infinite Products</h3>
 <p>For an indexed family of groups <span class="math inline">\(\{G_i\}_{i \in I}\)</span>: <span class="math display">\[\prod_{i \in I} G_i = \{(g_i)_{i \in I} : g_i \in G_i \text{ for all } i \in I\}\]</span></p>
 </section>
 </section>
-<section id="related-concepts" class="level2">
+<section class="level2" id="related-concepts">
 <h2 class="anchored" data-anchor-id="related-concepts">Related Concepts</h2>
 <ul>
 <li><strong>Direct sum</strong>: For infinite products, the restricted direct product where all but finitely many components are the identity</li>
@@ -379,7 +355,7 @@ window.Quarto = {
 <li><strong>Internal direct product</strong>: When a group decomposes as a product of its <a href="../../../content/en/algebra/def-normal-subgroup.html">normal subgroups</a></li>
 </ul>
 </section>
-<section id="see-also" class="level2">
+<section class="level2" id="see-also">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
 <li><a href="../../../content/en/algebra/def-group.html">Group</a></li>
@@ -389,7 +365,7 @@ window.Quarto = {
 <li><a href="../../../content/en/algebra/def-normal-subgroup.html">Normal Subgroup</a></li>
 </ul>
 </section>
-<section id="dependency-graph" class="level2">
+<section class="level2" id="dependency-graph">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -402,34 +378,34 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-normal-subgroup["Normal Subgroup"]:::definition
-    def-cyclic-group["Cyclic Group"]:::definition
-    def-order["Order"]:::definition
+    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
     def-set["Set"]:::definition
     def-direct-product["Direct Product of Groups"]:::definition
     def-group["Group"]:::definition
-    def-homomorphism["Group Homomorphism"]:::definition
+    def-order["Order"]:::definition
     def-abelian-group["Abelian Group"]:::definition
-    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
-    def-direct-product --&gt; def-group
-    ex-quotient-integers-mod-n --&gt; def-direct-product
-    def-direct-product --&gt; def-abelian-group
-    def-abelian-group --&gt; def-direct-product
-    def-direct-product --&gt; def-order
+    def-cyclic-group["Cyclic Group"]:::definition
+    def-homomorphism["Group Homomorphism"]:::definition
+    def-normal-subgroup["Normal Subgroup"]:::definition
     def-direct-product --&gt; def-homomorphism
-    def-cyclic-group --&gt; def-direct-product
     def-direct-product --&gt; def-cyclic-group
+    def-direct-product --&gt; def-abelian-group
+    ex-quotient-integers-mod-n --&gt; def-direct-product
+    def-direct-product --&gt; def-order
+    def-cyclic-group --&gt; def-direct-product
     def-direct-product --&gt; def-set
+    def-abelian-group --&gt; def-direct-product
+    def-direct-product --&gt; def-group
     def-direct-product --&gt; def-normal-subgroup
     class def-direct-product current
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
-    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group"
-    click def-order "def-order.html" "Go to Order"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n"
     click def-set "def-set.html" "Go to Set"
     click def-group "def-group.html" "Go to Group"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism"
+    click def-order "def-order.html" "Go to Order"
     click def-abelian-group "def-abelian-group.html" "Go to Abelian Group"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n"
+    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -437,13 +413,12 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="interactive-visualization" class="level2">
+<section class="level2" id="interactive-visualization">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-direct-product-1753761259" class="graph-visualization-container">
-  <div class="graph-loading">Loading visualization...</div>
+<div class="graph-visualization-container" id="graph-viz-def-direct-product-1753763890">
+<div class="graph-loading">Loading visualization...</div>
 </div>
-
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -688,12 +663,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-direct-product-1753761259', {
+    createForceGraph(data, 'graph-viz-def-direct-product-1753763890', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-direct-product-1753761259').innerHTML =
+    document.getElementById('graph-viz-def-direct-product-1753763890').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -705,7 +680,6 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
-
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -754,13 +728,9 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
-
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/def-direct-product.html" target="_blank">full interactive version</a></p>
-
-
 </section>
 </section>
-
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1163,20 +1133,16 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
+<div class="nav-footer">
+<div class="nav-footer-left">
+       
+    </div>
+<div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-    <div class="nav-footer-right">
-      &nbsp;
+<div class="nav-footer-right">
+       
     </div>
-  </div>
+</div>
 </footer>
-
-
-
-
-</body></html>
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>

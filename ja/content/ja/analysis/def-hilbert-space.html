@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.7.32" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <title>ヒルベルト空間 – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,27 +18,25 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
-
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../favicon.ico" rel="icon">
+<meta content="../../../" name="quarto:offset"/>
+<link href="../../../favicon.ico" rel="icon"/>
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
+<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,8 +66,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -121,10 +116,8 @@ ul.task-list li input[type="checkbox"] {
     document.head.appendChild(issueScript);
   })();
 </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -151,166 +144,149 @@ window.Quarto = {
   typesetMath
 };
 </script>
-
-<link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../../styles-multilingual.css">
+<link href="../../../styles.css" rel="stylesheet"/>
+<link href="../../../styles-multilingual.css" rel="stylesheet"/>
 </head>
-
 <body class="nav-fixed quarto-light">
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">数学ナレッジグラフ</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="サーチ"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../../index-ja.html"> 
-<span class="menu-text">ホーム</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
-<span class="menu-text">代数学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
-<span class="menu-text">解析学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
-<span class="menu-text">位相空間論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
-<span class="menu-text">幾何学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
-<span class="menu-text">圏論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
-<span class="menu-text">組合せ論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
-<span class="menu-text">論理学・集合論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
-<span class="menu-text">数論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
-<span class="menu-text">確率統計</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/about.html"> 
-<span class="menu-text">概要</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
-<span class="menu-text">貢献</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../../en/index.html"> 
-<span class="menu-text">🌐 English</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+<header class="headroom fixed-top" id="quarto-header">
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+<div class="navbar-container container-fluid">
+<div class="navbar-brand-container mx-auto">
+<a class="navbar-brand" href="../../../index.html">
+<span class="navbar-title">数学ナレッジグラフ</span>
+</a>
 </div>
-      </div> <!-- /container-fluid -->
-    </nav>
+<div class="" id="quarto-search" title="サーチ"></div>
+<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+<ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+<a class="nav-link" href="../../../index-ja.html">
+<span class="menu-text">ホーム</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/algebra/index.html">
+<span class="menu-text">代数学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/analysis/index.html">
+<span class="menu-text">解析学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/topology/index.html">
+<span class="menu-text">位相空間論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/geometry/index.html">
+<span class="menu-text">幾何学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+<span class="menu-text">圏論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+<span class="menu-text">組合せ論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+<span class="menu-text">論理学・集合論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+<span class="menu-text">数論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+<span class="menu-text">確率統計</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/about.html">
+<span class="menu-text">概要</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/contributing.html">
+<span class="menu-text">貢献</span></a>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
+</i>
+<span class="menu-text"></span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../../en/index.html">
+<span class="menu-text">🌐 English</span></a>
+</li>
+</ul>
+</div> <!-- /navcollapse -->
+<div class="quarto-navbar-tools">
+</div>
+</div> <!-- /container-fluid -->
+</nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">目次</h2>
-   
-  <ul>
-  <li><a href="#def-hilbert-space" id="toc-def-hilbert-space" class="nav-link active" data-scroll-target="#def-hilbert-space">ヒルベルト空間</a>
-  <ul class="collapse">
-  <li><a href="#形式的定義" id="toc-形式的定義" class="nav-link" data-scroll-target="#形式的定義">形式的定義</a>
-  <ul class="collapse">
-  <li><a href="#内積の公理" id="toc-内積の公理" class="nav-link" data-scroll-target="#内積の公理">内積の公理</a></li>
-  <li><a href="#誘導ノルムと完備性" id="toc-誘導ノルムと完備性" class="nav-link" data-scroll-target="#誘導ノルムと完備性">誘導ノルムと完備性</a></li>
-  </ul></li>
-  <li><a href="#記法" id="toc-記法" class="nav-link" data-scroll-target="#記法">記法</a></li>
-  <li><a href="#直観的理解" id="toc-直観的理解" class="nav-link" data-scroll-target="#直観的理解">直観的理解</a></li>
-  <li><a href="#主要な性質" id="toc-主要な性質" class="nav-link" data-scroll-target="#主要な性質">主要な性質</a>
-  <ul class="collapse">
-  <li><a href="#基本的な不等式" id="toc-基本的な不等式" class="nav-link" data-scroll-target="#基本的な不等式">基本的な不等式</a></li>
-  <li><a href="#直交性と射影" id="toc-直交性と射影" class="nav-link" data-scroll-target="#直交性と射影">直交性と射影</a></li>
-  <li><a href="#双対性" id="toc-双対性" class="nav-link" data-scroll-target="#双対性">双対性</a></li>
-  </ul></li>
-  <li><a href="#例" id="toc-例" class="nav-link" data-scroll-target="#例">例</a>
-  <ul class="collapse">
-  <li><a href="#有限次元ヒルベルト空間" id="toc-有限次元ヒルベルト空間" class="nav-link" data-scroll-target="#有限次元ヒルベルト空間">有限次元ヒルベルト空間</a></li>
-  <li><a href="#無限次元ヒルベルト空間" id="toc-無限次元ヒルベルト空間" class="nav-link" data-scroll-target="#無限次元ヒルベルト空間">無限次元ヒルベルト空間</a></li>
-  </ul></li>
-  <li><a href="#特別な種類" id="toc-特別な種類" class="nav-link" data-scroll-target="#特別な種類">特別な種類</a>
-  <ul class="collapse">
-  <li><a href="#性質による分類" id="toc-性質による分類" class="nav-link" data-scroll-target="#性質による分類">性質による分類</a></li>
-  </ul></li>
-  <li><a href="#応用" id="toc-応用" class="nav-link" data-scroll-target="#応用">応用</a></li>
-  <li><a href="#基本定理" id="toc-基本定理" class="nav-link" data-scroll-target="#基本定理">基本定理</a></li>
-  <li><a href="#歴史的注記" id="toc-歴史的注記" class="nav-link" data-scroll-target="#歴史的注記">歴史的注記</a></li>
-  <li><a href="#関連概念" id="toc-関連概念" class="nav-link" data-scroll-target="#関連概念">関連概念</a></li>
-  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
-  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
-  </ul></li>
-  </ul>
+<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
+<nav class="toc-active" id="TOC" role="doc-toc">
+<h2 id="toc-title">目次</h2>
+<ul>
+<li><a class="nav-link active" data-scroll-target="#def-hilbert-space" href="#def-hilbert-space" id="toc-def-hilbert-space">ヒルベルト空間</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#形式的定義" href="#形式的定義" id="toc-形式的定義">形式的定義</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#内積の公理" href="#内積の公理" id="toc-内積の公理">内積の公理</a></li>
+<li><a class="nav-link" data-scroll-target="#誘導ノルムと完備性" href="#誘導ノルムと完備性" id="toc-誘導ノルムと完備性">誘導ノルムと完備性</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#記法" href="#記法" id="toc-記法">記法</a></li>
+<li><a class="nav-link" data-scroll-target="#直観的理解" href="#直観的理解" id="toc-直観的理解">直観的理解</a></li>
+<li><a class="nav-link" data-scroll-target="#主要な性質" href="#主要な性質" id="toc-主要な性質">主要な性質</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#基本的な不等式" href="#基本的な不等式" id="toc-基本的な不等式">基本的な不等式</a></li>
+<li><a class="nav-link" data-scroll-target="#直交性と射影" href="#直交性と射影" id="toc-直交性と射影">直交性と射影</a></li>
+<li><a class="nav-link" data-scroll-target="#双対性" href="#双対性" id="toc-双対性">双対性</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#例" href="#例" id="toc-例">例</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#有限次元ヒルベルト空間" href="#有限次元ヒルベルト空間" id="toc-有限次元ヒルベルト空間">有限次元ヒルベルト空間</a></li>
+<li><a class="nav-link" data-scroll-target="#無限次元ヒルベルト空間" href="#無限次元ヒルベルト空間" id="toc-無限次元ヒルベルト空間">無限次元ヒルベルト空間</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#特別な種類" href="#特別な種類" id="toc-特別な種類">特別な種類</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#性質による分類" href="#性質による分類" id="toc-性質による分類">性質による分類</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#応用" href="#応用" id="toc-応用">応用</a></li>
+<li><a class="nav-link" data-scroll-target="#基本定理" href="#基本定理" id="toc-基本定理">基本定理</a></li>
+<li><a class="nav-link" data-scroll-target="#歴史的注記" href="#歴史的注記" id="toc-歴史的注記">歴史的注記</a></li>
+<li><a class="nav-link" data-scroll-target="#関連概念" href="#関連概念" id="toc-関連概念">関連概念</a></li>
+<li><a class="nav-link" data-scroll-target="#依存関係グラフ" href="#依存関係グラフ" id="toc-依存関係グラフ">依存関係グラフ</a></li>
+<li><a class="nav-link" data-scroll-target="#インタラクティブ可視化" href="#インタラクティブ可視化" id="toc-インタラクティブ可視化">インタラクティブ可視化</a></li>
+</ul></li>
+</ul>
 </nav>
-    </div>
+</div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
+<header class="quarto-title-block default" id="title-block-header">
 <div class="quarto-title">
 <h1 class="title">ヒルベルト空間</h1>
 </div>
-
-
-
 <div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
+</div>
 </header>
-
-
-<section id="def-hilbert-space" class="level1">
+<section class="level1" id="def-hilbert-space">
 <h1>ヒルベルト空間</h1>
 <p><strong>ヒルベルト空間</strong>とは、完備な内積空間のことである。より正確には、内積を備えた<a href="../../../content/ja/algebra/def-vector-space.html">ベクトル空間</a>であって、この内積から誘導されるノルムに関して完備であるものをいう。この基本的な構造は、代数的、幾何学的、位相的性質を組み合わせたものであり、関数解析、量子力学、その他多くの数学および物理学の分野において不可欠なものとなっている。</p>
-<section id="形式的定義" class="level2">
+<section class="level2" id="形式的定義">
 <h2 class="anchored" data-anchor-id="形式的定義">形式的定義</h2>
 <p>ヒルベルト空間とは、次の条件を満たす組 <span class="math inline">\((H, \langle \cdot, \cdot \rangle)\)</span> である： - <span class="math inline">\(H\)</span> は体 <span class="math inline">\(\mathbb{F}\)</span>（<span class="math inline">\(\mathbb{R}\)</span> または <span class="math inline">\(\mathbb{C}\)</span>）上の<a href="../../../content/ja/algebra/def-vector-space.html">ベクトル空間</a> - <span class="math inline">\(\langle \cdot, \cdot \rangle: H \times H \to \mathbb{F}\)</span> は次を満たす<strong>内積</strong>：</p>
-<section id="内積の公理" class="level3">
+<section class="level3" id="内積の公理">
 <h3 class="anchored" data-anchor-id="内積の公理">内積の公理</h3>
 <p>すべての <span class="math inline">\(x, y, z \in H\)</span> およびすべてのスカラー <span class="math inline">\(\alpha, \beta \in \mathbb{F}\)</span> に対して：</p>
 <ol type="1">
@@ -323,13 +299,13 @@ window.Quarto = {
 </ul></li>
 </ol>
 </section>
-<section id="誘導ノルムと完備性" class="level3">
+<section class="level3" id="誘導ノルムと完備性">
 <h3 class="anchored" data-anchor-id="誘導ノルムと完備性">誘導ノルムと完備性</h3>
 <p>内積は <span class="math inline">\(H\)</span> 上のノルムを次のように誘導する： <span class="math display">\[\|x\| = \sqrt{\langle x, x \rangle}\]</span></p>
 <p>これにより <span class="math inline">\((H, \|\cdot\|)\)</span> は<a href="../../../content/ja/analysis/def-normed-vector-space.html">ノルム空間</a>となる。空間 <span class="math inline">\(H\)</span> がヒルベルト空間であるのは、このノルムに関して<a href="../../../content/ja/analysis/def-complete-metric-space.html">完備</a>であるときかつそのときに限り、これは<a href="../../../content/ja/analysis/def-banach-space.html">バナッハ空間</a>の特別な場合となる。</p>
 </section>
 </section>
-<section id="記法" class="level2">
+<section class="level2" id="記法">
 <h2 class="anchored" data-anchor-id="記法">記法</h2>
 <ul>
 <li>標準的な記法：<span class="math inline">\((H, \langle \cdot, \cdot \rangle)\)</span> または内積が明らかな場合は単に <span class="math inline">\(H\)</span></li>
@@ -338,21 +314,21 @@ window.Quarto = {
 <li>特定の空間：<span class="math inline">\(L^2(\mu)\)</span>、<span class="math inline">\(\ell^2\)</span>、<span class="math inline">\(H^k\)</span>（ソボレフ空間）</li>
 </ul>
 </section>
-<section id="直観的理解" class="level2">
+<section class="level2" id="直観的理解">
 <h2 class="anchored" data-anchor-id="直観的理解">直観的理解</h2>
 <p>ヒルベルト空間は、本質的な幾何学的構造を保ちながらユークリッド空間を無限次元に一般化したものと考えることができる： - <strong>長さ</strong>：ノルム <span class="math inline">\(\|x\|\)</span> はベクトルの「長さ」を測る - <strong>角度</strong>：内積により、<span class="math inline">\(\cos \theta = \frac{\langle x, y \rangle}{\|x\| \|y\|}\)</span> を通じてベクトル間の角度を定義できる - <strong>直交性</strong>：<span class="math inline">\(\langle x, y \rangle = 0\)</span> のとき、2つのベクトルは直交する - <strong>完備性</strong>：すべてのコーシー列が収束し、空間に「穴」がないことを保証する</p>
 <p>この代数的構造（ベクトル空間）、幾何学的構造（内積）、解析的構造（完備性）の組み合わせにより、ヒルベルト空間は多くの数学理論の自然な舞台となる。</p>
 </section>
-<section id="主要な性質" class="level2">
+<section class="level2" id="主要な性質">
 <h2 class="anchored" data-anchor-id="主要な性質">主要な性質</h2>
-<section id="基本的な不等式" class="level3">
+<section class="level3" id="基本的な不等式">
 <h3 class="anchored" data-anchor-id="基本的な不等式">基本的な不等式</h3>
 <ol type="1">
 <li><p><strong>コーシー・シュワルツの不等式</strong>：すべての <span class="math inline">\(x, y \in H\)</span> に対して： <span class="math display">\[|\langle x, y \rangle| \leq \|x\| \|y\|\]</span> 等号成立は <span class="math inline">\(x\)</span> と <span class="math inline">\(y\)</span> が線形従属であるときかつそのときに限る。</p></li>
 <li><p><strong>平行四辺形の法則</strong>：すべての <span class="math inline">\(x, y \in H\)</span> に対して： <span class="math display">\[\|x + y\|^2 + \|x - y\|^2 = 2(\|x\|^2 + \|y\|^2)\]</span> この性質は内積から来るノルムを特徴づける。</p></li>
 </ol>
 </section>
-<section id="直交性と射影" class="level3">
+<section class="level3" id="直交性と射影">
 <h3 class="anchored" data-anchor-id="直交性と射影">直交性と射影</h3>
 <ul>
 <li><strong>直交補空間</strong>：任意の閉部分空間 <span class="math inline">\(M \subseteq H\)</span> に対して、空間は <span class="math inline">\(H = M \oplus M^\perp\)</span> と分解される</li>
@@ -360,21 +336,21 @@ window.Quarto = {
 <li><strong>正規直交基底</strong>：すべての可分ヒルベルト空間は可算な正規直交基底を持つ</li>
 </ul>
 </section>
-<section id="双対性" class="level3">
+<section class="level3" id="双対性">
 <h3 class="anchored" data-anchor-id="双対性">双対性</h3>
 <p><strong>リースの表現定理</strong>により、すべての連続線形汎関数 <span class="math inline">\(f: H \to \mathbb{F}\)</span> は次のように一意に表される： <span class="math display">\[f(x) = \langle x, y \rangle\]</span> ある <span class="math inline">\(y \in H\)</span> に対して。これにより <span class="math inline">\(H\)</span> とその双対空間 <span class="math inline">\(H^*\)</span> の間に自然な同型が作られる。</p>
 </section>
 </section>
-<section id="例" class="level2">
+<section class="level2" id="例">
 <h2 class="anchored" data-anchor-id="例">例</h2>
-<section id="有限次元ヒルベルト空間" class="level3">
+<section class="level3" id="有限次元ヒルベルト空間">
 <h3 class="anchored" data-anchor-id="有限次元ヒルベルト空間">有限次元ヒルベルト空間</h3>
 <ol type="1">
 <li><p><strong>ユークリッド空間 <span class="math inline">\(\mathbb{R}^n\)</span></strong>：内積 <span class="math inline">\(\langle x, y \rangle = \sum_{i=1}^n x_i y_i\)</span> を持つ</p></li>
 <li><p><strong>複素座標空間 <span class="math inline">\(\mathbb{C}^n\)</span></strong>：内積 <span class="math inline">\(\langle x, y \rangle = \sum_{i=1}^n x_i \overline{y_i}\)</span> を持つ</p></li>
 </ol>
 </section>
-<section id="無限次元ヒルベルト空間" class="level3">
+<section class="level3" id="無限次元ヒルベルト空間">
 <h3 class="anchored" data-anchor-id="無限次元ヒルベルト空間">無限次元ヒルベルト空間</h3>
 <ol type="1">
 <li><p><strong>二乗総和可能な数列 <span class="math inline">\(\ell^2\)</span></strong>： <span class="math display">\[\ell^2 = \left\{(x_n)_{n=1}^\infty : \sum_{n=1}^\infty |x_n|^2 &lt; \infty\right\}\]</span> 内積 <span class="math inline">\(\langle x, y \rangle = \sum_{n=1}^\infty x_n \overline{y_n}\)</span> を持つ</p></li>
@@ -385,9 +361,9 @@ window.Quarto = {
 </ol>
 </section>
 </section>
-<section id="特別な種類" class="level2">
+<section class="level2" id="特別な種類">
 <h2 class="anchored" data-anchor-id="特別な種類">特別な種類</h2>
-<section id="性質による分類" class="level3">
+<section class="level3" id="性質による分類">
 <h3 class="anchored" data-anchor-id="性質による分類">性質による分類</h3>
 <ul>
 <li><strong>可分ヒルベルト空間</strong>：可算な稠密部分集合を含む</li>
@@ -398,7 +374,7 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="応用" class="level2">
+<section class="level2" id="応用">
 <h2 class="anchored" data-anchor-id="応用">応用</h2>
 <ol type="1">
 <li><strong>量子力学</strong>：
@@ -429,7 +405,7 @@ window.Quarto = {
 </ul></li>
 </ol>
 </section>
-<section id="基本定理" class="level2">
+<section class="level2" id="基本定理">
 <h2 class="anchored" data-anchor-id="基本定理">基本定理</h2>
 <p>ヒルベルト空間構造に依存するいくつかの重要な結果：</p>
 <ol type="1">
@@ -439,11 +415,11 @@ window.Quarto = {
 <li><strong>閉グラフ定理</strong>：ヒルベルト空間はバナッハ空間であるため適用される</li>
 </ol>
 </section>
-<section id="歴史的注記" class="level2">
+<section class="level2" id="歴史的注記">
 <h2 class="anchored" data-anchor-id="歴史的注記">歴史的注記</h2>
 <p>この概念は20世紀初頭のダヴィド・ヒルベルト、エルハルト・シュミット、フリジェシュ・リースの研究を通じて発展した。ジョン・フォン・ノイマンは1929年に「ヒルベルト空間」という用語を作り、これらの空間を量子力学の適切な数学的枠組みとして認識した。抽象的な公理的扱いは、それまで別々に研究されていた様々な具体的な関数空間を統一した。</p>
 </section>
-<section id="関連概念" class="level2">
+<section class="level2" id="関連概念">
 <h2 class="anchored" data-anchor-id="関連概念">関連概念</h2>
 <ul>
 <li><a href="../../../content/ja/analysis/def-banach-space.html">バナッハ空間</a>：完備ノルム空間（ヒルベルト空間は特別なバナッハ空間）</li>
@@ -455,7 +431,7 @@ window.Quarto = {
 <li><strong>自己共役作用素</strong>：その随伴と等しい線形作用素</li>
 </ul>
 </section>
-<section id="依存関係グラフ" class="level2">
+<section class="level2" id="依存関係グラフ">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -468,17 +444,17 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-hilbert-space["ヒルベルト空間"]:::definition
-    def-banach-space["バナッハ空間"]:::definition
     def-normed-vector-space["ノルム空間"]:::definition
+    def-hilbert-space["ヒルベルト空間"]:::definition
     def-complete-metric-space["完備距離空間"]:::definition
+    def-banach-space["バナッハ空間"]:::definition
     def-hilbert-space --&gt; def-normed-vector-space
     def-hilbert-space --&gt; def-banach-space
     def-hilbert-space --&gt; def-complete-metric-space
     class def-hilbert-space current
-    click def-banach-space "def-banach-space.html" "バナッハ空間へ"
     click def-normed-vector-space "def-normed-vector-space.html" "ノルム空間へ"
     click def-complete-metric-space "def-complete-metric-space.html" "完備距離空間へ"
+    click def-banach-space "def-banach-space.html" "バナッハ空間へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -486,13 +462,12 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="インタラクティブ可視化" class="level2">
+<section class="level2" id="インタラクティブ可視化">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-hilbert-space-1753761200" class="graph-visualization-container">
-  <div class="graph-loading">Loading visualization...</div>
+<div class="graph-visualization-container" id="graph-viz-def-hilbert-space-1753763832">
+<div class="graph-loading">Loading visualization...</div>
 </div>
-
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -737,12 +712,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-hilbert-space-1753761200', {
+    createForceGraph(data, 'graph-viz-def-hilbert-space-1753763832', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-hilbert-space-1753761200').innerHTML =
+    document.getElementById('graph-viz-def-hilbert-space-1753763832').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -754,7 +729,6 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
-
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -803,13 +777,9 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
-
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/ja/def-hilbert-space.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
-
-
 </section>
 </section>
-
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1212,20 +1182,16 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
+<div class="nav-footer">
+<div class="nav-footer-left">
+       
+    </div>
+<div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-    <div class="nav-footer-right">
-      &nbsp;
+<div class="nav-footer-right">
+       
     </div>
-  </div>
+</div>
 </footer>
-
-
-
-
-</body></html>
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>

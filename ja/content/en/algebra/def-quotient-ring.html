@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.7.32" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <title>Quotient Ring – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,27 +18,25 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
-
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../favicon.ico" rel="icon">
+<meta content="../../../" name="quarto:offset"/>
+<link href="../../../favicon.ico" rel="icon"/>
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
+<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,8 +66,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -121,10 +116,8 @@ ul.task-list li input[type="checkbox"] {
     document.head.appendChild(issueScript);
   })();
 </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -151,167 +144,150 @@ window.Quarto = {
   typesetMath
 };
 </script>
-
-<link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../../styles-multilingual.css">
+<link href="../../../styles.css" rel="stylesheet"/>
+<link href="../../../styles-multilingual.css" rel="stylesheet"/>
 </head>
-
 <body class="nav-fixed quarto-light">
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">数学ナレッジグラフ</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="サーチ"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../../index-ja.html"> 
-<span class="menu-text">ホーム</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
-<span class="menu-text">代数学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
-<span class="menu-text">解析学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
-<span class="menu-text">位相空間論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
-<span class="menu-text">幾何学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
-<span class="menu-text">圏論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
-<span class="menu-text">組合せ論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
-<span class="menu-text">論理学・集合論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
-<span class="menu-text">数論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
-<span class="menu-text">確率統計</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/about.html"> 
-<span class="menu-text">概要</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
-<span class="menu-text">貢献</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../../en/index.html"> 
-<span class="menu-text">🌐 English</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+<header class="headroom fixed-top" id="quarto-header">
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+<div class="navbar-container container-fluid">
+<div class="navbar-brand-container mx-auto">
+<a class="navbar-brand" href="../../../index.html">
+<span class="navbar-title">数学ナレッジグラフ</span>
+</a>
 </div>
-      </div> <!-- /container-fluid -->
-    </nav>
+<div class="" id="quarto-search" title="サーチ"></div>
+<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+<ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+<a class="nav-link" href="../../../index-ja.html">
+<span class="menu-text">ホーム</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/algebra/index.html">
+<span class="menu-text">代数学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/analysis/index.html">
+<span class="menu-text">解析学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/topology/index.html">
+<span class="menu-text">位相空間論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/geometry/index.html">
+<span class="menu-text">幾何学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+<span class="menu-text">圏論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+<span class="menu-text">組合せ論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+<span class="menu-text">論理学・集合論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+<span class="menu-text">数論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+<span class="menu-text">確率統計</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/about.html">
+<span class="menu-text">概要</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/contributing.html">
+<span class="menu-text">貢献</span></a>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
+</i>
+<span class="menu-text"></span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../../en/index.html">
+<span class="menu-text">🌐 English</span></a>
+</li>
+</ul>
+</div> <!-- /navcollapse -->
+<div class="quarto-navbar-tools">
+</div>
+</div> <!-- /container-fluid -->
+</nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">目次</h2>
-   
-  <ul>
-  <li><a href="#def-quotient-ring" id="toc-def-quotient-ring" class="nav-link active" data-scroll-target="#def-quotient-ring">Quotient Ring</a>
-  <ul class="collapse">
-  <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link" data-scroll-target="#formal-definition">Formal Definition</a>
-  <ul class="collapse">
-  <li><a href="#set-structure" id="toc-set-structure" class="nav-link" data-scroll-target="#set-structure">Set Structure</a></li>
-  <li><a href="#ring-operations" id="toc-ring-operations" class="nav-link" data-scroll-target="#ring-operations">Ring Operations</a></li>
-  </ul></li>
-  <li><a href="#well-definedness" id="toc-well-definedness" class="nav-link" data-scroll-target="#well-definedness">Well-Definedness</a></li>
-  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
-  <li><a href="#connection-to-homomorphisms" id="toc-connection-to-homomorphisms" class="nav-link" data-scroll-target="#connection-to-homomorphisms">Connection to Homomorphisms</a></li>
-  <li><a href="#equivalence-relation-perspective" id="toc-equivalence-relation-perspective" class="nav-link" data-scroll-target="#equivalence-relation-perspective">Equivalence Relation Perspective</a></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
-  <ul class="collapse">
-  <li><a href="#integer-modular-arithmetic" id="toc-integer-modular-arithmetic" class="nav-link" data-scroll-target="#integer-modular-arithmetic">Integer Modular Arithmetic</a></li>
-  <li><a href="#polynomial-rings" id="toc-polynomial-rings" class="nav-link" data-scroll-target="#polynomial-rings">Polynomial Rings</a></li>
-  <li><a href="#creating-fields" id="toc-creating-fields" class="nav-link" data-scroll-target="#creating-fields">Creating Fields</a></li>
-  </ul></li>
-  <li><a href="#special-cases" id="toc-special-cases" class="nav-link" data-scroll-target="#special-cases">Special Cases</a></li>
-  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
-  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
-  </ul></li>
-  </ul>
+<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
+<nav class="toc-active" id="TOC" role="doc-toc">
+<h2 id="toc-title">目次</h2>
+<ul>
+<li><a class="nav-link active" data-scroll-target="#def-quotient-ring" href="#def-quotient-ring" id="toc-def-quotient-ring">Quotient Ring</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#formal-definition" href="#formal-definition" id="toc-formal-definition">Formal Definition</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#set-structure" href="#set-structure" id="toc-set-structure">Set Structure</a></li>
+<li><a class="nav-link" data-scroll-target="#ring-operations" href="#ring-operations" id="toc-ring-operations">Ring Operations</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#well-definedness" href="#well-definedness" id="toc-well-definedness">Well-Definedness</a></li>
+<li><a class="nav-link" data-scroll-target="#properties" href="#properties" id="toc-properties">Properties</a></li>
+<li><a class="nav-link" data-scroll-target="#connection-to-homomorphisms" href="#connection-to-homomorphisms" id="toc-connection-to-homomorphisms">Connection to Homomorphisms</a></li>
+<li><a class="nav-link" data-scroll-target="#equivalence-relation-perspective" href="#equivalence-relation-perspective" id="toc-equivalence-relation-perspective">Equivalence Relation Perspective</a></li>
+<li><a class="nav-link" data-scroll-target="#examples" href="#examples" id="toc-examples">Examples</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#integer-modular-arithmetic" href="#integer-modular-arithmetic" id="toc-integer-modular-arithmetic">Integer Modular Arithmetic</a></li>
+<li><a class="nav-link" data-scroll-target="#polynomial-rings" href="#polynomial-rings" id="toc-polynomial-rings">Polynomial Rings</a></li>
+<li><a class="nav-link" data-scroll-target="#creating-fields" href="#creating-fields" id="toc-creating-fields">Creating Fields</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#special-cases" href="#special-cases" id="toc-special-cases">Special Cases</a></li>
+<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
+<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
+</ul></li>
+</ul>
 </nav>
-    </div>
+</div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
+<header class="quarto-title-block default" id="title-block-header">
 <div class="quarto-title">
 <h1 class="title">Quotient Ring</h1>
 </div>
-
-
-
 <div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
+</div>
 </header>
-
-
-<section id="def-quotient-ring" class="level1">
+<section class="level1" id="def-quotient-ring">
 <h1>Quotient Ring</h1>
 <p>A <strong>quotient ring</strong> (also called <strong>factor ring</strong> or <strong>residue class ring</strong>) is a construction that creates a new <a href="../../../content/en/algebra/def-ring.html">Ring</a> from an existing ring and one of its <a href="../../../content/en/algebra/def-ideal.html">Ideals</a>, analogous to how <a href="../../../content/en/algebra/def-quotient-group.html">Quotient Groups</a> are constructed from groups and normal subgroups.</p>
-<section id="formal-definition" class="level2">
+<section class="level2" id="formal-definition">
 <h2 class="anchored" data-anchor-id="formal-definition">Formal Definition</h2>
 <p>Let <span class="math inline">\((R, +, \cdot)\)</span> be a ring and <span class="math inline">\(I\)</span> be a two-sided ideal of <span class="math inline">\(R\)</span>. The <strong>quotient ring</strong> <span class="math inline">\(R/I\)</span> is defined as:</p>
-<section id="set-structure" class="level3">
+<section class="level3" id="set-structure">
 <h3 class="anchored" data-anchor-id="set-structure">Set Structure</h3>
 <p>The underlying set consists of all <a href="../../../content/en/algebra/def-coset.html">Cosets</a> of <span class="math inline">\(I\)</span> in <span class="math inline">\(R\)</span> (under addition): <span class="math display">\[R/I = \{r + I : r \in R\}\]</span></p>
 <p>where <span class="math inline">\(r + I = \{r + i : i \in I\}\)</span></p>
 </section>
-<section id="ring-operations" class="level3">
+<section class="level3" id="ring-operations">
 <h3 class="anchored" data-anchor-id="ring-operations">Ring Operations</h3>
 <p>The operations on <span class="math inline">\(R/I\)</span> are defined as: - <strong>Addition</strong>: <span class="math inline">\((r + I) + (s + I) = (r + s) + I\)</span> - <strong>Multiplication</strong>: <span class="math inline">\((r + I) \cdot (s + I) = (r \cdot s) + I\)</span></p>
 <p>These operations are well-defined because <span class="math inline">\(I\)</span> is an ideal (not just a subgroup).</p>
 </section>
 </section>
-<section id="well-definedness" class="level2">
+<section class="level2" id="well-definedness">
 <h2 class="anchored" data-anchor-id="well-definedness">Well-Definedness</h2>
 <p>The operations are well-defined precisely because <span class="math inline">\(I\)</span> is an ideal:</p>
 <ul>
@@ -324,7 +300,7 @@ window.Quarto = {
 </ul>
 <p>This ensures the operations don’t depend on the choice of coset representatives.</p>
 </section>
-<section id="properties" class="level2">
+<section class="level2" id="properties">
 <h2 class="anchored" data-anchor-id="properties">Properties</h2>
 <ul>
 <li>The zero element of <span class="math inline">\(R/I\)</span> is <span class="math inline">\(0 + I = I\)</span></li>
@@ -333,33 +309,33 @@ window.Quarto = {
 <li><span class="math inline">\(R/I = \{0 + I\}\)</span> (the trivial ring) if and only if <span class="math inline">\(I = R\)</span></li>
 </ul>
 </section>
-<section id="connection-to-homomorphisms" class="level2">
+<section class="level2" id="connection-to-homomorphisms">
 <h2 class="anchored" data-anchor-id="connection-to-homomorphisms">Connection to Homomorphisms</h2>
 <p>The natural map <span class="math inline">\(\pi: R \to R/I\)</span> defined by <span class="math inline">\(\pi(r) = r + I\)</span> is a surjective <a href="../../../content/en/algebra/def-ring-homomorphism.html">ring homomorphism</a> with kernel <span class="math inline">\(I\)</span>. This connects to the fundamental theorem:</p>
 <p><strong>First Isomorphism Theorem for Rings</strong>: If <span class="math inline">\(\phi: R \to S\)</span> is a <a href="../../../content/en/algebra/def-ring-homomorphism.html">ring homomorphism</a>, then: <span class="math display">\[R/\ker(\phi) \cong \text{Im}(\phi)\]</span></p>
 </section>
-<section id="equivalence-relation-perspective" class="level2">
+<section class="level2" id="equivalence-relation-perspective">
 <h2 class="anchored" data-anchor-id="equivalence-relation-perspective">Equivalence Relation Perspective</h2>
 <p>The ideal <span class="math inline">\(I\)</span> induces an <a href="../../../content/en/logic-set-theory/def-equivalence-relation.html">Equivalence Relation</a> on <span class="math inline">\(R\)</span>: <span class="math display">\[r \sim s \text{ if and only if } r - s \in I\]</span></p>
 <p>The elements of <span class="math inline">\(R/I\)</span> are the equivalence classes under this relation.</p>
 </section>
-<section id="examples" class="level2">
+<section class="level2" id="examples">
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<section id="integer-modular-arithmetic" class="level3">
+<section class="level3" id="integer-modular-arithmetic">
 <h3 class="anchored" data-anchor-id="integer-modular-arithmetic">Integer Modular Arithmetic</h3>
 <ul>
 <li><span class="math inline">\(\mathbb{Z}/n\mathbb{Z} \cong \mathbb{Z}_n\)</span> (integers modulo <span class="math inline">\(n\)</span>)</li>
 <li>This gives a formal construction of modular arithmetic</li>
 </ul>
 </section>
-<section id="polynomial-rings" class="level3">
+<section class="level3" id="polynomial-rings">
 <h3 class="anchored" data-anchor-id="polynomial-rings">Polynomial Rings</h3>
 <ul>
 <li><span class="math inline">\(\mathbb{R}[x]/(x^2 + 1) \cong \mathbb{C}\)</span> (complex numbers)</li>
 <li><span class="math inline">\(\mathbb{F}_p[x]/(f(x))\)</span> where <span class="math inline">\(f(x)\)</span> is irreducible gives field extensions</li>
 </ul>
 </section>
-<section id="creating-fields" class="level3">
+<section class="level3" id="creating-fields">
 <h3 class="anchored" data-anchor-id="creating-fields">Creating Fields</h3>
 <ul>
 <li>If <span class="math inline">\(M\)</span> is a <a href="../../../content/en/algebra/def-maximal-ideal.html">maximal ideal</a> of <span class="math inline">\(R\)</span>, then <span class="math inline">\(R/M\)</span> is a field</li>
@@ -367,7 +343,7 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="special-cases" class="level2">
+<section class="level2" id="special-cases">
 <h2 class="anchored" data-anchor-id="special-cases">Special Cases</h2>
 <ul>
 <li><strong><a href="../../../content/en/algebra/def-prime-ideal.html">Prime Ideals</a></strong>: <span class="math inline">\(P\)</span> is prime if and only if <span class="math inline">\(R/P\)</span> is an <a href="../../../content/en/algebra/def-integral-domain.html">integral domain</a></li>
@@ -375,7 +351,7 @@ window.Quarto = {
 <li><strong>Principal Ideals</strong>: For <span class="math inline">\(a \in R\)</span>, the quotient <span class="math inline">\(R/(a)\)</span> consists of residue classes modulo the principal ideal generated by <span class="math inline">\(a\)</span></li>
 </ul>
 </section>
-<section id="dependency-graph" class="level2">
+<section class="level2" id="dependency-graph">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -388,51 +364,51 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-subring["Subring"]:::definition
-    def-quotient-group["Quotient Group"]:::definition
-    ex-finite-field["Finite Field"]:::example
-    def-integral-domain["Integral Domain"]:::definition
-    def-kernel["Kernel"]:::definition
-    def-equivalence-relation["Equivalence Relation"]:::definition
-    def-homomorphism["Group Homomorphism"]:::definition
-    def-coset["Coset"]:::definition
-    def-ring["Ring"]:::definition
+    def-prime-ideal["Prime Ideal"]:::definition
     ex-quotient-integers-mod-n["Integers Modulo n"]:::example
     def-quotient-ring["Quotient Ring"]:::definition
-    def-ring-homomorphism["Ring Homomorphism"]:::definition
+    def-kernel["Kernel"]:::definition
+    def-ring["Ring"]:::definition
+    def-subring["Subring"]:::definition
     def-maximal-ideal["Maximal Ideal"]:::definition
-    def-prime-ideal["Prime Ideal"]:::definition
+    def-coset["Coset"]:::definition
+    def-homomorphism["Group Homomorphism"]:::definition
+    def-integral-domain["Integral Domain"]:::definition
+    ex-finite-field["Finite Field"]:::example
+    def-ring-homomorphism["Ring Homomorphism"]:::definition
     def-ideal["Ideal"]:::definition
-    def-quotient-ring --&gt; def-integral-domain
+    def-equivalence-relation["Equivalence Relation"]:::definition
+    def-quotient-group["Quotient Group"]:::definition
     def-quotient-ring --&gt; def-ring
     def-maximal-ideal --&gt; def-quotient-ring
-    def-kernel --&gt; def-quotient-ring
-    def-quotient-ring --&gt; def-ideal
-    ex-quotient-integers-mod-n --&gt; def-quotient-ring
-    def-quotient-ring --&gt; def-ring-homomorphism
-    def-quotient-ring --&gt; def-prime-ideal
-    def-prime-ideal --&gt; def-quotient-ring
-    def-quotient-ring --&gt; def-equivalence-relation
-    ex-finite-field --&gt; def-quotient-ring
-    def-quotient-group --&gt; def-quotient-ring
     def-quotient-ring --&gt; def-coset
-    def-quotient-ring --&gt; def-homomorphism
+    def-quotient-ring --&gt; def-integral-domain
+    def-quotient-ring --&gt; def-ideal
+    def-quotient-ring --&gt; def-ring-homomorphism
     def-subring --&gt; def-quotient-ring
+    ex-quotient-integers-mod-n --&gt; def-quotient-ring
+    def-prime-ideal --&gt; def-quotient-ring
+    ex-finite-field --&gt; def-quotient-ring
+    def-kernel --&gt; def-quotient-ring
+    def-quotient-ring --&gt; def-homomorphism
+    def-quotient-ring --&gt; def-equivalence-relation
+    def-quotient-group --&gt; def-quotient-ring
+    def-quotient-ring --&gt; def-prime-ideal
     class def-quotient-ring current
-    click def-subring "def-subring.html" "Go to Subring"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
-    click ex-finite-field "ex-finite-field.html" "Go to Finite Field"
-    click def-integral-domain "def-integral-domain.html" "Go to Integral Domain"
-    click def-kernel "def-kernel.html" "Go to Kernel"
-    click def-equivalence-relation "def-equivalence-relation.html" "Go to Equivalence Relation"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism"
-    click def-coset "def-coset.html" "Go to Coset"
-    click def-ring "def-ring.html" "Go to Ring"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n"
-    click def-ring-homomorphism "def-ring-homomorphism.html" "Go to Ring Homomorphism"
-    click def-maximal-ideal "def-maximal-ideal.html" "Go to Maximal Ideal"
     click def-prime-ideal "def-prime-ideal.html" "Go to Prime Ideal"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n"
+    click def-kernel "def-kernel.html" "Go to Kernel"
+    click def-ring "def-ring.html" "Go to Ring"
+    click def-subring "def-subring.html" "Go to Subring"
+    click def-maximal-ideal "def-maximal-ideal.html" "Go to Maximal Ideal"
+    click def-coset "def-coset.html" "Go to Coset"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism"
+    click def-integral-domain "def-integral-domain.html" "Go to Integral Domain"
+    click ex-finite-field "ex-finite-field.html" "Go to Finite Field"
+    click def-ring-homomorphism "def-ring-homomorphism.html" "Go to Ring Homomorphism"
     click def-ideal "def-ideal.html" "Go to Ideal"
+    click def-equivalence-relation "def-equivalence-relation.html" "Go to Equivalence Relation"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -440,13 +416,12 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="interactive-visualization" class="level2">
+<section class="level2" id="interactive-visualization">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-quotient-ring-1753761260" class="graph-visualization-container">
-  <div class="graph-loading">Loading visualization...</div>
+<div class="graph-visualization-container" id="graph-viz-def-quotient-ring-1753763890">
+<div class="graph-loading">Loading visualization...</div>
 </div>
-
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -691,12 +666,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-quotient-ring-1753761260', {
+    createForceGraph(data, 'graph-viz-def-quotient-ring-1753763890', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-quotient-ring-1753761260').innerHTML =
+    document.getElementById('graph-viz-def-quotient-ring-1753763890').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -708,7 +683,6 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
-
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -757,13 +731,9 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
-
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/def-quotient-ring.html" target="_blank">full interactive version</a></p>
-
-
 </section>
 </section>
-
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1166,20 +1136,16 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
+<div class="nav-footer">
+<div class="nav-footer-left">
+       
+    </div>
+<div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-    <div class="nav-footer-right">
-      &nbsp;
+<div class="nav-footer-right">
+       
     </div>
-  </div>
+</div>
 </footer>
-
-
-
-
-</body></html>
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>

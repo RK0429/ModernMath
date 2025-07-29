@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.7.32" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <title>Monoid – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,27 +18,25 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
-
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../favicon.ico" rel="icon">
+<meta content="../../../" name="quarto:offset"/>
+<link href="../../../favicon.ico" rel="icon"/>
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
+<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,8 +66,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -121,10 +116,8 @@ ul.task-list li input[type="checkbox"] {
     document.head.appendChild(issueScript);
   })();
 </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -151,155 +144,138 @@ window.Quarto = {
   typesetMath
 };
 </script>
-
-<link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../../styles-multilingual.css">
+<link href="../../../styles.css" rel="stylesheet"/>
+<link href="../../../styles-multilingual.css" rel="stylesheet"/>
 </head>
-
 <body class="nav-fixed quarto-light">
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">数学ナレッジグラフ</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="サーチ"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../../index-ja.html"> 
-<span class="menu-text">ホーム</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
-<span class="menu-text">代数学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
-<span class="menu-text">解析学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
-<span class="menu-text">位相空間論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
-<span class="menu-text">幾何学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
-<span class="menu-text">圏論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
-<span class="menu-text">組合せ論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
-<span class="menu-text">論理学・集合論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
-<span class="menu-text">数論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
-<span class="menu-text">確率統計</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/about.html"> 
-<span class="menu-text">概要</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
-<span class="menu-text">貢献</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../../en/index.html"> 
-<span class="menu-text">🌐 English</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+<header class="headroom fixed-top" id="quarto-header">
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+<div class="navbar-container container-fluid">
+<div class="navbar-brand-container mx-auto">
+<a class="navbar-brand" href="../../../index.html">
+<span class="navbar-title">数学ナレッジグラフ</span>
+</a>
 </div>
-      </div> <!-- /container-fluid -->
-    </nav>
+<div class="" id="quarto-search" title="サーチ"></div>
+<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+<ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+<a class="nav-link" href="../../../index-ja.html">
+<span class="menu-text">ホーム</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/algebra/index.html">
+<span class="menu-text">代数学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/analysis/index.html">
+<span class="menu-text">解析学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/topology/index.html">
+<span class="menu-text">位相空間論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/geometry/index.html">
+<span class="menu-text">幾何学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+<span class="menu-text">圏論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+<span class="menu-text">組合せ論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+<span class="menu-text">論理学・集合論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+<span class="menu-text">数論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+<span class="menu-text">確率統計</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/about.html">
+<span class="menu-text">概要</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/contributing.html">
+<span class="menu-text">貢献</span></a>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
+</i>
+<span class="menu-text"></span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../../en/index.html">
+<span class="menu-text">🌐 English</span></a>
+</li>
+</ul>
+</div> <!-- /navcollapse -->
+<div class="quarto-navbar-tools">
+</div>
+</div> <!-- /container-fluid -->
+</nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">目次</h2>
-   
-  <ul>
-  <li><a href="#def-monoid" id="toc-def-monoid" class="nav-link active" data-scroll-target="#def-monoid">Monoid</a>
-  <ul class="collapse">
-  <li><a href="#monoid-axioms" id="toc-monoid-axioms" class="nav-link" data-scroll-target="#monoid-axioms">Monoid Axioms</a></li>
-  <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
-  <li><a href="#important-properties" id="toc-important-properties" class="nav-link" data-scroll-target="#important-properties">Important Properties</a></li>
-  <li><a href="#relationship-to-other-structures" id="toc-relationship-to-other-structures" class="nav-link" data-scroll-target="#relationship-to-other-structures">Relationship to Other Structures</a></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
-  <ul class="collapse">
-  <li><a href="#commutative-monoids" id="toc-commutative-monoids" class="nav-link" data-scroll-target="#commutative-monoids">Commutative Monoids</a></li>
-  <li><a href="#non-commutative-monoids" id="toc-non-commutative-monoids" class="nav-link" data-scroll-target="#non-commutative-monoids">Non-commutative Monoids</a></li>
-  </ul></li>
-  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
-  <li><a href="#related-concepts" id="toc-related-concepts" class="nav-link" data-scroll-target="#related-concepts">Related Concepts</a></li>
-  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
-  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
-  </ul></li>
-  </ul>
+<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
+<nav class="toc-active" id="TOC" role="doc-toc">
+<h2 id="toc-title">目次</h2>
+<ul>
+<li><a class="nav-link active" data-scroll-target="#def-monoid" href="#def-monoid" id="toc-def-monoid">Monoid</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#monoid-axioms" href="#monoid-axioms" id="toc-monoid-axioms">Monoid Axioms</a></li>
+<li><a class="nav-link" data-scroll-target="#notation" href="#notation" id="toc-notation">Notation</a></li>
+<li><a class="nav-link" data-scroll-target="#important-properties" href="#important-properties" id="toc-important-properties">Important Properties</a></li>
+<li><a class="nav-link" data-scroll-target="#relationship-to-other-structures" href="#relationship-to-other-structures" id="toc-relationship-to-other-structures">Relationship to Other Structures</a></li>
+<li><a class="nav-link" data-scroll-target="#examples" href="#examples" id="toc-examples">Examples</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#commutative-monoids" href="#commutative-monoids" id="toc-commutative-monoids">Commutative Monoids</a></li>
+<li><a class="nav-link" data-scroll-target="#non-commutative-monoids" href="#non-commutative-monoids" id="toc-non-commutative-monoids">Non-commutative Monoids</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#applications" href="#applications" id="toc-applications">Applications</a></li>
+<li><a class="nav-link" data-scroll-target="#related-concepts" href="#related-concepts" id="toc-related-concepts">Related Concepts</a></li>
+<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
+<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
+</ul></li>
+</ul>
 </nav>
-    </div>
+</div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
+<header class="quarto-title-block default" id="title-block-header">
 <div class="quarto-title">
 <h1 class="title">Monoid</h1>
 </div>
-
-
-
 <div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
+</div>
 </header>
-
-
-<section id="def-monoid" class="level1">
+<section class="level1" id="def-monoid">
 <h1>Monoid</h1>
 <p>A <strong>monoid</strong> is a <a href="../../../content/en/logic-set-theory/def-set.html">set</a> <span class="math inline">\(M\)</span> together with a <a href="../../../content/en/algebra/def-binary-operation.html">binary operation</a> <span class="math inline">\(\star: M \times M \to M\)</span> that satisfies two fundamental axioms.</p>
-<section id="monoid-axioms" class="level2">
+<section class="level2" id="monoid-axioms">
 <h2 class="anchored" data-anchor-id="monoid-axioms">Monoid Axioms</h2>
 <ol type="1">
 <li><p><strong><a href="../../../content/en/algebra/def-associativity.html">Associativity</a></strong>: For all <span class="math inline">\(a, b, c \in M\)</span>, <span class="math display">\[(a \star b) \star c = a \star (b \star c)\]</span></p></li>
 <li><p><strong><a href="../../../content/en/algebra/def-identity-element.html">Identity element</a></strong>: There exists an element <span class="math inline">\(e \in M\)</span> such that for all <span class="math inline">\(a \in M\)</span>, <span class="math display">\[a \star e = e \star a = a\]</span></p></li>
 </ol>
 </section>
-<section id="notation" class="level2">
+<section class="level2" id="notation">
 <h2 class="anchored" data-anchor-id="notation">Notation</h2>
 <ul>
 <li>A monoid is often denoted as <span class="math inline">\((M, \star)\)</span> or <span class="math inline">\((M, \star, e)\)</span> to explicitly show the set, operation, and identity</li>
@@ -308,7 +284,7 @@ window.Quarto = {
 <li>The identity element is often denoted as <span class="math inline">\(1\)</span> (for multiplicative notation) or <span class="math inline">\(0\)</span> (for additive notation)</li>
 </ul>
 </section>
-<section id="important-properties" class="level2">
+<section class="level2" id="important-properties">
 <h2 class="anchored" data-anchor-id="important-properties">Important Properties</h2>
 <p>From the axioms, we can prove:</p>
 <ul>
@@ -318,7 +294,7 @@ window.Quarto = {
 <li>The <a href="../../../content/en/algebra/def-endomorphism.html">endomorphisms</a> of any object form a monoid under composition</li>
 </ul>
 </section>
-<section id="relationship-to-other-structures" class="level2">
+<section class="level2" id="relationship-to-other-structures">
 <h2 class="anchored" data-anchor-id="relationship-to-other-structures">Relationship to Other Structures</h2>
 <ul>
 <li><strong><a href="../../../content/en/algebra/def-semigroup.html">Semigroup</a></strong>: A monoid without the identity requirement</li>
@@ -326,9 +302,9 @@ window.Quarto = {
 <li><strong>Commutative monoid</strong>: A monoid whose operation is <a href="../../../content/en/algebra/def-commutativity.html">commutative</a></li>
 </ul>
 </section>
-<section id="examples" class="level2">
+<section class="level2" id="examples">
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<section id="commutative-monoids" class="level3">
+<section class="level3" id="commutative-monoids">
 <h3 class="anchored" data-anchor-id="commutative-monoids">Commutative Monoids</h3>
 <ul>
 <li><span class="math inline">\((\mathbb{N}, +, 0)\)</span>: Natural numbers under addition with identity 0</li>
@@ -337,7 +313,7 @@ window.Quarto = {
 <li><span class="math inline">\((P(X), \cap, X)\)</span>: Power set under intersection with the full set as identity</li>
 </ul>
 </section>
-<section id="non-commutative-monoids" class="level3">
+<section class="level3" id="non-commutative-monoids">
 <h3 class="anchored" data-anchor-id="non-commutative-monoids">Non-commutative Monoids</h3>
 <ul>
 <li><span class="math inline">\((M_n(\mathbb{R}), \cdot, I_n)\)</span>: <span class="math inline">\(n \times n\)</span> <a href="../../../content/en/algebra/def-matrix.html">matrices</a> under multiplication with identity matrix</li>
@@ -346,7 +322,7 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="applications" class="level2">
+<section class="level2" id="applications">
 <h2 class="anchored" data-anchor-id="applications">Applications</h2>
 <p>Monoids appear throughout mathematics and computer science:</p>
 <ul>
@@ -356,7 +332,7 @@ window.Quarto = {
 <li><strong>Formal languages</strong>: String concatenation forms the free monoid</li>
 </ul>
 </section>
-<section id="related-concepts" class="level2">
+<section class="level2" id="related-concepts">
 <h2 class="anchored" data-anchor-id="related-concepts">Related Concepts</h2>
 <ul>
 <li><strong>Free monoid</strong>: The monoid of all finite sequences from a set with concatenation</li>
@@ -365,7 +341,7 @@ window.Quarto = {
 <li><strong><a href="../../../content/en/algebra/def-abelian-group.html">Abelian group</a></strong>: A commutative monoid where every element has an inverse</li>
 </ul>
 </section>
-<section id="dependency-graph" class="level2">
+<section class="level2" id="dependency-graph">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -378,29 +354,29 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-associativity["Associativity"]:::definition
-    def-identity-element["Identity Element"]:::definition
-    def-inverse-element["Inverse Element"]:::definition
     def-set["Set"]:::definition
-    def-group["Group"]:::definition
-    def-binary-operation["Binary Operation"]:::definition
     def-endomorphism["Endomorphism"]:::definition
+    def-group["Group"]:::definition
+    def-associativity["Associativity"]:::definition
     def-monoid["Monoid"]:::definition
+    def-inverse-element["Inverse Element"]:::definition
+    def-identity-element["Identity Element"]:::definition
+    def-binary-operation["Binary Operation"]:::definition
+    def-monoid --&gt; def-identity-element
+    def-endomorphism --&gt; def-monoid
+    def-monoid --&gt; def-binary-operation
     def-monoid --&gt; def-associativity
+    def-monoid --&gt; def-set
     def-inverse-element --&gt; def-monoid
     def-group --&gt; def-monoid
-    def-monoid --&gt; def-binary-operation
-    def-monoid --&gt; def-identity-element
-    def-monoid --&gt; def-set
-    def-endomorphism --&gt; def-monoid
     class def-monoid current
-    click def-associativity "def-associativity.html" "Go to Associativity"
-    click def-identity-element "def-identity-element.html" "Go to Identity Element"
-    click def-inverse-element "def-inverse-element.html" "Go to Inverse Element"
     click def-set "def-set.html" "Go to Set"
-    click def-group "def-group.html" "Go to Group"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation"
     click def-endomorphism "def-endomorphism.html" "Go to Endomorphism"
+    click def-group "def-group.html" "Go to Group"
+    click def-associativity "def-associativity.html" "Go to Associativity"
+    click def-inverse-element "def-inverse-element.html" "Go to Inverse Element"
+    click def-identity-element "def-identity-element.html" "Go to Identity Element"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -408,13 +384,12 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="interactive-visualization" class="level2">
+<section class="level2" id="interactive-visualization">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-monoid-1753761265" class="graph-visualization-container">
-  <div class="graph-loading">Loading visualization...</div>
+<div class="graph-visualization-container" id="graph-viz-def-monoid-1753763896">
+<div class="graph-loading">Loading visualization...</div>
 </div>
-
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -659,12 +634,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-monoid-1753761265', {
+    createForceGraph(data, 'graph-viz-def-monoid-1753763896', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-monoid-1753761265').innerHTML =
+    document.getElementById('graph-viz-def-monoid-1753763896').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -676,7 +651,6 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
-
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -725,13 +699,9 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
-
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/def-monoid.html" target="_blank">full interactive version</a></p>
-
-
 </section>
 </section>
-
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1134,20 +1104,16 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
+<div class="nav-footer">
+<div class="nav-footer-left">
+       
+    </div>
+<div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-    <div class="nav-footer-right">
-      &nbsp;
+<div class="nav-footer-right">
+       
     </div>
-  </div>
+</div>
 </footer>
-
-
-
-
-</body></html>
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>

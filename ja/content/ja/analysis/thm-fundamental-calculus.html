@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.7.32" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <title>微積分学の基本定理 – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,27 +18,25 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
-
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../favicon.ico" rel="icon">
+<meta content="../../../" name="quarto:offset"/>
+<link href="../../../favicon.ico" rel="icon"/>
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
+<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,8 +66,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -121,10 +116,8 @@ ul.task-list li input[type="checkbox"] {
     document.head.appendChild(issueScript);
   })();
 </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -151,193 +144,176 @@ window.Quarto = {
   typesetMath
 };
 </script>
-
-<link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../../styles-multilingual.css">
+<link href="../../../styles.css" rel="stylesheet"/>
+<link href="../../../styles-multilingual.css" rel="stylesheet"/>
 </head>
-
 <body class="nav-fixed quarto-light">
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">数学ナレッジグラフ</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="サーチ"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../../index-ja.html"> 
-<span class="menu-text">ホーム</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
-<span class="menu-text">代数学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
-<span class="menu-text">解析学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
-<span class="menu-text">位相空間論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
-<span class="menu-text">幾何学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
-<span class="menu-text">圏論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
-<span class="menu-text">組合せ論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
-<span class="menu-text">論理学・集合論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
-<span class="menu-text">数論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
-<span class="menu-text">確率統計</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/about.html"> 
-<span class="menu-text">概要</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
-<span class="menu-text">貢献</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../../en/index.html"> 
-<span class="menu-text">🌐 English</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+<header class="headroom fixed-top" id="quarto-header">
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+<div class="navbar-container container-fluid">
+<div class="navbar-brand-container mx-auto">
+<a class="navbar-brand" href="../../../index.html">
+<span class="navbar-title">数学ナレッジグラフ</span>
+</a>
 </div>
-      </div> <!-- /container-fluid -->
-    </nav>
+<div class="" id="quarto-search" title="サーチ"></div>
+<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+<ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+<a class="nav-link" href="../../../index-ja.html">
+<span class="menu-text">ホーム</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/algebra/index.html">
+<span class="menu-text">代数学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/analysis/index.html">
+<span class="menu-text">解析学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/topology/index.html">
+<span class="menu-text">位相空間論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/geometry/index.html">
+<span class="menu-text">幾何学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+<span class="menu-text">圏論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+<span class="menu-text">組合せ論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+<span class="menu-text">論理学・集合論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+<span class="menu-text">数論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+<span class="menu-text">確率統計</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/about.html">
+<span class="menu-text">概要</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/contributing.html">
+<span class="menu-text">貢献</span></a>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
+</i>
+<span class="menu-text"></span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../../en/index.html">
+<span class="menu-text">🌐 English</span></a>
+</li>
+</ul>
+</div> <!-- /navcollapse -->
+<div class="quarto-navbar-tools">
+</div>
+</div> <!-- /container-fluid -->
+</nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">目次</h2>
-   
-  <ul>
-  <li><a href="#命題" id="toc-命題" class="nav-link active" data-scroll-target="#命題">命題</a>
-  <ul class="collapse">
-  <li><a href="#第一部第一基本定理" id="toc-第一部第一基本定理" class="nav-link" data-scroll-target="#第一部第一基本定理">第一部（第一基本定理）</a></li>
-  <li><a href="#第二部第二基本定理" id="toc-第二部第二基本定理" class="nav-link" data-scroll-target="#第二部第二基本定理">第二部（第二基本定理）</a></li>
-  </ul></li>
-  <li><a href="#解釈" id="toc-解釈" class="nav-link" data-scroll-target="#解釈">解釈</a>
-  <ul class="collapse">
-  <li><a href="#第一部の解釈" id="toc-第一部の解釈" class="nav-link" data-scroll-target="#第一部の解釈">第一部の解釈</a></li>
-  <li><a href="#第二部の解釈" id="toc-第二部の解釈" class="nav-link" data-scroll-target="#第二部の解釈">第二部の解釈</a></li>
-  </ul></li>
-  <li><a href="#証明の概略" id="toc-証明の概略" class="nav-link" data-scroll-target="#証明の概略">証明の概略</a>
-  <ul class="collapse">
-  <li><a href="#第一部の証明" id="toc-第一部の証明" class="nav-link" data-scroll-target="#第一部の証明">第一部の証明</a></li>
-  <li><a href="#第二部の証明" id="toc-第二部の証明" class="nav-link" data-scroll-target="#第二部の証明">第二部の証明</a></li>
-  </ul></li>
-  <li><a href="#歴史的発展" id="toc-歴史的発展" class="nav-link" data-scroll-target="#歴史的発展">歴史的発展</a></li>
-  <li><a href="#帰結と応用" id="toc-帰結と応用" class="nav-link" data-scroll-target="#帰結と応用">帰結と応用</a>
-  <ul class="collapse">
-  <li><a href="#定積分の評価" id="toc-定積分の評価" class="nav-link" data-scroll-target="#定積分の評価">1. 定積分の評価</a></li>
-  <li><a href="#原始関数の存在" id="toc-原始関数の存在" class="nav-link" data-scroll-target="#原始関数の存在">2. 原始関数の存在</a></li>
-  <li><a href="#部分積分" id="toc-部分積分" class="nav-link" data-scroll-target="#部分積分">3. 部分積分</a></li>
-  <li><a href="#置換積分" id="toc-置換積分" class="nav-link" data-scroll-target="#置換積分">4. 置換積分</a></li>
-  <li><a href="#物理学的応用" id="toc-物理学的応用" class="nav-link" data-scroll-target="#物理学的応用">5. 物理学的応用</a></li>
-  </ul></li>
-  <li><a href="#他の定理との関係" id="toc-他の定理との関係" class="nav-link" data-scroll-target="#他の定理との関係">他の定理との関係</a></li>
-  <li><a href="#例" id="toc-例" class="nav-link" data-scroll-target="#例">例</a>
-  <ul class="collapse">
-  <li><a href="#例1面積計算" id="toc-例1面積計算" class="nav-link" data-scroll-target="#例1面積計算">例1：面積計算</a></li>
-  <li><a href="#例2可変上限" id="toc-例2可変上限" class="nav-link" data-scroll-target="#例2可変上限">例2：可変上限</a></li>
-  <li><a href="#例3物理学的応用" id="toc-例3物理学的応用" class="nav-link" data-scroll-target="#例3物理学的応用">例3：物理学的応用</a></li>
-  </ul></li>
-  <li><a href="#一般化" id="toc-一般化" class="nav-link" data-scroll-target="#一般化">一般化</a></li>
-  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
-  <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
-  </ul>
+<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
+<nav class="toc-active" id="TOC" role="doc-toc">
+<h2 id="toc-title">目次</h2>
+<ul>
+<li><a class="nav-link active" data-scroll-target="#命題" href="#命題" id="toc-命題">命題</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#第一部第一基本定理" href="#第一部第一基本定理" id="toc-第一部第一基本定理">第一部（第一基本定理）</a></li>
+<li><a class="nav-link" data-scroll-target="#第二部第二基本定理" href="#第二部第二基本定理" id="toc-第二部第二基本定理">第二部（第二基本定理）</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#解釈" href="#解釈" id="toc-解釈">解釈</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#第一部の解釈" href="#第一部の解釈" id="toc-第一部の解釈">第一部の解釈</a></li>
+<li><a class="nav-link" data-scroll-target="#第二部の解釈" href="#第二部の解釈" id="toc-第二部の解釈">第二部の解釈</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#証明の概略" href="#証明の概略" id="toc-証明の概略">証明の概略</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#第一部の証明" href="#第一部の証明" id="toc-第一部の証明">第一部の証明</a></li>
+<li><a class="nav-link" data-scroll-target="#第二部の証明" href="#第二部の証明" id="toc-第二部の証明">第二部の証明</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#歴史的発展" href="#歴史的発展" id="toc-歴史的発展">歴史的発展</a></li>
+<li><a class="nav-link" data-scroll-target="#帰結と応用" href="#帰結と応用" id="toc-帰結と応用">帰結と応用</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#定積分の評価" href="#定積分の評価" id="toc-定積分の評価">1. 定積分の評価</a></li>
+<li><a class="nav-link" data-scroll-target="#原始関数の存在" href="#原始関数の存在" id="toc-原始関数の存在">2. 原始関数の存在</a></li>
+<li><a class="nav-link" data-scroll-target="#部分積分" href="#部分積分" id="toc-部分積分">3. 部分積分</a></li>
+<li><a class="nav-link" data-scroll-target="#置換積分" href="#置換積分" id="toc-置換積分">4. 置換積分</a></li>
+<li><a class="nav-link" data-scroll-target="#物理学的応用" href="#物理学的応用" id="toc-物理学的応用">5. 物理学的応用</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#他の定理との関係" href="#他の定理との関係" id="toc-他の定理との関係">他の定理との関係</a></li>
+<li><a class="nav-link" data-scroll-target="#例" href="#例" id="toc-例">例</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#例1面積計算" href="#例1面積計算" id="toc-例1面積計算">例1：面積計算</a></li>
+<li><a class="nav-link" data-scroll-target="#例2可変上限" href="#例2可変上限" id="toc-例2可変上限">例2：可変上限</a></li>
+<li><a class="nav-link" data-scroll-target="#例3物理学的応用" href="#例3物理学的応用" id="toc-例3物理学的応用">例3：物理学的応用</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#一般化" href="#一般化" id="toc-一般化">一般化</a></li>
+<li><a class="nav-link" data-scroll-target="#依存関係グラフ" href="#依存関係グラフ" id="toc-依存関係グラフ">依存関係グラフ</a></li>
+<li><a class="nav-link" data-scroll-target="#インタラクティブ可視化" href="#インタラクティブ可視化" id="toc-インタラクティブ可視化">インタラクティブ可視化</a></li>
+</ul>
 </nav>
-    </div>
+</div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
+<header class="quarto-title-block default" id="title-block-header">
 <div class="quarto-title">
 <h1 class="title">微積分学の基本定理</h1>
 </div>
-
-
-
 <div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
+</div>
 </header>
-
-
 <p><strong>微積分学の基本定理</strong>は、微分と積分がお互いに逆演算であることを示す、微積分学の中心となる定理である。</p>
-<section id="命題" class="level2">
+<section class="level2" id="命題">
 <h2 class="anchored" data-anchor-id="命題">命題</h2>
 <p>定理は密接に関連する2つの部分からなる：</p>
-<section id="第一部第一基本定理" class="level3">
+<section class="level3" id="第一部第一基本定理">
 <h3 class="anchored" data-anchor-id="第一部第一基本定理">第一部（第一基本定理）</h3>
 <p><span class="math inline">\(f\)</span> を <span class="math inline">\([a,b]\)</span> 上の<a href="../../../content/ja/analysis/def-continuity.html">連続</a>関数とする。<span class="math inline">\([a,b]\)</span> 上の関数 <span class="math inline">\(F\)</span> を次のように定義する：</p>
 <p><span class="math display">\[F(x) = \int_a^x f(t) \, dt\]</span></p>
 <p>このとき <span class="math inline">\(F\)</span> は <span class="math inline">\((a,b)\)</span> で微分可能であり： <span class="math display">\[F'(x) = f(x)\]</span></p>
 <p>がすべての <span class="math inline">\(x \in (a,b)\)</span> で成り立つ。</p>
 </section>
-<section id="第二部第二基本定理" class="level3">
+<section class="level3" id="第二部第二基本定理">
 <h3 class="anchored" data-anchor-id="第二部第二基本定理">第二部（第二基本定理）</h3>
 <p><span class="math inline">\(f\)</span> を <span class="math inline">\([a,b]\)</span> 上の連続関数とする。<span class="math inline">\(F\)</span> が <span class="math inline">\([a,b]\)</span> 上で <span class="math inline">\(f\)</span> の原始関数（つまり <span class="math inline">\(F' = f\)</span>）ならば：</p>
 <p><span class="math display">\[\int_a^b f(x) \, dx = F(b) - F(a)\]</span></p>
 </section>
 </section>
-<section id="解釈" class="level2">
+<section class="level2" id="解釈">
 <h2 class="anchored" data-anchor-id="解釈">解釈</h2>
-<section id="第一部の解釈" class="level3">
+<section class="level3" id="第一部の解釈">
 <h3 class="anchored" data-anchor-id="第一部の解釈">第一部の解釈</h3>
 <p>第一部は、すべての連続関数が原始関数を持つこと、すなわち可変上限を持つ<a href="../../../content/ja/analysis/def-integral.html">積分</a>関数であることを示している。また、微分が積分を打ち消すことも示している。</p>
 </section>
-<section id="第二部の解釈" class="level3">
+<section class="level3" id="第二部の解釈">
 <h3 class="anchored" data-anchor-id="第二部の解釈">第二部の解釈</h3>
 <p>第二部は定積分を評価する強力な方法を提供する：リーマン和の<a href="../../../content/ja/analysis/def-limit.html">極限</a>を計算する代わりに、原始関数を見つけて両端点で評価すればよい。</p>
 </section>
 </section>
-<section id="証明の概略" class="level2">
+<section class="level2" id="証明の概略">
 <h2 class="anchored" data-anchor-id="証明の概略">証明の概略</h2>
-<section id="第一部の証明" class="level3">
+<section class="level3" id="第一部の証明">
 <h3 class="anchored" data-anchor-id="第一部の証明">第一部の証明</h3>
 <p><span class="math inline">\(h &gt; 0\)</span> を小さくとる。<a href="../../../content/ja/analysis/def-derivative.html">導関数</a>の定義により：</p>
 <p><span class="math display">\[F'(x) = \lim_{h \to 0} \frac{F(x+h) - F(x)}{h} = \lim_{h \to 0} \frac{1}{h} \int_x^{x+h} f(t) \, dt\]</span></p>
@@ -346,7 +322,7 @@ window.Quarto = {
 <p>したがって： <span class="math display">\[F'(x) = \lim_{h \to 0} f(c)\]</span></p>
 <p><span class="math inline">\(h \to 0\)</span> のとき <span class="math inline">\(c \to x\)</span> であり、<span class="math inline">\(f\)</span> は連続なので、<span class="math inline">\(F'(x) = f(x)\)</span> を得る。</p>
 </section>
-<section id="第二部の証明" class="level3">
+<section class="level3" id="第二部の証明">
 <h3 class="anchored" data-anchor-id="第二部の証明">第二部の証明</h3>
 <p><span class="math inline">\(G(x) = \int_a^x f(t) \, dt\)</span> とし、<span class="math inline">\(F\)</span> を <span class="math inline">\(f\)</span> の任意の原始関数とする。</p>
 <p>第一部により、<span class="math inline">\(G'(x) = f(x) = F'(x)\)</span> なので、<span class="math inline">\((F - G)'(x) = 0\)</span> が <span class="math inline">\((a,b)\)</span> で成り立つ。</p>
@@ -357,29 +333,29 @@ window.Quarto = {
 <p>したがって：<span class="math inline">\(\int_a^b f(t) \, dt = F(b) - F(a)\)</span></p>
 </section>
 </section>
-<section id="歴史的発展" class="level2">
+<section class="level2" id="歴史的発展">
 <h2 class="anchored" data-anchor-id="歴史的発展">歴史的発展</h2>
 <p>この定理は以下の数学者たちによって独立に発展した： - <strong>アイザック・ニュートン</strong> (1642-1727)：速度と距離の関係に焦点を当てた - <strong>ゴットフリート・ヴィルヘルム・ライプニッツ</strong> (1646-1716)：記法と形式的枠組みを開発 - <strong>アイザック・バロー</strong> (1630-1677)：ニュートンの師、幾何学的バージョンを証明 - <strong>ジェームズ・グレゴリー</strong> (1638-1675)：幾何学的な焦点を持つ初期バージョンを発表</p>
 </section>
-<section id="帰結と応用" class="level2">
+<section class="level2" id="帰結と応用">
 <h2 class="anchored" data-anchor-id="帰結と応用">帰結と応用</h2>
-<section id="定積分の評価" class="level3">
+<section class="level3" id="定積分の評価">
 <h3 class="anchored" data-anchor-id="定積分の評価">1. 定積分の評価</h3>
 <p>リーマン和の極限を計算する代わりに、次を使用できる： <span class="math display">\[\int_0^{\pi} \sin x \, dx = [-\cos x]_0^{\pi} = -\cos(\pi) + \cos(0) = 2\]</span></p>
 </section>
-<section id="原始関数の存在" class="level3">
+<section class="level3" id="原始関数の存在">
 <h3 class="anchored" data-anchor-id="原始関数の存在">2. 原始関数の存在</h3>
 <p>区間上のすべての連続関数は原始関数を持つ。</p>
 </section>
-<section id="部分積分" class="level3">
+<section class="level3" id="部分積分">
 <h3 class="anchored" data-anchor-id="部分積分">3. 部分積分</h3>
 <p>積の微分法則とFTCから導かれる： <span class="math display">\[\int_a^b u \, dv = [uv]_a^b - \int_a^b v \, du\]</span></p>
 </section>
-<section id="置換積分" class="level3">
+<section class="level3" id="置換積分">
 <h3 class="anchored" data-anchor-id="置換積分">4. 置換積分</h3>
 <p>置換法則は連鎖律とFTCから従う： <span class="math display">\[\int_a^b f(g(x))g'(x) \, dx = \int_{g(a)}^{g(b)} f(u) \, du\]</span></p>
 </section>
-<section id="物理学的応用" class="level3">
+<section class="level3" id="物理学的応用">
 <h3 class="anchored" data-anchor-id="物理学的応用">5. 物理学的応用</h3>
 <ul>
 <li><strong>運動学</strong>：位置は速度の積分</li>
@@ -388,27 +364,27 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="他の定理との関係" class="level2">
+<section class="level2" id="他の定理との関係">
 <h2 class="anchored" data-anchor-id="他の定理との関係">他の定理との関係</h2>
 <p>微積分学の基本定理は以下と密接に関連している： - <a href="../../../content/ja/analysis/thm-mean-value.html">平均値定理</a>：第一部の証明で使用 - <a href="../../../content/ja/analysis/thm-chain-rule.html">連鎖律</a>：関数の合成に一般化 - <a href="../../../content/ja/analysis/thm-taylor-series.html">テイラー級数</a>：反復積分を使用する高次バージョン</p>
 </section>
-<section id="例" class="level2">
+<section class="level2" id="例">
 <h2 class="anchored" data-anchor-id="例">例</h2>
-<section id="例1面積計算" class="level3">
+<section class="level3" id="例1面積計算">
 <h3 class="anchored" data-anchor-id="例1面積計算">例1：面積計算</h3>
 <p><span class="math inline">\(f(x) = x^2\)</span> の 0 から 2 までの下の面積を求める： <span class="math display">\[\int_0^2 x^2 \, dx = \left[\frac{x^3}{3}\right]_0^2 = \frac{8}{3} - 0 = \frac{8}{3}\]</span></p>
 </section>
-<section id="例2可変上限" class="level3">
+<section class="level3" id="例2可変上限">
 <h3 class="anchored" data-anchor-id="例2可変上限">例2：可変上限</h3>
 <p><span class="math inline">\(F(x) = \int_1^x \frac{1}{t} \, dt\)</span> ならば、第一部により： <span class="math display">\[F'(x) = \frac{1}{x}\]</span></p>
 <p>これは <span class="math inline">\(\ln x\)</span> が <span class="math inline">\(1/x\)</span> の原始関数であることを示している。</p>
 </section>
-<section id="例3物理学的応用" class="level3">
+<section class="level3" id="例3物理学的応用">
 <h3 class="anchored" data-anchor-id="例3物理学的応用">例3：物理学的応用</h3>
 <p>粒子が速度 <span class="math inline">\(v(t) = 3t^2 - 2t\)</span> で運動する。<span class="math inline">\(t = 0\)</span> から <span class="math inline">\(t = 3\)</span> までの変位は： <span class="math display">\[s = \int_0^3 (3t^2 - 2t) \, dt = [t^3 - t^2]_0^3 = 27 - 9 = 18\]</span></p>
 </section>
 </section>
-<section id="一般化" class="level2">
+<section class="level2" id="一般化">
 <h2 class="anchored" data-anchor-id="一般化">一般化</h2>
 <ol type="1">
 <li><strong>ルベーグ積分</strong>：定理はより一般的な積分理論に拡張される</li>
@@ -417,7 +393,7 @@ window.Quarto = {
 <li><strong>微分形式</strong>：ストークスの定理はFTCを高次元に一般化</li>
 </ol>
 </section>
-<section id="依存関係グラフ" class="level2">
+<section class="level2" id="依存関係グラフ">
 <h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -431,16 +407,16 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-fundamental-calculus["微積分学の基本定理"]:::theorem
-    def-derivative["導関数"]:::definition
-    def-integral["積分"]:::definition
     def-continuity["連続性"]:::definition
-    thm-fundamental-calculus --&gt; def-continuity
+    def-integral["積分"]:::definition
+    def-derivative["導関数"]:::definition
     thm-fundamental-calculus --&gt; def-integral
     thm-fundamental-calculus --&gt; def-derivative
+    thm-fundamental-calculus --&gt; def-continuity
     class thm-fundamental-calculus current
-    click def-derivative "def-derivative.html" "導関数へ"
-    click def-integral "def-integral.html" "積分へ"
     click def-continuity "def-continuity.html" "連続性へ"
+    click def-integral "def-integral.html" "積分へ"
+    click def-derivative "def-derivative.html" "導関数へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -448,13 +424,12 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="インタラクティブ可視化" class="level2">
+<section class="level2" id="インタラクティブ可視化">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-fundamental-calculus-1753761206" class="graph-visualization-container">
-  <div class="graph-loading">Loading visualization...</div>
+<div class="graph-visualization-container" id="graph-viz-thm-fundamental-calculus-1753763838">
+<div class="graph-loading">Loading visualization...</div>
 </div>
-
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -699,12 +674,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-fundamental-calculus-1753761206', {
+    createForceGraph(data, 'graph-viz-thm-fundamental-calculus-1753763838', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-fundamental-calculus-1753761206').innerHTML =
+    document.getElementById('graph-viz-thm-fundamental-calculus-1753763838').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -716,7 +691,6 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
-
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -765,12 +739,8 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
-
 <p>次のことができます： - ノードを<strong>ドラッグ</strong>してレイアウトを再配置 - マウスホイールで<strong>ズーム</strong>イン/アウト - ノードに<strong>ホバー</strong>して詳細を表示 - <a href="../../output/interactive/ja/thm-fundamental-calculus.html" target="_blank">別ウィンドウ</a>で完全なインタラクティブ版を表示</p>
-
-
 </section>
-
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1173,20 +1143,16 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
+<div class="nav-footer">
+<div class="nav-footer-left">
+       
+    </div>
+<div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-    <div class="nav-footer-right">
-      &nbsp;
+<div class="nav-footer-right">
+       
     </div>
-  </div>
+</div>
 </footer>
-
-
-
-
-</body></html>
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>

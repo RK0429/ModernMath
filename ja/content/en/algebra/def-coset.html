@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.7.32" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <title>Coset – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,27 +18,25 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
-
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../favicon.ico" rel="icon">
+<meta content="../../../" name="quarto:offset"/>
+<link href="../../../favicon.ico" rel="icon"/>
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
+<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,8 +66,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -121,10 +116,8 @@ ul.task-list li input[type="checkbox"] {
     document.head.appendChild(issueScript);
   })();
 </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -151,179 +144,162 @@ window.Quarto = {
   typesetMath
 };
 </script>
-
-<link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../../styles-multilingual.css">
+<link href="../../../styles.css" rel="stylesheet"/>
+<link href="../../../styles-multilingual.css" rel="stylesheet"/>
 </head>
-
 <body class="nav-fixed quarto-light">
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">数学ナレッジグラフ</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="サーチ"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../../index-ja.html"> 
-<span class="menu-text">ホーム</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
-<span class="menu-text">代数学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
-<span class="menu-text">解析学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
-<span class="menu-text">位相空間論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
-<span class="menu-text">幾何学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
-<span class="menu-text">圏論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
-<span class="menu-text">組合せ論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
-<span class="menu-text">論理学・集合論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
-<span class="menu-text">数論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
-<span class="menu-text">確率統計</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/about.html"> 
-<span class="menu-text">概要</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
-<span class="menu-text">貢献</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../../en/index.html"> 
-<span class="menu-text">🌐 English</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+<header class="headroom fixed-top" id="quarto-header">
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+<div class="navbar-container container-fluid">
+<div class="navbar-brand-container mx-auto">
+<a class="navbar-brand" href="../../../index.html">
+<span class="navbar-title">数学ナレッジグラフ</span>
+</a>
 </div>
-      </div> <!-- /container-fluid -->
-    </nav>
+<div class="" id="quarto-search" title="サーチ"></div>
+<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+<ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+<a class="nav-link" href="../../../index-ja.html">
+<span class="menu-text">ホーム</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/algebra/index.html">
+<span class="menu-text">代数学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/analysis/index.html">
+<span class="menu-text">解析学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/topology/index.html">
+<span class="menu-text">位相空間論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/geometry/index.html">
+<span class="menu-text">幾何学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+<span class="menu-text">圏論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+<span class="menu-text">組合せ論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+<span class="menu-text">論理学・集合論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+<span class="menu-text">数論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+<span class="menu-text">確率統計</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/about.html">
+<span class="menu-text">概要</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/contributing.html">
+<span class="menu-text">貢献</span></a>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
+</i>
+<span class="menu-text"></span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../../en/index.html">
+<span class="menu-text">🌐 English</span></a>
+</li>
+</ul>
+</div> <!-- /navcollapse -->
+<div class="quarto-navbar-tools">
+</div>
+</div> <!-- /container-fluid -->
+</nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">目次</h2>
-   
-  <ul>
-  <li><a href="#def-coset" id="toc-def-coset" class="nav-link active" data-scroll-target="#def-coset">Coset</a>
-  <ul class="collapse">
-  <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link" data-scroll-target="#formal-definition">Formal Definition</a>
-  <ul class="collapse">
-  <li><a href="#left-coset" id="toc-left-coset" class="nav-link" data-scroll-target="#left-coset">Left Coset</a></li>
-  <li><a href="#right-coset" id="toc-right-coset" class="nav-link" data-scroll-target="#right-coset">Right Coset</a></li>
-  </ul></li>
-  <li><a href="#notation-and-terminology" id="toc-notation-and-terminology" class="nav-link" data-scroll-target="#notation-and-terminology">Notation and Terminology</a></li>
-  <li><a href="#fundamental-properties" id="toc-fundamental-properties" class="nav-link" data-scroll-target="#fundamental-properties">Fundamental Properties</a>
-  <ul class="collapse">
-  <li><a href="#equal-cardinality" id="toc-equal-cardinality" class="nav-link" data-scroll-target="#equal-cardinality">1. Equal Cardinality</a></li>
-  <li><a href="#partition-property" id="toc-partition-property" class="nav-link" data-scroll-target="#partition-property">2. Partition Property</a></li>
-  <li><a href="#coset-equality-criterion" id="toc-coset-equality-criterion" class="nav-link" data-scroll-target="#coset-equality-criterion">3. Coset Equality Criterion</a></li>
-  <li><a href="#the-identity-coset" id="toc-the-identity-coset" class="nav-link" data-scroll-target="#the-identity-coset">4. The Identity Coset</a></li>
-  <li><a href="#index" id="toc-index" class="nav-link" data-scroll-target="#index">5. Index</a></li>
-  </ul></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
-  <ul class="collapse">
-  <li><a href="#example-1-integers-modulo-n" id="toc-example-1-integers-modulo-n" class="nav-link" data-scroll-target="#example-1-integers-modulo-n">Example 1: Integers Modulo n</a></li>
-  <li><a href="#example-2-even-integers-in-z" id="toc-example-2-even-integers-in-z" class="nav-link" data-scroll-target="#example-2-even-integers-in-z">Example 2: Even Integers in Z</a></li>
-  <li><a href="#example-3-cosets-in-a-finite-group" id="toc-example-3-cosets-in-a-finite-group" class="nav-link" data-scroll-target="#example-3-cosets-in-a-finite-group">Example 3: Cosets in a Finite Group</a></li>
-  </ul></li>
-  <li><a href="#geometric-interpretation" id="toc-geometric-interpretation" class="nav-link" data-scroll-target="#geometric-interpretation">Geometric Interpretation</a></li>
-  <li><a href="#when-left-and-right-cosets-coincide" id="toc-when-left-and-right-cosets-coincide" class="nav-link" data-scroll-target="#when-left-and-right-cosets-coincide">When Left and Right Cosets Coincide</a></li>
-  <li><a href="#connection-to-quotient-groups" id="toc-connection-to-quotient-groups" class="nav-link" data-scroll-target="#connection-to-quotient-groups">Connection to Quotient Groups</a></li>
-  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a>
-  <ul class="collapse">
-  <li><a href="#lagranges-theorem" id="toc-lagranges-theorem" class="nav-link" data-scroll-target="#lagranges-theorem">Lagrange’s Theorem</a></li>
-  <li><a href="#group-actions" id="toc-group-actions" class="nav-link" data-scroll-target="#group-actions">Group Actions</a></li>
-  <li><a href="#counting-arguments" id="toc-counting-arguments" class="nav-link" data-scroll-target="#counting-arguments">Counting Arguments</a></li>
-  </ul></li>
-  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
-  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
-  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
-  </ul></li>
-  </ul>
+<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
+<nav class="toc-active" id="TOC" role="doc-toc">
+<h2 id="toc-title">目次</h2>
+<ul>
+<li><a class="nav-link active" data-scroll-target="#def-coset" href="#def-coset" id="toc-def-coset">Coset</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#formal-definition" href="#formal-definition" id="toc-formal-definition">Formal Definition</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#left-coset" href="#left-coset" id="toc-left-coset">Left Coset</a></li>
+<li><a class="nav-link" data-scroll-target="#right-coset" href="#right-coset" id="toc-right-coset">Right Coset</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#notation-and-terminology" href="#notation-and-terminology" id="toc-notation-and-terminology">Notation and Terminology</a></li>
+<li><a class="nav-link" data-scroll-target="#fundamental-properties" href="#fundamental-properties" id="toc-fundamental-properties">Fundamental Properties</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#equal-cardinality" href="#equal-cardinality" id="toc-equal-cardinality">1. Equal Cardinality</a></li>
+<li><a class="nav-link" data-scroll-target="#partition-property" href="#partition-property" id="toc-partition-property">2. Partition Property</a></li>
+<li><a class="nav-link" data-scroll-target="#coset-equality-criterion" href="#coset-equality-criterion" id="toc-coset-equality-criterion">3. Coset Equality Criterion</a></li>
+<li><a class="nav-link" data-scroll-target="#the-identity-coset" href="#the-identity-coset" id="toc-the-identity-coset">4. The Identity Coset</a></li>
+<li><a class="nav-link" data-scroll-target="#index" href="#index" id="toc-index">5. Index</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#examples" href="#examples" id="toc-examples">Examples</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#example-1-integers-modulo-n" href="#example-1-integers-modulo-n" id="toc-example-1-integers-modulo-n">Example 1: Integers Modulo n</a></li>
+<li><a class="nav-link" data-scroll-target="#example-2-even-integers-in-z" href="#example-2-even-integers-in-z" id="toc-example-2-even-integers-in-z">Example 2: Even Integers in Z</a></li>
+<li><a class="nav-link" data-scroll-target="#example-3-cosets-in-a-finite-group" href="#example-3-cosets-in-a-finite-group" id="toc-example-3-cosets-in-a-finite-group">Example 3: Cosets in a Finite Group</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#geometric-interpretation" href="#geometric-interpretation" id="toc-geometric-interpretation">Geometric Interpretation</a></li>
+<li><a class="nav-link" data-scroll-target="#when-left-and-right-cosets-coincide" href="#when-left-and-right-cosets-coincide" id="toc-when-left-and-right-cosets-coincide">When Left and Right Cosets Coincide</a></li>
+<li><a class="nav-link" data-scroll-target="#connection-to-quotient-groups" href="#connection-to-quotient-groups" id="toc-connection-to-quotient-groups">Connection to Quotient Groups</a></li>
+<li><a class="nav-link" data-scroll-target="#applications" href="#applications" id="toc-applications">Applications</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#lagranges-theorem" href="#lagranges-theorem" id="toc-lagranges-theorem">Lagrange’s Theorem</a></li>
+<li><a class="nav-link" data-scroll-target="#group-actions" href="#group-actions" id="toc-group-actions">Group Actions</a></li>
+<li><a class="nav-link" data-scroll-target="#counting-arguments" href="#counting-arguments" id="toc-counting-arguments">Counting Arguments</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#see-also" href="#see-also" id="toc-see-also">See Also</a></li>
+<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
+<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
+</ul></li>
+</ul>
 </nav>
-    </div>
+</div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
+<header class="quarto-title-block default" id="title-block-header">
 <div class="quarto-title">
 <h1 class="title">Coset</h1>
 </div>
-
-
-
 <div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
+</div>
 </header>
-
-
-<section id="def-coset" class="level1">
+<section class="level1" id="def-coset">
 <h1>Coset</h1>
 <p>A <strong>coset</strong> is a fundamental concept in group theory that arises when we translate a <a href="../../../content/en/algebra/def-subgroup.html">subgroup</a> by a fixed element of the parent <a href="../../../content/en/algebra/def-group.html">group</a>. Cosets partition a group into equal-sized disjoint subsets.</p>
-<section id="formal-definition" class="level2">
+<section class="level2" id="formal-definition">
 <h2 class="anchored" data-anchor-id="formal-definition">Formal Definition</h2>
 <p>Let <span class="math inline">\((G, \star)\)</span> be a group and <span class="math inline">\(H \leq G\)</span> be a subgroup. For any element <span class="math inline">\(g \in G\)</span>:</p>
-<section id="left-coset" class="level3">
+<section class="level3" id="left-coset">
 <h3 class="anchored" data-anchor-id="left-coset">Left Coset</h3>
 <p>The <strong>left coset</strong> of <span class="math inline">\(H\)</span> by <span class="math inline">\(g\)</span> is the set: <span class="math display">\[gH = \{g \star h : h \in H\}\]</span></p>
 </section>
-<section id="right-coset" class="level3">
+<section class="level3" id="right-coset">
 <h3 class="anchored" data-anchor-id="right-coset">Right Coset</h3>
 <p>The <strong>right coset</strong> of <span class="math inline">\(H\)</span> by <span class="math inline">\(g\)</span> is the set: <span class="math display">\[Hg = \{h \star g : h \in H\}\]</span></p>
 </section>
 </section>
-<section id="notation-and-terminology" class="level2">
+<section class="level2" id="notation-and-terminology">
 <h2 class="anchored" data-anchor-id="notation-and-terminology">Notation and Terminology</h2>
 <ul>
 <li>The element <span class="math inline">\(g\)</span> is called a <strong>representative</strong> of the coset</li>
@@ -333,56 +309,56 @@ window.Quarto = {
 <li>The set of all right cosets of <span class="math inline">\(H\)</span> in <span class="math inline">\(G\)</span> is denoted <span class="math inline">\(H\backslash G\)</span></li>
 </ul>
 </section>
-<section id="fundamental-properties" class="level2">
+<section class="level2" id="fundamental-properties">
 <h2 class="anchored" data-anchor-id="fundamental-properties">Fundamental Properties</h2>
-<section id="equal-cardinality" class="level3">
+<section class="level3" id="equal-cardinality">
 <h3 class="anchored" data-anchor-id="equal-cardinality">1. Equal Cardinality</h3>
 <p>Every coset of <span class="math inline">\(H\)</span> has the same <a href="../../../content/en/logic-set-theory/def-cardinality.html">cardinality</a> as <span class="math inline">\(H\)</span>: <span class="math display">\[|gH| = |H| = |Hg|\]</span></p>
 <p>This follows from the fact that the map <span class="math inline">\(h \mapsto gh\)</span> is a bijection from <span class="math inline">\(H\)</span> to <span class="math inline">\(gH\)</span>.</p>
 </section>
-<section id="partition-property" class="level3">
+<section class="level3" id="partition-property">
 <h3 class="anchored" data-anchor-id="partition-property">2. Partition Property</h3>
 <p>The left cosets (and separately, the right cosets) of <span class="math inline">\(H\)</span> partition <span class="math inline">\(G\)</span>: - Every element of <span class="math inline">\(G\)</span> belongs to exactly one left coset - Two left cosets are either identical or disjoint: <span class="math inline">\(g_1H = g_2H\)</span> or <span class="math inline">\(g_1H \cap g_2H = \emptyset\)</span></p>
 <p>This partition arises from an <a href="../../../content/en/logic-set-theory/def-equivalence-relation.html">equivalence relation</a>: <span class="math inline">\(g_1 \sim g_2\)</span> if and only if <span class="math inline">\(g_1^{-1}g_2 \in H\)</span>.</p>
 </section>
-<section id="coset-equality-criterion" class="level3">
+<section class="level3" id="coset-equality-criterion">
 <h3 class="anchored" data-anchor-id="coset-equality-criterion">3. Coset Equality Criterion</h3>
 <p>For any <span class="math inline">\(g_1, g_2 \in G\)</span>: - <span class="math inline">\(g_1H = g_2H\)</span> if and only if <span class="math inline">\(g_1^{-1}g_2 \in H\)</span> - <span class="math inline">\(Hg_1 = Hg_2\)</span> if and only if <span class="math inline">\(g_1g_2^{-1} \in H\)</span></p>
 </section>
-<section id="the-identity-coset" class="level3">
+<section class="level3" id="the-identity-coset">
 <h3 class="anchored" data-anchor-id="the-identity-coset">4. The Identity Coset</h3>
 <p>The subgroup <span class="math inline">\(H\)</span> itself is always a coset: - <span class="math inline">\(eH = H = He\)</span> where <span class="math inline">\(e\)</span> is the identity element</p>
 </section>
-<section id="index" class="level3">
+<section class="level3" id="index">
 <h3 class="anchored" data-anchor-id="index">5. Index</h3>
 <p>The number of distinct left cosets equals the number of distinct right cosets. This common value is called the <strong>index</strong> of <span class="math inline">\(H\)</span> in <span class="math inline">\(G\)</span>, denoted <span class="math inline">\([G:H]\)</span>.</p>
 </section>
 </section>
-<section id="examples" class="level2">
+<section class="level2" id="examples">
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<section id="example-1-integers-modulo-n" class="level3">
+<section class="level3" id="example-1-integers-modulo-n">
 <h3 class="anchored" data-anchor-id="example-1-integers-modulo-n">Example 1: Integers Modulo n</h3>
 <p>Consider <span class="math inline">\(G = (\mathbb{Z}, +)\)</span> and <span class="math inline">\(H = n\mathbb{Z} = \{..., -2n, -n, 0, n, 2n, ...\}\)</span>.</p>
 <p>The left cosets are: - <span class="math inline">\(0 + n\mathbb{Z} = n\mathbb{Z} = \{..., -2n, -n, 0, n, 2n, ...\}\)</span> - <span class="math inline">\(1 + n\mathbb{Z} = \{..., -2n+1, -n+1, 1, n+1, 2n+1, ...\}\)</span> - <span class="math inline">\(2 + n\mathbb{Z} = \{..., -2n+2, -n+2, 2, n+2, 2n+2, ...\}\)</span> - … - <span class="math inline">\((n-1) + n\mathbb{Z} = \{..., -n-1, -1, n-1, 2n-1, 3n-1, ...\}\)</span></p>
 <p>There are exactly <span class="math inline">\(n\)</span> distinct cosets, so <span class="math inline">\([\mathbb{Z} : n\mathbb{Z}] = n\)</span>.</p>
 </section>
-<section id="example-2-even-integers-in-z" class="level3">
+<section class="level3" id="example-2-even-integers-in-z">
 <h3 class="anchored" data-anchor-id="example-2-even-integers-in-z">Example 2: Even Integers in Z</h3>
 <p>Let <span class="math inline">\(H = 2\mathbb{Z}\)</span> (even integers) in <span class="math inline">\(G = \mathbb{Z}\)</span>.</p>
 <p>The cosets are: - <span class="math inline">\(0 + 2\mathbb{Z} = 2\mathbb{Z}\)</span> (all even integers) - <span class="math inline">\(1 + 2\mathbb{Z} = \{..., -3, -1, 1, 3, 5, ...\}\)</span> (all odd integers)</p>
 <p>Thus <span class="math inline">\([\mathbb{Z} : 2\mathbb{Z}] = 2\)</span>.</p>
 </section>
-<section id="example-3-cosets-in-a-finite-group" class="level3">
+<section class="level3" id="example-3-cosets-in-a-finite-group">
 <h3 class="anchored" data-anchor-id="example-3-cosets-in-a-finite-group">Example 3: Cosets in a Finite Group</h3>
 <p>In the dihedral group <span class="math inline">\(D_3\)</span> (symmetries of an equilateral triangle) with subgroup <span class="math inline">\(H = \{e, r\}\)</span> (where <span class="math inline">\(r\)</span> is a 120° rotation):</p>
 <p>The left cosets are: - <span class="math inline">\(eH = \{e, r\} = H\)</span> - <span class="math inline">\(r^2H = \{r^2, r^2r\} = \{r^2, e\} = H\)</span> - <span class="math inline">\(sH = \{s, sr\}\)</span> (where <span class="math inline">\(s\)</span> is a reflection)</p>
 </section>
 </section>
-<section id="geometric-interpretation" class="level2">
+<section class="level2" id="geometric-interpretation">
 <h2 class="anchored" data-anchor-id="geometric-interpretation">Geometric Interpretation</h2>
 <p>Cosets can be visualized as: - <strong>Translations</strong>: Each coset <span class="math inline">\(gH\)</span> is a “translate” of <span class="math inline">\(H\)</span> by the element <span class="math inline">\(g\)</span> - <strong>Parallel subsets</strong>: In <a href="../../../content/en/algebra/def-abelian-group.html">abelian groups</a>, cosets are like parallel lines or planes - <strong>Orbits</strong>: Cosets represent the orbits of a natural group action</p>
 </section>
-<section id="when-left-and-right-cosets-coincide" class="level2">
+<section class="level2" id="when-left-and-right-cosets-coincide">
 <h2 class="anchored" data-anchor-id="when-left-and-right-cosets-coincide">When Left and Right Cosets Coincide</h2>
 <p>In general, <span class="math inline">\(gH \neq Hg\)</span>. However, they coincide in two important cases:</p>
 <ol type="1">
@@ -390,27 +366,27 @@ window.Quarto = {
 <li><p><strong>Normal Subgroups</strong>: A subgroup <span class="math inline">\(N\)</span> is normal if and only if <span class="math inline">\(gN = Ng\)</span> for all <span class="math inline">\(g \in G\)</span></p></li>
 </ol>
 </section>
-<section id="connection-to-quotient-groups" class="level2">
+<section class="level2" id="connection-to-quotient-groups">
 <h2 class="anchored" data-anchor-id="connection-to-quotient-groups">Connection to Quotient Groups</h2>
 <p>When <span class="math inline">\(N\)</span> is a <a href="../../../content/en/algebra/def-normal-subgroup.html">normal subgroup</a>, the set of cosets <span class="math inline">\(G/N\)</span> can be given a group structure, forming the <a href="../../../content/en/algebra/def-quotient-group.html">quotient group</a>. The group operation is: <span class="math display">\[(gN) \star (hN) = (g \star h)N\]</span></p>
 <p>This operation is well-defined precisely because left and right cosets coincide for normal subgroups.</p>
 </section>
-<section id="applications" class="level2">
+<section class="level2" id="applications">
 <h2 class="anchored" data-anchor-id="applications">Applications</h2>
-<section id="lagranges-theorem" class="level3">
+<section class="level3" id="lagranges-theorem">
 <h3 class="anchored" data-anchor-id="lagranges-theorem">Lagrange’s Theorem</h3>
 <p>The concept of cosets is central to <a href="../../../content/en/algebra/thm-lagrange.html">Lagrange’s theorem</a>, which states that for a finite group <span class="math inline">\(G\)</span>, the <a href="../../../content/en/logic-set-theory/def-cardinality.html">cardinality</a> of <span class="math inline">\(G\)</span> is: <span class="math display">\[|G| = |H| \cdot [G:H]\]</span></p>
 </section>
-<section id="group-actions" class="level3">
+<section class="level3" id="group-actions">
 <h3 class="anchored" data-anchor-id="group-actions">Group Actions</h3>
 <p>Cosets naturally arise in the study of <a href="../../../content/en/algebra/def-group-action.html">group actions</a>: - The left cosets of <span class="math inline">\(H\)</span> are the orbits of <span class="math inline">\(H\)</span> acting on <span class="math inline">\(G\)</span> by right multiplication - The right cosets of <span class="math inline">\(H\)</span> are the orbits of <span class="math inline">\(H\)</span> acting on <span class="math inline">\(G\)</span> by left multiplication</p>
 </section>
-<section id="counting-arguments" class="level3">
+<section class="level3" id="counting-arguments">
 <h3 class="anchored" data-anchor-id="counting-arguments">Counting Arguments</h3>
 <p>Cosets provide a powerful tool for counting in finite groups and proving <a href="../../../content/en/number-theory/def-divisibility.html">divisibility</a> results.</p>
 </section>
 </section>
-<section id="see-also" class="level2">
+<section class="level2" id="see-also">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
 <li><a href="../../../content/en/algebra/def-subgroup.html">Subgroup</a></li>
@@ -421,7 +397,7 @@ window.Quarto = {
 <li><a href="../../../content/en/algebra/ex-quotient-integers-mod-n.html">Integers Modulo n</a></li>
 </ul>
 </section>
-<section id="dependency-graph" class="level2">
+<section class="level2" id="dependency-graph">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -434,49 +410,49 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-quotient-group["Quotient Group"]:::definition
-    def-normal-subgroup["Normal Subgroup"]:::definition
-    ex-even-integers-subgroup["Even Integers Form a Subgroup"]:::example
-    def-group["Group"]:::definition
-    thm-lagrange["Lagrange's Theorem"]:::theorem
-    def-binary-operation["Binary Operation"]:::definition
-    def-abelian-group["Abelian Group"]:::definition
-    def-coset["Coset"]:::definition
     ex-quotient-integers-mod-n["Integers Modulo n"]:::example
+    thm-lagrange["Lagrange's Theorem"]:::theorem
     def-quotient-ring["Quotient Ring"]:::definition
+    def-group["Group"]:::definition
+    ex-even-integers-subgroup["Even Integers Form a Subgroup"]:::example
+    def-abelian-group["Abelian Group"]:::definition
     def-group-action["Group Action"]:::definition
-    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
     def-subgroup["Subgroup"]:::definition
-    def-coset --&gt; def-normal-subgroup
-    def-coset --&gt; def-subgroup
-    def-quotient-group --&gt; def-coset
-    def-coset --&gt; def-binary-operation
-    def-coset --&gt; def-quotient-group
-    def-coset --&gt; ex-even-integers-subgroup
-    def-coset --&gt; thm-lagrange
-    thm-lagrange --&gt; def-coset
-    thm-orbit-stabilizer --&gt; def-coset
-    ex-quotient-integers-mod-n --&gt; def-coset
-    def-coset --&gt; def-abelian-group
-    def-normal-subgroup --&gt; def-coset
-    def-quotient-ring --&gt; def-coset
-    ex-even-integers-subgroup --&gt; def-coset
-    def-coset --&gt; ex-quotient-integers-mod-n
+    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
+    def-coset["Coset"]:::definition
+    def-normal-subgroup["Normal Subgroup"]:::definition
+    def-quotient-group["Quotient Group"]:::definition
+    def-binary-operation["Binary Operation"]:::definition
     def-coset --&gt; def-group
+    def-coset --&gt; def-abelian-group
+    def-coset --&gt; def-binary-operation
+    def-coset --&gt; def-normal-subgroup
+    thm-orbit-stabilizer --&gt; def-coset
+    ex-even-integers-subgroup --&gt; def-coset
+    def-coset --&gt; ex-even-integers-subgroup
+    def-coset --&gt; ex-quotient-integers-mod-n
+    def-coset --&gt; thm-lagrange
+    def-quotient-ring --&gt; def-coset
+    def-coset --&gt; def-subgroup
+    def-normal-subgroup --&gt; def-coset
+    def-quotient-group --&gt; def-coset
     def-coset --&gt; def-group-action
+    thm-lagrange --&gt; def-coset
+    ex-quotient-integers-mod-n --&gt; def-coset
+    def-coset --&gt; def-quotient-group
     class def-coset current
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Go to Even Integers Form a Subgroup"
-    click def-group "def-group.html" "Go to Group"
-    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation"
-    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group"
     click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n"
+    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem"
     click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring"
+    click def-group "def-group.html" "Go to Group"
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Go to Even Integers Form a Subgroup"
+    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group"
     click def-group-action "def-group-action.html" "Go to Group Action"
-    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "Go to Orbit-Stabilizer Theorem"
     click def-subgroup "def-subgroup.html" "Go to Subgroup"
+    click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "Go to Orbit-Stabilizer Theorem"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -484,13 +460,12 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="interactive-visualization" class="level2">
+<section class="level2" id="interactive-visualization">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-coset-1753761273" class="graph-visualization-container">
-  <div class="graph-loading">Loading visualization...</div>
+<div class="graph-visualization-container" id="graph-viz-def-coset-1753763904">
+<div class="graph-loading">Loading visualization...</div>
 </div>
-
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -735,12 +710,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-coset-1753761273', {
+    createForceGraph(data, 'graph-viz-def-coset-1753763904', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-coset-1753761273').innerHTML =
+    document.getElementById('graph-viz-def-coset-1753763904').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -752,7 +727,6 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
-
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -801,13 +775,9 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
-
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/def-coset.html" target="_blank">full interactive version</a></p>
-
-
 </section>
 </section>
-
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1210,20 +1180,16 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
+<div class="nav-footer">
+<div class="nav-footer-left">
+       
+    </div>
+<div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-    <div class="nav-footer-right">
-      &nbsp;
+<div class="nav-footer-right">
+       
     </div>
-  </div>
+</div>
 </footer>
-
-
-
-
-</body></html>
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>

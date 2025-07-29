@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.7.32" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <title>Partial Order – 数学ナレッジグラフ</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,27 +18,25 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
-
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../favicon.ico" rel="icon">
+<meta content="../../../" name="quarto:offset"/>
+<link href="../../../favicon.ico" rel="icon"/>
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
+<link append-hash="true" data-mode="light" href="../../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" id="quarto-bootstrap" rel="stylesheet"/>
+<link href="../../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet"/>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,8 +66,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
 <script>
   window.siteLanguage = 'ja';
   window.alternateLanguage = 'en';
@@ -121,10 +116,8 @@ ul.task-list li input[type="checkbox"] {
     document.head.appendChild(issueScript);
   })();
 </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -151,197 +144,180 @@ window.Quarto = {
   typesetMath
 };
 </script>
-
-<link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="../../../styles-multilingual.css">
+<link href="../../../styles.css" rel="stylesheet"/>
+<link href="../../../styles-multilingual.css" rel="stylesheet"/>
 </head>
-
 <body class="nav-fixed quarto-light">
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">数学ナレッジグラフ</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="サーチ"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../../index-ja.html"> 
-<span class="menu-text">ホーム</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/algebra/index.html"> 
-<span class="menu-text">代数学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/analysis/index.html"> 
-<span class="menu-text">解析学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/topology/index.html"> 
-<span class="menu-text">位相空間論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/geometry/index.html"> 
-<span class="menu-text">幾何学</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/category-theory/index.html"> 
-<span class="menu-text">圏論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/combinatorics/index.html"> 
-<span class="menu-text">組合せ論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/logic-set-theory/index.html"> 
-<span class="menu-text">論理学・集合論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/number-theory/index.html"> 
-<span class="menu-text">数論</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/ja/probability-statistics/index.html"> 
-<span class="menu-text">確率統計</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/about.html"> 
-<span class="menu-text">概要</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../nav/ja/contributing.html"> 
-<span class="menu-text">貢献</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../../en/index.html"> 
-<span class="menu-text">🌐 English</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+<header class="headroom fixed-top" id="quarto-header">
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+<div class="navbar-container container-fluid">
+<div class="navbar-brand-container mx-auto">
+<a class="navbar-brand" href="../../../index.html">
+<span class="navbar-title">数学ナレッジグラフ</span>
+</a>
 </div>
-      </div> <!-- /container-fluid -->
-    </nav>
+<div class="" id="quarto-search" title="サーチ"></div>
+<button aria-controls="navbarCollapse" aria-expanded="false" aria-label="ナビゲーションを切り替える" class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }" role="menu" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+<ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+<a class="nav-link" href="../../../index-ja.html">
+<span class="menu-text">ホーム</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/algebra/index.html">
+<span class="menu-text">代数学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/analysis/index.html">
+<span class="menu-text">解析学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/topology/index.html">
+<span class="menu-text">位相空間論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/geometry/index.html">
+<span class="menu-text">幾何学</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/category-theory/index.html">
+<span class="menu-text">圏論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/combinatorics/index.html">
+<span class="menu-text">組合せ論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/logic-set-theory/index.html">
+<span class="menu-text">論理学・集合論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/number-theory/index.html">
+<span class="menu-text">数論</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../content/ja/probability-statistics/index.html">
+<span class="menu-text">確率統計</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/about.html">
+<span class="menu-text">概要</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../nav/ja/contributing.html">
+<span class="menu-text">貢献</span></a>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+<a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i aria-label="github" class="bi bi-github" role="img">
+</i>
+<span class="menu-text"></span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../../../en/index.html">
+<span class="menu-text">🌐 English</span></a>
+</li>
+</ul>
+</div> <!-- /navcollapse -->
+<div class="quarto-navbar-tools">
+</div>
+</div> <!-- /container-fluid -->
+</nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div class="quarto-container page-columns page-rows-contents page-layout-article page-navbar" id="quarto-content">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">目次</h2>
-   
-  <ul>
-  <li><a href="#def-partial-order" id="toc-def-partial-order" class="nav-link active" data-scroll-target="#def-partial-order">Partial Order</a>
-  <ul class="collapse">
-  <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link" data-scroll-target="#formal-definition">Formal Definition</a>
-  <ul class="collapse">
-  <li><a href="#reflexive-property" id="toc-reflexive-property" class="nav-link" data-scroll-target="#reflexive-property">1. Reflexive Property</a></li>
-  <li><a href="#antisymmetric-property" id="toc-antisymmetric-property" class="nav-link" data-scroll-target="#antisymmetric-property">2. Antisymmetric Property</a></li>
-  <li><a href="#transitive-property" id="toc-transitive-property" class="nav-link" data-scroll-target="#transitive-property">3. Transitive Property</a></li>
-  </ul></li>
-  <li><a href="#partially-ordered-set-poset" id="toc-partially-ordered-set-poset" class="nav-link" data-scroll-target="#partially-ordered-set-poset">Partially Ordered Set (Poset)</a>
-  <ul class="collapse">
-  <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
-  </ul></li>
-  <li><a href="#comparable-elements" id="toc-comparable-elements" class="nav-link" data-scroll-target="#comparable-elements">Comparable Elements</a></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
-  <ul class="collapse">
-  <li><a href="#subset-relation" id="toc-subset-relation" class="nav-link" data-scroll-target="#subset-relation">1. Subset Relation</a></li>
-  <li><a href="#divisibility-relation" id="toc-divisibility-relation" class="nav-link" data-scroll-target="#divisibility-relation">2. Divisibility Relation</a></li>
-  <li><a href="#standard-order-on-real-numbers" id="toc-standard-order-on-real-numbers" class="nav-link" data-scroll-target="#standard-order-on-real-numbers">3. Standard Order on Real Numbers</a></li>
-  <li><a href="#component-wise-order" id="toc-component-wise-order" class="nav-link" data-scroll-target="#component-wise-order">4. Component-wise Order</a></li>
-  </ul></li>
-  <li><a href="#special-elements" id="toc-special-elements" class="nav-link" data-scroll-target="#special-elements">Special Elements</a>
-  <ul class="collapse">
-  <li><a href="#minimal-and-maximal-elements" id="toc-minimal-and-maximal-elements" class="nav-link" data-scroll-target="#minimal-and-maximal-elements">Minimal and Maximal Elements</a></li>
-  <li><a href="#least-and-greatest-elements" id="toc-least-and-greatest-elements" class="nav-link" data-scroll-target="#least-and-greatest-elements">Least and Greatest Elements</a></li>
-  <li><a href="#upper-and-lower-bounds" id="toc-upper-and-lower-bounds" class="nav-link" data-scroll-target="#upper-and-lower-bounds">Upper and Lower Bounds</a></li>
-  </ul></li>
-  <li><a href="#hasse-diagrams" id="toc-hasse-diagrams" class="nav-link" data-scroll-target="#hasse-diagrams">Hasse Diagrams</a></li>
-  <li><a href="#special-types-of-partial-orders" id="toc-special-types-of-partial-orders" class="nav-link" data-scroll-target="#special-types-of-partial-orders">Special Types of Partial Orders</a>
-  <ul class="collapse">
-  <li><a href="#total-order-linear-order" id="toc-total-order-linear-order" class="nav-link" data-scroll-target="#total-order-linear-order">Total Order (Linear Order)</a></li>
-  <li><a href="#well-order" id="toc-well-order" class="nav-link" data-scroll-target="#well-order">Well Order</a></li>
-  <li><a href="#lattice" id="toc-lattice" class="nav-link" data-scroll-target="#lattice">Lattice</a></li>
-  </ul></li>
-  <li><a href="#important-theorems" id="toc-important-theorems" class="nav-link" data-scroll-target="#important-theorems">Important Theorems</a>
-  <ul class="collapse">
-  <li><a href="#duality-principle" id="toc-duality-principle" class="nav-link" data-scroll-target="#duality-principle">Duality Principle</a></li>
-  <li><a href="#chain-and-antichain" id="toc-chain-and-antichain" class="nav-link" data-scroll-target="#chain-and-antichain">Chain and Antichain</a></li>
-  </ul></li>
-  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
-  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
-  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
-  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
-  </ul></li>
-  </ul>
+<div class="sidebar margin-sidebar" id="quarto-margin-sidebar">
+<nav class="toc-active" id="TOC" role="doc-toc">
+<h2 id="toc-title">目次</h2>
+<ul>
+<li><a class="nav-link active" data-scroll-target="#def-partial-order" href="#def-partial-order" id="toc-def-partial-order">Partial Order</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#formal-definition" href="#formal-definition" id="toc-formal-definition">Formal Definition</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#reflexive-property" href="#reflexive-property" id="toc-reflexive-property">1. Reflexive Property</a></li>
+<li><a class="nav-link" data-scroll-target="#antisymmetric-property" href="#antisymmetric-property" id="toc-antisymmetric-property">2. Antisymmetric Property</a></li>
+<li><a class="nav-link" data-scroll-target="#transitive-property" href="#transitive-property" id="toc-transitive-property">3. Transitive Property</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#partially-ordered-set-poset" href="#partially-ordered-set-poset" id="toc-partially-ordered-set-poset">Partially Ordered Set (Poset)</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#notation" href="#notation" id="toc-notation">Notation</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#comparable-elements" href="#comparable-elements" id="toc-comparable-elements">Comparable Elements</a></li>
+<li><a class="nav-link" data-scroll-target="#examples" href="#examples" id="toc-examples">Examples</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#subset-relation" href="#subset-relation" id="toc-subset-relation">1. Subset Relation</a></li>
+<li><a class="nav-link" data-scroll-target="#divisibility-relation" href="#divisibility-relation" id="toc-divisibility-relation">2. Divisibility Relation</a></li>
+<li><a class="nav-link" data-scroll-target="#standard-order-on-real-numbers" href="#standard-order-on-real-numbers" id="toc-standard-order-on-real-numbers">3. Standard Order on Real Numbers</a></li>
+<li><a class="nav-link" data-scroll-target="#component-wise-order" href="#component-wise-order" id="toc-component-wise-order">4. Component-wise Order</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#special-elements" href="#special-elements" id="toc-special-elements">Special Elements</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#minimal-and-maximal-elements" href="#minimal-and-maximal-elements" id="toc-minimal-and-maximal-elements">Minimal and Maximal Elements</a></li>
+<li><a class="nav-link" data-scroll-target="#least-and-greatest-elements" href="#least-and-greatest-elements" id="toc-least-and-greatest-elements">Least and Greatest Elements</a></li>
+<li><a class="nav-link" data-scroll-target="#upper-and-lower-bounds" href="#upper-and-lower-bounds" id="toc-upper-and-lower-bounds">Upper and Lower Bounds</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#hasse-diagrams" href="#hasse-diagrams" id="toc-hasse-diagrams">Hasse Diagrams</a></li>
+<li><a class="nav-link" data-scroll-target="#special-types-of-partial-orders" href="#special-types-of-partial-orders" id="toc-special-types-of-partial-orders">Special Types of Partial Orders</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#total-order-linear-order" href="#total-order-linear-order" id="toc-total-order-linear-order">Total Order (Linear Order)</a></li>
+<li><a class="nav-link" data-scroll-target="#well-order" href="#well-order" id="toc-well-order">Well Order</a></li>
+<li><a class="nav-link" data-scroll-target="#lattice" href="#lattice" id="toc-lattice">Lattice</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#important-theorems" href="#important-theorems" id="toc-important-theorems">Important Theorems</a>
+<ul class="collapse">
+<li><a class="nav-link" data-scroll-target="#duality-principle" href="#duality-principle" id="toc-duality-principle">Duality Principle</a></li>
+<li><a class="nav-link" data-scroll-target="#chain-and-antichain" href="#chain-and-antichain" id="toc-chain-and-antichain">Chain and Antichain</a></li>
+</ul></li>
+<li><a class="nav-link" data-scroll-target="#applications" href="#applications" id="toc-applications">Applications</a></li>
+<li><a class="nav-link" data-scroll-target="#see-also" href="#see-also" id="toc-see-also">See Also</a></li>
+<li><a class="nav-link" data-scroll-target="#dependency-graph" href="#dependency-graph" id="toc-dependency-graph">Dependency Graph</a></li>
+<li><a class="nav-link" data-scroll-target="#interactive-visualization" href="#interactive-visualization" id="toc-interactive-visualization">Interactive Visualization</a></li>
+</ul></li>
+</ul>
 </nav>
-    </div>
+</div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
+<header class="quarto-title-block default" id="title-block-header">
 <div class="quarto-title">
 <h1 class="title">Partial Order</h1>
 </div>
-
-
-
 <div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
+</div>
 </header>
-
-
-<section id="def-partial-order" class="level1">
+<section class="level1" id="def-partial-order">
 <h1>Partial Order</h1>
 <p>A <strong>partial order</strong> on a <a href="../../../content/en/logic-set-theory/def-set.html">set</a> <span class="math inline">\(A\)</span> is a <a href="../../../content/en/logic-set-theory/def-relation.html">relation</a> <span class="math inline">\(\leq\)</span> on <span class="math inline">\(A\)</span> that is reflexive, antisymmetric, and transitive.</p>
-<section id="formal-definition" class="level2">
+<section class="level2" id="formal-definition">
 <h2 class="anchored" data-anchor-id="formal-definition">Formal Definition</h2>
 <p>A relation <span class="math inline">\(\leq\)</span> on a set <span class="math inline">\(A\)</span> is a partial order if and only if it satisfies the following three properties:</p>
-<section id="reflexive-property" class="level3">
+<section class="level3" id="reflexive-property">
 <h3 class="anchored" data-anchor-id="reflexive-property">1. Reflexive Property</h3>
 <p>For all <span class="math inline">\(a \in A\)</span>: <span class="math display">\[a \leq a\]</span></p>
 <p>Every element is related to itself.</p>
 </section>
-<section id="antisymmetric-property" class="level3">
+<section class="level3" id="antisymmetric-property">
 <h3 class="anchored" data-anchor-id="antisymmetric-property">2. Antisymmetric Property</h3>
 <p>For all <span class="math inline">\(a, b \in A\)</span>: <span class="math display">\[(a \leq b \text{ and } b \leq a) \implies a = b\]</span></p>
 <p>If <span class="math inline">\(a\)</span> is related to <span class="math inline">\(b\)</span> and <span class="math inline">\(b\)</span> is related to <span class="math inline">\(a\)</span>, then <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> must be equal.</p>
 </section>
-<section id="transitive-property" class="level3">
+<section class="level3" id="transitive-property">
 <h3 class="anchored" data-anchor-id="transitive-property">3. Transitive Property</h3>
 <p>For all <span class="math inline">\(a, b, c \in A\)</span>: <span class="math display">\[(a \leq b \text{ and } b \leq c) \implies a \leq c\]</span></p>
 <p>If <span class="math inline">\(a\)</span> is related to <span class="math inline">\(b\)</span> and <span class="math inline">\(b\)</span> is related to <span class="math inline">\(c\)</span>, then <span class="math inline">\(a\)</span> is related to <span class="math inline">\(c\)</span>.</p>
 </section>
 </section>
-<section id="partially-ordered-set-poset" class="level2">
+<section class="level2" id="partially-ordered-set-poset">
 <h2 class="anchored" data-anchor-id="partially-ordered-set-poset">Partially Ordered Set (Poset)</h2>
 <p>A <strong>partially ordered set</strong> (or <strong>poset</strong>) is an ordered pair <span class="math inline">\((A, \leq)\)</span> consisting of a set <span class="math inline">\(A\)</span> together with a partial order relation <span class="math inline">\(\leq\)</span> on <span class="math inline">\(A\)</span>.</p>
-<section id="notation" class="level3">
+<section class="level3" id="notation">
 <h3 class="anchored" data-anchor-id="notation">Notation</h3>
 <ul>
 <li>We often write <span class="math inline">\(a &lt; b\)</span> to mean <span class="math inline">\(a \leq b\)</span> and <span class="math inline">\(a \neq b\)</span> (strict partial order)</li>
@@ -350,77 +326,77 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="comparable-elements" class="level2">
+<section class="level2" id="comparable-elements">
 <h2 class="anchored" data-anchor-id="comparable-elements">Comparable Elements</h2>
 <p>Two elements <span class="math inline">\(a, b \in A\)</span> are <strong>comparable</strong> if either <span class="math inline">\(a \leq b\)</span> or <span class="math inline">\(b \leq a\)</span> (or both). The word “partial” in partial order indicates that not all pairs of elements need to be comparable.</p>
 </section>
-<section id="examples" class="level2">
+<section class="level2" id="examples">
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<section id="subset-relation" class="level3">
+<section class="level3" id="subset-relation">
 <h3 class="anchored" data-anchor-id="subset-relation">1. Subset Relation</h3>
 <p>The <a href="../../../content/en/logic-set-theory/def-subset.html">subset</a> relation <span class="math inline">\(\subseteq\)</span> on the <a href="../../../content/en/logic-set-theory/def-power-set.html">power set</a> <span class="math inline">\(\mathcal{P}(X)\)</span> of any set <span class="math inline">\(X\)</span> is a partial order: - Reflexive: <span class="math inline">\(A \subseteq A\)</span> for all <span class="math inline">\(A \in \mathcal{P}(X)\)</span> - Antisymmetric: <span class="math inline">\((A \subseteq B \text{ and } B \subseteq A) \implies A = B\)</span> - Transitive: <span class="math inline">\((A \subseteq B \text{ and } B \subseteq C) \implies A \subseteq C\)</span></p>
 </section>
-<section id="divisibility-relation" class="level3">
+<section class="level3" id="divisibility-relation">
 <h3 class="anchored" data-anchor-id="divisibility-relation">2. Divisibility Relation</h3>
 <p>On the positive integers <span class="math inline">\(\mathbb{Z}^+\)</span>, the relation <span class="math inline">\(a \mid b\)</span> (read “<span class="math inline">\(a\)</span> divides <span class="math inline">\(b\)</span>”) is a partial order: - Reflexive: <span class="math inline">\(a \mid a\)</span> for all <span class="math inline">\(a \in \mathbb{Z}^+\)</span> - Antisymmetric: <span class="math inline">\((a \mid b \text{ and } b \mid a) \implies a = b\)</span> for positive integers - Transitive: <span class="math inline">\((a \mid b \text{ and } b \mid c) \implies a \mid c\)</span></p>
 </section>
-<section id="standard-order-on-real-numbers" class="level3">
+<section class="level3" id="standard-order-on-real-numbers">
 <h3 class="anchored" data-anchor-id="standard-order-on-real-numbers">3. Standard Order on Real Numbers</h3>
 <p>The usual <span class="math inline">\(\leq\)</span> relation on <span class="math inline">\(\mathbb{R}\)</span> is a partial order (in fact, a total order): - Reflexive: <span class="math inline">\(a \leq a\)</span> for all <span class="math inline">\(a \in \mathbb{R}\)</span> - Antisymmetric: <span class="math inline">\((a \leq b \text{ and } b \leq a) \implies a = b\)</span> - Transitive: <span class="math inline">\((a \leq b \text{ and } b \leq c) \implies a \leq c\)</span></p>
 </section>
-<section id="component-wise-order" class="level3">
+<section class="level3" id="component-wise-order">
 <h3 class="anchored" data-anchor-id="component-wise-order">4. Component-wise Order</h3>
 <p>On <span class="math inline">\(\mathbb{R}^n\)</span>, define <span class="math inline">\((x_1, ..., x_n) \leq (y_1, ..., y_n)\)</span> if <span class="math inline">\(x_i \leq y_i\)</span> for all <span class="math inline">\(i\)</span>. This is a partial order where many pairs are incomparable.</p>
 </section>
 </section>
-<section id="special-elements" class="level2">
+<section class="level2" id="special-elements">
 <h2 class="anchored" data-anchor-id="special-elements">Special Elements</h2>
 <p>In a poset <span class="math inline">\((A, \leq)\)</span>:</p>
-<section id="minimal-and-maximal-elements" class="level3">
+<section class="level3" id="minimal-and-maximal-elements">
 <h3 class="anchored" data-anchor-id="minimal-and-maximal-elements">Minimal and Maximal Elements</h3>
 <ul>
 <li><span class="math inline">\(a \in A\)</span> is <strong>minimal</strong> if there is no <span class="math inline">\(b \in A\)</span> with <span class="math inline">\(b &lt; a\)</span></li>
 <li><span class="math inline">\(a \in A\)</span> is <strong>maximal</strong> if there is no <span class="math inline">\(b \in A\)</span> with <span class="math inline">\(a &lt; b\)</span></li>
 </ul>
 </section>
-<section id="least-and-greatest-elements" class="level3">
+<section class="level3" id="least-and-greatest-elements">
 <h3 class="anchored" data-anchor-id="least-and-greatest-elements">Least and Greatest Elements</h3>
 <ul>
 <li><span class="math inline">\(a \in A\)</span> is the <strong>least element</strong> (or <strong>minimum</strong>) if <span class="math inline">\(a \leq b\)</span> for all <span class="math inline">\(b \in A\)</span></li>
 <li><span class="math inline">\(a \in A\)</span> is the <strong>greatest element</strong> (or <strong>maximum</strong>) if <span class="math inline">\(b \leq a\)</span> for all <span class="math inline">\(b \in A\)</span></li>
 </ul>
 </section>
-<section id="upper-and-lower-bounds" class="level3">
+<section class="level3" id="upper-and-lower-bounds">
 <h3 class="anchored" data-anchor-id="upper-and-lower-bounds">Upper and Lower Bounds</h3>
 <p>For a subset <span class="math inline">\(S \subseteq A\)</span>: - <span class="math inline">\(a \in A\)</span> is an <strong>upper bound</strong> of <span class="math inline">\(S\)</span> if <span class="math inline">\(s \leq a\)</span> for all <span class="math inline">\(s \in S\)</span> - <span class="math inline">\(a \in A\)</span> is a <strong>lower bound</strong> of <span class="math inline">\(S\)</span> if <span class="math inline">\(a \leq s\)</span> for all <span class="math inline">\(s \in S\)</span></p>
 </section>
 </section>
-<section id="hasse-diagrams" class="level2">
+<section class="level2" id="hasse-diagrams">
 <h2 class="anchored" data-anchor-id="hasse-diagrams">Hasse Diagrams</h2>
 <p>A finite poset can be visualized using a <strong>Hasse diagram</strong>, which: - Represents elements as vertices - Draws an edge from <span class="math inline">\(a\)</span> up to <span class="math inline">\(b\)</span> if <span class="math inline">\(a &lt; b\)</span> and there is no <span class="math inline">\(c\)</span> with <span class="math inline">\(a &lt; c &lt; b\)</span> - Omits self-loops and edges implied by transitivity</p>
 </section>
-<section id="special-types-of-partial-orders" class="level2">
+<section class="level2" id="special-types-of-partial-orders">
 <h2 class="anchored" data-anchor-id="special-types-of-partial-orders">Special Types of Partial Orders</h2>
-<section id="total-order-linear-order" class="level3">
+<section class="level3" id="total-order-linear-order">
 <h3 class="anchored" data-anchor-id="total-order-linear-order">Total Order (Linear Order)</h3>
 <p>A partial order <span class="math inline">\(\leq\)</span> on <span class="math inline">\(A\)</span> is a <strong>total order</strong> if every two elements are comparable: <span class="math display">\[\forall a, b \in A: (a \leq b \text{ or } b \leq a)\]</span></p>
 </section>
-<section id="well-order" class="level3">
+<section class="level3" id="well-order">
 <h3 class="anchored" data-anchor-id="well-order">Well Order</h3>
 <p>A total order on <span class="math inline">\(A\)</span> is a <strong>well order</strong> if every non-empty subset of <span class="math inline">\(A\)</span> has a least element.</p>
 </section>
-<section id="lattice" class="level3">
+<section class="level3" id="lattice">
 <h3 class="anchored" data-anchor-id="lattice">Lattice</h3>
 <p>A poset <span class="math inline">\((A, \leq)\)</span> is a <strong>lattice</strong> if every pair of elements has both a least upper bound (join) and a greatest lower bound (meet).</p>
 </section>
 </section>
-<section id="important-theorems" class="level2">
+<section class="level2" id="important-theorems">
 <h2 class="anchored" data-anchor-id="important-theorems">Important Theorems</h2>
-<section id="duality-principle" class="level3">
+<section class="level3" id="duality-principle">
 <h3 class="anchored" data-anchor-id="duality-principle">Duality Principle</h3>
 <p>If <span class="math inline">\(\leq\)</span> is a partial order on <span class="math inline">\(A\)</span>, then the <strong>dual relation</strong> <span class="math inline">\(\geq\)</span> defined by: <span class="math display">\[a \geq b \iff b \leq a\]</span> is also a partial order on <span class="math inline">\(A\)</span>.</p>
 </section>
-<section id="chain-and-antichain" class="level3">
+<section class="level3" id="chain-and-antichain">
 <h3 class="anchored" data-anchor-id="chain-and-antichain">Chain and Antichain</h3>
 <ul>
 <li>A <strong>chain</strong> in a poset is a subset where all elements are pairwise comparable</li>
@@ -428,7 +404,7 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="applications" class="level2">
+<section class="level2" id="applications">
 <h2 class="anchored" data-anchor-id="applications">Applications</h2>
 <ul>
 <li><strong>Computer Science</strong>: Dependency resolution, task scheduling, type hierarchies</li>
@@ -437,7 +413,7 @@ window.Quarto = {
 <li><strong>Combinatorics</strong>: Sperner’s theorem, Dilworth’s theorem</li>
 </ul>
 </section>
-<section id="see-also" class="level2">
+<section class="level2" id="see-also">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
 <li><a href="../../../content/en/logic-set-theory/def-relation.html">Relation</a></li>
@@ -447,7 +423,7 @@ window.Quarto = {
 <li><a href="../../../content/en/logic-set-theory/def-power-set.html">Power Set</a></li>
 </ul>
 </section>
-<section id="dependency-graph" class="level2">
+<section class="level2" id="dependency-graph">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -460,32 +436,32 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-function["Function"]:::definition
     def-power-set["Power Set"]:::definition
     def-set["Set"]:::definition
-    def-equivalence-relation["Equivalence Relation"]:::definition
+    def-relation["Relation"]:::definition
     def-divisibility["Divisibility"]:::definition
+    def-function["Function"]:::definition
     def-subset["Subset"]:::definition
     def-partial-order["Partial Order"]:::definition
-    def-relation["Relation"]:::definition
-    def-partial-order --&gt; def-function
-    def-partial-order --&gt; def-power-set
-    def-subset --&gt; def-partial-order
-    def-divisibility --&gt; def-partial-order
-    def-partial-order --&gt; def-subset
-    def-partial-order --&gt; def-equivalence-relation
-    def-relation --&gt; def-partial-order
-    def-partial-order --&gt; def-relation
-    def-power-set --&gt; def-partial-order
+    def-equivalence-relation["Equivalence Relation"]:::definition
     def-partial-order --&gt; def-set
+    def-partial-order --&gt; def-power-set
+    def-divisibility --&gt; def-partial-order
+    def-partial-order --&gt; def-function
+    def-partial-order --&gt; def-equivalence-relation
+    def-partial-order --&gt; def-relation
+    def-subset --&gt; def-partial-order
+    def-partial-order --&gt; def-subset
+    def-power-set --&gt; def-partial-order
+    def-relation --&gt; def-partial-order
     class def-partial-order current
-    click def-function "def-function.html" "Go to Function"
     click def-power-set "def-power-set.html" "Go to Power Set"
     click def-set "def-set.html" "Go to Set"
-    click def-equivalence-relation "def-equivalence-relation.html" "Go to Equivalence Relation"
-    click def-divisibility "def-divisibility.html" "Go to Divisibility"
-    click def-subset "def-subset.html" "Go to Subset"
     click def-relation "def-relation.html" "Go to Relation"
+    click def-divisibility "def-divisibility.html" "Go to Divisibility"
+    click def-function "def-function.html" "Go to Function"
+    click def-subset "def-subset.html" "Go to Subset"
+    click def-equivalence-relation "def-equivalence-relation.html" "Go to Equivalence Relation"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -493,13 +469,12 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="interactive-visualization" class="level2">
+<section class="level2" id="interactive-visualization">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-partial-order-1753761313" class="graph-visualization-container">
-  <div class="graph-loading">Loading visualization...</div>
+<div class="graph-visualization-container" id="graph-viz-def-partial-order-1753763943">
+<div class="graph-loading">Loading visualization...</div>
 </div>
-
 <script type="module">
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -744,12 +719,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-partial-order-1753761313', {
+    createForceGraph(data, 'graph-viz-def-partial-order-1753763943', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-partial-order-1753761313').innerHTML =
+    document.getElementById('graph-viz-def-partial-order-1753763943').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -761,7 +736,6 @@ if (document.readyState === 'loading') {
   loadAndRenderGraph();
 }
 </script>
-
 <style>
 .graph-visualization-container {
   margin: 2em 0;
@@ -810,13 +784,9 @@ if (document.readyState === 'loading') {
   color: #856404;
 }
 </style>
-
 <p>You can: - <strong>Drag</strong> nodes to rearrange the layout - <strong>Zoom</strong> in/out with your mouse wheel - <strong>Hover</strong> over nodes to see details - View the <a href="../../output/interactive/en/def-partial-order.html" target="_blank">full interactive version</a></p>
-
-
 </section>
 </section>
-
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1219,20 +1189,16 @@ if (document.readyState === 'loading') {
   </script>
 </div> <!-- /content -->
 <footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
+<div class="nav-footer">
+<div class="nav-footer-left">
+       
+    </div>
+<div class="nav-footer-center">
 <p>数学ナレッジグラフWiki - Quarto と RDF で構築</p>
 </div>
-    <div class="nav-footer-right">
-      &nbsp;
+<div class="nav-footer-right">
+       
     </div>
-  </div>
+</div>
 </footer>
-
-
-
-
-</body></html>
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>
