@@ -147,11 +147,12 @@
 
     // Buy Me a Coffee button
     const coffeeButton = document.createElement("a");
-    coffeeButton.className = "mobile-footer-button coffee-button-mobile";
+    coffeeButton.className =
+      "mobile-footer-button coffee-button-mobile coffee-button-image-only";
     coffeeButton.href = BUYMEACOFFEE_URL;
     coffeeButton.target = "_blank";
     coffeeButton.rel = "noopener noreferrer";
-    coffeeButton.innerHTML = `<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee"> <span>${currentLang === "ja" ? "コーヒー" : "Coffee"}</span>`;
+    coffeeButton.innerHTML = `<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee">`;
     coffeeButton.title =
       currentLang === "ja" ? "プロジェクトを支援する" : "Support this project";
 
@@ -263,6 +264,25 @@
         background-color: var(--color-coffee-button-hover);
         color: var(--color-coffee-button-text);
         text-decoration: none;
+      }
+
+      /* Image-only coffee button specific styles */
+      .coffee-button-image-only {
+        padding: 8px;
+        background-color: transparent !important;
+      }
+
+      .coffee-button-image-only img {
+        height: 36px;
+        width: auto;
+        display: block;
+        margin: 0 auto;
+      }
+
+      .coffee-button-image-only:hover img,
+      .coffee-button-image-only:active img {
+        transform: scale(1.05);
+        transition: transform var(--transition-fast);
       }
 
       /* Show mobile footer only on mobile devices */
