@@ -345,6 +345,30 @@ network.add_node(
 - Tooltips indicate clickability: "(Click to view article)"
 - Middle-click support for opening in new tabs (D3.js)
 
+## UI Conventions
+
+### Fixed Action Buttons
+
+Site uses two fixed-position action buttons with consistent styling:
+
+- **Report Issue Button** (`js/issue-button.js`):
+  - Padding: `10px 20.865px`
+  - Height: 44px
+  - Position: Fixed bottom-right (20px, 20px)
+  - Background: Blue (#0366d6)
+  - Z-index: 1000
+
+- **Buy Me a Coffee Button** (`scripts/site/inject_buy_me_coffee.py`):
+  - Padding: `8px 12px`
+  - Height: 44px (matches Report Issue)
+  - Position: Fixed bottom-right (20px, 70px) - above Report Issue
+  - Background: Yellow (#FFDD00)
+  - Z-index: 999
+
+**Design Principle**: Both buttons maintain 44px height for visual consistency. Icon sizes: 16px, font size: 14px.
+
+**Implementation Note**: Buy Me a Coffee button is injected via Python post-build script. Could be refactored to use same JavaScript mechanism as Report Issue button for consistency.
+
 ## Repository Management
 
 ### Going Public Checklist
