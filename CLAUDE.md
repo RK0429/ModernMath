@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ModernMath is a Mathematics Knowledge Graph Wiki that represents mathematical concepts (axioms, definitions, theorems, examples) as interconnected nodes in a semantic knowledge graph. It uses Quarto for content authoring, RDF/OWL for graph representation, Python for processing, and provides SPARQL querying capabilities.
 
+**JavaScript Configuration**: Uses ES modules (`"type": "module"` in package.json) with ESLint 9 flat config format.
+
 ## Web Debugging
 
 Use Playwright MCP tools for debugging deployed sites:
@@ -399,6 +401,45 @@ Site uses two fixed-position action buttons with consistent JavaScript implement
 - Adds 70px bottom padding to body/content to prevent overlap
 - Language switch button becomes disabled with strikethrough when translation unavailable
 - All three buttons load via the same script injection pattern in Quarto configs
+
+### Design Tokens System
+
+The project uses a comprehensive design tokens system for consistent styling:
+
+**Files**:
+
+- `design-tokens.css` - CSS custom properties for all visual design attributes
+- `design-tokens.js` - JavaScript module for programmatic access to tokens
+- `docs/design-tokens.md` - Complete documentation with usage examples
+
+**Usage in CSS**:
+
+```css
+@import "design-tokens.css";
+
+.component {
+  background-color: var(--color-neutral-bg);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+}
+```
+
+**Usage in JavaScript**:
+
+```javascript
+import { designTokens, getCSSToken, setCSSToken } from "./design-tokens.js";
+const primaryColor = designTokens.color.primary.blue;
+```
+
+**Token Categories**:
+
+- **Colors**: Primary, semantic (definition/theorem/example/axiom), buttons, neutral, links
+- **Typography**: Font families (including Japanese), sizes, weights, line heights
+- **Spacing**: Consistent scale from `--space-1` (4px) to `--space-16` (64px)
+- **Layout**: Z-index scale, border radius, breakpoints
+- **Animation**: Transitions, shadows
+
+**Important**: Always use design tokens instead of hardcoded values. Both `styles.css` and `styles-multilingual.css` now use these tokens via CSS custom properties.
 
 ## Repository Management
 

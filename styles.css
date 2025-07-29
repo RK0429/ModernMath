@@ -1,56 +1,59 @@
 /* Custom styles for Mathematics Knowledge Graph Wiki */
 
+/* Import design tokens */
+@import 'design-tokens.css';
+
 /* Improve readability of mathematical content */
 .math-content {
-  font-size: 1.1em;
-  line-height: 1.6;
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
 }
 
 /* Style for mathematical definitions */
 .definition {
-  background-color: #f0f7ff;
-  border-left: 4px solid #0969da;
-  padding: 1rem;
-  margin: 1rem 0;
+  background-color: var(--color-definition-bg);
+  border-left: var(--border-width-thick) solid var(--color-definition-border);
+  padding: var(--space-4);
+  margin: var(--margin-section) 0;
 }
 
 /* Style for theorems */
 .theorem {
-  background-color: #fff8f0;
-  border-left: 4px solid #fb8500;
-  padding: 1rem;
-  margin: 1rem 0;
+  background-color: var(--color-theorem-bg);
+  border-left: var(--border-width-thick) solid var(--color-theorem-border);
+  padding: var(--space-4);
+  margin: var(--margin-section) 0;
 }
 
 /* Style for examples */
 .example {
-  background-color: #f0fff4;
-  border-left: 4px solid #2da44e;
-  padding: 1rem;
-  margin: 1rem 0;
+  background-color: var(--color-example-bg);
+  border-left: var(--border-width-thick) solid var(--color-example-border);
+  padding: var(--space-4);
+  margin: var(--margin-section) 0;
 }
 
 /* Style for proofs */
 .proof {
   font-style: italic;
-  margin: 1rem 0;
-  padding-left: 1.5rem;
+  margin: var(--margin-section) 0;
+  padding-left: var(--space-6);
 }
 
 /* Improve spacing for lists in mathematical content */
 .content ul, .content ol {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-4);
 }
 
 .content li {
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2);
 }
 
 /* Style for cross-references */
 a.cross-ref {
-  color: #0969da;
+  color: var(--color-link);
   text-decoration: none;
-  border-bottom: 1px dotted #0969da;
+  border-bottom: var(--border-width-thin) dotted var(--color-link);
 }
 
 a.cross-ref:hover {
@@ -60,54 +63,54 @@ a.cross-ref:hover {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .definition, .theorem, .example {
-    padding: 0.75rem;
-    margin: 0.75rem 0;
+    padding: var(--margin-section-mobile);
+    margin: var(--margin-section-mobile) 0;
   }
 }
 
 /* Style for knowledge graph visualization containers */
 .graph-container {
-  margin: 2rem 0;
-  padding: 1rem;
-  background-color: #f6f8fa;
-  border-radius: 6px;
+  margin: var(--space-8) 0;
+  padding: var(--space-4);
+  background-color: var(--color-neutral-bg);
+  border-radius: var(--radius-lg);
 }
 
 /* Improve code block appearance */
 pre {
-  background-color: #f6f8fa;
-  border-radius: 6px;
-  padding: 1rem;
+  background-color: var(--color-neutral-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
   overflow-x: auto;
 }
 
 /* Style for metadata badges */
 .metadata-badge {
   display: inline-block;
-  padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1;
-  border-radius: 3px;
-  margin-right: 0.5rem;
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  border-radius: var(--radius-sm);
+  margin-right: var(--space-2);
 }
 
 .badge-definition {
-  background-color: #dbeafe;
-  color: #1e40af;
+  background-color: var(--color-definition-badge-bg);
+  color: var(--color-definition-badge-text);
 }
 
 .badge-theorem {
-  background-color: #fed7aa;
-  color: #c2410c;
+  background-color: var(--color-theorem-badge-bg);
+  color: var(--color-theorem-badge-text);
 }
 
 .badge-example {
-  background-color: #d1fae5;
-  color: #065f46;
+  background-color: var(--color-example-badge-bg);
+  color: var(--color-example-badge-text);
 }
 
 .badge-axiom {
-  background-color: #e9d5ff;
-  color: #6b21a8;
+  background-color: var(--color-axiom-badge-bg);
+  color: var(--color-axiom-badge-text);
 }
