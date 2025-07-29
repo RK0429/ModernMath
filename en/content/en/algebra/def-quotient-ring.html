@@ -394,51 +394,51 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-coset["Coset"]:::definition
-    def-ring["Ring"]:::definition
-    def-subring["Subring"]:::definition
+    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
+    def-maximal-ideal["Maximal Ideal"]:::definition
     def-quotient-ring["Quotient Ring"]:::definition
-    def-quotient-group["Quotient Group"]:::definition
+    def-coset["Coset"]:::definition
+    def-homomorphism["Group Homomorphism"]:::definition
+    def-ring["Ring"]:::definition
+    def-kernel["Kernel"]:::definition
+    ex-finite-field["Finite Field"]:::example
+    def-subring["Subring"]:::definition
+    def-ideal["Ideal"]:::definition
+    def-prime-ideal["Prime Ideal"]:::definition
     def-ring-homomorphism["Ring Homomorphism"]:::definition
     def-equivalence-relation["Equivalence Relation"]:::definition
-    def-homomorphism["Group Homomorphism"]:::definition
-    def-kernel["Kernel"]:::definition
+    def-quotient-group["Quotient Group"]:::definition
     def-integral-domain["Integral Domain"]:::definition
-    def-maximal-ideal["Maximal Ideal"]:::definition
-    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
-    def-prime-ideal["Prime Ideal"]:::definition
-    def-ideal["Ideal"]:::definition
-    ex-finite-field["Finite Field"]:::example
-    def-quotient-ring --&gt; def-homomorphism
+    def-quotient-ring --&gt; def-ring
+    def-maximal-ideal --&gt; def-quotient-ring
+    def-quotient-ring --&gt; def-prime-ideal
+    ex-quotient-integers-mod-n --&gt; def-quotient-ring
+    def-kernel --&gt; def-quotient-ring
     def-quotient-ring --&gt; def-coset
     ex-finite-field --&gt; def-quotient-ring
+    def-subring --&gt; def-quotient-ring
+    def-quotient-group --&gt; def-quotient-ring
+    def-quotient-ring --&gt; def-integral-domain
+    def-quotient-ring --&gt; def-equivalence-relation
+    def-quotient-ring --&gt; def-ideal
     def-quotient-ring --&gt; def-ring-homomorphism
     def-prime-ideal --&gt; def-quotient-ring
-    def-quotient-ring --&gt; def-equivalence-relation
-    def-quotient-ring --&gt; def-integral-domain
-    def-quotient-group --&gt; def-quotient-ring
-    def-quotient-ring --&gt; def-ring
-    def-quotient-ring --&gt; def-prime-ideal
-    def-quotient-ring --&gt; def-ideal
-    def-kernel --&gt; def-quotient-ring
-    ex-quotient-integers-mod-n --&gt; def-quotient-ring
-    def-maximal-ideal --&gt; def-quotient-ring
-    def-subring --&gt; def-quotient-ring
+    def-quotient-ring --&gt; def-homomorphism
     class def-quotient-ring current
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n"
+    click def-maximal-ideal "def-maximal-ideal.html" "Go to Maximal Ideal"
     click def-coset "def-coset.html" "Go to Coset"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism"
     click def-ring "def-ring.html" "Go to Ring"
+    click def-kernel "def-kernel.html" "Go to Kernel"
+    click ex-finite-field "ex-finite-field.html" "Go to Finite Field"
     click def-subring "def-subring.html" "Go to Subring"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
+    click def-ideal "def-ideal.html" "Go to Ideal"
+    click def-prime-ideal "def-prime-ideal.html" "Go to Prime Ideal"
     click def-ring-homomorphism "def-ring-homomorphism.html" "Go to Ring Homomorphism"
     click def-equivalence-relation "def-equivalence-relation.html" "Go to Equivalence Relation"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism"
-    click def-kernel "def-kernel.html" "Go to Kernel"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
     click def-integral-domain "def-integral-domain.html" "Go to Integral Domain"
-    click def-maximal-ideal "def-maximal-ideal.html" "Go to Maximal Ideal"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n"
-    click def-prime-ideal "def-prime-ideal.html" "Go to Prime Ideal"
-    click def-ideal "def-ideal.html" "Go to Ideal"
-    click ex-finite-field "ex-finite-field.html" "Go to Finite Field"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -449,7 +449,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-quotient-ring-1753788126" class="graph-visualization-container">
+<div id="graph-viz-def-quotient-ring-1753797348" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -697,12 +697,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-quotient-ring-1753788126', {
+    createForceGraph(data, 'graph-viz-def-quotient-ring-1753797348', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-quotient-ring-1753788126').innerHTML =
+    document.getElementById('graph-viz-def-quotient-ring-1753797348').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

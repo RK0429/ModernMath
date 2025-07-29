@@ -6,24 +6,24 @@ graph TD
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-normal-distribution["Normal Distribution"]:::definition
     def-random-variable["Random Variable"]:::definition
+    thm-central-limit["Central Limit Theorem"]:::theorem
+    def-function["Function"]:::definition
+    thm-law-of-large-numbers["Law of Large Numbers"]:::theorem
+    def-probability-distribution["Probability Distribution"]:::definition
+    def-binomial-distribution["Binomial Distribution"]:::definition
     def-independence["Independence"]:::definition
     def-variance["Variance"]:::definition
-    def-function["Function"]:::definition
     def-expectation["Expected Value"]:::definition
     def-probability-space["Probability Space"]:::definition
-    def-probability-distribution["Probability Distribution"]:::definition
-    thm-central-limit["Central Limit Theorem"]:::theorem
-    def-binomial-distribution["Binomial Distribution"]:::definition
-    thm-law-of-large-numbers["Law of Large Numbers"]:::theorem
-    thm-central-limit --> def-random-variable
     thm-law-of-large-numbers --> def-random-variable
+    def-variance --> def-random-variable
     def-normal-distribution --> def-random-variable
     def-random-variable --> def-probability-distribution
-    def-random-variable --> def-probability-space
-    def-random-variable --> def-function
     def-probability-distribution --> def-random-variable
-    def-independence --> def-random-variable
-    def-variance --> def-random-variable
-    def-expectation --> def-random-variable
+    def-random-variable --> def-probability-space
+    thm-central-limit --> def-random-variable
     def-binomial-distribution --> def-random-variable
+    def-expectation --> def-random-variable
+    def-independence --> def-random-variable
+    def-random-variable --> def-function
     class def-random-variable current

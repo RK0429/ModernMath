@@ -234,39 +234,8 @@
 
   // Helper function to check if we should show the button
   function shouldShowButton() {
-    // Don't show on index pages, search pages, or other non-content pages
-    const path = window.location.pathname;
-    const excludedPages = [
-      "index.html",
-      "search.html",
-      "search-ja.html",
-      "visualizations.html",
-      "visualizations-ja.html",
-      "about.html",
-      "about-ja.html",
-      "contributing.html",
-      "contributing-ja.html",
-    ];
-
-    // Check if current page is in excluded list
-    const currentFile = path.split("/").pop();
-    if (excludedPages.includes(currentFile)) {
-      return false;
-    }
-
-    // Check if we're on a content page (has a mathematical domain in the path)
-    const mathDomains = [
-      "algebra",
-      "analysis",
-      "topology",
-      "geometry",
-      "category-theory",
-      "combinatorics",
-      "logic-set-theory",
-      "number-theory",
-      "probability-statistics",
-    ];
-    return mathDomains.some((domain) => path.includes(domain));
+    // Show the button on all pages
+    return true;
   }
 
   // Initialize the issue button
