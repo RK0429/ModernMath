@@ -359,6 +359,7 @@ Site uses two fixed-position action buttons with consistent JavaScript implement
   - Background: Blue (#0366d6)
   - Z-index: 1000
   - Display: `inline-flex` with `justify-content: center`
+  - Visibility: Appears on ALL pages (root, About, Contributing, and content pages)
 
 - **Buy Me a Coffee Button** (`js/buy-me-coffee-button.js`):
   - Padding: `8px 12px`
