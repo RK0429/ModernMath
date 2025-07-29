@@ -20,40 +20,100 @@ def inject_buy_me_coffee_button(html_file: Path) -> None:
             soup = BeautifulSoup(f.read(), "html.parser")
 
         # Check if button already exists
-        if soup.find("script", {"data-name": "bmc-button"}):
+        if soup.find("a", {"class": "bmc-custom-button"}):
             print(f"⏭️  Skipping {html_file} - button already exists")
             return
 
-        # Buy Me a Coffee script
+        # Buy Me a Coffee script with custom button
         button_script = (
-            '<script type="text/javascript" '
-            'src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" '
-            'data-name="bmc-button" data-slug="RK0429" data-color="#FFDD00" '
-            'data-emoji="" data-font="Comic" data-text="Buy me a coffee" '
-            'data-outline-color="#000000" data-font-color="#000000" '
-            'data-coffee-color="#ffffff"></script>'
+            '<a href="https://www.buymeacoffee.com/RK0429" target="_blank" '
+            'class="bmc-custom-button" rel="noopener noreferrer">'
+            '<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" '
+            'alt="Buy Me a Coffee" style="height: 36px !important;width: auto !important;" />'
+            "</a>"
         )
 
-        # Create a wrapper div for positioning
-        button_wrapper = soup.new_tag("div")
-        button_wrapper["style"] = "position: fixed; bottom: 20px; right: 20px; z-index: 9999;"
+        # Add custom CSS for the button
+        style_tag = soup.new_tag("style")
+        style_tag.string = """
+        .bmc-custom-button {
+            position: fixed;
+            bottom: 70px; /* Positioned above Report Issue button */
+            right: 20px;
+            background-color: #FFDD00;
+            color: #000000;
+            padding: 10px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+            z-index: 999; /* Slightly below Report Issue button */
+        }
 
-        # Parse and add the script to the wrapper
+        .bmc-custom-button:hover {
+            background-color: #FFD814;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            text-decoration: none;
+        }
+
+        .bmc-custom-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .bmc-custom-button img {
+            height: 16px !important;
+            width: auto !important;
+            margin: 0;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .bmc-custom-button {
+                bottom: 60px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+        }
+
+        /* Hide on print */
+        @media print {
+            .bmc-custom-button {
+                display: none;
+            }
+        }
+        """
+
+        # Add style to head if exists, otherwise create head
+        head = soup.find("head")
+        if head and isinstance(head, Tag):
+            head.append(style_tag)
+        else:
+            # If no head tag, insert before body
+            body = soup.find("body")
+            if body and isinstance(body, Tag):
+                body.insert(0, style_tag)
+
+        # Parse the button HTML
         button_soup = BeautifulSoup(button_script, "html.parser")
-        script_tag = button_soup.script
-        if script_tag is not None:
-            button_wrapper.append(script_tag)
+        button_element = button_soup.find("a")
 
         # Find the best place to insert the button
         # Try to insert before closing body tag
         body = soup.find("body")
-        if body and isinstance(body, Tag):
-            body.append(button_wrapper)
+        if body and isinstance(body, Tag) and button_element:
+            body.append(button_element)
         else:
             # If no body tag, append to the html tag
             html = soup.find("html")
-            if html and isinstance(html, Tag):
-                html.append(button_wrapper)
+            if html and isinstance(html, Tag) and button_element:
+                html.append(button_element)
 
         # Write the modified HTML back
         with open(html_file, "w", encoding="utf-8") as f:
