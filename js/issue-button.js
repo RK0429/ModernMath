@@ -159,17 +159,20 @@
         right: 20px;
         background-color: #0366d6;
         color: white;
-        padding: 10px 20.865px;
+        padding: 8px 12px;
         border-radius: 6px;
         text-decoration: none;
         font-size: 14px;
         font-weight: 500;
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         gap: 6px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         transition: all 0.2s ease;
         z-index: 1000;
+        height: 44px;
+        min-width: 130px;
       }
 
       .issue-button:hover {

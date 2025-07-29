@@ -47,10 +47,12 @@
         font-weight: 500;
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         transition: all 0.2s ease;
         z-index: 999; /* Slightly below Report Issue button */
-        height: 44px; /* Match Report Issue button height */
+        height: 44px;
+        min-width: 130px;
       }
 
       .bmc-custom-button:hover {

@@ -352,22 +352,26 @@ network.add_node(
 Site uses two fixed-position action buttons with consistent JavaScript implementation:
 
 - **Report Issue Button** (`js/issue-button.js`):
-  - Padding: `10px 20.865px`
+  - Padding: `8px 12px`
   - Height: 44px
+  - Min-width: 130px
   - Position: Fixed bottom-right (20px, 20px)
   - Background: Blue (#0366d6)
   - Z-index: 1000
+  - Display: `inline-flex` with `justify-content: center`
 
 - **Buy Me a Coffee Button** (`js/buy-me-coffee-button.js`):
   - Padding: `8px 12px`
-  - Height: 44px (matches Report Issue)
+  - Height: 44px
+  - Min-width: 130px
   - Position: Fixed bottom-right (20px, 70px) - above Report Issue
   - Background: Yellow (#FFDD00)
   - Z-index: 999
+  - Display: `inline-flex` with `justify-content: center`
 
-**Design Principle**: Both buttons maintain 44px height for visual consistency. Icon sizes: 16px, font size: 14px.
+**Design Principle**: Both buttons maintain identical sizing for visual consistency across languages. Icon sizes: 16px, font size: 14px.
 
-**Implementation**: Both buttons are injected via JavaScript during page load, loaded through Quarto's include-in-header configuration in language profiles (`_quarto-en.yml`, `_quarto-ja.yml`).
+**Implementation**: Both buttons are injected via JavaScript during page load, loaded through Quarto's include-in-header configuration in language profiles (`_quarto-en.yml`, `_quarto-ja.yml`). The Buy Me a Coffee button was migrated from Python post-processing to JavaScript for consistency.
 
 ## Repository Management
 
