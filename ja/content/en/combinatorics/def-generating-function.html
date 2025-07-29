@@ -165,6 +165,7 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../design-tokens.css">
 <link rel="stylesheet" href="../../../styles-multilingual.css">
 </head>
 
@@ -419,7 +420,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-generating-function-1753799024" class="graph-visualization-container">
+<div id="graph-viz-def-generating-function-1753805636" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -667,12 +668,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-generating-function-1753799024', {
+    createForceGraph(data, 'graph-viz-def-generating-function-1753805636', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-generating-function-1753799024').innerHTML =
+    document.getElementById('graph-viz-def-generating-function-1753805636').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -165,6 +165,7 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../design-tokens.css">
 <link rel="stylesheet" href="../../../styles-multilingual.css">
 </head>
 
@@ -439,25 +440,25 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-vector-space["ベクトル空間"]:::definition
-    def-normed-vector-space["ノルム空間"]:::definition
     def-hilbert-space["ヒルベルト空間"]:::definition
     def-metric-space["距離空間"]:::definition
-    def-euclidean-space["ユークリッド空間"]:::definition
+    def-normed-vector-space["ノルム空間"]:::definition
     def-open-ball["開球"]:::definition
+    def-vector-space["ベクトル空間"]:::definition
+    def-euclidean-space["ユークリッド空間"]:::definition
     def-banach-space["バナッハ空間"]:::definition
-    def-normed-vector-space --&gt; def-vector-space
-    def-euclidean-space --&gt; def-normed-vector-space
-    def-hilbert-space --&gt; def-normed-vector-space
-    def-banach-space --&gt; def-normed-vector-space
     def-normed-vector-space --&gt; def-open-ball
+    def-banach-space --&gt; def-normed-vector-space
+    def-normed-vector-space --&gt; def-vector-space
+    def-hilbert-space --&gt; def-normed-vector-space
     def-normed-vector-space --&gt; def-metric-space
+    def-euclidean-space --&gt; def-normed-vector-space
     class def-normed-vector-space current
-    click def-vector-space "def-vector-space.html" "ベクトル空間へ"
     click def-hilbert-space "def-hilbert-space.html" "ヒルベルト空間へ"
     click def-metric-space "def-metric-space.html" "距離空間へ"
-    click def-euclidean-space "def-euclidean-space.html" "ユークリッド空間へ"
     click def-open-ball "def-open-ball.html" "開球へ"
+    click def-vector-space "def-vector-space.html" "ベクトル空間へ"
+    click def-euclidean-space "def-euclidean-space.html" "ユークリッド空間へ"
     click def-banach-space "def-banach-space.html" "バナッハ空間へ"
 </pre>
 </div>
@@ -469,7 +470,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-normed-vector-space-1753798882" class="graph-visualization-container">
+<div id="graph-viz-def-normed-vector-space-1753805502" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -717,12 +718,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-normed-vector-space-1753798882', {
+    createForceGraph(data, 'graph-viz-def-normed-vector-space-1753805502', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-normed-vector-space-1753798882').innerHTML =
+    document.getElementById('graph-viz-def-normed-vector-space-1753805502').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

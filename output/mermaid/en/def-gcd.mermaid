@@ -4,32 +4,32 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Set"]:::definition
-    thm-fermat-little["Fermat's Little Theorem"]:::theorem
+    def-lcm["Least Common Multiple"]:::definition
     def-gcd["Greatest Common Divisor"]:::definition
     def-congruence["Congruence (Modular Arithmetic)"]:::definition
-    thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
-    ex-principal-ideal["Principal Ideals in Integers"]:::example
+    def-set["Set"]:::definition
     def-divisibility["Divisibility"]:::definition
-    def-lcm["Least Common Multiple"]:::definition
-    thm-euler["Euler's Theorem"]:::theorem
+    ex-principal-ideal["Principal Ideals in Integers"]:::example
+    thm-fermat-little["Fermat's Little Theorem"]:::theorem
+    def-prime["Prime Number"]:::definition
     thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
     thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
-    def-prime["Prime Number"]:::definition
-    thm-fermat-little --> def-gcd
-    thm-chinese-remainder --> def-gcd
-    def-divisibility --> def-gcd
-    thm-euclidean-algorithm --> def-gcd
-    def-congruence --> def-gcd
-    def-gcd --> thm-euclidean-algorithm
-    def-gcd --> def-lcm
-    def-gcd --> def-congruence
-    thm-fundamental-arithmetic --> def-gcd
-    def-lcm --> def-gcd
-    ex-principal-ideal --> def-gcd
-    def-gcd --> def-set
-    def-gcd --> def-prime
-    def-prime --> def-gcd
+    thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
+    thm-euler["Euler's Theorem"]:::theorem
     def-gcd --> def-divisibility
+    thm-fundamental-arithmetic --> def-gcd
+    def-gcd --> thm-euclidean-algorithm
+    thm-chinese-remainder --> def-gcd
     def-gcd --> thm-euler
+    def-gcd --> def-lcm
+    def-gcd --> def-set
+    def-gcd --> def-congruence
+    ex-principal-ideal --> def-gcd
+    thm-euclidean-algorithm --> def-gcd
+    def-gcd --> def-prime
+    def-lcm --> def-gcd
+    def-prime --> def-gcd
+    def-congruence --> def-gcd
+    def-divisibility --> def-gcd
+    thm-fermat-little --> def-gcd
     class def-gcd current

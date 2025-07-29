@@ -165,6 +165,7 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../design-tokens.css">
 <link rel="stylesheet" href="../../../styles-multilingual.css">
 </head>
 
@@ -340,16 +341,16 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-topological-space["位相空間"]:::definition
-    def-compact["コンパクト空間"]:::definition
-    thm-heine-borel["ハイネ・ボレルの定理"]:::theorem
     ex-closed-interval-compact["閉区間はコンパクト"]:::example
+    def-compact["コンパクト空間"]:::definition
+    def-topological-space["位相空間"]:::definition
+    thm-heine-borel["ハイネ・ボレルの定理"]:::theorem
+    ex-closed-interval-compact --&gt; thm-heine-borel
     ex-closed-interval-compact --&gt; def-compact
     ex-closed-interval-compact --&gt; def-topological-space
-    ex-closed-interval-compact --&gt; thm-heine-borel
     class ex-closed-interval-compact current
-    click def-topological-space "def-topological-space.html" "位相空間へ"
     click def-compact "def-compact.html" "コンパクト空間へ"
+    click def-topological-space "def-topological-space.html" "位相空間へ"
     click thm-heine-borel "thm-heine-borel.html" "ハイネ・ボレルの定理へ"
 </pre>
 </div>
@@ -361,7 +362,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-closed-interval-compact-1753798819" class="graph-visualization-container">
+<div id="graph-viz-ex-closed-interval-compact-1753805439" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -609,12 +610,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-closed-interval-compact-1753798819', {
+    createForceGraph(data, 'graph-viz-ex-closed-interval-compact-1753805439', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-closed-interval-compact-1753798819').innerHTML =
+    document.getElementById('graph-viz-ex-closed-interval-compact-1753805439').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

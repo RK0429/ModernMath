@@ -165,6 +165,7 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../design-tokens.css">
 <link rel="stylesheet" href="../../../styles-multilingual.css">
 </head>
 
@@ -348,51 +349,51 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-vector-space["Vector Space"]:::definition
-    def-integral-domain["Integral Domain"]:::definition
     def-group["Group"]:::definition
-    def-ideal["Ideal"]:::definition
-    def-ring["Ring"]:::definition
-    thm-field-characteristic["Field Characteristic"]:::theorem
-    def-subring["Subring"]:::definition
-    def-abelian-group["Abelian Group"]:::definition
-    def-maximal-ideal["Maximal Ideal"]:::definition
     def-zero-divisor["Zero Divisor"]:::definition
-    def-determinant["Determinant"]:::definition
+    def-subring["Subring"]:::definition
+    def-maximal-ideal["Maximal Ideal"]:::definition
     def-polynomial-ring["Polynomial Ring"]:::definition
+    def-ring["Ring"]:::definition
+    def-vector-space["Vector Space"]:::definition
     def-matrix["Matrix"]:::definition
+    def-abelian-group["Abelian Group"]:::definition
     ex-finite-field["Finite Field"]:::example
     def-field["Field"]:::definition
-    ex-finite-field --&gt; def-field
-    def-field --&gt; def-group
-    def-field --&gt; def-ring
-    def-zero-divisor --&gt; def-field
-    def-maximal-ideal --&gt; def-field
-    def-matrix --&gt; def-field
-    def-integral-domain --&gt; def-field
-    def-polynomial-ring --&gt; def-field
-    def-vector-space --&gt; def-field
-    def-field --&gt; def-subring
-    thm-field-characteristic --&gt; def-field
-    def-field --&gt; def-abelian-group
-    def-field --&gt; def-integral-domain
+    def-ideal["Ideal"]:::definition
+    def-integral-domain["Integral Domain"]:::definition
+    thm-field-characteristic["Field Characteristic"]:::theorem
+    def-determinant["Determinant"]:::definition
     def-field --&gt; def-ideal
+    def-integral-domain --&gt; def-field
+    def-vector-space --&gt; def-field
+    def-field --&gt; def-ring
+    def-matrix --&gt; def-field
+    def-polynomial-ring --&gt; def-field
+    def-field --&gt; def-abelian-group
+    def-field --&gt; def-group
+    def-maximal-ideal --&gt; def-field
+    thm-field-characteristic --&gt; def-field
+    def-zero-divisor --&gt; def-field
+    ex-finite-field --&gt; def-field
     def-determinant --&gt; def-field
+    def-field --&gt; def-subring
+    def-field --&gt; def-integral-domain
     class def-field current
-    click def-vector-space "def-vector-space.html" "Go to Vector Space"
-    click def-integral-domain "def-integral-domain.html" "Go to Integral Domain"
     click def-group "def-group.html" "Go to Group"
-    click def-ideal "def-ideal.html" "Go to Ideal"
-    click def-ring "def-ring.html" "Go to Ring"
-    click thm-field-characteristic "thm-field-characteristic.html" "Go to Field Characteristic"
-    click def-subring "def-subring.html" "Go to Subring"
-    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group"
-    click def-maximal-ideal "def-maximal-ideal.html" "Go to Maximal Ideal"
     click def-zero-divisor "def-zero-divisor.html" "Go to Zero Divisor"
-    click def-determinant "def-determinant.html" "Go to Determinant"
+    click def-subring "def-subring.html" "Go to Subring"
+    click def-maximal-ideal "def-maximal-ideal.html" "Go to Maximal Ideal"
     click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring"
+    click def-ring "def-ring.html" "Go to Ring"
+    click def-vector-space "def-vector-space.html" "Go to Vector Space"
     click def-matrix "def-matrix.html" "Go to Matrix"
+    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group"
     click ex-finite-field "ex-finite-field.html" "Go to Finite Field"
+    click def-ideal "def-ideal.html" "Go to Ideal"
+    click def-integral-domain "def-integral-domain.html" "Go to Integral Domain"
+    click thm-field-characteristic "thm-field-characteristic.html" "Go to Field Characteristic"
+    click def-determinant "def-determinant.html" "Go to Determinant"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -403,7 +404,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-field-1753798673" class="graph-visualization-container">
+<div id="graph-viz-def-field-1753805289" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -651,12 +652,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-field-1753798673', {
+    createForceGraph(data, 'graph-viz-def-field-1753805289', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-field-1753798673').innerHTML =
+    document.getElementById('graph-viz-def-field-1753805289').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

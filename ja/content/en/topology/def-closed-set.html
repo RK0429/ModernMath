@@ -165,6 +165,7 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../design-tokens.css">
 <link rel="stylesheet" href="../../../styles-multilingual.css">
 </head>
 
@@ -335,15 +336,15 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-closed-set["Closed Set"]:::definition
     def-set["Set"]:::definition
     def-connected["Connected Space"]:::definition
     def-open-set["Open Set"]:::definition
-    def-closed-set["Closed Set"]:::definition
     def-topological-space["Topological Space"]:::definition
     thm-heine-borel["Heine-Borel Theorem"]:::theorem
+    thm-heine-borel --&gt; def-closed-set
     def-closed-set --&gt; def-topological-space
     def-closed-set --&gt; def-set
-    thm-heine-borel --&gt; def-closed-set
     def-connected --&gt; def-closed-set
     def-closed-set --&gt; def-open-set
     class def-closed-set current
@@ -362,7 +363,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-closed-set-1753799007" class="graph-visualization-container">
+<div id="graph-viz-def-closed-set-1753805620" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -610,12 +611,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-closed-set-1753799007', {
+    createForceGraph(data, 'graph-viz-def-closed-set-1753805620', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-closed-set-1753799007').innerHTML =
+    document.getElementById('graph-viz-def-closed-set-1753805620').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

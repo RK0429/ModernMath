@@ -115,7 +115,7 @@
     params.append("screen_resolution", metadata.screenResolution);
 
     // Add labels - page-issue is already in the template
-    const labels = ["page-issue", "needs-triage"];
+    const labels = ["page-issue", "needs-triage", ...ISSUE_LABELS];
     if (metadata.domain) {
       labels.push(metadata.domain);
     }
@@ -157,39 +157,39 @@
         position: fixed;
         bottom: 70px;
         right: 20px;
-        background-color: #0366d6;
-        color: white;
-        padding: 8px 12px;
-        border-radius: 6px;
+        background-color: var(--color-issue-button-bg);
+        color: var(--color-issue-button-text);
+        padding: var(--padding-button-y) var(--padding-button-x);
+        border-radius: var(--radius-lg);
         text-decoration: none;
-        font-size: 14px;
-        font-weight: 500;
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
         display: inline-flex;
         align-items: center;
         justify-content: center;
         gap: 6px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        transition: all 0.2s ease;
-        z-index: 1000;
-        height: 44px;
-        min-width: 130px;
+        box-shadow: var(--shadow-sm);
+        transition: all var(--transition-fast);
+        z-index: var(--z-index-issue-button);
+        height: var(--button-height-default);
+        min-width: var(--button-min-width-default);
       }
 
       .issue-button:hover {
-        background-color: #0256c7;
-        color: white;
+        background-color: var(--color-issue-button-hover);
+        color: var(--color-issue-button-text);
         text-decoration: none;
         transform: translateY(-1px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        box-shadow: var(--shadow-md);
       }
 
       .issue-button:active {
         transform: translateY(0);
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: var(--shadow-sm);
       }
 
       .issue-button i {
-        font-size: 16px;
+        font-size: var(--icon-size-sm);
       }
 
       /* Mobile responsive */
@@ -197,10 +197,10 @@
         .issue-button {
           bottom: 60px;
           right: 10px;
-          padding: 8px 12px;
+          padding: var(--padding-button-y) var(--padding-button-x);
           font-size: 13px;
-          height: 44px;
-          min-width: 130px;
+          height: var(--button-height-mobile);
+          min-width: var(--button-min-width-mobile);
         }
 
         .issue-button i {
@@ -217,9 +217,9 @@
 
       /* Alternative placement in article footer for better integration */
       .article-issue-button {
-        margin-top: 2rem;
-        padding-top: 2rem;
-        border-top: 1px solid #e1e4e8;
+        margin-top: var(--space-8);
+        padding-top: var(--space-8);
+        border-top: var(--border-width-thin) solid var(--color-neutral-border);
         text-align: center;
       }
 

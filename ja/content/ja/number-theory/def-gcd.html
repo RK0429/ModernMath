@@ -165,6 +165,7 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../design-tokens.css">
 <link rel="stylesheet" href="../../../styles-multilingual.css">
 </head>
 
@@ -391,46 +392,46 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["集合"]:::definition
-    thm-fermat-little["フェルマーの小定理"]:::theorem
+    def-lcm["最小公倍数"]:::definition
     def-gcd["最大公約数"]:::definition
     def-congruence["合同（モジュラー演算）"]:::definition
-    thm-chinese-remainder["中国剰余定理"]:::theorem
-    ex-principal-ideal["整数における単項イデアル"]:::example
+    def-set["集合"]:::definition
     def-divisibility["整除性"]:::definition
-    def-lcm["最小公倍数"]:::definition
-    thm-euler["オイラーの定理"]:::theorem
+    ex-principal-ideal["整数における単項イデアル"]:::example
+    thm-fermat-little["フェルマーの小定理"]:::theorem
+    def-prime["素数"]:::definition
     thm-fundamental-arithmetic["算術の基本定理"]:::theorem
     thm-euclidean-algorithm["ユークリッドのアルゴリズム"]:::theorem
-    def-prime["素数"]:::definition
-    thm-fermat-little --&gt; def-gcd
-    thm-chinese-remainder --&gt; def-gcd
-    def-divisibility --&gt; def-gcd
-    thm-euclidean-algorithm --&gt; def-gcd
-    def-congruence --&gt; def-gcd
-    def-gcd --&gt; thm-euclidean-algorithm
-    def-gcd --&gt; def-lcm
-    def-gcd --&gt; def-congruence
-    thm-fundamental-arithmetic --&gt; def-gcd
-    def-lcm --&gt; def-gcd
-    ex-principal-ideal --&gt; def-gcd
-    def-gcd --&gt; def-set
-    def-gcd --&gt; def-prime
-    def-prime --&gt; def-gcd
+    thm-chinese-remainder["中国剰余定理"]:::theorem
+    thm-euler["オイラーの定理"]:::theorem
     def-gcd --&gt; def-divisibility
+    thm-fundamental-arithmetic --&gt; def-gcd
+    def-gcd --&gt; thm-euclidean-algorithm
+    thm-chinese-remainder --&gt; def-gcd
     def-gcd --&gt; thm-euler
+    def-gcd --&gt; def-lcm
+    def-gcd --&gt; def-set
+    def-gcd --&gt; def-congruence
+    ex-principal-ideal --&gt; def-gcd
+    thm-euclidean-algorithm --&gt; def-gcd
+    def-gcd --&gt; def-prime
+    def-lcm --&gt; def-gcd
+    def-prime --&gt; def-gcd
+    def-congruence --&gt; def-gcd
+    def-divisibility --&gt; def-gcd
+    thm-fermat-little --&gt; def-gcd
     class def-gcd current
-    click def-set "def-set.html" "集合へ"
-    click thm-fermat-little "thm-fermat-little.html" "フェルマーの小定理へ"
-    click def-congruence "def-congruence.html" "合同（モジュラー演算）へ"
-    click thm-chinese-remainder "thm-chinese-remainder.html" "中国剰余定理へ"
-    click ex-principal-ideal "ex-principal-ideal.html" "整数における単項イデアルへ"
-    click def-divisibility "def-divisibility.html" "整除性へ"
     click def-lcm "def-lcm.html" "最小公倍数へ"
-    click thm-euler "thm-euler.html" "オイラーの定理へ"
+    click def-congruence "def-congruence.html" "合同（モジュラー演算）へ"
+    click def-set "def-set.html" "集合へ"
+    click def-divisibility "def-divisibility.html" "整除性へ"
+    click ex-principal-ideal "ex-principal-ideal.html" "整数における単項イデアルへ"
+    click thm-fermat-little "thm-fermat-little.html" "フェルマーの小定理へ"
+    click def-prime "def-prime.html" "素数へ"
     click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "算術の基本定理へ"
     click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "ユークリッドのアルゴリズムへ"
-    click def-prime "def-prime.html" "素数へ"
+    click thm-chinese-remainder "thm-chinese-remainder.html" "中国剰余定理へ"
+    click thm-euler "thm-euler.html" "オイラーの定理へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -441,7 +442,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-gcd-1753798911" class="graph-visualization-container">
+<div id="graph-viz-def-gcd-1753805530" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -689,12 +690,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-gcd-1753798911', {
+    createForceGraph(data, 'graph-viz-def-gcd-1753805530', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-gcd-1753798911').innerHTML =
+    document.getElementById('graph-viz-def-gcd-1753805530').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

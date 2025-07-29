@@ -1,32 +1,35 @@
 /* Multilingual Support Styles */
 
+/* Import design tokens */
+@import 'design-tokens.css';
+
 /* Language Switcher Styling */
 .navbar-nav .nav-link[href*="../en/"],
 .navbar-nav .nav-link[href*="../ja/"] {
-  background-color: rgba(0, 123, 255, 0.1);
-  border-radius: 5px;
-  padding: 0.5rem 1rem !important;
-  margin-left: 0.5rem;
-  transition: background-color 0.3s ease;
+  background-color: var(--color-lang-switcher-bg);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-4) !important;
+  margin-left: var(--space-2);
+  transition: background-color var(--transition-base);
 }
 
 .navbar-nav .nav-link[href*="../en/"]:hover,
 .navbar-nav .nav-link[href*="../ja/"]:hover {
-  background-color: rgba(0, 123, 255, 0.2);
+  background-color: var(--color-lang-switcher-hover);
 }
 
 /* Disabled language switcher state */
 .navbar-nav .nav-link.disabled[href*="../en/"],
 .navbar-nav .nav-link.disabled[href*="../ja/"] {
-  background-color: rgba(128, 128, 128, 0.1);
-  opacity: 0.5;
+  background-color: var(--color-lang-switcher-disabled-bg);
+  opacity: var(--opacity-disabled);
   cursor: not-allowed;
   pointer-events: none;
 }
 
 .navbar-nav .nav-link.disabled[href*="../en/"]:hover,
 .navbar-nav .nav-link.disabled[href*="../ja/"]:hover {
-  background-color: rgba(128, 128, 128, 0.1);
+  background-color: var(--color-lang-switcher-disabled-bg);
 }
 
 /* Language indicator */
@@ -35,25 +38,25 @@
   bottom: 20px;
   right: 20px;
   background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  z-index: 1000;
+  color: var(--color-neutral-white);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  z-index: var(--z-index-issue-button);
 }
 
 /* Bilingual content support */
 .bilingual-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin: 1rem 0;
+  gap: var(--space-8);
+  margin: var(--space-4) 0;
 }
 
 .content-en, .content-ja {
-  padding: 1rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 5px;
+  padding: var(--space-4);
+  border: var(--border-width-thin) solid var(--color-neutral-border);
+  border-radius: var(--radius-md);
 }
 
 .content-en h3:first-child::before {
@@ -72,7 +75,7 @@
 
   .navbar-nav .nav-link[href*="../en/"],
   .navbar-nav .nav-link[href*="../ja/"] {
-    margin-top: 0.5rem;
+    margin-top: var(--space-2);
     margin-left: 0;
     display: block;
     width: 100%;
@@ -81,7 +84,7 @@
 
   .navbar-nav .nav-link.disabled[href*="../en/"],
   .navbar-nav .nav-link.disabled[href*="../ja/"] {
-    margin-top: 0.5rem;
+    margin-top: var(--space-2);
     margin-left: 0;
     display: block;
     width: 100%;
@@ -97,38 +100,37 @@
 
 /* Language-specific font adjustments */
 [lang="ja"] {
-  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
-               "Hiragino Sans", Meiryo, sans-serif;
-  line-height: 1.7;
+  font-family: var(--font-family-japanese);
+  line-height: var(--line-height-loose);
 }
 
 [lang="ja"] .quarto-title h1.title {
-  font-size: 2rem;
+  font-size: var(--font-size-3xl);
 }
 
 /* Translation status indicators */
 .translation-pending {
-  background-color: #fff3cd;
-  border: 1px solid #ffeeba;
-  padding: 0.5rem;
-  margin: 1rem 0;
-  border-radius: 5px;
+  background-color: var(--color-translation-pending-bg);
+  border: var(--border-width-thin) solid var(--color-translation-pending-border);
+  padding: var(--space-2);
+  margin: var(--space-4) 0;
+  border-radius: var(--radius-md);
 }
 
 .translation-pending::before {
   content: "⚠️ ";
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
 }
 
 .machine-translated {
-  background-color: #d1ecf1;
-  border: 1px solid #bee5eb;
-  padding: 0.5rem;
-  margin: 1rem 0;
-  border-radius: 5px;
+  background-color: var(--color-translation-machine-translated-bg);
+  border: var(--border-width-thin) solid var(--color-translation-machine-translated-border);
+  padding: var(--space-2);
+  margin: var(--space-4) 0;
+  border-radius: var(--radius-md);
 }
 
 .machine-translated::before {
   content: "🤖 ";
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
 }

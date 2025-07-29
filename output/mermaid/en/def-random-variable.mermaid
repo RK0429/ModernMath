@@ -4,26 +4,26 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-binomial-distribution["Binomial Distribution"]:::definition
-    def-probability-space["Probability Space"]:::definition
-    def-independence["Independence"]:::definition
     def-function["Function"]:::definition
+    def-expectation["Expected Value"]:::definition
+    def-binomial-distribution["Binomial Distribution"]:::definition
+    def-variance["Variance"]:::definition
+    def-probability-space["Probability Space"]:::definition
+    def-probability-distribution["Probability Distribution"]:::definition
     thm-central-limit["Central Limit Theorem"]:::theorem
-    thm-law-of-large-numbers["Law of Large Numbers"]:::theorem
     def-normal-distribution["Normal Distribution"]:::definition
     def-random-variable["Random Variable"]:::definition
-    def-probability-distribution["Probability Distribution"]:::definition
-    def-variance["Variance"]:::definition
-    def-expectation["Expected Value"]:::definition
-    thm-law-of-large-numbers --> def-random-variable
-    def-binomial-distribution --> def-random-variable
+    thm-law-of-large-numbers["Law of Large Numbers"]:::theorem
+    def-independence["Independence"]:::definition
     def-independence --> def-random-variable
-    def-random-variable --> def-probability-space
-    def-normal-distribution --> def-random-variable
-    def-probability-distribution --> def-random-variable
     thm-central-limit --> def-random-variable
-    def-random-variable --> def-probability-distribution
-    def-random-variable --> def-function
+    def-probability-distribution --> def-random-variable
+    def-binomial-distribution --> def-random-variable
     def-variance --> def-random-variable
     def-expectation --> def-random-variable
+    def-random-variable --> def-probability-distribution
+    def-random-variable --> def-function
+    def-random-variable --> def-probability-space
+    thm-law-of-large-numbers --> def-random-variable
+    def-normal-distribution --> def-random-variable
     class def-random-variable current

@@ -176,11 +176,11 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background-color: #ffffff;
-        border-top: 1px solid #e1e4e8;
+        background-color: var(--color-neutral-white);
+        border-top: var(--border-width-thin) solid var(--color-neutral-border);
         box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
-        z-index: 1100;
-        padding: 8px;
+        z-index: var(--z-index-mobile-footer);
+        padding: var(--space-2);
       }
 
       .mobile-footer-buttons {
@@ -196,14 +196,14 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 8px 12px;
-        border-radius: 6px;
+        padding: var(--padding-button-y) var(--padding-button-x);
+        border-radius: var(--radius-lg);
         text-decoration: none;
-        font-size: 12px;
-        font-weight: 500;
-        transition: all 0.2s ease;
-        min-width: 80px;
-        height: 50px;
+        font-size: var(--font-size-xs);
+        font-weight: var(--font-weight-medium);
+        transition: all var(--transition-fast);
+        min-width: var(--mobile-footer-button-min-width);
+        height: var(--mobile-footer-button-height);
         gap: 4px;
       }
 
@@ -222,46 +222,46 @@
 
       /* Issue button styling */
       .issue-button-mobile {
-        background-color: #0366d6;
-        color: white;
+        background-color: var(--color-issue-button-bg);
+        color: var(--color-issue-button-text);
       }
 
       .issue-button-mobile:hover,
       .issue-button-mobile:active {
-        background-color: #0256c7;
-        color: white;
+        background-color: var(--color-issue-button-hover);
+        color: var(--color-issue-button-text);
         text-decoration: none;
       }
 
       /* Language button styling */
       .lang-button-mobile {
-        background-color: #28a745;
-        color: white;
+        background-color: var(--color-language-button-bg);
+        color: var(--color-language-button-text);
       }
 
       .lang-button-mobile:hover,
       .lang-button-mobile:active {
-        background-color: #218838;
-        color: white;
+        background-color: var(--color-language-button-hover);
+        color: var(--color-language-button-text);
         text-decoration: none;
       }
 
       .lang-button-mobile.disabled {
-        background-color: #6c757d;
-        opacity: 0.5;
+        background-color: var(--color-language-button-disabled);
+        opacity: var(--opacity-disabled);
         cursor: not-allowed;
       }
 
       /* Coffee button styling */
       .coffee-button-mobile {
-        background-color: #FFDD00;
-        color: #000000;
+        background-color: var(--color-coffee-button-bg);
+        color: var(--color-coffee-button-text);
       }
 
       .coffee-button-mobile:hover,
       .coffee-button-mobile:active {
-        background-color: #FFD814;
-        color: #000000;
+        background-color: var(--color-coffee-button-hover);
+        color: var(--color-coffee-button-text);
         text-decoration: none;
       }
 
