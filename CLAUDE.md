@@ -382,15 +382,21 @@ Site uses two fixed-position action buttons implemented via JavaScript with desi
 - **Display**: Fixed horizontal footer that only appears on mobile devices (≤768px)
 - **Components**: Report Issue, Language Switch, and Buy Me a Coffee buttons
 - **Behavior**: Hides original floating buttons on mobile to avoid duplication
+- **Button Layout Architecture**:
+  - Uses abstract `.mobile-footer-button` base class for common styling
+  - Buttons use `flex: 1` to divide screen width into three equal parts
+  - `gap: var(--space-2)` provides consistent spacing between buttons
+  - Individual button classes inherit base styling and add specific colors
 - **Styling**: All button colors and dimensions use design tokens:
   - Height: `--mobile-footer-button-height`
-  - Min-width: `--mobile-footer-button-min-width`
   - Z-index: `--z-index-mobile-footer` (1100)
+  - No min-width constraint - flex controls button width
 - **Language Support**: Automatically detects current language and adjusts button text
 - **Key Features**:
   - Uses `isMobile()` function for device detection
   - Adds 70px bottom padding to prevent content overlap
   - Language switch button shows disabled state when translation unavailable
+  - Buy Me a Coffee button image scales to full button width
 
 ### Design Tokens System
 
