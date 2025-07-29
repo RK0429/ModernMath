@@ -237,6 +237,62 @@ def create_domain_json(g: Graph, domain: str, output_dir: Path, lang: str = "en"
     return output_file
 
 
+def create_global_json(g: Graph, output_dir: Path, lang: str = "en") -> Path:
+    """Create D3.js-compatible JSON for the entire knowledge graph."""
+    # Get all nodes
+    all_nodes = set()
+    for s, _, o in g.triples((None, RDF.type, None)):
+        if str(o).startswith(str(MYMATH)):
+            all_nodes.add(s)
+
+    # Get all edges
+    all_edges = set()
+    for node in all_nodes:
+        for dep in g.objects(node, MYMATH.uses):
+            if dep in all_nodes:
+                all_edges.add((str(node), str(dep)))
+
+    # Build nodes array
+    nodes_data = []
+    node_id_map = {}
+
+    for i, n_uri in enumerate(all_nodes):
+        node_info = get_node_info(g, n_uri, lang=lang)
+        node_info["index"] = i
+        nodes_data.append(node_info)
+        node_id_map[str(n_uri)] = i
+
+    # Build links array
+    links_data = []
+    for source_uri, target_uri in all_edges:
+        if source_uri in node_id_map and target_uri in node_id_map:
+            links_data.append(
+                {
+                    "source": node_id_map[source_uri],
+                    "target": node_id_map[target_uri],
+                    "type": "uses",
+                }
+            )
+
+    # Create the final data structure
+    d3_data = {
+        "nodes": nodes_data,
+        "links": links_data,
+        "metadata": {
+            "total_nodes": len(nodes_data),
+            "total_links": len(links_data),
+            "type": "global",
+        },
+    }
+
+    # Save to JSON file
+    output_file = output_dir / "global-graph.json"
+    with open(output_file, "w", encoding="utf-8") as f:
+        json.dump(d3_data, f, indent=2, ensure_ascii=False)
+
+    return output_file
+
+
 def main() -> None:
     """Main function to generate all D3.js data files."""
     # Load the knowledge graph
@@ -297,6 +353,13 @@ def main() -> None:
         for domain in domains:
             create_domain_json(g, domain, lang_dir, lang=lang)
             print(f"  Generated data for {domain} domain")
+
+    # Generate global graph JSONs for both languages
+    print("\nGenerating global graph data...")
+    for lang in ["en", "ja"]:
+        lang_dir = output_dir / lang
+        create_global_json(g, lang_dir, lang=lang)
+        print(f"  Generated global graph data for {lang}")
 
     # Create an index file
     valid_nodes = []
