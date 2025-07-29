@@ -370,24 +370,24 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-function["関数"]:::definition
+    def-field["体"]:::definition
     def-isomorphism["群同型"]:::definition
+    def-matrix["行列"]:::definition
     def-normal-subgroup["正規部分群"]:::definition
     def-determinant["行列式"]:::definition
-    def-matrix["行列"]:::definition
-    def-field["体"]:::definition
     def-eigenvalue-eigenvector["固有値と固有ベクトル"]:::definition
-    def-eigenvalue-eigenvector --&gt; def-determinant
     def-normal-subgroup --&gt; def-determinant
-    def-determinant --&gt; def-function
+    def-eigenvalue-eigenvector --&gt; def-determinant
+    def-determinant --&gt; def-field
     def-determinant --&gt; def-isomorphism
     def-determinant --&gt; def-matrix
-    def-determinant --&gt; def-field
+    def-determinant --&gt; def-function
     class def-determinant current
     click def-function "def-function.html" "関数へ"
-    click def-isomorphism "def-isomorphism.html" "群同型へ"
-    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群へ"
-    click def-matrix "def-matrix.html" "行列へ"
     click def-field "def-field.html" "体へ"
+    click def-isomorphism "def-isomorphism.html" "群同型へ"
+    click def-matrix "def-matrix.html" "行列へ"
+    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群へ"
     click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "固有値と固有ベクトルへ"
 </pre>
 </div>
@@ -399,7 +399,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-determinant-1753810051" class="graph-visualization-container">
+<div id="graph-viz-def-determinant-1753810525" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -647,12 +647,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-determinant-1753810051', {
+    createForceGraph(data, 'graph-viz-def-determinant-1753810525', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-determinant-1753810051').innerHTML =
+    document.getElementById('graph-viz-def-determinant-1753810525').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

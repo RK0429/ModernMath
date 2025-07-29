@@ -6,17 +6,17 @@ graph TD
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
     def-set["Set"]:::definition
-    def-lcm["Least Common Multiple"]:::definition
-    def-divisibility["Divisibility"]:::definition
-    def-prime["Prime Number"]:::definition
-    thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
     def-gcd["Greatest Common Divisor"]:::definition
-    def-lcm --> def-set
-    thm-fundamental-arithmetic --> def-lcm
-    def-lcm --> thm-chinese-remainder
-    def-lcm --> def-divisibility
-    def-gcd --> def-lcm
-    def-lcm --> def-prime
+    def-divisibility["Divisibility"]:::definition
+    thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
+    def-prime["Prime Number"]:::definition
+    def-lcm["Least Common Multiple"]:::definition
     def-lcm --> thm-fundamental-arithmetic
+    def-lcm --> def-divisibility
+    thm-fundamental-arithmetic --> def-lcm
+    def-gcd --> def-lcm
     def-lcm --> def-gcd
+    def-lcm --> def-prime
+    def-lcm --> def-set
+    def-lcm --> thm-chinese-remainder
     class def-lcm current

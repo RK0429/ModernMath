@@ -273,7 +273,6 @@
 
       .coffee-button-mobile img {
         width: 100%;
-        max-width: 80px;
         height: auto;
         margin: 0 auto;
       }
