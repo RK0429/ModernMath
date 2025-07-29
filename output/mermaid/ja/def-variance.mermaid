@@ -4,19 +4,19 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-probability-distribution["確率分布"]:::definition
+    def-normal-distribution["正規分布"]:::definition
+    def-expectation["期待値"]:::definition
     def-random-variable["確率変数"]:::definition
     thm-law-of-large-numbers["大数の法則"]:::theorem
-    def-binomial-distribution["二項分布"]:::definition
-    def-normal-distribution["正規分布"]:::definition
     def-variance["分散"]:::definition
     thm-central-limit["中心極限定理"]:::theorem
-    def-expectation["期待値"]:::definition
-    def-probability-distribution["確率分布"]:::definition
-    thm-central-limit --> def-variance
+    def-binomial-distribution["二項分布"]:::definition
     def-variance --> def-random-variable
     def-normal-distribution --> def-variance
-    def-variance --> def-expectation
-    def-binomial-distribution --> def-variance
     def-variance --> def-probability-distribution
+    def-binomial-distribution --> def-variance
+    def-variance --> def-expectation
     thm-law-of-large-numbers --> def-variance
+    thm-central-limit --> def-variance
     class def-variance current

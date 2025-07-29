@@ -360,9 +360,9 @@ window.Quarto = {
     def-metric-space["Metric Space"]:::definition
     def-normed-vector-space["Normed Vector Space"]:::definition
     thm-pythagorean["Pythagorean Theorem"]:::theorem
-    thm-pythagorean --&gt; def-euclidean-space
-    def-euclidean-space --&gt; def-normed-vector-space
     def-euclidean-space --&gt; def-vector-space
+    def-euclidean-space --&gt; def-normed-vector-space
+    thm-pythagorean --&gt; def-euclidean-space
     def-euclidean-space --&gt; def-metric-space
     class def-euclidean-space current
     click def-vector-space "def-vector-space.html" "Go to Vector Space"
@@ -379,7 +379,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-euclidean-space-1753809373" class="graph-visualization-container">
+<div id="graph-viz-def-euclidean-space-1753810274" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -627,12 +627,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-euclidean-space-1753809373', {
+    createForceGraph(data, 'graph-viz-def-euclidean-space-1753810274', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-euclidean-space-1753809373').innerHTML =
+    document.getElementById('graph-viz-def-euclidean-space-1753810274').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

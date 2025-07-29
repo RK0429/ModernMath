@@ -4,40 +4,40 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-kernel["Kernel"]:::definition
-    def-subset["Subset"]:::definition
-    ex-integers-ring["Integers Form a Ring"]:::example
-    def-field["Field"]:::definition
-    def-ideal["Ideal"]:::definition
-    def-ring["Ring"]:::definition
-    ex-principal-ideal["Principal Ideals in Integers"]:::example
-    def-ring-homomorphism["Ring Homomorphism"]:::definition
-    def-quotient-ring["Quotient Ring"]:::definition
+    def-zero-divisor["Zero Divisor"]:::definition
     ex-finite-field["Finite Field"]:::example
+    ex-principal-ideal["Principal Ideals in Integers"]:::example
+    ex-integers-ring["Integers Form a Ring"]:::example
+    def-ring["Ring"]:::definition
+    def-subring["Subring"]:::definition
+    def-isomorphism["Isomorphism"]:::definition
+    def-binary-operation["Binary Operation"]:::definition
+    def-subset["Subset"]:::definition
+    def-ring-homomorphism["Ring Homomorphism"]:::definition
+    def-kernel["Kernel"]:::definition
+    def-prime-ideal["Prime Ideal"]:::definition
+    def-field["Field"]:::definition
     def-integral-domain["Integral Domain"]:::definition
     def-maximal-ideal["Maximal Ideal"]:::definition
-    def-isomorphism["Isomorphism"]:::definition
-    def-subring["Subring"]:::definition
-    def-zero-divisor["Zero Divisor"]:::definition
+    def-quotient-ring["Quotient Ring"]:::definition
+    def-ideal["Ideal"]:::definition
     def-quotient-group["Quotient Group"]:::definition
-    def-prime-ideal["Prime Ideal"]:::definition
-    def-binary-operation["Binary Operation"]:::definition
     def-integral-domain --> def-ideal
-    def-ideal --> def-subset
     def-ideal --> def-subring
     ex-integers-ring --> def-ideal
+    def-subring --> def-ideal
+    def-kernel --> def-ideal
+    def-ideal --> def-ring
+    def-ideal --> def-isomorphism
+    ex-principal-ideal --> def-ideal
+    def-field --> def-ideal
+    def-ideal --> def-ring-homomorphism
+    def-maximal-ideal --> def-ideal
+    def-prime-ideal --> def-ideal
+    def-ideal --> def-binary-operation
     def-quotient-group --> def-ideal
     def-zero-divisor --> def-ideal
-    def-ideal --> def-ring-homomorphism
-    def-kernel --> def-ideal
-    def-prime-ideal --> def-ideal
-    def-subring --> def-ideal
-    def-ideal --> def-ring
-    ex-principal-ideal --> def-ideal
-    def-ideal --> def-isomorphism
-    def-maximal-ideal --> def-ideal
+    def-ideal --> def-subset
     ex-finite-field --> def-ideal
-    def-ideal --> def-binary-operation
-    def-field --> def-ideal
     def-quotient-ring --> def-ideal
     class def-ideal current

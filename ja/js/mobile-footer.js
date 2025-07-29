@@ -185,13 +185,16 @@
 
       .mobile-footer-buttons {
         display: flex;
-        justify-content: space-around;
-        align-items: center;
+        gap: var(--space-2); /* Space between buttons */
+        align-items: stretch; /* Make all buttons same height */
+        width: 100%;
         max-width: 500px;
         margin: 0 auto;
       }
 
+      /* Abstract button class - base styles for all mobile footer buttons */
       .mobile-footer-button {
+        flex: 1; /* Equal width for all buttons */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -202,9 +205,9 @@
         font-size: var(--font-size-xs);
         font-weight: var(--font-weight-medium);
         transition: all var(--transition-fast);
-        min-width: var(--mobile-footer-button-min-width);
         height: var(--mobile-footer-button-height);
         gap: 4px;
+        /* Remove min-width to allow flex to control width */
       }
 
       .mobile-footer-button i {
@@ -220,6 +223,8 @@
       .mobile-footer-button span {
         white-space: nowrap;
       }
+
+      /* Individual button styles - inherit from .mobile-footer-button abstract class */
 
       /* Issue button styling */
       .issue-button-mobile {
