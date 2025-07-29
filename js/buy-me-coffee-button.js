@@ -38,36 +38,36 @@
         position: fixed;
         bottom: 20px; /* Positioned above Report Issue button */
         right: 20px;
-        background-color: #FFDD00;
-        color: #000000;
-        border-radius: 6px;
+        background-color: var(--color-coffee-button-bg);
+        color: var(--color-coffee-button-text);
+        border-radius: var(--radius-lg);
         text-decoration: none;
-        font-size: 14px;
-        font-weight: 500;
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        transition: all 0.2s ease;
-        z-index: 999; /* Slightly below Report Issue button */
-        height: 44px;
-        min-width: 130px;
+        box-shadow: var(--shadow-sm);
+        transition: all var(--transition-fast);
+        z-index: var(--z-index-coffee-button); /* Slightly below Report Issue button */
+        height: var(--button-height-default);
+        min-width: var(--button-min-width-default);
       }
 
       .bmc-custom-button:hover {
-        background-color: #FFD814;
+        background-color: var(--color-coffee-button-hover);
         transform: translateY(-1px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        box-shadow: var(--shadow-md);
         text-decoration: none;
       }
 
       .bmc-custom-button:active {
         transform: translateY(0);
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: var(--shadow-sm);
       }
 
       .bmc-custom-button img {
-        height: 16px !important;
+        height: var(--icon-size-sm) !important;
         width: auto !important;
         margin: 0;
       }
@@ -78,8 +78,8 @@
           bottom: 10px;
           right: 10px;
           font-size: 13px;
-          height: 44px;
-          min-width: 130px;
+          height: var(--button-height-mobile);
+          min-width: var(--button-min-width-mobile);
         }
       }
 

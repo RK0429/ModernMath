@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ModernMath is a Mathematics Knowledge Graph Wiki that represents mathematical concepts (axioms, definitions, theorems, examples) as interconnected nodes in a semantic knowledge graph. It uses Quarto for content authoring, RDF/OWL for graph representation, Python for processing, and provides SPARQL querying capabilities.
 
-**JavaScript Configuration**: Uses ES modules (`"type": "module"` in package.json) with ESLint 9 flat config format.
+**JavaScript Configuration**: Uses ES modules (`"type": "module"` in package.json) with ESLint 9 flat config format. ESLint configuration requires proper ES module imports and `globals` package for environment variables.
 
 ## Web Debugging
 
@@ -189,6 +189,15 @@ poetry run python scripts/translation/fix_japanese_index.py
 
 Keep base `_quarto.yml` minimal. Define complete navbars in language profiles. Include `nav/en/` and `nav/ja/` in render patterns.
 
+**CSS Loading Order**: Design tokens must be loaded first:
+
+```yaml
+css:
+  - design-tokens.css
+  - styles.css
+  - styles-multilingual.css
+```
+
 ### CI/CD Pipeline
 
 Unified `build.yml` workflow:
@@ -351,95 +360,63 @@ network.add_node(
 
 ### Fixed Action Buttons
 
-Site uses two fixed-position action buttons with consistent JavaScript implementation:
+Site uses two fixed-position action buttons implemented via JavaScript with design tokens:
 
 - **Report Issue Button** (`js/issue-button.js`):
-  - Padding: `8px 12px`
-  - Height: 44px
-  - Min-width: 130px
-  - Position: Fixed bottom-right (20px, 20px)
-  - Background: Blue (#0366d6)
-  - Z-index: 1000
-  - Display: `inline-flex` with `justify-content: center`
-  - Visibility: Appears on ALL pages (root, About, Contributing, and content pages)
+  - Position: Fixed bottom-right (70px, 20px)
+  - Uses design tokens: `--color-issue-button-bg`, `--button-height-default`, etc.
+  - Z-index: `--z-index-issue-button` (1000)
+  - Visibility: Appears on ALL pages
 
 - **Buy Me a Coffee Button** (`js/buy-me-coffee-button.js`):
-  - Padding: `8px 12px`
-  - Height: 44px
-  - Min-width: 130px
-  - Position: Fixed bottom-right (20px, 70px) - above Report Issue
-  - Background: Yellow (#FFDD00)
-  - Z-index: 999
-  - Display: `inline-flex` with `justify-content: center`
+  - Position: Fixed bottom-right (20px, 20px)
+  - Uses design tokens: `--color-coffee-button-bg`, `--color-coffee-button-hover`, etc.
+  - Z-index: `--z-index-coffee-button` (999)
 
-**Design Principle**: Both buttons maintain identical sizing for visual consistency across languages. Icon sizes: 16px, font size: 14px.
-
-**Mobile Dimensions**: Both buttons use height: 44px, min-width: 110px on screens ≤768px to ensure consistent appearance across devices.
-
-**Implementation**: Both buttons are injected via JavaScript during page load, loaded through Quarto's include-in-header configuration in language profiles (`_quarto-en.yml`, `_quarto-ja.yml`). The Buy Me a Coffee button was migrated from Python post-processing to JavaScript for consistency.
+**Implementation**: Both buttons are injected via JavaScript during page load, loaded through Quarto's include-in-header configuration in language profiles. All styling uses design tokens for consistency.
 
 ### Mobile Footer Implementation
 
 **Mobile Footer** (`js/mobile-footer.js`):
 
 - **Display**: Fixed horizontal footer that only appears on mobile devices (≤768px)
-- **Components**: Report Issue, Language Switch, and Buy Me a Coffee buttons in a row
-- **Layout**: Flexbox with `justify-content: space-around` for even spacing
+- **Components**: Report Issue, Language Switch, and Buy Me a Coffee buttons
 - **Behavior**: Hides original floating buttons on mobile to avoid duplication
-- **Button Styling**:
-  - Height: 50px, min-width: 80px
-  - Issue button: Blue (#0366d6)
-  - Language button: Green (#28a745), disabled state: Gray (#6c757d)
-  - Coffee button: Yellow (#FFDD00)
-- **Z-index**: 1100 (above other elements)
+- **Styling**: All button colors and dimensions use design tokens:
+  - Height: `--mobile-footer-button-height`
+  - Min-width: `--mobile-footer-button-min-width`
+  - Z-index: `--z-index-mobile-footer` (1100)
 - **Language Support**: Automatically detects current language and adjusts button text
-- **Translation Path Detection**: Constructs translation paths dynamically, handles special cases for index pages
-
-**Key Implementation Details**:
-
-- Uses `isMobile()` function to detect mobile devices via viewport width and user agent
-- Adds 70px bottom padding to body/content to prevent overlap
-- Language switch button becomes disabled with strikethrough when translation unavailable
-- All three buttons load via the same script injection pattern in Quarto configs
+- **Key Features**:
+  - Uses `isMobile()` function for device detection
+  - Adds 70px bottom padding to prevent content overlap
+  - Language switch button shows disabled state when translation unavailable
 
 ### Design Tokens System
 
-The project uses a comprehensive design tokens system for consistent styling:
+The project uses design tokens for consistent visual design across all components:
 
 **Files**:
 
-- `design-tokens.css` - CSS custom properties for all visual design attributes
-- `design-tokens.js` - JavaScript module for programmatic access to tokens
-- `docs/design-tokens.md` - Complete documentation with usage examples
+- `design-tokens.css` - CSS custom properties for all design attributes
+- `design-tokens.js` - JavaScript module for programmatic access
+- `docs/design-tokens.md` - Complete documentation
 
-**Usage in CSS**:
+**Integration**:
 
-```css
-@import "design-tokens.css";
-
-.component {
-  background-color: var(--color-neutral-bg);
-  padding: var(--space-4);
-  border-radius: var(--radius-lg);
-}
-```
-
-**Usage in JavaScript**:
-
-```javascript
-import { designTokens, getCSSToken, setCSSToken } from "./design-tokens.js";
-const primaryColor = designTokens.color.primary.blue;
-```
+- Design tokens CSS must be loaded BEFORE other stylesheets in Quarto configs
+- All UI components (buttons, footer, language switcher) use design tokens
+- Both `styles.css` and `styles-multilingual.css` import and use tokens
 
 **Token Categories**:
 
-- **Colors**: Primary, semantic (definition/theorem/example/axiom), buttons, neutral, links
-- **Typography**: Font families (including Japanese), sizes, weights, line heights
-- **Spacing**: Consistent scale from `--space-1` (4px) to `--space-16` (64px)
+- **Colors**: Primary, semantic content types, action buttons, neutrals
+- **Typography**: Font families (including Japanese), sizes, weights
+- **Spacing**: Consistent scale from 4px to 64px
 - **Layout**: Z-index scale, border radius, breakpoints
 - **Animation**: Transitions, shadows
 
-**Important**: Always use design tokens instead of hardcoded values. Both `styles.css` and `styles-multilingual.css` now use these tokens via CSS custom properties.
+**Usage**: Always use design tokens (`var(--token-name)`) instead of hardcoded values.
 
 ## Repository Management
 
