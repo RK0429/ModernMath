@@ -4,32 +4,32 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-gcd["最大公約数"]:::definition
-    thm-euler["オイラーの定理"]:::theorem
-    thm-chinese-remainder["中国剰余定理"]:::theorem
-    ax-induction["数学的帰納法"]:::axiom
-    def-divisibility["整除性"]:::definition
-    ex-quotient-integers-mod-n["整数の n による剰余"]:::example
-    def-congruence["合同（モジュラー演算）"]:::definition
-    def-set["集合"]:::definition
-    def-equivalence-relation["同値関係"]:::definition
-    thm-fermat-little["フェルマーの小定理"]:::theorem
     thm-euclidean-algorithm["ユークリッドのアルゴリズム"]:::theorem
+    def-divisibility["整除性"]:::definition
+    def-set["集合"]:::definition
+    ax-induction["数学的帰納法"]:::axiom
     def-prime["素数"]:::definition
-    def-congruence --> thm-fermat-little
-    thm-fermat-little --> def-congruence
-    def-congruence --> def-set
-    def-prime --> def-congruence
-    def-congruence --> thm-euler
-    def-gcd --> def-congruence
-    thm-euler --> def-congruence
+    def-equivalence-relation["同値関係"]:::definition
+    ex-quotient-integers-mod-n["整数の n による剰余"]:::example
+    thm-fermat-little["フェルマーの小定理"]:::theorem
+    thm-euler["オイラーの定理"]:::theorem
+    def-congruence["合同（モジュラー演算）"]:::definition
+    def-gcd["最大公約数"]:::definition
+    thm-chinese-remainder["中国剰余定理"]:::theorem
     def-congruence --> def-divisibility
-    thm-chinese-remainder --> def-congruence
-    def-congruence --> def-gcd
+    def-prime --> def-congruence
+    def-equivalence-relation --> def-congruence
     def-congruence --> thm-euclidean-algorithm
     ex-quotient-integers-mod-n --> def-congruence
+    def-gcd --> def-congruence
     def-congruence --> ax-induction
+    def-congruence --> def-set
     def-congruence --> ex-quotient-integers-mod-n
+    thm-chinese-remainder --> def-congruence
     def-congruence --> def-prime
-    def-equivalence-relation --> def-congruence
+    def-congruence --> thm-euler
+    thm-fermat-little --> def-congruence
+    def-congruence --> def-gcd
+    def-congruence --> thm-fermat-little
+    thm-euler --> def-congruence
     class def-congruence current

@@ -473,31 +473,31 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-function["Function"]:::definition
     def-relation["Relation"]:::definition
-    def-subset["Subset"]:::definition
-    def-partial-order["Partial Order"]:::definition
     def-divisibility["Divisibility"]:::definition
-    def-set["Set"]:::definition
+    def-function["Function"]:::definition
     def-equivalence-relation["Equivalence Relation"]:::definition
+    def-set["Set"]:::definition
+    def-subset["Subset"]:::definition
     def-power-set["Power Set"]:::definition
-    def-partial-order --&gt; def-equivalence-relation
-    def-divisibility --&gt; def-partial-order
-    def-power-set --&gt; def-partial-order
-    def-partial-order --&gt; def-relation
-    def-relation --&gt; def-partial-order
-    def-partial-order --&gt; def-function
+    def-partial-order["Partial Order"]:::definition
     def-partial-order --&gt; def-power-set
-    def-partial-order --&gt; def-set
+    def-power-set --&gt; def-partial-order
+    def-relation --&gt; def-partial-order
     def-subset --&gt; def-partial-order
+    def-divisibility --&gt; def-partial-order
+    def-partial-order --&gt; def-relation
     def-partial-order --&gt; def-subset
+    def-partial-order --&gt; def-set
+    def-partial-order --&gt; def-function
+    def-partial-order --&gt; def-equivalence-relation
     class def-partial-order current
-    click def-function "def-function.html" "Go to Function"
     click def-relation "def-relation.html" "Go to Relation"
-    click def-subset "def-subset.html" "Go to Subset"
     click def-divisibility "def-divisibility.html" "Go to Divisibility"
-    click def-set "def-set.html" "Go to Set"
+    click def-function "def-function.html" "Go to Function"
     click def-equivalence-relation "def-equivalence-relation.html" "Go to Equivalence Relation"
+    click def-set "def-set.html" "Go to Set"
+    click def-subset "def-subset.html" "Go to Subset"
     click def-power-set "def-power-set.html" "Go to Power Set"
 </pre>
 </div>
@@ -509,7 +509,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-partial-order-1753806042" class="graph-visualization-container">
+<div id="graph-viz-def-partial-order-1753807497" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -757,12 +757,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-partial-order-1753806042', {
+    createForceGraph(data, 'graph-viz-def-partial-order-1753807497', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-partial-order-1753806042').innerHTML =
+    document.getElementById('graph-viz-def-partial-order-1753807497').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

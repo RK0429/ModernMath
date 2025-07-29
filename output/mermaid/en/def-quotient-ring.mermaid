@@ -4,34 +4,34 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-kernel["Kernel"]:::definition
     def-ring["Ring"]:::definition
-    def-ideal["Ideal"]:::definition
-    def-maximal-ideal["Maximal Ideal"]:::definition
-    def-quotient-group["Quotient Group"]:::definition
+    def-quotient-ring["Quotient Ring"]:::definition
+    def-kernel["Kernel"]:::definition
+    def-coset["Coset"]:::definition
+    def-subring["Subring"]:::definition
     def-integral-domain["Integral Domain"]:::definition
-    ex-finite-field["Finite Field"]:::example
     def-homomorphism["Group Homomorphism"]:::definition
-    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
+    def-prime-ideal["Prime Ideal"]:::definition
     def-ring-homomorphism["Ring Homomorphism"]:::definition
     def-equivalence-relation["Equivalence Relation"]:::definition
-    def-quotient-ring["Quotient Ring"]:::definition
-    def-subring["Subring"]:::definition
-    def-prime-ideal["Prime Ideal"]:::definition
-    def-coset["Coset"]:::definition
-    def-kernel --> def-quotient-ring
-    def-quotient-ring --> def-equivalence-relation
-    def-quotient-ring --> def-prime-ideal
-    def-quotient-ring --> def-coset
+    def-quotient-group["Quotient Group"]:::definition
+    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
+    def-ideal["Ideal"]:::definition
+    ex-finite-field["Finite Field"]:::example
+    def-maximal-ideal["Maximal Ideal"]:::definition
+    ex-finite-field --> def-quotient-ring
+    def-prime-ideal --> def-quotient-ring
+    def-subring --> def-quotient-ring
+    def-quotient-ring --> def-ideal
+    def-quotient-ring --> def-ring
     def-quotient-ring --> def-ring-homomorphism
     def-quotient-group --> def-quotient-ring
     def-quotient-ring --> def-homomorphism
-    ex-quotient-integers-mod-n --> def-quotient-ring
-    def-quotient-ring --> def-integral-domain
-    def-subring --> def-quotient-ring
-    def-prime-ideal --> def-quotient-ring
+    def-quotient-ring --> def-coset
+    def-quotient-ring --> def-prime-ideal
+    def-quotient-ring --> def-equivalence-relation
+    def-kernel --> def-quotient-ring
     def-maximal-ideal --> def-quotient-ring
-    def-quotient-ring --> def-ring
-    def-quotient-ring --> def-ideal
-    ex-finite-field --> def-quotient-ring
+    def-quotient-ring --> def-integral-domain
+    ex-quotient-integers-mod-n --> def-quotient-ring
     class def-quotient-ring current

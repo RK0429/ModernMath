@@ -340,15 +340,15 @@ window.Quarto = {
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-intermediate-value["Intermediate Value Theorem"]:::theorem
     def-continuity["Continuity"]:::definition
-    def-polynomial-ring["Polynomial Ring"]:::definition
     def-connected["Connected Space"]:::definition
-    thm-intermediate-value --&gt; def-polynomial-ring
+    def-polynomial-ring["Polynomial Ring"]:::definition
     thm-intermediate-value --&gt; def-continuity
     thm-intermediate-value --&gt; def-connected
+    thm-intermediate-value --&gt; def-polynomial-ring
     class thm-intermediate-value current
     click def-continuity "def-continuity.html" "Go to Continuity"
-    click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring"
     click def-connected "def-connected.html" "Go to Connected Space"
+    click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -359,7 +359,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-intermediate-value-1753806048" class="graph-visualization-container">
+<div id="graph-viz-thm-intermediate-value-1753807503" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -607,12 +607,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-intermediate-value-1753806048', {
+    createForceGraph(data, 'graph-viz-thm-intermediate-value-1753807503', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-intermediate-value-1753806048').innerHTML =
+    document.getElementById('graph-viz-thm-intermediate-value-1753807503').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

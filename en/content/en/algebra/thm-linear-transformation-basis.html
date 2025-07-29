@@ -325,17 +325,17 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-vector-space["Vector Space"]:::definition
+    def-basis["Basis"]:::definition
     def-linear-transformation["Linear Transformation"]:::definition
     thm-linear-transformation-basis["Linear Transformation Determined by Basis"]:::theorem
-    def-basis["Basis"]:::definition
-    thm-linear-transformation-basis --&gt; def-basis
+    def-vector-space["Vector Space"]:::definition
     thm-linear-transformation-basis --&gt; def-vector-space
+    thm-linear-transformation-basis --&gt; def-basis
     thm-linear-transformation-basis --&gt; def-linear-transformation
     class thm-linear-transformation-basis current
-    click def-vector-space "def-vector-space.html" "Go to Vector Space"
-    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation"
     click def-basis "def-basis.html" "Go to Basis"
+    click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation"
+    click def-vector-space "def-vector-space.html" "Go to Vector Space"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -346,7 +346,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-linear-transformation-basis-1753805741" class="graph-visualization-container">
+<div id="graph-viz-thm-linear-transformation-basis-1753807196" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -594,12 +594,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-linear-transformation-basis-1753805741', {
+    createForceGraph(data, 'graph-viz-thm-linear-transformation-basis-1753807196', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-linear-transformation-basis-1753805741').innerHTML =
+    document.getElementById('graph-viz-thm-linear-transformation-basis-1753807196').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
