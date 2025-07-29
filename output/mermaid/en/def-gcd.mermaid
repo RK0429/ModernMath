@@ -6,30 +6,30 @@ graph TD
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-lcm["Least Common Multiple"]:::definition
     def-gcd["Greatest Common Divisor"]:::definition
+    thm-euler["Euler's Theorem"]:::theorem
+    thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
+    ex-principal-ideal["Principal Ideals in Integers"]:::example
+    thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
+    def-divisibility["Divisibility"]:::definition
     def-congruence["Congruence (Modular Arithmetic)"]:::definition
     def-set["Set"]:::definition
-    def-divisibility["Divisibility"]:::definition
-    ex-principal-ideal["Principal Ideals in Integers"]:::example
     thm-fermat-little["Fermat's Little Theorem"]:::theorem
-    def-prime["Prime Number"]:::definition
-    thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
     thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
-    thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
-    thm-euler["Euler's Theorem"]:::theorem
-    def-gcd --> def-divisibility
-    thm-fundamental-arithmetic --> def-gcd
-    def-gcd --> thm-euclidean-algorithm
-    thm-chinese-remainder --> def-gcd
-    def-gcd --> thm-euler
-    def-gcd --> def-lcm
-    def-gcd --> def-set
-    def-gcd --> def-congruence
-    ex-principal-ideal --> def-gcd
-    thm-euclidean-algorithm --> def-gcd
-    def-gcd --> def-prime
-    def-lcm --> def-gcd
-    def-prime --> def-gcd
-    def-congruence --> def-gcd
+    def-prime["Prime Number"]:::definition
     def-divisibility --> def-gcd
+    def-gcd --> def-congruence
+    def-gcd --> def-set
+    ex-principal-ideal --> def-gcd
+    def-prime --> def-gcd
+    def-gcd --> def-prime
     thm-fermat-little --> def-gcd
+    def-gcd --> thm-euclidean-algorithm
+    thm-euclidean-algorithm --> def-gcd
+    thm-fundamental-arithmetic --> def-gcd
+    thm-chinese-remainder --> def-gcd
+    def-gcd --> def-divisibility
+    def-congruence --> def-gcd
+    def-gcd --> thm-euler
+    def-lcm --> def-gcd
+    def-gcd --> def-lcm
     class def-gcd current

@@ -394,44 +394,44 @@ window.Quarto = {
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-lcm["Least Common Multiple"]:::definition
     def-gcd["Greatest Common Divisor"]:::definition
+    thm-euler["Euler's Theorem"]:::theorem
+    thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
+    ex-principal-ideal["Principal Ideals in Integers"]:::example
+    thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
+    def-divisibility["Divisibility"]:::definition
     def-congruence["Congruence (Modular Arithmetic)"]:::definition
     def-set["Set"]:::definition
-    def-divisibility["Divisibility"]:::definition
-    ex-principal-ideal["Principal Ideals in Integers"]:::example
     thm-fermat-little["Fermat's Little Theorem"]:::theorem
-    def-prime["Prime Number"]:::definition
-    thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
     thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
-    thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
-    thm-euler["Euler's Theorem"]:::theorem
-    def-gcd --&gt; def-divisibility
-    thm-fundamental-arithmetic --&gt; def-gcd
-    def-gcd --&gt; thm-euclidean-algorithm
-    thm-chinese-remainder --&gt; def-gcd
-    def-gcd --&gt; thm-euler
-    def-gcd --&gt; def-lcm
-    def-gcd --&gt; def-set
-    def-gcd --&gt; def-congruence
-    ex-principal-ideal --&gt; def-gcd
-    thm-euclidean-algorithm --&gt; def-gcd
-    def-gcd --&gt; def-prime
-    def-lcm --&gt; def-gcd
-    def-prime --&gt; def-gcd
-    def-congruence --&gt; def-gcd
+    def-prime["Prime Number"]:::definition
     def-divisibility --&gt; def-gcd
+    def-gcd --&gt; def-congruence
+    def-gcd --&gt; def-set
+    ex-principal-ideal --&gt; def-gcd
+    def-prime --&gt; def-gcd
+    def-gcd --&gt; def-prime
     thm-fermat-little --&gt; def-gcd
+    def-gcd --&gt; thm-euclidean-algorithm
+    thm-euclidean-algorithm --&gt; def-gcd
+    thm-fundamental-arithmetic --&gt; def-gcd
+    thm-chinese-remainder --&gt; def-gcd
+    def-gcd --&gt; def-divisibility
+    def-congruence --&gt; def-gcd
+    def-gcd --&gt; thm-euler
+    def-lcm --&gt; def-gcd
+    def-gcd --&gt; def-lcm
     class def-gcd current
     click def-lcm "def-lcm.html" "Go to Least Common Multiple"
+    click thm-euler "thm-euler.html" "Go to Euler's Theorem"
+    click thm-chinese-remainder "thm-chinese-remainder.html" "Go to Chinese Remainder Theorem"
+    click ex-principal-ideal "ex-principal-ideal.html" "Go to Principal Ideals in Integers"
+    click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "Go to Fundamental Theorem of Arithmetic"
+    click def-divisibility "def-divisibility.html" "Go to Divisibility"
     click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic)"
     click def-set "def-set.html" "Go to Set"
-    click def-divisibility "def-divisibility.html" "Go to Divisibility"
-    click ex-principal-ideal "ex-principal-ideal.html" "Go to Principal Ideals in Integers"
     click thm-fermat-little "thm-fermat-little.html" "Go to Fermat's Little Theorem"
-    click def-prime "def-prime.html" "Go to Prime Number"
-    click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "Go to Fundamental Theorem of Arithmetic"
     click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Go to Euclidean Algorithm"
-    click thm-chinese-remainder "thm-chinese-remainder.html" "Go to Chinese Remainder Theorem"
-    click thm-euler "thm-euler.html" "Go to Euler's Theorem"
+    click def-prime "def-prime.html" "Go to Prime Number"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -442,7 +442,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-gcd-1753805630" class="graph-visualization-container">
+<div id="graph-viz-def-gcd-1753806059" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -690,12 +690,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-gcd-1753805630', {
+    createForceGraph(data, 'graph-viz-def-gcd-1753806059', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-gcd-1753805630').innerHTML =
+    document.getElementById('graph-viz-def-gcd-1753806059').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
