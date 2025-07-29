@@ -146,7 +146,60 @@ window.Quarto = {
 </script>
 <link href="../../../styles.css" rel="stylesheet"/>
 <link href="../../../styles-multilingual.css" rel="stylesheet"/>
-</head>
+<style>
+        .bmc-custom-button {
+            position: fixed;
+            bottom: 70px; /* Positioned above Report Issue button */
+            right: 20px;
+            background-color: #FFDD00;
+            color: #000000;
+            padding: 10px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+            z-index: 999; /* Slightly below Report Issue button */
+        }
+
+        .bmc-custom-button:hover {
+            background-color: #FFD814;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            text-decoration: none;
+        }
+
+        .bmc-custom-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .bmc-custom-button img {
+            height: 16px !important;
+            width: auto !important;
+            margin: 0;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .bmc-custom-button {
+                bottom: 60px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+        }
+
+        /* Hide on print */
+        @media print {
+            .bmc-custom-button {
+                display: none;
+            }
+        }
+        </style></head>
 <body class="nav-fixed quarto-light">
 <div id="quarto-search-results"></div>
 <header class="headroom fixed-top" id="quarto-header">
@@ -361,37 +414,37 @@ window.Quarto = {
     def-exact-sequence["Exact Sequence"]:::definition
     def-group["Group"]:::definition
     def-abelian-group["Abelian Group"]:::definition
-    def-kernel["Kernel"]:::definition
-    thm-first-isomorphism["First Isomorphism Theorem"]:::theorem
-    def-image["Image"]:::definition
-    def-homomorphism["Group Homomorphism"]:::definition
-    def-simple-group["Simple Group"]:::definition
     def-normal-subgroup["Normal Subgroup"]:::definition
+    def-simple-group["Simple Group"]:::definition
+    def-homomorphism["Group Homomorphism"]:::definition
+    def-kernel["Kernel"]:::definition
     def-quotient-group["Quotient Group"]:::definition
-    thm-first-isomorphism --&gt; def-kernel
-    def-kernel --&gt; thm-first-isomorphism
-    def-homomorphism --&gt; thm-first-isomorphism
-    thm-first-isomorphism --&gt; def-abelian-group
-    thm-first-isomorphism --&gt; def-normal-subgroup
+    def-image["Image"]:::definition
+    thm-first-isomorphism["First Isomorphism Theorem"]:::theorem
+    thm-first-isomorphism --&gt; def-homomorphism
+    thm-first-isomorphism --&gt; def-image
+    thm-first-isomorphism --&gt; def-exact-sequence
     def-normal-subgroup --&gt; thm-first-isomorphism
     def-abelian-group --&gt; thm-first-isomorphism
-    thm-first-isomorphism --&gt; def-exact-sequence
+    thm-first-isomorphism --&gt; def-abelian-group
+    def-simple-group --&gt; thm-first-isomorphism
+    thm-first-isomorphism --&gt; def-kernel
+    def-kernel --&gt; thm-first-isomorphism
     thm-first-isomorphism --&gt; def-group
-    thm-first-isomorphism --&gt; def-homomorphism
     thm-first-isomorphism --&gt; def-quotient-group
     def-quotient-group --&gt; thm-first-isomorphism
-    def-simple-group --&gt; thm-first-isomorphism
-    thm-first-isomorphism --&gt; def-image
+    thm-first-isomorphism --&gt; def-normal-subgroup
+    def-homomorphism --&gt; thm-first-isomorphism
     class thm-first-isomorphism current
     click def-exact-sequence "def-exact-sequence.html" "Go to Exact Sequence"
     click def-group "def-group.html" "Go to Group"
     click def-abelian-group "def-abelian-group.html" "Go to Abelian Group"
-    click def-kernel "def-kernel.html" "Go to Kernel"
-    click def-image "def-image.html" "Go to Image"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism"
-    click def-simple-group "def-simple-group.html" "Go to Simple Group"
     click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
+    click def-simple-group "def-simple-group.html" "Go to Simple Group"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism"
+    click def-kernel "def-kernel.html" "Go to Kernel"
     click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
+    click def-image "def-image.html" "Go to Image"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -402,7 +455,7 @@ window.Quarto = {
 <section class="level2" id="interactive-visualization">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div class="graph-visualization-container" id="graph-viz-thm-first-isomorphism-1753763647">
+<div class="graph-visualization-container" id="graph-viz-thm-first-isomorphism-1753764815">
 <div class="graph-loading">Loading visualization...</div>
 </div>
 <script type="module">
@@ -649,12 +702,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-first-isomorphism-1753763647', {
+    createForceGraph(data, 'graph-viz-thm-first-isomorphism-1753764815', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-first-isomorphism-1753763647').innerHTML =
+    document.getElementById('graph-viz-thm-first-isomorphism-1753764815').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -1131,4 +1184,4 @@ if (document.readyState === 'loading') {
     </div>
 </div>
 </footer>
-<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>
+<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>

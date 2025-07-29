@@ -238,7 +238,60 @@ function highlightFilter(filter) {
           }
              
         </style>
-</head>
+<style>
+        .bmc-custom-button {
+            position: fixed;
+            bottom: 70px; /* Positioned above Report Issue button */
+            right: 20px;
+            background-color: #FFDD00;
+            color: #000000;
+            padding: 10px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+            z-index: 999; /* Slightly below Report Issue button */
+        }
+
+        .bmc-custom-button:hover {
+            background-color: #FFD814;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            text-decoration: none;
+        }
+
+        .bmc-custom-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .bmc-custom-button img {
+            height: 16px !important;
+            width: auto !important;
+            margin: 0;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .bmc-custom-button {
+                bottom: 60px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+        }
+
+        /* Hide on print */
+        @media print {
+            .bmc-custom-button {
+                display: none;
+            }
+        }
+        </style></head>
 <body>
 <div class="card" style="width: 100%">
 <div class="card-body" id="mynetwork"></div>
@@ -272,8 +325,8 @@ function highlightFilter(filter) {
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#4CAF50", "font": {"color": "black"}, "id": "def-binomial-coefficient", "label": "\u4e8c\u9805\u4fc2\u6570", "shape": "box", "size": 25, "title": "\u003cb\u003e\u4e8c\u9805\u4fc2\u6570\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-binomial-coefficient\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-binomial-coefficient.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-tree", "label": "\u6728", "shape": "box", "size": 25, "title": "\u003cb\u003e\u6728\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-tree\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-tree.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-graph", "label": "\u30b0\u30e9\u30d5", "shape": "box", "size": 25, "title": "\u003cb\u003e\u30b0\u30e9\u30d5\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-graph\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-graph.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-permutation", "label": "\u9806\u5217", "shape": "box", "size": 25, "title": "\u003cb\u003e\u9806\u5217\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-permutation\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-permutation.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#2196F3", "font": {"color": "black"}, "id": "thm-pigeonhole-principle", "label": "\u9ce9\u306e\u5de3\u539f\u7406", "shape": "ellipse", "size": 25, "title": "\u003cb\u003e\u9ce9\u306e\u5de3\u539f\u7406\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eID: thm-pigeonhole-principle\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027thm-pigeonhole-principle.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#2196F3", "font": {"color": "black"}, "id": "thm-inclusion-exclusion", "label": "\u5305\u9664\u539f\u7406", "shape": "ellipse", "size": 25, "title": "\u003cb\u003e\u5305\u9664\u539f\u7406\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eID: thm-inclusion-exclusion\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027thm-inclusion-exclusion.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#9C27B0", "font": {"color": "black"}, "id": "ex-pascals-triangle", "label": "\u30d1\u30b9\u30ab\u30eb\u306e\u4e09\u89d2\u5f62", "shape": "square", "size": 25, "title": "\u003cb\u003e\u30d1\u30b9\u30ab\u30eb\u306e\u4e09\u89d2\u5f62\u003c/b\u003e\u003cbr\u003eType: Example\u003cbr\u003eID: ex-pascals-triangle\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027ex-pascals-triangle.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-generating-function", "label": "\u6bcd\u95a2\u6570", "shape": "box", "size": 25, "title": "\u003cb\u003e\u6bcd\u95a2\u6570\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-generating-function\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-generating-function.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-combination", "label": "\u7d44\u5408\u305b", "shape": "box", "size": 25, "title": "\u003cb\u003e\u7d44\u5408\u305b\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-combination\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-combination.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}]);
-                  edges = new vis.DataSet([{"arrows": "to", "color": "#999999", "from": "def-binomial-coefficient", "to": "def-combination", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-binomial-coefficient", "to": "def-generating-function", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-binomial-coefficient", "to": "def-permutation", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-tree", "to": "def-binomial-coefficient", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-tree", "to": "def-graph", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-permutation", "to": "def-graph", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-pascals-triangle", "to": "def-binomial-coefficient", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-pascals-triangle", "to": "def-generating-function", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-generating-function", "to": "def-binomial-coefficient", "width": 2}]);
+                  nodes = new vis.DataSet([{"color": "#4CAF50", "font": {"color": "black"}, "id": "def-permutation", "label": "\u9806\u5217", "shape": "box", "size": 25, "title": "\u003cb\u003e\u9806\u5217\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-permutation\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-permutation.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-graph", "label": "\u30b0\u30e9\u30d5", "shape": "box", "size": 25, "title": "\u003cb\u003e\u30b0\u30e9\u30d5\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-graph\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-graph.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-tree", "label": "\u6728", "shape": "box", "size": 25, "title": "\u003cb\u003e\u6728\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-tree\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-tree.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#2196F3", "font": {"color": "black"}, "id": "thm-pigeonhole-principle", "label": "\u9ce9\u306e\u5de3\u539f\u7406", "shape": "ellipse", "size": 25, "title": "\u003cb\u003e\u9ce9\u306e\u5de3\u539f\u7406\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eID: thm-pigeonhole-principle\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027thm-pigeonhole-principle.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-generating-function", "label": "\u6bcd\u95a2\u6570", "shape": "box", "size": 25, "title": "\u003cb\u003e\u6bcd\u95a2\u6570\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-generating-function\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-generating-function.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#9C27B0", "font": {"color": "black"}, "id": "ex-pascals-triangle", "label": "\u30d1\u30b9\u30ab\u30eb\u306e\u4e09\u89d2\u5f62", "shape": "square", "size": 25, "title": "\u003cb\u003e\u30d1\u30b9\u30ab\u30eb\u306e\u4e09\u89d2\u5f62\u003c/b\u003e\u003cbr\u003eType: Example\u003cbr\u003eID: ex-pascals-triangle\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027ex-pascals-triangle.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-combination", "label": "\u7d44\u5408\u305b", "shape": "box", "size": 25, "title": "\u003cb\u003e\u7d44\u5408\u305b\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-combination\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-combination.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#2196F3", "font": {"color": "black"}, "id": "thm-inclusion-exclusion", "label": "\u5305\u9664\u539f\u7406", "shape": "ellipse", "size": 25, "title": "\u003cb\u003e\u5305\u9664\u539f\u7406\u003c/b\u003e\u003cbr\u003eType: Theorem\u003cbr\u003eID: thm-inclusion-exclusion\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027thm-inclusion-exclusion.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}, {"color": "#4CAF50", "font": {"color": "black"}, "id": "def-binomial-coefficient", "label": "\u4e8c\u9805\u4fc2\u6570", "shape": "box", "size": 25, "title": "\u003cb\u003e\u4e8c\u9805\u4fc2\u6570\u003c/b\u003e\u003cbr\u003eType: Definition\u003cbr\u003eID: def-binomial-coefficient\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027def-binomial-coefficient.html\u0027 target=\u0027_blank\u0027\u003e\u8a18\u4e8b\u3092\u898b\u308b \u2192\u003c/a\u003e"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "color": "#999999", "from": "def-permutation", "to": "def-graph", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-tree", "to": "def-binomial-coefficient", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-tree", "to": "def-graph", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-generating-function", "to": "def-binomial-coefficient", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-pascals-triangle", "to": "def-binomial-coefficient", "width": 2}, {"arrows": "to", "color": "#999999", "from": "ex-pascals-triangle", "to": "def-generating-function", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-binomial-coefficient", "to": "def-combination", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-binomial-coefficient", "to": "def-generating-function", "width": 2}, {"arrows": "to", "color": "#999999", "from": "def-binomial-coefficient", "to": "def-permutation", "width": 2}]);
 
                   nodeColors = {};
                   allNodes = nodes.get({ returnType: "Object" });
@@ -369,5 +422,5 @@ function highlightFilter(filter) {
               }
               drawGraph();
         </script>
-<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body>
+<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body>
 </html>

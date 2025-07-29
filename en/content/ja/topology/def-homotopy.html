@@ -146,7 +146,60 @@ window.Quarto = {
 </script>
 <link href="../../../styles.css" rel="stylesheet"/>
 <link href="../../../styles-multilingual.css" rel="stylesheet"/>
-</head>
+<style>
+        .bmc-custom-button {
+            position: fixed;
+            bottom: 70px; /* Positioned above Report Issue button */
+            right: 20px;
+            background-color: #FFDD00;
+            color: #000000;
+            padding: 10px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+            z-index: 999; /* Slightly below Report Issue button */
+        }
+
+        .bmc-custom-button:hover {
+            background-color: #FFD814;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            text-decoration: none;
+        }
+
+        .bmc-custom-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .bmc-custom-button img {
+            height: 16px !important;
+            width: auto !important;
+            margin: 0;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .bmc-custom-button {
+                bottom: 60px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+        }
+
+        /* Hide on print */
+        @media print {
+            .bmc-custom-button {
+                display: none;
+            }
+        }
+        </style></head>
 <body class="nav-fixed quarto-light">
 <div id="quarto-search-results"></div>
 <header class="headroom fixed-top" id="quarto-header">
@@ -340,17 +393,17 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-fundamental-group["基本群"]:::definition
     def-topological-space["位相空間"]:::definition
     def-homotopy["ホモトピー"]:::definition
+    def-fundamental-group["基本群"]:::definition
     def-homeomorphism["同相写像"]:::definition
-    def-homotopy --&gt; def-topological-space
-    def-homotopy --&gt; def-homeomorphism
     def-fundamental-group --&gt; def-homotopy
     def-homeomorphism --&gt; def-homotopy
+    def-homotopy --&gt; def-topological-space
+    def-homotopy --&gt; def-homeomorphism
     class def-homotopy current
-    click def-fundamental-group "def-fundamental-group.html" "基本群へ"
     click def-topological-space "def-topological-space.html" "位相空間へ"
+    click def-fundamental-group "def-fundamental-group.html" "基本群へ"
     click def-homeomorphism "def-homeomorphism.html" "同相写像へ"
 </pre>
 </div>
@@ -362,7 +415,7 @@ window.Quarto = {
 <section class="level2" id="インタラクティブ可視化">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div class="graph-visualization-container" id="graph-viz-def-homotopy-1753763768">
+<div class="graph-visualization-container" id="graph-viz-def-homotopy-1753764936">
 <div class="graph-loading">Loading visualization...</div>
 </div>
 <script type="module">
@@ -609,12 +662,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-homotopy-1753763768', {
+    createForceGraph(data, 'graph-viz-def-homotopy-1753764936', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-homotopy-1753763768').innerHTML =
+    document.getElementById('graph-viz-def-homotopy-1753764936').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -1091,4 +1144,4 @@ if (document.readyState === 'loading') {
     </div>
 </div>
 </footer>
-<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>
+<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>

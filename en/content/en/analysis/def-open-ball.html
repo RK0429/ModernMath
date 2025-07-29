@@ -146,7 +146,60 @@ window.Quarto = {
 </script>
 <link href="../../../styles.css" rel="stylesheet"/>
 <link href="../../../styles-multilingual.css" rel="stylesheet"/>
-</head>
+<style>
+        .bmc-custom-button {
+            position: fixed;
+            bottom: 70px; /* Positioned above Report Issue button */
+            right: 20px;
+            background-color: #FFDD00;
+            color: #000000;
+            padding: 10px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+            z-index: 999; /* Slightly below Report Issue button */
+        }
+
+        .bmc-custom-button:hover {
+            background-color: #FFD814;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            text-decoration: none;
+        }
+
+        .bmc-custom-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .bmc-custom-button img {
+            height: 16px !important;
+            width: auto !important;
+            margin: 0;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .bmc-custom-button {
+                bottom: 60px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+        }
+
+        /* Hide on print */
+        @media print {
+            .bmc-custom-button {
+                display: none;
+            }
+        }
+        </style></head>
 <body class="nav-fixed quarto-light">
 <div id="quarto-search-results"></div>
 <header class="headroom fixed-top" id="quarto-header">
@@ -350,41 +403,41 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-open-set["Open Set"]:::definition
-    def-convergence["Convergence"]:::definition
-    def-metric-space["Metric Space"]:::definition
     def-set["Set"]:::definition
+    def-normed-vector-space["Normed Vector Space"]:::definition
     def-complete-metric-space["Complete Metric Space"]:::definition
+    def-open-set["Open Set"]:::definition
+    def-metric-space["Metric Space"]:::definition
     def-continuity["Continuity"]:::definition
     def-open-ball["Open Ball"]:::definition
-    ex-real-line-metric["Real Line with Standard Metric"]:::example
     thm-taylor-series["Taylor Series"]:::theorem
-    def-normed-vector-space["Normed Vector Space"]:::definition
     def-cauchy-sequence["Cauchy Sequence"]:::definition
-    def-open-ball --&gt; def-continuity
-    def-open-ball --&gt; def-open-set
-    thm-taylor-series --&gt; def-open-ball
-    def-continuity --&gt; def-open-ball
-    def-convergence --&gt; def-open-ball
-    ex-real-line-metric --&gt; def-open-ball
+    def-convergence["Convergence"]:::definition
+    ex-real-line-metric["Real Line with Standard Metric"]:::example
     def-open-ball --&gt; def-convergence
-    def-open-ball --&gt; def-set
-    def-normed-vector-space --&gt; def-open-ball
-    def-open-ball --&gt; def-metric-space
     def-metric-space --&gt; def-open-ball
+    def-continuity --&gt; def-open-ball
+    def-open-ball --&gt; def-continuity
+    def-open-ball --&gt; def-set
+    ex-real-line-metric --&gt; def-open-ball
+    def-open-ball --&gt; def-metric-space
+    def-normed-vector-space --&gt; def-open-ball
+    thm-taylor-series --&gt; def-open-ball
     def-open-ball --&gt; def-complete-metric-space
     def-open-ball --&gt; def-cauchy-sequence
+    def-open-ball --&gt; def-open-set
+    def-convergence --&gt; def-open-ball
     class def-open-ball current
-    click def-open-set "def-open-set.html" "Go to Open Set"
-    click def-convergence "def-convergence.html" "Go to Convergence"
-    click def-metric-space "def-metric-space.html" "Go to Metric Space"
     click def-set "def-set.html" "Go to Set"
-    click def-complete-metric-space "def-complete-metric-space.html" "Go to Complete Metric Space"
-    click def-continuity "def-continuity.html" "Go to Continuity"
-    click ex-real-line-metric "ex-real-line-metric.html" "Go to Real Line with Standard Metric"
-    click thm-taylor-series "thm-taylor-series.html" "Go to Taylor Series"
     click def-normed-vector-space "def-normed-vector-space.html" "Go to Normed Vector Space"
+    click def-complete-metric-space "def-complete-metric-space.html" "Go to Complete Metric Space"
+    click def-open-set "def-open-set.html" "Go to Open Set"
+    click def-metric-space "def-metric-space.html" "Go to Metric Space"
+    click def-continuity "def-continuity.html" "Go to Continuity"
+    click thm-taylor-series "thm-taylor-series.html" "Go to Taylor Series"
     click def-cauchy-sequence "def-cauchy-sequence.html" "Go to Cauchy Sequence"
+    click def-convergence "def-convergence.html" "Go to Convergence"
+    click ex-real-line-metric "ex-real-line-metric.html" "Go to Real Line with Standard Metric"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -395,7 +448,7 @@ window.Quarto = {
 <section class="level2" id="interactive-visualization">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div class="graph-visualization-container" id="graph-viz-def-open-ball-1753763655">
+<div class="graph-visualization-container" id="graph-viz-def-open-ball-1753764823">
 <div class="graph-loading">Loading visualization...</div>
 </div>
 <script type="module">
@@ -642,12 +695,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-open-ball-1753763655', {
+    createForceGraph(data, 'graph-viz-def-open-ball-1753764823', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-open-ball-1753763655').innerHTML =
+    document.getElementById('graph-viz-def-open-ball-1753764823').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
@@ -1124,4 +1177,4 @@ if (document.readyState === 'loading') {
     </div>
 </div>
 </footer>
-<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"><script data-coffee-color="#ffffff" data-color="#FFDD00" data-emoji="" data-font="Comic" data-font-color="#000000" data-name="bmc-button" data-outline-color="#000000" data-slug="RK0429" data-text="Buy me a coffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" type="text/javascript"></script></div></body></html>
+<a class="bmc-custom-button" href="https://www.buymeacoffee.com/RK0429" rel="noopener noreferrer" target="_blank"><img alt="Buy Me a Coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" style="height: 36px !important;width: auto !important;"/></a></body></html>
