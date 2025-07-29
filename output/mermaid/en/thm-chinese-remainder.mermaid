@@ -5,18 +5,18 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
-    def-divisibility["Divisibility"]:::definition
-    def-lcm["Least Common Multiple"]:::definition
-    def-prime["Prime Number"]:::definition
-    thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
-    thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
-    def-congruence["Congruence (Modular Arithmetic)"]:::definition
     def-gcd["Greatest Common Divisor"]:::definition
-    def-lcm --> thm-chinese-remainder
-    thm-fundamental-arithmetic --> thm-chinese-remainder
+    def-congruence["Congruence (Modular Arithmetic)"]:::definition
+    thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
+    def-lcm["Least Common Multiple"]:::definition
+    thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
+    def-divisibility["Divisibility"]:::definition
+    def-prime["Prime Number"]:::definition
     thm-chinese-remainder --> def-congruence
     thm-chinese-remainder --> def-gcd
+    def-lcm --> thm-chinese-remainder
+    thm-fundamental-arithmetic --> thm-chinese-remainder
     thm-chinese-remainder --> def-divisibility
-    thm-chinese-remainder --> def-prime
     thm-chinese-remainder --> thm-euclidean-algorithm
+    thm-chinese-remainder --> def-prime
     class thm-chinese-remainder current

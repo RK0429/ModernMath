@@ -4,16 +4,16 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-divisibility["Divisibility"]:::definition
-    def-prime["Prime Number"]:::definition
+    def-gcd["Greatest Common Divisor"]:::definition
+    def-congruence["Congruence (Modular Arithmetic)"]:::definition
     thm-fermat-little["Fermat's Little Theorem"]:::theorem
     thm-euler["Euler's Theorem"]:::theorem
-    def-congruence["Congruence (Modular Arithmetic)"]:::definition
-    def-gcd["Greatest Common Divisor"]:::definition
-    thm-euler --> thm-fermat-little
-    thm-fermat-little --> def-prime
-    thm-fermat-little --> def-divisibility
-    thm-fermat-little --> def-gcd
+    def-divisibility["Divisibility"]:::definition
+    def-prime["Prime Number"]:::definition
     thm-fermat-little --> def-congruence
+    thm-fermat-little --> def-gcd
+    thm-euler --> thm-fermat-little
     def-congruence --> thm-fermat-little
+    thm-fermat-little --> def-divisibility
+    thm-fermat-little --> def-prime
     class thm-fermat-little current

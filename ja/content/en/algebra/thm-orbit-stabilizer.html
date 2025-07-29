@@ -357,11 +357,11 @@ window.Quarto = {
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-lagrange["Lagrange's Theorem"]:::theorem
     def-group-action["Group Action"]:::definition
-    def-coset["Coset"]:::definition
     thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
-    thm-orbit-stabilizer --&gt; thm-lagrange
-    thm-orbit-stabilizer --&gt; def-group-action
+    def-coset["Coset"]:::definition
     thm-orbit-stabilizer --&gt; def-coset
+    thm-orbit-stabilizer --&gt; def-group-action
+    thm-orbit-stabilizer --&gt; thm-lagrange
     class thm-orbit-stabilizer current
     click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem"
     click def-group-action "def-group-action.html" "Go to Group Action"
@@ -376,7 +376,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-orbit-stabilizer-1753807448" class="graph-visualization-container">
+<div id="graph-viz-thm-orbit-stabilizer-1753807760" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -624,12 +624,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-orbit-stabilizer-1753807448', {
+    createForceGraph(data, 'graph-viz-thm-orbit-stabilizer-1753807760', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-orbit-stabilizer-1753807448').innerHTML =
+    document.getElementById('graph-viz-thm-orbit-stabilizer-1753807760').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

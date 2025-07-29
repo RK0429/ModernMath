@@ -344,39 +344,39 @@ window.Quarto = {
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-graph["グラフ"]:::definition
     def-monomorphism["単射"]:::definition
-    def-epimorphism["全射"]:::definition
+    thm-yoneda["米田の補題"]:::theorem
+    def-natural-transformation["自然変換"]:::definition
     def-composition["合成"]:::definition
+    def-isomorphism["群同型"]:::definition
+    ex-set-category["集合の圏"]:::example
+    def-category["圏"]:::definition
+    def-epimorphism["全射"]:::definition
+    def-set["集合"]:::definition
     def-morphism["射"]:::definition
     def-functor["関手"]:::definition
-    def-natural-transformation["自然変換"]:::definition
-    def-category["圏"]:::definition
-    def-set["集合"]:::definition
-    def-isomorphism["群同型"]:::definition
-    thm-yoneda["米田の補題"]:::theorem
-    ex-set-category["集合の圏"]:::example
     thm-yoneda --&gt; def-category
+    def-isomorphism --&gt; def-category
+    def-morphism --&gt; def-category
     def-natural-transformation --&gt; def-category
     def-epimorphism --&gt; def-category
-    def-morphism --&gt; def-category
-    def-isomorphism --&gt; def-category
-    def-category --&gt; def-set
     ex-set-category --&gt; def-category
-    def-functor --&gt; def-category
     def-composition --&gt; def-category
-    def-category --&gt; def-graph
+    def-category --&gt; def-set
     def-monomorphism --&gt; def-category
+    def-functor --&gt; def-category
+    def-category --&gt; def-graph
     class def-category current
     click def-graph "def-graph.html" "グラフへ"
     click def-monomorphism "def-monomorphism.html" "単射へ"
-    click def-epimorphism "def-epimorphism.html" "全射へ"
+    click thm-yoneda "thm-yoneda.html" "米田の補題へ"
+    click def-natural-transformation "def-natural-transformation.html" "自然変換へ"
     click def-composition "def-composition.html" "合成へ"
+    click def-isomorphism "def-isomorphism.html" "群同型へ"
+    click ex-set-category "ex-set-category.html" "集合の圏へ"
+    click def-epimorphism "def-epimorphism.html" "全射へ"
+    click def-set "def-set.html" "集合へ"
     click def-morphism "def-morphism.html" "射へ"
     click def-functor "def-functor.html" "関手へ"
-    click def-natural-transformation "def-natural-transformation.html" "自然変換へ"
-    click def-set "def-set.html" "集合へ"
-    click def-isomorphism "def-isomorphism.html" "群同型へ"
-    click thm-yoneda "thm-yoneda.html" "米田の補題へ"
-    click ex-set-category "ex-set-category.html" "集合の圏へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -387,7 +387,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-category-1753807392" class="graph-visualization-container">
+<div id="graph-viz-def-category-1753807705" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -635,12 +635,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-category-1753807392', {
+    createForceGraph(data, 'graph-viz-def-category-1753807705', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-category-1753807392').innerHTML =
+    document.getElementById('graph-viz-def-category-1753807705').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

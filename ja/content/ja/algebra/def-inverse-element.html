@@ -406,23 +406,23 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-inverse-element["逆元"]:::definition
     def-group["群"]:::definition
     def-binary-operation["二項演算"]:::definition
-    def-inverse-element["逆元"]:::definition
-    def-monoid["モノイド"]:::definition
-    def-identity-element["単位元"]:::definition
     def-free-group["自由群"]:::definition
-    def-inverse-element --&gt; def-binary-operation
-    def-group --&gt; def-inverse-element
+    def-identity-element["単位元"]:::definition
+    def-monoid["モノイド"]:::definition
     def-free-group --&gt; def-inverse-element
     def-inverse-element --&gt; def-monoid
+    def-group --&gt; def-inverse-element
     def-inverse-element --&gt; def-identity-element
+    def-inverse-element --&gt; def-binary-operation
     class def-inverse-element current
     click def-group "def-group.html" "群へ"
     click def-binary-operation "def-binary-operation.html" "二項演算へ"
-    click def-monoid "def-monoid.html" "モノイドへ"
-    click def-identity-element "def-identity-element.html" "単位元へ"
     click def-free-group "def-free-group.html" "自由群へ"
+    click def-identity-element "def-identity-element.html" "単位元へ"
+    click def-monoid "def-monoid.html" "モノイドへ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -433,7 +433,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-inverse-element-1753807363" class="graph-visualization-container">
+<div id="graph-viz-def-inverse-element-1753807676" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -681,12 +681,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-inverse-element-1753807363', {
+    createForceGraph(data, 'graph-viz-def-inverse-element-1753807676', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-inverse-element-1753807363').innerHTML =
+    document.getElementById('graph-viz-def-inverse-element-1753807676').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

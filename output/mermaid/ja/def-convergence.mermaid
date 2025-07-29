@@ -5,15 +5,15 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-limit["数列の極限"]:::definition
-    def-convergence["収束"]:::definition
-    thm-taylor-series["テイラー級数"]:::theorem
-    def-sequence["数列"]:::definition
     def-series["級数"]:::definition
+    thm-taylor-series["テイラー級数"]:::theorem
+    def-convergence["収束"]:::definition
     def-open-ball["開球"]:::definition
-    thm-taylor-series --> def-convergence
-    def-series --> def-convergence
+    def-sequence["数列"]:::definition
     def-convergence --> def-sequence
-    def-convergence --> def-open-ball
     def-open-ball --> def-convergence
+    def-series --> def-convergence
+    thm-taylor-series --> def-convergence
+    def-convergence --> def-open-ball
     def-convergence --> def-limit
     class def-convergence current

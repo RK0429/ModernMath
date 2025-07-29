@@ -5,19 +5,19 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-ring["環"]:::definition
+    def-subset["部分集合"]:::definition
+    def-prime-ideal["素イデアル"]:::definition
     def-quotient-ring["剰余環"]:::definition
+    def-maximal-ideal["極大イデアル"]:::definition
+    def-ideal["イデアル"]:::definition
     def-integral-domain["整域"]:::definition
     def-zero-divisor["零因子"]:::definition
-    def-prime-ideal["素イデアル"]:::definition
-    def-subset["部分集合"]:::definition
-    def-ideal["イデアル"]:::definition
-    def-maximal-ideal["極大イデアル"]:::definition
+    def-zero-divisor --> def-prime-ideal
+    def-prime-ideal --> def-ideal
     def-prime-ideal --> def-quotient-ring
-    def-prime-ideal --> def-subset
     def-prime-ideal --> def-integral-domain
+    def-quotient-ring --> def-prime-ideal
+    def-prime-ideal --> def-subset
     def-maximal-ideal --> def-prime-ideal
     def-prime-ideal --> def-ring
-    def-quotient-ring --> def-prime-ideal
-    def-prime-ideal --> def-ideal
-    def-zero-divisor --> def-prime-ideal
     class def-prime-ideal current

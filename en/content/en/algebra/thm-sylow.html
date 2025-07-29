@@ -381,19 +381,19 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-lagrange["Lagrange's Theorem"]:::theorem
     def-group["Group"]:::definition
+    thm-lagrange["Lagrange's Theorem"]:::theorem
     def-subgroup["Subgroup"]:::definition
     thm-sylow["Sylow Theorems"]:::theorem
     def-order["Order"]:::definition
-    thm-sylow --&gt; def-order
-    thm-sylow --&gt; thm-lagrange
     thm-sylow --&gt; def-group
-    thm-sylow --&gt; def-subgroup
+    thm-sylow --&gt; def-order
     def-order --&gt; thm-sylow
+    thm-sylow --&gt; thm-lagrange
+    thm-sylow --&gt; def-subgroup
     class thm-sylow current
-    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem"
     click def-group "def-group.html" "Go to Group"
+    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem"
     click def-subgroup "def-subgroup.html" "Go to Subgroup"
     click def-order "def-order.html" "Go to Order"
 </pre>
@@ -406,7 +406,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-sylow-1753807198" class="graph-visualization-container">
+<div id="graph-viz-thm-sylow-1753807513" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -654,12 +654,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-sylow-1753807198', {
+    createForceGraph(data, 'graph-viz-thm-sylow-1753807513', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-sylow-1753807198').innerHTML =
+    document.getElementById('graph-viz-thm-sylow-1753807513').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

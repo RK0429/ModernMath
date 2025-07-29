@@ -473,32 +473,32 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-relation["関係"]:::definition
-    def-divisibility["整除性"]:::definition
     def-function["関数"]:::definition
-    def-equivalence-relation["同値関係"]:::definition
-    def-set["集合"]:::definition
-    def-subset["部分集合"]:::definition
     def-power-set["べき集合"]:::definition
     def-partial-order["半順序"]:::definition
-    def-partial-order --&gt; def-power-set
+    def-subset["部分集合"]:::definition
+    def-set["集合"]:::definition
+    def-divisibility["整除性"]:::definition
+    def-relation["関係"]:::definition
+    def-equivalence-relation["同値関係"]:::definition
+    def-partial-order --&gt; def-subset
     def-power-set --&gt; def-partial-order
+    def-partial-order --&gt; def-equivalence-relation
+    def-partial-order --&gt; def-relation
+    def-divisibility --&gt; def-partial-order
     def-relation --&gt; def-partial-order
     def-subset --&gt; def-partial-order
-    def-divisibility --&gt; def-partial-order
-    def-partial-order --&gt; def-relation
-    def-partial-order --&gt; def-subset
     def-partial-order --&gt; def-set
     def-partial-order --&gt; def-function
-    def-partial-order --&gt; def-equivalence-relation
+    def-partial-order --&gt; def-power-set
     class def-partial-order current
-    click def-relation "def-relation.html" "関係へ"
-    click def-divisibility "def-divisibility.html" "整除性へ"
     click def-function "def-function.html" "関数へ"
-    click def-equivalence-relation "def-equivalence-relation.html" "同値関係へ"
-    click def-set "def-set.html" "集合へ"
-    click def-subset "def-subset.html" "部分集合へ"
     click def-power-set "def-power-set.html" "べき集合へ"
+    click def-subset "def-subset.html" "部分集合へ"
+    click def-set "def-set.html" "集合へ"
+    click def-divisibility "def-divisibility.html" "整除性へ"
+    click def-relation "def-relation.html" "関係へ"
+    click def-equivalence-relation "def-equivalence-relation.html" "同値関係へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -509,7 +509,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-partial-order-1753807317" class="graph-visualization-container">
+<div id="graph-viz-def-partial-order-1753807630" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -757,12 +757,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-partial-order-1753807317', {
+    createForceGraph(data, 'graph-viz-def-partial-order-1753807630', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-partial-order-1753807317').innerHTML =
+    document.getElementById('graph-viz-def-partial-order-1753807630').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
