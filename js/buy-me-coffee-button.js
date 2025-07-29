@@ -36,7 +36,7 @@
     style.textContent = `
       .bmc-custom-button {
         position: fixed;
-        bottom: 70px; /* Positioned above Report Issue button */
+        bottom: 20px; /* Positioned above Report Issue button */
         right: 20px;
         background-color: #FFDD00;
         color: #000000;
