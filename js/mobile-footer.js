@@ -147,8 +147,7 @@
 
     // Buy Me a Coffee button
     const coffeeButton = document.createElement("a");
-    coffeeButton.className =
-      "mobile-footer-button coffee-button-mobile coffee-button-image-only";
+    coffeeButton.className = "mobile-footer-button coffee-button-mobile";
     coffeeButton.href = BUYMEACOFFEE_URL;
     coffeeButton.target = "_blank";
     coffeeButton.rel = "noopener noreferrer";
@@ -215,6 +214,7 @@
       .mobile-footer-button img {
         height: 18px;
         width: auto;
+        display: block;
       }
 
       .mobile-footer-button span {
@@ -266,23 +266,11 @@
         text-decoration: none;
       }
 
-      /* Image-only coffee button specific styles */
-      .coffee-button-image-only {
-        padding: 8px;
-        background-color: transparent !important;
-      }
-
-      .coffee-button-image-only img {
-        height: 36px;
-        width: auto;
-        display: block;
+      .coffee-button-mobile img {
+        width: 100%;
+        max-width: 80px;
+        height: auto;
         margin: 0 auto;
-      }
-
-      .coffee-button-image-only:hover img,
-      .coffee-button-image-only:active img {
-        transform: scale(1.05);
-        transition: transform var(--transition-fast);
       }
 
       /* Show mobile footer only on mobile devices */
