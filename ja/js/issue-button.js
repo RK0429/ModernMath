@@ -155,7 +155,7 @@
     style.textContent = `
       .issue-button {
         position: fixed;
-        bottom: 20px;
+        bottom: 70px;
         right: 20px;
         background-color: #0366d6;
         color: white;

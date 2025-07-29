@@ -381,48 +381,48 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-order["Order"]:::definition
-    def-direct-product["Direct Product of Groups"]:::definition
-    def-simple-group["Simple Group"]:::definition
-    thm-lagrange["Lagrange's Theorem"]:::theorem
-    def-quotient-group["Quotient Group"]:::definition
-    def-cyclic-group["Cyclic Group"]:::definition
-    def-subgroup["Subgroup"]:::definition
-    def-identity-element["Identity Element"]:::definition
-    ex-group-action-examples["Examples of Group Actions"]:::example
-    def-group-action["Group Action"]:::definition
-    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
-    thm-sylow["Sylow Theorems"]:::theorem
     def-group["Group"]:::definition
-    def-quotient-group --&gt; def-order
+    thm-sylow["Sylow Theorems"]:::theorem
+    def-cyclic-group["Cyclic Group"]:::definition
+    def-identity-element["Identity Element"]:::definition
+    def-quotient-group["Quotient Group"]:::definition
+    def-subgroup["Subgroup"]:::definition
+    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
+    thm-lagrange["Lagrange's Theorem"]:::theorem
+    def-simple-group["Simple Group"]:::definition
+    def-group-action["Group Action"]:::definition
+    def-direct-product["Direct Product of Groups"]:::definition
+    ex-group-action-examples["Examples of Group Actions"]:::example
     def-order --&gt; def-group-action
-    def-order --&gt; def-cyclic-group
+    def-order --&gt; def-quotient-group
     def-cyclic-group --&gt; def-order
     def-subgroup --&gt; def-order
     def-order --&gt; def-identity-element
     thm-lagrange --&gt; def-order
-    def-order --&gt; def-group
-    def-simple-group --&gt; def-order
-    ex-group-action-examples --&gt; def-order
-    ex-quotient-integers-mod-n --&gt; def-order
+    def-quotient-group --&gt; def-order
     def-order --&gt; thm-lagrange
+    def-order --&gt; def-group
     thm-sylow --&gt; def-order
-    def-order --&gt; thm-sylow
+    def-simple-group --&gt; def-order
     def-direct-product --&gt; def-order
+    ex-quotient-integers-mod-n --&gt; def-order
     def-order --&gt; def-subgroup
-    def-order --&gt; def-quotient-group
+    ex-group-action-examples --&gt; def-order
+    def-order --&gt; def-cyclic-group
+    def-order --&gt; thm-sylow
     class def-order current
-    click def-direct-product "def-direct-product.html" "Go to Direct Product of Groups"
-    click def-simple-group "def-simple-group.html" "Go to Simple Group"
-    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
-    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group"
-    click def-subgroup "def-subgroup.html" "Go to Subgroup"
-    click def-identity-element "def-identity-element.html" "Go to Identity Element"
-    click ex-group-action-examples "ex-group-action-examples.html" "Go to Examples of Group Actions"
-    click def-group-action "def-group-action.html" "Go to Group Action"
-    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n"
-    click thm-sylow "thm-sylow.html" "Go to Sylow Theorems"
     click def-group "def-group.html" "Go to Group"
+    click thm-sylow "thm-sylow.html" "Go to Sylow Theorems"
+    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group"
+    click def-identity-element "def-identity-element.html" "Go to Identity Element"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
+    click def-subgroup "def-subgroup.html" "Go to Subgroup"
+    click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "Go to Integers Modulo n"
+    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem"
+    click def-simple-group "def-simple-group.html" "Go to Simple Group"
+    click def-group-action "def-group-action.html" "Go to Group Action"
+    click def-direct-product "def-direct-product.html" "Go to Direct Product of Groups"
+    click ex-group-action-examples "ex-group-action-examples.html" "Go to Examples of Group Actions"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -433,7 +433,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-order-1753775331" class="graph-visualization-container">
+<div id="graph-viz-def-order-1753775521" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -681,12 +681,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-order-1753775331', {
+    createForceGraph(data, 'graph-viz-def-order-1753775521', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-order-1753775331').innerHTML =
+    document.getElementById('graph-viz-def-order-1753775521').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

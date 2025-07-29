@@ -372,11 +372,11 @@ window.Quarto = {
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-topological-space["Topological Space"]:::definition
     def-homeomorphism["Homeomorphism"]:::definition
-    def-fundamental-group["Fundamental Group"]:::definition
     def-homotopy["Homotopy"]:::definition
+    def-fundamental-group["Fundamental Group"]:::definition
     def-homeomorphism --&gt; def-homotopy
-    def-homotopy --&gt; def-topological-space
     def-fundamental-group --&gt; def-homotopy
+    def-homotopy --&gt; def-topological-space
     def-homotopy --&gt; def-homeomorphism
     class def-homotopy current
     click def-topological-space "def-topological-space.html" "Go to Topological Space"
@@ -392,7 +392,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-homotopy-1753775139" class="graph-visualization-container">
+<div id="graph-viz-def-homotopy-1753775318" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -640,12 +640,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-homotopy-1753775139', {
+    createForceGraph(data, 'graph-viz-def-homotopy-1753775318', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-homotopy-1753775139').innerHTML =
+    document.getElementById('graph-viz-def-homotopy-1753775318').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

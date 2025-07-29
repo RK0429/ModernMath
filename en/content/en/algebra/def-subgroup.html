@@ -337,48 +337,48 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-order["Order"]:::definition
-    ex-even-integers-subgroup["Even Integers Form a Subgroup"]:::example
-    def-set["Set"]:::definition
-    def-coset["Coset"]:::definition
-    def-normal-subgroup["Normal Subgroup"]:::definition
-    thm-lagrange["Lagrange's Theorem"]:::theorem
-    def-quotient-group["Quotient Group"]:::definition
-    def-cyclic-group["Cyclic Group"]:::definition
-    def-subgroup["Subgroup"]:::definition
-    thm-sylow["Sylow Theorems"]:::theorem
     def-group["Group"]:::definition
+    def-set["Set"]:::definition
+    def-cyclic-group["Cyclic Group"]:::definition
+    thm-sylow["Sylow Theorems"]:::theorem
+    def-normal-subgroup["Normal Subgroup"]:::definition
     def-subring["Subring"]:::definition
+    def-subgroup["Subgroup"]:::definition
+    def-quotient-group["Quotient Group"]:::definition
+    def-coset["Coset"]:::definition
+    thm-lagrange["Lagrange's Theorem"]:::theorem
+    ex-even-integers-subgroup["Even Integers Form a Subgroup"]:::example
     def-center-of-group["Center of a Group"]:::definition
-    def-coset --&gt; def-subgroup
-    def-order --&gt; def-subgroup
-    def-subgroup --&gt; def-order
-    ex-even-integers-subgroup --&gt; def-subgroup
-    def-group --&gt; def-subgroup
-    def-subgroup --&gt; thm-lagrange
-    thm-sylow --&gt; def-subgroup
-    def-normal-subgroup --&gt; def-subgroup
-    def-subgroup --&gt; def-cyclic-group
-    def-subgroup --&gt; def-quotient-group
-    def-cyclic-group --&gt; def-subgroup
-    def-subring --&gt; def-subgroup
-    def-quotient-group --&gt; def-subgroup
     thm-lagrange --&gt; def-subgroup
+    def-subgroup --&gt; def-order
+    def-normal-subgroup --&gt; def-subgroup
+    def-quotient-group --&gt; def-subgroup
+    def-subgroup --&gt; def-cyclic-group
     def-subgroup --&gt; def-normal-subgroup
-    def-center-of-group --&gt; def-subgroup
-    def-subgroup --&gt; def-group
+    thm-sylow --&gt; def-subgroup
+    def-group --&gt; def-subgroup
     def-subgroup --&gt; def-set
+    def-coset --&gt; def-subgroup
+    def-subring --&gt; def-subgroup
+    ex-even-integers-subgroup --&gt; def-subgroup
+    def-cyclic-group --&gt; def-subgroup
+    def-center-of-group --&gt; def-subgroup
+    def-order --&gt; def-subgroup
+    def-subgroup --&gt; def-group
+    def-subgroup --&gt; def-quotient-group
+    def-subgroup --&gt; thm-lagrange
     class def-subgroup current
     click def-order "def-order.html" "Go to Order"
-    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Go to Even Integers Form a Subgroup"
+    click def-group "def-group.html" "Go to Group"
     click def-set "def-set.html" "Go to Set"
-    click def-coset "def-coset.html" "Go to Coset"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
-    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
     click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group"
     click thm-sylow "thm-sylow.html" "Go to Sylow Theorems"
-    click def-group "def-group.html" "Go to Group"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
     click def-subring "def-subring.html" "Go to Subring"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
+    click def-coset "def-coset.html" "Go to Coset"
+    click thm-lagrange "thm-lagrange.html" "Go to Lagrange's Theorem"
+    click ex-even-integers-subgroup "ex-even-integers-subgroup.html" "Go to Even Integers Form a Subgroup"
     click def-center-of-group "def-center-of-group.html" "Go to Center of a Group"
 </pre>
 </div>
@@ -390,7 +390,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-subgroup-1753775081" class="graph-visualization-container">
+<div id="graph-viz-def-subgroup-1753775257" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -638,12 +638,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-subgroup-1753775081', {
+    createForceGraph(data, 'graph-viz-def-subgroup-1753775257', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-subgroup-1753775081').innerHTML =
+    document.getElementById('graph-viz-def-subgroup-1753775257').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -344,16 +344,16 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-intersection["共通部分"]:::definition
-    def-set["集合"]:::definition
     def-cardinality["濃度"]:::definition
+    def-set["集合"]:::definition
+    def-intersection["共通部分"]:::definition
     thm-de-morgan["ド・モルガンの法則"]:::theorem
-    def-intersection --&gt; def-set
     def-intersection --&gt; def-cardinality
     thm-de-morgan --&gt; def-intersection
+    def-intersection --&gt; def-set
     class def-intersection current
-    click def-set "def-set.html" "集合へ"
     click def-cardinality "def-cardinality.html" "濃度へ"
+    click def-set "def-set.html" "集合へ"
     click thm-de-morgan "thm-de-morgan.html" "ド・モルガンの法則へ"
 </pre>
 </div>
@@ -365,7 +365,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-intersection-1753775207" class="graph-visualization-container">
+<div id="graph-viz-def-intersection-1753775389" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -613,12 +613,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-intersection-1753775207', {
+    createForceGraph(data, 'graph-viz-def-intersection-1753775389', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-intersection-1753775207').innerHTML =
+    document.getElementById('graph-viz-def-intersection-1753775389').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

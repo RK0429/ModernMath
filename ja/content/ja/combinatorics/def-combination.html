@@ -339,8 +339,8 @@ window.Quarto = {
     def-binomial-coefficient["二項係数"]:::definition
     def-combination["組合せ"]:::definition
     def-set["集合"]:::definition
-    def-combination --&gt; def-set
     def-binomial-coefficient --&gt; def-combination
+    def-combination --&gt; def-set
     class def-combination current
     click def-binomial-coefficient "def-binomial-coefficient.html" "二項係数へ"
     click def-set "def-set.html" "集合へ"
@@ -354,7 +354,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-combination-1753775288" class="graph-visualization-container">
+<div id="graph-viz-def-combination-1753775475" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -602,12 +602,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-combination-1753775288', {
+    createForceGraph(data, 'graph-viz-def-combination-1753775475', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-combination-1753775288').innerHTML =
+    document.getElementById('graph-viz-def-combination-1753775475').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
