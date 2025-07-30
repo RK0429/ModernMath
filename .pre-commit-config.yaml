@@ -89,6 +89,15 @@ repos:
         pass_filenames: false
         description: "Validate Lean proofs compile correctly"
 
+      # GitHub Actions validation
+      - id: actionlint
+        name: Validate GitHub Actions workflows
+        entry: gh actionlint
+        language: system
+        files: '^\.github/workflows/.*\.ya?ml$'
+        pass_filenames: false
+        description: "Lint GitHub Actions workflow files for errors"
+
 # Configuration
 default_language_version:
   python: python3.11

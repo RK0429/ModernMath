@@ -67,7 +67,7 @@ poetry run mypy scripts/                  # Type check
 poetry run python scripts/validation/validate_lean_proofs.py  # Validate Lean proofs
 ```
 
-**Pre-commit Hook Behavior**: Hooks fix whitespace/EOF issues, update translation status, validate cross-references, and validate Lean proofs. When hooks modify files, re-add and retry commit. Use `git commit --no-verify` to bypass.
+**Pre-commit Hook Behavior**: Hooks fix whitespace/EOF issues, update translation status, validate cross-references, validate Lean proofs, and lint GitHub Actions workflows with `gh actionlint`. When hooks modify files, re-add and retry commit. Use `git commit --no-verify` to bypass.
 
 ### SPARQL and API
 
@@ -200,6 +200,35 @@ css:
 - **Runtime**: ~12-15 minutes total
 
 ### CI/CD Troubleshooting
+
+**Action Version Requirements**: Use these minimum versions to avoid "runner too old" errors:
+
+- `peter-evans/create-pull-request@v6`
+- `peaceiris/actions-gh-pages@v4`
+- `actions/cache@v4`
+- `actions/setup-python@v5`
+- `actions/upload-artifact@v4`
+
+**GitHub Actions Expression Syntax**: Functions like `hashFiles()` must be wrapped in `${{ }}` when used in conditional statements:
+
+```yaml
+# Correct
+if: ${{ hashFiles('formal/**/*.lean') != '' }}
+if: ${{ success() && hashFiles('lean_mappings.json') != '' }}
+
+# Incorrect (will cause "Unrecognized function" error)
+if: hashFiles('formal/**/*.lean') != ''
+```
+
+**Deprecated Commands**: The `set-output` workflow command is deprecated. Use `$GITHUB_OUTPUT` instead:
+
+```python
+# Correct (Python example)
+print(f"has_suggestions={value}", file=open(os.environ['GITHUB_OUTPUT'], 'a'))
+
+# Deprecated
+print(f"::set-output name=has_suggestions::{value}")
+```
 
 **Directory Creation**: Always use `parents=True` when creating directories in scripts:
 
