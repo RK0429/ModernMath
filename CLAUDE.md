@@ -387,11 +387,16 @@ The knowledge graph includes formal proofs verified in Lean 4:
 
 - **Relationships**: Uses `isVerifiedBy` to connect definitions to their formal proofs
 - **Edge Extraction**: `get_node_neighbors()` includes both `uses` and `isVerifiedBy` relationships with edge types
-- **Node Labeling**: Formal proof nodes show meaningful names (e.g., "Formal proof of Definition: Group")
+- **Node Labeling**: Formal proof nodes show meaningful names (e.g., "Formal proof of Group")
+- **Label Generation Strategy**:
+  - **In `build_graph.py`**: Creates consistent "Formal proof of [Node Label]" format in RDF
+  - **In `generate_d3_data.py`**: MUST use existing RDF labels via `_get_node_label()` first to prevent duplicates
+  - Only generates new labels if no RDF label exists
 - **Special Handling in `get_node_info()`**:
   - Detects Lean proof URIs: `uri_str.startswith("https://mathlib.org/proof/")`
+  - Gets RDF label first: `rdf_label = _get_node_label(g, node_uri, lang)`
   - Finds verified node via `g.subjects(MYMATH.isVerifiedBy, node_uri)`
-  - **Always uses verified node's label to avoid duplicates** (e.g., "Formal proof of Group" not "Formal proof of def-group")
+  - Uses RDF label if available, otherwise generates consistent label
   - **Generates clickable URLs** pointing to the verified node's article (not the proof itself)
   - URL generation uses `_generate_node_url(verified_id, verified_domain)`
 - **Global Visualization URL Handling**:
