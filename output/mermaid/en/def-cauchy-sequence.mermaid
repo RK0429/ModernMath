@@ -4,17 +4,17 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-open-ball["Open Ball"]:::definition
-    def-cauchy-sequence["Cauchy Sequence"]:::definition
-    def-metric-space["Metric Space"]:::definition
     def-uniform-continuity["Uniform Continuity"]:::definition
     def-complete-metric-space["Complete Metric Space"]:::definition
     def-sequence["Sequence"]:::definition
+    def-open-ball["Open Ball"]:::definition
     def-limit["Limit of a Sequence"]:::definition
+    def-cauchy-sequence["Cauchy Sequence"]:::definition
+    def-metric-space["Metric Space"]:::definition
     def-complete-metric-space --> def-cauchy-sequence
+    def-open-ball --> def-cauchy-sequence
+    def-cauchy-sequence --> def-metric-space
     def-cauchy-sequence --> def-limit
     def-cauchy-sequence --> def-sequence
-    def-open-ball --> def-cauchy-sequence
     def-uniform-continuity --> def-cauchy-sequence
-    def-cauchy-sequence --> def-metric-space
     class def-cauchy-sequence current
