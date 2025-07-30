@@ -361,6 +361,18 @@ network.add_node(
 - Tooltips indicate clickability: "(Click to view article)"
 - Middle-click support for opening in new tabs (D3.js)
 
+**Directory URL Handling**:
+
+The graph visualization requires special handling for directory URLs (ending with `/`):
+
+- **Issue**: Directory URLs like `/ModernMath/ja/` calculate incorrect base paths
+- **Solution**: Detect `isDirectoryUrl` using `currentPath.endsWith('/')`
+- **Depth Calculation**:
+  - File URLs: Subtract 1 for the HTML file in path depth calculation
+  - Directory URLs: Use full path depth without subtraction
+  - Multilingual sites: Ensure minimum depth of 1 to navigate up from language directory
+- **Implementation**: See `_extensions/graph-viz/graph-viz.lua` lines 209-254
+
 ### Global Knowledge Graph Visualization
 
 The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualization of the entire knowledge graph:
