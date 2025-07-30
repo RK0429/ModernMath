@@ -282,19 +282,24 @@ class KnowledgeGraphBuilder:  # pylint: disable=too-few-public-methods
         # Add metadata about the Lean proof
         self.graph.add((lean_proof_uri, RDF.type, MYMATH.FormalProof))
 
-        # Get the label of the verified node to create a more descriptive label
-        node_label = self._get_node_english_label(node_uri)
-
-        if node_label:
-            proof_label = f"Formal proof of {node_label}"
-        else:
-            proof_label = f"Formal proof of {node_id}"
+        # Always use node ID for consistency to avoid duplicate labels
+        # This prevents issues like "Formal proof of Vector Space" vs
+        # "Formal proof of def-vector-space"
+        proof_label_en = f"Formal proof of {node_id}"
+        proof_label_ja = f"{node_id}の形式的証明"
 
         self.graph.add(
             (
                 lean_proof_uri,
                 RDFS.label,
-                Literal(proof_label, lang="en"),
+                Literal(proof_label_en, lang="en"),
+            )
+        )
+        self.graph.add(
+            (
+                lean_proof_uri,
+                RDFS.label,
+                Literal(proof_label_ja, lang="ja"),
             )
         )
 

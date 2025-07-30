@@ -388,8 +388,9 @@ The knowledge graph includes formal proofs verified in Lean 4:
 - **Relationships**: Uses `isVerifiedBy` to connect definitions to formal proofs
 - **Preventing Duplicates**: `_get_all_graph_nodes()` only includes proof nodes actually referenced via `isVerifiedBy` relationships
 - **Label Generation**:
-  - `build_graph.py` creates "Formal proof of [Node Label]" format in RDF
-  - `generate_d3_data.py` uses existing RDF labels to maintain consistency
+  - `build_graph.py` MUST use node IDs (e.g., "Formal proof of def-vector-space") NOT node labels to prevent duplicates
+  - Labels are consistent: English "Formal proof of {node_id}", Japanese "{node_id}の形式的証明"
+  - `generate_d3_data.py` uses RDF labels from the graph without modification
 - **Clickable URLs**: Point to the verified node's article (not the proof itself)
 - **Global Graph URL Conversion**: Converts relative paths (`../domain/file.html`) to absolute (`content/lang/domain/file.html`)
 

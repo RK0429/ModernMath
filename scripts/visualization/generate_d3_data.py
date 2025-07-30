@@ -80,7 +80,7 @@ def get_node_info(g: Graph, node_uri: Any, lang: str = "en") -> Dict[str, Any]:
     if uri_str.startswith("https://mathlib.org/proof/"):
         lean_id = uri_str.replace("https://mathlib.org/proof/", "")
 
-        # Get the label from the RDF graph first
+        # Always use the label from the RDF graph (which now uses consistent node IDs)
         rdf_label = _get_node_label(g, node_uri, lang)
 
         # Find the node that this proof verifies
@@ -90,30 +90,16 @@ def get_node_info(g: Graph, node_uri: Any, lang: str = "en") -> Dict[str, Any]:
             break
 
         if verified_node:
-            verified_label = _get_node_label(g, verified_node, lang)
             verified_id = str(verified_node).replace(BASE_URI, "")
             verified_domain = _get_node_domain(g, verified_node)
-
-            # Use the RDF label if available, otherwise generate a new one
-            if rdf_label:
-                label = rdf_label
-            elif verified_label:
-                label = (
-                    f"Formal proof of {verified_label}"
-                    if lang == "en"
-                    else f"{verified_label}の形式的証明"
-                )
-            else:
-                # Only fall back to ID if no label exists
-                label = f"Formal proof of {verified_id}"
-
             # Generate URL for the verified node's article
             url = _generate_node_url(verified_id, verified_domain)
         else:
-            # Use RDF label or fall back to generated label
-            label = rdf_label if rdf_label else f"Formal proof: {lean_id}"
             url = None
             verified_domain = None
+
+        # Use the RDF label which is now consistent
+        label = rdf_label if rdf_label else f"Formal proof: {lean_id}"
 
         return {
             "id": lean_id,
