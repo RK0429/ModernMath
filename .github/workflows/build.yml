@@ -70,10 +70,6 @@ jobs:
     - name: Install dependencies
       run: poetry install --no-interaction --no-root
 
-    - name: Generate cache key for other jobs
-      id: cache-key
-      run: echo "key=deps-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}" >> $GITHUB_OUTPUT
-
     - name: Run linting (black + flake8)
       run: |
         echo "=== Running code quality checks ==="
@@ -98,12 +94,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set up Python with Poetry cache
+    - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.12'
-        cache: 'poetry'
-        cache-dependency-path: '**/poetry.lock'
 
     - name: Install Poetry CLI
       uses: snok/install-poetry@v1
@@ -191,12 +185,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set up Python with Poetry cache
+    - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.12'
-        cache: 'poetry'
-        cache-dependency-path: '**/poetry.lock'
 
     - name: Install Poetry CLI
       uses: snok/install-poetry@v1
@@ -260,12 +252,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set up Python with Poetry cache
+    - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.12'
-        cache: 'poetry'
-        cache-dependency-path: '**/poetry.lock'
 
     - name: Install Poetry CLI
       uses: snok/install-poetry@v1
