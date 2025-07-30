@@ -64,7 +64,7 @@ Uses MD5 hashes to track status: `not_started`, `in_progress`, `completed`, `nee
 poetry run black scripts/                 # Format
 poetry run flake8 scripts/ --max-line-length=100 --extend-ignore=E203,W503,W293
 poetry run mypy scripts/                  # Type check
-poetry run python scripts/validation/validate_lean_proofs.py  # Validate Lean proofs
+poetry run python scripts/validation/validate_lean_proofs.py  # Validate Lean proofs (uses parallel build)
 ```
 
 **Pre-commit Hook Behavior**: Hooks fix whitespace/EOF issues, update translation status, validate cross-references, validate Lean proofs, and lint GitHub Actions workflows with `gh actionlint`. When hooks modify files, re-add and retry commit. Use `git commit --no-verify` to bypass.
@@ -195,12 +195,17 @@ css:
 **Parallel Build Architecture** (`build.yml`):
 
 - **Concurrency**: `cancel-in-progress: true`, path filtering on relevant changes
-- **Jobs**: quality (10m), lean-validation (15m), graph (15m), visualizations (15m), site (20m), deploy (10m)
+- **Jobs**: quality (10m), lean-validation (<1m with cache, 4-6m without), graph (15m), visualizations (15m), site (20m), deploy (10m)
 - **Optimizations**: Poetry cache, parallel scripts with `&` + `wait`, matrix EN/JA builds
 - **Runtime**: ~12-15 minutes total
 - **Conditional Jobs**:
   - lean-validation only runs when Lean files exist: `if: needs.check-lean.outputs.has-lean-files == 'true'`
   - Dependent jobs handle skipped upstream jobs: `if: ${{ !cancelled() && (needs.lean-validation.result == 'success' || needs.lean-validation.result == 'skipped') }}`
+- **Lean Build Caching**: Three separate caches reduce lean-validation from 4-6min to <1min:
+  - Toolchain cache: `~/.elan` with key `elan-${{ runner.os }}-4.x`
+  - Lake packages: `formal/.lake/packages` with key `lake-pkgs-${{ runner.os }}-${{ hashFiles('formal/lake-manifest.json') }}`
+  - Build artifacts: `formal/.lake/build` with key `lake-build-${{ runner.os }}-${{ hashFiles('formal/**/*.lean') }}`
+  - Lake build uses parallelization: `lake build -j $(nproc)`
 
 ### CI/CD Troubleshooting
 
