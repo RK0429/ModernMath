@@ -386,28 +386,28 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-intersection["Intersection"]:::definition
-    thm-cantor["Cantor's Theorem"]:::theorem
     def-cardinality["Cardinality"]:::definition
-    def-power-set["Power Set"]:::definition
+    def-set["Set"]:::definition
     def-union["Union"]:::definition
     def-function["Function"]:::definition
-    def-set["Set"]:::definition
-    def-cardinality --&gt; def-power-set
-    def-cardinality --&gt; def-set
-    def-union --&gt; def-cardinality
+    thm-cantor["Cantor's Theorem"]:::theorem
+    def-intersection["Intersection"]:::definition
+    def-power-set["Power Set"]:::definition
     def-intersection --&gt; def-cardinality
-    def-cardinality --&gt; def-function
+    def-cardinality --&gt; def-power-set
+    thm-cantor --&gt; def-cardinality
     def-cardinality --&gt; thm-cantor
     def-power-set --&gt; def-cardinality
-    thm-cantor --&gt; def-cardinality
+    def-union --&gt; def-cardinality
+    def-cardinality --&gt; def-set
+    def-cardinality --&gt; def-function
     class def-cardinality current
-    click def-intersection "def-intersection.html" "Go to Intersection"
-    click thm-cantor "thm-cantor.html" "Go to Cantor's Theorem"
-    click def-power-set "def-power-set.html" "Go to Power Set"
+    click def-set "def-set.html" "Go to Set"
     click def-union "def-union.html" "Go to Union"
     click def-function "def-function.html" "Go to Function"
-    click def-set "def-set.html" "Go to Set"
+    click thm-cantor "thm-cantor.html" "Go to Cantor's Theorem"
+    click def-intersection "def-intersection.html" "Go to Intersection"
+    click def-power-set "def-power-set.html" "Go to Power Set"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -418,7 +418,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-cardinality-1753845613" class="graph-visualization-container">
+<div id="graph-viz-def-cardinality-1753853591" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -666,12 +666,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-cardinality-1753845613', {
+    createForceGraph(data, 'graph-viz-def-cardinality-1753853591', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-cardinality-1753845613').innerHTML =
+    document.getElementById('graph-viz-def-cardinality-1753853591').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -4,13 +4,13 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-sequence["Sequence"]:::definition
     def-series["Series"]:::definition
-    thm-taylor-series["Taylor Series"]:::theorem
-    def-limit["Limit of a Sequence"]:::definition
     def-convergence["Convergence"]:::definition
+    def-limit["Limit of a Sequence"]:::definition
+    def-sequence["Sequence"]:::definition
+    thm-taylor-series["Taylor Series"]:::theorem
+    def-series --> def-convergence
     def-series --> def-sequence
     thm-taylor-series --> def-series
-    def-series --> def-convergence
     def-series --> def-limit
     class def-series current

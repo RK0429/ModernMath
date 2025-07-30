@@ -5,19 +5,19 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-group["群"]:::definition
-    def-abelian-group["アーベル群"]:::definition
-    ex-principal-ideal["整数における単項イデアル"]:::example
-    ex-integers-ring["整数は環を形成する"]:::example
-    def-integral-domain["整域"]:::definition
-    def-binary-operation["二項演算"]:::definition
     def-ring["環"]:::definition
+    def-binary-operation["二項演算"]:::definition
+    ex-integers-ring["整数は環を形成する"]:::example
+    ex-principal-ideal["整数における単項イデアル"]:::example
+    def-abelian-group["アーベル群"]:::definition
+    def-integral-domain["整域"]:::definition
     def-ideal["イデアル"]:::definition
-    def-integral-domain --> ex-integers-ring
     ex-integers-ring --> def-ring
     ex-integers-ring --> def-ideal
     ex-integers-ring --> def-abelian-group
+    ex-integers-ring --> ex-principal-ideal
+    def-integral-domain --> ex-integers-ring
+    ex-integers-ring --> def-group
     ex-integers-ring --> def-integral-domain
     ex-integers-ring --> def-binary-operation
-    ex-integers-ring --> def-group
-    ex-integers-ring --> ex-principal-ideal
     class ex-integers-ring current

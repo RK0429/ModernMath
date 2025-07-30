@@ -4,17 +4,17 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-continuity["Continuity"]:::definition
     def-series["Series"]:::definition
-    thm-mean-value["Mean Value Theorem"]:::theorem
-    def-open-ball["Open Ball"]:::definition
-    thm-taylor-series["Taylor Series"]:::theorem
-    def-derivative["Derivative"]:::definition
     def-convergence["Convergence"]:::definition
+    def-open-ball["Open Ball"]:::definition
+    thm-mean-value["Mean Value Theorem"]:::theorem
+    def-continuity["Continuity"]:::definition
+    def-derivative["Derivative"]:::definition
+    thm-taylor-series["Taylor Series"]:::theorem
+    thm-taylor-series --> def-continuity
+    thm-taylor-series --> def-open-ball
     thm-taylor-series --> def-derivative
     thm-taylor-series --> thm-mean-value
-    thm-taylor-series --> def-open-ball
     thm-taylor-series --> def-convergence
     thm-taylor-series --> def-series
-    thm-taylor-series --> def-continuity
     class thm-taylor-series current

@@ -403,37 +403,37 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-automorphism["自己同型"]:::definition
     def-group["群"]:::definition
-    def-abelian-group["アーベル群"]:::definition
     def-quotient-group["商群"]:::definition
-    ex-group-action-examples["群作用の例"]:::example
     def-simple-group["単純群"]:::definition
-    def-normal-subgroup["正規部分群"]:::definition
+    ex-group-action-examples["群作用の例"]:::example
+    def-abelian-group["アーベル群"]:::definition
     def-center-of-group["群の中心"]:::definition
+    def-normal-subgroup["正規部分群"]:::definition
+    def-automorphism["自己同型"]:::definition
     def-subgroup["部分群"]:::definition
-    def-group --&gt; def-center-of-group
-    def-center-of-group --&gt; def-simple-group
-    def-center-of-group --&gt; def-subgroup
-    ex-group-action-examples --&gt; def-center-of-group
-    def-abelian-group --&gt; def-center-of-group
-    def-center-of-group --&gt; def-abelian-group
-    def-center-of-group --&gt; def-normal-subgroup
-    def-center-of-group --&gt; def-automorphism
-    def-center-of-group --&gt; def-group
-    def-simple-group --&gt; def-center-of-group
-    def-automorphism --&gt; def-center-of-group
-    def-normal-subgroup --&gt; def-center-of-group
     def-quotient-group --&gt; def-center-of-group
+    def-normal-subgroup --&gt; def-center-of-group
+    def-center-of-group --&gt; def-abelian-group
+    def-center-of-group --&gt; def-automorphism
+    def-center-of-group --&gt; def-subgroup
+    def-simple-group --&gt; def-center-of-group
+    def-group --&gt; def-center-of-group
+    ex-group-action-examples --&gt; def-center-of-group
+    def-center-of-group --&gt; def-simple-group
+    def-center-of-group --&gt; def-normal-subgroup
+    def-automorphism --&gt; def-center-of-group
     def-center-of-group --&gt; def-quotient-group
+    def-center-of-group --&gt; def-group
+    def-abelian-group --&gt; def-center-of-group
     class def-center-of-group current
-    click def-automorphism "def-automorphism.html" "自己同型へ"
     click def-group "def-group.html" "群へ"
-    click def-abelian-group "def-abelian-group.html" "アーベル群へ"
     click def-quotient-group "def-quotient-group.html" "商群へ"
-    click ex-group-action-examples "ex-group-action-examples.html" "群作用の例へ"
     click def-simple-group "def-simple-group.html" "単純群へ"
+    click ex-group-action-examples "ex-group-action-examples.html" "群作用の例へ"
+    click def-abelian-group "def-abelian-group.html" "アーベル群へ"
     click def-normal-subgroup "def-normal-subgroup.html" "正規部分群へ"
+    click def-automorphism "def-automorphism.html" "自己同型へ"
     click def-subgroup "def-subgroup.html" "部分群へ"
 </pre>
 </div>
@@ -445,7 +445,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-center-of-group-1753845742" class="graph-visualization-container">
+<div id="graph-viz-def-center-of-group-1753853719" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -693,12 +693,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-center-of-group-1753845742', {
+    createForceGraph(data, 'graph-viz-def-center-of-group-1753853719', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-center-of-group-1753845742').innerHTML =
+    document.getElementById('graph-viz-def-center-of-group-1753853719').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

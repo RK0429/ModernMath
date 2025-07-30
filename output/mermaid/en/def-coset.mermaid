@@ -4,34 +4,34 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-coset["Coset"]:::definition
-    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
-    def-group["Group"]:::definition
-    def-abelian-group["Abelian Group"]:::definition
-    def-quotient-group["Quotient Group"]:::definition
-    def-quotient-ring["Quotient Ring"]:::definition
-    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
-    def-group-action["Group Action"]:::definition
-    ex-even-integers-subgroup["Even Integers Form a Subgroup"]:::example
-    def-binary-operation["Binary Operation"]:::definition
-    def-normal-subgroup["Normal Subgroup"]:::definition
     thm-lagrange["Lagrange's Theorem"]:::theorem
+    def-coset["Coset"]:::definition
+    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
+    def-group["Group"]:::definition
+    def-group-action["Group Action"]:::definition
+    def-quotient-group["Quotient Group"]:::definition
+    def-binary-operation["Binary Operation"]:::definition
+    thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
+    def-quotient-ring["Quotient Ring"]:::definition
+    def-abelian-group["Abelian Group"]:::definition
+    def-normal-subgroup["Normal Subgroup"]:::definition
+    ex-even-integers-subgroup["Even Integers Form a Subgroup"]:::example
     def-subgroup["Subgroup"]:::definition
-    ex-even-integers-subgroup --> def-coset
-    def-coset --> def-abelian-group
+    def-quotient-group --> def-coset
     def-coset --> def-normal-subgroup
+    def-normal-subgroup --> def-coset
+    def-quotient-ring --> def-coset
+    def-coset --> ex-quotient-integers-mod-n
+    def-coset --> def-abelian-group
+    thm-orbit-stabilizer --> def-coset
+    ex-even-integers-subgroup --> def-coset
+    ex-quotient-integers-mod-n --> def-coset
+    def-coset --> def-quotient-group
+    def-coset --> def-group
     def-coset --> def-binary-operation
     def-coset --> ex-even-integers-subgroup
-    def-coset --> thm-lagrange
-    def-normal-subgroup --> def-coset
-    ex-quotient-integers-mod-n --> def-coset
-    def-coset --> ex-quotient-integers-mod-n
-    def-coset --> def-quotient-group
-    thm-orbit-stabilizer --> def-coset
-    thm-lagrange --> def-coset
-    def-quotient-group --> def-coset
-    def-quotient-ring --> def-coset
     def-coset --> def-group-action
-    def-coset --> def-group
     def-coset --> def-subgroup
+    thm-lagrange --> def-coset
+    def-coset --> thm-lagrange
     class def-coset current

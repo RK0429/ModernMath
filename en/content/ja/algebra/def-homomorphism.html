@@ -352,57 +352,57 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-automorphism["自己同型"]:::definition
-    def-group["群"]:::definition
-    def-quotient-ring["剰余環"]:::definition
-    def-quotient-group["商群"]:::definition
-    def-homomorphism["群準同型"]:::definition
+    thm-first-isomorphism["第一同型定理"]:::theorem
     def-isomorphism["群同型"]:::definition
     def-direct-product["群の直積"]:::definition
-    def-simple-group["単純群"]:::definition
-    def-endomorphism["自己準同型"]:::definition
     def-free-group["自由群"]:::definition
-    def-binary-operation["二項演算"]:::definition
-    def-normal-subgroup["正規部分群"]:::definition
-    def-exact-sequence["完全列"]:::definition
     def-function["関数"]:::definition
+    def-group["群"]:::definition
+    def-exact-sequence["完全列"]:::definition
+    def-quotient-group["商群"]:::definition
+    def-homomorphism["群準同型"]:::definition
+    def-binary-operation["二項演算"]:::definition
+    def-endomorphism["自己準同型"]:::definition
+    def-simple-group["単純群"]:::definition
+    def-quotient-ring["剰余環"]:::definition
     def-kernel["核"]:::definition
-    thm-first-isomorphism["第一同型定理"]:::theorem
+    def-normal-subgroup["正規部分群"]:::definition
+    def-automorphism["自己同型"]:::definition
     ex-exponential-homomorphism["指数準同型"]:::example
     def-homomorphism --&gt; def-binary-operation
-    def-free-group --&gt; def-homomorphism
-    def-homomorphism --&gt; def-group
-    def-group --&gt; def-homomorphism
-    def-quotient-ring --&gt; def-homomorphism
-    thm-first-isomorphism --&gt; def-homomorphism
-    def-homomorphism --&gt; thm-first-isomorphism
-    def-homomorphism --&gt; def-quotient-group
-    def-direct-product --&gt; def-homomorphism
-    ex-exponential-homomorphism --&gt; def-homomorphism
     def-isomorphism --&gt; def-homomorphism
-    def-automorphism --&gt; def-homomorphism
+    def-free-group --&gt; def-homomorphism
+    thm-first-isomorphism --&gt; def-homomorphism
+    def-homomorphism --&gt; def-function
+    def-homomorphism --&gt; def-quotient-group
+    def-normal-subgroup --&gt; def-homomorphism
+    def-group --&gt; def-homomorphism
+    ex-exponential-homomorphism --&gt; def-homomorphism
+    def-homomorphism --&gt; def-group
+    def-direct-product --&gt; def-homomorphism
+    def-homomorphism --&gt; thm-first-isomorphism
     def-endomorphism --&gt; def-homomorphism
     def-exact-sequence --&gt; def-homomorphism
     def-kernel --&gt; def-homomorphism
-    def-homomorphism --&gt; def-function
-    def-normal-subgroup --&gt; def-homomorphism
+    def-quotient-ring --&gt; def-homomorphism
     def-simple-group --&gt; def-homomorphism
+    def-automorphism --&gt; def-homomorphism
     class def-homomorphism current
-    click def-automorphism "def-automorphism.html" "自己同型へ"
-    click def-group "def-group.html" "群へ"
-    click def-quotient-ring "def-quotient-ring.html" "剰余環へ"
-    click def-quotient-group "def-quotient-group.html" "商群へ"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "第一同型定理へ"
     click def-isomorphism "def-isomorphism.html" "群同型へ"
     click def-direct-product "def-direct-product.html" "群の直積へ"
-    click def-simple-group "def-simple-group.html" "単純群へ"
-    click def-endomorphism "def-endomorphism.html" "自己準同型へ"
     click def-free-group "def-free-group.html" "自由群へ"
-    click def-binary-operation "def-binary-operation.html" "二項演算へ"
-    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群へ"
-    click def-exact-sequence "def-exact-sequence.html" "完全列へ"
     click def-function "def-function.html" "関数へ"
+    click def-group "def-group.html" "群へ"
+    click def-exact-sequence "def-exact-sequence.html" "完全列へ"
+    click def-quotient-group "def-quotient-group.html" "商群へ"
+    click def-binary-operation "def-binary-operation.html" "二項演算へ"
+    click def-endomorphism "def-endomorphism.html" "自己準同型へ"
+    click def-simple-group "def-simple-group.html" "単純群へ"
+    click def-quotient-ring "def-quotient-ring.html" "剰余環へ"
     click def-kernel "def-kernel.html" "核へ"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "第一同型定理へ"
+    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群へ"
+    click def-automorphism "def-automorphism.html" "自己同型へ"
     click ex-exponential-homomorphism "ex-exponential-homomorphism.html" "指数準同型へ"
 </pre>
 </div>
@@ -414,7 +414,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-homomorphism-1753845650" class="graph-visualization-container">
+<div id="graph-viz-def-homomorphism-1753853628" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -662,12 +662,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-homomorphism-1753845650', {
+    createForceGraph(data, 'graph-viz-def-homomorphism-1753853628', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-homomorphism-1753845650').innerHTML =
+    document.getElementById('graph-viz-def-homomorphism-1753853628').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

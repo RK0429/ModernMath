@@ -352,57 +352,57 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-automorphism["Automorphism"]:::definition
-    def-group["Group"]:::definition
-    def-quotient-ring["Quotient Ring"]:::definition
-    def-quotient-group["Quotient Group"]:::definition
-    def-homomorphism["Group Homomorphism"]:::definition
+    thm-first-isomorphism["First Isomorphism Theorem"]:::theorem
     def-isomorphism["Isomorphism"]:::definition
     def-direct-product["Direct Product of Groups"]:::definition
-    def-simple-group["Simple Group"]:::definition
-    def-endomorphism["Endomorphism"]:::definition
     def-free-group["Free Group"]:::definition
-    def-binary-operation["Binary Operation"]:::definition
-    def-normal-subgroup["Normal Subgroup"]:::definition
-    def-exact-sequence["Exact Sequence"]:::definition
     def-function["Function"]:::definition
+    def-group["Group"]:::definition
+    def-exact-sequence["Exact Sequence"]:::definition
+    def-quotient-group["Quotient Group"]:::definition
+    def-homomorphism["Group Homomorphism"]:::definition
+    def-binary-operation["Binary Operation"]:::definition
+    def-endomorphism["Endomorphism"]:::definition
+    def-simple-group["Simple Group"]:::definition
+    def-quotient-ring["Quotient Ring"]:::definition
     def-kernel["Kernel"]:::definition
-    thm-first-isomorphism["First Isomorphism Theorem"]:::theorem
+    def-normal-subgroup["Normal Subgroup"]:::definition
+    def-automorphism["Automorphism"]:::definition
     ex-exponential-homomorphism["Exponential Homomorphism"]:::example
     def-homomorphism --&gt; def-binary-operation
-    def-free-group --&gt; def-homomorphism
-    def-homomorphism --&gt; def-group
-    def-group --&gt; def-homomorphism
-    def-quotient-ring --&gt; def-homomorphism
-    thm-first-isomorphism --&gt; def-homomorphism
-    def-homomorphism --&gt; thm-first-isomorphism
-    def-homomorphism --&gt; def-quotient-group
-    def-direct-product --&gt; def-homomorphism
-    ex-exponential-homomorphism --&gt; def-homomorphism
     def-isomorphism --&gt; def-homomorphism
-    def-automorphism --&gt; def-homomorphism
+    def-free-group --&gt; def-homomorphism
+    thm-first-isomorphism --&gt; def-homomorphism
+    def-homomorphism --&gt; def-function
+    def-homomorphism --&gt; def-quotient-group
+    def-normal-subgroup --&gt; def-homomorphism
+    def-group --&gt; def-homomorphism
+    ex-exponential-homomorphism --&gt; def-homomorphism
+    def-homomorphism --&gt; def-group
+    def-direct-product --&gt; def-homomorphism
+    def-homomorphism --&gt; thm-first-isomorphism
     def-endomorphism --&gt; def-homomorphism
     def-exact-sequence --&gt; def-homomorphism
     def-kernel --&gt; def-homomorphism
-    def-homomorphism --&gt; def-function
-    def-normal-subgroup --&gt; def-homomorphism
+    def-quotient-ring --&gt; def-homomorphism
     def-simple-group --&gt; def-homomorphism
+    def-automorphism --&gt; def-homomorphism
     class def-homomorphism current
-    click def-automorphism "def-automorphism.html" "Go to Automorphism"
-    click def-group "def-group.html" "Go to Group"
-    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem"
     click def-isomorphism "def-isomorphism.html" "Go to Isomorphism"
     click def-direct-product "def-direct-product.html" "Go to Direct Product of Groups"
-    click def-simple-group "def-simple-group.html" "Go to Simple Group"
-    click def-endomorphism "def-endomorphism.html" "Go to Endomorphism"
     click def-free-group "def-free-group.html" "Go to Free Group"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
-    click def-exact-sequence "def-exact-sequence.html" "Go to Exact Sequence"
     click def-function "def-function.html" "Go to Function"
+    click def-group "def-group.html" "Go to Group"
+    click def-exact-sequence "def-exact-sequence.html" "Go to Exact Sequence"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation"
+    click def-endomorphism "def-endomorphism.html" "Go to Endomorphism"
+    click def-simple-group "def-simple-group.html" "Go to Simple Group"
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring"
     click def-kernel "def-kernel.html" "Go to Kernel"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
+    click def-automorphism "def-automorphism.html" "Go to Automorphism"
     click ex-exponential-homomorphism "ex-exponential-homomorphism.html" "Go to Exponential Homomorphism"
 </pre>
 </div>
@@ -414,7 +414,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-homomorphism-1753845830" class="graph-visualization-container">
+<div id="graph-viz-def-homomorphism-1753853808" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -662,12 +662,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-homomorphism-1753845830', {
+    createForceGraph(data, 'graph-viz-def-homomorphism-1753853808', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-homomorphism-1753845830').innerHTML =
+    document.getElementById('graph-viz-def-homomorphism-1753853808').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
