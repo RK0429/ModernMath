@@ -386,8 +386,13 @@ The knowledge graph includes formal proofs verified in Lean 4:
 - **Special Handling in `get_node_info()`**:
   - Detects Lean proof URIs: `uri_str.startswith("https://mathlib.org/proof/")`
   - Finds verified node via `g.subjects(MYMATH.isVerifiedBy, node_uri)`
-  - Labels with verified concept name or falls back to Lean ID
-- **Visual Integration**: Formal proofs appear connected to their definitions in both domain and global visualizations
+  - **Always uses verified node's label to avoid duplicates** (e.g., "Formal proof of Group" not "Formal proof of def-group")
+  - **Generates clickable URLs** pointing to the verified node's article (not the proof itself)
+  - URL generation uses `_generate_node_url(verified_id, verified_domain)`
+- **Global Visualization URL Handling**:
+  - Formal proof URLs need special conversion from relative (`../domain/file.html`) to absolute (`content/lang/domain/file.html`)
+  - Handled in `_build_global_nodes_data()` with type check: `node_info["type"] == "FormalProof"`
+- **Visual Integration**: Formal proofs appear as clickable nodes in both domain and global visualizations
 
 ## UI Conventions
 

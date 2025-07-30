@@ -88,6 +88,10 @@ def get_node_info(g: Graph, node_uri: Any, lang: str = "en") -> Dict[str, Any]:
 
         if verified_node:
             verified_label = _get_node_label(g, verified_node, lang)
+            verified_id = str(verified_node).replace(BASE_URI, "")
+            verified_domain = _get_node_domain(g, verified_node)
+
+            # Always use the label if available to avoid duplicates
             if verified_label:
                 label = (
                     f"Formal proof of {verified_label}"
@@ -95,18 +99,23 @@ def get_node_info(g: Graph, node_uri: Any, lang: str = "en") -> Dict[str, Any]:
                     else f"{verified_label}の形式的証明"
                 )
             else:
-                verified_id = str(verified_node).replace(BASE_URI, "")
+                # Only fall back to ID if no label exists
                 label = f"Formal proof of {verified_id}"
+
+            # Generate URL for the verified node's article
+            url = _generate_node_url(verified_id, verified_domain)
         else:
             label = f"Formal proof: {lean_id}"
+            url = None
+            verified_domain = None
 
         return {
             "id": lean_id,
             "uri": uri_str,
             "label": label,
             "type": "FormalProof",
-            "url": None,  # No article URL for proof nodes
-            "domain": None,
+            "url": url,  # Now points to the verified node's article
+            "domain": verified_domain,
         }
 
     # Regular node handling
@@ -331,8 +340,19 @@ def _build_global_nodes_data(
         node_info = get_node_info(g, n_uri, lang=lang)
         node_info["index"] = i
         # Override URL for global visualization context
-        if node_info["url"] and node_info["domain"]:
+        # Don't override URLs for formal proof nodes - they already point to the verified node
+        if node_info["url"] and node_info["domain"] and node_info["type"] != "FormalProof":
             node_info["url"] = f"content/{lang}/{node_info['domain']}/{node_info['id']}.html"
+        elif node_info["type"] == "FormalProof" and node_info["url"] and node_info["domain"]:
+            # For formal proofs, the URL already points to the verified node,
+            # but we need to adjust the path for the global context
+            # From ../domain/file.html to content/lang/domain/file.html
+            url_parts = node_info["url"].split("/")
+            if len(url_parts) >= 2 and url_parts[0] == "..":
+                # Extract domain and filename from ../domain/file.html
+                domain_part = url_parts[1]
+                file_part = url_parts[2] if len(url_parts) > 2 else ""
+                node_info["url"] = f"content/{lang}/{domain_part}/{file_part}"
         nodes_data.append(node_info)
         node_id_map[str(n_uri)] = i
 
