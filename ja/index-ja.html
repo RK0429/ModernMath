@@ -269,7 +269,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="グローバルナレッジグラフ" class="level2">
 <h2 class="anchored" data-anchor-id="グローバルナレッジグラフ">グローバル・ナレッジグラフ</h2>
 <p>下のグローバルな数学ナレッジグラフをご覧ください。各ノードをクリックすると、対応する記事へ移動できます。</p>
-<div id="graph-viz-global-graph-1753868746" class="graph-visualization-container">
+<div id="graph-viz-global-graph-1753870231" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -457,6 +457,9 @@ async function loadAndRenderGraph() {
     // Calculate relative path based on current location
     const currentPath = window.location.pathname;
 
+    // Check if the path ends with a slash (directory URL)
+    const isDirectoryUrl = currentPath.endsWith('/');
+
     // Check if we're in a GitHub Pages subdirectory (e.g., /ModernMath/)
     const pathParts = currentPath.split('/').filter(p => p);
     let basePath = '';
@@ -473,13 +476,26 @@ async function loadAndRenderGraph() {
 
       // Check if the second part is a language code
       if (pathParts.length > 1 && (pathParts[1] === 'en' || pathParts[1] === 'ja')) {
-        // Remove project name and language, count remaining directories (excluding the HTML file)
-        depthFromProjectRoot = pathParts.slice(2).length - 1;
+        // Remove project name and language, count remaining directories
+        depthFromProjectRoot = pathParts.slice(2).length;
+
+        // If it's not a directory URL, subtract 1 for the HTML file
+        if (!isDirectoryUrl) {
+          depthFromProjectRoot -= 1;
+        }
+
         // Add one more level to go up from the language directory
         depthFromProjectRoot += 1;
+
+        // Ensure we have at least depth 1 to go up from language directory
+        depthFromProjectRoot = Math.max(1, depthFromProjectRoot);
       } else {
         // Original logic for non-multilingual setup
-        depthFromProjectRoot = pathParts.slice(1).length - 1;
+        depthFromProjectRoot = pathParts.slice(1).length;
+        if (!isDirectoryUrl) {
+          depthFromProjectRoot -= 1;
+        }
+        depthFromProjectRoot = Math.max(0, depthFromProjectRoot);
       }
 
       // Go up to the project root
@@ -517,12 +533,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-global-graph-1753868746', {
+    createForceGraph(data, 'graph-viz-global-graph-1753870231', {
       width: 700,
       height: 600
     });
   } catch (error) {
-    document.getElementById('graph-viz-global-graph-1753868746').innerHTML =
+    document.getElementById('graph-viz-global-graph-1753870231').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

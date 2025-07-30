@@ -4,28 +4,28 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-group["Group"]:::definition
     def-homomorphism["Group Homomorphism"]:::definition
-    def-exact-sequence["Exact Sequence"]:::definition
+    def-simple-group["Simple Group"]:::definition
+    def-normal-subgroup["Normal Subgroup"]:::definition
     def-image["Image"]:::definition
     def-kernel["Kernel"]:::definition
     def-quotient-group["Quotient Group"]:::definition
+    def-exact-sequence["Exact Sequence"]:::definition
     thm-first-isomorphism["First Isomorphism Theorem"]:::theorem
-    def-normal-subgroup["Normal Subgroup"]:::definition
-    def-group["Group"]:::definition
-    def-simple-group["Simple Group"]:::definition
     def-abelian-group["Abelian Group"]:::definition
+    thm-first-isomorphism --> def-exact-sequence
     thm-first-isomorphism --> def-image
-    thm-first-isomorphism --> def-homomorphism
-    thm-first-isomorphism --> def-abelian-group
-    def-homomorphism --> thm-first-isomorphism
-    def-kernel --> thm-first-isomorphism
-    def-abelian-group --> thm-first-isomorphism
-    thm-first-isomorphism --> def-group
     thm-first-isomorphism --> def-quotient-group
-    thm-first-isomorphism --> def-kernel
-    thm-first-isomorphism --> def-normal-subgroup
+    def-abelian-group --> thm-first-isomorphism
     def-simple-group --> thm-first-isomorphism
     def-quotient-group --> thm-first-isomorphism
-    thm-first-isomorphism --> def-exact-sequence
+    thm-first-isomorphism --> def-kernel
+    thm-first-isomorphism --> def-group
+    thm-first-isomorphism --> def-homomorphism
+    def-kernel --> thm-first-isomorphism
+    thm-first-isomorphism --> def-normal-subgroup
     def-normal-subgroup --> thm-first-isomorphism
+    thm-first-isomorphism --> def-abelian-group
+    def-homomorphism --> thm-first-isomorphism
     class thm-first-isomorphism current
