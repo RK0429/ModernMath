@@ -6,7 +6,7 @@ These files will be used by Observable JS in Quarto pages.
 
 import json
 from pathlib import Path
-from typing import Dict, Set, Tuple, Any, Optional
+from typing import Dict, Set, Tuple, Any, Optional, List
 
 from rdflib import Graph, Literal, Namespace, RDF, RDFS
 
@@ -74,18 +74,57 @@ def _generate_node_url(node_id: str, domain: Optional[str]) -> Optional[str]:
 
 def get_node_info(g: Graph, node_uri: Any, lang: str = "en") -> Dict[str, Any]:
     """Get basic information about a node with language preference."""
-    node_id = str(node_uri).replace(BASE_URI, "")
+    uri_str = str(node_uri)
+
+    # Handle Lean proof nodes specially
+    if uri_str.startswith("https://mathlib.org/proof/"):
+        lean_id = uri_str.replace("https://mathlib.org/proof/", "")
+
+        # Find the node that this proof verifies
+        verified_node = None
+        for s in g.subjects(MYMATH.isVerifiedBy, node_uri):
+            verified_node = s
+            break
+
+        if verified_node:
+            verified_label = _get_node_label(g, verified_node, lang)
+            if verified_label:
+                label = (
+                    f"Formal proof of {verified_label}"
+                    if lang == "en"
+                    else f"{verified_label}の形式的証明"
+                )
+            else:
+                verified_id = str(verified_node).replace(BASE_URI, "")
+                label = f"Formal proof of {verified_id}"
+        else:
+            label = f"Formal proof: {lean_id}"
+
+        return {
+            "id": lean_id,
+            "uri": uri_str,
+            "label": label,
+            "type": "FormalProof",
+            "url": None,  # No article URL for proof nodes
+            "domain": None,
+        }
+
+    # Regular node handling
+    node_id = uri_str.replace(BASE_URI, "")
 
     # Extract node information using helper functions
-    label = _get_node_label(g, node_uri, lang)
+    label_optional = _get_node_label(g, node_uri, lang)
     node_type = _get_node_type(g, node_uri)
     domain = _get_node_domain(g, node_uri)
     url = _generate_node_url(node_id, domain)
 
+    # Provide default label if None
+    node_label: str = label_optional if label_optional is not None else node_id
+
     return {
         "id": node_id,
-        "uri": str(node_uri),
-        "label": label,
+        "uri": uri_str,
+        "label": node_label,
         "type": node_type,
         "url": url,
         "domain": domain,
@@ -94,7 +133,7 @@ def get_node_info(g: Graph, node_uri: Any, lang: str = "en") -> Dict[str, Any]:
 
 def get_node_neighbors(
     g: Graph, node_uri: Any, depth: int = 2
-) -> Tuple[Set[Any], Set[Tuple[str, str]]]:
+) -> Tuple[Set[Any], Set[Tuple[str, str, str]]]:
     """Get neighbors of a node up to specified depth."""
     nodes = {node_uri}
     edges = set()
@@ -107,15 +146,27 @@ def get_node_neighbors(
         for current_node in current_level:
             # Get nodes this node depends on (outgoing edges)
             for dep in g.objects(current_node, MYMATH.uses):
-                edges.add((str(current_node), str(dep)))
+                edges.add((str(current_node), str(dep), "uses"))
                 nodes.add(dep)
                 next_level.add(dep)
 
             # Get nodes that depend on this node (incoming edges)
             for dependent in g.subjects(MYMATH.uses, current_node):
-                edges.add((str(dependent), str(current_node)))
+                edges.add((str(dependent), str(current_node), "uses"))
                 nodes.add(dependent)
                 next_level.add(dependent)
+
+            # Get formal proofs that verify this node (outgoing edges)
+            for proof in g.objects(current_node, MYMATH.isVerifiedBy):
+                edges.add((str(current_node), str(proof), "isVerifiedBy"))
+                nodes.add(proof)
+                next_level.add(proof)
+
+            # Get nodes that this proof verifies (incoming edges)
+            for verified in g.subjects(MYMATH.isVerifiedBy, current_node):
+                edges.add((str(verified), str(current_node), "isVerifiedBy"))
+                nodes.add(verified)
+                next_level.add(verified)
 
         current_level = next_level
 
@@ -142,13 +193,13 @@ def create_d3_json(g: Graph, node_id: str, output_dir: Path, lang: str = "en") -
 
     # Build links array for D3
     links_data = []
-    for source_uri, target_uri in neighbor_edges:
+    for source_uri, target_uri, edge_type in neighbor_edges:
         if source_uri in node_id_map and target_uri in node_id_map:
             links_data.append(
                 {
                     "source": node_id_map[source_uri],
                     "target": node_id_map[target_uri],
-                    "type": "uses",
+                    "type": edge_type,
                 }
             )
 
@@ -172,7 +223,7 @@ def create_d3_json(g: Graph, node_id: str, output_dir: Path, lang: str = "en") -
     return output_file
 
 
-def get_domain_nodes_and_edges(g: Graph, domain: str) -> Tuple[Set[Any], Set[Tuple[str, str]]]:
+def get_domain_nodes_and_edges(g: Graph, domain: str) -> Tuple[Set[Any], Set[Tuple[str, str, str]]]:
     """Get all nodes and edges for a specific domain."""
     domain_nodes = set()
 
@@ -186,10 +237,17 @@ def get_domain_nodes_and_edges(g: Graph, domain: str) -> Tuple[Set[Any], Set[Tup
     for node in domain_nodes:
         for dep in g.objects(node, MYMATH.uses):
             if dep in domain_nodes:
-                domain_edges.add((str(node), str(dep)))
+                domain_edges.add((str(node), str(dep), "uses"))
         for dependent in g.subjects(MYMATH.uses, node):
             if dependent in domain_nodes:
-                domain_edges.add((str(dependent), str(node)))
+                domain_edges.add((str(dependent), str(node), "uses"))
+        # Include isVerifiedBy edges
+        for proof in g.objects(node, MYMATH.isVerifiedBy):
+            if proof in domain_nodes:
+                domain_edges.add((str(node), str(proof), "isVerifiedBy"))
+        for verified in g.subjects(MYMATH.isVerifiedBy, node):
+            if verified in domain_nodes:
+                domain_edges.add((str(verified), str(node), "isVerifiedBy"))
 
     return domain_nodes, domain_edges
 
@@ -211,13 +269,13 @@ def create_domain_json(g: Graph, domain: str, output_dir: Path, lang: str = "en"
 
     # Build links array
     links_data = []
-    for source_uri, target_uri in domain_edges:
+    for source_uri, target_uri, edge_type in domain_edges:
         if source_uri in node_id_map and target_uri in node_id_map:
             links_data.append(
                 {
                     "source": node_id_map[source_uri],
                     "target": node_id_map[target_uri],
-                    "type": "uses",
+                    "type": edge_type,
                 }
             )
 
@@ -237,44 +295,68 @@ def create_domain_json(g: Graph, domain: str, output_dir: Path, lang: str = "en"
     return output_file
 
 
-def create_global_json(g: Graph, output_dir: Path, lang: str = "en") -> Path:
-    """Create D3.js-compatible JSON for the entire knowledge graph."""
-    # Get all nodes (excluding external URIs like Lean files)
-    all_nodes = set()
+def _get_all_graph_nodes(g: Graph) -> Set[Any]:
+    """Get all nodes from the graph, including formal proofs but excluding other external URIs."""
+    nodes = set()
     for s, _, o in g.triples((None, RDF.type, None)):
-        if str(o).startswith(str(MYMATH)) and str(s).startswith(BASE_URI):
-            all_nodes.add(s)
+        if str(o).startswith(str(MYMATH)):
+            # Include nodes from our base URI and Lean proof URIs
+            if str(s).startswith(BASE_URI) or str(s).startswith("https://mathlib.org/proof/"):
+                nodes.add(s)
+    return nodes
 
-    # Get all edges
-    all_edges = set()
-    for node in all_nodes:
+
+def _get_all_graph_edges(g: Graph, nodes: Set[Any]) -> Set[Tuple[str, str, str]]:
+    """Get all edges between nodes in the graph."""
+    edges = set()
+    for node in nodes:
         for dep in g.objects(node, MYMATH.uses):
-            if dep in all_nodes:
-                all_edges.add((str(node), str(dep)))
+            if dep in nodes:
+                edges.add((str(node), str(dep), "uses"))
+        # Include isVerifiedBy edges
+        for proof in g.objects(node, MYMATH.isVerifiedBy):
+            if proof in nodes:
+                edges.add((str(node), str(proof), "isVerifiedBy"))
+    return edges
 
-    # Build nodes array
+
+def _build_global_nodes_data(
+    g: Graph, nodes: Set[Any], lang: str
+) -> Tuple[List[Dict[str, Any]], Dict[str, int]]:
+    """Build nodes array and ID map for global visualization."""
     nodes_data = []
     node_id_map = {}
 
-    for i, n_uri in enumerate(all_nodes):
+    for i, n_uri in enumerate(nodes):
         node_info = get_node_info(g, n_uri, lang=lang)
         node_info["index"] = i
         # Override URL for global visualization context
-        # From index.html, the path is content/{lang}/{domain}/{article}.html
         if node_info["url"] and node_info["domain"]:
             node_info["url"] = f"content/{lang}/{node_info['domain']}/{node_info['id']}.html"
         nodes_data.append(node_info)
         node_id_map[str(n_uri)] = i
 
+    return nodes_data, node_id_map
+
+
+def create_global_json(g: Graph, output_dir: Path, lang: str = "en") -> Path:
+    """Create D3.js-compatible JSON for the entire knowledge graph."""
+    # Get all nodes and edges
+    all_nodes = _get_all_graph_nodes(g)
+    all_edges = _get_all_graph_edges(g, all_nodes)
+
+    # Build nodes array
+    nodes_data, node_id_map = _build_global_nodes_data(g, all_nodes, lang)
+
     # Build links array
     links_data = []
-    for source_uri, target_uri in all_edges:
+    for source_uri, target_uri, edge_type in all_edges:
         if source_uri in node_id_map and target_uri in node_id_map:
             links_data.append(
                 {
                     "source": node_id_map[source_uri],
                     "target": node_id_map[target_uri],
-                    "type": "uses",
+                    "type": edge_type,
                 }
             )
 

@@ -372,7 +372,22 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
   ```
 
 - **Contrast with Domain Visualizations**: Domain-specific visualizations use `../{domain}/{article}.html` paths
-- **External Node Filtering**: Global graph excludes external URIs (e.g., Lean files) by filtering nodes where `str(s).startswith(BASE_URI)` in `create_global_json()`
+- **External Node Filtering**: Global graph includes formal proof nodes but excludes other external URIs:
+  - Includes nodes from `BASE_URI` and `https://mathlib.org/proof/`
+  - Filters in `_get_all_graph_nodes()`: `if str(s).startswith(BASE_URI) or str(s).startswith("https://mathlib.org/proof/")`
+
+### Formal Proof Visualization
+
+The knowledge graph includes formal proofs verified in Lean 4:
+
+- **Relationships**: Uses `isVerifiedBy` to connect definitions to their formal proofs
+- **Edge Extraction**: `get_node_neighbors()` includes both `uses` and `isVerifiedBy` relationships with edge types
+- **Node Labeling**: Formal proof nodes show meaningful names (e.g., "Formal proof of Definition: Group")
+- **Special Handling in `get_node_info()`**:
+  - Detects Lean proof URIs: `uri_str.startswith("https://mathlib.org/proof/")`
+  - Finds verified node via `g.subjects(MYMATH.isVerifiedBy, node_uri)`
+  - Labels with verified concept name or falls back to Lean ID
+- **Visual Integration**: Formal proofs appear connected to their definitions in both domain and global visualizations
 
 ## UI Conventions
 
