@@ -354,14 +354,14 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-binomial-coefficient["二項係数"]:::definition
-    ex-pascals-triangle["パスカルの三角形"]:::example
-    def-generating-function["母関数"]:::definition
-    ex-pascals-triangle --&gt; def-binomial-coefficient
+    def-binomial-coefficient["定義：二項係数"]:::definition
+    ex-pascals-triangle["例：パスカルの三角形"]:::example
+    def-generating-function["定義: 母関数"]:::definition
     ex-pascals-triangle --&gt; def-generating-function
+    ex-pascals-triangle --&gt; def-binomial-coefficient
     class ex-pascals-triangle current
-    click def-binomial-coefficient "def-binomial-coefficient.html" "二項係数へ"
-    click def-generating-function "def-generating-function.html" "母関数へ"
+    click def-binomial-coefficient "def-binomial-coefficient.html" "定義：二項係数へ"
+    click def-generating-function "def-generating-function.html" "母関数の定義へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -372,7 +372,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-pascals-triangle-1753853764" class="graph-visualization-container">
+<div id="graph-viz-ex-pascals-triangle-1753856751" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -620,12 +620,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-pascals-triangle-1753853764', {
+    createForceGraph(data, 'graph-viz-ex-pascals-triangle-1753856751', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-pascals-triangle-1753853764').innerHTML =
+    document.getElementById('graph-viz-ex-pascals-triangle-1753856751').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -372,23 +372,23 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-chain-rule["連鎖律"]:::theorem
-    def-limit["数列の極限"]:::definition
-    thm-mean-value["平均値の定理"]:::theorem
-    def-derivative["導関数"]:::definition
-    thm-fundamental-calculus["微積分学の基本定理"]:::theorem
-    thm-taylor-series["テイラー級数"]:::theorem
-    thm-taylor-series --&gt; def-derivative
-    def-derivative --&gt; def-limit
+    def-derivative["定義: 導関数"]:::definition
+    thm-chain-rule["定理：連鎖律"]:::theorem
+    thm-mean-value["定理：平均値の定理"]:::theorem
+    def-limit["定義：数列の極限"]:::definition
+    thm-taylor-series["定理: テイラー級数"]:::theorem
+    thm-fundamental-calculus["定理: 微積分学の基本定理"]:::theorem
+    thm-mean-value --&gt; def-derivative
     thm-fundamental-calculus --&gt; def-derivative
     thm-chain-rule --&gt; def-derivative
-    thm-mean-value --&gt; def-derivative
+    thm-taylor-series --&gt; def-derivative
+    def-derivative --&gt; def-limit
     class def-derivative current
-    click thm-chain-rule "thm-chain-rule.html" "連鎖律へ"
-    click def-limit "def-limit.html" "数列の極限へ"
-    click thm-mean-value "thm-mean-value.html" "平均値の定理へ"
-    click thm-fundamental-calculus "thm-fundamental-calculus.html" "微積分学の基本定理へ"
-    click thm-taylor-series "thm-taylor-series.html" "テイラー級数へ"
+    click thm-chain-rule "thm-chain-rule.html" "定理：連鎖律へ"
+    click thm-mean-value "thm-mean-value.html" "定理：平均値の定理へ"
+    click def-limit "def-limit.html" "定義：数列の極限へ"
+    click thm-taylor-series "thm-taylor-series.html" "テイラー級数の定理へ"
+    click thm-fundamental-calculus "thm-fundamental-calculus.html" "微積分学の基本定理の定理へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -399,7 +399,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-derivative-1753853749" class="graph-visualization-container">
+<div id="graph-viz-def-derivative-1753856735" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -647,12 +647,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-derivative-1753853749', {
+    createForceGraph(data, 'graph-viz-def-derivative-1753856735', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-derivative-1753853749').innerHTML =
+    document.getElementById('graph-viz-def-derivative-1753856735').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

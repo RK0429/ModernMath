@@ -4,20 +4,20 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-fermat-little["フェルマーの小定理"]:::theorem
     def-group["群"]:::definition
-    def-prime["素数"]:::definition
-    def-quotient-group["商群"]:::definition
     def-congruence["合同（モジュラー演算）"]:::definition
     def-gcd["最大公約数"]:::definition
-    ex-quotient-integers-mod-n["整数の n による剰余"]:::example
+    def-prime["素数"]:::definition
     thm-euler["オイラーの定理"]:::theorem
-    thm-euler --> def-quotient-group
-    thm-euler --> def-group
-    thm-euler --> ex-quotient-integers-mod-n
+    thm-fermat-little["フェルマーの小定理"]:::theorem
+    def-quotient-group["商群"]:::definition
+    ex-quotient-integers-mod-n["整数の n による剰余"]:::example
     thm-euler --> thm-fermat-little
     thm-euler --> def-prime
+    def-gcd --> thm-euler
+    thm-euler --> def-group
+    thm-euler --> def-quotient-group
+    thm-euler --> ex-quotient-integers-mod-n
     def-congruence --> thm-euler
     thm-euler --> def-congruence
-    def-gcd --> thm-euler
     class thm-euler current
