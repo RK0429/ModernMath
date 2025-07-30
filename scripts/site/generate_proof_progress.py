@@ -157,16 +157,30 @@ class ProofProgressGenerator:
         return stats
 
     def _generate_progress_bar(self, verified: int, total: int) -> str:
-        """Generate a text-based progress bar."""
+        """Generate an HTML progress bar."""
         if total == 0:
-            return "N/A"
+            return '<span class="progress-stats">N/A</span>'
 
         percentage = verified / total * 100
-        filled = int(percentage / 10)
-        empty = 10 - filled
 
-        progress_bar = "▓" * filled + "░" * empty
-        return f"{progress_bar} {percentage:.1f}% ({verified}/{total})"
+        # Determine color class based on percentage
+        if percentage >= 75:
+            color_class = "progress-high"
+        elif percentage >= 40:
+            color_class = "progress-medium"
+        else:
+            color_class = "progress-low"
+
+        # Generate HTML
+        html = f"""<div class="progress-compact">
+  <div class="progress-container">
+    <div class="progress-fill {color_class}" style="width: {percentage}%">
+      <span class="progress-label">{percentage:.1f}%</span>
+    </div>
+  </div>
+  <span class="progress-percentage">{verified}/{total}</span>
+</div>"""
+        return html
 
     def generate_progress_page(self, language: str = "en") -> None:
         """Generate the formal proof progress page."""
@@ -220,23 +234,66 @@ graph using Lean 4.
         # Overall statistics
         verified = stats["verified_articles"]
         total = stats["total_articles"]
-        content += f"**Total Coverage**: {self._generate_progress_bar(verified, total)}\n\n"
+        percentage = verified / total * 100 if total > 0 else 0
+
+        # Determine color class
+        if percentage >= 75:
+            color_class = "progress-high"
+        elif percentage >= 40:
+            color_class = "progress-medium"
+        else:
+            color_class = "progress-low"
+
+        content += f"""<div class="progress-section">
+<h3>Total Coverage</h3>
+<div class="progress-container" style="height: 32px;">
+  <div class="progress-fill {color_class}" style="width: {percentage}%">
+    <span class="progress-label" style="font-size: 1rem;">{percentage:.1f}%</span>
+  </div>
+</div>
+<div class="progress-stats">
+  <span>{verified} articles verified</span>
+  <span>•</span>
+  <span>{total} total articles</span>
+  <span>•</span>
+  <span>{total - verified} remaining</span>
+</div>
+</div>
+
+"""
 
         # Progress by type
-        content += "### Progress by Type\n\n"
+        content += """<div class="progress-section">
+<h3>Progress by Type</h3>
+<div class="progress-grid">
+"""
         for node_type, type_stats in sorted(stats["by_type"].items()):
             verified = type_stats["verified"]
             total = type_stats["total"]
-            content += f"- **{node_type}**: "
-            content += f"{self._generate_progress_bar(verified, total)}\n"
+            content += f"""  <div class="progress-item">
+    <span class="progress-item-label">{node_type}</span>
+    {self._generate_progress_bar(verified, total)}
+  </div>
+"""
+        content += """</div>
+</div>
 
-        content += "\n### Progress by Domain\n\n"
+<div class="progress-section">
+<h3>Progress by Domain</h3>
+<div class="progress-grid">
+"""
         for domain, domain_stats in sorted(stats["by_domain"].items()):
             domain_title = domain.replace("-", " ").title()
             verified = domain_stats["verified"]
             total = domain_stats["total"]
-            content += f"- **{domain_title}**: "
-            content += f"{self._generate_progress_bar(verified, total)}\n"
+            content += f"""  <div class="progress-item">
+    <span class="progress-item-label">{domain_title}</span>
+    {self._generate_progress_bar(verified, total)}
+  </div>
+"""
+        content += """</div>
+</div>
+"""
 
         # Detailed listing by domain
         content += "\n## Detailed Progress\n\n"
@@ -325,10 +382,37 @@ description: "Lean 4による形式的検証の進捗状況"
         # Overall statistics
         verified = stats["verified_articles"]
         total = stats["total_articles"]
-        content += f"**全体のカバレッジ**: {self._generate_progress_bar(verified, total)}\n\n"
+        percentage = verified / total * 100 if total > 0 else 0
 
+        # Determine color class
+        if percentage >= 75:
+            color_class = "progress-high"
+        elif percentage >= 40:
+            color_class = "progress-medium"
+        else:
+            color_class = "progress-low"
+
+        content += f"""<div class="progress-section">
+<h3>全体のカバレッジ</h3>
+<div class="progress-container" style="height: 32px;">
+  <div class="progress-fill {color_class}" style="width: {percentage}%">
+    <span class="progress-label" style="font-size: 1rem;">{percentage:.1f}%</span>
+  </div>
+</div>
+<div class="progress-stats">
+  <span>{verified}記事検証済み</span>
+  <span>•</span>
+  <span>全{total}記事</span>
+  <span>•</span>
+  <span>残り{total - verified}記事</span>
+</div>
+</div>
+
+<div class="progress-section">
+<h3>タイプ別の進捗</h3>
+<div class="progress-grid">
+"""
         # Progress by type
-        content += "### タイプ別の進捗\n\n"
         type_translations = {
             "Definition": "定義",
             "Theorem": "定理",
@@ -342,10 +426,18 @@ description: "Lean 4による形式的検証の進捗状況"
             type_ja = type_translations.get(node_type, node_type)
             verified = type_stats["verified"]
             total = type_stats["total"]
-            content += f"- **{type_ja}**: "
-            content += f"{self._generate_progress_bar(verified, total)}\n"
+            content += f"""  <div class="progress-item">
+    <span class="progress-item-label">{type_ja}</span>
+    {self._generate_progress_bar(verified, total)}
+  </div>
+"""
+        content += """</div>
+</div>
 
-        content += "\n### ドメイン別の進捗\n\n"
+<div class="progress-section">
+<h3>ドメイン別の進捗</h3>
+<div class="progress-grid">
+"""
         domain_translations = {
             "algebra": "代数",
             "analysis": "解析",
@@ -361,8 +453,14 @@ description: "Lean 4による形式的検証の進捗状況"
             domain_ja = domain_translations.get(domain, domain.replace("-", " ").title())
             verified = domain_stats["verified"]
             total = domain_stats["total"]
-            content += f"- **{domain_ja}**: "
-            content += f"{self._generate_progress_bar(verified, total)}\n"
+            content += f"""  <div class="progress-item">
+    <span class="progress-item-label">{domain_ja}</span>
+    {self._generate_progress_bar(verified, total)}
+  </div>
+"""
+        content += """</div>
+</div>
+"""
 
         return content
 

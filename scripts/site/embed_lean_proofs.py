@@ -68,7 +68,7 @@ class LeanProofEmbedder:
         # e.g., MathKnowledgeGraph.Algebra.Groups -> formal/MathKnowledgeGraph/Algebra/Groups.lean
         if module_name.startswith("MathKnowledgeGraph"):
             parts = module_name.split(".")
-            file_path = Path("formal") / Path(*parts[1:])
+            file_path = Path("formal") / Path(*parts)
             return f"{file_path}.lean"
         return None
 

@@ -322,6 +322,8 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
 
 - **Auto-detect GitHub Pages URL**: Script detects from git remote, fallback to `GITHUB_PAGES_URL` env var
 - **iframe Integration**: Loads proofs via `https://live.lean-lang.org/#file=<github-pages-url>/formal/<lean-file>`
+  - **URL Format**: Must include full module path: `/formal/MathKnowledgeGraph/Algebra/Groups.lean` (not `/formal/Algebra/Groups.lean`)
+  - **Fix Script**: `scripts/site/fix_lean_urls.py` corrects malformed URLs in existing content
 - **Build Process**:
   - Embed Lean proofs: `poetry run python scripts/site/embed_lean_proofs.py`
   - Generate progress pages: `poetry run python scripts/site/generate_proof_progress.py`
@@ -357,9 +359,21 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
 - **Categories**: Colors, typography, spacing (4-64px), layout, animation
 - **Usage**: Load CSS first in Quarto configs, use `var(--token-name)` everywhere
 
-## Repository Management
+### Progress Bar Implementation
 
-### Repository Management
+- **Styling**: Located in `styles.css:122-273`, uses gradient backgrounds with color-coded completion levels
+  - High (≥75%): Green gradient `#10b981 → #059669`
+  - Medium (40-74%): Orange gradient `#f59e0b → #d97706`
+  - Low (<40%): Red gradient `#ef4444 → #dc2626`
+- **Features**: Shimmer animation, rounded corners (12px), box shadows, responsive design
+- **HTML Generation**: `generate_proof_progress.py` creates HTML progress bars with:
+  - Main container: `.progress-container` with inset shadow
+  - Fill bar: `.progress-fill` with percentage-based width
+  - Label: `.progress-label` centered with text shadow
+  - Compact variant: `.progress-compact` for tables with smaller height (16px)
+- **Layout**: Grid system (`.progress-grid`) for domain/type breakdowns, responsive columns
+
+## Repository Management
 
 **Going Public**: Update LICENSE, check security/history, clean logs, add SECURITY.md, verify .gitignore
 
