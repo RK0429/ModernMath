@@ -4,16 +4,16 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-taylor-series["Taylor Series"]:::theorem
-    def-limit["Limit of a Sequence"]:::definition
     def-open-ball["Open Ball"]:::definition
+    thm-taylor-series["Taylor Series"]:::theorem
     def-convergence["Convergence"]:::definition
-    def-sequence["Sequence"]:::definition
+    def-limit["Limit of a Sequence"]:::definition
     def-series["Series"]:::definition
+    def-sequence["Sequence"]:::definition
+    thm-taylor-series --> def-convergence
+    def-convergence --> def-open-ball
     def-convergence --> def-sequence
     def-convergence --> def-limit
-    def-open-ball --> def-convergence
-    def-convergence --> def-open-ball
     def-series --> def-convergence
-    thm-taylor-series --> def-convergence
+    def-open-ball --> def-convergence
     class def-convergence current
