@@ -259,6 +259,10 @@ def create_global_json(g: Graph, output_dir: Path, lang: str = "en") -> Path:
     for i, n_uri in enumerate(all_nodes):
         node_info = get_node_info(g, n_uri, lang=lang)
         node_info["index"] = i
+        # Override URL for global visualization context
+        # From index.html, the path is content/{lang}/{domain}/{article}.html
+        if node_info["url"] and node_info["domain"]:
+            node_info["url"] = f"content/{lang}/{node_info['domain']}/{node_info['id']}.html"
         nodes_data.append(node_info)
         node_id_map[str(n_uri)] = i
 

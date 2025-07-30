@@ -356,6 +356,23 @@ network.add_node(
 - Tooltips indicate clickability: "(Click to view article)"
 - Middle-click support for opening in new tabs (D3.js)
 
+### Global Knowledge Graph Visualization
+
+The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualization of the entire knowledge graph:
+
+- **Location**: Above the "Features" section on both language homepages
+- **Implementation**: Uses `graph-viz` shortcode with `data-id="global-graph"`
+- **Data Generation**: `create_global_json()` in `generate_d3_data.py` creates `global-graph.json`
+- **URL Path Override**: Global visualization requires different relative paths:
+
+  ```python
+  # From index.html, paths are content/{lang}/{domain}/{article}.html
+  if node_info["url"] and node_info["domain"]:
+      node_info["url"] = f"content/{lang}/{node_info['domain']}/{node_info['id']}.html"
+  ```
+
+- **Contrast with Domain Visualizations**: Domain-specific visualizations use `../{domain}/{article}.html` paths
+
 ## UI Conventions
 
 ### Fixed Action Buttons
