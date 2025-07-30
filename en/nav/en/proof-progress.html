@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Track the progress of formal verification in Lean 4">
+
+<title>Formal Proof Progress – Math Knowledge Graph</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-316cf67538289ea5aad5d61736e73c8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/math-environments-1.0.0/math-environments.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<script>
+  window.siteLanguage = 'en';
+  window.alternateLanguage = 'ja';
+  window.alternateLanguageUrl = '../ja/';
+  // Calculate the correct path to js directory based on current location
+  (function() {
+    var path = window.location.pathname;
+
+    // Find the base path for the English site
+    // Look for where '/en/' appears in the path
+    var enIndex = path.indexOf('/en/');
+    var basePath = '';
+
+    if (enIndex !== -1) {
+      // Extract everything up to and including '/en/'
+      var siteRoot = path.substring(0, enIndex + 4); // +4 to include '/en/'
+      basePath = siteRoot;
+    } else {
+      // Fallback: calculate relative path
+      var pathParts = path.split('/').filter(function(part) {
+        return part && !part.endsWith('.html');
+      });
+
+      // Count depth and build relative path
+      var depth = pathParts.length;
+      for (var i = 0; i < depth; i++) {
+        basePath += '../';
+      }
+    }
+
+    // Ensure basePath ends with /
+    if (basePath && !basePath.endsWith('/')) {
+      basePath += '/';
+    }
+
+    // Load language switcher
+    var script = document.createElement('script');
+    script.src = basePath + 'js/language-switcher.js';
+    script.defer = true;
+    document.head.appendChild(script);
+
+    // Load issue button
+    var issueScript = document.createElement('script');
+    issueScript.src = basePath + 'js/issue-button.js';
+    issueScript.defer = true;
+    document.head.appendChild(issueScript);
+
+    // Load Buy Me a Coffee button
+    var bmcScript = document.createElement('script');
+    bmcScript.src = basePath + 'js/buy-me-coffee-button.js';
+    bmcScript.defer = true;
+    document.head.appendChild(bmcScript);
+
+    // Load Mobile Footer
+    var mobileScript = document.createElement('script');
+    mobileScript.src = basePath + 'js/mobile-footer.js';
+    mobileScript.defer = true;
+    document.head.appendChild(mobileScript);
+  })();
+</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../design-tokens.css">
+<link rel="stylesheet" href="../../styles-multilingual.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Math Knowledge Graph</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../content/en/algebra/index.html"> 
+<span class="menu-text">Algebra</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../content/en/analysis/index.html"> 
+<span class="menu-text">Analysis</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../content/en/topology/index.html"> 
+<span class="menu-text">Topology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../content/en/geometry/index.html"> 
+<span class="menu-text">Geometry</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../content/en/category-theory/index.html"> 
+<span class="menu-text">Category Theory</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../content/en/combinatorics/index.html"> 
+<span class="menu-text">Combinatorics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../content/en/logic-set-theory/index.html"> 
+<span class="menu-text">Logic &amp; Set Theory</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../content/en/number-theory/index.html"> 
+<span class="menu-text">Number Theory</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../content/en/probability-statistics/index.html"> 
+<span class="menu-text">Probability &amp; Statistics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../nav/en/about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../nav/en/proof-progress.html" aria-current="page"> 
+<span class="menu-text">Formal Proofs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../nav/en/contributing.html"> 
+<span class="menu-text">Contributing</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/RK0429/ModernMath"> <i class="bi bi-github" role="img" aria-label="github">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../ja/index.html"> 
+<span class="menu-text">🌐 日本語</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#formal-proof-progress" id="toc-formal-proof-progress" class="nav-link active" data-scroll-target="#formal-proof-progress">Formal Proof Progress</a>
+  <ul class="collapse">
+  <li><a href="#overall-progress" id="toc-overall-progress" class="nav-link" data-scroll-target="#overall-progress">Overall Progress</a>
+  <ul class="collapse">
+  <li><a href="#progress-by-type" id="toc-progress-by-type" class="nav-link" data-scroll-target="#progress-by-type">Progress by Type</a></li>
+  <li><a href="#progress-by-domain" id="toc-progress-by-domain" class="nav-link" data-scroll-target="#progress-by-domain">Progress by Domain</a></li>
+  </ul></li>
+  <li><a href="#detailed-progress" id="toc-detailed-progress" class="nav-link" data-scroll-target="#detailed-progress">Detailed Progress</a>
+  <ul class="collapse">
+  <li><a href="#algebra" id="toc-algebra" class="nav-link" data-scroll-target="#algebra">Algebra</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
+  <li><a href="#category-theory" id="toc-category-theory" class="nav-link" data-scroll-target="#category-theory">Category Theory</a></li>
+  <li><a href="#combinatorics" id="toc-combinatorics" class="nav-link" data-scroll-target="#combinatorics">Combinatorics</a></li>
+  <li><a href="#geometry" id="toc-geometry" class="nav-link" data-scroll-target="#geometry">Geometry</a></li>
+  <li><a href="#logic-set-theory" id="toc-logic-set-theory" class="nav-link" data-scroll-target="#logic-set-theory">Logic Set Theory</a></li>
+  <li><a href="#number-theory" id="toc-number-theory" class="nav-link" data-scroll-target="#number-theory">Number Theory</a></li>
+  <li><a href="#probability-statistics" id="toc-probability-statistics" class="nav-link" data-scroll-target="#probability-statistics">Probability Statistics</a></li>
+  <li><a href="#topology" id="toc-topology" class="nav-link" data-scroll-target="#topology">Topology</a></li>
+  </ul></li>
+  <li><a href="#legend" id="toc-legend" class="nav-link" data-scroll-target="#legend">Legend</a>
+  <ul class="collapse">
+  <li><a href="#type-badges" id="toc-type-badges" class="nav-link" data-scroll-target="#type-badges">Type Badges</a></li>
+  <li><a href="#status-badges" id="toc-status-badges" class="nav-link" data-scroll-target="#status-badges">Status Badges</a></li>
+  <li><a href="#proof-status" id="toc-proof-status" class="nav-link" data-scroll-target="#proof-status">Proof Status</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Formal Proof Progress</h1>
+</div>
+
+<div>
+  <div class="description">
+    Track the progress of formal verification in Lean 4
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="formal-proof-progress" class="level1">
+<h1>Formal Proof Progress</h1>
+<p>This page tracks the progress of formal verification for mathematical concepts in our knowledge graph using Lean 4.</p>
+<section id="overall-progress" class="level2">
+<h2 class="anchored" data-anchor-id="overall-progress">Overall Progress</h2>
+<p><strong>Total Coverage</strong>: ▓░░░░░░░░░ 10.6% (18/170)</p>
+<section id="progress-by-type" class="level3">
+<h3 class="anchored" data-anchor-id="progress-by-type">Progress by Type</h3>
+<ul>
+<li><strong>Axiom</strong>: ░░░░░░░░░░ 0.0% (0/1)</li>
+<li><strong>Definition</strong>: ▓░░░░░░░░░ 15.1% (18/119)</li>
+<li><strong>Example</strong>: ░░░░░░░░░░ 0.0% (0/17)</li>
+<li><strong>Theorem</strong>: ░░░░░░░░░░ 0.0% (0/33)</li>
+</ul>
+</section>
+<section id="progress-by-domain" class="level3">
+<h3 class="anchored" data-anchor-id="progress-by-domain">Progress by Domain</h3>
+<ul>
+<li><strong>Algebra</strong>: ▓░░░░░░░░░ 17.9% (12/67)</li>
+<li><strong>Analysis</strong>: ░░░░░░░░░░ 0.0% (0/22)</li>
+<li><strong>Category Theory</strong>: ░░░░░░░░░░ 0.0% (0/10)</li>
+<li><strong>Combinatorics</strong>: ░░░░░░░░░░ 0.0% (0/9)</li>
+<li><strong>Geometry</strong>: ░░░░░░░░░░ 0.0% (0/10)</li>
+<li><strong>Logic Set Theory</strong>: ░░░░░░░░░░ 0.0% (0/13)</li>
+<li><strong>Number Theory</strong>: ░░░░░░░░░░ 0.0% (0/11)</li>
+<li><strong>Probability Statistics</strong>: ░░░░░░░░░░ 0.0% (0/14)</li>
+<li><strong>Topology</strong>: ▓▓▓▓░░░░░░ 42.9% (6/14)</li>
+</ul>
+</section>
+</section>
+<section id="detailed-progress" class="level2">
+<h2 class="anchored" data-anchor-id="detailed-progress">Detailed Progress</h2>
+<section id="algebra" class="level3">
+<h3 class="anchored" data-anchor-id="algebra">Algebra</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Type</th>
+<th>Status</th>
+<th>Formal Proof</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../en/algebra/def-abelian-group.qmd">Abelian Group</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-associativity.qmd">Associativity</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-automorphism.qmd">Automorphism</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-basis.qmd">Basis</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>✅ Verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-binary-operation.qmd">Binary Operation</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>✅ Verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-center-of-group.qmd">Center of a Group</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-commutativity.qmd">Commutativity</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-coset.qmd">Coset</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-cyclic-group.qmd">Cyclic Group</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-determinant.qmd">Determinant</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-direct-product.qmd">Direct Product of Groups</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-distributivity.qmd">Distributivity</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-eigenvalue-eigenvector.qmd">Eigenvalue and Eigenvector</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-endomorphism.qmd">Endomorphism</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-exact-sequence.qmd">Exact Sequence</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-field.qmd">Field</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>✅ Verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-free-group.qmd">Free Group</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-group.qmd">Group</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>✅ Verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-group-action.qmd">Group Action</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#b2dfdb;padding:2px 6px;border-radius:3px;">verified</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-homomorphism.qmd">Group Homomorphism</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-isomorphism.qmd">Group Isomorphism</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-ideal.qmd">Ideal</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-identity-element.qmd">Identity Element</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-image.qmd">Image</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>✅ Verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-integral-domain.qmd">Integral Domain</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-inverse-element.qmd">Inverse Element</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-kernel.qmd">Kernel</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>✅ Verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-linear-independence.qmd">Linear Independence</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>✅ Verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-linear-transformation.qmd">Linear Transformation</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>✅ Verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-matrix.qmd">Matrix</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-maximal-ideal.qmd">Maximal Ideal</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-module.qmd">Module</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-monoid.qmd">Monoid</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-normal-subgroup.qmd">Normal Subgroup</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-order.qmd">Order</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-polynomial-ring.qmd">Polynomial Ring</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-prime-ideal.qmd">Prime Ideal</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-quotient-group.qmd">Quotient Group</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-quotient-ring.qmd">Quotient Ring</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-ring.qmd">Ring</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>✅ Verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-ring-homomorphism.qmd">Ring Homomorphism</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-semigroup.qmd">Semigroup</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-simple-group.qmd">Simple Group</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-span.qmd">Span</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>✅ Verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-subgroup.qmd">Subgroup</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>✅ Verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-subring.qmd">Subring</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/def-vector-space.qmd">Vector Space</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>✅ Verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/def-zero-divisor.qmd">Zero Divisor</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/thm-field-characteristic.qmd">Field Characteristic</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/thm-first-isomorphism.qmd">First Isomorphism Theorem</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/thm-lagrange.qmd">Lagrange’s Theorem</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/thm-linear-transformation-basis.qmd">Linear Transformation Determined by Basis</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/thm-orbit-stabilizer.qmd">Orbit-Stabilizer Theorem</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#b2dfdb;padding:2px 6px;border-radius:3px;">verified</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/thm-rank-nullity.qmd">Rank-Nullity Theorem</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/thm-sylow.qmd">Sylow Theorems</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#b2dfdb;padding:2px 6px;border-radius:3px;">verified</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/thm-unique-identity.qmd">Uniqueness of Identity</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/ex-euclidean-space.qmd">Euclidean Space</a></td>
+<td><span style="background-color:#e8f5e9;padding:2px 6px;border-radius:3px;">Example</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/ex-even-integers-subgroup.qmd">Even Integers Form a Subgroup</a></td>
+<td><span style="background-color:#e8f5e9;padding:2px 6px;border-radius:3px;">Example</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/ex-group-action-examples.qmd">Examples of Group Actions</a></td>
+<td><span style="background-color:#e8f5e9;padding:2px 6px;border-radius:3px;">Example</span></td>
+<td><span style="background-color:#b2dfdb;padding:2px 6px;border-radius:3px;">verified</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/ex-exponential-homomorphism.qmd">Exponential Homomorphism</a></td>
+<td><span style="background-color:#e8f5e9;padding:2px 6px;border-radius:3px;">Example</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/ex-finite-field.qmd">Finite Field</a></td>
+<td><span style="background-color:#e8f5e9;padding:2px 6px;border-radius:3px;">Example</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/ex-integers-ring.qmd">Integers Form a Ring</a></td>
+<td><span style="background-color:#e8f5e9;padding:2px 6px;border-radius:3px;">Example</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/ex-quotient-integers-mod-n.qmd">Integers Modulo n</a></td>
+<td><span style="background-color:#e8f5e9;padding:2px 6px;border-radius:3px;">Example</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/ex-integers-addition.qmd">Integers under Addition</a></td>
+<td><span style="background-color:#e8f5e9;padding:2px 6px;border-radius:3px;">Example</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/ex-matrix-transformation.qmd">Matrix Transformation</a></td>
+<td><span style="background-color:#e8f5e9;padding:2px 6px;border-radius:3px;">Example</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/algebra/ex-principal-ideal.qmd">Principal Ideals in Integers</a></td>
+<td><span style="background-color:#e8f5e9;padding:2px 6px;border-radius:3px;">Example</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/algebra/ex-standard-basis-rn.qmd">Standard Basis of ℝⁿ</a></td>
+<td><span style="background-color:#e8f5e9;padding:2px 6px;border-radius:3px;">Example</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="analysis" class="level3">
+<h3 class="anchored" data-anchor-id="analysis">Analysis</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Type</th>
+<th>Status</th>
+<th>Formal Proof</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../en/analysis/def-banach-space.qmd">Banach Space</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/analysis/def-cauchy-sequence.qmd">Cauchy Sequence</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/analysis/def-complete-metric-space.qmd">Complete Metric Space</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/analysis/def-continuity.qmd">Continuity</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/analysis/def-convergence.qmd">Convergence</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/analysis/def-derivative.qmd">Derivative</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/analysis/def-hilbert-space.qmd">Hilbert Space</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/analysis/def-integral.qmd">Integral</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/analysis/def-limit.qmd">Limit of a Sequence</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/analysis/def-metric-space.qmd">Metric Space</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/analysis/def-normed-vector-space.qmd">Normed Vector Space</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/analysis/def-open-ball.qmd">Open Ball</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/analysis/def-sequence.qmd">Sequence</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/analysis/def-series.qmd">Series</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/analysis/def-uniform-continuity.qmd">Uniform Continuity</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/analysis/thm-limit-arithmetic.qmd">Arithmetic of Limits</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/analysis/thm-chain-rule.qmd">Chain Rule</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/analysis/thm-fundamental-calculus.qmd">Fundamental Theorem of Calculus</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/analysis/thm-mean-value.qmd">Mean Value Theorem</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/analysis/thm-taylor-series.qmd">Taylor Series</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/analysis/ex-polynomial-continuity.qmd">Polynomial Continuity</a></td>
+<td><span style="background-color:#e8f5e9;padding:2px 6px;border-radius:3px;">Example</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/analysis/ex-real-line-metric.qmd">Real Line with Standard Metric</a></td>
+<td><span style="background-color:#e8f5e9;padding:2px 6px;border-radius:3px;">Example</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="category-theory" class="level3">
+<h3 class="anchored" data-anchor-id="category-theory">Category Theory</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Type</th>
+<th>Status</th>
+<th>Formal Proof</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../en/category-theory/def-category.qmd">Category</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/category-theory/def-composition.qmd">Composition</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/category-theory/def-epimorphism.qmd">Epimorphism</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/category-theory/def-functor.qmd">Functor</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/category-theory/def-isomorphism.qmd">Isomorphism</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/category-theory/def-monomorphism.qmd">Monomorphism</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/category-theory/def-morphism.qmd">Morphism</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/category-theory/def-natural-transformation.qmd">Natural Transformation</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/category-theory/thm-yoneda.qmd">Yoneda Lemma</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/category-theory/ex-set-category.qmd">The Category of Sets</a></td>
+<td><span style="background-color:#e8f5e9;padding:2px 6px;border-radius:3px;">Example</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="combinatorics" class="level3">
+<h3 class="anchored" data-anchor-id="combinatorics">Combinatorics</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Type</th>
+<th>Status</th>
+<th>Formal Proof</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../en/combinatorics/def-binomial-coefficient.qmd">Binomial Coefficient</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/combinatorics/def-combination.qmd">Combination</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/combinatorics/def-generating-function.qmd">Generating Function</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/combinatorics/def-graph.qmd">Graph</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/combinatorics/def-permutation.qmd">Permutation</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/combinatorics/def-tree.qmd">Tree</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/combinatorics/thm-inclusion-exclusion.qmd">Inclusion-Exclusion Principle</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/combinatorics/thm-pigeonhole-principle.qmd">Pigeonhole Principle</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/combinatorics/ex-pascals-triangle.qmd">Pascal’s Triangle</a></td>
+<td><span style="background-color:#e8f5e9;padding:2px 6px;border-radius:3px;">Example</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="geometry" class="level3">
+<h3 class="anchored" data-anchor-id="geometry">Geometry</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Type</th>
+<th>Status</th>
+<th>Formal Proof</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../en/geometry/def-angle.qmd">Angle</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/geometry/def-euclidean-space.qmd">Euclidean Space</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/geometry/def-line.qmd">Line</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/geometry/def-metric-space.qmd">Metric Space</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/geometry/def-parallel.qmd">Parallel Lines</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/geometry/def-point.qmd">Point</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/geometry/def-triangle.qmd">Triangle</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/geometry/thm-angle-sum-triangle.qmd">Angle Sum of a Triangle</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/geometry/thm-pythagorean.qmd">Pythagorean Theorem</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/geometry/ex-euclidean-metric.qmd">Euclidean Metric on ℝⁿ</a></td>
+<td><span style="background-color:#e8f5e9;padding:2px 6px;border-radius:3px;">Example</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="logic-set-theory" class="level3">
+<h3 class="anchored" data-anchor-id="logic-set-theory">Logic Set Theory</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Type</th>
+<th>Status</th>
+<th>Formal Proof</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../en/logic-set-theory/ax-induction.qmd">Mathematical Induction</a></td>
+<td><span style="background-color:#fff3e0;padding:2px 6px;border-radius:3px;">Axiom</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/logic-set-theory/def-cardinality.qmd">Cardinality</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/logic-set-theory/def-equivalence-relation.qmd">Equivalence Relation</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/logic-set-theory/def-function.qmd">Function</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/logic-set-theory/def-intersection.qmd">Intersection</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/logic-set-theory/def-partial-order.qmd">Partial Order</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/logic-set-theory/def-power-set.qmd">Power Set</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/logic-set-theory/def-relation.qmd">Relation</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/logic-set-theory/def-set.qmd">Set</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/logic-set-theory/def-subset.qmd">Subset</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/logic-set-theory/def-union.qmd">Union</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/logic-set-theory/thm-cantor.qmd">Cantor’s Theorem</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/logic-set-theory/thm-de-morgan.qmd">De Morgan’s Laws</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="number-theory" class="level3">
+<h3 class="anchored" data-anchor-id="number-theory">Number Theory</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Type</th>
+<th>Status</th>
+<th>Formal Proof</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../en/number-theory/def-congruence.qmd">Congruence (Modular Arithmetic)</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/number-theory/def-divisibility.qmd">Divisibility</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/number-theory/def-gcd.qmd">Greatest Common Divisor</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/number-theory/def-lcm.qmd">Least Common Multiple</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/number-theory/def-prime.qmd">Prime Number</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/number-theory/thm-chinese-remainder.qmd">Chinese Remainder Theorem</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/number-theory/thm-euclid-infinitude-primes.qmd">Euclid’s Theorem on the Infinitude of Primes</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/number-theory/thm-euclidean-algorithm.qmd">Euclidean Algorithm</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/number-theory/thm-euler.qmd">Euler’s Theorem</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/number-theory/thm-fermat-little.qmd">Fermat’s Little Theorem</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/number-theory/thm-fundamental-arithmetic.qmd">Fundamental Theorem of Arithmetic</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="probability-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="probability-statistics">Probability Statistics</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Type</th>
+<th>Status</th>
+<th>Formal Proof</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../en/probability-statistics/def-binomial-distribution.qmd">Binomial Distribution</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/probability-statistics/def-conditional-probability.qmd">Conditional Probability</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/probability-statistics/def-event.qmd">Event</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/probability-statistics/def-expectation.qmd">Expected Value</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/probability-statistics/def-independence.qmd">Independence</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/probability-statistics/def-normal-distribution.qmd">Normal Distribution</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/probability-statistics/def-probability-distribution.qmd">Probability Distribution</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/probability-statistics/def-probability-space.qmd">Probability Space</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/probability-statistics/def-random-variable.qmd">Random Variable</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/probability-statistics/def-sample-space.qmd">Sample Space</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/probability-statistics/def-variance.qmd">Variance</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/probability-statistics/thm-bayes.qmd">Bayes’ Theorem</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/probability-statistics/thm-central-limit.qmd">Central Limit Theorem</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/probability-statistics/thm-law-of-large-numbers.qmd">Law of Large Numbers</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="topology" class="level3">
+<h3 class="anchored" data-anchor-id="topology">Topology</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Type</th>
+<th>Status</th>
+<th>Formal Proof</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../en/topology/def-closed-set.qmd">Closed Set</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>✅ Verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/topology/def-compact.qmd">Compact Space</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>✅ Verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/topology/def-connected.qmd">Connected Space</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>✅ Verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/topology/def-fundamental-group.qmd">Fundamental Group</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/topology/def-hausdorff.qmd">Hausdorff Space</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>✅ Verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/topology/def-homeomorphism.qmd">Homeomorphism</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/topology/def-homotopy.qmd">Homotopy</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/topology/def-open-set.qmd">Open Set</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>✅ Verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/topology/def-topological-space.qmd">Topological Space</a></td>
+<td><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>✅ Verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/topology/thm-metric-hausdorff.qmd">Every Metric Space is Hausdorff</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/topology/thm-heine-borel.qmd">Heine-Borel Theorem</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/topology/thm-intermediate-value.qmd">Intermediate Value Theorem</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="odd">
+<td><a href="../en/topology/thm-union-open-sets.qmd">Union of Open Sets</a></td>
+<td><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+<tr class="even">
+<td><a href="../en/topology/ex-closed-interval-compact.qmd">Closed Interval is Compact</a></td>
+<td><span style="background-color:#e8f5e9;padding:2px 6px;border-radius:3px;">Example</span></td>
+<td><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span></td>
+<td>❌ Not verified</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="legend" class="level2">
+<h2 class="anchored" data-anchor-id="legend">Legend</h2>
+<section id="type-badges" class="level3">
+<h3 class="anchored" data-anchor-id="type-badges">Type Badges</h3>
+<ul>
+<li><span style="background-color:#e1f5fe;padding:2px 6px;border-radius:3px;">Definition</span></li>
+<li><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Theorem</span></li>
+<li><span style="background-color:#fff3e0;padding:2px 6px;border-radius:3px;">Axiom</span></li>
+<li><span style="background-color:#e8f5e9;padding:2px 6px;border-radius:3px;">Example</span></li>
+<li><span style="background-color:#fce4ec;padding:2px 6px;border-radius:3px;">Proposition</span></li>
+<li><span style="background-color:#f3e5f5;padding:2px 6px;border-radius:3px;">Lemma</span></li>
+<li><span style="background-color:#e0f2f1;padding:2px 6px;border-radius:3px;">Corollary</span></li>
+</ul>
+</section>
+<section id="status-badges" class="level3">
+<h3 class="anchored" data-anchor-id="status-badges">Status Badges</h3>
+<ul>
+<li><span style="background-color:#c8e6c9;padding:2px 6px;border-radius:3px;">complete</span>: Article is complete</li>
+<li><span style="background-color:#fff9c4;padding:2px 6px;border-radius:3px;">draft</span>: Article is in draft state</li>
+<li><span style="background-color:#b2dfdb;padding:2px 6px;border-radius:3px;">verified</span>: Article has been verified</li>
+<li><span style="background-color:#ffccbc;padding:2px 6px;border-radius:3px;">stub</span>: Article is a stub</li>
+</ul>
+</section>
+<section id="proof-status" class="level3">
+<h3 class="anchored" data-anchor-id="proof-status">Proof Status</h3>
+<ul>
+<li>✅ <strong>Verified</strong>: Formal proof exists in Lean 4</li>
+<li>❌ <strong>Not verified</strong>: No formal proof yet</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Mathematics Knowledge Graph Wiki - Built with Quarto and RDF</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

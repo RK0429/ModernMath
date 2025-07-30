@@ -231,6 +231,10 @@ window.Quarto = {
 <span class="menu-text">概要</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../../nav/ja/proof-progress.html"> 
+<span class="menu-text">形式的証明</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../../nav/ja/contributing.html"> 
 <span class="menu-text">貢献</span></a>
   </li>  
@@ -266,6 +270,7 @@ window.Quarto = {
   <li><a href="#addition-axioms" id="toc-addition-axioms" class="nav-link" data-scroll-target="#addition-axioms">Addition Axioms</a></li>
   <li><a href="#scalar-multiplication-axioms" id="toc-scalar-multiplication-axioms" class="nav-link" data-scroll-target="#scalar-multiplication-axioms">Scalar Multiplication Axioms</a></li>
   <li><a href="#remarks" id="toc-remarks" class="nav-link" data-scroll-target="#remarks">Remarks</a></li>
+  <li><a href="#formal-proof" id="toc-formal-proof" class="nav-link" data-scroll-target="#formal-proof">Formal Proof</a></li>
   <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
   <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
   </ul></li>
@@ -331,6 +336,21 @@ window.Quarto = {
 <li>Vector spaces are fundamental structures in linear algebra and appear throughout mathematics</li>
 <li>A vector space is precisely a <a href="../../../content/en/algebra/def-module.html">module</a> over a field—this perspective unifies linear algebra with ring theory</li>
 </ul>
+</section>
+<section id="formal-proof" class="level2">
+<h2 class="anchored" data-anchor-id="formal-proof">Formal Proof</h2>
+<p>This definition has been formally verified in Lean 4. You can explore the proof in the interactive editor below:</p>
+<div class="lean-proof-container" style="margin: 1em 0;">
+  <iframe src="https://live.lean-lang.org/#file=https://RK0429.github.io/ModernMath/formal/Algebra/VectorSpaces.lean" width="100%" height="600" style="border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" title="Lean 4 Interactive Proof">
+    <p>Your browser does not support iframes.</p>
+  </iframe>
+  <p style="text-align: right; margin-top: 0.5em;">
+    <a href="https://live.lean-lang.org/#file=https://RK0429.github.io/ModernMath/formal/Algebra/VectorSpaces.lean" target="_blank" rel="noopener noreferrer">
+      View in fullscreen →
+    </a>
+  </p>
+</div>
+<p><strong>Lean ID</strong>: <code>Mathlib.LinearAlgebra.Basic.Module</code> <strong>Module</strong>: <code>MathKnowledgeGraph.Algebra.VectorSpaces</code></p>
 </section>
 <section id="dependency-graph" class="level2">
 <h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
@@ -411,7 +431,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-vector-space-1753870240" class="graph-visualization-container">
+<div id="graph-viz-def-vector-space-1753876458" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -675,12 +695,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-vector-space-1753870240', {
+    createForceGraph(data, 'graph-viz-def-vector-space-1753876458', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-vector-space-1753870240').innerHTML =
+    document.getElementById('graph-viz-def-vector-space-1753876458').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
