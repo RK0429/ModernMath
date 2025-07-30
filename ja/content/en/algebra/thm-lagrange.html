@@ -337,43 +337,43 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-subgroup["Subgroup"]:::definition
-    def-simple-group["Simple Group"]:::definition
-    def-coset["Coset"]:::definition
-    def-normal-subgroup["Normal Subgroup"]:::definition
-    thm-lagrange["Lagrange's Theorem"]:::theorem
     def-group["Group"]:::definition
-    def-quotient-group["Quotient Group"]:::definition
-    thm-sylow["Sylow Theorems"]:::theorem
-    def-abelian-group["Abelian Group"]:::definition
     def-cyclic-group["Cyclic Group"]:::definition
+    def-coset["Coset"]:::definition
+    thm-sylow["Sylow Theorems"]:::theorem
+    def-quotient-group["Quotient Group"]:::definition
     def-order["Order"]:::definition
+    def-normal-subgroup["Normal Subgroup"]:::definition
+    def-simple-group["Simple Group"]:::definition
+    def-abelian-group["Abelian Group"]:::definition
+    thm-lagrange["Lagrange's Theorem"]:::theorem
     thm-orbit-stabilizer["Orbit-Stabilizer Theorem"]:::theorem
     def-coset --&gt; thm-lagrange
-    thm-lagrange --&gt; def-quotient-group
+    def-abelian-group --&gt; thm-lagrange
     thm-lagrange --&gt; def-cyclic-group
-    thm-lagrange --&gt; def-order
-    thm-lagrange --&gt; def-coset
-    def-normal-subgroup --&gt; thm-lagrange
-    thm-orbit-stabilizer --&gt; thm-lagrange
+    def-cyclic-group --&gt; thm-lagrange
     thm-lagrange --&gt; def-group
+    thm-orbit-stabilizer --&gt; thm-lagrange
     def-subgroup --&gt; thm-lagrange
+    thm-lagrange --&gt; def-order
     thm-sylow --&gt; thm-lagrange
     thm-lagrange --&gt; def-subgroup
-    def-abelian-group --&gt; thm-lagrange
-    def-cyclic-group --&gt; thm-lagrange
     def-simple-group --&gt; thm-lagrange
     def-order --&gt; thm-lagrange
+    thm-lagrange --&gt; def-coset
+    thm-lagrange --&gt; def-quotient-group
+    def-normal-subgroup --&gt; thm-lagrange
     class thm-lagrange current
     click def-subgroup "def-subgroup.html" "Go to Subgroup"
-    click def-simple-group "def-simple-group.html" "Go to Simple Group"
-    click def-coset "def-coset.html" "Go to Coset"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
     click def-group "def-group.html" "Go to Group"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
-    click thm-sylow "thm-sylow.html" "Go to Sylow Theorems"
-    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group"
     click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group"
+    click def-coset "def-coset.html" "Go to Coset"
+    click thm-sylow "thm-sylow.html" "Go to Sylow Theorems"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
     click def-order "def-order.html" "Go to Order"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
+    click def-simple-group "def-simple-group.html" "Go to Simple Group"
+    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group"
     click thm-orbit-stabilizer "thm-orbit-stabilizer.html" "Go to Orbit-Stabilizer Theorem"
 </pre>
 </div>
@@ -385,7 +385,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-lagrange-1753838161" class="graph-visualization-container">
+<div id="graph-viz-thm-lagrange-1753838697" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -633,12 +633,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-lagrange-1753838161', {
+    createForceGraph(data, 'graph-viz-thm-lagrange-1753838697', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-lagrange-1753838161').innerHTML =
+    document.getElementById('graph-viz-thm-lagrange-1753838697').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

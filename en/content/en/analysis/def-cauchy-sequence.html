@@ -403,23 +403,23 @@ window.Quarto = {
     def-metric-space["Metric Space"]:::definition
     def-cauchy-sequence["Cauchy Sequence"]:::definition
     def-complete-metric-space["Complete Metric Space"]:::definition
-    def-sequence["Sequence"]:::definition
-    def-open-ball["Open Ball"]:::definition
-    def-limit["Limit of a Sequence"]:::definition
     def-uniform-continuity["Uniform Continuity"]:::definition
-    def-open-ball --&gt; def-cauchy-sequence
+    def-limit["Limit of a Sequence"]:::definition
+    def-open-ball["Open Ball"]:::definition
+    def-sequence["Sequence"]:::definition
     def-cauchy-sequence --&gt; def-metric-space
     def-uniform-continuity --&gt; def-cauchy-sequence
     def-complete-metric-space --&gt; def-cauchy-sequence
     def-cauchy-sequence --&gt; def-limit
+    def-open-ball --&gt; def-cauchy-sequence
     def-cauchy-sequence --&gt; def-sequence
     class def-cauchy-sequence current
     click def-metric-space "def-metric-space.html" "Go to Metric Space"
     click def-complete-metric-space "def-complete-metric-space.html" "Go to Complete Metric Space"
-    click def-sequence "def-sequence.html" "Go to Sequence"
-    click def-open-ball "def-open-ball.html" "Go to Open Ball"
-    click def-limit "def-limit.html" "Go to Limit of a Sequence"
     click def-uniform-continuity "def-uniform-continuity.html" "Go to Uniform Continuity"
+    click def-limit "def-limit.html" "Go to Limit of a Sequence"
+    click def-open-ball "def-open-ball.html" "Go to Open Ball"
+    click def-sequence "def-sequence.html" "Go to Sequence"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -430,7 +430,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-cauchy-sequence-1753837913" class="graph-visualization-container">
+<div id="graph-viz-def-cauchy-sequence-1753838452" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -678,12 +678,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-cauchy-sequence-1753837913', {
+    createForceGraph(data, 'graph-viz-def-cauchy-sequence-1753838452', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-cauchy-sequence-1753837913').innerHTML =
+    document.getElementById('graph-viz-def-cauchy-sequence-1753838452').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

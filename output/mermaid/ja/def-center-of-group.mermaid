@@ -4,27 +4,27 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-subgroup["部分群"]:::definition
-    def-simple-group["単純群"]:::definition
     def-center-of-group["群の中心"]:::definition
-    ex-group-action-examples["群作用の例"]:::example
-    def-normal-subgroup["正規部分群"]:::definition
     def-group["群"]:::definition
+    def-subgroup["部分群"]:::definition
+    ex-group-action-examples["群作用の例"]:::example
     def-quotient-group["商群"]:::definition
     def-automorphism["自己同型"]:::definition
+    def-normal-subgroup["正規部分群"]:::definition
+    def-simple-group["単純群"]:::definition
     def-abelian-group["アーベル群"]:::definition
-    def-simple-group --> def-center-of-group
-    def-center-of-group --> def-subgroup
-    def-center-of-group --> def-normal-subgroup
-    def-center-of-group --> def-automorphism
-    def-center-of-group --> def-simple-group
-    def-abelian-group --> def-center-of-group
-    def-center-of-group --> def-group
-    def-group --> def-center-of-group
-    def-center-of-group --> def-abelian-group
-    def-normal-subgroup --> def-center-of-group
-    def-quotient-group --> def-center-of-group
     def-center-of-group --> def-quotient-group
+    def-abelian-group --> def-center-of-group
+    def-center-of-group --> def-simple-group
+    def-simple-group --> def-center-of-group
+    def-center-of-group --> def-automorphism
+    def-normal-subgroup --> def-center-of-group
     ex-group-action-examples --> def-center-of-group
     def-automorphism --> def-center-of-group
+    def-center-of-group --> def-abelian-group
+    def-center-of-group --> def-normal-subgroup
+    def-quotient-group --> def-center-of-group
+    def-center-of-group --> def-group
+    def-center-of-group --> def-subgroup
+    def-group --> def-center-of-group
     class def-center-of-group current
