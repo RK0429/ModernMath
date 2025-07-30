@@ -297,22 +297,12 @@ def create_domain_json(g: Graph, domain: str, output_dir: Path, lang: str = "en"
 
 
 def _get_all_graph_nodes(g: Graph) -> Set[Any]:
-    """Get all nodes from the graph, including formal proofs but excluding other external URIs."""
+    """Get all nodes from the graph, excluding formal proofs and other external URIs."""
     nodes = set()
-    # First, collect all formal proof nodes from isVerifiedBy relationships
-    formal_proofs = set()
-    for s, _, o in g.triples((None, MYMATH.isVerifiedBy, None)):
-        formal_proofs.add(o)
-
-    # Then collect all nodes with proper types
+    # Collect all nodes with proper types from our base URI only
     for s, _, o in g.triples((None, RDF.type, None)):
-        if str(o).startswith(str(MYMATH)):
-            # Include nodes from our base URI
-            if str(s).startswith(BASE_URI):
-                nodes.add(s)
-            # Include formal proof nodes only if they're actually used in isVerifiedBy
-            elif str(s).startswith("https://mathlib.org/proof/") and s in formal_proofs:
-                nodes.add(s)
+        if str(o).startswith(str(MYMATH)) and str(s).startswith(BASE_URI):
+            nodes.add(s)
     return nodes
 
 
@@ -323,10 +313,7 @@ def _get_all_graph_edges(g: Graph, nodes: Set[Any]) -> Set[Tuple[str, str, str]]
         for dep in g.objects(node, MYMATH.uses):
             if dep in nodes:
                 edges.add((str(node), str(dep), "uses"))
-        # Include isVerifiedBy edges
-        for proof in g.objects(node, MYMATH.isVerifiedBy):
-            if proof in nodes:
-                edges.add((str(node), str(proof), "isVerifiedBy"))
+        # Exclude isVerifiedBy edges since we're removing formal proof nodes
     return edges
 
 

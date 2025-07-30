@@ -296,9 +296,11 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
 - **Implementation**: Uses `graph-viz` shortcode with `data-id="global-graph"`
 - **Data Generation**: `create_global_json()` in `generate_d3_data.py` creates `global-graph.json`
 - **URL Paths**: Global uses `content/{lang}/{domain}/{article}.html`, domain-specific uses `../{domain}/{article}.html`
-- **External Node Filtering**: Global graph includes formal proof nodes but excludes other external URIs:
-  - Includes nodes from `BASE_URI` and `https://mathlib.org/proof/`
-  - Filters in `_get_all_graph_nodes()`: `if str(s).startswith(BASE_URI) or str(s).startswith("https://mathlib.org/proof/")`
+- **Node Filtering**: Global graph excludes all external URIs including formal proofs:
+  - Only includes nodes from `BASE_URI` (mathematical concepts)
+  - `_get_all_graph_nodes()`: Filters to `str(s).startswith(BASE_URI)` only
+  - `_get_all_graph_edges()`: Excludes `isVerifiedBy` edges
+- **Individual Visualizations**: Article-specific graphs still show formal proof nodes and `isVerifiedBy` relationships
 
 ### Formal Proof Visualization
 
