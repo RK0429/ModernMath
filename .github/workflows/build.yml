@@ -61,12 +61,15 @@ jobs:
         cache: 'poetry'
         cache-dependency-path: '**/poetry.lock'
 
-    - name: Install Poetry
+    - name: Install Poetry CLI
       uses: snok/install-poetry@v1
       with:
         virtualenvs-create: true
         virtualenvs-in-project: true
         installer-parallel: true
+
+    - name: Check Poetry version
+      run: poetry --version
 
     - name: Install dependencies
       run: poetry install --no-interaction --no-root
@@ -106,12 +109,15 @@ jobs:
         cache: 'poetry'
         cache-dependency-path: '**/poetry.lock'
 
-    - name: Install Poetry
+    - name: Install Poetry CLI
       uses: snok/install-poetry@v1
       with:
         virtualenvs-create: true
         virtualenvs-in-project: true
         installer-parallel: true
+
+    - name: Check Poetry version
+      run: poetry --version
 
     - name: Install dependencies
       run: poetry install --no-interaction --no-root
@@ -196,12 +202,15 @@ jobs:
         cache: 'poetry'
         cache-dependency-path: '**/poetry.lock'
 
-    - name: Install Poetry
+    - name: Install Poetry CLI
       uses: snok/install-poetry@v1
       with:
         virtualenvs-create: true
         virtualenvs-in-project: true
         installer-parallel: true
+
+    - name: Check Poetry version
+      run: poetry --version
 
     - name: Install dependencies
       run: poetry install --no-interaction --no-root
@@ -262,12 +271,15 @@ jobs:
         cache: 'poetry'
         cache-dependency-path: '**/poetry.lock'
 
-    - name: Install Poetry
+    - name: Install Poetry CLI
       uses: snok/install-poetry@v1
       with:
         virtualenvs-create: true
         virtualenvs-in-project: true
         installer-parallel: true
+
+    - name: Check Poetry version
+      run: poetry --version
 
     - name: Install dependencies
       run: poetry install --no-interaction --no-root
@@ -379,11 +391,11 @@ jobs:
         mkdir -p _site/en _site/ja
         if [ -d "_site/site-en" ]; then
           mv _site/site-en/* _site/en/ || true
-          rmdir _site/site-en || true
+          rmdir __site/site-en || true
         fi
         if [ -d "_site/site-ja" ]; then
           mv _site/site-ja/* _site/ja/ || true
-          rmdir _site/site-ja || true
+          rmdir __site/site-ja || true
         fi
 
         # Create root index.html for language detection
