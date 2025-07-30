@@ -72,14 +72,10 @@ end BinaryOperations
 
 section Subgroups
 
-/--
-A subgroup of a group G is a subset that is closed under the group operation,
-contains the identity, and contains inverses.
-
-This corresponds to def-subgroup in our knowledge graph.
-
-Node ID: def-subgroup
--/
+-- A subgroup of a group G is a subset that is closed under the group operation,
+-- contains the identity, and contains inverses.
+-- This corresponds to def-subgroup in our knowledge graph.
+-- Node ID: def-subgroup
 -- Note: Mathlib already has a comprehensive Subgroup definition
 -- We'll demonstrate the concept with examples and theorems
 
@@ -98,7 +94,7 @@ theorem subgroup_inter {G : Type*} [Group G] (H K : Subgroup G) :
 /-- Subgroup test: A subset H is a subgroup iff it's nonempty and closed under multiplication by inverses -/
 theorem subgroup_test {G : Type*} [Group G] (H : Set G) :
   (∃ (S : Subgroup G), S.carrier = H) ↔
-  (H.Nonempty ∧ ∀ a b ∈ H, a * b⁻¹ ∈ H) := by
+  (H.Nonempty ∧ ∀ a ∈ H, ∀ b ∈ H, a * b⁻¹ ∈ H) := by
   sorry -- This is a standard result in group theory
 
 end Subgroups
