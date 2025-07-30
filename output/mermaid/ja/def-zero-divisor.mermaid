@@ -5,17 +5,17 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-zero-divisor["零因子"]:::definition
-    def-integral-domain["整域"]:::definition
-    def-ring["環"]:::definition
-    def-ideal["イデアル"]:::definition
     def-field["体"]:::definition
+    def-integral-domain["整域"]:::definition
     def-prime-ideal["素イデアル"]:::definition
+    def-ring["環"]:::definition
     def-identity-element["単位元"]:::definition
+    def-ideal["イデアル"]:::definition
+    def-zero-divisor --> def-ring
+    def-integral-domain --> def-zero-divisor
+    def-zero-divisor --> def-field
     def-zero-divisor --> def-ideal
     def-zero-divisor --> def-prime-ideal
-    def-zero-divisor --> def-field
-    def-integral-domain --> def-zero-divisor
-    def-zero-divisor --> def-ring
-    def-zero-divisor --> def-identity-element
     def-zero-divisor --> def-integral-domain
+    def-zero-divisor --> def-identity-element
     class def-zero-divisor current

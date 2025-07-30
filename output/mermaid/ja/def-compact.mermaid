@@ -4,17 +4,17 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-compact["コンパクト空間"]:::definition
-    def-topological-space["位相空間"]:::definition
-    def-homeomorphism["同相写像"]:::definition
     ex-closed-interval-compact["閉区間はコンパクト"]:::example
-    def-set["集合"]:::definition
+    def-homeomorphism["同相写像"]:::definition
+    def-compact["コンパクト空間"]:::definition
     def-open-set["開集合"]:::definition
     thm-heine-borel["ハイネ・ボレルの定理"]:::theorem
+    def-topological-space["位相空間"]:::definition
+    def-set["集合"]:::definition
+    def-homeomorphism --> def-compact
     ex-closed-interval-compact --> def-compact
     def-compact --> def-topological-space
-    def-homeomorphism --> def-compact
+    def-compact --> def-open-set
     thm-heine-borel --> def-compact
     def-compact --> def-set
-    def-compact --> def-open-set
     class def-compact current
