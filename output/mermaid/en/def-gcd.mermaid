@@ -4,32 +4,32 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-lcm["Least Common Multiple"]:::definition
     thm-fermat-little["Fermat's Little Theorem"]:::theorem
-    def-gcd["Greatest Common Divisor"]:::definition
+    def-prime["Prime Number"]:::definition
     thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
+    def-lcm["Least Common Multiple"]:::definition
+    def-gcd["Greatest Common Divisor"]:::definition
+    def-set["Set"]:::definition
+    thm-euler["Euler's Theorem"]:::theorem
+    thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
     ex-principal-ideal["Principal Ideals in Integers"]:::example
     def-congruence["Congruence (Modular Arithmetic)"]:::definition
-    def-prime["Prime Number"]:::definition
-    thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
-    def-set["Set"]:::definition
     def-divisibility["Divisibility"]:::definition
-    thm-euler["Euler's Theorem"]:::theorem
     thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
-    def-divisibility --> def-gcd
-    def-gcd --> thm-euler
-    def-gcd --> def-prime
-    thm-fundamental-arithmetic --> def-gcd
-    def-gcd --> def-set
-    thm-chinese-remainder --> def-gcd
-    thm-fermat-little --> def-gcd
-    thm-euclidean-algorithm --> def-gcd
-    def-gcd --> thm-euclidean-algorithm
-    def-gcd --> def-lcm
-    def-gcd --> def-congruence
-    def-congruence --> def-gcd
     def-lcm --> def-gcd
-    def-gcd --> def-divisibility
+    def-gcd --> def-prime
+    def-gcd --> thm-euclidean-algorithm
+    def-gcd --> def-congruence
+    def-gcd --> thm-euler
     def-prime --> def-gcd
+    thm-fundamental-arithmetic --> def-gcd
+    thm-euclidean-algorithm --> def-gcd
+    def-divisibility --> def-gcd
+    def-gcd --> def-set
     ex-principal-ideal --> def-gcd
+    thm-fermat-little --> def-gcd
+    def-congruence --> def-gcd
+    thm-chinese-remainder --> def-gcd
+    def-gcd --> def-lcm
+    def-gcd --> def-divisibility
     class def-gcd current
