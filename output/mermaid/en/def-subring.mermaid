@@ -6,20 +6,20 @@ graph TD
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-subgroup["Subgroup"]:::definition
     def-field["Field"]:::definition
-    def-ideal["Ideal"]:::definition
     def-polynomial-ring["Polynomial Ring"]:::definition
+    def-ring["Ring"]:::definition
+    def-ideal["Ideal"]:::definition
+    def-set["Set"]:::definition
     def-subring["Subring"]:::definition
     def-quotient-ring["Quotient Ring"]:::definition
     def-integral-domain["Integral Domain"]:::definition
-    def-ring["Ring"]:::definition
-    def-set["Set"]:::definition
-    def-subring --> def-ideal
-    def-integral-domain --> def-subring
+    def-subring --> def-quotient-ring
     def-subring --> def-polynomial-ring
+    def-subring --> def-subgroup
+    def-field --> def-subring
     def-ideal --> def-subring
     def-subring --> def-set
-    def-field --> def-subring
-    def-subring --> def-subgroup
-    def-subring --> def-quotient-ring
+    def-integral-domain --> def-subring
     def-subring --> def-ring
+    def-subring --> def-ideal
     class def-subring current

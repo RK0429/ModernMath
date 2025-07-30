@@ -4,30 +4,30 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-open-ball["Open Ball"]:::definition
+    ex-polynomial-continuity["Polynomial Continuity"]:::example
+    thm-intermediate-value["Intermediate Value Theorem"]:::theorem
+    def-homeomorphism["Homeomorphism"]:::definition
+    def-continuity["Continuity"]:::definition
+    def-function["Function"]:::definition
+    def-integral["Integral"]:::definition
+    def-uniform-continuity["Uniform Continuity"]:::definition
     thm-mean-value["Mean Value Theorem"]:::theorem
     thm-fundamental-calculus["Fundamental Theorem of Calculus"]:::theorem
-    def-open-ball["Open Ball"]:::definition
-    thm-intermediate-value["Intermediate Value Theorem"]:::theorem
-    thm-chain-rule["Chain Rule"]:::theorem
-    def-integral["Integral"]:::definition
-    thm-taylor-series["Taylor Series"]:::theorem
-    def-continuity["Continuity"]:::definition
-    def-uniform-continuity["Uniform Continuity"]:::definition
-    ex-polynomial-continuity["Polynomial Continuity"]:::example
-    def-homeomorphism["Homeomorphism"]:::definition
-    def-function["Function"]:::definition
     def-limit["Limit of a Sequence"]:::definition
-    def-uniform-continuity --> def-continuity
-    thm-fundamental-calculus --> def-continuity
+    thm-chain-rule["Chain Rule"]:::theorem
+    thm-taylor-series["Taylor Series"]:::theorem
+    ex-polynomial-continuity --> def-continuity
+    def-open-ball --> def-continuity
+    thm-chain-rule --> def-continuity
+    def-continuity --> def-open-ball
     thm-intermediate-value --> def-continuity
     thm-mean-value --> def-continuity
-    def-continuity --> def-open-ball
+    thm-fundamental-calculus --> def-continuity
     thm-taylor-series --> def-continuity
-    def-integral --> def-continuity
-    ex-polynomial-continuity --> def-continuity
-    thm-chain-rule --> def-continuity
     def-homeomorphism --> def-continuity
+    def-uniform-continuity --> def-continuity
     def-continuity --> def-function
-    def-open-ball --> def-continuity
+    def-integral --> def-continuity
     def-continuity --> def-limit
     class def-continuity current

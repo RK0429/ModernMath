@@ -6,17 +6,17 @@ graph TD
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-subgroup["部分群"]:::definition
     def-abelian-group["アーベル群"]:::definition
-    def-coset["剰余類"]:::definition
+    def-normal-subgroup["正規部分群"]:::definition
     ex-integers-addition["加法における整数"]:::example
     def-group["群"]:::definition
     ex-even-integers-subgroup["偶数整数は部分群を成す"]:::example
-    def-normal-subgroup["正規部分群"]:::definition
-    ex-even-integers-subgroup --> ex-integers-addition
-    ex-even-integers-subgroup --> def-coset
-    ex-even-integers-subgroup --> def-subgroup
+    def-coset["剰余類"]:::definition
+    ex-even-integers-subgroup --> def-group
     ex-even-integers-subgroup --> def-normal-subgroup
     def-group --> ex-even-integers-subgroup
-    ex-even-integers-subgroup --> def-group
-    def-coset --> ex-even-integers-subgroup
     ex-even-integers-subgroup --> def-abelian-group
+    ex-even-integers-subgroup --> def-subgroup
+    ex-even-integers-subgroup --> def-coset
+    def-coset --> ex-even-integers-subgroup
+    ex-even-integers-subgroup --> ex-integers-addition
     class ex-even-integers-subgroup current
