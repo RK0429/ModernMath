@@ -229,7 +229,9 @@ Scripts return 0 when no changes needed (success case).
 
 ### Quarto HTML Rendering
 
-- HTML blocks: Use `{=html}` syntax
+- **Raw HTML blocks**: Use `` ```{=html} `` syntax (triple backticks, not colons)
+  - Incorrect: `::: {=html}` (will escape HTML)
+  - Correct: `` ```{=html} `` (renders raw HTML)
 - JS timing: Use `DOMContentLoaded`
 - Error handling: User-friendly messages
 

@@ -5,6 +5,7 @@ Fix Lean 4 proof URLs in Quarto files.
 This script corrects the URLs in iframe src attributes and links to:
 1. Convert uppercase GitHub usernames to lowercase (GitHub Pages requirement)
 2. Ensure they include the full path to Lean files (including MathKnowledgeGraph directory)
+3. Fix #file= to #url= for Lean web editor compatibility
 """
 
 import re
@@ -82,6 +83,9 @@ def fix_lean_urls_in_file(file_path: Path) -> bool:
 
         for pattern, replacement in patterns:
             content = re.sub(pattern, replacement, content)
+
+        # Fix #file= to #url= for Lean web editor compatibility
+        content = re.sub(r"(https://live\.lean-lang\.org/)#file=", r"\1#url=", content)
 
         if content != original_content:
             with open(file_path, "w", encoding="utf-8") as f:
