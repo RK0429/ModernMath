@@ -154,13 +154,7 @@ jobs:
           lake-build-${{ runner.os }}-
 
     - name: Install Lean 4
-      run: |
-        if [ ! -d "$HOME/.elan" ]; then
-          wget -q https://raw.githubusercontent.com/leanprover-community/mathlib4/master/scripts/install_debian.sh
-          bash install_debian.sh
-          rm install_debian.sh
-        fi
-        echo "$HOME/.elan/bin" >> $GITHUB_PATH
+      uses: leanprover/lean-action@v1
 
     - name: Verify Lean installation
       run: |
