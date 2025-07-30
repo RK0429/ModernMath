@@ -198,6 +198,9 @@ css:
 - **Jobs**: quality (10m), lean-validation (15m), graph (15m), visualizations (15m), site (20m), deploy (10m)
 - **Optimizations**: Poetry cache, parallel scripts with `&` + `wait`, matrix EN/JA builds
 - **Runtime**: ~12-15 minutes total
+- **Conditional Jobs**:
+  - lean-validation only runs when Lean files exist: `if: needs.check-lean.outputs.has-lean-files == 'true'`
+  - Dependent jobs handle skipped upstream jobs: `if: ${{ !cancelled() && (needs.lean-validation.result == 'success' || needs.lean-validation.result == 'skipped') }}`
 
 ### CI/CD Troubleshooting
 
@@ -218,6 +221,30 @@ if: ${{ success() && hashFiles('lean_mappings.json') != '' }}
 
 # Incorrect (will cause "Unrecognized function" error)
 if: hashFiles('formal/**/*.lean') != ''
+```
+
+**Conditional Job Execution Pattern**: Since `hashFiles()` is not available at job level, use a preliminary check job:
+
+```yaml
+# Create a check job that outputs a variable
+check-lean:
+  runs-on: ubuntu-latest
+  outputs:
+    has-lean-files: ${{ steps.check.outputs.has-lean-files }}
+  steps:
+    - uses: actions/checkout@v4
+    - id: check
+      run: |
+        if find formal -name "*.lean" -type f | grep -q .; then
+          echo "has-lean-files=true" >> $GITHUB_OUTPUT
+        else
+          echo "has-lean-files=false" >> $GITHUB_OUTPUT
+        fi
+
+# Use the output in dependent jobs
+lean-validation:
+  needs: check-lean
+  if: needs.check-lean.outputs.has-lean-files == 'true'
 ```
 
 **Deprecated Commands**: The `set-output` workflow command is deprecated. Use `$GITHUB_OUTPUT` instead:

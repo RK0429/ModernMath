@@ -43,6 +43,24 @@ permissions:
   packages: read
 
 jobs:
+  # Job 0: Check if Lean files exist
+  check-lean:
+    runs-on: ubuntu-latest
+    outputs:
+      has-lean-files: ${{ steps.check.outputs.has-lean-files }}
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Check for Lean files
+      id: check
+      run: |
+        if find formal -name "*.lean" -type f | grep -q .; then
+          echo "has-lean-files=true" >> $GITHUB_OUTPUT
+        else
+          echo "has-lean-files=false" >> $GITHUB_OUTPUT
+        fi
+
   # Job 1: Code quality and validation checks
   quality:
     runs-on: ubuntu-latest
@@ -88,7 +106,8 @@ jobs:
   lean-validation:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    needs: quality
+    needs: [quality, check-lean]
+    if: needs.check-lean.outputs.has-lean-files == 'true'
 
     steps:
     - name: Checkout repository
@@ -130,7 +149,7 @@ jobs:
   graph:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    needs: quality
+    needs: [quality, check-lean]
 
     steps:
     - name: Checkout repository
@@ -218,7 +237,8 @@ jobs:
   visualizations:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    needs: [quality, graph, lean-validation]
+    needs: [quality, graph, lean-validation, check-lean]
+    if: ${{ !cancelled() && (needs.lean-validation.result == 'success' || needs.lean-validation.result == 'skipped') }}
 
     steps:
     - name: Checkout repository
@@ -282,7 +302,8 @@ jobs:
   site:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs: [quality, graph, visualizations, lean-validation]
+    needs: [quality, graph, visualizations, lean-validation, check-lean]
+    if: ${{ !cancelled() && (needs.lean-validation.result == 'success' || needs.lean-validation.result == 'skipped') }}
     strategy:
       matrix:
         language: [en, ja]
