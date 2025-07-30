@@ -5,18 +5,18 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-group["Group"]:::definition
-    def-normal-subgroup["Normal Subgroup"]:::definition
     ex-integers-addition["Integers under Addition"]:::example
+    def-normal-subgroup["Normal Subgroup"]:::definition
     def-coset["Coset"]:::definition
+    def-abelian-group["Abelian Group"]:::definition
     ex-even-integers-subgroup["Even Integers Form a Subgroup"]:::example
     def-subgroup["Subgroup"]:::definition
-    def-abelian-group["Abelian Group"]:::definition
-    ex-even-integers-subgroup --> def-abelian-group
+    def-group --> ex-even-integers-subgroup
+    ex-even-integers-subgroup --> ex-integers-addition
     ex-even-integers-subgroup --> def-group
+    ex-even-integers-subgroup --> def-abelian-group
+    ex-even-integers-subgroup --> def-normal-subgroup
     ex-even-integers-subgroup --> def-coset
     ex-even-integers-subgroup --> def-subgroup
-    ex-even-integers-subgroup --> ex-integers-addition
-    ex-even-integers-subgroup --> def-normal-subgroup
-    def-group --> ex-even-integers-subgroup
     def-coset --> ex-even-integers-subgroup
     class ex-even-integers-subgroup current

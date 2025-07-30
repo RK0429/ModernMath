@@ -4,32 +4,32 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-lcm["最小公倍数"]:::definition
+    thm-fermat-little["フェルマーの小定理"]:::theorem
+    def-gcd["最大公約数"]:::definition
     def-congruence["合同（モジュラー演算）"]:::definition
     thm-field-characteristic["体の標数"]:::theorem
     thm-euclid-infinitude-primes["素数の無限性に関するユークリッドの定理"]:::theorem
     def-prime["素数"]:::definition
-    def-lcm["最小公倍数"]:::definition
-    thm-euler["オイラーの定理"]:::theorem
-    thm-fermat-little["フェルマーの小定理"]:::theorem
     thm-fundamental-arithmetic["算術の基本定理"]:::theorem
-    def-divisibility["整除性"]:::definition
-    thm-chinese-remainder["中国剰余定理"]:::theorem
-    def-gcd["最大公約数"]:::definition
     ex-finite-field["有限体"]:::example
-    thm-euler --> def-prime
-    def-gcd --> def-prime
-    def-prime --> def-gcd
-    thm-fermat-little --> def-prime
+    def-divisibility["整除性"]:::definition
+    thm-euler["オイラーの定理"]:::theorem
+    thm-chinese-remainder["中国剰余定理"]:::theorem
     thm-fundamental-arithmetic --> def-prime
-    def-divisibility --> def-prime
-    def-prime --> def-congruence
-    def-prime --> thm-euclid-infinitude-primes
     def-lcm --> def-prime
-    def-congruence --> def-prime
+    def-gcd --> def-prime
     thm-field-characteristic --> def-prime
-    thm-chinese-remainder --> def-prime
-    def-prime --> thm-fundamental-arithmetic
     def-prime --> def-divisibility
-    thm-euclid-infinitude-primes --> def-prime
     ex-finite-field --> def-prime
+    def-prime --> thm-fundamental-arithmetic
+    def-divisibility --> def-prime
+    def-prime --> thm-euclid-infinitude-primes
+    def-congruence --> def-prime
+    def-prime --> def-congruence
+    thm-chinese-remainder --> def-prime
+    thm-fermat-little --> def-prime
+    thm-euclid-infinitude-primes --> def-prime
+    thm-euler --> def-prime
+    def-prime --> def-gcd
     class def-prime current
