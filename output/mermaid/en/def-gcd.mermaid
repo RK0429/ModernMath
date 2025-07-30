@@ -4,32 +4,32 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-congruence["Congruence (Modular Arithmetic)"]:::definition
+    def-lcm["Least Common Multiple"]:::definition
     ex-principal-ideal["Principal Ideals in Integers"]:::example
+    thm-fermat-little["Fermat's Little Theorem"]:::theorem
+    def-prime["Prime Number"]:::definition
+    thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
+    def-divisibility["Divisibility"]:::definition
+    def-gcd["Greatest Common Divisor"]:::definition
+    thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
     thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
     def-set["Set"]:::definition
-    thm-fermat-little["Fermat's Little Theorem"]:::theorem
-    def-gcd["Greatest Common Divisor"]:::definition
-    def-divisibility["Divisibility"]:::definition
-    def-lcm["Least Common Multiple"]:::definition
     thm-euler["Euler's Theorem"]:::theorem
-    def-prime["Prime Number"]:::definition
-    thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
-    def-congruence["Congruence (Modular Arithmetic)"]:::definition
-    thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
-    def-prime --> def-gcd
-    def-gcd --> def-prime
-    def-gcd --> def-congruence
     def-gcd --> thm-euler
-    def-lcm --> def-gcd
-    thm-fundamental-arithmetic --> def-gcd
-    thm-euclidean-algorithm --> def-gcd
-    def-gcd --> def-set
-    def-gcd --> def-lcm
-    def-gcd --> def-divisibility
-    def-gcd --> thm-euclidean-algorithm
-    def-divisibility --> def-gcd
     ex-principal-ideal --> def-gcd
     thm-chinese-remainder --> def-gcd
     thm-fermat-little --> def-gcd
+    thm-fundamental-arithmetic --> def-gcd
+    def-gcd --> def-set
+    def-gcd --> thm-euclidean-algorithm
+    def-lcm --> def-gcd
+    def-gcd --> def-lcm
+    def-gcd --> def-congruence
+    thm-euclidean-algorithm --> def-gcd
+    def-gcd --> def-divisibility
+    def-prime --> def-gcd
     def-congruence --> def-gcd
+    def-divisibility --> def-gcd
+    def-gcd --> def-prime
     class def-gcd current

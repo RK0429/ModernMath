@@ -5,21 +5,21 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-euclid-infinitude-primes["Euclid's Theorem on the Infinitude of Primes"]:::theorem
-    thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
-    def-gcd["Greatest Common Divisor"]:::definition
-    def-divisibility["Divisibility"]:::definition
     def-lcm["Least Common Multiple"]:::definition
     def-prime["Prime Number"]:::definition
-    thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
     thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
-    thm-fundamental-arithmetic --> thm-chinese-remainder
-    thm-fundamental-arithmetic --> thm-euclid-infinitude-primes
-    def-prime --> thm-fundamental-arithmetic
+    def-divisibility["Divisibility"]:::definition
+    def-gcd["Greatest Common Divisor"]:::definition
+    thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
+    thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
+    thm-fundamental-arithmetic --> thm-euclidean-algorithm
+    def-lcm --> thm-fundamental-arithmetic
+    thm-euclid-infinitude-primes --> thm-fundamental-arithmetic
     thm-fundamental-arithmetic --> def-lcm
     thm-fundamental-arithmetic --> def-gcd
     thm-fundamental-arithmetic --> def-divisibility
+    thm-fundamental-arithmetic --> thm-chinese-remainder
     thm-fundamental-arithmetic --> def-prime
-    def-lcm --> thm-fundamental-arithmetic
-    thm-fundamental-arithmetic --> thm-euclidean-algorithm
-    thm-euclid-infinitude-primes --> thm-fundamental-arithmetic
+    def-prime --> thm-fundamental-arithmetic
+    thm-fundamental-arithmetic --> thm-euclid-infinitude-primes
     class thm-fundamental-arithmetic current
