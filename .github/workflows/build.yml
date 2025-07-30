@@ -3,8 +3,38 @@ name: Build Multilingual Math Knowledge Graph
 on:
   push:
     branches: [ main, develop ]
+    paths:
+      - 'scripts/**'
+      - 'content/**'
+      - '_extensions/**'
+      - 'formal/**'
+      - '*.yml'
+      - '*.qmd'
+      - 'poetry.lock'
+      - 'pyproject.toml'
+      - '.github/workflows/build.yml'
+    paths-ignore:
+      - 'docs/**/*.md'
+      - 'README.md'
+      - 'CLAUDE.md'
+      - 'LICENSE'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'scripts/**'
+      - 'content/**'
+      - '_extensions/**'
+      - 'formal/**'
+      - '*.yml'
+      - '*.qmd'
+      - 'poetry.lock'
+      - 'pyproject.toml'
+      - '.github/workflows/build.yml'
+
+# Cancel in-progress runs when new commits are pushed
+concurrency:
+  group: ${{ github.ref }}-build
+  cancel-in-progress: true
 
 # Grant write permissions for deployment
 permissions:
@@ -14,25 +44,24 @@ permissions:
   packages: read
 
 jobs:
-  build:
+  # Job 1: Code quality and validation checks
+  quality:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-    strategy:
-      matrix:
-        python-version: ['3.12']
+    timeout-minutes: 10
+    outputs:
+      cache-key: ${{ steps.cache-key.outputs.key }}
 
     steps:
-    # Step 1: Checkout code
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    # Step 2: Set up Python environment
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python with Poetry cache
       uses: actions/setup-python@v5
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: '3.12'
+        cache: 'poetry'
+        cache-dependency-path: '**/poetry.lock'
 
-    # Step 2a: Install Poetry
     - name: Install Poetry
       uses: snok/install-poetry@v1
       with:
@@ -40,97 +69,73 @@ jobs:
         virtualenvs-in-project: true
         installer-parallel: true
 
-    # Step 2b: Load cached dependencies
-    - name: Load cached venv
-      id: cached-poetry-dependencies
-      uses: actions/cache@v4
-      with:
-        path: .venv
-        key: venv-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
-
-    # Step 2c: Install dependencies
     - name: Install dependencies
-      if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
 
-    # Step 2d: Install Google Chrome
-    - name: Install Google Chrome
-      id: setup-chrome
-      uses: browser-actions/setup-chrome@v2
-      with:
-        install-dependencies: true
+    - name: Generate cache key for other jobs
+      id: cache-key
+      run: echo "key=deps-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}" >> $GITHUB_OUTPUT
 
-    # Step 3: Install Quarto
-    - name: Set up Quarto
-      uses: quarto-dev/quarto-actions/setup@v2
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    # Step 3a: Build summary
-    - name: Display build configuration
+    - name: Run linting (black + flake8)
       run: |
-        echo "=== Build Configuration ==="
-        echo "Python version: ${{ matrix.python-version }}"
-        echo "Branch: ${{ github.ref_name }}"
-        echo "Event: ${{ github.event_name }}"
-        echo "Runner: ${{ runner.os }}"
-        echo ""
-        echo "=== Build Steps ==="
-        echo "1. Code quality checks (linting)"
-        echo "2. Content validation"
-        echo "3. Knowledge graph generation"
-        echo "4. Visualization generation (Mermaid, PyVis, D3.js)"
-        echo "5. Site content generation"
-        echo "6. Multilingual site rendering (EN/JA)"
-        echo "7. Post-processing and deployment preparation"
-        [ "${{ github.ref }}" == "refs/heads/main" ] && echo "8. Deploy to GitHub Pages ✓" || echo "8. Deploy to GitHub Pages (skipped - not main branch)"
-        echo "=========================="
-
-    # Step 4: Run linting
-    - name: Run flake8
-      run: |
+        echo "=== Running code quality checks ==="
+        poetry run black --check scripts/
         poetry run flake8 scripts/ --max-line-length=100 --extend-ignore=E203,E226,W503,W293
 
-    - name: Run black check
-      run: |
-        poetry run black --check scripts/
-
-    # Step 5: Run validation scripts
     - name: Validate YAML metadata
-      run: |
-        poetry run python scripts/validation/validate_metadata.py
+      run: poetry run python scripts/validation/validate_metadata.py
 
     - name: Check cross-references
       run: |
         poetry run python scripts/validation/check_cross_references.py
-        echo "Cross-reference validation completed successfully!"
+        echo "✓ Cross-reference validation completed"
+
+  # Job 2: Build and validate knowledge graph
+  graph:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: quality
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python with Poetry cache
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        cache: 'poetry'
+        cache-dependency-path: '**/poetry.lock'
+
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+      with:
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+        installer-parallel: true
+
+    - name: Install dependencies
+      run: poetry install --no-interaction --no-root
 
     - name: Validate existing graph
       run: |
         if [ -f "knowledge_graph.ttl" ]; then
           poetry run python scripts/graph/validate_graph.py
-          echo "Existing graph validated successfully!"
+          echo "✓ Existing graph validated"
         else
-          echo "No existing graph to validate, skipping..."
+          echo "No existing graph to validate"
         fi
 
-    # Step 6: Build knowledge graph
     - name: Build knowledge graph
       run: |
         poetry run python scripts/graph/build_graph.py
+        echo "✓ Knowledge graph built successfully"
+        wc -l knowledge_graph.ttl
 
-    - name: Display graph statistics
-      run: |
-        if [ -f "knowledge_graph.ttl" ]; then
-          echo "Knowledge graph built successfully!"
-          wc -l knowledge_graph.ttl
-        fi
-
-    # Step 6a: Formal verification integration (optional)
     - name: Process formal verification (if available)
       run: |
         if [ -d "formal/" ]; then
-          echo "Formal verification directory found, processing..."
+          echo "Processing formal verification..."
 
           # Extract Lean dependencies
           if poetry run python scripts/experimental/extract_lean_deps.py; then
@@ -157,102 +162,231 @@ jobs:
             echo "⚠ No Lean mappings found, skipping verification"
           fi
         else
-          echo "No formal verification directory found, skipping..."
+          echo "No formal verification directory found"
         fi
 
-    # Step 6b: Generate all visualizations
-    - name: Generate Mermaid diagrams
-      run: |
-        poetry run python scripts/visualization/generate_mermaid.py
-        echo "Mermaid diagrams generated (isolated nodes skipped)"
+    - name: Upload knowledge graph artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: knowledge-graph
+        path: knowledge_graph.ttl
+        retention-days: 30
 
-    - name: Generate PyVis visualizations with CSS fix
-      run: |
-        poetry run python scripts/visualization/generate_pyvis_with_fix.py
-        echo "PyVis visualizations generated and CSS paths fixed"
+    - name: Upload Lean mappings (if available)
+      if: success() && hashFiles('lean_mappings.json') != ''
+      uses: actions/upload-artifact@v4
+      with:
+        name: lean-mappings
+        path: lean_mappings.json
+        retention-days: 30
 
-    - name: Generate D3.js data files
-      run: |
-        poetry run python scripts/visualization/generate_d3_data.py
-        echo "D3.js data files generated"
+  # Job 3: Generate visualizations in parallel
+  visualizations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: [quality, graph]
 
-    # Step 6c: Generate site content
-    - name: Generate index pages for all domains
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python with Poetry cache
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        cache: 'poetry'
+        cache-dependency-path: '**/poetry.lock'
+
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+      with:
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+        installer-parallel: true
+
+    - name: Install dependencies
+      run: poetry install --no-interaction --no-root
+
+    - name: Download knowledge graph
+      uses: actions/download-artifact@v4
+      with:
+        name: knowledge-graph
+
+    - name: Generate visualizations in parallel
       run: |
+        echo "=== Generating visualizations in parallel ==="
+
+        # Start all visualization scripts in parallel
+        poetry run python scripts/visualization/generate_mermaid.py &
+        PID1=$!
+
+        poetry run python scripts/visualization/generate_pyvis_with_fix.py &
+        PID2=$!
+
+        poetry run python scripts/visualization/generate_d3_data.py &
+        PID3=$!
+
+        # Wait for all scripts to complete
+        wait $PID1
+        echo "✓ Mermaid diagrams generated"
+
+        wait $PID2
+        echo "✓ PyVis visualizations generated"
+
+        wait $PID3
+        echo "✓ D3.js data files generated"
+
+    - name: Upload visualization artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: visualizations
+        path: output/
+        retention-days: 30
+
+  # Job 4: Build multilingual site (using matrix for parallel language builds)
+  site:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: [quality, graph, visualizations]
+    strategy:
+      matrix:
+        language: [en, ja]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python with Poetry cache
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        cache: 'poetry'
+        cache-dependency-path: '**/poetry.lock'
+
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+      with:
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+        installer-parallel: true
+
+    - name: Install dependencies
+      run: poetry install --no-interaction --no-root
+
+    - name: Cache Quarto
+      uses: actions/cache@v4
+      with:
+        path: ~/.quarto
+        key: quarto-${{ runner.os }}-${{ hashFiles('.github/workflows/build.yml') }}
+
+    - name: Set up Quarto
+      uses: quarto-dev/quarto-actions/setup@v2
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Cache Chrome
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/puppeteer
+        key: chrome-${{ runner.os }}
+
+    - name: Install Google Chrome
+      id: setup-chrome
+      uses: browser-actions/setup-chrome@v2
+      with:
+        install-dependencies: true
+
+    - name: Download artifacts
+      uses: actions/download-artifact@v4
+      with:
+        merge-multiple: true
+
+    - name: Generate site content
+      run: |
+        echo "=== Generating site content for ${{ matrix.language }} ==="
+
+        # Generate index pages
         poetry run python scripts/site/generate_index_pages.py
-        echo "Index pages generated successfully!"
+        echo "✓ Index pages generated"
 
-    - name: Resolve cross-references
-      run: |
+        # Resolve cross-references
         poetry run python scripts/site/resolve_cross_references.py
-        echo "Cross-references resolved successfully!"
+        echo "✓ Cross-references resolved"
 
-    - name: Insert diagrams into content
-      run: |
+        # Insert diagrams
         poetry run python scripts/visualization/insert_diagrams.py
-        echo "Diagrams inserted (only nodes with valid diagrams)"
+        echo "✓ Diagrams inserted"
 
-    - name: Build search index
-      run: |
+        # Build search index
         poetry run python scripts/site/build_search_index.py
-        echo "Search index built successfully!"
+        echo "✓ Search index built"
 
-    - name: Remove title prefixes from articles
-      run: |
+        # Remove title prefixes
         poetry run python scripts/site/remove_title_prefixes.py
-        echo "Title prefixes removed successfully!"
+        echo "✓ Title prefixes removed"
 
-    # Step 7: Render Quarto site for multiple languages
-    - name: Render English site
+    - name: Render ${{ matrix.language }} site
       env:
         QUARTO_CHROMIUM: ${{ steps.setup-chrome.outputs.chrome-path }}
       run: |
-        echo "Building English version..."
-        quarto render --profile en
+        echo "Building ${{ matrix.language }} version..."
+        quarto render --profile ${{ matrix.language }}
 
-    - name: Render Japanese site
-      env:
-        QUARTO_CHROMIUM: ${{ steps.setup-chrome.outputs.chrome-path }}
+    - name: Post-process ${{ matrix.language }} site
+      if: matrix.language == 'ja'
       run: |
-        echo "Building Japanese version..."
-        quarto render --profile ja
-
-    # Step 8: Post-processing and finalization
-    - name: Fix Japanese index page
-      run: |
-        echo "Fixing Japanese index page..."
         poetry run python scripts/translation/fix_japanese_index.py
-        echo "Japanese index page fixed"
+        echo "✓ Japanese index page fixed"
 
-    # Buy Me a Coffee button is now injected via JavaScript (js/buy-me-coffee-button.js)
-    # No longer need the Python post-processing step
+    - name: Upload ${{ matrix.language }} site
+      uses: actions/upload-artifact@v4
+      with:
+        name: site-${{ matrix.language }}
+        path: _site/${{ matrix.language }}/
+        retention-days: 30
 
-    - name: Copy shared resources to site root
+  # Job 5: Combine sites and deploy
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: site
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Download all site artifacts
+      uses: actions/download-artifact@v4
+      with:
+        pattern: site-*
+        path: _site/
+
+    - name: Download other artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: knowledge-graph
+        path: _site/
+
+    - name: Download visualizations
+      uses: actions/download-artifact@v4
+      with:
+        name: visualizations
+        path: _site/output/
+
+    - name: Create language routing
       run: |
-        echo "Copying shared resources to root..."
-        # Copy output directories to the root _site directory
-        if [ -d "output" ]; then
-          cp -r output _site/
-          echo "✓ Copied output directory to _site/"
-        else
-          echo "⚠ No output directory to copy"
+        # Move language-specific sites to correct paths
+        mkdir -p _site/en _site/ja
+        if [ -d "_site/site-en" ]; then
+          mv _site/site-en/* _site/en/ || true
+          rmdir _site/site-en || true
+        fi
+        if [ -d "_site/site-ja" ]; then
+          mv _site/site-ja/* _site/ja/ || true
+          rmdir _site/site-ja || true
         fi
 
-        # Copy knowledge graph and other shared resources
-        if [ -f "knowledge_graph.ttl" ]; then
-          cp knowledge_graph.ttl _site/
-          echo "✓ Copied knowledge_graph.ttl to _site/"
-        fi
-
-        # Verify key directories exist
-        echo "Verifying site structure:"
-        [ -d "_site/output/d3-data/en" ] && echo "✓ D3 data (EN) present" || echo "⚠ D3 data (EN) missing"
-        [ -d "_site/output/d3-data/ja" ] && echo "✓ D3 data (JA) present" || echo "⚠ D3 data (JA) missing"
-        [ -d "_site/output/interactive/en" ] && echo "✓ Interactive viz (EN) present" || echo "⚠ Interactive viz (EN) missing"
-        [ -d "_site/output/interactive/ja" ] && echo "✓ Interactive viz (JA) present" || echo "⚠ Interactive viz (JA) missing"
-
-    - name: Create language detection and routing
-      run: |
         # Create root index.html for language detection
         cat > _site/index.html << 'EOF'
         <!DOCTYPE html>
@@ -277,54 +411,24 @@ jobs:
         </body>
         </html>
         EOF
-        echo "✓ Language detection page created"
 
-        # Create .nojekyll file for GitHub Pages
+        # Create .nojekyll file
         touch _site/.nojekyll
-        echo "✓ .nojekyll file created"
 
-    # Step 9: Upload artifacts
-    - name: Upload knowledge graph
-      uses: actions/upload-artifact@v4
-      with:
-        name: knowledge-graph-${{ matrix.python-version }}
-        path: knowledge_graph.ttl
-        retention-days: 30
+        echo "✓ Site structure prepared for deployment"
+        echo "Verifying structure:"
+        [ -d "_site/en" ] && echo "✓ English site present" || echo "⚠ English site missing"
+        [ -d "_site/ja" ] && echo "✓ Japanese site present" || echo "⚠ Japanese site missing"
+        [ -d "_site/output" ] && echo "✓ Output directory present" || echo "⚠ Output directory missing"
 
-    - name: Upload interactive visualizations
-      uses: actions/upload-artifact@v4
-      with:
-        name: interactive-viz-${{ matrix.python-version }}
-        path: output/interactive/
-        retention-days: 30
-
-    - name: Upload D3.js data files
-      uses: actions/upload-artifact@v4
-      with:
-        name: d3-data-${{ matrix.python-version }}
-        path: output/d3-data/
-        retention-days: 30
-
-    - name: Upload rendered site
-      uses: actions/upload-artifact@v4
-      with:
-        name: rendered-site-multilingual-${{ matrix.python-version }}
-        path: _site/
-        retention-days: 30
-
-    # Step 10: Deploy to GitHub Pages (only on main branch push with Python 3.12)
     - name: Deploy to GitHub Pages
-      if: github.ref == 'refs/heads/main' && matrix.python-version == '3.12' && github.event_name == 'push'
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./_site
         publish_branch: gh-pages
-        # Uncomment and update if you have a custom domain:
-        # cname: mathwiki.yourdomain.com
 
     - name: Report deployment status
-      if: github.ref == 'refs/heads/main' && matrix.python-version == '3.12' && github.event_name == 'push'
       run: |
         echo "✅ Site deployed to GitHub Pages"
         echo "Visit: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"

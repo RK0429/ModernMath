@@ -200,22 +200,26 @@ css:
 
 ### CI/CD Pipeline
 
-Unified `build.yml` workflow:
+**Optimized Parallel Build Architecture** (`build.yml`):
 
-1. Code quality and validation checks
-2. Knowledge graph generation with optional Lean integration
-3. Visualization generation (prevents empty content)
-4. Title prefix removal from all articles
-5. Multilingual site rendering (EN/JA)
-6. Post-processing and deployment to GitHub Pages
+- **Concurrency Control**: `cancel-in-progress: true` prevents wasted runner time
+- **Path Filtering**: Only triggers on relevant changes (scripts/, content/, etc.)
+- **Parallel Jobs** (run concurrently on separate runners):
+  1. **quality** (10 min): Linting & validation
+  2. **graph** (15 min): Knowledge graph generation + Lean integration
+  3. **visualizations** (15 min): Parallel Mermaid/PyVis/D3.js generation
+  4. **site** (20 min): Matrix strategy for parallel EN/JA builds
+  5. **deploy** (10 min): Final assembly & GitHub Pages deployment
+
+**Performance Optimizations**:
+
+- Built-in Poetry cache via `actions/setup-python@v5` with `cache: 'poetry'`
+- Cached Quarto and Chrome installations
+- Visualization scripts run in parallel using background processes (`&` + `wait`)
+- Language builds use matrix strategy for concurrent EN/JA rendering
+- Expected runtime: ~12-15 minutes (down from ~25-30 minutes)
 
 **Build Indicators**: Uses ✓ for success and ⚠ for warnings in CI logs.
-
-**Workflow Timeouts**:
-
-- `build.yml`: 30 min
-- `claude.yml`, `claude-code-review.yml`: 20 min
-- Other workflows: 10-30 min
 
 ### CI/CD Troubleshooting
 
@@ -283,7 +287,8 @@ graph TD
 
 ### Visualization
 
-- **Order**: build_graph → mermaid → pyvis_with_fix → d3_data → insert_diagrams → quarto render
+- **Generation Order**: build_graph → parallel(mermaid, pyvis_with_fix, d3_data) → insert_diagrams → quarto render
+- **Parallel Execution**: All three visualization scripts run concurrently for 3x speedup
 - **Language detection**: Check `/en/` or `/ja/` in paths
 - **Placement**: End of articles (Dependency Graph, then Interactive)
 
