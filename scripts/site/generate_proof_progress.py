@@ -92,7 +92,7 @@ class ProofProgressGenerator:
                     "has_proof": has_proof,
                     "lean_id": lean_data.get("lean_id", ""),
                     "module_name": lean_data.get("module_name", ""),
-                    "path": f"../en/{domain}/{qmd_path.name}",
+                    "path": f"../../content/en/{domain}/{qmd_path.stem}.html",
                 }
 
                 proof_data[domain].append(article_info)
@@ -392,7 +392,7 @@ description: "Lean 4による形式的検証の進捗状況"
 
             for article in articles:
                 # Convert path to Japanese version
-                ja_path = article["path"].replace("/en/", "/ja/")
+                ja_path = article["path"].replace("/content/en/", "/content/ja/")
                 title_link = f"[{article['title']}]({ja_path})"
                 type_badge = self._get_type_badge(article["type"], "ja")
                 status_badge = self._get_status_badge(article["status"], "ja")

@@ -327,6 +327,8 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
   - Generate progress pages: `poetry run python scripts/site/generate_proof_progress.py`
   - Workflow copies `/formal/` to `_site/formal/` for GitHub Pages serving
 - **Progress Pages**: `nav/en/proof-progress.qmd` and `nav/ja/proof-progress.qmd` show coverage by type and domain
+  - Article links use: `../../content/{lang}/{domain}/{article}.html` (not `.qmd`)
+  - Japanese paths: Replace `/content/en/` with `/content/ja/`
 - **Navigation**: "Formal Proofs" link added to navbar in both languages
 
 **Adding New Proofs**:
