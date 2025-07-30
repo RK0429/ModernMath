@@ -64,9 +64,10 @@ Uses MD5 hashes to track status: `not_started`, `in_progress`, `completed`, `nee
 poetry run black scripts/                 # Format
 poetry run flake8 scripts/ --max-line-length=100 --extend-ignore=E203,W503,W293
 poetry run mypy scripts/                  # Type check
+poetry run python scripts/validation/validate_lean_proofs.py  # Validate Lean proofs
 ```
 
-**Pre-commit Hook Behavior**: Hooks fix whitespace/EOF issues, update translation status, validate cross-references. When hooks modify files, re-add and retry commit. Use `git commit --no-verify` to bypass.
+**Pre-commit Hook Behavior**: Hooks fix whitespace/EOF issues, update translation status, validate cross-references, and validate Lean proofs. When hooks modify files, re-add and retry commit. Use `git commit --no-verify` to bypass.
 
 ### SPARQL and API
 
@@ -194,7 +195,7 @@ css:
 **Parallel Build Architecture** (`build.yml`):
 
 - **Concurrency**: `cancel-in-progress: true`, path filtering on relevant changes
-- **Jobs**: quality (10m), graph (15m), visualizations (15m), site (20m), deploy (10m)
+- **Jobs**: quality (10m), lean-validation (15m), graph (15m), visualizations (15m), site (20m), deploy (10m)
 - **Optimizations**: Poetry cache, parallel scripts with `&` + `wait`, matrix EN/JA builds
 - **Runtime**: ~12-15 minutes total
 
@@ -319,6 +320,16 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
 - **Mappings**: `lean_mappings.json` links article IDs to Lean proofs with `lean_id`, `module_name`, and `quarto_file`
 - **Embedding**: `scripts/site/embed_lean_proofs.py` adds iframe sections to articles with formal proofs
 - **Progress Tracking**: `scripts/site/generate_proof_progress.py` creates overview pages showing verification status
+- **Validation**: `scripts/validation/validate_lean_proofs.py` ensures all proofs compile correctly
+
+**Lean Proof Validation**:
+
+- **Pre-commit Hook**: Automatically validates Lean files on `formal/**/*.lean` changes
+- **CI/CD Job**: `lean-validation` job installs Lean 4 and runs validation in GitHub Actions
+- **Common Issues**:
+  - Import paths: Use `Mathlib.Topology.Separation.Basic` not `Mathlib.Topology.Separation`
+  - Syntax: Use `∀ a ∈ H, ∀ b ∈ H` not `∀ a b ∈ H`
+  - Doc comments: Use regular comments for floating documentation without declarations
 
 **Implementation Details**:
 
@@ -383,6 +394,18 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
 **Going Public**: Update LICENSE, check security/history, clean logs, add SECURITY.md, verify .gitignore
 
 **Security**: Use `${{ secrets.* }}`, no absolute paths with usernames, exclude logs/generated files
+
+### Git Repository Recovery
+
+If encountering "fatal: unable to read [hash]" errors:
+
+1. **Backup modified files**: `cp modified-files /tmp/backup/`
+2. **Clone fresh repository**: `git clone [repo-url] /tmp/fresh-repo`
+3. **Replace corrupted .git**: `mv .git .git.corrupted && cp -r /tmp/fresh-repo/.git .`
+4. **Restore backed up files**: `cp /tmp/backup/* original-locations`
+5. **Verify with**: `git status`
+
+Common corruption indicators: missing blobs in `git fsck`, cache-tree errors, gc.log failures
 
 ## Current Status
 

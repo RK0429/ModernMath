@@ -80,6 +80,15 @@ repos:
         pass_filenames: false
         description: "Validate translation metadata consistency"
 
+      # Lean proof validation
+      - id: validate-lean-proofs
+        name: Validate Lean proofs
+        entry: poetry run python scripts/validation/validate_lean_proofs.py
+        language: system
+        files: 'formal/.*\.lean$'
+        pass_filenames: false
+        description: "Validate Lean proofs compile correctly"
+
 # Configuration
 default_language_version:
   python: python3.11

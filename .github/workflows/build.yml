@@ -84,7 +84,50 @@ jobs:
         poetry run python scripts/validation/check_cross_references.py
         echo "✓ Cross-reference validation completed"
 
-  # Job 2: Build and validate knowledge graph
+  # Job 2: Validate Lean proofs
+  lean-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: quality
+    if: hashFiles('formal/**/*.lean') != ''
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install Poetry CLI
+      uses: snok/install-poetry@v1
+      with:
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+        installer-parallel: true
+
+    - name: Install Python dependencies
+      run: poetry install --no-interaction --no-root
+
+    - name: Install Lean 4
+      run: |
+        wget -q https://raw.githubusercontent.com/leanprover-community/mathlib4/master/scripts/install_debian.sh
+        bash install_debian.sh
+        rm install_debian.sh
+        echo "$HOME/.elan/bin" >> $GITHUB_PATH
+
+    - name: Verify Lean installation
+      run: |
+        lake --version
+        lean --version
+
+    - name: Validate Lean proofs
+      run: |
+        poetry run python scripts/validation/validate_lean_proofs.py
+        echo "✓ Lean proof validation completed"
+
+  # Job 3: Build and validate knowledge graph
   graph:
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -172,11 +215,11 @@ jobs:
         path: lean_mappings.json
         retention-days: 30
 
-  # Job 3: Generate visualizations in parallel
+  # Job 4: Generate visualizations in parallel
   visualizations:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    needs: [quality, graph]
+    needs: [quality, graph, lean-validation]
 
     steps:
     - name: Checkout repository
@@ -236,11 +279,11 @@ jobs:
         path: output/
         retention-days: 30
 
-  # Job 4: Build multilingual site (using matrix for parallel language builds)
+  # Job 5: Build multilingual site (using matrix for parallel language builds)
   site:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs: [quality, graph, visualizations]
+    needs: [quality, graph, visualizations, lean-validation]
     strategy:
       matrix:
         language: [en, ja]
@@ -347,7 +390,7 @@ jobs:
         path: _site/${{ matrix.language }}/
         retention-days: 30
 
-  # Job 5: Combine sites and deploy
+  # Job 6: Combine sites and deploy
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 10
