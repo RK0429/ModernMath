@@ -10,6 +10,7 @@ import subprocess
 import sys
 from pathlib import Path
 import shutil
+import os
 
 # Find project root
 SCRIPT_DIR = Path(__file__).parent
@@ -38,9 +39,16 @@ def validate_lean_proofs() -> bool:
     print(f"Validating Lean proofs in {FORMAL_DIR}...")
 
     try:
-        # Run lake build in the formal directory
+        # Run lake build with parallelization in the formal directory
+        # Get number of CPU cores for parallel build
+        num_cores = os.cpu_count() or 1
+
         result = subprocess.run(
-            ["lake", "build"], cwd=FORMAL_DIR, capture_output=True, text=True, check=False
+            ["lake", "build", "-j", str(num_cores)],
+            cwd=FORMAL_DIR,
+            capture_output=True,
+            text=True,
+            check=False,
         )
 
         # Print output for debugging

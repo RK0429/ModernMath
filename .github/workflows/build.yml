@@ -128,11 +128,38 @@ jobs:
     - name: Install Python dependencies
       run: poetry install --no-interaction --no-root
 
+    # Cache Lean toolchain
+    - name: Cache Lean toolchain
+      uses: actions/cache@v4
+      with:
+        path: ~/.elan
+        key: elan-${{ runner.os }}-4.x
+
+    # Cache Lake packages
+    - name: Cache Lake packages
+      uses: actions/cache@v4
+      with:
+        path: formal/.lake/packages
+        key: lake-pkgs-${{ runner.os }}-${{ hashFiles('formal/lake-manifest.json') }}
+        restore-keys: |
+          lake-pkgs-${{ runner.os }}-
+
+    # Cache Lake build artifacts
+    - name: Cache Lake build artifacts
+      uses: actions/cache@v4
+      with:
+        path: formal/.lake/build
+        key: lake-build-${{ runner.os }}-${{ hashFiles('formal/**/*.lean') }}
+        restore-keys: |
+          lake-build-${{ runner.os }}-
+
     - name: Install Lean 4
       run: |
-        wget -q https://raw.githubusercontent.com/leanprover-community/mathlib4/master/scripts/install_debian.sh
-        bash install_debian.sh
-        rm install_debian.sh
+        if [ ! -d "$HOME/.elan" ]; then
+          wget -q https://raw.githubusercontent.com/leanprover-community/mathlib4/master/scripts/install_debian.sh
+          bash install_debian.sh
+          rm install_debian.sh
+        fi
         echo "$HOME/.elan/bin" >> $GITHUB_PATH
 
     - name: Verify Lean installation
