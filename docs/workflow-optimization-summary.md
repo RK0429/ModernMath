@@ -75,3 +75,35 @@ Split monolithic job into 5 parallel jobs:
 2. Push a documentation-only change and verify no build triggers
 3. Push multiple commits rapidly and verify older builds are cancelled
 4. Check GitHub Actions timeline to confirm parallel execution
+
+## Fixed: Duplicate Formal Proof Nodes in Global Knowledge Graph
+
+### Issue
+
+The global knowledge graph visualization was displaying duplicate formal proof nodes with different labels for the same concept:
+
+- "Formal proof of def-vector-space" AND "Formal proof of Vector Space"
+- "Formal proof of def-basis" AND "Formal proof of Basis"
+- etc.
+
+### Root Cause
+
+The `_get_all_graph_nodes()` function in `generate_d3_data.py` was including all nodes with FormalProof type, regardless of whether they were actually referenced in the graph through `isVerifiedBy` relationships.
+
+### Solution
+
+Modified `_get_all_graph_nodes()` to:
+
+1. First collect formal proof nodes that are actually used in `isVerifiedBy` relationships
+2. Only include these referenced formal proof nodes in the global graph
+3. Exclude formal proof nodes from individual D3 file generation
+
+### Result
+
+- Global graph now shows only the correct formal proof nodes with proper labels
+- No duplicate nodes for the same mathematical concept
+- Cleaner visualization without redundant nodes
+
+### Files Modified
+
+- `scripts/visualization/generate_d3_data.py`: Fixed node collection logic and addressed linting issues

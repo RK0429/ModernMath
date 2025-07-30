@@ -313,10 +313,19 @@ def create_domain_json(g: Graph, domain: str, output_dir: Path, lang: str = "en"
 def _get_all_graph_nodes(g: Graph) -> Set[Any]:
     """Get all nodes from the graph, including formal proofs but excluding other external URIs."""
     nodes = set()
+    # First, collect all formal proof nodes from isVerifiedBy relationships
+    formal_proofs = set()
+    for s, _, o in g.triples((None, MYMATH.isVerifiedBy, None)):
+        formal_proofs.add(o)
+
+    # Then collect all nodes with proper types
     for s, _, o in g.triples((None, RDF.type, None)):
         if str(o).startswith(str(MYMATH)):
-            # Include nodes from our base URI and Lean proof URIs
-            if str(s).startswith(BASE_URI) or str(s).startswith("https://mathlib.org/proof/"):
+            # Include nodes from our base URI
+            if str(s).startswith(BASE_URI):
+                nodes.add(s)
+            # Include formal proof nodes only if they're actually used in isVerifiedBy
+            elif str(s).startswith("https://mathlib.org/proof/") and s in formal_proofs:
                 nodes.add(s)
     return nodes
 
@@ -405,26 +414,17 @@ def create_global_json(g: Graph, output_dir: Path, lang: str = "en") -> Path:
     return output_file
 
 
-def main() -> None:
-    """Main function to generate all D3.js data files."""
-    # Load the knowledge graph
-    print("Loading knowledge graph...")
-    g = Graph()
-    g.parse("knowledge_graph.ttl", format="turtle")
-
-    # Create output directory
-    output_dir = Path("output/d3-data")
-    output_dir.mkdir(parents=True, exist_ok=True)
-
-    # Get all nodes
+def _get_base_uri_nodes(g: Graph) -> Set[Any]:
+    """Get all nodes from the graph that belong to our base URI."""
     nodes = set()
     for s, _, o in g.triples((None, RDF.type, None)):
-        if str(o).startswith(str(MYMATH)):
+        if str(o).startswith(str(MYMATH)) and str(s).startswith(BASE_URI):
             nodes.add(s)
+    return nodes
 
-    print(f"Found {len(nodes)} nodes in the graph")
 
-    # Generate JSON for each node in each language
+def _generate_individual_node_data(g: Graph, nodes: Set[Any], output_dir: Path) -> None:
+    """Generate individual node data files for all languages."""
     print("Generating individual node data...")
     for lang in ["en", "ja"]:
         lang_dir = output_dir / lang
@@ -434,18 +434,19 @@ def main() -> None:
         for node_uri in nodes:
             # Extract node ID, handling both local and external URIs
             uri_str = str(node_uri)
-            if uri_str.startswith(BASE_URI):
-                node_id = uri_str.replace(BASE_URI, "")
-            else:
+            if not uri_str.startswith(BASE_URI):
                 # For external URIs (like Lean), skip them for D3 generation
                 continue
 
+            node_id = uri_str.replace(BASE_URI, "")
             if node_id and not node_id.startswith("index"):  # Skip index pages
                 create_d3_json(g, node_id, lang_dir, lang=lang)
 
         print(f"  Generated {len(nodes)} {lang} node data files")
 
-    # Generate domain overview JSONs
+
+def _generate_domain_overview_data(g: Graph, output_dir: Path) -> List[str]:
+    """Generate domain overview data for all languages."""
     print("\nGenerating domain overview data...")
     domains = [
         "Algebra",
@@ -466,14 +467,20 @@ def main() -> None:
             create_domain_json(g, domain, lang_dir, lang=lang)
             print(f"  Generated data for {domain} domain")
 
-    # Generate global graph JSONs for both languages
+    return domains
+
+
+def _generate_global_graph_data(g: Graph, output_dir: Path) -> None:
+    """Generate global graph data for all languages."""
     print("\nGenerating global graph data...")
     for lang in ["en", "ja"]:
         lang_dir = output_dir / lang
         create_global_json(g, lang_dir, lang=lang)
         print(f"  Generated global graph data for {lang}")
 
-    # Create an index file
+
+def _create_index_file(nodes: Set[Any], domains: List[str], output_dir: Path) -> None:
+    """Create the index file with valid nodes and domains."""
     valid_nodes = []
     for n in nodes:
         uri_str = str(n)
@@ -487,6 +494,34 @@ def main() -> None:
 
     with open(output_dir / "index.json", "w", encoding="utf-8") as f:
         json.dump(index_data, f, indent=2)
+
+
+def main() -> None:
+    """Main function to generate all D3.js data files."""
+    # Load the knowledge graph
+    print("Loading knowledge graph...")
+    g = Graph()
+    g.parse("knowledge_graph.ttl", format="turtle")
+
+    # Create output directory
+    output_dir = Path("output/d3-data")
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    # Get all nodes (excluding formal proofs for individual generation)
+    nodes = _get_base_uri_nodes(g)
+    print(f"Found {len(nodes)} nodes in the graph")
+
+    # Generate JSON for each node in each language
+    _generate_individual_node_data(g, nodes, output_dir)
+
+    # Generate domain overview JSONs
+    domains = _generate_domain_overview_data(g, output_dir)
+
+    # Generate global graph JSONs for both languages
+    _generate_global_graph_data(g, output_dir)
+
+    # Create an index file
+    _create_index_file(nodes, domains, output_dir)
 
     print(f"\nGenerated {len(nodes)} individual node data files")
     print(f"Generated {len(domains)} domain overview data files")

@@ -385,24 +385,13 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
 
 The knowledge graph includes formal proofs verified in Lean 4:
 
-- **Relationships**: Uses `isVerifiedBy` to connect definitions to their formal proofs
-- **Edge Extraction**: `get_node_neighbors()` includes both `uses` and `isVerifiedBy` relationships with edge types
-- **Node Labeling**: Formal proof nodes show meaningful names (e.g., "Formal proof of Group")
-- **Label Generation Strategy**:
-  - **In `build_graph.py`**: Creates consistent "Formal proof of [Node Label]" format in RDF
-  - **In `generate_d3_data.py`**: MUST use existing RDF labels via `_get_node_label()` first to prevent duplicates
-  - Only generates new labels if no RDF label exists
-- **Special Handling in `get_node_info()`**:
-  - Detects Lean proof URIs: `uri_str.startswith("https://mathlib.org/proof/")`
-  - Gets RDF label first: `rdf_label = _get_node_label(g, node_uri, lang)`
-  - Finds verified node via `g.subjects(MYMATH.isVerifiedBy, node_uri)`
-  - Uses RDF label if available, otherwise generates consistent label
-  - **Generates clickable URLs** pointing to the verified node's article (not the proof itself)
-  - URL generation uses `_generate_node_url(verified_id, verified_domain)`
-- **Global Visualization URL Handling**:
-  - Formal proof URLs need special conversion from relative (`../domain/file.html`) to absolute (`content/lang/domain/file.html`)
-  - Handled in `_build_global_nodes_data()` with type check: `node_info["type"] == "FormalProof"`
-- **Visual Integration**: Formal proofs appear as clickable nodes in both domain and global visualizations
+- **Relationships**: Uses `isVerifiedBy` to connect definitions to formal proofs
+- **Preventing Duplicates**: `_get_all_graph_nodes()` only includes proof nodes actually referenced via `isVerifiedBy` relationships
+- **Label Generation**:
+  - `build_graph.py` creates "Formal proof of [Node Label]" format in RDF
+  - `generate_d3_data.py` uses existing RDF labels to maintain consistency
+- **Clickable URLs**: Point to the verified node's article (not the proof itself)
+- **Global Graph URL Conversion**: Converts relative paths (`../domain/file.html`) to absolute (`content/lang/domain/file.html`)
 
 ## UI Conventions
 
