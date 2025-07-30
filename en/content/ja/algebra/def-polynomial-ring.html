@@ -384,36 +384,36 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-subring["部分環"]:::definition
-    ex-polynomial-continuity["多項式の連続性"]:::example
     def-polynomial-ring["多項式環"]:::definition
-    def-field["体"]:::definition
-    def-eigenvalue-eigenvector["固有値と固有ベクトル"]:::definition
-    def-ring["環"]:::definition
-    thm-intermediate-value["中間値の定理"]:::theorem
-    def-integral-domain["整域"]:::definition
     ex-quotient-integers-mod-n["整数の n による剰余"]:::example
+    ex-polynomial-continuity["多項式の連続性"]:::example
+    def-integral-domain["整域"]:::definition
+    def-eigenvalue-eigenvector["固有値と固有ベクトル"]:::definition
+    thm-intermediate-value["中間値の定理"]:::theorem
+    def-ring["環"]:::definition
+    def-field["体"]:::definition
     def-binary-operation["二項演算"]:::definition
-    def-polynomial-ring --&gt; def-integral-domain
-    ex-quotient-integers-mod-n --&gt; def-polynomial-ring
-    def-polynomial-ring --&gt; def-ring
-    def-polynomial-ring --&gt; def-binary-operation
-    def-eigenvalue-eigenvector --&gt; def-polynomial-ring
+    def-subring["部分環"]:::definition
     def-polynomial-ring --&gt; def-field
-    ex-polynomial-continuity --&gt; def-polynomial-ring
+    def-polynomial-ring --&gt; def-ring
+    ex-quotient-integers-mod-n --&gt; def-polynomial-ring
     def-integral-domain --&gt; def-polynomial-ring
-    thm-intermediate-value --&gt; def-polynomial-ring
+    def-polynomial-ring --&gt; def-integral-domain
+    def-eigenvalue-eigenvector --&gt; def-polynomial-ring
+    def-polynomial-ring --&gt; def-binary-operation
+    ex-polynomial-continuity --&gt; def-polynomial-ring
     def-subring --&gt; def-polynomial-ring
+    thm-intermediate-value --&gt; def-polynomial-ring
     class def-polynomial-ring current
-    click def-subring "def-subring.html" "部分環へ"
-    click ex-polynomial-continuity "ex-polynomial-continuity.html" "多項式の連続性へ"
-    click def-field "def-field.html" "体へ"
-    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "固有値と固有ベクトルへ"
-    click def-ring "def-ring.html" "環へ"
-    click thm-intermediate-value "thm-intermediate-value.html" "中間値の定理へ"
-    click def-integral-domain "def-integral-domain.html" "整域へ"
     click ex-quotient-integers-mod-n "ex-quotient-integers-mod-n.html" "整数の n による剰余へ"
+    click ex-polynomial-continuity "ex-polynomial-continuity.html" "多項式の連続性へ"
+    click def-integral-domain "def-integral-domain.html" "整域へ"
+    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "固有値と固有ベクトルへ"
+    click thm-intermediate-value "thm-intermediate-value.html" "中間値の定理へ"
+    click def-ring "def-ring.html" "環へ"
+    click def-field "def-field.html" "体へ"
     click def-binary-operation "def-binary-operation.html" "二項演算へ"
+    click def-subring "def-subring.html" "部分環へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -424,7 +424,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-polynomial-ring-1753839634" class="graph-visualization-container">
+<div id="graph-viz-def-polynomial-ring-1753840776" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -672,12 +672,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-polynomial-ring-1753839634', {
+    createForceGraph(data, 'graph-viz-def-polynomial-ring-1753840776', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-polynomial-ring-1753839634').innerHTML =
+    document.getElementById('graph-viz-def-polynomial-ring-1753840776').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

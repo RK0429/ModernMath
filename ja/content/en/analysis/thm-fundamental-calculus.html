@@ -445,11 +445,11 @@ window.Quarto = {
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-integral["Integral"]:::definition
     def-continuity["Continuity"]:::definition
-    thm-fundamental-calculus["Fundamental Theorem of Calculus"]:::theorem
     def-derivative["Derivative"]:::definition
+    thm-fundamental-calculus["Fundamental Theorem of Calculus"]:::theorem
     thm-fundamental-calculus --&gt; def-integral
-    thm-fundamental-calculus --&gt; def-derivative
     thm-fundamental-calculus --&gt; def-continuity
+    thm-fundamental-calculus --&gt; def-derivative
     class thm-fundamental-calculus current
     click def-integral "def-integral.html" "Go to Integral"
     click def-continuity "def-continuity.html" "Go to Continuity"
@@ -464,7 +464,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-fundamental-calculus-1753839838" class="graph-visualization-container">
+<div id="graph-viz-thm-fundamental-calculus-1753840988" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -712,12 +712,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-fundamental-calculus-1753839838', {
+    createForceGraph(data, 'graph-viz-thm-fundamental-calculus-1753840988', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-fundamental-calculus-1753839838').innerHTML =
+    document.getElementById('graph-viz-thm-fundamental-calculus-1753840988').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

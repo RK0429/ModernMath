@@ -379,60 +379,60 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-subring["Subring"]:::definition
-    def-maximal-ideal["Maximal Ideal"]:::definition
-    def-quotient-ring["Quotient Ring"]:::definition
+    def-quotient-group["Quotient Group"]:::definition
     def-isomorphism["Isomorphism"]:::definition
-    def-ring-homomorphism["Ring Homomorphism"]:::definition
+    def-maximal-ideal["Maximal Ideal"]:::definition
     ex-integers-ring["Integers Form a Ring"]:::example
     ex-finite-field["Finite Field"]:::example
-    def-prime-ideal["Prime Ideal"]:::definition
-    def-field["Field"]:::definition
+    ex-principal-ideal["Principal Ideals in Integers"]:::example
     def-zero-divisor["Zero Divisor"]:::definition
-    def-quotient-group["Quotient Group"]:::definition
-    def-subset["Subset"]:::definition
+    def-integral-domain["Integral Domain"]:::definition
     def-ring["Ring"]:::definition
     def-ideal["Ideal"]:::definition
-    def-integral-domain["Integral Domain"]:::definition
+    def-ring-homomorphism["Ring Homomorphism"]:::definition
+    def-subset["Subset"]:::definition
     def-kernel["Kernel"]:::definition
-    ex-principal-ideal["Principal Ideals in Integers"]:::example
+    def-prime-ideal["Prime Ideal"]:::definition
+    def-field["Field"]:::definition
     def-binary-operation["Binary Operation"]:::definition
-    ex-integers-ring --&gt; def-ideal
-    def-prime-ideal --&gt; def-ideal
-    def-quotient-group --&gt; def-ideal
-    def-quotient-ring --&gt; def-ideal
+    def-subring["Subring"]:::definition
+    def-quotient-ring["Quotient Ring"]:::definition
     def-subring --&gt; def-ideal
+    def-kernel --&gt; def-ideal
+    def-ideal --&gt; def-ring
+    def-ideal --&gt; def-subset
+    def-ideal --&gt; def-ring-homomorphism
+    def-integral-domain --&gt; def-ideal
+    def-quotient-ring --&gt; def-ideal
+    def-ideal --&gt; def-isomorphism
     def-maximal-ideal --&gt; def-ideal
     def-zero-divisor --&gt; def-ideal
-    def-field --&gt; def-ideal
+    def-quotient-group --&gt; def-ideal
+    ex-integers-ring --&gt; def-ideal
+    def-prime-ideal --&gt; def-ideal
     ex-principal-ideal --&gt; def-ideal
-    def-ideal --&gt; def-ring-homomorphism
-    def-ideal --&gt; def-isomorphism
-    def-ideal --&gt; def-ring
-    def-ideal --&gt; def-subring
-    def-integral-domain --&gt; def-ideal
     ex-finite-field --&gt; def-ideal
-    def-ideal --&gt; def-subset
-    def-kernel --&gt; def-ideal
+    def-field --&gt; def-ideal
+    def-ideal --&gt; def-subring
     def-ideal --&gt; def-binary-operation
     class def-ideal current
-    click def-subring "def-subring.html" "Go to Subring"
-    click def-maximal-ideal "def-maximal-ideal.html" "Go to Maximal Ideal"
-    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
     click def-isomorphism "def-isomorphism.html" "Go to Isomorphism"
-    click def-ring-homomorphism "def-ring-homomorphism.html" "Go to Ring Homomorphism"
+    click def-maximal-ideal "def-maximal-ideal.html" "Go to Maximal Ideal"
     click ex-integers-ring "ex-integers-ring.html" "Go to Integers Form a Ring"
     click ex-finite-field "ex-finite-field.html" "Go to Finite Field"
+    click ex-principal-ideal "ex-principal-ideal.html" "Go to Principal Ideals in Integers"
+    click def-zero-divisor "def-zero-divisor.html" "Go to Zero Divisor"
+    click def-integral-domain "def-integral-domain.html" "Go to Integral Domain"
+    click def-ring "def-ring.html" "Go to Ring"
+    click def-ring-homomorphism "def-ring-homomorphism.html" "Go to Ring Homomorphism"
+    click def-subset "def-subset.html" "Go to Subset"
+    click def-kernel "def-kernel.html" "Go to Kernel"
     click def-prime-ideal "def-prime-ideal.html" "Go to Prime Ideal"
     click def-field "def-field.html" "Go to Field"
-    click def-zero-divisor "def-zero-divisor.html" "Go to Zero Divisor"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
-    click def-subset "def-subset.html" "Go to Subset"
-    click def-ring "def-ring.html" "Go to Ring"
-    click def-integral-domain "def-integral-domain.html" "Go to Integral Domain"
-    click def-kernel "def-kernel.html" "Go to Kernel"
-    click ex-principal-ideal "ex-principal-ideal.html" "Go to Principal Ideals in Integers"
     click def-binary-operation "def-binary-operation.html" "Go to Binary Operation"
+    click def-subring "def-subring.html" "Go to Subring"
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -443,7 +443,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-ideal-1753839819" class="graph-visualization-container">
+<div id="graph-viz-def-ideal-1753840969" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -691,12 +691,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-ideal-1753839819', {
+    createForceGraph(data, 'graph-viz-def-ideal-1753840969', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-ideal-1753839819').innerHTML =
+    document.getElementById('graph-viz-def-ideal-1753840969').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

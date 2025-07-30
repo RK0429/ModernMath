@@ -5,18 +5,18 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-variance["Variance"]:::definition
-    thm-central-limit["Central Limit Theorem"]:::theorem
-    thm-law-of-large-numbers["Law of Large Numbers"]:::theorem
     def-binomial-distribution["Binomial Distribution"]:::definition
-    def-expectation["Expected Value"]:::definition
     def-normal-distribution["Normal Distribution"]:::definition
+    thm-law-of-large-numbers["Law of Large Numbers"]:::theorem
     def-probability-distribution["Probability Distribution"]:::definition
     def-random-variable["Random Variable"]:::definition
+    def-expectation["Expected Value"]:::definition
+    thm-central-limit["Central Limit Theorem"]:::theorem
+    thm-law-of-large-numbers --> def-variance
     thm-central-limit --> def-variance
+    def-binomial-distribution --> def-variance
     def-variance --> def-random-variable
     def-variance --> def-probability-distribution
-    def-binomial-distribution --> def-variance
     def-normal-distribution --> def-variance
-    thm-law-of-large-numbers --> def-variance
     def-variance --> def-expectation
     class def-variance current

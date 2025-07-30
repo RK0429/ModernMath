@@ -348,29 +348,29 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-epimorphism["全射"]:::definition
-    def-graph["グラフ"]:::definition
     def-natural-transformation["自然変換"]:::definition
-    thm-yoneda["米田の補題"]:::theorem
-    def-functor["関手"]:::definition
-    def-category["圏"]:::definition
-    def-function["関数"]:::definition
+    def-graph["グラフ"]:::definition
     def-monomorphism["単射"]:::definition
-    def-functor --&gt; def-function
-    def-monomorphism --&gt; def-functor
-    def-natural-transformation --&gt; def-functor
-    def-epimorphism --&gt; def-functor
-    def-functor --&gt; def-category
-    thm-yoneda --&gt; def-functor
+    thm-yoneda["米田の補題"]:::theorem
+    def-category["圏"]:::definition
+    def-epimorphism["全射"]:::definition
+    def-functor["関手"]:::definition
+    def-function["関数"]:::definition
     def-functor --&gt; def-graph
+    def-monomorphism --&gt; def-functor
+    def-functor --&gt; def-category
+    def-functor --&gt; def-function
+    def-epimorphism --&gt; def-functor
+    thm-yoneda --&gt; def-functor
+    def-natural-transformation --&gt; def-functor
     class def-functor current
-    click def-epimorphism "def-epimorphism.html" "全射へ"
-    click def-graph "def-graph.html" "グラフへ"
     click def-natural-transformation "def-natural-transformation.html" "自然変換へ"
+    click def-graph "def-graph.html" "グラフへ"
+    click def-monomorphism "def-monomorphism.html" "単射へ"
     click thm-yoneda "thm-yoneda.html" "米田の補題へ"
     click def-category "def-category.html" "圏へ"
+    click def-epimorphism "def-epimorphism.html" "全射へ"
     click def-function "def-function.html" "関数へ"
-    click def-monomorphism "def-monomorphism.html" "単射へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -381,7 +381,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-functor-1753839762" class="graph-visualization-container">
+<div id="graph-viz-def-functor-1753840909" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -629,12 +629,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-functor-1753839762', {
+    createForceGraph(data, 'graph-viz-def-functor-1753840909', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-functor-1753839762').innerHTML =
+    document.getElementById('graph-viz-def-functor-1753840909').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

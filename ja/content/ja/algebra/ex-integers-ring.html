@@ -340,28 +340,28 @@ window.Quarto = {
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     ex-integers-ring["整数は環を形成する"]:::example
-    def-integral-domain["整域"]:::definition
-    def-abelian-group["アーベル群"]:::definition
-    def-ideal["イデアル"]:::definition
     def-group["群"]:::definition
-    def-ring["環"]:::definition
+    def-abelian-group["アーベル群"]:::definition
     ex-principal-ideal["整数における単項イデアル"]:::example
+    def-integral-domain["整域"]:::definition
+    def-ring["環"]:::definition
+    def-ideal["イデアル"]:::definition
     def-binary-operation["二項演算"]:::definition
-    ex-integers-ring --&gt; def-ideal
     ex-integers-ring --&gt; def-binary-operation
-    ex-integers-ring --&gt; def-abelian-group
+    def-integral-domain --&gt; ex-integers-ring
     ex-integers-ring --&gt; def-ring
+    ex-integers-ring --&gt; def-ideal
+    ex-integers-ring --&gt; def-abelian-group
     ex-integers-ring --&gt; ex-principal-ideal
     ex-integers-ring --&gt; def-group
-    def-integral-domain --&gt; ex-integers-ring
     ex-integers-ring --&gt; def-integral-domain
     class ex-integers-ring current
-    click def-integral-domain "def-integral-domain.html" "整域へ"
-    click def-abelian-group "def-abelian-group.html" "アーベル群へ"
-    click def-ideal "def-ideal.html" "イデアルへ"
     click def-group "def-group.html" "群へ"
-    click def-ring "def-ring.html" "環へ"
+    click def-abelian-group "def-abelian-group.html" "アーベル群へ"
     click ex-principal-ideal "ex-principal-ideal.html" "整数における単項イデアルへ"
+    click def-integral-domain "def-integral-domain.html" "整域へ"
+    click def-ring "def-ring.html" "環へ"
+    click def-ideal "def-ideal.html" "イデアルへ"
     click def-binary-operation "def-binary-operation.html" "二項演算へ"
 </pre>
 </div>
@@ -373,7 +373,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-integers-ring-1753839745" class="graph-visualization-container">
+<div id="graph-viz-ex-integers-ring-1753840891" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -621,12 +621,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-integers-ring-1753839745', {
+    createForceGraph(data, 'graph-viz-ex-integers-ring-1753840891', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-integers-ring-1753839745').innerHTML =
+    document.getElementById('graph-viz-ex-integers-ring-1753840891').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

@@ -378,28 +378,28 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-fundamental-arithmetic["算術の基本定理"]:::theorem
-    def-set["集合"]:::definition
-    def-gcd["最大公約数"]:::definition
-    def-divisibility["整除性"]:::definition
-    thm-chinese-remainder["中国剰余定理"]:::theorem
     def-prime["素数"]:::definition
+    thm-fundamental-arithmetic["算術の基本定理"]:::theorem
+    def-gcd["最大公約数"]:::definition
     def-lcm["最小公倍数"]:::definition
+    thm-chinese-remainder["中国剰余定理"]:::theorem
+    def-set["集合"]:::definition
+    def-divisibility["整除性"]:::definition
+    thm-fundamental-arithmetic --&gt; def-lcm
     def-lcm --&gt; thm-chinese-remainder
+    def-gcd --&gt; def-lcm
+    def-lcm --&gt; thm-fundamental-arithmetic
+    def-lcm --&gt; def-gcd
+    def-lcm --&gt; def-prime
     def-lcm --&gt; def-set
     def-lcm --&gt; def-divisibility
-    def-gcd --&gt; def-lcm
-    def-lcm --&gt; def-gcd
-    def-lcm --&gt; thm-fundamental-arithmetic
-    thm-fundamental-arithmetic --&gt; def-lcm
-    def-lcm --&gt; def-prime
     class def-lcm current
-    click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "算術の基本定理へ"
-    click def-set "def-set.html" "集合へ"
-    click def-gcd "def-gcd.html" "最大公約数へ"
-    click def-divisibility "def-divisibility.html" "整除性へ"
-    click thm-chinese-remainder "thm-chinese-remainder.html" "中国剰余定理へ"
     click def-prime "def-prime.html" "素数へ"
+    click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "算術の基本定理へ"
+    click def-gcd "def-gcd.html" "最大公約数へ"
+    click thm-chinese-remainder "thm-chinese-remainder.html" "中国剰余定理へ"
+    click def-set "def-set.html" "集合へ"
+    click def-divisibility "def-divisibility.html" "整除性へ"
 </pre>
 </div>
 <p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
@@ -410,7 +410,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-lcm-1753839705" class="graph-visualization-container">
+<div id="graph-viz-def-lcm-1753840850" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -658,12 +658,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-lcm-1753839705', {
+    createForceGraph(data, 'graph-viz-def-lcm-1753840850', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-lcm-1753839705').innerHTML =
+    document.getElementById('graph-viz-def-lcm-1753840850').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

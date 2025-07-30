@@ -333,27 +333,27 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-normal-subgroup["正規部分群"]:::definition
     def-coset["剰余類"]:::definition
+    def-group["群"]:::definition
     def-subgroup["部分群"]:::definition
     def-abelian-group["アーベル群"]:::definition
-    def-group["群"]:::definition
-    ex-integers-addition["加法における整数"]:::example
+    def-normal-subgroup["正規部分群"]:::definition
     ex-even-integers-subgroup["偶数整数は部分群を成す"]:::example
-    ex-even-integers-subgroup --&gt; def-coset
-    def-group --&gt; ex-even-integers-subgroup
+    ex-integers-addition["加法における整数"]:::example
     ex-even-integers-subgroup --&gt; def-group
     ex-even-integers-subgroup --&gt; def-subgroup
-    def-coset --&gt; ex-even-integers-subgroup
     ex-even-integers-subgroup --&gt; def-abelian-group
-    ex-even-integers-subgroup --&gt; def-normal-subgroup
+    def-coset --&gt; ex-even-integers-subgroup
     ex-even-integers-subgroup --&gt; ex-integers-addition
+    def-group --&gt; ex-even-integers-subgroup
+    ex-even-integers-subgroup --&gt; def-coset
+    ex-even-integers-subgroup --&gt; def-normal-subgroup
     class ex-even-integers-subgroup current
-    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群へ"
     click def-coset "def-coset.html" "剰余類へ"
+    click def-group "def-group.html" "群へ"
     click def-subgroup "def-subgroup.html" "部分群へ"
     click def-abelian-group "def-abelian-group.html" "アーベル群へ"
-    click def-group "def-group.html" "群へ"
+    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群へ"
     click ex-integers-addition "ex-integers-addition.html" "加法における整数へ"
 </pre>
 </div>
@@ -365,7 +365,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-even-integers-subgroup-1753839743" class="graph-visualization-container">
+<div id="graph-viz-ex-even-integers-subgroup-1753840889" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -613,12 +613,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-even-integers-subgroup-1753839743', {
+    createForceGraph(data, 'graph-viz-ex-even-integers-subgroup-1753840889', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-even-integers-subgroup-1753839743').innerHTML =
+    document.getElementById('graph-viz-ex-even-integers-subgroup-1753840889').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
