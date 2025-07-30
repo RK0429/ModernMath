@@ -311,6 +311,14 @@ jobs:
         poetry run python scripts/visualization/insert_diagrams.py
         echo "✓ Diagrams inserted"
 
+        # Embed Lean proofs in articles
+        poetry run python scripts/site/embed_lean_proofs.py
+        echo "✓ Lean proofs embedded"
+
+        # Generate proof progress pages
+        poetry run python scripts/site/generate_proof_progress.py
+        echo "✓ Proof progress pages generated"
+
         # Build search index
         poetry run python scripts/site/build_search_index.py
         echo "✓ Search index built"
@@ -409,11 +417,21 @@ jobs:
         # Create .nojekyll file
         touch _site/.nojekyll
 
+        # Copy formal Lean files to be served by GitHub Pages
+        if [ -d "formal" ]; then
+          echo "Copying Lean files to _site..."
+          cp -r formal _site/
+          echo "✓ Lean files copied"
+        else
+          echo "⚠ No formal directory found"
+        fi
+
         echo "✓ Site structure prepared for deployment"
         echo "Verifying structure:"
         [ -d "_site/en" ] && echo "✓ English site present" || echo "⚠ English site missing"
         [ -d "_site/ja" ] && echo "✓ Japanese site present" || echo "⚠ Japanese site missing"
         [ -d "_site/output" ] && echo "✓ Output directory present" || echo "⚠ Output directory missing"
+        [ -d "_site/formal" ] && echo "✓ Formal proof directory present" || echo "⚠ Formal proof directory missing"
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3

@@ -10,11 +10,7 @@ ModernMath is a Mathematics Knowledge Graph Wiki that represents mathematical co
 
 ## Web Debugging
 
-Use Playwright MCP tools for debugging deployed sites:
-
-- `mcp__playwright__browser_navigate(url)` - Navigate to page
-- `mcp__playwright__browser_console_messages()` - View console errors
-- `mcp__playwright__browser_evaluate(function)` - Test JS in browser context
+Use Playwright MCP tools for debugging: `browser_navigate`, `browser_console_messages`, `browser_evaluate`
 
 ## Essential Commands
 
@@ -37,11 +33,8 @@ poetry run python scripts/site/generate_index_pages.py     # Generate indices
 ### Generating Visualizations
 
 ```bash
-# Run in order:
-poetry run python scripts/visualization/generate_mermaid.py         # Skips isolated nodes
-poetry run python scripts/visualization/generate_pyvis_with_fix.py  # Includes CSS fix
-poetry run python scripts/visualization/generate_d3_data.py
-poetry run python scripts/visualization/insert_diagrams.py          # Validates content
+# Run in order: mermaid → pyvis_with_fix → d3_data → insert_diagrams
+poetry run python scripts/visualization/*.py
 ```
 
 **Note**: Scripts validate content before creation to prevent empty blocks.
@@ -106,16 +99,14 @@ Articles automatically display colored type badges based on YAML `type` field:
 
 ### Content Workflow
 
-When adding/enriching content:
-
-1. **Verify Accuracy**: Web search to verify mathematical facts
-2. **Follow Style Guides**: See `/docs/style_guide/`
-3. **Add Cross-References**: Use `@domain/concept-id` syntax
-4. **Update References**: Search and update existing mentions
-5. **Update Index**: Add to domain's index.qmd alphabetically
-6. **Validate**: Run `validate_metadata.py`
-7. **Bilingual**: Always update both EN and JA versions
-8. **Generate Assets**: Run visualization pipeline in order
+1. Verify accuracy (web search)
+2. Follow style guides (`/docs/style_guide/`)
+3. Add cross-references (`@domain/concept-id`)
+4. Update existing mentions
+5. Update domain index alphabetically
+6. Validate with `validate_metadata.py`
+7. Update both EN/JA versions
+8. Run visualization pipeline
 
 ### Cross-Reference Management
 
@@ -200,26 +191,12 @@ css:
 
 ### CI/CD Pipeline
 
-**Optimized Parallel Build Architecture** (`build.yml`):
+**Parallel Build Architecture** (`build.yml`):
 
-- **Concurrency Control**: `cancel-in-progress: true` prevents wasted runner time
-- **Path Filtering**: Only triggers on relevant changes (scripts/, content/, etc.)
-- **Parallel Jobs** (run concurrently on separate runners):
-  1. **quality** (10 min): Linting & validation
-  2. **graph** (15 min): Knowledge graph generation + Lean integration
-  3. **visualizations** (15 min): Parallel Mermaid/PyVis/D3.js generation
-  4. **site** (20 min): Matrix strategy for parallel EN/JA builds
-  5. **deploy** (10 min): Final assembly & GitHub Pages deployment
-
-**Performance Optimizations**:
-
-- Built-in Poetry cache via `actions/setup-python@v5` with `cache: 'poetry'`
-- Cached Quarto and Chrome installations
-- Visualization scripts run in parallel using background processes (`&` + `wait`)
-- Language builds use matrix strategy for concurrent EN/JA rendering
-- Expected runtime: ~12-15 minutes (down from ~25-30 minutes)
-
-**Build Indicators**: Uses ✓ for success and ⚠ for warnings in CI logs.
+- **Concurrency**: `cancel-in-progress: true`, path filtering on relevant changes
+- **Jobs**: quality (10m), graph (15m), visualizations (15m), site (20m), deploy (10m)
+- **Optimizations**: Poetry cache, parallel scripts with `&` + `wait`, matrix EN/JA builds
+- **Runtime**: ~12-15 minutes total
 
 ### CI/CD Troubleshooting
 
@@ -233,27 +210,10 @@ This prevents FileNotFoundError in CI environments where parent directories may 
 
 ### Language Features
 
-- **Auto-detection**: Browser preference redirect
-- **Manual selection**: Flag buttons (🇬🇧/🇯🇵)
-- **Dynamic switching**: Page-level language switcher
-- **Visual feedback**: Disabled state for unavailable translations
-
-### Navigation Structure
-
-- English: `nav/en/about.qmd`, `nav/en/contributing.qmd`
-- Japanese: `nav/ja/about.qmd`, `nav/ja/contributing.qmd`
-- Exception: `index-ja.qmd` remains in root
-
-### Japanese Consistency
-
-- Dependency Graph: "依存関係グラフ"
-- Interactive Visualization: "インタラクティブ可視化"
-
-### Translation Management
-
-- **Status tracking**: MD5 hash-based change detection
-- **Auto-translate workflow**: Claude Opus for EN↔JA translations
-- **Creates PRs**: For human review
+- **Detection**: Browser preference, flag buttons (🇬🇧/🇯🇵), page switcher
+- **Navigation**: `nav/{lang}/*.qmd` (except `index-ja.qmd` in root)
+- **Terms**: Dependency Graph ("依存関係グラフ"), Interactive Visualization ("インタラクティブ可視化")
+- **Management**: MD5 hash tracking, Claude Opus auto-translate, PR creation
 
 ## Critical Implementation Details
 
@@ -301,65 +261,20 @@ graph TD
 
 **Making Nodes Clickable**:
 
-D3.js implementation (IMPORTANT: This code must be in `_extensions/graph-viz/graph-viz.lua`, NOT in external JS files):
-
-```javascript
-// Click event with visual feedback
-node
-  .on("click", function (event, d) {
-    if (d.url) {
-      window.location.href = d.url;
-    }
-  })
-  .on("auxclick", function (event, d) {
-    // Middle-click opens in new tab
-    if (d.url && event.button === 1) {
-      window.open(d.url, "_blank");
-    }
-  });
-
-// Visual indicators
-node.append("circle").style("cursor", (d) => (d.url ? "pointer" : "default"));
-
-// Hover effects for clickable nodes
-node.on("mouseover", function (event, d) {
-  if (d.url) {
-    d3.select(this)
-      .select("circle")
-      .style("stroke-width", 3)
-      .style("filter", "drop-shadow(0 0 3px rgba(0,0,0,0.3))");
-  }
-});
-```
-
-PyVis implementation with language support:
-
-```python
-# Language-aware clickable links
-has_article = any(node_id.startswith(prefix) for prefix in ["def-", "thm-", "ex-", "ax-", "prop-", "lem-", "cor-"])
-
-if has_article:
-    link_text = "記事を見る →" if lang == "ja" else "View Article →"
-    title_parts.append(f"<a href='{node_id}.html' target='_blank'>{link_text}</a>")
-
-network.add_node(
-    node_id,
-    title="<br>".join(title_parts)
-)
-```
+- **D3.js**: Click handlers with visual feedback in `_extensions/graph-viz/graph-viz.lua`
+  - Click navigates, middle-click opens new tab
+  - Pointer cursor and hover effects for clickable nodes
+- **PyVis**: Language-aware links ("View Article →" / "記事を見る →")
+  - Detects article nodes by prefix: `def-`, `thm-`, `ex-`, `ax-`, `prop-`, `lem-`, `cor-`
 
 **Implementation Details**:
 
-- D3.js nodes include `url` field in data: `{id: "def-group", url: "def-group.html"}`
-- Cross-domain URLs use relative paths: `../domain/file.html` to preserve language directory
-  - Example: From `/ModernMath/ja/content/ja/algebra/` to `../logic-set-theory/def-set.html`
-  - This resolves to `/ModernMath/ja/content/ja/logic-set-theory/def-set.html`
-- The `generate_d3_data.py` script extracts domain from RDF graph via `MYMATH.hasDomain`
-- The Lua filter embeds JavaScript directly in HTML, overriding any external JS files
-- PyVis tooltips show language-appropriate link text
-- Visual feedback: pointer cursor, hover effects with drop shadow
-- Tooltips indicate clickability: "(Click to view article)"
-- Middle-click support for opening in new tabs (D3.js)
+- D3.js nodes include `url` field: `{id: "def-group", url: "def-group.html"}`
+- Cross-domain URLs use relative paths: `../domain/file.html`
+- Domain extracted via `MYMATH.hasDomain` in RDF graph
+- Lua filter embeds JS directly in HTML
+- Visual feedback: pointer cursor, hover effects, clickability tooltips
+- Middle-click support for new tabs
 
 **Directory URL Handling**:
 
@@ -380,119 +295,71 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
 - **Location**: Above the "Features" section on both language homepages
 - **Implementation**: Uses `graph-viz` shortcode with `data-id="global-graph"`
 - **Data Generation**: `create_global_json()` in `generate_d3_data.py` creates `global-graph.json`
-- **URL Path Override**: Global visualization requires different relative paths:
-
-  ```python
-  # From index.html, paths are content/{lang}/{domain}/{article}.html
-  if node_info["url"] and node_info["domain"]:
-      node_info["url"] = f"content/{lang}/{node_info['domain']}/{node_info['id']}.html"
-  ```
-
-- **Contrast with Domain Visualizations**: Domain-specific visualizations use `../{domain}/{article}.html` paths
+- **URL Paths**: Global uses `content/{lang}/{domain}/{article}.html`, domain-specific uses `../{domain}/{article}.html`
 - **External Node Filtering**: Global graph includes formal proof nodes but excludes other external URIs:
   - Includes nodes from `BASE_URI` and `https://mathlib.org/proof/`
   - Filters in `_get_all_graph_nodes()`: `if str(s).startswith(BASE_URI) or str(s).startswith("https://mathlib.org/proof/")`
 
 ### Formal Proof Visualization
 
-The knowledge graph includes formal proofs verified in Lean 4:
+- **Lean 4 Integration**: Uses `isVerifiedBy` relationship
+- **Single Source**: ONLY `build_graph.py` creates proof nodes (never use `add_verification_triples.py`)
+- **Labels**: "Formal proof of {node_id}" (EN) / "{node_id}の形式的証明" (JA)
+- **URLs**: Point to verified node's article, converted for global graph
 
-- **Relationships**: Uses `isVerifiedBy` to connect definitions to formal proofs
-- **Single Script Architecture**: ONLY `build_graph.py` creates formal proof nodes via its `_add_lean_verification_triples()` method
-  - Never use `add_verification_triples.py` - it creates duplicate nodes with different URI schemes
-  - The CI/CD pipeline should NOT call `add_verification_triples.py`
-- **Preventing Duplicates**: `_get_all_graph_nodes()` only includes proof nodes actually referenced via `isVerifiedBy` relationships
-- **Label Generation**:
-  - `build_graph.py` MUST use node IDs (e.g., "Formal proof of def-vector-space") NOT node labels to prevent duplicates
-  - Labels are consistent: English "Formal proof of {node_id}", Japanese "{node_id}の形式的証明"
-  - `generate_d3_data.py` uses RDF labels from the graph without modification
-- **Clickable URLs**: Point to the verified node's article (not the proof itself)
-- **Global Graph URL Conversion**: Converts relative paths (`../domain/file.html`) to absolute (`content/lang/domain/file.html`)
+### Lean 4 Proof Integration
+
+**Architecture**:
+
+- **Lean Files**: `/formal/` directory organized by module (e.g., `/formal/MathKnowledgeGraph/Algebra/Groups.lean`)
+- **Mappings**: `lean_mappings.json` links article IDs to Lean proofs with `lean_id`, `module_name`, and `quarto_file`
+- **Embedding**: `scripts/site/embed_lean_proofs.py` adds iframe sections to articles with formal proofs
+- **Progress Tracking**: `scripts/site/generate_proof_progress.py` creates overview pages showing verification status
+
+**Implementation Details**:
+
+- **Auto-detect GitHub Pages URL**: Script detects from git remote, fallback to `GITHUB_PAGES_URL` env var
+- **iframe Integration**: Loads proofs via `https://live.lean-lang.org/#file=<github-pages-url>/formal/<lean-file>`
+- **Build Process**:
+  - Embed Lean proofs: `poetry run python scripts/site/embed_lean_proofs.py`
+  - Generate progress pages: `poetry run python scripts/site/generate_proof_progress.py`
+  - Workflow copies `/formal/` to `_site/formal/` for GitHub Pages serving
+- **Progress Pages**: `nav/en/proof-progress.qmd` and `nav/ja/proof-progress.qmd` show coverage by type and domain
+- **Navigation**: "Formal Proofs" link added to navbar in both languages
+
+**Adding New Proofs**:
+
+1. Create Lean file in `/formal/MathKnowledgeGraph/<Domain>/<Module>.lean`
+2. Add mapping to `lean_mappings.json`
+3. Build process auto-embeds proof section and updates progress
 
 ## UI Conventions
 
 ### Fixed Action Buttons
 
-Site uses two fixed-position action buttons implemented via JavaScript with design tokens:
+- **Report Issue** (`js/issue-button.js`): Bottom-right (70px, 20px), z-index 1000
+- **Buy Me a Coffee** (`js/buy-me-coffee-button.js`): Bottom-right (20px, 20px), z-index 999
+- Both use design tokens and are injected via Quarto's include-in-header
 
-- **Report Issue Button** (`js/issue-button.js`):
-  - Position: Fixed bottom-right (70px, 20px)
-  - Uses design tokens: `--color-issue-button-bg`, `--button-height-default`, etc.
-  - Z-index: `--z-index-issue-button` (1000)
-  - Visibility: Appears on ALL pages
+### Mobile Footer (`js/mobile-footer.js`)
 
-- **Buy Me a Coffee Button** (`js/buy-me-coffee-button.js`):
-  - Position: Fixed bottom-right (20px, 20px)
-  - Uses design tokens: `--color-coffee-button-bg`, `--color-coffee-button-hover`, etc.
-  - Z-index: `--z-index-coffee-button` (999)
-
-**Implementation**: Both buttons are injected via JavaScript during page load, loaded through Quarto's include-in-header configuration in language profiles. All styling uses design tokens for consistency.
-
-### Mobile Footer Implementation
-
-**Mobile Footer** (`js/mobile-footer.js`):
-
-- **Display**: Fixed horizontal footer that only appears on mobile devices (≤768px)
-- **Components**: Report Issue, Language Switch, and Buy Me a Coffee buttons
-- **Behavior**: Hides original floating buttons on mobile to avoid duplication
-- **Button Layout Architecture**:
-  - Uses abstract `.mobile-footer-button` base class for common styling
-  - Buttons use `flex: 1` to divide screen width into three equal parts
-  - `gap: var(--space-2)` provides consistent spacing between buttons
-  - Individual button classes inherit base styling and add specific colors
-- **Styling**: All button colors and dimensions use design tokens:
-  - Height: `--mobile-footer-button-height`
-  - Z-index: `--z-index-mobile-footer` (1100)
-  - No min-width constraint - flex controls button width
-- **Language Support**: Automatically detects current language and adjusts button text
-- **Key Features**:
-  - Uses `isMobile()` function for device detection
-  - Adds 70px bottom padding to prevent content overlap
-  - Language switch button shows disabled state when translation unavailable
-  - Buy Me a Coffee button image scales to full button width
+- **Display**: Fixed footer on mobile (≤768px) with 3 buttons: Report Issue, Language Switch, Buy Me a Coffee
+- **Layout**: `flex: 1` equal width buttons, z-index 1100, 70px bottom padding
+- **Features**: Hides floating buttons, language detection, disabled state for unavailable translations
 
 ### Design Tokens System
 
-The project uses design tokens for consistent visual design across all components:
-
-**Files**:
-
-- `design-tokens.css` - CSS custom properties for all design attributes
-- `design-tokens.js` - JavaScript module for programmatic access
-- `docs/design-tokens.md` - Complete documentation
-
-**Integration**:
-
-- Design tokens CSS must be loaded BEFORE other stylesheets in Quarto configs
-- All UI components (buttons, footer, language switcher) use design tokens
-- Both `styles.css` and `styles-multilingual.css` import and use tokens
-
-**Token Categories**:
-
-- **Colors**: Primary, semantic content types, action buttons, neutrals
-- **Typography**: Font families (including Japanese), sizes, weights
-- **Spacing**: Consistent scale from 4px to 64px
-- **Layout**: Z-index scale, border radius, breakpoints
-- **Animation**: Transitions, shadows
-
-**Usage**: Always use design tokens (`var(--token-name)`) instead of hardcoded values.
+- **Files**: `design-tokens.css`, `design-tokens.js`, `docs/design-tokens.md`
+- **Categories**: Colors, typography, spacing (4-64px), layout, animation
+- **Usage**: Load CSS first in Quarto configs, use `var(--token-name)` everywhere
 
 ## Repository Management
 
-### Going Public Checklist
+### Repository Management
 
-1. Update LICENSE placeholders
-2. Review security (no hardcoded secrets)
-3. Check commit history
-4. Clean logs (deployment.log, api.log)
-5. Add SECURITY.md
-6. Verify .gitignore
+**Going Public**: Update LICENSE, check security/history, clean logs, add SECURITY.md, verify .gitignore
 
-### Security Best Practices
-
-- Use `${{ secrets.* }}` in workflows
-- No absolute paths with usernames
-- Exclude logs and generated files
+**Security**: Use `${{ secrets.* }}`, no absolute paths with usernames, exclude logs/generated files
 
 ## Current Status
 
