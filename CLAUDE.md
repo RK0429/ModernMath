@@ -229,9 +229,9 @@ Scripts return 0 when no changes needed (success case).
 
 ### Quarto HTML Rendering
 
-- **Raw HTML blocks**: Use `` ```{=html} `` syntax (triple backticks, not colons)
+- **Raw HTML blocks**: Use ` ```{=html} ` syntax (triple backticks, not colons)
   - Incorrect: `::: {=html}` (will escape HTML)
-  - Correct: `` ```{=html} `` (renders raw HTML)
+  - Correct: ` ```{=html} ` (renders raw HTML)
 - JS timing: Use `DOMContentLoaded`
 - Error handling: User-friendly messages
 
@@ -325,8 +325,9 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
 - **Auto-detect GitHub Pages URL**: Script detects from git remote, fallback to `GITHUB_PAGES_URL` env var
   - **IMPORTANT**: GitHub Pages always uses lowercase usernames (e.g., `rk0429.github.io` not `RK0429.github.io`)
   - `embed_lean_proofs.py` must convert usernames to lowercase with `.lower()`
-- **iframe Integration**: Loads proofs via `https://live.lean-lang.org/#file=<github-pages-url>/formal/<lean-file>`
+- **iframe Integration**: Loads proofs via `https://live.lean-lang.org/#url=<github-pages-url>/formal/<lean-file>`
   - **URL Format**: Must include full module path: `/formal/MathKnowledgeGraph/Algebra/Groups.lean` (not `/formal/Algebra/Groups.lean`)
+  - **IMPORTANT**: Lean web editor requires `#url=` parameter, not `#file=` for loading external files
   - **One-time Fix**: `scripts/site/fix_lean_urls.py` available for correcting existing malformed URLs (not part of regular build)
 - **Build Process**:
   - Embed Lean proofs: `poetry run python scripts/site/embed_lean_proofs.py` (generates correct lowercase URLs)
