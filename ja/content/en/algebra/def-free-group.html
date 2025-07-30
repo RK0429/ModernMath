@@ -387,33 +387,33 @@ S &amp; \xrightarrow{i} &amp; F(S) \\
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-set["Set"]:::definition
-    def-binary-operation["Binary Operation"]:::definition
-    def-quotient-group["Quotient Group"]:::definition
+    def-free-group["Free Group"]:::definition
     def-group["Group"]:::definition
+    def-function["Function"]:::definition
+    def-quotient-group["Quotient Group"]:::definition
+    def-homomorphism["Group Homomorphism"]:::definition
     def-identity-element["Identity Element"]:::definition
     def-abelian-group["Abelian Group"]:::definition
-    def-function["Function"]:::definition
-    def-homomorphism["Group Homomorphism"]:::definition
-    def-free-group["Free Group"]:::definition
+    def-binary-operation["Binary Operation"]:::definition
     def-inverse-element["Inverse Element"]:::definition
-    def-free-group --&gt; def-quotient-group
+    def-free-group --&gt; def-binary-operation
+    def-free-group --&gt; def-abelian-group
     def-free-group --&gt; def-function
-    def-free-group --&gt; def-homomorphism
     def-free-group --&gt; def-identity-element
     def-free-group --&gt; def-set
     def-free-group --&gt; def-inverse-element
     def-free-group --&gt; def-group
-    def-free-group --&gt; def-abelian-group
-    def-free-group --&gt; def-binary-operation
+    def-free-group --&gt; def-homomorphism
+    def-free-group --&gt; def-quotient-group
     class def-free-group current
     click def-set "def-set.html" "Go to Set"
-    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
     click def-group "def-group.html" "Go to Group"
+    click def-function "def-function.html" "Go to Function"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
+    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism"
     click def-identity-element "def-identity-element.html" "Go to Identity Element"
     click def-abelian-group "def-abelian-group.html" "Go to Abelian Group"
-    click def-function "def-function.html" "Go to Function"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism"
+    click def-binary-operation "def-binary-operation.html" "Go to Binary Operation"
     click def-inverse-element "def-inverse-element.html" "Go to Inverse Element"
 </pre>
 </div>
@@ -425,7 +425,7 @@ S &amp; \xrightarrow{i} &amp; F(S) \\
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-free-group-1753812510" class="graph-visualization-container">
+<div id="graph-viz-def-free-group-1753838168" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -673,12 +673,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-free-group-1753812510', {
+    createForceGraph(data, 'graph-viz-def-free-group-1753838168', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-free-group-1753812510').innerHTML =
+    document.getElementById('graph-viz-def-free-group-1753838168').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

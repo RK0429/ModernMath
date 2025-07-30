@@ -336,23 +336,23 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Set"]:::definition
-    def-closed-set["Closed Set"]:::definition
-    thm-heine-borel["Heine-Borel Theorem"]:::theorem
-    def-connected["Connected Space"]:::definition
     def-open-set["Open Set"]:::definition
     def-topological-space["Topological Space"]:::definition
-    def-closed-set --&gt; def-open-set
+    def-connected["Connected Space"]:::definition
+    def-closed-set["Closed Set"]:::definition
+    def-set["Set"]:::definition
+    thm-heine-borel["Heine-Borel Theorem"]:::theorem
     thm-heine-borel --&gt; def-closed-set
-    def-connected --&gt; def-closed-set
     def-closed-set --&gt; def-set
+    def-connected --&gt; def-closed-set
+    def-closed-set --&gt; def-open-set
     def-closed-set --&gt; def-topological-space
     class def-closed-set current
-    click def-set "def-set.html" "Go to Set"
-    click thm-heine-borel "thm-heine-borel.html" "Go to Heine-Borel Theorem"
-    click def-connected "def-connected.html" "Go to Connected Space"
     click def-open-set "def-open-set.html" "Go to Open Set"
     click def-topological-space "def-topological-space.html" "Go to Topological Space"
+    click def-connected "def-connected.html" "Go to Connected Space"
+    click def-set "def-set.html" "Go to Set"
+    click thm-heine-borel "thm-heine-borel.html" "Go to Heine-Borel Theorem"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -363,7 +363,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-closed-set-1753812301" class="graph-visualization-container">
+<div id="graph-viz-def-closed-set-1753837960" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -611,12 +611,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-closed-set-1753812301', {
+    createForceGraph(data, 'graph-viz-def-closed-set-1753837960', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-closed-set-1753812301').innerHTML =
+    document.getElementById('graph-viz-def-closed-set-1753837960').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
