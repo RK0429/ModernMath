@@ -4,19 +4,19 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group["群"]:::definition
-    def-associativity["結合性"]:::definition
-    def-binary-operation["二項演算"]:::definition
-    def-inverse-element["逆元"]:::definition
-    def-endomorphism["自己準同型"]:::definition
     def-set["集合"]:::definition
     def-identity-element["単位元"]:::definition
+    def-inverse-element["逆元"]:::definition
+    def-endomorphism["自己準同型"]:::definition
+    def-associativity["結合性"]:::definition
     def-monoid["モノイド"]:::definition
-    def-monoid --> def-associativity
+    def-group["群"]:::definition
+    def-binary-operation["二項演算"]:::definition
+    def-monoid --> def-set
     def-endomorphism --> def-monoid
+    def-group --> def-monoid
+    def-monoid --> def-associativity
     def-monoid --> def-binary-operation
     def-inverse-element --> def-monoid
     def-monoid --> def-identity-element
-    def-monoid --> def-set
-    def-group --> def-monoid
     class def-monoid current

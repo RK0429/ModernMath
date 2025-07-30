@@ -359,45 +359,45 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-quotient-group["Quotient Group"]:::definition
-    def-kernel["Kernel"]:::definition
-    def-ideal["Ideal"]:::definition
-    thm-first-isomorphism["First Isomorphism Theorem"]:::theorem
-    def-vector-space["Vector Space"]:::definition
+    def-quotient-ring["Quotient Ring"]:::definition
     def-isomorphism["Isomorphism"]:::definition
     def-homomorphism["Group Homomorphism"]:::definition
-    def-normal-subgroup["Normal Subgroup"]:::definition
-    def-ring-homomorphism["Ring Homomorphism"]:::definition
-    def-quotient-ring["Quotient Ring"]:::definition
     def-linear-transformation["Linear Transformation"]:::definition
+    def-ring-homomorphism["Ring Homomorphism"]:::definition
+    def-normal-subgroup["Normal Subgroup"]:::definition
     def-exact-sequence["Exact Sequence"]:::definition
+    def-vector-space["Vector Space"]:::definition
+    thm-first-isomorphism["First Isomorphism Theorem"]:::theorem
     thm-rank-nullity["Rank-Nullity Theorem"]:::theorem
-    thm-first-isomorphism --&gt; def-kernel
-    def-kernel --&gt; def-ideal
+    def-quotient-group["Quotient Group"]:::definition
+    def-ideal["Ideal"]:::definition
+    def-kernel["Kernel"]:::definition
     def-kernel --&gt; def-quotient-group
-    def-kernel --&gt; def-linear-transformation
-    def-kernel --&gt; def-homomorphism
     def-kernel --&gt; def-ring-homomorphism
-    def-kernel --&gt; def-vector-space
+    def-kernel --&gt; def-isomorphism
     def-kernel --&gt; thm-first-isomorphism
     def-exact-sequence --&gt; def-kernel
-    def-kernel --&gt; def-isomorphism
-    def-kernel --&gt; def-quotient-ring
     def-kernel --&gt; def-normal-subgroup
+    def-kernel --&gt; def-homomorphism
     thm-rank-nullity --&gt; def-kernel
+    def-kernel --&gt; def-linear-transformation
+    thm-first-isomorphism --&gt; def-kernel
+    def-kernel --&gt; def-quotient-ring
+    def-kernel --&gt; def-vector-space
+    def-kernel --&gt; def-ideal
     class def-kernel current
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
-    click def-ideal "def-ideal.html" "Go to Ideal"
-    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem"
-    click def-vector-space "def-vector-space.html" "Go to Vector Space"
+    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring"
     click def-isomorphism "def-isomorphism.html" "Go to Isomorphism"
     click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
-    click def-ring-homomorphism "def-ring-homomorphism.html" "Go to Ring Homomorphism"
-    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring"
     click def-linear-transformation "def-linear-transformation.html" "Go to Linear Transformation"
+    click def-ring-homomorphism "def-ring-homomorphism.html" "Go to Ring Homomorphism"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup"
     click def-exact-sequence "def-exact-sequence.html" "Go to Exact Sequence"
+    click def-vector-space "def-vector-space.html" "Go to Vector Space"
+    click thm-first-isomorphism "thm-first-isomorphism.html" "Go to First Isomorphism Theorem"
     click thm-rank-nullity "thm-rank-nullity.html" "Go to Rank-Nullity Theorem"
+    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group"
+    click def-ideal "def-ideal.html" "Go to Ideal"
 </pre>
 </div>
 <p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
@@ -408,7 +408,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-kernel-1753838701" class="graph-visualization-container">
+<div id="graph-viz-def-kernel-1753839816" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -656,12 +656,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-kernel-1753838701', {
+    createForceGraph(data, 'graph-viz-def-kernel-1753839816', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-kernel-1753838701').innerHTML =
+    document.getElementById('graph-viz-def-kernel-1753839816').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

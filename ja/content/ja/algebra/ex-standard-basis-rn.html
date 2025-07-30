@@ -347,19 +347,19 @@ window.Quarto = {
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-linear-independence["線形独立"]:::definition
     def-basis["基底"]:::definition
     def-vector-space["ベクトル空間"]:::definition
-    ex-standard-basis-rn["ℝⁿの標準基底"]:::example
+    def-linear-independence["線形独立"]:::definition
     def-span["生成"]:::definition
-    ex-standard-basis-rn --&gt; def-vector-space
+    ex-standard-basis-rn["ℝⁿの標準基底"]:::example
     ex-standard-basis-rn --&gt; def-basis
-    ex-standard-basis-rn --&gt; def-span
+    ex-standard-basis-rn --&gt; def-vector-space
     ex-standard-basis-rn --&gt; def-linear-independence
+    ex-standard-basis-rn --&gt; def-span
     class ex-standard-basis-rn current
-    click def-linear-independence "def-linear-independence.html" "線形独立へ"
     click def-basis "def-basis.html" "基底へ"
     click def-vector-space "def-vector-space.html" "ベクトル空間へ"
+    click def-linear-independence "def-linear-independence.html" "線形独立へ"
     click def-span "def-span.html" "生成へ"
 </pre>
 </div>
@@ -371,7 +371,7 @@ window.Quarto = {
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-ex-standard-basis-rn-1753838630" class="graph-visualization-container">
+<div id="graph-viz-ex-standard-basis-rn-1753839747" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -619,12 +619,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-standard-basis-rn-1753838630', {
+    createForceGraph(data, 'graph-viz-ex-standard-basis-rn-1753839747', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-standard-basis-rn-1753838630').innerHTML =
+    document.getElementById('graph-viz-ex-standard-basis-rn-1753839747').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
