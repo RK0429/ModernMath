@@ -2,8 +2,9 @@
 """
 Fix Lean 4 proof URLs in Quarto files.
 
-This script corrects the URLs in iframe src attributes and links to ensure they
-include the full path to Lean files (including MathKnowledgeGraph directory).
+This script corrects the URLs in iframe src attributes and links to:
+1. Convert uppercase GitHub usernames to lowercase (GitHub Pages requirement)
+2. Ensure they include the full path to Lean files (including MathKnowledgeGraph directory)
 """
 
 import re
@@ -31,41 +32,49 @@ def fix_lean_urls_in_file(file_path: Path) -> bool:
 
         original_content = content
 
+        # First, fix uppercase GitHub username to lowercase
+        content = re.sub(
+            r"https://RK0429\.github\.io/ModernMath/",
+            r"https://rk0429.github.io/ModernMath/",
+            content,
+            flags=re.IGNORECASE,
+        )
+
         # Pattern to match Lean URLs that are missing MathKnowledgeGraph in the path
         # This matches URLs like:
-        # https://RK0429.github.io/ModernMath/formal/Algebra/Groups.lean
+        # https://rk0429.github.io/ModernMath/formal/Algebra/Groups.lean
         # and should transform to:
-        # https://RK0429.github.io/ModernMath/formal/MathKnowledgeGraph/Algebra/Groups.lean
+        # https://rk0429.github.io/ModernMath/formal/MathKnowledgeGraph/Algebra/Groups.lean
 
         patterns = [
             # Pattern for Algebra module files
             (
-                r"(https://RK0429\.github\.io/ModernMath/formal/)"
+                r"(https://rk0429\.github\.io/ModernMath/formal/)"
                 r"(?!MathKnowledgeGraph/)"
                 r"(Algebra/(?:Groups|Rings|VectorSpaces)\.lean)",
                 r"\1MathKnowledgeGraph/\2",
             ),
             # Pattern for Topology module files
             (
-                r"(https://RK0429\.github\.io/ModernMath/formal/)"
+                r"(https://rk0429\.github\.io/ModernMath/formal/)"
                 r"(?!MathKnowledgeGraph/)(Topology/Basic\.lean)",
                 r"\1MathKnowledgeGraph/\2",
             ),
             # Pattern for Logic module files
             (
-                r"(https://RK0429\.github\.io/ModernMath/formal/)"
+                r"(https://rk0429\.github\.io/ModernMath/formal/)"
                 r"(?!MathKnowledgeGraph/)(Logic/Sets\.lean)",
                 r"\1MathKnowledgeGraph/\2",
             ),
             # Pattern for NumberTheory module files
             (
-                r"(https://RK0429\.github\.io/ModernMath/formal/)"
+                r"(https://rk0429\.github\.io/ModernMath/formal/)"
                 r"(?!MathKnowledgeGraph/)(NumberTheory/Primes\.lean)",
                 r"\1MathKnowledgeGraph/\2",
             ),
             # Pattern for Analysis module files
             (
-                r"(https://RK0429\.github\.io/ModernMath/formal/)"
+                r"(https://rk0429\.github\.io/ModernMath/formal/)"
                 r"(?!MathKnowledgeGraph/)(Analysis/Limits\.lean)",
                 r"\1MathKnowledgeGraph/\2",
             ),

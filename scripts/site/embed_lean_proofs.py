@@ -259,14 +259,15 @@ def main() -> None:
 
             if len(parts) >= 2:
                 username, repo = parts[0], parts[1]
-                github_base_url = f"https://{username}.github.io/{repo}"
+                # GitHub Pages URLs always use lowercase usernames
+                github_base_url = f"https://{username.lower()}.github.io/{repo}"
             else:
                 raise ValueError("Could not parse remote URL")
 
         except (subprocess.CalledProcessError, ValueError) as e:
             logger.warning("Could not detect GitHub Pages URL: %s", e)
             # Default fallback
-            github_base_url = "https://RK0429.github.io/ModernMath"
+            github_base_url = "https://rk0429.github.io/ModernMath"
             logger.info("Using default GitHub Pages URL: %s", github_base_url)
 
     logger.info("Using GitHub Pages URL: %s", github_base_url)
