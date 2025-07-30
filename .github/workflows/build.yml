@@ -51,7 +51,7 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-    
+
     - name: Check for Lean files
       id: check
       run: |
@@ -64,7 +64,7 @@ jobs:
   # Job 1: Code quality and validation checks
   quality:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
 
     steps:
     - name: Checkout repository
@@ -105,7 +105,7 @@ jobs:
   # Job 2: Validate Lean proofs
   lean-validation:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     needs: [quality, check-lean]
     if: needs.check-lean.outputs.has-lean-files == 'true'
 
@@ -175,7 +175,7 @@ jobs:
   # Job 3: Build and validate knowledge graph
   graph:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     needs: [quality, check-lean]
 
     steps:
@@ -263,7 +263,7 @@ jobs:
   # Job 4: Generate visualizations in parallel
   visualizations:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     needs: [quality, graph, lean-validation, check-lean]
     if: ${{ !cancelled() && (needs.lean-validation.result == 'success' || needs.lean-validation.result == 'skipped') }}
 
@@ -328,7 +328,7 @@ jobs:
   # Job 5: Build multilingual site (using matrix for parallel language builds)
   site:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 40
     needs: [quality, graph, visualizations, lean-validation, check-lean]
     if: ${{ !cancelled() && (needs.lean-validation.result == 'success' || needs.lean-validation.result == 'skipped') }}
     strategy:
@@ -440,7 +440,7 @@ jobs:
   # Job 6: Combine sites and deploy
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     needs: site
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
