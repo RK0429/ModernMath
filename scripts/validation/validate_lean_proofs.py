@@ -6,11 +6,10 @@ This script runs `lake build` to ensure all Lean proofs compile correctly.
 It returns 0 if successful, 1 if there are errors.
 """
 
+import shutil
 import subprocess
 import sys
 from pathlib import Path
-import shutil
-import os
 
 # Find project root
 SCRIPT_DIR = Path(__file__).parent
@@ -39,12 +38,12 @@ def validate_lean_proofs() -> bool:
     print(f"Validating Lean proofs in {FORMAL_DIR}...")
 
     try:
-        # Run lake build with parallelization in the formal directory
-        # Get number of CPU cores for parallel build
-        num_cores = os.cpu_count() or 1
+        # Run lake build (Lake will automatically select an appropriate
+        # level of parallelism. Recent versions of Lake have removed the
+        # short `-j`/`--jobs` option, so we avoid passing it here.)
 
         result = subprocess.run(
-            ["lake", "build", "-j", str(num_cores)],
+            ["lake", "build"],
             cwd=FORMAL_DIR,
             capture_output=True,
             text=True,
