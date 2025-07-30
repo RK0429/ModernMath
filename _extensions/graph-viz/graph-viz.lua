@@ -209,6 +209,9 @@ async function loadAndRenderGraph() {
     // Calculate relative path based on current location
     const currentPath = window.location.pathname;
 
+    // Check if the path ends with a slash (directory URL)
+    const isDirectoryUrl = currentPath.endsWith('/');
+
     // Check if we're in a GitHub Pages subdirectory (e.g., /ModernMath/)
     const pathParts = currentPath.split('/').filter(p => p);
     let basePath = '';
@@ -225,13 +228,26 @@ async function loadAndRenderGraph() {
 
       // Check if the second part is a language code
       if (pathParts.length > 1 && (pathParts[1] === 'en' || pathParts[1] === 'ja')) {
-        // Remove project name and language, count remaining directories (excluding the HTML file)
-        depthFromProjectRoot = pathParts.slice(2).length - 1;
+        // Remove project name and language, count remaining directories
+        depthFromProjectRoot = pathParts.slice(2).length;
+
+        // If it's not a directory URL, subtract 1 for the HTML file
+        if (!isDirectoryUrl) {
+          depthFromProjectRoot -= 1;
+        }
+
         // Add one more level to go up from the language directory
         depthFromProjectRoot += 1;
+
+        // Ensure we have at least depth 1 to go up from language directory
+        depthFromProjectRoot = Math.max(1, depthFromProjectRoot);
       } else {
         // Original logic for non-multilingual setup
-        depthFromProjectRoot = pathParts.slice(1).length - 1;
+        depthFromProjectRoot = pathParts.slice(1).length;
+        if (!isDirectoryUrl) {
+          depthFromProjectRoot -= 1;
+        }
+        depthFromProjectRoot = Math.max(0, depthFromProjectRoot);
       }
 
       // Go up to the project root
