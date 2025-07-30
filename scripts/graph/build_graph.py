@@ -10,7 +10,7 @@ import json
 import logging
 import re
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 
 import frontmatter
 import yaml
@@ -253,34 +253,7 @@ class KnowledgeGraphBuilder:  # pylint: disable=too-few-public-methods
             node_to_lean = mappings_data.get("node_to_lean", {})
 
             for node_id, lean_data in node_to_lean.items():
-                if node_id in self.node_registry:
-                    node_uri = self.node_registry[node_id]
-                    lean_id = lean_data.get("lean_id")
-
-                    if lean_id:
-                        # Create a URI for the Lean proof
-                        lean_proof_uri = URIRef(f"https://mathlib.org/proof/{lean_id}")
-
-                        # Add the isVerifiedBy triple
-                        self.graph.add((node_uri, MYMATH.isVerifiedBy, lean_proof_uri))
-
-                        # Add metadata about the Lean proof
-                        self.graph.add((lean_proof_uri, RDF.type, MYMATH.FormalProof))
-                        self.graph.add(
-                            (
-                                lean_proof_uri,
-                                RDFS.label,
-                                Literal(f"Lean proof: {lean_id}", lang="en"),
-                            )
-                        )
-
-                        # Add the module information
-                        if "module_name" in lean_data:
-                            self.graph.add(
-                                (lean_proof_uri, MYMATH.inModule, Literal(lean_data["module_name"]))
-                            )
-
-                        logger.info("Added Lean verification for %s -> %s", node_id, lean_id)
+                self._process_lean_verification(node_id, lean_data)
 
             # Count how many nodes have verification
             verified_count = len(list(self.graph.triples((None, MYMATH.isVerifiedBy, None))))
@@ -288,6 +261,55 @@ class KnowledgeGraphBuilder:  # pylint: disable=too-few-public-methods
 
         except (IOError, json.JSONDecodeError, KeyError) as e:
             logger.error("Error adding Lean verification triples: %s", e)
+
+    def _process_lean_verification(self, node_id: str, lean_data: Dict[str, Any]) -> None:
+        """Process a single Lean verification mapping."""
+        if node_id not in self.node_registry:
+            return
+
+        node_uri = self.node_registry[node_id]
+        lean_id = lean_data.get("lean_id")
+
+        if not lean_id:
+            return
+
+        # Create a URI for the Lean proof
+        lean_proof_uri = URIRef(f"https://mathlib.org/proof/{lean_id}")
+
+        # Add the isVerifiedBy triple
+        self.graph.add((node_uri, MYMATH.isVerifiedBy, lean_proof_uri))
+
+        # Add metadata about the Lean proof
+        self.graph.add((lean_proof_uri, RDF.type, MYMATH.FormalProof))
+
+        # Get the label of the verified node to create a more descriptive label
+        node_label = self._get_node_english_label(node_uri)
+
+        if node_label:
+            proof_label = f"Formal proof of {node_label}"
+        else:
+            proof_label = f"Formal proof of {node_id}"
+
+        self.graph.add(
+            (
+                lean_proof_uri,
+                RDFS.label,
+                Literal(proof_label, lang="en"),
+            )
+        )
+
+        # Add the module information
+        if "module_name" in lean_data:
+            self.graph.add((lean_proof_uri, MYMATH.inModule, Literal(lean_data["module_name"])))
+
+        logger.info("Added Lean verification for %s -> %s", node_id, lean_id)
+
+    def _get_node_english_label(self, node_uri: URIRef) -> Optional[str]:
+        """Get the English label for a node URI."""
+        for label in self.graph.objects(node_uri, RDFS.label):
+            if isinstance(label, Literal) and label.language == "en":
+                return str(label)
+        return None
 
     def _save_graph(self) -> None:
         """Save the graph to a Turtle file."""
