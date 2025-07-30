@@ -99,7 +99,7 @@ class LeanProofEmbedder:
         lean_file_url = f"{self.github_base_url}/{lean_file_path}"
 
         # Construct the Lean web editor URL
-        lean_editor_url = f"https://live.lean-lang.org/#file={lean_file_url}"
+        lean_editor_url = f"https://live.lean-lang.org/#url={lean_file_url}"
 
         # Create the section content
         if language == "ja":

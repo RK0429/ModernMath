@@ -244,7 +244,9 @@ graph using Lean 4.
         else:
             color_class = "progress-low"
 
-        content += f"""<div class="progress-section">
+        content += f"""
+```{{=html}}
+<div class="progress-section">
 <h3>Total Coverage</h3>
 <div class="progress-container" style="height: 32px;">
   <div class="progress-fill {color_class}" style="width: {percentage}%">
@@ -259,11 +261,14 @@ graph using Lean 4.
   <span>{total - verified} remaining</span>
 </div>
 </div>
+```
 
 """
 
         # Progress by type
-        content += """<div class="progress-section">
+        content += """
+```{=html}
+<div class="progress-section">
 <h3>Progress by Type</h3>
 <div class="progress-grid">
 """
@@ -293,6 +298,7 @@ graph using Lean 4.
 """
         content += """</div>
 </div>
+```
 """
 
         # Detailed listing by domain
@@ -392,7 +398,9 @@ description: "Lean 4による形式的検証の進捗状況"
         else:
             color_class = "progress-low"
 
-        content += f"""<div class="progress-section">
+        content += f"""
+```{{=html}}
+<div class="progress-section">
 <h3>全体のカバレッジ</h3>
 <div class="progress-container" style="height: 32px;">
   <div class="progress-fill {color_class}" style="width: {percentage}%">
@@ -460,6 +468,7 @@ description: "Lean 4による形式的検証の進捗状況"
 """
         content += """</div>
 </div>
+```
 """
 
         return content
