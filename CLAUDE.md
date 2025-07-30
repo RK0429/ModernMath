@@ -321,9 +321,11 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
 **Implementation Details**:
 
 - **Auto-detect GitHub Pages URL**: Script detects from git remote, fallback to `GITHUB_PAGES_URL` env var
+  - **IMPORTANT**: GitHub Pages always uses lowercase usernames (e.g., `rk0429.github.io` not `RK0429.github.io`)
+  - `embed_lean_proofs.py` must convert usernames to lowercase with `.lower()`
 - **iframe Integration**: Loads proofs via `https://live.lean-lang.org/#file=<github-pages-url>/formal/<lean-file>`
   - **URL Format**: Must include full module path: `/formal/MathKnowledgeGraph/Algebra/Groups.lean` (not `/formal/Algebra/Groups.lean`)
-  - **Fix Script**: `scripts/site/fix_lean_urls.py` corrects malformed URLs in existing content
+  - **Fix Script**: `scripts/site/fix_lean_urls.py` corrects malformed URLs and case issues in existing content
 - **Build Process**:
   - Embed Lean proofs: `poetry run python scripts/site/embed_lean_proofs.py`
   - Generate progress pages: `poetry run python scripts/site/generate_proof_progress.py`
