@@ -10,10 +10,9 @@ Scripts are organized by functionality into the following subdirectories:
 
 Knowledge graph and RDF operations
 
-- `build_graph.py` - Build RDF knowledge graph from content files
+- `build_graph.py` - Build RDF knowledge graph from content files (includes Lean verification)
 - `validate_graph.py` - Validate the generated graph structure
 - `query_graph.py` - Query the knowledge graph
-- `add_verification_triples.py` - Add verification status to graph
 - `translation_graph.py` - Manage translation relationships in graph
 
 ### 🎨 visualization/
@@ -108,6 +107,7 @@ The typical build pipeline runs scripts in this order:
    ```
 
 4. **Final Build**
+
    ```bash
    quarto render
    ```

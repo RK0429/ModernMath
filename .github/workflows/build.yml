@@ -146,13 +146,10 @@ jobs:
             echo "⚠ Lean mapping extraction failed or not applicable"
           fi
 
-          # Verify consistency and add triples if mappings exist
+          # Verify consistency if mappings exist
           if [ -f "lean_mappings.json" ]; then
             poetry run python scripts/validation/verify_consistency.py
             echo "✓ Formal verification report generated"
-
-            poetry run python scripts/graph/add_verification_triples.py
-            echo "✓ Verification triples added to knowledge graph"
           else
             echo "⚠ No Lean mappings found, skipping verification"
           fi

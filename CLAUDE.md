@@ -28,7 +28,7 @@ poetry shell    # Activate virtual environment
 ### Building the Knowledge Graph
 
 ```bash
-poetry run python scripts/graph/build_graph.py              # Build RDF graph
+poetry run python scripts/graph/build_graph.py              # Build RDF graph (includes Lean verification)
 poetry run python scripts/validation/validate_metadata.py   # Validate metadata
 poetry run python scripts/graph/validate_graph.py          # Validate graph
 poetry run python scripts/site/generate_index_pages.py     # Generate indices
@@ -386,6 +386,9 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
 The knowledge graph includes formal proofs verified in Lean 4:
 
 - **Relationships**: Uses `isVerifiedBy` to connect definitions to formal proofs
+- **Single Script Architecture**: ONLY `build_graph.py` creates formal proof nodes via its `_add_lean_verification_triples()` method
+  - Never use `add_verification_triples.py` - it creates duplicate nodes with different URI schemes
+  - The CI/CD pipeline should NOT call `add_verification_triples.py`
 - **Preventing Duplicates**: `_get_all_graph_nodes()` only includes proof nodes actually referenced via `isVerifiedBy` relationships
 - **Label Generation**:
   - `build_graph.py` MUST use node IDs (e.g., "Formal proof of def-vector-space") NOT node labels to prevent duplicates
