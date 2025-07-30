@@ -4,32 +4,32 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
-    def-prime["Prime Number"]:::definition
     def-equivalence-relation["Equivalence Relation"]:::definition
-    def-congruence["Congruence (Modular Arithmetic)"]:::definition
-    thm-euler["Euler's Theorem"]:::theorem
     def-set["Set"]:::definition
+    thm-fermat-little["Fermat's Little Theorem"]:::theorem
     def-gcd["Greatest Common Divisor"]:::definition
     def-divisibility["Divisibility"]:::definition
-    thm-fermat-little["Fermat's Little Theorem"]:::theorem
+    thm-euler["Euler's Theorem"]:::theorem
+    def-prime["Prime Number"]:::definition
     ax-induction["Mathematical Induction"]:::axiom
-    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
+    thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
+    def-congruence["Congruence (Modular Arithmetic)"]:::definition
     thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
-    def-congruence --> ex-quotient-integers-mod-n
-    def-congruence --> ax-induction
-    thm-euler --> def-congruence
-    def-congruence --> thm-euler
-    def-congruence --> thm-euclidean-algorithm
+    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
     def-gcd --> def-congruence
-    def-congruence --> def-set
-    ex-quotient-integers-mod-n --> def-congruence
-    def-congruence --> def-divisibility
-    thm-chinese-remainder --> def-congruence
     def-congruence --> def-prime
-    thm-fermat-little --> def-congruence
-    def-congruence --> def-gcd
-    def-prime --> def-congruence
-    def-congruence --> thm-fermat-little
+    def-congruence --> def-divisibility
+    def-congruence --> ex-quotient-integers-mod-n
+    def-congruence --> thm-euclidean-algorithm
     def-equivalence-relation --> def-congruence
+    thm-chinese-remainder --> def-congruence
+    thm-fermat-little --> def-congruence
+    def-congruence --> ax-induction
+    def-congruence --> thm-euler
+    thm-euler --> def-congruence
+    def-congruence --> thm-fermat-little
+    def-prime --> def-congruence
+    ex-quotient-integers-mod-n --> def-congruence
+    def-congruence --> def-set
+    def-congruence --> def-gcd
     class def-congruence current

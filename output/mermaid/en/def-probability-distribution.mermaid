@@ -5,29 +5,29 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-integral["Integral"]:::definition
-    def-probability-space["Probability Space"]:::definition
-    def-expectation["Expected Value"]:::definition
-    def-function["Function"]:::definition
-    def-independence["Independence"]:::definition
-    thm-law-of-large-numbers["Law of Large Numbers"]:::theorem
-    def-variance["Variance"]:::definition
-    def-probability-distribution["Probability Distribution"]:::definition
-    def-normal-distribution["Normal Distribution"]:::definition
-    thm-central-limit["Central Limit Theorem"]:::theorem
     def-sample-space["Sample Space"]:::definition
-    def-binomial-distribution["Binomial Distribution"]:::definition
+    thm-central-limit["Central Limit Theorem"]:::theorem
+    def-expectation["Expected Value"]:::definition
+    def-variance["Variance"]:::definition
     def-random-variable["Random Variable"]:::definition
+    def-independence["Independence"]:::definition
+    def-normal-distribution["Normal Distribution"]:::definition
+    def-binomial-distribution["Binomial Distribution"]:::definition
+    def-probability-distribution["Probability Distribution"]:::definition
+    def-probability-space["Probability Space"]:::definition
+    thm-law-of-large-numbers["Law of Large Numbers"]:::theorem
+    def-function["Function"]:::definition
+    def-normal-distribution --> def-probability-distribution
     def-probability-distribution --> def-random-variable
-    thm-central-limit --> def-probability-distribution
+    def-probability-distribution --> def-integral
     thm-law-of-large-numbers --> def-probability-distribution
     def-probability-distribution --> def-function
     def-variance --> def-probability-distribution
-    def-probability-distribution --> def-integral
-    def-probability-distribution --> def-probability-space
-    def-normal-distribution --> def-probability-distribution
-    def-probability-distribution --> def-sample-space
-    def-binomial-distribution --> def-probability-distribution
-    def-expectation --> def-probability-distribution
-    def-random-variable --> def-probability-distribution
     def-independence --> def-probability-distribution
+    def-expectation --> def-probability-distribution
+    def-probability-distribution --> def-probability-space
+    def-probability-distribution --> def-sample-space
+    thm-central-limit --> def-probability-distribution
+    def-binomial-distribution --> def-probability-distribution
+    def-random-variable --> def-probability-distribution
     class def-probability-distribution current
