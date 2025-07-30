@@ -5,15 +5,15 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-sequence["Sequence"]:::definition
-    thm-taylor-series["Taylor Series"]:::theorem
-    def-convergence["Convergence"]:::definition
     def-open-ball["Open Ball"]:::definition
+    def-convergence["Convergence"]:::definition
     def-series["Series"]:::definition
+    thm-taylor-series["Taylor Series"]:::theorem
     def-limit["Limit of a Sequence"]:::definition
-    def-convergence --> def-sequence
-    def-open-ball --> def-convergence
-    thm-taylor-series --> def-convergence
-    def-convergence --> def-open-ball
     def-series --> def-convergence
+    def-convergence --> def-open-ball
+    def-convergence --> def-sequence
+    thm-taylor-series --> def-convergence
     def-convergence --> def-limit
+    def-open-ball --> def-convergence
     class def-convergence current

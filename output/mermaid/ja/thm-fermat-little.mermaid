@@ -5,15 +5,15 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-divisibility["整除性"]:::definition
-    def-prime["素数"]:::definition
     def-gcd["最大公約数"]:::definition
-    thm-euler["オイラーの定理"]:::theorem
     def-congruence["合同（モジュラー演算）"]:::definition
+    def-prime["素数"]:::definition
     thm-fermat-little["フェルマーの小定理"]:::theorem
+    thm-euler["オイラーの定理"]:::theorem
+    thm-fermat-little --> def-gcd
     thm-fermat-little --> def-congruence
-    thm-euler --> thm-fermat-little
     thm-fermat-little --> def-divisibility
     thm-fermat-little --> def-prime
+    thm-euler --> thm-fermat-little
     def-congruence --> thm-fermat-little
-    thm-fermat-little --> def-gcd
     class thm-fermat-little current

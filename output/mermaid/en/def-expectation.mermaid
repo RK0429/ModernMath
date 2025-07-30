@@ -4,21 +4,21 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-variance["Variance"]:::definition
     def-probability-space["Probability Space"]:::definition
-    def-random-variable["Random Variable"]:::definition
-    thm-central-limit["Central Limit Theorem"]:::theorem
-    thm-law-of-large-numbers["Law of Large Numbers"]:::theorem
     def-probability-distribution["Probability Distribution"]:::definition
-    def-expectation["Expected Value"]:::definition
+    thm-central-limit["Central Limit Theorem"]:::theorem
+    def-variance["Variance"]:::definition
+    def-random-variable["Random Variable"]:::definition
     def-normal-distribution["Normal Distribution"]:::definition
     def-binomial-distribution["Binomial Distribution"]:::definition
-    thm-law-of-large-numbers --> def-expectation
-    thm-central-limit --> def-expectation
+    def-expectation["Expected Value"]:::definition
+    thm-law-of-large-numbers["Law of Large Numbers"]:::theorem
     def-normal-distribution --> def-expectation
-    def-expectation --> def-random-variable
+    thm-law-of-large-numbers --> def-expectation
     def-expectation --> def-probability-distribution
-    def-variance --> def-expectation
-    def-binomial-distribution --> def-expectation
     def-expectation --> def-probability-space
+    thm-central-limit --> def-expectation
+    def-variance --> def-expectation
+    def-expectation --> def-random-variable
+    def-binomial-distribution --> def-expectation
     class def-expectation current

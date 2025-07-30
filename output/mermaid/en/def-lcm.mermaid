@@ -4,19 +4,19 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+    def-divisibility["Divisibility"]:::definition
+    def-gcd["Greatest Common Divisor"]:::definition
+    thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
     def-prime["Prime Number"]:::definition
     def-lcm["Least Common Multiple"]:::definition
-    def-gcd["Greatest Common Divisor"]:::definition
-    def-set["Set"]:::definition
     thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
-    def-divisibility["Divisibility"]:::definition
-    thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
-    def-lcm --> def-gcd
-    thm-fundamental-arithmetic --> def-lcm
+    def-set["Set"]:::definition
     def-gcd --> def-lcm
-    def-lcm --> def-divisibility
-    def-lcm --> def-set
     def-lcm --> thm-fundamental-arithmetic
-    def-lcm --> def-prime
+    thm-fundamental-arithmetic --> def-lcm
     def-lcm --> thm-chinese-remainder
+    def-lcm --> def-prime
+    def-lcm --> def-divisibility
+    def-lcm --> def-gcd
+    def-lcm --> def-set
     class def-lcm current
