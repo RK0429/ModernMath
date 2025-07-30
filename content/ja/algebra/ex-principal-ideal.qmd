@@ -70,19 +70,19 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-ideal["定義: イデアル"]:::definition
-    def-ring["定義：環"]:::definition
-    ex-principal-ideal["例: 整数における単項イデアル"]:::example
-    def-gcd["定義：最大公約数"]:::definition
     ex-integers-ring["例: 整数は環を形成する"]:::example
-    ex-principal-ideal --> def-gcd
-    ex-integers-ring --> ex-principal-ideal
+    def-ring["定義：環"]:::definition
+    def-gcd["定義：最大公約数"]:::definition
+    ex-principal-ideal["例: 整数における単項イデアル"]:::example
     ex-principal-ideal --> def-ring
+    ex-principal-ideal --> def-gcd
     ex-principal-ideal --> def-ideal
+    ex-integers-ring --> ex-principal-ideal
     class ex-principal-ideal current
     click def-ideal "def-ideal.html" "イデアルの定義へ"
+    click ex-integers-ring "ex-integers-ring.html" "整数は環を形成するの例へ"
     click def-ring "def-ring.html" "定義：環へ"
     click def-gcd "def-gcd.html" "定義：最大公約数へ"
-    click ex-integers-ring "ex-integers-ring.html" "整数は環を形成するの例へ"
 ```
 
 ## インタラクティブ可視化

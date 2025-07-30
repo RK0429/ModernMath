@@ -43,6 +43,7 @@ $2\mathbb{Z}$ が $(\mathbb{Z}, +)$ の部分群であることを示すため�
   - $\mathbb{Z}$ は[アーベル群](def-abelian-group.qmd)である（加法は可換）
   - [アーベル群](def-abelian-group.qmd)のすべての部分群は正規部分群である
   - また、$[{\mathbb{Z} : 2\mathbb{Z}}] = 2$ なので、指数 2 の部分群は正規である
+
 ## 依存関係グラフ
 
 ```{mermaid}
@@ -53,28 +54,28 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-subgroup["定義：部分群"]:::definition
-    def-normal-subgroup["定義: 正規部分群"]:::definition
-    ex-integers-addition["例: 加法における整数"]:::example
-    def-group["群"]:::definition
     def-coset["定義: 剰余類"]:::definition
+    def-normal-subgroup["定義: 正規部分群"]:::definition
+    def-subgroup["定義：部分群"]:::definition
     ex-even-integers-subgroup["例: 偶数整数は部分群を成す"]:::example
     def-abelian-group["定義: アーベル群"]:::definition
-    ex-even-integers-subgroup --> def-abelian-group
-    ex-even-integers-subgroup --> def-subgroup
-    def-coset --> ex-even-integers-subgroup
-    ex-even-integers-subgroup --> ex-integers-addition
-    def-group --> ex-even-integers-subgroup
-    ex-even-integers-subgroup --> def-normal-subgroup
-    ex-even-integers-subgroup --> def-group
+    def-group["群"]:::definition
+    ex-integers-addition["例: 加法における整数"]:::example
     ex-even-integers-subgroup --> def-coset
+    ex-even-integers-subgroup --> ex-integers-addition
+    ex-even-integers-subgroup --> def-group
+    ex-even-integers-subgroup --> def-abelian-group
+    ex-even-integers-subgroup --> def-normal-subgroup
+    def-coset --> ex-even-integers-subgroup
+    def-group --> ex-even-integers-subgroup
+    ex-even-integers-subgroup --> def-subgroup
     class ex-even-integers-subgroup current
-    click def-subgroup "def-subgroup.html" "定義：部分群へ"
-    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群の定義へ"
-    click ex-integers-addition "ex-integers-addition.html" "加法における整数の例へ"
-    click def-group "def-group.html" "群へ"
     click def-coset "def-coset.html" "剰余類の定義へ"
+    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群の定義へ"
+    click def-subgroup "def-subgroup.html" "定義：部分群へ"
     click def-abelian-group "def-abelian-group.html" "アーベル群の定義へ"
+    click def-group "def-group.html" "群へ"
+    click ex-integers-addition "ex-integers-addition.html" "加法における整数の例へ"
 ```
 
 ## インタラクティブ可視化

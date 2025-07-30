@@ -4,7 +4,7 @@ requires:
 - def-binomial-coefficient
 - def-generating-function
 status: complete
-title: "Pascal's Triangle"
+title: Pascal's Triangle
 translations:
   en: ../en/combinatorics/ex-pascals-triangle.html
   ja: ../ja/combinatorics/ex-pascals-triangle.html
@@ -63,6 +63,7 @@ The entry in row $n$ and position $k$ (counting from 0) is exactly $\binom{n}{k}
 
 The entries in Pascal's Triangle can be generated using a power [series](../analysis/def-series.qmd):
 $$\frac{1}{(1-x)^{n+1}} = \sum_{k=0}^{\infty} \binom{n+k}{k} x^k$$
+
 ## Dependency Graph
 
 ```{mermaid}
@@ -73,14 +74,14 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-generating-function["Definition: Generating Function"]:::definition
     def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
     ex-pascals-triangle["Example: Pascal's Triangle"]:::example
+    def-generating-function["Definition: Generating Function"]:::definition
     ex-pascals-triangle --> def-generating-function
     ex-pascals-triangle --> def-binomial-coefficient
     class ex-pascals-triangle current
-    click def-generating-function "def-generating-function.html" "Go to Generating Function definition"
     click def-binomial-coefficient "def-binomial-coefficient.html" "Go to Binomial Coefficient definition"
+    click def-generating-function "def-generating-function.html" "Go to Generating Function definition"
 ```
 
 ## Interactive Visualization

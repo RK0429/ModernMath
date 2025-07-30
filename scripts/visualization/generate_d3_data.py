@@ -239,10 +239,10 @@ def create_domain_json(g: Graph, domain: str, output_dir: Path, lang: str = "en"
 
 def create_global_json(g: Graph, output_dir: Path, lang: str = "en") -> Path:
     """Create D3.js-compatible JSON for the entire knowledge graph."""
-    # Get all nodes
+    # Get all nodes (excluding external URIs like Lean files)
     all_nodes = set()
     for s, _, o in g.triples((None, RDF.type, None)):
-        if str(o).startswith(str(MYMATH)):
+        if str(o).startswith(str(MYMATH)) and str(s).startswith(BASE_URI):
             all_nodes.add(s)
 
     # Get all edges

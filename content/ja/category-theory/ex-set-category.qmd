@@ -60,6 +60,7 @@ $$((h \circ g) \circ f)(x) = h(g(f(x))) = (h \circ (g \circ f))(x)$$
 
 - **FinSet**：有限集合の圏
 - **Set***：点付き集合（特別な要素を持つ集合）の圏
+
 ## 依存関係グラフ
 
 ```{mermaid}
@@ -70,17 +71,17 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-set-category["例：集合の圏"]:::example
-    def-morphism["定義: 射"]:::definition
     def-set["定義: 集合"]:::definition
     def-category["定義: 圏"]:::definition
-    ex-set-category --> def-category
+    ex-set-category["例：集合の圏"]:::example
+    def-morphism["定義: 射"]:::definition
     ex-set-category --> def-set
+    ex-set-category --> def-category
     ex-set-category --> def-morphism
     class ex-set-category current
-    click def-morphism "def-morphism.html" "射の定義へ"
     click def-set "def-set.html" "集合の定義へ"
     click def-category "def-category.html" "圏の定義へ"
+    click def-morphism "def-morphism.html" "射の定義へ"
 ```
 
 ## インタラクティブ可視化

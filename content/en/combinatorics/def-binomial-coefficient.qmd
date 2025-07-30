@@ -57,6 +57,7 @@ where $n!$ denotes the factorial of $n$.
 - Pascal's triangle construction
 - [Generating Functions](def-generating-function.qmd) - binomial coefficients appear naturally in both ordinary and exponential generating functions
 - [Inclusion-Exclusion Principle](thm-inclusion-exclusion.qmd) - uses binomial coefficients in its proof and applications
+
 ## Dependency Graph
 
 ```{mermaid}
@@ -67,24 +68,24 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-tree["Definition: Tree"]:::definition
-    def-generating-function["Definition: Generating Function"]:::definition
-    ex-pascals-triangle["Example: Pascal's Triangle"]:::example
-    def-combination["Definition: Combination"]:::definition
     def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
+    def-generating-function["Definition: Generating Function"]:::definition
+    def-combination["Definition: Combination"]:::definition
+    ex-pascals-triangle["Example: Pascal's Triangle"]:::example
     def-permutation["Definition: Permutation"]:::definition
-    def-binomial-coefficient --> def-combination
-    def-tree --> def-binomial-coefficient
-    def-generating-function --> def-binomial-coefficient
+    def-tree["Definition: Tree"]:::definition
     def-binomial-coefficient --> def-generating-function
     def-binomial-coefficient --> def-permutation
+    def-generating-function --> def-binomial-coefficient
+    def-binomial-coefficient --> def-combination
+    def-tree --> def-binomial-coefficient
     ex-pascals-triangle --> def-binomial-coefficient
     class def-binomial-coefficient current
-    click def-tree "def-tree.html" "Go to Tree definition"
     click def-generating-function "def-generating-function.html" "Go to Generating Function definition"
-    click ex-pascals-triangle "ex-pascals-triangle.html" "Go to Pascal's Triangle example"
     click def-combination "def-combination.html" "Go to Combination definition"
+    click ex-pascals-triangle "ex-pascals-triangle.html" "Go to Pascal's Triangle example"
     click def-permutation "def-permutation.html" "Go to Permutation definition"
+    click def-tree "def-tree.html" "Go to Tree definition"
 ```
 
 ## Interactive Visualization

@@ -372,6 +372,7 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
   ```
 
 - **Contrast with Domain Visualizations**: Domain-specific visualizations use `../{domain}/{article}.html` paths
+- **External Node Filtering**: Global graph excludes external URIs (e.g., Lean files) by filtering nodes where `str(s).startswith(BASE_URI)` in `create_global_json()`
 
 ## UI Conventions
 

@@ -42,6 +42,7 @@ Therefore, $2\mathbb{Z}$ is a subgroup of $\mathbb{Z}$ under addition.
   - $\mathbb{Z}$ is [abelian](def-abelian-group.qmd) (addition is commutative)
   - Every subgroup of an [abelian group](def-abelian-group.qmd) is normal
   - Alternatively, since $[{\mathbb{Z} : 2\mathbb{Z}}] = 2$, any subgroup of index 2 is normal
+
 ## Dependency Graph
 
 ```{mermaid}
@@ -52,28 +53,28 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-subgroup["Definition: Subgroup"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    ex-integers-addition["Example: Integers under Addition"]:::example
-    def-group["Definition: Group"]:::definition
     def-coset["Definition: Coset"]:::definition
+    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
+    def-subgroup["Definition: Subgroup"]:::definition
     ex-even-integers-subgroup["Example: Even Integers Form a Subgroup"]:::example
     def-abelian-group["Definition: Abelian Group"]:::definition
-    ex-even-integers-subgroup --> def-abelian-group
-    ex-even-integers-subgroup --> def-subgroup
-    def-coset --> ex-even-integers-subgroup
-    ex-even-integers-subgroup --> ex-integers-addition
-    def-group --> ex-even-integers-subgroup
-    ex-even-integers-subgroup --> def-normal-subgroup
-    ex-even-integers-subgroup --> def-group
+    def-group["Definition: Group"]:::definition
+    ex-integers-addition["Example: Integers under Addition"]:::example
     ex-even-integers-subgroup --> def-coset
+    ex-even-integers-subgroup --> ex-integers-addition
+    ex-even-integers-subgroup --> def-group
+    ex-even-integers-subgroup --> def-abelian-group
+    ex-even-integers-subgroup --> def-normal-subgroup
+    def-coset --> ex-even-integers-subgroup
+    def-group --> ex-even-integers-subgroup
+    ex-even-integers-subgroup --> def-subgroup
     class ex-even-integers-subgroup current
-    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
-    click def-group "def-group.html" "Go to Group definition"
     click def-coset "def-coset.html" "Go to Coset definition"
+    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
+    click def-subgroup "def-subgroup.html" "Go to Subgroup definition"
     click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
+    click def-group "def-group.html" "Go to Group definition"
+    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
 ```
 
 ## Interactive Visualization

@@ -58,6 +58,7 @@ $$\binom{n}{k} = \frac{n!}{k!(n-k)!}$$
 - パスカルの三角形の構成
 - [母関数](def-generating-function.qmd) - 二項係数は通常母関数と指数母関数の両方に自然に現れる
 - [包含排除の原理](thm-inclusion-exclusion.qmd) - その証明と応用で二項係数を使用
+
 ## 依存関係グラフ
 
 ```{mermaid}
@@ -68,24 +69,24 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-tree["定義: 木"]:::definition
-    def-generating-function["定義: 母関数"]:::definition
-    ex-pascals-triangle["例：パスカルの三角形"]:::example
-    def-combination["定義：組合せ"]:::definition
     def-binomial-coefficient["定義：二項係数"]:::definition
+    def-generating-function["定義: 母関数"]:::definition
+    def-combination["定義：組合せ"]:::definition
+    ex-pascals-triangle["例：パスカルの三角形"]:::example
     def-permutation["定義：順列"]:::definition
-    def-binomial-coefficient --> def-combination
-    def-tree --> def-binomial-coefficient
-    def-generating-function --> def-binomial-coefficient
+    def-tree["定義: 木"]:::definition
     def-binomial-coefficient --> def-generating-function
     def-binomial-coefficient --> def-permutation
+    def-generating-function --> def-binomial-coefficient
+    def-binomial-coefficient --> def-combination
+    def-tree --> def-binomial-coefficient
     ex-pascals-triangle --> def-binomial-coefficient
     class def-binomial-coefficient current
-    click def-tree "def-tree.html" "木の定義へ"
     click def-generating-function "def-generating-function.html" "母関数の定義へ"
-    click ex-pascals-triangle "ex-pascals-triangle.html" "例：パスカルの三角形へ"
     click def-combination "def-combination.html" "定義：組合せへ"
+    click ex-pascals-triangle "ex-pascals-triangle.html" "例：パスカルの三角形へ"
     click def-permutation "def-permutation.html" "定義：順列へ"
+    click def-tree "def-tree.html" "木の定義へ"
 ```
 
 ## インタラクティブ可視化
