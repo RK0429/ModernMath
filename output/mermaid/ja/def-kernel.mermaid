@@ -4,30 +4,30 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-quotient-group["商群"]:::definition
-    def-linear-transformation["線形変換"]:::definition
-    def-normal-subgroup["正規部分群"]:::definition
     def-ideal["イデアル"]:::definition
-    def-homomorphism["群準同型"]:::definition
     def-vector-space["ベクトル空間"]:::definition
-    def-exact-sequence["完全列"]:::definition
-    thm-first-isomorphism["第一同型定理"]:::theorem
-    def-ring-homomorphism["環準同型"]:::definition
+    def-linear-transformation["線形変換"]:::definition
+    def-isomorphism["群同型"]:::definition
+    def-quotient-group["商群"]:::definition
     thm-rank-nullity["階数・退化次数定理"]:::theorem
     def-quotient-ring["剰余環"]:::definition
-    def-isomorphism["群同型"]:::definition
+    def-exact-sequence["完全列"]:::definition
     def-kernel["核"]:::definition
-    thm-rank-nullity --> def-kernel
-    def-kernel --> def-homomorphism
-    def-kernel --> def-ring-homomorphism
-    thm-first-isomorphism --> def-kernel
-    def-exact-sequence --> def-kernel
-    def-kernel --> def-vector-space
+    def-homomorphism["群準同型"]:::definition
+    def-normal-subgroup["正規部分群"]:::definition
+    def-ring-homomorphism["環準同型"]:::definition
+    thm-first-isomorphism["第一同型定理"]:::theorem
     def-kernel --> def-quotient-group
+    def-kernel --> def-homomorphism
     def-kernel --> def-isomorphism
-    def-kernel --> def-normal-subgroup
-    def-kernel --> thm-first-isomorphism
     def-kernel --> def-quotient-ring
-    def-kernel --> def-ideal
+    def-exact-sequence --> def-kernel
+    def-kernel --> def-normal-subgroup
+    thm-first-isomorphism --> def-kernel
     def-kernel --> def-linear-transformation
+    def-kernel --> def-ring-homomorphism
+    def-kernel --> def-ideal
+    def-kernel --> thm-first-isomorphism
+    def-kernel --> def-vector-space
+    thm-rank-nullity --> def-kernel
     class def-kernel current

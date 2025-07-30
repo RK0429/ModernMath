@@ -4,27 +4,27 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-category["Category"]:::definition
-    def-monomorphism["Monomorphism"]:::definition
-    def-natural-transformation["Natural Transformation"]:::definition
-    def-graph["Graph"]:::definition
-    def-epimorphism["Epimorphism"]:::definition
-    def-composition["Composition"]:::definition
-    def-set["Set"]:::definition
-    def-morphism["Morphism"]:::definition
-    def-isomorphism["Isomorphism"]:::definition
-    def-functor["Functor"]:::definition
     ex-set-category["The Category of Sets"]:::example
+    def-category["Category"]:::definition
+    def-isomorphism["Isomorphism"]:::definition
+    def-natural-transformation["Natural Transformation"]:::definition
+    def-set["Set"]:::definition
+    def-monomorphism["Monomorphism"]:::definition
+    def-morphism["Morphism"]:::definition
     thm-yoneda["Yoneda Lemma"]:::theorem
+    def-graph["Graph"]:::definition
+    def-composition["Composition"]:::definition
+    def-functor["Functor"]:::definition
+    def-epimorphism["Epimorphism"]:::definition
+    ex-set-category --> def-category
+    def-functor --> def-category
+    thm-yoneda --> def-category
+    def-category --> def-set
+    def-isomorphism --> def-category
+    def-epimorphism --> def-category
+    def-category --> def-graph
+    def-morphism --> def-category
     def-composition --> def-category
     def-natural-transformation --> def-category
-    def-category --> def-graph
-    def-functor --> def-category
     def-monomorphism --> def-category
-    ex-set-category --> def-category
-    thm-yoneda --> def-category
-    def-isomorphism --> def-category
-    def-category --> def-set
-    def-epimorphism --> def-category
-    def-morphism --> def-category
     class def-category current
