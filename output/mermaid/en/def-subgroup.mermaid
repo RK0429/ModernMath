@@ -4,35 +4,35 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-subgroup["Subgroup"]:::definition
-    thm-sylow["Sylow Theorems"]:::theorem
-    ex-even-integers-subgroup["Even Integers Form a Subgroup"]:::example
-    def-normal-subgroup["Normal Subgroup"]:::definition
-    def-coset["Coset"]:::definition
-    thm-lagrange["Lagrange's Theorem"]:::theorem
-    def-order["Order"]:::definition
-    def-set["Set"]:::definition
-    def-cyclic-group["Cyclic Group"]:::definition
     def-subring["Subring"]:::definition
-    def-center-of-group["Center of a Group"]:::definition
-    def-group["Group"]:::definition
+    def-coset["Coset"]:::definition
+    def-subgroup["Subgroup"]:::definition
+    def-set["Set"]:::definition
+    ex-even-integers-subgroup["Even Integers Form a Subgroup"]:::example
     def-quotient-group["Quotient Group"]:::definition
-    def-subgroup --> def-cyclic-group
+    def-cyclic-group["Cyclic Group"]:::definition
+    def-normal-subgroup["Normal Subgroup"]:::definition
+    def-order["Order"]:::definition
+    def-center-of-group["Center of a Group"]:::definition
+    thm-lagrange["Lagrange's Theorem"]:::theorem
+    thm-sylow["Sylow Theorems"]:::theorem
+    def-group["Group"]:::definition
     def-subgroup --> def-order
-    def-subgroup --> def-quotient-group
-    def-subgroup --> def-normal-subgroup
-    def-subgroup --> def-set
     def-center-of-group --> def-subgroup
-    def-cyclic-group --> def-subgroup
-    def-normal-subgroup --> def-subgroup
+    def-subgroup --> def-quotient-group
+    def-subgroup --> thm-lagrange
+    def-quotient-group --> def-subgroup
+    def-subgroup --> def-set
+    def-subgroup --> def-cyclic-group
+    def-coset --> def-subgroup
+    thm-sylow --> def-subgroup
+    thm-lagrange --> def-subgroup
+    def-subring --> def-subgroup
     ex-even-integers-subgroup --> def-subgroup
     def-order --> def-subgroup
-    def-subgroup --> thm-lagrange
-    def-coset --> def-subgroup
-    def-subring --> def-subgroup
-    def-quotient-group --> def-subgroup
-    thm-lagrange --> def-subgroup
-    thm-sylow --> def-subgroup
     def-group --> def-subgroup
+    def-cyclic-group --> def-subgroup
+    def-normal-subgroup --> def-subgroup
+    def-subgroup --> def-normal-subgroup
     def-subgroup --> def-group
     class def-subgroup current
