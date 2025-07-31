@@ -4,19 +4,19 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-random-variable["Random Variable"]:::definition
-    thm-law-of-large-numbers["Law of Large Numbers"]:::theorem
     thm-central-limit["Central Limit Theorem"]:::theorem
     def-expectation["Expected Value"]:::definition
     def-probability-distribution["Probability Distribution"]:::definition
-    def-binomial-distribution["Binomial Distribution"]:::definition
     def-normal-distribution["Normal Distribution"]:::definition
+    def-random-variable["Random Variable"]:::definition
+    def-binomial-distribution["Binomial Distribution"]:::definition
+    thm-law-of-large-numbers["Law of Large Numbers"]:::theorem
     def-variance["Variance"]:::definition
     def-variance --> def-random-variable
-    thm-law-of-large-numbers --> def-variance
     def-normal-distribution --> def-variance
+    def-variance --> def-expectation
+    thm-central-limit --> def-variance
+    thm-law-of-large-numbers --> def-variance
     def-binomial-distribution --> def-variance
     def-variance --> def-probability-distribution
-    thm-central-limit --> def-variance
-    def-variance --> def-expectation
     class def-variance current

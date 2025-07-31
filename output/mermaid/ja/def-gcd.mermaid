@@ -5,31 +5,31 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-fermat-little["フェルマーの小定理"]:::theorem
-    ex-principal-ideal["整数における単項イデアル"]:::example
-    def-lcm["最小公倍数"]:::definition
-    def-congruence["合同（モジュラー演算）"]:::definition
-    def-divisibility["整除性"]:::definition
-    def-prime["素数"]:::definition
+    def-set["集合"]:::definition
     thm-euclidean-algorithm["ユークリッドのアルゴリズム"]:::theorem
     thm-chinese-remainder["中国剰余定理"]:::theorem
-    def-set["集合"]:::definition
-    thm-fundamental-arithmetic["算術の基本定理"]:::theorem
-    def-gcd["最大公約数"]:::definition
+    def-congruence["合同（モジュラー演算）"]:::definition
+    def-prime["素数"]:::definition
     thm-euler["オイラーの定理"]:::theorem
+    ex-principal-ideal["整数における単項イデアル"]:::example
+    def-divisibility["整除性"]:::definition
+    thm-fundamental-arithmetic["算術の基本定理"]:::theorem
+    def-lcm["最小公倍数"]:::definition
+    def-gcd["最大公約数"]:::definition
+    ex-principal-ideal --> def-gcd
     def-lcm --> def-gcd
-    def-gcd --> def-prime
-    def-gcd --> thm-euclidean-algorithm
-    def-prime --> def-gcd
-    def-gcd --> def-set
+    thm-fermat-little --> def-gcd
     def-gcd --> thm-euler
     def-divisibility --> def-gcd
-    thm-fermat-little --> def-gcd
-    thm-euclidean-algorithm --> def-gcd
-    thm-chinese-remainder --> def-gcd
-    def-gcd --> def-lcm
-    ex-principal-ideal --> def-gcd
-    def-gcd --> def-congruence
-    def-congruence --> def-gcd
+    def-gcd --> def-prime
+    def-gcd --> thm-euclidean-algorithm
     thm-fundamental-arithmetic --> def-gcd
+    def-gcd --> def-set
+    def-congruence --> def-gcd
+    def-gcd --> def-congruence
     def-gcd --> def-divisibility
+    thm-chinese-remainder --> def-gcd
+    def-prime --> def-gcd
+    def-gcd --> def-lcm
+    thm-euclidean-algorithm --> def-gcd
     class def-gcd current

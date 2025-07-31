@@ -116,6 +116,152 @@ pre {
 }
 
 /* =================================
+   PROGRESS TABLE STYLES
+   ================================= */
+
+/* Progress table container */
+.table-container {
+  margin: var(--space-4) 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Progress table styling */
+.progress-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-neutral-white);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.progress-table thead {
+  background-color: var(--color-neutral-bg);
+}
+
+.progress-table th {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-text);
+  border-bottom: 2px solid var(--color-neutral-border);
+  position: relative;
+}
+
+.progress-table th.sortable {
+  cursor: pointer;
+  padding-right: calc(var(--space-4) + 20px);
+  user-select: none;
+}
+
+.progress-table th.sortable:hover {
+  background-color: var(--color-neutral-bg-hover);
+}
+
+.progress-table td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-neutral-border);
+}
+
+.progress-table tbody tr:hover {
+  background-color: var(--color-neutral-bg);
+  transition: background-color 0.2s ease;
+}
+
+.progress-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Filter row styling */
+.filter-row th {
+  background-color: #f8f9fa;
+  padding: var(--space-2);
+  border-bottom: 1px solid var(--color-neutral-border);
+}
+
+.filter-select,
+.filter-input {
+  width: 100%;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-neutral-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  background-color: var(--color-neutral-white);
+  transition: border-color 0.2s ease;
+}
+
+.filter-select:focus,
+.filter-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Sort indicator */
+.sort-indicator {
+  position: absolute;
+  right: var(--space-2);
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.5;
+  font-size: var(--font-size-sm);
+  transition: opacity 0.2s ease;
+}
+
+th[data-sort="asc"] .sort-indicator,
+th[data-sort="desc"] .sort-indicator {
+  opacity: 1;
+  color: var(--color-primary);
+}
+
+/* Clear filters button */
+.clear-filters-btn {
+  margin: var(--space-3) 0;
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--color-neutral-600);
+  color: var(--color-neutral-white);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: background-color 0.2s ease;
+}
+
+.clear-filters-btn:hover {
+  background-color: var(--color-neutral-700);
+}
+
+/* Filter count display */
+.filter-count {
+  margin: var(--space-3) 0;
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-neutral-bg);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-text-light);
+  border: 1px solid var(--color-neutral-border);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .progress-table {
+    font-size: var(--font-size-sm);
+  }
+
+  .progress-table th,
+  .progress-table td {
+    padding: var(--space-2);
+  }
+
+  .filter-select,
+  .filter-input {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* =================================
    PROGRESS BAR STYLES
    ================================= */
 

@@ -5,31 +5,31 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     thm-fermat-little["Fermat's Little Theorem"]:::theorem
-    ex-principal-ideal["Principal Ideals in Integers"]:::example
-    def-lcm["Least Common Multiple"]:::definition
-    def-congruence["Congruence (Modular Arithmetic)"]:::definition
-    def-divisibility["Divisibility"]:::definition
-    def-prime["Prime Number"]:::definition
+    def-set["Set"]:::definition
     thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
     thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
-    def-set["Set"]:::definition
-    thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
-    def-gcd["Greatest Common Divisor"]:::definition
+    def-congruence["Congruence (Modular Arithmetic)"]:::definition
+    def-prime["Prime Number"]:::definition
     thm-euler["Euler's Theorem"]:::theorem
+    ex-principal-ideal["Principal Ideals in Integers"]:::example
+    def-divisibility["Divisibility"]:::definition
+    thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
+    def-lcm["Least Common Multiple"]:::definition
+    def-gcd["Greatest Common Divisor"]:::definition
+    ex-principal-ideal --> def-gcd
     def-lcm --> def-gcd
-    def-gcd --> def-prime
-    def-gcd --> thm-euclidean-algorithm
-    def-prime --> def-gcd
-    def-gcd --> def-set
+    thm-fermat-little --> def-gcd
     def-gcd --> thm-euler
     def-divisibility --> def-gcd
-    thm-fermat-little --> def-gcd
-    thm-euclidean-algorithm --> def-gcd
-    thm-chinese-remainder --> def-gcd
-    def-gcd --> def-lcm
-    ex-principal-ideal --> def-gcd
-    def-gcd --> def-congruence
-    def-congruence --> def-gcd
+    def-gcd --> def-prime
+    def-gcd --> thm-euclidean-algorithm
     thm-fundamental-arithmetic --> def-gcd
+    def-gcd --> def-set
+    def-congruence --> def-gcd
+    def-gcd --> def-congruence
     def-gcd --> def-divisibility
+    thm-chinese-remainder --> def-gcd
+    def-prime --> def-gcd
+    def-gcd --> def-lcm
+    thm-euclidean-algorithm --> def-gcd
     class def-gcd current
