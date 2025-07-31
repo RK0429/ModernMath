@@ -370,15 +370,16 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
 
 ### Formal Proof Visualization
 
-- **Proof Status Icons**: Article nodes display proof status icons instead of separate formal proof nodes
-  - ✅ **Completed**: Formal proof completed without errors
-  - ⚠️ **Warnings present**: Formal proof has warnings (e.g., uses `sorry`)
-  - ❌ **Errors present**: Formal proof has compilation errors
-  - 📝 **Not implemented**: Formal proof not yet implemented
+- **Proof Status Icons**: Only nodes with completed formal proofs display a check mark icon
+  - ✔️ **Completed**: Simple check mark displayed for nodes with completed formal proofs
+  - No icons shown for warnings, errors, or unimplemented proofs
 - **Implementation**:
   - `build_graph.py`: Formal proof node generation disabled (commented out `_add_lean_verification_triples()`)
   - Visualization scripts load `lean_mappings.json` and `lean_validation_results.json`
-  - Icons appear on nodes in D3.js (top-right), Mermaid (in label), and PyVis (in tooltip)
+  - Only `proof_status: "completed"` is included in generated data
+  - D3.js: White transparent check mark (✔️) centered on node with `pointer-events: none`
+  - Mermaid: Check mark appended to node label
+  - PyVis: Check mark shown in tooltip with "Formal proof completed" text
 
 ### Lean 4 Proof Integration
 
