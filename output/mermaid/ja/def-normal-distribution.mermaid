@@ -5,14 +5,14 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-expectation["期待値"]:::definition
+    def-normal-distribution["正規分布"]:::definition
     def-variance["分散"]:::definition
+    def-random-variable["確率変数"]:::definition
     def-probability-distribution["確率分布"]:::definition
     thm-central-limit["中心極限定理"]:::theorem
-    def-normal-distribution["正規分布"]:::definition
-    def-random-variable["確率変数"]:::definition
+    thm-central-limit --> def-normal-distribution
+    def-normal-distribution --> def-probability-distribution
     def-normal-distribution --> def-expectation
     def-normal-distribution --> def-variance
-    def-normal-distribution --> def-probability-distribution
-    thm-central-limit --> def-normal-distribution
     def-normal-distribution --> def-random-variable
     class def-normal-distribution current
