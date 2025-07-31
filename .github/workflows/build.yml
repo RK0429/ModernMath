@@ -29,6 +29,12 @@ on:
       - 'poetry.lock'
       - 'pyproject.toml'
       - '.github/workflows/build.yml'
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        description: 'Enable debug logging'
+        required: false
+        default: 'false'
 
 # Cancel in-progress runs when new commits are pushed
 concurrency:

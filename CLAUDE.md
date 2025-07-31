@@ -206,6 +206,7 @@ css:
   - Lake packages: `formal/.lake/packages` with key `lake-pkgs-${{ runner.os }}-${{ hashFiles('formal/lake-manifest.json') }}`
   - Build artifacts: `formal/.lake/build` with key `lake-build-${{ runner.os }}-${{ hashFiles('formal/**/*.lean') }}`
   - Lake build uses parallelization: `lake build -j $(nproc)`
+- **Manual Execution**: Add `workflow_dispatch` trigger for manual runs with optional debug parameter
 
 ### CI/CD Troubleshooting
 
