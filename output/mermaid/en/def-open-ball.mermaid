@@ -5,27 +5,27 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-cauchy-sequence["Cauchy Sequence"]:::definition
-    def-set["Set"]:::definition
-    def-open-set["Open Set"]:::definition
-    def-continuity["Continuity"]:::definition
     def-metric-space["Metric Space"]:::definition
-    thm-taylor-series["Taylor Series"]:::theorem
-    def-open-ball["Open Ball"]:::definition
     ex-real-line-metric["Real Line with Standard Metric"]:::example
     def-convergence["Convergence"]:::definition
+    def-continuity["Continuity"]:::definition
+    def-open-ball["Open Ball"]:::definition
+    thm-taylor-series["Taylor Series"]:::theorem
+    def-set["Set"]:::definition
+    def-open-set["Open Set 📝"]:::definition
     def-normed-vector-space["Normed Vector Space"]:::definition
     def-complete-metric-space["Complete Metric Space"]:::definition
-    def-open-ball --> def-metric-space
-    def-open-ball --> def-continuity
+    def-continuity --> def-open-ball
     def-open-ball --> def-open-set
+    def-open-ball --> def-cauchy-sequence
+    def-open-ball --> def-set
     thm-taylor-series --> def-open-ball
+    def-open-ball --> def-continuity
+    def-open-ball --> def-metric-space
+    def-open-ball --> def-complete-metric-space
+    def-convergence --> def-open-ball
     def-normed-vector-space --> def-open-ball
     def-open-ball --> def-convergence
-    def-open-ball --> def-complete-metric-space
-    def-metric-space --> def-open-ball
     ex-real-line-metric --> def-open-ball
-    def-open-ball --> def-set
-    def-open-ball --> def-cauchy-sequence
-    def-continuity --> def-open-ball
-    def-convergence --> def-open-ball
+    def-metric-space --> def-open-ball
     class def-open-ball current

@@ -4,39 +4,39 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-lagrange["ラグランジュの定理"]:::theorem
-    ex-quotient-integers-mod-n["整数の n による剰余"]:::example
-    def-group["群"]:::definition
-    def-subgroup["部分群"]:::definition
     ex-integers-addition["加法における整数"]:::example
+    ex-quotient-integers-mod-n["整数の n による剰余"]:::example
+    def-group["群 📝"]:::definition
+    def-order["位数"]:::definition
+    thm-lagrange["ラグランジュの定理"]:::theorem
+    def-quotient-group["商群"]:::definition
+    def-abelian-group["アーベル群"]:::definition
+    def-direct-product["群の直積"]:::definition
     ex-group-action-examples["群作用の例"]:::example
     def-cyclic-group["巡回群"]:::definition
-    def-direct-product["群の直積"]:::definition
-    def-quotient-group["商群"]:::definition
-    def-simple-group["単純群"]:::definition
     def-identity-element["単位元"]:::definition
-    def-abelian-group["アーベル群"]:::definition
     def-isomorphism["群同型"]:::definition
-    def-order["位数"]:::definition
-    def-cyclic-group --> def-identity-element
-    ex-integers-addition --> def-cyclic-group
-    def-cyclic-group --> def-abelian-group
-    def-cyclic-group --> def-order
-    def-cyclic-group --> def-direct-product
-    def-cyclic-group --> ex-integers-addition
+    def-subgroup["部分群 ⚠️"]:::definition
+    def-simple-group["単純群"]:::definition
+    def-cyclic-group --> def-group
+    def-group --> def-cyclic-group
     ex-group-action-examples --> def-cyclic-group
-    def-abelian-group --> def-cyclic-group
+    def-cyclic-group --> def-direct-product
+    def-subgroup --> def-cyclic-group
+    ex-quotient-integers-mod-n --> def-cyclic-group
+    def-cyclic-group --> def-abelian-group
+    def-cyclic-group --> def-identity-element
     def-simple-group --> def-cyclic-group
-    def-quotient-group --> def-cyclic-group
+    ex-integers-addition --> def-cyclic-group
     def-cyclic-group --> thm-lagrange
     def-cyclic-group --> def-isomorphism
-    def-cyclic-group --> ex-quotient-integers-mod-n
     thm-lagrange --> def-cyclic-group
-    ex-quotient-integers-mod-n --> def-cyclic-group
-    def-group --> def-cyclic-group
-    def-cyclic-group --> def-subgroup
-    def-cyclic-group --> def-group
-    def-direct-product --> def-cyclic-group
-    def-subgroup --> def-cyclic-group
+    def-abelian-group --> def-cyclic-group
     def-order --> def-cyclic-group
+    def-cyclic-group --> ex-integers-addition
+    def-direct-product --> def-cyclic-group
+    def-cyclic-group --> def-subgroup
+    def-cyclic-group --> ex-quotient-integers-mod-n
+    def-quotient-group --> def-cyclic-group
+    def-cyclic-group --> def-order
     class def-cyclic-group current

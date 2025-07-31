@@ -4,21 +4,21 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
-    def-group["Group"]:::definition
     ex-integers-addition["Integers under Addition"]:::example
-    def-set["Set"]:::definition
-    def-cyclic-group["Cyclic Group"]:::definition
-    def-binary-operation["Binary Operation"]:::definition
+    ex-quotient-integers-mod-n["Integers Modulo n"]:::example
+    def-group["Group 📝"]:::definition
     def-abelian-group["Abelian Group"]:::definition
     ex-even-integers-subgroup["Even Integers Form a Subgroup"]:::example
-    ex-integers-addition --> def-group
-    def-cyclic-group --> ex-integers-addition
-    ex-integers-addition --> def-cyclic-group
+    def-cyclic-group["Cyclic Group"]:::definition
+    def-set["Set"]:::definition
+    def-binary-operation["Binary Operation 📝"]:::definition
     ex-integers-addition --> def-binary-operation
+    ex-even-integers-subgroup --> ex-integers-addition
+    ex-integers-addition --> def-group
+    ex-integers-addition --> def-abelian-group
     def-group --> ex-integers-addition
     ex-integers-addition --> def-set
-    ex-even-integers-subgroup --> ex-integers-addition
     ex-quotient-integers-mod-n --> ex-integers-addition
-    ex-integers-addition --> def-abelian-group
+    ex-integers-addition --> def-cyclic-group
+    def-cyclic-group --> ex-integers-addition
     class ex-integers-addition current

@@ -4,31 +4,31 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-lagrange["ラグランジュの定理"]:::theorem
-    thm-orbit-stabilizer["軌道・固定化部分群定理"]:::theorem
-    def-group["群"]:::definition
-    def-subgroup["部分群"]:::definition
-    def-quotient-group["商群"]:::definition
-    def-cyclic-group["巡回群"]:::definition
-    def-simple-group["単純群"]:::definition
-    def-abelian-group["アーベル群"]:::definition
-    def-normal-subgroup["正規部分群"]:::definition
-    def-coset["剰余類"]:::definition
-    thm-sylow["シローの定理"]:::theorem
+    def-group["群 📝"]:::definition
     def-order["位数"]:::definition
-    thm-orbit-stabilizer --> thm-lagrange
-    thm-lagrange --> def-group
-    def-cyclic-group --> thm-lagrange
-    def-coset --> thm-lagrange
+    thm-lagrange["ラグランジュの定理"]:::theorem
+    def-coset["剰余類"]:::definition
+    def-quotient-group["商群"]:::definition
+    thm-orbit-stabilizer["軌道・固定化部分群定理"]:::theorem
+    def-abelian-group["アーベル群"]:::definition
+    thm-sylow["シローの定理"]:::theorem
+    def-cyclic-group["巡回群"]:::definition
+    def-subgroup["部分群 ⚠️"]:::definition
+    def-simple-group["単純群"]:::definition
+    def-normal-subgroup["正規部分群"]:::definition
     def-normal-subgroup --> thm-lagrange
+    def-order --> thm-lagrange
+    thm-lagrange --> def-quotient-group
+    thm-lagrange --> def-group
+    thm-sylow --> thm-lagrange
+    def-abelian-group --> thm-lagrange
+    thm-lagrange --> def-cyclic-group
+    thm-lagrange --> def-order
     thm-lagrange --> def-coset
     thm-lagrange --> def-subgroup
-    thm-sylow --> thm-lagrange
-    def-subgroup --> thm-lagrange
-    thm-lagrange --> def-order
-    thm-lagrange --> def-quotient-group
-    def-abelian-group --> thm-lagrange
     def-simple-group --> thm-lagrange
-    def-order --> thm-lagrange
-    thm-lagrange --> def-cyclic-group
+    def-coset --> thm-lagrange
+    def-subgroup --> thm-lagrange
+    thm-orbit-stabilizer --> thm-lagrange
+    def-cyclic-group --> thm-lagrange
     class thm-lagrange current

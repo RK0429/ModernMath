@@ -393,7 +393,7 @@ window.Quarto = {
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-euclid-infinitude-primes-1753973252" class="graph-visualization-container">
+<div id="graph-viz-thm-euclid-infinitude-primes-1753974267" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -526,8 +526,44 @@ function createForceGraph(data, containerId, options = {}) {
     .attr("font-size", "11px")
     .attr("font-family", "system-ui, sans-serif");
 
+  // Add proof status icons
+  const proofStatusIcons = {
+    'completed': '✅',
+    'warnings_present': '⚠️',
+    'errors_present': '❌',
+    'not_implemented': '📝'
+  };
+
+  const proofStatusTooltips = {
+    'completed': 'Formal proof completed',
+    'warnings_present': 'Formal proof has warnings',
+    'errors_present': 'Formal proof has errors',
+    'not_implemented': 'Formal proof not implemented'
+  };
+
+  node.each(function(d) {
+    if (d.proof_status && proofStatusIcons[d.proof_status]) {
+      const g = d3.select(this);
+      g.append("text")
+        .text(proofStatusIcons[d.proof_status])
+        .attr("x", nodeRadius * 0.7)
+        .attr("y", -nodeRadius * 0.7)
+        .attr("font-size", "12px")
+        .style("user-select", "none");
+    }
+  });
+
   node.append("title")
-    .text(d => d.url ? `${d.type}: ${d.label || d.id}\n(Click to view article)` : `${d.type}: ${d.label || d.id}`);
+    .text(d => {
+      let title = `${d.type}: ${d.label || d.id}`;
+      if (d.proof_status && proofStatusTooltips[d.proof_status]) {
+        title += `\n${proofStatusTooltips[d.proof_status]}`;
+      }
+      if (d.url) {
+        title += '\n(Click to view article)';
+      }
+      return title;
+    });
 
   // Tick function
   simulation.on("tick", () => {
@@ -657,12 +693,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-euclid-infinitude-primes-1753973252', {
+    createForceGraph(data, 'graph-viz-thm-euclid-infinitude-primes-1753974267', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-euclid-infinitude-primes-1753973252').innerHTML =
+    document.getElementById('graph-viz-thm-euclid-infinitude-primes-1753974267').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
