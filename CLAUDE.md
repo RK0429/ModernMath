@@ -82,7 +82,7 @@ cd api && ./start_api.sh                  # Start REST API (port 5001)
 
 Content in `content/` organized by domain. Each `.qmd` file has:
 
-- **YAML Front Matter**: `id`, `type` (Corollary/Definition/Theorem/Example/Axiom/Proposition/Lemma), `status` (verified/stub/complete/draft), `requires` (list, use `[]` for empty)
+- **YAML Front Matter**: `id`, `type` (Corollary/Definition/Theorem/Example/Axiom/Proposition/Lemma), `status` (stub/complete/draft), `requires` (list, use `[]` for empty)
 - **Cross-References**: Use `@label` syntax
 - **File Naming**: `def-*.qmd`, `thm-*.qmd`, `ex-*.qmd`, `ax-*.qmd`
 - **Titles**: No type prefixes in titles (e.g., use "Group" not "Definition: Group")
@@ -381,7 +381,7 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
 - **Lean Files**: `/formal/` directory organized by module (e.g., `/formal/MathKnowledgeGraph/Algebra/Groups.lean`)
 - **Mappings**: `lean_mappings.json` links article IDs to Lean proofs with `lean_id`, `module_name`, and `quarto_file`
 - **Embedding**: `scripts/site/embed_lean_proofs.py` adds iframe sections to articles with formal proofs
-- **Progress Tracking**: `scripts/site/generate_proof_progress.py` creates overview pages showing verification status
+- **Progress Tracking**: `scripts/site/generate_proof_progress.py` creates overview pages showing article writing status
 - **Validation**: `scripts/validation/validate_lean_proofs.py` ensures all proofs compile correctly
 
 **Lean Proof Validation**:
@@ -404,12 +404,12 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
   - **One-time Fix**: `scripts/site/fix_lean_urls.py` available for correcting existing malformed URLs (not part of regular build)
 - **Build Process**:
   - Embed Lean proofs: `poetry run python scripts/site/embed_lean_proofs.py` (generates correct lowercase URLs)
-  - Generate progress pages: `poetry run python scripts/site/generate_proof_progress.py`
+  - Generate article progress pages: `poetry run python scripts/site/generate_proof_progress.py`
   - Workflow copies `/formal/` to `_site/formal/` for GitHub Pages serving
-- **Progress Pages**: `nav/en/proof-progress.qmd` and `nav/ja/proof-progress.qmd` show coverage by type and domain
+- **Progress Pages**: `nav/en/proof-progress.qmd` and `nav/ja/proof-progress.qmd` show article writing progress by type and domain
   - Article links use: `../../content/{lang}/{domain}/{article}.html` (not `.qmd`)
   - Japanese paths: Replace `/content/en/` with `/content/ja/`
-- **Navigation**: "Formal Proofs" link added to navbar in both languages
+- **Navigation**: "Article Writing Progress" link added to navbar in both languages
 
 **Adding New Proofs**:
 
@@ -444,7 +444,7 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
   - Medium (40-74%): Orange gradient `#f59e0b → #d97706`
   - Low (<40%): Red gradient `#ef4444 → #dc2626`
 - **Features**: Shimmer animation, rounded corners (12px), box shadows, responsive design
-- **HTML Generation**: `generate_proof_progress.py` creates HTML progress bars with:
+- **HTML Generation**: `generate_proof_progress.py` creates HTML progress bars for article completion with:
   - Main container: `.progress-container` with inset shadow
   - Fill bar: `.progress-fill` with percentage-based width
   - Label: `.progress-label` centered with text shadow
