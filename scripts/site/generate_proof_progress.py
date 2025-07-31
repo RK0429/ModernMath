@@ -80,52 +80,57 @@ class ProofProgressGenerator:
             if qmd_path.name == "index.qmd":
                 continue
 
-            try:
-                with open(qmd_path, "r", encoding="utf-8") as f:
-                    post = frontmatter.load(f)
-
-                metadata = post.metadata
-                if "id" not in metadata or "type" not in metadata:
-                    continue
-
-                node_id = metadata["id"]
-                node_type = metadata["type"]
-                title = metadata.get("title", node_id)
-                status = metadata.get("status", "draft")
-
-                # Get domain from path
+            article_info = self._process_qmd_file(qmd_path, node_to_lean)
+            if article_info:
                 domain = qmd_path.parent.name
-
-                # Check if this node has a formal proof
-                has_proof = node_id in node_to_lean
-                lean_data = node_to_lean.get(node_id, {})
-                module_name = lean_data.get("module_name", "")
-
-                # Get proof validation status
-                proof_status = "not_implemented"
-                if has_proof and self.validation_results and "modules" in self.validation_results:
-                    module_info = self.validation_results["modules"].get(module_name, {})
-                    if module_info:
-                        proof_status = module_info.get("status", "not_implemented")
-
-                article_info = {
-                    "id": node_id,
-                    "title": title,
-                    "type": node_type,
-                    "status": status,
-                    "has_proof": has_proof,
-                    "proof_status": proof_status,
-                    "lean_id": lean_data.get("lean_id", ""),
-                    "module_name": module_name,
-                    "path": f"../../content/en/{domain}/{qmd_path.stem}.html",
-                }
-
                 proof_data[domain].append(article_info)
 
-            except (OSError, ValueError, KeyError) as e:
-                logger.error("Error processing %s: %s", qmd_path, e)
-
         # Sort articles within each domain by type and then by title
+        self._sort_proof_data(proof_data)
+        return dict(proof_data)
+
+    def _process_qmd_file(self, qmd_path: Path, node_to_lean: Dict[str, Any]) -> Dict[str, Any]:
+        """Process a single QMD file and extract article information."""
+        try:
+            with open(qmd_path, "r", encoding="utf-8") as f:
+                post = frontmatter.load(f)
+
+            metadata = post.metadata
+            if "id" not in metadata or "type" not in metadata:
+                return {}
+
+            node_id = metadata["id"]
+            lean_data = node_to_lean.get(node_id, {})
+            has_proof = node_id in node_to_lean
+            domain = qmd_path.parent.name
+
+            return {
+                "id": node_id,
+                "title": metadata.get("title", node_id),
+                "type": metadata["type"],
+                "status": metadata.get("status", "draft"),
+                "has_proof": has_proof,
+                "proof_status": self._get_proof_validation_status(has_proof, lean_data),
+                "lean_id": lean_data.get("lean_id", ""),
+                "module_name": lean_data.get("module_name", ""),
+                "path": f"../../content/en/{domain}/{qmd_path.stem}.html",
+            }
+
+        except (OSError, ValueError, KeyError) as e:
+            logger.error("Error processing %s: %s", qmd_path, e)
+            return {}
+
+    def _get_proof_validation_status(self, has_proof: bool, lean_data: Dict[str, Any]) -> str:
+        """Get the validation status for a proof."""
+        if not has_proof or not self.validation_results or "modules" not in self.validation_results:
+            return "not_implemented"
+
+        module_name = lean_data.get("module_name", "")
+        module_info = self.validation_results["modules"].get(module_name, {})
+        return module_info.get("status", "not_implemented") if module_info else "not_implemented"
+
+    def _sort_proof_data(self, proof_data: Dict[str, List[Dict[str, Any]]]) -> None:
+        """Sort articles within each domain by type and then by title."""
         type_order = [
             "Axiom",
             "Definition",
@@ -142,8 +147,6 @@ class ProofProgressGenerator:
                     x["title"].lower(),
                 )
             )
-
-        return dict(proof_data)
 
     def _calculate_statistics(self, proof_data: Dict[str, List[Dict[str, Any]]]) -> Dict[str, Any]:
         """Calculate statistics about formal proof coverage."""
@@ -249,8 +252,8 @@ description: "Track the progress of article writing and completion"
 
 # Article Writing Progress
 
-This page tracks the progress of article writing and completion for mathematical concepts in our knowledge
-graph.
+This page tracks the progress of article writing and completion for mathematical concepts in our
+knowledge graph.
 
 ## Overall Progress
 
@@ -370,7 +373,8 @@ Article is a stub
 
 ### Proof Status
 - ✅ **Completed**: Formal proof exists and compiles without errors or warnings
-- ⚠️ **Warnings present**: Formal proof exists but has warnings (e.g., incomplete proofs with 'sorry')
+- ⚠️ **Warnings present**: Formal proof exists but has warnings (e.g., incomplete proofs with
+  'sorry')
 - ❌ **Errors present**: Formal proof exists but has compilation errors
 - 📝 **Not implemented**: No formal proof implemented yet
 """
