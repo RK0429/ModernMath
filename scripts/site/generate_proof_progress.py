@@ -335,6 +335,9 @@ class ProofProgressGenerator:
         content = """---
 title: "Article Writing Progress"
 description: "Track the progress of article writing and completion"
+include-in-header:
+  - text: |
+      <script src="../../js/table-sort-filter.js" defer></script>
 ---
 
 # Article Writing Progress
@@ -393,20 +396,41 @@ knowledge graph.
             domain_title = domain.replace("-", " ").title()
             content += f"### {domain_title}\n\n"
 
-            # Create a table
-            content += "| Concept | Type | Status | Formal Proof |\n"
-            content += "|---------|------|--------|-------------|\n"
+            # Create an HTML table
+            content += """```{=html}
+<div class="table-container">
+<table class="progress-table">
+<thead>
+<tr>
+<th>Concept</th>
+<th>Type</th>
+<th>Status</th>
+<th>Formal Proof</th>
+</tr>
+</thead>
+<tbody>
+"""
 
             for article in articles:
-                title_link = f"[{article['title']}]({article['path']})"
+                title_link = f'<a href="{article["path"]}">{article["title"]}</a>'
                 type_badge = self._get_type_badge(article["type"])
                 status_badge = self._get_status_badge(article["status"])
                 proof_status_text = self._get_proof_status_text(article["proof_status"], "en")
 
-                content += f"| {title_link} | {type_badge} | "
-                content += f"{status_badge} | {proof_status_text} |\n"
+                content += f"""<tr>
+<td>{title_link}</td>
+<td>{type_badge}</td>
+<td>{status_badge}</td>
+<td>{proof_status_text}</td>
+</tr>
+"""
 
-            content += "\n"
+            content += """</tbody>
+</table>
+</div>
+```
+
+"""
 
         # Add legend
         content += """## Legend
@@ -560,6 +584,9 @@ Article is a stub
         return """---
 title: "記事執筆の進捗"
 description: "記事の執筆と完成の進捗状況"
+include-in-header:
+  - text: |
+      <script src="../../js/table-sort-filter.js" defer></script>
 ---
 
 # 記事執筆の進捗
@@ -687,9 +714,20 @@ description: "記事の執筆と完成の進捗状況"
             domain_ja = domain_translations.get(domain, domain.replace("-", " ").title())
             content += f"### {domain_ja}\n\n"
 
-            # Create a table
-            content += "| 概念 | タイプ | ステータス | 形式的証明 |\n"
-            content += "|------|--------|------------|------------|\n"
+            # Create an HTML table
+            content += """```{=html}
+<div class="table-container">
+<table class="progress-table">
+<thead>
+<tr>
+<th>概念</th>
+<th>タイプ</th>
+<th>ステータス</th>
+<th>形式的証明</th>
+</tr>
+</thead>
+<tbody>
+"""
 
             for article in articles:
                 # Get Japanese title
@@ -697,15 +735,25 @@ description: "記事の執筆と完成の進捗状況"
 
                 # Convert path to Japanese version
                 ja_path = article["path"].replace("/content/en/", "/content/ja/")
-                title_link = f"[{ja_title}]({ja_path})"
+                title_link = f'<a href="{ja_path}">{ja_title}</a>'
                 type_badge = self._get_type_badge(article["type"], "ja")
                 status_badge = self._get_status_badge(article["status"], "ja")
                 proof_status_text = self._get_proof_status_text(article["proof_status"], "ja")
 
-                content += f"| {title_link} | {type_badge} | "
-                content += f"{status_badge} | {proof_status_text} |\n"
+                content += f"""<tr>
+<td>{title_link}</td>
+<td>{type_badge}</td>
+<td>{status_badge}</td>
+<td>{proof_status_text}</td>
+</tr>
+"""
 
-            content += "\n"
+            content += """</tbody>
+</table>
+</div>
+```
+
+"""
 
         return content
 

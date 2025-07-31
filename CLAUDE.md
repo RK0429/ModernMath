@@ -8,10 +8,6 @@ ModernMath is a Mathematics Knowledge Graph Wiki that represents mathematical co
 
 **JavaScript Configuration**: Uses ES modules (`"type": "module"` in package.json) with ESLint 9 flat config format. ESLint configuration requires proper ES module imports and `globals` package for environment variables.
 
-## Web Debugging
-
-Use Playwright MCP tools for debugging: `browser_navigate`, `browser_console_messages`, `browser_evaluate`
-
 ## Essential Commands
 
 ### Development Setup
@@ -191,86 +187,28 @@ css:
   - styles-multilingual.css
 ```
 
-### CI/CD Pipeline
+### CI/CD Pipeline (`build.yml`)
 
-**Parallel Build Architecture** (`build.yml`):
-
-- **Concurrency**: `cancel-in-progress: true`, path filtering on relevant changes
-- **Jobs**: quality (10m), lean-validation (<1m with cache, 4-6m without), graph (15m), visualizations (15m), site (20m), deploy (10m)
-- **Optimizations**: Poetry cache, parallel scripts with `&` + `wait`, matrix EN/JA builds
-- **Runtime**: ~12-15 minutes total
-- **Conditional Jobs**:
-  - lean-validation only runs when Lean files exist: `if: needs.check-lean.outputs.has-lean-files == 'true'`
-  - Dependent jobs handle skipped upstream jobs: `if: ${{ !cancelled() && (needs.lean-validation.result == 'success' || needs.lean-validation.result == 'skipped') }}`
-- **Lean Build Caching**: Three separate caches reduce lean-validation from 4-6min to <1min:
-  - Toolchain cache: `~/.elan` with key `elan-${{ runner.os }}-4.x`
-  - Lake packages: `formal/.lake/packages` with key `lake-pkgs-${{ runner.os }}-${{ hashFiles('formal/lake-manifest.json') }}`
-  - Build artifacts: `formal/.lake/build` with key `lake-build-${{ runner.os }}-${{ hashFiles('formal/**/*.lean') }}`
-  - Lake build uses parallelization: `lake build -j $(nproc)`
-- **Manual Execution**: Add `workflow_dispatch` trigger for manual runs with optional debug parameter
-
-### CI/CD Troubleshooting
-
-**Action Version Requirements**: Use these minimum versions to avoid "runner too old" errors:
-
-- `peter-evans/create-pull-request@v6`
-- `peaceiris/actions-gh-pages@v4`
-- `actions/cache@v4`
-- `actions/setup-python@v5`
-- `actions/upload-artifact@v4`
-
-**GitHub Actions Expression Syntax**: Functions like `hashFiles()` must be wrapped in `${{ }}` when used in conditional statements:
-
-```yaml
-# Correct
-if: ${{ hashFiles('formal/**/*.lean') != '' }}
-if: ${{ success() && hashFiles('lean_mappings.json') != '' }}
-
-# Incorrect (will cause "Unrecognized function" error)
-if: hashFiles('formal/**/*.lean') != ''
-```
-
-**Conditional Job Execution Pattern**: Since `hashFiles()` is not available at job level, use a preliminary check job:
-
-```yaml
-# Create a check job that outputs a variable
-check-lean:
-  runs-on: ubuntu-latest
-  outputs:
-    has-lean-files: ${{ steps.check.outputs.has-lean-files }}
-  steps:
-    - uses: actions/checkout@v4
-    - id: check
-      run: |
-        if find formal -name "*.lean" -type f | grep -q .; then
-          echo "has-lean-files=true" >> $GITHUB_OUTPUT
-        else
-          echo "has-lean-files=false" >> $GITHUB_OUTPUT
-        fi
-
-# Use the output in dependent jobs
-lean-validation:
-  needs: check-lean
-  if: needs.check-lean.outputs.has-lean-files == 'true'
-```
-
-**Deprecated Commands**: The `set-output` workflow command is deprecated. Use `$GITHUB_OUTPUT` instead:
-
-```python
-# Correct (Python example)
-print(f"has_suggestions={value}", file=open(os.environ['GITHUB_OUTPUT'], 'a'))
-
-# Deprecated
-print(f"::set-output name=has_suggestions::{value}")
-```
-
-**Directory Creation**: Always use `parents=True` when creating directories in scripts:
-
-```python
-output_dir.mkdir(parents=True, exist_ok=True)  # Creates parent dirs if needed
-```
-
-This prevents FileNotFoundError in CI environments where parent directories may not exist.
+- **Architecture**: Parallel jobs with `cancel-in-progress: true`, ~12-15min total runtime
+- **Jobs**: quality (10m), lean-validation (<1m cached), graph (15m), visualizations (15m), site (20m), deploy (10m)
+- **Optimizations**: Poetry cache, parallel scripts (`&` + `wait`), matrix EN/JA builds
+- **Conditional Jobs**: Use check jobs for `hashFiles()` conditions:
+  ```yaml
+  check-lean:
+    outputs:
+      has-lean-files: ${{ steps.check.outputs.has-lean-files }}
+    steps:
+      - run: |
+          if find formal -name "*.lean" -type f | grep -q .; then
+            echo "has-lean-files=true" >> $GITHUB_OUTPUT
+          fi
+  ```
+- **Lean Caching**: Toolchain (`~/.elan`), packages, build artifacts
+- **Key Requirements**:
+  - Use `${{ }}` for functions in conditionals: `if: ${{ hashFiles('*.lean') != '' }}`
+  - Action versions: `@v6` for peter-evans, `@v4` for others
+  - Use `$GITHUB_OUTPUT` not deprecated `set-output`
+  - Always `mkdir(parents=True)` in Python scripts
 
 ### Language Features
 
@@ -286,10 +224,6 @@ This prevents FileNotFoundError in CI environments where parent directories may 
 - JS files in language directories: `/ModernMath/[en|ja]/js/`
 - Use flexible selectors, avoid CORS issues
 - Account for subdirectory structure
-
-### CI/CD Script Exit Codes
-
-Scripts return 0 when no changes needed (success case).
 
 ### Quarto HTML Rendering
 
@@ -320,39 +254,12 @@ graph TD
 
 ### Interactive Visualization Implementation
 
-**Libraries Used**:
-
-- **D3.js**: Force-directed graphs embedded via Quarto filter (`_extensions/graph-viz/graph-viz.lua`)
-- **PyVis**: Network visualizations with vis.js backend (`viz/pyvis_graphs.py`)
-
-**Making Nodes Clickable**:
-
-- **D3.js**: Click handlers with visual feedback in `_extensions/graph-viz/graph-viz.lua`
-  - Click navigates, middle-click opens new tab
-  - Pointer cursor and hover effects for clickable nodes
-- **PyVis**: Language-aware links ("View Article →" / "記事を見る →")
-  - Detects article nodes by prefix: `def-`, `thm-`, `ex-`, `ax-`, `prop-`, `lem-`, `cor-`
-
-**Implementation Details**:
-
-- D3.js nodes include `url` field: `{id: "def-group", url: "def-group.html"}`
-- Cross-domain URLs use relative paths: `../domain/file.html`
-- Domain extracted via `MYMATH.hasDomain` in RDF graph
-- Lua filter embeds JS directly in HTML
-- Visual feedback: pointer cursor, hover effects, clickability tooltips
-- Middle-click support for new tabs
-
-**Directory URL Handling**:
-
-The graph visualization requires special handling for directory URLs (ending with `/`):
-
-- **Issue**: Directory URLs like `/ModernMath/ja/` calculate incorrect base paths
-- **Solution**: Detect `isDirectoryUrl` using `currentPath.endsWith('/')`
-- **Depth Calculation**:
-  - File URLs: Subtract 1 for the HTML file in path depth calculation
-  - Directory URLs: Use full path depth without subtraction
-  - Multilingual sites: Ensure minimum depth of 1 to navigate up from language directory
-- **Implementation**: See `_extensions/graph-viz/graph-viz.lua` lines 209-254
+- **Libraries**: D3.js (force-directed via Quarto filter), PyVis (vis.js backend)
+- **Clickable Nodes**:
+  - D3.js: Click navigates, middle-click new tab, hover effects
+  - PyVis: Language-aware links by article prefix (`def-`, `thm-`, etc.)
+- **URLs**: Relative paths (`../domain/file.html`), domain via `MYMATH.hasDomain`
+- **Directory URLs**: Special handling for paths ending with `/` in depth calculation
 
 ### Global Knowledge Graph Visualization
 
@@ -383,54 +290,15 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
 
 ### Lean 4 Proof Integration
 
-**Architecture**:
-
-- **Lean Files**: `/formal/` directory organized by module (e.g., `/formal/MathKnowledgeGraph/Algebra/Groups.lean`)
-- **Mappings**: `lean_mappings.json` links article IDs to Lean proofs with `lean_id`, `module_name`, and `quarto_file`
-- **Embedding**: `scripts/site/embed_lean_proofs.py` adds iframe sections to articles with formal proofs
-- **Progress Tracking**: `scripts/site/generate_proof_progress.py` creates overview pages showing article writing status with proof categorization
-  - **Japanese Title Display**: Progress pages fetch Japanese titles from Japanese `.qmd` files via `_get_japanese_title()` method for proper localization
-- **Validation**: `scripts/validation/validate_lean_proofs.py` categorizes all proofs into four status types
-
-**Lean Proof Validation**:
-
-- **Status Categories**: Proofs are categorized as:
-  - ✅ **Completed**: Compiles without errors or warnings
-  - ⚠️ **Warnings present**: Has warnings (e.g., `sorry` declarations)
-  - ❌ **Errors present**: Has compilation errors
-  - 📝 **Not implemented**: No formal proof implemented yet
-- **Validation Results**: Saved to `lean_validation_results.json` with detailed error/warning info
-- **Lake Output Parsing**: Script parses emoji indicators (✓/✅/⚠/✖) from Lake build output
-- **CI/CD Integration**: Validation results are uploaded as artifacts and passed between jobs
-- **Pre-commit Hook**: Automatically validates Lean files on `formal/**/*.lean` changes
-- **Common Issues**:
-  - Import paths: Use `Mathlib.Topology.Separation.Basic` not `Mathlib.Topology.Separation`
-  - Syntax: Use `∀ a ∈ H, ∀ b ∈ H` not `∀ a b ∈ H`
-  - Doc comments: Use regular comments for floating documentation without declarations
-
-**Implementation Details**:
-
-- **Auto-detect GitHub Pages URL**: Script detects from git remote, fallback to `GITHUB_PAGES_URL` env var
-  - **IMPORTANT**: GitHub Pages always uses lowercase usernames (e.g., `rk0429.github.io` not `RK0429.github.io`)
-  - `embed_lean_proofs.py` must convert usernames to lowercase with `.lower()`
-- **iframe Integration**: Loads proofs via `https://live.lean-lang.org/#url=<github-pages-url>/formal/<lean-file>`
-  - **URL Format**: Must include full module path: `/formal/MathKnowledgeGraph/Algebra/Groups.lean` (not `/formal/Algebra/Groups.lean`)
-  - **IMPORTANT**: Lean web editor requires `#url=` parameter, not `#file=` for loading external files
-  - **One-time Fix**: `scripts/site/fix_lean_urls.py` available for correcting existing malformed URLs (not part of regular build)
-- **Build Process**:
-  - Embed Lean proofs: `poetry run python scripts/site/embed_lean_proofs.py` (generates correct lowercase URLs)
-  - Generate article progress pages: `poetry run python scripts/site/generate_proof_progress.py`
-  - Workflow copies `/formal/` to `_site/formal/` for GitHub Pages serving
-- **Progress Pages**: `nav/en/writing-progress.qmd` and `nav/ja/writing-progress.qmd` show article writing progress by type and domain
-  - Article links use: `../../content/{lang}/{domain}/{article}.html` (not `.qmd`)
-  - Japanese paths: Replace `/content/en/` with `/content/ja/`
-- **Navigation**: "Article Writing Progress" link added to navbar in both languages
-
-**Adding New Proofs**:
-
-1. Create Lean file in `/formal/MathKnowledgeGraph/<Domain>/<Module>.lean`
-2. Add mapping to `lean_mappings.json`
-3. Build process auto-embeds proof section and updates progress
+- **Structure**: `/formal/MathKnowledgeGraph/<Domain>/<Module>.lean`, mappings in `lean_mappings.json`
+- **Validation Status**: ✅ Completed, ⚠️ Warnings, ❌ Errors, 📝 Not implemented
+- **Scripts**:
+  - `embed_lean_proofs.py`: Adds iframes to articles (lowercase GitHub usernames!)
+  - `generate_proof_progress.py`: Creates progress pages with separate article/proof metrics
+  - `validate_lean_proofs.py`: Parses Lake output emojis
+- **iframe URL**: `https://live.lean-lang.org/#url=<github-pages-url>/formal/<full-path>`
+- **Common Issues**: Use full import paths, `∀ a ∈ H, ∀ b ∈ H` syntax
+- **Adding Proofs**: Create file → Add to `lean_mappings.json` → Build auto-embeds
 
 ## UI Conventions
 
@@ -452,19 +320,14 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
 - **Categories**: Colors, typography, spacing (4-64px), layout, animation
 - **Usage**: Load CSS first in Quarto configs, use `var(--token-name)` everywhere
 
-### Progress Bar Implementation
+### Progress Bar and Table Implementation
 
-- **Styling**: Located in `styles.css:122-273`, uses gradient backgrounds with color-coded completion levels
-  - High (≥75%): Green gradient `#10b981 → #059669`
-  - Medium (40-74%): Orange gradient `#f59e0b → #d97706`
-  - Low (<40%): Red gradient `#ef4444 → #dc2626`
-- **Features**: Shimmer animation, rounded corners (12px), box shadows, responsive design
-- **HTML Generation**: `generate_proof_progress.py` creates HTML progress bars for article completion with:
-  - Main container: `.progress-container` with inset shadow
-  - Fill bar: `.progress-fill` with percentage-based width
-  - Label: `.progress-label` centered with text shadow
-  - Compact variant: `.progress-compact` for tables with smaller height (16px)
-- **Layout**: Grid system (`.progress-grid`) for domain/type breakdowns, responsive columns
+- **Progress Bars**: Gradient backgrounds (green/orange/red), shimmer animation, responsive grid
+- **Interactive Tables** (`js/table-sort-filter.js`):
+  - Sort by clicking headers (↑/↓)
+  - Filter with text input and dropdowns
+  - Multilingual support (EN/JA)
+  - Styling in `styles.css:118-252`
 
 ## Repository Management
 
