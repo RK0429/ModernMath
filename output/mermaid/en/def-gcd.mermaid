@@ -4,32 +4,32 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
-    def-lcm["Least Common Multiple"]:::definition
-    def-set["Set"]:::definition
-    thm-euler["Euler's Theorem"]:::theorem
-    def-prime["Prime Number"]:::definition
     ex-principal-ideal["Principal Ideals in Integers"]:::example
+    def-congruence["Congruence (Modular Arithmetic)"]:::definition
+    def-lcm["Least Common Multiple"]:::definition
+    thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
+    thm-euler["Euler's Theorem"]:::theorem
+    thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
+    def-set["Set"]:::definition
     thm-fermat-little["Fermat's Little Theorem"]:::theorem
     def-gcd["Greatest Common Divisor"]:::definition
-    thm-fundamental-arithmetic["Fundamental Theorem of Arithmetic"]:::theorem
-    def-congruence["Congruence (Modular Arithmetic)"]:::definition
-    thm-chinese-remainder["Chinese Remainder Theorem"]:::theorem
     def-divisibility["Divisibility"]:::definition
-    def-gcd --> thm-euler
+    def-prime["Prime Number"]:::definition
+    thm-euclidean-algorithm["Euclidean Algorithm"]:::theorem
     ex-principal-ideal --> def-gcd
-    def-gcd --> thm-euclidean-algorithm
-    def-gcd --> def-prime
-    def-congruence --> def-gcd
     thm-euclidean-algorithm --> def-gcd
+    def-gcd --> thm-euler
+    def-divisibility --> def-gcd
+    def-congruence --> def-gcd
+    thm-fermat-little --> def-gcd
+    def-gcd --> def-divisibility
+    def-gcd --> def-prime
+    def-gcd --> thm-euclidean-algorithm
+    def-prime --> def-gcd
+    def-gcd --> def-congruence
+    thm-fundamental-arithmetic --> def-gcd
     def-gcd --> def-lcm
+    def-gcd --> def-set
     thm-chinese-remainder --> def-gcd
     def-lcm --> def-gcd
-    def-gcd --> def-divisibility
-    def-gcd --> def-set
-    def-gcd --> def-congruence
-    thm-fermat-little --> def-gcd
-    thm-fundamental-arithmetic --> def-gcd
-    def-divisibility --> def-gcd
-    def-prime --> def-gcd
     class def-gcd current

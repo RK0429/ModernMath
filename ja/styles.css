@@ -1,7 +1,7 @@
 /* Custom styles for Mathematics Knowledge Graph Wiki */
 
 /* Import design tokens */
-@import 'design-tokens.css';
+@import url('./design-tokens.css');
 
 /* Improve readability of mathematical content */
 .math-content {
@@ -61,7 +61,7 @@ a.cross-ref:hover {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .definition, .theorem, .example {
     padding: var(--margin-section-mobile);
     margin: var(--margin-section-mobile) 0;
@@ -131,7 +131,7 @@ pre {
   width: 100%;
   border-collapse: collapse;
   background-color: var(--color-neutral-white);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
@@ -195,7 +195,7 @@ pre {
 .filter-input:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 3px rgb(102 126 234 / 10%);
 }
 
 /* Sort indicator */
@@ -245,7 +245,7 @@ th[data-sort="desc"] .sort-indicator {
 }
 
 /* Mobile responsiveness */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .progress-table {
     font-size: var(--font-size-sm);
   }
@@ -273,7 +273,7 @@ th[data-sort="desc"] .sort-indicator {
   background-color: #f3f4f6;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+  box-shadow: inset 0 2px 4px rgb(0 0 0 / 6%);
   margin: var(--space-2) 0;
 }
 
@@ -286,7 +286,7 @@ th[data-sort="desc"] .sort-indicator {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 12px;
   transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 8px rgb(102 126 234 / 30%);
   animation: shimmer 2s ease-in-out infinite;
 }
 
@@ -295,9 +295,11 @@ th[data-sort="desc"] .sort-indicator {
   0% {
     filter: brightness(1);
   }
+
   50% {
     filter: brightness(1.1);
   }
+
   100% {
     filter: brightness(1);
   }
@@ -312,7 +314,7 @@ th[data-sort="desc"] .sort-indicator {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   color: var(--color-neutral-white);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 1px 2px rgb(0 0 0 / 20%);
   z-index: 1;
   white-space: nowrap;
 }
@@ -330,17 +332,17 @@ th[data-sort="desc"] .sort-indicator {
 /* Different color schemes for progress bars */
 .progress-fill.progress-high {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 2px 8px rgb(16 185 129 / 30%);
 }
 
 .progress-fill.progress-medium {
   background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+  box-shadow: 0 2px 8px rgb(245 158 11 / 30%);
 }
 
 .progress-fill.progress-low {
   background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+  box-shadow: 0 2px 8px rgb(239 68 68 / 30%);
 }
 
 /* Compact progress bar for tables */
@@ -376,7 +378,7 @@ th[data-sort="desc"] .sort-indicator {
   border-radius: var(--radius-lg);
   padding: var(--space-6);
   margin: var(--space-6) 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 5%);
 }
 
 .progress-section h3 {
@@ -404,7 +406,7 @@ th[data-sort="desc"] .sort-indicator {
 }
 
 /* Responsive adjustments for progress bars */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .progress-container {
     height: 20px;
   }
