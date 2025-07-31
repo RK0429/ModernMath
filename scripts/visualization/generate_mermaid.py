@@ -136,6 +136,104 @@ def get_node_style(node_type: str) -> str:
     return styles.get(node_type, "")
 
 
+def _limit_nodes_for_readability(
+    nodes: Set[str], edges: Set[Tuple[str, str, str]], node_id: str, max_nodes: int
+) -> Tuple[Set[str], Set[Tuple[str, str, str]]]:
+    """Limit the number of nodes for readability by prioritizing direct dependencies."""
+    if len(nodes) <= max_nodes:
+        return nodes, edges
+
+    # Prioritize showing direct dependencies and a few dependents
+    nodes_to_keep = {node_id}
+    for src, tgt, _ in edges:
+        if src == node_id:
+            nodes_to_keep.add(tgt)
+        if len(nodes_to_keep) >= max_nodes:
+            break
+
+    filtered_edges = {e for e in edges if e[0] in nodes_to_keep and e[1] in nodes_to_keep}
+    return nodes_to_keep, filtered_edges
+
+
+def _build_node_info_with_proof_status(
+    g: Graph,
+    nodes: Set[str],
+    lang: str,
+    lean_mappings: Optional[Dict[str, Any]],
+    lean_validation: Optional[Dict[str, Any]],
+) -> Dict[str, Any]:
+    """Build node information dictionary with proof status."""
+    node_info = {}
+    for n in nodes:
+        info = get_node_info(g, BASE[n], lang)
+        node_info[n] = info
+
+        # Add proof status only if completed
+        if lean_mappings and lean_validation and n in lean_mappings:
+            proof_status = lean_validation.get(n, "not_implemented")
+            if proof_status == "completed":
+                info["proof_status"] = proof_status
+
+    return node_info
+
+
+def _get_mermaid_class_definitions() -> list[str]:
+    """Get Mermaid class definitions for styling."""
+    return [
+        "    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px",
+        "    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px",
+        "    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px",
+        "    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px",
+        "    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px",
+    ]
+
+
+def _get_proof_status_icons() -> Dict[str, str]:
+    """Get proof status icon mappings."""
+    return {
+        "completed": "✔️",  # Simple check mark instead of emoji
+    }
+
+
+def _format_node_label(info: Dict[str, Any], node_id: str) -> str:
+    """Format node label with proof status icon if available."""
+    label = info["label"] or node_id
+    # Escape special characters
+    label = label.replace('"', "&quot;")
+
+    # Add proof status icon if available
+    proof_status_icons = _get_proof_status_icons()
+    if "proof_status" in info and info["proof_status"] in proof_status_icons:
+        label = f"{label} {proof_status_icons[info['proof_status']]}"
+
+    return label
+
+
+def _add_mermaid_nodes(lines: list[str], node_info: Dict[str, Any]) -> None:
+    """Add node definitions to Mermaid diagram lines."""
+    for n_id, info in node_info.items():
+        label = _format_node_label(info, n_id)
+        node_type = info["type"] or "Unknown"
+        style_class = get_node_style(node_type)
+
+        # Format node
+        node_def = f'    {n_id}["{label}"]'
+        if style_class:
+            lines.append(node_def + style_class)
+        else:
+            lines.append(node_def)
+
+
+def _add_mermaid_edges(lines: list[str], edges: Set[Tuple[str, str, str]], nodes: Set[str]) -> None:
+    """Add edge definitions to Mermaid diagram lines."""
+    for src, tgt, rel in edges:
+        if src in nodes and tgt in nodes:
+            if rel == "uses":
+                lines.append(f"    {src} --> {tgt}")
+            elif rel == "hasExample":
+                lines.append(f"    {src} -.->|example| {tgt}")
+
+
 def generate_mermaid_diagram(
     g: Graph,
     node_id: str,
@@ -148,78 +246,22 @@ def generate_mermaid_diagram(
     nodes, edges = get_local_neighborhood(g, node_id)
 
     # Limit the number of nodes for readability
-    if len(nodes) > max_nodes:
-        # Prioritize showing direct dependencies and a few dependents
-        # This is a simple heuristic - could be improved
-        nodes_to_keep = {node_id}
-        for src, tgt, _ in edges:
-            if src == node_id:
-                nodes_to_keep.add(tgt)
-            if len(nodes_to_keep) >= max_nodes:
-                break
-        nodes = nodes_to_keep
-        edges = {e for e in edges if e[0] in nodes and e[1] in nodes}
+    nodes, edges = _limit_nodes_for_readability(nodes, edges, node_id, max_nodes)
 
-    # Build node info with language preference
-    node_info = {}
-    for n in nodes:
-        info = get_node_info(g, BASE[n], lang)
-        node_info[n] = info
-
-        # Add proof status if available
-        if lean_mappings and lean_validation and n in lean_mappings:
-            proof_status = lean_validation.get(n, "not_implemented")
-            info["proof_status"] = proof_status
+    # Build node info with language preference and proof status
+    node_info = _build_node_info_with_proof_status(g, nodes, lang, lean_mappings, lean_validation)
 
     # Generate Mermaid code
     lines = ["graph TD"]
 
     # Add class definitions for styling
-    lines.extend(
-        [
-            "    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px",
-            "    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px",
-            "    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px",
-            "    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px",
-            "    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px",
-        ]
-    )
-
-    # Proof status icons
-    proof_status_icons = {
-        "completed": "✅",
-        "warnings_present": "⚠️",
-        "errors_present": "❌",
-        "not_implemented": "📝",
-    }
+    lines.extend(_get_mermaid_class_definitions())
 
     # Add nodes
-    for n_id, info in node_info.items():
-        label = info["label"] or n_id
-        # Escape special characters
-        label = label.replace('"', "&quot;")
-
-        # Add proof status icon if available
-        if "proof_status" in info and info["proof_status"] in proof_status_icons:
-            label = f"{label} {proof_status_icons[info['proof_status']]}"
-
-        node_type = info["type"] or "Unknown"
-        style_class = get_node_style(node_type)
-
-        # Format node
-        node_def = f'    {n_id}["{label}"]'
-        if style_class:
-            lines.append(node_def + style_class)
-        else:
-            lines.append(node_def)
+    _add_mermaid_nodes(lines, node_info)
 
     # Add edges
-    for src, tgt, rel in edges:
-        if src in nodes and tgt in nodes:
-            if rel == "uses":
-                lines.append(f"    {src} --> {tgt}")
-            elif rel == "hasExample":
-                lines.append(f"    {src} -.->|example| {tgt}")
+    _add_mermaid_edges(lines, edges, nodes)
 
     # Highlight the current node
     lines.append(f"    class {node_id} current")

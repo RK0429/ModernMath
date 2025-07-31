@@ -132,7 +132,10 @@ def get_node_info(
     # Check for formal proof status
     proof_status = None
     if lean_mappings and lean_validation and node_id in lean_mappings:
-        proof_status = lean_validation.get(node_id, "not_implemented")
+        status = lean_validation.get(node_id, "not_implemented")
+        # Only set proof_status if it's completed
+        if status == "completed":
+            proof_status = status
 
     result = {
         "id": node_id,
@@ -143,7 +146,7 @@ def get_node_info(
         "domain": domain,
     }
 
-    # Add proof status if available
+    # Add proof status only if it's completed
     if proof_status:
         result["proof_status"] = proof_status
 

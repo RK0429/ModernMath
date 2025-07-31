@@ -45,19 +45,13 @@ NODE_SHAPES = {
     "Corollary": "ellipse",
 }
 
-# Proof status icons for HTML display
+# Proof status icons for HTML display - only show check mark for completed proofs
 PROOF_STATUS_ICONS = {
-    "completed": "✅",  # ✅
-    "warnings_present": "⚠️",  # ⚠️
-    "errors_present": "❌",  # ❌
-    "not_implemented": "📝",  # 📝
+    "completed": "✔️",  # Simple check mark
 }
 
 PROOF_STATUS_DESCRIPTIONS = {
     "completed": "Formal proof completed",
-    "warnings_present": "Formal proof has warnings",
-    "errors_present": "Formal proof has errors",
-    "not_implemented": "Formal proof not implemented",
 }
 
 
@@ -179,40 +173,12 @@ def get_neighbors(
     return visited, edges
 
 
-def create_local_graph(
-    node_id: str,
-    depth: int = 2,
-    ttl_path: Path = Path("knowledge_graph.ttl"),
-    lang: str = "en",
-    lean_mappings: Optional[Dict[str, Any]] = None,
-    lean_validation: Optional[Dict[str, Any]] = None,
-) -> Network:
-    """
-    Create an interactive graph visualization centered on a specific node.
-
-    Args:
-        node_id: The ID of the central node
-        depth: How many hops away from the central node to include
-        ttl_path: Path to the knowledge graph Turtle file
-        lang: Language preference for node labels
-        lean_mappings: Optional Lean node mappings
-        lean_validation: Optional Lean validation results
-
-    Returns:
-        A PyVis Network object
-    """
-    # Load the knowledge graph
-    g = load_knowledge_graph(ttl_path)
-
-    # Get neighbors and edges
-    nodes, edges = get_neighbors(g, node_id, depth)
-
-    # Create PyVis network
+def _create_network_with_physics() -> Network:
+    """Create a PyVis network with standard physics configuration."""
     network = Network(
         height="600px", width="100%", bgcolor="#ffffff", font_color="black", directed=True
     )
 
-    # Configure physics
     network.set_options(
         """
     {
@@ -248,41 +214,86 @@ def create_local_graph(
     }
     """
     )
+    return network
+
+
+def _build_node_title(
+    node_info: Dict[str, str],
+    node_uri: str,
+    lean_mappings: Optional[Dict[str, Any]],
+    lean_validation: Optional[Dict[str, Any]],
+    has_article: bool,
+    lang: str,
+) -> str:
+    """Build the title/tooltip for a node."""
+    title_parts = [
+        f"<b>{node_info['label']}</b>",
+        f"Type: {node_info['type']}",
+        f"Domain: {node_info.get('domain', 'N/A')}",
+        f"ID: {node_uri}",
+    ]
+
+    # Add proof status only if completed
+    if lean_mappings and lean_validation and node_uri in lean_mappings:
+        proof_status = lean_validation.get(node_uri, "not_implemented")
+        # Only show proof status if it's completed
+        if proof_status == "completed" and proof_status in PROOF_STATUS_ICONS:
+            status_icon = PROOF_STATUS_ICONS[proof_status]
+            status_desc = PROOF_STATUS_DESCRIPTIONS[proof_status]
+            title_parts.append(f"Proof: {status_icon} {status_desc}")
+
+    if has_article:
+        # Add clickable link with appropriate language
+        link_text = "記事を見る →" if lang == "ja" else "View Article →"
+        title_parts.append("")  # Empty line for spacing
+        title_parts.append(f"<a href='{node_uri}.html' target='_blank'>{link_text}</a>")
+
+    return "<br>".join(title_parts)
+
+
+def _has_article_prefix(node_uri: str) -> bool:
+    """Check if a node URI has an article prefix."""
+    return any(
+        node_uri.startswith(prefix)
+        for prefix in ["def-", "thm-", "ex-", "ax-", "prop-", "lem-", "cor-"]
+    )
+
+
+def create_local_graph(
+    node_id: str,
+    depth: int = 2,
+    ttl_path: Path = Path("knowledge_graph.ttl"),
+    lang: str = "en",
+    lean_mappings: Optional[Dict[str, Any]] = None,
+    lean_validation: Optional[Dict[str, Any]] = None,
+) -> Network:
+    """
+    Create an interactive graph visualization centered on a specific node.
+
+    Args:
+        node_id: The ID of the central node
+        depth: How many hops away from the central node to include
+        ttl_path: Path to the knowledge graph Turtle file
+        lang: Language preference for node labels
+        lean_mappings: Optional Lean node mappings
+        lean_validation: Optional Lean validation results
+
+    Returns:
+        A PyVis Network object
+    """
+    g = load_knowledge_graph(ttl_path)
+    nodes, edges = get_neighbors(g, node_id, depth)
+    network = _create_network_with_physics()
 
     # Add nodes
     for node_uri in nodes:
         node_info = get_node_info(g, node_uri, lang)
-
-        # Determine if this is the central node
         is_central = node_uri == node_id
+        has_article = _has_article_prefix(node_uri)
 
-        # Determine if this node should have a link
-        has_article = any(
-            node_uri.startswith(prefix)
-            for prefix in ["def-", "thm-", "ex-", "ax-", "prop-", "lem-", "cor-"]
+        title = _build_node_title(
+            node_info, node_uri, lean_mappings, lean_validation, has_article, lang
         )
-
-        # Create title with optional link
-        title_parts = [
-            f"<b>{node_info['label']}</b>",
-            f"Type: {node_info['type']}",
-            f"Domain: {node_info.get('domain', 'N/A')}",
-            f"ID: {node_uri}",
-        ]
-
-        # Add proof status if available
-        if lean_mappings and lean_validation and node_uri in lean_mappings:
-            proof_status = lean_validation.get(node_uri, "not_implemented")
-            if proof_status in PROOF_STATUS_ICONS:
-                status_icon = PROOF_STATUS_ICONS[proof_status]
-                status_desc = PROOF_STATUS_DESCRIPTIONS[proof_status]
-                title_parts.append(f"Proof: {status_icon} {status_desc}")
-
-        if has_article:
-            # Add clickable link with appropriate language
-            link_text = "記事を見る →" if lang == "ja" else "View Article →"
-            title_parts.append("")  # Empty line for spacing
-            title_parts.append(f"<a href='{node_uri}.html' target='_blank'>{link_text}</a>")
 
         # Add node with styling
         network.add_node(
@@ -293,7 +304,7 @@ def create_local_graph(
             size=30 if is_central else 20,
             borderWidth=3 if is_central else 1,
             borderWidthSelected=5,
-            title="<br>".join(title_parts),
+            title=title,
         )
 
     # Add edges
@@ -390,30 +401,12 @@ def generate_all_node_graphs(
     logger.info("Completed generating all interactive graphs in both languages")
 
 
-def create_domain_overview(
-    domain: str,
-    ttl_path: Path = Path("knowledge_graph.ttl"),
-    lang: str = "en",
-    lean_mappings: Optional[Dict[str, Any]] = None,
-    lean_validation: Optional[Dict[str, Any]] = None,
-) -> Network:
-    """Create an overview graph for all nodes in a specific mathematical domain."""
-    g = load_knowledge_graph(ttl_path)
-
-    # Find all nodes in the domain
-    domain_nodes = set()
-    for subj, _, domain_obj in g.triples((None, MYMATH.hasDomain, None)):
-        if str(domain_obj).lower() == domain.lower():
-            node_id = str(subj).rsplit("/", maxsplit=1)[-1]
-            if node_id:
-                domain_nodes.add(node_id)
-
-    # Create network
+def _create_domain_network() -> Network:
+    """Create a PyVis network configured for domain overview graphs."""
     net = Network(
         height="800px", width="100%", bgcolor="#ffffff", font_color="black", directed=True
     )
 
-    # Configure physics for larger graphs
     net.set_options(
         """
     {
@@ -437,37 +430,85 @@ def create_domain_overview(
     }
     """
     )
+    return net
 
-    # Add nodes and collect edges
+
+def _find_domain_nodes(g: Graph, domain: str) -> Set[str]:
+    """Find all nodes belonging to a specific domain."""
+    domain_nodes = set()
+    for subj, _, domain_obj in g.triples((None, MYMATH.hasDomain, None)):
+        if str(domain_obj).lower() == domain.lower():
+            node_id = str(subj).rsplit("/", maxsplit=1)[-1]
+            if node_id:
+                domain_nodes.add(node_id)
+    return domain_nodes
+
+
+def _collect_domain_edges(g: Graph, domain_nodes: Set[str]) -> List[Tuple[str, str]]:
+    """Collect edges within a domain."""
     edges = []
     for node_id in domain_nodes:
+        node_uri_obj = BASE_URI[node_id]
+        for _, _, obj in g.triples((node_uri_obj, MYMATH.uses, None)):
+            target_id = str(obj).rsplit("/", maxsplit=1)[-1]
+            if target_id in domain_nodes:
+                edges.append((node_id, target_id))
+    return edges
+
+
+def _build_domain_node_title(
+    node_info: Dict[str, str],
+    node_id: str,
+    lean_mappings: Optional[Dict[str, Any]],
+    lean_validation: Optional[Dict[str, Any]],
+    has_article: bool,
+    lang: str,
+) -> str:
+    """Build title for domain overview node."""
+    title_parts = [
+        f"<b>{node_info['label']}</b>",
+        f"Type: {node_info['type']}",
+        f"ID: {node_id}",
+    ]
+
+    # Add proof status only if completed
+    if lean_mappings and lean_validation and node_id in lean_mappings:
+        proof_status = lean_validation.get(node_id, "not_implemented")
+        # Only show proof status if it's completed
+        if proof_status == "completed" and proof_status in PROOF_STATUS_ICONS:
+            status_icon = PROOF_STATUS_ICONS[proof_status]
+            status_desc = PROOF_STATUS_DESCRIPTIONS[proof_status]
+            title_parts.append(f"Proof: {status_icon} {status_desc}")
+
+    if has_article:
+        link_text = "記事を見る →" if lang == "ja" else "View Article →"
+        title_parts.append("")  # Empty line
+        title_parts.append(f"<a href='{node_id}.html' target='_blank'>{link_text}</a>")
+
+    return "<br>".join(title_parts)
+
+
+def create_domain_overview(
+    domain: str,
+    ttl_path: Path = Path("knowledge_graph.ttl"),
+    lang: str = "en",
+    lean_mappings: Optional[Dict[str, Any]] = None,
+    lean_validation: Optional[Dict[str, Any]] = None,
+) -> Network:
+    """Create an overview graph for all nodes in a specific mathematical domain."""
+    g = load_knowledge_graph(ttl_path)
+    domain_nodes = _find_domain_nodes(g, domain)
+    net = _create_domain_network()
+    edges = _collect_domain_edges(g, domain_nodes)
+
+    # Add nodes
+    for node_id in domain_nodes:
         node_info = get_node_info(g, node_id, lang)
+        has_article = _has_article_prefix(node_id)
 
-        # Check if node has an article
-        has_article = any(
-            node_id.startswith(prefix)
-            for prefix in ["def-", "thm-", "ex-", "ax-", "prop-", "lem-", "cor-"]
+        title = _build_domain_node_title(
+            node_info, node_id, lean_mappings, lean_validation, has_article, lang
         )
-
-        # Build title with optional link
-        title_parts = [
-            f"<b>{node_info['label']}</b>",
-            f"Type: {node_info['type']}",
-            f"ID: {node_id}",
-        ]
-
-        # Add proof status if available
-        if lean_mappings and lean_validation and node_id in lean_mappings:
-            proof_status = lean_validation.get(node_id, "not_implemented")
-            if proof_status in PROOF_STATUS_ICONS:
-                status_icon = PROOF_STATUS_ICONS[proof_status]
-                status_desc = PROOF_STATUS_DESCRIPTIONS[proof_status]
-                title_parts.append(f"Proof: {status_icon} {status_desc}")
-
-        if has_article:
-            link_text = "記事を見る →" if lang == "ja" else "View Article →"
-            title_parts.append("")  # Empty line
-            title_parts.append(f"<a href='{node_id}.html' target='_blank'>{link_text}</a>")
 
         net.add_node(
             node_id,
@@ -475,15 +516,8 @@ def create_domain_overview(
             color=NODE_COLORS.get(node_info["type"], "#808080"),
             shape=NODE_SHAPES.get(node_info["type"], "ellipse"),
             size=25,
-            title="<br>".join(title_parts),
+            title=title,
         )
-
-        # Get edges within the domain
-        node_uri_obj = BASE_URI[node_id]
-        for _, _, obj in g.triples((node_uri_obj, MYMATH.uses, None)):
-            target_id = str(obj).rsplit("/", maxsplit=1)[-1]
-            if target_id in domain_nodes:
-                edges.append((node_id, target_id))
 
     # Add edges
     for source, target in edges:
