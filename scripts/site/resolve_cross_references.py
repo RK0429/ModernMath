@@ -29,7 +29,7 @@ def detect_language(file_path: Path) -> Optional[str]:
     path_parts = file_path.parts
     if "en" in path_parts:
         return "en"
-    elif "ja" in path_parts:
+    if "ja" in path_parts:
         return "ja"
     return None
 
@@ -83,7 +83,7 @@ def load_language_aware_node_index(content_dir: Path) -> Dict[str, Dict[str, Pat
     Returns:
         Dictionary mapping language codes to node indices
     """
-    language_indices = {"en": {}, "ja": {}}
+    language_indices: Dict[str, Dict[str, Path]] = {"en": {}, "ja": {}}
 
     for qmd_file in content_dir.rglob("*.qmd"):
         # Skip index files
@@ -239,6 +239,84 @@ def pluralize_word(word: str) -> str:
     return word + "s"
 
 
+def _determine_link_text(bracket_text: Optional[str], target_file: Path, ref_id: str) -> str:
+    """
+    Determine the appropriate link text for a cross-reference.
+
+    Args:
+        bracket_text: Text from brackets, if any
+        target_file: Path to the target file
+        ref_id: Reference ID
+
+    Returns:
+        The appropriate link text
+    """
+    # First check if there's meaningful bracketed text
+    if bracket_text and len(bracket_text.strip()) > 2:
+        # Use bracketed text if it's meaningful (more than 2 characters)
+        return bracket_text.strip()
+
+    # Otherwise, get the title from the target file
+    title = get_node_title(target_file)
+    if title:
+        # Clean the title (remove "Definition:", "Theorem:", etc. prefix if present)
+        clean_title = title.split(":", 1)[1].strip() if ":" in title else title
+
+        # If bracketed text is "s" or "es", pluralize the title
+        if bracket_text and bracket_text.strip() in ["s", "es"]:
+            return pluralize_word(clean_title)
+        return clean_title
+
+    # Fallback to the ID
+    return ref_id.replace("-", " ").title()
+
+
+def _process_single_reference(
+    content: str,
+    reference: Tuple[str, Optional[str], int, int],
+    file_path: Path,
+    node_index: Dict[str, Path],
+    dry_run: bool,
+) -> Tuple[str, bool]:
+    """
+    Process a single cross-reference.
+
+    Args:
+        content: Current content
+        reference: Tuple of (ref_id, bracket_text, start, end)
+        file_path: Current file path
+        node_index: Node index for lookups
+        dry_run: Whether this is a dry run
+
+    Returns:
+        Tuple of (updated_content, was_resolved)
+    """
+    ref_id, bracket_text, start, end = reference
+
+    if ref_id not in node_index:
+        return content, False
+
+    target_file = node_index[ref_id]
+
+    # Skip if it's a self-reference
+    if target_file == file_path:
+        return content, False
+
+    # Calculate relative path and determine link text
+    rel_path = calculate_relative_path(file_path, target_file)
+    link_text = _determine_link_text(bracket_text, target_file, ref_id)
+
+    # Create the markdown link and replace the reference
+    link = f"[{link_text}]({rel_path})"
+    updated_content = content[:start] + link + content[end:]
+
+    if not dry_run:
+        bracket_part = f"[{bracket_text}]" if bracket_text else ""
+        print(f"  Resolved: @{ref_id}{bracket_part} -> {link}")
+
+    return updated_content, True
+
+
 def resolve_references_in_file(
     file_path: Path,
     language_indices: Dict[str, Dict[str, Path]],
@@ -275,53 +353,12 @@ def resolve_references_in_file(
 
     # Process references in reverse order to maintain positions
     resolved_count = 0
-    for ref_id, bracket_text, start, end in reversed(references):
-        if ref_id in node_index:
-            target_file = node_index[ref_id]
-
-            # Skip if it's a self-reference
-            if target_file == file_path:
-                continue
-
-            # Calculate relative path
-            rel_path = calculate_relative_path(file_path, target_file)
-
-            # Determine link text
-            link_text = None
-
-            # First check if there's meaningful bracketed text
-            if bracket_text and len(bracket_text.strip()) > 2:
-                # Use bracketed text if it's meaningful (more than 2 characters)
-                link_text = bracket_text.strip()
-            else:
-                # Otherwise, get the title from the target file
-                title = get_node_title(target_file)
-                if title:
-                    # Clean the title (remove "Definition:", "Theorem:", etc. prefix if present)
-                    if ":" in title:
-                        clean_title = title.split(":", 1)[1].strip()
-                    else:
-                        clean_title = title
-
-                    # If bracketed text is "s" or "es", pluralize the title
-                    if bracket_text and bracket_text.strip() in ["s", "es"]:
-                        link_text = pluralize_word(clean_title)
-                    else:
-                        link_text = clean_title
-                else:
-                    # Fallback to the ID
-                    link_text = ref_id.replace("-", " ").title()
-
-            # Create the markdown link
-            link = f"[{link_text}]({rel_path})"
-
-            # Replace the reference
-            content = content[:start] + link + content[end:]
+    for reference in reversed(references):
+        content, was_resolved = _process_single_reference(
+            content, reference, file_path, node_index, dry_run
+        )
+        if was_resolved:
             resolved_count += 1
-
-            if not dry_run:
-                bracket_part = f"[{bracket_text}]" if bracket_text else ""
-                print(f"  Resolved: @{ref_id}{bracket_part} -> {link}")
 
     if content != original_content and not dry_run:
         with open(file_path, "w", encoding="utf-8") as f:
