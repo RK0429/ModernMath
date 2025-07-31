@@ -383,6 +383,7 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
 - **Mappings**: `lean_mappings.json` links article IDs to Lean proofs with `lean_id`, `module_name`, and `quarto_file`
 - **Embedding**: `scripts/site/embed_lean_proofs.py` adds iframe sections to articles with formal proofs
 - **Progress Tracking**: `scripts/site/generate_proof_progress.py` creates overview pages showing article writing status with proof categorization
+  - **Japanese Title Display**: Progress pages fetch Japanese titles from Japanese `.qmd` files via `_get_japanese_title()` method for proper localization
 - **Validation**: `scripts/validation/validate_lean_proofs.py` categorizes all proofs into four status types
 
 **Lean Proof Validation**:
@@ -414,7 +415,7 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
   - Embed Lean proofs: `poetry run python scripts/site/embed_lean_proofs.py` (generates correct lowercase URLs)
   - Generate article progress pages: `poetry run python scripts/site/generate_proof_progress.py`
   - Workflow copies `/formal/` to `_site/formal/` for GitHub Pages serving
-- **Progress Pages**: `nav/en/proof-progress.qmd` and `nav/ja/proof-progress.qmd` show article writing progress by type and domain
+- **Progress Pages**: `nav/en/writing-progress.qmd` and `nav/ja/writing-progress.qmd` show article writing progress by type and domain
   - Article links use: `../../content/{lang}/{domain}/{article}.html` (not `.qmd`)
   - Japanese paths: Replace `/content/en/` with `/content/ja/`
 - **Navigation**: "Article Writing Progress" link added to navbar in both languages

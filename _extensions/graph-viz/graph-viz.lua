@@ -154,8 +154,44 @@ function createForceGraph(data, containerId, options = {}) {
     .attr("font-size", "11px")
     .attr("font-family", "system-ui, sans-serif");
 
+  // Add proof status icons
+  const proofStatusIcons = {
+    'completed': '✅',
+    'warnings_present': '⚠️',
+    'errors_present': '❌',
+    'not_implemented': '📝'
+  };
+
+  const proofStatusTooltips = {
+    'completed': 'Formal proof completed',
+    'warnings_present': 'Formal proof has warnings',
+    'errors_present': 'Formal proof has errors',
+    'not_implemented': 'Formal proof not implemented'
+  };
+
+  node.each(function(d) {
+    if (d.proof_status && proofStatusIcons[d.proof_status]) {
+      const g = d3.select(this);
+      g.append("text")
+        .text(proofStatusIcons[d.proof_status])
+        .attr("x", nodeRadius * 0.7)
+        .attr("y", -nodeRadius * 0.7)
+        .attr("font-size", "12px")
+        .style("user-select", "none");
+    }
+  });
+
   node.append("title")
-    .text(d => d.url ? `${d.type}: ${d.label || d.id}\n(Click to view article)` : `${d.type}: ${d.label || d.id}`);
+    .text(d => {
+      let title = `${d.type}: ${d.label || d.id}`;
+      if (d.proof_status && proofStatusTooltips[d.proof_status]) {
+        title += `\n${proofStatusTooltips[d.proof_status]}`;
+      }
+      if (d.url) {
+        title += '\n(Click to view article)';
+      }
+      return title;
+    });
 
   // Tick function
   simulation.on("tick", () => {

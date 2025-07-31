@@ -5,7 +5,7 @@ Generate Mermaid diagrams for each node in the knowledge graph showing its local
 
 import json
 from pathlib import Path
-from typing import Dict, Set, Tuple, Any
+from typing import Dict, Set, Tuple, Any, Optional
 import frontmatter
 from rdflib import Graph, Namespace, RDF, RDFS, Literal
 
@@ -14,6 +14,37 @@ from rdflib import Graph, Namespace, RDF, RDFS, Literal
 MYMATH = Namespace("https://mathwiki.org/ontology#")
 BASE_URI = "https://mathwiki.org/resource/"
 BASE = Namespace(BASE_URI)
+
+
+def load_lean_data() -> Tuple[Dict[str, Any], Dict[str, Any]]:
+    """Load Lean mappings and validation results."""
+    lean_mappings: Dict[str, Any] = {}
+    lean_validation: Dict[str, Any] = {}
+
+    # Load Lean mappings
+    mappings_file = Path("lean_mappings.json")
+    if mappings_file.exists():
+        try:
+            with open(mappings_file, "r", encoding="utf-8") as f:
+                mappings_data = json.load(f)
+                lean_mappings = mappings_data.get("node_to_lean", {})
+        except (IOError, json.JSONDecodeError) as e:
+            print(f"Warning: Could not load lean_mappings.json: {e}")
+
+    # Load Lean validation results
+    validation_file = Path("lean_validation_results.json")
+    if validation_file.exists():
+        try:
+            with open(validation_file, "r", encoding="utf-8") as f:
+                validation_data = json.load(f)
+                # Index by node_id for quick lookup
+                for module_data in validation_data.get("modules", {}).values():
+                    if module_data.get("node_id"):
+                        lean_validation[module_data["node_id"]] = module_data["status"]
+        except (IOError, json.JSONDecodeError) as e:
+            print(f"Warning: Could not load lean_validation_results.json: {e}")
+
+    return lean_mappings, lean_validation
 
 
 def load_knowledge_graph(ttl_file: Path) -> Graph:
@@ -105,7 +136,14 @@ def get_node_style(node_type: str) -> str:
     return styles.get(node_type, "")
 
 
-def generate_mermaid_diagram(g: Graph, node_id: str, lang: str = "en", max_nodes: int = 20) -> str:
+def generate_mermaid_diagram(
+    g: Graph,
+    node_id: str,
+    lang: str = "en",
+    max_nodes: int = 20,
+    lean_mappings: Optional[Dict[str, Any]] = None,
+    lean_validation: Optional[Dict[str, Any]] = None,
+) -> str:
     """Generate Mermaid diagram for a node's neighborhood with language support."""
     nodes, edges = get_local_neighborhood(g, node_id)
 
@@ -128,6 +166,11 @@ def generate_mermaid_diagram(g: Graph, node_id: str, lang: str = "en", max_nodes
         info = get_node_info(g, BASE[n], lang)
         node_info[n] = info
 
+        # Add proof status if available
+        if lean_mappings and lean_validation and n in lean_mappings:
+            proof_status = lean_validation.get(n, "not_implemented")
+            info["proof_status"] = proof_status
+
     # Generate Mermaid code
     lines = ["graph TD"]
 
@@ -142,11 +185,24 @@ def generate_mermaid_diagram(g: Graph, node_id: str, lang: str = "en", max_nodes
         ]
     )
 
+    # Proof status icons
+    proof_status_icons = {
+        "completed": "✅",
+        "warnings_present": "⚠️",
+        "errors_present": "❌",
+        "not_implemented": "📝",
+    }
+
     # Add nodes
     for n_id, info in node_info.items():
         label = info["label"] or n_id
         # Escape special characters
         label = label.replace('"', "&quot;")
+
+        # Add proof status icon if available
+        if "proof_status" in info and info["proof_status"] in proof_status_icons:
+            label = f"{label} {proof_status_icons[info['proof_status']]}"
+
         node_type = info["type"] or "Unknown"
         style_class = get_node_style(node_type)
 
@@ -175,6 +231,9 @@ def generate_all_diagrams(ttl_file: Path, output_dir: Path) -> None:
     """Generate Mermaid diagrams for all nodes."""
     g = load_knowledge_graph(ttl_file)
     output_dir.mkdir(parents=True, exist_ok=True)
+
+    # Load Lean data
+    lean_mappings, lean_validation = load_lean_data()
 
     # Get all nodes
     nodes = set()
@@ -205,7 +264,9 @@ def generate_all_diagrams(ttl_file: Path, output_dir: Path) -> None:
                 lang_skipped += 1
                 continue
 
-            diagram = generate_mermaid_diagram(g, node_id, lang=lang)
+            diagram = generate_mermaid_diagram(
+                g, node_id, lang=lang, lean_mappings=lean_mappings, lean_validation=lean_validation
+            )
 
             # Additional validation: check if diagram has meaningful content
             # (not just class definitions and a single node)

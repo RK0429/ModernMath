@@ -6,11 +6,10 @@ This script parses .qmd files in the content directory and builds an RDF graph
 representing the mathematical knowledge structure.
 """
 
-import json
 import logging
 import re
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Dict, Optional
 
 import frontmatter
 import yaml
@@ -73,7 +72,8 @@ class KnowledgeGraphBuilder:  # pylint: disable=too-few-public-methods
             self._process_file_second_pass(qmd_path)
 
         # Third pass: add Lean verification triples
-        self._add_lean_verification_triples()
+        # Disabled: Formal proof nodes are now shown as icons on article nodes
+        # self._add_lean_verification_triples()
 
         # Save the graph
         self._save_graph()
@@ -236,78 +236,79 @@ class KnowledgeGraphBuilder:  # pylint: disable=too-few-public-methods
 
         return None
 
-    def _add_lean_verification_triples(self) -> None:
-        """Add isVerifiedBy triples for nodes that have formal Lean verification."""
-        # Path to the Lean mappings file
-        mappings_file = self.output_file.parent / "lean_mappings.json"
-
-        if not mappings_file.exists():
-            logger.info("No lean_mappings.json found, skipping Lean verification triples")
-            return
-
-        try:
-            with open(mappings_file, "r", encoding="utf-8") as f:
-                mappings_data = json.load(f)
-
-            # Process node_to_lean mappings
-            node_to_lean = mappings_data.get("node_to_lean", {})
-
-            for node_id, lean_data in node_to_lean.items():
-                self._process_lean_verification(node_id, lean_data)
-
-            # Count how many nodes have verification
-            verified_count = len(list(self.graph.triples((None, MYMATH.isVerifiedBy, None))))
-            logger.info("Added %d Lean verification triples", verified_count)
-
-        except (IOError, json.JSONDecodeError, KeyError) as e:
-            logger.error("Error adding Lean verification triples: %s", e)
-
-    def _process_lean_verification(self, node_id: str, lean_data: Dict[str, Any]) -> None:
-        """Process a single Lean verification mapping."""
-        if node_id not in self.node_registry:
-            return
-
-        node_uri = self.node_registry[node_id]
-        lean_id = lean_data.get("lean_id")
-
-        if not lean_id:
-            return
-
-        # Create a URI for the Lean proof
-        lean_proof_uri = URIRef(f"https://mathlib.org/proof/{lean_id}")
-
-        # Add the isVerifiedBy triple
-        self.graph.add((node_uri, MYMATH.isVerifiedBy, lean_proof_uri))
-
-        # Add metadata about the Lean proof
-        self.graph.add((lean_proof_uri, RDF.type, MYMATH.FormalProof))
-
-        # Always use node ID for consistency to avoid duplicate labels
-        # This prevents issues like "Formal proof of Vector Space" vs
-        # "Formal proof of def-vector-space"
-        proof_label_en = f"Formal proof of {node_id}"
-        proof_label_ja = f"{node_id}の形式的証明"
-
-        self.graph.add(
-            (
-                lean_proof_uri,
-                RDFS.label,
-                Literal(proof_label_en, lang="en"),
-            )
-        )
-        self.graph.add(
-            (
-                lean_proof_uri,
-                RDFS.label,
-                Literal(proof_label_ja, lang="ja"),
-            )
-        )
-
-        # Add the module information
-        if "module_name" in lean_data:
-            self.graph.add((lean_proof_uri, MYMATH.inModule, Literal(lean_data["module_name"])))
-
-        logger.info("Added Lean verification for %s -> %s", node_id, lean_id)
+    # Commented out: Formal proof nodes are now displayed as icons on article nodes
+    # def _add_lean_verification_triples(self) -> None:
+    #     """Add isVerifiedBy triples for nodes that have formal Lean verification."""
+    #     # Path to the Lean mappings file
+    #     mappings_file = self.output_file.parent / "lean_mappings.json"
+    #
+    #     if not mappings_file.exists():
+    #         logger.info("No lean_mappings.json found, skipping Lean verification triples")
+    #         return
+    #
+    #     try:
+    #         with open(mappings_file, "r", encoding="utf-8") as f:
+    #             mappings_data = json.load(f)
+    #
+    #         # Process node_to_lean mappings
+    #         node_to_lean = mappings_data.get("node_to_lean", {})
+    #
+    #         for node_id, lean_data in node_to_lean.items():
+    #             self._process_lean_verification(node_id, lean_data)
+    #
+    #         # Count how many nodes have verification
+    #         verified_count = len(list(self.graph.triples((None, MYMATH.isVerifiedBy, None))))
+    #         logger.info("Added %d Lean verification triples", verified_count)
+    #
+    #     except (IOError, json.JSONDecodeError, KeyError) as e:
+    #         logger.error("Error adding Lean verification triples: %s", e)
+    #
+    # def _process_lean_verification(self, node_id: str, lean_data: Dict[str, Any]) -> None:
+    #     """Process a single Lean verification mapping."""
+    #     if node_id not in self.node_registry:
+    #         return
+    #
+    #     node_uri = self.node_registry[node_id]
+    #     lean_id = lean_data.get("lean_id")
+    #
+    #     if not lean_id:
+    #         return
+    #
+    #     # Create a URI for the Lean proof
+    #     lean_proof_uri = URIRef(f"https://mathlib.org/proof/{lean_id}")
+    #
+    #     # Add the isVerifiedBy triple
+    #     self.graph.add((node_uri, MYMATH.isVerifiedBy, lean_proof_uri))
+    #
+    #     # Add metadata about the Lean proof
+    #     self.graph.add((lean_proof_uri, RDF.type, MYMATH.FormalProof))
+    #
+    #     # Always use node ID for consistency to avoid duplicate labels
+    #     # This prevents issues like "Formal proof of Vector Space" vs
+    #     # "Formal proof of def-vector-space"
+    #     proof_label_en = f"Formal proof of {node_id}"
+    #     proof_label_ja = f"{node_id}の形式的証明"
+    #
+    #     self.graph.add(
+    #         (
+    #             lean_proof_uri,
+    #             RDFS.label,
+    #             Literal(proof_label_en, lang="en"),
+    #         )
+    #     )
+    #     self.graph.add(
+    #         (
+    #             lean_proof_uri,
+    #             RDFS.label,
+    #             Literal(proof_label_ja, lang="ja"),
+    #         )
+    #     )
+    #
+    #     # Add the module information
+    #     if "module_name" in lean_data:
+    #         self.graph.add((lean_proof_uri, MYMATH.inModule, Literal(lean_data["module_name"])))
+    #
+    #     logger.info("Added Lean verification for %s -> %s", node_id, lean_id)
 
     def _get_node_english_label(self, node_uri: URIRef) -> Optional[str]:
         """Get the English label for a node URI."""

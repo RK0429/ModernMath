@@ -4,7 +4,7 @@ This document describes how formal proofs written in Lean 4 are integrated into 
 
 ## Overview
 
-The integration embeds interactive Lean 4 proof editors directly into article pages using iframes that load proofs from the Lean web editor (https://live.lean-lang.org). This allows readers to explore and interact with formal proofs without leaving the article.
+The integration embeds interactive Lean 4 proof editors directly into article pages using iframes that load proofs from the Lean web editor (<https://live.lean-lang.org>). This allows readers to explore and interact with formal proofs without leaving the article.
 
 ## Architecture
 
@@ -13,7 +13,7 @@ The integration embeds interactive Lean 4 proof editors directly into article pa
 1. **Lean Files**: Located in `/formal/` directory, organized by module
 2. **Mapping File**: `lean_mappings.json` links article IDs to Lean proofs
 3. **Embedding Script**: `scripts/site/embed_lean_proofs.py` adds proof sections to articles
-4. **Progress Pages**: `scripts/site/generate_proof_progress.py` creates tracking pages at `nav/en/proof-progress.qmd` and `nav/ja/proof-progress.qmd`
+4. **Progress Pages**: `scripts/site/generate_proof_progress.py` creates tracking pages at `nav/en/writing-progress.qmd` and `nav/ja/writing-progress.qmd`
 5. **Build Integration**: GitHub Actions workflow copies Lean files to be served
 
 ### How It Works

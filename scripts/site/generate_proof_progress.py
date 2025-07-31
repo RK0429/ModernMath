@@ -10,7 +10,7 @@ import json
 import logging
 from collections import defaultdict
 from pathlib import Path
-from typing import Dict, List, Any
+from typing import Any, Dict, List
 
 import frontmatter
 
@@ -217,7 +217,7 @@ class ProofProgressGenerator:
         stats = self._calculate_statistics(proof_data)
 
         # Create output directory and file in language-specific subdirectory
-        output_path = self.output_dir / language / "proof-progress.qmd"
+        output_path = self.output_dir / language / "writing-progress.qmd"
         output_path.parent.mkdir(parents=True, exist_ok=True)
 
         # Generate content
@@ -499,6 +499,23 @@ description: "記事の執筆と完成の進捗状況"
 
         return content
 
+    def _get_japanese_title(self, domain: str, article_id: str) -> str:
+        """Get Japanese title for an article by reading the Japanese version."""
+        # Construct path to Japanese file
+        ja_file_path = self.content_dir / "ja" / domain / f"{article_id}.qmd"
+
+        if not ja_file_path.exists():
+            return article_id  # Fallback to ID if Japanese file doesn't exist
+
+        try:
+            with open(ja_file_path, "r", encoding="utf-8") as f:
+                post = frontmatter.load(f)
+
+            return str(post.metadata.get("title", article_id))
+        except (OSError, ValueError, KeyError) as e:
+            logger.warning("Error reading Japanese title for %s: %s", article_id, e)
+            return article_id
+
     def _generate_japanese_details(self, proof_data: Dict[str, List[Dict[str, Any]]]) -> str:
         """Generate Japanese detailed progress section."""
         content = "\n## 詳細な進捗\n\n"
@@ -524,9 +541,12 @@ description: "記事の執筆と完成の進捗状況"
             content += "|------|--------|------------|------------|\n"
 
             for article in articles:
+                # Get Japanese title
+                ja_title = self._get_japanese_title(domain, article["id"])
+
                 # Convert path to Japanese version
                 ja_path = article["path"].replace("/content/en/", "/content/ja/")
-                title_link = f"[{article['title']}]({ja_path})"
+                title_link = f"[{ja_title}]({ja_path})"
                 type_badge = self._get_type_badge(article["type"], "ja")
                 status_badge = self._get_status_badge(article["status"], "ja")
                 proof_status_text = self._get_proof_status_text(article["proof_status"], "ja")

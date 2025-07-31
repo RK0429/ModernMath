@@ -6,9 +6,10 @@ This module provides functions to create interactive graph visualizations
 for the Mathematics Knowledge Graph using the PyVis library.
 """
 
+import json
 import logging
 from pathlib import Path
-from typing import Dict, List, Set, Tuple
+from typing import Dict, List, Set, Tuple, Optional, Any
 
 from pyvis.network import Network
 from rdflib import Graph, Namespace, RDF, RDFS
@@ -44,12 +45,58 @@ NODE_SHAPES = {
     "Corollary": "ellipse",
 }
 
+# Proof status icons for HTML display
+PROOF_STATUS_ICONS = {
+    "completed": "✅",  # ✅
+    "warnings_present": "⚠️",  # ⚠️
+    "errors_present": "❌",  # ❌
+    "not_implemented": "📝",  # 📝
+}
+
+PROOF_STATUS_DESCRIPTIONS = {
+    "completed": "Formal proof completed",
+    "warnings_present": "Formal proof has warnings",
+    "errors_present": "Formal proof has errors",
+    "not_implemented": "Formal proof not implemented",
+}
+
 
 def load_knowledge_graph(ttl_path: Path) -> Graph:
     """Load the RDF knowledge graph from a Turtle file."""
     g = Graph()
     g.parse(ttl_path, format="turtle")
     return g
+
+
+def load_lean_data() -> Tuple[Dict[str, Any], Dict[str, Any]]:
+    """Load Lean mappings and validation results."""
+    lean_mappings: Dict[str, Any] = {}
+    lean_validation: Dict[str, Any] = {}
+
+    # Load Lean mappings
+    mappings_file = Path("lean_mappings.json")
+    if mappings_file.exists():
+        try:
+            with open(mappings_file, "r", encoding="utf-8") as f:
+                mappings_data = json.load(f)
+                lean_mappings = mappings_data.get("node_to_lean", {})
+        except (IOError, json.JSONDecodeError) as e:
+            logger.warning("Could not load lean_mappings.json: %s", e)
+
+    # Load Lean validation results
+    validation_file = Path("lean_validation_results.json")
+    if validation_file.exists():
+        try:
+            with open(validation_file, "r", encoding="utf-8") as f:
+                validation_data = json.load(f)
+                # Index by node_id for quick lookup
+                for module_data in validation_data.get("modules", {}).values():
+                    if module_data.get("node_id"):
+                        lean_validation[module_data["node_id"]] = module_data["status"]
+        except (IOError, json.JSONDecodeError) as e:
+            logger.warning("Could not load lean_validation_results.json: %s", e)
+
+    return lean_mappings, lean_validation
 
 
 def get_node_info(g: Graph, node_uri: str, lang: str = "en") -> Dict[str, str]:
@@ -133,7 +180,12 @@ def get_neighbors(
 
 
 def create_local_graph(
-    node_id: str, depth: int = 2, ttl_path: Path = Path("knowledge_graph.ttl"), lang: str = "en"
+    node_id: str,
+    depth: int = 2,
+    ttl_path: Path = Path("knowledge_graph.ttl"),
+    lang: str = "en",
+    lean_mappings: Optional[Dict[str, Any]] = None,
+    lean_validation: Optional[Dict[str, Any]] = None,
 ) -> Network:
     """
     Create an interactive graph visualization centered on a specific node.
@@ -143,6 +195,8 @@ def create_local_graph(
         depth: How many hops away from the central node to include
         ttl_path: Path to the knowledge graph Turtle file
         lang: Language preference for node labels
+        lean_mappings: Optional Lean node mappings
+        lean_validation: Optional Lean validation results
 
     Returns:
         A PyVis Network object
@@ -216,6 +270,14 @@ def create_local_graph(
             f"ID: {node_uri}",
         ]
 
+        # Add proof status if available
+        if lean_mappings and lean_validation and node_uri in lean_mappings:
+            proof_status = lean_validation.get(node_uri, "not_implemented")
+            if proof_status in PROOF_STATUS_ICONS:
+                status_icon = PROOF_STATUS_ICONS[proof_status]
+                status_desc = PROOF_STATUS_DESCRIPTIONS[proof_status]
+                title_parts.append(f"Proof: {status_icon} {status_desc}")
+
         if has_article:
             # Add clickable link with appropriate language
             link_text = "記事を見る →" if lang == "ja" else "View Article →"
@@ -285,6 +347,9 @@ def generate_all_node_graphs(
     """Generate interactive graphs for all nodes in the knowledge graph."""
     g = load_knowledge_graph(ttl_path)
 
+    # Load Lean data once for all graphs
+    lean_mappings, lean_validation = load_lean_data()
+
     # Get all nodes
     nodes = set()
     for subj, pred, _ in g.triples((None, RDF.type, None)):
@@ -305,7 +370,14 @@ def generate_all_node_graphs(
         # Generate graph for each node
         for i, node_id in enumerate(nodes, 1):
             try:
-                graph_net = create_local_graph(node_id, depth=2, ttl_path=ttl_path, lang=lang)
+                graph_net = create_local_graph(
+                    node_id,
+                    depth=2,
+                    ttl_path=ttl_path,
+                    lang=lang,
+                    lean_mappings=lean_mappings,
+                    lean_validation=lean_validation,
+                )
                 save_as_html(graph_net, node_id, lang_dir)
 
                 if i % 10 == 0:
@@ -319,7 +391,11 @@ def generate_all_node_graphs(
 
 
 def create_domain_overview(
-    domain: str, ttl_path: Path = Path("knowledge_graph.ttl"), lang: str = "en"
+    domain: str,
+    ttl_path: Path = Path("knowledge_graph.ttl"),
+    lang: str = "en",
+    lean_mappings: Optional[Dict[str, Any]] = None,
+    lean_validation: Optional[Dict[str, Any]] = None,
 ) -> Network:
     """Create an overview graph for all nodes in a specific mathematical domain."""
     g = load_knowledge_graph(ttl_path)
@@ -379,6 +455,14 @@ def create_domain_overview(
             f"Type: {node_info['type']}",
             f"ID: {node_id}",
         ]
+
+        # Add proof status if available
+        if lean_mappings and lean_validation and node_id in lean_mappings:
+            proof_status = lean_validation.get(node_id, "not_implemented")
+            if proof_status in PROOF_STATUS_ICONS:
+                status_icon = PROOF_STATUS_ICONS[proof_status]
+                status_desc = PROOF_STATUS_DESCRIPTIONS[proof_status]
+                title_parts.append(f"Proof: {status_icon} {status_desc}")
 
         if has_article:
             link_text = "記事を見る →" if lang == "ja" else "View Article →"
