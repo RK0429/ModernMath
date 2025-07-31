@@ -5,18 +5,18 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-composition["Composition"]:::definition
+    def-isomorphism["Isomorphism"]:::definition
     def-morphism["Morphism"]:::definition
+    def-category["Category"]:::definition
+    def-epimorphism["Epimorphism"]:::definition
     def-functor["Functor"]:::definition
     def-monomorphism["Monomorphism"]:::definition
-    def-category["Category"]:::definition
-    def-isomorphism["Isomorphism"]:::definition
-    def-epimorphism["Epimorphism"]:::definition
+    def-isomorphism --> def-monomorphism
     def-monomorphism --> def-category
-    def-monomorphism --> def-composition
     def-monomorphism --> def-epimorphism
-    def-monomorphism --> def-morphism
+    def-monomorphism --> def-composition
+    def-epimorphism --> def-monomorphism
     def-monomorphism --> def-functor
     def-monomorphism --> def-isomorphism
-    def-epimorphism --> def-monomorphism
-    def-isomorphism --> def-monomorphism
+    def-monomorphism --> def-morphism
     class def-monomorphism current

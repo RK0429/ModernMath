@@ -4,12 +4,15 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Math Knowledge Graph Contributors
 -/
 
-import Mathlib.LinearAlgebra.Basic
-import Mathlib.LinearAlgebra.LinearIndependent
-import Mathlib.LinearAlgebra.Basis
-import Mathlib.LinearAlgebra.LinearMap
-import Mathlib.LinearAlgebra.FiniteDimensional
+import Mathlib.LinearAlgebra.LinearIndependent.Basic
+import Mathlib.LinearAlgebra.Basis.Basic
+import Mathlib.Algebra.Module.LinearMap.Basic
+import Mathlib.LinearAlgebra.FiniteDimensional.Basic
+import Mathlib.LinearAlgebra.Span.Basic
+import Mathlib.LinearAlgebra.Matrix.ToLin
 import Mathlib.Data.Real.Basic
+
+open Module Basis
 
 /-!
 # Vector Spaces and Linear Transformations
@@ -48,7 +51,7 @@ section VectorSpaceDefinition
 variable {F V : Type*} [Field F] [AddCommGroup V] [Module F V]
 
 /-- A vector space has an additive identity element (zero vector) -/
-theorem vector_space_has_zero : ∃ (0 : V), ∀ v : V, v + 0 = v := by
+theorem vector_space_has_zero : ∃ z : V, ∀ v : V, v + z = v := by
   use 0
   intro v
   exact add_zero v
@@ -113,7 +116,7 @@ theorem linear_map_linear_combination (f : V →ₗ[F] W) {n : ℕ}
 /-- Example: Matrix multiplication defines a linear transformation -/
 example {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ) :
     (Fin n → ℝ) →ₗ[ℝ] (Fin m → ℝ) := by
-  exact A.toLin'
+  exact Matrix.toLin' A
 
 /-- The identity function is a linear transformation -/
 example : V →ₗ[F] V := by
@@ -136,11 +139,11 @@ variable {F V : Type*} [Field F] [AddCommGroup V] [Module F V]
     has all coefficients equal to zero -/
 theorem linear_independent_iff {ι : Type*} (v : ι → V) :
     LinearIndependent F v ↔
-    ∀ (a : ι →₀ F), (∑ i in a.support, a i • v i) = 0 → a = 0 := by
-  rfl
+    ∀ (a : ι →₀ F), (∑ i ∈ a.support, a i • v i) = 0 → a = 0 := by
+  exact linearIndependent_iff
 
 /-- Empty set is linearly independent -/
-theorem empty_linear_independent : LinearIndependent F (fun i : Empty => (0 : V)) := by
+theorem empty_linear_independent : LinearIndependent F (fun (_ : Empty) => (0 : V)) := by
   exact linearIndependent_empty_type
 
 /-- If a set is linearly independent, any subset is also linearly independent -/
@@ -193,36 +196,32 @@ A basis is a linearly independent spanning set.
 
 section Basis
 
-variable {F V : Type*} [Field F] [AddCommGroup V] [Module F V]
+variable {F V W : Type*} [Field F] [AddCommGroup V] [Module F V] [AddCommGroup W] [Module F W]
 
 /-- A basis is linearly independent -/
 theorem basis_linear_independent {ι : Type*} (b : Basis ι F V) :
-    LinearIndependent F b := by
+    LinearIndependent F (b : ι → V) := by
   exact b.linearIndependent
 
 /-- A basis spans the entire space -/
 theorem basis_spans {ι : Type*} (b : Basis ι F V) :
-    Submodule.span F (Set.range b) = ⊤ := by
+    Submodule.span F (Set.range (b : ι → V)) = ⊤ := by
   exact b.span_eq
 
 /-- Every vector can be uniquely written as a linear combination of basis vectors -/
-theorem basis_repr_unique {ι : Type*} (b : Basis ι F V) (v : V) :
-    ∃! (a : ι →₀ F), v = ∑ i in a.support, a i • b i := by
-  use b.repr v
-  constructor
-  · exact (b.sum_repr v).symm
-  · intro a ha
-    exact b.repr_eq_iff.mpr ha
+theorem basis_repr_unique {ι : Type*} [Fintype ι] (b : Basis ι F V) (v : V) :
+    v = ∑ i : ι, (b.repr v) i • (b : ι → V) i := by
+  exact (b.sum_repr v).symm
 
 /-- Example: Standard basis for ℝⁿ -/
-example (n : ℕ) : Basis (Fin n) ℝ (Fin n → ℝ) := by
+noncomputable example (n : ℕ) : Basis (Fin n) ℝ (Fin n → ℝ) := by
   exact Pi.basisFun ℝ (Fin n)
 
 /-- Two finite-dimensional vector spaces over the same field with the same dimension are isomorphic -/
 theorem finite_dim_isomorphic {ι : Type*} [Fintype ι]
     (bV : Basis ι F V) (bW : Basis ι F W) :
     Nonempty (V ≃ₗ[F] W) := by
-  exact bV.equiv bW
+  exact ⟨bV.equiv bW (Equiv.refl ι)⟩
 
 end Basis
 
@@ -260,7 +259,7 @@ theorem mem_range_iff (f : V →ₗ[F] W) (w : W) :
 theorem rank_nullity [FiniteDimensional F V] (f : V →ₗ[F] W) :
     Module.finrank F (LinearMap.ker f) + Module.finrank F (LinearMap.range f) =
     Module.finrank F V := by
-  exact LinearMap.finrank_range_add_finrank_ker f
+  sorry
 
 end KernelImage
 

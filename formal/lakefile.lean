@@ -9,6 +9,7 @@ require mathlib from git
 
 @[default_target]
 lean_lib «MathKnowledgeGraph» where
+  globs := #[.submodules `MathKnowledgeGraph]
 
 lean_exe «mathknowledgegraph» where
   root := `Main
