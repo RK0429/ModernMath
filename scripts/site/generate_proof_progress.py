@@ -149,11 +149,20 @@ class ProofProgressGenerator:
             )
 
     def _calculate_statistics(self, proof_data: Dict[str, List[Dict[str, Any]]]) -> Dict[str, Any]:
-        """Calculate statistics about formal proof coverage."""
+        """Calculate statistics about article writing and formal proof progress."""
         stats: Dict[str, Any] = {
             "total_articles": 0,
-            "verified_articles": 0,
-            "coverage_percentage": 0.0,
+            # Article writing progress
+            "articles_complete": 0,
+            "articles_draft": 0,
+            "articles_stub": 0,
+            # Formal proof progress
+            "proofs_completed": 0,
+            "proofs_warnings": 0,
+            "proofs_errors": 0,
+            "proofs_not_implemented": 0,
+            "proofs_total": 0,
+            # Breakdowns
             "by_type": {},
             "by_domain": {},
         }
@@ -164,32 +173,76 @@ class ProofProgressGenerator:
 
                 # Initialize type stats if not exists
                 if article["type"] not in stats["by_type"]:
-                    stats["by_type"][article["type"]] = {"total": 0, "verified": 0}
+                    stats["by_type"][article["type"]] = {
+                        "total": 0,
+                        "complete": 0,
+                        "draft": 0,
+                        "stub": 0,
+                        "proofs_completed": 0,
+                        "proofs_warnings": 0,
+                        "proofs_errors": 0,
+                        "proofs_not_implemented": 0,
+                    }
                 stats["by_type"][article["type"]]["total"] += 1
 
                 # Initialize domain stats if not exists
                 if domain not in stats["by_domain"]:
-                    stats["by_domain"][domain] = {"total": 0, "verified": 0}
+                    stats["by_domain"][domain] = {
+                        "total": 0,
+                        "complete": 0,
+                        "draft": 0,
+                        "stub": 0,
+                        "proofs_completed": 0,
+                        "proofs_warnings": 0,
+                        "proofs_errors": 0,
+                        "proofs_not_implemented": 0,
+                    }
                 stats["by_domain"][domain]["total"] += 1
 
-                if article["has_proof"]:
-                    stats["verified_articles"] += 1
-                    stats["by_type"][article["type"]]["verified"] += 1
-                    stats["by_domain"][domain]["verified"] += 1
+                # Track article writing status
+                article_status = article["status"]
+                if article_status == "complete":
+                    stats["articles_complete"] += 1
+                    stats["by_type"][article["type"]]["complete"] += 1
+                    stats["by_domain"][domain]["complete"] += 1
+                elif article_status == "draft":
+                    stats["articles_draft"] += 1
+                    stats["by_type"][article["type"]]["draft"] += 1
+                    stats["by_domain"][domain]["draft"] += 1
+                elif article_status == "stub":
+                    stats["articles_stub"] += 1
+                    stats["by_type"][article["type"]]["stub"] += 1
+                    stats["by_domain"][domain]["stub"] += 1
 
-        if stats["total_articles"] > 0:
-            stats["coverage_percentage"] = (
-                stats["verified_articles"] / stats["total_articles"] * 100
-            )
+                # Track formal proof status
+                if article["has_proof"]:
+                    stats["proofs_total"] += 1
+                    proof_status = article["proof_status"]
+                    if proof_status == "completed":
+                        stats["proofs_completed"] += 1
+                        stats["by_type"][article["type"]]["proofs_completed"] += 1
+                        stats["by_domain"][domain]["proofs_completed"] += 1
+                    elif proof_status == "warnings_present":
+                        stats["proofs_warnings"] += 1
+                        stats["by_type"][article["type"]]["proofs_warnings"] += 1
+                        stats["by_domain"][domain]["proofs_warnings"] += 1
+                    elif proof_status == "errors_present":
+                        stats["proofs_errors"] += 1
+                        stats["by_type"][article["type"]]["proofs_errors"] += 1
+                        stats["by_domain"][domain]["proofs_errors"] += 1
+                    else:
+                        stats["proofs_not_implemented"] += 1
+                        stats["by_type"][article["type"]]["proofs_not_implemented"] += 1
+                        stats["by_domain"][domain]["proofs_not_implemented"] += 1
 
         return stats
 
-    def _generate_progress_bar(self, verified: int, total: int) -> str:
+    def _generate_progress_bar(self, completed: int, total: int) -> str:
         """Generate an HTML progress bar."""
         if total == 0:
             return '<span class="progress-stats">N/A</span>'
 
-        percentage = verified / total * 100
+        percentage = completed / total * 100
 
         # Determine color class based on percentage
         if percentage >= 75:
@@ -206,9 +259,43 @@ class ProofProgressGenerator:
       <span class="progress-label">{percentage:.1f}%</span>
     </div>
   </div>
-  <span class="progress-percentage">{verified}/{total}</span>
+  <span class="progress-percentage">{completed}/{total}</span>
 </div>"""
         return html
+
+    def _generate_progress_section(
+        self, title: str, completed: int, total: int, stats_html: str
+    ) -> str:
+        """Generate a progress section with title, progress bar, and stats."""
+        if total == 0:
+            percentage = 0.0
+        else:
+            percentage = completed / total * 100
+
+        # Determine color class
+        if percentage >= 75:
+            color_class = "progress-high"
+        elif percentage >= 40:
+            color_class = "progress-medium"
+        else:
+            color_class = "progress-low"
+
+        return f"""
+```{{=html}}
+<div class="progress-section">
+<h3>{title}</h3>
+<div class="progress-container" style="height: 32px;">
+  <div class="progress-fill {color_class}" style="width: {percentage}%">
+    <span class="progress-label" style="font-size: 1rem;">{percentage:.1f}%</span>
+  </div>
+</div>
+<div class="progress-stats">
+  {stats_html}
+</div>
+</div>
+```
+
+"""
 
     def generate_progress_page(self, language: str = "en") -> None:
         """Generate the formal proof progress page."""
@@ -259,75 +346,45 @@ knowledge graph.
 
 """
 
-        # Overall statistics
-        verified = stats["verified_articles"]
+        # Article writing statistics
         total = stats["total_articles"]
-        percentage = verified / total * 100 if total > 0 else 0
+        complete = stats["articles_complete"]
 
-        # Determine color class
-        if percentage >= 75:
-            color_class = "progress-high"
-        elif percentage >= 40:
-            color_class = "progress-medium"
-        else:
-            color_class = "progress-low"
+        article_stats_html = (
+            f"<span>{complete} articles complete</span>"
+            f"<span>•</span>"
+            f'<span>{stats["articles_draft"]} draft</span>'
+            f"<span>•</span>"
+            f'<span>{stats["articles_stub"]} stub</span>'
+            f"<span>•</span>"
+            f"<span>{total} total</span>"
+        )
 
-        content += f"""
-```{{=html}}
-<div class="progress-section">
-<h3>Total Coverage</h3>
-<div class="progress-container" style="height: 32px;">
-  <div class="progress-fill {color_class}" style="width: {percentage}%">
-    <span class="progress-label" style="font-size: 1rem;">{percentage:.1f}%</span>
-  </div>
-</div>
-<div class="progress-stats">
-  <span>{verified} articles verified</span>
-  <span>•</span>
-  <span>{total} total articles</span>
-  <span>•</span>
-  <span>{total - verified} remaining</span>
-</div>
-</div>
-```
+        content += self._generate_progress_section(
+            "Article Writing Progress", complete, total, article_stats_html
+        )
 
-"""
+        # Formal proof statistics
+        proofs_total = stats["proofs_total"]
+        proofs_completed = stats["proofs_completed"]
 
-        # Progress by type
-        content += """
-```{=html}
-<div class="progress-section">
-<h3>Progress by Type</h3>
-<div class="progress-grid">
-"""
-        for node_type, type_stats in sorted(stats["by_type"].items()):
-            verified = type_stats["verified"]
-            total = type_stats["total"]
-            content += f"""  <div class="progress-item">
-    <span class="progress-item-label">{node_type}</span>
-    {self._generate_progress_bar(verified, total)}
-  </div>
-"""
-        content += """</div>
-</div>
+        proof_stats_html = (
+            f"<span>{proofs_completed} proofs completed</span>"
+            f"<span>•</span>"
+            f'<span>{stats["proofs_warnings"]} with warnings</span>'
+            f"<span>•</span>"
+            f'<span>{stats["proofs_errors"]} with errors</span>'
+            f"<span>•</span>"
+            f"<span>{proofs_total} with Lean mappings</span>"
+        )
 
-<div class="progress-section">
-<h3>Progress by Domain</h3>
-<div class="progress-grid">
-"""
-        for domain, domain_stats in sorted(stats["by_domain"].items()):
-            domain_title = domain.replace("-", " ").title()
-            verified = domain_stats["verified"]
-            total = domain_stats["total"]
-            content += f"""  <div class="progress-item">
-    <span class="progress-item-label">{domain_title}</span>
-    {self._generate_progress_bar(verified, total)}
-  </div>
-"""
-        content += """</div>
-</div>
-```
-"""
+        content += self._generate_progress_section(
+            "Formal Proof Progress", proofs_completed, proofs_total, proof_stats_html
+        )
+
+        # Progress by type and domain
+        content += self._generate_type_progress_section(stats, "Article Completion by Type")
+        content += self._generate_domain_progress_section(stats, "Article Completion by Domain")
 
         # Detailed listing by domain
         content += "\n## Detailed Progress\n\n"
@@ -381,6 +438,112 @@ Article is a stub
 
         return content
 
+    def _generate_type_progress_section(self, stats: Dict[str, Any], section_title: str) -> str:
+        """Generate progress section by type."""
+        content = f"""
+```{{=html}}
+<div class="progress-section">
+<h3>{section_title}</h3>
+<div class="progress-grid">
+"""
+        for node_type, type_stats in sorted(stats["by_type"].items()):
+            complete = type_stats["complete"]
+            total = type_stats["total"]
+            content += f"""  <div class="progress-item">
+    <span class="progress-item-label">{node_type}</span>
+    {self._generate_progress_bar(complete, total)}
+  </div>
+"""
+        content += """</div>
+</div>
+"""
+        return content
+
+    def _generate_domain_progress_section(self, stats: Dict[str, Any], section_title: str) -> str:
+        """Generate progress section by domain."""
+        content = f"""
+<div class="progress-section">
+<h3>{section_title}</h3>
+<div class="progress-grid">
+"""
+        for domain, domain_stats in sorted(stats["by_domain"].items()):
+            domain_title = domain.replace("-", " ").title()
+            complete = domain_stats["complete"]
+            total = domain_stats["total"]
+            content += f"""  <div class="progress-item">
+    <span class="progress-item-label">{domain_title}</span>
+    {self._generate_progress_bar(complete, total)}
+  </div>
+"""
+        content += """</div>
+</div>
+```
+"""
+        return content
+
+    def _generate_type_progress_section_ja(self, stats: Dict[str, Any]) -> str:
+        """Generate Japanese progress section by type."""
+        type_translations = {
+            "Definition": "定義",
+            "Theorem": "定理",
+            "Axiom": "公理",
+            "Example": "例",
+            "Proposition": "命題",
+            "Lemma": "補題",
+            "Corollary": "系",
+        }
+
+        content = """<div class="progress-section">
+<h3>タイプ別の記事完成度</h3>
+<div class="progress-grid">
+"""
+        for node_type, type_stats in sorted(stats["by_type"].items()):
+            type_ja = type_translations.get(node_type, node_type)
+            complete = type_stats["complete"]
+            total = type_stats["total"]
+            content += f"""  <div class="progress-item">
+    <span class="progress-item-label">{type_ja}</span>
+    {self._generate_progress_bar(complete, total)}
+  </div>
+"""
+        content += """</div>
+</div>
+"""
+        return content
+
+    def _generate_domain_progress_section_ja(self, stats: Dict[str, Any]) -> str:
+        """Generate Japanese progress section by domain."""
+        domain_translations = {
+            "algebra": "代数",
+            "analysis": "解析",
+            "category-theory": "圏論",
+            "combinatorics": "組合せ論",
+            "geometry": "幾何学",
+            "logic-set-theory": "論理と集合論",
+            "number-theory": "数論",
+            "probability-statistics": "確率と統計",
+            "topology": "位相幾何学",
+        }
+
+        content = """<div class="progress-section">
+<h3>ドメイン別の進捗</h3>
+<div class="progress-grid">
+"""
+        for domain, domain_stats in sorted(stats["by_domain"].items()):
+            domain_ja = domain_translations.get(domain, domain.replace("-", " ").title())
+            complete = domain_stats["complete"]
+            total = domain_stats["total"]
+            content += f"""  <div class="progress-item">
+    <span class="progress-item-label">{domain_ja}</span>
+    {self._generate_progress_bar(complete, total)}
+  </div>
+"""
+        content += """</div>
+</div>
+```
+"""
+        return content
+
     def _generate_japanese_content(
         self, proof_data: Dict[str, List[Dict[str, Any]]], stats: Dict[str, Any]
     ) -> str:
@@ -411,91 +574,79 @@ description: "記事の執筆と完成の進捗状況"
         """Generate Japanese statistics section."""
         content = ""
 
-        # Overall statistics
-        verified = stats["verified_articles"]
+        # Article writing statistics
         total = stats["total_articles"]
-        percentage = verified / total * 100 if total > 0 else 0
+        complete = stats["articles_complete"]
+        article_percentage = complete / total * 100 if total > 0 else 0
 
         # Determine color class
-        if percentage >= 75:
-            color_class = "progress-high"
-        elif percentage >= 40:
-            color_class = "progress-medium"
+        if article_percentage >= 75:
+            article_color_class = "progress-high"
+        elif article_percentage >= 40:
+            article_color_class = "progress-medium"
         else:
-            color_class = "progress-low"
+            article_color_class = "progress-low"
 
         content += f"""
 ```{{=html}}
 <div class="progress-section">
-<h3>全体のカバレッジ</h3>
+<h3>記事執筆の進捗</h3>
 <div class="progress-container" style="height: 32px;">
-  <div class="progress-fill {color_class}" style="width: {percentage}%">
-    <span class="progress-label" style="font-size: 1rem;">{percentage:.1f}%</span>
+  <div class="progress-fill {article_color_class}" style="width: {article_percentage}%">
+    <span class="progress-label" style="font-size: 1rem;">{article_percentage:.1f}%</span>
   </div>
 </div>
 <div class="progress-stats">
-  <span>{verified}記事検証済み</span>
+  <span>{complete}記事完成</span>
+  <span>•</span>
+  <span>{stats["articles_draft"]}草稿</span>
+  <span>•</span>
+  <span>{stats["articles_stub"]}スタブ</span>
   <span>•</span>
   <span>全{total}記事</span>
-  <span>•</span>
-  <span>残り{total - verified}記事</span>
 </div>
-</div>
-
-<div class="progress-section">
-<h3>タイプ別の進捗</h3>
-<div class="progress-grid">
-"""
-        # Progress by type
-        type_translations = {
-            "Definition": "定義",
-            "Theorem": "定理",
-            "Axiom": "公理",
-            "Example": "例",
-            "Proposition": "命題",
-            "Lemma": "補題",
-            "Corollary": "系",
-        }
-        for node_type, type_stats in sorted(stats["by_type"].items()):
-            type_ja = type_translations.get(node_type, node_type)
-            verified = type_stats["verified"]
-            total = type_stats["total"]
-            content += f"""  <div class="progress-item">
-    <span class="progress-item-label">{type_ja}</span>
-    {self._generate_progress_bar(verified, total)}
-  </div>
-"""
-        content += """</div>
-</div>
-
-<div class="progress-section">
-<h3>ドメイン別の進捗</h3>
-<div class="progress-grid">
-"""
-        domain_translations = {
-            "algebra": "代数",
-            "analysis": "解析",
-            "category-theory": "圏論",
-            "combinatorics": "組合せ論",
-            "geometry": "幾何学",
-            "logic-set-theory": "論理と集合論",
-            "number-theory": "数論",
-            "probability-statistics": "確率と統計",
-            "topology": "位相幾何学",
-        }
-        for domain, domain_stats in sorted(stats["by_domain"].items()):
-            domain_ja = domain_translations.get(domain, domain.replace("-", " ").title())
-            verified = domain_stats["verified"]
-            total = domain_stats["total"]
-            content += f"""  <div class="progress-item">
-    <span class="progress-item-label">{domain_ja}</span>
-    {self._generate_progress_bar(verified, total)}
-  </div>
-"""
-        content += """</div>
 </div>
 ```
+
 """
+
+        # Formal proof statistics
+        proofs_total = stats["proofs_total"]
+        proofs_completed = stats["proofs_completed"]
+        proof_percentage = proofs_completed / proofs_total * 100 if proofs_total > 0 else 0
+
+        if proof_percentage >= 75:
+            proof_color_class = "progress-high"
+        elif proof_percentage >= 40:
+            proof_color_class = "progress-medium"
+        else:
+            proof_color_class = "progress-low"
+
+        content += f"""
+```{{=html}}
+<div class="progress-section">
+<h3>形式的証明の進捗</h3>
+<div class="progress-container" style="height: 32px;">
+  <div class="progress-fill {proof_color_class}" style="width: {proof_percentage}%">
+    <span class="progress-label" style="font-size: 1rem;">{proof_percentage:.1f}%</span>
+  </div>
+</div>
+<div class="progress-stats">
+  <span>{proofs_completed}証明完成</span>
+  <span>•</span>
+  <span>{stats["proofs_warnings"]}警告あり</span>
+  <span>•</span>
+  <span>{stats["proofs_errors"]}エラーあり</span>
+  <span>•</span>
+  <span>{proofs_total}個のLeanマッピング</span>
+</div>
+</div>
+
+```
+"""
+
+        content += self._generate_type_progress_section_ja(stats)
+        content += self._generate_domain_progress_section_ja(stats)
 
         return content
 
