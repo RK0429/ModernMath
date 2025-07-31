@@ -218,14 +218,14 @@ class ProofProgressGenerator:
     ) -> str:
         """Generate English version of the progress page."""
         content = """---
-title: "Formal Proof Progress"
-description: "Track the progress of formal verification in Lean 4"
+title: "Article Writing Progress"
+description: "Track the progress of article writing and completion"
 ---
 
-# Formal Proof Progress
+# Article Writing Progress
 
-This page tracks the progress of formal verification for mathematical concepts in our knowledge
-graph using Lean 4.
+This page tracks the progress of article writing and completion for mathematical concepts in our knowledge
+graph.
 
 ## Overall Progress
 
@@ -343,8 +343,6 @@ graph using Lean 4.
 Article is complete
 - <span style="background-color:#fff9c4;padding:2px 6px;border-radius:3px;">draft</span>: \
 Article is in draft state
-- <span style="background-color:#b2dfdb;padding:2px 6px;border-radius:3px;">verified</span>: \
-Article has been verified
 - <span style="background-color:#ffccbc;padding:2px 6px;border-radius:3px;">stub</span>: \
 Article is a stub
 
@@ -369,13 +367,13 @@ Article is a stub
     def _generate_japanese_header(self) -> str:
         """Generate Japanese header content."""
         return """---
-title: "形式的証明の進捗"
-description: "Lean 4による形式的検証の進捗状況"
+title: "記事執筆の進捗"
+description: "記事の執筆と完成の進捗状況"
 ---
 
-# 形式的証明の進捗
+# 記事執筆の進捗
 
-このページでは、知識グラフ内の数学概念に対するLean 4を使用した形式的検証の進捗を追跡しています。
+このページでは、知識グラフ内の数学概念に対する記事の執筆と完成の進捗を追跡しています。
 
 ## 全体の進捗
 
@@ -533,8 +531,6 @@ description: "Lean 4による形式的検証の進捗状況"
 記事は完成しています
 - <span style="background-color:#fff9c4;padding:2px 6px;border-radius:3px;">草稿</span>: \
 記事は草稿状態です
-- <span style="background-color:#b2dfdb;padding:2px 6px;border-radius:3px;">検証済み</span>: \
-記事は検証されています
 - <span style="background-color:#ffccbc;padding:2px 6px;border-radius:3px;">スタブ</span>: \
 記事はスタブです
 
@@ -578,7 +574,6 @@ description: "Lean 4による形式的検証の進捗状況"
         colors = {
             "complete": "#c8e6c9",
             "draft": "#fff9c4",
-            "verified": "#b2dfdb",
             "stub": "#ffccbc",
         }
 
@@ -586,7 +581,6 @@ description: "Lean 4による形式的検証の進捗状況"
             status_names = {
                 "complete": "完成",
                 "draft": "草稿",
-                "verified": "検証済み",
                 "stub": "スタブ",
             }
             display_name = status_names.get(status, status)
