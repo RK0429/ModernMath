@@ -17,8 +17,9 @@ Use Playwright MCP tools for debugging: `browser_navigate`, `browser_console_mes
 ### Development Setup
 
 ```bash
-poetry install  # Install dependencies
-poetry shell    # Activate virtual environment
+poetry install      # Install dependencies
+poetry shell        # Activate virtual environment
+pre-commit install  # Install git hooks (required for pre-commit to run automatically)
 ```
 
 ### Building the Knowledge Graph
