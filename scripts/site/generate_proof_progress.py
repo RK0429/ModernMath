@@ -35,6 +35,7 @@ class ProofProgressGenerator:
         self.lean_mappings_path = lean_mappings_path
         self.output_dir = output_dir
         self.lean_mappings = self._load_lean_mappings()
+        self.validation_results = self._load_validation_results()
 
     def _load_lean_mappings(self) -> Dict[str, Dict[str, Any]]:
         """Load Lean mappings from JSON file."""
@@ -50,6 +51,21 @@ class ProofProgressGenerator:
         except (IOError, json.JSONDecodeError) as e:
             logger.error("Error loading Lean mappings: %s", e)
             return empty_mappings
+
+    def _load_validation_results(self) -> Dict[str, Any]:
+        """Load Lean validation results from JSON file."""
+        validation_path = self.lean_mappings_path.parent / "lean_validation_results.json"
+        if not validation_path.exists():
+            logger.info("Lean validation results not found: %s", validation_path)
+            return {}
+
+        try:
+            with open(validation_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                return data if isinstance(data, dict) else {}
+        except (IOError, json.JSONDecodeError) as e:
+            logger.error("Error loading validation results: %s", e)
+            return {}
 
     def _collect_proof_data(self) -> Dict[str, List[Dict[str, Any]]]:
         """Collect data about formal proofs organized by domain."""
@@ -83,6 +99,14 @@ class ProofProgressGenerator:
                 # Check if this node has a formal proof
                 has_proof = node_id in node_to_lean
                 lean_data = node_to_lean.get(node_id, {})
+                module_name = lean_data.get("module_name", "")
+
+                # Get proof validation status
+                proof_status = "not_implemented"
+                if has_proof and self.validation_results and "modules" in self.validation_results:
+                    module_info = self.validation_results["modules"].get(module_name, {})
+                    if module_info:
+                        proof_status = module_info.get("status", "not_implemented")
 
                 article_info = {
                     "id": node_id,
@@ -90,8 +114,9 @@ class ProofProgressGenerator:
                     "type": node_type,
                     "status": status,
                     "has_proof": has_proof,
+                    "proof_status": proof_status,
                     "lean_id": lean_data.get("lean_id", ""),
-                    "module_name": lean_data.get("module_name", ""),
+                    "module_name": module_name,
                     "path": f"../../content/en/{domain}/{qmd_path.stem}.html",
                 }
 
@@ -316,13 +341,10 @@ graph.
                 title_link = f"[{article['title']}]({article['path']})"
                 type_badge = self._get_type_badge(article["type"])
                 status_badge = self._get_status_badge(article["status"])
-                if article["has_proof"]:
-                    proof_status = "✅ Verified"
-                else:
-                    proof_status = "❌ Not verified"
+                proof_status_text = self._get_proof_status_text(article["proof_status"], "en")
 
                 content += f"| {title_link} | {type_badge} | "
-                content += f"{status_badge} | {proof_status} |\n"
+                content += f"{status_badge} | {proof_status_text} |\n"
 
             content += "\n"
 
@@ -347,8 +369,10 @@ Article is in draft state
 Article is a stub
 
 ### Proof Status
-- ✅ **Verified**: Formal proof exists in Lean 4
-- ❌ **Not verified**: No formal proof yet
+- ✅ **Completed**: Formal proof exists and compiles without errors or warnings
+- ⚠️ **Warnings present**: Formal proof exists but has warnings (e.g., incomplete proofs with 'sorry')
+- ❌ **Errors present**: Formal proof exists but has compilation errors
+- 📝 **Not implemented**: No formal proof implemented yet
 """
 
         return content
@@ -501,13 +525,10 @@ description: "記事の執筆と完成の進捗状況"
                 title_link = f"[{article['title']}]({ja_path})"
                 type_badge = self._get_type_badge(article["type"], "ja")
                 status_badge = self._get_status_badge(article["status"], "ja")
-                if article["has_proof"]:
-                    proof_status = "✅ 検証済み"
-                else:
-                    proof_status = "❌ 未検証"
+                proof_status_text = self._get_proof_status_text(article["proof_status"], "ja")
 
                 content += f"| {title_link} | {type_badge} | "
-                content += f"{status_badge} | {proof_status} |\n"
+                content += f"{status_badge} | {proof_status_text} |\n"
 
             content += "\n"
 
@@ -535,8 +556,10 @@ description: "記事の執筆と完成の進捗状況"
 記事はスタブです
 
 ### 証明ステータス
-- ✅ **検証済み**: Lean 4で形式的証明が存在します
-- ❌ **未検証**: まだ形式的証明がありません
+- ✅ **完成**: 形式的証明が存在し、エラーや警告なしにコンパイルされます
+- ⚠️ **警告あり**: 形式的証明は存在しますが、警告があります（例：'sorry'を含む不完全な証明）
+- ❌ **エラーあり**: 形式的証明は存在しますが、コンパイルエラーがあります
+- 📝 **未実装**: まだ形式的証明が実装されていません
 """
 
     def _get_type_badge(self, node_type: str, language: str = "en") -> str:
@@ -590,6 +613,27 @@ description: "記事の執筆と完成の進捗状況"
         color = colors.get(status, "#f5f5f5")
         style = f"background-color:{color};padding:2px 6px;border-radius:3px;"
         return f'<span style="{style}">{display_name}</span>'
+
+    def _get_proof_status_text(self, proof_status: str, language: str = "en") -> str:
+        """Get formatted text for proof status."""
+        if language == "ja":
+            status_map = {
+                "completed": "✅ 完成",
+                "warnings_present": "⚠️ 警告あり",
+                "errors_present": "❌ エラーあり",
+                "not_implemented": "📝 未実装",
+            }
+        else:
+            status_map = {
+                "completed": "✅ Completed",
+                "warnings_present": "⚠️ Warnings present",
+                "errors_present": "❌ Errors present",
+                "not_implemented": "📝 Not implemented",
+            }
+
+        return status_map.get(
+            proof_status, "📝 Not implemented" if language == "en" else "📝 未実装"
+        )
 
 
 def main() -> None:

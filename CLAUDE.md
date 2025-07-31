@@ -381,13 +381,20 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
 - **Lean Files**: `/formal/` directory organized by module (e.g., `/formal/MathKnowledgeGraph/Algebra/Groups.lean`)
 - **Mappings**: `lean_mappings.json` links article IDs to Lean proofs with `lean_id`, `module_name`, and `quarto_file`
 - **Embedding**: `scripts/site/embed_lean_proofs.py` adds iframe sections to articles with formal proofs
-- **Progress Tracking**: `scripts/site/generate_proof_progress.py` creates overview pages showing article writing status
-- **Validation**: `scripts/validation/validate_lean_proofs.py` ensures all proofs compile correctly
+- **Progress Tracking**: `scripts/site/generate_proof_progress.py` creates overview pages showing article writing status with proof categorization
+- **Validation**: `scripts/validation/validate_lean_proofs.py` categorizes all proofs into four status types
 
 **Lean Proof Validation**:
 
+- **Status Categories**: Proofs are categorized as:
+  - ✅ **Completed**: Compiles without errors or warnings
+  - ⚠️ **Warnings present**: Has warnings (e.g., `sorry` declarations)
+  - ❌ **Errors present**: Has compilation errors
+  - 📝 **Not implemented**: No formal proof implemented yet
+- **Validation Results**: Saved to `lean_validation_results.json` with detailed error/warning info
+- **Lake Output Parsing**: Script parses emoji indicators (✓/✅/⚠/✖) from Lake build output
+- **CI/CD Integration**: Validation results are uploaded as artifacts and passed between jobs
 - **Pre-commit Hook**: Automatically validates Lean files on `formal/**/*.lean` changes
-- **CI/CD Job**: `lean-validation` job installs Lean 4 and runs validation in GitHub Actions
 - **Common Issues**:
   - Import paths: Use `Mathlib.Topology.Separation.Basic` not `Mathlib.Topology.Separation`
   - Syntax: Use `∀ a ∈ H, ∀ b ∈ H` not `∀ a b ∈ H`
