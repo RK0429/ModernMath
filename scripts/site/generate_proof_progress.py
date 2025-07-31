@@ -517,7 +517,9 @@ Article is a stub
             "Corollary": "系",
         }
 
-        content = """<div class="progress-section">
+        content = """
+```{=html}
+<div class="progress-section">
 <h3>タイプ別の記事完成度</h3>
 <div class="progress-grid">
 """
@@ -532,6 +534,7 @@ Article is a stub
 """
         content += """</div>
 </div>
+```
 """
         return content
 
@@ -549,7 +552,9 @@ Article is a stub
             "topology": "位相幾何学",
         }
 
-        content = """<div class="progress-section">
+        content = """
+```{=html}
+<div class="progress-section">
 <h3>ドメイン別の進捗</h3>
 <div class="progress-grid">
 """
