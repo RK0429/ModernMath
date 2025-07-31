@@ -362,18 +362,23 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
 - **Implementation**: Uses `graph-viz` shortcode with `data-id="global-graph"`
 - **Data Generation**: `create_global_json()` in `generate_d3_data.py` creates `global-graph.json`
 - **URL Paths**: Global uses `content/{lang}/{domain}/{article}.html`, domain-specific uses `../{domain}/{article}.html`
-- **Node Filtering**: Global graph excludes all external URIs including formal proofs:
+- **Node Filtering**: Global graph excludes all external URIs:
   - Only includes nodes from `BASE_URI` (mathematical concepts)
   - `_get_all_graph_nodes()`: Filters to `str(s).startswith(BASE_URI)` only
-  - `_get_all_graph_edges()`: Excludes `isVerifiedBy` edges
-- **Individual Visualizations**: Article-specific graphs still show formal proof nodes and `isVerifiedBy` relationships
+  - `_get_all_graph_edges()`: Excludes `isVerifiedBy` edges (no longer used)
+- **Individual Visualizations**: Article-specific graphs show proof status icons on nodes
 
 ### Formal Proof Visualization
 
-- **Lean 4 Integration**: Uses `isVerifiedBy` relationship
-- **Single Source**: ONLY `build_graph.py` creates proof nodes (never use `add_verification_triples.py`)
-- **Labels**: "Formal proof of {node_id}" (EN) / "{node_id}の形式的証明" (JA)
-- **URLs**: Point to verified node's article, converted for global graph
+- **Proof Status Icons**: Article nodes display proof status icons instead of separate formal proof nodes
+  - ✅ **Completed**: Formal proof completed without errors
+  - ⚠️ **Warnings present**: Formal proof has warnings (e.g., uses `sorry`)
+  - ❌ **Errors present**: Formal proof has compilation errors
+  - 📝 **Not implemented**: Formal proof not yet implemented
+- **Implementation**:
+  - `build_graph.py`: Formal proof node generation disabled (commented out `_add_lean_verification_triples()`)
+  - Visualization scripts load `lean_mappings.json` and `lean_validation_results.json`
+  - Icons appear on nodes in D3.js (top-right), Mermaid (in label), and PyVis (in tooltip)
 
 ### Lean 4 Proof Integration
 
