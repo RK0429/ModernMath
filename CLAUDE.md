@@ -64,7 +64,7 @@ poetry run mypy scripts/                  # Type check
 poetry run python scripts/validation/validate_lean_proofs.py  # Validate Lean proofs (uses parallel build)
 ```
 
-**Pre-commit Hook Behavior**: Hooks fix whitespace/EOF issues, update translation status, validate cross-references, validate Lean proofs, and lint GitHub Actions workflows with `gh actionlint`. When hooks modify files, re-add and retry commit. Use `git commit --no-verify` to bypass.
+**Pre-commit Hook Behavior**: Hooks fix whitespace/EOF issues, update translation status, validate cross-references, validate Lean proofs, and lint GitHub Actions workflows with `gh actionlint`. When hooks modify files, re-add and retry commit. Use `git commit --no-verify` to bypass. Note: Prettier errors on .qmd files are expected and can be ignored.
 
 ### SPARQL and API
 
@@ -79,7 +79,7 @@ cd api && ./start_api.sh                  # Start REST API (port 5001)
 
 Content in `content/` organized by domain. Each `.qmd` file has:
 
-- **YAML Front Matter**: `id`, `type` (Corollary/Definition/Theorem/Example/Axiom/Proposition/Lemma), `status` (stub/complete/draft), `requires` (list, use `[]` for empty)
+- **YAML Front Matter**: `id`, `type` (Corollary/Definition/Theorem/Example/Axiom/Proposition/Lemma), `status` (stub/complete/draft - these are the ONLY valid values, never use "verified"), `requires` (list, use `[]` for empty)
 - **Cross-References**: Use `@label` syntax
 - **File Naming**: `def-*.qmd`, `thm-*.qmd`, `ex-*.qmd`, `ax-*.qmd`
 - **Titles**: No type prefixes in titles (e.g., use "Group" not "Definition: Group")
