@@ -4,34 +4,34 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-quotient-integers-mod-n["整数の n による剰余"]:::example
-    def-group["群 📝"]:::definition
-    def-coset["剰余類"]:::definition
     def-quotient-group["商群"]:::definition
-    def-group-action["群の作用"]:::definition
     thm-lagrange["ラグランジュの定理"]:::theorem
-    thm-orbit-stabilizer["軌道・固定化部分群定理"]:::theorem
+    def-binary-operation["二項演算"]:::definition
     def-abelian-group["アーベル群"]:::definition
     ex-even-integers-subgroup["偶数整数は部分群を成す"]:::example
+    def-group-action["群の作用"]:::definition
+    ex-quotient-integers-mod-n["整数の n による剰余"]:::example
+    def-subgroup["部分群"]:::definition
+    thm-orbit-stabilizer["軌道・固定化部分群定理"]:::theorem
     def-quotient-ring["剰余環"]:::definition
-    def-subgroup["部分群 ⚠️"]:::definition
+    def-coset["剰余類"]:::definition
     def-normal-subgroup["正規部分群"]:::definition
-    def-binary-operation["二項演算 📝"]:::definition
-    def-quotient-group --> def-coset
-    def-coset --> def-group-action
-    def-coset --> ex-even-integers-subgroup
-    def-coset --> def-group
-    def-coset --> def-binary-operation
-    def-quotient-ring --> def-coset
-    def-coset --> def-normal-subgroup
-    ex-even-integers-subgroup --> def-coset
-    def-coset --> ex-quotient-integers-mod-n
-    def-normal-subgroup --> def-coset
-    thm-lagrange --> def-coset
-    def-coset --> thm-lagrange
+    def-group["群"]:::definition
     thm-orbit-stabilizer --> def-coset
-    def-coset --> def-quotient-group
-    def-coset --> def-abelian-group
     def-coset --> def-subgroup
+    def-coset --> def-group
+    thm-lagrange --> def-coset
+    def-coset --> def-normal-subgroup
+    def-quotient-group --> def-coset
+    def-coset --> ex-even-integers-subgroup
+    def-coset --> ex-quotient-integers-mod-n
+    def-coset --> def-group-action
+    def-quotient-ring --> def-coset
     ex-quotient-integers-mod-n --> def-coset
+    def-normal-subgroup --> def-coset
+    ex-even-integers-subgroup --> def-coset
+    def-coset --> thm-lagrange
+    def-coset --> def-quotient-group
+    def-coset --> def-binary-operation
+    def-coset --> def-abelian-group
     class def-coset current

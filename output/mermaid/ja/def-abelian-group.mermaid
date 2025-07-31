@@ -4,33 +4,33 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-group["群 📝"]:::definition
-    def-center-of-group["群の中心"]:::definition
-    thm-lagrange["ラグランジュの定理"]:::theorem
+    def-isomorphism["群同型"]:::definition
     def-quotient-group["商群"]:::definition
+    thm-lagrange["ラグランジュの定理"]:::theorem
     def-abelian-group["アーベル群"]:::definition
-    def-commutativity["可換性"]:::definition
     def-direct-product["群の直積"]:::definition
     thm-first-isomorphism["第一同型定理"]:::theorem
-    def-cyclic-group["巡回群"]:::definition
-    def-isomorphism["群同型"]:::definition
+    def-commutativity["可換性"]:::definition
     def-normal-subgroup["正規部分群"]:::definition
-    def-abelian-group --> def-center-of-group
+    def-center-of-group["群の中心"]:::definition
+    def-cyclic-group["巡回群"]:::definition
+    def-group["群"]:::definition
+    def-direct-product --> def-abelian-group
+    def-normal-subgroup --> def-abelian-group
     def-abelian-group --> def-normal-subgroup
+    def-abelian-group --> def-cyclic-group
+    def-abelian-group --> def-quotient-group
     thm-first-isomorphism --> def-abelian-group
+    def-abelian-group --> thm-first-isomorphism
     def-commutativity --> def-abelian-group
-    def-group --> def-abelian-group
     def-abelian-group --> thm-lagrange
     def-quotient-group --> def-abelian-group
-    def-abelian-group --> def-quotient-group
-    def-abelian-group --> def-group
     def-abelian-group --> def-direct-product
-    def-direct-product --> def-abelian-group
-    def-abelian-group --> def-cyclic-group
-    def-cyclic-group --> def-abelian-group
-    def-abelian-group --> thm-first-isomorphism
-    def-center-of-group --> def-abelian-group
-    def-normal-subgroup --> def-abelian-group
-    def-abelian-group --> def-isomorphism
+    def-abelian-group --> def-center-of-group
+    def-abelian-group --> def-group
     def-abelian-group --> def-commutativity
+    def-group --> def-abelian-group
+    def-abelian-group --> def-isomorphism
+    def-center-of-group --> def-abelian-group
+    def-cyclic-group --> def-abelian-group
     class def-abelian-group current
