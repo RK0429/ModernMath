@@ -4,21 +4,21 @@ graph TD
     classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-even-integers-subgroup["偶数整数は部分群を成す"]:::example
-    def-group["群"]:::definition
     ex-quotient-integers-mod-n["整数の n による剰余"]:::example
-    ex-integers-addition["加法における整数"]:::example
-    def-binary-operation["二項演算"]:::definition
     def-cyclic-group["巡回群"]:::definition
     def-abelian-group["アーベル群"]:::definition
+    def-binary-operation["二項演算"]:::definition
+    ex-integers-addition["加法における整数"]:::example
+    ex-even-integers-subgroup["偶数整数は部分群を成す"]:::example
     def-set["集合"]:::definition
-    ex-integers-addition --> def-group
-    def-group --> ex-integers-addition
+    def-group["群"]:::definition
     ex-integers-addition --> def-set
-    ex-quotient-integers-mod-n --> ex-integers-addition
-    ex-integers-addition --> def-cyclic-group
     def-cyclic-group --> ex-integers-addition
-    ex-integers-addition --> def-abelian-group
+    ex-integers-addition --> def-group
     ex-even-integers-subgroup --> ex-integers-addition
+    ex-integers-addition --> def-abelian-group
     ex-integers-addition --> def-binary-operation
+    ex-quotient-integers-mod-n --> ex-integers-addition
+    def-group --> ex-integers-addition
+    ex-integers-addition --> def-cyclic-group
     class ex-integers-addition current
