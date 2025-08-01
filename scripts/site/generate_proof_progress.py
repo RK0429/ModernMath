@@ -385,6 +385,104 @@ class ProofProgressGenerator:
         proof_data = self._collect_proof_data()
         return self._calculate_statistics(proof_data)
 
+    def _generate_formal_proof_section_en(self, stats: Dict[str, Any]) -> str:
+        """Generate formal proof section for English content."""
+        total_articles = stats["total_articles"]
+        proofs_completed = stats["proofs_completed"]
+        proofs_with_mappings = stats["proofs_total"]
+
+        # Calculate articles without any formal proof work
+        proofs_no_mapping = total_articles - proofs_with_mappings
+
+        proof_stats_html = (
+            f"<span>{proofs_completed} proofs completed</span>"
+            f"<span>•</span>"
+            f'<span>{stats["proofs_warnings"]} with warnings</span>'
+            f"<span>•</span>"
+            f'<span>{stats["proofs_errors"]} with errors</span>'
+            f"<span>•</span>"
+            f"<span>{proofs_no_mapping} not implemented</span>"
+            f"<span>•</span>"
+            f"<span>{total_articles} total articles</span>"
+        )
+
+        # Create segments for formal proof band graph
+        proof_segments = [
+            {
+                "count": stats["proofs_completed"],
+                "class": "segment-proof-completed",
+                "is_completed": True,
+            },
+            {
+                "count": stats["proofs_warnings"],
+                "class": "segment-proof-warnings",
+                "is_completed": False,
+            },
+            {
+                "count": stats["proofs_errors"],
+                "class": "segment-proof-errors",
+                "is_completed": False,
+            },
+            {
+                "count": proofs_no_mapping,
+                "class": "segment-proof-not-implemented",
+                "is_completed": False,
+            },
+        ]
+
+        return self._generate_band_graph_section(
+            "Formal Proof Progress", proof_segments, proof_stats_html
+        )
+
+    def _generate_formal_proof_section_ja(self, stats: Dict[str, Any]) -> str:
+        """Generate formal proof section for Japanese content."""
+        total_articles = stats["total_articles"]
+        proofs_completed = stats["proofs_completed"]
+        proofs_with_mappings = stats["proofs_total"]
+
+        # Calculate articles without any formal proof work
+        proofs_no_mapping = total_articles - proofs_with_mappings
+
+        proof_stats_html = (
+            f"<span>{proofs_completed}証明完成</span>"
+            f"<span>•</span>"
+            f"<span>{stats['proofs_warnings']}警告あり</span>"
+            f"<span>•</span>"
+            f"<span>{stats['proofs_errors']}エラーあり</span>"
+            f"<span>•</span>"
+            f"<span>{proofs_no_mapping}未実装</span>"
+            f"<span>•</span>"
+            f"<span>全{total_articles}記事</span>"
+        )
+
+        # Create segments for formal proof band graph
+        proof_segments = [
+            {
+                "count": stats["proofs_completed"],
+                "class": "segment-proof-completed",
+                "is_completed": True,
+            },
+            {
+                "count": stats["proofs_warnings"],
+                "class": "segment-proof-warnings",
+                "is_completed": False,
+            },
+            {
+                "count": stats["proofs_errors"],
+                "class": "segment-proof-errors",
+                "is_completed": False,
+            },
+            {
+                "count": proofs_no_mapping,
+                "class": "segment-proof-not-implemented",
+                "is_completed": False,
+            },
+        ]
+
+        return self._generate_band_graph_section(
+            "形式的証明の進捗", proof_segments, proof_stats_html
+        )
+
     def _generate_english_content(
         self, proof_data: Dict[str, List[Dict[str, Any]]], stats: Dict[str, Any]
     ) -> str:
@@ -435,47 +533,8 @@ knowledge graph.
             "Article Writing Progress", article_segments, article_stats_html
         )
 
-        # Formal proof statistics
-        proofs_total = stats["proofs_total"]
-        proofs_completed = stats["proofs_completed"]
-
-        proof_stats_html = (
-            f"<span>{proofs_completed} proofs completed</span>"
-            f"<span>•</span>"
-            f'<span>{stats["proofs_warnings"]} with warnings</span>'
-            f"<span>•</span>"
-            f'<span>{stats["proofs_errors"]} with errors</span>'
-            f"<span>•</span>"
-            f"<span>{proofs_total} with Lean mappings</span>"
-        )
-
-        # Create segments for formal proof band graph
-        proof_segments = [
-            {
-                "count": stats["proofs_completed"],
-                "class": "segment-proof-completed",
-                "is_completed": True,
-            },
-            {
-                "count": stats["proofs_warnings"],
-                "class": "segment-proof-warnings",
-                "is_completed": False,
-            },
-            {
-                "count": stats["proofs_errors"],
-                "class": "segment-proof-errors",
-                "is_completed": False,
-            },
-            {
-                "count": stats["proofs_not_implemented"],
-                "class": "segment-proof-not-implemented",
-                "is_completed": False,
-            },
-        ]
-
-        content += self._generate_band_graph_section(
-            "Formal Proof Progress", proof_segments, proof_stats_html
-        )
+        # Generate formal proof section
+        content += self._generate_formal_proof_section_en(stats)
 
         # Progress by type and domain
         content += self._generate_type_progress_section(stats, "Article Completion by Type")
@@ -727,47 +786,8 @@ include-in-header:
             "記事執筆の進捗", article_segments, article_stats_html
         )
 
-        # Formal proof statistics
-        proofs_total = stats["proofs_total"]
-        proofs_completed = stats["proofs_completed"]
-
-        proof_stats_html = (
-            f"<span>{proofs_completed}証明完成</span>"
-            f"<span>•</span>"
-            f"<span>{stats['proofs_warnings']}警告あり</span>"
-            f"<span>•</span>"
-            f"<span>{stats['proofs_errors']}エラーあり</span>"
-            f"<span>•</span>"
-            f"<span>{proofs_total}個のLeanマッピング</span>"
-        )
-
-        # Create segments for formal proof band graph
-        proof_segments = [
-            {
-                "count": stats["proofs_completed"],
-                "class": "segment-proof-completed",
-                "is_completed": True,
-            },
-            {
-                "count": stats["proofs_warnings"],
-                "class": "segment-proof-warnings",
-                "is_completed": False,
-            },
-            {
-                "count": stats["proofs_errors"],
-                "class": "segment-proof-errors",
-                "is_completed": False,
-            },
-            {
-                "count": stats["proofs_not_implemented"],
-                "class": "segment-proof-not-implemented",
-                "is_completed": False,
-            },
-        ]
-
-        content += self._generate_band_graph_section(
-            "形式的証明の進捗", proof_segments, proof_stats_html
-        )
+        # Generate formal proof section
+        content += self._generate_formal_proof_section_ja(stats)
 
         content += self._generate_type_progress_section_ja(stats)
         content += self._generate_domain_progress_section_ja(stats)

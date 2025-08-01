@@ -325,11 +325,14 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
 - **Progress Bars**: Two visualization styles available:
   - **Standard**: Single-color gradient bars with shimmer animation
   - **Band Graphs**: Multi-segment bars showing status breakdown
-    - Article Writing: `complete` (green), `draft` (orange), `stub` (red)
-    - Formal Proofs: `completed` (green), `warnings` (orange), `errors` (red), `not implemented` (gray)
-    - Percentage always shows completion rate, centered on the bar
+    - Article Writing: `complete` (green), `draft` (yellow/orange), `stub` (red)
+    - Formal Proofs: `completed` (green), `warnings present` (yellow/orange), `errors present` (red), `not implemented` (gray)
+    - Percentage always shows completion rate (completed items only), centered on the bar
+    - **Important**: Formal proof progress denominator is total articles, not just those with Lean mappings
     - Implementation in `generate_proof_progress.py` via `_generate_band_graph_section()`
-    - CSS classes: `.segment-complete`, `.segment-draft`, `.segment-stub`, etc.
+    - CSS classes: `.segment-complete`, `.segment-draft`, `.segment-stub`, `.segment-proof-completed`, `.segment-proof-warnings`, `.segment-proof-errors`, `.segment-proof-not-implemented`
+    - Band graph segments use absolute positioning with calculated widths based on counts
+    - Helper methods `_generate_formal_proof_section_en/ja()` extract proof statistics to avoid linting issues
 - **Interactive Tables** (`js/table-sort-filter.js`):
   - Sort by clicking headers (↑/↓)
   - Filter with text input and dropdowns
