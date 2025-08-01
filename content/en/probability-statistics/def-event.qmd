@@ -64,35 +64,6 @@ In a [Probability Space](def-probability-space.qmd), each event $A$ is assigned 
 - **Exhaustive**: Events whose union equals $\Omega$
 - **[Independent](def-independence.qmd)**: Events where $P(A \cap B) = P(A)P(B)$
 
-## Dependency Graph
-
-```{mermaid}
-%%| fig-cap: "Local dependency graph"
-graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-sample-space["Definition: Sample Space"]:::definition
-    def-event["Definition: Event"]:::definition
-    def-independence["Definition: Independence"]:::definition
-    thm-bayes["Theorem: Bayes' Theorem"]:::theorem
-    def-subset["Definition: Subset"]:::definition
-    def-conditional-probability["Definition: Conditional Probability"]:::definition
-    def-conditional-probability --> def-event
-    def-independence --> def-event
-    thm-bayes --> def-event
-    def-event --> def-sample-space
-    def-event --> def-subset
-    class def-event current
-    click def-sample-space "def-sample-space.html" "Go to Sample Space definition"
-    click def-independence "def-independence.html" "Go to Independence definition"
-    click thm-bayes "thm-bayes.html" "Go to Bayes' Theorem theorem"
-    click def-subset "def-subset.html" "Go to Subset definition"
-    click def-conditional-probability "def-conditional-probability.html" "Go to Conditional Probability definition"
-```
-
 ## Interactive Visualization
 
 Explore the local knowledge graph neighborhood interactively:

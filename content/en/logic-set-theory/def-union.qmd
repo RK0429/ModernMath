@@ -49,29 +49,6 @@ Special cases:
 - Distributivity: $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
 - [Cardinality](def-cardinality.qmd): $|A \cup B| = |A| + |B| - |A \cap B|$ (see [Inclusion-Exclusion Principle](../combinatorics/thm-inclusion-exclusion.qmd))
 
-## Dependency Graph
-
-```{mermaid}
-%%| fig-cap: "Local dependency graph"
-graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Definition: Set"]:::definition
-    thm-de-morgan["Theorem: De Morgan's Laws"]:::theorem
-    def-union["Definition: Union"]:::definition
-    def-cardinality["Definition: Cardinality"]:::definition
-    thm-de-morgan --> def-union
-    def-union --> def-cardinality
-    def-union --> def-set
-    class def-union current
-    click def-set "def-set.html" "Go to Set definition"
-    click thm-de-morgan "thm-de-morgan.html" "Go to De Morgan's Laws theorem"
-    click def-cardinality "def-cardinality.html" "Go to Cardinality definition"
-```
-
 ## Interactive Visualization
 
 Explore the local knowledge graph neighborhood interactively:

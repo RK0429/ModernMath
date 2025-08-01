@@ -90,27 +90,6 @@ The [Binomial Coefficient](def-binomial-coefficient.qmd) appears naturally in ma
 - $(1 + x)^n = \sum_{k=0}^{n} \binom{n}{k} x^k$ (finite OGF)
 - $e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!}$ (EGF for the all-ones sequence)
 
-## Dependency Graph
-
-```{mermaid}
-%%| fig-cap: "Local dependency graph"
-graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-generating-function["Definition: Generating Function"]:::definition
-    ex-pascals-triangle["Example: Pascal's Triangle"]:::example
-    def-binomial-coefficient["Definition: Binomial Coefficient"]:::definition
-    def-binomial-coefficient --> def-generating-function
-    def-generating-function --> def-binomial-coefficient
-    ex-pascals-triangle --> def-generating-function
-    class def-generating-function current
-    click ex-pascals-triangle "ex-pascals-triangle.html" "Go to Pascal's Triangle example"
-    click def-binomial-coefficient "def-binomial-coefficient.html" "Go to Binomial Coefficient definition"
-```
-
 ## Interactive Visualization
 
 Explore the local knowledge graph neighborhood interactively:

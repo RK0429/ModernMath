@@ -57,57 +57,6 @@ $f$ が $c$ で連続でないとき、$f$ は $c$ で**不連続**であると�
 
 連続性は、関数が「切れ目や跳躍がない」という直感的な概念を数学的に捉えたものである。
 
-## 依存関係グラフ
-
-```{mermaid}
-%%| fig-cap: "ローカル依存関係グラフ"
-graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-chain-rule["定理：連鎖律"]:::theorem
-    def-open-ball["定義：開球"]:::definition
-    thm-mean-value["定理：平均値の定理"]:::theorem
-    thm-intermediate-value["定理: 中間値の定理"]:::theorem
-    def-homeomorphism["定義：同相写像"]:::definition
-    def-limit["定義：数列の極限"]:::definition
-    def-function["定義: 関数"]:::definition
-    thm-fundamental-calculus["定理: 微積分学の基本定理"]:::theorem
-    def-integral["定義: 積分"]:::definition
-    def-uniform-continuity["定義: 一様連続性"]:::definition
-    thm-taylor-series["定理: テイラー級数"]:::theorem
-    def-continuity["定義: 連続性"]:::definition
-    ex-polynomial-continuity["例：多項式の連続性"]:::example
-    thm-taylor-series --> def-continuity
-    def-integral --> def-continuity
-    def-continuity --> def-function
-    thm-intermediate-value --> def-continuity
-    thm-mean-value --> def-continuity
-    def-open-ball --> def-continuity
-    def-continuity --> def-limit
-    def-continuity --> def-open-ball
-    thm-fundamental-calculus --> def-continuity
-    ex-polynomial-continuity --> def-continuity
-    def-uniform-continuity --> def-continuity
-    thm-chain-rule --> def-continuity
-    def-homeomorphism --> def-continuity
-    class def-continuity current
-    click thm-chain-rule "thm-chain-rule.html" "定理：連鎖律へ"
-    click def-open-ball "def-open-ball.html" "定義：開球へ"
-    click thm-mean-value "thm-mean-value.html" "定理：平均値の定理へ"
-    click thm-intermediate-value "thm-intermediate-value.html" "中間値の定理の定理へ"
-    click def-homeomorphism "def-homeomorphism.html" "定義：同相写像へ"
-    click def-limit "def-limit.html" "定義：数列の極限へ"
-    click def-function "def-function.html" "関数の定義へ"
-    click thm-fundamental-calculus "thm-fundamental-calculus.html" "微積分学の基本定理の定理へ"
-    click def-integral "def-integral.html" "積分の定義へ"
-    click def-uniform-continuity "def-uniform-continuity.html" "一様連続性の定義へ"
-    click thm-taylor-series "thm-taylor-series.html" "テイラー級数の定理へ"
-    click ex-polynomial-continuity "ex-polynomial-continuity.html" "例：多項式の連続性へ"
-```
-
 ## インタラクティブ可視化
 
 ローカルナレッジグラフの近傍をインタラクティブに探索：

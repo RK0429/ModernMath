@@ -57,29 +57,6 @@ $$A \cap B = \emptyset$$
 - With [Subset](def-subset.qmd): $A \cap B = A \iff A \subseteq B$
 - Inclusion-Exclusion: For [cardinalities](def-cardinality.qmd), $|A \cup B| = |A| + |B| - |A \cap B|$ (see [Inclusion-Exclusion Principle](../combinatorics/thm-inclusion-exclusion.qmd))
 
-## Dependency Graph
-
-```{mermaid}
-%%| fig-cap: "Local dependency graph"
-graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Definition: Set"]:::definition
-    def-intersection["Definition: Intersection"]:::definition
-    thm-de-morgan["Theorem: De Morgan's Laws"]:::theorem
-    def-cardinality["Definition: Cardinality"]:::definition
-    thm-de-morgan --> def-intersection
-    def-intersection --> def-cardinality
-    def-intersection --> def-set
-    class def-intersection current
-    click def-set "def-set.html" "Go to Set definition"
-    click thm-de-morgan "thm-de-morgan.html" "Go to De Morgan's Laws theorem"
-    click def-cardinality "def-cardinality.html" "Go to Cardinality definition"
-```
-
 ## Interactive Visualization
 
 Explore the local knowledge graph neighborhood interactively:

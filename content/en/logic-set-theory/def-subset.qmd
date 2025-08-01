@@ -46,43 +46,6 @@ In words: $A$ is a subset of $B$ if and only if for all $x$, if $x$ is in $A$, t
 - Set equality can be proven by showing mutual subset relations
 - The subset [relation](def-relation.qmd) defines a [partial order](def-partial-order.qmd) on the power set
 
-## Dependency Graph
-
-```{mermaid}
-%%| fig-cap: "Local dependency graph"
-graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-ideal["Definition: Ideal"]:::definition
-    def-partial-order["Definition: Partial Order"]:::definition
-    def-set["Definition: Set"]:::definition
-    def-relation["Definition: Relation"]:::definition
-    def-prime-ideal["Definition: Prime Ideal"]:::definition
-    def-subset["Definition: Subset"]:::definition
-    def-maximal-ideal["Definition: Maximal Ideal"]:::definition
-    def-event["Definition: Event"]:::definition
-    def-partial-order --> def-subset
-    def-subset --> def-relation
-    def-prime-ideal --> def-subset
-    def-subset --> def-set
-    def-subset --> def-partial-order
-    def-event --> def-subset
-    def-ideal --> def-subset
-    def-relation --> def-subset
-    def-maximal-ideal --> def-subset
-    class def-subset current
-    click def-ideal "def-ideal.html" "Go to Ideal definition"
-    click def-partial-order "def-partial-order.html" "Go to Partial Order definition"
-    click def-set "def-set.html" "Go to Set definition"
-    click def-relation "def-relation.html" "Go to Relation definition"
-    click def-prime-ideal "def-prime-ideal.html" "Go to Prime Ideal definition"
-    click def-maximal-ideal "def-maximal-ideal.html" "Go to Maximal Ideal definition"
-    click def-event "def-event.html" "Go to Event definition"
-```
-
 ## Interactive Visualization
 
 Explore the local knowledge graph neighborhood interactively:

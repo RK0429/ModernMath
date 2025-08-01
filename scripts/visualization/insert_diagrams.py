@@ -1,18 +1,56 @@
 #!/usr/bin/env python3
 """
-Insert generated Mermaid diagrams into Quarto content files with proper placement.
-This script ensures visualization sections are always at the end of articles.
+Insert interactive visualizations into Quarto content files with proper placement.
+This script ensures interactive visualization sections are always at the end of articles.
 """
 
 from pathlib import Path
 from typing import Optional
 import frontmatter
 
-from fix_visualization_placement import update_visualization_content
+
+def add_interactive_visualization(content: str, node_id: str, is_japanese: bool) -> str:
+    """Add interactive visualization section to content if not present."""
+    # Check if interactive visualization already exists
+    if "## Interactive Visualization" in content or "## インタラクティブ可視化" in content:
+        return content
+
+    # Add interactive visualization section
+    if is_japanese:
+        interactive_section = f"""## インタラクティブ可視化
+
+ローカルナレッジグラフの近傍をインタラクティブに探索：
+
+::: {{.graph-viz data-id="{node_id}" data-width="700" data-height="500"}}
+:::
+
+次のことができます：
+
+- ノードを**ドラッグ**してレイアウトを再配置
+- マウスホイールで**ズーム**イン/アウト
+- ノードに**ホバー**して詳細を表示
+"""
+    else:
+        interactive_section = f"""## Interactive Visualization
+
+Explore the local knowledge graph neighborhood interactively:
+
+::: {{.graph-viz data-id="{node_id}" data-width="700" data-height="500"}}
+:::
+
+You can:
+
+- **Drag** nodes to rearrange the layout
+- **Zoom** in/out with your mouse wheel
+- **Hover** over nodes to see details
+"""
+
+    # Append to content
+    return content.rstrip() + "\n\n" + interactive_section
 
 
-def process_file(qmd_file: Path, diagrams_dir: Path) -> Optional[str]:
-    """Process a single .qmd file using the new placement logic."""
+def process_file(qmd_file: Path) -> Optional[str]:
+    """Process a single .qmd file to add interactive visualization."""
     with open(qmd_file, "r", encoding="utf-8") as f:
         post = frontmatter.load(f)
 
@@ -23,37 +61,10 @@ def process_file(qmd_file: Path, diagrams_dir: Path) -> Optional[str]:
 
     # Determine language from path
     is_japanese = "/ja/" in str(qmd_file)
-    lang = "ja" if is_japanese else "en"
 
-    # Look for language-specific diagram file in language subdirectory
-    diagram_file = diagrams_dir / lang / f"{node_id}.mermaid"
-
-    # Read diagram content if available
-    diagram_content = None
-    if diagram_file.exists():
-        with open(diagram_file, "r", encoding="utf-8") as f:
-            diagram_content = f.read()
-
-        # Validate diagram content has meaningful data
-        if not diagram_content or not diagram_content.strip():
-            # Empty or whitespace-only diagram file, skip
-            return None
-
-        # Additional validation: check if diagram has actual nodes
-        lines = diagram_content.strip().split("\n")
-        has_nodes = any("[" in line and "]" in line for line in lines if line.strip())
-        if not has_nodes:
-            # No actual nodes in diagram, skip
-            return None
-    else:
-        # No diagram file, skip this file
-        return None
-
-    # Use the new update function that ensures proper placement
+    # Add interactive visualization
     original_content = post.content
-    new_content = update_visualization_content(
-        original_content, node_id, diagram_content, is_japanese
-    )
+    new_content = add_interactive_visualization(original_content, node_id, is_japanese)
 
     # Check if content changed
     if new_content != original_content:
@@ -66,13 +77,11 @@ def process_file(qmd_file: Path, diagrams_dir: Path) -> Optional[str]:
 
 
 def insert_diagrams() -> None:
-    """Insert Mermaid diagrams and interactive visualizations into Quarto content files."""
+    """Insert interactive visualizations into Quarto content files."""
     content_dir = Path("content")
-    diagrams_dir = Path("output/mermaid")
 
-    if not diagrams_dir.exists():
-        print("Error: No diagrams found in output/mermaid/")
-        print("Run generate_mermaid.py first.")
+    if not content_dir.exists():
+        print("Error: content directory not found!")
         return
 
     updated_files = []
@@ -80,7 +89,7 @@ def insert_diagrams() -> None:
 
     # Process each .qmd file
     for qmd_file in content_dir.rglob("*.qmd"):
-        result = process_file(qmd_file, diagrams_dir)
+        result = process_file(qmd_file)
 
         if result == "updated":
             updated_files.append(qmd_file)
@@ -89,15 +98,10 @@ def insert_diagrams() -> None:
 
     # Report results
     if updated_files:
-        print(
-            f"✅ Updated {len(updated_files)} files with "
-            "Mermaid diagrams and interactive visualizations:"
-        )
-        for file_path in updated_files:
-            print(f"   - {file_path}")
+        print(f"✅ Updated {len(updated_files)} files with interactive visualizations")
 
     if unchanged_files:
-        print(f"\n⏭️  {len(unchanged_files)} files already have visualization sections")
+        print(f"⏭️  {len(unchanged_files)} files already have interactive visualization sections")
 
     print(f"\n📊 Total: {len(updated_files)} updated, {len(unchanged_files)} unchanged")
 

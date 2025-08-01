@@ -56,57 +56,6 @@ If $f$ is not continuous at $c$, we say $f$ has a **discontinuity** at $c$. Type
 
 Continuity captures the intuitive notion of a function having "no breaks or jumps."
 
-## Dependency Graph
-
-```{mermaid}
-%%| fig-cap: "Local dependency graph"
-graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-chain-rule["Theorem: Chain Rule"]:::theorem
-    def-open-ball["Definition: Open Ball"]:::definition
-    thm-mean-value["Theorem: Mean Value Theorem"]:::theorem
-    thm-intermediate-value["Theorem: Intermediate Value Theorem"]:::theorem
-    def-homeomorphism["Definition: Homeomorphism"]:::definition
-    def-limit["Definition: Limit of a Sequence"]:::definition
-    def-function["Definition: Function"]:::definition
-    thm-fundamental-calculus["Theorem: Fundamental Theorem of Calculus"]:::theorem
-    def-integral["Definition: Integral"]:::definition
-    def-uniform-continuity["Definition: Uniform Continuity"]:::definition
-    thm-taylor-series["Theorem: Taylor Series"]:::theorem
-    def-continuity["Definition: Continuity"]:::definition
-    ex-polynomial-continuity["Example: Polynomial Continuity"]:::example
-    thm-taylor-series --> def-continuity
-    def-integral --> def-continuity
-    def-continuity --> def-function
-    thm-intermediate-value --> def-continuity
-    thm-mean-value --> def-continuity
-    def-open-ball --> def-continuity
-    def-continuity --> def-limit
-    def-continuity --> def-open-ball
-    thm-fundamental-calculus --> def-continuity
-    ex-polynomial-continuity --> def-continuity
-    def-uniform-continuity --> def-continuity
-    thm-chain-rule --> def-continuity
-    def-homeomorphism --> def-continuity
-    class def-continuity current
-    click thm-chain-rule "thm-chain-rule.html" "Go to Chain Rule theorem"
-    click def-open-ball "def-open-ball.html" "Go to Open Ball definition"
-    click thm-mean-value "thm-mean-value.html" "Go to Mean Value Theorem theorem"
-    click thm-intermediate-value "thm-intermediate-value.html" "Go to Intermediate Value Theorem theorem"
-    click def-homeomorphism "def-homeomorphism.html" "Go to Homeomorphism definition"
-    click def-limit "def-limit.html" "Go to Limit of a Sequence definition"
-    click def-function "def-function.html" "Go to Function definition"
-    click thm-fundamental-calculus "thm-fundamental-calculus.html" "Go to Fundamental Theorem of Calculus theorem"
-    click def-integral "def-integral.html" "Go to Integral definition"
-    click def-uniform-continuity "def-uniform-continuity.html" "Go to Uniform Continuity definition"
-    click thm-taylor-series "thm-taylor-series.html" "Go to Taylor Series theorem"
-    click ex-polynomial-continuity "ex-polynomial-continuity.html" "Go to Polynomial Continuity example"
-```
-
 ## Interactive Visualization
 
 Explore the local knowledge graph neighborhood interactively:

@@ -110,44 +110,6 @@ $$F_{X,Y}(x,y) = F_X(x) \cdot F_Y(y)$$
 - [中心極限定理](thm-central-limit.qmd)：和の項の独立性が必要
 - 積測度と積空間は測度論における独立性を形式化します
 
-## 依存関係グラフ
-
-```{mermaid}
-%%| fig-cap: "ローカル依存関係グラフ"
-graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-random-variable["定義: 確率変数"]:::definition
-    def-binomial-distribution["定義: 二項分布"]:::definition
-    def-independence["定義: 独立性"]:::definition
-    thm-central-limit["定理: 中心極限定理"]:::theorem
-    thm-law-of-large-numbers["定理: 大数の法則"]:::theorem
-    def-probability-distribution["定義: 確率分布"]:::definition
-    def-probability-space["定義: 確率空間"]:::definition
-    def-conditional-probability["定義: 条件付き確率"]:::definition
-    def-event["定義: 事象"]:::definition
-    thm-central-limit --> def-independence
-    def-independence --> def-event
-    def-independence --> def-probability-space
-    def-independence --> def-conditional-probability
-    def-binomial-distribution --> def-independence
-    thm-law-of-large-numbers --> def-independence
-    def-independence --> def-random-variable
-    def-independence --> def-probability-distribution
-    class def-independence current
-    click def-random-variable "def-random-variable.html" "確率変数の定義へ"
-    click def-binomial-distribution "def-binomial-distribution.html" "二項分布の定義へ"
-    click thm-central-limit "thm-central-limit.html" "中心極限定理の定理へ"
-    click thm-law-of-large-numbers "thm-law-of-large-numbers.html" "大数の法則の定理へ"
-    click def-probability-distribution "def-probability-distribution.html" "確率分布の定義へ"
-    click def-probability-space "def-probability-space.html" "確率空間の定義へ"
-    click def-conditional-probability "def-conditional-probability.html" "条件付き確率の定義へ"
-    click def-event "def-event.html" "事象の定義へ"
-```
-
 ## インタラクティブ可視化
 
 ローカルナレッジグラフの近傍をインタラクティブに探索：

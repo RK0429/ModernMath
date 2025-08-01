@@ -309,24 +309,18 @@ jobs:
       run: |
         echo "=== Generating visualizations in parallel ==="
 
-        # Start all visualization scripts in parallel
-        poetry run python scripts/visualization/generate_mermaid.py &
+        # Start visualization scripts in parallel (Mermaid generation removed)
+        poetry run python scripts/visualization/generate_pyvis_with_fix.py &
         PID1=$!
 
-        poetry run python scripts/visualization/generate_pyvis_with_fix.py &
-        PID2=$!
-
         poetry run python scripts/visualization/generate_d3_data.py &
-        PID3=$!
+        PID2=$!
 
         # Wait for all scripts to complete
         wait $PID1
-        echo "✓ Mermaid diagrams generated"
-
-        wait $PID2
         echo "✓ PyVis visualizations generated"
 
-        wait $PID3
+        wait $PID2
         echo "✓ D3.js data files generated"
 
     - name: Upload visualization artifacts

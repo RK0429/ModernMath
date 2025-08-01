@@ -50,29 +50,6 @@ $$\bigcup_{i \in I} A_i = \{x : \exists i \in I, x \in A_i\}$$
 - 分配法則：$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
 - [濃度](def-cardinality.qmd)：$|A \cup B| = |A| + |B| - |A \cap B|$（[包含排除の原理](../combinatorics/thm-inclusion-exclusion.qmd)を参照）
 
-## 依存関係グラフ
-
-```{mermaid}
-%%| fig-cap: "ローカル依存関係グラフ"
-graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["定義: 集合"]:::definition
-    thm-de-morgan["定理: ド・モルガンの法則"]:::theorem
-    def-union["定義: 和集合"]:::definition
-    def-cardinality["定義: 濃度"]:::definition
-    thm-de-morgan --> def-union
-    def-union --> def-cardinality
-    def-union --> def-set
-    class def-union current
-    click def-set "def-set.html" "集合の定義へ"
-    click thm-de-morgan "thm-de-morgan.html" "ド・モルガンの法則の定理へ"
-    click def-cardinality "def-cardinality.html" "濃度の定義へ"
-```
-
 ## インタラクティブ可視化
 
 ローカルナレッジグラフの近傍をインタラクティブに探索：

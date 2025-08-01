@@ -77,38 +77,6 @@ $$\det(A) = \sum_{k=1}^n a_{ik}(-1)^{i+k}M_{ik}$$
 
 行列式は線形代数の基本的なツールであり、連立一次方程式を解くためのクラメルの公式、[固有値](def-eigenvalue-eigenvector.qmd)を求めるための特性多項式、逆行列の計算などに現れる。
 
-## 依存関係グラフ
-
-```{mermaid}
-%%| fig-cap: "ローカル依存関係グラフ"
-graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-field["定義: 体"]:::definition
-    def-normal-subgroup["定義: 正規部分群"]:::definition
-    def-function["定義: 関数"]:::definition
-    def-isomorphism["定義: 群同型"]:::definition
-    def-eigenvalue-eigenvector["定義: 固有値と固有ベクトル"]:::definition
-    def-matrix["定義：行列"]:::definition
-    def-determinant["定義: 行列式"]:::definition
-    def-determinant --> def-field
-    def-eigenvalue-eigenvector --> def-determinant
-    def-determinant --> def-isomorphism
-    def-normal-subgroup --> def-determinant
-    def-determinant --> def-function
-    def-determinant --> def-matrix
-    class def-determinant current
-    click def-field "def-field.html" "体の定義へ"
-    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群の定義へ"
-    click def-function "def-function.html" "関数の定義へ"
-    click def-isomorphism "def-isomorphism.html" "群同型の定義へ"
-    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "固有値と固有ベクトルの定義へ"
-    click def-matrix "def-matrix.html" "定義：行列へ"
-```
-
 ## インタラクティブ可視化
 
 ローカルナレッジグラフの近傍をインタラクティブに探索：

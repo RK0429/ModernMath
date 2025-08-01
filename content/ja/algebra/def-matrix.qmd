@@ -55,35 +55,6 @@ $$(A^T)_{ij} = a_{ji}$$
 
 行列は線形代数における基本的な対象であり、線形変換、連立方程式、双線形形式などを表現する。可逆 $n \times n$ 行列の集合は乗法の下で群をなし（一般線形群 $GL_n(F)$ と呼ばれる）、$F^n$ に自然に[作用](def-group-action.qmd)する。
 
-## 依存関係グラフ
-
-```{mermaid}
-%%| fig-cap: "ローカル依存関係グラフ"
-graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-field["定義: 体"]:::definition
-    def-normal-subgroup["定義: 正規部分群"]:::definition
-    ex-matrix-transformation["例: 行列変換"]:::example
-    def-eigenvalue-eigenvector["定義: 固有値と固有ベクトル"]:::definition
-    def-matrix["定義：行列"]:::definition
-    def-determinant["定義: 行列式"]:::definition
-    def-matrix --> def-field
-    def-eigenvalue-eigenvector --> def-matrix
-    ex-matrix-transformation --> def-matrix
-    def-normal-subgroup --> def-matrix
-    def-determinant --> def-matrix
-    class def-matrix current
-    click def-field "def-field.html" "体の定義へ"
-    click def-normal-subgroup "def-normal-subgroup.html" "正規部分群の定義へ"
-    click ex-matrix-transformation "ex-matrix-transformation.html" "行列変換の例へ"
-    click def-eigenvalue-eigenvector "def-eigenvalue-eigenvector.html" "固有値と固有ベクトルの定義へ"
-    click def-determinant "def-determinant.html" "行列式の定義へ"
-```
-
 ## インタラクティブ可視化
 
 ローカルナレッジグラフの近傍をインタラクティブに探索：

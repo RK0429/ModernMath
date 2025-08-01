@@ -30,8 +30,9 @@ poetry run python scripts/site/generate_index_pages.py     # Generate indices
 ### Generating Visualizations
 
 ```bash
-# Run in order: mermaid → pyvis_with_fix → d3_data → insert_diagrams
-poetry run python scripts/visualization/*.py
+poetry run python scripts/visualization/generate_pyvis_with_fix.py  # PyVis visualizations
+poetry run python scripts/visualization/generate_d3_data.py        # D3.js data files
+poetry run python scripts/visualization/insert_diagrams.py         # Insert interactive visualizations
 ```
 
 **Note**: Scripts validate content before creation to prevent empty blocks.
@@ -126,7 +127,7 @@ For fundamental concepts:
 Scripts in functional subdirectories:
 
 - **graph/**: RDF operations
-- **visualization/**: Diagram generation
+- **visualization/**: Interactive diagram generation (PyVis, D3.js only)
 - **translation/**: Multilingual support
 - **validation/**: Content checks
 - **site/**: Site building
@@ -137,7 +138,7 @@ Scripts in functional subdirectories:
 ### Processing Pipeline
 
 1. **Content Parsing** (`build_graph.py`): Reads `.qmd`, extracts metadata, builds RDF triples, detects language from paths
-2. **Visualization**: Generates Mermaid/PyVis/D3.js in language-specific directories
+2. **Visualization**: Generates PyVis/D3.js in language-specific directories
 3. **Cross-Reference Resolution**: Handles inter-domain references in HTML
 
 ### Knowledge Graph Schema
@@ -221,7 +222,7 @@ css:
 
 - **Detection**: Browser preference, flag buttons (🇬🇧/🇯🇵), page switcher
 - **Navigation**: `nav/{lang}/*.qmd` (except `index-ja.qmd` in root)
-- **Terms**: Dependency Graph ("依存関係グラフ"), Interactive Visualization ("インタラクティブ可視化")
+- **Terms**: Interactive Visualization ("インタラクティブ可視化")
 - **Management**: MD5 hash tracking, Claude Opus auto-translate, PR creation
 
 ## Critical Implementation Details
@@ -240,24 +241,15 @@ css:
 - JS timing: Use `DOMContentLoaded`
 - Error handling: User-friendly messages
 
-### Mermaid Diagrams
-
-````markdown
-```{mermaid}
-%%| fig-cap: "Caption"
-graph TD
-...
-```
-````
-
 **Content Validation**: Visualization scripts validate content before creation, preventing empty or invalid blocks.
 
 ### Visualization
 
-- **Generation Order**: build_graph → parallel(mermaid, pyvis_with_fix, d3_data) → insert_diagrams → quarto render
-- **Parallel Execution**: All three visualization scripts run concurrently for 3x speedup
+- **Generation Order**: build_graph → parallel(pyvis_with_fix, d3_data) → insert_diagrams → quarto render
+- **Parallel Execution**: Both visualization scripts run concurrently for speedup
 - **Language detection**: Check `/en/` or `/ja/` in paths
-- **Placement**: End of articles (Dependency Graph, then Interactive)
+- **Placement**: End of articles (Interactive Visualization only)
+- **Architecture**: Uses only interactive visualizations (no static Mermaid diagrams)
 
 ### Interactive Visualization Implementation
 
@@ -292,7 +284,6 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
   - Visualization scripts load `lean_mappings.json` and `lean_validation_results.json`
   - Only `proof_status: "completed"` is included in generated data
   - D3.js: White transparent check mark (✔️) centered on node with `pointer-events: none`
-  - Mermaid: Check mark appended to node label
   - PyVis: Check mark shown in tooltip with "Formal proof completed" text
 
 ### Lean 4 Proof Integration

@@ -84,41 +84,6 @@ $\gcd(3,5) = \gcd(3,7) = \gcd(5,7) = 1$ なので、定理を適用できます�
 ### 歴史的注記
 その名前にもかかわらず、この定理は古代中国の数学者に知られていました。最も古い記述は『孫子算経』（3～5世紀）に現れますが、完全な定理は1247年に秦九韶によって初めて与えられました。
 
-## 依存関係グラフ
-
-```{mermaid}
-%%| fig-cap: "ローカル依存関係グラフ"
-graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-fundamental-arithmetic["定理：算術の基本定理"]:::theorem
-    thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
-    def-lcm["定義：最小公倍数"]:::definition
-    thm-euclidean-algorithm["定理：ユークリッドのアルゴリズム"]:::theorem
-    def-divisibility["定義: 整除性"]:::definition
-    def-congruence["定義: 合同（モジュラー演算）"]:::definition
-    def-gcd["定義：最大公約数"]:::definition
-    def-prime["定義：素数"]:::definition
-    def-lcm --> thm-chinese-remainder
-    thm-chinese-remainder --> def-prime
-    thm-fundamental-arithmetic --> thm-chinese-remainder
-    thm-chinese-remainder --> def-divisibility
-    thm-chinese-remainder --> def-congruence
-    thm-chinese-remainder --> def-gcd
-    thm-chinese-remainder --> thm-euclidean-algorithm
-    class thm-chinese-remainder current
-    click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "定理：算術の基本定理へ"
-    click def-lcm "def-lcm.html" "定義：最小公倍数へ"
-    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "定理：ユークリッドのアルゴリズムへ"
-    click def-divisibility "def-divisibility.html" "整除性の定義へ"
-    click def-congruence "def-congruence.html" "合同（モジュラー演算）の定義へ"
-    click def-gcd "def-gcd.html" "定義：最大公約数へ"
-    click def-prime "def-prime.html" "定義：素数へ"
-```
-
 ## インタラクティブ可視化
 
 ローカルナレッジグラフの近傍をインタラクティブに探索：

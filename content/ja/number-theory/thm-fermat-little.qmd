@@ -86,36 +86,6 @@ $p$ を法とする非零剰余類は乗法に関して[位数](../algebra/def-o
    - $n^5 - n = n(n^4 - 1) = n(n^2-1)(n^2+1)$ なので、$2$ と $3$ による[整除性](def-divisibility.qmd)も従う
    - 中国剰余定理により、$n^5 \equiv n \pmod{30}$
 
-## 依存関係グラフ
-
-```{mermaid}
-%%| fig-cap: "ローカル依存関係グラフ"
-graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-euler["定理：オイラーの定理"]:::theorem
-    thm-fermat-little["定理: フェルマーの小定理"]:::theorem
-    def-divisibility["定義: 整除性"]:::definition
-    def-congruence["定義: 合同（モジュラー演算）"]:::definition
-    def-gcd["定義：最大公約数"]:::definition
-    def-prime["定義：素数"]:::definition
-    thm-fermat-little --> def-gcd
-    def-congruence --> thm-fermat-little
-    thm-fermat-little --> def-congruence
-    thm-euler --> thm-fermat-little
-    thm-fermat-little --> def-divisibility
-    thm-fermat-little --> def-prime
-    class thm-fermat-little current
-    click thm-euler "thm-euler.html" "定理：オイラーの定理へ"
-    click def-divisibility "def-divisibility.html" "整除性の定義へ"
-    click def-congruence "def-congruence.html" "合同（モジュラー演算）の定義へ"
-    click def-gcd "def-gcd.html" "定義：最大公約数へ"
-    click def-prime "def-prime.html" "定義：素数へ"
-```
-
 ## インタラクティブ可視化
 
 ローカルナレッジグラフの近傍をインタラクティブに探索：
