@@ -311,10 +311,11 @@ def update_visualization_content(
 :::
 
 次のことができます：
+
 - ノードを**ドラッグ**してレイアウトを再配置
 - マウスホイールで**ズーム**イン/アウト
 - ノードに**ホバー**して詳細を表示
-- [別ウィンドウ](../../output/interactive/ja/{node_id}.html){{target="_blank"}}で完全なインタラクティブ版を表示"""
+"""
     else:
         interactive_section = f"""## Interactive Visualization
 
@@ -324,10 +325,10 @@ Explore the local knowledge graph neighborhood interactively:
 :::
 
 You can:
+
 - **Drag** nodes to rearrange the layout
 - **Zoom** in/out with your mouse wheel
 - **Hover** over nodes to see details
-- View the [full interactive version](../../output/interactive/en/{node_id}.html){{target="_blank"}}
 """
 
     sections_to_add.append(interactive_section)
