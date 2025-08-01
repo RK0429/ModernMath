@@ -5,25 +5,25 @@ graph TD
     classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
     def-expectation["期待値"]:::definition
-    def-probability-space["確率空間"]:::definition
-    def-independence["独立性"]:::definition
-    def-random-variable["確率変数"]:::definition
-    def-normal-distribution["正規分布"]:::definition
-    thm-central-limit["中心極限定理"]:::theorem
     thm-law-of-large-numbers["大数の法則"]:::theorem
     def-variance["分散"]:::definition
-    def-function["関数"]:::definition
+    def-random-variable["確率変数"]:::definition
     def-binomial-distribution["二項分布"]:::definition
+    thm-central-limit["中心極限定理"]:::theorem
+    def-probability-space["確率空間"]:::definition
     def-probability-distribution["確率分布"]:::definition
+    def-normal-distribution["正規分布"]:::definition
+    def-independence["独立性"]:::definition
+    def-function["関数"]:::definition
+    thm-law-of-large-numbers --> def-random-variable
     def-random-variable --> def-probability-distribution
     def-random-variable --> def-probability-space
-    thm-law-of-large-numbers --> def-random-variable
     def-binomial-distribution --> def-random-variable
-    def-normal-distribution --> def-random-variable
-    def-independence --> def-random-variable
-    def-expectation --> def-random-variable
-    thm-central-limit --> def-random-variable
     def-probability-distribution --> def-random-variable
-    def-random-variable --> def-function
     def-variance --> def-random-variable
+    def-expectation --> def-random-variable
+    def-independence --> def-random-variable
+    def-random-variable --> def-function
+    def-normal-distribution --> def-random-variable
+    thm-central-limit --> def-random-variable
     class def-random-variable current
