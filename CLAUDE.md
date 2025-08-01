@@ -322,7 +322,14 @@ The root index pages (`index.qmd` and `index-ja.qmd`) display a global visualiza
 
 ### Progress Bar and Table Implementation
 
-- **Progress Bars**: Gradient backgrounds (green/orange/red), shimmer animation, responsive grid
+- **Progress Bars**: Two visualization styles available:
+  - **Standard**: Single-color gradient bars with shimmer animation
+  - **Band Graphs**: Multi-segment bars showing status breakdown
+    - Article Writing: `complete` (green), `draft` (orange), `stub` (red)
+    - Formal Proofs: `completed` (green), `warnings` (orange), `errors` (red), `not implemented` (gray)
+    - Percentage always shows completion rate, centered on the bar
+    - Implementation in `generate_proof_progress.py` via `_generate_band_graph_section()`
+    - CSS classes: `.segment-complete`, `.segment-draft`, `.segment-stub`, etc.
 - **Interactive Tables** (`js/table-sort-filter.js`):
   - Sort by clicking headers (↑/↓)
   - Filter with text input and dropdowns

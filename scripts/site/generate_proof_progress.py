@@ -263,6 +263,63 @@ class ProofProgressGenerator:
 </div>"""
         return html
 
+    def _generate_band_graph_section(
+        self, title: str, segments: List[Dict[str, Any]], stats_html: str
+    ) -> str:
+        """Generate a band graph section with multiple segments."""
+        total = sum(seg["count"] for seg in segments)
+        if total == 0:
+            return f"""
+```{{=html}}
+<div class="progress-section">
+<h3>{title}</h3>
+<div class="progress-container band-graph" style="height: 32px;">
+  <span class="progress-label" style="font-size: 1rem;">N/A</span>
+</div>
+<div class="progress-stats">
+  {stats_html}
+</div>
+</div>
+```
+
+"""
+
+        # Calculate completion percentage for display
+        completed_count = next(
+            (seg["count"] for seg in segments if seg.get("is_completed", False)), 0
+        )
+        completion_percentage = completed_count / total * 100
+
+        # Generate band segments
+        band_html = ""
+        cumulative_percent = 0
+
+        for segment in segments:
+            width = segment["count"] / total * 100
+            if width > 0:
+                left_position = cumulative_percent
+                band_html += (
+                    f'  <div class="progress-segment {segment["class"]}" '
+                    f'style="left: {left_position}%; width: {width}%;"></div>\n'
+                )
+                cumulative_percent += width
+
+        return f"""
+```{{=html}}
+<div class="progress-section">
+<h3>{title}</h3>
+<div class="progress-container band-graph" style="height: 32px; position: relative;">
+{band_html}  <span class="progress-label" style="font-size: 1rem; z-index: 10;">\
+{completion_percentage:.1f}%</span>
+</div>
+<div class="progress-stats">
+  {stats_html}
+</div>
+</div>
+```
+
+"""
+
     def _generate_progress_section(
         self, title: str, completed: int, total: int, stats_html: str
     ) -> str:
@@ -363,8 +420,19 @@ knowledge graph.
             f"<span>{total} total</span>"
         )
 
-        content += self._generate_progress_section(
-            "Article Writing Progress", complete, total, article_stats_html
+        # Create segments for article writing band graph
+        article_segments = [
+            {
+                "count": stats["articles_complete"],
+                "class": "segment-complete",
+                "is_completed": True,
+            },
+            {"count": stats["articles_draft"], "class": "segment-draft", "is_completed": False},
+            {"count": stats["articles_stub"], "class": "segment-stub", "is_completed": False},
+        ]
+
+        content += self._generate_band_graph_section(
+            "Article Writing Progress", article_segments, article_stats_html
         )
 
         # Formal proof statistics
@@ -381,8 +449,32 @@ knowledge graph.
             f"<span>{proofs_total} with Lean mappings</span>"
         )
 
-        content += self._generate_progress_section(
-            "Formal Proof Progress", proofs_completed, proofs_total, proof_stats_html
+        # Create segments for formal proof band graph
+        proof_segments = [
+            {
+                "count": stats["proofs_completed"],
+                "class": "segment-proof-completed",
+                "is_completed": True,
+            },
+            {
+                "count": stats["proofs_warnings"],
+                "class": "segment-proof-warnings",
+                "is_completed": False,
+            },
+            {
+                "count": stats["proofs_errors"],
+                "class": "segment-proof-errors",
+                "is_completed": False,
+            },
+            {
+                "count": stats["proofs_not_implemented"],
+                "class": "segment-proof-not-implemented",
+                "is_completed": False,
+            },
+        ]
+
+        content += self._generate_band_graph_section(
+            "Formal Proof Progress", proof_segments, proof_stats_html
         )
 
         # Progress by type and domain
@@ -609,73 +701,73 @@ include-in-header:
         # Article writing statistics
         total = stats["total_articles"]
         complete = stats["articles_complete"]
-        article_percentage = complete / total * 100 if total > 0 else 0
 
-        # Determine color class
-        if article_percentage >= 75:
-            article_color_class = "progress-high"
-        elif article_percentage >= 40:
-            article_color_class = "progress-medium"
-        else:
-            article_color_class = "progress-low"
+        article_stats_html = (
+            f"<span>{complete}記事完成</span>"
+            f"<span>•</span>"
+            f"<span>{stats['articles_draft']}草稿</span>"
+            f"<span>•</span>"
+            f"<span>{stats['articles_stub']}スタブ</span>"
+            f"<span>•</span>"
+            f"<span>全{total}記事</span>"
+        )
 
-        content += f"""
-```{{=html}}
-<div class="progress-section">
-<h3>記事執筆の進捗</h3>
-<div class="progress-container" style="height: 32px;">
-  <div class="progress-fill {article_color_class}" style="width: {article_percentage}%">
-    <span class="progress-label" style="font-size: 1rem;">{article_percentage:.1f}%</span>
-  </div>
-</div>
-<div class="progress-stats">
-  <span>{complete}記事完成</span>
-  <span>•</span>
-  <span>{stats["articles_draft"]}草稿</span>
-  <span>•</span>
-  <span>{stats["articles_stub"]}スタブ</span>
-  <span>•</span>
-  <span>全{total}記事</span>
-</div>
-</div>
-```
+        # Create segments for article writing band graph
+        article_segments = [
+            {
+                "count": stats["articles_complete"],
+                "class": "segment-complete",
+                "is_completed": True,
+            },
+            {"count": stats["articles_draft"], "class": "segment-draft", "is_completed": False},
+            {"count": stats["articles_stub"], "class": "segment-stub", "is_completed": False},
+        ]
 
-"""
+        content += self._generate_band_graph_section(
+            "記事執筆の進捗", article_segments, article_stats_html
+        )
 
         # Formal proof statistics
         proofs_total = stats["proofs_total"]
         proofs_completed = stats["proofs_completed"]
-        proof_percentage = proofs_completed / proofs_total * 100 if proofs_total > 0 else 0
 
-        if proof_percentage >= 75:
-            proof_color_class = "progress-high"
-        elif proof_percentage >= 40:
-            proof_color_class = "progress-medium"
-        else:
-            proof_color_class = "progress-low"
+        proof_stats_html = (
+            f"<span>{proofs_completed}証明完成</span>"
+            f"<span>•</span>"
+            f"<span>{stats['proofs_warnings']}警告あり</span>"
+            f"<span>•</span>"
+            f"<span>{stats['proofs_errors']}エラーあり</span>"
+            f"<span>•</span>"
+            f"<span>{proofs_total}個のLeanマッピング</span>"
+        )
 
-        content += f"""
-```{{=html}}
-<div class="progress-section">
-<h3>形式的証明の進捗</h3>
-<div class="progress-container" style="height: 32px;">
-  <div class="progress-fill {proof_color_class}" style="width: {proof_percentage}%">
-    <span class="progress-label" style="font-size: 1rem;">{proof_percentage:.1f}%</span>
-  </div>
-</div>
-<div class="progress-stats">
-  <span>{proofs_completed}証明完成</span>
-  <span>•</span>
-  <span>{stats["proofs_warnings"]}警告あり</span>
-  <span>•</span>
-  <span>{stats["proofs_errors"]}エラーあり</span>
-  <span>•</span>
-  <span>{proofs_total}個のLeanマッピング</span>
-</div>
-</div>
+        # Create segments for formal proof band graph
+        proof_segments = [
+            {
+                "count": stats["proofs_completed"],
+                "class": "segment-proof-completed",
+                "is_completed": True,
+            },
+            {
+                "count": stats["proofs_warnings"],
+                "class": "segment-proof-warnings",
+                "is_completed": False,
+            },
+            {
+                "count": stats["proofs_errors"],
+                "class": "segment-proof-errors",
+                "is_completed": False,
+            },
+            {
+                "count": stats["proofs_not_implemented"],
+                "class": "segment-proof-not-implemented",
+                "is_completed": False,
+            },
+        ]
 
-```
-"""
+        content += self._generate_band_graph_section(
+            "形式的証明の進捗", proof_segments, proof_stats_html
+        )
 
         content += self._generate_type_progress_section_ja(stats)
         content += self._generate_domain_progress_section_ja(stats)
