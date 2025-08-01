@@ -314,25 +314,13 @@ class HealthChecker:
             return {"status": "unhealthy", "error": str(e)}
 
     @staticmethod
-    def check_search_index_health(index_dir: str) -> Dict[str, Any]:
-        """Check if search index is accessible"""
-        try:
-            if os.path.exists(index_dir) and os.listdir(index_dir):
-                return {"status": "healthy"}
-            else:
-                return {"status": "unhealthy", "error": "Index directory empty or missing"}
-        except Exception as e:
-            return {"status": "unhealthy", "error": str(e)}
-
-    @staticmethod
-    def get_system_health(fuseki_endpoint: str, search_index_dir: str) -> Dict[str, Any]:
+    def get_system_health(fuseki_endpoint: str) -> Dict[str, Any]:
         """Get overall system health status"""
         return {
             "timestamp": datetime.utcnow().isoformat(),
             "components": {
                 "api": {"status": "healthy"},  # API is healthy if this runs
                 "fuseki": HealthChecker.check_fuseki_health(fuseki_endpoint),
-                "search_index": HealthChecker.check_search_index_health(search_index_dir),
             },
             "metrics_summary": metrics_collector.get_metrics_summary(),
         }
@@ -372,6 +360,5 @@ def init_monitoring(app):
     def detailed_health():
         """Get detailed health status"""
         fuseki_endpoint = app.config.get("FUSEKI_ENDPOINT", "http://localhost:3030/mathwiki/sparql")
-        search_index_dir = app.config.get("SEARCH_INDEX_DIR", "search_index")
 
-        return HealthChecker.get_system_health(fuseki_endpoint, search_index_dir)
+        return HealthChecker.get_system_health(fuseki_endpoint)

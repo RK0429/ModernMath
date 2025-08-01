@@ -93,7 +93,7 @@ The API will be available at `http://localhost:5001`
 
 - **GET** `/api/search?q={search_term}`
 - Example: `/api/search?q=group`
-- Searches for nodes by label text
+- Searches for nodes by label text using SPARQL queries
 
 ### Get All Nodes
 
@@ -222,9 +222,7 @@ The API implements rate limiting to ensure fair usage and protect against abuse:
 - `/api/nodes/{node_id}`: 30 requests
 - `/api/dependencies/{node_id}`: 30 requests
 - `/api/dependents/{node_id}`: 30 requests
-- `/api/nodes/{node_id}/related`: 20 requests
 - `/api/search`: 20 requests
-- `/api/search/suggest`: 60 requests
 - `/api/nodes`: 10 requests
 - `/api/query`: 5 requests (custom SPARQL queries)
 - `/api/cache/stats`: 10 requests

@@ -43,7 +43,6 @@ quarto preview                    # Preview locally
 quarto render                     # Build site
 quarto render --profile en        # Build English version
 quarto render --profile ja        # Build Japanese version
-poetry run python scripts/site/build_search_index.py
 ```
 
 ### Managing Translations
@@ -72,6 +71,12 @@ poetry run python scripts/validation/validate_lean_proofs.py  # Validate Lean pr
 cd fuseki/scripts && ./start_fuseki.sh    # Start SPARQL endpoint
 cd api && ./start_api.sh                  # Start REST API (port 5001)
 ```
+
+**Search Functionality**:
+
+- Website search is handled by Quarto's built-in search (appears in navbar automatically)
+- API `/api/search` endpoint uses basic SPARQL queries only
+- No custom search implementation needed - Quarto's search is sufficient
 
 ## Architecture Overview
 
@@ -193,6 +198,7 @@ css:
 - **Jobs**: quality (10m), lean-validation (<1m cached), graph (15m), visualizations (15m), site (20m), deploy (10m)
 - **Optimizations**: Poetry cache, parallel scripts (`&` + `wait`), matrix EN/JA builds
 - **Conditional Jobs**: Use check jobs for `hashFiles()` conditions:
+
   ```yaml
   check-lean:
     outputs:
@@ -203,6 +209,7 @@ css:
             echo "has-lean-files=true" >> $GITHUB_OUTPUT
           fi
   ```
+
 - **Lean Caching**: Toolchain (`~/.elan`), packages, build artifacts
 - **Key Requirements**:
   - Use `${{ }}` for functions in conditionals: `if: ${{ hashFiles('*.lean') != '' }}`

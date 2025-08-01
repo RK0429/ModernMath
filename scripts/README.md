@@ -53,7 +53,6 @@ Content validation and consistency checks
 
 Site building and generation
 
-- `build_search_index.py` - Build search functionality
 - `generate_index_pages.py` - Generate domain index pages
 - `resolve_cross_references.py` - Resolve inter-domain references
 

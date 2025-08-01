@@ -17,13 +17,11 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 import logging
 import os
 
-from api.search import MathKnowledgeSearcher
 from api.cache import api_cache, cleanup_cache
 from api.security import (
     require_auth,
     validate_sparql_query,
     validate_node_id,
-    validate_search_term,
     sanitize_output,
 )
 from api.monitoring import init_monitoring, monitor_sparql_query
@@ -62,15 +60,6 @@ limiter = Limiter(
 # Configuration
 FUSEKI_ENDPOINT = os.environ.get("FUSEKI_ENDPOINT", "http://localhost:3030/mathwiki/sparql")
 GRAPH_FILE = Path(__file__).parent.parent / "knowledge_graph.ttl"
-SEARCH_INDEX_DIR = Path(__file__).parent.parent / "search_index"
-
-# Initialize the enhanced searcher
-try:
-    searcher = MathKnowledgeSearcher(FUSEKI_ENDPOINT, SEARCH_INDEX_DIR)
-    logger.info("Enhanced search initialized successfully")
-except Exception as e:
-    logger.error(f"Failed to initialize enhanced search: {e}")
-    searcher = None
 
 # SPARQL query templates with parameterized queries for safety
 QUERIES = {
@@ -274,51 +263,24 @@ def get_dependents(node_id: str):
 @limiter.limit("20 per minute")
 @api_cache(ttl=300)
 def search_nodes():
-    """Enhanced search for nodes with input validation"""
+    """Search for nodes by label text using SPARQL"""
     search_term = request.args.get("q", "")
 
     # Validate search term
     if not search_term:
         return jsonify({"error": "Search term required"}), 400
 
-    if not validate_search_term(search_term):
-        return jsonify({"error": "Invalid search term"}), 400
+    # Use basic SPARQL search
+    query = QUERIES["search_nodes"] % search_term
+    results = execute_sparql_query(query)
 
-    # Check if enhanced search is available
-    if searcher is None:
-        # Fall back to basic SPARQL search
-        query = QUERIES["search_nodes"] % search_term
-        results = execute_sparql_query(query)
+    if not results:
+        return jsonify({"error": "SPARQL endpoint unavailable"}), 503
 
-        if not results:
-            return jsonify({"error": "SPARQL endpoint unavailable"}), 503
-
-        formatted = format_node_response(results)
-        formatted["search_term"] = sanitize_output(search_term)
-        formatted["search_type"] = "basic"
-        return jsonify(formatted)
-
-    # Use enhanced search
-    try:
-        # Get limit parameter with validation
-        limit = request.args.get("limit", default=50, type=int)
-        limit = min(max(limit, 1), 100)  # Clamp between 1 and 100
-
-        # Perform combined search
-        results = searcher.search_combined(search_term, limit=limit)
-
-        return jsonify(
-            {
-                "search_term": sanitize_output(search_term),
-                "search_type": "enhanced",
-                "count": len(results),
-                "results": sanitize_output(results),
-            }
-        )
-
-    except Exception as e:
-        logger.error(f"Enhanced search failed: {e}")
-        return jsonify({"error": "Search failed"}), 500
+    formatted = format_node_response(results)
+    formatted["search_term"] = sanitize_output(search_term)
+    formatted["search_type"] = "sparql"
+    return jsonify(formatted)
 
 
 @app.route("/api/nodes", methods=["GET"])
@@ -411,37 +373,6 @@ def reload_graph():
     except Exception as e:
         logger.error(f"Graph reload failed: {e}")
         return jsonify({"error": "Graph reload failed"}), 500
-
-
-@app.route("/api/search/suggest", methods=["GET"])
-@limiter.limit("60 per minute")
-@api_cache(ttl=300)
-def search_suggestions():
-    """Get search suggestions with validation"""
-    partial_query = request.args.get("q", "")
-
-    if not partial_query or len(partial_query) < 2:
-        return jsonify({"suggestions": []})
-
-    if not validate_search_term(partial_query):
-        return jsonify({"error": "Invalid search query"}), 400
-
-    if searcher is None:
-        return jsonify({"error": "Search suggestions unavailable"}), 503
-
-    try:
-        limit = request.args.get("limit", default=10, type=int)
-        limit = min(max(limit, 1), 20)  # Clamp between 1 and 20
-
-        suggestions = searcher.suggest_search_terms(partial_query, limit=limit)
-
-        return jsonify(
-            {"query": sanitize_output(partial_query), "suggestions": sanitize_output(suggestions)}
-        )
-
-    except Exception as e:
-        logger.error(f"Search suggestions failed: {e}")
-        return jsonify({"suggestions": []})
 
 
 @app.route("/api/cache/clear", methods=["POST"])

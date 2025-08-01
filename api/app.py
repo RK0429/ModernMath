@@ -3,18 +3,24 @@ Flask REST API for Math Knowledge Graph
 Provides endpoints to query and explore the mathematical knowledge graph
 """
 
+# mypy: disable-error-code=misc
+
+import logging
+import sys
+import threading
+import time
+from pathlib import Path
+from typing import Dict, Optional, Any
+
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_limiter.errors import RateLimitExceeded
-from pathlib import Path
-import sys
-from typing import Dict, Optional, Any
 from SPARQLWrapper import SPARQLWrapper, JSON
-import logging
-from search import MathKnowledgeSearcher
-from cache import api_cache, cleanup_cache
+from SPARQLWrapper.SPARQLExceptions import SPARQLWrapperException
+
+from cache import api_cache, cleanup_cache, _cache
 
 # Add parent directory to path to import scripts
 sys.path.append(str(Path(__file__).parent.parent))
@@ -39,15 +45,6 @@ limiter = Limiter(
 # Configuration
 FUSEKI_ENDPOINT = "http://localhost:3030/mathwiki/sparql"
 GRAPH_FILE = Path(__file__).parent.parent / "knowledge_graph.ttl"
-SEARCH_INDEX_DIR = Path(__file__).parent.parent / "search_index"
-
-# Initialize the enhanced searcher
-try:
-    searcher = MathKnowledgeSearcher(FUSEKI_ENDPOINT, SEARCH_INDEX_DIR)
-    logger.info("Enhanced search initialized successfully")
-except Exception as e:
-    logger.error(f"Failed to initialize enhanced search: {e}")
-    searcher = None
 
 # SPARQL query templates
 QUERIES = {
@@ -129,18 +126,21 @@ def execute_sparql_query(query: str) -> Optional[Dict[str, Any]]:
         sparql = SPARQLWrapper(FUSEKI_ENDPOINT)
         sparql.setQuery(query)
         sparql.setReturnFormat(JSON)
-        return sparql.query().convert()
-    except Exception as e:
-        logger.error(f"SPARQL query failed: {e}")
+        result = sparql.query().convert()
+        # SPARQLWrapper returns various types, we cast to Dict for type safety
+        return result  # type: ignore[no-any-return]
+    except SPARQLWrapperException as e:
+        logger.error("SPARQL query failed: %s", e)
         # Fallback to local file parsing if Fuseki is not available
         logger.info("Falling back to local graph file")
         return execute_local_query(query)
 
 
-def execute_local_query(query: str) -> Optional[Dict[str, Any]]:
+def execute_local_query(query: str) -> Optional[Dict[str, Any]]:  # pylint: disable=useless-return
     """Execute a query against the local RDF file (fallback when Fuseki is down)"""
     # This is a simplified implementation - in production, you'd use rdflib
     # For now, return a message indicating Fuseki is required
+    _ = query  # Mark parameter as used
     return None
 
 
@@ -177,15 +177,18 @@ def format_node_response(results: Dict[str, Any]) -> Dict[str, Any]:
 
 @app.route("/api/health", methods=["GET"])
 @limiter.limit("100 per minute")
-def health_check():
+def health_check() -> tuple[Any, int]:
     """Health check endpoint"""
-    return jsonify({"status": "healthy", "service": "Math Knowledge Graph API", "version": "0.1.0"})
+    return (
+        jsonify({"status": "healthy", "service": "Math Knowledge Graph API", "version": "0.1.0"}),
+        200,
+    )
 
 
 @app.route("/api/nodes/<node_id>", methods=["GET"])
 @limiter.limit("30 per minute")
 @api_cache(ttl=600)  # Cache for 10 minutes
-def get_node(node_id: str):
+def get_node(node_id: str) -> tuple[Any, int]:
     """Get details about a specific node"""
     query = QUERIES["get_node"] % (node_id, node_id)
     results = execute_sparql_query(query)
@@ -199,13 +202,13 @@ def get_node(node_id: str):
 
     # Add the node ID to the response
     formatted["node_id"] = node_id
-    return jsonify(formatted)
+    return jsonify(formatted), 200
 
 
 @app.route("/api/dependencies/<node_id>", methods=["GET"])
 @limiter.limit("30 per minute")
 @api_cache(ttl=600)  # Cache for 10 minutes
-def get_dependencies(node_id: str):
+def get_dependencies(node_id: str) -> tuple[Any, int]:
     """Get all nodes that this node depends on (uses)"""
     query = QUERIES["get_dependencies"] % node_id
     results = execute_sparql_query(query)
@@ -216,13 +219,13 @@ def get_dependencies(node_id: str):
     formatted = format_node_response(results)
     formatted["node_id"] = node_id
     formatted["relationship"] = "uses"
-    return jsonify(formatted)
+    return jsonify(formatted), 200
 
 
 @app.route("/api/dependents/<node_id>", methods=["GET"])
 @limiter.limit("30 per minute")
 @api_cache(ttl=600)  # Cache for 10 minutes
-def get_dependents(node_id: str):
+def get_dependents(node_id: str) -> tuple[Any, int]:
     """Get all nodes that depend on (use) this node"""
     query = QUERIES["get_dependents"] % node_id
     results = execute_sparql_query(query)
@@ -233,94 +236,35 @@ def get_dependents(node_id: str):
     formatted = format_node_response(results)
     formatted["node_id"] = node_id
     formatted["relationship"] = "used_by"
-    return jsonify(formatted)
+    return jsonify(formatted), 200
 
 
 @app.route("/api/search", methods=["GET"])
 @limiter.limit("20 per minute")
 @api_cache(ttl=300)  # Cache for 5 minutes
-def search_nodes():
-    """Enhanced search for nodes by label text and content"""
+def search_nodes() -> tuple[Any, int]:
+    """Search for nodes by label text using SPARQL"""
     search_term = request.args.get("q", "")
     if not search_term:
         return jsonify({"error": "Search term required"}), 400
 
-    # Check if enhanced search is available
-    if searcher is None:
-        # Fall back to basic SPARQL search
-        query = QUERIES["search_nodes"] % search_term
-        results = execute_sparql_query(query)
+    # Use basic SPARQL search
+    query = QUERIES["search_nodes"] % search_term
+    results = execute_sparql_query(query)
 
-        if not results:
-            return jsonify({"error": "SPARQL endpoint unavailable"}), 503
+    if not results:
+        return jsonify({"error": "SPARQL endpoint unavailable"}), 503
 
-        formatted = format_node_response(results)
-        formatted["search_term"] = search_term
-        formatted["search_type"] = "basic"
-        return jsonify(formatted)
-
-    # Use enhanced search
-    try:
-        # Get pagination parameters
-        page = request.args.get("page", default=1, type=int)
-        per_page = request.args.get("per_page", default=20, type=int)
-        per_page = min(per_page, 100)  # Cap at 100 results per page
-
-        # For backward compatibility, also support limit parameter
-        limit = request.args.get("limit", type=int)
-        if limit:
-            per_page = min(limit, 100)
-            page = 1
-
-        # Calculate offset
-        offset = (page - 1) * per_page
-
-        # Perform combined search with a higher limit to get total count
-        all_results = searcher.search_combined(search_term, limit=1000)
-        total_count = len(all_results)
-
-        # Apply pagination
-        paginated_results = all_results[offset:offset + per_page]
-
-        # Calculate pagination metadata
-        total_pages = (total_count + per_page - 1) // per_page
-        has_next = page < total_pages
-        has_prev = page > 1
-
-        return jsonify(
-            {
-                "search_term": search_term,
-                "search_type": "enhanced",
-                "count": len(paginated_results),
-                "total_count": total_count,
-                "page": page,
-                "per_page": per_page,
-                "total_pages": total_pages,
-                "has_next": has_next,
-                "has_prev": has_prev,
-                "results": paginated_results,
-            }
-        )
-
-    except Exception as e:
-        logger.error(f"Enhanced search failed: {e}")
-        # Fall back to basic search
-        query = QUERIES["search_nodes"] % search_term
-        results = execute_sparql_query(query)
-
-        if not results:
-            return jsonify({"error": "Search failed"}), 503
-
-        formatted = format_node_response(results)
-        formatted["search_term"] = search_term
-        formatted["search_type"] = "basic_fallback"
-        return jsonify(formatted)
+    formatted = format_node_response(results)
+    formatted["search_term"] = search_term
+    formatted["search_type"] = "sparql"
+    return jsonify(formatted), 200
 
 
 @app.route("/api/nodes", methods=["GET"])
 @limiter.limit("10 per minute")
 @api_cache(ttl=900)  # Cache for 15 minutes
-def get_all_nodes():
+def get_all_nodes() -> tuple[Any, int]:
     """Get all nodes in the graph"""
     query = QUERIES["get_all_nodes"]
     results = execute_sparql_query(query)
@@ -328,12 +272,12 @@ def get_all_nodes():
     if not results:
         return jsonify({"error": "SPARQL endpoint unavailable"}), 503
 
-    return jsonify(format_node_response(results))
+    return jsonify(format_node_response(results)), 200
 
 
 @app.route("/api/query", methods=["POST"])
 @limiter.limit("5 per minute")
-def custom_query():
+def custom_query() -> tuple[Any, int]:
     """Execute a custom SPARQL query (with restrictions for safety)"""
     data = request.get_json()
     if not data or "query" not in data:
@@ -351,97 +295,48 @@ def custom_query():
     if not results:
         return jsonify({"error": "SPARQL endpoint unavailable"}), 503
 
-    return jsonify(results)
-
-
-@app.route("/api/search/suggest", methods=["GET"])
-@limiter.limit("60 per minute")
-@api_cache(ttl=300)  # Cache for 5 minutes
-def search_suggestions():
-    """Get search suggestions for autocomplete"""
-    partial_query = request.args.get("q", "")
-    if not partial_query or len(partial_query) < 2:
-        return jsonify({"suggestions": []})
-
-    if searcher is None:
-        return jsonify({"error": "Search suggestions unavailable"}), 503
-
-    try:
-        limit = request.args.get("limit", default=10, type=int)
-        limit = min(limit, 20)  # Cap at 20 suggestions
-
-        suggestions = searcher.suggest_search_terms(partial_query, limit=limit)
-
-        return jsonify({"query": partial_query, "suggestions": suggestions})
-
-    except Exception as e:
-        logger.error(f"Search suggestions failed: {e}")
-        return jsonify({"suggestions": []})
-
-
-@app.route("/api/nodes/<node_id>/related", methods=["GET"])
-@limiter.limit("20 per minute")
-@api_cache(ttl=600)  # Cache for 10 minutes
-def get_related_nodes(node_id: str):
-    """Get all nodes related to the specified node"""
-    if searcher is None:
-        return jsonify({"error": "Related nodes search unavailable"}), 503
-
-    try:
-        related = searcher.get_related_nodes(node_id)
-
-        return jsonify({"node_id": node_id, "related": related})
-
-    except Exception as e:
-        logger.error(f"Related nodes search failed: {e}")
-        return jsonify({"error": "Failed to get related nodes"}), 500
+    return jsonify(results), 200
 
 
 @app.route("/api/cache/clear", methods=["POST"])
 @limiter.limit("1 per hour")
-def clear_cache():
+def clear_cache() -> tuple[Any, int]:
     """Clear all cached responses (requires admin access in production)"""
     try:
-        from api.cache import _cache
-
         _cache.clear()
         logger.info("Cache cleared successfully")
-        return jsonify({"message": "Cache cleared successfully"})
-    except Exception as e:
-        logger.error(f"Failed to clear cache: {e}")
+        return jsonify({"message": "Cache cleared successfully"}), 200
+    except (ImportError, AttributeError) as e:
+        logger.error("Failed to clear cache: %s", e)
         return jsonify({"error": "Failed to clear cache"}), 500
 
 
 @app.route("/api/cache/stats", methods=["GET"])
 @limiter.limit("10 per minute")
-def cache_stats():
+def cache_stats() -> tuple[Any, int]:
     """Get cache statistics"""
     try:
-        from api.cache import _cache
-
         # Count non-expired entries
         _cache.cleanup_expired()
-        cache_size = len(_cache._cache)
-        return jsonify({"cache_entries": cache_size, "status": "operational"})
-    except Exception as e:
-        logger.error(f"Failed to get cache stats: {e}")
+        cache_size = len(_cache._cache)  # pylint: disable=protected-access
+        return jsonify({"cache_entries": cache_size, "status": "operational"}), 200
+    except (ImportError, AttributeError) as e:
+        logger.error("Failed to get cache stats: %s", e)
         return jsonify({"error": "Failed to get cache stats"}), 500
 
 
 # Background thread for periodic cache cleanup
-def start_cache_cleanup():
+def start_cache_cleanup() -> None:
     """Start background thread for periodic cache cleanup"""
-    import threading
-    import time
 
-    def cleanup_loop():
+    def cleanup_loop() -> None:
         while True:
             time.sleep(300)  # Run every 5 minutes
             try:
                 cleanup_cache()
                 logger.debug("Cache cleanup completed")
-            except Exception as e:
-                logger.error(f"Cache cleanup failed: {e}")
+            except (ImportError, AttributeError) as e:
+                logger.error("Cache cleanup failed: %s", e)
 
     cleanup_thread = threading.Thread(target=cleanup_loop, daemon=True)
     cleanup_thread.start()
@@ -449,13 +344,14 @@ def start_cache_cleanup():
 
 
 @app.errorhandler(404)
-def not_found(error):
+def not_found(error: Any) -> tuple[Any, int]:
     """Custom 404 handler"""
+    _ = error  # Mark parameter as used
     return jsonify({"error": "Endpoint not found"}), 404
 
 
 @app.errorhandler(RateLimitExceeded)
-def rate_limit_exceeded(error):
+def rate_limit_exceeded(error: RateLimitExceeded) -> tuple[Any, int]:
     """Custom handler for rate limit exceeded"""
     # Extract retry-after from headers list
     retry_after = "60"
@@ -477,8 +373,9 @@ def rate_limit_exceeded(error):
 
 
 @app.errorhandler(500)
-def internal_error(error):
+def internal_error(error: Any) -> tuple[Any, int]:
     """Custom 500 handler"""
+    _ = error  # Mark parameter as used
     return jsonify({"error": "Internal server error"}), 500
 
 
