@@ -69,9 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'en';
@@ -267,12 +264,6 @@ window.Quarto = {
   <ul>
   <li><a href="#def-power-set" id="toc-def-power-set" class="nav-link active" data-scroll-target="#def-power-set">べき集合</a>
   <ul class="collapse">
-  <li><a href="#形式的定義" id="toc-形式的定義" class="nav-link" data-scroll-target="#形式的定義">形式的定義</a></li>
-  <li><a href="#性質" id="toc-性質" class="nav-link" data-scroll-target="#性質">性質</a></li>
-  <li><a href="#例" id="toc-例" class="nav-link" data-scroll-target="#例">例</a></li>
-  <li><a href="#集合論的性質" id="toc-集合論的性質" class="nav-link" data-scroll-target="#集合論的性質">集合論的性質</a></li>
-  <li><a href="#mermaid図" id="toc-mermaid図" class="nav-link" data-scroll-target="#mermaid図">Mermaid図</a></li>
-  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul></li>
   </ul>
@@ -303,93 +294,10 @@ window.Quarto = {
 <section id="def-power-set" class="level1">
 <h1>べき集合</h1>
 <p><a href="../../../content/ja/logic-set-theory/def-set.html">集合</a> <span class="math inline">\(A\)</span> の<strong>べき集合</strong>は、<span class="math inline">\(\mathcal{P}(A)\)</span> または <span class="math inline">\(2^A\)</span> と表記され、<span class="math inline">\(A\)</span> のすべての部分集合からなる集合です。</p>
-<section id="形式的定義" class="level2">
-<h2 class="anchored" data-anchor-id="形式的定義">形式的定義</h2>
-<p><span class="math display">\[\mathcal{P}(A) = \{B : B \subseteq A\}\]</span></p>
-<p>言い換えると、<span class="math inline">\(B \in \mathcal{P}(A)\)</span> であることと、<span class="math inline">\(B\)</span> のすべての要素が <span class="math inline">\(A\)</span> の要素でもあることは同値です。</p>
-</section>
-<section id="性質" class="level2">
-<h2 class="anchored" data-anchor-id="性質">性質</h2>
-<ol type="1">
-<li><strong>常に空集合を含む</strong>: 任意の集合 <span class="math inline">\(A\)</span> に対して <span class="math inline">\(\emptyset \in \mathcal{P}(A)\)</span></li>
-<li><strong>常に元の集合を含む</strong>: <span class="math inline">\(A \in \mathcal{P}(A)\)</span></li>
-<li><strong><a href="../../../content/ja/logic-set-theory/def-cardinality.html">濃度</a></strong>: <span class="math inline">\(|A| = n\)</span>（有限）ならば <span class="math inline">\(|\mathcal{P}(A)| = 2^n\)</span></li>
-<li><strong>順序</strong>: <span class="math inline">\(\mathcal{P}(A)\)</span> は包含関係の下で<a href="../../../content/ja/logic-set-theory/def-partial-order.html">半順序集合</a>をなす</li>
-</ol>
-</section>
-<section id="例" class="level2">
-<h2 class="anchored" data-anchor-id="例">例</h2>
-<ol type="1">
-<li><p><span class="math inline">\(A = \emptyset\)</span> ならば <span class="math inline">\(\mathcal{P}(A) = \{\emptyset\}\)</span></p></li>
-<li><p><span class="math inline">\(A = \{1\}\)</span> ならば <span class="math inline">\(\mathcal{P}(A) = \{\emptyset, \{1\}\}\)</span></p></li>
-<li><p><span class="math inline">\(A = \{1, 2\}\)</span> ならば <span class="math inline">\(\mathcal{P}(A) = \{\emptyset, \{1\}, \{2\}, \{1, 2\}\}\)</span></p></li>
-<li><p><span class="math inline">\(A = \{a, b, c\}\)</span> ならば： <span class="math display">\[\mathcal{P}(A) = \{\emptyset, \{a\}, \{b\}, \{c\}, \{a,b\}, \{a,c\}, \{b,c\}, \{a,b,c\}\}\]</span></p></li>
-</ol>
-</section>
-<section id="集合論的性質" class="level2">
-<h2 class="anchored" data-anchor-id="集合論的性質">集合論的性質</h2>
-<ul>
-<li><span class="math inline">\(A \subseteq B\)</span> であることと <span class="math inline">\(\mathcal{P}(A) \subseteq \mathcal{P}(B)\)</span> は同値</li>
-<li><span class="math inline">\(\mathcal{P}(A \cap B) = \mathcal{P}(A) \cap \mathcal{P}(B)\)</span></li>
-<li><span class="math inline">\(\mathcal{P}(A) \cup \mathcal{P}(B) \subseteq \mathcal{P}(A \cup B)\)</span>（ただし必ずしも等しくない）</li>
-</ul>
-</section>
-<section id="mermaid図" class="level2">
-<h2 class="anchored" data-anchor-id="mermaid図">Mermaid図</h2>
-<pre class="mermaid"><code>graph TD
-    A[べき集合 P(A)] --&gt; B[∅ を含む]
-    A --&gt; C[A を含む]
-    A --&gt; D[A のすべての部分集合]
-    D --&gt; E[濃度: 2^|A|]
-    D --&gt; F[⊆ による半順序]
-
-    A --&gt; G[例: A = {1,2}]
-    G --&gt; H[P(A) = {∅, {1}, {2}, {1,2}}]
-
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style D fill:#bbf,stroke:#333,stroke-width:2px
-    style E fill:#bfb,stroke:#333,stroke-width:2px</code></pre>
-</section>
-<section id="依存関係グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-cantor["定理: カントールの定理"]:::theorem
-    def-partial-order["定義：半順序"]:::definition
-    def-set["定義: 集合"]:::definition
-    def-power-set["定義: べき集合"]:::definition
-    def-cardinality["定義: 濃度"]:::definition
-    def-cardinality --&gt; def-power-set
-    def-power-set --&gt; def-set
-    def-power-set --&gt; def-partial-order
-    def-partial-order --&gt; def-power-set
-    def-power-set --&gt; def-cardinality
-    thm-cantor --&gt; def-power-set
-    class def-power-set current
-    click thm-cantor "thm-cantor.html" "カントールの定理の定理へ"
-    click def-partial-order "def-partial-order.html" "定義：半順序へ"
-    click def-set "def-set.html" "集合の定義へ"
-    click def-cardinality "def-cardinality.html" "濃度の定義へ"
-</pre>
-</div>
-<p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-power-set-1754028803" class="graph-visualization-container">
+<div id="graph-viz-def-power-set-1754030347" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -678,12 +586,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-power-set-1754028803', {
+    createForceGraph(data, 'graph-viz-def-power-set-1754030347', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-power-set-1754028803').innerHTML =
+    document.getElementById('graph-viz-def-power-set-1754030347').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

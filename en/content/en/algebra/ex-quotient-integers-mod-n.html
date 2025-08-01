@@ -69,9 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'en';
@@ -288,7 +285,6 @@ window.Quarto = {
   <li><a href="#cryptography" id="toc-cryptography" class="nav-link" data-scroll-target="#cryptography">Cryptography</a></li>
   </ul></li>
   <li><a href="#generalizations" id="toc-generalizations" class="nav-link" data-scroll-target="#generalizations">Generalizations</a></li>
-  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
   <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
   </ul></li>
   </ul>
@@ -469,83 +465,10 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="generalizations">Generalizations</h2>
 <p>The construction <span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\)</span> generalizes to: - <a href="../../../content/en/algebra/def-quotient-ring.html">Quotient rings</a>: <span class="math inline">\(\mathbb{Z}[x]/(p(x))\)</span> for <a href="../../../content/en/algebra/def-polynomial-ring.html">polynomial rings</a> - Quotients of other algebraic structures - Quotient spaces in topology</p>
 </section>
-<section id="dependency-graph" class="level2">
-<h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-coset["Definition: Coset"]:::definition
-    def-normal-subgroup["Definition: Normal Subgroup"]:::definition
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
-    def-order["Definition: Order"]:::definition
-    def-cyclic-group["Definition: Cyclic Group"]:::definition
-    ex-quotient-integers-mod-n["Example: Integers Modulo n"]:::example
-    def-abelian-group["Definition: Abelian Group"]:::definition
-    def-isomorphism["Definition: Isomorphism"]:::definition
-    def-direct-product["Definition: Direct Product of Groups"]:::definition
-    thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
-    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-quotient-ring["Definition: Quotient Ring"]:::definition
-    ex-finite-field["Example: Finite Field"]:::example
-    def-quotient-group["Definition: Quotient Group"]:::definition
-    ex-integers-addition["Example: Integers under Addition"]:::example
-    def-polynomial-ring["Definition: Polynomial Ring"]:::definition
-    ex-quotient-integers-mod-n --&gt; def-group
-    ex-quotient-integers-mod-n --&gt; def-congruence
-    def-coset --&gt; ex-quotient-integers-mod-n
-    ex-quotient-integers-mod-n --&gt; def-normal-subgroup
-    ex-quotient-integers-mod-n --&gt; def-quotient-group
-    ex-quotient-integers-mod-n --&gt; def-isomorphism
-    thm-euler --&gt; ex-quotient-integers-mod-n
-    ex-quotient-integers-mod-n --&gt; def-cyclic-group
-    ex-quotient-integers-mod-n --&gt; def-quotient-ring
-    ex-quotient-integers-mod-n --&gt; def-polynomial-ring
-    thm-euclidean-algorithm --&gt; ex-quotient-integers-mod-n
-    ex-quotient-integers-mod-n --&gt; ex-integers-addition
-    def-congruence --&gt; ex-quotient-integers-mod-n
-    ex-quotient-integers-mod-n --&gt; def-coset
-    ex-quotient-integers-mod-n --&gt; def-abelian-group
-    ex-quotient-integers-mod-n --&gt; def-order
-    def-cyclic-group --&gt; ex-quotient-integers-mod-n
-    ex-finite-field --&gt; ex-quotient-integers-mod-n
-    ex-quotient-integers-mod-n --&gt; def-direct-product
-    class ex-quotient-integers-mod-n current
-    click def-coset "def-coset.html" "Go to Coset definition"
-    click def-normal-subgroup "def-normal-subgroup.html" "Go to Normal Subgroup definition"
-    click thm-euler "thm-euler.html" "Go to Euler's Theorem theorem"
-    click def-order "def-order.html" "Go to Order definition"
-    click def-cyclic-group "def-cyclic-group.html" "Go to Cyclic Group definition"
-    click def-abelian-group "def-abelian-group.html" "Go to Abelian Group definition"
-    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
-    click def-direct-product "def-direct-product.html" "Go to Direct Product of Groups definition"
-    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Go to Euclidean Algorithm theorem"
-    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic) definition"
-    click def-group "def-group.html" "Go to Group definition"
-    click def-quotient-ring "def-quotient-ring.html" "Go to Quotient Ring definition"
-    click ex-finite-field "ex-finite-field.html" "Go to Finite Field example"
-    click def-quotient-group "def-quotient-group.html" "Go to Quotient Group definition"
-    click ex-integers-addition "ex-integers-addition.html" "Go to Integers under Addition example"
-    click def-polynomial-ring "def-polynomial-ring.html" "Go to Polynomial Ring definition"
-</pre>
-</div>
-<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-ex-quotient-integers-mod-n-1754028679" class="graph-visualization-container">
+<div id="graph-viz-ex-quotient-integers-mod-n-1754030235" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -834,12 +757,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-ex-quotient-integers-mod-n-1754028679', {
+    createForceGraph(data, 'graph-viz-ex-quotient-integers-mod-n-1754030235', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-ex-quotient-integers-mod-n-1754028679').innerHTML =
+    document.getElementById('graph-viz-ex-quotient-integers-mod-n-1754030235').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

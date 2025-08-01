@@ -69,9 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'en';
@@ -134,35 +131,6 @@ ul.task-list li input[type="checkbox"] {
   })();
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../design-tokens.css">
@@ -267,18 +235,6 @@ window.Quarto = {
   <ul>
   <li><a href="#thm-central-limit" id="toc-thm-central-limit" class="nav-link active" data-scroll-target="#thm-central-limit">Central Limit Theorem</a>
   <ul class="collapse">
-  <li><a href="#statement" id="toc-statement" class="nav-link" data-scroll-target="#statement">Statement</a></li>
-  <li><a href="#equivalently" id="toc-equivalently" class="nav-link" data-scroll-target="#equivalently">Equivalently</a></li>
-  <li><a href="#proof-sketch" id="toc-proof-sketch" class="nav-link" data-scroll-target="#proof-sketch">Proof Sketch</a></li>
-  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
-  <ul class="collapse">
-  <li><a href="#example-1-coin-flips" id="toc-example-1-coin-flips" class="nav-link" data-scroll-target="#example-1-coin-flips">Example 1: Coin Flips</a></li>
-  <li><a href="#example-2-die-rolls" id="toc-example-2-die-rolls" class="nav-link" data-scroll-target="#example-2-die-rolls">Example 2: Die Rolls</a></li>
-  </ul></li>
-  <li><a href="#practical-rule-of-thumb" id="toc-practical-rule-of-thumb" class="nav-link" data-scroll-target="#practical-rule-of-thumb">Practical Rule of Thumb</a></li>
-  <li><a href="#mermaid-diagram" id="toc-mermaid-diagram" class="nav-link" data-scroll-target="#mermaid-diagram">Mermaid Diagram</a></li>
-  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
   <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
   </ul></li>
   </ul>
@@ -309,105 +265,10 @@ window.Quarto = {
 <section id="thm-central-limit" class="level1">
 <h1>Central Limit Theorem</h1>
 <p>The <strong>Central Limit Theorem (CLT)</strong> is one of the most fundamental results in probability theory, stating that the <a href="../../../content/en/probability-statistics/def-probability-distribution.html">distribution</a> of the normalized sum of <a href="../../../content/en/probability-statistics/def-independence.html">independent</a> <a href="../../../content/en/probability-statistics/def-random-variable.html">random variables</a> converges to a <a href="../../../content/en/probability-statistics/def-normal-distribution.html">normal distribution</a>.</p>
-<section id="statement" class="level2">
-<h2 class="anchored" data-anchor-id="statement">Statement</h2>
-<p>Let <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> be <a href="../../../content/en/probability-statistics/def-independence.html">independent</a> and identically distributed (i.i.d.) random variables with: - Finite <a href="../../../content/en/probability-statistics/def-expectation.html">expected value</a>: <span class="math inline">\(\mu = E[X_i] &lt; \infty\)</span> - Finite <a href="../../../content/en/probability-statistics/def-variance.html">variance</a>: <span class="math inline">\(\sigma^2 = \text{Var}(X_i) &lt; \infty\)</span>, where <span class="math inline">\(\sigma &gt; 0\)</span></p>
-<p>Define: - Sample mean: <span class="math inline">\(\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i\)</span> - Standardized sum: <span class="math inline">\(Z_n = \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} = \frac{\sum_{i=1}^n X_i - n\mu}{\sigma\sqrt{n}}\)</span></p>
-<p>Then for any <span class="math inline">\(z \in \mathbb{R}\)</span>: <span class="math display">\[\lim_{n \to \infty} P(Z_n \leq z) = \Phi(z)\]</span></p>
-<p>where <span class="math inline">\(\Phi(z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-t^2/2} dt\)</span> is the cumulative distribution function of the standard <a href="../../../content/en/probability-statistics/def-normal-distribution.html">normal distribution</a>.</p>
-</section>
-<section id="equivalently" class="level2">
-<h2 class="anchored" data-anchor-id="equivalently">Equivalently</h2>
-<p>The <a href="../../../content/en/probability-statistics/def-probability-distribution.html">distribution</a> of <span class="math inline">\(\bar{X}_n\)</span> is approximately <a href="../../../content/en/probability-statistics/def-normal-distribution.html">normal</a> for large <span class="math inline">\(n\)</span>: <span class="math display">\[\bar{X}_n \stackrel{d}{\approx} N\left(\mu, \frac{\sigma^2}{n}\right)\]</span></p>
-</section>
-<section id="proof-sketch" class="level2">
-<h2 class="anchored" data-anchor-id="proof-sketch">Proof Sketch</h2>
-<p>The classical proof uses characteristic functions:</p>
-<ol type="1">
-<li><p>The characteristic function of <span class="math inline">\(Z_n\)</span> is: <span class="math display">\[\phi_{Z_n}(t) = \left[\phi_X\left(\frac{t}{\sigma\sqrt{n}}\right) \cdot e^{-it\mu/(\sigma\sqrt{n})}\right]^n\]</span></p></li>
-<li><p>Using <a href="../../../content/en/analysis/thm-taylor-series.html">Taylor expansion</a> of <span class="math inline">\(\phi_X\)</span> around 0: <span class="math display">\[\phi_X(s) = 1 + is\mu - \frac{s^2(\mu^2 + \sigma^2)}{2} + o(s^2)\]</span></p></li>
-<li><p>After substitution and simplification: <span class="math display">\[\phi_{Z_n}(t) = \left(1 - \frac{t^2}{2n} + o\left(\frac{1}{n}\right)\right)^n\]</span></p></li>
-<li><p>Taking the limit: <span class="math display">\[\lim_{n \to \infty} \phi_{Z_n}(t) = e^{-t^2/2}\]</span></p></li>
-</ol>
-<p>This is the characteristic function of <span class="math inline">\(N(0,1)\)</span>, completing the proof by the continuity theorem.</p>
-</section>
-<section id="applications" class="level2">
-<h2 class="anchored" data-anchor-id="applications">Applications</h2>
-<ol type="1">
-<li><strong>Statistical Inference</strong>: Justifies confidence intervals and hypothesis tests</li>
-<li><strong>Quality Control</strong>: Process capability analysis in manufacturing</li>
-<li><strong>Financial Modeling</strong>: Risk assessment and portfolio theory</li>
-<li><strong>Scientific Measurement</strong>: Error analysis and uncertainty quantification</li>
-<li><strong>Monte Carlo Methods</strong>: Convergence rate estimation</li>
-</ol>
-</section>
-<section id="examples" class="level2">
-<h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<section id="example-1-coin-flips" class="level3">
-<h3 class="anchored" data-anchor-id="example-1-coin-flips">Example 1: Coin Flips</h3>
-<p>For <span class="math inline">\(n\)</span> fair coin flips (Bernoulli(1/2), see <a href="../../../content/en/probability-statistics/def-binomial-distribution.html">Binomial Distribution</a>): - <span class="math inline">\(\mu = 0.5\)</span>, <span class="math inline">\(\sigma^2 = 0.25\)</span> - The proportion of heads <span class="math inline">\(\approx N(0.5, 0.25/n)\)</span> for large <span class="math inline">\(n\)</span></p>
-</section>
-<section id="example-2-die-rolls" class="level3">
-<h3 class="anchored" data-anchor-id="example-2-die-rolls">Example 2: Die Rolls</h3>
-<p>Sum of <span class="math inline">\(n\)</span> fair die rolls: - Each roll: <span class="math inline">\(\mu = 3.5\)</span>, <span class="math inline">\(\sigma^2 = 35/12\)</span> - Average of rolls <span class="math inline">\(\approx N(3.5, 35/(12n))\)</span> for large <span class="math inline">\(n\)</span></p>
-</section>
-</section>
-<section id="practical-rule-of-thumb" class="level2">
-<h2 class="anchored" data-anchor-id="practical-rule-of-thumb">Practical Rule of Thumb</h2>
-<p>While the theorem applies as <span class="math inline">\(n \to \infty\)</span>, in practice: - <span class="math inline">\(n \geq 30\)</span> is often considered sufficient for a good approximation - For heavily skewed distributions, larger <span class="math inline">\(n\)</span> may be needed</p>
-</section>
-<section id="mermaid-diagram" class="level2">
-<h2 class="anchored" data-anchor-id="mermaid-diagram">Mermaid Diagram</h2>
-<pre class="mermaid"><code>graph TD
-    A[Central Limit Theorem] --&gt; B[Sample Mean X̄ₙ]
-    A --&gt; C[Standardized Sum Zₙ]
-    B --&gt; D[Approximately Normal]
-    C --&gt; E[Converges to N(0,1)]
-    D --&gt; F[X̄ₙ ~ N(μ, σ²/n)]
-    E --&gt; G[P(Zₙ ≤ z) → Φ(z)]
-    A --&gt; H[Applications]
-    H --&gt; I[Statistical Inference]
-    H --&gt; J[Quality Control]
-    H --&gt; K[Financial Modeling]
-
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style D fill:#bbf,stroke:#333,stroke-width:2px
-    style E fill:#bbf,stroke:#333,stroke-width:2px
-    style F fill:#bfb,stroke:#333,stroke-width:2px
-    style G fill:#bfb,stroke:#333,stroke-width:2px</code></pre>
-</section>
-<section id="dependency-graph" class="level2">
-<h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-normal-distribution["Normal Distribution"]:::definition
-    def-variance["Variance"]:::definition
-    thm-central-limit["Central Limit Theorem"]:::theorem
-    thm-central-limit --&gt; def-normal-distribution
-    thm-central-limit --&gt; def-variance
-    class thm-central-limit current
-    click def-normal-distribution "def-normal-distribution.html" "Go to Normal Distribution"
-    click def-variance "def-variance.html" "Go to Variance"
-</pre>
-</div>
-<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-central-limit-1754028731" class="graph-visualization-container">
+<div id="graph-viz-thm-central-limit-1754030279" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -696,12 +557,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-central-limit-1754028731', {
+    createForceGraph(data, 'graph-viz-thm-central-limit-1754030279', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-central-limit-1754028731').innerHTML =
+    document.getElementById('graph-viz-thm-central-limit-1754030279').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

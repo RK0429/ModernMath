@@ -69,9 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "サーチ"
   }
 }</script>
-<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
@@ -289,7 +286,6 @@ window.Quarto = {
   <li><a href="#examples-of-applications" id="toc-examples-of-applications" class="nav-link" data-scroll-target="#examples-of-applications">Examples of Applications</a></li>
   <li><a href="#computational-considerations" id="toc-computational-considerations" class="nav-link" data-scroll-target="#computational-considerations">Computational Considerations</a></li>
   <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
-  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
   <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
   </ul></li>
   </ul>
@@ -422,47 +418,10 @@ window.Quarto = {
 <li><a href="../../../content/en/probability-statistics/thm-law-of-large-numbers.html">Law of Large Numbers</a> - Convergence of sample proportion</li>
 </ul>
 </section>
-<section id="dependency-graph" class="level2">
-<h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-random-variable["Definition: Random Variable"]:::definition
-    def-independence["Definition: Independence"]:::definition
-    def-variance["Definition: Variance"]:::definition
-    def-probability-distribution["Definition: Probability Distribution"]:::definition
-    def-expectation["Definition: Expected Value"]:::definition
-    def-binomial-distribution["Definition: Binomial Distribution"]:::definition
-    def-binomial-distribution --&gt; def-probability-distribution
-    def-binomial-distribution --&gt; def-independence
-    def-binomial-distribution --&gt; def-expectation
-    def-binomial-distribution --&gt; def-variance
-    def-binomial-distribution --&gt; def-random-variable
-    class def-binomial-distribution current
-    click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
-    click def-independence "def-independence.html" "Go to Independence definition"
-    click def-variance "def-variance.html" "Go to Variance definition"
-    click def-probability-distribution "def-probability-distribution.html" "Go to Probability Distribution definition"
-    click def-expectation "def-expectation.html" "Go to Expected Value definition"
-</pre>
-</div>
-<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-binomial-distribution-1754028803" class="graph-visualization-container">
+<div id="graph-viz-def-binomial-distribution-1754030352" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -751,12 +710,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-binomial-distribution-1754028803', {
+    createForceGraph(data, 'graph-viz-def-binomial-distribution-1754030352', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-binomial-distribution-1754028803').innerHTML =
+    document.getElementById('graph-viz-def-binomial-distribution-1754030352').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

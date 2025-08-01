@@ -69,9 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'en';
@@ -285,7 +282,6 @@ window.Quarto = {
   <li><a href="#relationship-to-group-actions" id="toc-relationship-to-group-actions" class="nav-link" data-scroll-target="#relationship-to-group-actions">Relationship to Group Actions</a></li>
   <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
   <li><a href="#complete-groups" id="toc-complete-groups" class="nav-link" data-scroll-target="#complete-groups">Complete Groups</a></li>
-  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
   <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
   </ul></li>
   </ul>
@@ -396,51 +392,10 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="complete-groups">Complete Groups</h2>
 <p>A group <span class="math inline">\(G\)</span> is called <strong>complete</strong> if: - Its <a href="../../../content/en/algebra/def-center-of-group.html">center</a> <span class="math inline">\(Z(G)\)</span> is trivial - Every automorphism of <span class="math inline">\(G\)</span> is inner (i.e., <span class="math inline">\(\text{Aut}(G) = \text{Inn}(G)\)</span>)</p>
 </section>
-<section id="dependency-graph" class="level2">
-<h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    ex-group-action-examples["Examples of Group Actions"]:::example
-    def-automorphism["Definition: Automorphism"]:::definition
-    def-identity-element["Definition: Identity Element"]:::definition
-    def-isomorphism["Definition: Isomorphism"]:::definition
-    def-group["Definition: Group"]:::definition
-    def-center-of-group["Definition: Center of a Group"]:::definition
-    def-homomorphism["Definition: Group Homomorphism"]:::definition
-    def-center-of-group --&gt; def-automorphism
-    def-automorphism --&gt; def-center-of-group
-    def-automorphism --&gt; def-isomorphism
-    def-automorphism --&gt; def-homomorphism
-    ex-group-action-examples --&gt; def-automorphism
-    def-automorphism --&gt; def-group
-    def-automorphism --&gt; def-identity-element
-    class def-automorphism current
-    click ex-group-action-examples "ex-group-action-examples.html" "Go to Examples of Group Actions"
-    click def-identity-element "def-identity-element.html" "Go to Identity Element definition"
-    click def-isomorphism "def-isomorphism.html" "Go to Isomorphism definition"
-    click def-group "def-group.html" "Go to Group definition"
-    click def-center-of-group "def-center-of-group.html" "Go to Center of a Group definition"
-    click def-homomorphism "def-homomorphism.html" "Go to Group Homomorphism definition"
-</pre>
-</div>
-<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-automorphism-1754028654" class="graph-visualization-container">
+<div id="graph-viz-def-automorphism-1754030210" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -729,12 +684,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-automorphism-1754028654', {
+    createForceGraph(data, 'graph-viz-def-automorphism-1754030210', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-automorphism-1754028654').innerHTML =
+    document.getElementById('graph-viz-def-automorphism-1754030210').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

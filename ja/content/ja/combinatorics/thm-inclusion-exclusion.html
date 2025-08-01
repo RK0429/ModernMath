@@ -69,9 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "サーチ"
   }
 }</script>
-<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
@@ -274,7 +271,6 @@ window.Quarto = {
   <li><a href="#応用" id="toc-応用" class="nav-link" data-scroll-target="#応用">応用</a></li>
   <li><a href="#例整数の数え上げ" id="toc-例整数の数え上げ" class="nav-link" data-scroll-target="#例整数の数え上げ">例：整数の数え上げ</a></li>
   <li><a href="#歴史的注記" id="toc-歴史的注記" class="nav-link" data-scroll-target="#歴史的注記">歴史的注記</a></li>
-  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul></li>
   </ul>
@@ -351,35 +347,10 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="歴史的注記">歴史的注記</h2>
 <p>この原理はアブラハム・ド・モアブル（1718年）に帰属されますが、明示的に現れるのはダニエル・ダ・シルバ（1854年）とJ. J. シルベスター（1883年）の論文が最初です。ジャン＝カルロ・ロータが述べたように、「離散確率論と組合せ論における列挙の最も有用な原理の一つが、有名な包除原理である」とされています。</p>
 </section>
-<section id="依存関係グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-inclusion-exclusion["定理: 包除原理"]:::theorem
-    def-set["定義: 集合"]:::definition
-    thm-inclusion-exclusion --&gt; def-set
-    class thm-inclusion-exclusion current
-    click def-set "def-set.html" "集合の定義へ"
-</pre>
-</div>
-<p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-inclusion-exclusion-1754028708" class="graph-visualization-container">
+<div id="graph-viz-thm-inclusion-exclusion-1754030267" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -668,12 +639,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-inclusion-exclusion-1754028708', {
+    createForceGraph(data, 'graph-viz-thm-inclusion-exclusion-1754030267', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-inclusion-exclusion-1754028708').innerHTML =
+    document.getElementById('graph-viz-thm-inclusion-exclusion-1754030267').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

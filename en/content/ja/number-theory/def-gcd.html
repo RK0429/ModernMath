@@ -69,9 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'en';
@@ -134,35 +131,6 @@ ul.task-list li input[type="checkbox"] {
   })();
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../design-tokens.css">
@@ -267,16 +235,6 @@ window.Quarto = {
   <ul>
   <li><a href="#def-gcd" id="toc-def-gcd" class="nav-link active" data-scroll-target="#def-gcd">最大公約数</a>
   <ul class="collapse">
-  <li><a href="#定義" id="toc-定義" class="nav-link" data-scroll-target="#定義">定義</a></li>
-  <li><a href="#別の特徴付け" id="toc-別の特徴付け" class="nav-link" data-scroll-target="#別の特徴付け">別の特徴付け</a></li>
-  <li><a href="#性質" id="toc-性質" class="nav-link" data-scroll-target="#性質">性質</a></li>
-  <li><a href="#ユークリッドのアルゴリズム" id="toc-ユークリッドのアルゴリズム" class="nav-link" data-scroll-target="#ユークリッドのアルゴリズム">ユークリッドのアルゴリズム</a></li>
-  <li><a href="#特殊な場合" id="toc-特殊な場合" class="nav-link" data-scroll-target="#特殊な場合">特殊な場合</a></li>
-  <li><a href="#例" id="toc-例" class="nav-link" data-scroll-target="#例">例</a></li>
-  <li><a href="#拡張定義" id="toc-拡張定義" class="nav-link" data-scroll-target="#拡張定義">拡張定義</a></li>
-  <li><a href="#mermaidダイアグラム" id="toc-mermaidダイアグラム" class="nav-link" data-scroll-target="#mermaidダイアグラム">Mermaidダイアグラム</a></li>
-  <li><a href="#関連項目" id="toc-関連項目" class="nav-link" data-scroll-target="#関連項目">関連項目</a></li>
-  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul></li>
   </ul>
@@ -307,146 +265,10 @@ window.Quarto = {
 <section id="def-gcd" class="level1">
 <h1>最大公約数</h1>
 <p>2つの整数の<strong>最大公約数 (GCD)</strong> は、両方の数を<a href="../../../content/ja/number-theory/def-divisibility.html">割り切る</a>最大の正の整数です。</p>
-<section id="定義" class="level2">
-<h2 class="anchored" data-anchor-id="定義">定義</h2>
-<p><span class="math inline">\(a, b \in \mathbb{Z}\)</span> で、両方が0でないとします。<span class="math inline">\(a\)</span> と <span class="math inline">\(b\)</span> の最大公約数を <span class="math inline">\(\gcd(a, b)\)</span> で表し、次の条件を満たす唯一の正の整数 <span class="math inline">\(d\)</span> として定義します：</p>
-<ol type="1">
-<li><span class="math inline">\(d \mid a\)</span> かつ <span class="math inline">\(d \mid b\)</span> （すなわち、<span class="math inline">\(d\)</span> は <span class="math inline">\(a\)</span> と <span class="math inline">\(b\)</span> の両方を<a href="../../../content/ja/number-theory/def-divisibility.html">割り切る</a>）</li>
-<li>ある整数 <span class="math inline">\(c\)</span> に対して <span class="math inline">\(c \mid a\)</span> かつ <span class="math inline">\(c \mid b\)</span> ならば、<span class="math inline">\(c \mid d\)</span></li>
-</ol>
-</section>
-<section id="別の特徴付け" class="level2">
-<h2 class="anchored" data-anchor-id="別の特徴付け">別の特徴付け</h2>
-<p><span class="math inline">\(\gcd(a, b)\)</span> は次の<a href="../../../content/ja/logic-set-theory/def-set.html">集合</a>の最大元です： <span class="math display">\[\{d \in \mathbb{Z}^+ : d \mid a \text{ かつ } d \mid b\}\]</span></p>
-</section>
-<section id="性質" class="level2">
-<h2 class="anchored" data-anchor-id="性質">性質</h2>
-<ol type="1">
-<li><strong>可換性</strong>：<span class="math inline">\(\gcd(a, b) = \gcd(b, a)\)</span></li>
-<li><strong>結合性</strong>：<span class="math inline">\(\gcd(a, \gcd(b, c)) = \gcd(\gcd(a, b), c)\)</span></li>
-<li><strong>単位元</strong>：<span class="math inline">\(a \neq 0\)</span> のとき <span class="math inline">\(\gcd(a, 0) = |a|\)</span></li>
-<li><strong>スケール性</strong>：任意の整数 <span class="math inline">\(k\)</span> に対して <span class="math inline">\(\gcd(ka, kb) = |k| \cdot \gcd(a, b)\)</span></li>
-<li><strong>ベズーの等式</strong>：<span class="math inline">\(\gcd(a, b) = ax + by\)</span> を満たす整数 <span class="math inline">\(x, y\)</span> が存在する</li>
-</ol>
-</section>
-<section id="ユークリッドのアルゴリズム" class="level2">
-<h2 class="anchored" data-anchor-id="ユークリッドのアルゴリズム">ユークリッドのアルゴリズム</h2>
-<p>GCD は次のユークリッドのアルゴリズムを用いて効率的に計算できます： <span class="math display">\[\gcd(a, b) = \gcd(b, a \bmod b)\]</span></p>
-<p>余りが0になるまで繰り返します。</p>
-</section>
-<section id="特殊な場合" class="level2">
-<h2 class="anchored" data-anchor-id="特殊な場合">特殊な場合</h2>
-<ul>
-<li><span class="math inline">\(\gcd(a, a) = |a|\)</span></li>
-<li>任意の整数 <span class="math inline">\(a\)</span> に対して <span class="math inline">\(\gcd(a, 1) = 1\)</span></li>
-<li><span class="math inline">\(\gcd(a, b) = 1\)</span> のとき、<span class="math inline">\(a\)</span> と <span class="math inline">\(b\)</span> は<strong>互いに素</strong>または<strong>相対的に素</strong>であるという</li>
-</ul>
-</section>
-<section id="例" class="level2">
-<h2 class="anchored" data-anchor-id="例">例</h2>
-<ol type="1">
-<li><span class="math inline">\(\gcd(12, 18) = 6\)</span></li>
-<li><span class="math inline">\(\gcd(17, 19) = 1\)</span> （17と19は互いに素）</li>
-<li><span class="math inline">\(\gcd(0, 5) = 5\)</span></li>
-<li><span class="math inline">\(\gcd(−24, 36) = 12\)</span></li>
-</ol>
-</section>
-<section id="拡張定義" class="level2">
-<h2 class="anchored" data-anchor-id="拡張定義">拡張定義</h2>
-<p>すべてが0でない有限個の整数の集合 <span class="math inline">\(\{a_1, a_2, \ldots, a_n\}\)</span> に対して： <span class="math display">\[\gcd(a_1, a_2, \ldots, a_n) = \gcd(a_1, \gcd(a_2, \ldots, a_n))\]</span></p>
-</section>
-<section id="mermaidダイアグラム" class="level2">
-<h2 class="anchored" data-anchor-id="mermaidダイアグラム">Mermaidダイアグラム</h2>
-<pre class="mermaid"><code>graph TD
-    A[GCD(a,b)] --&gt; B[最大公約数]
-    B --&gt; C[d | a かつ d | b]
-    B --&gt; D[c | a, c | b ⟹ c | d]
-    A --&gt; E[性質]
-    E --&gt; F[可換]
-    E --&gt; G[結合]
-    E --&gt; H[ベズーの等式]
-    A --&gt; I[ユークリッドのアルゴリズム]
-    I --&gt; J[gcd(a,b) = gcd(b, a mod b)]
-
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style H fill:#bfb,stroke:#333,stroke-width:2px
-    style I fill:#bbf,stroke:#333,stroke-width:2px</code></pre>
-</section>
-<section id="関連項目" class="level2">
-<h2 class="anchored" data-anchor-id="関連項目">関連項目</h2>
-<ul>
-<li><a href="../../../content/ja/number-theory/def-congruence.html">合同（モジュラー演算）</a> - 互いに素な整数はモジュラー逆元に不可欠</li>
-<li><a href="../../../content/ja/number-theory/def-lcm.html">最小公倍数</a> - 関連概念で基本的な関係式：<span class="math inline">\(\gcd(a,b) \cdot \text{lcm}(a,b) = |a| \cdot |b|\)</span></li>
-<li><a href="../../../content/ja/number-theory/def-prime.html">素数</a> - 素数はそれより小さいすべての正の整数と互いに素</li>
-<li><a href="../../../content/ja/number-theory/thm-euclidean-algorithm.html">ユークリッドのアルゴリズム</a> - GCDを計算する効率的なアルゴリズム</li>
-<li><a href="../../../content/ja/number-theory/thm-euler.html">オイラーの定理</a> - 互いに素な整数の概念を使用</li>
-</ul>
-</section>
-<section id="依存関係グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-fundamental-arithmetic["定理：算術の基本定理"]:::theorem
-    thm-chinese-remainder["定理: 中国剰余定理"]:::theorem
-    thm-euler["定理：オイラーの定理"]:::theorem
-    def-lcm["定義：最小公倍数"]:::definition
-    thm-fermat-little["定理: フェルマーの小定理"]:::theorem
-    def-set["定義: 集合"]:::definition
-    thm-euclidean-algorithm["定理：ユークリッドのアルゴリズム"]:::theorem
-    def-divisibility["定義: 整除性"]:::definition
-    def-congruence["定義: 合同（モジュラー演算）"]:::definition
-    def-gcd["定義：最大公約数"]:::definition
-    def-prime["定義：素数"]:::definition
-    ex-principal-ideal["例: 整数における単項イデアル"]:::example
-    thm-fermat-little --&gt; def-gcd
-    def-divisibility --&gt; def-gcd
-    def-prime --&gt; def-gcd
-    def-gcd --&gt; thm-euclidean-algorithm
-    ex-principal-ideal --&gt; def-gcd
-    thm-fundamental-arithmetic --&gt; def-gcd
-    def-lcm --&gt; def-gcd
-    def-gcd --&gt; def-congruence
-    def-gcd --&gt; def-set
-    def-gcd --&gt; def-prime
-    def-congruence --&gt; def-gcd
-    def-gcd --&gt; def-divisibility
-    def-gcd --&gt; thm-euler
-    thm-chinese-remainder --&gt; def-gcd
-    thm-euclidean-algorithm --&gt; def-gcd
-    def-gcd --&gt; def-lcm
-    class def-gcd current
-    click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "定理：算術の基本定理へ"
-    click thm-chinese-remainder "thm-chinese-remainder.html" "中国剰余定理の定理へ"
-    click thm-euler "thm-euler.html" "定理：オイラーの定理へ"
-    click def-lcm "def-lcm.html" "定義：最小公倍数へ"
-    click thm-fermat-little "thm-fermat-little.html" "フェルマーの小定理の定理へ"
-    click def-set "def-set.html" "集合の定義へ"
-    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "定理：ユークリッドのアルゴリズムへ"
-    click def-divisibility "def-divisibility.html" "整除性の定義へ"
-    click def-congruence "def-congruence.html" "合同（モジュラー演算）の定義へ"
-    click def-prime "def-prime.html" "定義：素数へ"
-    click ex-principal-ideal "ex-principal-ideal.html" "整数における単項イデアルの例へ"
-</pre>
-</div>
-<p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-gcd-1754028821" class="graph-visualization-container">
+<div id="graph-viz-def-gcd-1754030364" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -735,12 +557,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-gcd-1754028821', {
+    createForceGraph(data, 'graph-viz-def-gcd-1754030364', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-gcd-1754028821').innerHTML =
+    document.getElementById('graph-viz-def-gcd-1754030364').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

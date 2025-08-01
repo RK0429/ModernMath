@@ -69,9 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'en';
@@ -271,7 +268,6 @@ window.Quarto = {
   <li><a href="#閉集合の性質" id="toc-閉集合の性質" class="nav-link" data-scroll-target="#閉集合の性質">閉集合の性質</a></li>
   <li><a href="#開集合との関係" id="toc-開集合との関係" class="nav-link" data-scroll-target="#開集合との関係">開集合との関係</a></li>
   <li><a href="#閉包作用素" id="toc-閉包作用素" class="nav-link" data-scroll-target="#閉包作用素">閉包作用素</a></li>
-  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   <li><a href="#形式的証明" id="toc-形式的証明" class="nav-link" data-scroll-target="#形式的証明">形式的証明</a></li>
   </ul></li>
@@ -328,47 +324,10 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="閉包作用素">閉包作用素</h2>
 <p>任意の部分集合<span class="math inline">\(A \subseteq X\)</span>に対して、閉包<span class="math inline">\(\overline{A}\)</span>は<span class="math inline">\(A\)</span>を含む最小の閉集合です： <span class="math display">\[\overline{A} = \bigcap \{C : A \subseteq C \text{ かつ } C \text{ は閉集合}\}\]</span></p>
 </section>
-<section id="依存関係グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-heine-borel["定理: ハイネ・ボレルの定理"]:::theorem
-    def-open-set["定義: 開集合"]:::definition
-    def-connected["定義: 連結空間"]:::definition
-    def-set["定義: 集合"]:::definition
-    def-topological-space["定義: 位相空間"]:::definition
-    def-closed-set["定義: 閉集合"]:::definition
-    thm-heine-borel --&gt; def-closed-set
-    def-connected --&gt; def-closed-set
-    def-closed-set --&gt; def-set
-    def-closed-set --&gt; def-open-set
-    def-closed-set --&gt; def-topological-space
-    class def-closed-set current
-    click thm-heine-borel "thm-heine-borel.html" "ハイネ・ボレルの定理の定理へ"
-    click def-open-set "def-open-set.html" "開集合の定義へ"
-    click def-connected "def-connected.html" "連結空間の定義へ"
-    click def-set "def-set.html" "集合の定義へ"
-    click def-topological-space "def-topological-space.html" "位相空間の定義へ"
-</pre>
-</div>
-<p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-def-closed-set-1754028811" class="graph-visualization-container">
+<div id="graph-viz-def-closed-set-1754030355" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -657,12 +616,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-closed-set-1754028811', {
+    createForceGraph(data, 'graph-viz-def-closed-set-1754030355', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-closed-set-1754028811').innerHTML =
+    document.getElementById('graph-viz-def-closed-set-1754030355').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

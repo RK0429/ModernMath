@@ -69,9 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "サーチ"
   }
 }</script>
-<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
@@ -267,12 +264,6 @@ window.Quarto = {
   <ul>
   <li><a href="#thm-cantor" id="toc-thm-cantor" class="nav-link active" data-scroll-target="#thm-cantor">Cantor’s Theorem</a>
   <ul class="collapse">
-  <li><a href="#statement" id="toc-statement" class="nav-link" data-scroll-target="#statement">Statement</a></li>
-  <li><a href="#proof" id="toc-proof" class="nav-link" data-scroll-target="#proof">Proof</a></li>
-  <li><a href="#consequences" id="toc-consequences" class="nav-link" data-scroll-target="#consequences">Consequences</a></li>
-  <li><a href="#special-case" id="toc-special-case" class="nav-link" data-scroll-target="#special-case">Special Case</a></li>
-  <li><a href="#mermaid-diagram" id="toc-mermaid-diagram" class="nav-link" data-scroll-target="#mermaid-diagram">Mermaid Diagram</a></li>
-  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
   <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
   </ul></li>
   </ul>
@@ -303,87 +294,10 @@ window.Quarto = {
 <section id="thm-cantor" class="level1">
 <h1>Cantor’s Theorem</h1>
 <p>For any <a href="../../../content/en/logic-set-theory/def-set.html">set</a> <span class="math inline">\(A\)</span>, there is no surjection from <span class="math inline">\(A\)</span> to its <a href="../../../content/en/logic-set-theory/def-power-set.html">power set</a> <span class="math inline">\(\mathcal{P}(A)\)</span>. In particular, the <a href="../../../content/en/logic-set-theory/def-cardinality.html">cardinality</a> satisfies <span class="math inline">\(|A| &lt; |\mathcal{P}(A)|\)</span>.</p>
-<section id="statement" class="level2">
-<h2 class="anchored" data-anchor-id="statement">Statement</h2>
-<p>Let <span class="math inline">\(A\)</span> be any set. Then there exists no function <span class="math inline">\(f: A \to \mathcal{P}(A)\)</span> that is surjective (onto).</p>
-</section>
-<section id="proof" class="level2">
-<h2 class="anchored" data-anchor-id="proof">Proof</h2>
-<p>We prove this by contradiction using Cantor’s diagonal argument.</p>
-<p>Suppose <span class="math inline">\(f: A \to \mathcal{P}(A)\)</span> is surjective. Define the set: <span class="math display">\[B = \{x \in A : x \notin f(x)\}\]</span></p>
-<p>Note that <span class="math inline">\(B \subseteq A\)</span>, so <span class="math inline">\(B \in \mathcal{P}(A)\)</span>.</p>
-<p>Since <span class="math inline">\(f\)</span> is assumed to be surjective, there must exist some <span class="math inline">\(a \in A\)</span> such that <span class="math inline">\(f(a) = B\)</span>.</p>
-<p>Now we ask: Is <span class="math inline">\(a \in B\)</span>?</p>
-<ul>
-<li>If <span class="math inline">\(a \in B\)</span>, then by definition of <span class="math inline">\(B\)</span>, we have <span class="math inline">\(a \notin f(a) = B\)</span>. Contradiction!</li>
-<li>If <span class="math inline">\(a \notin B\)</span>, then <span class="math inline">\(a \notin f(a)\)</span>, which by definition of <span class="math inline">\(B\)</span> means <span class="math inline">\(a \in B\)</span>. Contradiction!</li>
-</ul>
-<p>Both cases lead to a contradiction. Therefore, no such surjection <span class="math inline">\(f\)</span> can exist.</p>
-</section>
-<section id="consequences" class="level2">
-<h2 class="anchored" data-anchor-id="consequences">Consequences</h2>
-<ol type="1">
-<li><strong>Infinite hierarchy</strong>: Starting with any infinite set, we can construct an infinite sequence of sets with strictly increasing <a href="../../../content/en/logic-set-theory/def-cardinality.html">cardinalities</a></li>
-<li><strong>No largest cardinal</strong>: There is no set of all sets</li>
-<li><strong>Uncountability</strong>: <span class="math inline">\(\mathcal{P}(\mathbb{N})\)</span> is uncountable (since <span class="math inline">\(|\mathbb{N}| &lt; |\mathcal{P}(\mathbb{N})|\)</span>)</li>
-</ol>
-</section>
-<section id="special-case" class="level2">
-<h2 class="anchored" data-anchor-id="special-case">Special Case</h2>
-<p>For finite sets: If <span class="math inline">\(|A| = n\)</span>, then <span class="math inline">\(|\mathcal{P}(A)| = 2^n &gt; n\)</span> for all <span class="math inline">\(n \geq 0\)</span>.</p>
-</section>
-<section id="mermaid-diagram" class="level2">
-<h2 class="anchored" data-anchor-id="mermaid-diagram">Mermaid Diagram</h2>
-<pre class="mermaid"><code>graph TD
-    A[Cantor's Theorem] --&gt; B[No surjection A → P(A)]
-    B --&gt; C[Diagonal Argument]
-    C --&gt; D[Construct B = {x: x ∉ f(x)}]
-    D --&gt; E[Contradiction]
-    A --&gt; F[|A| &lt; |P(A)|]
-    F --&gt; G[Infinite Hierarchy]
-    F --&gt; H[P(ℕ) Uncountable]
-
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style E fill:#fbb,stroke:#333,stroke-width:2px
-    style F fill:#bfb,stroke:#333,stroke-width:2px</code></pre>
-</section>
-<section id="dependency-graph" class="level2">
-<h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["Definition: Set"]:::definition
-    thm-cantor["Theorem: Cantor's Theorem"]:::theorem
-    def-power-set["Definition: Power Set"]:::definition
-    def-cardinality["Definition: Cardinality"]:::definition
-    thm-cantor --&gt; def-set
-    def-cardinality --&gt; thm-cantor
-    thm-cantor --&gt; def-power-set
-    thm-cantor --&gt; def-cardinality
-    class thm-cantor current
-    click def-set "def-set.html" "Go to Set definition"
-    click def-power-set "def-power-set.html" "Go to Power Set definition"
-    click def-cardinality "def-cardinality.html" "Go to Cardinality definition"
-</pre>
-</div>
-<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-cantor-1754028804" class="graph-visualization-container">
+<div id="graph-viz-thm-cantor-1754030353" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -672,12 +586,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-cantor-1754028804', {
+    createForceGraph(data, 'graph-viz-thm-cantor-1754030353', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-cantor-1754028804').innerHTML =
+    document.getElementById('graph-viz-thm-cantor-1754030353').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

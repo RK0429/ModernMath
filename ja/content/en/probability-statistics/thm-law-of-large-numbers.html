@@ -69,9 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "サーチ"
   }
 }</script>
-<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
@@ -134,35 +131,6 @@ ul.task-list li input[type="checkbox"] {
   })();
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../design-tokens.css">
@@ -267,14 +235,6 @@ window.Quarto = {
   <ul>
   <li><a href="#thm-law-of-large-numbers" id="toc-thm-law-of-large-numbers" class="nav-link active" data-scroll-target="#thm-law-of-large-numbers">Law of Large Numbers</a>
   <ul class="collapse">
-  <li><a href="#weak-law-of-large-numbers" id="toc-weak-law-of-large-numbers" class="nav-link" data-scroll-target="#weak-law-of-large-numbers">Weak Law of Large Numbers</a></li>
-  <li><a href="#strong-law-of-large-numbers" id="toc-strong-law-of-large-numbers" class="nav-link" data-scroll-target="#strong-law-of-large-numbers">Strong Law of Large Numbers</a></li>
-  <li><a href="#proof-sketch-weak-law" id="toc-proof-sketch-weak-law" class="nav-link" data-scroll-target="#proof-sketch-weak-law">Proof Sketch (Weak Law)</a></li>
-  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
-  <li><a href="#related-concepts" id="toc-related-concepts" class="nav-link" data-scroll-target="#related-concepts">Related Concepts</a></li>
-  <li><a href="#mermaid-diagram" id="toc-mermaid-diagram" class="nav-link" data-scroll-target="#mermaid-diagram">Mermaid Diagram</a></li>
-  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
   <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
   </ul></li>
   </ul>
@@ -305,103 +265,10 @@ window.Quarto = {
 <section id="thm-law-of-large-numbers" class="level1">
 <h1>Law of Large Numbers</h1>
 <p>The <strong>Law of Large Numbers</strong> states that the sample average of <a href="../../../content/en/probability-statistics/def-independence.html">independent</a> and identically distributed <a href="../../../content/en/probability-statistics/def-random-variable.html">random variables</a> converges to their <a href="../../../content/en/probability-statistics/def-expectation.html">expected value</a> as the sample size increases.</p>
-<section id="weak-law-of-large-numbers" class="level2">
-<h2 class="anchored" data-anchor-id="weak-law-of-large-numbers">Weak Law of Large Numbers</h2>
-<p>Let <span class="math inline">\(X_1, X_2, \ldots\)</span> be <a href="../../../content/en/probability-statistics/def-independence.html">independent</a> and identically distributed random variables with finite expected value <span class="math inline">\(\mu = E[X_i]\)</span> and finite <a href="../../../content/en/probability-statistics/def-variance.html">variance</a> <span class="math inline">\(\sigma^2 = \text{Var}(X_i)\)</span>.</p>
-<p>Define the sample average: <span class="math display">\[\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i\]</span></p>
-<p>Then for any <span class="math inline">\(\epsilon &gt; 0\)</span>: <span class="math display">\[\lim_{n \to \infty} P(|\bar{X}_n - \mu| &gt; \epsilon) = 0\]</span></p>
-<p>This is convergence in probability: <span class="math inline">\(\bar{X}_n \xrightarrow{P} \mu\)</span>.</p>
-</section>
-<section id="strong-law-of-large-numbers" class="level2">
-<h2 class="anchored" data-anchor-id="strong-law-of-large-numbers">Strong Law of Large Numbers</h2>
-<p>Under the same conditions, we have almost sure convergence: <span class="math display">\[P\left(\lim_{n \to \infty} \bar{X}_n = \mu\right) = 1\]</span></p>
-<p>This is written as: <span class="math inline">\(\bar{X}_n \xrightarrow{a.s.} \mu\)</span>.</p>
-</section>
-<section id="proof-sketch-weak-law" class="level2">
-<h2 class="anchored" data-anchor-id="proof-sketch-weak-law">Proof Sketch (Weak Law)</h2>
-<p>Using Chebyshev’s inequality: <span class="math display">\[P(|\bar{X}_n - \mu| &gt; \epsilon) \leq \frac{\text{Var}(\bar{X}_n)}{\epsilon^2}\]</span></p>
-<p>Since the <span class="math inline">\(X_i\)</span> are <a href="../../../content/en/probability-statistics/def-independence.html">independent</a>: <span class="math display">\[\text{Var}(\bar{X}_n) = \text{Var}\left(\frac{1}{n} \sum_{i=1}^n X_i\right) = \frac{1}{n^2} \sum_{i=1}^n \text{Var}(X_i) = \frac{\sigma^2}{n}\]</span></p>
-<p>Therefore: <span class="math display">\[P(|\bar{X}_n - \mu| &gt; \epsilon) \leq \frac{\sigma^2}{n\epsilon^2} \to 0 \text{ as } n \to \infty\]</span></p>
-</section>
-<section id="applications" class="level2">
-<h2 class="anchored" data-anchor-id="applications">Applications</h2>
-<ol type="1">
-<li><strong>Empirical frequencies converge to probabilities</strong></li>
-<li><strong>Sample means approximate population means</strong></li>
-<li><strong>Foundation for statistical inference</strong></li>
-<li><strong>Monte Carlo methods</strong></li>
-</ol>
-</section>
-<section id="example" class="level2">
-<h2 class="anchored" data-anchor-id="example">Example</h2>
-<p>For fair coin flips (Bernoulli(1/2), see <a href="../../../content/en/probability-statistics/def-binomial-distribution.html">Binomial Distribution</a> for <span class="math inline">\(n=1\)</span>), the proportion of heads converges to 1/2 as the number of flips increases.</p>
-</section>
-<section id="related-concepts" class="level2">
-<h2 class="anchored" data-anchor-id="related-concepts">Related Concepts</h2>
-<ul>
-<li><a href="../../../content/en/probability-statistics/thm-central-limit.html">Central Limit Theorem</a>: Describes the distribution of the sample mean, not just its convergence</li>
-<li>Concentration inequalities: Provide bounds on convergence rates</li>
-</ul>
-</section>
-<section id="mermaid-diagram" class="level2">
-<h2 class="anchored" data-anchor-id="mermaid-diagram">Mermaid Diagram</h2>
-<pre class="mermaid"><code>graph TD
-    A[Law of Large Numbers] --&gt; B[Sample Average]
-    B --&gt; C[X̄ₙ = (1/n)Σ Xᵢ]
-    A --&gt; D[Weak Law]
-    A --&gt; E[Strong Law]
-    D --&gt; F[Convergence in Probability]
-    E --&gt; G[Almost Sure Convergence]
-    F --&gt; H[P(|X̄ₙ - μ| &gt; ε) → 0]
-    G --&gt; I[P(lim X̄ₙ = μ) = 1]
-
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style D fill:#bbf,stroke:#333,stroke-width:2px
-    style E fill:#bbf,stroke:#333,stroke-width:2px
-    style H fill:#bfb,stroke:#333,stroke-width:2px
-    style I fill:#bfb,stroke:#333,stroke-width:2px</code></pre>
-</section>
-<section id="dependency-graph" class="level2">
-<h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-random-variable["Definition: Random Variable"]:::definition
-    def-independence["Definition: Independence"]:::definition
-    def-variance["Definition: Variance"]:::definition
-    thm-law-of-large-numbers["Theorem: Law of Large Numbers"]:::theorem
-    def-probability-distribution["Definition: Probability Distribution"]:::definition
-    def-expectation["Definition: Expected Value"]:::definition
-    thm-law-of-large-numbers --&gt; def-variance
-    thm-law-of-large-numbers --&gt; def-random-variable
-    thm-law-of-large-numbers --&gt; def-probability-distribution
-    thm-law-of-large-numbers --&gt; def-independence
-    thm-law-of-large-numbers --&gt; def-expectation
-    class thm-law-of-large-numbers current
-    click def-random-variable "def-random-variable.html" "Go to Random Variable definition"
-    click def-independence "def-independence.html" "Go to Independence definition"
-    click def-variance "def-variance.html" "Go to Variance definition"
-    click def-probability-distribution "def-probability-distribution.html" "Go to Probability Distribution definition"
-    click def-expectation "def-expectation.html" "Go to Expected Value definition"
-</pre>
-</div>
-<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-thm-law-of-large-numbers-1754028798" class="graph-visualization-container">
+<div id="graph-viz-thm-law-of-large-numbers-1754030349" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -690,12 +557,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-law-of-large-numbers-1754028798', {
+    createForceGraph(data, 'graph-viz-thm-law-of-large-numbers-1754030349', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-law-of-large-numbers-1754028798').innerHTML =
+    document.getElementById('graph-viz-thm-law-of-large-numbers-1754030349').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

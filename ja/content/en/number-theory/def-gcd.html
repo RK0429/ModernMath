@@ -69,9 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "サーチ"
   }
 }</script>
-<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
@@ -134,35 +131,6 @@ ul.task-list li input[type="checkbox"] {
   })();
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../design-tokens.css">
@@ -267,16 +235,6 @@ window.Quarto = {
   <ul>
   <li><a href="#def-gcd" id="toc-def-gcd" class="nav-link active" data-scroll-target="#def-gcd">Greatest Common Divisor</a>
   <ul class="collapse">
-  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition">Definition</a></li>
-  <li><a href="#alternative-characterization" id="toc-alternative-characterization" class="nav-link" data-scroll-target="#alternative-characterization">Alternative Characterization</a></li>
-  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
-  <li><a href="#euclidean-algorithm" id="toc-euclidean-algorithm" class="nav-link" data-scroll-target="#euclidean-algorithm">Euclidean Algorithm</a></li>
-  <li><a href="#special-cases" id="toc-special-cases" class="nav-link" data-scroll-target="#special-cases">Special Cases</a></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
-  <li><a href="#extended-definition" id="toc-extended-definition" class="nav-link" data-scroll-target="#extended-definition">Extended Definition</a></li>
-  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
-  <li><a href="#mermaid-diagram" id="toc-mermaid-diagram" class="nav-link" data-scroll-target="#mermaid-diagram">Mermaid Diagram</a></li>
-  <li><a href="#dependency-graph" id="toc-dependency-graph" class="nav-link" data-scroll-target="#dependency-graph">Dependency Graph</a></li>
   <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
   </ul></li>
   </ul>
@@ -307,146 +265,10 @@ window.Quarto = {
 <section id="def-gcd" class="level1">
 <h1>Greatest Common Divisor</h1>
 <p>The <strong>greatest common divisor (GCD)</strong> of two integers is the largest positive integer that <a href="../../../content/en/number-theory/def-divisibility.html">divides</a> both numbers.</p>
-<section id="definition" class="level2">
-<h2 class="anchored" data-anchor-id="definition">Definition</h2>
-<p>Let <span class="math inline">\(a, b \in \mathbb{Z}\)</span>, not both zero. The greatest common divisor of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, denoted <span class="math inline">\(\gcd(a, b)\)</span>, is the unique positive integer <span class="math inline">\(d\)</span> such that:</p>
-<ol type="1">
-<li><span class="math inline">\(d \mid a\)</span> and <span class="math inline">\(d \mid b\)</span> (i.e., <span class="math inline">\(d\)</span> <a href="../../../content/en/number-theory/def-divisibility.html">divides</a> both <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>)</li>
-<li>If <span class="math inline">\(c \mid a\)</span> and <span class="math inline">\(c \mid b\)</span> for some integer <span class="math inline">\(c\)</span>, then <span class="math inline">\(c \mid d\)</span></li>
-</ol>
-</section>
-<section id="alternative-characterization" class="level2">
-<h2 class="anchored" data-anchor-id="alternative-characterization">Alternative Characterization</h2>
-<p><span class="math inline">\(\gcd(a, b)\)</span> is the largest element in the <a href="../../../content/en/logic-set-theory/def-set.html">set</a>: <span class="math display">\[\{d \in \mathbb{Z}^+ : d \mid a \text{ and } d \mid b\}\]</span></p>
-</section>
-<section id="properties" class="level2">
-<h2 class="anchored" data-anchor-id="properties">Properties</h2>
-<ol type="1">
-<li><strong>Commutativity</strong>: <span class="math inline">\(\gcd(a, b) = \gcd(b, a)\)</span></li>
-<li><strong>Associativity</strong>: <span class="math inline">\(\gcd(a, \gcd(b, c)) = \gcd(\gcd(a, b), c)\)</span></li>
-<li><strong>Identity</strong>: <span class="math inline">\(\gcd(a, 0) = |a|\)</span> for <span class="math inline">\(a \neq 0\)</span></li>
-<li><strong>Scaling</strong>: <span class="math inline">\(\gcd(ka, kb) = |k| \cdot \gcd(a, b)\)</span> for any integer <span class="math inline">\(k\)</span></li>
-<li><strong>Bézout’s Identity</strong>: There exist integers <span class="math inline">\(x, y\)</span> such that <span class="math inline">\(\gcd(a, b) = ax + by\)</span></li>
-</ol>
-</section>
-<section id="euclidean-algorithm" class="level2">
-<h2 class="anchored" data-anchor-id="euclidean-algorithm">Euclidean Algorithm</h2>
-<p>The GCD can be computed efficiently using the Euclidean algorithm: <span class="math display">\[\gcd(a, b) = \gcd(b, a \bmod b)\]</span></p>
-<p>Repeating until the remainder is 0.</p>
-</section>
-<section id="special-cases" class="level2">
-<h2 class="anchored" data-anchor-id="special-cases">Special Cases</h2>
-<ul>
-<li><span class="math inline">\(\gcd(a, a) = |a|\)</span></li>
-<li><span class="math inline">\(\gcd(a, 1) = 1\)</span> for any integer <span class="math inline">\(a\)</span></li>
-<li>If <span class="math inline">\(\gcd(a, b) = 1\)</span>, we say <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are <strong>coprime</strong> or <strong>relatively prime</strong></li>
-</ul>
-</section>
-<section id="examples" class="level2">
-<h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<ol type="1">
-<li><span class="math inline">\(\gcd(12, 18) = 6\)</span></li>
-<li><span class="math inline">\(\gcd(17, 19) = 1\)</span> (17 and 19 are coprime)</li>
-<li><span class="math inline">\(\gcd(0, 5) = 5\)</span></li>
-<li><span class="math inline">\(\gcd(−24, 36) = 12\)</span></li>
-</ol>
-</section>
-<section id="extended-definition" class="level2">
-<h2 class="anchored" data-anchor-id="extended-definition">Extended Definition</h2>
-<p>For a finite set of integers <span class="math inline">\(\{a_1, a_2, \ldots, a_n\}\)</span> not all zero: <span class="math display">\[\gcd(a_1, a_2, \ldots, a_n) = \gcd(a_1, \gcd(a_2, \ldots, a_n))\]</span></p>
-</section>
-<section id="see-also" class="level2">
-<h2 class="anchored" data-anchor-id="see-also">See Also</h2>
-<ul>
-<li><a href="../../../content/en/number-theory/def-congruence.html">Congruence (Modular Arithmetic)</a> - Coprime integers are essential for modular inverses</li>
-<li><a href="../../../content/en/number-theory/def-lcm.html">Least Common Multiple</a> - Related concept with fundamental relationship: <span class="math inline">\(\gcd(a,b) \cdot \text{lcm}(a,b) = |a| \cdot |b|\)</span></li>
-<li><a href="../../../content/en/number-theory/def-prime.html">Prime Number</a> - Prime numbers are coprime to all smaller positive integers</li>
-<li><a href="../../../content/en/number-theory/thm-euclidean-algorithm.html">Euclidean Algorithm</a> - Efficient algorithm for computing GCD</li>
-<li><a href="../../../content/en/number-theory/thm-euler.html">Euler’s Theorem</a> - Uses the concept of coprime integers</li>
-</ul>
-</section>
-<section id="mermaid-diagram" class="level2">
-<h2 class="anchored" data-anchor-id="mermaid-diagram">Mermaid Diagram</h2>
-<pre class="mermaid"><code>graph TD
-    A[GCD(a,b)] --&gt; B[Largest Common Divisor]
-    B --&gt; C[d | a and d | b]
-    B --&gt; D[c | a, c | b ⟹ c | d]
-    A --&gt; E[Properties]
-    E --&gt; F[Commutative]
-    E --&gt; G[Associative]
-    E --&gt; H[Bézout's Identity]
-    A --&gt; I[Euclidean Algorithm]
-    I --&gt; J[gcd(a,b) = gcd(b, a mod b)]
-
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style H fill:#bfb,stroke:#333,stroke-width:2px
-    style I fill:#bbf,stroke:#333,stroke-width:2px</code></pre>
-</section>
-<section id="dependency-graph" class="level2">
-<h2 class="anchored" data-anchor-id="dependency-graph">Dependency Graph</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    thm-fundamental-arithmetic["Theorem: Fundamental Theorem of Arithmetic"]:::theorem
-    thm-chinese-remainder["Theorem: Chinese Remainder Theorem"]:::theorem
-    thm-euler["Theorem: Euler's Theorem"]:::theorem
-    def-lcm["Definition: Least Common Multiple"]:::definition
-    thm-fermat-little["Theorem: Fermat's Little Theorem"]:::theorem
-    def-set["Definition: Set"]:::definition
-    thm-euclidean-algorithm["Theorem: Euclidean Algorithm"]:::theorem
-    def-divisibility["Definition: Divisibility"]:::definition
-    def-congruence["Definition: Congruence (Modular Arithmetic)"]:::definition
-    def-gcd["Definition: Greatest Common Divisor"]:::definition
-    def-prime["Definition: Prime Number"]:::definition
-    ex-principal-ideal["Example: Principal Ideals in Integers"]:::example
-    thm-fermat-little --&gt; def-gcd
-    def-divisibility --&gt; def-gcd
-    def-prime --&gt; def-gcd
-    def-gcd --&gt; thm-euclidean-algorithm
-    ex-principal-ideal --&gt; def-gcd
-    thm-fundamental-arithmetic --&gt; def-gcd
-    def-lcm --&gt; def-gcd
-    def-gcd --&gt; def-congruence
-    def-gcd --&gt; def-set
-    def-gcd --&gt; def-prime
-    def-congruence --&gt; def-gcd
-    def-gcd --&gt; def-divisibility
-    def-gcd --&gt; thm-euler
-    thm-chinese-remainder --&gt; def-gcd
-    thm-euclidean-algorithm --&gt; def-gcd
-    def-gcd --&gt; def-lcm
-    class def-gcd current
-    click thm-fundamental-arithmetic "thm-fundamental-arithmetic.html" "Go to Fundamental Theorem of Arithmetic theorem"
-    click thm-chinese-remainder "thm-chinese-remainder.html" "Go to Chinese Remainder Theorem theorem"
-    click thm-euler "thm-euler.html" "Go to Euler's Theorem theorem"
-    click def-lcm "def-lcm.html" "Go to Least Common Multiple definition"
-    click thm-fermat-little "thm-fermat-little.html" "Go to Fermat's Little Theorem theorem"
-    click def-set "def-set.html" "Go to Set definition"
-    click thm-euclidean-algorithm "thm-euclidean-algorithm.html" "Go to Euclidean Algorithm theorem"
-    click def-divisibility "def-divisibility.html" "Go to Divisibility definition"
-    click def-congruence "def-congruence.html" "Go to Congruence (Modular Arithmetic) definition"
-    click def-prime "def-prime.html" "Go to Prime Number definition"
-    click ex-principal-ideal "ex-principal-ideal.html" "Go to Principal Ideals in Integers example"
-</pre>
-</div>
-<p></p><figcaption> Local dependency graph</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
 <section id="interactive-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h2>
 <p>Explore the local knowledge graph neighborhood interactively:</p>
-<div id="graph-viz-def-gcd-1754028826" class="graph-visualization-container">
+<div id="graph-viz-def-gcd-1754030373" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -735,12 +557,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-def-gcd-1754028826', {
+    createForceGraph(data, 'graph-viz-def-gcd-1754030373', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-def-gcd-1754028826').innerHTML =
+    document.getElementById('graph-viz-def-gcd-1754030373').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }

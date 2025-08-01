@@ -69,9 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "サーチ"
   }
 }</script>
-<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script>
   window.siteLanguage = 'ja';
@@ -267,12 +264,6 @@ window.Quarto = {
   <ul>
   <li><a href="#thm-cantor" id="toc-thm-cantor" class="nav-link active" data-scroll-target="#thm-cantor">カントールの定理</a>
   <ul class="collapse">
-  <li><a href="#主張" id="toc-主張" class="nav-link" data-scroll-target="#主張">主張</a></li>
-  <li><a href="#証明" id="toc-証明" class="nav-link" data-scroll-target="#証明">証明</a></li>
-  <li><a href="#帰結" id="toc-帰結" class="nav-link" data-scroll-target="#帰結">帰結</a></li>
-  <li><a href="#特殊な場合" id="toc-特殊な場合" class="nav-link" data-scroll-target="#特殊な場合">特殊な場合</a></li>
-  <li><a href="#mermaidダイアグラム" id="toc-mermaidダイアグラム" class="nav-link" data-scroll-target="#mermaidダイアグラム">Mermaidダイアグラム</a></li>
-  <li><a href="#依存関係グラフ" id="toc-依存関係グラフ" class="nav-link" data-scroll-target="#依存関係グラフ">依存関係グラフ</a></li>
   <li><a href="#インタラクティブ可視化" id="toc-インタラクティブ可視化" class="nav-link" data-scroll-target="#インタラクティブ可視化">インタラクティブ可視化</a></li>
   </ul></li>
   </ul>
@@ -303,87 +294,10 @@ window.Quarto = {
 <section id="thm-cantor" class="level1">
 <h1>カントールの定理</h1>
 <p>任意の<a href="../../../content/ja/logic-set-theory/def-set.html">集合</a> <span class="math inline">\(A\)</span> に対して、<span class="math inline">\(A\)</span> からその<a href="../../../content/ja/logic-set-theory/def-power-set.html">べき集合</a> <span class="math inline">\(\mathcal{P}(A)\)</span> への全射は存在しない。特に、<a href="../../../content/ja/logic-set-theory/def-cardinality.html">濃度</a>について <span class="math inline">\(|A| &lt; |\mathcal{P}(A)|\)</span> が成り立つ。</p>
-<section id="主張" class="level2">
-<h2 class="anchored" data-anchor-id="主張">主張</h2>
-<p><span class="math inline">\(A\)</span> を任意の集合とする。このとき、全射となる関数 <span class="math inline">\(f: A \to \mathcal{P}(A)\)</span> は存在しない。</p>
-</section>
-<section id="証明" class="level2">
-<h2 class="anchored" data-anchor-id="証明">証明</h2>
-<p>カントールの対角線論法を用いて背理法で証明する。</p>
-<p><span class="math inline">\(f: A \to \mathcal{P}(A)\)</span> が全射であると仮定する。次の集合を定義する： <span class="math display">\[B = \{x \in A : x \notin f(x)\}\]</span></p>
-<p><span class="math inline">\(B \subseteq A\)</span> であるから、<span class="math inline">\(B \in \mathcal{P}(A)\)</span> である。</p>
-<p><span class="math inline">\(f\)</span> が全射であると仮定したので、ある <span class="math inline">\(a \in A\)</span> が存在して <span class="math inline">\(f(a) = B\)</span> となる。</p>
-<p>ここで問う：<span class="math inline">\(a \in B\)</span> か？</p>
-<ul>
-<li>もし <span class="math inline">\(a \in B\)</span> ならば、<span class="math inline">\(B\)</span> の定義より <span class="math inline">\(a \notin f(a) = B\)</span> となる。矛盾！</li>
-<li>もし <span class="math inline">\(a \notin B\)</span> ならば、<span class="math inline">\(a \notin f(a)\)</span> であり、<span class="math inline">\(B\)</span> の定義より <span class="math inline">\(a \in B\)</span> となる。矛盾！</li>
-</ul>
-<p>どちらの場合も矛盾が生じる。したがって、そのような全射 <span class="math inline">\(f\)</span> は存在しない。</p>
-</section>
-<section id="帰結" class="level2">
-<h2 class="anchored" data-anchor-id="帰結">帰結</h2>
-<ol type="1">
-<li><strong>無限階層</strong>：任意の無限集合から始めて、真に増大する濃度を持つ集合の無限列を構成できる</li>
-<li><strong>最大基数の不存在</strong>：すべての集合の集合は存在しない</li>
-<li><strong>非可算性</strong>：<span class="math inline">\(\mathcal{P}(\mathbb{N})\)</span> は非可算である（<span class="math inline">\(|\mathbb{N}| &lt; |\mathcal{P}(\mathbb{N})|\)</span> より）</li>
-</ol>
-</section>
-<section id="特殊な場合" class="level2">
-<h2 class="anchored" data-anchor-id="特殊な場合">特殊な場合</h2>
-<p>有限集合の場合：<span class="math inline">\(|A| = n\)</span> ならば、すべての <span class="math inline">\(n \geq 0\)</span> に対して <span class="math inline">\(|\mathcal{P}(A)| = 2^n &gt; n\)</span> が成り立つ。</p>
-</section>
-<section id="mermaidダイアグラム" class="level2">
-<h2 class="anchored" data-anchor-id="mermaidダイアグラム">Mermaidダイアグラム</h2>
-<pre class="mermaid"><code>graph TD
-    A[カントールの定理] --&gt; B[全射 A → P(A) は存在しない]
-    B --&gt; C[対角線論法]
-    C --&gt; D[B = {x: x ∉ f(x)} を構成]
-    D --&gt; E[矛盾]
-    A --&gt; F[|A| &lt; |P(A)|]
-    F --&gt; G[無限階層]
-    F --&gt; H[P(ℕ) は非可算]
-
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style E fill:#fbb,stroke:#333,stroke-width:2px
-    style F fill:#bfb,stroke:#333,stroke-width:2px</code></pre>
-</section>
-<section id="依存関係グラフ" class="level2">
-<h2 class="anchored" data-anchor-id="依存関係グラフ">依存関係グラフ</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    classDef definition fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef theorem fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef axiom fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef example fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef current fill:#ffebee,stroke:#b71c1c,stroke-width:3px
-    def-set["定義: 集合"]:::definition
-    thm-cantor["定理: カントールの定理"]:::theorem
-    def-power-set["定義: べき集合"]:::definition
-    def-cardinality["定義: 濃度"]:::definition
-    thm-cantor --&gt; def-set
-    def-cardinality --&gt; thm-cantor
-    thm-cantor --&gt; def-power-set
-    thm-cantor --&gt; def-cardinality
-    class thm-cantor current
-    click def-set "def-set.html" "集合の定義へ"
-    click def-power-set "def-power-set.html" "べき集合の定義へ"
-    click def-cardinality "def-cardinality.html" "濃度の定義へ"
-</pre>
-</div>
-<p></p><figcaption> ローカル依存関係グラフ</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
 <section id="インタラクティブ可視化" class="level2">
 <h2 class="anchored" data-anchor-id="インタラクティブ可視化">インタラクティブ可視化</h2>
 <p>ローカルナレッジグラフの近傍をインタラクティブに探索：</p>
-<div id="graph-viz-thm-cantor-1754028721" class="graph-visualization-container">
+<div id="graph-viz-thm-cantor-1754030278" class="graph-visualization-container">
   <div class="graph-loading">Loading visualization...</div>
 </div>
 
@@ -672,12 +586,12 @@ async function loadAndRenderGraph() {
       throw new Error('Failed to load graph data');
     }
     const data = await response.json();
-    createForceGraph(data, 'graph-viz-thm-cantor-1754028721', {
+    createForceGraph(data, 'graph-viz-thm-cantor-1754030278', {
       width: 700,
       height: 500
     });
   } catch (error) {
-    document.getElementById('graph-viz-thm-cantor-1754028721').innerHTML =
+    document.getElementById('graph-viz-thm-cantor-1754030278').innerHTML =
       '<div class="alert alert-warning">Unable to load graph visualization. Please run generate_d3_data.py first.</div>';
   }
 }
